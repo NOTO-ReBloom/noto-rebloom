@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="NOTO Re:Bloom｜能登・珠洲市の耕作放棄地を、学生・地域・企業の協働で交流資源へ再生するプロジェクト。" />
+  <meta name="description" content="NOTO Re:Bloom｜能登・珠洲市の耕作放棄地を、学生・地域・企業・メディアの協働で、花と交流が生まれる場所へ再生するプロジェクト。" />
   <meta name="theme-color" content="#4d2474" />
   <meta property="og:title" content="NOTO Re:Bloom｜耕作放棄地と止まった風景を、地域交流資源へ。" />
   <meta property="og:description" content="学生・地域・企業が協力し、珠洲市の使われなくなった土地を、花と交流が生まれる場所へ。" />
@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <a class="skip-link" href="#main">本文へ移動</a>
 
   <header class="site-header" id="top">
@@ -33,7 +34,7 @@
       <nav id="primary-menu" class="primary-nav" aria-label="メインメニュー">
         <a href="#about">プロジェクト</a>
         <a href="#impact">事業の現在地</a>
-        <a href="#support">協賛のご案内</a>
+        <a href="#support">協賛・取材</a>
         <a href="#faq">よくある質問</a>
         <a class="nav-crowdfund" target="_blank" rel="noopener" href="https://readyfor.jp/projects/kousakuhoukiti-saisei">クラファンで応援 ↗</a>
         <a target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8" class="nav-cta">協賛・連携のご相談</a>
@@ -43,6 +44,9 @@
 
   <main id="main">
     <section class="hero">
+      <div class="hero-petal-sky" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
       <div class="hero-orb orb-a" aria-hidden="true"></div>
       <div class="hero-orb orb-b" aria-hidden="true"></div>
       <div class="container hero-grid">
@@ -54,6 +58,7 @@
             <a class="btn btn-primary" target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8"><span>企業・団体として協賛を相談する</span><i>→</i></a>
             <a class="btn btn-outline" target="_blank" rel="noopener" href="https://readyfor.jp/projects/kousakuhoukiti-saisei"><span>READYFORで応援する</span><i>↗</i></a>
           </div>
+          <div class="hero-playful-note"><span aria-hidden="true">✿</span> 土に触れ、人と笑い、花を植える。そんな一日を、珠洲から。</div>
           <div class="hero-proof" aria-label="プロジェクトの実績">
             <div><b>NOTO REBOOST</b><small>U-23 最優秀賞</small></div>
             <i></i>
@@ -149,6 +154,33 @@
       </div>
     </section>
 
+
+    <section class="section section-story" id="story">
+      <div class="container story-grid">
+        <div class="story-art reveal" aria-hidden="true">
+          <div class="story-sun"></div>
+          <div class="story-hill hill-one"></div>
+          <div class="story-hill hill-two"></div>
+          <div class="story-flower flower-one">✿</div>
+          <div class="story-flower flower-two">✦</div>
+          <div class="story-flower flower-three">✿</div>
+          <div class="story-seed seed-one"></div>
+          <div class="story-seed seed-two"></div>
+          <p>soil · people · bloom</p>
+        </div>
+        <div class="story-copy reveal reveal-delay">
+          <p class="eyebrow"><span></span> OUR WHY</p>
+          <h2>私たちは、土地だけを<br><em>再生したいわけではありません。</em></h2>
+          <p>荒れた土地を前にしたとき、私たちが見たのは「使われていない場所」だけではありませんでした。そこには、誰かが手を入れ、作物を育て、地域の景色をつくってきた時間があります。</p>
+          <p>だからこそ、整地して終わりにはしません。泥だらけになって笑い、花を植え、また訪れたくなる理由をつくる。地域の皆さんと同じ景色を育てる仲間として、毎年この場所に関わり続けます。</p>
+          <div class="story-words" aria-label="私たちが大切にすること"><span>土に触れる</span><i>→</i><span>人と交わる</span><i>→</i><span>景色を残す</span></div>
+          <button class="bloom-button" type="button" data-bloom="story"><span aria-hidden="true">✿</span> 花びらを咲かせる</button>
+          <span class="sr-only" id="bloom-status" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="bloom-petals" aria-hidden="true"></div>
+    </section>
+
     <section class="section section-support" id="support">
       <div class="container">
         <div class="support-intro reveal">
@@ -159,37 +191,77 @@
           </div>
           <div class="support-cta-card">
             <span>NOW SEEKING</span>
-            <b>土地整備費<br>の確保</b>
-            <small>安全に再生し、次の工程へ進むための最初の一歩です。</small>
+            <b>初期土地整備<br>へのご協力</b>
+            <small>現地の状況・正式見積もりを踏まえ、必要に応じて重機を用いた整地を実施します。</small>
             <a target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8">協賛について相談する <i>→</i></a>
           </div>
         </div>
 
-        <div class="benefit-grid">
+        <div class="benefit-grid benefit-grid-expanded">
           <article class="benefit-card reveal"><span>01</span><div class="benefit-icon">⌘</div><h3>地域貢献を<br>見える形に</h3><p>土地再生・交流イベントという、地域に残る成果として支援を可視化できます。</p></article>
-          <article class="benefit-card reveal reveal-delay"><span>02</span><div class="benefit-icon">◎</div><h3>若者・地域との<br>共創の機会</h3><p>学生、地域住民、農家との連携を通じ、新しい地域価値の創出に関われます。</p></article>
-          <article class="benefit-card reveal reveal-delay-2"><span>03</span><div class="benefit-icon">↗</div><h3>活動の発信と<br>関係づくり</h3><p>協賛内容に応じて、活動報告・SNS発信・ロゴ紹介等をご相談のうえ実施します。</p></article>
-          <article class="benefit-card reveal reveal-delay-3"><span>04</span><div class="benefit-icon">✦</div><h3>持続可能な<br>地域への接点</h3><p>単発支援にとどまらず、毎年広がる取り組みのパートナーになれます。</p></article>
+          <article class="benefit-card reveal reveal-delay"><span>02</span><div class="benefit-icon">◎</div><h3>社員・地域・学生の<br>共創の機会</h3><p>花植えや運営などを通じ、社員の皆様が地域と直接関わる機会をつくれます。</p></article>
+          <article class="benefit-card reveal reveal-delay-2"><span>03</span><div class="benefit-icon">✿</div><h3>支援が見える<br>協賛のかたち</h3><p>Web・現地看板・オリジナルTシャツ等へ、協賛内容に応じた掲載をご案内します。</p></article>
+          <article class="benefit-card reveal reveal-delay-3"><span>04</span><div class="benefit-icon">↗</div><h3>発信・取材を通じた<br>新しい接点</h3><p>企業・メディア側での発信や取材・掲載を歓迎し、地域の魅力を広げます。</p></article>
+        </div>
+
+        <div class="partner-return reveal">
+          <div class="partner-return-heading">
+            <p class="eyebrow light"><span></span> PARTNER BENEFITS</p>
+            <h3>協力が、目に見える形で<br><em>地域と人に残る。</em></h3>
+            <p>掲載内容・実施時期は、協賛内容や制作の都合を確認のうえご相談します。</p>
+          </div>
+          <div class="return-grid" aria-label="協賛企業・団体への主な還元内容">
+            <article><i>WEB</i><b>公式サイト掲載</b><small>企業名・ロゴ・リンクを掲載</small></article>
+            <article><i>SIGN</i><b>現地看板掲載</b><small>会場・花畑周辺の協賛表示</small></article>
+            <article><i>TEE</i><b>Tシャツロゴ掲載</b><small>オリジナルTシャツへの掲載</small></article>
+            <article><i>REPORT</i><b>活動報告書</b><small>写真・実施内容・今後の展望を共有</small></article>
+            <article><i>JOIN</i><b>社員参加機会</b><small>花植え・運営・地域交流への参加</small></article>
+            <article><i>MEDIA</i><b>発信・取材連携</b><small>企業・メディア側での紹介を歓迎</small></article>
+          </div>
         </div>
 
         <div class="sponsor-flow reveal">
           <div class="sponsor-flow-title"><p class="eyebrow light"><span></span> WHAT YOUR SUPPORT MAKES POSSIBLE</p><h3>ご支援が、どのように<br>地域の価値へ変わるのか。</h3></div>
           <ol>
-            <li><span>01</span><b>ご相談</b><small>協賛金・重機・資材・社員参加など</small></li>
+            <li><span>01</span><b>ご相談</b><small>協賛金・重機・資材・社員参加・取材など</small></li>
             <li><span>02</span><b>内容の設計</b><small>ご希望と現地の必要性をすり合わせ</small></li>
-            <li><span>03</span><b>再生・交流の実施</b><small>整備、花植え、イベント、発信へ</small></li>
+            <li><span>03</span><b>再生・交流の実施</b><small>整備、花植え、イベント、記録へ</small></li>
             <li><span>04</span><b>活動報告</b><small>写真・実施内容・次年度展望を共有</small></li>
           </ol>
         </div>
 
         <div class="support-options reveal">
           <div class="support-options-copy"><p class="eyebrow"><span></span> WAYS TO JOIN</p><h3>ご協力の方法は、<br>資金だけではありません。</h3><p>現場に必要なものと、企業・団体の皆様ができることをつなぎます。まずはお気軽にご相談ください。</p></div>
-          <div class="support-option-grid">
+          <div class="support-option-grid support-option-grid-expanded">
             <article><i>¥</i><b>協賛金</b><small>土地整備・花畑整備・イベント運営</small></article>
-            <article><i>⚒</i><b>重機・資材</b><small>重機、運搬、花苗、備品などの現物協力</small></article>
+            <article><i>⚒</i><b>重機・運搬</b><small>必要に応じた重機・運搬・整地協力</small></article>
+            <article><i>✿</i><b>資材・花苗</b><small>花苗、備品、安全用品などの現物協力</small></article>
             <article><i>◉</i><b>社員参加</b><small>花植え・運営・地域交流への参加</small></article>
-            <article><i>↗</i><b>広報・紹介</b><small>SNS発信、取引先・地域へのご紹介</small></article>
+            <article><i>↗</i><b>広報・メディア</b><small>企業・メディア側での紹介・取材・掲載</small></article>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-media" id="media">
+      <div class="container media-card reveal">
+        <div class="media-copy">
+          <p class="eyebrow"><span></span> MEDIA &amp; PRESS</p>
+          <h2>取材・発信を、<br><em>心から歓迎します。</em></h2>
+          <p>NOTO Re:Bloomでは、現地取材、プロジェクト紹介、学生・地域との協働に関する企画、活動の記録・発信を歓迎しています。</p>
+          <p>能登の土地が再び人の集まる場所へ変わっていく過程を、より多くの方に知っていただくことも、地域の未来を育てる大切な一歩だと考えています。</p>
+          <a class="text-link" target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8">取材・掲載について相談する <span>↗</span></a>
+        </div>
+        <div class="media-details" aria-label="取材でご相談いただける内容">
+          <span class="media-label">WELCOME</span>
+          <h3>ご相談いただけること</h3>
+          <ul>
+            <li><span>01</span>プロジェクトの背景・構想のご説明</li>
+            <li><span>02</span>学生チーム・地域協力者への取材調整</li>
+            <li><span>03</span>現地・イベント時の取材相談</li>
+            <li><span>04</span>図解資料・掲載用情報のご提供</li>
+          </ul>
+          <p>フォームに「取材・メディアに関する相談」とご記入ください。内容を確認のうえ、メールでご返信します。</p>
         </div>
       </div>
     </section>
@@ -229,10 +301,11 @@
       <div class="container faq-layout">
         <div class="section-heading reveal"><p class="eyebrow"><span></span> FAQ FOR PARTNERS</p><h2>協賛・連携について、<br>よくあるご質問。</h2><p>具体的な協力方法が決まっていない段階でも、フォームからお気軽にご相談ください。</p></div>
         <div class="faq-list reveal reveal-delay">
-          <details open><summary><span>Q1</span>協賛金以外の協力もできますか？<i>+</i></summary><p>はい。重機・資材・花苗等のご提供、社員ボランティア参加、広報・ご紹介など、さまざまな形でのご協力を歓迎しています。</p></details>
+          <details open><summary><span>Q1</span>協賛金以外の協力もできますか？<i>+</i></summary><p>はい。必要に応じた重機・運搬・整地協力、資材・花苗等のご提供、社員ボランティア参加、企業側での紹介・取材連携など、さまざまな形でのご協力を歓迎しています。</p></details>
           <details><summary><span>Q2</span>まだ内容が決まっていなくても相談できますか？<i>+</i></summary><p>もちろんです。現地で必要なことと、企業・団体様のご希望を伺いながら、協力の形を一緒に考えます。</p></details>
           <details><summary><span>Q3</span>支援後の活動は確認できますか？<i>+</i></summary><p>実施内容や写真、今後の展望を活動報告として共有する予定です。協賛内容に応じたご報告方法もご相談いただけます。</p></details>
           <details><summary><span>Q4</span>クラウドファンディングと協賛の違いは何ですか？<i>+</i></summary><p>クラウドファンディングは個人を含む幅広い支援の窓口、協賛・連携は企業・団体様との継続的な協力を相談する窓口です。</p></details>
+          <details><summary><span>Q5</span>取材・メディア関係者の相談はできますか？<i>+</i></summary><p>はい。現地取材、プロジェクト紹介、学生・地域との協働に関する企画などを歓迎しています。フォームに取材内容・ご希望の時期をご記入ください。</p></details>
         </div>
       </div>
     </section>
@@ -254,6 +327,7 @@
         <div class="news-list reveal reveal-delay">
           <article><time datetime="2026-06">2026.06</time><div><span>PROJECT</span><h3>企業・団体様向けのご紹介資料を公開しました。</h3></div><a href="#resources" aria-label="資料を見る">→</a></article>
           <article><time datetime="2026-06">2026.06</time><div><span>SUPPORT</span><h3>土地整備・重機・資材面でのご協力企業を募集しています。</h3></div><a target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8" aria-label="協賛フォームを開く">↗</a></article>
+          <article><time datetime="2026.06">2026.06</time><div><span>MEDIA</span><h3>取材・メディア関係者の皆様からのご相談を歓迎しています。</h3></div><a href="#media" aria-label="取材・メディアのご案内を見る">→</a></article>
           <article><time datetime="2026-05">2026.05</time><div><span>CROWDFUNDING</span><h3>クラウドファンディングを公開しました。</h3></div><a target="_blank" rel="noopener" href="https://readyfor.jp/projects/kousakuhoukiti-saisei" aria-label="クラウドファンディングへ">↗</a></article>
         </div>
       </div>
@@ -261,11 +335,11 @@
 
     <section class="section section-contact" id="contact">
       <div class="container contact-card reveal">
-        <div><p class="eyebrow light"><span></span> CONTACT</p><h2>一緒に、能登の未来に<br>花を咲かせませんか。</h2><p>協賛、資材・重機のご提供、社員参加、広報連携などのご相談を受け付けています。フォームからお送りいただいた内容は、プロジェクト内で一元管理し、担当者よりメールでご返信します。</p></div>
+        <div><p class="eyebrow light"><span></span> CONTACT</p><h2>一緒に、能登の未来に<br>花を咲かせませんか。</h2><p>協賛、必要に応じた重機・資材のご提供、社員参加、企業側での発信、取材・メディア連携などのご相談を受け付けています。フォームからお送りいただいた内容は、プロジェクト内で一元管理し、担当者よりメールでご返信します。</p></div>
         <div class="contact-actions">
-          <a target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8" class="contact-link contact-link-main"><span>FORM</span><b>協賛・連携フォームを開く</b><i>↗</i></a>
+          <a target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8" class="contact-link contact-link-main"><span>FORM</span><b>協賛・取材・連携フォームを開く</b><i>↗</i></a>
           <a href="mailto:infonotorebloom@gmail.com?subject=NOTO%20Re%3ABloom%E3%81%B8%E3%81%AE%E3%81%94%E5%8D%94%E8%B3%9B%E3%83%BB%E9%80%A3%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="contact-link"><span>EMAIL</span><b>infonotorebloom@gmail.com</b><i>→</i></a>
-          <p class="contact-note">※ お急ぎの場合を除き、まずはフォームからご連絡ください。</p>
+          <p class="contact-note">※ 協賛・取材・連携に関するご相談は、まずフォームからお送りください。</p>
         </div>
       </div>
     </section>
