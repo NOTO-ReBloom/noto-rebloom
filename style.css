@@ -146,3 +146,131 @@ button{font:inherit}
 @media (max-width:1040px){.data-intro,.data-meaning{grid-template-columns:1fr;gap:28px}.data-headline-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.data-chart-grid{grid-template-columns:1fr}.data-meaning{padding:36px}.data-meaning-list{max-width:720px}.data-chart-card{padding:28px}}
 @media (max-width:800px){.section-data{padding:76px 0}.data-intro{margin-bottom:28px}.data-intro>p{font-size:12px}.data-note{margin-bottom:28px}.data-chart-grid-second{margin-top:13px}.data-meaning{margin-top:28px}.data-chart-card{padding:25px 22px}.bar-chart{height:205px}.donut-wrap{grid-template-columns:155px minmax(0,1fr);gap:19px}.donut-chart{width:150px;height:150px}.donut-chart>div{width:105px;height:105px}.farmers-chart{height:214px}}
 @media (max-width:520px){.data-headline-grid{grid-template-columns:1fr}.data-headline-card{min-height:174px}.data-kicker{margin-bottom:16px}.data-headline-card strong{font-size:47px}.data-note{padding:12px 13px;gap:9px}.data-note p{font-size:10px}.data-chart-card{padding:22px 16px}.data-chart-card h3{font-size:25px}.data-chart-card figcaption p{font-size:10px}.bar-chart{height:183px;margin-top:20px;gap:5px}.bar-col i{width:min(47px,85%)}.bar-col i b{font-size:12px}.donut-wrap{grid-template-columns:1fr;justify-items:center}.donut-legend{width:100%;max-width:290px}.farmers-chart{grid-template-columns:repeat(3,minmax(0,1fr));height:205px;padding:13px 3px 0}.farm-chart-note{grid-column:1/-1;align-self:start;margin:10px auto 0;padding:0;border:0}.farm-chart-note strong{display:inline;margin-left:6px;font-size:20px}.disaster-stat-grid{gap:8px}.disaster-stat-grid>div{padding:14px 11px}.disaster-stat-grid strong{font-size:33px}.data-meaning{gap:21px;padding:28px 20px}.data-meaning-list article{grid-template-columns:33px minmax(0,1fr);column-gap:9px}.data-meaning-list b{font-size:12px}.data-meaning-list p{font-size:9px}.data-sources summary{gap:8px;font-size:11px}.data-sources>div{padding-bottom:16px}.data-sources ul{font-size:10px}}
+
+
+/* =========================================================
+   UPDATE 07 / Quiet motion + Japanese typography polish
+   - 動きは内容を邪魔せず、視線の流れを助けるためだけに使用
+   - JavaScript が動かない場合は静止表示のまま読める安全設計
+   ========================================================= */
+
+/* 日本語の不自然な途中改行をできるだけ減らす */
+:where(h1,h2,h3,h4,p,li,dt,dd,small,b,strong,a,button,summary){
+  line-break: strict;
+  text-wrap: pretty;
+}
+:where(.section h2,.hero h1,.event-date-card h2,.event-copy h3,.data-chart-card h3,.data-meaning h3,.contact-card h2,.section-heading h2){
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+:where(.section p,.section li,.hero-lead,.hero-playful-note,.event-copy>p:last-child,.data-intro>p,.data-note p,.data-chart-card figcaption p,.data-meaning-list p,.contact-card p,.news-list h3){
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+@supports (word-break: auto-phrase){
+  :where(.section p,.section li,.hero-lead,.hero-playful-note,.event-copy>p:last-child,.data-intro>p,.data-note p,.data-chart-card figcaption p,.data-meaning-list p,.contact-card p,.news-list h3){
+    word-break: auto-phrase;
+  }
+}
+:where(.primary-nav a,.btn,.event-mail-link,.contact-link b,.mobile-action-bar a,.resource-card b,.resource-card small){
+  white-space: nowrap;
+}
+:where(.contact-link b,.event-mail-link){
+  overflow-wrap: anywhere;
+}
+@media (max-width: 520px){
+  :where(.primary-nav a,.btn,.event-mail-link,.contact-link b,.mobile-action-bar a,.resource-card b,.resource-card small){white-space:normal}
+  .section h2,.hero h1,.event-date-card h2,.event-copy h3,.data-chart-card h3,.data-meaning h3,.contact-card h2{letter-spacing:0}
+}
+
+/* メニュー：今読んでいる場所を控えめに示す */
+.primary-nav a:not(.nav-cta){position:relative}
+.primary-nav a:not(.nav-cta)::after{
+  content:"";position:absolute;left:50%;right:50%;bottom:-9px;height:2px;border-radius:99px;
+  background:linear-gradient(90deg,#8e5bb5,#bedb98);opacity:0;transition:left .24s ease,right .24s ease,opacity .24s ease;
+}
+.primary-nav a.is-current:not(.nav-cta){color:var(--purple)}
+.primary-nav a.is-current:not(.nav-cta)::after{left:0;right:0;opacity:1}
+
+/* ほんのり紙の質感。クリックや可読性には影響しない */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.022;
+  background-image:radial-gradient(rgba(73,38,99,.65) .55px,transparent .55px);
+  background-size:7px 7px;mix-blend-mode:multiply;
+}
+
+/* Section backgrounds: スクロール中に単調にならない浅い光のレイヤー */
+.section-about,.section-impact,.section-support,.section-news{position:relative;isolation:isolate}
+.section-about::after,.section-impact::after,.section-support::after,.section-news::after{
+  content:"";position:absolute;z-index:-1;width:330px;height:330px;border-radius:50%;pointer-events:none;filter:blur(2px);opacity:.5;
+  background:radial-gradient(circle,rgba(169,122,204,.10),rgba(169,122,204,0) 68%);
+}
+.section-about::after{right:-170px;top:5%}
+.section-impact::after{left:-185px;top:14%}
+.section-support::after{right:-185px;top:11%}
+.section-news::after{left:-190px;bottom:4%}
+
+/* カードの“浮きすぎない”反応 */
+@media (hover:hover) and (pointer:fine){
+  .data-headline-card,.data-chart-card,.snapshot-card,.benefit-card,.partner-return article,.support-option,.resource-card,.news-list article{
+    transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease,border-color .28s ease,background .28s ease;
+  }
+  .data-headline-card:hover,.data-chart-card:hover,.snapshot-card:hover,.benefit-card:hover,.partner-return article:hover,.support-option:hover,.resource-card:hover,.news-list article:hover{
+    transform:translateY(-5px);box-shadow:0 20px 38px rgba(67,29,99,.12);
+  }
+  .data-chart-card:hover{border-color:#c7a7dc}
+  .event-date-card:hover::after{transform:scale(1.08)}
+}
+
+/* データ：数値が読まれるタイミングで、グラフをゆっくり立ち上げる */
+html.js .data-chart-card .bar-col i,
+html.js .data-chart-card .farm-col i{
+  transform:scaleY(.055);transform-origin:bottom;transition:transform 1s cubic-bezier(.2,.8,.2,1);
+}
+html.js .data-chart-card.is-chart-ready .bar-col i,
+html.js .data-chart-card.is-chart-ready .farm-col i{transform:scaleY(1)}
+html.js .chart-donut-panel .donut-chart{
+  opacity:.2;transform:scale(.84) rotate(-34deg);transition:opacity .76s ease,transform .9s cubic-bezier(.2,.8,.2,1);
+}
+html.js .chart-donut-panel.is-chart-ready .donut-chart{opacity:1;transform:scale(1) rotate(0)}
+html.js .chart-disaster .recovery-meter i{
+  transform:scaleX(.04);transform-origin:left;transition:transform .9s cubic-bezier(.2,.8,.2,1);
+}
+html.js .chart-disaster.is-chart-ready .recovery-meter i{transform:scaleX(1)}
+
+/* “種”が次の景色へ向かう小さな動き */
+@media (prefers-reduced-motion:no-preference){
+  .field-bridge .bridge-seed{animation:seed-bob 4.8s ease-in-out infinite}
+  .field-bridge .seed-b{animation-delay:-1.8s}.field-bridge .seed-c{animation-delay:-3.2s}
+  .event-date-card::after{transition:transform 1.2s ease}
+  .event-date-card{background-size:160% 160%;animation:event-light 12s ease-in-out infinite}
+  .data-headline-card{background-size:150% 150%;animation:card-breath 12s ease-in-out infinite}
+  .data-headline-card:nth-child(2){animation-delay:-3s}.data-headline-card:nth-child(3){animation-delay:-6s}.data-headline-card:nth-child(4){animation-delay:-9s}
+}
+@keyframes seed-bob{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -8px;rotate:13deg}}
+@keyframes event-light{0%,100%{background-position:0% 35%}50%{background-position:100% 65%}}
+@keyframes card-breath{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* 小さな“見つけた感”のあるラベル。情報を増やしすぎない */
+.data-headline-card::before{
+  content:"";position:absolute;top:0;left:21px;width:34px;height:3px;border-radius:0 0 99px 99px;
+  background:linear-gradient(90deg,#a875c5,#c6df9f);opacity:.9;
+}
+.data-headline-card{overflow:hidden}
+
+/* モバイルでは動きをさらに抑え、情報を読みやすくする */
+@media (max-width:800px){
+  body::before{opacity:.014}
+  .primary-nav a:not(.nav-cta)::after{display:none}
+  .section-about::after,.section-impact::after,.section-support::after,.section-news::after{width:230px;height:230px;opacity:.34}
+  .data-headline-card::before{left:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  body::before{display:none}
+  html.js .data-chart-card .bar-col i,
+  html.js .data-chart-card .farm-col i,
+  html.js .chart-donut-panel .donut-chart,
+  html.js .chart-disaster .recovery-meter i{opacity:1;transform:none;transition:none}
+  .field-bridge .bridge-seed,.event-date-card,.data-headline-card{animation:none!important}
+}
