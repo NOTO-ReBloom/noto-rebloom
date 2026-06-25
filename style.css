@@ -311,3 +311,113 @@ html.js .chart-disaster.is-chart-ready .recovery-meter i{transform:scaleX(1)}
 @media (max-width:680px){.field-heading{margin-bottom:24px}.field-heading h2{font-size:2.2rem}.field-photo-grid{grid-template-columns:1fr;gap:14px}.field-photo,.field-photo-detail{min-height:360px}.field-photo-detail{min-height:330px}.field-photo figcaption{left:18px;right:18px;bottom:16px}.field-promise{padding:27px 20px}.field-promise ol{grid-template-columns:1fr;gap:14px}.field-promise h3{font-size:1.4rem}.field-caption{font-size:.73rem}.origin-photo-panel{min-height:380px}.origin-photo-main{inset:0 8% 11% 0}.origin-photo-small{width:52%;height:43%;border-width:6px}.origin-sticker{width:116px;top:13px;right:-3px}.origin-sticker b{font-size:1rem}.origin-sticker span{font-size:.65rem}.origin-copy h2{font-size:2.05rem}.origin-reasons{grid-template-columns:1fr;gap:8px}.origin-reasons article{display:grid;grid-template-columns:38px 1fr;column-gap:8px;align-items:start}.origin-reasons span{grid-row:span 2;margin:2px 0 0}.origin-reasons p{grid-column:2}.origin-closing{font-size:.94rem!important}}
 @media (prefers-reduced-motion:no-preference){.field-photo,.origin-photo{transition:transform .35s ease}.field-photo:hover{transform:translateY(-5px)}.origin-photo-main:hover{transform:rotate(-1.1deg) translateY(-5px)}.origin-photo-small:hover{transform:rotate(1.8deg) translateY(-5px)}}
 
+
+
+/* ===== Update 09 | 写真の存在感と、どの画面でも読みやすい見出し ===== */
+/* 日本語の文節を不自然に分断しない。対応ブラウザではフレーズ単位の改行を優先。 */
+:where(h1,h2,h3,h4,p,li,a,b,strong,small){
+  line-break:strict;
+  word-break:normal;
+  overflow-wrap:normal;
+  text-wrap:pretty;
+}
+@supports (word-break:auto-phrase){
+  :where(h1,h2,h3,h4,p,li,a,b,strong,small){word-break:auto-phrase}
+}
+.headline-lines{margin:0;min-width:0;text-wrap:initial}
+.headline-lines .headline-line{display:block;white-space:nowrap}
+
+/* 生成画像ではなく、現地とメンバーの実写をトップに。 */
+.hero-visual{min-height:510px}
+.visual-frame.visual-frame-field{
+  width:min(510px,100%);
+  border-radius:28px;
+  border-width:8px;
+  background:#d8e7ce;
+}
+.visual-frame.visual-frame-field img{
+  width:100%;height:420px;object-fit:cover;object-position:center 50%;
+  filter:saturate(1.12) contrast(1.03);
+}
+.hero-team-photo{
+  position:absolute;z-index:3;left:-26px;bottom:8px;width:min(260px,53%);margin:0;
+  overflow:hidden;border:7px solid #fff;border-radius:18px;background:#fff;
+  box-shadow:0 22px 42px rgba(49,28,66,.22);transform:rotate(-4deg);
+}
+.hero-team-photo img{
+  width:100%;aspect-ratio:4 / 3;object-fit:cover;object-position:50% 38%;
+  filter:saturate(1.08) contrast(1.03);
+}
+.hero-team-photo figcaption{
+  display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+  padding:9px 10px 10px;background:#fff;color:#40245d;line-height:1.35;
+}
+.hero-team-photo figcaption span{font-size:8px;letter-spacing:.09em;font-weight:900}
+.hero-team-photo figcaption b{font-family:var(--serif);font-size:12px;white-space:nowrap}
+.hero-visual .card-model{left:auto;right:-22px;top:36px}
+.hero-visual .card-people{right:-18px;bottom:-5px}
+
+/* 顔が隠れないよう、実写の上に大きな装飾を重ねない。 */
+.origin-photo img{object-position:50% 35%;filter:saturate(1.08) contrast(1.02)}
+.origin-photo-main::after,.origin-photo-small::after{display:none}
+.origin-photo-main figcaption{left:16px;bottom:14px;padding:8px 11px;border-radius:10px;background:rgba(35,19,48,.73);backdrop-filter:blur(4px)}
+.origin-photo-small figcaption{left:10px;right:10px;bottom:10px;padding:7px 9px;border-radius:8px;background:rgba(35,19,48,.72);backdrop-filter:blur(4px)}
+.origin-photo-note{margin:13px 0 0!important;color:#7a6f80!important;font-size:.78rem!important;line-height:1.8!important}
+
+/* 意図した行だけで見出しを切る。小さい画面ほど文字を調整する。 */
+.hero-title{font-size:clamp(34px,5.35vw,68px)!important;line-height:1.31!important;letter-spacing:.005em!important}
+.field-title,.data-title,.origin-title,.play-title,.support-title,.contact-title{letter-spacing:0!important}
+.field-title{font-size:clamp(31px,3.85vw,49px)!important}
+.data-title{font-size:clamp(31px,3.85vw,49px)!important}
+.origin-title{font-size:clamp(29px,3.55vw,45px)!important;line-height:1.38!important}
+.play-title{font-size:clamp(30px,4vw,48px)!important}
+.support-title{font-size:clamp(30px,3.8vw,48px)!important;line-height:1.36!important}
+.contact-title{font-size:clamp(29px,3.6vw,43px)!important;line-height:1.4!important}
+.promise-title{font-size:1.6rem!important;line-height:1.45!important}
+.event-copy-title{font-size:clamp(26px,3vw,37px)!important;line-height:1.32!important}
+.event-title{font-size:clamp(56px,6.6vw,86px)!important;line-height:.93!important;letter-spacing:-.035em!important}
+
+/* 小さな画面で内容がつぶれないように、写真と見出しの比率を再調整。 */
+@media (max-width:800px){
+  .hero-visual{width:100%;min-height:470px;margin:0 auto}
+  .visual-frame.visual-frame-field{width:100%;border-radius:24px}
+  .visual-frame.visual-frame-field img{height:410px;object-position:center 54%}
+  .hero-team-photo{left:-3px;bottom:-10px;width:min(250px,55%);border-width:6px}
+  .hero-visual .card-model{right:-7px;top:18px}
+  .hero-visual .card-people{right:-5px;bottom:4px}
+  .hero-title{font-size:clamp(32px,9.45vw,51px)!important;line-height:1.32!important}
+  .field-title,.data-title,.origin-title,.play-title,.support-title,.contact-title{font-size:clamp(29px,8.1vw,36px)!important;line-height:1.38!important}
+  .event-copy-title{font-size:clamp(25px,7.1vw,33px)!important}
+  .event-title{font-size:clamp(54px,15vw,75px)!important}
+}
+@media (max-width:520px){
+  .headline-lines .headline-line{letter-spacing:0}
+  .hero-title{font-size:clamp(30px,9.4vw,42px)!important;line-height:1.33!important}
+  .hero-title .headline-line:nth-child(2){font-size:.94em}
+  .field-title,.data-title,.origin-title,.play-title,.support-title,.contact-title{font-size:clamp(26px,7.65vw,33px)!important;line-height:1.42!important}
+  .data-title .headline-line:nth-child(2){font-size:.95em}
+  .origin-title .headline-line:nth-child(2){font-size:.92em}
+  .support-title .headline-line:nth-child(2){font-size:.93em}
+  .promise-title{font-size:1.35rem!important}
+  .event-copy-title{font-size:clamp(24px,7vw,30px)!important}
+  .event-title{font-size:clamp(50px,14.5vw,68px)!important}
+  .visual-frame.visual-frame-field img{height:360px}
+  .hero-visual{min-height:420px}
+  .hero-team-photo{width:min(225px,59%);left:-4px;bottom:-8px}
+  .hero-team-photo figcaption{padding:7px 8px 8px}
+  .hero-team-photo figcaption span{font-size:7px}.hero-team-photo figcaption b{font-size:10px}
+  .hero-visual .card-model{top:12px;right:-4px}.hero-visual .card-people{display:none}
+  .origin-photo-main figcaption{left:10px;bottom:10px;padding:6px 8px}
+  .origin-photo-main figcaption b{font-size:.95rem}.origin-photo-main figcaption span{font-size:.64rem}
+}
+@media (max-width:360px){
+  .hero-title{font-size:29px!important}
+  .field-title,.data-title,.origin-title,.play-title,.support-title,.contact-title{font-size:25px!important}
+  .event-title{font-size:48px!important}
+}
+
+/* 写真に関わる動きも最小限に。酔いにつながる動きは抑える。 */
+@media (prefers-reduced-motion:no-preference){
+  .hero-team-photo{transition:transform .35s ease,box-shadow .35s ease}
+  .hero-team-photo:hover{transform:rotate(-2deg) translateY(-4px);box-shadow:0 27px 48px rgba(49,28,66,.25)}
+}
