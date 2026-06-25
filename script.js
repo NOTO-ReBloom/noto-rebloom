@@ -1,6 +1,7 @@
 (() => {
   "use strict";
 
+  // Motion is opt-in through this class: without JavaScript, every section stays readable.
   document.documentElement.classList.add("js");
 
   const year = document.getElementById("year");
@@ -23,6 +24,7 @@
     });
   }
 
+  // Top progress indicator
   const progress = document.querySelector(".scroll-progress span");
   let ticking = false;
   const updateProgress = () => {
@@ -42,6 +44,7 @@
   }, { passive: true });
   window.addEventListener("resize", updateProgress, { passive: true });
 
+  // Reveal sections only after JavaScript is confirmed to be running.
   const revealItems = [...document.querySelectorAll(".reveal")];
   if (!("IntersectionObserver" in window)) {
     revealItems.forEach((item) => item.classList.add("is-visible"));
@@ -56,7 +59,22 @@
     revealItems.forEach((item) => observer.observe(item));
   }
 
-  // Count-up labels: purely decorative; original numbers remain in the HTML for a safe fallback.
+  // Animate the data visualizations when they enter the viewport.
+  const charts = [...document.querySelectorAll(".data-chart-card")];
+  if (!("IntersectionObserver" in window)) {
+    charts.forEach((chart) => chart.classList.add("is-chart-ready"));
+  } else {
+    const chartObserver = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-chart-ready");
+        currentObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.32, rootMargin: "0px 0px -20px 0px" });
+    charts.forEach((chart) => chartObserver.observe(chart));
+  }
+
+  // Count-up labels: original numbers are already in HTML as a safe fallback.
   const countItems = [...document.querySelectorAll("[data-count]")];
   const numberFormatter = new Intl.NumberFormat("ja-JP");
   const animateCount = (element) => {
@@ -65,11 +83,11 @@
     const duration = 750;
     const started = performance.now();
     const frame = (now) => {
-      const progress = Math.min(1, (now - started) / duration);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const ratio = Math.min(1, (now - started) / duration);
+      const eased = 1 - Math.pow(1 - ratio, 3);
       const current = Math.round(target * eased);
       element.innerHTML = `${numberFormatter.format(current)}<small>${suffix}</small>`;
-      if (progress < 1) window.requestAnimationFrame(frame);
+      if (ratio < 1) window.requestAnimationFrame(frame);
     };
     window.requestAnimationFrame(frame);
   };
@@ -84,41 +102,45 @@
     countItems.forEach((item) => countObserver.observe(item));
   }
 
-  // A compact "find your role" interaction. It doesn't change navigation or require another form.
+  // Active state in the header: makes a long page easier to explore.
+  const sectionLinks = [...document.querySelectorAll('.primary-nav a[href^="#"]')];
+  const sections = sectionLinks
+    .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
+    .filter((item) => item.section);
+  const setCurrentLink = (link) => {
+    sectionLinks.forEach((item) => {
+      const active = item === link;
+      item.classList.toggle("is-current", active);
+      if (active) item.setAttribute("aria-current", "location");
+      else item.removeAttribute("aria-current");
+    });
+  };
+  if (sections.length && "IntersectionObserver" in window) {
+    const navObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      const found = sections.find((item) => item.section === visible.target);
+      if (found) setCurrentLink(found.link);
+    }, { rootMargin: "-24% 0px -64% 0px", threshold: [0.01, 0.2, 0.45] });
+    sections.forEach((item) => navObserver.observe(item.section));
+  }
+
+  // Compact "find your role" interaction.
   const roleContent = {
-    fund: {
-      label: "資金で支える",
-      title: "土地整備と安全な受入れの、最初の一歩を前へ。",
-      text: "協賛金は、必要に応じた重機・整地・草木撤去、安全なイベント準備など、現地の基盤づくりに活かします。"
-    },
-    skill: {
-      label: "技術で支える",
-      title: "専門性が、安全な再生のスタートを支えます。",
-      text: "重機・運搬・整地などの専門的な力は、現地の状況に応じた安全で確かな土地再生に直結します。"
-    },
-    goods: {
-      label: "モノで支える",
-      title: "花苗や備品が、体験を景色へ変えていきます。",
-      text: "花苗、道具、安全用品、飲料や備品など、現場で必要なものを通じて参加者の一日を支えられます。"
-    },
-    people: {
-      label: "人で支える",
-      title: "社員の皆様の参加が、地域との新しい接点になります。",
-      text: "花植え、会場づくり、子どもや地域の方との交流など、社員参加はチームの思い出と地域の力になります。"
-    },
-    media: {
-      label: "発信で支える",
-      title: "この変化を伝えることも、能登の未来を育てます。",
-      text: "企業のWebサイト・社内報・SNS、メディア取材などを通じて、能登の土地と人の変化をより多くの方へ届けられます。"
-    }
+    fund: { label: "資金で支える", title: "土地整備と安全な受入れの、最初の一歩を前へ。", text: "協賛金は、必要に応じた重機・整地・草木撤去、安全なイベント準備など、現地の基盤づくりに活かします。" },
+    skill: { label: "技術で支える", title: "専門性が、安全な再生のスタートを支えます。", text: "重機・運搬・整地などの専門的な力は、現地の状況に応じた安全で確かな土地再生に直結します。" },
+    goods: { label: "モノで支える", title: "種や備品が、体験を景色へ変えていきます。", text: "種、道具、安全用品、飲料や備品など、現場で必要なものを通じて参加者の一日を支えられます。" },
+    people: { label: "人で支える", title: "社員の皆様の参加が、地域との新しい接点になります。", text: "種まき、会場づくり、子どもや地域の方との交流など、社員参加はチームの思い出と地域の力になります。" },
+    media: { label: "発信で支える", title: "この変化を伝えることも、能登の未来を育てます。", text: "企業のWebサイト・社内報・SNS、メディア取材などを通じて、能登の土地と人の変化をより多くの方へ届けられます。" }
   };
   const roleButtons = [...document.querySelectorAll("[data-support-role]")];
   const roleMessage = document.querySelector(".role-message");
   if (roleButtons.length && roleMessage) {
     roleButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        const key = button.dataset.supportRole;
-        const content = roleContent[key];
+        const content = roleContent[button.dataset.supportRole];
         if (!content) return;
         roleButtons.forEach((item) => {
           const selected = item === button;
@@ -130,11 +152,11 @@
     });
   }
 
+  // Optional, user-triggered petals — no automatic distraction.
   const bloomButton = document.querySelector("[data-bloom]");
   const petalLayer = document.querySelector(".bloom-petals");
   const bloomStatus = document.getElementById("bloom-status");
   const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   if (bloomButton && petalLayer) {
     bloomButton.addEventListener("click", () => {
       if (bloomStatus) bloomStatus.textContent = "花びらが咲きました。";
