@@ -44,3 +44,129 @@
 @media (max-width:640px){body{font-size:15px;padding-bottom:61px}.shell{width:min(100% - 32px,1240px)}.brand__mark{width:31px;height:31px}.brand strong{font-size:21px}.brand small{font-size:8px}.hero__title{font-size:clamp(34px,10vw,47px);line-height:1.28}.hero__title span{white-space:normal}.hero__lead{font-size:13px}.hero__actions{display:grid;grid-template-columns:1fr}.button{font-size:12px}.hero__proof{gap:15px}.hero__proof div+div{padding-left:15px}.hero__proof dt{font-size:8px}.hero__proof dd{font-size:9px}.visual__stamp{display:none}.seed-button{left:14px;bottom:14px;padding:9px 11px;font-size:10px}.manifesto__inner{min-height:0;padding:19px 0;align-items:flex-start;flex-direction:column;gap:10px}.manifesto p{font-size:14px}.section{padding:62px 0}.section__head--split>p,.section__head:not(.section__head--split)>p{font-size:12px}.heading{font-size:clamp(29px,8.2vw,42px);line-height:1.42}.heading span{white-space:nowrap}.heading--problem{font-size:clamp(25px,7.4vw,34px)}.heading--data,.heading--field,.heading--story{font-size:clamp(27px,7.5vw,38px)}.heading--land{font-size:clamp(27px,7.5vw,38px)}.heading--event{font-size:clamp(40px,10.6vw,52px)!important}.heading--partners{font-size:clamp(33px,8.6vw,46px)!important}.heading--contact{font-size:clamp(31px,8.4vw,42px)!important}.challenge__grid,.data-glance,.partner-benefits{grid-template-columns:1fr 1fr}.challenge__grid article{min-height:200px;padding:17px}.challenge__grid i{margin:18px 0 13px}.challenge__grid h3{font-size:17px}.challenge__grid p{font-size:10px}.land-story__flow{grid-template-columns:1fr}.flow-arrow{display:flex;align-items:center;justify-content:center;gap:10px;padding:5px}.flow-arrow i{margin:0;transform:rotate(90deg)}.flow-card{padding:20px}.flow-card>b{font-size:22px}.data-glance{gap:8px}.data-glance article{padding:15px 13px}.data-glance b{font-size:29px}.data-glance p{font-size:9px}.data-panel{min-height:auto;padding:21px}.data-panel--wide{grid-template-columns:1fr}.bar-chart{height:175px;margin-top:8px}.data-note{grid-template-columns:1fr;padding:19px;gap:10px}.data-note b{font-size:16px}.data-note p{font-size:11px}.data-note a{grid-column:auto;font-size:10px}.field__grid{grid-template-columns:1fr;margin-top:28px}.field__main,.field__detail{height:330px}.field__promise{padding:22px}.field__promise h3{font-size:29px}.field__promise ol{grid-template-columns:1fr;gap:10px}.field__promise li{padding:10px 0 0;border-left:0;border-top:1px solid #d9c9e5}.event__date{padding:24px}.event__body .heading span{white-space:normal}.event__lead{font-size:13px}.games{grid-template-columns:1fr 1fr}.games article{min-height:130px;padding:14px}.games h3{font-size:15px}.games p{font-size:9px}.story__pillars{grid-template-columns:1fr;gap:8px}.story__pillars article{min-height:0;padding:15px}.story blockquote{font-size:17px}.story__after{grid-template-columns:1fr;padding:13px}.story__after h3{font-size:30px}.partners__head h2 span{white-space:normal}.partner-benefits{gap:8px}.partner-benefits article{min-height:175px;padding:15px}.partner-benefits i{margin:13px 0;font-size:20px}.partner-benefits h3{font-size:16px}.partner-benefits p{font-size:10px}.logo-wall{padding:17px}.logo-wall__head{grid-template-columns:1fr;gap:7px}.logo-slots{grid-template-columns:repeat(2,1fr)}.logo-slot{min-height:82px}.logo-slot--wide{grid-column:span 2}.support-roles{grid-template-columns:1fr;padding:20px}.role-panel{grid-column:auto}.press__card{padding:25px}.press__card h2{font-size:33px}.faq__list summary{font-size:13px}.contact__card{padding:30px 23px}.contact__actions{min-width:0;width:100%}.footer__inner{align-items:flex-start;flex-direction:column}.mobile-bar{display:grid;grid-template-columns:1fr 1fr;position:fixed;z-index:90;left:0;right:0;bottom:0;background:rgba(36,22,49,.97);backdrop-filter:blur(14px)}.mobile-bar a{display:grid;place-items:center;min-height:61px;color:#fff;font-size:11px;font-weight:800}.mobile-bar a+a{background:var(--purple)} }
 @media (max-width:380px){.heading--problem{font-size:23px}.heading--data,.heading--field,.heading--story,.heading--land{font-size:25px}.heading span{white-space:normal}.challenge__grid,.data-glance,.partner-benefits{grid-template-columns:1fr}.logo-slots{grid-template-columns:1fr}.logo-slot--wide{grid-column:auto}.games{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
+
+/* --------------------------------------------------------------------------
+   UPDATE 13 — intentional line breaks, full-team photography, tighter rhythm
+   -------------------------------------------------------------------------- */
+html { -webkit-text-size-adjust: 100%; }
+
+/* Japanese headings are composed in authored phrases. No arbitrary breaks. */
+.hero__title,
+.heading,
+.data-panel__meta h3,
+.field__promise h3,
+.story__after h3,
+.support-roles h3 {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  text-wrap: balance;
+}
+.hero__title span,
+.heading > span,
+.field__promise h3 > span,
+.story__after h3 > span,
+.support-roles h3 > span,
+.data-panel__meta h3 > span {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+/* A denser, calmer page rhythm. */
+.section { padding-block: clamp(64px, 7vw, 104px); }
+.challenge { padding-bottom: clamp(58px, 6vw, 88px); }
+.land-story { padding-top: clamp(54px, 6vw, 84px); }
+.data-section { padding-top: clamp(62px, 6vw, 88px); }
+.story { padding-top: clamp(68px, 7vw, 104px); }
+
+/* Keep editorial headlines clear at every width. */
+.heading--problem { font-size: clamp(34px, 3.25vw, 52px); line-height: 1.35; letter-spacing: -.06em; }
+.heading--land { font-size: clamp(36px, 3.8vw, 58px); line-height: 1.28; }
+.heading--data { font-size: clamp(36px, 3.8vw, 59px); line-height: 1.28; }
+.heading--field { font-size: clamp(36px, 3.8vw, 58px); line-height: 1.28; }
+.heading--story { font-size: clamp(37px, 3.9vw, 60px); line-height: 1.28; }
+.heading--partners { font-size: clamp(38px, 4.1vw, 64px); line-height: 1.26; }
+.heading--press { font-size: clamp(35px, 3.8vw, 56px); line-height: 1.3; }
+.heading--contact { font-size: clamp(36px, 4vw, 58px); line-height: 1.3; }
+
+/* Never crop the core team photo. The full original image is the feature. */
+.story__layout { grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr); gap: clamp(30px, 4.5vw, 68px); margin-top: 28px; align-items: center; }
+.team-photo { overflow: visible; border-radius: 22px; padding: 10px; background: linear-gradient(145deg, #fff, #f5eef8); box-shadow: 0 22px 48px rgba(58, 32, 82, .13); }
+.team-photo img { display: block; width: 100%; height: auto !important; max-height: none !important; object-fit: contain !important; object-position: center center !important; aspect-ratio: auto !important; border-radius: 14px; background: #f5f1ed; }
+.team-photo figcaption { padding: 15px 12px 6px; background: transparent; }
+.team-photo figcaption b { font-size: 10px; }
+
+.story__copy { padding-block: 4px; }
+.story__copy > p { font-size: clamp(13px, 1.1vw, 15px); line-height: 2; }
+.story__pillars { margin-top: 20px; }
+.story blockquote { margin-top: 20px; padding: 20px 0 0; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.75; }
+.story__after { max-width: none; margin-top: 28px; grid-template-columns: .62fr 1.38fr; }
+.story__after h3 span,
+.field__promise h3 span,
+.support-roles h3 span { display: block; white-space: nowrap; }
+
+/* The hero is an intentional graphic, not a cropped photo collage. */
+.hero__grid { min-height: 650px; }
+.hero__copy { padding-block: 8px; }
+.visual__frame { transform: rotate(-1.2deg); }
+.visual__stamp { backdrop-filter: blur(12px); }
+
+/* Sponsor logo area reads like a premium partner gallery before logos arrive. */
+.logo-wall { padding: 26px; background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.025)); }
+.logo-slot { position: relative; overflow: hidden; min-height: 102px; transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+.logo-slot::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(216,242,184,.14), transparent 62%); opacity: .7; }
+.logo-slot > * { position: relative; }
+.logo-slot:hover { transform: translateY(-4px); background: rgba(255,255,255,.09); border-color: rgba(216,242,184,.78); }
+
+/* Horizontal / vertical image cards must preserve the image rather than crop it. */
+.field__main img,
+.field__detail img { object-position: center; }
+
+/* Reduced space where cards previously looked detached. */
+.partner-benefits { margin-top: 26px; }
+.support-roles { margin-top: 24px; }
+.press { padding-block: 66px; }
+
+@media (max-width: 860px) {
+  .story__layout { grid-template-columns: 1fr; gap: 28px; }
+  .team-photo { max-width: 760px; }
+  .story__after { grid-template-columns: 1fr; }
+  .partners__head { grid-template-columns: 1fr; gap: 28px; }
+  .support-roles { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .section { padding-block: 58px; }
+  .hero__grid { min-height: 0; padding-block: 58px 64px; }
+  .hero__title { font-size: clamp(30px, 8.9vw, 43px) !important; line-height: 1.28; letter-spacing: -.07em; }
+  .hero__title span { white-space: nowrap !important; }
+  .heading { line-height: 1.38; letter-spacing: -.055em; }
+  .heading > span { white-space: nowrap !important; }
+  .heading--problem { font-size: clamp(21px, 6.55vw, 28px) !important; line-height: 1.5; }
+  .heading--land { font-size: clamp(27px, 8vw, 35px) !important; }
+  .heading--data { font-size: clamp(26px, 7.8vw, 34px) !important; }
+  .heading--field { font-size: clamp(27px, 8vw, 35px) !important; }
+  .heading--story { font-size: clamp(24px, 7.2vw, 31px) !important; line-height: 1.42; }
+  .heading--partners { font-size: clamp(28px, 8.4vw, 37px) !important; line-height: 1.36; }
+  .heading--press { font-size: clamp(27px, 8vw, 35px) !important; }
+  .heading--contact { font-size: clamp(27px, 8vw, 35px) !important; }
+  .team-photo { padding: 7px; border-radius: 18px; }
+  .team-photo figcaption { align-items: flex-start; flex-direction: column; gap: 6px; padding: 12px 7px 4px; }
+  .story__copy > p { font-size: 13px; line-height: 1.92; }
+  .story__after h3 span,
+  .field__promise h3 span,
+  .support-roles h3 span { white-space: normal; }
+  .story__after h3 { font-size: clamp(27px, 8vw, 34px); }
+  .field__promise h3 { font-size: clamp(26px, 7.7vw, 33px); }
+  .support-roles h3 { font-size: clamp(25px, 7.5vw, 32px); }
+  .partners__head h2 span { white-space: nowrap !important; }
+}
+
+@media (max-width: 360px) {
+  .hero__title { font-size: 28px !important; }
+  .heading--problem { font-size: 20px !important; }
+  .heading--story { font-size: 22px !important; }
+  .heading--partners { font-size: 26px !important; }
+}
