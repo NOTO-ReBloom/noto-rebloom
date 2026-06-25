@@ -1,128 +1,127 @@
 (() => {
-  "use strict";
-  document.documentElement.classList.add("js");
+  'use strict';
+  document.documentElement.classList.add('js');
 
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
-
-  const menuButton = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".primary-nav");
-  if (menuButton && menu) {
-    menuButton.addEventListener("click", () => {
-      const open = menu.classList.toggle("is-open");
-      menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+  const menuButton = document.querySelector('.menu-button');
+  const nav = document.querySelector('.nav');
+  if (menuButton && nav) {
+    menuButton.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
     });
-    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
-      menu.classList.remove("is-open");
-      menuButton.setAttribute("aria-expanded", "false");
+    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'メニューを開く');
     }));
   }
 
-  const progress = document.querySelector(".scroll-progress span");
-  let ticking = false;
+  const progress = document.querySelector('.progress span');
   const updateProgress = () => {
-    if (!progress) return;
-    const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-    progress.style.width = `${Math.min(100, Math.max(0, window.scrollY / max * 100))}%`;
+    const top = window.scrollY || document.documentElement.scrollTop;
+    const total = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    if (progress) progress.style.width = `${Math.min(100, (top / total) * 100)}%`;
   };
+  window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
-  window.addEventListener("scroll", () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => { updateProgress(); ticking = false; });
-  }, { passive: true });
-  window.addEventListener("resize", updateProgress, { passive: true });
 
-  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const revealItems = [...document.querySelectorAll(".reveal")];
-  if (!("IntersectionObserver" in window) || reduced) revealItems.forEach((item) => item.classList.add("is-visible"));
-  else {
-    const observer = new IntersectionObserver((entries, current) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); current.unobserve(entry.target); } });
-    }, { threshold: .08, rootMargin: "0px 0px -26px 0px" });
-    revealItems.forEach((item) => observer.observe(item));
+  const revealItems = [...document.querySelectorAll('.reveal')];
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: .08, rootMargin: '0px 0px -44px 0px' });
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
-  const charts = [...document.querySelectorAll(".chart-card")];
-  if (!("IntersectionObserver" in window) || reduced) charts.forEach((item) => item.classList.add("is-chart-ready"));
-  else {
-    const observer = new IntersectionObserver((entries, current) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-chart-ready"); current.unobserve(entry.target); } });
-    }, { threshold: .25 });
-    charts.forEach((item) => observer.observe(item));
+  const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
+  const navTargets = navLinks.map((link) => ({ link, target: document.querySelector(link.getAttribute('href')) })).filter((item) => item.target);
+  if ('IntersectionObserver' in window && navTargets.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => link.classList.remove('is-active'));
+        const match = navTargets.find((item) => item.target === entry.target);
+        if (match) match.link.classList.add('is-active');
+      });
+    }, { rootMargin: '-35% 0px -58% 0px', threshold: 0 });
+    navTargets.forEach((item) => navObserver.observe(item.target));
   }
 
-  const counts = [...document.querySelectorAll("[data-count]")];
-  const animateCount = (el) => {
-    const target = Number(el.dataset.count || 0);
-    const decimal = Number(el.dataset.decimal || 0);
-    const suffix = el.dataset.suffix || "";
+  const counters = [...document.querySelectorAll('[data-count]')];
+  const renderNumber = (value, decimal) => decimal ? value.toFixed(1) : Math.round(value).toLocaleString('ja-JP');
+  const runCounter = (element) => {
+    const goal = Number(element.dataset.count || 0);
+    const suffix = element.dataset.suffix || '';
+    const decimal = String(goal).includes('.');
+    const duration = 1050;
     const start = performance.now();
-    const duration = 850;
-    const step = (now) => {
+    const tick = (now) => {
       const ratio = Math.min(1, (now - start) / duration);
       const eased = 1 - Math.pow(1 - ratio, 3);
-      const n = target * eased;
-      const text = decimal ? n.toFixed(decimal) : Math.round(n).toLocaleString("ja-JP");
-      el.innerHTML = `${text}<small>${suffix}</small>`;
-      if (ratio < 1) requestAnimationFrame(step);
+      element.textContent = `${renderNumber(goal * eased, decimal)}${suffix}`;
+      if (ratio < 1) requestAnimationFrame(tick);
     };
-    requestAnimationFrame(step);
+    requestAnimationFrame(tick);
   };
-  if ("IntersectionObserver" in window && !reduced) {
-    const observer = new IntersectionObserver((entries, current) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) { animateCount(entry.target); current.unobserve(entry.target); } });
-    }, { threshold: .5 });
-    counts.forEach((item) => observer.observe(item));
+  if ('IntersectionObserver' in window) {
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        runCounter(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: .55 });
+    counters.forEach((counter) => countObserver.observe(counter));
+  } else {
+    counters.forEach(runCounter);
   }
 
-  const links = [...document.querySelectorAll('.primary-nav a[href^="#"]')];
-  const sections = links.map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) })).filter((item) => item.section);
-  if (sections.length && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-      const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!active) return;
-      const current = sections.find((item) => item.section === active.target);
-      links.forEach((link) => link.classList.toggle("is-current", current && current.link === link));
-    }, { rootMargin: "-20% 0px -66% 0px", threshold: [.01,.18,.4] });
-    sections.forEach((item) => observer.observe(item.section));
-  }
-
-  const roles = {
-    fund: ["資金で支える","土地整備と安全な受入れの、最初の一歩を前へ。","協賛金は、必要に応じた重機・整地・草木撤去、安全なイベント準備など、現地の基盤づくりに活かします。"],
-    skill: ["技術で支える","専門性が、安全な再生のスタートを支えます。","重機・運搬・整地などの専門的な力は、現地の状況に応じた安全で確かな土地再生に直結します。"],
-    goods: ["モノで支える","種や備品が、体験を景色へ変えていきます。","種、道具、安全用品、飲料や備品など、現場で必要なものを通じて参加者の一日を支えられます。"],
-    people: ["人で支える","社員の皆様の参加が、地域との新しい接点になります。","種まき、会場づくり、子どもや地域の方との交流など、社員参加はチームの思い出と地域の力になります。"],
-    media: ["発信で支える","この変化を伝えることも、能登の未来を育てます。","企業のWebサイト・社内報・SNS、メディア取材などを通じて、能登の土地と人の変化をより多くの方へ届けられます。"]
+  const roleData = {
+    fund: { label: '資金で支える', title: '土地整備と安全な受入れの、最初の一歩を前へ。', text: '協賛金は、必要に応じた重機・整地・草木撤去、安全なイベント準備など、現地の基盤づくりに活かします。' },
+    skill: { label: '技術で支える', title: '重機・運搬・整地の力を、土地の再生に。', text: '現地の状態に応じて必要になる重機作業や運搬、安全な整備について、専門的な力を歓迎しています。' },
+    goods: { label: 'モノで支える', title: '種・花苗・資材・備品が、当日の挑戦を支える。', text: '種まき、会場づくり、参加者の受入れに必要な物品提供も、プロジェクトの大切な力です。' },
+    people: { label: '人で支える', title: '社員の皆さんが、地域との新しい接点になる。', text: '種まき、運営補助、地域との交流など、社員ボランティアとしての参加も歓迎しています。' },
+    media: { label: '発信で支える', title: '挑戦の記録を、次の関わりへつなげる。', text: '取材、社内報、自社サイトやSNS等での発信を歓迎しています。写真・企画のご相談もお待ちしています。' }
   };
-  const roleButtons = [...document.querySelectorAll("[data-support-role]")];
-  const roleMessage = document.querySelector(".role-message");
-  roleButtons.forEach((button) => button.addEventListener("click", () => {
-    const content = roles[button.dataset.supportRole];
-    if (!content || !roleMessage) return;
-    roleButtons.forEach((item) => item.classList.toggle("is-active", item === button));
-    roleMessage.innerHTML = `<span>${content[0]}</span><strong>${content[1]}</strong><p>${content[2]}</p><a target="_blank" rel="noopener" href="https://forms.gle/BTcMERE34qfghFiV8">この形で相談する →</a>`;
-  }));
+  const roleButtons = [...document.querySelectorAll('[data-role]')];
+  const rolePanel = document.querySelector('.role-panel');
+  const setRole = (key) => {
+    if (!rolePanel || !roleData[key]) return;
+    const value = roleData[key];
+    roleButtons.forEach((button) => {
+      const active = button.dataset.role === key;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', String(active));
+    });
+    rolePanel.innerHTML = `<span>${value.label}</span><b>${value.title}</b><p>${value.text}</p><a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">この形で相談する →</a>`;
+  };
+  roleButtons.forEach((button) => button.addEventListener('click', () => setRole(button.dataset.role)));
+  if (roleButtons[0]) setRole(roleButtons[0].dataset.role);
 
-  const bloomButton = document.querySelector("[data-bloom]");
-  const petalLayer = document.querySelector(".bloom-petals");
-  const status = document.getElementById("bloom-status");
-  if (bloomButton && petalLayer) bloomButton.addEventListener("click", () => {
-    if (status) status.textContent = "花びらが咲きました。";
-    if (reduced) return;
-    const button = bloomButton.getBoundingClientRect();
-    const layer = petalLayer.getBoundingClientRect();
-    for (let i = 0; i < 13; i += 1) {
-      const petal = document.createElement("span");
-      petal.className = "bloom-petal";
-      petal.style.left = `${button.left - layer.left + button.width / 2}px`;
-      petal.style.top = `${button.top - layer.top + button.height / 2}px`;
-      petal.style.setProperty("--tx", `${Math.round((Math.random() - .5) * 260)}px`);
-      petal.style.setProperty("--ty", `${Math.round(60 + Math.random() * 170)}px`);
-      petal.style.animationDelay = `${i * .028}s`;
-      petalLayer.appendChild(petal);
-      setTimeout(() => petal.remove(), 2000);
-    }
-  });
+  const seedButton = document.querySelector('[data-seed]');
+  const burst = document.querySelector('.seed-burst');
+  if (seedButton && burst) {
+    seedButton.addEventListener('click', () => {
+      for (let i = 0; i < 16; i += 1) {
+        const petal = document.createElement('i');
+        petal.textContent = i % 3 === 0 ? '✿' : '•';
+        const angle = (Math.PI * 2 * i) / 16;
+        const distance = 55 + Math.random() * 80;
+        petal.style.left = '86px';
+        petal.style.top = '80%';
+        petal.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+        petal.style.setProperty('--y', `${Math.sin(angle) * distance - 30}px`);
+        burst.appendChild(petal);
+        setTimeout(() => petal.remove(), 950);
+      }
+      seedButton.blur();
+    });
+  }
 })();
