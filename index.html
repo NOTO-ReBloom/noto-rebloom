@@ -11,219 +11,204 @@
   <title>NOTO Re:Bloom｜泥臭い挑戦で、能登を咲かせる。</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;600;700;800&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700;800&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="scroll-progress" aria-hidden="true"><span></span></div>
-  <a href="#main" class="skip-link">本文へ移動</a>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
 
-  <header class="site-header" id="top">
-    <div class="container header-inner">
+  <header class="header" id="top">
+    <div class="shell header__inner">
       <a href="#top" class="brand" aria-label="NOTO Re:Bloom トップへ">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64"><path d="M32 55V26M32 35c-10 1-17-5-18-15 10-1 17 5 18 15ZM32 42c10 1 17-5 18-15-10-1-17 5-18 15ZM32 26c-5-7-3-15 5-20 5 7 3 15-5 20Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="29" r="4" fill="currentColor"/></svg>
-        </span>
+        <svg class="brand__mark" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 43V20M26 26C17 26 11 20 11 12c9 0 15 6 15 14Zm0 6c8 0 15-6 15-14-9 0-15 6-15 14Zm0-12c-4-5-3-11 3-15 4 5 3 11-3 15Z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="23" r="3" fill="currentColor"/></svg>
         <span><strong>NOTO Re:Bloom</strong><small>能登の未来に、毎年ひとつ新しい景色を。</small></span>
       </a>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="メニューを開く"><span></span><span></span><span></span><b>MENU</b></button>
-      <nav class="primary-nav" id="primary-menu" aria-label="メインメニュー">
+      <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav"><i></i><i></i><i></i><b>MENU</b></button>
+      <nav class="nav" id="site-nav" aria-label="サイト内メニュー">
         <a href="#data">課題データ</a>
-        <a href="#mud-event">泥ん子運動会</a>
         <a href="#field">現地のいま</a>
+        <a href="#mud-event">泥ん子運動会</a>
         <a href="#story">私たちの思い</a>
         <a href="#support">協賛・取材</a>
         <a href="#faq">よくある質問</a>
-        <a class="nav-crowdfund" href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">クラファンで応援 ↗</a>
-        <a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携のご相談</a>
+        <a class="nav__crowd" href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">クラファンで応援 <span>↗</span></a>
+        <a class="nav__cta" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携のご相談</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="hero-noise" aria-hidden="true"></div>
-      <div class="hero-petals" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> NOTO / SUZU, ISHIKAWA</p>
-          <h1 class="hero-title">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
+      <div class="hero__grain" aria-hidden="true"></div>
+      <div class="shell hero__grid">
+        <div class="hero__copy reveal">
+          <p class="kicker"><span></span>NOTO / SUZU, ISHIKAWA</p>
+          <h1 id="hero-title" class="hero__title">
             <span>耕作放棄地と</span>
             <span><em>止まった風景</em>を、</span>
             <span>地域交流資源へ。</span>
           </h1>
-          <p class="hero-lead">学生・地域・企業が協力し、珠洲市の使われなくなった土地を、花と交流が生まれる場所へ再生するプロジェクトです。</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener"><span>企業・団体として協賛を相談する</span><i>→</i></a>
-            <a class="btn btn-outline" href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener"><span>READYFORで応援する</span><i>↗</i></a>
+          <p class="hero__lead">学生・地域・企業が協力し、珠洲市の使われなくなった土地を、花と交流が生まれる場所へ再生するプロジェクトです。</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携について相談する <span>→</span></a>
+            <a class="button button--line" href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">クラファンで応援する <span>↗</span></a>
           </div>
-          <a class="hero-event-pill" href="#mud-event"><b>9.20 SUN</b><span>泥ん子運動会の参加受付中</span><i>↓</i></a>
-          <div class="hero-proof">
-            <div><b>NOTO REBOOST</b><small>U-23 最優秀賞</small></div><i></i>
-            <div><b>現地調査・許可</b><small>土地使用許可取得済</small></div>
+          <a class="event-chip" href="#mud-event"><b>9.20 SUN</b><span>泥ん子運動会の参加受付中</span><i>↓</i></a>
+          <dl class="hero__proof">
+            <div><dt>NOTO REBOOST</dt><dd>U-23 最優秀賞</dd></div>
+            <div><dt>FIELD STATUS</dt><dd>現地調査・土地使用許可取得済</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero__visual reveal" aria-label="土から芽が伸び、花が咲く再生のイメージ">
+          <div class="visual__stamp stamp--top"><small>RE:START</small><b>土地から、<br>人の流れを育てる。</b></div>
+          <div class="visual__frame">
+            <svg viewBox="0 0 800 720" role="img" aria-label="能登の山あい、畑、芽、花の抽象イラスト">
+              <defs>
+                <linearGradient id="skyGrad" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f9f5ff"/><stop offset="1" stop-color="#ddc9f0"/></linearGradient>
+                <linearGradient id="mountainA" x1="0" x2="1"><stop stop-color="#8459ad"/><stop offset="1" stop-color="#5c2f84"/></linearGradient>
+                <linearGradient id="mountainB" x1="0" x2="1"><stop stop-color="#95b86d"/><stop offset="1" stop-color="#4d8049"/></linearGradient>
+                <linearGradient id="soilGrad" x1="0" x2="1"><stop stop-color="#e0b77d"/><stop offset="1" stop-color="#9d6539"/></linearGradient>
+              </defs>
+              <rect x="0" y="0" width="800" height="720" rx="44" fill="url(#skyGrad)"/>
+              <circle cx="622" cy="140" r="96" fill="#fff2ba" opacity=".92"/>
+              <circle cx="622" cy="140" r="145" fill="#f2e7ff" opacity=".68"/>
+              <path d="M0 310c84-76 185-71 278-134 104-70 195 22 289 57 86 32 146-42 233-34v285H0Z" fill="url(#mountainA)"/>
+              <path d="M0 380c118-104 184 28 296-73 123-111 211 34 306-5 76-31 125-70 198-36v234H0Z" fill="url(#mountainB)"/>
+              <path d="M0 476c146-57 247 18 383-37 137-55 260 6 417-42v323H0Z" fill="url(#soilGrad)"/>
+              <g fill="none" stroke="#fff7e4" stroke-width="6" opacity=".78" stroke-linecap="round"><path d="M-20 545c121-61 239-10 373-67 156-67 300 8 470-54"/><path d="M-22 603c126-61 247-9 389-67 153-62 278 10 452-55"/><path d="M-13 664c128-62 260-9 400-68 151-63 277 8 439-54"/></g>
+              <g class="grow"><path d="M395 590c-24-49-17-91 8-123 33 38 40 80 18 123Z" fill="#5a8c45"/><path d="M404 587v71" stroke="#4a7d3e" stroke-width="12" stroke-linecap="round"/><path d="M403 620c-42-5-63-31-61-58 39 4 61 27 61 58Z" fill="#8ebd64"/><path d="M405 633c43-6 62-33 58-60-39 5-57 29-58 60Z" fill="#79a855"/><g fill="#5b2c83"><circle cx="405" cy="454" r="10"/><circle cx="378" cy="469" r="11"/><circle cx="431" cy="469" r="11"/><circle cx="389" cy="438" r="10"/><circle cx="421" cy="438" r="10"/></g><circle cx="405" cy="454" r="8" fill="#ffd56d"/></g>
+              <g class="dots" fill="#5b2c83" opacity=".75"><circle cx="155" cy="573" r="6"/><circle cx="184" cy="593" r="5"/><circle cx="205" cy="569" r="4"/><circle cx="602" cy="547" r="6"/><circle cx="632" cy="570" r="5"/><circle cx="663" cy="548" r="4"/></g>
+            </svg>
           </div>
-        </div>
-
-        <div class="hero-art reveal reveal-delay" aria-label="能登の山あいと種を表現したイラスト">
-          <div class="art-label art-label-top"><span>RE:START</span><b>人が集まる理由を、<br>土から育てる。</b></div>
-          <svg class="landscape-svg" viewBox="0 0 760 680" role="img" aria-label="山あいの土地に、芽と人のつながりが広がるイメージ">
-            <defs>
-              <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F8F3FF"/><stop offset="1" stop-color="#E7D8F4"/></linearGradient>
-              <linearGradient id="hillA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#B89DD5"/><stop offset="1" stop-color="#7A519F"/></linearGradient>
-              <linearGradient id="hillB" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#77A65A"/><stop offset="1" stop-color="#3D7142"/></linearGradient>
-              <linearGradient id="field-gradient" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#EACFA6"/><stop offset="1" stop-color="#C8955C"/></linearGradient>
-            </defs>
-            <rect width="760" height="680" rx="38" fill="url(#sky)"/>
-            <circle cx="590" cy="125" r="92" fill="#E9D7F2" opacity=".75"/>
-            <circle cx="588" cy="125" r="54" fill="#F9EEC6" opacity=".95"/>
-            <path d="M0 292 C92 235 156 258 242 210 C316 170 390 186 463 215 C560 253 630 205 760 184 V466 H0Z" fill="url(#hillA)" opacity=".9"/>
-            <path d="M0 356 C110 282 187 350 284 286 C385 221 481 320 558 286 C653 245 706 291 760 285 V488 H0Z" fill="url(#hillB)"/>
-            <path d="M0 434 C120 392 216 425 341 405 C489 382 601 422 760 374 V680 H0Z" fill="url(#field-gradient)"/>
-            <g fill="none" stroke="#FFF6E6" stroke-width="5" stroke-linecap="round" opacity=".76">
-              <path d="M12 500 C150 438 268 486 410 445 C559 402 668 444 751 418"/>
-              <path d="M-3 548 C150 490 286 536 441 495 C578 460 664 504 770 469"/>
-              <path d="M-10 602 C145 540 274 590 433 550 C581 512 671 556 770 528"/>
-            </g>
-            <g fill="#FDFBFF" opacity=".9"><circle cx="136" cy="464" r="9"/><circle cx="302" cy="442" r="9"/><circle cx="484" cy="427" r="9"/><circle cx="634" cy="411" r="9"/></g>
-            <g class="svg-seed"><path d="M380 545 C360 521 365 490 382 470 C400 492 403 518 390 544" fill="#5A8234"/><path d="M383 542 V596" stroke="#5A8234" stroke-width="10" stroke-linecap="round"/><path d="M383 567 C350 562 336 541 340 522 C364 528 380 543 383 567Z" fill="#75A452"/><path d="M383 580 C416 578 433 556 428 537 C404 545 389 558 383 580Z" fill="#77A658"/></g>
-            <g fill="#5A2F82" opacity=".9"><circle cx="376" cy="629" r="6"/><circle cx="402" cy="642" r="5"/><circle cx="348" cy="644" r="5"/></g>
-          </svg>
-          <div class="art-label art-label-bottom"><span>2026 / FIRST FIELD</span><b>1か所目から、<br>再生のモデルを。</b></div>
-          <button type="button" class="bloom-button" data-bloom aria-describedby="bloom-status"><span aria-hidden="true">✿</span> 種をひとつ、咲かせる</button>
-          <p id="bloom-status" class="sr-only" aria-live="polite"></p>
-          <div class="bloom-petals" aria-hidden="true"></div>
+          <div class="visual__stamp stamp--bottom"><small>2026 / FIRST FIELD</small><b>1か所目から、<br>再生のモデルを。</b></div>
+          <button class="seed-button" type="button" data-seed><i>✿</i> 種をひとつ、咲かせる</button>
+          <div class="seed-burst" aria-hidden="true"></div>
         </div>
       </div>
-      <div class="hero-bottom-note"><span>SCROLL TO DISCOVER</span><i></i></div>
+      <div class="hero__footer"><span>SCROLL TO DISCOVER</span><i></i></div>
     </section>
 
-    <section class="mission-strip">
-      <div class="container mission-strip-inner"><p>荒れ地を整えることは、花を咲かせることだけではない。<strong>地域に、新しい人の流れをつくること。</strong></p><a href="#data">課題データを見る <span>↓</span></a></div>
-    </section>
-
-    <section class="section section-about" id="about">
-      <div class="container about-grid">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span></span> THE CHALLENGE</p>
-          <h2 class="about-title">
-            <span>能登で増える</span>
-            <span>「使われない土地」と</span>
-            <span>「失われるつながり」。</span>
-          </h2>
-          <p>耕作放棄地の増加は、景観の問題だけではありません。地域で顔を合わせる機会や、外から継続的に関わる人の流れも弱まりやすくなります。</p>
-          <p>NOTO Re:Bloomは、土地の再生を出発点に、世代や立場を超えて人が集う場を育てます。</p>
-        </div>
-        <div class="issue-grid reveal reveal-delay">
-          <article class="issue-card"><span>01</span><div class="issue-icon">⌁</div><h3>耕作放棄地の増加</h3><p>高齢化や後継者不足により、手入れが難しい農地が増えています。</p></article>
-          <article class="issue-card"><span>02</span><div class="issue-icon">◎</div><h3>地域交流の減少</h3><p>人口減少や生活環境の変化により、地域内外の交流機会が減っています。</p></article>
-          <article class="issue-card"><span>03</span><div class="issue-icon">⌘</div><h3>関係人口の不足</h3><p>能登の魅力に惹かれても、継続して関わる人や団体はまだ多くありません。</p></article>
-          <article class="issue-card"><span>04</span><div class="issue-icon">↘</div><h3>地域活力の低下</h3><p>人と経済の循環が弱まり、未来への希望が見えにくくなっています。</p></article>
-        </div>
+    <section class="manifesto">
+      <div class="shell manifesto__inner">
+        <p>荒れ地を整えることは、<strong>花を咲かせることだけではない。</strong><br>地域に、新しい人の流れをつくること。</p>
+        <a href="#data">課題データを見る <span>↓</span></a>
       </div>
     </section>
 
-    <section class="section section-farmland" id="farmland">
-      <div class="container">
-        <div class="farmland-heading reveal"><p class="eyebrow"><span></span> WHY FARMLAND MATTERS</p><h2><span>一枚の田んぼが、</span><span><em>使われなくなると。</em></span></h2><p>耕作放棄地は、ただ草が伸びた土地ではありません。そこにあった日常の景色、手を入れる人、地域で顔を合わせる理由まで、少しずつ見えにくくなってしまいます。</p></div>
-        <div class="farmland-flow reveal reveal-delay">
-          <div class="flow-column before"><div class="flow-label"><span>BEFORE</span><b>使われなくなった土地</b></div><ol><li><span>01</span><b>手入れが難しくなる</b><small>担い手不足や高齢化などで、日常の管理が続けにくくなる。</small></li><li><span>02</span><b>草木が広がる</b><small>以前の景色や、土地の境目が見えにくくなる。</small></li><li><span>03</span><b>使い道が見えにくくなる</b><small>次に何を育て、誰が関わるかを考えるきっかけも減っていく。</small></li></ol></div>
-          <div class="flow-arrow" aria-hidden="true"><span>人が関わる<br>きっかけをつくる</span><i>→</i></div>
-          <div class="flow-column after"><div class="flow-label"><span>RE:BLOOM</span><b>もう一度、人が集まる土地へ</b></div><ol><li><span>01</span><b>安全に整える</b><small>草木を整理し、現地の状況に合わせて次の一歩をつくる。</small></li><li><span>02</span><b>一緒に笑う</b><small>泥ん子運動会で、世代や立場を超えた交流を生む。</small></li><li><span>03</span><b>未来へ種をまく</b><small>次の季節にまた訪れたくなる、新しい景色の始まりを残す。</small></li></ol></div>
-        </div>
-        <div class="farmland-message reveal"><span>✿</span><p><strong>目指すのは、耕作放棄地を減らすことだけではありません。</strong><br>その土地に、人が関わり続ける理由をつくることです。</p></div>
-      </div>
-    </section>
-
-    <section class="section section-data" id="data">
-      <div class="container">
-        <div class="data-intro reveal"><div><p class="eyebrow"><span></span> DATA / WHY NOW</p><h2 class="data-title"><span>能登の農地と</span><span>復興を、<em>数字で見る。</em></span></h2></div><p>耕作放棄地は、単に「草が生えた土地」ではありません。担い手の減少、災害による農地・水路の被害、そして再び人が関わり続ける仕組みの必要性が重なっています。公的資料をもとに、プロジェクトの背景を可視化します。</p></div>
-        <div class="data-headline-grid">
-          <article class="data-card reveal"><span>JAPAN / 2024</span><strong data-count="25.7" data-decimal="1" data-suffix="万ha">25.7<small>万ha</small></strong><p>全国の荒廃農地面積</p><small>通常の農作業では作物の栽培が困難な農地</small></article>
-          <article class="data-card green reveal reveal-delay"><span>REUSABLE / 2024</span><strong data-count="9.8" data-decimal="1" data-suffix="万ha">9.8<small>万ha</small></strong><p>再生利用の余地がある荒廃農地</p><small>再び使える可能性を持つ土地が残っています</small></article>
-          <article class="data-card soil reveal reveal-delay-2"><span>ISHIKAWA / 2024</span><strong data-count="7158" data-suffix="ha">7,158<small>ha</small></strong><p>石川県の荒廃農地面積</p><small>国・県の資料をもとにした概数</small></article>
-        </div>
-        <div class="data-chart-grid">
-          <article class="chart-card reveal"><div><p class="chart-kicker">奥能登の農業経営体</p><h3>10年で、<em>約半数</em>に。</h3><p>担い手の減少は、農地を維持し続ける難しさにもつながります。</p></div><div class="bar-compare" aria-label="2010年3,787、2020年1,908の棒グラフ"><div><b>2010</b><span class="bar bar-old" style="--bar:100%"></span><strong>3,787</strong></div><div><b>2020</b><span class="bar bar-new" style="--bar:50.4%"></span><strong>1,908</strong></div></div></article>
-          <article class="chart-card chart-card-impact reveal reveal-delay"><div><p class="chart-kicker">能登半島地震・豪雨</p><h3>復旧の先に、<em>続く関わり</em>を。</h3><p>農地や農業用施設の復旧が進む一方で、営農を続ける人や土地とのつながりを増やすことが必要です。</p></div><div class="impact-orbit" aria-hidden="true"><span class="orbit-ring"></span><span class="orbit-dot dot-a"></span><span class="orbit-dot dot-b"></span><span class="orbit-core">RE<br>START</span></div></article>
-        </div>
-        <div class="data-source reveal"><p><b>出典</b> 農林水産省「荒廃農地の現状と対策」、石川県・奥能登地域の農業に関する公表資料。数値は資料の公表時点に基づきます。</p><a href="https://www.maff.go.jp/j/nousin/tikei/houkiti/attach/pdf/index-47.pdf" target="_blank" rel="noopener">公的資料を確認する ↗</a></div>
-      </div>
-    </section>
-
-    <section class="section section-field" id="field">
-      <div class="container">
-        <div class="field-heading reveal"><div><p class="eyebrow"><span></span> THE PLACE / 現地のいま</p><h2><span>ここが、私たちの</span><span><em>最初の一歩</em>です。</span></h2></div><p>現地で見たのは、ただ使われていない土地ではありません。次の季節を待つように、手入れと人の関わりを必要としている場所でした。だから私たちは、景色を変える前に、まずこの土地の声を聞くところから始めます。</p></div>
-        <div class="field-grid">
-          <figure class="field-photo field-photo-wide reveal"><img src="field-overview.webp" alt="山あいに広がる再生候補地の全景" width="1477" height="1108" loading="lazy"><figcaption><span>01</span><b>現地の全景</b><p>山と畑が近く、地域の営みの中にある土地。</p></figcaption></figure>
-          <figure class="field-photo field-photo-detail reveal reveal-delay"><img src="field-detail.webp" alt="草や作物の跡が残る再生候補地の地表" width="1108" height="1477" loading="lazy"><figcaption><span>02</span><b>土の近くで見る景色</b><p>整地と安全確認を重ね、次の景色へつなげる。</p></figcaption></figure>
-          <aside class="field-promise reveal reveal-delay-2"><p class="eyebrow"><span></span> OUR FIRST PROMISE</p><h3><span>イベントのために</span><span><em>土地を消費しない。</em></span></h3><ol><li><span>01</span><div><b>現地の声から決める</b><p>農家・地域の方と、土地の背景とこれからを一緒に考える。</p></div></li><li><span>02</span><div><b>安全に整える</b><p>必要に応じて専門的な力も借りながら、無理のない再生を進める。</p></div></li><li><span>03</span><div><b>次の季節へ残す</b><p>種まきと記録を通じ、また訪れたくなる理由を育てる。</p></div></li></ol></aside>
-        </div>
-        <p class="field-caption reveal">写真：NOTO Re:Bloomメンバーによる現地撮影。候補地の状況は、地域・農家の方との調整を踏まえて進めます。</p>
-      </div>
-    </section>
-
-    <section class="section section-event" id="mud-event">
-      <div class="container">
-        <div class="event-intro reveal"><p class="eyebrow light"><span></span> JOIN THE DAY</p><h2><span><em>泥ん子運動会</em> ＆</span><span>未来の種まき</span></h2><p>泥にまみれて、初対面の人とも笑って、最後にみんなで未来へつながる種をまく。遊びで終わらない、土地と人の再出発の日です。</p></div>
-        <div class="event-grid">
-          <article class="event-date-card reveal"><p>2026.9.20 <small>SUN</small></p><h3>午後開催</h3><dl><div><dt>PLACE</dt><dd>珠洲市内<small>会場詳細は申込者へご案内</small></dd></div><div><dt>FEE</dt><dd>500円／人<small>見学・応援は無料</small></dd></div></dl><a class="btn btn-light" href="https://forms.gle/JHRKjidKa5usp9Lj6" target="_blank" rel="noopener"><span>参加を申し込む</span><i>→</i></a><a class="event-mail" href="mailto:infonotorebloom@gmail.com?subject=%E9%81%8B%E5%8B%95%E4%BC%9A%E5%8F%82%E5%8A%A0%E5%B8%8C%E6%9C%9B">スマホでの申込みが難しい方は、メールでも受付中 ↗</a></article>
-          <div class="event-content reveal reveal-delay"><div class="event-games"><article><span>01</span><h3>泥んこリレー</h3><p>チームでつなぐ、最初の一歩。</p></article><article><span>02</span><h3>泥んこ綱引き</h3><p>力を合わせて、ぐっと引く。</p></article><article><span>03</span><h3>しっぽとり</h3><p>笑いながら、最後まで走る。</p></article><article><span>04</span><h3>泥バケツリレー</h3><p>泥も気持ちも、みんなで運ぶ。</p></article></div><div class="seed-ritual"><span aria-hidden="true">✿</span><div><b>競技のあとは、未来の種まき。</b><p>泥にまみれて笑った一日を、次の季節にまた訪れたくなる景色へつなげます。</p></div></div><p class="event-safety">※ 競技の形式・チーム編成は、参加人数・年齢構成・当日の土地状況を踏まえ、安全を最優先に調整します。</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-story" id="story">
-      <div class="container">
-        <div class="story-head reveal"><p class="eyebrow"><span></span> OUR START / 私たちの出発点</p><h2><span>違う場所から来た3人が、</span><span><em>能登で同じ未来</em>を見ています。</span></h2><p>震災ボランティア、家族旅行で出会った能登の景色、豪雨で泥にまみれた写真の洗浄。異なるきっかけで能登に出会った3人が、「貢献したい」という想いを、地域に残る行動へ変えるために集まりました。</p></div>
-        <div class="story-layout">
-          <figure class="team-photo-full reveal">
-            <img src="team-reboost.webp" alt="NOTO REBOOST U-23で構想を掲げるチームメンバー4人" width="1600" height="1000" loading="lazy">
-            <figcaption><span>NOTO REBOOST U-23</span><b>構想を掲げ、最優秀賞を受賞。</b><p>写真はトリミングせず、チームの記録をそのまま掲載しています。</p></figcaption>
-          </figure>
-          <div class="story-side reveal reveal-delay">
-            <figure class="presentation-photo"><img src="team-presentation.webp" alt="NOTO REBOOST U-23で構想を発表するメンバー" width="1200" height="800" loading="lazy"><figcaption>構想を、自分たちの言葉で伝えた日。</figcaption></figure>
-            <div class="story-quote"><span>「</span><p>復興の流れをもっと前へ。<br>スポーツの力で街を元気に。<br>貢献したいという想いを形に。</p></div>
+    <section class="section challenge" id="challenge">
+      <div class="shell">
+        <div class="section__head section__head--split reveal">
+          <div>
+            <p class="kicker"><span></span>THE CHALLENGE</p>
+            <h2 class="heading heading--problem"><span>能登で増える</span><span>「使われない土地」と</span><span>「失われるつながり」。</span></h2>
           </div>
+          <p>耕作放棄地の問題は、景観だけではありません。手を入れる人、地域で顔を合わせる理由、外から関わる人の流れまで、少しずつ見えにくくなります。</p>
         </div>
-        <div class="story-pillars reveal"><article><span>01</span><b>新しい活気を生む</b><p>復興を、元に戻すだけで終わらせない。</p></article><article><span>02</span><b>新しいつながりを生む</b><p>地域の内と外に、また会いたくなる関係をつくる。</p></article><article><span>03</span><b>新しい価値を生む</b><p>土地と人が関わる理由を、次の世代へ残す。</p></article></div>
-        <p class="story-closing reveal">挑戦は、たいてい泥臭いものです。だからこそ、学生のまっすぐな一歩が、能登をちょっと良くする最初の力になると信じています。</p>
-      </div>
-    </section>
-
-    <section class="section section-partners" id="partners">
-      <div class="container">
-        <div class="partners-head reveal"><div><p class="eyebrow"><span></span> PARTNER WALL</p><h2><span>協賛・協力の輪を、</span><span><em>ここに咲かせていく。</em></span></h2></div><p>ご協力いただいた企業・団体の皆様は、ご希望に応じて公式サイトに企業名・ロゴマーク・リンクを掲載します。現地看板、オリジナルTシャツ、活動報告書への掲載も、協賛内容に応じてご案内します。</p></div>
-        <div class="partner-wall reveal reveal-delay" aria-label="協賛・協力企業ロゴ掲載スペース">
-          <article class="partner-slot partner-slot-featured"><span>YOUR LOGO</span><b>地域共創パートナー</b><small>協賛・技術協力・資材協力</small></article>
-          <article class="partner-slot"><span>YOUR LOGO</span><b>協賛パートナー</b></article>
-          <article class="partner-slot"><span>YOUR LOGO</span><b>協賛パートナー</b></article>
-          <article class="partner-slot"><span>YOUR LOGO</span><b>協力パートナー</b></article>
-          <article class="partner-slot"><span>YOUR LOGO</span><b>協力パートナー</b></article>
-          <article class="partner-slot partner-slot-open"><span>+</span><b>パートナー募集中</b><small>一緒に、能登に残る景色を。</small></article>
+        <div class="challenge__grid reveal">
+          <article><b>01</b><i>⌁</i><h3>耕作放棄地</h3><p>高齢化や後継者不足により、日常的な手入れが難しい農地が増えています。</p></article>
+          <article><b>02</b><i>◎</i><h3>交流の減少</h3><p>地域の内と外で、世代や立場を越えて顔を合わせる機会も減りやすくなります。</p></article>
+          <article><b>03</b><i>⌘</i><h3>関係人口の不足</h3><p>能登に惹かれても、継続して関わる人や団体はまだ十分ではありません。</p></article>
+          <article><b>04</b><i>↘</i><h3>地域活力の低下</h3><p>人と経済の循環が弱まり、次の世代へ残す景色を描きにくくなります。</p></article>
         </div>
-        <p class="partner-note reveal">※ 掲載は企業・団体のご承諾をいただいた場合に限ります。ロゴデータ・リンク先はご相談のうえ反映します。</p>
       </div>
     </section>
 
-    <section class="section section-support" id="support">
-      <div class="container">
-        <div class="support-intro reveal"><div><p class="eyebrow light"><span></span> PARTNERSHIP</p><h2><span>協賛は、能登に残る</span><span><em>景色とつながり</em>への投資です。</span></h2><p>ご協力は、花畑をつくるだけではありません。荒れた土地を、人が集まり、地域の誇りになる場所へ変えていく力になります。サイト・現地看板・オリジナルTシャツ・活動報告書など、協賛内容に応じた形でご協力を見えるものにします。</p></div><div class="support-cta"><span>NOW SEEKING</span><b>初期土地整備<br>へのご協力</b><small>現地の状況・正式見積もりを踏まえ、必要に応じて重機を用いた整地を実施します。</small><a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛について相談する →</a></div></div>
-        <div class="benefit-grid reveal"><article><span>01</span><h3>Web・現地看板<br>への掲載</h3><p>協賛内容に応じて、企業名・ロゴマークを見える形で掲載します。</p></article><article><span>02</span><h3>オリジナルTシャツ<br>へのロゴ掲載</h3><p>参加者と学生ボランティアが着用する公式Tシャツにロゴ掲載をご案内します。</p></article><article><span>03</span><h3>活動報告書と<br>社員参加の機会</h3><p>写真付き報告書の送付、種まき・会場づくり等への参加機会をつくります。</p></article><article><span>04</span><h3>メディア・取材<br>連携を歓迎</h3><p>企業側の発信や取材・掲載を歓迎し、能登の変化をより多くの方へ届けます。</p></article></div>
-        <div class="role-picker reveal"><div><p class="eyebrow light"><span></span> FIND YOUR ROLE</p><h3>御社の力は、どこで活きますか？</h3><p>金額だけではなく、技術・モノ・人・発信。できる形から一緒に考えます。</p></div><div class="role-buttons"><button data-support-role="fund">資金</button><button data-support-role="skill">技術</button><button data-support-role="goods">モノ</button><button data-support-role="people">人</button><button data-support-role="media">発信</button></div><div class="role-message" aria-live="polite"><span>資金で支える</span><strong>土地整備と安全な受入れの、最初の一歩を前へ。</strong><p>協賛金は、必要に応じた重機・整地・草木撤去、安全なイベント準備など、現地の基盤づくりに活かします。</p><a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">この形で相談する →</a></div></div>
+    <section class="section land-story" id="land-story">
+      <div class="shell land-story__wrap">
+        <div class="land-story__intro reveal">
+          <p class="kicker"><span></span>WHY FARMLAND MATTERS</p>
+          <h2 class="heading heading--land"><span>一枚の田んぼが、</span><span>使われなくなると。</span></h2>
+          <p>耕作放棄地は、ただ草が伸びた土地ではありません。そこにあった日常の景色、手を入れる人、地域で顔を合わせる理由まで、少しずつ見えにくくなってしまいます。</p>
+        </div>
+        <div class="land-story__flow reveal">
+          <div class="flow-card flow-card--before"><small>BEFORE</small><b>使われなくなった土地</b><ol><li><strong>手入れが難しくなる</strong><span>担い手不足や高齢化などで、日常の管理が続けにくくなる。</span></li><li><strong>草木が広がる</strong><span>以前の景色や土地の境目が見えにくくなる。</span></li><li><strong>使い道が見えにくくなる</strong><span>次に何を育て、誰が関わるかを考えるきっかけも減っていく。</span></li></ol></div>
+          <div class="flow-arrow"><span>人が関わる<br>きっかけをつくる</span><i>→</i></div>
+          <div class="flow-card flow-card--after"><small>RE:BLOOM</small><b>もう一度、人が集まる土地へ</b><ol><li><strong>安全に整える</strong><span>草木を整理し、現地の状況に合わせて次の一歩をつくる。</span></li><li><strong>一緒に笑う</strong><span>泥ん子運動会で、世代や立場を超えた交流を生む。</span></li><li><strong>未来へ種をまく</strong><span>次の季節にまた訪れたくなる、新しい景色の始まりを残す。</span></li></ol></div>
+        </div>
       </div>
     </section>
 
-    <section class="section section-media" id="media"><div class="container media-grid"><div class="reveal"><p class="eyebrow"><span></span> MEDIA / PRESS</p><h2><span>取材・発信も、</span><span><em>未来を咲かせる力。</em></span></h2><p>学生チーム、現地、農地再生、泥ん子運動会、企業との共創。現地取材・企画紹介・活動報告などを歓迎しています。</p></div><div class="media-card reveal reveal-delay"><span>WELCOME</span><b>取材・メディアのご相談</b><p>写真素材・概要資料・取材可能な日程は、お問い合わせフォームからご相談ください。</p><a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">取材について相談する →</a></div></div></section>
+    <section class="section data-section" id="data">
+      <div class="shell">
+        <div class="section__head reveal">
+          <p class="kicker"><span></span>DATA / WHY NOW</p>
+          <h2 class="heading heading--data"><span>能登の農地と復興を、</span><span>数字で見てみる。</span></h2>
+          <p>担い手の減少、災害による農地・水路の被害、そして再び人が関わり続ける仕組みの必要性。公的資料をもとに、背景を可視化します。</p>
+        </div>
+        <div class="data-glance reveal">
+          <article><span>JAPAN / 2024</span><b data-count="25.7" data-suffix="万ha">0</b><p>全国の荒廃農地面積</p></article>
+          <article><span>REUSABLE / 2024</span><b data-count="9.8" data-suffix="万ha">0</b><p>再生利用が可能と見込まれる荒廃農地</p></article>
+          <article><span>ISHIKAWA / 2024</span><b data-count="7158" data-suffix="ha">0</b><p>石川県の荒廃農地面積</p></article>
+          <article><span>OKUNOTO / 2020</span><b data-count="1908" data-suffix="経営体">0</b><p>奥能登の農業経営体</p></article>
+        </div>
+        <div class="data-layout">
+          <article class="data-panel data-panel--wide reveal"><div class="data-panel__meta"><span>01 / NATIONAL TREND</span><h3>全国の荒廃農地は、<br><em>今も25.7万ha。</em></h3><p>令和3年度以降は25万ha台で推移。再生可能な土地を、地域でどう使い続けるかが課題です。</p></div><div class="bar-chart" aria-label="全国の荒廃農地面積の推移"><div><i style="--h:96%"></i><b>26.0</b><span>R3</span></div><div><i style="--h:94%"></i><b>25.3</b><span>R4</span></div><div><i style="--h:96%"></i><b>25.7</b><span>R5</span></div><div><i style="--h:96%"></i><b>25.7</b><span>R6</span></div></div></article>
+          <article class="data-panel reveal"><div class="data-panel__meta"><span>02 / ROOM TO REUSE</span><h3>荒廃農地のうち、<em>約4割</em>は再生の余地。</h3><p>25.7万haのうち、9.8万haは整地などにより再び耕作できる可能性があります。</p></div><div class="donut"><div><b>38%</b><span>再生の余地</span></div></div><small>再生利用が可能 9.8万ha ／ 困難 15.9万ha</small></article>
+          <article class="data-panel data-panel--dark reveal"><div class="data-panel__meta"><span>03 / OKUNOTO FARMERS</span><h3>震災前から続いていた、<em>担い手の減少。</em></h3><p>奥能登の農業経営体は、2010年から2020年にかけておよそ半減しました。</p></div><div class="line-chart"><div><b>3,787</b><i></i><span>2010</span></div><div><b>2,872</b><i></i><span>2015</span></div><div><b>1,908</b><i></i><span>2020</span></div></div><strong class="data-panel__tag">10年間で −49.6%</strong></article>
+          <article class="data-panel reveal"><div class="data-panel__meta"><span>04 / DISASTER &amp; RECOVERY</span><h3>地震と豪雨は、<em>農地にも影響</em>を残した。</h3><p>市街地だけでなく、農地・水路・ため池など生業を支える基盤にも被害が及びました。</p></div><dl class="recovery-list"><div><dt>農地の査定件数</dt><dd>687<span>箇所</span></dd></div><div><dt>農業用施設の査定件数</dt><dd>1,694<span>箇所</span></dd></div><div><dt>奥能登の2024年営農再開面積</dt><dd>約80<span>%</span></dd></div></dl></article>
+        </div>
+        <div class="data-note reveal"><b>数字の先にあるのは、「誰が関わり続けるか」という問い。</b><p>数字は現場のすべてを表すものではありません。それでも、再生可能な土地があり、担い手の減少が続く今、人が関わり続ける理由をつくる必要があります。</p><a href="https://www.maff.go.jp/j/nousin/tikei/houkiti/attach/pdf/index-47.pdf" target="_blank" rel="noopener">出典・データの読み方を確認する ↗</a></div>
+      </div>
+    </section>
 
-    <section class="section section-roadmap" id="impact"><div class="container"><div class="roadmap-head reveal"><p class="eyebrow"><span></span> 2026 → 2028+</p><h2><span>一日で終わらせない。</span><span><em>毎年、ひとつ新しい景色へ。</em></span></h2></div><div class="roadmap-track reveal"><article><span>2026</span><h3>1か所目のモデル事業</h3><p>土地再生、泥ん子運動会、未来の種まき。</p></article><i>→</i><article><span>2027</span><h3>2〜3か所へ拡大</h3><p>地域・企業・学生の協力の輪を広げる。</p></article><i>→</i><article><span>2028+</span><h3>能登各地へ</h3><p>毎年新しい再生のモデルをつくる。</p></article></div></div></section>
+    <section class="section field" id="field">
+      <div class="shell">
+        <div class="section__head section__head--split reveal"><div><p class="kicker"><span></span>THE PLACE / 現地のいま</p><h2 class="heading heading--field"><span>ここが、私たちの</span><span>最初の一歩です。</span></h2></div><p>現地で見たのは、ただ使われていない土地ではありません。次の季節を待つように、手入れと人の関わりを必要としている場所でした。</p></div>
+        <div class="field__grid reveal">
+          <figure class="field__main"><img src="field-overview.webp" alt="山あいに広がる再生候補地の全景"><figcaption><span>01</span><b>現地の全景</b><p>山と畑が近く、地域の営みの中にある土地。</p></figcaption></figure>
+          <figure class="field__detail"><img src="field-detail.webp" alt="草や作物の跡が残る再生候補地の地表"><figcaption><span>02</span><b>土の近くで見る景色</b><p>整地と安全確認を重ね、次の景色へつなげる。</p></figcaption></figure>
+          <div class="field__promise"><span>OUR FIRST PROMISE</span><h3>イベントのために、<br><em>土地を消費しない。</em></h3><ol><li><b>現地の声から決める</b><p>農家・地域の方と、土地の背景とこれからを一緒に考える。</p></li><li><b>安全に整える</b><p>必要に応じて専門的な力も借りながら、無理のない再生を進める。</p></li><li><b>次の季節へ残す</b><p>種まきと記録を通じ、また訪れたくなる理由を育てる。</p></li></ol></div>
+        </div>
+      </div>
+    </section>
 
-    <section class="section section-faq" id="faq"><div class="container faq-grid"><div class="faq-head reveal"><p class="eyebrow"><span></span> FAQ</p><h2><span>よくある質問</span></h2><p>協賛・取材・イベント参加について、よくいただく質問をまとめました。</p></div><div class="faq-list reveal reveal-delay"><details><summary>協賛は、資金以外でもできますか？</summary><p>はい。重機・運搬・整地の技術協力、種・資材・備品の提供、社員参加、広報・取材連携など、さまざまな形を歓迎しています。</p></details><details><summary>協賛企業のロゴは掲載できますか？</summary><p>ご希望と協賛内容に応じて、公式サイト、現地看板、オリジナルTシャツ等への掲載をご案内します。</p></details><details><summary>泥ん子運動会には誰でも参加できますか？</summary><p>親子・学生・地域の仲間を中心に参加を受け付けます。競技形式は、参加人数・年齢構成・当日の土地状況を踏まえ、安全を最優先に調整します。</p></details><details><summary>取材・メディア連携は可能ですか？</summary><p>歓迎しています。取材可能な内容や日程は、フォームからご相談ください。</p></details></div></div></section>
+    <section class="section event" id="mud-event">
+      <div class="shell event__grid">
+        <div class="event__date reveal"><p class="kicker kicker--light"><span></span>JOIN THE DAY</p><div class="event__date-big"><b>2026</b><strong>9.20</strong><span>SUN</span></div><dl><div><dt>TIME</dt><dd>午後開催</dd></div><div><dt>PLACE</dt><dd>珠洲市内<small>会場詳細は申込者へご案内</small></dd></div><div><dt>FEE</dt><dd>500円／人<small>見学・応援は無料</small></dd></div></dl><a class="button button--light" href="https://forms.gle/JHRKjidKa5usp9Lj6" target="_blank" rel="noopener">参加を申し込む <span>→</span></a><a class="event__mail" href="mailto:infonotorebloom@gmail.com?subject=%E9%81%8B%E5%8B%95%E4%BC%9A%E5%8F%82%E5%8A%A0%E5%B8%8C%E6%9C%9B">スマホでの申込みが難しい方は、メールでも受付中 ↗</a></div>
+        <div class="event__body reveal"><p class="kicker kicker--light"><span></span>MUDDY, TOGETHER, BLOOM</p><h2 class="heading heading--event"><span>泥ん子運動会</span><span>＆ 未来の種まき</span></h2><p class="event__lead">初対面でも、親子でも、友人同士でも。年齢が偏らないチームで泥だらけになって挑戦し、最後にみんなで未来へつながる種をまきます。</p><div class="games"><article><span>01</span><i>↗</i><h3>泥んこリレー</h3><p>チームでつなぐ、最初の一歩。</p></article><article><span>02</span><i>≋</i><h3>泥んこ綱引き</h3><p>力を合わせて、ぐっと引く。</p></article><article><span>03</span><i>✦</i><h3>しっぽとり</h3><p>笑いながら、最後まで走る。</p></article><article><span>04</span><i>◒</i><h3>泥バケツリレー</h3><p>泥も気持ちも、みんなで運ぶ。</p></article></div><div class="event__seed"><i>✿</i><p><b>競技のあとは、未来の種まき。</b> 泥にまみれて笑った一日を、次の季節にまた訪れたくなる景色へつなげます。</p></div><small class="event__fine">競技の形式・チーム編成は、参加人数・年齢構成・当日の土地状況を踏まえ、安全を最優先に調整します。</small></div>
+      </div>
+    </section>
 
-    <section class="section section-contact" id="contact"><div class="container contact-card reveal"><div><p class="eyebrow light"><span></span> CONTACT</p><h2><span>一緒に、能登の未来に</span><span><em>花を咲かせませんか。</em></span></h2><p>協賛・連携・取材・参加に関するご相談をお待ちしています。</p></div><div class="contact-actions"><a class="btn btn-light" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener"><span>協賛・連携を相談する</span><i>→</i></a><a href="mailto:infonotorebloom@gmail.com">infonotorebloom@gmail.com ↗</a></div></div></section>
+    <section class="section story" id="story">
+      <div class="shell">
+        <div class="story__title reveal"><p class="kicker"><span></span>OUR START / 私たちの出発点</p><h2 class="heading heading--story"><span>違う場所から来た3人が、</span><span>能登で同じ未来を見ています。</span></h2></div>
+        <div class="story__layout">
+          <figure class="team-photo reveal"><img src="team-reboost.webp" alt="NOTO REBOOST U-23で構想を掲げたチームの4人"><figcaption><b>NOTO REBOOST U-23</b><span>構想を掲げ、最優秀賞を受賞した日。</span></figcaption></figure>
+          <div class="story__copy reveal"><p>震災ボランティアとして何度も現地を訪れたメンバー。家族旅行で出会った能登の景色を、今も大切にしているメンバー。豪雨で泥にまみれた写真を洗い、地域の暮らしや記憶を守りたいと感じたメンバー。</p><p>生まれた場所も、住んでいる場所も異なる3人が、「復興の流れをもっと前へ進めたい」「スポーツの力で街をもっと元気にしたい」「貢献したいという想いを形にしたい」と集まりました。</p><div class="story__pillars"><article><span>01</span><b>新しい活気を生む</b><p>復興を、元に戻すだけで終わらせない。</p></article><article><span>02</span><b>新しいつながりを生む</b><p>地域の内と外に、また会いたくなる関係をつくる。</p></article><article><span>03</span><b>新しい価値を生む</b><p>土地と人が関わる理由を、次の世代へ残す。</p></article></div><blockquote>挑戦は、たいてい泥臭いものです。<br>だからこそ、学生のまっすぐな一歩が、能登をちょっと良くする最初の力になると信じています。</blockquote></div>
+        </div>
+        <div class="story__after reveal"><figure><img src="team-presentation.webp" alt="NOTO REBOOST U-23で構想を発表するメンバー"><figcaption>構想を、自分たちの言葉で伝えた日。</figcaption></figure><div><span>FROM IDEA TO FIELD</span><h3>「想い」を、<br><em>現地の一歩</em>へ。</h3><p>NOTO REBOOST U-23で共有した構想を、珠洲の現地で地域・農家の皆さんと調整しながら、少しずつ具体的な事業へ進めています。</p></div></div>
+      </div>
+    </section>
+
+    <section class="section partners" id="support">
+      <div class="shell">
+        <div class="partners__head reveal"><div><p class="kicker kicker--light"><span></span>PARTNERSHIP</p><h2 class="heading heading--partners"><span>協賛は、能登に残る</span><span><em>景色とつながり</em>への投資です。</span></h2><p>ご協力は、花畑をつくるだけではありません。荒れた土地を、人が集まり、地域の誇りになる場所へ変えていく力になります。</p></div><aside><span>NOW SEEKING</span><b>初期土地整備への<br>ご協力</b><small>現地の状況・正式見積もりを踏まえ、必要に応じて重機を用いた整地を実施します。</small><a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛について相談する →</a></aside></div>
+        <div class="partner-benefits reveal"><article><span>01</span><i>◎</i><h3>公式サイト掲載</h3><p>ご希望に応じ、企業名・ロゴ・リンクを掲載します。</p></article><article><span>02</span><i>▣</i><h3>現地看板・Tシャツ</h3><p>協賛内容に応じ、ロゴを見える形で残します。</p></article><article><span>03</span><i>↺</i><h3>活動報告書</h3><p>写真と実施内容をまとめた報告をお届けします。</p></article><article><span>04</span><i>✦</i><h3>社員参加・取材</h3><p>花まき・運営参加、メディア取材も歓迎します。</p></article></div>
+        <div class="logo-wall reveal"><div class="logo-wall__head"><span>PARTNER LOGOS</span><b>協賛・協力企業の皆さま</b><p>ご協力いただいた企業・団体のロゴを、ここに掲載します。</p></div><div class="logo-slots"><div class="logo-slot logo-slot--wide"><span>YOUR LOGO</span><small>タイトルパートナー</small></div><div class="logo-slot"><span>LOGO</span><small>協賛企業</small></div><div class="logo-slot"><span>LOGO</span><small>協賛企業</small></div><div class="logo-slot"><span>LOGO</span><small>技術協力</small></div><div class="logo-slot"><span>LOGO</span><small>資材協力</small></div><div class="logo-slot"><span>LOGO</span><small>メディア協力</small></div></div></div>
+        <div class="support-roles reveal"><div><p class="kicker kicker--light"><span></span>FIND YOUR ROLE</p><h3>御社の力は、<br>どこで活きますか？</h3><p>金額だけではなく、技術・モノ・人・発信。できる形から一緒に考えます。</p></div><div class="role-tabs" role="tablist" aria-label="協力方法"><button role="tab" aria-selected="true" data-role="fund">資金</button><button role="tab" aria-selected="false" data-role="skill">技術</button><button role="tab" aria-selected="false" data-role="goods">モノ</button><button role="tab" aria-selected="false" data-role="people">人</button><button role="tab" aria-selected="false" data-role="media">発信</button></div><div class="role-panel" aria-live="polite"><span>資金で支える</span><b>土地整備と安全な受入れの、最初の一歩を前へ。</b><p>協賛金は、必要に応じた重機・整地・草木撤去、安全なイベント準備など、現地の基盤づくりに活かします。</p><a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">この形で相談する →</a></div></div>
+      </div>
+    </section>
+
+    <section class="section press">
+      <div class="shell press__card reveal"><div><p class="kicker"><span></span>MEDIA / PRESS</p><h2 class="heading heading--press"><span>取材・発信も、</span><span><em>未来を咲かせる力。</em></span></h2><p>学生チーム、現地、農地再生、泥ん子運動会、企業との共創。現地取材・企画紹介・活動報告などを歓迎しています。</p></div><a class="button button--primary" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">取材について相談する <span>→</span></a></div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="shell faq__grid"><div class="reveal"><p class="kicker"><span></span>FAQ</p><h2 class="heading heading--faq"><span>よくある質問</span></h2><p>協賛・参加・取材に関して、よくいただくご質問をまとめました。</p></div><div class="faq__list reveal"><details><summary>協賛は、金銭以外でも可能ですか？</summary><p>可能です。重機・運搬・資材・花苗・備品のご提供、社員ボランティア、取材・情報発信など、多様な形でのご協力を歓迎しています。</p></details><details><summary>協賛企業には何をお返しできますか？</summary><p>協賛内容に応じて、公式サイト・現地看板・オリジナルTシャツ等への企業名またはロゴ掲載、写真付き活動報告書の送付、社員参加の機会をご案内します。</p></details><details><summary>イベントは毎年開催する予定ですか？</summary><p>はい。初年度の1か所目をモデルに、地域・農家・企業・学生が関わり続ける仕組みをつくり、能登各地へ広げることを目指しています。</p></details><details><summary>取材や共同発信について相談できますか？</summary><p>歓迎しています。学生チーム、現地、農地再生、泥ん子運動会など、取材可能な内容・時期についてフォームからご相談ください。</p></details></div></div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="shell contact__card reveal"><div><p class="kicker kicker--light"><span></span>CONTACT</p><h2 class="heading heading--contact"><span>一緒に、能登の未来に</span><span><em>花を咲かせませんか。</em></span></h2><p>協賛・連携・取材・参加に関するご相談をお待ちしています。</p></div><div class="contact__actions"><a class="button button--light" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する <span>→</span></a><a href="mailto:infonotorebloom@gmail.com">infonotorebloom@gmail.com ↗</a></div></div>
+    </section>
   </main>
 
-  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 55V26M32 35c-10 1-17-5-18-15 10-1 17 5 18 15ZM32 42c10 1 17-5 18-15-10-1-17 5-18 15ZM32 26c-5-7-3-15 5-20 5 7 3 15-5 20Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="29" r="4" fill="currentColor"/></svg></span><span><strong>NOTO Re:Bloom</strong><small>泥臭い挑戦で、能登を咲かせる。</small></span></a><p>© <span id="year"></span> NOTO Re:Bloom</p></div></footer>
+  <footer class="footer"><div class="shell footer__inner"><a href="#top" class="brand brand--footer"><svg class="brand__mark" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 43V20M26 26C17 26 11 20 11 12c9 0 15 6 15 14Zm0 6c8 0 15-6 15-14-9 0-15 6-15 14Zm0-12c-4-5-3-11 3-15 4 5 3 11-3 15Z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="23" r="3" fill="currentColor"/></svg><span><strong>NOTO Re:Bloom</strong><small>泥臭い挑戦で、能登を咲かせる。</small></span></a><p>© 2026 NOTO Re:Bloom</p></div></footer>
+
+  <div class="mobile-bar"><a href="https://forms.gle/JHRKjidKa5usp9Lj6" target="_blank" rel="noopener">運動会に参加する</a><a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛を相談する</a></div>
   <script src="script.js"></script>
 </body>
 </html>
