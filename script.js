@@ -28,17 +28,16 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.13, rootMargin: '0px 0px -40px 0px' });
-
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
     revealItems.forEach((item) => observer.observe(item));
   } else {
     revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
   const counters = document.querySelectorAll('[data-count]');
-  const formatNumber = (value) => {
-    if (value >= 1000) return Math.round(value).toLocaleString('ja-JP');
-    return Number.isInteger(value) ? String(value) : value.toFixed(1);
+  const formatNumber = (value, target) => {
+    if (target >= 1000) return Math.round(value).toLocaleString('ja-JP');
+    return Number.isInteger(target) ? String(Math.round(value)) : value.toFixed(1);
   };
 
   const animateCount = (el) => {
@@ -46,16 +45,13 @@
     const suffix = el.dataset.suffix || '';
     const duration = 1200;
     const start = performance.now();
-
     const tick = (now) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      const current = target * eased;
-      el.textContent = `${formatNumber(current)}${suffix}`;
+      el.textContent = `${formatNumber(target * eased, target)}${suffix}`;
       if (progress < 1) requestAnimationFrame(tick);
-      else el.textContent = `${formatNumber(target)}${suffix}`;
+      else el.textContent = `${formatNumber(target, target)}${suffix}`;
     };
-
     requestAnimationFrame(tick);
   };
 
@@ -67,7 +63,7 @@
           counterObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.45 });
     counters.forEach((counter) => counterObserver.observe(counter));
   } else {
     counters.forEach(animateCount);
