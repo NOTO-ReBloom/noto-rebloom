@@ -105,7 +105,7 @@
         <div class="route-copy reveal">
           <p class="eyebrow"><span></span>HOW IT WORKS</p>
           <h2 id="route-title" class="headline">支援は、土地が変わる順番に使われます。</h2>
-          <p>支援者が知りたいのは、「お金がどこへ行くのか」。NOTO Re:Bloomでは、使い道を土地の変化に沿って整理します。</p>
+          <p>いただいた支援は、土地が少しずつ変わる順番に沿って活用します。草を刈り、安全を確認し、人が入れる状態をつくり、翌年度以降の活用へつなげます。</p>
         </div>
         <div class="route-steps reveal" aria-label="支援が土地の変化につながる流れ">
           <article><i>1</i><h3>草を刈る</h3><p>まず人が近づける状態へ。</p></article>
@@ -138,13 +138,24 @@
         </div>
 
         <div class="impact-calculator reveal" aria-label="支援額から面積を計算する">
-          <div class="calc-copy"><span>TRY IT</span><h3>支援額を、土地の広さに置き換える。</h3><p>数字だけでは見えにくい支援の意味を、畳・駐車場・教室・コートなど、身近なものに置き換えて確かめられます。</p></div>
-          <label><small>支援額</small><input id="supportAmount" type="range" min="300" max="100000" step="100" value="3000"><b id="supportAmountText">3,000円</b></label>
-          <div class="area-result"><output id="areaOutput" for="supportAmount">約10㎡</output><small id="areaContext">6畳の部屋に近い広さ</small></div>
+          <div class="calc-copy">
+            <span>IMPACT CHECK</span>
+            <h3>支援額を、土地の広さに置き換える。</h3>
+            <p>金額だけでは見えにくい支援の意味を、面積と身近な広さで確認できます。</p>
+          </div>
+          <label>
+            <small>支援額</small>
+            <input id="supportAmount" type="range" min="300" max="100000" step="100" value="3000">
+            <b id="supportAmountText">3,000円</b>
+          </label>
+          <div class="area-result">
+            <output id="areaOutput" for="supportAmount">約10㎡</output>
+            <small id="areaContext">6畳の部屋に近い広さ</small>
+          </div>
           <div class="impact-live" id="impactLive" aria-live="polite">
             <div class="compare-figure" id="compareFigure" aria-hidden="true"></div>
             <div class="compare-copy">
-              <span>いまの広さに近いもの</span>
+              <span>近い広さのイメージ</span>
               <strong id="liveLabel">6畳の部屋</strong>
               <p id="liveDesc">約9.72㎡ / 支援目安 2,916円</p>
             </div>
@@ -152,115 +163,16 @@
         </div>
 
         <div class="area-cards reveal" aria-label="支援額と再生面積の目安">
-          <article data-area-tier="3"><span>1,000円</span><strong>約3㎡</strong><p><b>約1坪</b>。最初の小さな入口をつくる広さです。</p></article>
-          <article data-area-tier="10"><span>3,000円</span><strong>約10㎡</strong><p><b>約6畳</b>。人が立ち止まり、作業や記録ができる区画です。</p></article>
-          <article data-area-tier="33"><span>10,000円</span><strong>約33㎡</strong><p><b>約10坪</b>。整備の成果が目に見え始める広さです。</p></article>
-          <article class="area-card-strong" data-area-tier="100"><span>30,000円</span><strong>約100㎡</strong><p><b>駐車場約8台分</b>。人が集まる場所の核をつくれます。</p></article>
+          <article data-area-tier="3"><span>1,000円</span><strong>約3㎡</strong><p><b>ほぼ1坪</b>。小さくても、草を刈って人が立てる入口になります。</p></article>
+          <article data-area-tier="10"><span>3,000円</span><strong>約10㎡</strong><p><b>6畳の部屋くらい</b>。作業道具を置き、数人で整備できる広さです。</p></article>
+          <article data-area-tier="33"><span>10,000円</span><strong>約33㎡</strong><p><b>約10坪</b>。一角がはっきり変わり、写真でも伝わる広さです。</p></article>
+          <article class="area-card-strong" data-area-tier="100"><span>30,000円</span><strong>約100㎡</strong><p><b>駐車場約8台分</b>。人が集まり、企画を行う核になる広さです。</p></article>
         </div>
 
         <details class="note-box reveal">
           <summary>1㎡あたり約300円の考え方</summary>
           <p>1㎡あたり約300円は、NOTO Re:Bloom独自の暫定目安です。草刈り、簡易整備、安全確認、運営準備、広報、翌年度以降の活用準備を含めて算出しています。実際の費用は、土地の状態、整備範囲、必要な機材、安全対策等によって変動します。会場確定後、費用内訳は順次公開します。</p>
         </details>
-      </div>
-    </section>
-
-    <section class="section scale" id="scale" aria-labelledby="scale-title">
-      <div class="container scale-grid">
-        <div class="scale-copy reveal">
-          <p class="eyebrow"><span></span>AREA LIBRARY</p>
-          <h2 id="scale-title" class="headline">広さを、身近なものに置き換える。</h2>
-          <p>「10㎡」や「100㎡」と言われても、実感はなかなかわきません。そこで、NOTO Re:Bloomでは、支援で動く面積を、畳、坪、駐車場、教室、コート、プールなど、イメージしやすい“もの”に置き換えて見せています。</p>
-          <p>気になるカードを押すと、上のスライダーもその広さに近い金額へ連動します。まずは、自分にとってわかりやすい大きさから、このプロジェクトを想像してみてください。</p>
-          <div class="scale-note-card">
-            <b>たとえば、30,000円で約100㎡。</b>
-            <small>駐車場なら約8台分。数字だけでは見えにくい支援の意味を、具体的な景色に変えていきます。</small>
-          </div>
-        </div>
-        <div class="scale-visual reveal" aria-label="支援面積のイメージ図">
-          <div class="scale-stage" id="scaleStage">
-            <div class="stage-grid"></div>
-            <div class="stage-tag">AREA to IMAGE</div>
-            <div class="stage-badge"><strong id="stageArea">約10㎡</strong><small id="stageHint">6畳の部屋に近い広さ</small></div>
-          </div>
-          <div class="scale-caption"><span>PLAYFUL GUIDE</span><p>数字を眺めるより、広さを思い浮かべる。支援の実感を高めるための、小さな面積図鑑です。</p></div>
-        </div>
-      </div>
-
-      <div class="container scale-examples reveal" aria-label="広さのたとえ10選">
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="tatami1" data-area="1.62" data-yen="486">
-          <div class="example-figure"></div>
-          <span>約1.62㎡</span>
-          <h3>畳1枚</h3>
-          <p>寝転がれるくらいの、最小単位の広さ。</p>
-          <small>目安：486円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="tsubo" data-area="3.31" data-yen="993">
-          <div class="example-figure"></div>
-          <span>約3.31㎡</span>
-          <h3>1坪</h3>
-          <p>住宅の広さでよく見る、基本の単位。</p>
-          <small>目安：993円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="tatami6" data-area="9.72" data-yen="2916">
-          <div class="example-figure"></div>
-          <span>約9.72㎡</span>
-          <h3>6畳の部屋</h3>
-          <p>人が立ち止まり、作業や記録ができる広さ。</p>
-          <small>目安：2,916円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="parking" data-area="12.5" data-yen="3750">
-          <div class="example-figure"></div>
-          <span>約12.5㎡</span>
-          <h3>駐車場1台分</h3>
-          <p>車1台がちょうど収まる身近な広さ。</p>
-          <small>目安：3,750円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="tatami8" data-area="12.96" data-yen="3888">
-          <div class="example-figure"></div>
-          <span>約12.96㎡</span>
-          <h3>8畳の部屋</h3>
-          <p>少し広めの居室。使い方が想像しやすい広さ。</p>
-          <small>目安：3,888円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="oneroom" data-area="20" data-yen="6000">
-          <div class="example-figure"></div>
-          <span>約20㎡</span>
-          <h3>コンパクトな1K</h3>
-          <p>一人暮らしの部屋くらいのイメージ。</p>
-          <small>目安：6,000円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="classroom" data-area="63" data-yen="18900">
-          <div class="example-figure"></div>
-          <span>約63㎡</span>
-          <h3>小学校の教室</h3>
-          <p>人が集まって作業できる広さが見えてきます。</p>
-          <small>目安：18,900円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="badminton" data-area="81.74" data-yen="24522">
-          <div class="example-figure"></div>
-          <span>約81.74㎡</span>
-          <h3>バドミントンコート</h3>
-          <p>コート1面分。区画の大きさが一気に想像しやすくなります。</p>
-          <small>目安：24,522円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="tennis" data-area="260.87" data-yen="78261">
-          <div class="example-figure"></div>
-          <span>約260.87㎡</span>
-          <h3>テニスコート1面</h3>
-          <p>広い一画を、はっきり“場”として感じられるサイズです。</p>
-          <small>目安：78,261円</small>
-        </article>
-        <article class="scale-card js-scale-item" role="button" tabindex="0" data-example="pool" data-area="312.5" data-yen="93750">
-          <div class="example-figure"></div>
-          <span>約312.5㎡</span>
-          <h3>25mプール</h3>
-          <p>学校のプールくらい。まとまった一枚の土地を思い描けます。</p>
-          <small>目安：93,750円</small>
-        </article>
-      </div>
-      <div class="container scale-source reveal">
-        <p>※ 面積のたとえは、不動産表示の1畳＝1.62㎡、1坪＝約3.31㎡を基準に、駐車場は2.5m×5m、教室は約63㎡、バドミントンコートは13.4m×6.1m、テニスコートは23.77m×10.97m、25mプールは25m×12.5mを目安として算出しています。</p>
       </div>
     </section>
 
@@ -325,7 +237,7 @@
 
     <section class="section trust" aria-labelledby="trust-title">
       <div class="container trust-grid">
-        <div class="trust-head reveal"><p class="eyebrow"><span></span>FOR SUPPORTERS</p><h2 id="trust-title" class="headline">支援する前に、知りたいことへ。</h2><p>支援者が知りたいのは、想いだけではなく「何に使われるのか」「誰が進めるのか」「その後どうなるのか」。NOTO Re:Bloomでは、支援の使い道と進捗をできるだけ見える形で共有します。</p></div>
+        <div class="trust-head reveal"><p class="eyebrow"><span></span>FOR SUPPORTERS</p><h2 id="trust-title" class="headline">支援する前に、知りたいことへ。</h2><p>支援前に気になるのは、想いだけではなく「何に使われるのか」「誰が進めるのか」「その後どうなるのか」。NOTO Re:Bloomでは、支援の使い道と進捗をできるだけ見える形で共有します。</p></div>
         <div class="trust-cards reveal"><article><span>01</span><h3>使い道を明確にする</h3><p>土地整備、安全管理、広報、翌年度以降の活用準備など、費用内訳を順次公開します。</p></article><article><span>02</span><h3>写真で進捗を残す</h3><p>整備前、準備中、当日、その後の土地の様子まで、サイトやSNSで記録します。</p></article><article><span>03</span><h3>単発で終わらせない</h3><p>地域の方と相談しながら、来年度以降の栽培・管理・活用へつなげます。</p></article></div>
       </div>
     </section>
