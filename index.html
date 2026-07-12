@@ -1,5 +1,6 @@
 <!doctype html>
-<!-- NOTO Re:Bloom v11 single-file: American comic pop + READYFOR link -->
+<!-- NOTO Re:Bloom v12 single-file: softer comic colors + expanded content -->
+<!-- NOTO Re:Bloom v12 single-file: muted American comic + expanded content -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -917,6 +918,421 @@ body::after{
   }
 }
 
+  
+
+/* =========================================================
+   V12 Refinement
+   - Lower saturation for readability
+   - Keep American comic energy, but softer
+   - Add expanded content sections
+   - Improve Japanese line breaks
+========================================================= */
+
+:root{
+  --comic-black:#2f2418;
+  --comic-red:#d85f55;
+  --comic-blue:#5aaeda;
+  --comic-yellow:#eac85a;
+  --comic-cream:#fff4d6;
+  --comic-green:#4f9a5c;
+  --comic-purple:#8069c9;
+  --v12-mint:#e7f4d7;
+  --v12-sky:#dbefff;
+  --v12-pink:#f8d9dd;
+  --v12-sand:#f4dfb7;
+}
+
+body{
+  background:
+    radial-gradient(circle at 12% 12%, rgba(216,95,85,.13), transparent 12%),
+    radial-gradient(circle at 90% 8%, rgba(90,174,218,.16), transparent 13%),
+    radial-gradient(circle at 82% 78%, rgba(234,200,90,.16), transparent 14%),
+    linear-gradient(180deg,#fff5dd 0%,#fffaf0 46%,#f7e5c7 100%) !important;
+  color:#2f2418 !important;
+}
+
+body::after{
+  opacity:.13 !important;
+}
+
+.keep{
+  display:inline-block;
+}
+
+h1,h2,h3,
+.hero h1,
+.section-copy h2,
+.center-heading h2,
+.impact-head h2,
+.support h2,
+.final-card h2{
+  text-wrap:balance;
+  word-break:keep-all;
+  overflow-wrap:normal;
+}
+
+p{
+  word-break:normal;
+  overflow-wrap:anywhere;
+}
+
+.hero h1{
+  text-shadow:3px 3px 0 rgba(255,255,255,.92), 5px 5px 0 rgba(234,200,90,.55) !important;
+}
+
+.hero h1::after{
+  background:var(--comic-red) !important;
+  color:#fff !important;
+  opacity:.95;
+}
+
+.hero,
+.impact{
+  background:
+    radial-gradient(circle at 13% 22%,rgba(216,95,85,.11),transparent 12%),
+    radial-gradient(circle at 85% 16%,rgba(90,174,218,.13),transparent 12%),
+    linear-gradient(135deg,#f5dc8f 0%,#fff4d6 48%,#e1f2d3 100%) !important;
+}
+
+.site-header{
+  background:rgba(255,248,232,.96) !important;
+}
+
+.site-nav a:hover{
+  background:#f0d978 !important;
+}
+
+.site-nav .nav-cf,
+.comic-cf-btn{
+  background:#d85f55 !important;
+}
+
+.site-nav .nav-cta{
+  background:#4f9a5c !important;
+}
+
+.btn.primary{
+  background:#4f9a5c !important;
+}
+
+.btn.ghost,
+.btn.light,
+.btn.ghost-light{
+  background:#fffaf0 !important;
+  color:#2f2418 !important;
+}
+
+.comic-cf-btn{
+  background:#d85f55 !important;
+  color:#fff !important;
+}
+
+.comic-cf-btn::after{
+  background:#eac85a !important;
+}
+
+.amount-cards article:nth-child(1),
+.step-cards article:nth-child(1),
+.issue-grid article:nth-child(2){
+  background:#e7f4d7 !important;
+}
+
+.amount-cards article:nth-child(3),
+.step-cards article:nth-child(3){
+  background:#dbefff !important;
+}
+
+.amount-cards article:nth-child(4),
+.step-cards article:nth-child(4){
+  background:#f8d9dd !important;
+}
+
+.impact-main small,
+.calc-text span,
+.compare-copy span{
+  background:#eac85a !important;
+}
+
+.calc-result output{
+  background:#5aaeda !important;
+}
+
+.example-chips button:hover,
+.example-chips button.is-active{
+  background:#4f9a5c !important;
+}
+
+.data{
+  background:linear-gradient(180deg,#e7f4d7 0%,#dceecf 100%) !important;
+}
+
+.green-panel,
+.support{
+  background:linear-gradient(145deg,#2f6c3b,#4f9a5c) !important;
+}
+
+.final-card{
+  background:linear-gradient(145deg,#d85f55,#8069c9) !important;
+}
+
+/* Expanded sections */
+.journey{
+  background:linear-gradient(180deg,#fffaf0 0%,#fff0d2 100%);
+}
+
+.journey-track{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:14px;
+  margin-top:30px;
+}
+
+.journey-track article,
+.ways-cards article,
+.report-card,
+.report-list article,
+.mini-game-card{
+  border:4px solid var(--comic-black);
+  border-radius:26px;
+  background:#fffaf0;
+  box-shadow:0 6px 0 var(--comic-black),0 16px 30px rgba(47,36,24,.11);
+}
+
+.journey-track article{
+  position:relative;
+  padding:22px 18px;
+}
+
+.journey-track article::after{
+  content:"→";
+  position:absolute;
+  top:50%;
+  right:-20px;
+  transform:translateY(-50%);
+  width:26px;
+  height:26px;
+  display:grid;
+  place-items:center;
+  border:3px solid var(--comic-black);
+  border-radius:999px;
+  background:#eac85a;
+  font-weight:900;
+  z-index:2;
+}
+
+.journey-track article:last-child::after{
+  content:"🌱";
+}
+
+.journey-track span,
+.report-list span{
+  display:inline-flex;
+  padding:5px 8px;
+  border-radius:999px;
+  border:2px solid var(--comic-black);
+  background:#eac85a;
+  color:#2f2418;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.journey-track h3,
+.ways-cards h3,
+.report-list h3{
+  margin:12px 0 8px;
+  color:#2f2418;
+  font-size:18px;
+  font-weight:900;
+}
+
+.journey-track p,
+.ways-cards p,
+.report-list p{
+  font-size:12.8px;
+  line-height:1.8;
+}
+
+.ways{
+  background:#fffaf0;
+}
+
+.ways-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(300px,1.15fr);
+  gap:clamp(32px,6vw,70px);
+  align-items:start;
+}
+
+.ways-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:24px;
+}
+
+.ways-cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.ways-cards article{
+  padding:22px;
+}
+
+.ways-cards article:nth-child(1){background:#dbefff}
+.ways-cards article:nth-child(2){background:#e7f4d7}
+.ways-cards article:nth-child(3){background:#fff4d6}
+.ways-cards article:nth-child(4){background:#f8d9dd}
+
+.ways-cards b{
+  display:block;
+  color:#2f2418;
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.ways-cards span{
+  display:inline-flex;
+  margin-bottom:10px;
+  padding:5px 8px;
+  border:2px solid var(--comic-black);
+  border-radius:999px;
+  background:#fff;
+  color:#2f2418;
+  font-size:11px;
+  font-weight:900;
+}
+
+.report{
+  background:linear-gradient(180deg,#fff4d6 0%,#fffaf0 100%);
+}
+
+.report-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(300px,1.1fr);
+  gap:clamp(30px,6vw,70px);
+  align-items:start;
+}
+
+.report-card{
+  padding:clamp(26px,4vw,42px);
+  background:#fff;
+}
+
+.report-card h2{
+  color:#2f2418;
+  font-family:"Yusei Magic","M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(30px,4vw,50px);
+  line-height:1.45;
+}
+
+.report-list{
+  display:grid;
+  gap:14px;
+}
+
+.report-list article{
+  padding:22px;
+}
+
+.report-list article:nth-child(1){background:#fff}
+.report-list article:nth-child(2){background:#dbefff}
+.report-list article:nth-child(3){background:#e7f4d7}
+
+.mini-game{
+  background:#e7f4d7;
+}
+
+.mini-game-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,420px);
+  gap:clamp(24px,5vw,56px);
+  align-items:center;
+  padding:clamp(26px,5vw,48px);
+  background:#fffaf0;
+}
+
+.mini-game-card h2{
+  font-family:"Yusei Magic","M PLUS Rounded 1c",sans-serif;
+  color:#2f2418;
+  font-size:clamp(30px,4vw,50px);
+  line-height:1.45;
+}
+
+.pixel-field{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  padding:18px;
+  border:4px solid var(--comic-black);
+  border-radius:26px;
+  background:#fff;
+  box-shadow:inset 0 0 0 6px rgba(234,200,90,.24);
+}
+
+.pixel-field i{
+  aspect-ratio:1;
+  border:3px solid var(--comic-black);
+  border-radius:12px;
+  background:#e7f4d7;
+  box-shadow:0 4px 0 var(--comic-black);
+}
+
+.pixel-field i:nth-child(3n){
+  background:#dbefff;
+}
+.pixel-field i:nth-child(4n){
+  background:#fff4d6;
+}
+.pixel-field i:nth-child(5n){
+  background:#f8d9dd;
+}
+
+@media (max-width:980px){
+  .journey-track{
+    grid-template-columns:1fr;
+  }
+
+  .journey-track article::after{
+    top:auto;
+    right:auto;
+    left:24px;
+    bottom:-22px;
+    transform:rotate(90deg);
+  }
+
+  .journey-track article:last-child::after{
+    transform:none;
+  }
+
+  .ways-grid,
+  .report-grid,
+  .mini-game-card{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:760px){
+  .ways-cards{
+    grid-template-columns:1fr;
+  }
+
+  h1,h2,h3,
+  .hero h1,
+  .section-copy h2,
+  .center-heading h2,
+  .impact-head h2{
+    overflow-wrap:anywhere;
+  }
+
+  .keep{
+    display:inline;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -932,6 +1348,7 @@ body::after{
     <nav class="site-nav" id="site-nav" aria-label="サイト内メニュー">
       <a href="#about">概要</a>
       <a href="#impact">支援の目安</a>
+      <a href="#ways">関わり方</a>
       <a href="#data">背景データ</a>
       <a href="#field">会場候補</a>
       <a href="#event">イベント</a>
@@ -953,7 +1370,7 @@ body::after{
       <div class="container hero-layout">
         <div class="hero-copy reveal">
           <p class="eyebrow"><i></i>NOTO / SUZU / FIELD REGENERATION</p>
-          <h1>耕作放棄地を、<br>もう一度人が関わる場所へ。</h1>
+          <h1><span class="keep">耕作放棄地を、</span><br><span class="keep">もう一度人が関わる場所へ。</span></h1>
           <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
           <div class="hero-actions">
             <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
@@ -991,7 +1408,7 @@ body::after{
       <div class="container section-grid">
         <div class="section-copy reveal">
           <p class="eyebrow"><i></i>PROJECT / 概要</p>
-          <h2>毎年、少しずつ。耕作放棄地を減らす仕組みをつくる。</h2>
+          <h2><span class="keep">毎年、少しずつ。</span><br><span class="keep">耕作放棄地を減らす仕組みをつくる。</span></h2>
           <p>目的は、単発のイベントではありません。耕作放棄地を見つけ、整え、人が入るきっかけをつくり、その後の管理や活用につなげる。NOTO Re:Bloomは、その一連の流れを能登で育てていきます。</p>
         </div>
         <div class="step-cards reveal" aria-label="プロジェクトの流れ">
@@ -1007,7 +1424,7 @@ body::after{
       <div class="container">
         <div class="center-heading reveal">
           <p class="eyebrow"><i></i>WHY IT MATTERS</p>
-          <h2>耕作放棄地は、ただ草が伸びた土地ではない。</h2>
+          <h2><span class="keep">耕作放棄地は、</span><br><span class="keep">ただ草が伸びた土地ではない。</span></h2>
           <p>そこには、担い手不足、人口減少、地域との関わりの減少が重なっています。だからこそ、土地を一度きれいにするだけでなく、人が関わり続けられる仕組みが必要です。</p>
         </div>
         <div class="issue-grid reveal">
@@ -1022,7 +1439,7 @@ body::after{
       <div class="container">
         <div class="impact-head reveal">
           <p class="eyebrow"><i></i>SUPPORT IMPACT</p>
-          <h2>あなたの300円が、能登の土地1㎡を動かす。</h2>
+          <h2><span class="keep">あなたの300円が、</span><br><span class="keep">能登の土地1㎡を動かす。</span></h2>
           <p>NOTO Re:Bloomでは、草刈り・簡易整備・安全確認・運営準備・広報・翌年度以降の活用準備まで含め、<strong>1㎡あたり約300円</strong>を暫定的な目安にしています。</p>
         </div>
 
@@ -1093,11 +1510,80 @@ body::after{
       </div>
     </section>
 
+
+    <section class="section journey" id="journey">
+      <div class="container">
+        <div class="center-heading reveal">
+          <p class="eyebrow"><i></i>HOW IT GROWS</p>
+          <h2><span class="keep">支援は、土地が変わる順番に沿って使います。</span></h2>
+          <p>いただいた支援は、単に「イベント費」として消えるものではありません。草を刈る、安全を確認する、人が入る入口をつくる、活動を記録する、次年度以降の活用へつなげる。土地が変わっていく流れに沿って活用します。</p>
+        </div>
+        <div class="journey-track reveal" aria-label="支援の使い道の流れ">
+          <article><span>STEP 1</span><h3>草を刈る</h3><p>まず、人が近づける状態へ。整備の第一歩です。</p></article>
+          <article><span>STEP 2</span><h3>安全を確認する</h3><p>水、ぬかるみ、動線、近隣への影響を確認します。</p></article>
+          <article><span>STEP 3</span><h3>人が入る</h3><p>学生・地域・企業が同じ土地に関わる場をつくります。</p></article>
+          <article><span>STEP 4</span><h3>記録して伝える</h3><p>写真・動画・レポートで、土地の変化を共有します。</p></article>
+          <article><span>STEP 5</span><h3>次の活用へ</h3><p>栽培、景観づくり、管理体制などを検討します。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ways" id="ways">
+      <div class="container ways-grid">
+        <div class="section-copy reveal">
+          <p class="eyebrow"><i></i>JOIN THE FIELD</p>
+          <h2><span class="keep">お金だけじゃない。</span><br><span class="keep">関わり方はいくつもあります。</span></h2>
+          <p>クラウドファンディングでの応援はもちろん、発信、当日運営、写真撮影、物品協力、専門的な助言など、さまざまな関わり方があります。できることから参加できる設計にしています。</p>
+          <div class="ways-actions">
+            <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
+            <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">参加・連携を相談する</a>
+          </div>
+        </div>
+        <div class="ways-cards reveal">
+          <article><b>学生</b><span>運営 / SNS / 写真 / 企画</span><p>地域活動の経験がなくても、できる役割から関われます。</p></article>
+          <article><b>地域の方</b><span>土地情報 / 助言 / 見守り</span><p>無理のない範囲で、土地の背景や地域の事情を教えてください。</p></article>
+          <article><b>企業・団体</b><span>協賛 / 物品 / 広報 / 人材</span><p>資金だけでなく、道具や発信、社員参加も大きな力になります。</p></article>
+          <article><b>見守る人</b><span>シェア / 紹介 / 応援</span><p>知人への共有やSNSでの拡散も、最初の大切な支援です。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section report" id="report">
+      <div class="container report-grid">
+        <div class="report-card reveal">
+          <p class="eyebrow"><i></i>OPEN REPORT</p>
+          <h2><span class="keep">活動の進捗は、</span><br><span class="keep">見える形で残していきます。</span></h2>
+          <p>会場の確定、整備費の内訳、当日の様子、土地の変化、翌年度以降の活用方針などを、サイトやSNSで順次公開します。支援して終わりではなく、土地がどう変わったかを追える形にします。</p>
+        </div>
+        <div class="report-list reveal">
+          <article><span>01</span><h3>費用の見える化</h3><p>会場確定後、整備費・安全管理費・運営費を整理して公開します。</p></article>
+          <article><span>02</span><h3>写真で残す</h3><p>整備前・整備中・イベント後の変化を写真で記録します。</p></article>
+          <article><span>03</span><h3>次年度への引き継ぎ</h3><p>一度きりで終わらせないため、活用案と管理方法を整理します。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section mini-game" id="mini-game">
+      <div class="container mini-game-card reveal">
+        <div>
+          <p class="eyebrow"><i></i>PLAYFUL POINT</p>
+          <h2><span class="keep">300円で1㎡。</span><br><span class="keep">小さなマスが、土地の未来を動かす。</span></h2>
+          <p>サイト上では、支援額をスライダーで動かすと、どれくらいの広さに近いかを見られるようにしています。数字だけでなく、畳・駐車場・教室など、身近な広さで想像できるようにしました。</p>
+        </div>
+        <div class="pixel-field" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </section>
+
     <section class="section data" id="data">
       <div class="container">
         <div class="center-heading reveal">
           <p class="eyebrow"><i></i>DATA / WHY NOW</p>
-          <h2>数字で見る、農地と復興の現在地。</h2>
+          <h2><span class="keep">数字で見る、</span><br><span class="keep">農地と復興の現在地。</span></h2>
           <p>全国的な荒廃農地の広がり、再生の余地、そして奥能登で進んできた担い手の減少。公的資料をもとに、背景をわかりやすく整理します。</p>
         </div>
         <div class="number-grid reveal">
@@ -1144,7 +1630,7 @@ body::after{
       <div class="container field-grid">
         <div class="section-copy reveal">
           <p class="eyebrow"><i></i>FIELD STATUS</p>
-          <h2>最初の一歩となる土地を、地域の方と調整しています。</h2>
+          <h2><span class="keep">最初の一歩となる土地を、</span><br><span class="keep">地域の方と調整しています。</span></h2>
           <p>初年度の会場は、珠洲市内の遊休農地を中心に調整しています。現在は、珠洲市上黒丸の候補地を含め、アクセス、安全面、整備費、翌年度以降の活用可能性を確認している段階です。</p>
           <div class="status-card">
             <span>確認中のこと</span>
@@ -1177,7 +1663,7 @@ body::after{
         </aside>
         <div class="section-copy invert reveal">
           <p class="eyebrow light"><i></i>ENTRANCE EVENT</p>
-          <h2>ドロンコ運動会は、目的ではなく入口です。</h2>
+          <h2><span class="keep">ドロンコ運動会は、</span><br><span class="keep">目的ではなく入口です。</span></h2>
           <p>耕作放棄地や農地再生は、少し距離を感じやすいテーマです。だからこそ、まずは楽しみながら土地に入る入口として、ドロンコ運動会を企画しています。</p>
           <div class="event-cards">
             <article><span>01</span><h3>土地に入る</h3><p>泥や水に触れ、土地を体験として知る。</p></article>
@@ -1193,7 +1679,7 @@ body::after{
       <div class="container section-grid">
         <div class="section-copy reveal">
           <p class="eyebrow"><i></i>FOR STUDENTS</p>
-          <h2>学生でも、地域に関わる最初の一歩をつくれる。</h2>
+          <h2><span class="keep">学生でも、</span><br><span class="keep">地域に関わる最初の一歩をつくれる。</span></h2>
           <p>能登に詳しくなくても、地域活動の経験がなくても大丈夫です。現地運営、SNS発信、写真撮影、企画づくりなど、できる関わり方から参加できます。</p>
         </div>
         <div class="student-list reveal">
@@ -1222,7 +1708,7 @@ body::after{
         <div class="support-head reveal">
           <div>
             <p class="eyebrow light"><i></i>SUPPORT / PARTNERSHIP</p>
-            <h2>協賛は、能登に残る景色とつながりを育てる力です。</h2>
+            <h2><span class="keep">協賛は、</span><br><span class="keep">能登に残る景色とつながりを育てる力です。</span></h2>
             <p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
           </div>
           <div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
