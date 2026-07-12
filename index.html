@@ -1,6 +1,5 @@
 <!doctype html>
-<!-- NOTO Re:Bloom v12 single-file: softer comic colors + expanded content -->
-<!-- NOTO Re:Bloom v12 single-file: muted American comic + expanded content -->
+<!-- NOTO Re:Bloom v13 single-file: expanded doronko event + readability fixes -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -1333,6 +1332,355 @@ p{
   }
 }
 
+  
+
+/* =========================================================
+   V13 Event Expansion + Readability Fixes
+   - Make text sit above textures
+   - Add rich Doronko Sports Day content
+   - Reduce background texture interference
+========================================================= */
+
+/* Keep all readable text above dotted / comic textures */
+main,
+section,
+.container,
+.section-copy,
+.center-heading,
+.impact-head,
+.hero-copy,
+.hero-visual,
+.event-main-copy,
+.event-extra,
+.support-head,
+.final-card,
+.faq-list,
+.material-grid,
+.story-grid,
+.field-grid,
+.data-panels{
+  position:relative;
+  z-index:2;
+}
+
+/* Softer background dots so they don't fight the text */
+body::after{
+  opacity:.08 !important;
+}
+
+.impact::before{
+  opacity:.10 !important;
+}
+
+.hero::after{
+  z-index:0;
+}
+
+.hero .container{
+  position:relative;
+  z-index:2;
+}
+
+/* Make long headings more stable */
+.keep{
+  display:inline-block;
+}
+
+.section-copy h2,
+.center-heading h2,
+.impact-head h2,
+.support h2,
+.final-card h2,
+.event-main-copy h2,
+.report-card h2,
+.mini-game-card h2{
+  text-wrap:balance;
+  word-break:keep-all;
+  overflow-wrap:normal;
+  position:relative;
+  z-index:3;
+}
+
+.section-copy p,
+.center-heading p,
+.impact-head p,
+.event-main-copy p,
+.report-card p,
+.mini-game-card p{
+  position:relative;
+  z-index:3;
+}
+
+/* Text backing for hard-to-read sections */
+.event-main-copy > p,
+.support-head p,
+.invert > p{
+  max-width:780px;
+}
+
+.event-main-copy > p{
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(53,33,22,.20);
+  color:rgba(255,248,232,.94) !important;
+  border:2px solid rgba(255,248,232,.22);
+}
+
+.event{
+  overflow:hidden;
+}
+
+.event::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.13;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle,#fff8e8 0 2px,transparent 2.6px);
+  background-size:24px 24px;
+  z-index:0;
+}
+
+.event-grid{
+  align-items:start !important;
+}
+
+.event-date{
+  position:sticky;
+  top:110px;
+  z-index:3;
+}
+
+.event-cards-rich{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+.event-cards-rich article{
+  min-height:176px;
+}
+
+.event-extra{
+  margin-top:clamp(28px,5vw,56px);
+  display:grid;
+  gap:22px;
+}
+
+.event-flow,
+.event-message,
+.event-info-grid article{
+  border:3px solid rgba(255,248,232,.88);
+  box-shadow:0 6px 0 rgba(0,0,0,.25),0 18px 34px rgba(0,0,0,.18);
+  background:rgba(255,248,232,.12);
+  border-radius:28px;
+  backdrop-filter:blur(6px);
+}
+
+.event-flow{
+  padding:clamp(22px,4vw,36px);
+}
+
+.event-flow h3,
+.event-message h3{
+  color:#fff8e8;
+  font-size:clamp(28px,4vw,48px);
+  line-height:1.45;
+  font-family:"Yusei Magic","M PLUS Rounded 1c",sans-serif;
+  text-shadow:2px 2px 0 rgba(0,0,0,.22);
+  margin-bottom:20px;
+}
+
+.flow-line{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+
+.flow-line article{
+  position:relative;
+  padding:18px 14px;
+  border:2px solid rgba(255,248,232,.8);
+  border-radius:22px;
+  background:rgba(255,248,232,.12);
+}
+
+.flow-line article::after{
+  content:"→";
+  position:absolute;
+  right:-16px;
+  top:50%;
+  transform:translateY(-50%);
+  display:grid;
+  place-items:center;
+  width:26px;
+  height:26px;
+  border:2px solid #fff8e8;
+  border-radius:999px;
+  background:#eac85a;
+  color:#2f2418;
+  font-weight:900;
+  z-index:2;
+}
+
+.flow-line article:last-child::after{
+  content:"🌱";
+}
+
+.flow-line b{
+  display:block;
+  color:#fff8e8;
+  font-size:18px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.flow-line p{
+  color:rgba(255,248,232,.82);
+  font-size:12.8px;
+  line-height:1.75;
+}
+
+.event-info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.event-info-grid article{
+  padding:22px;
+}
+
+.event-info-grid article:nth-child(1),
+.event-info-grid article:nth-child(4){
+  background:rgba(219,239,255,.18);
+}
+.event-info-grid article:nth-child(2),
+.event-info-grid article:nth-child(5){
+  background:rgba(231,244,215,.18);
+}
+.event-info-grid article:nth-child(3),
+.event-info-grid article:nth-child(6){
+  background:rgba(255,244,214,.18);
+}
+
+.event-info-grid span,
+.event-message span{
+  display:inline-flex;
+  padding:5px 9px;
+  border:2px solid #fff8e8;
+  border-radius:999px;
+  background:#eac85a;
+  color:#2f2418;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.event-info-grid h3{
+  margin:12px 0 8px;
+  color:#fff8e8;
+  font-size:19px;
+  font-weight:900;
+}
+
+.event-info-grid p{
+  color:rgba(255,248,232,.82);
+  font-size:12.8px;
+  line-height:1.8;
+}
+
+.event-message{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:clamp(24px,4vw,40px);
+  background:rgba(255,248,232,.16);
+}
+
+.event-message p{
+  color:rgba(255,248,232,.86);
+  max-width:820px;
+}
+
+/* Improve contrast in green support section */
+.support::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.08);
+  pointer-events:none;
+  z-index:0;
+}
+
+.support .container{
+  position:relative;
+  z-index:2;
+}
+
+.support-grid article,
+.support-note{
+  background:rgba(255,255,255,.18) !important;
+}
+
+/* Make small card copy easier to read */
+.event-cards article p,
+.support-grid article p,
+.amount-cards article p,
+.journey-track article p,
+.ways-cards article p,
+.report-list article p{
+  line-height:1.85;
+}
+
+@media (max-width:980px){
+  .event-date{
+    position:relative;
+    top:auto;
+  }
+
+  .event-cards-rich,
+  .event-info-grid,
+  .flow-line{
+    grid-template-columns:1fr;
+  }
+
+  .flow-line article::after{
+    right:auto;
+    left:22px;
+    top:auto;
+    bottom:-18px;
+    transform:rotate(90deg);
+  }
+
+  .flow-line article:last-child::after{
+    transform:none;
+  }
+
+  .event-message{
+    display:grid;
+  }
+}
+
+@media (max-width:760px){
+  .keep{
+    display:inline;
+  }
+
+  .section-copy h2,
+  .center-heading h2,
+  .impact-head h2,
+  .support h2,
+  .final-card h2,
+  .event-main-copy h2{
+    overflow-wrap:anywhere;
+  }
+
+  .event-main-copy > p{
+    padding:10px 12px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1656,21 +2004,81 @@ p{
           <small>開催候補日</small>
           <ul>
             <li>場所：珠洲市内で調整中</li>
+            <li>時間：午後開催を想定</li>
             <li>参加費：500円想定</li>
             <li>見学・応援：無料</li>
           </ul>
           <a class="btn small" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">参加相談</a>
         </aside>
-        <div class="section-copy invert reveal">
-          <p class="eyebrow light"><i></i>ENTRANCE EVENT</p>
-          <h2><span class="keep">ドロンコ運動会は、</span><br><span class="keep">目的ではなく入口です。</span></h2>
-          <p>耕作放棄地や農地再生は、少し距離を感じやすいテーマです。だからこそ、まずは楽しみながら土地に入る入口として、ドロンコ運動会を企画しています。</p>
-          <div class="event-cards">
-            <article><span>01</span><h3>土地に入る</h3><p>泥や水に触れ、土地を体験として知る。</p></article>
-            <article><span>02</span><h3>人が集まる</h3><p>学生・地域・企業が同じ場所で関わる。</p></article>
-            <article><span>03</span><h3>関心が残る</h3><p>一日で終わらせず、次の活用につなげる。</p></article>
-            <article><span>04</span><h3>翌年度へつなぐ</h3><p>栽培や管理など、その土地に合う形を考える。</p></article>
+
+        <div class="section-copy invert reveal event-main-copy">
+          <p class="eyebrow light"><i></i>DORONKO SPORTS DAY</p>
+          <h2><span class="keep">楽しく、泥くさく、</span><br><span class="keep">耕作放棄地を減らす入口をつくる。</span></h2>
+          <p>ドロンコ運動会は、ただのレクリエーションではありません。普段は入りにくい耕作放棄地に、子ども、学生、地域の方、企業の方が楽しみながら関わるための入口です。</p>
+          <p>まずは「面白そう」「行ってみたい」と思える場をつくり、そこから土地の整備、関心の広がり、翌年度以降の活用へつなげていきます。</p>
+
+          <div class="event-cards event-cards-rich">
+            <article><span>01</span><h3>土地に入る</h3><p>泥や水に触れ、使われなくなった土地を体験として知る。</p></article>
+            <article><span>02</span><h3>楽しく関わる</h3><p>競技や応援を通じて、地域活動へのハードルを下げる。</p></article>
+            <article><span>03</span><h3>泥を持ち帰る</h3><p>回収した泥と培養土を使い、レンゲの種を家で育てるきっかけをつくる。</p></article>
+            <article><span>04</span><h3>次につなぐ</h3><p>当日の盛り上がりを、次年度以降の管理・栽培・活用へつなげる。</p></article>
           </div>
+        </div>
+      </div>
+
+      <div class="container event-extra">
+        <div class="event-flow reveal">
+          <p class="eyebrow light"><i></i>WHAT HAPPENS</p>
+          <h3><span class="keep">当日のイメージ</span></h3>
+          <div class="flow-line">
+            <article><b>集合</b><p>受付・着替え・安全説明</p></article>
+            <article><b>準備</b><p>チーム分け・泥エリア確認</p></article>
+            <article><b>競技</b><p>泥を使ったリレーやチーム競技</p></article>
+            <article><b>種まき体験</b><p>泥と培養土でレンゲを育てる準備</p></article>
+            <article><b>共有</b><p>写真撮影・今後の活動案内</p></article>
+          </div>
+        </div>
+
+        <div class="event-info-grid reveal">
+          <article>
+            <span>POINT 1</span>
+            <h3>水深は浅めに管理</h3>
+            <p>当日はくるぶし程度を目安に水を張り、安全に楽しめる範囲で実施します。</p>
+          </article>
+          <article>
+            <span>POINT 2</span>
+            <h3>畑に種をまいて終わらせない</h3>
+            <p>当日は圃場に直接種をまくのではなく、持ち帰って育てられる形を検討しています。</p>
+          </article>
+          <article>
+            <span>POINT 3</span>
+            <h3>見学・応援も歓迎</h3>
+            <p>競技に参加しない方も、無料で見学・応援できる形を想定しています。</p>
+          </article>
+          <article>
+            <span>POINT 4</span>
+            <h3>学生ボランティアが支える</h3>
+            <p>各チームに学生スタッフを配置し、受付、誘導、記録、安全確認を行います。</p>
+          </article>
+          <article>
+            <span>POINT 5</span>
+            <h3>目的は土地再生</h3>
+            <p>イベントの盛り上がりを、翌年度以降の耕作放棄地の活用につなげます。</p>
+          </article>
+          <article>
+            <span>POINT 6</span>
+            <h3>参加しやすい価格</h3>
+            <p>参加費は一律500円を想定。見学・応援は無料で参加しやすくします。</p>
+          </article>
+        </div>
+
+        <div class="event-message reveal">
+          <div>
+            <span>MISSION</span>
+            <h3><span class="keep">楽しいから集まる。</span><br><span class="keep">集まるから、土地が動き出す。</span></h3>
+            <p>耕作放棄地の再生を、難しい話だけで終わらせない。まずは人が集まり、笑い、泥だらけになり、その土地を「知っている場所」に変えていく。NOTO Re:Bloomは、楽しさを入口にして、耕作放棄地を少しずつ減らす仕組みを育てます。</p>
+          </div>
+          <a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
         </div>
       </div>
     </section>
