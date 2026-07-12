@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NOTO Re:Bloom v17 single-file: top-heading layout + official four doronko sports -->
+<!-- NOTO Re:Bloom v18 single-file: typography + project info + plant details -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -3635,6 +3635,259 @@ section{
   }
 }
 
+  
+
+/* =========================================================
+   V18 Typography / line-break / plant ornament refinement
+   - Keep current layout
+   - Better heading sizes and phrase breaks
+   - NOTO-REBOOST U-23 stays as one unit
+   - Add garden-themed status and participation sections
+========================================================= */
+
+.nowrap{
+  white-space:nowrap;
+}
+
+.keep{
+  display:inline-block;
+}
+
+/* More controlled typography */
+.hero h1{
+  font-size:clamp(36px,5.6vw,70px) !important;
+  line-height:1.28 !important;
+}
+
+.section-copy h2,
+.center-heading h2,
+.impact-head h2,
+.block-heading h3,
+.event-heading h2,
+.event-purpose-card h3,
+.event-message-clean h3,
+.report-card h2,
+.mini-game-card h2{
+  font-size:clamp(28px,4.2vw,52px) !important;
+  line-height:1.48 !important;
+  letter-spacing:.01em !important;
+}
+
+.center-heading{
+  max-width:960px !important;
+}
+
+.section-copy p:not(.eyebrow),
+.center-heading p,
+.impact-head p,
+.block-heading p,
+.event-heading p{
+  font-size:clamp(14px,1.25vw,16px) !important;
+  line-height:2 !important;
+}
+
+/* Prevent mid-word / awkward foreign phrase break */
+.brand b,
+.story h2,
+.status-garden-grid h3{
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+
+/* Existing story heading with NOTO-REBOOST U-23 should not split inside */
+.story .nowrap,
+.project-status .nowrap{
+  white-space:nowrap;
+  display:inline-block;
+}
+
+/* Plant ornaments in safe margins */
+.section{
+  position:relative;
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  left:clamp(12px,3vw,46px);
+  top:clamp(28px,5vw,70px);
+  width:clamp(54px,8vw,116px);
+  height:clamp(54px,8vw,116px);
+  opacity:.12;
+  pointer-events:none;
+  z-index:0;
+  background:
+    linear-gradient(#4f9a5c,#4f9a5c) 49% 46%/7% 70% no-repeat,
+    radial-gradient(ellipse at 31% 58%,#4f9a5c 0 23%,transparent 24%),
+    radial-gradient(ellipse at 70% 38%,#6fbf66 0 23%,transparent 24%);
+  transform:rotate(-14deg);
+}
+
+.section:nth-of-type(3n)::before{
+  left:auto;
+  right:clamp(12px,3vw,46px);
+  background:
+    radial-gradient(circle at 50% 18%,#f1c8d3 0 15%,transparent 16%),
+    radial-gradient(circle at 78% 45%,#f1c8d3 0 15%,transparent 16%),
+    radial-gradient(circle at 50% 75%,#f1c8d3 0 15%,transparent 16%),
+    radial-gradient(circle at 22% 45%,#f1c8d3 0 15%,transparent 16%),
+    radial-gradient(circle at 50% 48%,#eac85a 0 18%,transparent 19%);
+  transform:rotate(12deg);
+}
+
+/* New current-status section */
+.project-status{
+  background:linear-gradient(180deg,#fffaf0 0%,#e7f4d7 100%);
+}
+
+.status-garden-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  margin-top:clamp(28px,4vw,46px);
+}
+
+.status-garden-grid article,
+.join-garden article{
+  position:relative;
+  padding:24px;
+  border:4px solid #2f2418;
+  border-radius:28px;
+  background:#fffaf0;
+  box-shadow:0 6px 0 #2f2418,0 16px 30px rgba(47,36,24,.11);
+  overflow:hidden;
+}
+
+.status-garden-grid article::after,
+.join-garden article::after{
+  content:"";
+  position:absolute;
+  right:-12px;
+  bottom:-12px;
+  width:72px;
+  height:72px;
+  opacity:.24;
+  background:
+    linear-gradient(#4f9a5c,#4f9a5c) 48% 54%/8% 58% no-repeat,
+    radial-gradient(ellipse at 30% 60%,#6fbf66 0 22%,transparent 23%),
+    radial-gradient(ellipse at 70% 42%,#6fbf66 0 22%,transparent 23%);
+}
+
+.status-garden-grid article:nth-child(1){background:#fff4d6}
+.status-garden-grid article:nth-child(2){background:#dbefff}
+.status-garden-grid article:nth-child(3){background:#f8d9dd}
+.status-garden-grid article:nth-child(4){background:#e7f4d7}
+
+.status-garden-grid span,
+.join-garden span{
+  display:inline-flex;
+  position:relative;
+  z-index:1;
+  padding:5px 9px;
+  border:2px solid #2f2418;
+  border-radius:999px;
+  background:#eac85a;
+  color:#2f2418;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.status-garden-grid h3,
+.join-garden h3{
+  position:relative;
+  z-index:1;
+  margin:13px 0 9px;
+  color:#2f2418;
+  font-size:clamp(18px,1.8vw,22px);
+  line-height:1.55;
+  font-weight:900;
+}
+
+.status-garden-grid p,
+.join-garden p{
+  position:relative;
+  z-index:1;
+  color:rgba(47,36,24,.75);
+  font-size:13px;
+  line-height:1.9;
+  background:transparent !important;
+  border:0 !important;
+  padding:0 !important;
+  box-shadow:none !important;
+}
+
+/* Participation section */
+.participation{
+  background:linear-gradient(180deg,#fff4d6 0%,#fffaf0 100%);
+}
+
+.join-garden{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  margin-top:clamp(28px,4vw,46px);
+}
+
+.join-garden article:nth-child(1){background:#f8d9dd}
+.join-garden article:nth-child(2){background:#fff4d6}
+.join-garden article:nth-child(3){background:#dbefff}
+.join-garden article:nth-child(4){background:#e7f4d7}
+
+/* Make event sport heading phrase more stable */
+.official-four-sports h4{
+  font-size:clamp(18px,1.7vw,22px) !important;
+  line-height:1.45 !important;
+}
+
+.official-four-sports p,
+.event-info-grid-clean p,
+.flow-grid-clean p{
+  font-size:13px !important;
+}
+
+/* Keep cards visually consistent with current design */
+.status-garden-grid article:hover,
+.join-garden article:hover{
+  transform:translateY(-4px) rotate(-.5deg);
+}
+
+/* Better line breaks for mobile */
+@media (max-width:1100px){
+  .status-garden-grid,
+  .join-garden{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:760px){
+  .keep{
+    display:inline;
+  }
+
+  .hero h1{
+    font-size:clamp(31px,9.5vw,48px) !important;
+  }
+
+  .section-copy h2,
+  .center-heading h2,
+  .impact-head h2,
+  .block-heading h3,
+  .event-heading h2{
+    font-size:clamp(26px,7.8vw,39px) !important;
+    line-height:1.5 !important;
+  }
+
+  .status-garden-grid,
+  .join-garden{
+    grid-template-columns:1fr;
+  }
+
+  .nowrap{
+    white-space:normal;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -3651,6 +3904,7 @@ section{
       <a href="#about">概要</a>
       <a href="#fun-mission">楽しさ</a>
       <a href="#impact">支援の目安</a>
+      <a href="#status">現在地</a>
       <a href="#ways">関わり方</a>
       <a href="#data">背景データ</a>
       <a href="#field">会場候補</a>
@@ -3682,7 +3936,7 @@ section{
             <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">参加・連携を相談する</a>
           </div>
           <div class="hero-facts" aria-label="プロジェクトの現在地">
-            <article><span>START</span><b>NOTO-REBOOST U-23<br>最優秀賞から始動</b></article>
+            <article><span>START</span><b><span class="nowrap">NOTO-REBOOST U-23</span><br>最優秀賞から始動</b></article>
             <article><span>FIELD</span><b>珠洲市内で<br>会場候補を調整中</b></article>
             <article><span>FIRST GOAL</span><b>初年度1か所の<br>再生モデルづくり</b></article>
           </div>
@@ -3712,7 +3966,7 @@ section{
       <div class="container section-grid">
         <div class="section-copy reveal">
           <p class="eyebrow"><i></i>PROJECT / 概要</p>
-          <h2><span class="keep">毎年、少しずつ。</span><br><span class="keep">耕作放棄地を減らす仕組みをつくる。</span></h2>
+          <h2><span class="keep">毎年、少しずつ。</span><br><span class="keep">耕作放棄地を減らす。</span></h2>
           <p>目的は、単発のイベントではありません。耕作放棄地を見つけ、整え、人が入るきっかけをつくり、その後の管理や活用につなげる。NOTO Re:Bloomは、その一連の流れを能登で育てていきます。</p>
         </div>
         <div class="step-cards reveal" aria-label="プロジェクトの流れ">
@@ -3720,6 +3974,40 @@ section{
           <article><span>02</span><h3>安全に整える</h3><p>草刈り、簡易整備、動線確認を行い、人が入れる状態に近づけます。</p></article>
           <article><span>03</span><h3>人が入る入口をつくる</h3><p>ドロンコ運動会などを通じ、学生・地域・企業が同じ土地に関わる時間をつくります。</p></article>
           <article><span>04</span><h3>次年度以降へつなぐ</h3><p>栽培、管理、景観づくりなど、その土地に合った継続活用を考えます。</p></article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section project-status" id="status">
+      <div class="container">
+        <div class="center-heading reveal">
+          <p class="eyebrow"><i></i>PROJECT STATUS</p>
+          <h2><span class="keep">NOTO Re:Bloomの現在地。</span></h2>
+          <p>私たちは、能登の耕作放棄地を「楽しく関われる場所」に変え、毎年少しずつでも減らしていく仕組みづくりを進めています。</p>
+        </div>
+
+        <div class="status-garden-grid reveal">
+          <article>
+            <span>ROOT</span>
+            <h3><span class="nowrap">NOTO-REBOOST U-23</span>から始動</h3>
+            <p>能登の復興や地域課題を考えるプログラムで出会った3人が、継続して能登に関わる形を考え、このプロジェクトを始めました。</p>
+          </article>
+          <article>
+            <span>FIELD</span>
+            <h3>珠洲市内で会場候補を調整中</h3>
+            <p>初年度は珠洲市内の遊休農地を中心に、アクセス、安全面、整備費、翌年度以降の活用可能性を確認しています。</p>
+          </article>
+          <article>
+            <span>EVENT</span>
+            <h3>ドロンコ運動会を入口に</h3>
+            <p>泥バケツリレー、リレー、綱引き、しっぽ取りを通じて、楽しみながら土地に関わるきっかけをつくります。</p>
+          </article>
+          <article>
+            <span>BLOOM</span>
+            <h3>レンゲを育てる体験へ</h3>
+            <p>集めた泥と培養土を使い、レンゲの種をまいて持ち帰れる形を検討しています。一日の体験を、次の季節へつなげます。</p>
+          </article>
         </div>
       </div>
     </section>
@@ -4150,7 +4438,7 @@ section{
       <div class="container section-grid">
         <div class="section-copy reveal">
           <p class="eyebrow"><i></i>FOR STUDENTS</p>
-          <h2><span class="keep">学生でも、</span><br><span class="keep">地域に関わる最初の一歩をつくれる。</span></h2>
+          <h2><span class="keep">学生でも、地域に関わる</span><br><span class="keep">最初の一歩をつくれる。</span></h2>
           <p>能登に詳しくなくても、地域活動の経験がなくても大丈夫です。現地運営、SNS発信、写真撮影、企画づくりなど、できる関わり方から参加できます。</p>
         </div>
         <div class="student-list reveal">
@@ -4161,14 +4449,48 @@ section{
       </div>
     </section>
 
+
+    <section class="section participation" id="participation">
+      <div class="container">
+        <div class="center-heading reveal">
+          <p class="eyebrow"><i></i>HOW TO JOIN</p>
+          <h2><span class="keep">参加しやすく、関わりやすく。</span></h2>
+          <p>競技に出る人、応援する人、手伝う人、広げる人。関わり方を分けることで、初めての人でも参加しやすい形を目指します。</p>
+        </div>
+
+        <div class="join-garden reveal">
+          <article>
+            <span>PLAYER</span>
+            <h3>競技参加</h3>
+            <p>参加費は一律500円を想定しています。泥の中で体を動かしながら、土地に関わる入口をつくります。</p>
+          </article>
+          <article>
+            <span>WATCH</span>
+            <h3>見学・応援</h3>
+            <p>見学・応援は無料を想定しています。写真を撮る、声をかける、SNSで広げることも大切な参加です。</p>
+          </article>
+          <article>
+            <span>STAFF</span>
+            <h3>学生ボランティア</h3>
+            <p>受付、誘導、チーム補助、記録、安全確認などを担います。各チームに学生スタッフを配置する予定です。</p>
+          </article>
+          <article>
+            <span>FORM</span>
+            <h3>申込・相談</h3>
+            <p>申込はGoogleフォームを中心に、フォームが難しい方にはメールでの相談にも対応します。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section story">
       <div class="container story-grid">
         <div class="story-media reveal">
-          <img src="team-reboost.webp" alt="NOTO-REBOOST U-23で出会ったメンバーの写真">
+          <img src="team-reboost.webp" alt="<span class="nowrap">NOTO-REBOOST U-23</span>で出会ったメンバーの写真">
         </div>
         <div class="section-copy reveal">
           <p class="eyebrow"><i></i>OUR START</p>
-          <h2>NOTO-REBOOST U-23で出会った3人が、能登に継続して関わる形を考えました。</h2>
+          <h2><span class="nowrap">NOTO-REBOOST U-23</span>で出会った3人が、能登に継続して関わる形を考えました。</h2>
           <p>きっかけは、能登の復興や地域課題を考えるプログラムでした。一時的な参加で終わらせず、学生として継続的に能登に関われる形をつくりたい。その思いから、NOTO Re:Bloomは始まりました。</p>
         </div>
       </div>
@@ -4179,7 +4501,7 @@ section{
         <div class="support-head reveal">
           <div>
             <p class="eyebrow light"><i></i>SUPPORT / PARTNERSHIP</p>
-            <h2><span class="keep">協賛は、</span><br><span class="keep">能登に残る景色とつながりを育てる力です。</span></h2>
+            <h2><span class="keep">協賛は、能登に残る景色と</span><br><span class="keep">つながりを育てる力です。</span></h2>
             <p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
           </div>
           <div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
