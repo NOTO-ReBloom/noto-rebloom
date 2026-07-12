@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NOTO Re:Bloom v13 single-file: expanded doronko event + readability fixes -->
+<!-- NOTO Re:Bloom v14 single-file: readability + sport illustrations + conversion action map -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -1681,6 +1681,396 @@ body::after{
   }
 }
 
+  
+
+/* =========================================================
+   V14 Readability + Conversion Layout
+   - No texture directly under important text
+   - Add pop sport illustrations
+   - Add action map for crowdfunding / students / partners
+========================================================= */
+
+/* 1) remove background noise from text zones */
+body::after{
+  opacity:.035 !important;
+}
+
+.hero::after,
+.impact::before,
+.event::before{
+  opacity:.05 !important;
+}
+
+.section-copy,
+.center-heading,
+.impact-head,
+.event-sports-head,
+.report-card,
+.mini-game-card > div:first-child{
+  isolation:isolate;
+}
+
+/* clean text plates */
+.section-copy > h2,
+.section-copy > p:not(.eyebrow),
+.center-heading > h2,
+.center-heading > p,
+.impact-head > h2,
+.impact-head > p,
+.event-sports-head > h3,
+.event-sports-head > p{
+  position:relative;
+  z-index:5;
+}
+
+.section-copy > p:not(.eyebrow),
+.center-heading > p,
+.impact-head > p,
+.event-sports-head > p{
+  background:rgba(255,250,240,.84);
+  border:2px solid rgba(47,36,24,.12);
+  border-radius:18px;
+  padding:.72em .9em;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+}
+
+.event .section-copy > p:not(.eyebrow),
+.event-sports-head > p{
+  background:rgba(255,248,232,.16) !important;
+  border:2px solid rgba(255,248,232,.35) !important;
+  color:rgba(255,248,232,.95) !important;
+}
+
+/* keep headings away from decorative texture */
+.section-copy h2,
+.center-heading h2,
+.impact-head h2,
+.event-sports-head h3,
+.event-flow h3,
+.event-message h3,
+.report-card h2,
+.mini-game-card h2{
+  display:inline;
+  padding:.08em .18em;
+  background:linear-gradient(transparent 52%, rgba(255,255,255,.68) 52%);
+}
+
+/* dark sections need different backing */
+.event .section-copy h2,
+.event-sports-head h3,
+.event-flow h3,
+.event-message h3,
+.support h2{
+  background:linear-gradient(transparent 55%, rgba(53,33,22,.42) 55%);
+}
+
+/* 2) event: make layout clearer */
+.event-extra{
+  gap:28px !important;
+}
+
+.event-flow,
+.event-sports,
+.event-message,
+.event-info-grid article{
+  background:rgba(70,38,22,.72) !important;
+  backdrop-filter:none !important;
+  position:relative;
+  z-index:3;
+}
+
+.event-flow,
+.event-sports,
+.event-message{
+  padding:clamp(24px,4vw,40px);
+  border:3px solid rgba(255,248,232,.88);
+  border-radius:30px;
+  box-shadow:0 6px 0 rgba(0,0,0,.28),0 18px 34px rgba(0,0,0,.20);
+}
+
+.event-sports-head{
+  max-width:860px;
+  margin-bottom:22px;
+}
+
+.event-sports-head h3{
+  color:#fff8e8;
+  font-size:clamp(28px,4vw,48px);
+  line-height:1.45;
+  font-family:"Yusei Magic","M PLUS Rounded 1c",sans-serif;
+  text-shadow:2px 2px 0 rgba(0,0,0,.22);
+}
+
+.sport-card-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+
+.sport-card-grid article{
+  padding:18px;
+  border:3px solid #fff8e8;
+  border-radius:26px;
+  background:#fff8e8;
+  box-shadow:0 6px 0 rgba(0,0,0,.28);
+  color:#2f2418;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.sport-card-grid article:hover{
+  transform:translateY(-5px) rotate(-1deg);
+  box-shadow:0 10px 0 rgba(0,0,0,.28);
+}
+
+.sport-card-grid h4{
+  margin:14px 0 8px;
+  color:#2f2418;
+  font-size:19px;
+  font-weight:900;
+  line-height:1.45;
+}
+
+.sport-card-grid p{
+  color:rgba(47,36,24,.72);
+  font-size:12.8px;
+  line-height:1.8;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+
+/* 3) Simple pop illustrations */
+.sport-illust{
+  position:relative;
+  height:150px;
+  overflow:hidden;
+  border:3px solid #2f2418;
+  border-radius:22px;
+  background:
+    linear-gradient(180deg,#dbefff 0 42%,#e7f4d7 42% 58%,#b98355 58% 100%);
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.25);
+}
+
+.sport-illust::before{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:18px;
+  height:34px;
+  border-radius:50%;
+  background:rgba(70,38,22,.34);
+}
+
+.sport-illust span,
+.sport-illust i,
+.sport-illust b{
+  position:absolute;
+  display:block;
+}
+
+/* bucket relay */
+.bucket-race span{
+  left:28px;bottom:56px;width:32px;height:42px;border:4px solid #2f2418;border-radius:10px;background:#eac85a;
+  transform:rotate(-8deg);
+}
+.bucket-race span::after{
+  content:"";
+  position:absolute;left:6px;right:6px;top:-10px;height:14px;border:3px solid #2f2418;border-bottom:0;border-radius:999px 999px 0 0;
+}
+.bucket-race i:nth-of-type(1){
+  left:78px;bottom:50px;width:26px;height:58px;border-radius:999px;background:#d85f55;border:3px solid #2f2418;
+}
+.bucket-race i:nth-of-type(1)::before{
+  content:"";position:absolute;left:3px;top:-22px;width:18px;height:18px;border-radius:50%;background:#ffe0b0;border:3px solid #2f2418;
+}
+.bucket-race i:nth-of-type(2){
+  right:30px;bottom:48px;width:28px;height:58px;border-radius:999px;background:#5aaeda;border:3px solid #2f2418;
+}
+.bucket-race i:nth-of-type(2)::before{
+  content:"";position:absolute;left:3px;top:-22px;width:18px;height:18px;border-radius:50%;background:#ffe0b0;border:3px solid #2f2418;
+}
+.bucket-race b{
+  left:60px;right:60px;bottom:32px;height:8px;background:#fff8e8;border:3px solid #2f2418;border-radius:999px;
+}
+
+/* flag dash */
+.flag-dash span{
+  right:34px;bottom:54px;width:8px;height:70px;background:#2f2418;border-radius:999px;
+}
+.flag-dash span::before{
+  content:"";position:absolute;left:8px;top:4px;width:42px;height:30px;background:#d85f55;border:3px solid #2f2418;border-left:0;clip-path:polygon(0 0,100% 0,78% 50%,100% 100%,0 100%);
+}
+.flag-dash i:nth-of-type(1){
+  left:34px;bottom:48px;width:30px;height:62px;border-radius:999px;background:#4f9a5c;border:3px solid #2f2418;transform:rotate(-12deg);
+}
+.flag-dash i:nth-of-type(1)::before{
+  content:"";position:absolute;left:4px;top:-21px;width:18px;height:18px;border-radius:50%;background:#ffe0b0;border:3px solid #2f2418;
+}
+.flag-dash i:nth-of-type(2){
+  left:76px;bottom:34px;width:50px;height:10px;background:#fff8e8;border:3px solid #2f2418;border-radius:999px;transform:rotate(-8deg);
+}
+
+/* mud step */
+.mud-step span,
+.mud-step i:nth-of-type(1),
+.mud-step i:nth-of-type(2){
+  width:58px;height:28px;border:3px solid #2f2418;border-radius:50%;background:#fff8e8;
+}
+.mud-step span{left:22px;bottom:38px}
+.mud-step i:nth-of-type(1){left:72px;bottom:62px;background:#eac85a}
+.mud-step i:nth-of-type(2){right:20px;bottom:38px;background:#dbefff}
+.mud-step b{
+  left:60px;bottom:94px;width:34px;height:44px;border-radius:999px;background:#d85f55;border:3px solid #2f2418;
+}
+.mud-step b::before{
+  content:"";position:absolute;left:5px;top:-22px;width:18px;height:18px;border-radius:50%;background:#ffe0b0;border:3px solid #2f2418;
+}
+
+/* tug */
+.tug span{
+  left:22px;right:22px;bottom:72px;height:8px;background:#fff8e8;border:3px solid #2f2418;border-radius:999px;
+}
+.tug i:nth-of-type(1),
+.tug i:nth-of-type(2){
+  bottom:44px;width:28px;height:58px;border-radius:999px;border:3px solid #2f2418;
+}
+.tug i:nth-of-type(1){left:34px;background:#d85f55;transform:rotate(12deg)}
+.tug i:nth-of-type(2){right:34px;background:#5aaeda;transform:rotate(-12deg)}
+.tug i::before{
+  content:"";position:absolute;left:3px;top:-22px;width:18px;height:18px;border-radius:50%;background:#ffe0b0;border:3px solid #2f2418;
+}
+.tug b{
+  left:76px;bottom:48px;width:16px;height:16px;border-radius:50%;background:#eac85a;border:3px solid #2f2418;
+}
+
+/* renge cup */
+.renge-cup span{
+  left:50%;bottom:34px;transform:translateX(-50%);width:76px;height:56px;border:4px solid #2f2418;border-radius:12px 12px 24px 24px;background:#fff8e8;
+}
+.renge-cup span::before{
+  content:"";position:absolute;left:8px;right:8px;top:10px;height:18px;background:#b98355;border-radius:50%;
+}
+.renge-cup i{
+  left:50%;bottom:84px;width:8px;height:42px;background:#4f9a5c;border-radius:999px;transform-origin:bottom;
+}
+.renge-cup i:nth-of-type(1){transform:translateX(-50%) rotate(-18deg)}
+.renge-cup i:nth-of-type(2){transform:translateX(-50%) rotate(18deg)}
+.renge-cup b{
+  left:50%;bottom:118px;width:20px;height:20px;border-radius:50%;background:#f8d9dd;border:3px solid #2f2418;transform:translateX(-50%);
+}
+
+/* cheer */
+.cheer span{
+  left:32px;bottom:62px;width:42px;height:34px;border:3px solid #2f2418;border-radius:10px;background:#fff;
+}
+.cheer span::before{
+  content:"";position:absolute;left:9px;top:6px;width:18px;height:18px;border-radius:50%;background:#5aaeda;border:3px solid #2f2418;
+}
+.cheer i:nth-of-type(1),
+.cheer i:nth-of-type(2){
+  bottom:44px;width:28px;height:58px;border-radius:999px;border:3px solid #2f2418;background:#eac85a;
+}
+.cheer i:nth-of-type(1){right:62px}
+.cheer i:nth-of-type(2){right:28px;background:#d85f55}
+.cheer i::before{
+  content:"";position:absolute;left:3px;top:-22px;width:18px;height:18px;border-radius:50%;background:#ffe0b0;border:3px solid #2f2418;
+}
+.cheer b{
+  left:78px;top:28px;width:38px;height:24px;border:3px solid #2f2418;border-radius:10px;background:#fff8e8;
+}
+.cheer b::before{
+  content:"📣";position:absolute;inset:0;display:grid;place-items:center;font-size:14px;
+}
+
+/* 4) conversion action map */
+.action-map{
+  background:linear-gradient(180deg,#fffaf0 0%,#fff3d9 100%);
+}
+
+.action-map-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+
+.action-map-grid article{
+  padding:22px;
+  border:4px solid #2f2418;
+  border-radius:26px;
+  background:#fffaf0;
+  box-shadow:0 6px 0 #2f2418,0 16px 30px rgba(47,36,24,.11);
+}
+
+.action-map-grid article:nth-child(1){background:#f8d9dd}
+.action-map-grid article:nth-child(2){background:#dbefff}
+.action-map-grid article:nth-child(3){background:#e7f4d7}
+.action-map-grid article:nth-child(4){background:#fff4d6}
+
+.action-map-grid span{
+  display:inline-flex;
+  padding:5px 9px;
+  border:2px solid #2f2418;
+  border-radius:999px;
+  background:#eac85a;
+  color:#2f2418;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.action-map-grid h3{
+  margin:13px 0 8px;
+  color:#2f2418;
+  font-size:21px;
+  line-height:1.45;
+  font-weight:900;
+}
+
+.action-map-grid p{
+  color:rgba(47,36,24,.72);
+  font-size:13px;
+  line-height:1.85;
+  background:transparent;
+  border:0;
+  padding:0;
+}
+
+.action-map-grid a{
+  display:inline-flex;
+  margin-top:14px;
+  padding:8px 12px;
+  border:3px solid #2f2418;
+  border-radius:999px;
+  background:#fff;
+  box-shadow:0 4px 0 #2f2418;
+  color:#2f2418;
+  font-size:12px;
+  font-weight:900;
+}
+
+@media (max-width:980px){
+  .sport-card-grid,
+  .action-map-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media (max-width:760px){
+  .sport-card-grid,
+  .action-map-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-copy > p:not(.eyebrow),
+  .center-heading > p,
+  .impact-head > p,
+  .event-sports-head > p{
+    padding:.68em .78em;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1896,6 +2286,43 @@ body::after{
       </div>
     </section>
 
+
+    <section class="section action-map" id="action-map">
+      <div class="container">
+        <div class="center-heading reveal">
+          <p class="eyebrow"><i></i>ACTION MAP</p>
+          <h2><span class="keep">気になったら、</span><br><span class="keep">できることから関われます。</span></h2>
+          <p>クラファン、SNSでの共有、学生ボランティア、企業・団体連携。どの入口からでも、耕作放棄地を減らす一歩につながります。</p>
+        </div>
+        <div class="action-map-grid reveal">
+          <article>
+            <span>SUPPORT</span>
+            <h3>クラファンで応援する</h3>
+            <p>整備、安全対策、運営準備、翌年度以降の活用準備を支えます。</p>
+            <a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">READYFORへ</a>
+          </article>
+          <article>
+            <span>SHARE</span>
+            <h3>SNSで広げる</h3>
+            <p>「面白そう」と思った人に届くことが、参加者や協賛につながります。</p>
+            <a href="#materials">資料を見る</a>
+          </article>
+          <article>
+            <span>JOIN</span>
+            <h3>学生ボランティア</h3>
+            <p>受付、誘導、撮影、SNS、チーム補助など、得意な形で関われます。</p>
+            <a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">相談する</a>
+          </article>
+          <article>
+            <span>PARTNER</span>
+            <h3>企業・団体連携</h3>
+            <p>資金、物品、広報、社員参加、地域団体の紹介などを歓迎します。</p>
+            <a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">連携相談</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section report" id="report">
       <div class="container report-grid">
         <div class="report-card reveal">
@@ -2072,6 +2499,47 @@ body::after{
           </article>
         </div>
 
+
+        <div class="event-sports reveal">
+          <div class="event-sports-head">
+            <p class="eyebrow light"><i></i>PLAY IDEAS</p>
+            <h3><span class="keep">どんな競技をするの？</span></h3>
+            <p>泥の中で楽しめる企画を、子どもも学生も参加しやすい形で検討しています。勝ち負けよりも、土地に入って、笑って、記録に残る体験をつくることを大切にします。</p>
+          </div>
+          <div class="sport-card-grid" aria-label="ドロンコ運動会の競技イメージ">
+            <article>
+              <div class="sport-illust bucket-race" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <h4>泥バケツリレー</h4>
+              <p>チームで泥を運び、土地に触れながら盛り上がる中心企画。</p>
+            </article>
+            <article>
+              <div class="sport-illust flag-dash" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <h4>ドロンコ旗取り</h4>
+              <p>浅い泥エリアを走って、旗を取りに行くシンプルな競技。</p>
+            </article>
+            <article>
+              <div class="sport-illust mud-step" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <h4>ぬかるみステップ</h4>
+              <p>足元に気をつけながら進む、泥ならではのバランス競技。</p>
+            </article>
+            <article>
+              <div class="sport-illust tug" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <h4>泥んこ綱引き</h4>
+              <p>応援も参加しやすく、写真にも残りやすいチーム競技。</p>
+            </article>
+            <article>
+              <div class="sport-illust renge-cup" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <h4>レンゲの種まき体験</h4>
+              <p>回収した泥と培養土を使い、持ち帰って育てるきっかけをつくる。</p>
+            </article>
+            <article>
+              <div class="sport-illust cheer" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <h4>応援・写真タイム</h4>
+              <p>参加しない人も見学・応援・撮影で関われる時間をつくる。</p>
+            </article>
+          </div>
+        </div>
+
         <div class="event-message reveal">
           <div>
             <span>MISSION</span>
@@ -2135,7 +2603,7 @@ body::after{
       </div>
     </section>
 
-    <section class="section materials">
+    <section class="section materials" id="materials">
       <div class="container">
         <div class="center-heading reveal">
           <p class="eyebrow"><i></i>MATERIALS</p>
