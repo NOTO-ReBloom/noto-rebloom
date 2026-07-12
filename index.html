@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NOTO Re:Bloom v15 single-file: garden comic readability + no badge overlap -->
+<!-- NOTO Re:Bloom v16 single-file: spacious garden layout + official doronko activities only -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -2491,6 +2491,498 @@ body{
   }
 }
 
+  
+
+/* =========================================================
+   V16 Spacious Garden Layout + Official Activities Only
+   - Remove invented sport competition cards
+   - Keep only planned mud bucket relay + renge sowing + support
+   - Prevent text/image overlap with spacious regions
+   - Put plants/flowers in margins, not under text
+========================================================= */
+
+/* Global: no texture directly under text */
+body::after,
+.impact::before,
+.event::before{
+  opacity:.025 !important;
+}
+
+section{
+  overflow:hidden;
+}
+
+.container{
+  position:relative;
+  z-index:2;
+}
+
+/* Every major content block gets breathing room */
+.section{
+  padding-top:clamp(88px,10vw,144px) !important;
+  padding-bottom:clamp(88px,10vw,144px) !important;
+}
+
+.hero-layout,
+.section-grid,
+.field-grid,
+.event-grid,
+.story-grid,
+.faq-grid,
+.report-grid,
+.ways-grid{
+  gap:clamp(48px,7vw,96px) !important;
+}
+
+/* readable text panels */
+.section-copy,
+.center-heading,
+.impact-head,
+.event-sports-head{
+  position:relative;
+  z-index:5;
+}
+
+.section-copy > p:not(.eyebrow),
+.center-heading > p,
+.impact-head > p,
+.event-sports-head > p{
+  background:rgba(255,250,240,.92) !important;
+  border:2px solid rgba(47,36,24,.10) !important;
+  border-radius:20px !important;
+  padding:.82em 1em !important;
+  box-shadow:0 8px 20px rgba(47,36,24,.05);
+}
+
+.event .section-copy > p:not(.eyebrow),
+.event-sports-head > p,
+.event-message p{
+  background:rgba(255,248,232,.18) !important;
+  border:2px solid rgba(255,248,232,.32) !important;
+  color:rgba(255,248,232,.95) !important;
+  box-shadow:none;
+}
+
+/* decorations live in margins */
+.section::after{
+  content:"";
+  position:absolute;
+  right:clamp(14px,4vw,64px);
+  bottom:clamp(18px,4vw,64px);
+  width:clamp(70px,10vw,150px);
+  height:clamp(70px,10vw,150px);
+  opacity:.14;
+  background:
+    radial-gradient(circle at 50% 20%, #e9c8d1 0 13%, transparent 14%),
+    radial-gradient(circle at 80% 50%, #e9c8d1 0 13%, transparent 14%),
+    radial-gradient(circle at 50% 80%, #e9c8d1 0 13%, transparent 14%),
+    radial-gradient(circle at 20% 50%, #e9c8d1 0 13%, transparent 14%),
+    radial-gradient(circle at 50% 50%, #eac85a 0 18%, transparent 19%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.section:nth-of-type(even)::after{
+  left:clamp(14px,4vw,64px);
+  right:auto;
+  background:
+    linear-gradient(#4f9a5c,#4f9a5c) 48% 50%/8% 72% no-repeat,
+    radial-gradient(ellipse at 30% 62%, #7dbb72 0 22%, transparent 23%),
+    radial-gradient(ellipse at 70% 44%, #7dbb72 0 22%, transparent 23%);
+}
+
+/* hero: stop label and title conflict */
+.hero h1::after{
+  display:none !important;
+}
+
+.hero::before{
+  content:"FUN × FIELD";
+  position:absolute;
+  left:clamp(18px,7vw,110px);
+  top:clamp(90px,11vw,132px);
+  z-index:1;
+  padding:8px 14px 7px;
+  border:4px solid #2f2418;
+  border-radius:999px;
+  background:#eac85a;
+  color:#2f2418;
+  font-family:"Bangers","M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(18px,2.4vw,30px);
+  letter-spacing:.04em;
+  box-shadow:0 5px 0 #2f2418;
+  transform:rotate(-3deg);
+}
+
+.hero-copy{
+  padding-top:clamp(20px,4vw,46px);
+}
+
+/* official activity cards */
+.event-sports{
+  padding:clamp(28px,4vw,46px) !important;
+  border:3px solid rgba(255,248,232,.88);
+  border-radius:32px;
+  background:rgba(68,38,22,.78) !important;
+  box-shadow:0 7px 0 rgba(0,0,0,.28),0 18px 34px rgba(0,0,0,.18);
+  position:relative;
+  z-index:4;
+}
+
+.event-sports::after{
+  content:"";
+  position:absolute;
+  right:24px;
+  top:24px;
+  width:82px;
+  height:82px;
+  opacity:.16;
+  background:
+    linear-gradient(#e7f4d7,#e7f4d7) 50% 55%/8px 54px no-repeat,
+    radial-gradient(circle at 50% 18%,#f8d9dd 0 14px,transparent 15px),
+    radial-gradient(circle at 78% 44%,#f8d9dd 0 14px,transparent 15px),
+    radial-gradient(circle at 50% 72%,#f8d9dd 0 14px,transparent 15px),
+    radial-gradient(circle at 22% 44%,#f8d9dd 0 14px,transparent 15px),
+    radial-gradient(circle at 50% 48%,#eac85a 0 15px,transparent 16px);
+  pointer-events:none;
+}
+
+.official-activity-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr;
+  gap:18px;
+  align-items:stretch;
+}
+
+.official-activity-grid article{
+  display:grid;
+  grid-template-rows:auto 1fr;
+  gap:16px;
+  padding:20px;
+  border:3px solid #fff8e8;
+  border-radius:28px;
+  background:#fff8e8;
+  color:#2f2418;
+  box-shadow:0 6px 0 rgba(0,0,0,.28);
+}
+
+.official-activity-grid .activity-main{
+  background:#fff4d6;
+}
+
+.official-activity-grid span{
+  display:inline-flex;
+  padding:5px 9px;
+  border:2px solid #2f2418;
+  border-radius:999px;
+  background:#eac85a;
+  color:#2f2418;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.official-activity-grid h4{
+  margin:12px 0 8px;
+  color:#2f2418;
+  font-size:clamp(19px,2vw,24px);
+  line-height:1.45;
+  font-weight:900;
+}
+
+.official-activity-grid p{
+  background:transparent !important;
+  border:0 !important;
+  padding:0 !important;
+  box-shadow:none !important;
+  color:rgba(47,36,24,.75) !important;
+  font-size:13px;
+  line-height:1.9;
+}
+
+/* simple official illustrations */
+.official-illust{
+  position:relative;
+  height:170px;
+  overflow:hidden;
+  border:3px solid #2f2418;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg,#dbefff 0 42%,#e7f4d7 42% 58%,#b98355 58% 100%);
+  box-shadow:inset 0 0 0 6px rgba(255,255,255,.24);
+}
+
+.official-illust::before{
+  content:"";
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:22px;
+  height:38px;
+  border-radius:50%;
+  background:rgba(70,38,22,.35);
+}
+
+.official-illust span,
+.official-illust i,
+.official-illust b{
+  position:absolute;
+  display:block;
+}
+
+.bucket-main span{
+  left:30px;
+  bottom:64px;
+  width:38px;
+  height:48px;
+  border:4px solid #2f2418;
+  border-radius:12px;
+  background:#eac85a;
+  transform:rotate(-8deg);
+}
+
+.bucket-main span::after{
+  content:"";
+  position:absolute;
+  left:7px;
+  right:7px;
+  top:-12px;
+  height:16px;
+  border:3px solid #2f2418;
+  border-bottom:0;
+  border-radius:999px 999px 0 0;
+}
+
+.bucket-main i:nth-of-type(1),
+.bucket-main i:nth-of-type(2){
+  bottom:54px;
+  width:30px;
+  height:64px;
+  border-radius:999px;
+  border:3px solid #2f2418;
+}
+
+.bucket-main i:nth-of-type(1){
+  left:96px;
+  background:#d85f55;
+}
+
+.bucket-main i:nth-of-type(2){
+  right:34px;
+  background:#5aaeda;
+}
+
+.bucket-main i::before{
+  content:"";
+  position:absolute;
+  left:4px;
+  top:-23px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#ffe0b0;
+  border:3px solid #2f2418;
+}
+
+.bucket-main b{
+  left:74px;
+  right:74px;
+  bottom:36px;
+  height:8px;
+  background:#fff8e8;
+  border:3px solid #2f2418;
+  border-radius:999px;
+}
+
+/* renge sowing */
+.renge-main span{
+  left:50%;
+  bottom:38px;
+  transform:translateX(-50%);
+  width:84px;
+  height:62px;
+  border:4px solid #2f2418;
+  border-radius:12px 12px 26px 26px;
+  background:#fff8e8;
+}
+
+.renge-main span::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  right:8px;
+  top:11px;
+  height:20px;
+  background:#b98355;
+  border-radius:50%;
+}
+
+.renge-main i{
+  left:50%;
+  bottom:92px;
+  width:8px;
+  height:46px;
+  background:#4f9a5c;
+  border-radius:999px;
+  transform-origin:bottom;
+}
+
+.renge-main i:nth-of-type(1){
+  transform:translateX(-50%) rotate(-18deg);
+}
+
+.renge-main i:nth-of-type(2){
+  transform:translateX(-50%) rotate(18deg);
+}
+
+.renge-main b{
+  left:50%;
+  bottom:128px;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:#f8d9dd;
+  border:3px solid #2f2418;
+  transform:translateX(-50%);
+}
+
+/* support */
+.support-main span{
+  left:32px;
+  bottom:70px;
+  width:46px;
+  height:36px;
+  border:3px solid #2f2418;
+  border-radius:10px;
+  background:#fff;
+}
+
+.support-main span::before{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:7px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#5aaeda;
+  border:3px solid #2f2418;
+}
+
+.support-main i:nth-of-type(1),
+.support-main i:nth-of-type(2){
+  bottom:48px;
+  width:30px;
+  height:62px;
+  border-radius:999px;
+  border:3px solid #2f2418;
+  background:#eac85a;
+}
+
+.support-main i:nth-of-type(1){right:66px}
+.support-main i:nth-of-type(2){right:30px;background:#d85f55}
+
+.support-main i::before{
+  content:"";
+  position:absolute;
+  left:4px;
+  top:-23px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#ffe0b0;
+  border:3px solid #2f2418;
+}
+
+.support-main b{
+  left:82px;
+  top:32px;
+  width:42px;
+  height:28px;
+  border:3px solid #2f2418;
+  border-radius:10px;
+  background:#fff8e8;
+}
+
+.support-main b::before{
+  content:"📣";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:15px;
+}
+
+/* hide any old invented sport card grid if browser keeps old markup */
+.sport-card-grid{
+  display:none !important;
+}
+
+/* More spacing around event inner blocks */
+.event-flow,
+.event-info-grid,
+.event-sports,
+.event-message{
+  margin-top:0;
+}
+
+.event-extra{
+  gap:32px !important;
+}
+
+/* avoid sticky event card overlapping content */
+.event-date{
+  position:relative !important;
+  top:auto !important;
+}
+
+/* softer support section and no text collision */
+.support::before{
+  opacity:.35 !important;
+}
+
+.support-head,
+.support-grid,
+.support-note{
+  position:relative;
+  z-index:4;
+}
+
+/* CTA text contrast */
+.final-card{
+  background:linear-gradient(145deg,#3f7d3f,#6fbf66) !important;
+}
+
+.final-card h2,
+.final-card p{
+  color:#fff !important;
+}
+
+/* Responsive */
+@media (max-width:980px){
+  .official-activity-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:760px){
+  .section{
+    padding-top:74px !important;
+    padding-bottom:74px !important;
+  }
+
+  .section-copy > p:not(.eyebrow),
+  .center-heading > p,
+  .impact-head > p,
+  .event-sports-head > p{
+    padding:.72em .82em !important;
+  }
+
+  .official-illust{
+    height:150px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -2900,7 +3392,7 @@ body{
 
           <div class="event-cards event-cards-rich">
             <article><span>01</span><h3>土地に入る</h3><p>泥や水に触れ、使われなくなった土地を体験として知る。</p></article>
-            <article><span>02</span><h3>楽しく関わる</h3><p>競技や応援を通じて、地域活動へのハードルを下げる。</p></article>
+            <article><span>02</span><h3>楽しく関わる</h3><p>泥バケツリレーや応援を通じて、地域活動へのハードルを下げる。</p></article>
             <article><span>03</span><h3>泥を持ち帰る</h3><p>回収した泥と培養土を使い、レンゲの種を家で育てるきっかけをつくる。</p></article>
             <article><span>04</span><h3>次につなぐ</h3><p>当日の盛り上がりを、次年度以降の管理・栽培・活用へつなげる。</p></article>
           </div>
@@ -2914,7 +3406,7 @@ body{
           <div class="flow-line">
             <article><b>集合</b><p>受付・着替え・安全説明</p></article>
             <article><b>準備</b><p>チーム分け・泥エリア確認</p></article>
-            <article><b>競技</b><p>泥を使ったリレーやチーム競技</p></article>
+            <article><b>競技</b><p>泥バケツリレー</p></article>
             <article><b>種まき体験</b><p>泥と培養土でレンゲを育てる準備</p></article>
             <article><b>共有</b><p>写真撮影・今後の活動案内</p></article>
           </div>
@@ -2956,40 +3448,34 @@ body{
 
         <div class="event-sports reveal">
           <div class="event-sports-head">
-            <p class="eyebrow light"><i></i>PLAY IDEAS</p>
-            <h3><span class="keep">どんな競技をするの？</span></h3>
-            <p>泥の中で楽しめる企画を、子どもも学生も参加しやすい形で検討しています。勝ち負けよりも、土地に入って、笑って、記録に残る体験をつくることを大切にします。</p>
+            <p class="eyebrow light"><i></i>MAIN ACTIVITY</p>
+            <h3><span class="keep">競技は、泥バケツリレーを中心に。</span></h3>
+            <p>ドロンコ運動会では、勝手に競技を増やすのではなく、これまで計画してきた泥バケツリレーを中心に組み立てます。泥を運ぶこと自体を、土地に触れ、関心を持つきっかけにします。</p>
           </div>
-          <div class="sport-card-grid" aria-label="ドロンコ運動会の競技イメージ">
-            <article>
-              <div class="sport-illust bucket-race" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <h4>泥バケツリレー</h4>
-              <p>チームで泥を運び、土地に触れながら盛り上がる中心企画。</p>
+          <div class="official-activity-grid" aria-label="ドロンコ運動会で実施を想定している内容">
+            <article class="activity-main">
+              <div class="official-illust bucket-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <div>
+                <span>SPORT</span>
+                <h4>泥バケツリレー</h4>
+                <p>チームで泥を運ぶ中心企画です。競技として楽しみながら、使われなくなった土地に実際に入り、泥や水に触れるきっかけをつくります。</p>
+              </div>
             </article>
             <article>
-              <div class="sport-illust flag-dash" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <h4>ドロンコ旗取り</h4>
-              <p>浅い泥エリアを走って、旗を取りに行くシンプルな競技。</p>
+              <div class="official-illust renge-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <div>
+                <span>AFTER ACTIVITY</span>
+                <h4>泥と培養土でレンゲの種をまく</h4>
+                <p>泥バケツリレーで集めた泥を培養土と混ぜ、底穴付きの育苗ポットでレンゲの種をまき、持ち帰って育てられる形を検討しています。</p>
+              </div>
             </article>
             <article>
-              <div class="sport-illust mud-step" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <h4>ぬかるみステップ</h4>
-              <p>足元に気をつけながら進む、泥ならではのバランス競技。</p>
-            </article>
-            <article>
-              <div class="sport-illust tug" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <h4>泥んこ綱引き</h4>
-              <p>応援も参加しやすく、写真にも残りやすいチーム競技。</p>
-            </article>
-            <article>
-              <div class="sport-illust renge-cup" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <h4>レンゲの種まき体験</h4>
-              <p>回収した泥と培養土を使い、持ち帰って育てるきっかけをつくる。</p>
-            </article>
-            <article>
-              <div class="sport-illust cheer" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <h4>応援・写真タイム</h4>
-              <p>参加しない人も見学・応援・撮影で関われる時間をつくる。</p>
+              <div class="official-illust support-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
+              <div>
+                <span>SUPPORT</span>
+                <h4>応援・見学・写真記録</h4>
+                <p>競技に出ない方も、見学や応援、写真記録で関われます。土地に人が集まること自体を、次の活用へつなげます。</p>
+              </div>
             </article>
           </div>
         </div>
