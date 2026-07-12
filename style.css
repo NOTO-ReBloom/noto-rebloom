@@ -1121,3 +1121,130 @@ body {
   .stage-badge { flex-direction: column; align-items: start; }
   .stage-badge small { max-width: none; text-align: left; }
 }
+
+
+/* =======================================
+   V7 corrections: compact impact helper
+   - Removed standalone area-library section
+   - Integrated metaphor into the support slider
+   - Improved spacing to avoid overlap
+======================================= */
+
+.live-route .route-copy p {
+  max-width: 620px;
+}
+
+.impact-calculator {
+  grid-template-columns: minmax(220px, 1fr) minmax(220px, 310px) minmax(160px, 220px) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+.impact-calculator .calc-copy,
+.impact-calculator label,
+.impact-calculator .area-result,
+.impact-live {
+  min-width: 0;
+}
+
+.impact-calculator .calc-copy h3 {
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.45;
+  letter-spacing: -.03em;
+}
+
+.impact-calculator .calc-copy p {
+  max-width: 420px;
+}
+
+.impact-live {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(130px, 210px) 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.62);
+  border: 1px dashed rgba(63,45,28,.18);
+}
+
+.compare-figure {
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(245,239,223,.95), rgba(232,219,193,.72));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+  overflow: hidden;
+}
+
+.compare-figure svg,
+.example-figure svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.compare-copy span {
+  display: block;
+  color: var(--leaf);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  margin-bottom: 8px;
+}
+
+.compare-copy strong {
+  display: block;
+  color: var(--soil-dark);
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.35;
+  letter-spacing: -.03em;
+  margin-bottom: 8px;
+}
+
+.compare-copy p {
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.area-cards article p b {
+  color: inherit;
+}
+
+.area-result {
+  align-content: center;
+}
+
+.area-result output {
+  white-space: nowrap;
+}
+
+/* Remove visual traces if old scale markup remains cached */
+.section.scale {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .impact-calculator {
+    grid-template-columns: 1fr !important;
+  }
+  .impact-live {
+    grid-template-columns: 1fr;
+  }
+  .compare-figure {
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 560px) {
+  .impact-live {
+    padding: 14px;
+    border-radius: 20px;
+  }
+  .compare-figure {
+    min-height: 132px;
+  }
+}
