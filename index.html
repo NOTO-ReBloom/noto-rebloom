@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NOTO Re:Bloom v14 single-file: readability + sport illustrations + conversion action map -->
+<!-- NOTO Re:Bloom v15 single-file: garden comic readability + no badge overlap -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -2071,6 +2071,426 @@ body::after{
   }
 }
 
+  
+
+/* =========================================================
+   V15 Garden Comic Refinement
+   Problems fixed:
+   - Removed decorative BLOOM overlap from heading
+   - Kept texture away from text blocks
+   - Softer palette: leaf / soil / sunlight / sky / renge
+   - Added more plant, farm, flower playful elements
+========================================================= */
+
+:root{
+  --v15-ink:#2e2419;
+  --v15-soil:#5d3824;
+  --v15-soil-dark:#2f2117;
+  --v15-leaf:#4f8f4f;
+  --v15-leaf-dark:#2f6535;
+  --v15-sprout:#dff0cf;
+  --v15-sun:#e7c65c;
+  --v15-sun-soft:#fff1bd;
+  --v15-sky:#cfe7f6;
+  --v15-renge:#eac6cf;
+  --v15-cream:#fff8e9;
+  --v15-card:#fffdf6;
+  --v15-line:#2f2117;
+}
+
+/* Reset the previous pseudo badge that was overlapping the title */
+.hero h1::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Reduce all texture interference */
+body::after,
+.impact::before,
+.event::before{
+  opacity:.035 !important;
+}
+
+body{
+  background:
+    radial-gradient(circle at 9% 12%, rgba(234,198,207,.22), transparent 12%),
+    radial-gradient(circle at 92% 11%, rgba(207,231,246,.28), transparent 13%),
+    radial-gradient(circle at 82% 86%, rgba(223,240,207,.28), transparent 15%),
+    linear-gradient(180deg,#fff8e9 0%,#fffdf6 44%,#f6e4bf 100%) !important;
+  color:var(--v15-ink) !important;
+}
+
+/* Make every important text zone a clean plate, not text on texture */
+.hero-copy,
+.section-copy,
+.center-heading,
+.impact-head,
+.event-sports-head,
+.report-card,
+.mini-game-card > div:first-child{
+  position:relative;
+  z-index:5;
+}
+
+.section-copy > p:not(.eyebrow),
+.center-heading > p,
+.impact-head > p,
+.event-sports-head > p,
+.hero .lead{
+  background:rgba(255,253,246,.92) !important;
+  border:2px solid rgba(47,33,23,.12) !important;
+  border-radius:18px !important;
+  padding:.76em .95em !important;
+  color:rgba(46,36,25,.78) !important;
+  box-shadow:none !important;
+}
+
+.event .section-copy > p:not(.eyebrow),
+.event-sports-head > p,
+.event-message p,
+.flow-line p,
+.event-info-grid p{
+  background:rgba(255,248,232,.12) !important;
+  border:2px solid rgba(255,248,232,.24) !important;
+  color:rgba(255,248,232,.92) !important;
+}
+
+/* Headings: no texture behind text, just a soft highlight */
+.section-copy h2,
+.center-heading h2,
+.impact-head h2,
+.support h2,
+.final-card h2,
+.event-main-copy h2,
+.report-card h2,
+.mini-game-card h2,
+.fun-mission h2{
+  display:block !important;
+  background:none !important;
+  text-shadow:2px 2px 0 rgba(255,255,255,.88) !important;
+  color:var(--v15-soil-dark) !important;
+  line-height:1.48 !important;
+  letter-spacing:.01em !important;
+}
+
+.event .section-copy h2,
+.event-sports-head h3,
+.event-flow h3,
+.event-message h3,
+.support h2{
+  color:#fff8e9 !important;
+  text-shadow:2px 2px 0 rgba(0,0,0,.26) !important;
+  background:none !important;
+}
+
+/* Soft garden comic palette */
+.hero,
+.impact{
+  background:
+    radial-gradient(circle at 14% 20%,rgba(234,198,207,.18),transparent 12%),
+    radial-gradient(circle at 87% 15%,rgba(207,231,246,.22),transparent 13%),
+    linear-gradient(135deg,#f7dd8a 0%,#fff5cf 48%,#e3f3d8 100%) !important;
+}
+
+.site-header{
+  background:rgba(255,253,246,.96) !important;
+  border-color:var(--v15-line) !important;
+}
+
+.site-nav .nav-cf,
+.comic-cf-btn{
+  background:#c9574d !important;
+  color:#fff !important;
+}
+
+.site-nav .nav-cta,
+.btn.primary,
+.example-chips button:hover,
+.example-chips button.is-active{
+  background:var(--v15-leaf) !important;
+}
+
+.btn.ghost,
+.btn.light,
+.btn.ghost-light{
+  background:var(--v15-card) !important;
+  color:var(--v15-soil-dark) !important;
+}
+
+.hero h1{
+  color:var(--v15-soil-dark) !important;
+  text-shadow:3px 3px 0 rgba(255,255,255,.94),5px 5px 0 rgba(231,198,92,.38) !important;
+}
+
+.hero-burst{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 18px;
+  padding:8px 13px 7px;
+  border:4px solid var(--v15-line);
+  border-radius:999px;
+  background:var(--v15-card);
+  color:var(--v15-soil-dark);
+  font-family:"Bangers","M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(20px,2.2vw,30px);
+  letter-spacing:.04em;
+  box-shadow:0 5px 0 var(--v15-line);
+  transform:rotate(-2deg);
+}
+
+.hero-burst::before{
+  content:"🌼";
+  font-family:system-ui;
+  font-size:.9em;
+}
+
+/* Move decoration outside reading zones */
+.blob{
+  opacity:.55 !important;
+  border-color:rgba(47,33,23,.08) !important;
+}
+
+/* More agricultural / plant feeling */
+.section::after{
+  content:"";
+  position:absolute;
+  right:clamp(14px,4vw,58px);
+  top:clamp(18px,4vw,52px);
+  width:74px;
+  height:74px;
+  opacity:.16;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 18%, var(--v15-renge) 0 13px, transparent 14px),
+    radial-gradient(circle at 82% 50%, var(--v15-renge) 0 13px, transparent 14px),
+    radial-gradient(circle at 50% 82%, var(--v15-renge) 0 13px, transparent 14px),
+    radial-gradient(circle at 18% 50%, var(--v15-renge) 0 13px, transparent 14px),
+    radial-gradient(circle at 50% 50%, var(--v15-sun) 0 12px, transparent 13px);
+  z-index:0;
+}
+
+.event::after,
+.support::after{
+  opacity:.08;
+}
+
+/* Avoid decorative flower on dark text-heavy event cards */
+.event-extra::after,
+.event-flow::after,
+.event-sports::after,
+.event-info-grid::after{
+  display:none !important;
+}
+
+/* fun mission section */
+.fun-mission{
+  background:
+    linear-gradient(180deg,#fffdf6 0%,#e6f4d8 100%) !important;
+  overflow:hidden;
+}
+
+.fun-mission::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;height:38px;
+  background:
+    repeating-linear-gradient(90deg, rgba(79,143,79,.25) 0 10px, transparent 10px 24px);
+  opacity:.45;
+}
+
+.fun-mission-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(320px,1.1fr);
+  gap:clamp(34px,6vw,70px);
+  align-items:center;
+}
+
+.fun-cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.fun-cards article{
+  padding:18px;
+  border:4px solid var(--v15-line);
+  border-radius:26px;
+  background:var(--v15-card);
+  box-shadow:0 6px 0 var(--v15-line),0 16px 30px rgba(47,33,23,.10);
+}
+
+.fun-cards article:nth-child(1){background:#f7e3c5}
+.fun-cards article:nth-child(2){background:#d9edf8}
+.fun-cards article:nth-child(3){background:#e4f2d4}
+
+.fun-cards h3{
+  margin:14px 0 7px;
+  color:var(--v15-soil-dark);
+  font-size:24px;
+  font-weight:900;
+}
+
+.fun-cards p{
+  color:rgba(46,36,25,.74);
+  font-size:13px;
+  line-height:1.85;
+  background:transparent !important;
+  border:0 !important;
+  padding:0 !important;
+}
+
+.fun-illust{
+  position:relative;
+  height:150px;
+  border:3px solid var(--v15-line);
+  border-radius:22px;
+  background:
+    linear-gradient(180deg,var(--v15-sky) 0 42%,#e5f2d3 42% 64%,#b78152 64% 100%);
+  overflow:hidden;
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.35);
+}
+
+.fun-illust i{
+  position:absolute;
+  display:block;
+}
+
+.fun-illust.soil i:nth-child(1){
+  left:24px;right:24px;bottom:34px;height:18px;border-radius:999px;background:#7a4b2d;border:3px solid var(--v15-line);
+}
+.fun-illust.soil i:nth-child(2){
+  left:48%;bottom:52px;width:8px;height:54px;background:var(--v15-leaf);border-radius:999px;transform:rotate(-8deg);
+}
+.fun-illust.soil i:nth-child(3){
+  left:49%;bottom:96px;width:34px;height:24px;background:#e4f2d4;border:3px solid var(--v15-line);border-radius:50% 50% 50% 8px;transform:rotate(22deg);
+}
+
+.fun-illust.play i:nth-child(1),
+.fun-illust.play i:nth-child(2){
+  bottom:44px;width:30px;height:58px;border:3px solid var(--v15-line);border-radius:999px;background:#c9574d;
+}
+.fun-illust.play i:nth-child(1){left:46px;transform:rotate(-9deg)}
+.fun-illust.play i:nth-child(2){right:46px;background:#5aaeda;transform:rotate(9deg)}
+.fun-illust.play i:nth-child(1)::before,
+.fun-illust.play i:nth-child(2)::before{
+  content:"";position:absolute;left:3px;top:-22px;width:18px;height:18px;border-radius:50%;background:#ffe1b6;border:3px solid var(--v15-line);
+}
+.fun-illust.play i:nth-child(3){
+  left:50%;bottom:35px;width:84px;height:22px;border-radius:50%;background:rgba(93,56,36,.35);transform:translateX(-50%);
+}
+
+.fun-illust.bloom i:nth-child(1){
+  left:50%;bottom:36px;width:70px;height:52px;border:4px solid var(--v15-line);border-radius:12px 12px 24px 24px;background:#fff8e9;transform:translateX(-50%);
+}
+.fun-illust.bloom i:nth-child(1)::before{
+  content:"";position:absolute;left:8px;right:8px;top:9px;height:18px;background:#8b5d39;border-radius:50%;
+}
+.fun-illust.bloom i:nth-child(2){
+  left:50%;bottom:86px;width:8px;height:42px;background:var(--v15-leaf);border-radius:999px;transform:translateX(-50%);
+}
+.fun-illust.bloom i:nth-child(3){
+  left:50%;bottom:122px;width:34px;height:34px;border-radius:50%;background:var(--v15-renge);border:3px solid var(--v15-line);transform:translateX(-50%);
+}
+
+/* event readability and cards */
+.event-flow,
+.event-sports,
+.event-message,
+.event-info-grid article{
+  background:rgba(69,40,25,.86) !important;
+}
+
+.event-sports-head > p,
+.event-main-copy > p{
+  background:rgba(255,248,232,.14) !important;
+  color:rgba(255,248,232,.94) !important;
+}
+
+.sport-card-grid article{
+  background:#fffaf0 !important;
+  color:var(--v15-soil-dark) !important;
+}
+
+.sport-card-grid article:nth-child(1){background:#f7e3c5 !important}
+.sport-card-grid article:nth-child(2){background:#d9edf8 !important}
+.sport-card-grid article:nth-child(3){background:#e4f2d4 !important}
+.sport-card-grid article:nth-child(4){background:#fff1bd !important}
+.sport-card-grid article:nth-child(5){background:#f0dde5 !important}
+.sport-card-grid article:nth-child(6){background:#fffaf0 !important}
+
+.sport-card-grid p{
+  color:rgba(46,36,25,.74) !important;
+}
+
+/* better contrast on pink/purple final CTA */
+.final-card{
+  background:linear-gradient(145deg,#2f6535,#4f8f4f) !important;
+  color:#fff8e9 !important;
+}
+
+.final-card h2{
+  color:#fff8e9 !important;
+  text-shadow:2px 2px 0 rgba(0,0,0,.24) !important;
+}
+
+.final-card p{
+  color:rgba(255,248,233,.92) !important;
+}
+
+/* Action map: keep readable */
+.action-map-grid article{
+  background:#fffaf0 !important;
+}
+.action-map-grid article:nth-child(1){background:#f0dde5 !important}
+.action-map-grid article:nth-child(2){background:#d9edf8 !important}
+.action-map-grid article:nth-child(3){background:#e4f2d4 !important}
+.action-map-grid article:nth-child(4){background:#fff1bd !important}
+
+/* Layout fixes */
+.hero-actions{
+  gap:14px !important;
+}
+
+.comic-cf-btn::after{
+  background:var(--v15-sun) !important;
+  color:var(--v15-soil-dark) !important;
+}
+
+@media (max-width:980px){
+  .fun-mission-grid{
+    grid-template-columns:1fr;
+  }
+  .fun-cards{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:760px){
+  .keep{
+    display:inline;
+  }
+
+  .hero-burst{
+    margin-top:10px;
+  }
+
+  .section-copy > p:not(.eyebrow),
+  .center-heading > p,
+  .impact-head > p,
+  .event-sports-head > p,
+  .hero .lead{
+    padding:.68em .78em !important;
+  }
+
+  .section::after{
+    width:48px;
+    height:48px;
+    right:12px;
+    top:18px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -2085,6 +2505,7 @@ body::after{
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><b>MENU</b></button>
     <nav class="site-nav" id="site-nav" aria-label="サイト内メニュー">
       <a href="#about">概要</a>
+      <a href="#fun-mission">楽しさ</a>
       <a href="#impact">支援の目安</a>
       <a href="#ways">関わり方</a>
       <a href="#data">背景データ</a>
@@ -2108,6 +2529,7 @@ body::after{
       <div class="container hero-layout">
         <div class="hero-copy reveal">
           <p class="eyebrow"><i></i>NOTO / SUZU / FIELD REGENERATION</p>
+          <div class="hero-burst">FUN × FIELD</div>
           <h1><span class="keep">耕作放棄地を、</span><br><span class="keep">もう一度人が関わる場所へ。</span></h1>
           <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
           <div class="hero-actions">
@@ -2169,6 +2591,38 @@ body::after{
           <article><span>🌱</span><h3>管理の担い手不足</h3><p>地域だけで土地を守り続けることが難しくなっています。</p></article>
           <article><span>🧭</span><h3>関わる入口の不足</h3><p>地域外の人が農地に関わる最初の接点が少ない状況です。</p></article>
           <article><span>🤝</span><h3>継続の仕組み不足</h3><p>一度の活動で終わらせず、翌年度以降へ残す形が必要です。</p></article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section fun-mission" id="fun-mission">
+      <div class="container fun-mission-grid">
+        <div class="section-copy reveal">
+          <p class="eyebrow"><i></i>FUN FARMING</p>
+          <h2><span class="keep">楽しいから集まる。</span><br><span class="keep">集まるから、土地が変わる。</span></h2>
+          <p>耕作放棄地の再生を、難しい話だけで終わらせない。泥に入る、写真を撮る、応援する、種を育てる。小さな楽しさを入口にして、能登の土地に関わる人を増やしていきます。</p>
+          <div class="ways-actions">
+            <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
+            <a class="btn ghost" href="#event">ドロンコ運動会を見る</a>
+          </div>
+        </div>
+        <div class="fun-cards reveal">
+          <article>
+            <div class="fun-illust soil" aria-hidden="true"><i></i><i></i><i></i></div>
+            <h3>整える</h3>
+            <p>草を刈り、安全に人が入れる状態へ近づける。</p>
+          </article>
+          <article>
+            <div class="fun-illust play" aria-hidden="true"><i></i><i></i><i></i></div>
+            <h3>遊ぶ</h3>
+            <p>ドロンコ運動会で、土地に入るきっかけをつくる。</p>
+          </article>
+          <article>
+            <div class="fun-illust bloom" aria-hidden="true"><i></i><i></i><i></i></div>
+            <h3>育てる</h3>
+            <p>レンゲや次年度以降の活用へ、関わりを残していく。</p>
+          </article>
         </div>
       </div>
     </section>
