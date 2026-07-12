@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- NOTO Re:Bloom v11 single-file: American comic pop + READYFOR link -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -13,7 +14,7 @@
   <title>NOTO Re:Bloom｜能登の耕作放棄地を、もう一度人が関わる場所へ。</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@400;500;700;800;900&family=Zen+Old+Mincho:wght@600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Yusei+Magic&display=swap" rel="stylesheet">
   <style>
 :root{
   --ink:#2e2418;
@@ -534,6 +535,388 @@ button,input{font:inherit}
   .site-header{box-shadow:0 4px 0 var(--line),0 12px 30px rgba(53,33,22,.12)}
 }
 
+  
+
+/* =========================================================
+   V11 American Comic Pop Direction
+   - Keep content and structure
+   - Add young / playful / comic-book expression
+   - Add READYFOR crowdfunding route
+========================================================= */
+
+:root{
+  --comic-black:#24170f;
+  --comic-red:#ff4f45;
+  --comic-blue:#30a6ff;
+  --comic-yellow:#ffd928;
+  --comic-cream:#fff6d9;
+  --comic-green:#35b65a;
+  --comic-purple:#7d5cff;
+  --comic-shadow:0 8px 0 var(--comic-black),0 22px 42px rgba(36,23,15,.18);
+  --comic-shadow-soft:0 5px 0 var(--comic-black),0 14px 28px rgba(36,23,15,.12);
+}
+
+body{
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255,79,69,.20), transparent 12%),
+    radial-gradient(circle at 90% 8%, rgba(48,166,255,.22), transparent 13%),
+    radial-gradient(circle at 82% 78%, rgba(255,217,40,.22), transparent 14%),
+    linear-gradient(180deg,#fff7d7 0%,#fffaf0 42%,#fff1cc 100%) !important;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.22;
+  background-image:
+    radial-gradient(circle,var(--comic-black) 0 1.2px,transparent 1.7px);
+  background-size:14px 14px;
+  mask-image:linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.site-header{
+  border:4px solid var(--comic-black) !important;
+  box-shadow:0 7px 0 var(--comic-black),0 18px 36px rgba(36,23,15,.16) !important;
+  background:rgba(255,250,230,.96) !important;
+}
+
+.brand b{
+  font-family:"Luckiest Guy","M PLUS Rounded 1c",sans-serif !important;
+  letter-spacing:.02em !important;
+}
+
+.brand-seed{
+  background:
+    radial-gradient(circle at 34% 28%,#fff 0 10%,transparent 11%),
+    linear-gradient(135deg,var(--comic-green),#16833a) !important;
+}
+
+.site-nav a{
+  font-weight:900 !important;
+}
+
+.site-nav .nav-cf{
+  background:var(--comic-red) !important;
+  color:#fff !important;
+  border:2px solid var(--comic-black) !important;
+  box-shadow:0 4px 0 var(--comic-black) !important;
+  padding-inline:15px !important;
+}
+
+.site-nav .nav-cta{
+  background:var(--comic-purple) !important;
+  color:#fff !important;
+}
+
+.hero{
+  background:
+    radial-gradient(circle at 18% 24%,rgba(255,79,69,.18),transparent 12%),
+    radial-gradient(circle at 83% 20%,rgba(48,166,255,.22),transparent 13%),
+    radial-gradient(circle at 16% 82%,rgba(255,217,40,.30),transparent 14%),
+    linear-gradient(135deg,#fff0a2 0%,#fff6d9 45%,#ddffd8 100%) !important;
+}
+
+.hero h1{
+  position:relative;
+  font-family:"Yusei Magic","M PLUS Rounded 1c",sans-serif !important;
+  font-weight:900 !important;
+  color:var(--comic-black) !important;
+  text-shadow:
+    3px 3px 0 #fff,
+    6px 6px 0 rgba(255,217,40,.85) !important;
+}
+
+.hero h1::after{
+  content:"BLOOM!";
+  position:absolute;
+  right:2%;
+  top:-34px;
+  transform:rotate(9deg);
+  display:inline-flex;
+  padding:9px 13px 7px;
+  border:4px solid var(--comic-black);
+  border-radius:16px;
+  background:var(--comic-red);
+  color:#fff;
+  font-family:"Bangers","Luckiest Guy",sans-serif;
+  font-size:clamp(24px,3.4vw,44px);
+  letter-spacing:.04em;
+  box-shadow:0 6px 0 var(--comic-black);
+}
+
+.photo-frame{
+  border:5px solid var(--comic-black) !important;
+  box-shadow:var(--comic-shadow) !important;
+}
+
+.main-photo{
+  transform:rotate(2deg) !important;
+}
+
+.sub-photo{
+  transform:rotate(-6deg) !important;
+}
+
+.sticker,
+.hero-pop-label,
+.step-cards article,
+.issue-grid article,
+.student-list article,
+.amount-cards article,
+.number-grid article,
+.panel,
+.status-card,
+.faq-list details,
+.calculator,
+.impact-main,
+.impact-note,
+.note-box{
+  border:4px solid var(--comic-black) !important;
+  box-shadow:var(--comic-shadow-soft) !important;
+}
+
+.sticker{
+  background:#fff !important;
+  font-weight:900 !important;
+}
+
+.sticker-top::before{
+  content:"CHECK!";
+  display:inline-block;
+  margin-right:6px;
+  color:var(--comic-red);
+  font-family:"Bangers",sans-serif;
+  letter-spacing:.04em;
+}
+
+.sticker-bottom::before{
+  content:"NEXT!";
+  display:inline-block;
+  margin-right:6px;
+  color:var(--comic-blue);
+  font-family:"Bangers",sans-serif;
+  letter-spacing:.04em;
+}
+
+.btn{
+  border:4px solid var(--comic-black) !important;
+  box-shadow:0 6px 0 var(--comic-black) !important;
+  font-weight:900 !important;
+}
+
+.btn:hover{
+  transform:translateY(-5px) rotate(-1.5deg) !important;
+  box-shadow:0 11px 0 var(--comic-black) !important;
+}
+
+.comic-cf-btn{
+  position:relative;
+  background:var(--comic-red) !important;
+  color:#fff !important;
+}
+
+.comic-cf-btn::after{
+  content:"GO!";
+  position:absolute;
+  right:-16px;
+  top:-16px;
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border:3px solid var(--comic-black);
+  border-radius:50%;
+  background:var(--comic-yellow);
+  color:var(--comic-black);
+  font-family:"Bangers",sans-serif;
+  font-size:17px;
+  box-shadow:0 4px 0 var(--comic-black);
+  transform:rotate(12deg);
+}
+
+.section-copy h2,
+.center-heading h2,
+.impact-head h2,
+.support h2,
+.final-card h2{
+  font-family:"Yusei Magic","M PLUS Rounded 1c",sans-serif !important;
+  color:var(--comic-black) !important;
+  text-shadow:2px 2px 0 rgba(255,255,255,.85);
+}
+
+.eyebrow{
+  font-family:"Bangers","M PLUS Rounded 1c",sans-serif !important;
+  font-size:15px !important;
+  letter-spacing:.06em !important;
+}
+
+.eyebrow i{
+  height:7px !important;
+  background:var(--comic-red) !important;
+  box-shadow:13px 0 0 var(--comic-yellow),26px 0 0 var(--comic-blue) !important;
+}
+
+.mud-band{
+  background:var(--comic-black) !important;
+  border-top:4px solid var(--comic-black);
+  border-bottom:4px solid var(--comic-black);
+}
+
+.mud-band strong{
+  color:var(--comic-yellow) !important;
+}
+
+.impact{
+  background:
+    radial-gradient(circle at 11% 20%,rgba(255,79,69,.18),transparent 12%),
+    radial-gradient(circle at 90% 12%,rgba(48,166,255,.16),transparent 12%),
+    linear-gradient(135deg,#ffd928 0%,#fff0a7 48%,#ffc5d6 100%) !important;
+}
+
+.impact-main b,
+.amount-cards b,
+.number-grid b,
+.event-date b{
+  font-family:"Bangers","M PLUS Rounded 1c",sans-serif !important;
+  letter-spacing:.02em !important;
+}
+
+.impact-main small,
+.calc-text span,
+.compare-copy span{
+  background:var(--comic-yellow) !important;
+  border:3px solid var(--comic-black) !important;
+  color:var(--comic-black) !important;
+}
+
+.calc-result output{
+  background:var(--comic-blue) !important;
+  color:#fff !important;
+  border:4px solid var(--comic-black) !important;
+  box-shadow:0 6px 0 var(--comic-black) !important;
+}
+
+.example-chips button{
+  border:3px solid var(--comic-black) !important;
+  box-shadow:0 4px 0 var(--comic-black) !important;
+  background:#fff !important;
+}
+
+.example-chips button:hover,
+.example-chips button.is-active{
+  background:var(--comic-green) !important;
+  color:#fff !important;
+  transform:translateY(-3px) rotate(-1deg) !important;
+}
+
+.amount-cards article:nth-child(1),
+.step-cards article:nth-child(1),
+.issue-grid article:nth-child(2){
+  background:#dcffd4 !important;
+}
+
+.amount-cards article:nth-child(2),
+.step-cards article:nth-child(2),
+.issue-grid article:nth-child(1){
+  background:#fff !important;
+}
+
+.amount-cards article:nth-child(3),
+.step-cards article:nth-child(3),
+.issue-grid article:nth-child(3){
+  background:#dff2ff !important;
+}
+
+.amount-cards article:nth-child(4),
+.step-cards article:nth-child(4){
+  background:#ffe1ed !important;
+}
+
+.amount-cards .strong{
+  background:var(--comic-black) !important;
+}
+
+.data{
+  background:
+    radial-gradient(circle at 10% 15%,rgba(255,217,40,.24),transparent 14%),
+    linear-gradient(180deg,#e3ffd7 0%,#d9f8cb 100%) !important;
+}
+
+.green-panel,
+.support{
+  background:
+    radial-gradient(circle at 90% 15%,rgba(255,217,40,.16),transparent 16%),
+    linear-gradient(145deg,#176b37,#2fa653) !important;
+}
+
+.field-photos figure,
+.story-media img,
+.material-grid figure{
+  border:5px solid var(--comic-black) !important;
+  box-shadow:var(--comic-shadow-soft) !important;
+}
+
+.event{
+  background:
+    radial-gradient(circle at 16% 20%,rgba(255,217,40,.15),transparent 14%),
+    linear-gradient(145deg,#6e3d25,#4a2919) !important;
+}
+
+.event-date,
+.event-cards article{
+  border:3px solid rgba(255,248,232,.85) !important;
+}
+
+.support-actions-inline{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:flex-end;
+}
+
+.comic-cta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+
+.final-card{
+  background:
+    radial-gradient(circle at 90% 20%,rgba(255,217,40,.28),transparent 16%),
+    linear-gradient(145deg,var(--comic-red),var(--comic-purple)) !important;
+  border:5px solid var(--comic-black) !important;
+  box-shadow:0 10px 0 var(--comic-black),0 26px 54px rgba(36,23,15,.18) !important;
+}
+
+.final-card h2{
+  color:#fff !important;
+  text-shadow:3px 3px 0 var(--comic-black) !important;
+}
+
+@media (max-width:760px){
+  .hero h1::after{
+    right:auto;
+    left:0;
+    top:-44px;
+    font-size:26px;
+  }
+
+  .support-actions-inline{
+    justify-content:flex-start;
+  }
+
+  .comic-cf-btn::after{
+    width:32px;
+    height:32px;
+    font-size:14px;
+    right:-10px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -554,6 +937,7 @@ button,input{font:inherit}
       <a href="#event">イベント</a>
       <a href="#support">協賛・参加</a>
       <a href="#faq">FAQ</a>
+      <a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファン</a>
       <a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">相談する</a>
     </nav>
   </header>
@@ -572,7 +956,8 @@ button,input{font:inherit}
           <h1>耕作放棄地を、<br>もう一度人が関わる場所へ。</h1>
           <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#impact">支援の目安を見る</a>
+            <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
+            <a class="btn ghost" href="#impact">支援の目安を見る</a>
             <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">参加・連携を相談する</a>
           </div>
           <div class="hero-facts" aria-label="プロジェクトの現在地">
@@ -700,6 +1085,11 @@ button,input{font:inherit}
           <summary>1㎡あたり約300円の考え方</summary>
           <p>1㎡あたり約300円は、NOTO Re:Bloom独自の暫定目安です。草刈り、簡易整備、安全確認、運営準備、広報、翌年度以降の活用準備を含めて算出しています。実際の費用は、土地の状態、整備範囲、必要な機材、安全対策等によって変動します。会場確定後、費用内訳は順次公開します。</p>
         </details>
+
+        <div class="comic-cta-row reveal">
+          <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">READYFORで応援する</a>
+          <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する</a>
+        </div>
       </div>
     </section>
 
@@ -835,7 +1225,8 @@ button,input{font:inherit}
             <h2>協賛は、能登に残る景色とつながりを育てる力です。</h2>
             <p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
           </div>
-          <a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する</a>
+          <div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
+          <a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する</a></div>
         </div>
         <div class="support-grid reveal">
           <article><span>01</span><h3>資金協賛</h3><p>草刈り、簡易整備、安全管理、運営備品などに活用します。</p></article>
