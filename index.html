@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
- NOTO Re:Bloom v20 single-file: crowdfunding route + safe fun UI + no overlap layout 
+<!-- NOTO Re:Bloom v21 single-file: crowdfunding route + mini game -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -3999,6 +3998,102 @@ img,svg{max-width:100%;height:auto;}
   .sticky-cta{left:10px!important;right:10px!important;bottom:10px!important;max-width:none;}
 }
 @media (prefers-reduced-motion:reduce){.v20-reward-card,.v20-cf-copy,.v20-cf-panel,.v20-choice-grid article,.v20-share-card{transition:none!important;}}
+
+/* v21: Re:Bloom mini game */
+.rebloom-game{
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 14% 12%,rgba(255,212,90,.44) 0 82px,transparent 84px),
+    radial-gradient(circle at 92% 18%,rgba(183,228,255,.38) 0 112px,transparent 114px),
+    linear-gradient(180deg,#fffaf0 0%,#eef9df 100%);
+}
+.rebloom-game::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  background-image:
+    linear-gradient(90deg,var(--green) 1px,transparent 1px),
+    linear-gradient(0deg,var(--green) 1px,transparent 1px);
+  background-size:56px 56px;
+  transform:rotate(-1.5deg) scale(1.03);
+}
+.rebloom-game .container{position:relative;z-index:1}
+.game-shell{
+  display:grid;
+  grid-template-columns:minmax(0,.82fr) minmax(320px,1.18fr);
+  gap:clamp(22px,4vw,42px);
+  align-items:start;
+}
+.game-copy{
+  position:sticky;
+  top:110px;
+  padding:clamp(24px,4vw,38px);
+  border:var(--border);
+  border-radius:32px;
+  background:#fffefa;
+  box-shadow:var(--shadow);
+}
+.game-copy h2{font-size:clamp(31px,5vw,58px);line-height:1.18;color:var(--soil-dark)}
+.game-copy h2 .pop-word{display:inline-block;position:relative;color:var(--coral)}
+.game-copy h2 .pop-word::after{content:"";position:absolute;left:-5%;right:-5%;bottom:.02em;height:.22em;background:var(--sun);z-index:-1;border-radius:999px}
+.game-rule-list{display:grid;gap:12px;margin:22px 0 0;padding:0;list-style:none}
+.game-rule-list li{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:2px solid rgba(53,33,22,.18);border-radius:18px;background:#fff7db;font-weight:800;color:var(--ink-soft);line-height:1.7}
+.game-rule-list b{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border:2px solid var(--line);border-radius:50%;background:var(--sun);color:var(--soil-dark);font-size:13px}
+.game-card{
+  min-width:0;
+  padding:clamp(16px,3vw,24px);
+  border:var(--border);
+  border-radius:34px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.game-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.game-difficulty{display:flex;flex-wrap:wrap;gap:8px}
+.game-difficulty button,.game-action button{
+  cursor:pointer;
+  border:2px solid var(--line);
+  border-radius:999px;
+  padding:9px 12px;
+  background:#fff7dc;
+  color:var(--soil-dark);
+  font-weight:900;
+  box-shadow:0 3px 0 var(--line);
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.game-difficulty button:hover,.game-action button:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--line)}
+.game-difficulty button.is-active{background:var(--sun);color:var(--soil-dark)}
+.game-action{display:flex;gap:8px;flex-wrap:wrap}
+.game-action button.primary-game{background:var(--green);color:#fff}
+.game-hud{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 14px}
+.game-hud div{min-width:0;border:2px solid rgba(53,33,22,.2);border-radius:16px;background:#fffaf0;padding:10px;text-align:center}
+.game-hud span{display:block;color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.06em}
+.game-hud b{display:block;margin-top:2px;color:var(--soil-dark);font-size:clamp(16px,2.2vw,22px);line-height:1.2;font-weight:900}
+.game-canvas-wrap{position:relative;aspect-ratio:16/9;border:3px solid var(--line);border-radius:24px;overflow:hidden;background:#e9f6d9;box-shadow:inset 0 0 0 5px rgba(255,255,255,.55)}
+#rebloomGameCanvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#rebloomGameCanvas:active{cursor:grabbing}
+.game-overlay-message{position:absolute;inset:auto 18px 18px 18px;display:flex;justify-content:center;pointer-events:none}
+.game-overlay-message p{max-width:680px;width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:999px;background:rgba(255,255,255,.91);box-shadow:0 4px 0 rgba(53,33,22,.28);text-align:center;font-size:13px;font-weight:900;color:var(--soil-dark);line-height:1.55}
+.game-note{margin-top:12px;font-size:12px;line-height:1.7;color:var(--muted);font-weight:800}
+.game-mobile-hint{display:none;margin-top:10px;padding:11px 13px;border-radius:16px;background:#eff9e7;border:2px dashed rgba(53,33,22,.22);font-size:12px;font-weight:800;color:var(--ink-soft)}
+@media (max-width: 920px){
+  .game-shell{grid-template-columns:1fr}
+  .game-copy{position:relative;top:auto}
+}
+@media (max-width: 640px){
+  .game-hud{grid-template-columns:repeat(2,1fr)}
+  .game-toolbar{align-items:stretch}
+  .game-difficulty,.game-action{width:100%}
+  .game-difficulty button,.game-action button{flex:1 1 auto}
+  .game-overlay-message{inset:auto 8px 8px 8px}
+  .game-overlay-message p{border-radius:18px;font-size:11.5px}
+  .game-mobile-hint{display:block}
+}
+@media (prefers-reduced-motion: reduce){
+  .game-difficulty button,.game-action button{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -4012,7 +4107,7 @@ img,svg{max-width:100%;height:auto;}
 <button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
 <nav aria-label="サイト内メニュー" class="site-nav" id="site-nav">
 <a href="#about">概要</a>
-<a href="#fun-mission">楽しさ</a><a href="#crowdfunding">クラファン</a>
+<a href="#fun-mission">楽しさ</a><a href="#game">ゲーム</a><a href="#crowdfunding">クラファン</a>
 <a href="#impact">支援の目安</a>
 <a href="#status">現在地</a>
 <a href="#ways">関わり方</a>
@@ -4159,6 +4254,49 @@ img,svg{max-width:100%;height:auto;}
 </div>
 </div>
 </section>
+
+<section class="section rebloom-game" id="game">
+  <div class="container game-shell">
+    <div class="game-copy reveal">
+      <p class="eyebrow"><i></i>MINI GAME</p>
+      <h2><span class="keep">耕作放棄地を</span><br/><span class="pop-word">Re:Bloom</span>する<br/>ブロック崩し。</h2>
+      <p>画面上の草むらや石ブロックを、泥玉で少しずつ整えていくミニゲームです。壊すだけではなく、ブロックが消えた場所に小さなレンゲが咲いていきます。</p>
+      <ul class="game-rule-list">
+        <li><b>1</b><span>ブロックを崩すと、土地が少しずつ整っていきます。</span></li>
+        <li><b>2</b><span>レンゲの種を拾うと、パドルが広がったり、ボールがゆっくりになります。</span></li>
+        <li><b>3</b><span>難易度を変えると、ブロック数・速さ・残りライフが変化します。</span></li>
+      </ul>
+    </div>
+    <div class="game-card reveal" aria-label="Re:Bloomブロック崩しゲーム">
+      <div class="game-toolbar">
+        <div class="game-difficulty" aria-label="難易度選択">
+          <button type="button" data-game-diff="easy" class="is-active">やさしい</button>
+          <button type="button" data-game-diff="normal">ふつう</button>
+          <button type="button" data-game-diff="hard">本気</button>
+          <button type="button" data-game-diff="mud">どろんこ</button>
+        </div>
+        <div class="game-action">
+          <button type="button" class="primary-game" id="gameStartBtn">スタート</button>
+          <button type="button" id="gamePauseBtn">一時停止</button>
+          <button type="button" id="gameResetBtn">リセット</button>
+        </div>
+      </div>
+      <div class="game-hud" aria-live="polite">
+        <div><span>整備面積</span><b id="gameArea">0㎡</b></div>
+        <div><span>スコア</span><b id="gameScore">0</b></div>
+        <div><span>残り</span><b id="gameLives">5</b></div>
+        <div><span>難易度</span><b id="gameDiffLabel">やさしい</b></div>
+      </div>
+      <div class="game-canvas-wrap">
+        <canvas id="rebloomGameCanvas" width="960" height="540" aria-label="耕作放棄地をテーマにしたブロック崩しゲーム"></canvas>
+        <div class="game-overlay-message"><p id="gameMessage">難易度を選んで「スタート」。PCは←→キー、スマホは画面をなぞって動かせます。</p></div>
+      </div>
+      <p class="game-mobile-hint">スマホでは、ゲーム画面の中で指を左右に動かすとパドルを操作できます。</p>
+      <p class="game-note">※このゲームは、プロジェクトの世界観を楽しむための演出です。実際の整備工程や費用を表すものではありません。</p>
+    </div>
+  </div>
+</section>
+
 <section class="section v20-crowdfunding" id="crowdfunding">
 <div class="container v20-cf-wrap">
 <div class="v20-cf-hero reveal">
@@ -4968,5 +5106,538 @@ img,svg{max-width:100%;height:auto;}
   });
 })();
 </script>
+
+<script>
+(() => {
+  const canvas = document.getElementById('rebloomGameCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const W = 960;
+  const H = 540;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const ui = {
+    area: document.getElementById('gameArea'),
+    score: document.getElementById('gameScore'),
+    lives: document.getElementById('gameLives'),
+    diffLabel: document.getElementById('gameDiffLabel'),
+    msg: document.getElementById('gameMessage'),
+    start: document.getElementById('gameStartBtn'),
+    pause: document.getElementById('gamePauseBtn'),
+    reset: document.getElementById('gameResetBtn'),
+    diffButtons: [...document.querySelectorAll('[data-game-diff]')]
+  };
+
+  const difficulties = {
+    easy:   { label:'やさしい', rows:4, cols:8, speed:5.0, paddle:176, lives:5, stone:.06, bush:.10, water:.08, power:.32 },
+    normal: { label:'ふつう',   rows:5, cols:9, speed:6.0, paddle:150, lives:4, stone:.12, bush:.18, water:.08, power:.26 },
+    hard:   { label:'本気',     rows:6, cols:10, speed:7.0, paddle:128, lives:3, stone:.20, bush:.25, water:.06, power:.22 },
+    mud:    { label:'どろんこ', rows:7, cols:11, speed:8.0, paddle:112, lives:2, stone:.28, bush:.30, water:.04, power:.18 }
+  };
+
+  let diffKey = 'easy';
+  let config = difficulties[diffKey];
+  let running = false;
+  let paused = false;
+  let lastTime = 0;
+  let keys = { left:false, right:false };
+  let score = 0;
+  let area = 0;
+  let lives = config.lives;
+  let combo = 0;
+  let statusTimer = 0;
+  let paddleBoostTimer = 0;
+  let slowTimer = 0;
+  let bricks = [];
+  let flowers = [];
+  let powerups = [];
+  let particles = [];
+  let paddle = { x: W/2 - config.paddle/2, y: H - 48, w: config.paddle, h: 18, targetX: W/2 - config.paddle/2 };
+  let ball = { x: W/2, y: H - 82, r: 8, vx: config.speed, vy: -config.speed };
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  const rand = (min, max) => min + Math.random() * (max - min);
+
+  function setMessage(text){
+    if (ui.msg) ui.msg.textContent = text;
+  }
+
+  function updateUi(){
+    if (ui.area) ui.area.textContent = `${area}㎡`;
+    if (ui.score) ui.score.textContent = score.toLocaleString('ja-JP');
+    if (ui.lives) ui.lives.textContent = `${lives}`;
+    if (ui.diffLabel) ui.diffLabel.textContent = config.label;
+  }
+
+  function brickColor(type, hp){
+    if (type === 'stone') return hp > 1 ? '#8d9389' : '#b9bdb4';
+    if (type === 'bush') return hp > 1 ? '#3f7d3f' : '#7dad57';
+    if (type === 'water') return '#72c8e8';
+    return '#89b957';
+  }
+
+  function brickLabel(type){
+    if (type === 'stone') return '石';
+    if (type === 'bush') return '茂';
+    if (type === 'water') return '水';
+    return '草';
+  }
+
+  function makeBricks(){
+    bricks = [];
+    const marginX = 54;
+    const top = 72;
+    const gap = 8;
+    const bw = (W - marginX*2 - gap*(config.cols-1)) / config.cols;
+    const bh = config.rows >= 7 ? 25 : 29;
+    for (let r=0; r<config.rows; r++) {
+      for (let c=0; c<config.cols; c++) {
+        const roll = Math.random();
+        let type = 'grass';
+        let hp = 1;
+        if (roll < config.stone) { type = 'stone'; hp = diffKey === 'mud' ? 3 : 2; }
+        else if (roll < config.stone + config.bush) { type = 'bush'; hp = 2; }
+        else if (roll > 1 - config.water) { type = 'water'; hp = 1; }
+        bricks.push({
+          x: marginX + c*(bw+gap), y: top + r*(bh+gap), w: bw, h: bh,
+          type, hp, maxHp: hp, alive: true
+        });
+      }
+    }
+  }
+
+  function resetBall(){
+    const dir = Math.random() < .5 ? -1 : 1;
+    const speed = config.speed;
+    paddle.w = paddleBoostTimer > 0 ? config.paddle * 1.42 : config.paddle;
+    paddle.x = W/2 - paddle.w/2;
+    paddle.targetX = paddle.x;
+    ball.x = W/2;
+    ball.y = H - 82;
+    ball.vx = speed * dir * rand(.7,1.05);
+    ball.vy = -speed;
+  }
+
+  function resetGame(keepMessage = false){
+    config = difficulties[diffKey];
+    score = 0;
+    area = 0;
+    lives = config.lives;
+    combo = 0;
+    paddleBoostTimer = 0;
+    slowTimer = 0;
+    statusTimer = 0;
+    flowers = [];
+    powerups = [];
+    particles = [];
+    makeBricks();
+    paddle = { x: W/2 - config.paddle/2, y: H - 48, w: config.paddle, h: 18, targetX: W/2 - config.paddle/2 };
+    resetBall();
+    running = false;
+    paused = false;
+    updateUi();
+    if (!keepMessage) setMessage('難易度を選んで「スタート」。PCは←→キー、スマホは画面をなぞって動かせます。');
+    draw();
+  }
+
+  function startGame(){
+    if (!running) {
+      running = true;
+      paused = false;
+      lastTime = performance.now();
+      setMessage('草むらを整えて、レンゲを咲かせよう。');
+      requestAnimationFrame(loop);
+    } else if (paused) {
+      paused = false;
+      lastTime = performance.now();
+      setMessage('再開しました。');
+      requestAnimationFrame(loop);
+    }
+  }
+
+  function togglePause(){
+    if (!running) return;
+    paused = !paused;
+    setMessage(paused ? '一時停止中。もう一度押すと再開します。' : '再開しました。');
+    if (!paused) {
+      lastTime = performance.now();
+      requestAnimationFrame(loop);
+    }
+  }
+
+  function spawnParticles(x,y,color){
+    if (prefersReduced) return;
+    for (let i=0; i<8; i++) {
+      particles.push({x,y,vx:rand(-2.6,2.6),vy:rand(-3.4,1.2),life:rand(24,42),color});
+    }
+  }
+
+  function spawnPowerup(x,y){
+    if (Math.random() > config.power) return;
+    const types = ['renge','water','team'];
+    const type = types[Math.floor(Math.random()*types.length)];
+    powerups.push({ x, y, vy: 2.1, type, r: 12 });
+  }
+
+  function removeBrick(brick){
+    brick.alive = false;
+    combo += 1;
+    const gainedArea = brick.type === 'stone' ? 4 : brick.type === 'bush' ? 3 : 2;
+    const gainedScore = 100 + combo * 15 + gainedArea * 20;
+    area += gainedArea;
+    score += gainedScore;
+    const cx = brick.x + brick.w/2;
+    const cy = brick.y + brick.h/2;
+    flowers.push({ x: cx, y: cy, s: rand(.7,1.15), a: 0 });
+    spawnParticles(cx, cy, brickColor(brick.type, brick.hp));
+    spawnPowerup(cx, cy);
+    updateUi();
+    const left = bricks.filter(b => b.alive).length;
+    if (left === 0) {
+      running = false;
+      setMessage(`全面Re:Bloom！ ${area}㎡ぶん整えました。難易度を上げてもう一度挑戦できます。`);
+    } else if (combo % 8 === 0) {
+      setMessage(`${combo}コンボ！土地が少しずつ明るくなっています。`);
+      statusTimer = 1500;
+    }
+  }
+
+  function hitBrick(brick){
+    brick.hp -= 1;
+    combo += .35;
+    score += 35;
+    spawnParticles(ball.x, ball.y, brickColor(brick.type, brick.hp));
+    if (brick.type === 'water') {
+      slowTimer = 360;
+      setMessage('水路ボーナス。泥玉が少しゆっくりに。');
+    }
+    if (brick.hp <= 0) removeBrick(brick);
+    updateUi();
+  }
+
+  function activatePowerup(type){
+    if (type === 'renge') {
+      paddleBoostTimer = 520;
+      paddle.w = config.paddle * 1.42;
+      setMessage('レンゲの種ボーナス。パドルが広がりました。');
+      score += 150;
+    } else if (type === 'water') {
+      slowTimer = 420;
+      setMessage('水やりボーナス。泥玉が扱いやすくなりました。');
+      score += 120;
+    } else {
+      score += 500;
+      area += 5;
+      setMessage('応援ボーナス。整備面積が少し増えました。');
+    }
+    statusTimer = 1600;
+    updateUi();
+  }
+
+  function circleRectCollision(cx, cy, r, rect){
+    const closestX = clamp(cx, rect.x, rect.x + rect.w);
+    const closestY = clamp(cy, rect.y, rect.y + rect.h);
+    const dx = cx - closestX;
+    const dy = cy - closestY;
+    return dx*dx + dy*dy <= r*r;
+  }
+
+  function update(dt){
+    const step = Math.min(2.2, dt / 16.67);
+    if (keys.left) paddle.targetX -= 13 * step;
+    if (keys.right) paddle.targetX += 13 * step;
+    const targetW = paddleBoostTimer > 0 ? config.paddle * 1.42 : config.paddle;
+    paddle.w += (targetW - paddle.w) * .15;
+    paddle.targetX = clamp(paddle.targetX, 12, W - paddle.w - 12);
+    paddle.x += (paddle.targetX - paddle.x) * .34;
+
+    if (paddleBoostTimer > 0) paddleBoostTimer -= step;
+    if (slowTimer > 0) slowTimer -= step;
+    if (statusTimer > 0) statusTimer -= dt;
+
+    const slowFactor = slowTimer > 0 ? .78 : 1;
+    ball.x += ball.vx * step * slowFactor;
+    ball.y += ball.vy * step * slowFactor;
+
+    if (ball.x < ball.r) { ball.x = ball.r; ball.vx *= -1; }
+    if (ball.x > W - ball.r) { ball.x = W - ball.r; ball.vx *= -1; }
+    if (ball.y < ball.r) { ball.y = ball.r; ball.vy *= -1; }
+
+    const paddleRect = {x:paddle.x, y:paddle.y, w:paddle.w, h:paddle.h};
+    if (ball.vy > 0 && circleRectCollision(ball.x, ball.y, ball.r, paddleRect)) {
+      const center = paddle.x + paddle.w/2;
+      const hit = (ball.x - center) / (paddle.w/2);
+      const speed = Math.sqrt(ball.vx*ball.vx + ball.vy*ball.vy) * 1.012;
+      ball.vx = clamp(hit * speed * .88, -10.2, 10.2);
+      ball.vy = -Math.max(config.speed*.82, Math.sqrt(Math.max(1, speed*speed - ball.vx*ball.vx)));
+      ball.y = paddle.y - ball.r - 1;
+      combo = Math.max(0, combo - .2);
+    }
+
+    let collided = false;
+    for (const b of bricks) {
+      if (!b.alive || collided) continue;
+      if (circleRectCollision(ball.x, ball.y, ball.r, b)) {
+        const prevX = ball.x - ball.vx * step;
+        const prevY = ball.y - ball.vy * step;
+        const wasAbove = prevY <= b.y || prevY >= b.y + b.h;
+        if (wasAbove) ball.vy *= -1; else ball.vx *= -1;
+        hitBrick(b);
+        collided = true;
+      }
+    }
+
+    if (ball.y > H + 24) {
+      lives -= 1;
+      combo = 0;
+      updateUi();
+      if (lives <= 0) {
+        running = false;
+        setMessage(`ゲーム終了。${area}㎡ぶん整いました。難易度を下げて再挑戦できます。`);
+      } else {
+        resetBall();
+        setMessage(`泥玉が外へ。残り${lives}回です。`);
+        statusTimer = 1500;
+      }
+    }
+
+    for (let i=powerups.length-1; i>=0; i--) {
+      const p = powerups[i];
+      p.y += p.vy * step;
+      p.vy += .025 * step;
+      if (p.y + p.r > paddle.y && p.y < paddle.y + paddle.h + 14 && p.x > paddle.x && p.x < paddle.x + paddle.w) {
+        activatePowerup(p.type);
+        powerups.splice(i,1);
+      } else if (p.y > H + 30) {
+        powerups.splice(i,1);
+      }
+    }
+
+    for (const f of flowers) f.a = Math.min(1, f.a + .035 * step);
+    for (let i=particles.length-1; i>=0; i--) {
+      const p = particles[i];
+      p.x += p.vx * step;
+      p.y += p.vy * step;
+      p.vy += .08 * step;
+      p.life -= step;
+      if (p.life <= 0) particles.splice(i,1);
+    }
+  }
+
+  function roundRect(x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r);
+    ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);
+    ctx.arcTo(x,y,x+w,y,r);
+    ctx.closePath();
+  }
+
+  function drawBackground(){
+    ctx.clearRect(0,0,W,H);
+    const grd = ctx.createLinearGradient(0,0,0,H);
+    grd.addColorStop(0,'#f7ffe9');
+    grd.addColorStop(.55,'#e6f4cf');
+    grd.addColorStop(1,'#d7e9bc');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle = 'rgba(63,125,63,.17)';
+    ctx.lineWidth = 1;
+    for (let x=0; x<W; x+=48) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for (let y=0; y<H; y+=48) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+    ctx.fillStyle = 'rgba(255,255,255,.52)';
+    ctx.fillRect(0,0,W,48);
+    ctx.fillStyle = '#352116';
+    ctx.font = '900 20px "M PLUS Rounded 1c", sans-serif';
+    ctx.fillText('Re:Bloom Breaker', 24, 31);
+    ctx.font = '800 13px "M PLUS Rounded 1c", sans-serif';
+    ctx.fillStyle = 'rgba(46,36,24,.64)';
+    ctx.fillText('草を整え、レンゲを咲かせるミニゲーム', 225, 31);
+  }
+
+  function drawFlowers(){
+    for (const f of flowers) {
+      ctx.save();
+      ctx.globalAlpha = f.a;
+      ctx.translate(f.x, f.y);
+      ctx.scale(f.s, f.s);
+      ctx.fillStyle = '#3f7d3f';
+      ctx.fillRect(-2, 0, 4, 14);
+      ctx.fillStyle = '#ff9fca';
+      for (let i=0; i<5; i++) {
+        ctx.rotate(Math.PI*2/5);
+        ctx.beginPath(); ctx.ellipse(0,-8,4,8,0,0,Math.PI*2); ctx.fill();
+      }
+      ctx.fillStyle = '#ffd45a';
+      ctx.beginPath(); ctx.arc(0,0,4,0,Math.PI*2); ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function drawBricks(){
+    for (const b of bricks) {
+      if (!b.alive) continue;
+      ctx.save();
+      roundRect(b.x,b.y,b.w,b.h,9);
+      ctx.fillStyle = brickColor(b.type,b.hp);
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#352116';
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,.28)';
+      ctx.fillRect(b.x+7,b.y+6,b.w-14,5);
+      if (b.hp > 1) {
+        ctx.fillStyle = '#fff7df';
+        ctx.font = '900 13px "M PLUS Rounded 1c", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`×${b.hp}`, b.x+b.w-18, b.y+20);
+      }
+      ctx.fillStyle = b.type === 'water' ? '#13516c' : '#fff7df';
+      ctx.font = '900 15px "M PLUS Rounded 1c", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(brickLabel(b.type), b.x+12, b.y+b.h-9);
+      ctx.restore();
+    }
+  }
+
+  function drawPaddle(){
+    ctx.save();
+    roundRect(paddle.x, paddle.y, paddle.w, paddle.h, 10);
+    ctx.fillStyle = paddleBoostTimer > 0 ? '#ffd45a' : '#3f7d3f';
+    ctx.fill();
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#352116';
+    ctx.stroke();
+    ctx.fillStyle = paddleBoostTimer > 0 ? '#352116' : '#fffaf0';
+    ctx.font = '900 13px "M PLUS Rounded 1c", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('学生チーム', paddle.x+paddle.w/2, paddle.y+13);
+    ctx.restore();
+  }
+
+  function drawBall(){
+    ctx.save();
+    ctx.shadowColor = 'rgba(53,33,22,.25)';
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
+    ctx.fillStyle = '#7a4b2a';
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#352116';
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#ffd45a';
+    ctx.beginPath();
+    ctx.arc(ball.x-3, ball.y-3, 2.6, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawPowerups(){
+    for (const p of powerups) {
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.beginPath();
+      ctx.arc(0,0,p.r,0,Math.PI*2);
+      ctx.fillStyle = p.type === 'renge' ? '#ff9fca' : p.type === 'water' ? '#72c8e8' : '#ffd45a';
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#352116';
+      ctx.stroke();
+      ctx.fillStyle = '#352116';
+      ctx.font = '900 12px "M PLUS Rounded 1c", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(p.type === 'renge' ? '花' : p.type === 'water' ? '水' : '応', 0, 1);
+      ctx.restore();
+    }
+  }
+
+  function drawParticles(){
+    for (const p of particles) {
+      ctx.save();
+      ctx.globalAlpha = Math.max(0,p.life/42);
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,3,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function draw(){
+    drawBackground();
+    drawFlowers();
+    drawBricks();
+    drawPowerups();
+    drawPaddle();
+    drawBall();
+    drawParticles();
+    if (!running) {
+      ctx.save();
+      ctx.fillStyle = 'rgba(255,255,255,.34)';
+      ctx.fillRect(0,0,W,H);
+      ctx.restore();
+    }
+  }
+
+  function loop(now){
+    if (!running || paused) { draw(); return; }
+    const dt = now - lastTime;
+    lastTime = now;
+    update(dt);
+    draw();
+    if (running && !paused) requestAnimationFrame(loop);
+  }
+
+  function canvasX(clientX){
+    const rect = canvas.getBoundingClientRect();
+    return (clientX - rect.left) * (W / rect.width);
+  }
+
+  canvas.addEventListener('pointerdown', e => {
+    canvas.setPointerCapture?.(e.pointerId);
+    paddle.targetX = clamp(canvasX(e.clientX) - paddle.w/2, 12, W-paddle.w-12);
+    if (!running) startGame();
+  });
+  canvas.addEventListener('pointermove', e => {
+    if (e.pointerType === 'mouse' && e.buttons === 0) return;
+    paddle.targetX = clamp(canvasX(e.clientX) - paddle.w/2, 12, W-paddle.w-12);
+  });
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') keys.left = true;
+    if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') keys.right = true;
+    if (e.key === ' ' && document.activeElement?.tagName !== 'BUTTON') { e.preventDefault(); startGame(); }
+  });
+  window.addEventListener('keyup', e => {
+    if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') keys.left = false;
+    if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') keys.right = false;
+  });
+
+  ui.diffButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      diffKey = btn.dataset.gameDiff || 'easy';
+      ui.diffButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+      config = difficulties[diffKey];
+      resetGame(true);
+      setMessage(`${config.label}モードを選びました。「スタート」で開始します。`);
+      updateUi();
+    });
+  });
+  ui.start?.addEventListener('click', startGame);
+  ui.pause?.addEventListener('click', togglePause);
+  ui.reset?.addEventListener('click', () => resetGame());
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && running) { paused = true; setMessage('一時停止中。画面に戻ったら再開できます。'); }
+  });
+
+  resetGame();
+})();
+</script>
+
 </body>
 </html>
