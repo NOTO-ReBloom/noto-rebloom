@@ -4173,6 +4173,57 @@ section{scroll-margin-top:96px;}
   .center-heading h2,.section-copy h2,.impact-head h2,.support h2,.final-card h2{font-size:clamp(28px,8vw,40px);line-height:1.34;}
 }
 @media(max-width:420px){.flower-card-grid{grid-template-columns:1fr;}.btn{font-size:12.5px;}}
+
+
+/* ===== v30 contact modal + botanical/gardening polish ===== */
+:root{--leaf:#67be5b;--leaf-dark:#2e7a39;--sprout:#e6f6d9;}
+.site-nav .nav-mail{
+  appearance:none;border:2px solid var(--line);border-radius:999px;background:#fff8cf;color:var(--soil-dark);
+  padding:9px 12px;font:900 12px/1 var(--font);box-shadow:0 3px 0 var(--line);cursor:pointer;white-space:nowrap;
+}
+.site-nav .nav-mail:hover,.site-nav .nav-mail:focus-visible{transform:translateY(-1px);background:#fff;outline:3px solid rgba(255,212,90,.45)}
+.botanical-trail{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+.botanical-trail i{position:absolute;display:block;width:26px;height:42px;border:3px solid var(--line);border-radius:50% 50% 48% 48%;background:linear-gradient(135deg,#88cf72,#e8ffd9);opacity:.18;transform:rotate(-28deg);}
+.botanical-trail i:nth-child(1){left:5%;top:18%}.botanical-trail i:nth-child(2){right:9%;top:32%;transform:rotate(22deg)}.botanical-trail i:nth-child(3){left:18%;bottom:9%;transform:rotate(52deg)}
+.garden-notes{background:linear-gradient(180deg,#f7ffe9 0%,#fffaf0 100%);overflow:hidden;}
+.garden-note-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(320px,1.05fr);gap:clamp(26px,5vw,58px);align-items:start;position:relative;z-index:1;}
+.garden-tool-card{border:4px solid var(--line);border-radius:30px;background:#fff;box-shadow:0 8px 0 var(--line);padding:22px;position:relative;overflow:hidden;}
+.garden-tool-card:before{content:"";position:absolute;right:-42px;top:-42px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#d7f0c7 0 48%,transparent 49%);opacity:.75;}
+.garden-tool-card h3{margin:0 0 10px;font-size:clamp(24px,3vw,36px);line-height:1.25;letter-spacing:-.03em;position:relative;}
+.garden-tool-card p{margin:0;color:var(--ink-soft);font-weight:800;line-height:1.8;position:relative;}
+.garden-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}
+.garden-step{border:3px solid var(--line);border-radius:24px;background:#fffef8;box-shadow:0 6px 0 var(--line);padding:16px 12px;min-width:0;position:relative;overflow:hidden;}
+.garden-step:after{content:"";position:absolute;right:-20px;bottom:-20px;width:76px;height:76px;border-radius:50%;background:var(--sprout);opacity:.75;}
+.garden-step b{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:3px solid var(--line);border-radius:50%;background:var(--sun);font-weight:900;margin-bottom:10px;box-shadow:0 3px 0 var(--line);position:relative;z-index:1;}
+.garden-step h4{margin:0 0 7px;font-size:18px;line-height:1.25;position:relative;z-index:1;}
+.garden-step p{margin:0;font-size:13px;font-weight:800;line-height:1.65;color:var(--ink-soft);position:relative;z-index:1;}
+.garden-icon{height:86px;margin:0 0 8px;position:relative;z-index:1;}
+.garden-icon span{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);width:40px;height:40px;border:3px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 4px 0 var(--line);}
+.garden-icon.cut:before{content:"";position:absolute;left:50%;top:22px;width:80px;height:10px;border:3px solid var(--line);border-radius:99px;background:#96d67a;transform:translateX(-50%) rotate(-10deg);}
+.garden-icon.check:before{content:"";position:absolute;left:50%;top:17px;width:72px;height:48px;border:3px solid var(--line);border-radius:12px;background:#dff7ff;transform:translateX(-50%) rotate(2deg);}
+.garden-icon.path:before{content:"";position:absolute;left:50%;top:18px;width:92px;height:52px;border:3px solid var(--line);border-radius:50%;background:repeating-linear-gradient(90deg,#fff3d7 0 10px,#e3c08b 10px 18px);transform:translateX(-50%);}
+.garden-icon.seed:before{content:"";position:absolute;left:50%;top:15px;width:54px;height:54px;border:3px solid var(--line);border-radius:50% 0 50% 50%;background:#67be5b;transform:translateX(-50%) rotate(-28deg);}
+.garden-icon.note:before{content:"";position:absolute;left:50%;top:13px;width:62px;height:54px;border:3px solid var(--line);border-radius:10px;background:#fff;transform:translateX(-50%) rotate(-3deg);box-shadow:inset 0 -11px 0 #fff2b7;}
+.contact-garden-strip{margin-top:28px;border:4px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#fff,#e9ffe0);box-shadow:0 8px 0 var(--line);padding:22px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;position:relative;overflow:hidden;}
+.contact-garden-strip:after{content:"✉";position:absolute;right:22px;top:8px;font-size:76px;opacity:.08;font-weight:900;}
+.contact-garden-strip h3{margin:0 0 6px;font-size:clamp(22px,3vw,34px);letter-spacing:-.03em;}
+.contact-garden-strip p{margin:0;font-weight:800;color:var(--ink-soft);line-height:1.7;}
+.email-pill{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 12px;border:2px solid var(--line);border-radius:999px;background:#fff;font-weight:900;box-shadow:0 3px 0 var(--line);font-size:14px;word-break:break-all;}
+.mail-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(46,36,24,.54);backdrop-filter:blur(5px);}
+.mail-modal.is-open{display:flex;}
+.mail-modal-card{width:min(560px,100%);border:4px solid var(--line);border-radius:30px;background:linear-gradient(145deg,#fffdf4,#eaffdf);box-shadow:0 10px 0 var(--line),0 28px 80px rgba(0,0,0,.22);padding:24px;position:relative;}
+.mail-modal-card h2{margin:0 0 10px;font-size:clamp(26px,5vw,42px);line-height:1.2;letter-spacing:-.04em;}
+.mail-modal-card p{margin:0 0 16px;color:var(--ink-soft);font-weight:800;line-height:1.75;}
+.mail-address-box{border:3px solid var(--line);border-radius:20px;background:#fff;padding:14px 16px;font-weight:900;font-size:clamp(16px,3vw,24px);box-shadow:0 5px 0 var(--line);word-break:break-all;}
+.mail-modal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.mail-modal-close{position:absolute;right:14px;top:14px;width:38px;height:38px;border:3px solid var(--line);border-radius:50%;background:#fff;color:var(--line);font-weight:900;box-shadow:0 3px 0 var(--line);cursor:pointer;}
+.mail-copy-status{margin-top:10px!important;color:var(--green-dark)!important;font-weight:900!important;min-height:1.3em;}
+.footer-contact{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;border-bottom:2px dotted rgba(255,255,255,.7);}
+.floating-mail{position:fixed;left:18px;bottom:18px;z-index:90;border:3px solid var(--line);border-radius:999px;background:#fff8ce;color:var(--ink);box-shadow:0 5px 0 var(--line);padding:10px 14px;font:900 13px/1 var(--font);cursor:pointer;display:none;}
+.floating-mail.is-visible{display:inline-flex;align-items:center;gap:6px;}
+@media(max-width:980px){.garden-note-grid{grid-template-columns:1fr}.garden-steps{grid-template-columns:repeat(2,minmax(0,1fr));}.contact-garden-strip{grid-template-columns:1fr}.contact-garden-strip .mail-modal-trigger{justify-self:start}}
+@media(max-width:620px){.garden-steps{grid-template-columns:1fr}.garden-step{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center}.garden-icon{height:78px;margin:0}.floating-mail{left:10px;bottom:70px}.mail-modal-card{padding:20px;border-radius:24px}.mail-modal-actions .btn{width:100%;justify-content:center}}
+
 </style>
 </head>
 <body>
@@ -4184,7 +4235,7 @@ section{scroll-margin-top:96px;}
 <span><b>NOTO Re:Bloom</b><small>耕作放棄地を、もう一度人が関わる場所へ。</small></span>
 </a>
 <button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
-<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#crowdfunding">クラファン</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
+<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#crowdfunding">クラファン</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><button class="nav-mail mail-modal-trigger" type="button">メール</button><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
 </header>
 <main id="main">
 
@@ -4302,6 +4353,23 @@ section{scroll-margin-top:96px;}
 <h3>育てる</h3>
 <p>レンゲや次年度以降の活用へ、関わりを残していく。</p>
 </article>
+</div>
+</div>
+</section><section class="section garden-notes" id="garden-notes">
+<div aria-hidden="true" class="botanical-trail"><i></i><i></i><i></i></div>
+<div class="container garden-note-grid">
+<div class="garden-tool-card reveal">
+<p class="eyebrow"><i></i>GARDEN NOTE</p>
+<h3>耕作放棄地の再生は、<br/>小さな園芸の積み重ねから。</h3>
+<p>大きな機械や専門的な整備だけでなく、まずは「刈る」「見る」「通る道をつくる」「種をまく」「記録する」。誰でもイメージできる小さな手入れを、能登の土地に少しずつ重ねていきます。</p>
+<span class="email-pill">お問い合わせ：infonotorebloom@gmail.com</span>
+</div>
+<div class="garden-steps reveal" aria-label="園芸のように進める再生ステップ">
+<article class="garden-step"><div class="garden-icon cut"><span></span></div><div><b>01</b><h4>刈る</h4><p>草を抑え、光と人の通り道を取り戻します。</p></div></article>
+<article class="garden-step"><div class="garden-icon check"><span></span></div><div><b>02</b><h4>見る</h4><p>水はけ、足元、安全面を現地で確認します。</p></div></article>
+<article class="garden-step"><div class="garden-icon path"><span></span></div><div><b>03</b><h4>整える</h4><p>イベントや見学で人が入れる動線をつくります。</p></div></article>
+<article class="garden-step"><div class="garden-icon seed"><span></span></div><div><b>04</b><h4>まく</h4><p>レンゲカップなど、家に帰っても続く記憶を残します。</p></div></article>
+<article class="garden-step"><div class="garden-icon note"><span></span></div><div><b>05</b><h4>記録する</h4><p>変化を残し、翌年度以降の活用へつなげます。</p></div></article>
 </div>
 </div>
 </section><section class="section v20-crowdfunding" id="crowdfunding">
@@ -4850,8 +4918,17 @@ section{scroll-margin-top:96px;}
 <article>
 <span>FORM</span>
 <h3>申込・相談</h3>
-<p>申込はGoogleフォームを中心に、フォームが難しい方にはメールでの相談にも対応します。</p>
+<p>申込はGoogleフォームを中心に、フォームが難しい方にはメールでの相談にも対応します。メール：<strong>infonotorebloom@gmail.com</strong></p>
 </article>
+</div>
+<div class="contact-garden-strip reveal" id="contact">
+  <div>
+    <p class="eyebrow"><i></i>CONTACT</p>
+    <h3>フォームが難しい方は、メールでも相談できます。</h3>
+    <p>参加・協賛・連携・取材など、内容がまとまっていなくても大丈夫です。確認後、運営メンバーから返信します。</p>
+    <span class="email-pill">infonotorebloom@gmail.com</span>
+  </div>
+  <button class="btn primary mail-modal-trigger" type="button">メールで問い合わせる</button>
 </div>
 </div>
 </section><section class="section v20-share" id="share">
@@ -4979,14 +5056,14 @@ section{scroll-margin-top:96px;}
 <p>能登の耕作放棄地を、もう一度人が関わる場所へ。参加・協賛・連携のご相談をお待ちしています。</p>
 <div>
 <a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a>
-<a class="btn light ghost-light" href="mailto:infonotorebloom@gmail.com">メールで問い合わせる</a>
+<button class="btn light ghost-light mail-modal-trigger" type="button">メールで問い合わせる</button>
 </div>
 </div>
 </section></main>
 <footer class="site-footer">
 <div class="container footer-inner">
 <b>NOTO Re:Bloom</b>
-<small>© NOTO Re:Bloom Project</small>
+<small>© NOTO Re:Bloom Project</small><a class="footer-contact" href="mailto:infonotorebloom@gmail.com">✉ infonotorebloom@gmail.com</a>
 <a href="#top">PAGE TOP ↑</a>
 </div>
 </footer>
@@ -4995,6 +5072,23 @@ section{scroll-margin-top:96px;}
 <span>READYFORで応援する</span>
 <a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">開く</a>
 </div>
+
+<div aria-hidden="true" aria-labelledby="mailModalTitle" class="mail-modal" id="mailModal" role="dialog">
+  <div class="mail-modal-card" role="document">
+    <button aria-label="閉じる" class="mail-modal-close" type="button">×</button>
+    <p class="eyebrow"><i></i>MAIL CONTACT</p>
+    <h2 id="mailModalTitle">メールで問い合わせる</h2>
+    <p>参加・協賛・連携・取材などのご相談は、下記メールアドレスまでお送りください。ボタンからコピー、またはメールアプリを開けます。</p>
+    <div class="mail-address-box" id="mailAddress">infonotorebloom@gmail.com</div>
+    <div class="mail-modal-actions">
+      <button class="btn primary" id="copyMailAddress" type="button">メールアドレスをコピー</button>
+      <a class="btn ghost" href="mailto:infonotorebloom@gmail.com?subject=NOTO%20Re%3ABloom%E3%81%B8%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">メールアプリを開く</a>
+    </div>
+    <p class="mail-copy-status" id="mailCopyStatus" aria-live="polite"></p>
+  </div>
+</div>
+<button class="floating-mail mail-modal-trigger" id="floatingMail" type="button">✉ お問い合わせ</button>
+
 <script>
 (() => {
   const body = document.body;
@@ -5009,6 +5103,46 @@ section{scroll-margin-top:96px;}
   addEventListener('scroll', updateProgress, { passive: true });
   addEventListener('resize', updateProgress);
   updateProgress();
+
+  // v30: mail contact modal
+  const MAIL_ADDRESS = 'infonotorebloom@gmail.com';
+  const mailModal = document.getElementById('mailModal');
+  const mailTriggers = document.querySelectorAll('.mail-modal-trigger');
+  const mailClose = document.querySelector('.mail-modal-close');
+  const mailCopy = document.getElementById('copyMailAddress');
+  const mailStatus = document.getElementById('mailCopyStatus');
+  const floatingMail = document.getElementById('floatingMail');
+  const openMailModal = () => {
+    if (!mailModal) return;
+    mailModal.classList.add('is-open');
+    mailModal.setAttribute('aria-hidden','false');
+    mailClose?.focus();
+  };
+  const closeMailModal = () => {
+    if (!mailModal) return;
+    mailModal.classList.remove('is-open');
+    mailModal.setAttribute('aria-hidden','true');
+  };
+  mailTriggers.forEach(btn => btn.addEventListener('click', openMailModal));
+  mailClose?.addEventListener('click', closeMailModal);
+  mailModal?.addEventListener('click', e => { if(e.target === mailModal) closeMailModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMailModal(); });
+  mailCopy?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(MAIL_ADDRESS);
+      if(mailStatus) mailStatus.textContent = 'メールアドレスをコピーしました。';
+    } catch(e) {
+      if(mailStatus) mailStatus.textContent = 'コピーできませんでした。メールアドレスを選択してコピーしてください。';
+    }
+  });
+  const updateFloatingMail = () => {
+    if(!floatingMail) return;
+    if(scrollY > 600 && !document.body.classList.contains('menu-open')) floatingMail.classList.add('is-visible');
+    else floatingMail.classList.remove('is-visible');
+  };
+  addEventListener('scroll', updateFloatingMail, {passive:true});
+  updateFloatingMail();
+
 
   const menuButton = document.querySelector('.menu-button');
   const nav = document.querySelector('#site-nav');
