@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NOTO Re:Bloom v23 single-file: one-button rhythm game -->
+<!-- NOTO Re:Bloom v24 single-file: original call-and-response rhythm game -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -4248,6 +4248,80 @@ img,svg{max-width:100%;height:auto;}
   .rhythm-hit-button{transition:none!important;}
 }
 
+
+
+/* =========================================================
+   v24: Original one-button call-and-response rhythm game
+   - No note highway; audio cue + response timing
+   - Stronger game UI, warmer white placement, bigger cartoon stage
+========================================================= */
+.rhythm-game{
+  background:
+    radial-gradient(circle at 12% 9%,rgba(255,212,90,.50) 0 112px,transparent 114px),
+    radial-gradient(circle at 88% 18%,rgba(255,159,202,.34) 0 132px,transparent 134px),
+    radial-gradient(circle at 78% 88%,rgba(79,154,92,.28) 0 172px,transparent 174px),
+    linear-gradient(180deg,#fff7df 0%,#eff9df 100%)!important;
+}
+.rhythm-copy{
+  grid-template-columns:minmax(0,.92fr) minmax(340px,1.08fr)!important;
+  border-width:4px!important;
+  background:#fffefa!important;
+}
+.rhythm-copy::after{content:"LISTEN → TAP"!important;color:rgba(232,95,85,.13)!important;right:22px!important;top:18px!important;}
+.rhythm-rule-list li{
+  background:#fff7df!important;
+  border:3px solid var(--line)!important;
+  border-radius:18px!important;
+  box-shadow:0 5px 0 rgba(53,33,22,.14)!important;
+}
+.rhythm-rule-list li span{font-size:13px!important;line-height:1.7!important;}
+.rhythm-rule-list li strong{font-weight:900;color:#c34b3f;}
+.rhythm-card{
+  background:linear-gradient(180deg,#fffefa,#fff4d5)!important;
+  border-width:5px!important;
+  box-shadow:0 12px 0 var(--line),0 26px 50px rgba(53,33,22,.16)!important;
+}
+.rhythm-card::before{display:none!important;}
+.rhythm-toolbar{margin-bottom:12px!important;}
+.rhythm-difficulty button,.game-difficulty button{white-space:nowrap!important;}
+.rhythm-hud div{
+  background:#fffaf0!important;
+  border:3px solid var(--line)!important;
+  border-radius:18px!important;
+  box-shadow:0 5px 0 rgba(53,33,22,.12)!important;
+}
+.rhythm-hud span{font-weight:900!important;letter-spacing:.08em!important;}
+.rhythm-hud b{font-size:clamp(19px,2.2vw,30px)!important;color:#352116!important;}
+.rhythm-canvas-wrap{
+  min-height:clamp(540px,53vw,700px)!important;
+  background:#f6edc9!important;
+  border:5px solid var(--line)!important;
+  border-radius:32px!important;
+  overflow:hidden!important;
+  box-shadow:inset 0 0 0 8px rgba(255,255,255,.70),0 9px 0 rgba(53,33,22,.24)!important;
+}
+.rhythm-hit-button{
+  background:linear-gradient(180deg,#ffdc66 0%,#ff995d 100%)!important;
+  color:#352116!important;
+  border-width:5px!important;
+  box-shadow:0 10px 0 var(--line),0 22px 42px rgba(53,33,22,.18)!important;
+  text-shadow:0 2px 0 rgba(255,255,255,.55)!important;
+}
+.rhythm-hit-button:active,.rhythm-hit-button.is-hit{transform:translateY(7px) scale(.992)!important;box-shadow:0 3px 0 var(--line),0 10px 20px rgba(53,33,22,.14)!important;}
+.rhythm-overlay p{
+  background:rgba(255,250,240,.94)!important;
+  border:3px solid rgba(53,33,22,.22)!important;
+  box-shadow:0 8px 26px rgba(53,33,22,.13)!important;
+}
+@media (max-width:900px){
+  .rhythm-copy{grid-template-columns:1fr!important;}
+  .rhythm-canvas-wrap{min-height:430px!important;}
+}
+@media (max-width:520px){
+  .rhythm-canvas-wrap{min-height:340px!important;border-radius:22px!important;}
+  .rhythm-hit-button{font-size:38px!important;min-height:68px!important;}
+}
+
 </style>
 </head>
 <body>
@@ -4412,17 +4486,17 @@ img,svg{max-width:100%;height:auto;}
 <section class="section rebloom-game rhythm-game" id="game">
   <div class="container game-shell rhythm-shell">
     <div class="game-copy rhythm-copy reveal">
-      <p class="eyebrow"><i></i>ONE BUTTON RHYTHM GAME</p>
-      <h2><span class="keep">音に合わせて、</span><br/><span class="pop-word">草を刈り、</span><br/>レンゲを咲かせる。</h2>
-      <p>操作はひとつだけ。音楽に合わせて、画面をタップ、クリック、またはスペースキーを押します。タイミングが合うほど草が気持ちよく刈られ、レンゲが一気に咲いていきます。</p>
+      <p class="eyebrow"><i></i>ONE BUTTON RHYTHM TOY</p>
+      <h2><span class="keep">見て押す、ではなく。</span><br/><span class="pop-word">聴いて、ノる。</span></h2>
+      <p>リズムに合わせて、草刈り・水やり・種まきのかけ声に返す一ボタンゲームです。流れてくるマークを目で追うのではなく、音の合図とノリで「ここだ」と感じた瞬間に押します。</p>
       <ul class="game-rule-list rhythm-rule-list">
-        <li><b>1</b><span>右から流れてくるマークが、左の丸い判定ラインに重なった瞬間に押します。</span></li>
-        <li><b>♪</b><span>PERFECTが続くとコンボが伸び、FEVERで画面いっぱいにレンゲが咲きます。</span></li>
-        <li><b>🌱</b><span>やさしいモードは判定を広めに。子どもや初めての人でも遊べます。</span></li>
-        <li><b>泥</b><span>どろんこモードは高速・裏拍あり。リズムに乗れるとかなり気持ちいい上級者向けです。</span></li>
+        <li><b>♪</b><span>音の合図を聞いて、返す拍で<strong>タップ / クリック / スペース</strong>。</span></li>
+        <li><b>休</b><span>「待て」の合図では押さない。押さない気持ちよさも入れました。</span></li>
+        <li><b>花</b><span>PERFECTが続くとFEVER。レンゲが一気に咲き、画面がにぎやかになります。</span></li>
+        <li><b>泥</b><span>子ども向けのゆっくりから、裏拍・フェイントありの高難度まで選べます。</span></li>
       </ul>
     </div>
-    <div class="game-card rhythm-card reveal" aria-label="Re:Bloom Beat Farm ゲーム">
+    <div class="game-card rhythm-card reveal" aria-label="Re:Bloom Rhythm Crew ゲーム">
       <div class="game-toolbar rhythm-toolbar">
         <div class="game-difficulty" aria-label="難易度選択">
           <button type="button" data-game-diff="easy" class="is-active">やさしい</button>
@@ -4439,17 +4513,17 @@ img,svg{max-width:100%;height:auto;}
       <div class="game-hud rhythm-hud" aria-live="polite">
         <div><span>開花</span><b id="gameArea">0本</b></div>
         <div><span>コンボ</span><b id="gameBloom">0</b></div>
-        <div><span>FEVER</span><b id="gameSupport">0%</b></div>
+        <div><span>ノリ</span><b id="gameSupport">0%</b></div>
         <div><span>残り</span><b id="gameLives">45s</b></div>
         <div><span>スコア</span><b id="gameScore">0</b></div>
       </div>
       <div class="game-canvas-wrap rhythm-canvas-wrap">
         <canvas id="rebloomGameCanvas" width="1280" height="720" aria-label="耕作放棄地をテーマにした一ボタンリズムゲーム"></canvas>
-        <div class="game-overlay-message rhythm-overlay"><p id="gameMessage">難易度を選んでスタート。音が出ます。リズムに合わせて、画面タップ・クリック・スペースキーで草を刈ろう。</p></div>
+        <div class="game-overlay-message rhythm-overlay"><p id="gameMessage">難易度を選んでスタート。音が出ます。合図を聞いて、返す拍でTAP / SPACE。</p></div>
       </div>
-      <button type="button" id="gameHitBtn" class="rhythm-hit-button" aria-label="リズムに合わせて押す">TAP / SPACE</button>
-      <p class="game-mobile-hint rhythm-mobile-hint">スマホでは、ゲーム画面または大きなボタンをリズムに合わせてタップします。音量を上げると遊びやすくなります。</p>
-      <p class="game-note">※このゲームは、NOTO Re:Bloomの世界観を楽しむための演出です。実際の整備工程や費用を表すものではありません。音はブラウザ上で生成しています。</p>
+      <button type="button" id="gameHitBtn" class="rhythm-hit-button" aria-label="リズムに合わせて押す">PUSH!</button>
+      <p class="game-mobile-hint rhythm-mobile-hint">スマホは画面か大きなボタンをタップ。目で追うゲームではないので、音量を上げて「かけ声に返す」感じで遊んでください。</p>
+      <p class="game-note">※このゲームは、NOTO Re:Bloomの世界観を楽しむためのオリジナル演出です。実際の整備工程や費用を表すものではありません。音はブラウザ上で生成しています。</p>
     </div>
   </div>
 </section>
@@ -5275,7 +5349,7 @@ img,svg{max-width:100%;height:auto;}
   const ui = {
     flowers: document.getElementById('gameArea'),
     combo: document.getElementById('gameBloom'),
-    fever: document.getElementById('gameSupport'),
+    groove: document.getElementById('gameSupport'),
     time: document.getElementById('gameLives'),
     score: document.getElementById('gameScore'),
     message: document.getElementById('gameMessage'),
@@ -5287,50 +5361,30 @@ img,svg{max-width:100%;height:auto;}
   };
 
   const difficulties = {
-    easy: { label:'やさしい', bpm:88, length:42, pre:2.2, good:0.23, perfect:0.105, density:.48, scoreMul:1, pattern:'easy', cue:'ゆっくり大きめ判定' },
-    normal: { label:'ふつう', bpm:108, length:46, pre:2.0, good:0.18, perfect:0.082, density:.62, scoreMul:1.2, pattern:'normal', cue:'表拍＋軽い裏拍' },
-    hard: { label:'本気', bpm:126, length:50, pre:1.8, good:0.135, perfect:0.06, density:.78, scoreMul:1.55, pattern:'hard', cue:'連打と裏拍あり' },
-    mud: { label:'どろんこ', bpm:144, length:54, pre:1.6, good:0.105, perfect:0.046, density:.9, scoreMul:2.05, pattern:'mud', cue:'高速・裏拍・密度高め' }
+    easy:   { label:'やさしい', bpm:88,  length:38, pre:2.8, good:.25, perfect:.11, scoreMul:1.00, pattern:'easy',   guide:'大きな合図で、ゆっくり返す' },
+    normal: { label:'ふつう',   bpm:104, length:44, pre:2.4, good:.19, perfect:.085,scoreMul:1.25, pattern:'normal', guide:'合図・休み・2連打あり' },
+    hard:   { label:'本気',     bpm:122, length:50, pre:2.1, good:.14, perfect:.062,scoreMul:1.60, pattern:'hard',   guide:'裏拍とフェイントあり' },
+    mud:    { label:'どろんこ', bpm:142, length:54, pre:1.9, good:.105,perfect:.047,scoreMul:2.10, pattern:'mud',    guide:'高速・変則・待つ判断あり' }
   };
 
   const palette = {
-    ink:'#352116', soil:'#8d5b34', cream:'#fffaf0', green:'#4f9a5c', green2:'#89bd5c', yellow:'#ffd45a', pink:'#ff9fca', blue:'#72c8e8', red:'#e85f55', purple:'#aa80ff', field:'#dcebb8'
+    ink:'#352116', soil:'#8d5b34', cream:'#fffaf0', paper:'#fffefa', green:'#4f9a5c', green2:'#82bb57', yellow:'#ffd45a', orange:'#ff995d', pink:'#ff9fca', blue:'#72c8e8', red:'#e85f55', purple:'#aa80ff', mint:'#dff1a7'
   };
 
   let diffKey = 'easy';
   let config = difficulties[diffKey];
-  let audio = null;
-  let master = null;
-  let startedAtAudio = 0;
-  let startPerf = 0;
-  let running = false;
-  let stopped = true;
-  let notes = [];
-  let score = 0;
-  let combo = 0;
-  let maxCombo = 0;
-  let flowers = 0;
-  let fever = 0;
-  let feverActiveUntil = 0;
-  let judgePops = [];
-  let particles = [];
-  let fieldTiles = [];
-  let pressFlash = 0;
-  let screenShake = 0;
-  let lastFrame = 0;
-  let endingShown = false;
-
-  const hitX = 255;
-  const trackY = H * 0.48;
-  const pxPerSec = 445;
-  const noteR = 24;
+  let audio = null, master = null;
+  let startedAtAudio = 0, startPerf = 0;
+  let running = false, stopped = true, endingShown = false;
+  let actions = [], rests = [], cues = [];
+  let score = 0, combo = 0, maxCombo = 0, flowers = 0, groove = 0;
+  let feverUntil = 0, lastFrame = 0, pressFlash = 0, screenShake = 0;
+  let judgePops = [], particles = [], fieldTiles = [], dancers = [];
+  let mascotState = 'idle', currentCue = '音を聞いて';
+  let lastTapTime = -99;
 
   const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
-  const lerp = (a,b,t) => a + (b-a)*t;
-  const nowTime = () => {
-    if (audio && running) return Math.max(0, audio.currentTime - startedAtAudio);
-    return Math.max(0, (performance.now() - startPerf) / 1000);
-  };
+  const nowTime = () => audio && running ? Math.max(0, audio.currentTime - startedAtAudio) : Math.max(0, (performance.now() - startPerf)/1000);
 
   function ensureAudio(){
     if (!audio) {
@@ -5338,468 +5392,385 @@ img,svg{max-width:100%;height:auto;}
       if (!AC) return null;
       audio = new AC();
       master = audio.createGain();
-      master.gain.value = 0.42;
+      master.gain.value = .46;
       master.connect(audio.destination);
     }
     if (audio.state === 'suspended') audio.resume();
     return audio;
   }
 
-  function tone(freq, time, dur, type='sine', gain=.08, dest=master){
+  function tone(freq,time,dur,type='sine',gain=.08,dest=master){
     if (!audio || !dest) return;
     const osc = audio.createOscillator();
     const g = audio.createGain();
     osc.type = type;
-    osc.frequency.setValueAtTime(freq, time);
-    g.gain.setValueAtTime(0.0001, time);
-    g.gain.exponentialRampToValueAtTime(Math.max(0.0002,gain), time + 0.008);
-    g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
-    osc.connect(g); g.connect(dest);
-    osc.start(time); osc.stop(time + dur + 0.03);
+    osc.frequency.setValueAtTime(freq,time);
+    g.gain.setValueAtTime(.0001,time);
+    g.gain.exponentialRampToValueAtTime(Math.max(.0002,gain),time+.01);
+    g.gain.exponentialRampToValueAtTime(.0001,time+dur);
+    osc.connect(g); g.connect(dest); osc.start(time); osc.stop(time+dur+.04);
   }
-
-  function noise(time, dur, gain=.06, filterFreq=1200){
+  function noise(time,dur,gain=.05,filterFreq=1600){
     if (!audio || !master) return;
-    const bufferSize = Math.max(1, Math.floor(audio.sampleRate * dur));
-    const buffer = audio.createBuffer(1, bufferSize, audio.sampleRate);
+    const n = Math.max(1, Math.floor(audio.sampleRate*dur));
+    const buffer = audio.createBuffer(1,n,audio.sampleRate);
     const data = buffer.getChannelData(0);
-    for (let i=0;i<bufferSize;i++) data[i] = Math.random()*2-1;
+    for (let i=0;i<n;i++) data[i] = (Math.random()*2-1) * (1-i/n);
     const src = audio.createBufferSource(); src.buffer = buffer;
-    const filter = audio.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = filterFreq; filter.Q.value = .9;
-    const g = audio.createGain();
-    g.gain.setValueAtTime(gain, time);
-    g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
-    src.connect(filter); filter.connect(g); g.connect(master);
-    src.start(time); src.stop(time+dur+.02);
+    const filter = audio.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = filterFreq; filter.Q.value = .85;
+    const g = audio.createGain(); g.gain.setValueAtTime(gain,time); g.gain.exponentialRampToValueAtTime(.0001,time+dur);
+    src.connect(filter); filter.connect(g); g.connect(master); src.start(time); src.stop(time+dur+.03);
   }
-
   function kick(time){
-    if (!audio) return;
-    const osc = audio.createOscillator();
-    const g = audio.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(138, time);
-    osc.frequency.exponentialRampToValueAtTime(45, time + .13);
-    g.gain.setValueAtTime(.18, time);
-    g.gain.exponentialRampToValueAtTime(.0001, time + .18);
-    osc.connect(g); g.connect(master);
-    osc.start(time); osc.stop(time+.21);
+    const osc = audio.createOscillator(); const g = audio.createGain();
+    osc.type='sine'; osc.frequency.setValueAtTime(136,time); osc.frequency.exponentialRampToValueAtTime(44,time+.12);
+    g.gain.setValueAtTime(.17,time); g.gain.exponentialRampToValueAtTime(.0001,time+.17);
+    osc.connect(g); g.connect(master); osc.start(time); osc.stop(time+.2);
   }
+  function snare(time){ noise(time,.08,.07,1850); tone(210,time,.07,'triangle',.03); }
+  function hat(time,strong=false){ noise(time,.035,strong?.04:.022,5600); }
 
-  function snare(time){ noise(time, .08, .07, 1800); tone(210, time, .08, 'triangle', .035); }
-  function hat(time, strong=false){ noise(time, .035, strong ? .045 : .025, 5200); }
-
-  function hitSound(kind, diff){
+  function cueSound(kind,time){
+    if (kind === 'cut') { tone(330,time,.08,'square',.055); noise(time+.02,.045,.025,2500); }
+    if (kind === 'water') { tone(520,time,.09,'sine',.04); noise(time+.025,.09,.035,900); }
+    if (kind === 'seed') { tone(660,time,.07,'triangle',.05); tone(880,time+.07,.06,'triangle',.035); }
+    if (kind === 'bloom') { [523,659,784].forEach((f,i)=>tone(f,time+i*.045,.12,'triangle',.04)); }
+    if (kind === 'rest') { tone(185,time,.09,'sawtooth',.035); }
+  }
+  function hitSound(kind){
     if (!audio) return;
     const t = audio.currentTime + .002;
-    if (kind === 'perfect') {
-      tone(660, t, .055, 'square', .08);
-      tone(990, t+.035, .07, 'triangle', .07);
-      noise(t, .045, .035, 3000);
-    } else if (kind === 'good') {
-      tone(520, t, .06, 'triangle', .07);
-      noise(t, .04, .025, 2300);
-    } else {
-      tone(170, t, .10, 'sawtooth', .045);
-      noise(t, .08, .04, 600);
+    if (kind === 'perfect') { tone(740,t,.05,'square',.075); tone(1110,t+.04,.07,'triangle',.062); noise(t,.035,.028,3400); }
+    else if (kind === 'good') { tone(560,t,.06,'triangle',.064); noise(t,.035,.019,2500); }
+    else { tone(150,t,.11,'sawtooth',.04); noise(t,.09,.038,540); }
+  }
+
+  function buildPattern(){
+    const beat = 60/config.bpm;
+    const start = config.pre;
+    const end = config.length - 1.2;
+    const a = [], r = [], c = [];
+    const addCue = (time, text, kind='cut') => { if (time > .15) c.push({time, text, kind}); };
+    const addAction = (beatIndex, offset, kind='cut', text='ザクッ') => {
+      const time = start + (beatIndex + offset)*beat;
+      if (time >= end) return;
+      a.push({time, kind, text, judged:false, id:a.length});
+      addCue(time - beat, kind==='water'?'水、入れる':kind==='seed'?'種、まく':kind==='bloom'?'咲かせる':'草、刈る', kind);
+    };
+    const addRest = (beatIndex, offset, text='待つ') => {
+      const time = start + (beatIndex + offset)*beat;
+      if (time >= end) return;
+      r.push({time,text,judged:false,id:r.length});
+      addCue(time - beat, '待て', 'rest');
+    };
+    const maxBeat = Math.floor((end-start)/beat);
+    for (let b=0;b<maxBeat;b+=4){
+      if (config.pattern === 'easy') {
+        addAction(b+1,0,'cut','ザクッ'); addAction(b+3,0,(b%16===0?'seed':'cut'),'ポン');
+      } else if (config.pattern === 'normal') {
+        addAction(b,0,'cut','ザクッ'); addAction(b+2,0,'water','スイッ');
+        if (b%8===0) { addAction(b+3,.5,'seed','ポン'); } else { addRest(b+3,0,'待つ'); }
+      } else if (config.pattern === 'hard') {
+        addAction(b,0,'cut','ザクッ'); addAction(b+1,.5,'seed','ポン'); addRest(b+2,0,'待つ'); addAction(b+2,.5,'water','スイッ');
+        if (b%8===4) { addAction(b+3,0,'cut','ザク'); addAction(b+3,.5,'bloom','咲け'); }
+      } else {
+        addAction(b,0,'cut','ザク'); addAction(b+.5,0,'seed','ポン'); addRest(b+1,0,'待つ'); addAction(b+1.5,0,'water','スイ');
+        addAction(b+2,.25,'cut','ザク'); addAction(b+2,.75,'seed','ポン');
+        if (b%8===0) addRest(b+3,.5,'待つ'); else { addAction(b+3,0,'bloom','咲け'); addAction(b+3,.5,'cut','ザク'); }
+      }
     }
+    actions = a.sort((x,y)=>x.time-y.time);
+    rests = r.sort((x,y)=>x.time-y.time);
+    cues = c.sort((x,y)=>x.time-y.time);
   }
 
   function scheduleMusic(){
     if (!audio || !master) return;
-    const start = startedAtAudio;
-    const beat = 60 / config.bpm;
-    const bars = Math.ceil((config.length + 5) / (beat*4));
-    const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+    const start = startedAtAudio, beat = 60/config.bpm;
+    const bars = Math.ceil((config.length+6)/(beat*4));
+    const scale = [261.63,329.63,392.00,493.88,523.25,392.00,329.63,293.66];
     for (let i=0;i<bars*4;i++) {
       const t = start + i*beat;
       kick(t);
-      if (i % 4 === 1 || i % 4 === 3) snare(t);
+      if (i%4===1 || i%4===3) snare(t);
       hat(t, i%2===0);
-      if (i % 2 === 0) {
-        const base = scale[(Math.floor(i/2)) % scale.length];
-        tone(base, t+.02, beat*.42, 'triangle', .032);
-        tone(base*1.5, t+.05, beat*.35, 'sine', .02);
-      }
-      if (config.pattern === 'hard' || config.pattern === 'mud') {
-        hat(t + beat/2, false);
-        if (config.pattern === 'mud' && i % 4 === 2) tone(392, t + beat*.75, beat*.18, 'square', .022);
-      }
+      tone(scale[i%scale.length], t+.02, beat*.38, 'triangle', .026);
+      if (config.pattern === 'hard' || config.pattern === 'mud') hat(t+beat*.5,false);
+      if (config.pattern === 'mud' && i%4===2) tone(392,t+beat*.75,beat*.12,'square',.018);
     }
+    cues.forEach(cue => cueSound(cue.kind, start+cue.time));
+    // Count-in with clearly separated tones
+    for (let i=0;i<4;i++) tone(i===3?740:520, start - (4-i)*beat*.5, .08, 'square', i===3?.07:.045);
   }
 
-  function generateNotes(){
-    const beat = 60 / config.bpm;
-    const list = [];
-    const start = config.pre;
-    const end = config.length - 2.2;
-    let beatIndex = 0;
-    const add = (b, offset=0, type='weed', lane=0) => {
-      const time = start + (b + offset) * beat;
-      if (time < end) list.push({ time, type, lane, judged:false, result:null, born:Math.random() });
-    };
-    const maxBeat = Math.floor((end - start) / beat);
-    for (let b=0; b<maxBeat; b++) {
-      if (config.pattern === 'easy') {
-        if (b % 2 === 0) add(b,0, b%8===0?'seed':'weed', b%3);
-      } else if (config.pattern === 'normal') {
-        if (b % 2 === 0 || (b % 8 === 5)) add(b,0, b%10===0?'water':(b%6===0?'seed':'weed'), b%3);
-        if (b % 16 === 14) add(b,.5,'flower',1);
-      } else if (config.pattern === 'hard') {
-        if (b % 2 === 0) add(b,0, b%12===0?'water':'weed', b%3);
-        if (b % 4 === 3) add(b,.5, b%8===3?'seed':'weed', (b+1)%3);
-        if (b % 16 === 11) { add(b,0,'weed',0); add(b,.5,'flower',2); }
-      } else {
-        if (b % 2 === 0) add(b,0, b%12===0?'water':'weed', b%3);
-        if (b % 4 === 1) add(b,.5,'seed', (b+2)%3);
-        if (b % 8 === 6) { add(b,0,'weed',0); add(b,.33,'weed',1); add(b,.66,'flower',2); }
-        if (b % 16 === 13) add(b,.25,'mud',1);
-      }
-    }
-    return list.sort((a,b)=>a.time-b.time).map((n,i)=>({...n,id:i}));
-  }
-
-  function resetVisualField(){
+  function resetField(){
     fieldTiles = [];
-    const cols = 15, rows = 4;
-    for (let r=0;r<rows;r++) for (let c=0;c<cols;c++) fieldTiles.push({c,r, bloom:false, t:0, sway:Math.random()*10});
+    const cols=13, rows=4;
+    for (let r=0;r<rows;r++) for (let c=0;c<cols;c++) fieldTiles.push({r,c,bloom:false,t:0,weed:Math.random()*.8});
+    dancers = Array.from({length:5},(_,i)=>({x:120+i*72,y:570+Math.sin(i)*12,phase:Math.random()*Math.PI*2}));
   }
-
-  function resetGame(keepMessage=false){
-    running = false;
-    stopped = true;
-    endingShown = false;
-    config = difficulties[diffKey];
-    notes = generateNotes();
-    score = 0; combo = 0; maxCombo = 0; flowers = 0; fever = 0; feverActiveUntil = 0;
-    judgePops = []; particles = []; pressFlash = 0; screenShake = 0;
-    resetVisualField();
-    updateUi(0);
-    if (!keepMessage) setMessage('難易度を選んでスタート。音楽に合わせて、画面タップ・クリック・スペースキーで草を刈ろう。');
-    draw(0);
+  function resetGame(keepMsg=false){
+    buildPattern(); resetField();
+    score=0; combo=0; maxCombo=0; flowers=0; groove=0; feverUntil=0; judgePops=[]; particles=[]; pressFlash=0; screenShake=0; lastFrame=0; endingShown=false; stopped=true; running=false; mascotState='idle'; currentCue='音を聞いて'; lastTapTime=-99;
+    updateUi(0); draw(0);
+    if (!keepMsg) setMessage('音の合図を聞いて、返す拍で押すゲームです。難易度を選んでスタート。');
   }
-
   function setMessage(text){ if (ui.message) ui.message.textContent = text; }
-
-  function updateUi(t=nowTime()){
+  function updateUi(t){
     if (ui.flowers) ui.flowers.textContent = `${flowers}本`;
-    if (ui.combo) ui.combo.textContent = `${combo}`;
-    if (ui.fever) ui.fever.textContent = feverActiveUntil > t ? 'FEVER!' : `${Math.round(fever)}%`;
-    if (ui.time) ui.time.textContent = running ? `${Math.max(0, Math.ceil(config.length - t))}s` : `${config.length}s`;
-    if (ui.score) ui.score.textContent = score.toLocaleString('ja-JP');
+    if (ui.combo) ui.combo.textContent = String(combo);
+    if (ui.groove) ui.groove.textContent = `${Math.round(groove)}%`;
+    if (ui.time) ui.time.textContent = `${Math.max(0, Math.ceil(config.length - t))}s`;
+    if (ui.score) ui.score.textContent = String(score.toLocaleString('ja-JP'));
   }
 
   function startGame(){
-    ensureAudio();
-    config = difficulties[diffKey];
-    notes = generateNotes();
-    score = 0; combo = 0; maxCombo = 0; flowers = 0; fever = 0; feverActiveUntil = 0;
-    judgePops = []; particles = []; pressFlash = 0; screenShake = 0; endingShown = false;
-    resetVisualField();
+    ensureAudio(); if (!audio) { setMessage('このブラウザでは音の生成に対応していません。'); return; }
+    master.gain.cancelScheduledValues(audio.currentTime); master.gain.setTargetAtTime(.46,audio.currentTime,.02);
+    buildPattern(); resetField();
+    score=0; combo=0; maxCombo=0; flowers=0; groove=0; feverUntil=0; judgePops=[]; particles=[]; pressFlash=0; screenShake=0; endingShown=false; lastFrame=0; stopped=false;
+    startedAtAudio = audio.currentTime + .55;
     startPerf = performance.now();
-    startedAtAudio = audio ? audio.currentTime + 0.08 : 0;
-    running = true; stopped = false;
+    running = true;
     scheduleMusic();
-    setMessage(`${config.label}モード：${config.cue}。音に合わせてTAP / SPACE。`);
+    setMessage(`${config.label}：${config.guide}。流れてくる印ではなく、音の合図に返す感覚で押してください。`);
     requestAnimationFrame(loop);
   }
-
   function stopGame(){
-    running = false; stopped = true;
-    setMessage('停止しました。もう一度スタートすると最初から遊べます。');
-    if (audio && audio.state === 'running') {
-      // 音を短くミュートして残響を切る
-      master.gain.cancelScheduledValues(audio.currentTime);
-      master.gain.setTargetAtTime(0.0001, audio.currentTime, .03);
-      setTimeout(()=>{ if (master) master.gain.value = .42; }, 180);
-    }
+    running=false; stopped=true;
+    setMessage('停止しました。スタートすると最初から遊べます。');
+    if (audio && master) { master.gain.cancelScheduledValues(audio.currentTime); master.gain.setTargetAtTime(.0001,audio.currentTime,.03); setTimeout(()=>{ if(master) master.gain.value=.46; },220); }
     draw(nowTime());
   }
 
-  function nearestNote(t){
-    let best = null, bestDelta = Infinity;
-    for (const n of notes) {
-      if (n.judged) continue;
-      const d = Math.abs(n.time - t);
-      if (d < bestDelta) { best = n; bestDelta = d; }
-      if (n.time - t > config.good + .08) break;
-    }
-    return { note: best, delta: bestDelta };
-  }
-
-  function bloomTile(){
-    const candidates = fieldTiles.filter(x=>!x.bloom);
-    if (!candidates.length) return;
-    const tile = candidates[Math.floor(Math.random()*candidates.length)];
-    tile.bloom = true; tile.t = 1;
-  }
-
-  function addParticles(x,y,color,count=16,power=1){
+  function bloomTiles(count=1){
     for (let i=0;i<count;i++) {
-      const a = Math.random()*Math.PI*2;
-      const sp = (2+Math.random()*5)*power;
-      particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.2,life:44+Math.random()*22,size:3+Math.random()*6,color});
+      const cand = fieldTiles.filter(x=>!x.bloom);
+      if (!cand.length) return;
+      const tile = cand[Math.floor(Math.random()*cand.length)]; tile.bloom=true; tile.t=1;
     }
   }
-
-  function addJudge(text, x, y, color){
-    judgePops.push({text,x,y,color,life:60,vy:-1.4,scale:text==='PERFECT'?1.22:1});
+  function addParticles(x,y,color,count=18,power=1){
+    for(let i=0;i<count;i++){
+      const a=Math.random()*Math.PI*2, sp=(1.5+Math.random()*5.6)*power;
+      particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.2,life:36+Math.random()*24,size:3+Math.random()*7,color});
+    }
   }
-
+  function addJudge(text,x,y,color){ judgePops.push({text,x,y,color,life:58,vy:-1.4,scale:text.includes('PERFECT')?1.14:1}); }
   function startFever(t){
-    feverActiveUntil = t + (diffKey === 'easy' ? 5.8 : diffKey === 'mud' ? 4.2 : 5.0);
-    fever = 0;
-    setMessage('Re:Bloom FEVER！レンゲが一気に咲く時間です。');
-    addParticles(W/2, H*.48, palette.pink, 90, 1.8);
-    if (audio) {
-      const ct = audio.currentTime;
-      [523.25,659.25,783.99,1046.5].forEach((f,i)=> tone(f, ct+i*.04, .22, 'triangle', .075));
-      noise(ct, .18, .06, 3200);
-    }
+    feverUntil = t + (diffKey==='easy'?5.8:diffKey==='mud'?4.2:5.0);
+    groove = 0;
+    mascotState='fever';
+    setMessage('FEVER！レンゲが一気に咲く時間です。音に乗って押すほど花が増えます。');
+    bloomTiles(8); addParticles(W/2,H*.49,palette.pink,90,1.9);
+    if (audio) [523,659,784,1046].forEach((f,i)=>tone(f,audio.currentTime+i*.045,.2,'triangle',.075));
   }
 
+  function nearestAction(t){
+    let best=null, bestDelta=Infinity;
+    for (const a of actions) { if (a.judged) continue; const d=Math.abs(a.time-t); if (d<bestDelta){best=a;bestDelta=d;} if (a.time-t > config.good+.08) break; }
+    return {action:best, delta:bestDelta};
+  }
+  function nearestRest(t){
+    let best=null, bestDelta=Infinity;
+    for (const r of rests) { const d=Math.abs(r.time-t); if (d<bestDelta){best=r;bestDelta=d;} if (r.time-t > config.good+.08) break; }
+    return {rest:best, delta:bestDelta};
+  }
   function hit(){
-    ui.hit?.classList.add('is-hit');
-    setTimeout(()=>ui.hit?.classList.remove('is-hit'), 90);
+    ui.hit?.classList.add('is-hit'); setTimeout(()=>ui.hit?.classList.remove('is-hit'),90);
     if (!running) { startGame(); return; }
-    const t = nowTime();
-    pressFlash = 1;
-    const {note, delta} = nearestNote(t);
-    if (!note || delta > config.good) {
-      combo = 0;
-      fever = Math.max(0, fever - 7);
-      addJudge('MISS', hitX, trackY-76, palette.red);
-      addParticles(hitX, trackY, palette.soil, 12, .7);
-      hitSound('miss');
-      screenShake = 8;
-      updateUi(t);
-      return;
+    const t = nowTime(); lastTapTime = t; pressFlash = 1;
+    const {rest, delta:restDelta} = nearestRest(t);
+    const {action, delta} = nearestAction(t);
+    if (rest && restDelta < config.good && (!action || restDelta < delta)) {
+      combo=0; groove=Math.max(0,groove-10); mascotState='oops'; screenShake=7; addJudge('待つとこ!', W*.5, H*.36, palette.red); hitSound('miss'); updateUi(t); return;
     }
-    note.judged = true;
+    if (!action || delta > config.good) {
+      combo=0; groove=Math.max(0,groove-8); mascotState='oops'; screenShake=6; addJudge('MISS', W*.5, H*.36, palette.red); addParticles(W*.5,H*.46,palette.soil,16,.8); hitSound('miss'); updateUi(t); return;
+    }
+    action.judged = true;
     const perfect = delta <= config.perfect;
-    const inFever = feverActiveUntil > t;
-    const base = perfect ? 120 : 70;
-    const mult = (1 + Math.min(combo, 60)*.025) * config.scoreMul * (inFever ? 2.0 : 1);
-    score += Math.round(base * mult);
-    combo += 1;
-    maxCombo = Math.max(maxCombo, combo);
-    const flowerAdd = note.type === 'flower' || note.type === 'seed' ? 3 : inFever ? 2 : 1;
-    flowers += flowerAdd;
-    for (let i=0;i<flowerAdd;i++) bloomTile();
-    fever = clamp(fever + (perfect ? 12 : 7), 0, 100);
-    const noteX = hitX + (note.time - t) * pxPerSec;
-    addJudge(perfect ? 'PERFECT!' : 'GOOD!', hitX+20, trackY-84, perfect ? palette.yellow : palette.blue);
-    addParticles(noteX, trackY + note.lane*28 - 28, note.type === 'water' ? palette.blue : note.type === 'seed' ? palette.pink : palette.green, perfect ? 32 : 20, perfect ? 1.25 : 1);
-    hitSound(perfect ? 'perfect' : 'good');
-    screenShake = perfect ? 5 : 2;
-    if (fever >= 100) startFever(t);
+    const inFever = feverUntil > t;
+    combo++; maxCombo=Math.max(maxCombo,combo);
+    const mult = (1 + Math.min(combo,80)*.027) * config.scoreMul * (inFever?2.05:1);
+    score += Math.round((perfect?140:85)*mult);
+    const flowerAdd = action.kind==='bloom'?4:action.kind==='seed'?3:inFever?2:1;
+    flowers += flowerAdd; bloomTiles(flowerAdd);
+    groove = clamp(groove + (perfect?13:8),0,100);
+    mascotState=action.kind;
+    const msg = perfect ? 'PERFECT!' : 'GOOD!';
+    addJudge(msg, W*.52, H*.35, perfect?palette.yellow:palette.blue);
+    addParticles(W*.54, H*.51, action.kind==='water'?palette.blue:action.kind==='seed'?palette.pink:action.kind==='bloom'?palette.yellow:palette.green, perfect?38:24, perfect?1.25:1);
+    hitSound(perfect?'perfect':'good');
+    screenShake=perfect?5:2;
+    if (groove >= 100) startFever(t);
     updateUi(t);
   }
 
-  function update(t, dt){
-    // missed notes
-    for (const n of notes) {
-      if (!n.judged && t - n.time > config.good) {
-        n.judged = true; n.result = 'miss'; combo = 0; fever = Math.max(0, fever - 5);
-        addJudge('MISS', hitX, trackY - 70 + n.lane*18, palette.red);
-        hitSound('miss');
+  function update(t,dt){
+    const beat = 60/config.bpm;
+    // update current cue label
+    const nextCue = cues.find(c => c.time <= t + beat*1.2 && c.time > t - beat*.6);
+    if (nextCue) currentCue = nextCue.text;
+    for (const a of actions) {
+      if (!a.judged && t - a.time > config.good) {
+        a.judged=true; combo=0; groove=Math.max(0,groove-5); mascotState='oops'; addJudge('MISS',W*.5,H*.36,palette.red); hitSound('miss');
       }
     }
-    pressFlash = Math.max(0, pressFlash - dt*4.4);
-    screenShake = Math.max(0, screenShake - dt*18);
-    judgePops.forEach(p => { p.life -= dt*60; p.y += p.vy*dt*60; p.vy *= .985; });
-    judgePops = judgePops.filter(p => p.life > 0);
-    particles.forEach(p => { p.life -= dt*60; p.x += p.vx*dt*60; p.y += p.vy*dt*60; p.vy += .12*dt*60; });
-    particles = particles.filter(p => p.life > 0);
-    fieldTiles.forEach(tile => { tile.t = Math.max(0, tile.t - dt*1.8); });
-    if (running && t >= config.length && !endingShown) finishGame();
+    pressFlash=Math.max(0,pressFlash-dt*5.2); screenShake=Math.max(0,screenShake-dt*18);
+    judgePops.forEach(p=>{p.life-=dt*60; p.y+=p.vy*dt*60; p.vy*=.985;}); judgePops=judgePops.filter(p=>p.life>0);
+    particles.forEach(p=>{p.life-=dt*60; p.x+=p.vx*dt*60; p.y+=p.vy*dt*60; p.vy+=.13*dt*60;}); particles=particles.filter(p=>p.life>0);
+    fieldTiles.forEach(tile=>{tile.t=Math.max(0,tile.t-dt*1.7); tile.weed+=dt*.8;});
+    if (t >= config.length && !endingShown) finishGame();
     updateUi(t);
   }
-
   function finishGame(){
-    running = false; endingShown = true;
-    const rank = score > config.length*260 ? 'S' : score > config.length*170 ? 'A' : score > config.length*95 ? 'B' : 'C';
-    setMessage(`RESULT：${rank}ランク。${flowers}本のレンゲが咲きました。最大コンボは${maxCombo}。もう一度挑戦できます。`);
-    if (audio) {
-      const t = audio.currentTime;
-      [523,659,784,1046].forEach((f,i)=> tone(f, t+i*.08, .28, 'triangle', .07));
-    }
+    running=false; endingShown=true; stopped=false;
+    const rate = score / (config.length*210*config.scoreMul);
+    const rank = rate>1.08?'S':rate>.82?'A':rate>.55?'B':'C';
+    setMessage(`RESULT：${rank}ランク。${flowers}本のレンゲが咲きました。最大コンボは${maxCombo}。もう一度、音に乗って挑戦できます。`);
+    if (audio) [523,659,784,1046].forEach((f,i)=>tone(f,audio.currentTime+i*.07,.25,'triangle',.07));
     draw(config.length);
   }
 
-  function roundRect(x,y,w,h,r){
-    ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
-  }
+  function roundRect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+  function star(cx,cy,r1,r2,n=5){ ctx.beginPath(); for(let i=0;i<n*2;i++){ const a=-Math.PI/2+i*Math.PI/n; const r=i%2?r2:r1; const x=cx+Math.cos(a)*r, y=cy+Math.sin(a)*r; if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);} ctx.closePath(); }
 
   function drawBackground(t){
+    const fever = feverUntil > t;
     ctx.clearRect(0,0,W,H);
-    const feverOn = feverActiveUntil > t;
-    const g = ctx.createLinearGradient(0,0,0,H);
-    g.addColorStop(0, feverOn ? '#fff1b6' : '#fffce7');
-    g.addColorStop(.58, feverOn ? '#f6f6bf' : '#e5f2bd');
-    g.addColorStop(1, '#cfe2a6');
-    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
-    ctx.save();
-    ctx.globalAlpha = feverOn ? .34 : .18;
-    ctx.strokeStyle = palette.green;
-    ctx.lineWidth = 1;
-    for (let x=-80;x<W+80;x+=58){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x+80,H); ctx.stroke(); }
-    for (let y=0;y<H;y+=58){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+    const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,fever?'#fff1b7':'#fff7df'); g.addColorStop(.58,fever?'#ffefd3':'#f4edc6'); g.addColorStop(1,'#d9e9ad'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    ctx.save(); ctx.globalAlpha=.18; ctx.fillStyle=palette.green;
+    for(let x=-40;x<W+40;x+=78){ for(let y=116;y<H;y+=74){ ctx.beginPath(); ctx.ellipse(x+(y%2)*.2,y,22,9,Math.sin(t+x)*.2,0,Math.PI*2); ctx.fill(); }}
     ctx.restore();
-    ctx.fillStyle = 'rgba(255,255,255,.72)';
-    roundRect(24,18,W-48,66,22); ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle='rgba(53,33,22,.18)'; ctx.stroke();
-    ctx.fillStyle = palette.ink; ctx.textAlign='left'; ctx.font='900 30px "M PLUS Rounded 1c", sans-serif';
-    ctx.fillText('Re:Bloom Beat Farm', 48, 59);
-    ctx.font='900 14px "M PLUS Rounded 1c", sans-serif'; ctx.fillStyle='rgba(53,33,22,.58)';
-    ctx.fillText(`1ボタン / ${config.label} / BPM ${config.bpm}`, 390, 59);
+    // Big clean white title card, placed away from action.
+    ctx.fillStyle='rgba(255,254,250,.94)'; roundRect(28,24,W-56,76,24); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle='rgba(53,33,22,.18)'; ctx.stroke();
+    ctx.fillStyle=palette.ink; ctx.textAlign='left'; ctx.font='900 30px "M PLUS Rounded 1c", sans-serif'; ctx.fillText('Re:Bloom Rhythm Crew',54,67);
+    ctx.font='900 14px "M PLUS Rounded 1c", sans-serif'; ctx.fillStyle='rgba(53,33,22,.62)'; ctx.fillText(`1ボタン / ${config.label} / BPM ${config.bpm} / ${config.guide}`,390,67);
   }
 
-  function drawFieldTiles(){
-    const cols = 15, rows = 4;
-    const margin = 44, gap = 7;
-    const tileW = (W - margin*2 - gap*(cols-1)) / cols;
-    const tileH = 38;
-    const top = H - 188;
-    fieldTiles.forEach(tile => {
-      const x = margin + tile.c*(tileW+gap);
-      const y = top + tile.r*(tileH+gap);
-      ctx.save();
-      roundRect(x,y,tileW,tileH,10);
-      ctx.fillStyle = tile.bloom ? '#f8d8e4' : '#88aa61';
-      ctx.fill();
-      ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(53,33,22,.28)'; ctx.stroke();
-      if (tile.bloom) {
-        const cx = x+tileW/2, cy = y+tileH/2+2;
-        ctx.translate(cx,cy); ctx.scale(1+tile.t*.18,1+tile.t*.18);
-        ctx.fillStyle = palette.green; ctx.fillRect(-2,2,4,11);
-        ctx.fillStyle = palette.pink;
-        for (let i=0;i<5;i++){ ctx.rotate(Math.PI*2/5); ctx.beginPath(); ctx.ellipse(0,-6,4,7,0,0,Math.PI*2); ctx.fill(); }
-        ctx.fillStyle = palette.yellow; ctx.beginPath(); ctx.arc(0,0,3.5,0,Math.PI*2); ctx.fill();
+  function drawBeatMeter(t){
+    const beat=60/config.bpm, phase=((t-config.pre)%beat+beat)%beat/beat;
+    const cx=1080, cy=152;
+    ctx.save();
+    ctx.fillStyle='rgba(255,250,240,.92)'; roundRect(cx-150,cy-48,300,96,24); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke();
+    ctx.fillStyle=palette.ink; ctx.font='900 13px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.fillText('BEAT',cx,cy-24);
+    for(let i=0;i<4;i++){
+      const x=cx-78+i*52; const active=Math.floor((t-config.pre)/beat)%4===i;
+      ctx.beginPath(); ctx.arc(x,cy+10,active?18:13,0,Math.PI*2); ctx.fillStyle=active?palette.yellow:'#fff'; ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle=palette.ink; ctx.stroke();
+    }
+    ctx.fillStyle=palette.red; ctx.beginPath(); ctx.arc(cx-78+phase*52,cy+39,5,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawField(t){
+    const cols=13, rows=4, gap=7, margin=82, tileW=(W-margin*2-gap*(cols-1))/cols, tileH=42, top=H-222;
+    fieldTiles.forEach(tile=>{
+      const x=margin+tile.c*(tileW+gap), y=top+tile.r*(tileH+gap);
+      ctx.save(); roundRect(x,y,tileW,tileH,12); ctx.fillStyle=tile.bloom?'#ffd9e8':'#86aa57'; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='rgba(53,33,22,.30)'; ctx.stroke();
+      if(tile.bloom){
+        const cx=x+tileW/2, cy=y+tileH/2+2; ctx.translate(cx,cy); ctx.scale(1+tile.t*.25,1+tile.t*.25);
+        ctx.fillStyle=palette.green; ctx.fillRect(-2,2,4,14); ctx.fillStyle=palette.pink;
+        for(let i=0;i<5;i++){ ctx.rotate(Math.PI*2/5); ctx.beginPath(); ctx.ellipse(0,-7,4.2,7.4,0,0,Math.PI*2); ctx.fill(); }
+        ctx.fillStyle=palette.yellow; ctx.beginPath(); ctx.arc(0,0,3.8,0,Math.PI*2); ctx.fill();
       } else {
-        ctx.fillStyle = 'rgba(53,33,22,.36)';
-        for (let i=0;i<3;i++){ ctx.fillRect(x+12+i*21, y+12+Math.sin(tile.sway+i)*4, 4, 14); }
+        ctx.strokeStyle='rgba(53,33,22,.42)'; ctx.lineWidth=3; ctx.lineCap='round';
+        for(let i=0;i<3;i++){ const sx=x+14+i*22, sy=y+31; ctx.beginPath(); ctx.moveTo(sx,sy); ctx.quadraticCurveTo(sx+Math.sin(t*3+tile.weed+i)*6,sy-17,sx+4,sy-26); ctx.stroke(); }
       }
       ctx.restore();
     });
   }
 
-  function drawTrack(t){
-    ctx.save();
-    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(53,33,22,.25)';
-    ctx.beginPath(); ctx.moveTo(120, trackY); ctx.lineTo(W-70, trackY); ctx.stroke();
-    // sublines
-    ctx.lineWidth=2; ctx.strokeStyle='rgba(53,33,22,.10)';
-    [-58,58].forEach(off=>{ ctx.beginPath(); ctx.moveTo(120, trackY+off); ctx.lineTo(W-70, trackY+off); ctx.stroke(); });
-    // timing ring
-    ctx.translate(hitX, trackY);
-    ctx.shadowColor = pressFlash ? palette.yellow : 'rgba(53,33,22,.18)';
-    ctx.shadowBlur = pressFlash ? 28 : 10;
-    ctx.beginPath(); ctx.arc(0,0,58 + pressFlash*7,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.88)'; ctx.fill();
-    ctx.lineWidth = 7; ctx.strokeStyle = pressFlash ? palette.red : palette.ink; ctx.stroke();
-    ctx.fillStyle = palette.ink; ctx.font='900 16px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign='center';
-    ctx.fillText('HIT',0,6); ctx.restore();
-
-    // beat markers
-    const beat = 60/config.bpm;
-    const first = Math.floor((t-1)/beat)-2;
-    for (let i=first;i<first+18;i++){
-      const bt = config.pre + i*beat;
-      const x = hitX + (bt - t)*pxPerSec;
-      if (x < 110 || x > W+60) continue;
-      ctx.save(); ctx.globalAlpha=.22; ctx.strokeStyle=palette.ink; ctx.lineWidth = i%4===0 ? 4:2;
-      ctx.beginPath(); ctx.moveTo(x,trackY-84); ctx.lineTo(x,trackY+84); ctx.stroke(); ctx.restore();
-    }
-  }
-
-  function noteColor(type){
-    return type==='water'?palette.blue:type==='seed'?palette.pink:type==='flower'?palette.yellow:type==='mud'?palette.soil:palette.green2;
-  }
-  function noteLabel(type){ return type==='water'?'水':type==='seed'?'種':type==='flower'?'花':type==='mud'?'泥':'草'; }
-
-  function drawNotes(t){
-    for (const n of notes) {
-      if (n.judged) continue;
-      const x = hitX + (n.time - t) * pxPerSec;
-      if (x < -90 || x > W+100) continue;
-      const y = trackY + (n.lane-1)*58;
-      const scale = clamp(1.05 - Math.abs(x-hitX)/900, .78, 1.12);
-      ctx.save(); ctx.translate(x,y); ctx.scale(scale,scale);
-      ctx.shadowColor='rgba(53,33,22,.24)'; ctx.shadowBlur=10; ctx.shadowOffsetY=5;
-      ctx.beginPath(); ctx.arc(0,0,noteR,0,Math.PI*2); ctx.fillStyle=noteColor(n.type); ctx.fill();
-      ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke(); ctx.shadowBlur=0;
-      ctx.fillStyle=palette.ink; ctx.font='900 20px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(noteLabel(n.type),0,1);
-      ctx.restore();
-    }
-  }
-
-  function drawPops(){
-    judgePops.forEach(p => {
-      ctx.save(); ctx.globalAlpha = clamp(p.life/40,0,1); ctx.translate(p.x,p.y); ctx.scale(p.scale,p.scale); ctx.rotate(Math.sin(p.life*.13)*.035);
-      ctx.font='900 44px "Luckiest Guy","M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.lineWidth=7; ctx.strokeStyle=palette.ink; ctx.strokeText(p.text,0,0); ctx.fillStyle=p.color; ctx.fillText(p.text,0,0); ctx.restore();
-    });
-  }
-
-  function drawParticles(){
-    particles.forEach(p => {
-      ctx.save(); ctx.globalAlpha=clamp(p.life/44,0,1); ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill(); ctx.restore();
-    });
-  }
-
-  function drawFever(t){
-    const active = feverActiveUntil > t;
-    const x = W - 330, y = 35, w = 252, h = 28;
-    ctx.save();
-    roundRect(x,y,w,h,14); ctx.fillStyle='#fffaf0'; ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle=palette.ink; ctx.stroke();
-    roundRect(x+4,y+4,(w-8)*(active?1:fever/100),h-8,11); ctx.fillStyle=active?palette.pink:palette.yellow; ctx.fill();
-    ctx.fillStyle=palette.ink; ctx.font='900 13px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign='center'; ctx.fillText(active?'RE:BLOOM FEVER!':'FEVER',x+w/2,y+19); ctx.restore();
-    if (active) {
-      ctx.save(); ctx.globalAlpha=.18+.08*Math.sin(t*12); ctx.fillStyle=palette.pink; ctx.beginPath(); ctx.arc(W/2,trackY,260+20*Math.sin(t*9),0,Math.PI*2); ctx.fill(); ctx.restore();
-    }
-  }
-
-  function draw(t=nowTime()){
-    ctx.save();
-    if (screenShake > 0) ctx.translate((Math.random()-.5)*screenShake, (Math.random()-.5)*screenShake);
-    drawBackground(t); drawFieldTiles(); drawFever(t); drawTrack(t); drawNotes(t); drawPops(); drawParticles();
-    if (!running) {
-      ctx.save(); ctx.fillStyle='rgba(255,255,255,.30)'; ctx.fillRect(0,90,W,H-90);
-      ctx.fillStyle=palette.ink; ctx.textAlign='center'; ctx.font='900 34px "M PLUS Rounded 1c", sans-serif';
-      ctx.fillText(stopped ? 'STARTで音に乗ろう' : 'RESULT', W/2, 150);
-      ctx.restore();
-    }
+  function drawMascot(t){
+    const bx=W*.50, by=H*.49; const bounce=Math.sin(t*config.bpm/60*Math.PI*2)*6; const fever=feverUntil>t;
+    ctx.save(); ctx.translate(bx,by+bounce); if(screenShake>0)ctx.rotate(Math.sin(t*60)*.04);
+    // shadow
+    ctx.fillStyle='rgba(53,33,22,.18)'; ctx.beginPath(); ctx.ellipse(0,112,95,18,0,0,Math.PI*2); ctx.fill();
+    // body
+    ctx.fillStyle=fever?palette.yellow:palette.paper; roundRect(-66,-34,132,116,42); ctx.fill(); ctx.lineWidth=6; ctx.strokeStyle=palette.ink; ctx.stroke();
+    // face
+    ctx.fillStyle=palette.ink; ctx.beginPath(); ctx.arc(-25,10,6,0,Math.PI*2); ctx.arc(25,10,6,0,Math.PI*2); ctx.fill();
+    ctx.lineWidth=5; ctx.lineCap='round'; ctx.beginPath(); ctx.arc(0,26,24,0,Math.PI); ctx.stroke();
+    // headband leaf
+    ctx.fillStyle=palette.green; ctx.beginPath(); ctx.ellipse(0,-55,32,13,-.2,0,Math.PI*2); ctx.fill(); ctx.lineWidth=4; ctx.stroke();
+    // arms/tool
+    const swing = pressFlash ? -0.95 : Math.sin(t*config.bpm/60*Math.PI*2)*.18;
+    ctx.save(); ctx.translate(-64,8); ctx.rotate(swing); ctx.strokeStyle=palette.ink; ctx.lineWidth=10; ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(-52,36); ctx.stroke(); ctx.strokeStyle=palette.soil; ctx.lineWidth=7; ctx.beginPath(); ctx.moveTo(-50,35); ctx.lineTo(-96,8); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.translate(64,8); ctx.rotate(-swing*.65); ctx.strokeStyle=palette.ink; ctx.lineWidth=10; ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(48,32); ctx.stroke(); ctx.restore();
     ctx.restore();
   }
 
-  function loop(ts){
-    if (!running) { draw(nowTime()); return; }
-    const t = nowTime();
-    const dt = lastFrame ? Math.min(.05,(ts-lastFrame)/1000) : .016;
-    lastFrame = ts;
-    update(t, dt); draw(t);
-    if (running) requestAnimationFrame(loop);
+  function drawSpeech(t){
+    const next = actions.find(a=>!a.judged && a.time>=t-.05) || null;
+    let until = next ? next.time - t : 99;
+    const rest = rests.find(r=>r.time>=t-.05 && r.time-t < until) || null;
+    if(rest){ until=rest.time-t; }
+    const boxX=72, boxY=126, boxW=470, boxH=150;
+    ctx.save();
+    ctx.fillStyle='rgba(255,254,250,.96)'; roundRect(boxX,boxY,boxW,boxH,28); ctx.fill(); ctx.lineWidth=5; ctx.strokeStyle=palette.ink; ctx.stroke();
+    ctx.fillStyle=palette.red; ctx.font='900 18px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='left'; ctx.fillText('かけ声を聞いて、返す拍で押す',boxX+28,boxY+36);
+    ctx.fillStyle=palette.ink; ctx.font='900 46px "M PLUS Rounded 1c",sans-serif';
+    const label = rest && rest.time-t<1.0 ? '待て！' : next && until<1.35 ? (next.kind==='water'?'水！':next.kind==='seed'?'種！':next.kind==='bloom'?'咲け！':'草！') : currentCue;
+    ctx.fillText(label,boxX+28,boxY+91);
+    ctx.font='900 17px "M PLUS Rounded 1c",sans-serif'; ctx.fillStyle='rgba(53,33,22,.62)';
+    if(next && until<1.35 && !(rest && rest.time-t<1.0)) ctx.fillText(until<.18?'いま！':'もうすぐ返す',boxX+30,boxY+126);
+    else if(rest && rest.time-t<1.0) ctx.fillText('ここは押さない',boxX+30,boxY+126);
+    else ctx.fillText('音の合図を待つ',boxX+30,boxY+126);
+    ctx.restore();
   }
 
-  canvas.addEventListener('pointerdown', e => { e.preventDefault(); hit(); });
-  ui.hit?.addEventListener('click', hit);
-  window.addEventListener('keydown', e => {
-    if (e.code === 'Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName || '')) {
-      e.preventDefault(); hit();
-    }
-  });
+  function drawGroove(t){
+    const active=feverUntil>t; const x=W-356,y=230,w=284,h=40;
+    ctx.save(); ctx.fillStyle='rgba(255,254,250,.95)'; roundRect(x,y,w,h,20); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke();
+    roundRect(x+6,y+6,(w-12)*(active?1:groove/100),h-12,14); ctx.fillStyle=active?palette.pink:palette.yellow; ctx.fill();
+    ctx.fillStyle=palette.ink; ctx.font='900 15px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.fillText(active?'FEVER!!':'ノリゲージ',x+w/2,y+26); ctx.restore();
+    if(active){ ctx.save(); ctx.globalAlpha=.18+.08*Math.sin(t*12); ctx.fillStyle=palette.pink; ctx.beginPath(); ctx.arc(W*.5,H*.50,260+26*Math.sin(t*9),0,Math.PI*2); ctx.fill(); ctx.restore(); }
+  }
 
+  function drawDancers(t){
+    dancers.forEach((d,i)=>{
+      const beat = Math.sin(t*config.bpm/60*Math.PI*2 + d.phase);
+      ctx.save(); ctx.translate(d.x,d.y + beat*9);
+      ctx.fillStyle=i%2?palette.blue:palette.yellow; ctx.beginPath(); ctx.arc(0,0,23,0,Math.PI*2); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke();
+      ctx.fillStyle=palette.ink; ctx.beginPath(); ctx.arc(-7,-4,3,0,Math.PI*2); ctx.arc(7,-4,3,0,Math.PI*2); ctx.fill();
+      ctx.lineWidth=3; ctx.beginPath(); ctx.arc(0,5,8,0,Math.PI); ctx.stroke();
+      ctx.strokeStyle=palette.ink; ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(-18,12); ctx.lineTo(-32,24+beat*5); ctx.moveTo(18,12); ctx.lineTo(32,24-beat*5); ctx.stroke();
+      ctx.restore();
+    });
+  }
+  function drawPops(){
+    judgePops.forEach(p=>{ ctx.save(); ctx.globalAlpha=clamp(p.life/42,0,1); ctx.translate(p.x,p.y); ctx.scale(p.scale,p.scale); ctx.rotate(Math.sin(p.life*.12)*.035); ctx.font='900 52px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.lineWidth=8; ctx.strokeStyle=palette.ink; ctx.strokeText(p.text,0,0); ctx.fillStyle=p.color; ctx.fillText(p.text,0,0); ctx.restore(); });
+  }
+  function drawParticles(){
+    particles.forEach(p=>{ ctx.save(); ctx.globalAlpha=clamp(p.life/42,0,1); ctx.fillStyle=p.color; star(p.x,p.y,p.size,p.size*.48,5); ctx.fill(); ctx.restore(); });
+  }
+
+  function draw(t=nowTime()){
+    ctx.save(); if(screenShake>0)ctx.translate((Math.random()-.5)*screenShake,(Math.random()-.5)*screenShake);
+    drawBackground(t); drawBeatMeter(t); drawField(t); drawDancers(t); drawGroove(t); drawSpeech(t); drawMascot(t); drawPops(); drawParticles();
+    if(!running){ ctx.save(); ctx.fillStyle='rgba(255,250,240,.40)'; ctx.fillRect(0,104,W,H-104); ctx.textAlign='center'; ctx.fillStyle=palette.ink; ctx.font='900 38px "M PLUS Rounded 1c",sans-serif'; ctx.fillText(endingShown?'RESULT':'STARTで音に乗ろう',W/2,156); ctx.font='900 17px "M PLUS Rounded 1c",sans-serif'; ctx.fillStyle='rgba(53,33,22,.68)'; ctx.fillText('横から流れる印を目で追うゲームではなく、音の合図に返すゲームです。',W/2,188); ctx.restore(); }
+    ctx.restore();
+  }
+  function loop(ts){
+    if(!running){ draw(nowTime()); return; }
+    const t=nowTime(), dt=lastFrame?Math.min(.05,(ts-lastFrame)/1000):.016; lastFrame=ts;
+    update(t,dt); draw(t); if(running) requestAnimationFrame(loop);
+  }
+
+  canvas.addEventListener('pointerdown', e=>{ e.preventDefault(); hit(); });
+  ui.hit?.addEventListener('click', hit);
+  window.addEventListener('keydown', e=>{
+    if(e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName || '')){ e.preventDefault(); hit(); }
+  });
   ui.start?.addEventListener('click', startGame);
   ui.stop?.addEventListener('click', stopGame);
-  ui.reset?.addEventListener('click', () => resetGame());
-  ui.diffButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      diffKey = btn.dataset.gameDiff || 'easy';
-      ui.diffButtons.forEach(b => b.classList.toggle('is-active', b === btn));
-      config = difficulties[diffKey];
-      resetGame(true);
-      setMessage(`${config.label}モードを選びました。${config.cue}。スタートすると音が出ます。`);
-    });
-  });
-  document.addEventListener('visibilitychange', () => { if (document.hidden && running) stopGame(); });
+  ui.reset?.addEventListener('click', ()=>resetGame());
+  ui.diffButtons.forEach(btn=>btn.addEventListener('click',()=>{
+    diffKey = btn.dataset.gameDiff || 'easy'; config=difficulties[diffKey];
+    ui.diffButtons.forEach(b=>b.classList.toggle('is-active', b===btn));
+    resetGame(true); setMessage(`${config.label}モード：${config.guide}。スタートすると音が出ます。`);
+  }));
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden && running) stopGame(); });
   resetGame();
 })();
 </script>
