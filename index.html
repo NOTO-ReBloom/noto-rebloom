@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NOTO Re:Bloom v24 single-file: original call-and-response rhythm game -->
+<!-- NOTO Re:Bloom v25 single-file: Re:Bloom Weed Pop puzzle game -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -4322,6 +4322,203 @@ img,svg{max-width:100%;height:auto;}
   .rhythm-hit-button{font-size:38px!important;min-height:68px!important;}
 }
 
+
+
+/* =========================================================
+   v25: Re:Bloom Weed Pop / one-tap field restoration puzzle
+   - Replaces rhythm mini-game with a calmer, juicier tap puzzle
+   - Large UI, touch-friendly, no overlapping text
+   ========================================================= */
+.field-pop-game{
+  padding-top:clamp(58px,7vw,96px)!important;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,212,90,.45) 0 110px, transparent 112px),
+    radial-gradient(circle at 92% 16%, rgba(114,200,232,.34) 0 140px, transparent 142px),
+    linear-gradient(180deg,#fffaf0 0%,#eff8df 55%,#fffaf0 100%)!important;
+}
+.field-pop-shell{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:24px!important;
+  max-width:1240px!important;
+  margin:0 auto!important;
+}
+.field-pop-copy{
+  position:relative!important;
+  top:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,.82fr) minmax(320px,1.18fr)!important;
+  gap:20px!important;
+  align-items:center!important;
+  padding:clamp(22px,3vw,34px)!important;
+  overflow:hidden!important;
+}
+.field-pop-copy::after{
+  content:"POP POP";
+  position:absolute;
+  right:22px;
+  top:12px;
+  z-index:0;
+  font-family:'Bangers','Luckiest Guy',cursive;
+  font-size:clamp(46px,8vw,108px);
+  letter-spacing:.04em;
+  color:rgba(232,95,85,.10);
+  transform:rotate(5deg);
+  pointer-events:none;
+}
+.field-pop-copy > *{position:relative;z-index:1;min-width:0;}
+.field-pop-copy h2{font-size:clamp(31px,4.8vw,62px)!important;line-height:1.18!important;margin:0!important;color:var(--soil-dark)!important;}
+.field-pop-copy h2 .pop-word{display:inline-block;position:relative;color:#e85f55!important;}
+.field-pop-copy h2 .pop-word::after{content:"";position:absolute;left:-5%;right:-5%;bottom:.02em;height:.22em;background:#ffd45a;z-index:-1;border-radius:999px;}
+.field-pop-copy > p:not(.eyebrow){font-size:15.5px!important;line-height:1.9!important;margin:10px 0 0!important;}
+.field-pop-rules{grid-template-columns:repeat(2,minmax(0,1fr))!important;margin:0!important;gap:10px!important;}
+.field-pop-rules li{background:#fffefa!important;min-width:0!important;padding:12px 13px!important;border-radius:18px!important;line-height:1.65!important;box-shadow:0 4px 0 rgba(53,33,22,.10)!important;}
+.field-pop-rules b{font-family:'Bangers','Luckiest Guy',cursive;font-size:19px!important;flex:0 0 34px!important;width:34px!important;height:34px!important;border-radius:12px!important;}
+.field-pop-card{
+  width:100%!important;
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:clamp(14px,2.4vw,26px)!important;
+  border:5px solid var(--line)!important;
+  border-radius:34px!important;
+  background:linear-gradient(180deg,#fffefa 0%,#fff7df 100%)!important;
+  box-shadow:12px 12px 0 rgba(53,33,22,.98)!important;
+  overflow:hidden!important;
+}
+.field-pop-card.is-fever{animation:fieldFeverPulse .55s ease-in-out infinite alternate;}
+@keyframes fieldFeverPulse{from{box-shadow:12px 12px 0 rgba(53,33,22,.98),0 0 0 rgba(255,212,90,0)}to{box-shadow:12px 12px 0 rgba(53,33,22,.98),0 0 42px rgba(255,212,90,.78)}}
+.field-pop-toolbar{gap:12px!important;align-items:center!important;margin-bottom:12px!important;}
+.field-pop-difficulty,.field-pop-actions{gap:9px!important;}
+.field-pop-difficulty button,.field-pop-actions button{white-space:nowrap!important;min-height:44px!important;}
+.field-pop-actions button[disabled]{opacity:.45!important;cursor:not-allowed!important;transform:none!important;}
+.field-pop-hud{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:9px!important;margin-bottom:14px!important;}
+.field-pop-hud div{background:#fff6dc!important;padding:11px 8px!important;min-height:66px!important;display:grid!important;place-items:center!important;border-radius:18px!important;}
+.field-pop-hud span{font-weight:900!important;letter-spacing:.08em!important;}
+.field-pop-hud b{font-size:clamp(18px,2.4vw,30px)!important;color:#352116!important;line-height:1.15!important;}
+.field-pop-stage{
+  position:relative;
+  border:4px solid var(--line);
+  border-radius:28px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.58) 25%,transparent 25%) 0 0/38px 38px,
+    linear-gradient(315deg,rgba(255,255,255,.36) 25%,transparent 25%) 0 0/38px 38px,
+    linear-gradient(180deg,#dff1b1,#c8df91);
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.62);
+  overflow:hidden;
+  padding:clamp(12px,2vw,22px);
+  min-height:clamp(520px,58vw,670px);
+  touch-action:manipulation;
+}
+.field-pop-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 24% 20%,rgba(255,212,90,.22),transparent 32%),radial-gradient(circle at 82% 18%,rgba(232,95,85,.14),transparent 28%);
+  pointer-events:none;
+}
+.field-pop-board{
+  position:relative;
+  z-index:1;
+  display:grid;
+  gap:8px;
+  width:min(100%,760px);
+  margin:0 auto;
+  padding:10px;
+  border:4px solid rgba(53,33,22,.30);
+  border-radius:28px;
+  background:rgba(255,250,240,.68);
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.58),0 8px 0 rgba(53,33,22,.16);
+}
+.field-tile{
+  position:relative;
+  display:grid;
+  place-items:center;
+  aspect-ratio:1/1;
+  min-width:0;
+  border:3px solid rgba(53,33,22,.70);
+  border-radius:20px;
+  color:#352116;
+  font-size:clamp(22px,5vw,42px);
+  font-weight:900;
+  line-height:1;
+  cursor:pointer;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  box-shadow:0 6px 0 rgba(53,33,22,.28), inset 0 -7px 0 rgba(53,33,22,.10), inset 0 7px 0 rgba(255,255,255,.36);
+  transition:transform .12s ease, filter .12s ease, box-shadow .12s ease, opacity .18s ease;
+}
+.field-tile:hover,.field-tile:focus-visible{transform:translateY(-3px);filter:saturate(1.1);outline:4px solid rgba(255,212,90,.75);outline-offset:2px;}
+.field-tile:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(53,33,22,.30), inset 0 -5px 0 rgba(53,33,22,.10);}
+.field-tile.grass-a{background:linear-gradient(180deg,#a8d66d,#6fae45);}
+.field-tile.grass-b{background:linear-gradient(180deg,#b8e187,#7eb956);}
+.field-tile.grass-c{background:linear-gradient(180deg,#d9ef8f,#9fc55b);}
+.field-tile.mud{background:linear-gradient(180deg,#c48a58,#8d5b34);color:#fff9de;}
+.field-tile.water{background:linear-gradient(180deg,#a7e3ff,#56b9df);}
+.field-tile.seed{background:linear-gradient(180deg,#fff0a0,#f0bc3a);}
+.field-tile.support{background:linear-gradient(180deg,#ffb2c6,#e85f55);color:#fff;}
+.field-tile.stone{background:linear-gradient(180deg,#c8c2b6,#7c756b);color:#fff;cursor:not-allowed;filter:saturate(.8);}
+.field-tile.bloom{background:linear-gradient(180deg,#ffe6ef,#ff9fca)!important;color:#352116!important;}
+.field-tile.is-hint{animation:hintPulse .9s ease-in-out infinite alternate;}
+.field-tile.is-clearing{animation:tileClear .38s cubic-bezier(.2,1.7,.25,1) forwards;z-index:3;}
+.field-tile.is-new{animation:tileDrop .22s ease-out both;}
+@keyframes hintPulse{from{box-shadow:0 6px 0 rgba(53,33,22,.28),0 0 0 rgba(255,212,90,0)}to{box-shadow:0 6px 0 rgba(53,33,22,.28),0 0 0 7px rgba(255,212,90,.58)}}
+@keyframes tileClear{0%{transform:scale(1) rotate(0);opacity:1}45%{transform:scale(1.18) rotate(-4deg);opacity:1}100%{transform:scale(.2) rotate(10deg);opacity:0}}
+@keyframes tileDrop{from{transform:translateY(-20px) scale(.92);opacity:.35}to{transform:translateY(0) scale(1);opacity:1}}
+.field-pop-overlay{inset:auto 16px 16px 16px!important;}
+.field-pop-overlay p{max-width:980px!important;background:rgba(255,255,255,.95)!important;border-radius:20px!important;}
+.field-pop-float{
+  position:absolute;
+  z-index:5;
+  pointer-events:none;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  padding:10px 18px;
+  border:4px solid var(--line);
+  border-radius:999px;
+  background:#fffefa;
+  color:#e85f55;
+  font-size:clamp(24px,5vw,58px);
+  font-weight:900;
+  box-shadow:7px 7px 0 var(--line);
+  opacity:0;
+}
+.field-pop-float.is-show{animation:floatPop 1s ease-out both;}
+@keyframes floatPop{0%{opacity:0;transform:translate(-50%,-38%) scale(.65) rotate(-4deg)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.05) rotate(2deg)}100%{opacity:0;transform:translate(-50%,-92%) scale(.92) rotate(-2deg)}}
+.field-pop-progress{position:relative;z-index:1;display:grid;grid-template-columns:minmax(120px,.35fr) minmax(0,1fr);gap:12px;align-items:center;margin:12px auto 0;width:min(100%,760px);}
+.field-pop-progress-label{font-weight:900;color:#352116;font-size:13px;}
+.field-pop-progress-bar{height:22px;border:3px solid var(--line);border-radius:999px;background:#fffaf0;overflow:hidden;box-shadow:inset 0 3px 0 rgba(53,33,22,.12)}
+.field-pop-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#ffd45a,#ff9fca,#72c8e8);border-radius:999px;transition:width .18s ease;}
+.field-pop-result{position:relative;z-index:1;margin:14px auto 0;width:min(100%,760px);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 16px;border:3px solid rgba(53,33,22,.22);border-radius:20px;background:rgba(255,254,250,.82);}
+.field-pop-result p{margin:0;font-weight:850;line-height:1.65;color:#352116;}
+.field-pop-result b{font-size:1.12em;color:#e85f55;}
+.field-pop-result a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 15px;border:3px solid var(--line);border-radius:999px;background:#4f9a5c;color:#fff!important;font-weight:900;text-decoration:none;box-shadow:0 4px 0 var(--line);white-space:nowrap;}
+.field-pop-game .game-mobile-hint{display:block!important;}
+@media (max-width:1050px){
+  .field-pop-copy{grid-template-columns:1fr!important;}
+  .field-pop-rules{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .field-pop-stage{min-height:520px;}
+}
+@media (max-width:720px){
+  .field-pop-card{padding:14px!important;border-radius:28px!important;box-shadow:7px 7px 0 rgba(53,33,22,.98)!important;}
+  .field-pop-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .field-pop-hud div:last-child{grid-column:1/-1!important;}
+  .field-pop-toolbar{align-items:stretch!important;}
+  .field-pop-difficulty,.field-pop-actions{width:100%!important;}
+  .field-pop-difficulty button,.field-pop-actions button{flex:1 1 auto!important;}
+  .field-pop-rules{grid-template-columns:1fr!important;}
+  .field-pop-stage{min-height:auto;padding:10px;border-radius:22px;}
+  .field-pop-board{gap:5px;padding:6px;border-radius:18px;}
+  .field-tile{border-width:2px;border-radius:14px;box-shadow:0 4px 0 rgba(53,33,22,.26), inset 0 -5px 0 rgba(53,33,22,.10);}
+  .field-pop-progress{grid-template-columns:1fr;gap:6px;}
+  .field-pop-result{grid-template-columns:1fr;}
+  .field-pop-result a{width:100%;}
+  .field-pop-overlay{inset:auto 8px 8px 8px!important;}
+  .field-pop-overlay p{font-size:11px!important;line-height:1.55!important;}
+}
+@media (prefers-reduced-motion: reduce){
+  .field-tile,.field-pop-card,.field-pop-float,.field-pop-progress-fill{animation:none!important;transition:none!important;}
+}
+
 </style>
 </head>
 <body>
@@ -4483,47 +4680,55 @@ img,svg{max-width:100%;height:auto;}
 </div>
 </section>
 
-<section class="section rebloom-game rhythm-game" id="game">
-  <div class="container game-shell rhythm-shell">
-    <div class="game-copy rhythm-copy reveal">
-      <p class="eyebrow"><i></i>ONE BUTTON RHYTHM TOY</p>
-      <h2><span class="keep">見て押す、ではなく。</span><br/><span class="pop-word">聴いて、ノる。</span></h2>
-      <p>リズムに合わせて、草刈り・水やり・種まきのかけ声に返す一ボタンゲームです。流れてくるマークを目で追うのではなく、音の合図とノリで「ここだ」と感じた瞬間に押します。</p>
-      <ul class="game-rule-list rhythm-rule-list">
-        <li><b>♪</b><span>音の合図を聞いて、返す拍で<strong>タップ / クリック / スペース</strong>。</span></li>
-        <li><b>休</b><span>「待て」の合図では押さない。押さない気持ちよさも入れました。</span></li>
-        <li><b>花</b><span>PERFECTが続くとFEVER。レンゲが一気に咲き、画面がにぎやかになります。</span></li>
-        <li><b>泥</b><span>子ども向けのゆっくりから、裏拍・フェイントありの高難度まで選べます。</span></li>
+<section class="section rebloom-game field-pop-game" id="game">
+  <div class="container game-shell field-pop-shell">
+    <div class="game-copy field-pop-copy reveal">
+      <p class="eyebrow"><i></i>ONE TAP FIELD PUZZLE</p>
+      <h2><span class="keep">草むらを、</span><br/><span class="pop-word">ポンポン整える。</span></h2>
+      <p>同じ種類の草がつながっている場所をタップするだけ。大きなかたまりを見つけるほど、コンボ・フィーバー・レンゲ開花が気持ちよく広がる、耕作放棄地テーマのブラウザパズルです。</p>
+      <ul class="game-rule-list field-pop-rules">
+        <li><b>1</b><span>同じ草が<strong>2つ以上</strong>つながった場所をタップ。難しいモードでは3つ以上から。</span></li>
+        <li><b>水</b><span>大きく消すと、水バケツ・種袋・応援旗が出現。まとめて整備できます。</span></li>
+        <li><b>花</b><span>連続で消すとフィーバー。レンゲが一気に咲いて、スコアが跳ねます。</span></li>
+        <li><b>泥</b><span>子ども向けのゆったりから、石・再生草が多い高難度まで選べます。</span></li>
       </ul>
     </div>
-    <div class="game-card rhythm-card reveal" aria-label="Re:Bloom Rhythm Crew ゲーム">
-      <div class="game-toolbar rhythm-toolbar">
-        <div class="game-difficulty" aria-label="難易度選択">
+    <div class="game-card field-pop-card reveal" aria-label="Re:Bloom Weed Pop ゲーム">
+      <div class="game-toolbar field-pop-toolbar">
+        <div class="game-difficulty field-pop-difficulty" aria-label="難易度選択">
           <button type="button" data-game-diff="easy" class="is-active">やさしい</button>
           <button type="button" data-game-diff="normal">ふつう</button>
           <button type="button" data-game-diff="hard">本気</button>
           <button type="button" data-game-diff="mud">どろんこ</button>
         </div>
-        <div class="game-action rhythm-actions">
+        <div class="game-action field-pop-actions">
           <button type="button" class="primary-game" id="gameStartBtn">スタート</button>
           <button type="button" id="gamePauseBtn">停止</button>
           <button type="button" id="gameResetBtn">リセット</button>
         </div>
       </div>
-      <div class="game-hud rhythm-hud" aria-live="polite">
-        <div><span>開花</span><b id="gameArea">0本</b></div>
+      <div class="game-hud field-pop-hud" aria-live="polite">
+        <div><span>整備</span><b id="gameArea">0㎡</b></div>
         <div><span>コンボ</span><b id="gameBloom">0</b></div>
-        <div><span>ノリ</span><b id="gameSupport">0%</b></div>
-        <div><span>残り</span><b id="gameLives">45s</b></div>
+        <div><span>フィーバー</span><b id="gameSupport">0%</b></div>
+        <div><span>残り</span><b id="gameLives">90s</b></div>
         <div><span>スコア</span><b id="gameScore">0</b></div>
       </div>
-      <div class="game-canvas-wrap rhythm-canvas-wrap">
-        <canvas id="rebloomGameCanvas" width="1280" height="720" aria-label="耕作放棄地をテーマにした一ボタンリズムゲーム"></canvas>
-        <div class="game-overlay-message rhythm-overlay"><p id="gameMessage">難易度を選んでスタート。音が出ます。合図を聞いて、返す拍でTAP / SPACE。</p></div>
+      <div class="field-pop-stage" id="fieldPopStage">
+        <div id="rebloomPuzzleBoard" class="field-pop-board" role="grid" aria-label="同じ草のかたまりをタップして整えるパズル盤面"></div>
+        <div class="field-pop-progress" aria-hidden="true">
+          <div class="field-pop-progress-label">Re:Bloom Fever</div>
+          <div class="field-pop-progress-bar"><div class="field-pop-progress-fill" id="fieldFeverFill"></div></div>
+        </div>
+        <div class="field-pop-result" id="fieldResultBox">
+          <p id="fieldResultText">スタートして、同じ草のかたまりをタップ。大きく消すほど気持ちよく伸びます。</p>
+          <a href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">READYFORで応援</a>
+        </div>
+        <div class="field-pop-float" id="fieldFloatText" aria-hidden="true">POP!</div>
+        <div class="game-overlay-message field-pop-overlay"><p id="gameMessage">難易度を選んでスタート。同じ草のかたまりをタップして、能登の土地をポンポン整えよう。</p></div>
       </div>
-      <button type="button" id="gameHitBtn" class="rhythm-hit-button" aria-label="リズムに合わせて押す">PUSH!</button>
-      <p class="game-mobile-hint rhythm-mobile-hint">スマホは画面か大きなボタンをタップ。目で追うゲームではないので、音量を上げて「かけ声に返す」感じで遊んでください。</p>
-      <p class="game-note">※このゲームは、NOTO Re:Bloomの世界観を楽しむためのオリジナル演出です。実際の整備工程や費用を表すものではありません。音はブラウザ上で生成しています。</p>
+      <p class="game-mobile-hint">スマホは指でタップするだけ。PCはクリック、またはTabでマスを選んでEnter/Spaceでも遊べます。連打より「大きなかたまり探し」がコツです。</p>
+      <p class="game-note">※このゲームは、NOTO Re:Bloomの世界観を楽しむためのオリジナル演出です。実際の整備工程や費用を表すものではありません。</p>
     </div>
   </div>
 </section>
@@ -5340,51 +5545,48 @@ img,svg{max-width:100%;height:auto;}
 
 <script>
 (() => {
-  const canvas = document.getElementById('rebloomGameCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width;
-  const H = canvas.height;
+  const boardEl = document.getElementById('rebloomPuzzleBoard');
+  if (!boardEl) return;
 
   const ui = {
-    flowers: document.getElementById('gameArea'),
+    area: document.getElementById('gameArea'),
     combo: document.getElementById('gameBloom'),
-    groove: document.getElementById('gameSupport'),
+    fever: document.getElementById('gameSupport'),
     time: document.getElementById('gameLives'),
     score: document.getElementById('gameScore'),
     message: document.getElementById('gameMessage'),
     start: document.getElementById('gameStartBtn'),
     stop: document.getElementById('gamePauseBtn'),
     reset: document.getElementById('gameResetBtn'),
-    hit: document.getElementById('gameHitBtn'),
-    diffButtons: [...document.querySelectorAll('[data-game-diff]')]
+    diffButtons: [...document.querySelectorAll('[data-game-diff]')],
+    float: document.getElementById('fieldFloatText'),
+    fill: document.getElementById('fieldFeverFill'),
+    result: document.getElementById('fieldResultText'),
+    card: document.querySelector('.field-pop-card')
   };
 
   const difficulties = {
-    easy:   { label:'やさしい', bpm:88,  length:38, pre:2.8, good:.25, perfect:.11, scoreMul:1.00, pattern:'easy',   guide:'大きな合図で、ゆっくり返す' },
-    normal: { label:'ふつう',   bpm:104, length:44, pre:2.4, good:.19, perfect:.085,scoreMul:1.25, pattern:'normal', guide:'合図・休み・2連打あり' },
-    hard:   { label:'本気',     bpm:122, length:50, pre:2.1, good:.14, perfect:.062,scoreMul:1.60, pattern:'hard',   guide:'裏拍とフェイントあり' },
-    mud:    { label:'どろんこ', bpm:142, length:54, pre:1.9, good:.105,perfect:.047,scoreMul:2.10, pattern:'mud',    guide:'高速・変則・待つ判断あり' }
+    easy:   { label:'やさしい', size:6, seconds:90, minGroup:2, types:['grass-a','grass-b','grass-c'], stones:0,  refillStone:.00, scoreMul:1.0, feverGain:5.8, hint:'2つから消せます。子ども・初めて向け。' },
+    normal: { label:'ふつう',   size:7, seconds:75, minGroup:2, types:['grass-a','grass-b','grass-c','mud'], stones:3,  refillStone:.02, scoreMul:1.25, feverGain:5.0, hint:'石が少し出ます。大きなかたまりを探すと伸びます。' },
+    hard:   { label:'本気',     size:8, seconds:65, minGroup:3, types:['grass-a','grass-b','grass-c','mud'], stones:7,  refillStone:.05, scoreMul:1.65, feverGain:4.4, hint:'3つ以上から。石が増え、考えるほど高得点。' },
+    mud:    { label:'どろんこ', size:8, seconds:55, minGroup:3, types:['grass-a','grass-b','grass-c','mud'], stones:11, refillStone:.08, scoreMul:2.2, feverGain:3.8, hint:'短時間・石多め・高倍率。大人向けの高難度。' }
+  };
+  const tileLabel = {
+    'grass-a': '草A', 'grass-b': '草B', 'grass-c': '草C', mud:'泥', water:'水バケツ', seed:'種袋', support:'応援旗', stone:'石', bloom:'レンゲ'
+  };
+  const tileIcon = {
+    'grass-a':'🌿', 'grass-b':'🍃', 'grass-c':'🌱', mud:'泥', water:'💧', seed:'種', support:'旗', stone:'石', bloom:'✿'
   };
 
-  const palette = {
-    ink:'#352116', soil:'#8d5b34', cream:'#fffaf0', paper:'#fffefa', green:'#4f9a5c', green2:'#82bb57', yellow:'#ffd45a', orange:'#ff995d', pink:'#ff9fca', blue:'#72c8e8', red:'#e85f55', purple:'#aa80ff', mint:'#dff1a7'
-  };
+  let diffKey = 'easy', config = difficulties.easy;
+  let board = [], cells = [];
+  let running = false, paused = false, locked = false;
+  let score = 0, area = 0, combo = 0, fever = 0, timeLeft = config.seconds;
+  let timerId = null, comboTimer = null, audio = null, master = null;
+  let highScore = 0;
 
-  let diffKey = 'easy';
-  let config = difficulties[diffKey];
-  let audio = null, master = null;
-  let startedAtAudio = 0, startPerf = 0;
-  let running = false, stopped = true, endingShown = false;
-  let actions = [], rests = [], cues = [];
-  let score = 0, combo = 0, maxCombo = 0, flowers = 0, groove = 0;
-  let feverUntil = 0, lastFrame = 0, pressFlash = 0, screenShake = 0;
-  let judgePops = [], particles = [], fieldTiles = [], dancers = [];
-  let mascotState = 'idle', currentCue = '音を聞いて';
-  let lastTapTime = -99;
-
+  const rnd = arr => arr[Math.floor(Math.random() * arr.length)];
   const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
-  const nowTime = () => audio && running ? Math.max(0, audio.currentTime - startedAtAudio) : Math.max(0, (performance.now() - startPerf)/1000);
 
   function ensureAudio(){
     if (!audio) {
@@ -5392,385 +5594,312 @@ img,svg{max-width:100%;height:auto;}
       if (!AC) return null;
       audio = new AC();
       master = audio.createGain();
-      master.gain.value = .46;
+      master.gain.value = .38;
       master.connect(audio.destination);
     }
     if (audio.state === 'suspended') audio.resume();
     return audio;
   }
-
-  function tone(freq,time,dur,type='sine',gain=.08,dest=master){
-    if (!audio || !dest) return;
+  function tone(freq, dur=.06, type='sine', gain=.045){
+    if (!audio || !master) return;
+    const t = audio.currentTime + .002;
     const osc = audio.createOscillator();
     const g = audio.createGain();
     osc.type = type;
-    osc.frequency.setValueAtTime(freq,time);
-    g.gain.setValueAtTime(.0001,time);
-    g.gain.exponentialRampToValueAtTime(Math.max(.0002,gain),time+.01);
-    g.gain.exponentialRampToValueAtTime(.0001,time+dur);
-    osc.connect(g); g.connect(dest); osc.start(time); osc.stop(time+dur+.04);
+    osc.frequency.setValueAtTime(freq, t);
+    g.gain.setValueAtTime(.0001, t);
+    g.gain.exponentialRampToValueAtTime(Math.max(.0002,gain), t+.012);
+    g.gain.exponentialRampToValueAtTime(.0001, t+dur);
+    osc.connect(g); g.connect(master); osc.start(t); osc.stop(t+dur+.04);
   }
-  function noise(time,dur,gain=.05,filterFreq=1600){
-    if (!audio || !master) return;
-    const n = Math.max(1, Math.floor(audio.sampleRate*dur));
-    const buffer = audio.createBuffer(1,n,audio.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i=0;i<n;i++) data[i] = (Math.random()*2-1) * (1-i/n);
-    const src = audio.createBufferSource(); src.buffer = buffer;
-    const filter = audio.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = filterFreq; filter.Q.value = .85;
-    const g = audio.createGain(); g.gain.setValueAtTime(gain,time); g.gain.exponentialRampToValueAtTime(.0001,time+dur);
-    src.connect(filter); filter.connect(g); g.connect(master); src.start(time); src.stop(time+dur+.03);
-  }
-  function kick(time){
-    const osc = audio.createOscillator(); const g = audio.createGain();
-    osc.type='sine'; osc.frequency.setValueAtTime(136,time); osc.frequency.exponentialRampToValueAtTime(44,time+.12);
-    g.gain.setValueAtTime(.17,time); g.gain.exponentialRampToValueAtTime(.0001,time+.17);
-    osc.connect(g); g.connect(master); osc.start(time); osc.stop(time+.2);
-  }
-  function snare(time){ noise(time,.08,.07,1850); tone(210,time,.07,'triangle',.03); }
-  function hat(time,strong=false){ noise(time,.035,strong?.04:.022,5600); }
-
-  function cueSound(kind,time){
-    if (kind === 'cut') { tone(330,time,.08,'square',.055); noise(time+.02,.045,.025,2500); }
-    if (kind === 'water') { tone(520,time,.09,'sine',.04); noise(time+.025,.09,.035,900); }
-    if (kind === 'seed') { tone(660,time,.07,'triangle',.05); tone(880,time+.07,.06,'triangle',.035); }
-    if (kind === 'bloom') { [523,659,784].forEach((f,i)=>tone(f,time+i*.045,.12,'triangle',.04)); }
-    if (kind === 'rest') { tone(185,time,.09,'sawtooth',.035); }
-  }
-  function hitSound(kind){
+  function sfx(kind){
     if (!audio) return;
-    const t = audio.currentTime + .002;
-    if (kind === 'perfect') { tone(740,t,.05,'square',.075); tone(1110,t+.04,.07,'triangle',.062); noise(t,.035,.028,3400); }
-    else if (kind === 'good') { tone(560,t,.06,'triangle',.064); noise(t,.035,.019,2500); }
-    else { tone(150,t,.11,'sawtooth',.04); noise(t,.09,.038,540); }
+    if (kind === 'pop') { tone(520,.045,'square',.035); tone(760,.055,'triangle',.03); }
+    if (kind === 'big') { [480,640,820].forEach((f,i)=>setTimeout(()=>tone(f,.055,'triangle',.045),i*42)); }
+    if (kind === 'bad') { tone(145,.12,'sawtooth',.035); }
+    if (kind === 'fever') { [520,660,780,1040].forEach((f,i)=>setTimeout(()=>tone(f,.12,'triangle',.055),i*55)); }
+    if (kind === 'special') { [380,760].forEach((f,i)=>setTimeout(()=>tone(f,.08,'square',.05),i*60)); }
   }
 
-  function buildPattern(){
-    const beat = 60/config.bpm;
-    const start = config.pre;
-    const end = config.length - 1.2;
-    const a = [], r = [], c = [];
-    const addCue = (time, text, kind='cut') => { if (time > .15) c.push({time, text, kind}); };
-    const addAction = (beatIndex, offset, kind='cut', text='ザクッ') => {
-      const time = start + (beatIndex + offset)*beat;
-      if (time >= end) return;
-      a.push({time, kind, text, judged:false, id:a.length});
-      addCue(time - beat, kind==='water'?'水、入れる':kind==='seed'?'種、まく':kind==='bloom'?'咲かせる':'草、刈る', kind);
-    };
-    const addRest = (beatIndex, offset, text='待つ') => {
-      const time = start + (beatIndex + offset)*beat;
-      if (time >= end) return;
-      r.push({time,text,judged:false,id:r.length});
-      addCue(time - beat, '待て', 'rest');
-    };
-    const maxBeat = Math.floor((end-start)/beat);
-    for (let b=0;b<maxBeat;b+=4){
-      if (config.pattern === 'easy') {
-        addAction(b+1,0,'cut','ザクッ'); addAction(b+3,0,(b%16===0?'seed':'cut'),'ポン');
-      } else if (config.pattern === 'normal') {
-        addAction(b,0,'cut','ザクッ'); addAction(b+2,0,'water','スイッ');
-        if (b%8===0) { addAction(b+3,.5,'seed','ポン'); } else { addRest(b+3,0,'待つ'); }
-      } else if (config.pattern === 'hard') {
-        addAction(b,0,'cut','ザクッ'); addAction(b+1,.5,'seed','ポン'); addRest(b+2,0,'待つ'); addAction(b+2,.5,'water','スイッ');
-        if (b%8===4) { addAction(b+3,0,'cut','ザク'); addAction(b+3,.5,'bloom','咲け'); }
-      } else {
-        addAction(b,0,'cut','ザク'); addAction(b+.5,0,'seed','ポン'); addRest(b+1,0,'待つ'); addAction(b+1.5,0,'water','スイ');
-        addAction(b+2,.25,'cut','ザク'); addAction(b+2,.75,'seed','ポン');
-        if (b%8===0) addRest(b+3,.5,'待つ'); else { addAction(b+3,0,'bloom','咲け'); addAction(b+3,.5,'cut','ザク'); }
-      }
-    }
-    actions = a.sort((x,y)=>x.time-y.time);
-    rests = r.sort((x,y)=>x.time-y.time);
-    cues = c.sort((x,y)=>x.time-y.time);
-  }
-
-  function scheduleMusic(){
-    if (!audio || !master) return;
-    const start = startedAtAudio, beat = 60/config.bpm;
-    const bars = Math.ceil((config.length+6)/(beat*4));
-    const scale = [261.63,329.63,392.00,493.88,523.25,392.00,329.63,293.66];
-    for (let i=0;i<bars*4;i++) {
-      const t = start + i*beat;
-      kick(t);
-      if (i%4===1 || i%4===3) snare(t);
-      hat(t, i%2===0);
-      tone(scale[i%scale.length], t+.02, beat*.38, 'triangle', .026);
-      if (config.pattern === 'hard' || config.pattern === 'mud') hat(t+beat*.5,false);
-      if (config.pattern === 'mud' && i%4===2) tone(392,t+beat*.75,beat*.12,'square',.018);
-    }
-    cues.forEach(cue => cueSound(cue.kind, start+cue.time));
-    // Count-in with clearly separated tones
-    for (let i=0;i<4;i++) tone(i===3?740:520, start - (4-i)*beat*.5, .08, 'square', i===3?.07:.045);
-  }
-
-  function resetField(){
-    fieldTiles = [];
-    const cols=13, rows=4;
-    for (let r=0;r<rows;r++) for (let c=0;c<cols;c++) fieldTiles.push({r,c,bloom:false,t:0,weed:Math.random()*.8});
-    dancers = Array.from({length:5},(_,i)=>({x:120+i*72,y:570+Math.sin(i)*12,phase:Math.random()*Math.PI*2}));
-  }
-  function resetGame(keepMsg=false){
-    buildPattern(); resetField();
-    score=0; combo=0; maxCombo=0; flowers=0; groove=0; feverUntil=0; judgePops=[]; particles=[]; pressFlash=0; screenShake=0; lastFrame=0; endingShown=false; stopped=true; running=false; mascotState='idle'; currentCue='音を聞いて'; lastTapTime=-99;
-    updateUi(0); draw(0);
-    if (!keepMsg) setMessage('音の合図を聞いて、返す拍で押すゲームです。難易度を選んでスタート。');
-  }
   function setMessage(text){ if (ui.message) ui.message.textContent = text; }
-  function updateUi(t){
-    if (ui.flowers) ui.flowers.textContent = `${flowers}本`;
-    if (ui.combo) ui.combo.textContent = String(combo);
-    if (ui.groove) ui.groove.textContent = `${Math.round(groove)}%`;
-    if (ui.time) ui.time.textContent = `${Math.max(0, Math.ceil(config.length - t))}s`;
-    if (ui.score) ui.score.textContent = String(score.toLocaleString('ja-JP'));
+  function showFloat(text){
+    if (!ui.float) return;
+    ui.float.textContent = text;
+    ui.float.classList.remove('is-show');
+    void ui.float.offsetWidth;
+    ui.float.classList.add('is-show');
+  }
+  function vibrate(ms=18){ if (navigator.vibrate) navigator.vibrate(ms); }
+
+  function getHighScore(){
+    try { return Number(localStorage.getItem('rebloomWeedPopHigh_' + diffKey) || 0); } catch(e) { return 0; }
+  }
+  function saveHighScore(){
+    highScore = Math.max(highScore, score);
+    try { localStorage.setItem('rebloomWeedPopHigh_' + diffKey, String(highScore)); } catch(e) {}
   }
 
+  function randomTile(){
+    if (Math.random() < config.refillStone) return 'stone';
+    return rnd(config.types);
+  }
+  function makeBoard(){
+    board = Array.from({length: config.size}, () => Array.from({length: config.size}, () => randomTile()));
+    let placed = 0;
+    while (placed < config.stones) {
+      const r = Math.floor(Math.random()*config.size), c = Math.floor(Math.random()*config.size);
+      if (board[r][c] !== 'stone') { board[r][c] = 'stone'; placed++; }
+    }
+    ensurePlayable();
+  }
+  function renderBoard(){
+    boardEl.style.gridTemplateColumns = `repeat(${config.size}, minmax(0,1fr))`;
+    boardEl.innerHTML = '';
+    cells = [];
+    for (let r=0; r<config.size; r++) {
+      for (let c=0; c<config.size; c++) {
+        const type = board[r][c];
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `field-tile ${type}`;
+        btn.dataset.r = String(r); btn.dataset.c = String(c);
+        btn.setAttribute('role','gridcell');
+        btn.setAttribute('aria-label', `${tileLabel[type] || type}、${r+1}行${c+1}列`);
+        btn.textContent = tileIcon[type] || '';
+        if (type === 'stone') btn.setAttribute('aria-disabled','true');
+        btn.addEventListener('click', () => handleCell(r,c));
+        boardEl.appendChild(btn);
+        cells.push(btn);
+      }
+    }
+    markHints();
+  }
+  function cellAt(r,c){ return cells[r*config.size + c]; }
+  function inBounds(r,c){ return r>=0 && c>=0 && r<config.size && c<config.size; }
+  function neighbors(r,c){ return [[r-1,c],[r+1,c],[r,c-1],[r,c+1]].filter(([rr,cc])=>inBounds(rr,cc)); }
+  function isNormal(type){ return config.types.includes(type); }
+
+  function findGroup(r,c){
+    const type = board[r]?.[c];
+    if (!isNormal(type)) return [];
+    const seen = new Set([`${r},${c}`]);
+    const out = [[r,c]];
+    const stack = [[r,c]];
+    while (stack.length) {
+      const [cr,cc] = stack.pop();
+      neighbors(cr,cc).forEach(([nr,nc]) => {
+        const key = `${nr},${nc}`;
+        if (!seen.has(key) && board[nr][nc] === type) {
+          seen.add(key); out.push([nr,nc]); stack.push([nr,nc]);
+        }
+      });
+    }
+    return out;
+  }
+  function allGroups(){
+    const seen = new Set();
+    const groups = [];
+    for (let r=0; r<config.size; r++) for (let c=0; c<config.size; c++) {
+      const key = `${r},${c}`;
+      if (seen.has(key) || !isNormal(board[r][c])) continue;
+      const g = findGroup(r,c);
+      g.forEach(([rr,cc])=>seen.add(`${rr},${cc}`));
+      if (g.length >= config.minGroup) groups.push(g);
+    }
+    return groups.sort((a,b)=>b.length-a.length);
+  }
+  function ensurePlayable(){
+    let guard = 0;
+    while (allGroups().length === 0 && guard < 50) {
+      const r = Math.floor(Math.random()*config.size), c = Math.floor(Math.random()*config.size);
+      if (board[r][c] !== 'stone') board[r][c] = rnd(config.types);
+      if (c+1 < config.size && board[r][c+1] !== 'stone') board[r][c+1] = board[r][c];
+      if (config.minGroup >= 3 && r+1 < config.size && board[r+1][c] !== 'stone') board[r+1][c] = board[r][c];
+      guard++;
+    }
+  }
+  function markHints(){
+    cells.forEach(el=>el.classList.remove('is-hint'));
+    const top = allGroups()[0];
+    if (!running || !top || top.length < Math.max(config.minGroup+2,4)) return;
+    top.slice(0,10).forEach(([r,c]) => cellAt(r,c)?.classList.add('is-hint'));
+  }
+
+  function clearCells(list, opts={}){
+    if (!list.length) return;
+    locked = true;
+    const unique = [];
+    const seen = new Set();
+    list.forEach(([r,c])=>{
+      if (!inBounds(r,c)) return;
+      const key = `${r},${c}`;
+      if (seen.has(key) || board[r][c] === 'stone' && !opts.breakStone) return;
+      seen.add(key); unique.push([r,c]);
+    });
+    unique.forEach(([r,c]) => {
+      const el = cellAt(r,c);
+      if (el) { el.classList.add('is-clearing'); el.textContent = '✿'; }
+      board[r][c] = 'bloom';
+    });
+    setTimeout(() => {
+      unique.forEach(([r,c]) => { board[r][c] = randomTile(); });
+      ensurePlayable();
+      renderBoard();
+      locked = false;
+    }, 280);
+  }
+
+  function addSpecialNear(r,c,groupSize){
+    if (groupSize < 5) return;
+    setTimeout(() => {
+      if (!running) return;
+      const choices = [[r,c],...neighbors(r,c)].filter(([rr,cc]) => inBounds(rr,cc) && board[rr][cc] !== 'stone');
+      if (!choices.length) return;
+      const [sr,sc] = rnd(choices);
+      const type = groupSize >= 9 ? 'support' : groupSize >= 7 ? 'seed' : 'water';
+      board[sr][sc] = type;
+      renderBoard();
+      showFloat(type === 'water' ? '水バケツ！' : type === 'seed' ? '種袋！' : '応援旗！');
+      sfx('special');
+    }, 340);
+  }
+
+  function handleCell(r,c){
+    if (!running || paused || locked) return;
+    ensureAudio();
+    const type = board[r][c];
+    if (type === 'stone') { miss('石は水や種で崩せます'); return; }
+    if (type === 'water') return useWater(r,c);
+    if (type === 'seed') return useSeed(r,c);
+    if (type === 'support') return triggerFever(true);
+    const group = findGroup(r,c);
+    if (group.length < config.minGroup) {
+      miss(`${config.label}は${config.minGroup}つ以上から。大きなかたまりを探そう。`);
+      return;
+    }
+    combo++;
+    clearTimeout(comboTimer);
+    comboTimer = setTimeout(()=>{ combo = 0; updateHud(); }, 3300);
+    const base = Math.round((group.length * group.length * 12 + group.length * 20) * config.scoreMul * (1 + Math.min(combo,12)*.08));
+    score += base; area += group.length; fever = clamp(fever + group.length * config.feverGain + Math.min(combo,10), 0, 100);
+    clearCells(group);
+    addSpecialNear(r,c,group.length);
+    const label = group.length >= 10 ? '超再生！' : group.length >= 7 ? 'BIG POP!' : group.length >= 5 ? 'NICE!' : 'POP!';
+    setMessage(`${group.length}マス整備。${combo}コンボ！ 大きなかたまりほどスコアが伸びます。`);
+    showFloat(`${label} +${base.toLocaleString()}`);
+    sfx(group.length >= 5 ? 'big' : 'pop');
+    vibrate(group.length >= 7 ? 36 : 18);
+    if (fever >= 100) setTimeout(()=>triggerFever(false), 360);
+    updateHud();
+  }
+  function miss(text){
+    combo = 0;
+    score = Math.max(0, score - Math.round(35 * config.scoreMul));
+    setMessage(text);
+    showFloat('もう一歩！');
+    sfx('bad'); vibrate(24);
+    updateHud();
+  }
+  function useWater(r,c){
+    const list = [];
+    for (let i=0; i<config.size; i++) { list.push([r,i],[i,c]); }
+    board[r][c] = 'bloom';
+    const count = new Set(list.map(v=>v.join(','))).size;
+    score += Math.round(count * 80 * config.scoreMul); area += count; fever = clamp(fever + 22,0,100); combo++;
+    clearCells(list,{breakStone:true});
+    setMessage('水路が通った！ 十字方向をまとめて整備しました。');
+    showFloat('水路コンボ！'); sfx('big'); vibrate(42); updateHud();
+    if (fever >= 100) setTimeout(()=>triggerFever(false), 360);
+  }
+  function useSeed(r,c){
+    const list = [];
+    for (let dr=-1; dr<=1; dr++) for (let dc=-1; dc<=1; dc++) list.push([r+dr,c+dc]);
+    const valid = list.filter(([rr,cc])=>inBounds(rr,cc));
+    score += Math.round(valid.length * 120 * config.scoreMul); area += valid.length; fever = clamp(fever + 28,0,100); combo++;
+    clearCells(valid,{breakStone:true});
+    setMessage('種袋からレンゲが広がった！ 周囲をまとめて開花。');
+    showFloat('レンゲ開花！'); sfx('big'); vibrate(50); updateHud();
+    if (fever >= 100) setTimeout(()=>triggerFever(false), 360);
+  }
+  function triggerFever(fromFlag){
+    if (!running || locked) return;
+    fever = 0;
+    ui.card?.classList.add('is-fever');
+    const clearable = [];
+    for (let r=0; r<config.size; r++) for (let c=0; c<config.size; c++) if (board[r][c] !== 'stone') clearable.push([r,c]);
+    const amount = Math.min(clearable.length, Math.floor(config.size * config.size * (fromFlag ? .42 : .32)));
+    const picked = [];
+    for (let i=0; i<amount && clearable.length; i++) picked.push(clearable.splice(Math.floor(Math.random()*clearable.length),1)[0]);
+    score += Math.round(amount * 180 * config.scoreMul * (1 + combo*.05));
+    area += amount; combo += 2;
+    clearCells(picked,{breakStone:false});
+    setMessage('Re:Bloom Fever！ 応援の波で一気に土地が明るくなりました。');
+    showFloat('Re:Bloom Fever!!'); sfx('fever'); vibrate([30,40,30]);
+    setTimeout(()=>ui.card?.classList.remove('is-fever'), 1100);
+    updateHud();
+  }
+
+  function updateHud(){
+    ui.area.textContent = `${area}㎡`;
+    ui.combo.textContent = String(combo);
+    ui.fever.textContent = `${Math.round(fever)}%`;
+    ui.time.textContent = `${Math.max(0,Math.ceil(timeLeft))}s`;
+    ui.score.textContent = score.toLocaleString();
+    if (ui.fill) ui.fill.style.width = `${clamp(fever,0,100)}%`;
+    if (ui.result) ui.result.innerHTML = `現在 <b>${area}㎡</b> を整備中。ベストスコア：<b>${highScore.toLocaleString()}</b>`;
+  }
+  function tick(){
+    if (!running || paused) return;
+    timeLeft -= .1;
+    if (timeLeft <= 0) return endGame();
+    updateHud();
+  }
   function startGame(){
-    ensureAudio(); if (!audio) { setMessage('このブラウザでは音の生成に対応していません。'); return; }
-    master.gain.cancelScheduledValues(audio.currentTime); master.gain.setTargetAtTime(.46,audio.currentTime,.02);
-    buildPattern(); resetField();
-    score=0; combo=0; maxCombo=0; flowers=0; groove=0; feverUntil=0; judgePops=[]; particles=[]; pressFlash=0; screenShake=0; endingShown=false; lastFrame=0; stopped=false;
-    startedAtAudio = audio.currentTime + .55;
-    startPerf = performance.now();
-    running = true;
-    scheduleMusic();
-    setMessage(`${config.label}：${config.guide}。流れてくる印ではなく、音の合図に返す感覚で押してください。`);
-    requestAnimationFrame(loop);
+    ensureAudio();
+    if (running && paused) { paused = false; setMessage('再開しました。大きなかたまりを探そう。'); return; }
+    running = true; paused = false; locked = false;
+    score = 0; area = 0; combo = 0; fever = 0; timeLeft = config.seconds;
+    highScore = getHighScore();
+    makeBoard(); renderBoard(); updateHud();
+    clearInterval(timerId); timerId = setInterval(tick,100);
+    setMessage(`${config.label}モード開始。${config.hint}`);
+    showFloat('START!'); sfx('special');
   }
-  function stopGame(){
-    running=false; stopped=true;
-    setMessage('停止しました。スタートすると最初から遊べます。');
-    if (audio && master) { master.gain.cancelScheduledValues(audio.currentTime); master.gain.setTargetAtTime(.0001,audio.currentTime,.03); setTimeout(()=>{ if(master) master.gain.value=.46; },220); }
-    draw(nowTime());
+  function pauseGame(){
+    if (!running) return;
+    paused = !paused;
+    setMessage(paused ? '停止中。もう一度「停止」を押すと再開します。' : '再開しました。');
   }
-
-  function bloomTiles(count=1){
-    for (let i=0;i<count;i++) {
-      const cand = fieldTiles.filter(x=>!x.bloom);
-      if (!cand.length) return;
-      const tile = cand[Math.floor(Math.random()*cand.length)]; tile.bloom=true; tile.t=1;
-    }
+  function resetGame(keepMessage=false){
+    running = false; paused = false; locked = false;
+    clearInterval(timerId); clearTimeout(comboTimer);
+    score = 0; area = 0; combo = 0; fever = 0; timeLeft = config.seconds; highScore = getHighScore();
+    makeBoard(); renderBoard(); updateHud();
+    ui.card?.classList.remove('is-fever');
+    if (!keepMessage) setMessage(`難易度を選んでスタート。${config.hint}`);
   }
-  function addParticles(x,y,color,count=18,power=1){
-    for(let i=0;i<count;i++){
-      const a=Math.random()*Math.PI*2, sp=(1.5+Math.random()*5.6)*power;
-      particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.2,life:36+Math.random()*24,size:3+Math.random()*7,color});
-    }
-  }
-  function addJudge(text,x,y,color){ judgePops.push({text,x,y,color,life:58,vy:-1.4,scale:text.includes('PERFECT')?1.14:1}); }
-  function startFever(t){
-    feverUntil = t + (diffKey==='easy'?5.8:diffKey==='mud'?4.2:5.0);
-    groove = 0;
-    mascotState='fever';
-    setMessage('FEVER！レンゲが一気に咲く時間です。音に乗って押すほど花が増えます。');
-    bloomTiles(8); addParticles(W/2,H*.49,palette.pink,90,1.9);
-    if (audio) [523,659,784,1046].forEach((f,i)=>tone(f,audio.currentTime+i*.045,.2,'triangle',.075));
+  function endGame(){
+    running = false; paused = false; locked = false;
+    clearInterval(timerId); clearTimeout(comboTimer);
+    saveHighScore(); updateHud();
+    const rank = score >= 18000 ? 'S' : score >= 11000 ? 'A' : score >= 6000 ? 'B' : 'C';
+    setMessage(`結果：${area}㎡を整備、スコア${score.toLocaleString()}。ランク${rank}！`);
+    if (ui.result) ui.result.innerHTML = `結果：<b>${area}㎡</b> を整備。スコア <b>${score.toLocaleString()}</b> / ランク <b>${rank}</b>。実際の活動では、300円で約1㎡が動き出す目安です。`;
+    showFloat(`RANK ${rank}`);
+    sfx(rank === 'S' || rank === 'A' ? 'fever' : 'big');
   }
 
-  function nearestAction(t){
-    let best=null, bestDelta=Infinity;
-    for (const a of actions) { if (a.judged) continue; const d=Math.abs(a.time-t); if (d<bestDelta){best=a;bestDelta=d;} if (a.time-t > config.good+.08) break; }
-    return {action:best, delta:bestDelta};
-  }
-  function nearestRest(t){
-    let best=null, bestDelta=Infinity;
-    for (const r of rests) { const d=Math.abs(r.time-t); if (d<bestDelta){best=r;bestDelta=d;} if (r.time-t > config.good+.08) break; }
-    return {rest:best, delta:bestDelta};
-  }
-  function hit(){
-    ui.hit?.classList.add('is-hit'); setTimeout(()=>ui.hit?.classList.remove('is-hit'),90);
-    if (!running) { startGame(); return; }
-    const t = nowTime(); lastTapTime = t; pressFlash = 1;
-    const {rest, delta:restDelta} = nearestRest(t);
-    const {action, delta} = nearestAction(t);
-    if (rest && restDelta < config.good && (!action || restDelta < delta)) {
-      combo=0; groove=Math.max(0,groove-10); mascotState='oops'; screenShake=7; addJudge('待つとこ!', W*.5, H*.36, palette.red); hitSound('miss'); updateUi(t); return;
-    }
-    if (!action || delta > config.good) {
-      combo=0; groove=Math.max(0,groove-8); mascotState='oops'; screenShake=6; addJudge('MISS', W*.5, H*.36, palette.red); addParticles(W*.5,H*.46,palette.soil,16,.8); hitSound('miss'); updateUi(t); return;
-    }
-    action.judged = true;
-    const perfect = delta <= config.perfect;
-    const inFever = feverUntil > t;
-    combo++; maxCombo=Math.max(maxCombo,combo);
-    const mult = (1 + Math.min(combo,80)*.027) * config.scoreMul * (inFever?2.05:1);
-    score += Math.round((perfect?140:85)*mult);
-    const flowerAdd = action.kind==='bloom'?4:action.kind==='seed'?3:inFever?2:1;
-    flowers += flowerAdd; bloomTiles(flowerAdd);
-    groove = clamp(groove + (perfect?13:8),0,100);
-    mascotState=action.kind;
-    const msg = perfect ? 'PERFECT!' : 'GOOD!';
-    addJudge(msg, W*.52, H*.35, perfect?palette.yellow:palette.blue);
-    addParticles(W*.54, H*.51, action.kind==='water'?palette.blue:action.kind==='seed'?palette.pink:action.kind==='bloom'?palette.yellow:palette.green, perfect?38:24, perfect?1.25:1);
-    hitSound(perfect?'perfect':'good');
-    screenShake=perfect?5:2;
-    if (groove >= 100) startFever(t);
-    updateUi(t);
-  }
-
-  function update(t,dt){
-    const beat = 60/config.bpm;
-    // update current cue label
-    const nextCue = cues.find(c => c.time <= t + beat*1.2 && c.time > t - beat*.6);
-    if (nextCue) currentCue = nextCue.text;
-    for (const a of actions) {
-      if (!a.judged && t - a.time > config.good) {
-        a.judged=true; combo=0; groove=Math.max(0,groove-5); mascotState='oops'; addJudge('MISS',W*.5,H*.36,palette.red); hitSound('miss');
-      }
-    }
-    pressFlash=Math.max(0,pressFlash-dt*5.2); screenShake=Math.max(0,screenShake-dt*18);
-    judgePops.forEach(p=>{p.life-=dt*60; p.y+=p.vy*dt*60; p.vy*=.985;}); judgePops=judgePops.filter(p=>p.life>0);
-    particles.forEach(p=>{p.life-=dt*60; p.x+=p.vx*dt*60; p.y+=p.vy*dt*60; p.vy+=.13*dt*60;}); particles=particles.filter(p=>p.life>0);
-    fieldTiles.forEach(tile=>{tile.t=Math.max(0,tile.t-dt*1.7); tile.weed+=dt*.8;});
-    if (t >= config.length && !endingShown) finishGame();
-    updateUi(t);
-  }
-  function finishGame(){
-    running=false; endingShown=true; stopped=false;
-    const rate = score / (config.length*210*config.scoreMul);
-    const rank = rate>1.08?'S':rate>.82?'A':rate>.55?'B':'C';
-    setMessage(`RESULT：${rank}ランク。${flowers}本のレンゲが咲きました。最大コンボは${maxCombo}。もう一度、音に乗って挑戦できます。`);
-    if (audio) [523,659,784,1046].forEach((f,i)=>tone(f,audio.currentTime+i*.07,.25,'triangle',.07));
-    draw(config.length);
-  }
-
-  function roundRect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
-  function star(cx,cy,r1,r2,n=5){ ctx.beginPath(); for(let i=0;i<n*2;i++){ const a=-Math.PI/2+i*Math.PI/n; const r=i%2?r2:r1; const x=cx+Math.cos(a)*r, y=cy+Math.sin(a)*r; if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);} ctx.closePath(); }
-
-  function drawBackground(t){
-    const fever = feverUntil > t;
-    ctx.clearRect(0,0,W,H);
-    const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,fever?'#fff1b7':'#fff7df'); g.addColorStop(.58,fever?'#ffefd3':'#f4edc6'); g.addColorStop(1,'#d9e9ad'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-    ctx.save(); ctx.globalAlpha=.18; ctx.fillStyle=palette.green;
-    for(let x=-40;x<W+40;x+=78){ for(let y=116;y<H;y+=74){ ctx.beginPath(); ctx.ellipse(x+(y%2)*.2,y,22,9,Math.sin(t+x)*.2,0,Math.PI*2); ctx.fill(); }}
-    ctx.restore();
-    // Big clean white title card, placed away from action.
-    ctx.fillStyle='rgba(255,254,250,.94)'; roundRect(28,24,W-56,76,24); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle='rgba(53,33,22,.18)'; ctx.stroke();
-    ctx.fillStyle=palette.ink; ctx.textAlign='left'; ctx.font='900 30px "M PLUS Rounded 1c", sans-serif'; ctx.fillText('Re:Bloom Rhythm Crew',54,67);
-    ctx.font='900 14px "M PLUS Rounded 1c", sans-serif'; ctx.fillStyle='rgba(53,33,22,.62)'; ctx.fillText(`1ボタン / ${config.label} / BPM ${config.bpm} / ${config.guide}`,390,67);
-  }
-
-  function drawBeatMeter(t){
-    const beat=60/config.bpm, phase=((t-config.pre)%beat+beat)%beat/beat;
-    const cx=1080, cy=152;
-    ctx.save();
-    ctx.fillStyle='rgba(255,250,240,.92)'; roundRect(cx-150,cy-48,300,96,24); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke();
-    ctx.fillStyle=palette.ink; ctx.font='900 13px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.fillText('BEAT',cx,cy-24);
-    for(let i=0;i<4;i++){
-      const x=cx-78+i*52; const active=Math.floor((t-config.pre)/beat)%4===i;
-      ctx.beginPath(); ctx.arc(x,cy+10,active?18:13,0,Math.PI*2); ctx.fillStyle=active?palette.yellow:'#fff'; ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle=palette.ink; ctx.stroke();
-    }
-    ctx.fillStyle=palette.red; ctx.beginPath(); ctx.arc(cx-78+phase*52,cy+39,5,0,Math.PI*2); ctx.fill();
-    ctx.restore();
-  }
-
-  function drawField(t){
-    const cols=13, rows=4, gap=7, margin=82, tileW=(W-margin*2-gap*(cols-1))/cols, tileH=42, top=H-222;
-    fieldTiles.forEach(tile=>{
-      const x=margin+tile.c*(tileW+gap), y=top+tile.r*(tileH+gap);
-      ctx.save(); roundRect(x,y,tileW,tileH,12); ctx.fillStyle=tile.bloom?'#ffd9e8':'#86aa57'; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='rgba(53,33,22,.30)'; ctx.stroke();
-      if(tile.bloom){
-        const cx=x+tileW/2, cy=y+tileH/2+2; ctx.translate(cx,cy); ctx.scale(1+tile.t*.25,1+tile.t*.25);
-        ctx.fillStyle=palette.green; ctx.fillRect(-2,2,4,14); ctx.fillStyle=palette.pink;
-        for(let i=0;i<5;i++){ ctx.rotate(Math.PI*2/5); ctx.beginPath(); ctx.ellipse(0,-7,4.2,7.4,0,0,Math.PI*2); ctx.fill(); }
-        ctx.fillStyle=palette.yellow; ctx.beginPath(); ctx.arc(0,0,3.8,0,Math.PI*2); ctx.fill();
-      } else {
-        ctx.strokeStyle='rgba(53,33,22,.42)'; ctx.lineWidth=3; ctx.lineCap='round';
-        for(let i=0;i<3;i++){ const sx=x+14+i*22, sy=y+31; ctx.beginPath(); ctx.moveTo(sx,sy); ctx.quadraticCurveTo(sx+Math.sin(t*3+tile.weed+i)*6,sy-17,sx+4,sy-26); ctx.stroke(); }
-      }
-      ctx.restore();
-    });
-  }
-
-  function drawMascot(t){
-    const bx=W*.50, by=H*.49; const bounce=Math.sin(t*config.bpm/60*Math.PI*2)*6; const fever=feverUntil>t;
-    ctx.save(); ctx.translate(bx,by+bounce); if(screenShake>0)ctx.rotate(Math.sin(t*60)*.04);
-    // shadow
-    ctx.fillStyle='rgba(53,33,22,.18)'; ctx.beginPath(); ctx.ellipse(0,112,95,18,0,0,Math.PI*2); ctx.fill();
-    // body
-    ctx.fillStyle=fever?palette.yellow:palette.paper; roundRect(-66,-34,132,116,42); ctx.fill(); ctx.lineWidth=6; ctx.strokeStyle=palette.ink; ctx.stroke();
-    // face
-    ctx.fillStyle=palette.ink; ctx.beginPath(); ctx.arc(-25,10,6,0,Math.PI*2); ctx.arc(25,10,6,0,Math.PI*2); ctx.fill();
-    ctx.lineWidth=5; ctx.lineCap='round'; ctx.beginPath(); ctx.arc(0,26,24,0,Math.PI); ctx.stroke();
-    // headband leaf
-    ctx.fillStyle=palette.green; ctx.beginPath(); ctx.ellipse(0,-55,32,13,-.2,0,Math.PI*2); ctx.fill(); ctx.lineWidth=4; ctx.stroke();
-    // arms/tool
-    const swing = pressFlash ? -0.95 : Math.sin(t*config.bpm/60*Math.PI*2)*.18;
-    ctx.save(); ctx.translate(-64,8); ctx.rotate(swing); ctx.strokeStyle=palette.ink; ctx.lineWidth=10; ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(-52,36); ctx.stroke(); ctx.strokeStyle=palette.soil; ctx.lineWidth=7; ctx.beginPath(); ctx.moveTo(-50,35); ctx.lineTo(-96,8); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.translate(64,8); ctx.rotate(-swing*.65); ctx.strokeStyle=palette.ink; ctx.lineWidth=10; ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(48,32); ctx.stroke(); ctx.restore();
-    ctx.restore();
-  }
-
-  function drawSpeech(t){
-    const next = actions.find(a=>!a.judged && a.time>=t-.05) || null;
-    let until = next ? next.time - t : 99;
-    const rest = rests.find(r=>r.time>=t-.05 && r.time-t < until) || null;
-    if(rest){ until=rest.time-t; }
-    const boxX=72, boxY=126, boxW=470, boxH=150;
-    ctx.save();
-    ctx.fillStyle='rgba(255,254,250,.96)'; roundRect(boxX,boxY,boxW,boxH,28); ctx.fill(); ctx.lineWidth=5; ctx.strokeStyle=palette.ink; ctx.stroke();
-    ctx.fillStyle=palette.red; ctx.font='900 18px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='left'; ctx.fillText('かけ声を聞いて、返す拍で押す',boxX+28,boxY+36);
-    ctx.fillStyle=palette.ink; ctx.font='900 46px "M PLUS Rounded 1c",sans-serif';
-    const label = rest && rest.time-t<1.0 ? '待て！' : next && until<1.35 ? (next.kind==='water'?'水！':next.kind==='seed'?'種！':next.kind==='bloom'?'咲け！':'草！') : currentCue;
-    ctx.fillText(label,boxX+28,boxY+91);
-    ctx.font='900 17px "M PLUS Rounded 1c",sans-serif'; ctx.fillStyle='rgba(53,33,22,.62)';
-    if(next && until<1.35 && !(rest && rest.time-t<1.0)) ctx.fillText(until<.18?'いま！':'もうすぐ返す',boxX+30,boxY+126);
-    else if(rest && rest.time-t<1.0) ctx.fillText('ここは押さない',boxX+30,boxY+126);
-    else ctx.fillText('音の合図を待つ',boxX+30,boxY+126);
-    ctx.restore();
-  }
-
-  function drawGroove(t){
-    const active=feverUntil>t; const x=W-356,y=230,w=284,h=40;
-    ctx.save(); ctx.fillStyle='rgba(255,254,250,.95)'; roundRect(x,y,w,h,20); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke();
-    roundRect(x+6,y+6,(w-12)*(active?1:groove/100),h-12,14); ctx.fillStyle=active?palette.pink:palette.yellow; ctx.fill();
-    ctx.fillStyle=palette.ink; ctx.font='900 15px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.fillText(active?'FEVER!!':'ノリゲージ',x+w/2,y+26); ctx.restore();
-    if(active){ ctx.save(); ctx.globalAlpha=.18+.08*Math.sin(t*12); ctx.fillStyle=palette.pink; ctx.beginPath(); ctx.arc(W*.5,H*.50,260+26*Math.sin(t*9),0,Math.PI*2); ctx.fill(); ctx.restore(); }
-  }
-
-  function drawDancers(t){
-    dancers.forEach((d,i)=>{
-      const beat = Math.sin(t*config.bpm/60*Math.PI*2 + d.phase);
-      ctx.save(); ctx.translate(d.x,d.y + beat*9);
-      ctx.fillStyle=i%2?palette.blue:palette.yellow; ctx.beginPath(); ctx.arc(0,0,23,0,Math.PI*2); ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke();
-      ctx.fillStyle=palette.ink; ctx.beginPath(); ctx.arc(-7,-4,3,0,Math.PI*2); ctx.arc(7,-4,3,0,Math.PI*2); ctx.fill();
-      ctx.lineWidth=3; ctx.beginPath(); ctx.arc(0,5,8,0,Math.PI); ctx.stroke();
-      ctx.strokeStyle=palette.ink; ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(-18,12); ctx.lineTo(-32,24+beat*5); ctx.moveTo(18,12); ctx.lineTo(32,24-beat*5); ctx.stroke();
-      ctx.restore();
-    });
-  }
-  function drawPops(){
-    judgePops.forEach(p=>{ ctx.save(); ctx.globalAlpha=clamp(p.life/42,0,1); ctx.translate(p.x,p.y); ctx.scale(p.scale,p.scale); ctx.rotate(Math.sin(p.life*.12)*.035); ctx.font='900 52px "M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.lineWidth=8; ctx.strokeStyle=palette.ink; ctx.strokeText(p.text,0,0); ctx.fillStyle=p.color; ctx.fillText(p.text,0,0); ctx.restore(); });
-  }
-  function drawParticles(){
-    particles.forEach(p=>{ ctx.save(); ctx.globalAlpha=clamp(p.life/42,0,1); ctx.fillStyle=p.color; star(p.x,p.y,p.size,p.size*.48,5); ctx.fill(); ctx.restore(); });
-  }
-
-  function draw(t=nowTime()){
-    ctx.save(); if(screenShake>0)ctx.translate((Math.random()-.5)*screenShake,(Math.random()-.5)*screenShake);
-    drawBackground(t); drawBeatMeter(t); drawField(t); drawDancers(t); drawGroove(t); drawSpeech(t); drawMascot(t); drawPops(); drawParticles();
-    if(!running){ ctx.save(); ctx.fillStyle='rgba(255,250,240,.40)'; ctx.fillRect(0,104,W,H-104); ctx.textAlign='center'; ctx.fillStyle=palette.ink; ctx.font='900 38px "M PLUS Rounded 1c",sans-serif'; ctx.fillText(endingShown?'RESULT':'STARTで音に乗ろう',W/2,156); ctx.font='900 17px "M PLUS Rounded 1c",sans-serif'; ctx.fillStyle='rgba(53,33,22,.68)'; ctx.fillText('横から流れる印を目で追うゲームではなく、音の合図に返すゲームです。',W/2,188); ctx.restore(); }
-    ctx.restore();
-  }
-  function loop(ts){
-    if(!running){ draw(nowTime()); return; }
-    const t=nowTime(), dt=lastFrame?Math.min(.05,(ts-lastFrame)/1000):.016; lastFrame=ts;
-    update(t,dt); draw(t); if(running) requestAnimationFrame(loop);
-  }
-
-  canvas.addEventListener('pointerdown', e=>{ e.preventDefault(); hit(); });
-  ui.hit?.addEventListener('click', hit);
-  window.addEventListener('keydown', e=>{
-    if(e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName || '')){ e.preventDefault(); hit(); }
-  });
   ui.start?.addEventListener('click', startGame);
-  ui.stop?.addEventListener('click', stopGame);
-  ui.reset?.addEventListener('click', ()=>resetGame());
-  ui.diffButtons.forEach(btn=>btn.addEventListener('click',()=>{
-    diffKey = btn.dataset.gameDiff || 'easy'; config=difficulties[diffKey];
-    ui.diffButtons.forEach(b=>b.classList.toggle('is-active', b===btn));
-    resetGame(true); setMessage(`${config.label}モード：${config.guide}。スタートすると音が出ます。`);
+  ui.stop?.addEventListener('click', pauseGame);
+  ui.reset?.addEventListener('click', () => resetGame());
+  ui.diffButtons.forEach(btn => btn.addEventListener('click', () => {
+    diffKey = btn.dataset.gameDiff || 'easy';
+    config = difficulties[diffKey];
+    ui.diffButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+    resetGame(true);
+    setMessage(`${config.label}モード：${config.hint}`);
   }));
-  document.addEventListener('visibilitychange',()=>{ if(document.hidden && running) stopGame(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden && running) paused = true; });
   resetGame();
 })();
 </script>
