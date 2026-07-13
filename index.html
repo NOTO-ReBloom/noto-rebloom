@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- NOTO Re:Bloom v28 single-file: flower diagnosis botanical pop-art cards -->
+<!-- NOTO Re:Bloom v31 single-file: supporter board + garden motion polish -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -4224,6 +4224,125 @@ section{scroll-margin-top:96px;}
 @media(max-width:980px){.garden-note-grid{grid-template-columns:1fr}.garden-steps{grid-template-columns:repeat(2,minmax(0,1fr));}.contact-garden-strip{grid-template-columns:1fr}.contact-garden-strip .mail-modal-trigger{justify-self:start}}
 @media(max-width:620px){.garden-steps{grid-template-columns:1fr}.garden-step{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center}.garden-icon{height:78px;margin:0}.floating-mail{left:10px;bottom:70px}.mail-modal-card{padding:20px;border-radius:24px}.mail-modal-actions .btn{width:100%;justify-content:center}}
 
+
+
+/* ===== v31 supporter / partner board + garden motion polish ===== */
+.supporter-board{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 9% 18%, rgba(255,212,90,.22), transparent 28%),
+    radial-gradient(circle at 88% 22%, rgba(112,190,92,.18), transparent 30%),
+    linear-gradient(180deg,#fffaf1 0%, #fff5df 58%, #f7ffe9 100%);
+  border-top:4px solid var(--line);
+  border-bottom:4px solid var(--line);
+}
+.supporter-board .container{position:relative;z-index:2;}
+.supporter-board:before,
+.supporter-board:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:.65;
+}
+.supporter-board:before{width:220px;height:220px;left:-90px;top:55px;background:radial-gradient(circle,#ffd45a 0 24%,transparent 25% 100%);filter:blur(.2px);}
+.supporter-board:after{width:280px;height:280px;right:-120px;bottom:-80px;background:radial-gradient(circle,#dbf3cc 0 38%,transparent 39% 100%);}
+.supporter-petals{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.supporter-petals i{
+  position:absolute;
+  top:-40px;
+  display:block;
+  width:20px;height:12px;
+  border:3px solid var(--line);
+  border-radius:80% 20% 80% 20%;
+  background:#79c96b;
+  opacity:.45;
+  animation:leafFall 12s linear infinite;
+  transform:rotate(15deg);
+}
+.supporter-petals i:nth-child(1){left:6%;animation-delay:0s;animation-duration:13s;background:#73bf59;}
+.supporter-petals i:nth-child(2){left:18%;animation-delay:2s;animation-duration:11s;background:#ffd45a;}
+.supporter-petals i:nth-child(3){left:36%;animation-delay:4s;animation-duration:14s;background:#7dc96b;}
+.supporter-petals i:nth-child(4){left:54%;animation-delay:1.5s;animation-duration:12s;background:#ffb4c9;}
+.supporter-petals i:nth-child(5){left:72%;animation-delay:5s;animation-duration:15s;background:#8fd37b;}
+.supporter-petals i:nth-child(6){left:90%;animation-delay:3s;animation-duration:10s;background:#ffd45a;}
+@keyframes leafFall{
+  0%{transform:translate3d(0,-40px,0) rotate(0deg);opacity:0;}
+  12%{opacity:.5;}
+  100%{transform:translate3d(42px,660px,0) rotate(260deg);opacity:0;}
+}
+.supporter-head{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);
+  gap:26px;
+  align-items:stretch;
+}
+.supporter-title-card,
+.supporter-progress-card{
+  border:var(--border);
+  border-radius:34px;
+  background:rgba(255,255,255,.92);
+  box-shadow:var(--shadow);
+  padding:clamp(22px,4vw,38px);
+}
+.supporter-title-card h2{
+  margin:8px 0 14px;
+  font-size:clamp(34px,5vw,66px);
+  line-height:1.05;
+  letter-spacing:-.04em;
+  max-width:780px;
+}
+.supporter-title-card p{margin:0;color:rgba(46,36,24,.78);font-weight:800;line-height:1.85;}
+.supporter-badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;}
+.supporter-badges span{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 12px;border:2px solid var(--line);border-radius:999px;background:#fff7cf;font-weight:900;font-size:12px;box-shadow:0 3px 0 var(--line);
+}
+.supporter-progress-card{background:linear-gradient(180deg,#ffffff 0%,#f1ffe6 100%);display:flex;flex-direction:column;gap:18px;}
+.progress-title{display:flex;justify-content:space-between;gap:12px;align-items:end;}
+.progress-title span{font-size:12px;font-weight:900;color:var(--green-dark);letter-spacing:.06em;}
+.progress-title strong{font-family:var(--display);font-size:clamp(64px,9vw,108px);line-height:.85;color:var(--green);letter-spacing:-.06em;text-shadow:3px 3px 0 #fff,5px 5px 0 var(--line);}
+.supporter-meter{height:24px;border:4px solid var(--line);border-radius:999px;background:#fff;overflow:hidden;box-shadow:inset 0 3px 0 rgba(0,0,0,.08);}
+.supporter-meter span{display:block;height:100%;width:10%;background:linear-gradient(90deg,#6fc45e,#ffd45a);border-right:4px solid var(--line);}
+.supporter-progress-card p{margin:0;font-size:13px;font-weight:800;line-height:1.75;color:rgba(46,36,24,.76);}
+.supporter-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;}
+.supporter-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;margin-top:28px;align-items:stretch;}
+.supporter-panel{
+  border:var(--border);border-radius:30px;background:rgba(255,255,255,.9);box-shadow:var(--shadow-soft);padding:22px;position:relative;overflow:hidden;
+}
+.supporter-panel:before{content:"";position:absolute;right:-35px;top:-35px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,212,90,.35),transparent 68%);}
+.supporter-panel h3{position:relative;margin:0 0 8px;font-size:clamp(22px,3vw,34px);letter-spacing:-.03em;}
+.supporter-panel > p{position:relative;margin:0 0 16px;color:rgba(46,36,24,.72);font-weight:800;line-height:1.7;font-size:13px;}
+.name-wall{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;position:relative;}
+.name-slot,.partner-slot{
+  border:3px dashed rgba(53,33,22,.5);border-radius:20px;background:#fffdf7;padding:12px 12px;min-height:58px;display:flex;align-items:center;gap:10px;font-weight:900;color:rgba(53,33,22,.62);
+}
+.name-slot:before{content:"🌼";filter:saturate(.85);}
+.partner-slots{display:grid;grid-template-columns:1fr;gap:12px;position:relative;}
+.partner-slot{min-height:74px;justify-content:space-between;}
+.partner-slot b{color:var(--soil-dark);}
+.partner-slot span{font-size:12px;color:rgba(53,33,22,.64);}
+.partner-slot:after{content:"掲載予定";display:inline-flex;padding:6px 9px;border:2px solid var(--line);border-radius:999px;background:#fff7cf;color:var(--soil-dark);font-size:11px;font-weight:900;white-space:nowrap;}
+.supporter-note{
+  margin-top:18px;padding:12px 14px;border:2px solid rgba(53,33,22,.35);border-radius:18px;background:rgba(255,248,232,.74);font-size:12px;font-weight:800;color:rgba(46,36,24,.72);line-height:1.7;
+}
+.bloom-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+.bloom-chip{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:2px solid var(--line);border-radius:999px;background:#fff;color:var(--soil-dark);font-weight:900;font-size:12px;box-shadow:0 3px 0 var(--line);}
+.bloom-chip:before{content:"✿";color:#6abf58;}
+@media(max-width:900px){
+  .supporter-head,.supporter-grid{grid-template-columns:1fr;}
+  .supporter-title-card h2{font-size:clamp(34px,10vw,54px);}
+  .progress-title strong{font-size:74px;}
+}
+@media(max-width:560px){
+  .name-wall{grid-template-columns:1fr;}
+  .supporter-title-card,.supporter-progress-card,.supporter-panel{border-radius:24px;padding:18px;}
+  .supporter-actions .btn{width:100%;justify-content:center;}
+  .partner-slot{align-items:flex-start;flex-direction:column;}
+}
+@media(prefers-reduced-motion:reduce){.supporter-petals i{animation:none;display:none;}}
+
 </style>
 </head>
 <body>
@@ -4293,7 +4412,59 @@ section{scroll-margin-top:96px;}
 <div class="sticker sticker-bottom">一日で終わらせず、<br/>次の季節へつなぐ</div>
 </div>
 </div>
-</section><section aria-label="プロジェクトの一文" class="mud-band">
+</section>
+
+<section class="section supporter-board" id="supporters">
+  <div aria-hidden="true" class="supporter-petals"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="container">
+    <div class="supporter-head reveal">
+      <div class="supporter-title-card">
+        <p class="eyebrow"><i></i>SUPPORTER / PARTNER BOARD</p>
+        <h2>応援してくださる方を、ここに紹介します。</h2>
+        <p>クラウドファンディング支援者、協賛企業・団体、連携パートナーなど、NOTO Re:Bloomを一緒に育ててくださる方々を掲載するためのスペースです。現在、掲載希望者・法人パートナーを募集しています。</p>
+        <div class="supporter-badges" aria-label="掲載方針">
+          <span>希望者のみ掲載</span><span>匿名・ニックネーム可</span><span>法人名・団体名可</span><span>掲載内容は事前確認</span>
+        </div>
+      </div>
+      <aside class="supporter-progress-card" aria-label="READYFOR達成率">
+        <div class="progress-title"><span>READYFOR 達成率</span><strong>10%</strong></div>
+        <div class="supporter-meter" aria-hidden="true"><span></span></div>
+        <p>現在の達成率は約10%です。人数ではなく、目標に向けてどこまで進んでいるかを表示しています。最新情報はREADYFORページをご確認ください。</p>
+        <div class="supporter-actions">
+          <a class="btn primary" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
+          <button class="btn ghost mail-modal-trigger" type="button">協賛についてメールする</button>
+        </div>
+      </aside>
+    </div>
+    <div class="supporter-grid reveal">
+      <article class="supporter-panel">
+        <h3>クラファン支援者掲載欄</h3>
+        <p>ご希望いただいた方のお名前・ニックネームを、Re:Bloomサポーターとして掲載予定です。</p>
+        <div class="name-wall" aria-label="支援者掲載予定欄">
+          <div class="name-slot">掲載名が入ります</div>
+          <div class="name-slot">掲載名が入ります</div>
+          <div class="name-slot">掲載名が入ります</div>
+          <div class="name-slot">掲載名が入ります</div>
+          <div class="name-slot">掲載名が入ります</div>
+          <div class="name-slot">掲載名が入ります</div>
+        </div>
+        <p class="supporter-note">※掲載は希望制です。匿名希望の方は掲載なしでご支援いただけます。</p>
+      </article>
+      <article class="supporter-panel partner-panel">
+        <h3>法人・団体パートナー掲載欄</h3>
+        <p>資金協賛、物品協力、広報協力、当日運営協力など、さまざまな形のパートナーをお待ちしています。</p>
+        <div class="partner-slots" aria-label="法人団体パートナー掲載予定欄">
+          <div class="partner-slot"><div><b>協賛パートナー募集中</b><br/><span>企業名・団体名を掲載予定</span></div></div>
+          <div class="partner-slot"><div><b>地域連携パートナー募集中</b><br/><span>地域で一緒に育てる関係を歓迎</span></div></div>
+          <div class="partner-slot"><div><b>広報・物品協力も歓迎</b><br/><span>できる範囲の応援から相談可能</span></div></div>
+        </div>
+        <div class="bloom-row" aria-hidden="true"><span class="bloom-chip">草を刈る</span><span class="bloom-chip">土を整える</span><span class="bloom-chip">花を咲かせる</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section aria-label="プロジェクトの一文" class="mud-band">
 <div class="container band-inner">
 <p>荒れた土地を整えることは、イベントの準備ではありません。<strong>土地に、人が関わり続ける理由をつくることです。</strong></p>
 <a href="#field">現在地を見る</a>
