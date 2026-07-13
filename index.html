@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <!-- NOTO Re:Bloom v28 single-file: flower diagnosis botanical pop-art cards -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
@@ -4085,6 +4086,93 @@ img,svg{max-width:100%;height:auto;}
 .botanical-note{font-size:12px!important;opacity:.76;margin-top:10px!important;}
 @media(max-width:760px){.result-flower-facts{grid-template-columns:1fr;}.flower-card-grid img{aspect-ratio:16/10;}}
 
+
+
+/* ===== v29 visual order polish: safer hero, cleaner flow, diagnosis near bottom ===== */
+html,body{overflow-x:hidden;}
+section{scroll-margin-top:96px;}
+.site-header{width:min(1120px,calc(100% - 28px));padding:9px 10px 9px 14px;gap:10px;}
+.site-nav{gap:4px;}
+.site-nav a{font-size:11.5px;padding:8px 9px;}
+.site-nav .nav-cf{border:2px solid var(--line);box-shadow:0 3px 0 var(--line);background:#fff8ce;color:var(--soil-dark);font-weight:900;}
+.brand small{max-width:260px;}
+.hero{min-height:auto;padding:clamp(120px,12vw,150px) 0 clamp(74px,8vw,96px);background:linear-gradient(145deg,#fff2b7 0%,#fff8e9 50%,#e3f6d8 100%);} 
+.hero-layout{grid-template-columns:minmax(0,1fr) minmax(330px,.78fr);gap:clamp(26px,5vw,54px);align-items:center;}
+.hero-copy{position:relative;min-width:0;z-index:2;padding:clamp(24px,3.8vw,42px);border:4px solid var(--line);border-radius:34px;background:rgba(255,250,236,.86);box-shadow:0 8px 0 var(--line),0 22px 46px rgba(53,33,22,.13);backdrop-filter:blur(8px);} 
+.hero-copy .eyebrow{margin-bottom:8px;}
+.hero-burst{position:relative;display:inline-flex;margin:2px 0 14px;padding:7px 14px;border:3px solid var(--line);border-radius:999px;background:var(--sun);box-shadow:0 5px 0 var(--line);font-weight:900;letter-spacing:.05em;transform:rotate(-1.3deg);}
+.hero-fun-line{display:inline-block;max-width:650px;margin:0 0 14px;padding:9px 13px;border-left:8px solid var(--green);background:#fff;border-radius:14px;font-weight:900;line-height:1.55;color:var(--soil-dark);}
+.hero h1{max-width:720px;font-size:clamp(34px,4.75vw,62px);line-height:1.12;letter-spacing:-.035em;text-wrap:balance;text-shadow:3px 3px 0 rgba(255,255,255,.92);} 
+.hero .lead{font-size:clamp(14.5px,1.36vw,16.5px);line-height:1.86;max-width:720px;margin-top:18px;}
+.hero-actions{gap:10px;margin-top:22px;}
+.hero-actions .btn{min-height:46px;padding-inline:17px;}
+.hero-actions .subtle-diagnosis-link{background:#fffdf3;color:rgba(53,33,22,.72);}
+.hero-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px;}
+.hero-facts article{padding:13px 12px;border-radius:18px;box-shadow:0 4px 0 var(--line);transform:none!important;}
+.hero-facts b{font-size:12px;line-height:1.5;}
+.hero-visual{min-height:480px;isolation:isolate;}
+.hero-visual .main-photo{position:relative;z-index:2;width:min(92%,470px);margin:24px auto 0;transform:rotate(-2deg);}
+.hero-visual .sub-photo{position:absolute;z-index:1;right:0;bottom:0;width:min(48%,250px);transform:rotate(4deg);} 
+.hero-visual .sticker{z-index:3;max-width:250px;font-size:13px;line-height:1.55;}
+.hero-visual .sticker-top{top:0;right:8px;}
+.hero-visual .sticker-bottom{left:0;bottom:40px;}
+.blob{opacity:.55;}
+.mud-band{position:relative;z-index:2;}
+.section{padding:clamp(70px,8vw,108px) 0;}
+.center-heading{max-width:820px;margin-inline:auto;text-align:center;}
+.center-heading h2,.section-copy h2,.impact-head h2,.support h2,.final-card h2{font-size:clamp(30px,4.5vw,52px);line-height:1.24;letter-spacing:-.035em;text-wrap:balance;}
+.center-heading p,.section-copy p:not(.eyebrow),.impact-head p{line-height:1.82;}
+.section-grid{gap:clamp(28px,5vw,58px);align-items:center;}
+.step-cards,.issue-grid,.number-grid,.amount-cards,.event-cards,.support-grid,.material-grid,.status-garden-grid{gap:16px;}
+.step-cards article,.issue-grid article,.status-garden-grid article,.ways-card,.action-card,.material-card,.faq details{box-shadow:0 5px 0 var(--line),0 14px 28px rgba(53,33,22,.08);}
+.v20-crowdfunding{background:linear-gradient(180deg,#fffaf1,#fff3d7 100%);}
+.v20-crowdfunding .container{position:relative;}
+.v20-crowdfunding .section-copy{padding:clamp(22px,3vw,34px);border:4px solid var(--line);border-radius:30px;background:#fff;box-shadow:0 7px 0 var(--line);}
+.impact .meter-shell,.impact-card,.land-meter-card{border-radius:28px;}
+.event{background:linear-gradient(180deg,#fff9ec 0%,#f6ffe9 100%);}
+.event .event-cards article{background:#fff;border-radius:24px;}
+.renge-cup-lab{background:linear-gradient(180deg,#f8fff2 0%,#fffaf1 100%);}
+.data{background:#fffdf7;}
+.data .data-card,.data .chart-card{background:#fff;border-radius:28px;}
+.support{background:linear-gradient(145deg,#2f7a45 0%,#3f9252 100%);}
+.support .support-grid article{background:rgba(255,255,255,.16);backdrop-filter:blur(6px);} 
+.materials .material-grid{align-items:stretch;}
+.materials img{border-radius:18px;}
+.faq details{margin-bottom:12px;background:#fffef8;}
+.flower-diagnosis{margin-top:0;background:linear-gradient(180deg,#fff8e8 0%,#fffdf6 48%,#edfbe6 100%);} 
+.flower-diagnosis::before,.flower-diagnosis::after{opacity:.38;}
+.diagnosis-shell{grid-template-columns:minmax(0,.95fr) minmax(320px,1.05fr);gap:22px;align-items:stretch;}
+.diagnosis-intro h2{font-size:clamp(30px,3.9vw,50px);line-height:1.15;letter-spacing:-.04em;}
+.diagnosis-start-card{background:linear-gradient(135deg,#f0ffe6,#fffdf6);}
+.flower-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.flower-card-grid img{width:100%;border:3px solid var(--line);border-radius:18px;box-shadow:0 4px 0 var(--line);background:#fff;}
+.final-cta{padding:clamp(72px,9vw,110px) 0;background:linear-gradient(180deg,#fffaf1,#eaf9e0);}
+.final-card{max-width:980px;margin-inline:auto;border-radius:30px;}
+@media(max-width:1120px){
+  .site-nav a{font-size:10.8px;padding:7px 7px;}
+  .brand small{display:none;}
+  .hero-layout{grid-template-columns:1fr;}
+  .hero-visual{min-height:420px;max-width:620px;margin-inline:auto;width:100%;}
+}
+@media(max-width:760px){
+  .container{width:min(100% - 26px,var(--container));}
+  .site-header{top:10px;width:calc(100% - 18px);border-radius:24px;}
+  .hero{padding-top:112px;}
+  .hero-copy{padding:22px;border-radius:26px;}
+  .hero h1{font-size:clamp(34px,10.4vw,48px);line-height:1.2;}
+  .hero-fun-line{font-size:13px;margin-bottom:10px;}
+  .hero-actions{display:grid;grid-template-columns:1fr;}
+  .hero-actions .btn{width:100%;}
+  .hero-facts{grid-template-columns:1fr;}
+  .hero-visual{min-height:auto;display:grid;grid-template-columns:1fr;gap:12px;}
+  .hero-visual .main-photo,.hero-visual .sub-photo{position:relative;width:100%;right:auto;bottom:auto;margin:0;transform:none;}
+  .hero-visual .sticker{position:relative;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;max-width:none;}
+  .diagnosis-shell{grid-template-columns:1fr;}
+  .diagnosis-answer-grid{grid-template-columns:1fr;}
+  .flower-card-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .center-heading h2,.section-copy h2,.impact-head h2,.support h2,.final-card h2{font-size:clamp(28px,8vw,40px);line-height:1.34;}
+}
+@media(max-width:420px){.flower-card-grid{grid-template-columns:1fr;}.btn{font-size:12.5px;}}
 </style>
 </head>
 <body>
@@ -4096,23 +4184,33 @@ img,svg{max-width:100%;height:auto;}
 <span><b>NOTO Re:Bloom</b><small>耕作放棄地を、もう一度人が関わる場所へ。</small></span>
 </a>
 <button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
-<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav">
-<a href="#about">概要</a>
-<a href="#fun-mission">楽しさ</a>
-<a href="#flower-diagnosis">花診断</a><a href="#crowdfunding">クラファン</a>
-<a href="#impact">支援の目安</a>
-<a href="#status">現在地</a>
-<a href="#ways">関わり方</a>
-<a href="#data">背景データ</a>
-<a href="#field">会場候補</a>
-<a href="#event">イベント</a>
-<a href="#support">協賛・参加</a>
-<a href="#faq">FAQ</a>
-<a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a>
-<a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a>
-</nav>
+<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#crowdfunding">クラファン</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
 </header>
 <main id="main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="hero" id="top">
 <div aria-hidden="true" class="hero-bg">
 <span class="blob blob-1"></span>
@@ -4124,14 +4222,9 @@ img,svg{max-width:100%;height:auto;}
 <p class="eyebrow"><i></i>NOTO / SUZU / FIELD REGENERATION</p>
 <div class="hero-burst">FUN × FIELD</div>
 <p class="hero-fun-line">泥だらけで笑う一日が、能登の土地に人が戻るきっかけになる。</p>
-<h1><span class="keep">耕作放棄地を、</span><br/><span class="keep">もう一度人が関わる場所へ。</span></h1>
+<h1><span class="keep">耕作放棄地を、</span><span class="keep">もう一度</span><span class="keep">人が関わる場所へ。</span></h1>
 <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
-<div class="hero-actions">
-<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
-<a class="btn ghost" href="#flower-diagnosis">花診断を試す</a>
-<a class="btn ghost" href="#impact">支援の目安を見る</a>
-<a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加・連携を相談する</a>
-</div>
+<div class="hero-actions"><a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a><a class="btn ghost" href="#event">泥ん子運動会を見る</a><a class="btn ghost" href="#impact">支援の目安を見る</a><a class="btn ghost subtle-diagnosis-link" href="#flower-diagnosis">花診断はページ下部へ</a></div>
 <div aria-label="プロジェクトの現在地" class="hero-facts">
 <article><span>START</span><b><span class="nowrap">NOTO-REBOOST U-23</span><br/>最優秀賞から始動</b></article>
 <article><span>FIELD</span><b>珠洲市内で<br/>会場候補を調整中</b></article>
@@ -4149,15 +4242,12 @@ img,svg{max-width:100%;height:auto;}
 <div class="sticker sticker-bottom">一日で終わらせず、<br/>次の季節へつなぐ</div>
 </div>
 </div>
-</section>
-<section aria-label="プロジェクトの一文" class="mud-band">
+</section><section aria-label="プロジェクトの一文" class="mud-band">
 <div class="container band-inner">
 <p>荒れた土地を整えることは、イベントの準備ではありません。<strong>土地に、人が関わり続ける理由をつくることです。</strong></p>
 <a href="#field">現在地を見る</a>
 </div>
-</section>
-
-<section class="section about" id="about">
+</section><section class="section about" id="about">
 <div class="container section-grid">
 <div class="section-copy reveal">
 <p class="eyebrow"><i></i>PROJECT / 概要</p>
@@ -4171,39 +4261,7 @@ img,svg{max-width:100%;height:auto;}
 <article><span>04</span><h3>次年度以降へつなぐ</h3><p>栽培、管理、景観づくりなど、その土地に合った継続活用を考えます。</p></article>
 </div>
 </div>
-</section>
-<section class="section project-status" id="status">
-<div class="container">
-<div class="center-heading reveal">
-<p class="eyebrow"><i></i>PROJECT STATUS</p>
-<h2><span class="keep">NOTO Re:Bloomの現在地。</span></h2>
-<p>私たちは、能登の耕作放棄地を「楽しく関われる場所」に変え、毎年少しずつでも減らしていく仕組みづくりを進めています。</p>
-</div>
-<div class="status-garden-grid reveal">
-<article>
-<span>ROOT</span>
-<h3><span class="nowrap">NOTO-REBOOST U-23</span>から始動</h3>
-<p>能登の復興や地域課題を考えるプログラムで出会った3人が、継続して能登に関わる形を考え、このプロジェクトを始めました。</p>
-</article>
-<article>
-<span>FIELD</span>
-<h3>珠洲市内で会場候補を調整中</h3>
-<p>初年度は珠洲市内の遊休農地を中心に、アクセス、安全面、整備費、翌年度以降の活用可能性を確認しています。</p>
-</article>
-<article>
-<span>EVENT</span>
-<h3>泥ん子運動会を入口に</h3>
-<p>泥バケツリレー、リレー、綱引き、しっぽ取りを通じて、楽しみながら土地に関わるきっかけをつくります。</p>
-</article>
-<article>
-<span>BLOOM</span>
-<h3>レンゲを育てる体験へ</h3>
-<p>集めた泥と培養土を使い、レンゲの種をまいて持ち帰れる形を検討しています。一日の体験を、次の季節へつなげます。</p>
-</article>
-</div>
-</div>
-</section>
-<section class="section issue">
+</section><section class="section issue">
 <div class="container">
 <div class="center-heading reveal">
 <p class="eyebrow"><i></i>WHY IT MATTERS</p>
@@ -4216,8 +4274,7 @@ img,svg{max-width:100%;height:auto;}
 <article><span>🤝</span><h3>継続の仕組み不足</h3><p>一度の活動で終わらせず、翌年度以降へ残す形が必要です。</p></article>
 </div>
 </div>
-</section>
-<section class="section fun-mission" id="fun-mission">
+</section><section class="section fun-mission" id="fun-mission">
 <div class="container fun-mission-grid">
 <div class="section-copy reveal">
 <p class="eyebrow"><i></i>FUN FARMING</p>
@@ -4247,99 +4304,7 @@ img,svg{max-width:100%;height:auto;}
 </article>
 </div>
 </div>
-</section>
-
-
-<section class="section flower-diagnosis" id="flower-diagnosis">
-  <div class="container">
-    <div class="diagnosis-shell">
-      <div class="diagnosis-intro reveal">
-        <p class="eyebrow"><i></i>FLOWER TYPE DIAGNOSIS</p>
-        <h2>あなたの中に咲く花は？<br/>Re:Bloom 花タイプ診断</h2>
-        <p>56問の質問に、<b>はい / どちらともいえない / いいえ</b>で答えるだけ。ふだんの考え方、人との距離感、行動のくせ、気持ちの整え方から、32種類の花タイプの中からあなたに近い花を表示します。</p>
-        <ul class="diagnosis-tags" aria-label="診断の特徴">
-          <li>56問</li><li>3択で回答</li><li>32花タイプ</li><li>キーボード対応</li><li>分析グラフ付き</li>
-        </ul>
-      </div>
-      <div class="diagnosis-start-card reveal" id="diagnosisStartCard">
-        <h3>花の好みではなく、あなたの人となりから診断します。</h3>
-        <p>質問は、普段の過ごし方や考え方についての内容です。テンポよく進められるように、PCではキーボード回答にも対応しました。</p>
-        <button class="btn primary" id="diagnosisStart" type="button">診断をはじめる</button>
-        <button class="btn ghost" id="diagnosisResume" type="button">途中から再開する</button>
-        <div class="keyboard-help" aria-label="キーボード操作の説明">
-          PCでは <kbd>1</kbd>はい / <kbd>2</kbd>どちらとも / <kbd>3</kbd>いいえ / <kbd>←</kbd>前の質問 で回答できます。
-        </div>
-        <p class="diagnosis-note">※この診断は性格を決めつけるものではありません。回答傾向をもとに、花タイプとして楽しく表示するコンテンツです。</p>
-      </div>
-    </div>
-
-    <div class="diagnosis-panel" id="diagnosisPanel" aria-live="polite">
-      <div class="diagnosis-progress">
-        <div class="diagnosis-progress-top"><span id="diagnosisCount">1 / 56</span><span id="diagnosisPercent">0%</span></div>
-        <div class="diagnosis-progress-track"><span class="diagnosis-progress-fill" id="diagnosisProgressFill"></span></div>
-      </div>
-      <div class="diagnosis-question-card">
-        <span class="diagnosis-q-category" id="diagnosisCategory">日常の考え方</span>
-        <p class="diagnosis-question" id="diagnosisQuestion">質問が入ります。</p>
-        <div class="diagnosis-answer-grid" role="group" aria-label="回答を選択">
-          <button class="diagnosis-answer" data-value="1" type="button">はい<small>キー：1 / Y</small></button>
-          <button class="diagnosis-answer" data-value="0" type="button">どちらとも<br/>いえない<small>キー：2 / Space</small></button>
-          <button class="diagnosis-answer" data-value="-1" type="button">いいえ<small>キー：3 / N</small></button>
-        </div>
-      </div>
-      <div class="diagnosis-controls">
-        <button class="btn ghost" id="diagnosisBack" type="button">前の質問へ</button>
-        <button class="btn ghost" id="diagnosisReset" type="button">最初からやり直す</button>
-      </div>
-      <div class="diagnosis-mini-field" aria-hidden="true">
-        <p>回答するたび、心の畑に小さな花が増えていきます。</p>
-        <div class="flower-seed-row" id="flowerSeedRow"></div>
-      </div>
-    </div>
-
-    <div class="diagnosis-result" id="diagnosisResult">
-      <div class="result-hero">
-        <div class="result-image-wrap"><img id="resultImage" alt="診断結果の花カード" src="" loading="lazy"/></div>
-        <div class="result-content">
-          <span class="result-group-badge" id="resultGroup">里山の花</span>
-          <h3 id="resultTitle">レンゲタイプ</h3>
-          <p class="result-lead" id="resultLead"></p>
-          <p class="result-desc" id="resultDesc"></p>
-          <p id="resultGroupLead" class="result-desc"></p>
-          <div class="result-flower-facts" aria-label="花のプロフィール">
-            <div><b>原産地</b><span id="resultOrigin"></span></div>
-            <div><b>開花時期</b><span id="resultBloom"></span></div>
-            <div><b>花言葉</b><span id="resultLanguage"></span></div>
-          </div>
-          <p class="botanical-note">※原産地・開花時期・花言葉は、一般的に知られる目安です。地域や品種により異なる場合があります。</p>
-          <div class="result-actions">
-            <button class="btn primary" id="copyDiagnosisResult" type="button">結果をコピーする</button>
-            <a class="btn ghost" id="downloadCard" href="#" download>花カードを保存</a>
-            <button class="btn ghost" id="retryDiagnosis" type="button">もう一度診断する</button>
-          </div>
-          <p class="diagnosis-copy-status" id="diagnosisCopyStatus"></p>
-        </div>
-      </div>
-      <div class="result-section-grid">
-        <div class="result-box"><h4>強み</h4><ul id="resultStrengths"></ul></div>
-        <div class="result-box"><h4>気をつけたいこと</h4><ul id="resultWatch"></ul></div>
-        <div class="result-box"><h4>人との関わり方</h4><p id="resultRelation"></p></div>
-        <div class="result-box"><h4>向いている場面</h4><p id="resultFit"></p></div>
-        <div class="result-box"><h4>NOTO Re:Bloomでの応援スタイル</h4><p id="resultRecommended"></p></div>
-        <div class="result-box"><h4>分析グラフ</h4><div class="axis-bars" id="axisBars"></div></div>
-      </div>
-    </div>
-
-    <details class="flower-gallery reveal">
-      <summary>32種類の花タイプカードを見る</summary>
-      <p class="flower-gallery-note">花ごとに見た目・原産地・開花時期・花言葉が分かるカードを表示します。診断結果だけでなく、一覧として眺めても楽しめます。</p>
-      <div class="flower-card-grid" id="flowerCardGrid"></div>
-    </details>
-  </div>
-</section>
-
-
-<section class="section v20-crowdfunding" id="crowdfunding">
+</section><section class="section v20-crowdfunding" id="crowdfunding">
 <div class="container v20-cf-wrap">
 <div class="v20-cf-hero reveal">
 <div class="v20-cf-copy">
@@ -4444,9 +4409,7 @@ img,svg{max-width:100%;height:auto;}
 <p class="v20-reward-note">※画像・内容はイメージです。返礼品の内容やデザインは、仕入れ状況や協力事業者との調整により変更となる場合があります。</p>
 </div>
 </div>
-</section>
-
-<section class="section impact" id="impact">
+</section><section class="section impact" id="impact">
 <div class="container">
 <div class="impact-head reveal">
 <p class="eyebrow"><i></i>SUPPORT IMPACT</p>
@@ -4525,145 +4488,7 @@ img,svg{max-width:100%;height:auto;}
 <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a>
 </div>
 </div>
-</section>
-
-<section class="section ways" id="ways">
-<div class="container ways-grid">
-<div class="section-copy reveal">
-<p class="eyebrow"><i></i>JOIN THE FIELD</p>
-<h2><span class="keep">お金だけじゃない。</span><br/><span class="keep">関わり方はいくつもあります。</span></h2>
-<p>クラウドファンディングでの応援はもちろん、発信、当日運営、写真撮影、物品協力、専門的な助言など、さまざまな関わり方があります。できることから参加できる設計にしています。</p>
-<div class="ways-actions">
-<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
-<a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加・連携を相談する</a>
-</div>
-</div>
-<div class="ways-cards reveal">
-<article><b>学生</b><span>運営 / SNS / 写真 / 企画</span><p>地域活動の経験がなくても、できる役割から関われます。</p></article>
-<article><b>地域の方</b><span>土地情報 / 助言 / 見守り</span><p>無理のない範囲で、土地の背景や地域の事情を教えてください。</p></article>
-<article><b>企業・団体</b><span>協賛 / 物品 / 広報 / 人材</span><p>資金だけでなく、道具や発信、社員参加も大きな力になります。</p></article>
-<article><b>見守る人</b><span>シェア / 紹介 / 応援</span><p>知人への共有やSNSでの拡散も、最初の大切な支援です。</p></article>
-</div>
-</div>
-</section>
-<section class="section action-map" id="action-map">
-<div class="container">
-<div class="center-heading reveal">
-<p class="eyebrow"><i></i>ACTION MAP</p>
-<h2><span class="keep">気になったら、</span><br/><span class="keep">できることから関われます。</span></h2>
-<p>クラファン、SNSでの共有、学生ボランティア、企業・団体連携。どの入口からでも、耕作放棄地を減らす一歩につながります。</p>
-</div>
-<div class="action-map-grid reveal">
-<article>
-<span>SUPPORT</span>
-<h3>クラファンで応援する</h3>
-<p>整備、安全対策、運営準備、翌年度以降の活用準備を支えます。</p>
-<a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORへ</a>
-</article>
-<article>
-<span>SHARE</span>
-<h3>SNSで広げる</h3>
-<p>「面白そう」と思った人に届くことが、参加者や協賛につながります。</p>
-<a href="#materials">資料を見る</a>
-</article>
-<article>
-<span>JOIN</span>
-<h3>学生ボランティア</h3>
-<p>受付、誘導、撮影、SNS、チーム補助など、得意な形で関われます。</p>
-<a href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a>
-</article>
-<article>
-<span>PARTNER</span>
-<h3>企業・団体連携</h3>
-<p>資金、物品、広報、社員参加、地域団体の紹介などを歓迎します。</p>
-<a href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">連携相談</a>
-</article>
-</div>
-</div>
-</section>
-<section class="section report" id="report">
-<div class="container report-grid">
-<div class="report-card reveal">
-<p class="eyebrow"><i></i>OPEN REPORT</p>
-<h2><span class="keep">活動の進捗は、</span><br/><span class="keep">見える形で残していきます。</span></h2>
-<p>会場の確定、整備費の内訳、当日の様子、土地の変化、翌年度以降の活用方針などを、サイトやSNSで順次公開します。支援して終わりではなく、土地がどう変わったかを追える形にします。</p>
-</div>
-<div class="report-list reveal">
-<article><span>01</span><h3>費用の見える化</h3><p>会場確定後、整備費・安全管理費・運営費を整理して公開します。</p></article>
-<article><span>02</span><h3>写真で残す</h3><p>整備前・整備中・イベント後の変化を写真で記録します。</p></article>
-<article><span>03</span><h3>次年度への引き継ぎ</h3><p>一度きりで終わらせないため、活用案と管理方法を整理します。</p></article>
-</div>
-</div>
-</section>
-
-<section class="section data" id="data">
-<div class="container">
-<div class="center-heading reveal">
-<p class="eyebrow"><i></i>DATA / WHY NOW</p>
-<h2><span class="keep">数字で見る、</span><br/><span class="keep">農地と復興の現在地。</span></h2>
-<p>全国的な荒廃農地の広がり、再生の余地、そして奥能登で進んできた担い手の減少。公的資料をもとに、背景をわかりやすく整理します。</p>
-</div>
-<div class="number-grid reveal">
-<article><span>JAPAN / 2024</span><b data-count="25.7" data-suffix="万ha">0</b><p>全国の荒廃農地面積</p></article>
-<article><span>REUSABLE / 2024</span><b data-count="9.8" data-suffix="万ha">0</b><p>再生利用が可能と見込まれる荒廃農地</p></article>
-<article><span>ISHIKAWA / 2024</span><b data-count="826" data-suffix="ha">0</b><p>石川県の荒廃農地面積</p></article>
-<article><span>OKUNOTO / 2020</span><b data-count="1908">0</b><p>奥能登の農業経営体</p></article>
-</div>
-<div class="data-panels reveal">
-<article class="panel chart-panel">
-<span>01 / NATIONAL TREND</span>
-<h3>全国の荒廃農地は、25万ha台で推移。</h3>
-<p>再生できる可能性のある土地を、どう使い続けるかが課題です。</p>
-<div aria-label="全国の荒廃農地面積の推移" class="bars">
-<i style="--h:100"><b>26.0</b><small>R3</small></i>
-<i style="--h:97"><b>25.3</b><small>R4</small></i>
-<i style="--h:99"><b>25.7</b><small>R5</small></i>
-<i style="--h:99"><b>25.7</b><small>R6</small></i>
-</div>
-</article>
-<article class="panel green-panel">
-<span>02 / ROOM TO REUSE</span>
-<h3>約4割は、再生利用の余地。</h3>
-<p>25.7万haのうち、9.8万haは整地などにより再び耕作できる可能性があります。</p>
-<div class="donut"><b>38%</b><small>再生の余地</small></div>
-</article>
-<article class="panel wide">
-<span>03 / OKUNOTO FARMERS</span>
-<h3>震災前から続いていた、担い手の減少。</h3>
-<p>奥能登の農業経営体は、2010年から2020年にかけておよそ半減しました。</p>
-<div class="mini-trend">
-<b>3,787<small>2010</small></b><i></i>
-<b>2,872<small>2015</small></b><i></i>
-<b>1,908<small>2020</small></b>
-<strong>10年間で -49.6%</strong>
-</div>
-</article>
-</div>
-<p class="source-note reveal">出典：農林水産省「荒廃農地の発生・解消状況に関する調査」、農林業センサス等をもとに整理。数値は公開資料に基づく概数です。</p>
-</div>
-</section>
-<section class="section field" id="field">
-<div class="container field-grid">
-<div class="section-copy reveal">
-<p class="eyebrow"><i></i>FIELD STATUS</p>
-<h2><span class="keep">最初の一歩となる土地を、</span><br/><span class="keep">地域の方と調整しています。</span></h2>
-<p>初年度の会場は、珠洲市内の遊休農地を中心に調整しています。現在は、珠洲市上黒丸の候補地を含め、アクセス、安全面、整備費、翌年度以降の活用可能性を確認している段階です。</p>
-<div class="status-card">
-<span>確認中のこと</span>
-<ul>
-<li><b>会場</b><small>地域代表者・土地関係者との相談</small></li>
-<li><b>費用</b><small>草刈り、簡易整備、安全対策、運営備品</small></li>
-<li><b>継続性</b><small>翌年度以降の栽培・管理・活用方法</small></li>
-</ul>
-</div>
-</div>
-<div class="field-photos reveal">
-<figure><img alt="再生候補地の全景" src="field-overview.webp"/><figcaption><b>候補地の様子</b><span>アクセス・安全面・整備範囲を確認中。</span></figcaption></figure>
-<figure><img alt="再生候補地の地表" src="field-detail.webp"/><figcaption><b>現地の状態</b><span>初期整備の規模と費用を整理します。</span></figcaption></figure>
-</div>
-</div>
-</section>
-<section class="section event" id="event">
+</section><section class="section event" id="event">
 <div class="container event-stack">
 <div class="event-heading reveal">
 <p class="eyebrow light"><i></i>DORONKO SPORTS DAY</p>
@@ -4779,8 +4604,7 @@ img,svg{max-width:100%;height:auto;}
 <a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
 </div>
 </div>
-</section>
-<section class="section renge-cup-lab" id="renge-cup">
+</section><section class="section renge-cup-lab" id="renge-cup">
 <div class="container">
 <div class="center-heading reveal">
 <p class="eyebrow"><i></i>Re:Bloom レンゲカップ</p>
@@ -4794,8 +4618,102 @@ img,svg{max-width:100%;height:auto;}
 <article><span>04</span><div class="renge-icon bloom"></div><h3>家で育てる</h3><p>芽が出るまでの時間も、能登とつながる思い出になります。</p></article>
 </div>
 </div>
-</section>
-<section class="section students">
+</section><section class="section field" id="field">
+<div class="container field-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>FIELD STATUS</p>
+<h2><span class="keep">最初の一歩となる土地を、</span><br/><span class="keep">地域の方と調整しています。</span></h2>
+<p>初年度の会場は、珠洲市内の遊休農地を中心に調整しています。現在は、珠洲市上黒丸の候補地を含め、アクセス、安全面、整備費、翌年度以降の活用可能性を確認している段階です。</p>
+<div class="status-card">
+<span>確認中のこと</span>
+<ul>
+<li><b>会場</b><small>地域代表者・土地関係者との相談</small></li>
+<li><b>費用</b><small>草刈り、簡易整備、安全対策、運営備品</small></li>
+<li><b>継続性</b><small>翌年度以降の栽培・管理・活用方法</small></li>
+</ul>
+</div>
+</div>
+<div class="field-photos reveal">
+<figure><img alt="再生候補地の全景" src="field-overview.webp"/><figcaption><b>候補地の様子</b><span>アクセス・安全面・整備範囲を確認中。</span></figcaption></figure>
+<figure><img alt="再生候補地の地表" src="field-detail.webp"/><figcaption><b>現地の状態</b><span>初期整備の規模と費用を整理します。</span></figcaption></figure>
+</div>
+</div>
+</section><section class="section data" id="data">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>DATA / WHY NOW</p>
+<h2><span class="keep">数字で見る、</span><br/><span class="keep">農地と復興の現在地。</span></h2>
+<p>全国的な荒廃農地の広がり、再生の余地、そして奥能登で進んできた担い手の減少。公的資料をもとに、背景をわかりやすく整理します。</p>
+</div>
+<div class="number-grid reveal">
+<article><span>JAPAN / 2024</span><b data-count="25.7" data-suffix="万ha">0</b><p>全国の荒廃農地面積</p></article>
+<article><span>REUSABLE / 2024</span><b data-count="9.8" data-suffix="万ha">0</b><p>再生利用が可能と見込まれる荒廃農地</p></article>
+<article><span>ISHIKAWA / 2024</span><b data-count="826" data-suffix="ha">0</b><p>石川県の荒廃農地面積</p></article>
+<article><span>OKUNOTO / 2020</span><b data-count="1908">0</b><p>奥能登の農業経営体</p></article>
+</div>
+<div class="data-panels reveal">
+<article class="panel chart-panel">
+<span>01 / NATIONAL TREND</span>
+<h3>全国の荒廃農地は、25万ha台で推移。</h3>
+<p>再生できる可能性のある土地を、どう使い続けるかが課題です。</p>
+<div aria-label="全国の荒廃農地面積の推移" class="bars">
+<i style="--h:100"><b>26.0</b><small>R3</small></i>
+<i style="--h:97"><b>25.3</b><small>R4</small></i>
+<i style="--h:99"><b>25.7</b><small>R5</small></i>
+<i style="--h:99"><b>25.7</b><small>R6</small></i>
+</div>
+</article>
+<article class="panel green-panel">
+<span>02 / ROOM TO REUSE</span>
+<h3>約4割は、再生利用の余地。</h3>
+<p>25.7万haのうち、9.8万haは整地などにより再び耕作できる可能性があります。</p>
+<div class="donut"><b>38%</b><small>再生の余地</small></div>
+</article>
+<article class="panel wide">
+<span>03 / OKUNOTO FARMERS</span>
+<h3>震災前から続いていた、担い手の減少。</h3>
+<p>奥能登の農業経営体は、2010年から2020年にかけておよそ半減しました。</p>
+<div class="mini-trend">
+<b>3,787<small>2010</small></b><i></i>
+<b>2,872<small>2015</small></b><i></i>
+<b>1,908<small>2020</small></b>
+<strong>10年間で -49.6%</strong>
+</div>
+</article>
+</div>
+<p class="source-note reveal">出典：農林水産省「荒廃農地の発生・解消状況に関する調査」、農林業センサス等をもとに整理。数値は公開資料に基づく概数です。</p>
+</div>
+</section><section class="section project-status" id="status">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>PROJECT STATUS</p>
+<h2><span class="keep">NOTO Re:Bloomの現在地。</span></h2>
+<p>私たちは、能登の耕作放棄地を「楽しく関われる場所」に変え、毎年少しずつでも減らしていく仕組みづくりを進めています。</p>
+</div>
+<div class="status-garden-grid reveal">
+<article>
+<span>ROOT</span>
+<h3><span class="nowrap">NOTO-REBOOST U-23</span>から始動</h3>
+<p>能登の復興や地域課題を考えるプログラムで出会った3人が、継続して能登に関わる形を考え、このプロジェクトを始めました。</p>
+</article>
+<article>
+<span>FIELD</span>
+<h3>珠洲市内で会場候補を調整中</h3>
+<p>初年度は珠洲市内の遊休農地を中心に、アクセス、安全面、整備費、翌年度以降の活用可能性を確認しています。</p>
+</article>
+<article>
+<span>EVENT</span>
+<h3>泥ん子運動会を入口に</h3>
+<p>泥バケツリレー、リレー、綱引き、しっぽ取りを通じて、楽しみながら土地に関わるきっかけをつくります。</p>
+</article>
+<article>
+<span>BLOOM</span>
+<h3>レンゲを育てる体験へ</h3>
+<p>集めた泥と培養土を使い、レンゲの種をまいて持ち帰れる形を検討しています。一日の体験を、次の季節へつなげます。</p>
+</article>
+</div>
+</div>
+</section><section class="section students">
 <div class="container section-grid">
 <div class="section-copy reveal">
 <p class="eyebrow"><i></i>FOR STUDENTS</p>
@@ -4808,8 +4726,105 @@ img,svg{max-width:100%;height:auto;}
 <article><span>🧤</span><h3>動く</h3><p>当日の受付・誘導・運営を支える。</p></article>
 </div>
 </div>
-</section>
-<section class="section participation" id="participation">
+</section><section class="section story">
+<div class="container story-grid">
+<div class="story-media reveal">
+<img alt="NOTO-REBOOST U-23で出会ったメンバーの写真" src="team-reboost.webp"/>
+</div>
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>OUR START</p>
+<h2><span class="nowrap">NOTO-REBOOST U-23</span>で出会った3人が、能登に継続して関わる形を考えました。</h2>
+<p>きっかけは、能登の復興や地域課題を考えるプログラムでした。一時的な参加で終わらせず、学生として継続的に能登に関われる形をつくりたい。その思いから、NOTO Re:Bloomは始まりました。</p>
+</div>
+</div>
+</section><section class="section ways" id="ways">
+<div class="container ways-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>JOIN THE FIELD</p>
+<h2><span class="keep">お金だけじゃない。</span><br/><span class="keep">関わり方はいくつもあります。</span></h2>
+<p>クラウドファンディングでの応援はもちろん、発信、当日運営、写真撮影、物品協力、専門的な助言など、さまざまな関わり方があります。できることから参加できる設計にしています。</p>
+<div class="ways-actions">
+<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加・連携を相談する</a>
+</div>
+</div>
+<div class="ways-cards reveal">
+<article><b>学生</b><span>運営 / SNS / 写真 / 企画</span><p>地域活動の経験がなくても、できる役割から関われます。</p></article>
+<article><b>地域の方</b><span>土地情報 / 助言 / 見守り</span><p>無理のない範囲で、土地の背景や地域の事情を教えてください。</p></article>
+<article><b>企業・団体</b><span>協賛 / 物品 / 広報 / 人材</span><p>資金だけでなく、道具や発信、社員参加も大きな力になります。</p></article>
+<article><b>見守る人</b><span>シェア / 紹介 / 応援</span><p>知人への共有やSNSでの拡散も、最初の大切な支援です。</p></article>
+</div>
+</div>
+</section><section class="section action-map" id="action-map">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>ACTION MAP</p>
+<h2><span class="keep">気になったら、</span><br/><span class="keep">できることから関われます。</span></h2>
+<p>クラファン、SNSでの共有、学生ボランティア、企業・団体連携。どの入口からでも、耕作放棄地を減らす一歩につながります。</p>
+</div>
+<div class="action-map-grid reveal">
+<article>
+<span>SUPPORT</span>
+<h3>クラファンで応援する</h3>
+<p>整備、安全対策、運営準備、翌年度以降の活用準備を支えます。</p>
+<a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORへ</a>
+</article>
+<article>
+<span>SHARE</span>
+<h3>SNSで広げる</h3>
+<p>「面白そう」と思った人に届くことが、参加者や協賛につながります。</p>
+<a href="#materials">資料を見る</a>
+</article>
+<article>
+<span>JOIN</span>
+<h3>学生ボランティア</h3>
+<p>受付、誘導、撮影、SNS、チーム補助など、得意な形で関われます。</p>
+<a href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a>
+</article>
+<article>
+<span>PARTNER</span>
+<h3>企業・団体連携</h3>
+<p>資金、物品、広報、社員参加、地域団体の紹介などを歓迎します。</p>
+<a href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">連携相談</a>
+</article>
+</div>
+</div>
+</section><section class="section report" id="report">
+<div class="container report-grid">
+<div class="report-card reveal">
+<p class="eyebrow"><i></i>OPEN REPORT</p>
+<h2><span class="keep">活動の進捗は、</span><br/><span class="keep">見える形で残していきます。</span></h2>
+<p>会場の確定、整備費の内訳、当日の様子、土地の変化、翌年度以降の活用方針などを、サイトやSNSで順次公開します。支援して終わりではなく、土地がどう変わったかを追える形にします。</p>
+</div>
+<div class="report-list reveal">
+<article><span>01</span><h3>費用の見える化</h3><p>会場確定後、整備費・安全管理費・運営費を整理して公開します。</p></article>
+<article><span>02</span><h3>写真で残す</h3><p>整備前・整備中・イベント後の変化を写真で記録します。</p></article>
+<article><span>03</span><h3>次年度への引き継ぎ</h3><p>一度きりで終わらせないため、活用案と管理方法を整理します。</p></article>
+</div>
+</div>
+</section><section class="section support" id="support">
+<div class="container">
+<div class="support-head reveal">
+<div>
+<p class="eyebrow light"><i></i>SUPPORT / PARTNERSHIP</p>
+<h2><span class="keep">協賛は、能登に残る景色と</span><br/><span class="keep">つながりを育てる力です。</span></h2>
+<p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
+</div>
+<div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a></div>
+</div>
+<div class="support-grid reveal">
+<article><span>01</span><h3>資金協賛</h3><p>草刈り、簡易整備、安全管理、運営備品などに活用します。</p></article>
+<article><span>02</span><h3>物品協力</h3><p>テント、道具、衛生用品、広報物など、現場を支える協力です。</p></article>
+<article><span>03</span><h3>広報協力</h3><p>社内外への発信や、関心のある方への紹介が大きな力になります。</p></article>
+<article><span>04</span><h3>人的協力</h3><p>社員参加、専門的助言、地域団体との接続などを歓迎します。</p></article>
+</div>
+<div class="support-note reveal">
+<b>透明性について</b>
+<p>会場・整備範囲・必要経費が確定した段階で、費用内訳と進捗を順次公開します。無理に大きく始めるのではなく、実施可能な範囲から着実に進めます。</p>
+</div>
+</div>
+</section><section class="section participation" id="participation">
 <div class="container">
 <div class="center-heading reveal">
 <p class="eyebrow"><i></i>HOW TO JOIN</p>
@@ -4839,10 +4854,7 @@ img,svg{max-width:100%;height:auto;}
 </article>
 </div>
 </div>
-</section>
-
-
-<section class="section v20-share" id="share">
+</section><section class="section v20-share" id="share">
 <div class="container v20-share-card reveal">
 <div>
 <p class="eyebrow"><i></i>SHARE / INVITE</p>
@@ -4854,43 +4866,7 @@ img,svg{max-width:100%;height:auto;}
 <a class="btn ghost" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORを開く</a>
 </div>
 </div>
-</section>
-<section class="section story">
-<div class="container story-grid">
-<div class="story-media reveal">
-<img alt="NOTO-REBOOST U-23で出会ったメンバーの写真" src="team-reboost.webp"/>
-</div>
-<div class="section-copy reveal">
-<p class="eyebrow"><i></i>OUR START</p>
-<h2><span class="nowrap">NOTO-REBOOST U-23</span>で出会った3人が、能登に継続して関わる形を考えました。</h2>
-<p>きっかけは、能登の復興や地域課題を考えるプログラムでした。一時的な参加で終わらせず、学生として継続的に能登に関われる形をつくりたい。その思いから、NOTO Re:Bloomは始まりました。</p>
-</div>
-</div>
-</section>
-<section class="section support" id="support">
-<div class="container">
-<div class="support-head reveal">
-<div>
-<p class="eyebrow light"><i></i>SUPPORT / PARTNERSHIP</p>
-<h2><span class="keep">協賛は、能登に残る景色と</span><br/><span class="keep">つながりを育てる力です。</span></h2>
-<p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
-</div>
-<div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
-<a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a></div>
-</div>
-<div class="support-grid reveal">
-<article><span>01</span><h3>資金協賛</h3><p>草刈り、簡易整備、安全管理、運営備品などに活用します。</p></article>
-<article><span>02</span><h3>物品協力</h3><p>テント、道具、衛生用品、広報物など、現場を支える協力です。</p></article>
-<article><span>03</span><h3>広報協力</h3><p>社内外への発信や、関心のある方への紹介が大きな力になります。</p></article>
-<article><span>04</span><h3>人的協力</h3><p>社員参加、専門的助言、地域団体との接続などを歓迎します。</p></article>
-</div>
-<div class="support-note reveal">
-<b>透明性について</b>
-<p>会場・整備範囲・必要経費が確定した段階で、費用内訳と進捗を順次公開します。無理に大きく始めるのではなく、実施可能な範囲から着実に進めます。</p>
-</div>
-</div>
-</section>
-<section class="section materials" id="materials">
+</section><section class="section materials" id="materials">
 <div class="container">
 <div class="center-heading reveal">
 <p class="eyebrow"><i></i>MATERIALS</p>
@@ -4904,8 +4880,7 @@ img,svg{max-width:100%;height:auto;}
 <figure><img alt="資金計画資料" src="funding-plan.webp"/></figure>
 </div>
 </div>
-</section>
-<section class="section faq" id="faq">
+</section><section class="section faq" id="faq">
 <div class="container faq-grid">
 <div class="section-copy reveal">
 <p class="eyebrow"><i></i>FAQ</p>
@@ -4913,18 +4888,92 @@ img,svg{max-width:100%;height:auto;}
 <p>参加や協賛を検討する前に気になる点を整理しました。</p>
 </div>
 <div class="faq-list reveal">
-
-
-
-
-
-
-
-
 <details open=""><summary>現在、会場は確定していますか？</summary><p>確定前です。珠洲市内の候補地について、地域の方と相談しながら、アクセス・安全面・整備費・翌年度以降の活用可能性を確認しています。</p></details><details><summary>泥ん子運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details><details><summary>どんな服装で行けばいいですか？</summary><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。泥に入る企画のため、当日は濡れてもよい準備でお越しください。</p></details><details><summary>見学だけでも大丈夫ですか？</summary><p>大丈夫です。見学・応援は無料を想定しています。泥に入らず、雰囲気を楽しむだけでも歓迎です。</p></details><details><summary>小さな子どもでも参加できますか？</summary><p>参加人数や年齢構成を見ながら、安全に楽しめる形でチーム分けや競技内容を調整します。</p></details><details><summary>雨天時はどうなりますか？</summary><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。変更がある場合は、申込者へご案内します。</p></details><details><summary>学生はどのように関われますか？</summary><p>当日の運営、SNS発信、写真・動画の記録、広報、企画づくりなど、できるところから関われます。</p></details><details><summary>企業・団体は資金協賛以外でも関われますか？</summary><p>可能です。物品協力、広報協力、社員参加、専門的助言、地域団体の紹介など、さまざまな形での連携を歓迎しています。</p></details></div>
 </div>
-</section>
-<section class="final-cta">
+</section><section class="section flower-diagnosis" id="flower-diagnosis">
+<div class="container">
+<div class="diagnosis-shell">
+<div class="diagnosis-intro reveal">
+<p class="eyebrow"><i></i>FLOWER TYPE DIAGNOSIS</p>
+<h2>あなたの中に咲く花は？<br/>Re:Bloom 花タイプ診断</h2>
+<p>56問の質問に、<b>はい / どちらともいえない / いいえ</b>で答えるだけ。ふだんの考え方、人との距離感、行動のくせ、気持ちの整え方から、32種類の花タイプの中からあなたに近い花を表示します。</p>
+<ul aria-label="診断の特徴" class="diagnosis-tags">
+<li>56問</li><li>3択で回答</li><li>32花タイプ</li><li>キーボード対応</li><li>分析グラフ付き</li>
+</ul>
+</div>
+<div class="diagnosis-start-card reveal" id="diagnosisStartCard">
+<h3>花の好みではなく、あなたの人となりから診断します。</h3>
+<p>普段の行動や考え方に答えると、32種類の花タイプからあなたに近い花を表示します。サイトを読み終えたあと、気軽に遊べる診断コンテンツです。</p>
+<button class="btn primary" id="diagnosisStart" type="button">診断をはじめる</button>
+<button class="btn ghost" id="diagnosisResume" type="button">途中から再開する</button>
+<div aria-label="キーボード操作の説明" class="keyboard-help">
+          PCでは <kbd>1</kbd>はい / <kbd>2</kbd>どちらとも / <kbd>3</kbd>いいえ / <kbd>←</kbd>前の質問 で回答できます。
+        </div>
+<p class="diagnosis-note">※この診断は性格を決めつけるものではありません。回答傾向をもとに、花タイプとして楽しく表示するコンテンツです。</p>
+</div>
+</div>
+<div aria-live="polite" class="diagnosis-panel" id="diagnosisPanel">
+<div class="diagnosis-progress">
+<div class="diagnosis-progress-top"><span id="diagnosisCount">1 / 56</span><span id="diagnosisPercent">0%</span></div>
+<div class="diagnosis-progress-track"><span class="diagnosis-progress-fill" id="diagnosisProgressFill"></span></div>
+</div>
+<div class="diagnosis-question-card">
+<span class="diagnosis-q-category" id="diagnosisCategory">日常の考え方</span>
+<p class="diagnosis-question" id="diagnosisQuestion">質問が入ります。</p>
+<div aria-label="回答を選択" class="diagnosis-answer-grid" role="group">
+<button class="diagnosis-answer" data-value="1" type="button">はい<small>キー：1 / Y</small></button>
+<button class="diagnosis-answer" data-value="0" type="button">どちらとも<br/>いえない<small>キー：2 / Space</small></button>
+<button class="diagnosis-answer" data-value="-1" type="button">いいえ<small>キー：3 / N</small></button>
+</div>
+</div>
+<div class="diagnosis-controls">
+<button class="btn ghost" id="diagnosisBack" type="button">前の質問へ</button>
+<button class="btn ghost" id="diagnosisReset" type="button">最初からやり直す</button>
+</div>
+<div aria-hidden="true" class="diagnosis-mini-field">
+<p>回答するたび、心の畑に小さな花が増えていきます。</p>
+<div class="flower-seed-row" id="flowerSeedRow"></div>
+</div>
+</div>
+<div class="diagnosis-result" id="diagnosisResult">
+<div class="result-hero">
+<div class="result-image-wrap"><img alt="診断結果の花カード" id="resultImage" loading="lazy" src=""/></div>
+<div class="result-content">
+<span class="result-group-badge" id="resultGroup">里山の花</span>
+<h3 id="resultTitle">レンゲタイプ</h3>
+<p class="result-lead" id="resultLead"></p>
+<p class="result-desc" id="resultDesc"></p>
+<p class="result-desc" id="resultGroupLead"></p>
+<div aria-label="花のプロフィール" class="result-flower-facts">
+<div><b>原産地</b><span id="resultOrigin"></span></div>
+<div><b>開花時期</b><span id="resultBloom"></span></div>
+<div><b>花言葉</b><span id="resultLanguage"></span></div>
+</div>
+<p class="botanical-note">※原産地・開花時期・花言葉は、一般的に知られる目安です。地域や品種により異なる場合があります。</p>
+<div class="result-actions">
+<button class="btn primary" id="copyDiagnosisResult" type="button">結果をコピーする</button>
+<a class="btn ghost" download="" href="#" id="downloadCard">花カードを保存</a>
+<button class="btn ghost" id="retryDiagnosis" type="button">もう一度診断する</button>
+</div>
+<p class="diagnosis-copy-status" id="diagnosisCopyStatus"></p>
+</div>
+</div>
+<div class="result-section-grid">
+<div class="result-box"><h4>強み</h4><ul id="resultStrengths"></ul></div>
+<div class="result-box"><h4>気をつけたいこと</h4><ul id="resultWatch"></ul></div>
+<div class="result-box"><h4>人との関わり方</h4><p id="resultRelation"></p></div>
+<div class="result-box"><h4>向いている場面</h4><p id="resultFit"></p></div>
+<div class="result-box"><h4>NOTO Re:Bloomでの応援スタイル</h4><p id="resultRecommended"></p></div>
+<div class="result-box"><h4>分析グラフ</h4><div class="axis-bars" id="axisBars"></div></div>
+</div>
+</div>
+<details class="flower-gallery reveal">
+<summary>32種類の花タイプカードを見る</summary>
+<p class="flower-gallery-note">花ごとに見た目・原産地・開花時期・花言葉が分かるカードを表示します。診断結果だけでなく、一覧として眺めても楽しめます。</p>
+<div class="flower-card-grid" id="flowerCardGrid"></div>
+</details>
+</div>
+</section><section class="final-cta">
 <div class="container final-card reveal">
 <h2>最初の1㎡から、一緒に動かしませんか。</h2>
 <p>能登の耕作放棄地を、もう一度人が関わる場所へ。参加・協賛・連携のご相談をお待ちしています。</p>
@@ -4933,8 +4982,7 @@ img,svg{max-width:100%;height:auto;}
 <a class="btn light ghost-light" href="mailto:infonotorebloom@gmail.com">メールで問い合わせる</a>
 </div>
 </div>
-</section>
-</main>
+</section></main>
 <footer class="site-footer">
 <div class="container footer-inner">
 <b>NOTO Re:Bloom</b>
@@ -5115,7 +5163,6 @@ img,svg{max-width:100%;height:auto;}
 })();
 
   </script>
-
 <script>
 (() => {
   const buttons = document.querySelectorAll('.v20-copy-btn');
@@ -5148,8 +5195,6 @@ img,svg{max-width:100%;height:auto;}
   });
 })();
 </script>
-
-
 <script>
 (function(){
   const FLOWERS = [{"slug": "himawari", "name": "ヒマワリ", "group": "太陽の花", "tagline": "場を明るく照らし、前向きな空気を広げる人。", "short": "場を照らす前向きエンジン", "desc": "ヒマワリタイプは、周りの空気を明るくし、人の背中を自然に押せる人です。迷っている場面でも、あなたの前向きさがきっかけになって流れが動き出します。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくできる", "人を前向きにできる", "最初の一歩をつくれる", "応援の輪を広げられる"], "watch": ["明るく振る舞いすぎて疲れること", "勢いで細部を見落とすこと", "周囲の温度差に気づきにくいこと"], "relation": "人との距離を縮めるのが早く、初対面でも自然に場へ入っていけます。相手のペースも見ながら進むと、あなたの明るさがより伝わります。", "fit": "人が集まる場、初対面が多い場、誰かの挑戦を後押しする場で力を発揮します。", "recommended": "プロジェクトの紹介やSNSでのシェア、友人を誘う応援が合っています。", "color": "#F7B500", "shape": "sunflower", "origin": "北アメリカ", "bloom": "7〜9月", "language": "あこがれ・情熱"}, {"slug": "gerbera", "name": "ガーベラ", "group": "太陽の花", "tagline": "親しみやすく、人を自然に巻き込める人。", "short": "やわらかく巻き込む人気者", "desc": "ガーベラタイプは、親しみやすさと明るさで、人の心の距離をやわらかく縮められる人です。場を楽しくしながら、自然に仲間を増やせます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["親しみやすい", "人を安心させる", "会話の入口を作れる", "場をやわらかくできる"], "watch": ["相手に合わせすぎること", "断るタイミングを逃すこと", "一人の時間を後回しにすること"], "relation": "誰とでも自然に会話を始められるタイプです。浅く広く見えて、実は相手の反応をよく見ています。", "fit": "人の緊張をほどく役、初参加者を迎える役、会話の橋渡し役が向いています。", "recommended": "応援コースやプロジェクトの紹介が合っています。周囲にやさしく広める応援が得意です。", "color": "#FF6B8A", "shape": "gerbera", "origin": "南アフリカ", "bloom": "4〜6月・10〜11月", "language": "希望・前進"}, {"slug": "salvia", "name": "サルビア", "group": "太陽の花", "tagline": "熱量と発想で、突破口をつくる人。", "short": "熱で道をひらく突破役", "desc": "サルビアタイプは、熱量を持って前に進み、停滞した空気に火をつける人です。言葉や行動に勢いがあり、周りに挑戦する力を与えます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["熱意を伝えられる", "突破口を探せる", "行動を起こせる", "周囲の気持ちを動かせる"], "watch": ["急ぎすぎること", "周囲の準備を待てないこと", "感情が先に出すぎること"], "relation": "まっすぐな熱量で人を動かします。相手の状況を確認しながら進めると、説得力がさらに増します。", "fit": "新しい挑戦を始める場、停滞を変える場、みんなの背中を押す場に向いています。", "recommended": "クラファンの拡散や、周囲に熱を伝える応援が合っています。", "color": "#E82929", "shape": "salvia", "origin": "中南米", "bloom": "6〜11月", "language": "尊敬・知恵"}, {"slug": "dahlia", "name": "ダリア", "group": "太陽の花", "tagline": "こだわりと構想力で、大きな形をつくる人。", "short": "美意識で形をつくる人", "desc": "ダリアタイプは、存在感とこだわりを持ち、やるなら中途半端にしたくない人です。自分の中にある美意識や理想を形にする力があります。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["こだわりを持てる", "大きな構想を描ける", "存在感がある", "質を高められる"], "watch": ["完璧を求めすぎること", "人に任せるのが苦手になること", "理想と現実の差で疲れること"], "relation": "自分の世界観を持ちながら、人と関われるタイプです。こだわりを言葉にすると、周りも一緒に動きやすくなります。", "fit": "企画の見せ方、デザイン、全体の完成度を高める場で力を出せます。", "recommended": "デザインや発信を広げる応援、まとまった支援で形を整える応援が合っています。", "color": "#E8388B", "shape": "dahlia", "origin": "メキシコ", "bloom": "6〜11月", "language": "華麗・優雅"}, {"slug": "tulip", "name": "チューリップ", "group": "太陽の花", "tagline": "素直な行動力で、最初の一歩をつくる人。", "short": "まっすぐ始める春の人", "desc": "チューリップタイプは、素直でまっすぐ、自分の気持ちを表に出せる人です。初めてのことにも一歩を出す力があり、周りから応援されやすい魅力があります。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["素直に動ける", "気持ちを表に出せる", "始める力がある", "人から応援されやすい"], "watch": ["勢いで決めすぎること", "気分の波が出やすいこと", "細かい確認を忘れること"], "relation": "気持ちが伝わりやすく、まっすぐな言葉で人とつながります。無理に大人っぽく見せなくても魅力が出ます。", "fit": "新しい参加、初めての挑戦、明るい雰囲気づくりに向いています。", "recommended": "まずは応援コースやサイトの共有など、軽やかな一歩の応援が合っています。", "color": "#F0443E", "shape": "tulip", "origin": "中央アジア〜トルコ", "bloom": "3〜5月", "language": "思いやり・博愛"}, {"slug": "marigold", "name": "マリーゴールド", "group": "太陽の花", "tagline": "元気で粘り強く、地道なことも続けられる人。", "short": "元気に続ける粘り強さ", "desc": "マリーゴールドタイプは、明るさと粘り強さをあわせ持つ人です。失敗しても切り替えが早く、地味な作業も前向きに続けられます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["粘り強い", "切り替えが早い", "地道に続けられる", "周囲を元気づける"], "watch": ["無理を明るさで隠すこと", "疲れても止まれないこと", "細かい感情を後回しにすること"], "relation": "人に元気を分けながら、自分も動くことで調子を上げるタイプです。休むことも予定に入れると長く力を出せます。", "fit": "継続作業、準備、反復が必要な場で力を発揮します。", "recommended": "活動を長く見守る応援や、継続的なシェアが合っています。", "color": "#F47A00", "shape": "marigold", "origin": "メキシコ", "bloom": "4〜11月", "language": "変わらぬ愛・健康"}, {"slug": "poppy", "name": "ポピー", "group": "太陽の花", "tagline": "軽やかなひらめきで、新しい風を入れる人。", "short": "空気を変える軽やかさ", "desc": "ポピータイプは、軽やかで自由、深刻になりすぎず空気を変えられる人です。ひらめいた瞬間に動き、周りに新しい風を入れます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["空気を変えられる", "軽やかに動ける", "ひらめきがある", "深刻になりすぎない"], "watch": ["飽きやすいこと", "継続が苦手になること", "勢いで約束を増やしすぎること"], "relation": "人と関わる時も軽やかで、場の硬さをほぐせます。自分のペースを大事にすると魅力が続きます。", "fit": "新しいアイデアを出す場、空気を切り替える場、楽しい入口をつくる場に向いています。", "recommended": "SNSでの一言紹介や、友人に気軽に送る応援が合っています。", "color": "#F03A2E", "shape": "poppy", "origin": "地中海沿岸", "bloom": "4〜6月", "language": "思いやり・慰め"}, {"slug": "hibiscus", "name": "ハイビスカス", "group": "太陽の花", "tagline": "華やかな存在感で、気持ちを前向きにする人。", "short": "場を盛り上げる華やかさ", "desc": "ハイビスカスタイプは、華やかで大胆、日常に少し特別な楽しさを持ち込める人です。人を楽しませるセンスがあり、場の主役にもなれます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["存在感がある", "楽しさを演出できる", "人の気分を上げられる", "大胆に動ける"], "watch": ["派手に見られすぎること", "細かな調整が雑になること", "注目がないと不安になること"], "relation": "人の視線を集めやすく、場に勢いを出せます。自分らしさを保ちながら、周りを引き立てるとさらに強くなります。", "fit": "イベント、発信、見せ場づくり、盛り上げ役に向いています。", "recommended": "プロジェクトを楽しく広める応援や、イベント参加型の応援が合っています。", "color": "#F72D79", "shape": "hibiscus", "origin": "熱帯アジア", "bloom": "6〜10月", "language": "新しい恋・繊細な美"}, {"slug": "cosmos", "name": "コスモス", "group": "風の花", "tagline": "自由で軽やか。新しい見方を届ける人。", "short": "自由に景色を変える人", "desc": "コスモスタイプは、変化や余白を前向きに楽しめる人です。決まりきった答えよりも、自分なりの見方を大切にし、周りに新しい景色を届けます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "変化を楽しめる", "自由に考えられる", "場を軽くできる"], "watch": ["考えが広がりすぎること", "段取りが後回しになること", "自分でも気分が読みにくいこと"], "relation": "距離感が軽やかで、相手に新しい発見を渡せます。無理に合わせるより、自分らしい余白が魅力になります。", "fit": "企画、発想、雰囲気づくり、自由な会話の場に向いています。", "recommended": "プロジェクトを自分の言葉で紹介する応援が合っています。", "color": "#F36CA3", "shape": "cosmos", "origin": "メキシコ", "bloom": "9〜11月", "language": "調和・乙女の真心"}, {"slug": "mimosa", "name": "ミモザ", "group": "風の花", "tagline": "やわらかく人を励まし、変化のきっかけを運ぶ人。", "short": "春を運ぶやわらかな励まし", "desc": "ミモザタイプは、明るさと繊細さをあわせ持ち、人をそっと励ませる人です。強く押すのではなく、やわらかな言葉で変化のきっかけをつくります。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["人を励ませる", "空気をやわらげる", "変化のきっかけを作れる", "繊細に気づける"], "watch": ["気づかいで疲れること", "自分の希望を後回しにすること", "迷って決断が遅れること"], "relation": "相手を明るくしながらも、圧をかけない関わり方ができます。ほどよい距離感が魅力です。", "fit": "相談、紹介、やさしい発信、誰かの背中を押す場に向いています。", "recommended": "身近な人にやさしく紹介する応援が合っています。", "color": "#E8B400", "shape": "mimosa", "origin": "オーストラリア", "bloom": "2〜4月", "language": "感謝・友情"}, {"slug": "lupinus", "name": "ルピナス", "group": "風の花", "tagline": "成長意欲が強く、挑戦の空気を広げる人。", "short": "上へ伸びる挑戦の人", "desc": "ルピナスタイプは、学びや成長に前向きで、自分を更新していける人です。新しい挑戦に向かう姿が、周囲にも刺激を与えます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["成長意欲がある", "挑戦を楽しめる", "周囲を刺激できる", "前向きに学べる"], "watch": ["結果を急ぎすぎること", "自分に厳しくなりすぎること", "休むのが苦手になること"], "relation": "人と話すことでさらに発想が伸びるタイプです。競争よりも刺激し合える関係が合っています。", "fit": "学び、企画、挑戦を広げる場、新しい参加者を引き込む場に向いています。", "recommended": "新しい試みに対して、応援や拡散で背中を押す形が合っています。", "color": "#7E4FD8", "shape": "lupinus", "origin": "北アメリカ・地中海沿岸", "bloom": "4〜6月", "language": "想像力・いつも幸せ"}, {"slug": "iris", "name": "アイリス", "group": "風の花", "tagline": "知的な観察力で、道を示す人。", "short": "構造を見抜く知性", "desc": "アイリスタイプは、物事の構造や意味を見抜く観察力を持つ人です。感情に流されすぎず、全体を見ながら進む道を示せます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["観察力がある", "構造を整理できる", "冷静に考えられる", "道筋を示せる"], "watch": ["考えすぎて動き出しが遅れること", "正しさが強く見えすぎること", "感情表現が控えめになること"], "relation": "相手の話を整理しながら、必要な視点を差し出せます。言葉に少し温度を乗せると伝わりやすくなります。", "fit": "分析、整理、改善提案、企画の骨組みづくりに向いています。", "recommended": "活動内容を理解して、周囲に分かりやすく伝える応援が合っています。", "color": "#4557D6", "shape": "iris", "origin": "地中海沿岸〜西アジア", "bloom": "5〜6月", "language": "希望・よい知らせ"}, {"slug": "freesia", "name": "フリージア", "group": "風の花", "tagline": "気づかい上手で、やわらかな調和をつくる人。", "short": "会話から楽しさを広げる", "desc": "フリージアタイプは、会話や空気感から楽しさを広げる人です。軽やかさと気配りのバランスがあり、堅い場を自然にやわらげます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["気づかいができる", "会話を広げられる", "空気を軽くできる", "調和をつくれる"], "watch": ["相手に合わせすぎること", "自分の意見を後回しにすること", "気疲れしやすいこと"], "relation": "人との会話の中で魅力が出るタイプです。さりげない一言で場の温度を変えられます。", "fit": "受付、声かけ、会話の橋渡し、SNSでのやわらかい紹介に向いています。", "recommended": "友人や家族に自然に紹介する応援が合っています。", "color": "#F1B900", "shape": "freesia", "origin": "南アフリカ", "bloom": "3〜4月", "language": "親愛・期待"}, {"slug": "clematis", "name": "クレマチス", "group": "風の花", "tagline": "自分らしい世界観で、人を惹きつける人。", "short": "関係の中で伸びる美意識", "desc": "クレマチスタイプは、人や場所との関係の中で、自分の力を美しく伸ばしていく人です。独自の世界観とつなぐ力を持っています。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["世界観がある", "関係性を育てられる", "人を惹きつけられる", "美意識を活かせる"], "watch": ["環境に影響されやすいこと", "自分の軸が揺れること", "考えを言語化しにくいこと"], "relation": "一人で完結するより、誰かや場所との関係の中で魅力が伸びます。合う環境を選ぶことが大切です。", "fit": "デザイン、発信、場づくり、人と人をつなぐ役割に向いています。", "recommended": "世界観に共感した形での共有や、デザイン面への応援が合っています。", "color": "#7D56C6", "shape": "clematis", "origin": "ヨーロッパ〜アジア", "bloom": "5〜10月", "language": "精神の美・旅人の喜び"}, {"slug": "anemone", "name": "アネモネ", "group": "風の花", "tagline": "感性の鋭さで、物事の核心をつかむ人。", "short": "直感で核心に触れる人", "desc": "アネモネタイプは、感情や直感の動きが豊かで、普通とは違う視点から核心をつかめる人です。心が動いた瞬間に大きな力を出します。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["感性が鋭い", "独自の視点がある", "核心をつかめる", "表現力がある"], "watch": ["気分に左右されること", "誤解されやすいこと", "言葉が強く出ること"], "relation": "一見わかりにくくても、深く話すと魅力が伝わるタイプです。感じたことを少し丁寧に言葉にすると強みになります。", "fit": "表現、コピー、企画、雰囲気を変える場に向いています。", "recommended": "心が動いたポイントを言葉にして広める応援が合っています。", "color": "#D61E50", "shape": "anemone", "origin": "地中海沿岸", "bloom": "2〜5月", "language": "希望・真実"}, {"slug": "edelweiss", "name": "エーデルワイス", "group": "風の花", "tagline": "静かな誠実さで、信頼を積み重ねる人。", "short": "希少な芯を守る人", "desc": "エーデルワイスタイプは、簡単には流されず、自分の価値観を守れる人です。派手ではなくても、深く信頼される芯の強さがあります。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["価値観を守れる", "信頼を積み重ねられる", "厳しい時もぶれにくい", "静かな存在感がある"], "watch": ["周囲に合わせにくいこと", "孤立して見えること", "自分の弱さを見せにくいこと"], "relation": "広く浅くよりも、深く信頼できる関係を好みます。時間をかけるほど本来の良さが伝わります。", "fit": "大切な判断、品質を守る役、長期的に続ける場に向いています。", "recommended": "活動をじっくり見守る応援や、信頼できる人への紹介が合っています。", "color": "#8EA4B8", "shape": "edelweiss", "origin": "ヨーロッパアルプス", "bloom": "7〜8月", "language": "大切な思い出・勇気"}, {"slug": "renge", "name": "レンゲ", "group": "里山の花", "tagline": "小さな場所にも根を張り、周りをやさしく豊かにする人。", "short": "土台を育てるやさしい人", "desc": "レンゲタイプは、小さな場所にも根を張り、周りをやさしく豊かにする人です。目立つよりも、誰かの挑戦や場の土台を支える時に力を発揮します。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["場をやさしくできる", "小さな変化に気づける", "継続して支えられる", "土台を整えられる"], "watch": ["遠慮して本音を出せないこと", "自分を後回しにしすぎること", "気づかれない頑張りが増えること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。一緒にいる人が自然体でいられます。", "fit": "日々の支え、細やかな作業、長く見守る関わりに向いています。", "recommended": "応援コースや活動報告を見守る応援が合っています。", "color": "#F05E9A", "shape": "renge", "origin": "中国", "bloom": "4〜5月", "language": "感化・心が和らぐ"}, {"slug": "shirotsumekusa", "name": "シロツメクサ", "group": "里山の花", "tagline": "穏やかなつながりを育てる人。", "short": "輪を広げる安心感", "desc": "シロツメクサタイプは、人と人の間に入り、自然とつながりを育てる人です。一人で目立つより、誰かと一緒にいる時に魅力が増します。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["つながりを育てる", "場を穏やかにできる", "安心感をつくれる", "協力関係を広げられる"], "watch": ["自分の希望を言いにくいこと", "周囲に合わせすぎること", "決断を先延ばしにすること"], "relation": "人と人の間をやわらかくつなぎます。無理に主役にならなくても、関係を育てる力があります。", "fit": "グループ活動、友人同士の橋渡し、穏やかな場づくりに向いています。", "recommended": "周囲の人に自然に共有する応援が合っています。", "color": "#3FA33D", "shape": "shirotsumekusa", "origin": "ヨーロッパ", "bloom": "4〜9月", "language": "約束・幸運"}, {"slug": "tanpopo", "name": "タンポポ", "group": "里山の花", "tagline": "どんな場所でも、自分らしく咲ける人。", "short": "しなやかに根を張る人", "desc": "タンポポタイプは、環境が変わっても少しずつ居場所をつくれる、しなやかな人です。派手ではなくても、周りに元気を分ける力があります。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["環境に適応できる", "しなやかに続けられる", "親しみやすい", "地道に力を出せる"], "watch": ["頑張りを軽く見られること", "我慢しすぎること", "一人で抱え込みやすいこと"], "relation": "飾らない関わり方で、周りに安心感を与えます。自然体のあなたに救われる人がいます。", "fit": "日常的な支え、地道な準備、身近な人への紹介に向いています。", "recommended": "小さくても継続的な応援が合っています。", "color": "#E9AF00", "shape": "tanpopo", "origin": "ユーラシア", "bloom": "3〜5月", "language": "真心の愛・神託"}, {"slug": "nadeshiko", "name": "ナデシコ", "group": "里山の花", "tagline": "誠実で芯があり、信頼を積み重ねる人。", "short": "芯のある信頼の人", "desc": "ナデシコタイプは、誠実で芯があり、言葉より行動で信頼を積み重ねる人です。困っている人に自然と手を差し伸べられます。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["誠実に続けられる", "信頼されやすい", "丁寧に向き合える", "責任感がある"], "watch": ["自分に厳しすぎること", "頼まれると断れないこと", "無理を隠すこと"], "relation": "時間をかけて信頼を深めるタイプです。派手な言葉より、日々の行動で思いが伝わります。", "fit": "責任ある役割、継続的な作業、相手に安心を届ける場に向いています。", "recommended": "活動を安定して支える応援が合っています。", "color": "#E95C9A", "shape": "nadeshiko", "origin": "日本〜東アジア", "bloom": "5〜8月", "language": "純愛・無邪気"}, {"slug": "nanohana", "name": "菜の花", "group": "里山の花", "tagline": "まっすぐな明るさで、希望を広げる人。", "short": "暮らしに力を出す人", "desc": "菜の花タイプは、あたたかく親しみやすく、日常の中に希望を広げられる人です。大きなことより、目の前の人を大切にします。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["親しみやすい", "日常を明るくできる", "人を安心させる", "小さな希望を作れる"], "watch": ["自分の悩みを後回しにすること", "流されやすいこと", "真面目に抱え込みすぎること"], "relation": "近い距離の人を大切にし、自然な明るさで関係を温めます。", "fit": "身近な応援、家族や友人への共有、日常的な参加に向いています。", "recommended": "能登の特産品コースなど、暮らしの中で応援を感じられる形が合っています。", "color": "#F2C500", "shape": "nanohana", "origin": "ヨーロッパ", "bloom": "2〜4月", "language": "快活・小さな幸せ"}, {"slug": "kasumisou", "name": "カスミソウ", "group": "里山の花", "tagline": "さりげない支えで、全体を美しく整える人。", "short": "主役を引き立てる人", "desc": "カスミソウタイプは、主役を引き立て、全体の雰囲気を美しく整える人です。気づかれない場所で支える力があります。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["細やかに気づける", "全体を整えられる", "人を引き立てられる", "丁寧に支えられる"], "watch": ["頑張りが見えにくいこと", "評価されないと疲れること", "自分の希望を言いにくいこと"], "relation": "前に出なくても、場に必要な支えを自然にできます。自分の存在価値も大切にしてください。", "fit": "裏方、準備、調整、記録など、全体を支える場に向いています。", "recommended": "活動報告を読み、静かに応援する形が合っています。", "color": "#C7C7C7", "shape": "kasumisou", "origin": "地中海沿岸", "bloom": "5〜8月", "language": "感謝・幸福"}, {"slug": "tsubaki", "name": "ツバキ", "group": "里山の花", "tagline": "控えめな美しさと誇りを、静かに守る人。", "short": "凛とした誇りを持つ人", "desc": "ツバキタイプは、派手に主張しなくても、内側に確かな誇りと美意識を持つ人です。状況に流されすぎず、自分が大切にしたいものを静かに守る力があります。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["落ち着いた存在感がある", "大切なものを守れる", "信頼を積み重ねられる", "静かな美意識がある"], "watch": ["本音を見せにくいこと", "一人で抱え込みやすいこと", "完璧に整えようとしすぎること"], "relation": "多くを語らなくても、態度や行動で信頼を築くタイプです。無理に明るく振る舞わなくても、あなたの誠実さは伝わります。", "fit": "責任ある役割、品質を守る場、落ち着いた判断が必要な場に向いています。", "recommended": "静かに活動を見守り、必要な時にしっかり支える応援が合っています。", "origin": "日本・中国", "bloom": "12〜4月", "language": "控えめな美・誇り", "shape": "tsubaki", "color": "#D9302A"}, {"slug": "sumire", "name": "スミレ", "group": "里山の花", "tagline": "控えめでも、確かな魅力で心に残る人。", "short": "静かな芯を持つ人", "desc": "スミレタイプは、控えめでも自分の大切なものをしっかり持っている人です。小さなやさしさを積み重ね、静かに人の心に残ります。", "groupLead": "内で深めながら、必要な時に動けるグループ。静かな支えと継続する力があります。", "strengths": ["控えめな魅力がある", "小さなことを大切にできる", "芯がある", "丁寧に関われる"], "watch": ["遠慮しすぎること", "本音を隠すこと", "自分の価値を小さく見ること"], "relation": "深く知るほど魅力が伝わるタイプです。無理に目立たなくても、あなたらしい関わり方があります。", "fit": "丁寧な作業、見守り、静かな応援に向いています。", "recommended": "活動をじっくり見守る応援が合っています。", "color": "#7D56C6", "shape": "sumire", "origin": "日本・ヨーロッパ", "bloom": "3〜5月", "language": "謙虚・誠実"}, {"slug": "nemophila", "name": "ネモフィラ", "group": "水辺の花", "tagline": "澄んだ感性で、心地よい景色をつくる人。", "short": "未来を感じ取る人", "desc": "ネモフィラタイプは、まだ言葉になっていない空気や未来の可能性を感じ取れる人です。静かですが、内側に広い世界があります。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["感性が澄んでいる", "未来を感じ取れる", "やさしい視点がある", "空気を読める"], "watch": ["考えを言葉にするのが遅れること", "感情を受け取りすぎること", "人混みで疲れやすいこと"], "relation": "無理に前へ出なくても、周囲の微細な変化に気づけます。あなたの感性は場の質を上げます。", "fit": "デザイン、文章、雰囲気づくり、静かな観察に向いています。", "recommended": "感じた魅力を短い言葉で伝える応援が合っています。", "color": "#2E9BEF", "shape": "nemophila", "origin": "北アメリカ", "bloom": "4〜5月", "language": "可憐・どこでも成功"}, {"slug": "wasurenagusa", "name": "ワスレナグサ", "group": "水辺の花", "tagline": "小さなやさしさを積み重ね、記憶に残る人。", "short": "約束を大切にする人", "desc": "ワスレナグサタイプは、思い出や約束、人の気持ちの細部を大切にする人です。誰かの心に残る関わり方ができます。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["約束を大切にできる", "記憶に残る関わりができる", "小さな感情に気づける", "誠実に寄り添える"], "watch": ["過去を引きずること", "気にしすぎること", "自分の感情を抱え込みやすいこと"], "relation": "人の言葉や表情をよく覚えています。その丁寧さが信頼につながります。", "fit": "記録、メッセージ、丁寧な共有、感想を伝える場に向いています。", "recommended": "活動報告への反応や、感想を添えた共有が合っています。", "color": "#2E83D6", "shape": "wasurenagusa", "origin": "ヨーロッパ", "bloom": "4〜6月", "language": "真実の愛・私を忘れないで"}, {"slug": "suiren", "name": "睡蓮", "group": "水辺の花", "tagline": "落ち着きと奥行きで、静かな強さを持つ人。", "short": "内側に深い世界を持つ", "desc": "睡蓮タイプは、穏やかに見えて、内側に深い世界と強い芯を持つ人です。感情を静かに整えながら、自分の答えを探します。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["深く考えられる", "静かな芯がある", "落ち着いている", "自分の世界を持てる"], "watch": ["動き出しが遅れること", "一人で抱え込みやすいこと", "理解されるまで時間がかかること"], "relation": "広く浅くより、深く信頼できる関係を好みます。安心できる距離で魅力が開きます。", "fit": "考える時間が必要な役割、文章、記録、深い対話に向いています。", "recommended": "静かに見守る応援や、活動報告を丁寧に読む応援が合っています。", "color": "#F06C9B", "shape": "suiren", "origin": "熱帯〜温帯各地", "bloom": "5〜9月", "language": "清純な心・信頼"}, {"slug": "kikyo", "name": "桔梗", "group": "水辺の花", "tagline": "涼やかな誠実さで、言葉に芯を通す人。", "short": "凛とした言葉を大切に", "desc": "桔梗タイプは、凛としていて、誠実な言葉と考えを大切にする人です。簡単に流されず、自分の判断を静かに持っています。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["誠実に考えられる", "言葉に芯がある", "信頼されやすい", "ぶれにくい"], "watch": ["少し堅く見られること", "自分にも他人にも厳しくなること", "柔らかく伝えるのを忘れること"], "relation": "軽い会話よりも、意味のあるやり取りで信頼を深めます。言葉の丁寧さが魅力です。", "fit": "説明、確認、記録、判断が必要な場に向いています。", "recommended": "内容を理解して、正確に伝える応援が合っています。", "color": "#343CA5", "shape": "kikyo", "origin": "日本・東アジア", "bloom": "6〜9月", "language": "誠実・気品"}, {"slug": "ajisai", "name": "アジサイ", "group": "水辺の花", "tagline": "気持ちの機微を受け止め、場に深みを出す人。", "short": "しなやかに変化する人", "desc": "アジサイタイプは、相手や状況に合わせて、しなやかに表情を変えられる人です。複雑な感情をそのまま受け止める深さがあります。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "柔軟に対応できる", "感情を受け止められる", "場に深みを出せる"], "watch": ["気持ちを受け取りすぎること", "自分の軸が見えにくくなること", "迷いが長引くこと"], "relation": "相手に合わせる力があります。自分の気持ちも同じくらい大切にすると、しなやかさが強みになります。", "fit": "相談、調整、状況を見ながら動く場に向いています。", "recommended": "活動の変化を見守り、必要な時に広める応援が合っています。", "color": "#3569D6", "shape": "ajisai", "origin": "日本", "bloom": "6〜7月", "language": "和気あいあい・辛抱強さ"}, {"slug": "chamomile", "name": "カモミール", "group": "水辺の花", "tagline": "自然体のやさしさで、人をほっとさせる人。", "short": "疲れた空気をやわらげる", "desc": "カモミールタイプは、人を癒やし、疲れた空気をやわらげる人です。無理に励ますのではなく、そっと寄り添うことができます。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["人を安心させる", "自然体でいられる", "やさしく寄り添える", "空気を整えられる"], "watch": ["自分の疲れに鈍くなること", "相手を優先しすぎること", "強く言うのが苦手なこと"], "relation": "一緒にいる人をほっとさせます。強い言葉よりも、自然な態度で人を支えられます。", "fit": "休憩、見守り、相談、場の温度を下げる役に向いています。", "recommended": "落ち着いて活動を見守る応援が合っています。", "color": "#E5A900", "shape": "chamomile", "origin": "ヨーロッパ", "bloom": "3〜6月", "language": "逆境に負けない強さ・親交"}, {"slug": "lavender", "name": "ラベンダー", "group": "水辺の花", "tagline": "穏やかな空気で、心を整える人。", "short": "自分のペースを整える", "desc": "ラベンダータイプは、落ち着いた雰囲気で、周りの心を整える人です。急がず焦らず、自分のペースを守りながら安心できる空気をつくります。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["落ち着きがある", "心を整えられる", "穏やかに関われる", "自分のペースを守れる"], "watch": ["動き出しが遅れること", "人に頼るのが苦手なこと", "感情を内側にためること"], "relation": "静かな安心感を与えるタイプです。無理に明るく振る舞わなくても、落ち着きが人を支えます。", "fit": "集中作業、準備、文章、静かなサポートに向いています。", "recommended": "活動報告を読み、必要な時にそっと広める応援が合っています。", "color": "#7D56C6", "shape": "lavender", "origin": "地中海沿岸", "bloom": "5〜7月", "language": "沈黙・期待"}, {"slug": "rindou", "name": "リンドウ", "group": "水辺の花", "tagline": "静かな意志を持ち、最後までやり抜く人。", "short": "苦しい時ほど本質を見る", "desc": "リンドウタイプは、静かな強さを持ち、苦しい時ほど本質を見つめる人です。簡単には折れず、時間をかけて自分の答えを探します。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["粘り強い", "本質を見つめられる", "簡単に流されない", "静かな意志がある"], "watch": ["一人で抱え込みやすいこと", "助けを求めるのが遅れること", "厳しさが表に出ること"], "relation": "深く関わるほど信頼されるタイプです。弱さを少し見せることで、関係がより自然になります。", "fit": "長期的な見守り、判断、継続が必要な場に向いています。", "recommended": "プロジェクトを長く見守り、節目で支える応援が合っています。", "color": "#245CD6", "shape": "rindou", "origin": "日本・東アジア", "bloom": "9〜11月", "language": "正義・誠実"}];
@@ -5402,7 +5447,5 @@ https://noto-rebloom.github.io/noto-rebloom/#flower-diagnosis`;
   load(); updateSeeds();
 })();
 </script>
-
-
 </body>
 </html>
