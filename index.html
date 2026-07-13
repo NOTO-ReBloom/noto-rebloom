@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NOTO Re:Bloom v22 single-file: special mini game + hero clean -->
+<!-- NOTO Re:Bloom v23 single-file: one-button rhythm game -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -4141,6 +4141,113 @@ img,svg{max-width:100%;height:auto;}
 @media (max-width:1050px){.game-canvas-wrap{min-height:460px!important}.game-copy{grid-template-columns:1fr!important}.game-rule-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (max-width:720px){.game-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important}.game-hud div:last-child{grid-column:1/-1!important}.game-rule-list{grid-template-columns:1fr!important}.game-canvas-wrap{min-height:auto!important}.game-toolbar{align-items:stretch!important}.game-difficulty,.game-action{width:100%!important}.game-difficulty button,.game-action button{flex:1 1 auto!important}.game-overlay-message{inset:auto 9px 9px 9px!important}.game-overlay-message p{font-size:11.5px!important;line-height:1.55!important}}
 
+
+
+/* =========================================================
+   v23: One-button rhythm game / Re:Bloom Beat Farm
+   - One button play: tap / click / space
+   - Larger readable game UI
+   - No hero layout changes
+========================================================= */
+.rhythm-game{
+  padding-top:clamp(64px,8vw,106px)!important;
+  background:
+    radial-gradient(circle at 9% 10%,rgba(255,212,90,.48) 0 118px,transparent 120px),
+    radial-gradient(circle at 92% 16%,rgba(255,156,196,.32) 0 128px,transparent 130px),
+    radial-gradient(circle at 84% 90%,rgba(113,200,109,.32) 0 170px,transparent 172px),
+    linear-gradient(180deg,#fffaf0 0%,#eff9df 100%)!important;
+}
+.rhythm-game::before{
+  opacity:.12!important;
+  background-image:
+    radial-gradient(circle,rgba(53,33,22,.42) 0 2px,transparent 2.5px),
+    linear-gradient(90deg,rgba(63,125,63,.22) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(63,125,63,.18) 1px,transparent 1px)!important;
+  background-size:34px 34px,72px 72px,72px 72px!important;
+}
+.rhythm-shell{max-width:1240px!important;}
+.rhythm-copy{
+  grid-template-columns:minmax(0,.9fr) minmax(300px,1.1fr)!important;
+  overflow:hidden!important;
+}
+.rhythm-copy::after{
+  content:"ONE BUTTON";
+  position:absolute;
+  right:18px;
+  top:16px;
+  font-family:'Bangers','Luckiest Guy',cursive;
+  font-size:clamp(30px,4vw,58px);
+  color:rgba(216,95,85,.12);
+  transform:rotate(6deg);
+  pointer-events:none;
+}
+.rhythm-rule-list li{background:#fffaf0!important;}
+.rhythm-rule-list b{font-family:'Bangers','Luckiest Guy',cursive;font-size:18px!important;}
+.rhythm-card{position:relative;overflow:hidden!important;background:#fffefa!important;}
+.rhythm-card::before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:2px dashed rgba(53,33,22,.14);
+  border-radius:28px;
+  pointer-events:none;
+}
+.rhythm-toolbar,.rhythm-hud,.rhythm-canvas-wrap,.rhythm-hit-button,.rhythm-mobile-hint,.rhythm-card .game-note{position:relative;z-index:1;}
+.rhythm-actions button{min-width:92px;}
+.rhythm-hud{grid-template-columns:repeat(5,minmax(0,1fr))!important;}
+.rhythm-hud div{background:#fff6dc!important;}
+.rhythm-hud b{font-family:'M PLUS Rounded 1c','Zen Maru Gothic',sans-serif!important;}
+.rhythm-canvas-wrap{
+  min-height:clamp(460px,52vw,650px)!important;
+  background:#f4f7d4!important;
+  border-radius:30px!important;
+  box-shadow:inset 0 0 0 6px rgba(255,255,255,.62),0 8px 0 rgba(53,33,22,.22)!important;
+}
+.rhythm-canvas-wrap #rebloomGameCanvas{cursor:pointer!important;touch-action:manipulation!important;}
+.rhythm-hit-button{
+  width:100%;
+  margin-top:14px;
+  min-height:70px;
+  border:4px solid var(--line);
+  border-radius:999px;
+  background:linear-gradient(180deg,#ffd45a,#ffad5c);
+  color:var(--soil-dark);
+  font-family:'Bangers','Luckiest Guy','M PLUS Rounded 1c',cursive;
+  font-size:clamp(28px,4.2vw,56px);
+  letter-spacing:.06em;
+  box-shadow:0 9px 0 var(--line),0 22px 42px rgba(53,33,22,.14);
+  cursor:pointer;
+  transition:transform .08s ease, box-shadow .08s ease, filter .12s ease;
+}
+.rhythm-hit-button:active,
+.rhythm-hit-button.is-hit{
+  transform:translateY(6px) scale(.995);
+  box-shadow:0 3px 0 var(--line),0 12px 24px rgba(53,33,22,.12);
+  filter:saturate(1.15);
+}
+.rhythm-overlay{inset:auto 16px 16px 16px!important;}
+.rhythm-overlay p{max-width:980px!important;background:rgba(255,255,255,.94)!important;}
+@media (max-width:900px){
+  .rhythm-copy{grid-template-columns:1fr!important;}
+  .rhythm-canvas-wrap{min-height:420px!important;}
+}
+@media (max-width:720px){
+  .rhythm-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .rhythm-hud div:last-child{grid-column:auto!important;}
+  .rhythm-canvas-wrap{min-height:360px!important;}
+  .rhythm-hit-button{min-height:64px;}
+}
+@media (max-width:520px){
+  .rhythm-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .rhythm-card{padding:14px!important;border-radius:28px!important;}
+  .rhythm-canvas-wrap{min-height:320px!important;border-radius:22px!important;}
+  .rhythm-overlay{inset:auto 8px 8px 8px!important;}
+  .rhythm-overlay p{font-size:11px!important;}
+}
+@media (prefers-reduced-motion: reduce){
+  .rhythm-hit-button{transition:none!important;}
+}
+
 </style>
 </head>
 <body>
@@ -4302,47 +4409,47 @@ img,svg{max-width:100%;height:auto;}
 </div>
 </section>
 
-<section class="section rebloom-game" id="game">
-  <div class="container game-shell">
-    <div class="game-copy reveal">
-      <p class="eyebrow"><i></i>MINI GAME</p>
-      <h2><span class="keep">草を崩して、</span><br/><span class="pop-word">水を通し、</span><br/>レンゲを咲かせる。</h2>
-      <p>普通のブロック崩しではなく、耕作放棄地を少しずつ整えるミニゲームです。草を刈る、水路を通す、種を拾う、応援ウェーブを使う。遊びながらNOTO Re:Bloomの世界観に触れられます。</p>
-      <ul class="game-rule-list">
-        <li><b>草</b><span>草むらを崩すと、土地が少しずつ開けていきます。</span></li>
-        <li><b>水</b><span>水路ブロックを崩すと、同じ列や近くの草が弱まります。</span></li>
-        <li><b>種</b><span>種を拾うと、ボールが増えて一気にレンゲを咲かせられます。</span></li>
-        <li><b>応</b><span>応援ゲージが満タンになると、応援ウェーブでまとめて整備できます。</span></li>
+<section class="section rebloom-game rhythm-game" id="game">
+  <div class="container game-shell rhythm-shell">
+    <div class="game-copy rhythm-copy reveal">
+      <p class="eyebrow"><i></i>ONE BUTTON RHYTHM GAME</p>
+      <h2><span class="keep">音に合わせて、</span><br/><span class="pop-word">草を刈り、</span><br/>レンゲを咲かせる。</h2>
+      <p>操作はひとつだけ。音楽に合わせて、画面をタップ、クリック、またはスペースキーを押します。タイミングが合うほど草が気持ちよく刈られ、レンゲが一気に咲いていきます。</p>
+      <ul class="game-rule-list rhythm-rule-list">
+        <li><b>1</b><span>右から流れてくるマークが、左の丸い判定ラインに重なった瞬間に押します。</span></li>
+        <li><b>♪</b><span>PERFECTが続くとコンボが伸び、FEVERで画面いっぱいにレンゲが咲きます。</span></li>
+        <li><b>🌱</b><span>やさしいモードは判定を広めに。子どもや初めての人でも遊べます。</span></li>
+        <li><b>泥</b><span>どろんこモードは高速・裏拍あり。リズムに乗れるとかなり気持ちいい上級者向けです。</span></li>
       </ul>
     </div>
-    <div class="game-card reveal" aria-label="Re:Bloom Field Breakerゲーム">
-      <div class="game-toolbar">
+    <div class="game-card rhythm-card reveal" aria-label="Re:Bloom Beat Farm ゲーム">
+      <div class="game-toolbar rhythm-toolbar">
         <div class="game-difficulty" aria-label="難易度選択">
           <button type="button" data-game-diff="easy" class="is-active">やさしい</button>
           <button type="button" data-game-diff="normal">ふつう</button>
           <button type="button" data-game-diff="hard">本気</button>
           <button type="button" data-game-diff="mud">どろんこ</button>
         </div>
-        <div class="game-action">
+        <div class="game-action rhythm-actions">
           <button type="button" class="primary-game" id="gameStartBtn">スタート</button>
-          <button type="button" id="gamePauseBtn">一時停止</button>
-          <button type="button" id="gameWaveBtn" disabled>応援ウェーブ</button>
+          <button type="button" id="gamePauseBtn">停止</button>
           <button type="button" id="gameResetBtn">リセット</button>
         </div>
       </div>
-      <div class="game-hud" aria-live="polite">
-        <div><span>整備面積</span><b id="gameArea">0㎡</b></div>
-        <div><span>開花</span><b id="gameBloom">0本</b></div>
-        <div><span>応援ゲージ</span><b id="gameSupport">0%</b></div>
-        <div><span>残り</span><b id="gameLives">5</b></div>
+      <div class="game-hud rhythm-hud" aria-live="polite">
+        <div><span>開花</span><b id="gameArea">0本</b></div>
+        <div><span>コンボ</span><b id="gameBloom">0</b></div>
+        <div><span>FEVER</span><b id="gameSupport">0%</b></div>
+        <div><span>残り</span><b id="gameLives">45s</b></div>
         <div><span>スコア</span><b id="gameScore">0</b></div>
       </div>
-      <div class="game-canvas-wrap">
-        <canvas id="rebloomGameCanvas" width="1280" height="720" aria-label="耕作放棄地をテーマにした特殊ブロック崩しゲーム"></canvas>
-        <div class="game-overlay-message"><p id="gameMessage">難易度を選んで「スタート」。PCは←→キー、スマホは画面をなぞって動かせます。応援ゲージが満タンならスペースキーでも発動できます。</p></div>
+      <div class="game-canvas-wrap rhythm-canvas-wrap">
+        <canvas id="rebloomGameCanvas" width="1280" height="720" aria-label="耕作放棄地をテーマにした一ボタンリズムゲーム"></canvas>
+        <div class="game-overlay-message rhythm-overlay"><p id="gameMessage">難易度を選んでスタート。音が出ます。リズムに合わせて、画面タップ・クリック・スペースキーで草を刈ろう。</p></div>
       </div>
-      <p class="game-mobile-hint">スマホでは、ゲーム画面の中で指を左右に動かすとパドルを操作できます。画面をタップするとスタートします。</p>
-      <p class="game-note">※このゲームは、プロジェクトの世界観を楽しむための演出です。実際の整備工程や費用を表すものではありません。</p>
+      <button type="button" id="gameHitBtn" class="rhythm-hit-button" aria-label="リズムに合わせて押す">TAP / SPACE</button>
+      <p class="game-mobile-hint rhythm-mobile-hint">スマホでは、ゲーム画面または大きなボタンをリズムに合わせてタップします。音量を上げると遊びやすくなります。</p>
+      <p class="game-note">※このゲームは、NOTO Re:Bloomの世界観を楽しむための演出です。実際の整備工程や費用を表すものではありません。音はブラウザ上で生成しています。</p>
     </div>
   </div>
 </section>
@@ -5161,561 +5268,538 @@ img,svg{max-width:100%;height:auto;}
 (() => {
   const canvas = document.getElementById('rebloomGameCanvas');
   if (!canvas) return;
-
   const ctx = canvas.getContext('2d');
-  const W = 1280;
-  const H = 720;
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const W = canvas.width;
+  const H = canvas.height;
 
   const ui = {
-    area: document.getElementById('gameArea'),
-    bloom: document.getElementById('gameBloom'),
-    support: document.getElementById('gameSupport'),
+    flowers: document.getElementById('gameArea'),
+    combo: document.getElementById('gameBloom'),
+    fever: document.getElementById('gameSupport'),
+    time: document.getElementById('gameLives'),
     score: document.getElementById('gameScore'),
-    lives: document.getElementById('gameLives'),
-    msg: document.getElementById('gameMessage'),
+    message: document.getElementById('gameMessage'),
     start: document.getElementById('gameStartBtn'),
-    pause: document.getElementById('gamePauseBtn'),
+    stop: document.getElementById('gamePauseBtn'),
     reset: document.getElementById('gameResetBtn'),
-    wave: document.getElementById('gameWaveBtn'),
+    hit: document.getElementById('gameHitBtn'),
     diffButtons: [...document.querySelectorAll('[data-game-diff]')]
   };
 
   const difficulties = {
-    easy:   { label:'やさしい', rows:5, cols:9,  speed:5.2, paddle:240, lives:5, stone:.05, bush:.12, water:.11, seed:.10, support:.10, root:.00, regen:0 },
-    normal: { label:'ふつう',   rows:6, cols:10, speed:6.1, paddle:214, lives:4, stone:.10, bush:.17, water:.10, seed:.09, support:.08, root:.04, regen:0 },
-    hard:   { label:'本気',     rows:7, cols:11, speed:6.8, paddle:190, lives:3, stone:.16, bush:.23, water:.09, seed:.08, support:.07, root:.08, regen:7200 },
-    mud:    { label:'どろんこ', rows:8, cols:12, speed:7.4, paddle:172, lives:3, stone:.22, bush:.27, water:.08, seed:.07, support:.06, root:.12, regen:5600 }
+    easy: { label:'やさしい', bpm:88, length:42, pre:2.2, good:0.23, perfect:0.105, density:.48, scoreMul:1, pattern:'easy', cue:'ゆっくり大きめ判定' },
+    normal: { label:'ふつう', bpm:108, length:46, pre:2.0, good:0.18, perfect:0.082, density:.62, scoreMul:1.2, pattern:'normal', cue:'表拍＋軽い裏拍' },
+    hard: { label:'本気', bpm:126, length:50, pre:1.8, good:0.135, perfect:0.06, density:.78, scoreMul:1.55, pattern:'hard', cue:'連打と裏拍あり' },
+    mud: { label:'どろんこ', bpm:144, length:54, pre:1.6, good:0.105, perfect:0.046, density:.9, scoreMul:2.05, pattern:'mud', cue:'高速・裏拍・密度高め' }
   };
 
-  const colors = {
-    soil:'#d8b172', grass:'#89b957', bush:'#5f983e', stone:'#939890', water:'#72c8e8', seed:'#ff9fca', support:'#ffd45a', root:'#8a6a36', line:'#352116'
+  const palette = {
+    ink:'#352116', soil:'#8d5b34', cream:'#fffaf0', green:'#4f9a5c', green2:'#89bd5c', yellow:'#ffd45a', pink:'#ff9fca', blue:'#72c8e8', red:'#e85f55', purple:'#aa80ff', field:'#dcebb8'
   };
 
   let diffKey = 'easy';
   let config = difficulties[diffKey];
+  let audio = null;
+  let master = null;
+  let startedAtAudio = 0;
+  let startPerf = 0;
   let running = false;
-  let paused = false;
-  let lastTime = 0;
-  let keys = { left:false, right:false };
-  let score = 0, area = 0, bloom = 0, lives = config.lives;
-  let supportGauge = 0, combo = 0;
-  let paddleBoostTimer = 0, slowTimer = 0, multiTimer = 0, messageTimer = 0, regenClock = 0;
-  let bricks = [], flowers = [], powerups = [], particles = [], waves = [];
-  let paddle = { x: W/2 - config.paddle/2, y: H - 64, w: config.paddle, h: 20, targetX: W/2 - config.paddle/2 };
-  let balls = [];
+  let stopped = true;
+  let notes = [];
+  let score = 0;
+  let combo = 0;
+  let maxCombo = 0;
+  let flowers = 0;
+  let fever = 0;
+  let feverActiveUntil = 0;
+  let judgePops = [];
+  let particles = [];
+  let fieldTiles = [];
+  let pressFlash = 0;
+  let screenShake = 0;
+  let lastFrame = 0;
+  let endingShown = false;
 
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-  const rand = (min, max) => min + Math.random() * (max - min);
-  const aliveBricks = () => bricks.filter(b => b.alive);
+  const hitX = 255;
+  const trackY = H * 0.48;
+  const pxPerSec = 445;
+  const noteR = 24;
 
-  function setMessage(text, duration = 1800){
-    if (ui.msg) ui.msg.textContent = text;
-    messageTimer = duration;
+  const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
+  const lerp = (a,b,t) => a + (b-a)*t;
+  const nowTime = () => {
+    if (audio && running) return Math.max(0, audio.currentTime - startedAtAudio);
+    return Math.max(0, (performance.now() - startPerf) / 1000);
+  };
+
+  function ensureAudio(){
+    if (!audio) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      audio = new AC();
+      master = audio.createGain();
+      master.gain.value = 0.42;
+      master.connect(audio.destination);
+    }
+    if (audio.state === 'suspended') audio.resume();
+    return audio;
   }
 
-  function updateUi(){
-    if (ui.area) ui.area.textContent = `${area}㎡`;
-    if (ui.bloom) ui.bloom.textContent = `${bloom}本`;
-    if (ui.support) ui.support.textContent = `${Math.round(supportGauge)}%`;
-    if (ui.score) ui.score.textContent = score.toLocaleString('ja-JP');
-    if (ui.lives) ui.lives.textContent = `${lives}`;
-    if (ui.wave) ui.wave.disabled = supportGauge < 100 || !running || paused;
+  function tone(freq, time, dur, type='sine', gain=.08, dest=master){
+    if (!audio || !dest) return;
+    const osc = audio.createOscillator();
+    const g = audio.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, time);
+    g.gain.setValueAtTime(0.0001, time);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.0002,gain), time + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
+    osc.connect(g); g.connect(dest);
+    osc.start(time); osc.stop(time + dur + 0.03);
   }
 
-  function brickColor(type){
-    return colors[type] || colors.grass;
+  function noise(time, dur, gain=.06, filterFreq=1200){
+    if (!audio || !master) return;
+    const bufferSize = Math.max(1, Math.floor(audio.sampleRate * dur));
+    const buffer = audio.createBuffer(1, bufferSize, audio.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i=0;i<bufferSize;i++) data[i] = Math.random()*2-1;
+    const src = audio.createBufferSource(); src.buffer = buffer;
+    const filter = audio.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = filterFreq; filter.Q.value = .9;
+    const g = audio.createGain();
+    g.gain.setValueAtTime(gain, time);
+    g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
+    src.connect(filter); filter.connect(g); g.connect(master);
+    src.start(time); src.stop(time+dur+.02);
   }
 
-  function brickLabel(type){
-    return {grass:'草', bush:'茂', stone:'石', water:'水', seed:'種', support:'応', root:'根'}[type] || '草';
+  function kick(time){
+    if (!audio) return;
+    const osc = audio.createOscillator();
+    const g = audio.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(138, time);
+    osc.frequency.exponentialRampToValueAtTime(45, time + .13);
+    g.gain.setValueAtTime(.18, time);
+    g.gain.exponentialRampToValueAtTime(.0001, time + .18);
+    osc.connect(g); g.connect(master);
+    osc.start(time); osc.stop(time+.21);
   }
 
-  function brickArea(type){
-    return {grass:2, bush:3, stone:4, water:2, seed:2, support:3, root:4}[type] || 2;
+  function snare(time){ noise(time, .08, .07, 1800); tone(210, time, .08, 'triangle', .035); }
+  function hat(time, strong=false){ noise(time, .035, strong ? .045 : .025, 5200); }
+
+  function hitSound(kind, diff){
+    if (!audio) return;
+    const t = audio.currentTime + .002;
+    if (kind === 'perfect') {
+      tone(660, t, .055, 'square', .08);
+      tone(990, t+.035, .07, 'triangle', .07);
+      noise(t, .045, .035, 3000);
+    } else if (kind === 'good') {
+      tone(520, t, .06, 'triangle', .07);
+      noise(t, .04, .025, 2300);
+    } else {
+      tone(170, t, .10, 'sawtooth', .045);
+      noise(t, .08, .04, 600);
+    }
   }
 
-  function makeBrickType(){
-    const roll = Math.random();
-    let t = 'grass';
-    let acc = config.stone;
-    if (roll < acc) t = 'stone';
-    else if (roll < (acc += config.bush)) t = 'bush';
-    else if (roll < (acc += config.water)) t = 'water';
-    else if (roll < (acc += config.seed)) t = 'seed';
-    else if (roll < (acc += config.support)) t = 'support';
-    else if (roll < (acc += config.root)) t = 'root';
-    return t;
-  }
-
-  function hpFor(type){
-    if (type === 'stone') return diffKey === 'mud' ? 3 : 2;
-    if (type === 'bush' || type === 'root') return 2;
-    return 1;
-  }
-
-  function makeBricks(){
-    bricks = [];
-    const marginX = 70;
-    const top = 90;
-    const gap = 9;
-    const bw = (W - marginX*2 - gap*(config.cols-1)) / config.cols;
-    const bh = config.rows >= 8 ? 31 : 35;
-    for (let r=0; r<config.rows; r++) {
-      for (let c=0; c<config.cols; c++) {
-        let type = makeBrickType();
-        if (r === 0 && Math.random() < .38) type = 'grass';
-        if (r === config.rows - 1 && Math.random() < .18) type = 'seed';
-        const hp = hpFor(type);
-        bricks.push({
-          r, c, x: marginX + c*(bw+gap), y: top + r*(bh+gap), w: bw, h: bh,
-          type, hp, maxHp: hp, alive: true, justReborn: false
-        });
+  function scheduleMusic(){
+    if (!audio || !master) return;
+    const start = startedAtAudio;
+    const beat = 60 / config.bpm;
+    const bars = Math.ceil((config.length + 5) / (beat*4));
+    const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+    for (let i=0;i<bars*4;i++) {
+      const t = start + i*beat;
+      kick(t);
+      if (i % 4 === 1 || i % 4 === 3) snare(t);
+      hat(t, i%2===0);
+      if (i % 2 === 0) {
+        const base = scale[(Math.floor(i/2)) % scale.length];
+        tone(base, t+.02, beat*.42, 'triangle', .032);
+        tone(base*1.5, t+.05, beat*.35, 'sine', .02);
+      }
+      if (config.pattern === 'hard' || config.pattern === 'mud') {
+        hat(t + beat/2, false);
+        if (config.pattern === 'mud' && i % 4 === 2) tone(392, t + beat*.75, beat*.18, 'square', .022);
       }
     }
   }
 
-  function makeBall(x = W/2, y = H - 102, angle = -Math.PI/2, speed = config.speed){
-    return { x, y, r: 9, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, trail: [] };
+  function generateNotes(){
+    const beat = 60 / config.bpm;
+    const list = [];
+    const start = config.pre;
+    const end = config.length - 2.2;
+    let beatIndex = 0;
+    const add = (b, offset=0, type='weed', lane=0) => {
+      const time = start + (b + offset) * beat;
+      if (time < end) list.push({ time, type, lane, judged:false, result:null, born:Math.random() });
+    };
+    const maxBeat = Math.floor((end - start) / beat);
+    for (let b=0; b<maxBeat; b++) {
+      if (config.pattern === 'easy') {
+        if (b % 2 === 0) add(b,0, b%8===0?'seed':'weed', b%3);
+      } else if (config.pattern === 'normal') {
+        if (b % 2 === 0 || (b % 8 === 5)) add(b,0, b%10===0?'water':(b%6===0?'seed':'weed'), b%3);
+        if (b % 16 === 14) add(b,.5,'flower',1);
+      } else if (config.pattern === 'hard') {
+        if (b % 2 === 0) add(b,0, b%12===0?'water':'weed', b%3);
+        if (b % 4 === 3) add(b,.5, b%8===3?'seed':'weed', (b+1)%3);
+        if (b % 16 === 11) { add(b,0,'weed',0); add(b,.5,'flower',2); }
+      } else {
+        if (b % 2 === 0) add(b,0, b%12===0?'water':'weed', b%3);
+        if (b % 4 === 1) add(b,.5,'seed', (b+2)%3);
+        if (b % 8 === 6) { add(b,0,'weed',0); add(b,.33,'weed',1); add(b,.66,'flower',2); }
+        if (b % 16 === 13) add(b,.25,'mud',1);
+      }
+    }
+    return list.sort((a,b)=>a.time-b.time).map((n,i)=>({...n,id:i}));
   }
 
-  function resetBall(){
-    paddle.w = paddleBoostTimer > 0 ? config.paddle * 1.38 : config.paddle;
-    paddle.x = W/2 - paddle.w/2;
-    paddle.targetX = paddle.x;
-    const a = -Math.PI/2 + rand(-.42,.42);
-    balls = [makeBall(W/2, H - 104, a, config.speed)];
+  function resetVisualField(){
+    fieldTiles = [];
+    const cols = 15, rows = 4;
+    for (let r=0;r<rows;r++) for (let c=0;c<cols;c++) fieldTiles.push({c,r, bloom:false, t:0, sway:Math.random()*10});
   }
 
-  function resetGame(keepMessage = false){
+  function resetGame(keepMessage=false){
+    running = false;
+    stopped = true;
+    endingShown = false;
     config = difficulties[diffKey];
-    score = 0; area = 0; bloom = 0; lives = config.lives; supportGauge = 0; combo = 0;
-    paddleBoostTimer = 0; slowTimer = 0; multiTimer = 0; messageTimer = 0; regenClock = 0;
-    flowers = []; powerups = []; particles = []; waves = [];
-    makeBricks();
-    paddle = { x: W/2 - config.paddle/2, y: H - 64, w: config.paddle, h: 20, targetX: W/2 - config.paddle/2 };
-    resetBall();
-    running = false; paused = false;
-    updateUi();
-    if (!keepMessage) setMessage('難易度を選んでスタート。水路・種・応援ウェーブを使って、土地を一気にRe:Bloom。', 999999);
-    draw();
+    notes = generateNotes();
+    score = 0; combo = 0; maxCombo = 0; flowers = 0; fever = 0; feverActiveUntil = 0;
+    judgePops = []; particles = []; pressFlash = 0; screenShake = 0;
+    resetVisualField();
+    updateUi(0);
+    if (!keepMessage) setMessage('難易度を選んでスタート。音楽に合わせて、画面タップ・クリック・スペースキーで草を刈ろう。');
+    draw(0);
+  }
+
+  function setMessage(text){ if (ui.message) ui.message.textContent = text; }
+
+  function updateUi(t=nowTime()){
+    if (ui.flowers) ui.flowers.textContent = `${flowers}本`;
+    if (ui.combo) ui.combo.textContent = `${combo}`;
+    if (ui.fever) ui.fever.textContent = feverActiveUntil > t ? 'FEVER!' : `${Math.round(fever)}%`;
+    if (ui.time) ui.time.textContent = running ? `${Math.max(0, Math.ceil(config.length - t))}s` : `${config.length}s`;
+    if (ui.score) ui.score.textContent = score.toLocaleString('ja-JP');
   }
 
   function startGame(){
-    if (!running) {
-      running = true; paused = false; lastTime = performance.now();
-      setMessage('まずは草むらを整えよう。水路と種ブロックがチャンスです。');
-      requestAnimationFrame(loop);
-    } else if (paused) {
-      paused = false; lastTime = performance.now();
-      setMessage('再開しました。');
-      requestAnimationFrame(loop);
+    ensureAudio();
+    config = difficulties[diffKey];
+    notes = generateNotes();
+    score = 0; combo = 0; maxCombo = 0; flowers = 0; fever = 0; feverActiveUntil = 0;
+    judgePops = []; particles = []; pressFlash = 0; screenShake = 0; endingShown = false;
+    resetVisualField();
+    startPerf = performance.now();
+    startedAtAudio = audio ? audio.currentTime + 0.08 : 0;
+    running = true; stopped = false;
+    scheduleMusic();
+    setMessage(`${config.label}モード：${config.cue}。音に合わせてTAP / SPACE。`);
+    requestAnimationFrame(loop);
+  }
+
+  function stopGame(){
+    running = false; stopped = true;
+    setMessage('停止しました。もう一度スタートすると最初から遊べます。');
+    if (audio && audio.state === 'running') {
+      // 音を短くミュートして残響を切る
+      master.gain.cancelScheduledValues(audio.currentTime);
+      master.gain.setTargetAtTime(0.0001, audio.currentTime, .03);
+      setTimeout(()=>{ if (master) master.gain.value = .42; }, 180);
     }
-    updateUi();
+    draw(nowTime());
   }
 
-  function togglePause(){
-    if (!running) return;
-    paused = !paused;
-    setMessage(paused ? '一時停止中。もう一度押すと再開します。' : '再開しました。', paused ? 999999 : 1400);
-    if (!paused) { lastTime = performance.now(); requestAnimationFrame(loop); }
-    updateUi();
-  }
-
-  function spawnParticles(x,y,color,count=10){
-    if (prefersReduced) return;
-    for (let i=0; i<count; i++) particles.push({x,y,vx:rand(-3.2,3.2),vy:rand(-4,1.5),life:rand(24,48),color,size:rand(2.2,4.8)});
-  }
-
-  function spawnPowerup(x,y,type){
-    if (!type) {
-      const roll = Math.random();
-      type = roll < .36 ? 'seed' : roll < .66 ? 'water' : 'support';
+  function nearestNote(t){
+    let best = null, bestDelta = Infinity;
+    for (const n of notes) {
+      if (n.judged) continue;
+      const d = Math.abs(n.time - t);
+      if (d < bestDelta) { best = n; bestDelta = d; }
+      if (n.time - t > config.good + .08) break;
     }
-    powerups.push({ x, y, vy: 2.2, type, r: 14, spin: rand(0,Math.PI*2) });
+    return { note: best, delta: bestDelta };
   }
 
-  function addFlower(x,y,scale=1){
-    flowers.push({ x, y, s: rand(.74,1.12)*scale, a: 0, sway: rand(0,Math.PI*2) });
-    bloom += 1;
+  function bloomTile(){
+    const candidates = fieldTiles.filter(x=>!x.bloom);
+    if (!candidates.length) return;
+    const tile = candidates[Math.floor(Math.random()*candidates.length)];
+    tile.bloom = true; tile.t = 1;
   }
 
-  function addSupport(v){
-    supportGauge = clamp(supportGauge + v, 0, 100);
+  function addParticles(x,y,color,count=16,power=1){
+    for (let i=0;i<count;i++) {
+      const a = Math.random()*Math.PI*2;
+      const sp = (2+Math.random()*5)*power;
+      particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.2,life:44+Math.random()*22,size:3+Math.random()*6,color});
+    }
   }
 
-  function removeBrick(brick, reason = 'ball'){
-    if (!brick.alive) return;
-    brick.alive = false;
+  function addJudge(text, x, y, color){
+    judgePops.push({text,x,y,color,life:60,vy:-1.4,scale:text==='PERFECT'?1.22:1});
+  }
+
+  function startFever(t){
+    feverActiveUntil = t + (diffKey === 'easy' ? 5.8 : diffKey === 'mud' ? 4.2 : 5.0);
+    fever = 0;
+    setMessage('Re:Bloom FEVER！レンゲが一気に咲く時間です。');
+    addParticles(W/2, H*.48, palette.pink, 90, 1.8);
+    if (audio) {
+      const ct = audio.currentTime;
+      [523.25,659.25,783.99,1046.5].forEach((f,i)=> tone(f, ct+i*.04, .22, 'triangle', .075));
+      noise(ct, .18, .06, 3200);
+    }
+  }
+
+  function hit(){
+    ui.hit?.classList.add('is-hit');
+    setTimeout(()=>ui.hit?.classList.remove('is-hit'), 90);
+    if (!running) { startGame(); return; }
+    const t = nowTime();
+    pressFlash = 1;
+    const {note, delta} = nearestNote(t);
+    if (!note || delta > config.good) {
+      combo = 0;
+      fever = Math.max(0, fever - 7);
+      addJudge('MISS', hitX, trackY-76, palette.red);
+      addParticles(hitX, trackY, palette.soil, 12, .7);
+      hitSound('miss');
+      screenShake = 8;
+      updateUi(t);
+      return;
+    }
+    note.judged = true;
+    const perfect = delta <= config.perfect;
+    const inFever = feverActiveUntil > t;
+    const base = perfect ? 120 : 70;
+    const mult = (1 + Math.min(combo, 60)*.025) * config.scoreMul * (inFever ? 2.0 : 1);
+    score += Math.round(base * mult);
     combo += 1;
-    const gainedArea = brickArea(brick.type);
-    area += gainedArea;
-    score += 120 + Math.floor(combo*18) + gainedArea*30;
-    addSupport(brick.type === 'support' ? 22 : brick.type === 'water' ? 10 : 6);
-    const cx = brick.x + brick.w/2;
-    const cy = brick.y + brick.h/2;
-    addFlower(cx, cy);
-    spawnParticles(cx, cy, brickColor(brick.type), brick.type === 'stone' ? 16 : 10);
-
-    if (brick.type === 'seed') spawnPowerup(cx, cy, 'seed');
-    else if (brick.type === 'water') { waterFlow(brick); if (Math.random() < .4) spawnPowerup(cx, cy, 'water'); }
-    else if (brick.type === 'support') spawnPowerup(cx, cy, 'support');
-    else if (Math.random() < .16) spawnPowerup(cx, cy);
-
-    const left = aliveBricks().length;
-    if (left === 0) {
-      running = false;
-      supportGauge = 100;
-      setMessage(`全面Re:Bloom！ ${area}㎡、${bloom}本のレンゲが生まれました。難易度を変えて再挑戦できます。`, 999999);
-    } else if (combo > 0 && combo % 10 === 0) {
-      setMessage(`${Math.floor(combo)}コンボ。応援ゲージがたまっています。`);
-      addSupport(8);
-    }
-    updateUi();
+    maxCombo = Math.max(maxCombo, combo);
+    const flowerAdd = note.type === 'flower' || note.type === 'seed' ? 3 : inFever ? 2 : 1;
+    flowers += flowerAdd;
+    for (let i=0;i<flowerAdd;i++) bloomTile();
+    fever = clamp(fever + (perfect ? 12 : 7), 0, 100);
+    const noteX = hitX + (note.time - t) * pxPerSec;
+    addJudge(perfect ? 'PERFECT!' : 'GOOD!', hitX+20, trackY-84, perfect ? palette.yellow : palette.blue);
+    addParticles(noteX, trackY + note.lane*28 - 28, note.type === 'water' ? palette.blue : note.type === 'seed' ? palette.pink : palette.green, perfect ? 32 : 20, perfect ? 1.25 : 1);
+    hitSound(perfect ? 'perfect' : 'good');
+    screenShake = perfect ? 5 : 2;
+    if (fever >= 100) startFever(t);
+    updateUi(t);
   }
 
-  function weakenBrick(brick, amount=1, source='water'){
-    if (!brick || !brick.alive) return;
-    brick.hp -= amount;
-    spawnParticles(brick.x+brick.w/2, brick.y+brick.h/2, source === 'wave' ? colors.support : colors.water, 7);
-    if (brick.hp <= 0) removeBrick(brick, source);
-  }
-
-  function waterFlow(source){
-    waves.push({x:source.x+source.w/2,y:source.y+source.h/2,r:0,life:46});
-    setMessage('水路開通。近くの草むらが弱まりました。');
-    const targets = bricks.filter(b => b.alive && (Math.abs(b.r-source.r) <= 1) && (Math.abs(b.c-source.c) <= 2));
-    targets.forEach((b, i) => setTimeout(() => weakenBrick(b, 1, 'water'), i*24));
-    score += 160;
-  }
-
-  function useSupportWave(){
-    if (supportGauge < 100 || !running || paused) return;
-    supportGauge = 0;
-    const alive = aliveBricks();
-    if (!alive.length) return;
-    const maxRow = Math.max(...alive.map(b => b.r));
-    let targets = alive.filter(b => b.r === maxRow);
-    if (targets.length < 4) targets = alive.slice(-Math.min(8, alive.length));
-    setMessage('応援ウェーブ発動。みんなの力で一気に整備！');
-    targets.forEach((b, i) => setTimeout(() => weakenBrick(b, 99, 'wave'), i*38));
-    waves.push({x:W/2,y:H-98,r:0,life:70,wide:true});
-    score += 500;
-    updateUi();
-  }
-
-  function hitBrick(brick, ball){
-    brick.hp -= 1;
-    combo += .25;
-    score += 38;
-    spawnParticles(ball.x, ball.y, brickColor(brick.type), 8);
-    if (brick.type === 'root' && brick.hp > 0) {
-      addSupport(4);
-      setMessage('根っこは少し手強い。もう一度当てよう。');
-    }
-    if (brick.type === 'water') slowTimer = 360;
-    if (brick.hp <= 0) removeBrick(brick);
-    updateUi();
-  }
-
-  function activatePowerup(type){
-    if (type === 'seed') {
-      multiTimer = 620;
-      const base = balls[0] || makeBall();
-      if (balls.length < 3) {
-        balls.push(makeBall(base.x, base.y, -Math.PI/2 - .45, config.speed*.96));
-        balls.push(makeBall(base.x, base.y, -Math.PI/2 + .45, config.speed*.96));
-      }
-      paddleBoostTimer = Math.max(paddleBoostTimer, 360);
-      setMessage('種ボーナス。泥玉が増えて、レンゲを一気に咲かせます。');
-      score += 240;
-    } else if (type === 'water') {
-      slowTimer = 620;
-      setMessage('水やりボーナス。泥玉が少し扱いやすくなりました。');
-      score += 160;
-    } else {
-      addSupport(32);
-      setMessage('応援ボーナス。ゲージが大きく増えました。');
-      score += 240;
-    }
-    updateUi();
-  }
-
-  function circleRectCollision(cx, cy, r, rect){
-    const closestX = clamp(cx, rect.x, rect.x + rect.w);
-    const closestY = clamp(cy, rect.y, rect.y + rect.h);
-    const dx = cx - closestX;
-    const dy = cy - closestY;
-    return dx*dx + dy*dy <= r*r;
-  }
-
-  function updatePaddle(step){
-    if (keys.left) paddle.targetX -= 15 * step;
-    if (keys.right) paddle.targetX += 15 * step;
-    const targetW = paddleBoostTimer > 0 ? config.paddle * 1.38 : config.paddle;
-    paddle.w += (targetW - paddle.w) * .16;
-    paddle.targetX = clamp(paddle.targetX, 16, W - paddle.w - 16);
-    paddle.x += (paddle.targetX - paddle.x) * .36;
-  }
-
-  function updateBall(ball, step){
-    const slowFactor = slowTimer > 0 ? .76 : 1;
-    ball.trail.push({x:ball.x,y:ball.y});
-    if (ball.trail.length > 12) ball.trail.shift();
-    ball.x += ball.vx * step * slowFactor;
-    ball.y += ball.vy * step * slowFactor;
-
-    if (ball.x < ball.r) { ball.x = ball.r; ball.vx *= -1; }
-    if (ball.x > W - ball.r) { ball.x = W - ball.r; ball.vx *= -1; }
-    if (ball.y < ball.r) { ball.y = ball.r; ball.vy *= -1; }
-
-    const paddleRect = {x:paddle.x, y:paddle.y, w:paddle.w, h:paddle.h};
-    if (ball.vy > 0 && circleRectCollision(ball.x, ball.y, ball.r, paddleRect)) {
-      const center = paddle.x + paddle.w/2;
-      const hit = (ball.x - center) / (paddle.w/2);
-      const speed = Math.max(config.speed*.96, Math.sqrt(ball.vx*ball.vx + ball.vy*ball.vy) * 1.006);
-      ball.vx = clamp(hit * speed * .9, -11.2, 11.2);
-      ball.vy = -Math.max(config.speed*.78, Math.sqrt(Math.max(1, speed*speed - ball.vx*ball.vx)));
-      ball.y = paddle.y - ball.r - 1;
-      combo = Math.max(0, combo - .15);
-    }
-
-    let collided = false;
-    for (const b of bricks) {
-      if (!b.alive || collided) continue;
-      if (circleRectCollision(ball.x, ball.y, ball.r, b)) {
-        const prevX = ball.x - ball.vx * step;
-        const prevY = ball.y - ball.vy * step;
-        const wasVertical = prevY <= b.y || prevY >= b.y + b.h;
-        if (wasVertical) ball.vy *= -1; else ball.vx *= -1;
-        hitBrick(b, ball);
-        collided = true;
+  function update(t, dt){
+    // missed notes
+    for (const n of notes) {
+      if (!n.judged && t - n.time > config.good) {
+        n.judged = true; n.result = 'miss'; combo = 0; fever = Math.max(0, fever - 5);
+        addJudge('MISS', hitX, trackY - 70 + n.lane*18, palette.red);
+        hitSound('miss');
       }
     }
-    return ball.y <= H + 34;
+    pressFlash = Math.max(0, pressFlash - dt*4.4);
+    screenShake = Math.max(0, screenShake - dt*18);
+    judgePops.forEach(p => { p.life -= dt*60; p.y += p.vy*dt*60; p.vy *= .985; });
+    judgePops = judgePops.filter(p => p.life > 0);
+    particles.forEach(p => { p.life -= dt*60; p.x += p.vx*dt*60; p.y += p.vy*dt*60; p.vy += .12*dt*60; });
+    particles = particles.filter(p => p.life > 0);
+    fieldTiles.forEach(tile => { tile.t = Math.max(0, tile.t - dt*1.8); });
+    if (running && t >= config.length && !endingShown) finishGame();
+    updateUi(t);
   }
 
-  function tryRegrowth(dt){
-    if (!config.regen || !running) return;
-    regenClock += dt;
-    if (regenClock < config.regen) return;
-    regenClock = 0;
-    const cleared = bricks.filter(b => !b.alive);
-    const alive = aliveBricks();
-    if (cleared.length < 4 || alive.length > bricks.length * .72) return;
-    const nearRoots = cleared.filter(cell => bricks.some(b => b.alive && (b.type === 'root' || b.type === 'bush') && Math.abs(b.r-cell.r)+Math.abs(b.c-cell.c) === 1));
-    if (!nearRoots.length) return;
-    const target = nearRoots[Math.floor(Math.random()*nearRoots.length)];
-    target.type = 'grass'; target.hp = 1; target.maxHp = 1; target.alive = true; target.justReborn = true;
-    setMessage('草が少し戻ってきました。根っこを早めに整えよう。');
-    setTimeout(() => { target.justReborn = false; }, 900);
-    updateUi();
-  }
-
-  function update(dt){
-    const step = Math.min(2.15, dt / 16.67);
-    updatePaddle(step);
-    if (paddleBoostTimer > 0) paddleBoostTimer -= step;
-    if (slowTimer > 0) slowTimer -= step;
-    if (multiTimer > 0) multiTimer -= step;
-    if (messageTimer > 0) messageTimer -= dt;
-
-    balls = balls.filter(b => updateBall(b, step));
-    if (balls.length === 0) {
-      lives -= 1; combo = 0; updateUi();
-      if (lives <= 0) {
-        running = false;
-        setMessage(`ゲーム終了。${area}㎡、${bloom}本のレンゲが生まれました。難易度を下げて再挑戦できます。`, 999999);
-      } else {
-        resetBall();
-        setMessage(`泥玉が外へ。残り${lives}回です。`);
-      }
+  function finishGame(){
+    running = false; endingShown = true;
+    const rank = score > config.length*260 ? 'S' : score > config.length*170 ? 'A' : score > config.length*95 ? 'B' : 'C';
+    setMessage(`RESULT：${rank}ランク。${flowers}本のレンゲが咲きました。最大コンボは${maxCombo}。もう一度挑戦できます。`);
+    if (audio) {
+      const t = audio.currentTime;
+      [523,659,784,1046].forEach((f,i)=> tone(f, t+i*.08, .28, 'triangle', .07));
     }
-
-    for (let i=powerups.length-1; i>=0; i--) {
-      const p = powerups[i];
-      p.y += p.vy * step;
-      p.vy += .025 * step;
-      p.spin += .08 * step;
-      if (p.y + p.r > paddle.y && p.y < paddle.y + paddle.h + 16 && p.x > paddle.x && p.x < paddle.x + paddle.w) {
-        activatePowerup(p.type);
-        powerups.splice(i,1);
-      } else if (p.y > H + 34) powerups.splice(i,1);
-    }
-
-    for (const f of flowers) f.a = Math.min(1, f.a + .035 * step);
-    for (let i=particles.length-1; i>=0; i--) {
-      const p = particles[i];
-      p.x += p.vx * step; p.y += p.vy * step; p.vy += .08 * step; p.life -= step;
-      if (p.life <= 0) particles.splice(i,1);
-    }
-    for (let i=waves.length-1; i>=0; i--) {
-      const w = waves[i];
-      w.r += (w.wide ? 18 : 10) * step; w.life -= step;
-      if (w.life <= 0) waves.splice(i,1);
-    }
-    tryRegrowth(dt);
-    updateUi();
+    draw(config.length);
   }
 
   function roundRect(x,y,w,h,r){
     ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
   }
 
-  function drawBackground(){
+  function drawBackground(t){
     ctx.clearRect(0,0,W,H);
-    const grd = ctx.createLinearGradient(0,0,0,H);
-    grd.addColorStop(0,'#fbffe9'); grd.addColorStop(.55,'#eaf5cf'); grd.addColorStop(1,'#d6e8b8');
-    ctx.fillStyle = grd; ctx.fillRect(0,0,W,H);
-    ctx.strokeStyle = 'rgba(63,125,63,.16)'; ctx.lineWidth = 1;
-    for (let x=0; x<W; x+=56) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-    for (let y=0; y<H; y+=56) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-    ctx.fillStyle = 'rgba(255,255,255,.66)'; ctx.fillRect(0,0,W,58);
-    ctx.fillStyle = colors.line; ctx.font = '900 24px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign = 'left'; ctx.fillText('Re:Bloom Field Breaker', 28, 38);
-    ctx.font = '800 14px "M PLUS Rounded 1c", sans-serif'; ctx.fillStyle = 'rgba(46,36,24,.64)'; ctx.fillText('草を崩すだけでなく、水・種・応援を使うミニゲーム', 312, 38);
-    ctx.fillStyle = 'rgba(255,212,90,.56)';
-    ctx.beginPath(); ctx.arc(W-70, 46, 38, 0, Math.PI*2); ctx.fill();
-  }
-
-  function drawFlowers(){
-    for (const f of flowers) {
-      ctx.save(); ctx.globalAlpha = f.a; ctx.translate(f.x, f.y); ctx.scale(f.s, f.s);
-      ctx.rotate(Math.sin(performance.now()/600 + f.sway)*.05);
-      ctx.fillStyle = '#3f7d3f'; ctx.fillRect(-2, 0, 4, 17);
-      ctx.fillStyle = '#ff9fca';
-      for (let i=0; i<5; i++) { ctx.rotate(Math.PI*2/5); ctx.beginPath(); ctx.ellipse(0,-9,4.5,8.5,0,0,Math.PI*2); ctx.fill(); }
-      ctx.fillStyle = '#ffd45a'; ctx.beginPath(); ctx.arc(0,0,4.3,0,Math.PI*2); ctx.fill(); ctx.restore();
-    }
-  }
-
-  function drawBricks(){
-    for (const b of bricks) {
-      if (!b.alive) continue;
-      ctx.save();
-      if (b.justReborn) { ctx.shadowColor = '#ff9fca'; ctx.shadowBlur = 18; }
-      roundRect(b.x,b.y,b.w,b.h,10);
-      ctx.fillStyle = brickColor(b.type); ctx.fill();
-      ctx.lineWidth = 3; ctx.strokeStyle = colors.line; ctx.stroke();
-      ctx.fillStyle = 'rgba(255,255,255,.32)'; ctx.fillRect(b.x+8,b.y+7,b.w-16,6);
-      if (b.hp > 1) { ctx.fillStyle = '#fff7df'; ctx.font = '900 14px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign = 'right'; ctx.fillText(`×${b.hp}`, b.x+b.w-10, b.y+23); }
-      ctx.fillStyle = b.type === 'water' ? '#134f6b' : colors.line;
-      ctx.font = '900 16px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign = 'left'; ctx.fillText(brickLabel(b.type), b.x+12, b.y+b.h-10);
-      ctx.restore();
-    }
-  }
-
-  function drawPaddle(){
+    const feverOn = feverActiveUntil > t;
+    const g = ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0, feverOn ? '#fff1b6' : '#fffce7');
+    g.addColorStop(.58, feverOn ? '#f6f6bf' : '#e5f2bd');
+    g.addColorStop(1, '#cfe2a6');
+    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
     ctx.save();
-    roundRect(paddle.x, paddle.y, paddle.w, paddle.h, 11);
-    ctx.fillStyle = paddleBoostTimer > 0 ? colors.support : colors.grass; ctx.fill();
-    ctx.lineWidth = 4; ctx.strokeStyle = colors.line; ctx.stroke();
-    ctx.fillStyle = paddleBoostTimer > 0 ? colors.line : '#fffaf0'; ctx.font = '900 14px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign = 'center'; ctx.fillText('学生チーム', paddle.x+paddle.w/2, paddle.y+15);
+    ctx.globalAlpha = feverOn ? .34 : .18;
+    ctx.strokeStyle = palette.green;
+    ctx.lineWidth = 1;
+    for (let x=-80;x<W+80;x+=58){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x+80,H); ctx.stroke(); }
+    for (let y=0;y<H;y+=58){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
     ctx.restore();
+    ctx.fillStyle = 'rgba(255,255,255,.72)';
+    roundRect(24,18,W-48,66,22); ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle='rgba(53,33,22,.18)'; ctx.stroke();
+    ctx.fillStyle = palette.ink; ctx.textAlign='left'; ctx.font='900 30px "M PLUS Rounded 1c", sans-serif';
+    ctx.fillText('Re:Bloom Beat Farm', 48, 59);
+    ctx.font='900 14px "M PLUS Rounded 1c", sans-serif'; ctx.fillStyle='rgba(53,33,22,.58)';
+    ctx.fillText(`1ボタン / ${config.label} / BPM ${config.bpm}`, 390, 59);
   }
 
-  function drawBalls(){
-    balls.forEach(ball => {
+  function drawFieldTiles(){
+    const cols = 15, rows = 4;
+    const margin = 44, gap = 7;
+    const tileW = (W - margin*2 - gap*(cols-1)) / cols;
+    const tileH = 38;
+    const top = H - 188;
+    fieldTiles.forEach(tile => {
+      const x = margin + tile.c*(tileW+gap);
+      const y = top + tile.r*(tileH+gap);
       ctx.save();
-      for (let i=0; i<ball.trail.length; i++) {
-        const t = ball.trail[i]; ctx.globalAlpha = i / ball.trail.length * .28; ctx.fillStyle = '#7a4b2a'; ctx.beginPath(); ctx.arc(t.x,t.y,ball.r*(i/ball.trail.length),0,Math.PI*2); ctx.fill();
+      roundRect(x,y,tileW,tileH,10);
+      ctx.fillStyle = tile.bloom ? '#f8d8e4' : '#88aa61';
+      ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(53,33,22,.28)'; ctx.stroke();
+      if (tile.bloom) {
+        const cx = x+tileW/2, cy = y+tileH/2+2;
+        ctx.translate(cx,cy); ctx.scale(1+tile.t*.18,1+tile.t*.18);
+        ctx.fillStyle = palette.green; ctx.fillRect(-2,2,4,11);
+        ctx.fillStyle = palette.pink;
+        for (let i=0;i<5;i++){ ctx.rotate(Math.PI*2/5); ctx.beginPath(); ctx.ellipse(0,-6,4,7,0,0,Math.PI*2); ctx.fill(); }
+        ctx.fillStyle = palette.yellow; ctx.beginPath(); ctx.arc(0,0,3.5,0,Math.PI*2); ctx.fill();
+      } else {
+        ctx.fillStyle = 'rgba(53,33,22,.36)';
+        for (let i=0;i<3;i++){ ctx.fillRect(x+12+i*21, y+12+Math.sin(tile.sway+i)*4, 4, 14); }
       }
-      ctx.globalAlpha = 1; ctx.shadowColor = 'rgba(53,33,22,.25)'; ctx.shadowBlur = 10;
-      ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2); ctx.fillStyle = '#7a4b2a'; ctx.fill();
-      ctx.lineWidth = 3; ctx.strokeStyle = colors.line; ctx.stroke(); ctx.shadowBlur = 0;
-      ctx.fillStyle = colors.support; ctx.beginPath(); ctx.arc(ball.x-3, ball.y-3, 2.8, 0, Math.PI*2); ctx.fill();
       ctx.restore();
     });
   }
 
-  function drawPowerups(){
-    for (const p of powerups) {
-      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(Math.sin(p.spin)*.18);
-      ctx.beginPath(); ctx.arc(0,0,p.r,0,Math.PI*2);
-      ctx.fillStyle = p.type === 'seed' ? colors.seed : p.type === 'water' ? colors.water : colors.support; ctx.fill();
-      ctx.lineWidth = 3; ctx.strokeStyle = colors.line; ctx.stroke();
-      ctx.fillStyle = colors.line; ctx.font = '900 13px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(p.type === 'seed' ? '種' : p.type === 'water' ? '水' : '応', 0, 1);
+  function drawTrack(t){
+    ctx.save();
+    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(53,33,22,.25)';
+    ctx.beginPath(); ctx.moveTo(120, trackY); ctx.lineTo(W-70, trackY); ctx.stroke();
+    // sublines
+    ctx.lineWidth=2; ctx.strokeStyle='rgba(53,33,22,.10)';
+    [-58,58].forEach(off=>{ ctx.beginPath(); ctx.moveTo(120, trackY+off); ctx.lineTo(W-70, trackY+off); ctx.stroke(); });
+    // timing ring
+    ctx.translate(hitX, trackY);
+    ctx.shadowColor = pressFlash ? palette.yellow : 'rgba(53,33,22,.18)';
+    ctx.shadowBlur = pressFlash ? 28 : 10;
+    ctx.beginPath(); ctx.arc(0,0,58 + pressFlash*7,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.88)'; ctx.fill();
+    ctx.lineWidth = 7; ctx.strokeStyle = pressFlash ? palette.red : palette.ink; ctx.stroke();
+    ctx.fillStyle = palette.ink; ctx.font='900 16px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign='center';
+    ctx.fillText('HIT',0,6); ctx.restore();
+
+    // beat markers
+    const beat = 60/config.bpm;
+    const first = Math.floor((t-1)/beat)-2;
+    for (let i=first;i<first+18;i++){
+      const bt = config.pre + i*beat;
+      const x = hitX + (bt - t)*pxPerSec;
+      if (x < 110 || x > W+60) continue;
+      ctx.save(); ctx.globalAlpha=.22; ctx.strokeStyle=palette.ink; ctx.lineWidth = i%4===0 ? 4:2;
+      ctx.beginPath(); ctx.moveTo(x,trackY-84); ctx.lineTo(x,trackY+84); ctx.stroke(); ctx.restore();
+    }
+  }
+
+  function noteColor(type){
+    return type==='water'?palette.blue:type==='seed'?palette.pink:type==='flower'?palette.yellow:type==='mud'?palette.soil:palette.green2;
+  }
+  function noteLabel(type){ return type==='water'?'水':type==='seed'?'種':type==='flower'?'花':type==='mud'?'泥':'草'; }
+
+  function drawNotes(t){
+    for (const n of notes) {
+      if (n.judged) continue;
+      const x = hitX + (n.time - t) * pxPerSec;
+      if (x < -90 || x > W+100) continue;
+      const y = trackY + (n.lane-1)*58;
+      const scale = clamp(1.05 - Math.abs(x-hitX)/900, .78, 1.12);
+      ctx.save(); ctx.translate(x,y); ctx.scale(scale,scale);
+      ctx.shadowColor='rgba(53,33,22,.24)'; ctx.shadowBlur=10; ctx.shadowOffsetY=5;
+      ctx.beginPath(); ctx.arc(0,0,noteR,0,Math.PI*2); ctx.fillStyle=noteColor(n.type); ctx.fill();
+      ctx.lineWidth=4; ctx.strokeStyle=palette.ink; ctx.stroke(); ctx.shadowBlur=0;
+      ctx.fillStyle=palette.ink; ctx.font='900 20px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(noteLabel(n.type),0,1);
       ctx.restore();
     }
   }
 
+  function drawPops(){
+    judgePops.forEach(p => {
+      ctx.save(); ctx.globalAlpha = clamp(p.life/40,0,1); ctx.translate(p.x,p.y); ctx.scale(p.scale,p.scale); ctx.rotate(Math.sin(p.life*.13)*.035);
+      ctx.font='900 44px "Luckiest Guy","M PLUS Rounded 1c",sans-serif'; ctx.textAlign='center'; ctx.lineWidth=7; ctx.strokeStyle=palette.ink; ctx.strokeText(p.text,0,0); ctx.fillStyle=p.color; ctx.fillText(p.text,0,0); ctx.restore();
+    });
+  }
+
   function drawParticles(){
-    for (const p of particles) {
-      ctx.save(); ctx.globalAlpha = Math.max(0,p.life/48); ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill(); ctx.restore();
+    particles.forEach(p => {
+      ctx.save(); ctx.globalAlpha=clamp(p.life/44,0,1); ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill(); ctx.restore();
+    });
+  }
+
+  function drawFever(t){
+    const active = feverActiveUntil > t;
+    const x = W - 330, y = 35, w = 252, h = 28;
+    ctx.save();
+    roundRect(x,y,w,h,14); ctx.fillStyle='#fffaf0'; ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle=palette.ink; ctx.stroke();
+    roundRect(x+4,y+4,(w-8)*(active?1:fever/100),h-8,11); ctx.fillStyle=active?palette.pink:palette.yellow; ctx.fill();
+    ctx.fillStyle=palette.ink; ctx.font='900 13px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign='center'; ctx.fillText(active?'RE:BLOOM FEVER!':'FEVER',x+w/2,y+19); ctx.restore();
+    if (active) {
+      ctx.save(); ctx.globalAlpha=.18+.08*Math.sin(t*12); ctx.fillStyle=palette.pink; ctx.beginPath(); ctx.arc(W/2,trackY,260+20*Math.sin(t*9),0,Math.PI*2); ctx.fill(); ctx.restore();
     }
   }
 
-  function drawWaves(){
-    for (const w of waves) {
-      ctx.save(); ctx.globalAlpha = Math.max(0,w.life/(w.wide?70:46)); ctx.lineWidth = w.wide ? 12 : 7; ctx.strokeStyle = w.wide ? colors.support : colors.water; ctx.beginPath(); ctx.arc(w.x,w.y,w.r,0,Math.PI*2); ctx.stroke(); ctx.restore();
+  function draw(t=nowTime()){
+    ctx.save();
+    if (screenShake > 0) ctx.translate((Math.random()-.5)*screenShake, (Math.random()-.5)*screenShake);
+    drawBackground(t); drawFieldTiles(); drawFever(t); drawTrack(t); drawNotes(t); drawPops(); drawParticles();
+    if (!running) {
+      ctx.save(); ctx.fillStyle='rgba(255,255,255,.30)'; ctx.fillRect(0,90,W,H-90);
+      ctx.fillStyle=palette.ink; ctx.textAlign='center'; ctx.font='900 34px "M PLUS Rounded 1c", sans-serif';
+      ctx.fillText(stopped ? 'STARTで音に乗ろう' : 'RESULT', W/2, 150);
+      ctx.restore();
     }
+    ctx.restore();
   }
 
-  function drawGauge(){
-    const x = W - 302, y = 18, w = 230, h = 22;
-    ctx.save(); roundRect(x,y,w,h,12); ctx.fillStyle = '#fffaf0'; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = colors.line; ctx.stroke();
-    roundRect(x+4,y+4,(w-8)*supportGauge/100,h-8,9); ctx.fillStyle = colors.support; ctx.fill();
-    ctx.fillStyle = colors.line; ctx.font = '900 12px "M PLUS Rounded 1c", sans-serif'; ctx.textAlign='center'; ctx.fillText('応援ゲージ', x+w/2, y+16); ctx.restore();
+  function loop(ts){
+    if (!running) { draw(nowTime()); return; }
+    const t = nowTime();
+    const dt = lastFrame ? Math.min(.05,(ts-lastFrame)/1000) : .016;
+    lastFrame = ts;
+    update(t, dt); draw(t);
+    if (running) requestAnimationFrame(loop);
   }
 
-  function draw(){
-    drawBackground(); drawFlowers(); drawBricks(); drawWaves(); drawPowerups(); drawPaddle(); drawBalls(); drawParticles(); drawGauge();
-    if (!running) { ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.28)'; ctx.fillRect(0,58,W,H-58); ctx.restore(); }
-  }
-
-  function loop(now){
-    if (!running || paused) { draw(); return; }
-    const dt = now - lastTime; lastTime = now;
-    update(dt); draw();
-    if (running && !paused) requestAnimationFrame(loop);
-  }
-
-  function canvasX(clientX){
-    const rect = canvas.getBoundingClientRect();
-    return (clientX - rect.left) * (W / rect.width);
-  }
-
-  canvas.addEventListener('pointerdown', e => {
-    canvas.setPointerCapture?.(e.pointerId);
-    paddle.targetX = clamp(canvasX(e.clientX) - paddle.w/2, 16, W-paddle.w-16);
-    if (!running) startGame();
-  });
-  canvas.addEventListener('pointermove', e => {
-    if (e.pointerType === 'mouse' && e.buttons === 0) return;
-    paddle.targetX = clamp(canvasX(e.clientX) - paddle.w/2, 16, W-paddle.w-16);
-  });
-
+  canvas.addEventListener('pointerdown', e => { e.preventDefault(); hit(); });
+  ui.hit?.addEventListener('click', hit);
   window.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') keys.left = true;
-    if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') keys.right = true;
-    if (e.key === ' ' && document.activeElement?.tagName !== 'BUTTON') {
-      e.preventDefault();
-      if (supportGauge >= 100 && running && !paused) useSupportWave(); else startGame();
+    if (e.code === 'Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName || '')) {
+      e.preventDefault(); hit();
     }
   });
-  window.addEventListener('keyup', e => {
-    if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') keys.left = false;
-    if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') keys.right = false;
-  });
 
+  ui.start?.addEventListener('click', startGame);
+  ui.stop?.addEventListener('click', stopGame);
+  ui.reset?.addEventListener('click', () => resetGame());
   ui.diffButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       diffKey = btn.dataset.gameDiff || 'easy';
       ui.diffButtons.forEach(b => b.classList.toggle('is-active', b === btn));
       config = difficulties[diffKey];
       resetGame(true);
-      setMessage(`${config.label}モードを選びました。水路・種・応援を使いこなそう。`, 999999);
-      updateUi();
+      setMessage(`${config.label}モードを選びました。${config.cue}。スタートすると音が出ます。`);
     });
   });
-  ui.start?.addEventListener('click', startGame);
-  ui.pause?.addEventListener('click', togglePause);
-  ui.reset?.addEventListener('click', () => resetGame());
-  ui.wave?.addEventListener('click', useSupportWave);
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden && running) { paused = true; setMessage('一時停止中。画面に戻ったら再開できます。', 999999); updateUi(); }
-  });
-
+  document.addEventListener('visibilitychange', () => { if (document.hidden && running) stopGame(); });
   resetGame();
 })();
 </script>
