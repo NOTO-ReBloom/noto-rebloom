@@ -1,21 +1,22 @@
-<!doctype html>
-<!-- NOTO Re:Bloom v19 single-file: scroll fun + impact animation + sticky CTA -->
+<!DOCTYPE html>
+
+ NOTO Re:Bloom v20 single-file: crowdfunding route + safe fun UI + no overlap layout 
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="NOTO Re:Bloom｜能登で増える耕作放棄地を、学生・地域・企業の協働で毎年少しずつ再生していくプロジェクト。">
-  <meta name="theme-color" content="#F6F0E4">
-  <meta property="og:title" content="NOTO Re:Bloom｜能登の耕作放棄地を、もう一度人が関わる場所へ。">
-  <meta property="og:description" content="使われなくなった土地に、もう一度人が関わるきっかけを。学生・地域・企業で育てる耕作放棄地再生プロジェクト。">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="field-overview.webp">
-  <title>NOTO Re:Bloom｜能登の耕作放棄地を、もう一度人が関わる場所へ。</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Yusei+Magic&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="NOTO Re:Bloom｜能登で増える耕作放棄地を、学生・地域・企業の協働で毎年少しずつ再生していくプロジェクト。" name="description"/>
+<meta content="#F6F0E4" name="theme-color"/>
+<meta content="NOTO Re:Bloom｜能登の耕作放棄地を、もう一度人が関わる場所へ。" property="og:title"/>
+<meta content="使われなくなった土地に、もう一度人が関わるきっかけを。学生・地域・企業で育てる耕作放棄地再生プロジェクト。" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="field-overview.webp" property="og:image"/>
+<title>NOTO Re:Bloom｜能登の耕作放棄地を、もう一度人が関わる場所へ。</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&amp;family=Luckiest+Guy&amp;family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&amp;family=Zen+Maru+Gothic:wght@400;500;700;900&amp;family=Yusei+Magic&amp;display=swap" rel="stylesheet"/>
+<style>
 :root{
   --ink:#2e2418;
   --ink-soft:rgba(46,36,24,.76);
@@ -3894,791 +3895,879 @@ section{
    ========================================================= */
 :root{--v19-red:#df5648;--v19-blue:#3f8fd2;--v19-yellow:#ffd75a;--v19-green:#5fa95f;--v19-ink:#2f2418;--v19-cream:#fffaf0;}
 .hero-fun-line{display:inline-block;margin:0 0 12px;padding:10px 14px;border:3px solid var(--soil-dark);border-radius:999px;background:#fff;color:var(--soil-dark);font-weight:900;box-shadow:4px 4px 0 var(--soil-dark);transform:rotate(-1deg)}
-.scroll-story{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdf7,#f6eddb 58%,#fff8e8)}
-.scroll-story::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 18% 12%,rgba(255,215,90,.32) 0 70px,transparent 72px),radial-gradient(circle at 82% 22%,rgba(95,169,95,.18) 0 92px,transparent 94px),radial-gradient(circle at 62% 82%,rgba(216,95,85,.13) 0 110px,transparent 112px);pointer-events:none}.scroll-story-layout{display:grid;grid-template-columns:minmax(280px,.92fr) minmax(320px,1.08fr);gap:clamp(28px,5vw,64px);align-items:start}.story-stage{position:sticky;top:110px}.stage-card{position:relative;overflow:hidden;min-height:500px;border:5px solid var(--soil-dark);border-radius:34px;background:#fff;box-shadow:11px 11px 0 var(--soil-dark)}.stage-sky{position:absolute;inset:0 0 42%;background:linear-gradient(180deg,#cceffd,#fff7d8)}.stage-sky i{position:absolute;display:block;border-radius:999px;background:#fff;border:2px solid rgba(47,36,24,.15)}.stage-sky i:nth-child(1){width:90px;height:28px;left:12%;top:20%}.stage-sky i:nth-child(2){width:120px;height:34px;right:12%;top:32%}.stage-sky i:nth-child(3){width:52px;height:52px;right:22%;top:12%;background:var(--v19-yellow);border-color:var(--soil-dark);box-shadow:4px 4px 0 var(--soil-dark)}.stage-field{position:absolute;left:0;right:0;bottom:0;height:64%;background:linear-gradient(180deg,#84bd68 0 32%,#7b4b31 33% 100%)}.stage-field::before{content:"";position:absolute;inset:28% 0 0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 2px,transparent 2px 34px),repeating-linear-gradient(0deg,rgba(255,255,255,.10) 0 2px,transparent 2px 34px);opacity:.75}.grass{position:absolute;bottom:48%;width:16px;height:86px;background:#2f8a43;border:3px solid var(--soil-dark);border-radius:18px 18px 3px 3px;transform-origin:bottom}.g1{left:10%;transform:rotate(-15deg)}.g2{left:23%;height:104px;transform:rotate(10deg)}.g3{right:21%;height:95px;transform:rotate(-8deg)}.g4{right:9%;height:116px;transform:rotate(16deg)}.footprint{position:absolute;width:34px;height:20px;border-radius:50%;background:#4b2e1f;border:2px solid rgba(255,255,255,.16);opacity:0;transform:rotate(-18deg) scale(.7)}.f1{left:30%;bottom:28%}.f2{left:44%;bottom:38%;transform:rotate(15deg) scale(.7)}.f3{left:58%;bottom:27%}.mud-pop{position:absolute;width:24px;height:24px;border-radius:50%;background:#6a3d27;border:3px solid var(--soil-dark);opacity:0;transform:scale(.3)}.m1{left:18%;bottom:20%}.m2{left:70%;bottom:29%}.m3{left:47%;bottom:17%}.field-flag{position:absolute;left:50%;bottom:44%;padding:7px 13px;background:var(--v19-red);color:#fff;font-weight:900;border:3px solid var(--soil-dark);border-radius:12px;box-shadow:4px 4px 0 var(--soil-dark);opacity:0;transform:translate(-50%,10px) rotate(-2deg)}.field-flag::before{content:"";position:absolute;left:10px;top:100%;width:5px;height:55px;background:var(--soil-dark)}.renge-sprout{position:absolute;right:19%;bottom:30%;width:48px;height:78px;opacity:0;transform:translateY(24px) scale(.7)}.renge-sprout::before{content:"";position:absolute;left:22px;bottom:0;width:6px;height:66px;background:#2e8c42;border-radius:999px}.renge-sprout b,.renge-sprout b::before,.renge-sprout b::after{position:absolute;display:block;content:"";border:3px solid var(--soil-dark);background:#e77fb1;border-radius:50%}.renge-sprout b{width:24px;height:24px;left:13px;top:0}.renge-sprout b::before{width:18px;height:18px;left:-18px;top:16px}.renge-sprout b::after{width:18px;height:18px;right:-18px;top:15px}.stage-caption{position:absolute;left:22px;right:22px;bottom:18px;margin:0;padding:14px 16px;border:3px solid var(--soil-dark);border-radius:18px;background:#fff;font-weight:900;box-shadow:4px 4px 0 var(--soil-dark)}.story-steps{display:grid;gap:18px}.story-intro{margin-bottom:8px}.story-step{padding:24px;border:4px solid var(--soil-dark);border-radius:24px;background:#fff;box-shadow:6px 6px 0 var(--soil-dark);transition:transform .35s ease, background .35s ease}.story-step span{display:inline-block;margin-bottom:8px;padding:5px 10px;border:2px solid var(--soil-dark);border-radius:999px;background:var(--v19-yellow);font-weight:900}.story-step h3{margin:0 0 8px;color:var(--soil-dark)}.story-step p{margin:0;font-weight:750}.story-step.is-current{transform:translateX(-8px) rotate(-1deg);background:#fff4cf}.scroll-story[data-current="clear"] .grass{opacity:.45;transform:scaleY(.62) rotate(0deg)}.scroll-story[data-current="play"] .footprint,.scroll-story[data-current="play"] .mud-pop,.scroll-story[data-current="play"] .field-flag{opacity:1;transform:scale(1)}.scroll-story[data-current="bloom"] .footprint,.scroll-story[data-current="bloom"] .mud-pop,.scroll-story[data-current="bloom"] .field-flag,.scroll-story[data-current="bloom"] .renge-sprout{opacity:1;transform:translateY(0) scale(1)}.scroll-story[data-current="next"] .footprint,.scroll-story[data-current="next"] .mud-pop,.scroll-story[data-current="next"] .field-flag,.scroll-story[data-current="next"] .renge-sprout{opacity:1;transform:translateY(0) scale(1)}.scroll-story[data-current="next"] .stage-field{background:linear-gradient(180deg,#70b95b 0 34%,#6c4a31 35% 100%)}
 .land-meter-card{display:grid;grid-template-columns:minmax(260px,.82fr) minmax(320px,1.18fr);gap:clamp(20px,4vw,42px);align-items:center;margin:26px 0;padding:28px;border:5px solid var(--soil-dark);border-radius:34px;background:#fffdf7;box-shadow:10px 10px 0 var(--soil-dark);position:relative;overflow:hidden}.land-meter-card::before{content:"POKO POKO";position:absolute;right:-20px;top:18px;font-family:'Bangers','Luckiest Guy',cursive;font-size:42px;color:rgba(216,95,85,.12);transform:rotate(7deg)}.land-meter-copy span{display:inline-block;padding:6px 11px;border:2px solid var(--soil-dark);border-radius:999px;background:var(--v19-yellow);font-weight:900}.land-meter-copy h3{margin:12px 0 8px;color:var(--soil-dark);font-size:clamp(24px,3vw,38px);line-height:1.25}.land-meter-copy p{margin:0;font-weight:750}.rice-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;padding:14px;border:4px solid var(--soil-dark);border-radius:24px;background:#d8e6b9}.rice-tile{aspect-ratio:1/1;border:2px solid rgba(47,36,24,.28);border-radius:8px;background:#9fbd72;box-shadow:inset 0 -5px 0 rgba(47,36,24,.08);transition:transform .28s ease, background .28s ease, box-shadow .28s ease}.rice-tile.is-lit{background:#ffd75a;box-shadow:inset 0 -5px 0 rgba(47,36,24,.12),0 0 0 3px rgba(216,95,85,.18);transform:translateY(-3px)}.land-meter-visual p{margin:12px 0 0;text-align:center;font-weight:900;color:var(--soil-dark)}.land-meter-visual b{font-size:clamp(26px,4vw,46px);margin-right:8px}.game-sport-grid article{position:relative;overflow:hidden}.game-sport-grid article::after{content:"";position:absolute;width:140px;height:140px;right:-58px;top:-58px;border-radius:50%;background:repeating-radial-gradient(circle,rgba(255,255,255,.7) 0 3px,transparent 3px 9px);opacity:.42}.sport-game-card .sport-copy span{background:var(--v19-yellow);color:var(--soil-dark);border:2px solid var(--soil-dark);box-shadow:3px 3px 0 var(--soil-dark);padding:3px 8px;border-radius:999px}.sport-stats{display:grid;gap:6px;margin:14px 0 0}.sport-stats div{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 9px;border:2px solid rgba(47,36,24,.2);border-radius:999px;background:rgba(255,255,255,.72)}.sport-stats dt{font-size:12px;font-weight:900;color:var(--soil-dark)}.sport-stats dd{margin:0;font-size:12px;font-weight:900;color:#d85f55;letter-spacing:.05em}.bucket-game{background:linear-gradient(135deg,#fff8d9,#fff)}.relay-game{background:linear-gradient(135deg,#e3f5ff,#fff)}.tug-game{background:linear-gradient(135deg,#e9f8df,#fff)}.tail-game{background:linear-gradient(135deg,#ffe9ef,#fff)}
 .renge-cup-lab{background:linear-gradient(180deg,#fffaf0,#eef7df);position:relative;overflow:hidden}.renge-cup-lab::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 18%,rgba(95,169,95,.16) 0 100px,transparent 102px),radial-gradient(circle at 80% 70%,rgba(231,127,177,.14) 0 130px,transparent 132px);pointer-events:none}.renge-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.renge-flow article{position:relative;min-height:260px;padding:22px;border:4px solid var(--soil-dark);border-radius:28px;background:#fff;box-shadow:7px 7px 0 var(--soil-dark);overflow:hidden}.renge-flow article>span{display:inline-grid;place-items:center;width:44px;height:44px;border:3px solid var(--soil-dark);border-radius:50%;background:var(--v19-yellow);font-weight:900}.renge-flow h3{margin:14px 0 8px;color:var(--soil-dark)}.renge-flow p{margin:0;font-weight:750}.renge-icon{height:92px;margin:10px 0 4px;position:relative}.renge-icon::before,.renge-icon::after{content:"";position:absolute}.renge-icon.mud::before{left:50%;bottom:8px;width:95px;height:46px;border:4px solid var(--soil-dark);border-radius:50%;background:#7b4b31;transform:translateX(-50%)}.renge-icon.mud::after{left:38%;bottom:40px;width:18px;height:18px;border-radius:50%;background:#7b4b31;border:3px solid var(--soil-dark);box-shadow:38px 12px 0 #7b4b31}.renge-icon.mix::before{left:50%;bottom:10px;width:92px;height:62px;border:4px solid var(--soil-dark);border-radius:16px 16px 34px 34px;background:#d7a56f;transform:translateX(-50%)}.renge-icon.mix::after{left:58%;top:8px;width:8px;height:76px;border-radius:999px;background:var(--soil-dark);transform:rotate(25deg)}.renge-icon.seed::before{left:50%;bottom:8px;width:96px;height:55px;border:4px solid var(--soil-dark);border-radius:18px 18px 30px 30px;background:#8b5d3e;transform:translateX(-50%)}.renge-icon.seed::after{left:50%;top:20px;width:14px;height:14px;border-radius:50%;background:#ffe28b;border:3px solid var(--soil-dark);box-shadow:-24px 16px 0 #ffe28b,24px 14px 0 #ffe28b}.renge-icon.bloom::before{left:50%;bottom:4px;width:90px;height:58px;border:4px solid var(--soil-dark);border-radius:18px 18px 30px 30px;background:#8b5d3e;transform:translateX(-50%)}.renge-icon.bloom::after{left:50%;top:0;width:8px;height:74px;border-radius:999px;background:#2e8c42;transform:translateX(-50%);box-shadow:-18px 28px 0 -2px #2e8c42,18px 34px 0 -2px #2e8c42}.renge-flow.is-visible .renge-icon.bloom{animation:gentleGrow 1.2s .25s both}@keyframes gentleGrow{from{transform:translateY(18px) scale(.82);opacity:.4}to{transform:translateY(0) scale(1);opacity:1}}
 .support-missions{background:#fffdf7}.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mission-grid article{display:flex;align-items:center;gap:14px;padding:18px;border:4px solid var(--soil-dark);border-radius:22px;background:#fff;box-shadow:5px 5px 0 var(--soil-dark);transition:transform .25s ease}.mission-grid article:hover{transform:translateY(-4px) rotate(-1deg)}.mission-grid b{display:grid;place-items:center;flex:0 0 42px;height:42px;border:3px solid var(--soil-dark);border-radius:50%;background:var(--v19-yellow);font-weight:900}.mission-grid span{font-weight:900;color:var(--soil-dark)}
 .sticky-cta{position:fixed;left:50%;bottom:18px;z-index:50;display:flex;align-items:center;gap:12px;max-width:calc(100vw - 28px);padding:12px 12px 12px 16px;border:4px solid var(--soil-dark);border-radius:999px;background:#fff;box-shadow:0 8px 0 var(--soil-dark);transform:translate(-50%,140%);transition:transform .35s ease;will-change:transform}.sticky-cta.is-visible{transform:translate(-50%,0)}.sticky-cta span{font-weight:900;color:var(--soil-dark);white-space:nowrap}.sticky-cta a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border:3px solid var(--soil-dark);border-radius:999px;background:var(--v19-red);color:#fff;text-decoration:none;font-weight:900;box-shadow:3px 3px 0 var(--soil-dark);white-space:nowrap}.sticky-close{width:30px;height:30px;border:3px solid var(--soil-dark);border-radius:50%;background:#fff;cursor:pointer;font-weight:900;color:var(--soil-dark)}
-@media (max-width:920px){.scroll-story-layout,.land-meter-card{grid-template-columns:1fr}.story-stage{position:relative;top:auto}.stage-card{min-height:420px}.renge-flow{grid-template-columns:repeat(2,1fr)}.mission-grid{grid-template-columns:1fr 1fr}.rice-grid{grid-template-columns:repeat(9,1fr)}}@media (max-width:620px){.stage-card{min-height:360px;border-width:4px;box-shadow:7px 7px 0 var(--soil-dark)}.renge-flow,.mission-grid{grid-template-columns:1fr}.land-meter-card{padding:20px}.rice-grid{grid-template-columns:repeat(6,1fr);gap:5px}.sticky-cta{left:10px;right:10px;bottom:10px;transform:translateY(140%);justify-content:space-between}.sticky-cta.is-visible{transform:translateY(0)}.sticky-cta span{font-size:12px}.sticky-cta a{padding:10px 12px}.hero-fun-line{font-size:13px;line-height:1.5;border-width:2px;box-shadow:3px 3px 0 var(--soil-dark)}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.sticky-cta{transition:none}.story-stage{position:relative;top:auto}}
+@media (max-width:920px){.land-meter-card{grid-template-columns:1fr}.renge-flow{grid-template-columns:repeat(2,1fr)}.mission-grid{grid-template-columns:1fr 1fr}.rice-grid{grid-template-columns:repeat(9,1fr)}}@media (max-width:620px){.renge-flow,.mission-grid{grid-template-columns:1fr}.land-meter-card{padding:20px}.rice-grid{grid-template-columns:repeat(6,1fr);gap:5px}.sticky-cta{left:10px;right:10px;bottom:10px;transform:translateY(140%);justify-content:space-between}.sticky-cta.is-visible{transform:translateY(0)}.sticky-cta span{font-size:12px}.sticky-cta a{padding:10px 12px}.hero-fun-line{font-size:13px;line-height:1.5;border-width:2px;box-shadow:3px 3px 0 var(--soil-dark)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.sticky-cta{transition:none}}
 
-  </style>
+  
+
+/* =========================================================
+   v20: crowdfunding route + clean fun UI + overlap prevention
+   ========================================================= */
+:root{--v20-red:#df5648;--v20-blue:#3f8fd2;--v20-yellow:#ffd75a;--v20-green:#5fa95f;--v20-cream:#fffaf0;--v20-ink:#2f2418;}
+.section{scroll-margin-top:88px;}
+.container,.section-grid,.event-stack,.v20-cf-wrap{min-width:0;}
+img,svg{max-width:100%;height:auto;}
+.keep,.nowrap{display:inline-block;max-width:100%;}
+.section-copy h2,.center-heading h2,.center-heading h3,.event-heading h2,.v20-cf-copy h2,.v20-cf-copy p,.v20-reward-card h4,.v20-choice-grid h4,.sport-copy h4{overflow-wrap:anywhere;word-break:normal;}
+
+.v20-crowdfunding{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdf7 0%,#fff0cc 52%,#f7fbef 100%);} 
+.v20-crowdfunding::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 12% 16%,rgba(255,215,90,.34) 0 74px,transparent 76px),radial-gradient(circle at 88% 18%,rgba(63,143,210,.14) 0 104px,transparent 106px),radial-gradient(circle at 72% 82%,rgba(223,86,72,.12) 0 132px,transparent 134px);pointer-events:none;}
+.v20-cf-wrap{position:relative;z-index:1;display:grid;gap:clamp(28px,4vw,54px);} 
+.v20-cf-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:clamp(22px,4vw,46px);align-items:stretch;}
+.v20-cf-copy,.v20-cf-panel,.v20-choice-grid article,.v20-reward-card,.v20-share-card{box-sizing:border-box;border:5px solid var(--v20-ink);border-radius:32px;background:#fff;box-shadow:9px 9px 0 var(--v20-ink);} 
+.v20-cf-copy{padding:clamp(24px,4vw,44px);}
+.v20-cf-copy h2{margin:8px 0 16px;color:var(--v20-ink);font-size:clamp(30px,5vw,58px);line-height:1.08;}
+.v20-cf-copy p{font-weight:760;line-height:1.9;margin:0 0 12px;}
+.v20-cf-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;align-items:center;}
+.v20-copy-status{min-height:1.4em;margin:10px 0 0!important;font-weight:900;color:var(--v20-green);}
+.v20-cf-panel{position:relative;padding:clamp(22px,3vw,34px);background:#fffaf0;overflow:hidden;}
+.v20-cf-panel::after{content:"YEAH!";position:absolute;right:16px;bottom:10px;font-family:'Bangers','Luckiest Guy',cursive;font-size:clamp(46px,8vw,86px);color:rgba(223,86,72,.13);transform:rotate(-8deg);pointer-events:none;}
+.v20-cf-badge{display:inline-block;padding:7px 12px;border:3px solid var(--v20-ink);border-radius:999px;background:var(--v20-yellow);font-weight:900;box-shadow:4px 4px 0 var(--v20-ink);}
+.v20-cf-panel h3{position:relative;z-index:1;margin:18px 0;color:var(--v20-ink);font-size:clamp(24px,3.2vw,40px);}
+.v20-cf-panel ul{position:relative;z-index:1;display:grid;gap:12px;padding:0;margin:0;list-style:none;}
+.v20-cf-panel li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:12px;border:3px solid rgba(47,36,24,.2);border-radius:18px;background:#fff;}
+.v20-cf-panel li span{display:inline-grid;place-items:center;min-width:52px;padding:6px 8px;border-radius:999px;background:var(--v20-blue);color:#fff;font-weight:900;font-size:12px;}
+.v20-cf-panel li:nth-child(2) span{background:var(--v20-green)}.v20-cf-panel li:nth-child(3) span{background:var(--v20-red)}.v20-cf-panel li:nth-child(4) span{background:#8f66c7}
+.v20-cf-panel li b{font-size:clamp(15px,1.8vw,18px);}
+.compact-heading{max-width:860px;margin-inline:auto;margin-bottom:20px;}
+.compact-heading h3{font-size:clamp(26px,4vw,44px);line-height:1.18;margin:8px 0 10px;color:var(--v20-ink);}
+.v20-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+.v20-choice-grid article{padding:24px;box-shadow:7px 7px 0 var(--v20-ink);min-height:0;}
+.v20-choice-grid article span{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--v20-yellow);border:2px solid var(--v20-ink);font-weight:900;font-size:13px;}
+.v20-choice-grid h4{margin:16px 0 8px;color:var(--v20-ink);font-size:clamp(20px,2.4vw,27px);}
+.v20-choice-grid p{margin:0;font-weight:760;line-height:1.75;}
+.v20-reward-block{display:grid;gap:18px;}
+.v20-reward-head{display:flex;justify-content:space-between;align-items:end;gap:18px;}
+.v20-reward-head h3{margin:8px 0;color:var(--v20-ink);font-size:clamp(26px,4vw,44px);line-height:1.16;}
+.v20-reward-head p{margin:0;font-weight:760;max-width:760px;}
+.v20-reward-rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,320px);gap:18px;overflow-x:auto;padding:4px 8px 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;}
+.v20-reward-card{position:relative;overflow:hidden;scroll-snap-align:start;min-height:360px;padding:18px;display:grid;grid-template-rows:auto auto auto 1fr;align-items:start;gap:8px;box-shadow:7px 7px 0 var(--v20-ink);}
+.v20-reward-card::before{content:"";position:absolute;inset:auto -30px -30px auto;width:150px;height:150px;border-radius:50%;background:repeating-radial-gradient(circle,rgba(255,255,255,.7) 0 3px,transparent 3px 9px);opacity:.48;pointer-events:none;}
+.v20-reward-card>span{position:relative;z-index:1;display:inline-block;width:max-content;padding:6px 11px;border:3px solid var(--v20-ink);border-radius:999px;background:var(--v20-yellow);font-weight:900;box-shadow:3px 3px 0 var(--v20-ink);}
+.v20-reward-card h4{position:relative;z-index:1;margin:4px 0;color:var(--v20-ink);font-size:clamp(21px,2.2vw,28px);line-height:1.25;}
+.v20-reward-card p{position:relative;z-index:1;margin:0;font-weight:760;line-height:1.65;}
+.v20-reward-art{position:relative;z-index:1;height:132px;border:4px solid var(--v20-ink);border-radius:22px;background:#fff;box-shadow:inset 0 -10px 0 rgba(47,36,24,.08);overflow:hidden;}
+.v20-reward-art::before,.v20-reward-art::after{content:"";position:absolute;}
+.v20-reward-card.support{background:linear-gradient(135deg,#ffe8ee,#fff)}.v20-reward-card.matsu{background:linear-gradient(135deg,#e6f4ff,#fff)}.v20-reward-card.take{background:linear-gradient(135deg,#e9f8df,#fff)}.v20-reward-card.tshirt{background:linear-gradient(135deg,#fff0cc,#fff)}.v20-reward-card.ume{background:linear-gradient(135deg,#f2e8ff,#fff)}.v20-reward-card.partner{background:linear-gradient(135deg,#e7f8ef,#fff)}.v20-reward-card.kiwami{background:linear-gradient(135deg,#ffe7dc,#fff)}
+.v20-reward-art.note::before{left:50%;top:24px;width:86px;height:70px;border:4px solid var(--v20-ink);border-radius:10px;background:#fff6cf;transform:translateX(-50%) rotate(-4deg);box-shadow:10px 10px 0 rgba(47,36,24,.12);} .v20-reward-art.note::after{left:50%;top:48px;width:58px;height:7px;background:var(--v20-red);border-radius:999px;transform:translateX(-50%) rotate(-4deg);box-shadow:0 18px 0 var(--v20-blue);}
+.v20-reward-art.box::before{left:50%;bottom:22px;width:118px;height:58px;border:4px solid var(--v20-ink);border-radius:16px;background:#d9a45e;transform:translateX(-50%);} .v20-reward-art.box::after{left:50%;bottom:74px;width:94px;height:20px;border:4px solid var(--v20-ink);border-radius:12px 12px 4px 4px;background:#f5d08b;transform:translateX(-50%) rotate(-3deg);} .v20-reward-art.box.small{background:#e9f6ff}.v20-reward-art.box.medium{background:#eef8df}.v20-reward-art.box.rich{background:#f2e8ff}.v20-reward-art.box.premium{background:#ffe8dc}.v20-reward-art.box.small i{display:none}
+.v20-reward-art.box.medium{box-shadow:inset 0 -10px 0 rgba(47,36,24,.08), 0 0 0 0 transparent;}
+.v20-reward-art.box.medium::before{width:126px;height:62px}.v20-reward-art.box.rich::before{width:138px;height:66px}.v20-reward-art.box.premium::before{width:150px;height:70px}.v20-reward-art.box.premium::after{width:120px;}
+.v20-reward-art.shirt::before{left:50%;top:24px;width:90px;height:82px;border:4px solid var(--v20-ink);border-radius:18px 18px 12px 12px;background:#fff;transform:translateX(-50%);} .v20-reward-art.shirt::after{left:50%;top:54px;width:38px;height:18px;border:3px solid var(--v20-green);border-radius:50%;transform:translateX(-50%);}
+.v20-reward-art.partner::before{left:24px;top:50px;width:78px;height:46px;border:4px solid var(--v20-ink);border-radius:12px;background:#fff6cf;box-shadow:78px -20px 0 -4px #fff,78px -20px 0 0 var(--v20-ink);} .v20-reward-art.partner::after{left:54px;top:58px;width:88px;height:22px;border-radius:999px;background:linear-gradient(90deg,var(--v20-blue) 0 48%,var(--v20-green) 49% 100%);border:4px solid var(--v20-ink);transform:rotate(-8deg);}
+.v20-reward-note{margin:0;font-size:13px;font-weight:760;opacity:.82;line-height:1.7;}
+
+.v20-share{background:linear-gradient(180deg,#fffaf0,#f7fbef);}
+.v20-share-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:center;padding:clamp(24px,4vw,40px);}
+.v20-share-card h2{margin:8px 0;color:var(--v20-ink);font-size:clamp(28px,4vw,48px);line-height:1.15;}
+.v20-share-card p{margin:0;font-weight:760;line-height:1.8;}
+.v20-share-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end;}
+
+/* Overlap prevention for existing v19 parts */
+.game-sport-grid{align-items:stretch;}
+.game-sport-grid article,.sport-game-card{min-height:auto!important;height:auto!important;overflow:hidden;}
+.sport-game-card .official-illust{position:relative;z-index:1;min-height:150px;}
+.sport-copy{position:relative;z-index:2;min-width:0;}
+.sport-stats{position:relative;z-index:2;}
+.sport-stats div{border-radius:16px;flex-wrap:wrap;align-items:flex-start;}
+.sport-stats dt,.sport-stats dd{line-height:1.35;}
+.renge-flow article{min-height:auto!important;height:auto!important;}
+.land-meter-card::before{display:none;}
+.land-meter-card,.calculator,.impact-board,.amount-cards,.event-overview,.join-garden,.support-grid,.faq-grid{min-width:0;}
+.rice-grid{max-width:100%;}
+.sticky-cta{max-width:min(540px,calc(100vw - 28px));}
+.sticky-cta span{white-space:normal;line-height:1.25;}
+.sticky-cta a{white-space:nowrap;}
+
+@media (max-width:980px){
+  .v20-cf-hero,.v20-share-card{grid-template-columns:1fr;}
+  .v20-choice-grid{grid-template-columns:1fr;}
+  .v20-reward-head{align-items:start;flex-direction:column;}
+  .v20-share-actions{justify-content:flex-start;}
+}
+@media (max-width:700px){
+  .v20-cf-copy,.v20-cf-panel,.v20-choice-grid article,.v20-reward-card,.v20-share-card{border-width:4px;border-radius:24px;box-shadow:6px 6px 0 var(--v20-ink);} 
+  .v20-cf-actions,.v20-share-actions{display:grid;grid-template-columns:1fr;width:100%;}
+  .v20-cf-actions .btn,.v20-share-actions .btn{width:100%;justify-content:center;}
+  .v20-reward-rail{grid-auto-columns:minmax(244px,82vw);gap:14px;padding-left:0;}
+  .v20-reward-card{min-height:342px;}
+  .sport-stats div{display:grid;grid-template-columns:1fr auto;gap:6px;}
+  .sticky-cta{left:10px!important;right:10px!important;bottom:10px!important;max-width:none;}
+}
+@media (prefers-reduced-motion:reduce){.v20-reward-card,.v20-cf-copy,.v20-cf-panel,.v20-choice-grid article,.v20-share-card{transition:none!important;}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">本文へ移動</a>
-  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<div aria-hidden="true" class="scroll-progress"><span></span></div>
+<header class="site-header">
+<a aria-label="NOTO Re:Bloom トップへ" class="brand" href="#top">
+<span aria-hidden="true" class="brand-seed"></span>
+<span><b>NOTO Re:Bloom</b><small>耕作放棄地を、もう一度人が関わる場所へ。</small></span>
+</a>
+<button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
+<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav">
+<a href="#about">概要</a>
+<a href="#fun-mission">楽しさ</a><a href="#crowdfunding">クラファン</a>
+<a href="#impact">支援の目安</a>
+<a href="#status">現在地</a>
+<a href="#ways">関わり方</a>
+<a href="#data">背景データ</a>
+<a href="#field">会場候補</a>
+<a href="#event">イベント</a>
+<a href="#support">協賛・参加</a>
+<a href="#faq">FAQ</a>
+<a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a>
+<a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a>
+</nav>
+</header>
+<main id="main">
+<section class="hero" id="top">
+<div aria-hidden="true" class="hero-bg">
+<span class="blob blob-1"></span>
+<span class="blob blob-2"></span>
+<span class="blob blob-3"></span>
+</div>
+<div class="container hero-layout">
+<div class="hero-copy reveal">
+<p class="eyebrow"><i></i>NOTO / SUZU / FIELD REGENERATION</p>
+<div class="hero-burst">FUN × FIELD</div>
+<p class="hero-fun-line">泥だらけで笑う一日が、能登の土地に人が戻るきっかけになる。</p>
+<h1><span class="keep">耕作放棄地を、</span><br/><span class="keep">もう一度人が関わる場所へ。</span></h1>
+<p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
+<div class="hero-actions">
+<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn ghost" href="#impact">支援の目安を見る</a>
+<a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加・連携を相談する</a>
+</div>
+<div aria-label="プロジェクトの現在地" class="hero-facts">
+<article><span>START</span><b><span class="nowrap">NOTO-REBOOST U-23</span><br/>最優秀賞から始動</b></article>
+<article><span>FIELD</span><b>珠洲市内で<br/>会場候補を調整中</b></article>
+<article><span>FIRST GOAL</span><b>初年度1か所の<br/>再生モデルづくり</b></article>
+</div>
+</div>
+<div class="hero-visual reveal">
+<figure class="photo-frame main-photo">
+<img alt="再生候補地の全景" src="field-overview.webp"/>
+</figure>
+<figure class="photo-frame sub-photo">
+<img alt="再生候補地の地表の様子" src="field-detail.webp"/>
+</figure>
+<div class="sticker sticker-top">最初の一歩となる土地を<br/>地域の方と調整中</div>
+<div class="sticker sticker-bottom">一日で終わらせず、<br/>次の季節へつなぐ</div>
+</div>
+</div>
+</section>
+<section aria-label="プロジェクトの一文" class="mud-band">
+<div class="container band-inner">
+<p>荒れた土地を整えることは、イベントの準備ではありません。<strong>土地に、人が関わり続ける理由をつくることです。</strong></p>
+<a href="#field">現在地を見る</a>
+</div>
+</section>
 
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="NOTO Re:Bloom トップへ">
-      <span class="brand-seed" aria-hidden="true"></span>
-      <span><b>NOTO Re:Bloom</b><small>耕作放棄地を、もう一度人が関わる場所へ。</small></span>
-    </a>
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><b>MENU</b></button>
-    <nav class="site-nav" id="site-nav" aria-label="サイト内メニュー">
-      <a href="#about">概要</a>
-      <a href="#fun-mission">楽しさ</a>
-      <a href="#impact">支援の目安</a>
-      <a href="#status">現在地</a>
-      <a href="#ways">関わり方</a>
-      <a href="#data">背景データ</a>
-      <a href="#field">会場候補</a>
-      <a href="#event">イベント</a>
-      <a href="#support">協賛・参加</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファン</a>
-      <a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">相談する</a>
-    </nav>
-  </header>
+<section class="section about" id="about">
+<div class="container section-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>PROJECT / 概要</p>
+<h2><span class="keep">毎年、少しずつ。</span><br/><span class="keep">耕作放棄地を減らす。</span></h2>
+<p>目的は、単発のイベントではありません。耕作放棄地を見つけ、整え、人が入るきっかけをつくり、その後の管理や活用につなげる。NOTO Re:Bloomは、その一連の流れを能登で育てていきます。</p>
+</div>
+<div aria-label="プロジェクトの流れ" class="step-cards reveal">
+<article><span>01</span><h3>土地を見つける</h3><p>地域の方と相談し、活用の可能性がある遊休農地・耕作放棄地を探します。</p></article>
+<article><span>02</span><h3>安全に整える</h3><p>草刈り、簡易整備、動線確認を行い、人が入れる状態に近づけます。</p></article>
+<article><span>03</span><h3>人が入る入口をつくる</h3><p>泥ん子運動会などを通じ、学生・地域・企業が同じ土地に関わる時間をつくります。</p></article>
+<article><span>04</span><h3>次年度以降へつなぐ</h3><p>栽培、管理、景観づくりなど、その土地に合った継続活用を考えます。</p></article>
+</div>
+</div>
+</section>
+<section class="section project-status" id="status">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>PROJECT STATUS</p>
+<h2><span class="keep">NOTO Re:Bloomの現在地。</span></h2>
+<p>私たちは、能登の耕作放棄地を「楽しく関われる場所」に変え、毎年少しずつでも減らしていく仕組みづくりを進めています。</p>
+</div>
+<div class="status-garden-grid reveal">
+<article>
+<span>ROOT</span>
+<h3><span class="nowrap">NOTO-REBOOST U-23</span>から始動</h3>
+<p>能登の復興や地域課題を考えるプログラムで出会った3人が、継続して能登に関わる形を考え、このプロジェクトを始めました。</p>
+</article>
+<article>
+<span>FIELD</span>
+<h3>珠洲市内で会場候補を調整中</h3>
+<p>初年度は珠洲市内の遊休農地を中心に、アクセス、安全面、整備費、翌年度以降の活用可能性を確認しています。</p>
+</article>
+<article>
+<span>EVENT</span>
+<h3>泥ん子運動会を入口に</h3>
+<p>泥バケツリレー、リレー、綱引き、しっぽ取りを通じて、楽しみながら土地に関わるきっかけをつくります。</p>
+</article>
+<article>
+<span>BLOOM</span>
+<h3>レンゲを育てる体験へ</h3>
+<p>集めた泥と培養土を使い、レンゲの種をまいて持ち帰れる形を検討しています。一日の体験を、次の季節へつなげます。</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section issue">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>WHY IT MATTERS</p>
+<h2><span class="keep">耕作放棄地は、</span><br/><span class="keep">ただ草が伸びた土地ではない。</span></h2>
+<p>そこには、担い手不足、人口減少、地域との関わりの減少が重なっています。だからこそ、土地を一度きれいにするだけでなく、人が関わり続けられる仕組みが必要です。</p>
+</div>
+<div class="issue-grid reveal">
+<article><span>🌱</span><h3>管理の担い手不足</h3><p>地域だけで土地を守り続けることが難しくなっています。</p></article>
+<article><span>🧭</span><h3>関わる入口の不足</h3><p>地域外の人が農地に関わる最初の接点が少ない状況です。</p></article>
+<article><span>🤝</span><h3>継続の仕組み不足</h3><p>一度の活動で終わらせず、翌年度以降へ残す形が必要です。</p></article>
+</div>
+</div>
+</section>
+<section class="section fun-mission" id="fun-mission">
+<div class="container fun-mission-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>FUN FARMING</p>
+<h2><span class="keep">楽しいから集まる。</span><br/><span class="keep">集まるから、土地が変わる。</span></h2>
+<p>耕作放棄地の再生を、難しい話だけで終わらせない。泥に入る、写真を撮る、応援する、種を育てる。小さな楽しさを入口にして、能登の土地に関わる人を増やしていきます。</p>
+<div class="ways-actions">
+<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn ghost" href="#event">泥ん子運動会を見る</a>
+</div>
+</div>
+<div class="fun-cards reveal">
+<article>
+<div aria-hidden="true" class="fun-illust soil"><i></i><i></i><i></i></div>
+<h3>整える</h3>
+<p>草を刈り、安全に人が入れる状態へ近づける。</p>
+</article>
+<article>
+<div aria-hidden="true" class="fun-illust play"><i></i><i></i><i></i></div>
+<h3>遊ぶ</h3>
+<p>泥ん子運動会で、土地に入るきっかけをつくる。</p>
+</article>
+<article>
+<div aria-hidden="true" class="fun-illust bloom"><i></i><i></i><i></i></div>
+<h3>育てる</h3>
+<p>レンゲや次年度以降の活用へ、関わりを残していく。</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section v20-crowdfunding" id="crowdfunding">
+<div class="container v20-cf-wrap">
+<div class="v20-cf-hero reveal">
+<div class="v20-cf-copy">
+<p class="eyebrow"><i></i>CROWDFUNDING</p>
+<h2><span class="keep">泥だらけの一日を、</span><br/><span class="keep">能登の土地に人が戻る一歩へ。</span></h2>
+<p>NOTO Re:Bloomでは、耕作放棄地の草刈り、簡易整備、安全確認、泥ん子運動会の準備、Re:Bloomレンゲカップづくり、活動記録の発信に必要な費用をREADYFORで募っています。</p>
+<p>支援は、ただのイベント費ではありません。人が入りにくくなった土地を整え、子ども・学生・地域の方・企業の方が関われる入口をつくるための費用です。</p>
+<div class="v20-cf-actions">
+<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
+<button class="btn ghost v20-copy-btn" data-copy-text="NOTO Re:Bloomを応援しています。能登の耕作放棄地を、泥ん子運動会とレンゲカップをきっかけに、もう一度人が関わる場所へ変えていく学生発の取り組みです。 https://noto-rebloom.github.io/noto-rebloom/" type="button">応援文をコピーする</button>
+</div>
+<p aria-live="polite" class="v20-copy-status"></p>
+</div>
+<div aria-label="クラウドファンディングの使い道" class="v20-cf-panel">
+<div class="v20-cf-badge">READYFOR</div>
+<h3>支援で動くこと</h3>
+<ul>
+<li><span>整備</span><b>草刈り・簡易整備</b></li>
+<li><span>安全</span><b>会場確認・備品準備</b></li>
+<li><span>交流</span><b>泥ん子運動会</b></li>
+<li><span>継続</span><b>レンゲカップ・活動記録</b></li>
+</ul>
+</div>
+</div>
+<div class="v20-choice-block reveal">
+<div class="center-heading compact-heading">
+<p class="eyebrow"><i></i>HOW TO SUPPORT</p>
+<h3>あなたに合う応援の形を、選びやすく。</h3>
+<p>リターンを迷わず選べるように、支援の目的ごとに入口を分けました。</p>
+</div>
+<div class="v20-choice-grid">
+<article>
+<span>活動に使ってほしい</span>
+<h4>応援コース</h4>
+<p>返礼品よりも、整備・運営・記録にできるだけ多く使ってほしい方向けです。</p>
+</article>
+<article>
+<span>能登のものも受け取りたい</span>
+<h4>能登の特産品コース</h4>
+<p>支援の一部が返礼品の調達を通じて、能登の事業者にも回る形を目指します。</p>
+</article>
+<article>
+<span>団体として関わりたい</span>
+<h4>法人・団体パートナー</h4>
+<p>地域貢献、学生支援、能登とのつながりづくりとして関わっていただけます。</p>
+</article>
+</div>
+</div>
+<div aria-label="返礼品コースの紹介" class="v20-reward-block reveal">
+<div class="v20-reward-head">
+<div>
+<p class="eyebrow"><i></i>RETURN MENU</p>
+<h3>リターンは、楽しく選べるように。</h3>
+<p>具体的な食品名は固定せず、能登の特産品を中心に、金額に応じて厳選してお届けする設計です。</p>
+</div>
+<a class="btn small" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">リターンを見る</a>
+</div>
+<div class="v20-reward-rail">
+<article class="v20-reward-card support">
+<div class="v20-reward-art note"></div>
+<span>3,000円</span>
+<h4>応援コース</h4>
+<p>感謝のメッセージと活動報告をお届けします。</p>
+</article>
+<article class="v20-reward-card matsu">
+<div class="v20-reward-art box small"></div>
+<span>10,000円</span>
+<h4>能登の特産品 松コース</h4>
+<p>能登の恵みを少し受け取りながら応援できます。</p>
+</article>
+<article class="v20-reward-card take">
+<div class="v20-reward-art box medium"></div>
+<span>30,000円</span>
+<h4>能登の特産品 竹コース</h4>
+<p>能登の特産品をよりしっかり楽しめるコースです。</p>
+</article>
+<article class="v20-reward-card tshirt">
+<div class="v20-reward-art shirt"></div>
+<span>30,000円</span>
+<h4>Tシャツコース</h4>
+<p>想いを身につけて、プロジェクトの輪を広げるコースです。</p>
+</article>
+<article class="v20-reward-card ume">
+<div class="v20-reward-art box rich"></div>
+<span>50,000円</span>
+<h4>能登の特産品 梅コース</h4>
+<p>能登の魅力を丁寧に選んでお届けする特別感のあるコースです。</p>
+</article>
+<article class="v20-reward-card partner">
+<div class="v20-reward-art partner"></div>
+<span>85,000円</span>
+<h4>法人・団体パートナー</h4>
+<p>法人・団体として、能登の耕作放棄地再生を支えるコースです。</p>
+</article>
+<article class="v20-reward-card kiwami">
+<div class="v20-reward-art box premium"></div>
+<span>100,000円</span>
+<h4>能登の特産品 極みコース</h4>
+<p>プロジェクト全体を大きく後押しする最上位の応援コースです。</p>
+</article>
+</div>
+<p class="v20-reward-note">※画像・内容はイメージです。返礼品の内容やデザインは、仕入れ状況や協力事業者との調整により変更となる場合があります。</p>
+</div>
+</div>
+</section>
 
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="hero-bg" aria-hidden="true">
-        <span class="blob blob-1"></span>
-        <span class="blob blob-2"></span>
-        <span class="blob blob-3"></span>
-      </div>
+<section class="section impact" id="impact">
+<div class="container">
+<div class="impact-head reveal">
+<p class="eyebrow"><i></i>SUPPORT IMPACT</p>
+<h2><span class="keep">あなたの300円が、</span><br/><span class="keep">能登の土地1㎡を動かす。</span></h2>
+<p>NOTO Re:Bloomでは、草刈り・簡易整備・安全確認・運営準備・広報・翌年度以降の活用準備まで含め、<strong>1㎡あたり約300円</strong>を暫定的な目安にしています。</p>
+</div>
+<div class="impact-board reveal">
+<div class="impact-main">
+<small>再生に向けた目安</small>
+<p><b>1㎡</b><i>≈</i><b>300円</b></p>
+<span>土地を一度きれいにして終わるのではなく、人が入り、関心が生まれ、翌年度以降の活用へつながる状態をつくるための目安です。</span>
+</div>
+<div class="impact-note">
+<p>土地を整えるだけなら、1㎡あたり約100円という公的補助制度上の目安もあります。けれど、私たちが目指すのは、草を刈って終わることではありません。</p>
+<p>人が安全に入れる環境をつくり、学生・地域・企業が関わるきっかけを生み、次の季節につながる状態まで整える。その一歩を、1㎡ずつ積み重ねます。</p>
+</div>
+</div>
+<div aria-label="支援額から広さを確認する" class="calculator reveal">
+<div class="calc-text">
+<span>IMPACT CHECK</span>
+<h3>支援額を、土地の広さに置き換える。</h3>
+<p>金額だけでは見えにくい支援の意味を、面積と身近な広さで確認できます。</p>
+</div>
+<label class="range-box">
+<small>支援額</small>
+<input id="supportAmount" max="100000" min="300" step="100" type="range" value="3000"/>
+<b id="supportAmountText">3,000円</b>
+</label>
+<div class="calc-result">
+<output for="supportAmount" id="areaOutput">約10㎡</output>
+<small id="areaContext">6畳の部屋に近い広さ</small>
+</div>
+<div class="calc-visual">
+<div aria-hidden="true" class="compare-figure" id="compareFigure"></div>
+<div>
+<span>近い広さのイメージ</span>
+<strong id="liveLabel">6畳の部屋</strong>
+<p id="liveDesc">約9.72㎡ / 支援目安 2,916円</p>
+</div>
+</div>
+<div aria-label="広さの例え" class="example-chips">
+<button data-example="tatami1" data-yen="486" type="button">畳1枚</button>
+<button data-example="tsubo" data-yen="993" type="button">1坪</button>
+<button data-example="tatami6" data-yen="2916" type="button">6畳</button>
+<button data-example="parking" data-yen="3750" type="button">駐車場1台</button>
+<button data-example="oneroom" data-yen="6000" type="button">1K</button>
+<button data-example="classroom" data-yen="18900" type="button">教室</button>
+<button data-example="badminton" data-yen="24522" type="button">バドミントン</button>
+<button data-example="tennis" data-yen="78261" type="button">テニス</button>
+<button data-example="pool" data-yen="93750" type="button">25mプール</button>
+</div>
+</div>
+<div aria-label="支援額に応じて土地のマスが増える表示" class="land-meter-card reveal">
+<div class="land-meter-copy">
+<span>LAND METER</span>
+<h3>支援が、土地のマスを少しずつ広げます。</h3>
+<p>スライダーの金額に合わせて、田んぼのマスが光ります。数字だけでは見えにくい支援の意味を、土地の広がりとして感じられる仕掛けです。</p>
+</div>
+<div class="land-meter-visual">
+<div aria-hidden="true" class="rice-grid" id="riceGrid"></div>
+<p><b id="riceGridLabel">約10㎡</b><span>が動き出す目安</span></p>
+</div>
+</div>
+<div aria-label="支援額と面積の目安" class="amount-cards reveal">
+<article><span>1,000円</span><b>約3㎡</b><p>ほぼ1坪。小さくても、人が立てる入口になります。</p></article>
+<article><span>3,000円</span><b>約10㎡</b><p>6畳の部屋くらい。数人で作業できる広さです。</p></article>
+<article><span>10,000円</span><b>約33㎡</b><p>約10坪。一角がはっきり変わり、写真でも伝わる広さです。</p></article>
+<article class="strong"><span>30,000円</span><b>約100㎡</b><p>駐車場約8台分。人が集まり、企画を行う核になる広さです。</p></article>
+</div>
+<details class="note-box reveal">
+<summary>1㎡あたり約300円の考え方</summary>
+<p>1㎡あたり約300円は、NOTO Re:Bloom独自の暫定目安です。草刈り、簡易整備、安全確認、運営準備、広報、翌年度以降の活用準備を含めて算出しています。実際の費用は、土地の状態、整備範囲、必要な機材、安全対策等によって変動します。会場確定後、費用内訳は順次公開します。</p>
+</details>
+<div class="comic-cta-row reveal">
+<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
+<a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a>
+</div>
+</div>
+</section>
 
-      <div class="container hero-layout">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><i></i>NOTO / SUZU / FIELD REGENERATION</p>
-          <div class="hero-burst">FUN × FIELD</div>
-          <p class="hero-fun-line">泥だらけで笑う一日が、能登の土地に人が戻るきっかけになる。</p>
-          <h1><span class="keep">耕作放棄地を、</span><br><span class="keep">もう一度人が関わる場所へ。</span></h1>
-          <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
-          <div class="hero-actions">
-            <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
-            <a class="btn ghost" href="#impact">支援の目安を見る</a>
-            <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">参加・連携を相談する</a>
-          </div>
-          <div class="hero-facts" aria-label="プロジェクトの現在地">
-            <article><span>START</span><b><span class="nowrap">NOTO-REBOOST U-23</span><br>最優秀賞から始動</b></article>
-            <article><span>FIELD</span><b>珠洲市内で<br>会場候補を調整中</b></article>
-            <article><span>FIRST GOAL</span><b>初年度1か所の<br>再生モデルづくり</b></article>
-          </div>
-        </div>
+<section class="section ways" id="ways">
+<div class="container ways-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>JOIN THE FIELD</p>
+<h2><span class="keep">お金だけじゃない。</span><br/><span class="keep">関わり方はいくつもあります。</span></h2>
+<p>クラウドファンディングでの応援はもちろん、発信、当日運営、写真撮影、物品協力、専門的な助言など、さまざまな関わり方があります。できることから参加できる設計にしています。</p>
+<div class="ways-actions">
+<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加・連携を相談する</a>
+</div>
+</div>
+<div class="ways-cards reveal">
+<article><b>学生</b><span>運営 / SNS / 写真 / 企画</span><p>地域活動の経験がなくても、できる役割から関われます。</p></article>
+<article><b>地域の方</b><span>土地情報 / 助言 / 見守り</span><p>無理のない範囲で、土地の背景や地域の事情を教えてください。</p></article>
+<article><b>企業・団体</b><span>協賛 / 物品 / 広報 / 人材</span><p>資金だけでなく、道具や発信、社員参加も大きな力になります。</p></article>
+<article><b>見守る人</b><span>シェア / 紹介 / 応援</span><p>知人への共有やSNSでの拡散も、最初の大切な支援です。</p></article>
+</div>
+</div>
+</section>
+<section class="section action-map" id="action-map">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>ACTION MAP</p>
+<h2><span class="keep">気になったら、</span><br/><span class="keep">できることから関われます。</span></h2>
+<p>クラファン、SNSでの共有、学生ボランティア、企業・団体連携。どの入口からでも、耕作放棄地を減らす一歩につながります。</p>
+</div>
+<div class="action-map-grid reveal">
+<article>
+<span>SUPPORT</span>
+<h3>クラファンで応援する</h3>
+<p>整備、安全対策、運営準備、翌年度以降の活用準備を支えます。</p>
+<a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORへ</a>
+</article>
+<article>
+<span>SHARE</span>
+<h3>SNSで広げる</h3>
+<p>「面白そう」と思った人に届くことが、参加者や協賛につながります。</p>
+<a href="#materials">資料を見る</a>
+</article>
+<article>
+<span>JOIN</span>
+<h3>学生ボランティア</h3>
+<p>受付、誘導、撮影、SNS、チーム補助など、得意な形で関われます。</p>
+<a href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a>
+</article>
+<article>
+<span>PARTNER</span>
+<h3>企業・団体連携</h3>
+<p>資金、物品、広報、社員参加、地域団体の紹介などを歓迎します。</p>
+<a href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">連携相談</a>
+</article>
+</div>
+</div>
+</section>
+<section class="section report" id="report">
+<div class="container report-grid">
+<div class="report-card reveal">
+<p class="eyebrow"><i></i>OPEN REPORT</p>
+<h2><span class="keep">活動の進捗は、</span><br/><span class="keep">見える形で残していきます。</span></h2>
+<p>会場の確定、整備費の内訳、当日の様子、土地の変化、翌年度以降の活用方針などを、サイトやSNSで順次公開します。支援して終わりではなく、土地がどう変わったかを追える形にします。</p>
+</div>
+<div class="report-list reveal">
+<article><span>01</span><h3>費用の見える化</h3><p>会場確定後、整備費・安全管理費・運営費を整理して公開します。</p></article>
+<article><span>02</span><h3>写真で残す</h3><p>整備前・整備中・イベント後の変化を写真で記録します。</p></article>
+<article><span>03</span><h3>次年度への引き継ぎ</h3><p>一度きりで終わらせないため、活用案と管理方法を整理します。</p></article>
+</div>
+</div>
+</section>
 
-        <div class="hero-visual reveal">
-          <figure class="photo-frame main-photo">
-            <img src="field-overview.webp" alt="再生候補地の全景">
-          </figure>
-          <figure class="photo-frame sub-photo">
-            <img src="field-detail.webp" alt="再生候補地の地表の様子">
-          </figure>
-          <div class="sticker sticker-top">最初の一歩となる土地を<br>地域の方と調整中</div>
-          <div class="sticker sticker-bottom">一日で終わらせず、<br>次の季節へつなぐ</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mud-band" aria-label="プロジェクトの一文">
-      <div class="container band-inner">
-        <p>荒れた土地を整えることは、イベントの準備ではありません。<strong>土地に、人が関わり続ける理由をつくることです。</strong></p>
-        <a href="#field">現在地を見る</a>
-      </div>
-    </section>
-
-    <section class="section scroll-story" id="scroll-story" aria-label="スクロールで見るNOTO Re:Bloomの流れ">
-      <div class="container scroll-story-layout">
-        <div class="story-stage reveal" aria-hidden="true">
-          <div class="stage-card">
-            <div class="stage-sky"><i></i><i></i><i></i></div>
-            <div class="stage-field">
-              <span class="grass g1"></span><span class="grass g2"></span><span class="grass g3"></span><span class="grass g4"></span>
-              <span class="footprint f1"></span><span class="footprint f2"></span><span class="footprint f3"></span>
-              <span class="mud-pop m1"></span><span class="mud-pop m2"></span><span class="mud-pop m3"></span>
-              <span class="field-flag">Re:Bloom</span>
-              <span class="renge-sprout"><b></b></span>
-            </div>
-            <p class="stage-caption">スクロールするほど、土地に人の気配が増えていく。</p>
-          </div>
-        </div>
-
-        <div class="story-steps">
-          <div class="story-intro reveal">
-            <p class="eyebrow"><i></i>SCROLL STORY</p>
-            <h2><span class="keep">ページを読むほど、</span><br><span class="keep">土地が動き出す。</span></h2>
-            <p>NOTO Re:Bloomの流れを、スクロールに合わせて「草が伸びた土地」から「人が関わる場所」へ変わる体験として見せます。</p>
-          </div>
-          <article class="story-step reveal" data-stage="before"><span>BEFORE</span><h3>草が伸び、人が入りにくい土地</h3><p>まずは現地の状態を見て、地域の方と相談しながら、活用できる可能性を探ります。</p></article>
-          <article class="story-step reveal" data-stage="clear"><span>STEP 1</span><h3>安全に入れる状態へ近づける</h3><p>草刈り、簡易整備、動線確認を行い、子どもや地域の方が集まれる環境を整えます。</p></article>
-          <article class="story-step reveal" data-stage="play"><span>STEP 2</span><h3>泥ん子運動会で、人が集まる</h3><p>泥バケツリレー、リレー、綱引き、しっぽ取り。遊びを入口に、その土地を「知っている場所」に変えます。</p></article>
-          <article class="story-step reveal" data-stage="bloom"><span>STEP 3</span><h3>レンゲカップで、関わりを持ち帰る</h3><p>泥に触れた体験を、その日だけで終わらせず、家で育てる小さな記憶につなげます。</p></article>
-          <article class="story-step reveal" data-stage="next"><span>NEXT</span><h3>翌年度以降の活用へ</h3><p>活動報告や地域との相談を重ね、毎年少しずつ耕作放棄地を減らす流れを育てます。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section about" id="about">
-      <div class="container section-grid">
-        <div class="section-copy reveal">
-          <p class="eyebrow"><i></i>PROJECT / 概要</p>
-          <h2><span class="keep">毎年、少しずつ。</span><br><span class="keep">耕作放棄地を減らす。</span></h2>
-          <p>目的は、単発のイベントではありません。耕作放棄地を見つけ、整え、人が入るきっかけをつくり、その後の管理や活用につなげる。NOTO Re:Bloomは、その一連の流れを能登で育てていきます。</p>
-        </div>
-        <div class="step-cards reveal" aria-label="プロジェクトの流れ">
-          <article><span>01</span><h3>土地を見つける</h3><p>地域の方と相談し、活用の可能性がある遊休農地・耕作放棄地を探します。</p></article>
-          <article><span>02</span><h3>安全に整える</h3><p>草刈り、簡易整備、動線確認を行い、人が入れる状態に近づけます。</p></article>
-          <article><span>03</span><h3>人が入る入口をつくる</h3><p>泥ん子運動会などを通じ、学生・地域・企業が同じ土地に関わる時間をつくります。</p></article>
-          <article><span>04</span><h3>次年度以降へつなぐ</h3><p>栽培、管理、景観づくりなど、その土地に合った継続活用を考えます。</p></article>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section project-status" id="status">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>PROJECT STATUS</p>
-          <h2><span class="keep">NOTO Re:Bloomの現在地。</span></h2>
-          <p>私たちは、能登の耕作放棄地を「楽しく関われる場所」に変え、毎年少しずつでも減らしていく仕組みづくりを進めています。</p>
-        </div>
-
-        <div class="status-garden-grid reveal">
-          <article>
-            <span>ROOT</span>
-            <h3><span class="nowrap">NOTO-REBOOST U-23</span>から始動</h3>
-            <p>能登の復興や地域課題を考えるプログラムで出会った3人が、継続して能登に関わる形を考え、このプロジェクトを始めました。</p>
-          </article>
-          <article>
-            <span>FIELD</span>
-            <h3>珠洲市内で会場候補を調整中</h3>
-            <p>初年度は珠洲市内の遊休農地を中心に、アクセス、安全面、整備費、翌年度以降の活用可能性を確認しています。</p>
-          </article>
-          <article>
-            <span>EVENT</span>
-            <h3>泥ん子運動会を入口に</h3>
-            <p>泥バケツリレー、リレー、綱引き、しっぽ取りを通じて、楽しみながら土地に関わるきっかけをつくります。</p>
-          </article>
-          <article>
-            <span>BLOOM</span>
-            <h3>レンゲを育てる体験へ</h3>
-            <p>集めた泥と培養土を使い、レンゲの種をまいて持ち帰れる形を検討しています。一日の体験を、次の季節へつなげます。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section issue">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>WHY IT MATTERS</p>
-          <h2><span class="keep">耕作放棄地は、</span><br><span class="keep">ただ草が伸びた土地ではない。</span></h2>
-          <p>そこには、担い手不足、人口減少、地域との関わりの減少が重なっています。だからこそ、土地を一度きれいにするだけでなく、人が関わり続けられる仕組みが必要です。</p>
-        </div>
-        <div class="issue-grid reveal">
-          <article><span>🌱</span><h3>管理の担い手不足</h3><p>地域だけで土地を守り続けることが難しくなっています。</p></article>
-          <article><span>🧭</span><h3>関わる入口の不足</h3><p>地域外の人が農地に関わる最初の接点が少ない状況です。</p></article>
-          <article><span>🤝</span><h3>継続の仕組み不足</h3><p>一度の活動で終わらせず、翌年度以降へ残す形が必要です。</p></article>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section fun-mission" id="fun-mission">
-      <div class="container fun-mission-grid">
-        <div class="section-copy reveal">
-          <p class="eyebrow"><i></i>FUN FARMING</p>
-          <h2><span class="keep">楽しいから集まる。</span><br><span class="keep">集まるから、土地が変わる。</span></h2>
-          <p>耕作放棄地の再生を、難しい話だけで終わらせない。泥に入る、写真を撮る、応援する、種を育てる。小さな楽しさを入口にして、能登の土地に関わる人を増やしていきます。</p>
-          <div class="ways-actions">
-            <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
-            <a class="btn ghost" href="#event">泥ん子運動会を見る</a>
-          </div>
-        </div>
-        <div class="fun-cards reveal">
-          <article>
-            <div class="fun-illust soil" aria-hidden="true"><i></i><i></i><i></i></div>
-            <h3>整える</h3>
-            <p>草を刈り、安全に人が入れる状態へ近づける。</p>
-          </article>
-          <article>
-            <div class="fun-illust play" aria-hidden="true"><i></i><i></i><i></i></div>
-            <h3>遊ぶ</h3>
-            <p>泥ん子運動会で、土地に入るきっかけをつくる。</p>
-          </article>
-          <article>
-            <div class="fun-illust bloom" aria-hidden="true"><i></i><i></i><i></i></div>
-            <h3>育てる</h3>
-            <p>レンゲや次年度以降の活用へ、関わりを残していく。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section impact" id="impact">
-      <div class="container">
-        <div class="impact-head reveal">
-          <p class="eyebrow"><i></i>SUPPORT IMPACT</p>
-          <h2><span class="keep">あなたの300円が、</span><br><span class="keep">能登の土地1㎡を動かす。</span></h2>
-          <p>NOTO Re:Bloomでは、草刈り・簡易整備・安全確認・運営準備・広報・翌年度以降の活用準備まで含め、<strong>1㎡あたり約300円</strong>を暫定的な目安にしています。</p>
-        </div>
-
-        <div class="impact-board reveal">
-          <div class="impact-main">
-            <small>再生に向けた目安</small>
-            <p><b>1㎡</b><i>≈</i><b>300円</b></p>
-            <span>土地を一度きれいにして終わるのではなく、人が入り、関心が生まれ、翌年度以降の活用へつながる状態をつくるための目安です。</span>
-          </div>
-          <div class="impact-note">
-            <p>土地を整えるだけなら、1㎡あたり約100円という公的補助制度上の目安もあります。けれど、私たちが目指すのは、草を刈って終わることではありません。</p>
-            <p>人が安全に入れる環境をつくり、学生・地域・企業が関わるきっかけを生み、次の季節につながる状態まで整える。その一歩を、1㎡ずつ積み重ねます。</p>
-          </div>
-        </div>
-
-        <div class="calculator reveal" aria-label="支援額から広さを確認する">
-          <div class="calc-text">
-            <span>IMPACT CHECK</span>
-            <h3>支援額を、土地の広さに置き換える。</h3>
-            <p>金額だけでは見えにくい支援の意味を、面積と身近な広さで確認できます。</p>
-          </div>
-          <label class="range-box">
-            <small>支援額</small>
-            <input id="supportAmount" type="range" min="300" max="100000" step="100" value="3000">
-            <b id="supportAmountText">3,000円</b>
-          </label>
-          <div class="calc-result">
-            <output id="areaOutput" for="supportAmount">約10㎡</output>
-            <small id="areaContext">6畳の部屋に近い広さ</small>
-          </div>
-          <div class="calc-visual">
-            <div class="compare-figure" id="compareFigure" aria-hidden="true"></div>
-            <div>
-              <span>近い広さのイメージ</span>
-              <strong id="liveLabel">6畳の部屋</strong>
-              <p id="liveDesc">約9.72㎡ / 支援目安 2,916円</p>
-            </div>
-          </div>
-          <div class="example-chips" aria-label="広さの例え">
-            <button type="button" data-example="tatami1" data-yen="486">畳1枚</button>
-            <button type="button" data-example="tsubo" data-yen="993">1坪</button>
-            <button type="button" data-example="tatami6" data-yen="2916">6畳</button>
-            <button type="button" data-example="parking" data-yen="3750">駐車場1台</button>
-            <button type="button" data-example="oneroom" data-yen="6000">1K</button>
-            <button type="button" data-example="classroom" data-yen="18900">教室</button>
-            <button type="button" data-example="badminton" data-yen="24522">バドミントン</button>
-            <button type="button" data-example="tennis" data-yen="78261">テニス</button>
-            <button type="button" data-example="pool" data-yen="93750">25mプール</button>
-          </div>
-        </div>
-
-        <div class="land-meter-card reveal" aria-label="支援額に応じて土地のマスが増える表示">
-          <div class="land-meter-copy">
-            <span>LAND METER</span>
-            <h3>支援が、土地のマスを少しずつ広げます。</h3>
-            <p>スライダーの金額に合わせて、田んぼのマスが光ります。数字だけでは見えにくい支援の意味を、土地の広がりとして感じられる仕掛けです。</p>
-          </div>
-          <div class="land-meter-visual">
-            <div class="rice-grid" id="riceGrid" aria-hidden="true"></div>
-            <p><b id="riceGridLabel">約10㎡</b><span>が動き出す目安</span></p>
-          </div>
-        </div>
-
-        <div class="amount-cards reveal" aria-label="支援額と面積の目安">
-          <article><span>1,000円</span><b>約3㎡</b><p>ほぼ1坪。小さくても、人が立てる入口になります。</p></article>
-          <article><span>3,000円</span><b>約10㎡</b><p>6畳の部屋くらい。数人で作業できる広さです。</p></article>
-          <article><span>10,000円</span><b>約33㎡</b><p>約10坪。一角がはっきり変わり、写真でも伝わる広さです。</p></article>
-          <article class="strong"><span>30,000円</span><b>約100㎡</b><p>駐車場約8台分。人が集まり、企画を行う核になる広さです。</p></article>
-        </div>
-
-        <details class="note-box reveal">
-          <summary>1㎡あたり約300円の考え方</summary>
-          <p>1㎡あたり約300円は、NOTO Re:Bloom独自の暫定目安です。草刈り、簡易整備、安全確認、運営準備、広報、翌年度以降の活用準備を含めて算出しています。実際の費用は、土地の状態、整備範囲、必要な機材、安全対策等によって変動します。会場確定後、費用内訳は順次公開します。</p>
-        </details>
-
-        <div class="comic-cta-row reveal">
-          <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">READYFORで応援する</a>
-          <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する</a>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section journey" id="journey">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>HOW IT GROWS</p>
-          <h2><span class="keep">支援は、土地が変わる順番に沿って使います。</span></h2>
-          <p>いただいた支援は、単に「イベント費」として消えるものではありません。草を刈る、安全を確認する、人が入る入口をつくる、活動を記録する、次年度以降の活用へつなげる。土地が変わっていく流れに沿って活用します。</p>
-        </div>
-        <div class="journey-track reveal" aria-label="支援の使い道の流れ">
-          <article><span>STEP 1</span><h3>草を刈る</h3><p>まず、人が近づける状態へ。整備の第一歩です。</p></article>
-          <article><span>STEP 2</span><h3>安全を確認する</h3><p>水、ぬかるみ、動線、近隣への影響を確認します。</p></article>
-          <article><span>STEP 3</span><h3>人が入る</h3><p>学生・地域・企業が同じ土地に関わる場をつくります。</p></article>
-          <article><span>STEP 4</span><h3>記録して伝える</h3><p>写真・動画・レポートで、土地の変化を共有します。</p></article>
-          <article><span>STEP 5</span><h3>次の活用へ</h3><p>栽培、景観づくり、管理体制などを検討します。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section ways" id="ways">
-      <div class="container ways-grid">
-        <div class="section-copy reveal">
-          <p class="eyebrow"><i></i>JOIN THE FIELD</p>
-          <h2><span class="keep">お金だけじゃない。</span><br><span class="keep">関わり方はいくつもあります。</span></h2>
-          <p>クラウドファンディングでの応援はもちろん、発信、当日運営、写真撮影、物品協力、専門的な助言など、さまざまな関わり方があります。できることから参加できる設計にしています。</p>
-          <div class="ways-actions">
-            <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
-            <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">参加・連携を相談する</a>
-          </div>
-        </div>
-        <div class="ways-cards reveal">
-          <article><b>学生</b><span>運営 / SNS / 写真 / 企画</span><p>地域活動の経験がなくても、できる役割から関われます。</p></article>
-          <article><b>地域の方</b><span>土地情報 / 助言 / 見守り</span><p>無理のない範囲で、土地の背景や地域の事情を教えてください。</p></article>
-          <article><b>企業・団体</b><span>協賛 / 物品 / 広報 / 人材</span><p>資金だけでなく、道具や発信、社員参加も大きな力になります。</p></article>
-          <article><b>見守る人</b><span>シェア / 紹介 / 応援</span><p>知人への共有やSNSでの拡散も、最初の大切な支援です。</p></article>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section action-map" id="action-map">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>ACTION MAP</p>
-          <h2><span class="keep">気になったら、</span><br><span class="keep">できることから関われます。</span></h2>
-          <p>クラファン、SNSでの共有、学生ボランティア、企業・団体連携。どの入口からでも、耕作放棄地を減らす一歩につながります。</p>
-        </div>
-        <div class="action-map-grid reveal">
-          <article>
-            <span>SUPPORT</span>
-            <h3>クラファンで応援する</h3>
-            <p>整備、安全対策、運営準備、翌年度以降の活用準備を支えます。</p>
-            <a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">READYFORへ</a>
-          </article>
-          <article>
-            <span>SHARE</span>
-            <h3>SNSで広げる</h3>
-            <p>「面白そう」と思った人に届くことが、参加者や協賛につながります。</p>
-            <a href="#materials">資料を見る</a>
-          </article>
-          <article>
-            <span>JOIN</span>
-            <h3>学生ボランティア</h3>
-            <p>受付、誘導、撮影、SNS、チーム補助など、得意な形で関われます。</p>
-            <a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">相談する</a>
-          </article>
-          <article>
-            <span>PARTNER</span>
-            <h3>企業・団体連携</h3>
-            <p>資金、物品、広報、社員参加、地域団体の紹介などを歓迎します。</p>
-            <a href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">連携相談</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section report" id="report">
-      <div class="container report-grid">
-        <div class="report-card reveal">
-          <p class="eyebrow"><i></i>OPEN REPORT</p>
-          <h2><span class="keep">活動の進捗は、</span><br><span class="keep">見える形で残していきます。</span></h2>
-          <p>会場の確定、整備費の内訳、当日の様子、土地の変化、翌年度以降の活用方針などを、サイトやSNSで順次公開します。支援して終わりではなく、土地がどう変わったかを追える形にします。</p>
-        </div>
-        <div class="report-list reveal">
-          <article><span>01</span><h3>費用の見える化</h3><p>会場確定後、整備費・安全管理費・運営費を整理して公開します。</p></article>
-          <article><span>02</span><h3>写真で残す</h3><p>整備前・整備中・イベント後の変化を写真で記録します。</p></article>
-          <article><span>03</span><h3>次年度への引き継ぎ</h3><p>一度きりで終わらせないため、活用案と管理方法を整理します。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section mini-game" id="mini-game">
-      <div class="container mini-game-card reveal">
-        <div>
-          <p class="eyebrow"><i></i>PLAYFUL POINT</p>
-          <h2><span class="keep">300円で1㎡。</span><br><span class="keep">小さなマスが、土地の未来を動かす。</span></h2>
-          <p>サイト上では、支援額をスライダーで動かすと、どれくらいの広さに近いかを見られるようにしています。数字だけでなく、畳・駐車場・教室など、身近な広さで想像できるようにしました。</p>
-        </div>
-        <div class="pixel-field" aria-hidden="true">
-          <i></i><i></i><i></i><i></i><i></i>
-          <i></i><i></i><i></i><i></i><i></i>
-          <i></i><i></i><i></i><i></i><i></i>
-          <i></i><i></i><i></i><i></i><i></i>
-        </div>
-      </div>
-    </section>
-
-    <section class="section data" id="data">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>DATA / WHY NOW</p>
-          <h2><span class="keep">数字で見る、</span><br><span class="keep">農地と復興の現在地。</span></h2>
-          <p>全国的な荒廃農地の広がり、再生の余地、そして奥能登で進んできた担い手の減少。公的資料をもとに、背景をわかりやすく整理します。</p>
-        </div>
-        <div class="number-grid reveal">
-          <article><span>JAPAN / 2024</span><b data-count="25.7" data-suffix="万ha">0</b><p>全国の荒廃農地面積</p></article>
-          <article><span>REUSABLE / 2024</span><b data-count="9.8" data-suffix="万ha">0</b><p>再生利用が可能と見込まれる荒廃農地</p></article>
-          <article><span>ISHIKAWA / 2024</span><b data-count="826" data-suffix="ha">0</b><p>石川県の荒廃農地面積</p></article>
-          <article><span>OKUNOTO / 2020</span><b data-count="1908">0</b><p>奥能登の農業経営体</p></article>
-        </div>
-        <div class="data-panels reveal">
-          <article class="panel chart-panel">
-            <span>01 / NATIONAL TREND</span>
-            <h3>全国の荒廃農地は、25万ha台で推移。</h3>
-            <p>再生できる可能性のある土地を、どう使い続けるかが課題です。</p>
-            <div class="bars" aria-label="全国の荒廃農地面積の推移">
-              <i style="--h:100"><b>26.0</b><small>R3</small></i>
-              <i style="--h:97"><b>25.3</b><small>R4</small></i>
-              <i style="--h:99"><b>25.7</b><small>R5</small></i>
-              <i style="--h:99"><b>25.7</b><small>R6</small></i>
-            </div>
-          </article>
-          <article class="panel green-panel">
-            <span>02 / ROOM TO REUSE</span>
-            <h3>約4割は、再生利用の余地。</h3>
-            <p>25.7万haのうち、9.8万haは整地などにより再び耕作できる可能性があります。</p>
-            <div class="donut"><b>38%</b><small>再生の余地</small></div>
-          </article>
-          <article class="panel wide">
-            <span>03 / OKUNOTO FARMERS</span>
-            <h3>震災前から続いていた、担い手の減少。</h3>
-            <p>奥能登の農業経営体は、2010年から2020年にかけておよそ半減しました。</p>
-            <div class="mini-trend">
-              <b>3,787<small>2010</small></b><i></i>
-              <b>2,872<small>2015</small></b><i></i>
-              <b>1,908<small>2020</small></b>
-              <strong>10年間で -49.6%</strong>
-            </div>
-          </article>
-        </div>
-        <p class="source-note reveal">出典：農林水産省「荒廃農地の発生・解消状況に関する調査」、農林業センサス等をもとに整理。数値は公開資料に基づく概数です。</p>
-      </div>
-    </section>
-
-    <section class="section field" id="field">
-      <div class="container field-grid">
-        <div class="section-copy reveal">
-          <p class="eyebrow"><i></i>FIELD STATUS</p>
-          <h2><span class="keep">最初の一歩となる土地を、</span><br><span class="keep">地域の方と調整しています。</span></h2>
-          <p>初年度の会場は、珠洲市内の遊休農地を中心に調整しています。現在は、珠洲市上黒丸の候補地を含め、アクセス、安全面、整備費、翌年度以降の活用可能性を確認している段階です。</p>
-          <div class="status-card">
-            <span>確認中のこと</span>
-            <ul>
-              <li><b>会場</b><small>地域代表者・土地関係者との相談</small></li>
-              <li><b>費用</b><small>草刈り、簡易整備、安全対策、運営備品</small></li>
-              <li><b>継続性</b><small>翌年度以降の栽培・管理・活用方法</small></li>
-            </ul>
-          </div>
-        </div>
-        <div class="field-photos reveal">
-          <figure><img src="field-overview.webp" alt="再生候補地の全景"><figcaption><b>候補地の様子</b><span>アクセス・安全面・整備範囲を確認中。</span></figcaption></figure>
-          <figure><img src="field-detail.webp" alt="再生候補地の地表"><figcaption><b>現地の状態</b><span>初期整備の規模と費用を整理します。</span></figcaption></figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section event" id="event">
-      <div class="container event-stack">
-        <div class="event-heading reveal">
-          <p class="eyebrow light"><i></i>DORONKO SPORTS DAY</p>
-          <h2><span class="keep">楽しく、泥くさく、</span><br><span class="keep">耕作放棄地に人が関わる入口をつくる。</span></h2>
-          <p>泥ん子運動会は、ただのレクリエーションではありません。普段は入りにくい耕作放棄地に、子ども、学生、地域の方、企業の方が楽しみながら関わるための入口です。</p>
-        </div>
-
-        <div class="event-overview reveal">
-          <aside class="event-date">
-            <span>EVENT PLAN</span>
-            <b>9.20</b>
-            <small>開催候補日</small>
-            <ul>
-              <li>場所：珠洲市内で調整中</li>
-              <li>時間：午後開催を想定</li>
-              <li>参加費：500円想定</li>
-              <li>見学・応援：無料</li>
-            </ul>
-            <a class="btn small" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">参加相談</a>
-          </aside>
-
-          <div class="event-purpose-card">
-            <span>MISSION</span>
-            <h3>楽しいから集まる。<br>集まるから、土地が動き出す。</h3>
-            <p>耕作放棄地の再生を、難しい話だけで終わらせない。まずは人が集まり、笑い、泥だらけになり、その土地を「知っている場所」に変えていきます。</p>
-          </div>
-        </div>
-
-        <div class="event-sports-clean reveal">
-          <div class="block-heading">
-            <p class="eyebrow light"><i></i>4 SPORTS</p>
-            <h3><span class="keep">実施競技は、この4つ。</span></h3>
-            <p>競技は、泥バケツリレー、リレー、綱引き、しっぽ取りの4つで構成します。勝ち負けだけでなく、土地に入り、体を動かし、自然に関心が生まれる時間をつくります。</p>
-          </div>
-
-          <div class="sport-grid official-four-sports game-sport-grid" aria-label="泥ん子運動会の4競技">
-            <article class="sport-game-card bucket-game">
-              <div class="official-illust bucket-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <div class="sport-copy">
-                <span>GAME CARD</span>
-                <h4>泥バケツリレー</h4>
-                <p>泥を運ぶほど、チームの距離が近くなる。まじめにやるほど、なぜか一番泥だらけ。</p>
-                <dl class="sport-stats"><div><dt>泥ん子度</dt><dd>★★★★★</dd></div><div><dt>チームワーク</dt><dd>★★★★★</dd></div><div><dt>笑い声</dt><dd>★★★★☆</dd></div></dl>
-              </div>
-            </article>
-
-            <article class="sport-game-card relay-game">
-              <div class="official-illust relay-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <div class="sport-copy">
-                <span>GAME CARD</span>
-                <h4>リレー</h4>
-                <p>走るだけなのに、泥の上だとまったく別の競技になる。応援する側も自然と声が出る。</p>
-                <dl class="sport-stats"><div><dt>スピード</dt><dd>★★★★★</dd></div><div><dt>応援しやすさ</dt><dd>★★★★★</dd></div><div><dt>すべるかも度</dt><dd>★★★★☆</dd></div></dl>
-              </div>
-            </article>
-
-            <article class="sport-game-card tug-game">
-              <div class="official-illust tug-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <div class="sport-copy">
-                <span>GAME CARD</span>
-                <h4>綱引き</h4>
-                <p>力を合わせて、泥の中でぐっと踏ん張る。勝っても負けても、最後はみんなで笑える王道競技。</p>
-                <dl class="sport-stats"><div><dt>本気度</dt><dd>★★★★★</dd></div><div><dt>踏ん張り度</dt><dd>★★★★★</dd></div><div><dt>泥はね度</dt><dd>★★★★☆</dd></div></dl>
-              </div>
-            </article>
-
-            <article class="sport-game-card tail-game">
-              <div class="official-illust tail-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
-              <div class="sport-copy">
-                <span>GAME CARD</span>
-                <h4>しっぽ取り</h4>
-                <p>走る、逃げる、追いかける。泥の中で一番にぎやかな、作戦と瞬発力の競技。</p>
-                <dl class="sport-stats"><div><dt>作戦度</dt><dd>★★★★★</dd></div><div><dt>動き回る度</dt><dd>★★★★★</dd></div><div><dt>子ども人気</dt><dd>★★★★★</dd></div></dl>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="event-flow-clean reveal">
-          <div class="block-heading">
-            <p class="eyebrow light"><i></i>FLOW</p>
-            <h3><span class="keep">当日の流れ</span></h3>
-            <p>競技だけで終わらせず、最後に泥と培養土を使ってレンゲの種をまく体験へつなげます。</p>
-          </div>
-
-          <div class="flow-grid-clean">
-            <article><b>受付</b><p>受付・着替え・安全説明</p></article>
-            <article><b>準備</b><p>チーム分け・泥エリア確認</p></article>
-            <article><b>競技</b><p>4つの泥ん子競技を実施</p></article>
-            <article><b>種まき</b><p>泥と培養土でレンゲを育てる準備</p></article>
-            <article><b>共有</b><p>写真撮影・今後の活動案内</p></article>
-          </div>
-        </div>
-
-        <div class="event-info-grid-clean reveal">
-          <article>
-            <span>POINT 1</span>
-            <h3>水深は浅めに管理</h3>
-            <p>当日はくるぶし程度を目安に水を張り、安全に楽しめる範囲で実施します。</p>
-          </article>
-          <article>
-            <span>POINT 2</span>
-            <h3>レンゲの種まきへつなげる</h3>
-            <p>泥バケツリレーで集めた泥と培養土を使い、持ち帰って育てられる形を検討しています。</p>
-          </article>
-          <article>
-            <span>POINT 3</span>
-            <h3>見学・応援も歓迎</h3>
-            <p>競技に参加しない方も、無料で見学・応援できる形を想定しています。</p>
-          </article>
-          <article>
-            <span>POINT 4</span>
-            <h3>学生ボランティアが支える</h3>
-            <p>各チームに学生スタッフを配置し、受付、誘導、記録、安全確認を行います。</p>
-          </article>
-        </div>
-
-        <div class="event-message-clean reveal">
-          <div>
-            <span>MISSION</span>
-            <h3><span class="keep">遊びを入口に、</span><br><span class="keep">耕作放棄地を減らす流れをつくる。</span></h3>
-            <p>NOTO Re:Bloomが目指しているのは、ただ楽しいイベントではありません。楽しいから人が集まり、人が集まるから土地に関心が生まれ、その関心が翌年度以降の活用へつながる。そんな流れを育てていきます。</p>
-          </div>
-          <a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section renge-cup-lab" id="renge-cup">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>Re:Bloom レンゲカップ</p>
-          <h2><span class="keep">泥だらけで終わらない。</span><br><span class="keep">能登の泥を、未来の芽に変える。</span></h2>
-          <p>泥ん子運動会の最後には、集めた泥と培養土を混ぜ、レンゲの種をまいて持ち帰る体験へつなげます。</p>
-        </div>
-        <div class="renge-flow reveal" aria-label="レンゲカップの流れ">
-          <article><span>01</span><div class="renge-icon mud"></div><h3>泥を集める</h3><p>競技で触れた泥を、土地の記憶として少しだけ使います。</p></article>
-          <article><span>02</span><div class="renge-icon mix"></div><h3>土と混ぜる</h3><p>育ちやすいように、培養土と混ぜて小さなカップにします。</p></article>
-          <article><span>03</span><div class="renge-icon seed"></div><h3>種をまく</h3><p>レンゲの種をまき、育て方カードと一緒に持ち帰ります。</p></article>
-          <article><span>04</span><div class="renge-icon bloom"></div><h3>家で育てる</h3><p>芽が出るまでの時間も、能登とつながる思い出になります。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section students">
-      <div class="container section-grid">
-        <div class="section-copy reveal">
-          <p class="eyebrow"><i></i>FOR STUDENTS</p>
-          <h2><span class="keep">学生でも、地域に関わる</span><br><span class="keep">最初の一歩をつくれる。</span></h2>
-          <p>能登に詳しくなくても、地域活動の経験がなくても大丈夫です。現地運営、SNS発信、写真撮影、企画づくりなど、できる関わり方から参加できます。</p>
-        </div>
-        <div class="student-list reveal">
-          <article><span>📸</span><h3>記録する</h3><p>写真・動画・記事で活動を残す。</p></article>
-          <article><span>📣</span><h3>広げる</h3><p>SNSや友人への紹介で関心を増やす。</p></article>
-          <article><span>🧤</span><h3>動く</h3><p>当日の受付・誘導・運営を支える。</p></article>
-        </div>
-      </div>
-    </section>
+<section class="section data" id="data">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>DATA / WHY NOW</p>
+<h2><span class="keep">数字で見る、</span><br/><span class="keep">農地と復興の現在地。</span></h2>
+<p>全国的な荒廃農地の広がり、再生の余地、そして奥能登で進んできた担い手の減少。公的資料をもとに、背景をわかりやすく整理します。</p>
+</div>
+<div class="number-grid reveal">
+<article><span>JAPAN / 2024</span><b data-count="25.7" data-suffix="万ha">0</b><p>全国の荒廃農地面積</p></article>
+<article><span>REUSABLE / 2024</span><b data-count="9.8" data-suffix="万ha">0</b><p>再生利用が可能と見込まれる荒廃農地</p></article>
+<article><span>ISHIKAWA / 2024</span><b data-count="826" data-suffix="ha">0</b><p>石川県の荒廃農地面積</p></article>
+<article><span>OKUNOTO / 2020</span><b data-count="1908">0</b><p>奥能登の農業経営体</p></article>
+</div>
+<div class="data-panels reveal">
+<article class="panel chart-panel">
+<span>01 / NATIONAL TREND</span>
+<h3>全国の荒廃農地は、25万ha台で推移。</h3>
+<p>再生できる可能性のある土地を、どう使い続けるかが課題です。</p>
+<div aria-label="全国の荒廃農地面積の推移" class="bars">
+<i style="--h:100"><b>26.0</b><small>R3</small></i>
+<i style="--h:97"><b>25.3</b><small>R4</small></i>
+<i style="--h:99"><b>25.7</b><small>R5</small></i>
+<i style="--h:99"><b>25.7</b><small>R6</small></i>
+</div>
+</article>
+<article class="panel green-panel">
+<span>02 / ROOM TO REUSE</span>
+<h3>約4割は、再生利用の余地。</h3>
+<p>25.7万haのうち、9.8万haは整地などにより再び耕作できる可能性があります。</p>
+<div class="donut"><b>38%</b><small>再生の余地</small></div>
+</article>
+<article class="panel wide">
+<span>03 / OKUNOTO FARMERS</span>
+<h3>震災前から続いていた、担い手の減少。</h3>
+<p>奥能登の農業経営体は、2010年から2020年にかけておよそ半減しました。</p>
+<div class="mini-trend">
+<b>3,787<small>2010</small></b><i></i>
+<b>2,872<small>2015</small></b><i></i>
+<b>1,908<small>2020</small></b>
+<strong>10年間で -49.6%</strong>
+</div>
+</article>
+</div>
+<p class="source-note reveal">出典：農林水産省「荒廃農地の発生・解消状況に関する調査」、農林業センサス等をもとに整理。数値は公開資料に基づく概数です。</p>
+</div>
+</section>
+<section class="section field" id="field">
+<div class="container field-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>FIELD STATUS</p>
+<h2><span class="keep">最初の一歩となる土地を、</span><br/><span class="keep">地域の方と調整しています。</span></h2>
+<p>初年度の会場は、珠洲市内の遊休農地を中心に調整しています。現在は、珠洲市上黒丸の候補地を含め、アクセス、安全面、整備費、翌年度以降の活用可能性を確認している段階です。</p>
+<div class="status-card">
+<span>確認中のこと</span>
+<ul>
+<li><b>会場</b><small>地域代表者・土地関係者との相談</small></li>
+<li><b>費用</b><small>草刈り、簡易整備、安全対策、運営備品</small></li>
+<li><b>継続性</b><small>翌年度以降の栽培・管理・活用方法</small></li>
+</ul>
+</div>
+</div>
+<div class="field-photos reveal">
+<figure><img alt="再生候補地の全景" src="field-overview.webp"/><figcaption><b>候補地の様子</b><span>アクセス・安全面・整備範囲を確認中。</span></figcaption></figure>
+<figure><img alt="再生候補地の地表" src="field-detail.webp"/><figcaption><b>現地の状態</b><span>初期整備の規模と費用を整理します。</span></figcaption></figure>
+</div>
+</div>
+</section>
+<section class="section event" id="event">
+<div class="container event-stack">
+<div class="event-heading reveal">
+<p class="eyebrow light"><i></i>DORONKO SPORTS DAY</p>
+<h2><span class="keep">楽しく、泥くさく、</span><br/><span class="keep">耕作放棄地に人が関わる入口をつくる。</span></h2>
+<p>泥ん子運動会は、ただのレクリエーションではありません。普段は入りにくい耕作放棄地に、子ども、学生、地域の方、企業の方が楽しみながら関わるための入口です。</p>
+</div>
+<div class="event-overview reveal">
+<aside class="event-date">
+<span>EVENT PLAN</span>
+<b>9.20</b>
+<small>開催候補日</small>
+<ul>
+<li>場所：珠洲市内で調整中</li>
+<li>時間：午後開催を想定</li>
+<li>参加費：500円想定</li>
+<li>見学・応援：無料</li>
+</ul>
+<a class="btn small" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加相談</a>
+</aside>
+<div class="event-purpose-card">
+<span>MISSION</span>
+<h3>楽しいから集まる。<br/>集まるから、土地が動き出す。</h3>
+<p>耕作放棄地の再生を、難しい話だけで終わらせない。まずは人が集まり、笑い、泥だらけになり、その土地を「知っている場所」に変えていきます。</p>
+</div>
+</div>
+<div class="event-sports-clean reveal">
+<div class="block-heading">
+<p class="eyebrow light"><i></i>4 SPORTS</p>
+<h3><span class="keep">実施競技は、この4つ。</span></h3>
+<p>競技は、泥バケツリレー、リレー、綱引き、しっぽ取りの4つで構成します。勝ち負けだけでなく、土地に入り、体を動かし、自然に関心が生まれる時間をつくります。</p>
+</div>
+<div aria-label="泥ん子運動会の4競技" class="sport-grid official-four-sports game-sport-grid">
+<article class="sport-game-card bucket-game">
+<div aria-hidden="true" class="official-illust bucket-main"><span></span><i></i><i></i><b></b></div>
+<div class="sport-copy">
+<span>GAME CARD</span>
+<h4>泥バケツリレー</h4>
+<p>泥を運ぶほど、チームの距離が近くなる。まじめにやるほど、なぜか一番泥だらけ。</p>
+<dl class="sport-stats"><div><dt>泥ん子度</dt><dd>★★★★★</dd></div><div><dt>チームワーク</dt><dd>★★★★★</dd></div><div><dt>笑い声</dt><dd>★★★★☆</dd></div></dl>
+</div>
+</article>
+<article class="sport-game-card relay-game">
+<div aria-hidden="true" class="official-illust relay-main"><span></span><i></i><i></i><b></b></div>
+<div class="sport-copy">
+<span>GAME CARD</span>
+<h4>リレー</h4>
+<p>走るだけなのに、泥の上だとまったく別の競技になる。応援する側も自然と声が出る。</p>
+<dl class="sport-stats"><div><dt>スピード</dt><dd>★★★★★</dd></div><div><dt>応援しやすさ</dt><dd>★★★★★</dd></div><div><dt>すべるかも度</dt><dd>★★★★☆</dd></div></dl>
+</div>
+</article>
+<article class="sport-game-card tug-game">
+<div aria-hidden="true" class="official-illust tug-main"><span></span><i></i><i></i><b></b></div>
+<div class="sport-copy">
+<span>GAME CARD</span>
+<h4>綱引き</h4>
+<p>力を合わせて、泥の中でぐっと踏ん張る。勝っても負けても、最後はみんなで笑える王道競技。</p>
+<dl class="sport-stats"><div><dt>本気度</dt><dd>★★★★★</dd></div><div><dt>踏ん張り度</dt><dd>★★★★★</dd></div><div><dt>泥はね度</dt><dd>★★★★☆</dd></div></dl>
+</div>
+</article>
+<article class="sport-game-card tail-game">
+<div aria-hidden="true" class="official-illust tail-main"><span></span><i></i><i></i><b></b></div>
+<div class="sport-copy">
+<span>GAME CARD</span>
+<h4>しっぽ取り</h4>
+<p>走る、逃げる、追いかける。泥の中で一番にぎやかな、作戦と瞬発力の競技。</p>
+<dl class="sport-stats"><div><dt>作戦度</dt><dd>★★★★★</dd></div><div><dt>動き回る度</dt><dd>★★★★★</dd></div><div><dt>子ども人気</dt><dd>★★★★★</dd></div></dl>
+</div>
+</article>
+</div>
+</div>
+<div class="event-flow-clean reveal">
+<div class="block-heading">
+<p class="eyebrow light"><i></i>FLOW</p>
+<h3><span class="keep">当日の流れ</span></h3>
+<p>競技だけで終わらせず、最後に泥と培養土を使ってレンゲの種をまく体験へつなげます。</p>
+</div>
+<div class="flow-grid-clean">
+<article><b>受付</b><p>受付・着替え・安全説明</p></article>
+<article><b>準備</b><p>チーム分け・泥エリア確認</p></article>
+<article><b>競技</b><p>4つの泥ん子競技を実施</p></article>
+<article><b>種まき</b><p>泥と培養土でレンゲを育てる準備</p></article>
+<article><b>共有</b><p>写真撮影・今後の活動案内</p></article>
+</div>
+</div>
+<div class="event-info-grid-clean reveal">
+<article>
+<span>POINT 1</span>
+<h3>水深は浅めに管理</h3>
+<p>当日はくるぶし程度を目安に水を張り、安全に楽しめる範囲で実施します。</p>
+</article>
+<article>
+<span>POINT 2</span>
+<h3>レンゲの種まきへつなげる</h3>
+<p>泥バケツリレーで集めた泥と培養土を使い、持ち帰って育てられる形を検討しています。</p>
+</article>
+<article>
+<span>POINT 3</span>
+<h3>見学・応援も歓迎</h3>
+<p>競技に参加しない方も、無料で見学・応援できる形を想定しています。</p>
+</article>
+<article>
+<span>POINT 4</span>
+<h3>学生ボランティアが支える</h3>
+<p>各チームに学生スタッフを配置し、受付、誘導、記録、安全確認を行います。</p>
+</article>
+</div>
+<div class="event-message-clean reveal">
+<div>
+<span>MISSION</span>
+<h3><span class="keep">遊びを入口に、</span><br/><span class="keep">耕作放棄地を減らす流れをつくる。</span></h3>
+<p>NOTO Re:Bloomが目指しているのは、ただ楽しいイベントではありません。楽しいから人が集まり、人が集まるから土地に関心が生まれ、その関心が翌年度以降の活用へつながる。そんな流れを育てていきます。</p>
+</div>
+<a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+</div>
+</div>
+</section>
+<section class="section renge-cup-lab" id="renge-cup">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>Re:Bloom レンゲカップ</p>
+<h2><span class="keep">泥だらけで終わらない。</span><br/><span class="keep">能登の泥を、未来の芽に変える。</span></h2>
+<p>泥ん子運動会の最後には、集めた泥と培養土を混ぜ、レンゲの種をまいて持ち帰る体験へつなげます。</p>
+</div>
+<div aria-label="レンゲカップの流れ" class="renge-flow reveal">
+<article><span>01</span><div class="renge-icon mud"></div><h3>泥を集める</h3><p>競技で触れた泥を、土地の記憶として少しだけ使います。</p></article>
+<article><span>02</span><div class="renge-icon mix"></div><h3>土と混ぜる</h3><p>育ちやすいように、培養土と混ぜて小さなカップにします。</p></article>
+<article><span>03</span><div class="renge-icon seed"></div><h3>種をまく</h3><p>レンゲの種をまき、育て方カードと一緒に持ち帰ります。</p></article>
+<article><span>04</span><div class="renge-icon bloom"></div><h3>家で育てる</h3><p>芽が出るまでの時間も、能登とつながる思い出になります。</p></article>
+</div>
+</div>
+</section>
+<section class="section students">
+<div class="container section-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>FOR STUDENTS</p>
+<h2><span class="keep">学生でも、地域に関わる</span><br/><span class="keep">最初の一歩をつくれる。</span></h2>
+<p>能登に詳しくなくても、地域活動の経験がなくても大丈夫です。現地運営、SNS発信、写真撮影、企画づくりなど、できる関わり方から参加できます。</p>
+</div>
+<div class="student-list reveal">
+<article><span>📸</span><h3>記録する</h3><p>写真・動画・記事で活動を残す。</p></article>
+<article><span>📣</span><h3>広げる</h3><p>SNSや友人への紹介で関心を増やす。</p></article>
+<article><span>🧤</span><h3>動く</h3><p>当日の受付・誘導・運営を支える。</p></article>
+</div>
+</div>
+</section>
+<section class="section participation" id="participation">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>HOW TO JOIN</p>
+<h2><span class="keep">参加しやすく、関わりやすく。</span></h2>
+<p>競技に出る人、応援する人、手伝う人、広げる人。関わり方を分けることで、初めての人でも参加しやすい形を目指します。</p>
+</div>
+<div class="join-garden reveal">
+<article>
+<span>PLAYER</span>
+<h3>競技参加</h3>
+<p>参加費は一律500円を想定しています。泥の中で体を動かしながら、土地に関わる入口をつくります。</p>
+</article>
+<article>
+<span>WATCH</span>
+<h3>見学・応援</h3>
+<p>見学・応援は無料を想定しています。写真を撮る、声をかける、SNSで広げることも大切な参加です。</p>
+</article>
+<article>
+<span>STAFF</span>
+<h3>学生ボランティア</h3>
+<p>受付、誘導、チーム補助、記録、安全確認などを担います。各チームに学生スタッフを配置する予定です。</p>
+</article>
+<article>
+<span>FORM</span>
+<h3>申込・相談</h3>
+<p>申込はGoogleフォームを中心に、フォームが難しい方にはメールでの相談にも対応します。</p>
+</article>
+</div>
+</div>
+</section>
 
 
-    <section class="section participation" id="participation">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>HOW TO JOIN</p>
-          <h2><span class="keep">参加しやすく、関わりやすく。</span></h2>
-          <p>競技に出る人、応援する人、手伝う人、広げる人。関わり方を分けることで、初めての人でも参加しやすい形を目指します。</p>
-        </div>
+<section class="section v20-share" id="share">
+<div class="container v20-share-card reveal">
+<div>
+<p class="eyebrow"><i></i>SHARE / INVITE</p>
+<h2><span class="keep">できる応援は、</span><br/><span class="keep">泥に入ることだけじゃない。</span></h2>
+<p>支援する、参加する、見学する、紹介する。小さな共有も、能登の土地に関わる人を増やす大切な一歩です。</p>
+</div>
+<div class="v20-share-actions">
+<button class="btn primary v20-copy-btn" data-copy-text="NOTO Re:Bloomを応援しています。能登の耕作放棄地を、泥ん子運動会とレンゲカップをきっかけに、もう一度人が関わる場所へ変えていく学生発の取り組みです。 https://noto-rebloom.github.io/noto-rebloom/" type="button">応援文をコピーする</button>
+<a class="btn ghost" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORを開く</a>
+</div>
+</div>
+</section>
+<section class="section story">
+<div class="container story-grid">
+<div class="story-media reveal">
+<img alt="NOTO-REBOOST U-23で出会ったメンバーの写真" src="team-reboost.webp"/>
+</div>
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>OUR START</p>
+<h2><span class="nowrap">NOTO-REBOOST U-23</span>で出会った3人が、能登に継続して関わる形を考えました。</h2>
+<p>きっかけは、能登の復興や地域課題を考えるプログラムでした。一時的な参加で終わらせず、学生として継続的に能登に関われる形をつくりたい。その思いから、NOTO Re:Bloomは始まりました。</p>
+</div>
+</div>
+</section>
+<section class="section support" id="support">
+<div class="container">
+<div class="support-head reveal">
+<div>
+<p class="eyebrow light"><i></i>SUPPORT / PARTNERSHIP</p>
+<h2><span class="keep">協賛は、能登に残る景色と</span><br/><span class="keep">つながりを育てる力です。</span></h2>
+<p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
+</div>
+<div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a></div>
+</div>
+<div class="support-grid reveal">
+<article><span>01</span><h3>資金協賛</h3><p>草刈り、簡易整備、安全管理、運営備品などに活用します。</p></article>
+<article><span>02</span><h3>物品協力</h3><p>テント、道具、衛生用品、広報物など、現場を支える協力です。</p></article>
+<article><span>03</span><h3>広報協力</h3><p>社内外への発信や、関心のある方への紹介が大きな力になります。</p></article>
+<article><span>04</span><h3>人的協力</h3><p>社員参加、専門的助言、地域団体との接続などを歓迎します。</p></article>
+</div>
+<div class="support-note reveal">
+<b>透明性について</b>
+<p>会場・整備範囲・必要経費が確定した段階で、費用内訳と進捗を順次公開します。無理に大きく始めるのではなく、実施可能な範囲から着実に進めます。</p>
+</div>
+</div>
+</section>
+<section class="section materials" id="materials">
+<div class="container">
+<div class="center-heading reveal">
+<p class="eyebrow"><i></i>MATERIALS</p>
+<h2>資料から、詳しく知る。</h2>
+<p>プロジェクトの背景、再生モデル、協賛価値、資金計画などを資料として整理しています。</p>
+</div>
+<div class="material-grid reveal">
+<figure><img alt="プロジェクト概要資料" src="project-overview.webp"/></figure>
+<figure><img alt="再生モデル資料" src="regeneration-model.webp"/></figure>
+<figure><img alt="協賛価値資料" src="sponsor-value.webp"/></figure>
+<figure><img alt="資金計画資料" src="funding-plan.webp"/></figure>
+</div>
+</div>
+</section>
+<section class="section faq" id="faq">
+<div class="container faq-grid">
+<div class="section-copy reveal">
+<p class="eyebrow"><i></i>FAQ</p>
+<h2>よくある質問</h2>
+<p>参加や協賛を検討する前に気になる点を整理しました。</p>
+</div>
+<div class="faq-list reveal">
 
-        <div class="join-garden reveal">
-          <article>
-            <span>PLAYER</span>
-            <h3>競技参加</h3>
-            <p>参加費は一律500円を想定しています。泥の中で体を動かしながら、土地に関わる入口をつくります。</p>
-          </article>
-          <article>
-            <span>WATCH</span>
-            <h3>見学・応援</h3>
-            <p>見学・応援は無料を想定しています。写真を撮る、声をかける、SNSで広げることも大切な参加です。</p>
-          </article>
-          <article>
-            <span>STAFF</span>
-            <h3>学生ボランティア</h3>
-            <p>受付、誘導、チーム補助、記録、安全確認などを担います。各チームに学生スタッフを配置する予定です。</p>
-          </article>
-          <article>
-            <span>FORM</span>
-            <h3>申込・相談</h3>
-            <p>申込はGoogleフォームを中心に、フォームが難しい方にはメールでの相談にも対応します。</p>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section class="section support-missions" id="missions">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>MISSION CARD</p>
-          <h2><span class="keep">できる応援は、</span><br><span class="keep">泥に入ることだけじゃない。</span></h2>
-          <p>参加する、見学する、支援する、広げる。関わり方を小さく分けることで、初めての人でも一歩を踏み出しやすくします。</p>
-        </div>
-        <div class="mission-grid reveal">
-          <article><b>01</b><span>READYFORで応援する</span></article>
-          <article><b>02</b><span>泥ん子運動会に参加する</span></article>
-          <article><b>03</b><span>友人・家族にサイトを送る</span></article>
-          <article><b>04</b><span>SNSでシェアする</span></article>
-          <article><b>05</b><span>当日見学する</span></article>
-          <article><b>06</b><span>企業・団体に紹介する</span></article>
-        </div>
-      </div>
-    </section>
 
-    <section class="section story">
-      <div class="container story-grid">
-        <div class="story-media reveal">
-          <img src="team-reboost.webp" alt="NOTO-REBOOST U-23で出会ったメンバーの写真">
-        </div>
-        <div class="section-copy reveal">
-          <p class="eyebrow"><i></i>OUR START</p>
-          <h2><span class="nowrap">NOTO-REBOOST U-23</span>で出会った3人が、能登に継続して関わる形を考えました。</h2>
-          <p>きっかけは、能登の復興や地域課題を考えるプログラムでした。一時的な参加で終わらせず、学生として継続的に能登に関われる形をつくりたい。その思いから、NOTO Re:Bloomは始まりました。</p>
-        </div>
-      </div>
-    </section>
 
-    <section class="section support" id="support">
-      <div class="container">
-        <div class="support-head reveal">
-          <div>
-            <p class="eyebrow light"><i></i>SUPPORT / PARTNERSHIP</p>
-            <h2><span class="keep">協賛は、能登に残る景色と</span><br><span class="keep">つながりを育てる力です。</span></h2>
-            <p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
-          </div>
-          <div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
-          <a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する</a></div>
-        </div>
-        <div class="support-grid reveal">
-          <article><span>01</span><h3>資金協賛</h3><p>草刈り、簡易整備、安全管理、運営備品などに活用します。</p></article>
-          <article><span>02</span><h3>物品協力</h3><p>テント、道具、衛生用品、広報物など、現場を支える協力です。</p></article>
-          <article><span>03</span><h3>広報協力</h3><p>社内外への発信や、関心のある方への紹介が大きな力になります。</p></article>
-          <article><span>04</span><h3>人的協力</h3><p>社員参加、専門的助言、地域団体との接続などを歓迎します。</p></article>
-        </div>
-        <div class="support-note reveal">
-          <b>透明性について</b>
-          <p>会場・整備範囲・必要経費が確定した段階で、費用内訳と進捗を順次公開します。無理に大きく始めるのではなく、実施可能な範囲から着実に進めます。</p>
-        </div>
-      </div>
-    </section>
 
-    <section class="section materials" id="materials">
-      <div class="container">
-        <div class="center-heading reveal">
-          <p class="eyebrow"><i></i>MATERIALS</p>
-          <h2>資料から、詳しく知る。</h2>
-          <p>プロジェクトの背景、再生モデル、協賛価値、資金計画などを資料として整理しています。</p>
-        </div>
-        <div class="material-grid reveal">
-          <figure><img src="project-overview.webp" alt="プロジェクト概要資料"></figure>
-          <figure><img src="regeneration-model.webp" alt="再生モデル資料"></figure>
-          <figure><img src="sponsor-value.webp" alt="協賛価値資料"></figure>
-          <figure><img src="funding-plan.webp" alt="資金計画資料"></figure>
-        </div>
-      </div>
-    </section>
 
-    <section class="section faq" id="faq">
-      <div class="container faq-grid">
-        <div class="section-copy reveal">
-          <p class="eyebrow"><i></i>FAQ</p>
-          <h2>よくある質問</h2>
-          <p>参加や協賛を検討する前に気になる点を整理しました。</p>
-        </div>
-        <div class="faq-list reveal">
-          <details open><summary>現在、会場は確定していますか？</summary><p>確定前です。珠洲市内の候補地について、地域の方と相談しながら、アクセス・安全面・整備費・翌年度以降の活用可能性を確認しています。</p></details>
-          <details><summary>泥ん子運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details>
-          <details><summary>学生はどのように関われますか？</summary><p>当日の運営、SNS発信、写真・動画の記録、広報、企画づくりなど、できるところから関われます。</p></details>
-          <details><summary>企業・団体は資金協賛以外でも関われますか？</summary><p>可能です。物品協力、広報協力、社員参加、専門的助言、地域団体の紹介など、さまざまな形での連携を歓迎しています。</p></details>
-          <details><summary>どんな服装で行けばいいですか？</summary><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。泥に入る企画のため、当日は濡れてもよい準備でお越しください。</p></details>
-          <details><summary>見学だけでも大丈夫ですか？</summary><p>大丈夫です。見学・応援は無料を想定しています。泥に入らず、雰囲気を楽しむだけでも歓迎です。</p></details>
-          <details><summary>小さな子どもでも参加できますか？</summary><p>参加人数や年齢構成を見ながら、安全に楽しめる形でチーム分けや競技内容を調整します。</p></details>
-          <details><summary>雨天時はどうなりますか？</summary><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。変更がある場合は、申込者へご案内します。</p></details>
-        </div>
-      </div>
-    </section>
 
-    <section class="final-cta">
-      <div class="container final-card reveal">
-        <h2>最初の1㎡から、一緒に動かしませんか。</h2>
-        <p>能登の耕作放棄地を、もう一度人が関わる場所へ。参加・協賛・連携のご相談をお待ちしています。</p>
-        <div>
-          <a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する</a>
-          <a class="btn light ghost-light" href="mailto:infonotorebloom@gmail.com">メールで問い合わせる</a>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <b>NOTO Re:Bloom</b>
-      <small>© NOTO Re:Bloom Project</small>
-      <a href="#top">PAGE TOP ↑</a>
-    </div>
-  </footer>
-
-  <div class="sticky-cta" id="stickyCta" aria-label="READYFORへの固定リンク">
-    <button type="button" class="sticky-close" aria-label="応援ボタンを閉じる">×</button>
-    <span>最初の1㎡から応援</span>
-    <a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">READYFORへ</a>
-  </div>
-  <script>
+<details open=""><summary>現在、会場は確定していますか？</summary><p>確定前です。珠洲市内の候補地について、地域の方と相談しながら、アクセス・安全面・整備費・翌年度以降の活用可能性を確認しています。</p></details><details><summary>泥ん子運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details><details><summary>どんな服装で行けばいいですか？</summary><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。泥に入る企画のため、当日は濡れてもよい準備でお越しください。</p></details><details><summary>見学だけでも大丈夫ですか？</summary><p>大丈夫です。見学・応援は無料を想定しています。泥に入らず、雰囲気を楽しむだけでも歓迎です。</p></details><details><summary>小さな子どもでも参加できますか？</summary><p>参加人数や年齢構成を見ながら、安全に楽しめる形でチーム分けや競技内容を調整します。</p></details><details><summary>雨天時はどうなりますか？</summary><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。変更がある場合は、申込者へご案内します。</p></details><details><summary>学生はどのように関われますか？</summary><p>当日の運営、SNS発信、写真・動画の記録、広報、企画づくりなど、できるところから関われます。</p></details><details><summary>企業・団体は資金協賛以外でも関われますか？</summary><p>可能です。物品協力、広報協力、社員参加、専門的助言、地域団体の紹介など、さまざまな形での連携を歓迎しています。</p></details></div>
+</div>
+</section>
+<section class="final-cta">
+<div class="container final-card reveal">
+<h2>最初の1㎡から、一緒に動かしませんか。</h2>
+<p>能登の耕作放棄地を、もう一度人が関わる場所へ。参加・協賛・連携のご相談をお待ちしています。</p>
+<div>
+<a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a>
+<a class="btn light ghost-light" href="mailto:infonotorebloom@gmail.com">メールで問い合わせる</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container footer-inner">
+<b>NOTO Re:Bloom</b>
+<small>© NOTO Re:Bloom Project</small>
+<a href="#top">PAGE TOP ↑</a>
+</div>
+</footer>
+<div aria-label="READYFORへの固定リンク" class="sticky-cta" id="stickyCta">
+<button aria-label="応援ボタンを閉じる" class="sticky-close" type="button">×</button>
+<span>READYFORで応援する</span>
+<a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">開く</a>
+</div>
+<script>
 (() => {
   const body = document.body;
   const doc = document.documentElement;
@@ -4805,22 +4894,6 @@ section{
     update();
   }
 
-
-  // v19: scroll story stage update
-  const storySection = document.querySelector('.scroll-story');
-  const storySteps = [...document.querySelectorAll('.story-step')];
-  if (storySection && storySteps.length) {
-    const storyObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const stage = entry.target.dataset.stage || 'before';
-        storySection.dataset.current = stage;
-        storySteps.forEach(step => step.classList.toggle('is-current', step === entry.target));
-      });
-    }, { threshold: 0.58, rootMargin: '-18% 0px -34% 0px' });
-    storySteps.forEach(step => storyObserver.observe(step));
-  }
-
   // v19: land meter tiles connected to the support amount slider
   const riceGrid = document.querySelector('#riceGrid');
   const riceGridLabel = document.querySelector('#riceGridLabel');
@@ -4862,5 +4935,38 @@ section{
 })();
 
   </script>
+
+<script>
+(() => {
+  const buttons = document.querySelectorAll('.v20-copy-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copyText || '';
+      const card = btn.closest('.v20-cf-copy, .v20-share-card') || document;
+      const status = card.querySelector('.v20-copy-status');
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+        btn.textContent = 'コピーしました';
+        if (status) status.textContent = '応援文をコピーしました。SNSやメッセージで共有できます。';
+        setTimeout(() => { btn.textContent = '応援文をコピーする'; if (status) status.textContent = ''; }, 2200);
+      } catch (e) {
+        if (status) status.textContent = 'コピーできませんでした。テキストを選択してコピーしてください。';
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
