@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NOTO Re:Bloom v18 single-file: typography + project info + plant details -->
+<!-- NOTO Re:Bloom v19 single-file: scroll fun + impact animation + sticky CTA -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -3888,6 +3888,21 @@ section{
   }
 }
 
+
+/* =========================================================
+   v19: scroll fun additions / land meter / game cards / sticky CTA
+   ========================================================= */
+:root{--v19-red:#df5648;--v19-blue:#3f8fd2;--v19-yellow:#ffd75a;--v19-green:#5fa95f;--v19-ink:#2f2418;--v19-cream:#fffaf0;}
+.hero-fun-line{display:inline-block;margin:0 0 12px;padding:10px 14px;border:3px solid var(--soil-dark);border-radius:999px;background:#fff;color:var(--soil-dark);font-weight:900;box-shadow:4px 4px 0 var(--soil-dark);transform:rotate(-1deg)}
+.scroll-story{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdf7,#f6eddb 58%,#fff8e8)}
+.scroll-story::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 18% 12%,rgba(255,215,90,.32) 0 70px,transparent 72px),radial-gradient(circle at 82% 22%,rgba(95,169,95,.18) 0 92px,transparent 94px),radial-gradient(circle at 62% 82%,rgba(216,95,85,.13) 0 110px,transparent 112px);pointer-events:none}.scroll-story-layout{display:grid;grid-template-columns:minmax(280px,.92fr) minmax(320px,1.08fr);gap:clamp(28px,5vw,64px);align-items:start}.story-stage{position:sticky;top:110px}.stage-card{position:relative;overflow:hidden;min-height:500px;border:5px solid var(--soil-dark);border-radius:34px;background:#fff;box-shadow:11px 11px 0 var(--soil-dark)}.stage-sky{position:absolute;inset:0 0 42%;background:linear-gradient(180deg,#cceffd,#fff7d8)}.stage-sky i{position:absolute;display:block;border-radius:999px;background:#fff;border:2px solid rgba(47,36,24,.15)}.stage-sky i:nth-child(1){width:90px;height:28px;left:12%;top:20%}.stage-sky i:nth-child(2){width:120px;height:34px;right:12%;top:32%}.stage-sky i:nth-child(3){width:52px;height:52px;right:22%;top:12%;background:var(--v19-yellow);border-color:var(--soil-dark);box-shadow:4px 4px 0 var(--soil-dark)}.stage-field{position:absolute;left:0;right:0;bottom:0;height:64%;background:linear-gradient(180deg,#84bd68 0 32%,#7b4b31 33% 100%)}.stage-field::before{content:"";position:absolute;inset:28% 0 0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 2px,transparent 2px 34px),repeating-linear-gradient(0deg,rgba(255,255,255,.10) 0 2px,transparent 2px 34px);opacity:.75}.grass{position:absolute;bottom:48%;width:16px;height:86px;background:#2f8a43;border:3px solid var(--soil-dark);border-radius:18px 18px 3px 3px;transform-origin:bottom}.g1{left:10%;transform:rotate(-15deg)}.g2{left:23%;height:104px;transform:rotate(10deg)}.g3{right:21%;height:95px;transform:rotate(-8deg)}.g4{right:9%;height:116px;transform:rotate(16deg)}.footprint{position:absolute;width:34px;height:20px;border-radius:50%;background:#4b2e1f;border:2px solid rgba(255,255,255,.16);opacity:0;transform:rotate(-18deg) scale(.7)}.f1{left:30%;bottom:28%}.f2{left:44%;bottom:38%;transform:rotate(15deg) scale(.7)}.f3{left:58%;bottom:27%}.mud-pop{position:absolute;width:24px;height:24px;border-radius:50%;background:#6a3d27;border:3px solid var(--soil-dark);opacity:0;transform:scale(.3)}.m1{left:18%;bottom:20%}.m2{left:70%;bottom:29%}.m3{left:47%;bottom:17%}.field-flag{position:absolute;left:50%;bottom:44%;padding:7px 13px;background:var(--v19-red);color:#fff;font-weight:900;border:3px solid var(--soil-dark);border-radius:12px;box-shadow:4px 4px 0 var(--soil-dark);opacity:0;transform:translate(-50%,10px) rotate(-2deg)}.field-flag::before{content:"";position:absolute;left:10px;top:100%;width:5px;height:55px;background:var(--soil-dark)}.renge-sprout{position:absolute;right:19%;bottom:30%;width:48px;height:78px;opacity:0;transform:translateY(24px) scale(.7)}.renge-sprout::before{content:"";position:absolute;left:22px;bottom:0;width:6px;height:66px;background:#2e8c42;border-radius:999px}.renge-sprout b,.renge-sprout b::before,.renge-sprout b::after{position:absolute;display:block;content:"";border:3px solid var(--soil-dark);background:#e77fb1;border-radius:50%}.renge-sprout b{width:24px;height:24px;left:13px;top:0}.renge-sprout b::before{width:18px;height:18px;left:-18px;top:16px}.renge-sprout b::after{width:18px;height:18px;right:-18px;top:15px}.stage-caption{position:absolute;left:22px;right:22px;bottom:18px;margin:0;padding:14px 16px;border:3px solid var(--soil-dark);border-radius:18px;background:#fff;font-weight:900;box-shadow:4px 4px 0 var(--soil-dark)}.story-steps{display:grid;gap:18px}.story-intro{margin-bottom:8px}.story-step{padding:24px;border:4px solid var(--soil-dark);border-radius:24px;background:#fff;box-shadow:6px 6px 0 var(--soil-dark);transition:transform .35s ease, background .35s ease}.story-step span{display:inline-block;margin-bottom:8px;padding:5px 10px;border:2px solid var(--soil-dark);border-radius:999px;background:var(--v19-yellow);font-weight:900}.story-step h3{margin:0 0 8px;color:var(--soil-dark)}.story-step p{margin:0;font-weight:750}.story-step.is-current{transform:translateX(-8px) rotate(-1deg);background:#fff4cf}.scroll-story[data-current="clear"] .grass{opacity:.45;transform:scaleY(.62) rotate(0deg)}.scroll-story[data-current="play"] .footprint,.scroll-story[data-current="play"] .mud-pop,.scroll-story[data-current="play"] .field-flag{opacity:1;transform:scale(1)}.scroll-story[data-current="bloom"] .footprint,.scroll-story[data-current="bloom"] .mud-pop,.scroll-story[data-current="bloom"] .field-flag,.scroll-story[data-current="bloom"] .renge-sprout{opacity:1;transform:translateY(0) scale(1)}.scroll-story[data-current="next"] .footprint,.scroll-story[data-current="next"] .mud-pop,.scroll-story[data-current="next"] .field-flag,.scroll-story[data-current="next"] .renge-sprout{opacity:1;transform:translateY(0) scale(1)}.scroll-story[data-current="next"] .stage-field{background:linear-gradient(180deg,#70b95b 0 34%,#6c4a31 35% 100%)}
+.land-meter-card{display:grid;grid-template-columns:minmax(260px,.82fr) minmax(320px,1.18fr);gap:clamp(20px,4vw,42px);align-items:center;margin:26px 0;padding:28px;border:5px solid var(--soil-dark);border-radius:34px;background:#fffdf7;box-shadow:10px 10px 0 var(--soil-dark);position:relative;overflow:hidden}.land-meter-card::before{content:"POKO POKO";position:absolute;right:-20px;top:18px;font-family:'Bangers','Luckiest Guy',cursive;font-size:42px;color:rgba(216,95,85,.12);transform:rotate(7deg)}.land-meter-copy span{display:inline-block;padding:6px 11px;border:2px solid var(--soil-dark);border-radius:999px;background:var(--v19-yellow);font-weight:900}.land-meter-copy h3{margin:12px 0 8px;color:var(--soil-dark);font-size:clamp(24px,3vw,38px);line-height:1.25}.land-meter-copy p{margin:0;font-weight:750}.rice-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;padding:14px;border:4px solid var(--soil-dark);border-radius:24px;background:#d8e6b9}.rice-tile{aspect-ratio:1/1;border:2px solid rgba(47,36,24,.28);border-radius:8px;background:#9fbd72;box-shadow:inset 0 -5px 0 rgba(47,36,24,.08);transition:transform .28s ease, background .28s ease, box-shadow .28s ease}.rice-tile.is-lit{background:#ffd75a;box-shadow:inset 0 -5px 0 rgba(47,36,24,.12),0 0 0 3px rgba(216,95,85,.18);transform:translateY(-3px)}.land-meter-visual p{margin:12px 0 0;text-align:center;font-weight:900;color:var(--soil-dark)}.land-meter-visual b{font-size:clamp(26px,4vw,46px);margin-right:8px}.game-sport-grid article{position:relative;overflow:hidden}.game-sport-grid article::after{content:"";position:absolute;width:140px;height:140px;right:-58px;top:-58px;border-radius:50%;background:repeating-radial-gradient(circle,rgba(255,255,255,.7) 0 3px,transparent 3px 9px);opacity:.42}.sport-game-card .sport-copy span{background:var(--v19-yellow);color:var(--soil-dark);border:2px solid var(--soil-dark);box-shadow:3px 3px 0 var(--soil-dark);padding:3px 8px;border-radius:999px}.sport-stats{display:grid;gap:6px;margin:14px 0 0}.sport-stats div{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 9px;border:2px solid rgba(47,36,24,.2);border-radius:999px;background:rgba(255,255,255,.72)}.sport-stats dt{font-size:12px;font-weight:900;color:var(--soil-dark)}.sport-stats dd{margin:0;font-size:12px;font-weight:900;color:#d85f55;letter-spacing:.05em}.bucket-game{background:linear-gradient(135deg,#fff8d9,#fff)}.relay-game{background:linear-gradient(135deg,#e3f5ff,#fff)}.tug-game{background:linear-gradient(135deg,#e9f8df,#fff)}.tail-game{background:linear-gradient(135deg,#ffe9ef,#fff)}
+.renge-cup-lab{background:linear-gradient(180deg,#fffaf0,#eef7df);position:relative;overflow:hidden}.renge-cup-lab::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 18%,rgba(95,169,95,.16) 0 100px,transparent 102px),radial-gradient(circle at 80% 70%,rgba(231,127,177,.14) 0 130px,transparent 132px);pointer-events:none}.renge-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.renge-flow article{position:relative;min-height:260px;padding:22px;border:4px solid var(--soil-dark);border-radius:28px;background:#fff;box-shadow:7px 7px 0 var(--soil-dark);overflow:hidden}.renge-flow article>span{display:inline-grid;place-items:center;width:44px;height:44px;border:3px solid var(--soil-dark);border-radius:50%;background:var(--v19-yellow);font-weight:900}.renge-flow h3{margin:14px 0 8px;color:var(--soil-dark)}.renge-flow p{margin:0;font-weight:750}.renge-icon{height:92px;margin:10px 0 4px;position:relative}.renge-icon::before,.renge-icon::after{content:"";position:absolute}.renge-icon.mud::before{left:50%;bottom:8px;width:95px;height:46px;border:4px solid var(--soil-dark);border-radius:50%;background:#7b4b31;transform:translateX(-50%)}.renge-icon.mud::after{left:38%;bottom:40px;width:18px;height:18px;border-radius:50%;background:#7b4b31;border:3px solid var(--soil-dark);box-shadow:38px 12px 0 #7b4b31}.renge-icon.mix::before{left:50%;bottom:10px;width:92px;height:62px;border:4px solid var(--soil-dark);border-radius:16px 16px 34px 34px;background:#d7a56f;transform:translateX(-50%)}.renge-icon.mix::after{left:58%;top:8px;width:8px;height:76px;border-radius:999px;background:var(--soil-dark);transform:rotate(25deg)}.renge-icon.seed::before{left:50%;bottom:8px;width:96px;height:55px;border:4px solid var(--soil-dark);border-radius:18px 18px 30px 30px;background:#8b5d3e;transform:translateX(-50%)}.renge-icon.seed::after{left:50%;top:20px;width:14px;height:14px;border-radius:50%;background:#ffe28b;border:3px solid var(--soil-dark);box-shadow:-24px 16px 0 #ffe28b,24px 14px 0 #ffe28b}.renge-icon.bloom::before{left:50%;bottom:4px;width:90px;height:58px;border:4px solid var(--soil-dark);border-radius:18px 18px 30px 30px;background:#8b5d3e;transform:translateX(-50%)}.renge-icon.bloom::after{left:50%;top:0;width:8px;height:74px;border-radius:999px;background:#2e8c42;transform:translateX(-50%);box-shadow:-18px 28px 0 -2px #2e8c42,18px 34px 0 -2px #2e8c42}.renge-flow.is-visible .renge-icon.bloom{animation:gentleGrow 1.2s .25s both}@keyframes gentleGrow{from{transform:translateY(18px) scale(.82);opacity:.4}to{transform:translateY(0) scale(1);opacity:1}}
+.support-missions{background:#fffdf7}.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mission-grid article{display:flex;align-items:center;gap:14px;padding:18px;border:4px solid var(--soil-dark);border-radius:22px;background:#fff;box-shadow:5px 5px 0 var(--soil-dark);transition:transform .25s ease}.mission-grid article:hover{transform:translateY(-4px) rotate(-1deg)}.mission-grid b{display:grid;place-items:center;flex:0 0 42px;height:42px;border:3px solid var(--soil-dark);border-radius:50%;background:var(--v19-yellow);font-weight:900}.mission-grid span{font-weight:900;color:var(--soil-dark)}
+.sticky-cta{position:fixed;left:50%;bottom:18px;z-index:50;display:flex;align-items:center;gap:12px;max-width:calc(100vw - 28px);padding:12px 12px 12px 16px;border:4px solid var(--soil-dark);border-radius:999px;background:#fff;box-shadow:0 8px 0 var(--soil-dark);transform:translate(-50%,140%);transition:transform .35s ease;will-change:transform}.sticky-cta.is-visible{transform:translate(-50%,0)}.sticky-cta span{font-weight:900;color:var(--soil-dark);white-space:nowrap}.sticky-cta a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border:3px solid var(--soil-dark);border-radius:999px;background:var(--v19-red);color:#fff;text-decoration:none;font-weight:900;box-shadow:3px 3px 0 var(--soil-dark);white-space:nowrap}.sticky-close{width:30px;height:30px;border:3px solid var(--soil-dark);border-radius:50%;background:#fff;cursor:pointer;font-weight:900;color:var(--soil-dark)}
+@media (max-width:920px){.scroll-story-layout,.land-meter-card{grid-template-columns:1fr}.story-stage{position:relative;top:auto}.stage-card{min-height:420px}.renge-flow{grid-template-columns:repeat(2,1fr)}.mission-grid{grid-template-columns:1fr 1fr}.rice-grid{grid-template-columns:repeat(9,1fr)}}@media (max-width:620px){.stage-card{min-height:360px;border-width:4px;box-shadow:7px 7px 0 var(--soil-dark)}.renge-flow,.mission-grid{grid-template-columns:1fr}.land-meter-card{padding:20px}.rice-grid{grid-template-columns:repeat(6,1fr);gap:5px}.sticky-cta{left:10px;right:10px;bottom:10px;transform:translateY(140%);justify-content:space-between}.sticky-cta.is-visible{transform:translateY(0)}.sticky-cta span{font-size:12px}.sticky-cta a{padding:10px 12px}.hero-fun-line{font-size:13px;line-height:1.5;border-width:2px;box-shadow:3px 3px 0 var(--soil-dark)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.sticky-cta{transition:none}.story-stage{position:relative;top:auto}}
+
   </style>
 </head>
 <body>
@@ -3928,6 +3943,7 @@ section{
         <div class="hero-copy reveal">
           <p class="eyebrow"><i></i>NOTO / SUZU / FIELD REGENERATION</p>
           <div class="hero-burst">FUN × FIELD</div>
+          <p class="hero-fun-line">泥だらけで笑う一日が、能登の土地に人が戻るきっかけになる。</p>
           <h1><span class="keep">耕作放棄地を、</span><br><span class="keep">もう一度人が関わる場所へ。</span></h1>
           <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
           <div class="hero-actions">
@@ -3962,6 +3978,37 @@ section{
       </div>
     </section>
 
+    <section class="section scroll-story" id="scroll-story" aria-label="スクロールで見るNOTO Re:Bloomの流れ">
+      <div class="container scroll-story-layout">
+        <div class="story-stage reveal" aria-hidden="true">
+          <div class="stage-card">
+            <div class="stage-sky"><i></i><i></i><i></i></div>
+            <div class="stage-field">
+              <span class="grass g1"></span><span class="grass g2"></span><span class="grass g3"></span><span class="grass g4"></span>
+              <span class="footprint f1"></span><span class="footprint f2"></span><span class="footprint f3"></span>
+              <span class="mud-pop m1"></span><span class="mud-pop m2"></span><span class="mud-pop m3"></span>
+              <span class="field-flag">Re:Bloom</span>
+              <span class="renge-sprout"><b></b></span>
+            </div>
+            <p class="stage-caption">スクロールするほど、土地に人の気配が増えていく。</p>
+          </div>
+        </div>
+
+        <div class="story-steps">
+          <div class="story-intro reveal">
+            <p class="eyebrow"><i></i>SCROLL STORY</p>
+            <h2><span class="keep">ページを読むほど、</span><br><span class="keep">土地が動き出す。</span></h2>
+            <p>NOTO Re:Bloomの流れを、スクロールに合わせて「草が伸びた土地」から「人が関わる場所」へ変わる体験として見せます。</p>
+          </div>
+          <article class="story-step reveal" data-stage="before"><span>BEFORE</span><h3>草が伸び、人が入りにくい土地</h3><p>まずは現地の状態を見て、地域の方と相談しながら、活用できる可能性を探ります。</p></article>
+          <article class="story-step reveal" data-stage="clear"><span>STEP 1</span><h3>安全に入れる状態へ近づける</h3><p>草刈り、簡易整備、動線確認を行い、子どもや地域の方が集まれる環境を整えます。</p></article>
+          <article class="story-step reveal" data-stage="play"><span>STEP 2</span><h3>泥ん子運動会で、人が集まる</h3><p>泥バケツリレー、リレー、綱引き、しっぽ取り。遊びを入口に、その土地を「知っている場所」に変えます。</p></article>
+          <article class="story-step reveal" data-stage="bloom"><span>STEP 3</span><h3>レンゲカップで、関わりを持ち帰る</h3><p>泥に触れた体験を、その日だけで終わらせず、家で育てる小さな記憶につなげます。</p></article>
+          <article class="story-step reveal" data-stage="next"><span>NEXT</span><h3>翌年度以降の活用へ</h3><p>活動報告や地域との相談を重ね、毎年少しずつ耕作放棄地を減らす流れを育てます。</p></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section about" id="about">
       <div class="container section-grid">
         <div class="section-copy reveal">
@@ -3972,7 +4019,7 @@ section{
         <div class="step-cards reveal" aria-label="プロジェクトの流れ">
           <article><span>01</span><h3>土地を見つける</h3><p>地域の方と相談し、活用の可能性がある遊休農地・耕作放棄地を探します。</p></article>
           <article><span>02</span><h3>安全に整える</h3><p>草刈り、簡易整備、動線確認を行い、人が入れる状態に近づけます。</p></article>
-          <article><span>03</span><h3>人が入る入口をつくる</h3><p>ドロンコ運動会などを通じ、学生・地域・企業が同じ土地に関わる時間をつくります。</p></article>
+          <article><span>03</span><h3>人が入る入口をつくる</h3><p>泥ん子運動会などを通じ、学生・地域・企業が同じ土地に関わる時間をつくります。</p></article>
           <article><span>04</span><h3>次年度以降へつなぐ</h3><p>栽培、管理、景観づくりなど、その土地に合った継続活用を考えます。</p></article>
         </div>
       </div>
@@ -4000,7 +4047,7 @@ section{
           </article>
           <article>
             <span>EVENT</span>
-            <h3>ドロンコ運動会を入口に</h3>
+            <h3>泥ん子運動会を入口に</h3>
             <p>泥バケツリレー、リレー、綱引き、しっぽ取りを通じて、楽しみながら土地に関わるきっかけをつくります。</p>
           </article>
           <article>
@@ -4036,7 +4083,7 @@ section{
           <p>耕作放棄地の再生を、難しい話だけで終わらせない。泥に入る、写真を撮る、応援する、種を育てる。小さな楽しさを入口にして、能登の土地に関わる人を増やしていきます。</p>
           <div class="ways-actions">
             <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
-            <a class="btn ghost" href="#event">ドロンコ運動会を見る</a>
+            <a class="btn ghost" href="#event">泥ん子運動会を見る</a>
           </div>
         </div>
         <div class="fun-cards reveal">
@@ -4048,7 +4095,7 @@ section{
           <article>
             <div class="fun-illust play" aria-hidden="true"><i></i><i></i><i></i></div>
             <h3>遊ぶ</h3>
-            <p>ドロンコ運動会で、土地に入るきっかけをつくる。</p>
+            <p>泥ん子運動会で、土地に入るきっかけをつくる。</p>
           </article>
           <article>
             <div class="fun-illust bloom" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -4112,6 +4159,18 @@ section{
             <button type="button" data-example="badminton" data-yen="24522">バドミントン</button>
             <button type="button" data-example="tennis" data-yen="78261">テニス</button>
             <button type="button" data-example="pool" data-yen="93750">25mプール</button>
+          </div>
+        </div>
+
+        <div class="land-meter-card reveal" aria-label="支援額に応じて土地のマスが増える表示">
+          <div class="land-meter-copy">
+            <span>LAND METER</span>
+            <h3>支援が、土地のマスを少しずつ広げます。</h3>
+            <p>スライダーの金額に合わせて、田んぼのマスが光ります。数字だけでは見えにくい支援の意味を、土地の広がりとして感じられる仕掛けです。</p>
+          </div>
+          <div class="land-meter-visual">
+            <div class="rice-grid" id="riceGrid" aria-hidden="true"></div>
+            <p><b id="riceGridLabel">約10㎡</b><span>が動き出す目安</span></p>
           </div>
         </div>
 
@@ -4314,7 +4373,7 @@ section{
         <div class="event-heading reveal">
           <p class="eyebrow light"><i></i>DORONKO SPORTS DAY</p>
           <h2><span class="keep">楽しく、泥くさく、</span><br><span class="keep">耕作放棄地に人が関わる入口をつくる。</span></h2>
-          <p>ドロンコ運動会は、ただのレクリエーションではありません。普段は入りにくい耕作放棄地に、子ども、学生、地域の方、企業の方が楽しみながら関わるための入口です。</p>
+          <p>泥ん子運動会は、ただのレクリエーションではありません。普段は入りにくい耕作放棄地に、子ども、学生、地域の方、企業の方が楽しみながら関わるための入口です。</p>
         </div>
 
         <div class="event-overview reveal">
@@ -4345,40 +4404,44 @@ section{
             <p>競技は、泥バケツリレー、リレー、綱引き、しっぽ取りの4つで構成します。勝ち負けだけでなく、土地に入り、体を動かし、自然に関心が生まれる時間をつくります。</p>
           </div>
 
-          <div class="sport-grid official-four-sports" aria-label="ドロンコ運動会の4競技">
-            <article>
+          <div class="sport-grid official-four-sports game-sport-grid" aria-label="泥ん子運動会の4競技">
+            <article class="sport-game-card bucket-game">
               <div class="official-illust bucket-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
               <div class="sport-copy">
-                <span>SPORT 01</span>
+                <span>GAME CARD</span>
                 <h4>泥バケツリレー</h4>
-                <p>チームで泥を運ぶ中心競技です。泥を集める動きそのものを、土地に触れる体験につなげます。</p>
+                <p>泥を運ぶほど、チームの距離が近くなる。まじめにやるほど、なぜか一番泥だらけ。</p>
+                <dl class="sport-stats"><div><dt>泥ん子度</dt><dd>★★★★★</dd></div><div><dt>チームワーク</dt><dd>★★★★★</dd></div><div><dt>笑い声</dt><dd>★★★★☆</dd></div></dl>
               </div>
             </article>
 
-            <article>
+            <article class="sport-game-card relay-game">
               <div class="official-illust relay-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
               <div class="sport-copy">
-                <span>SPORT 02</span>
+                <span>GAME CARD</span>
                 <h4>リレー</h4>
-                <p>泥の上を走る、シンプルで盛り上がりやすい競技です。応援する側も楽しめる入口になります。</p>
+                <p>走るだけなのに、泥の上だとまったく別の競技になる。応援する側も自然と声が出る。</p>
+                <dl class="sport-stats"><div><dt>スピード</dt><dd>★★★★★</dd></div><div><dt>応援しやすさ</dt><dd>★★★★★</dd></div><div><dt>すべるかも度</dt><dd>★★★★☆</dd></div></dl>
               </div>
             </article>
 
-            <article>
+            <article class="sport-game-card tug-game">
               <div class="official-illust tug-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
               <div class="sport-copy">
-                <span>SPORT 03</span>
+                <span>GAME CARD</span>
                 <h4>綱引き</h4>
-                <p>泥の中で踏ん張るチーム競技です。子どもから大人まで一緒に盛り上がれる企画にします。</p>
+                <p>力を合わせて、泥の中でぐっと踏ん張る。勝っても負けても、最後はみんなで笑える王道競技。</p>
+                <dl class="sport-stats"><div><dt>本気度</dt><dd>★★★★★</dd></div><div><dt>踏ん張り度</dt><dd>★★★★★</dd></div><div><dt>泥はね度</dt><dd>★★★★☆</dd></div></dl>
               </div>
             </article>
 
-            <article>
+            <article class="sport-game-card tail-game">
               <div class="official-illust tail-main" aria-hidden="true"><span></span><i></i><i></i><b></b></div>
               <div class="sport-copy">
-                <span>SPORT 04</span>
+                <span>GAME CARD</span>
                 <h4>しっぽ取り</h4>
-                <p>安全に配慮しながら、泥の中で動き回る楽しさを感じられる競技です。</p>
+                <p>走る、逃げる、追いかける。泥の中で一番にぎやかな、作戦と瞬発力の競技。</p>
+                <dl class="sport-stats"><div><dt>作戦度</dt><dd>★★★★★</dd></div><div><dt>動き回る度</dt><dd>★★★★★</dd></div><div><dt>子ども人気</dt><dd>★★★★★</dd></div></dl>
               </div>
             </article>
           </div>
@@ -4394,7 +4457,7 @@ section{
           <div class="flow-grid-clean">
             <article><b>受付</b><p>受付・着替え・安全説明</p></article>
             <article><b>準備</b><p>チーム分け・泥エリア確認</p></article>
-            <article><b>競技</b><p>4つのドロスポーツを実施</p></article>
+            <article><b>競技</b><p>4つの泥ん子競技を実施</p></article>
             <article><b>種まき</b><p>泥と培養土でレンゲを育てる準備</p></article>
             <article><b>共有</b><p>写真撮影・今後の活動案内</p></article>
           </div>
@@ -4430,6 +4493,22 @@ section{
             <p>NOTO Re:Bloomが目指しているのは、ただ楽しいイベントではありません。楽しいから人が集まり、人が集まるから土地に関心が生まれ、その関心が翌年度以降の活用へつながる。そんな流れを育てていきます。</p>
           </div>
           <a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section renge-cup-lab" id="renge-cup">
+      <div class="container">
+        <div class="center-heading reveal">
+          <p class="eyebrow"><i></i>Re:Bloom レンゲカップ</p>
+          <h2><span class="keep">泥だらけで終わらない。</span><br><span class="keep">能登の泥を、未来の芽に変える。</span></h2>
+          <p>泥ん子運動会の最後には、集めた泥と培養土を混ぜ、レンゲの種をまいて持ち帰る体験へつなげます。</p>
+        </div>
+        <div class="renge-flow reveal" aria-label="レンゲカップの流れ">
+          <article><span>01</span><div class="renge-icon mud"></div><h3>泥を集める</h3><p>競技で触れた泥を、土地の記憶として少しだけ使います。</p></article>
+          <article><span>02</span><div class="renge-icon mix"></div><h3>土と混ぜる</h3><p>育ちやすいように、培養土と混ぜて小さなカップにします。</p></article>
+          <article><span>03</span><div class="renge-icon seed"></div><h3>種をまく</h3><p>レンゲの種をまき、育て方カードと一緒に持ち帰ります。</p></article>
+          <article><span>04</span><div class="renge-icon bloom"></div><h3>家で育てる</h3><p>芽が出るまでの時間も、能登とつながる思い出になります。</p></article>
         </div>
       </div>
     </section>
@@ -4483,10 +4562,28 @@ section{
       </div>
     </section>
 
+    <section class="section support-missions" id="missions">
+      <div class="container">
+        <div class="center-heading reveal">
+          <p class="eyebrow"><i></i>MISSION CARD</p>
+          <h2><span class="keep">できる応援は、</span><br><span class="keep">泥に入ることだけじゃない。</span></h2>
+          <p>参加する、見学する、支援する、広げる。関わり方を小さく分けることで、初めての人でも一歩を踏み出しやすくします。</p>
+        </div>
+        <div class="mission-grid reveal">
+          <article><b>01</b><span>READYFORで応援する</span></article>
+          <article><b>02</b><span>泥ん子運動会に参加する</span></article>
+          <article><b>03</b><span>友人・家族にサイトを送る</span></article>
+          <article><b>04</b><span>SNSでシェアする</span></article>
+          <article><b>05</b><span>当日見学する</span></article>
+          <article><b>06</b><span>企業・団体に紹介する</span></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section story">
       <div class="container story-grid">
         <div class="story-media reveal">
-          <img src="team-reboost.webp" alt="<span class="nowrap">NOTO-REBOOST U-23</span>で出会ったメンバーの写真">
+          <img src="team-reboost.webp" alt="NOTO-REBOOST U-23で出会ったメンバーの写真">
         </div>
         <div class="section-copy reveal">
           <p class="eyebrow"><i></i>OUR START</p>
@@ -4504,7 +4601,7 @@ section{
             <h2><span class="keep">協賛は、能登に残る景色と</span><br><span class="keep">つながりを育てる力です。</span></h2>
             <p>ご協力は、単なるイベント費ではありません。土地の整備、安全管理、広報、翌年度以降の活用準備へとつながります。</p>
           </div>
-          <div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
+          <div class="support-actions-inline"><a class="btn light comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">クラファンで応援する</a>
           <a class="btn light" href="https://forms.gle/BTcMERE34qfghFiV8" target="_blank" rel="noopener">協賛・連携を相談する</a></div>
         </div>
         <div class="support-grid reveal">
@@ -4545,9 +4642,13 @@ section{
         </div>
         <div class="faq-list reveal">
           <details open><summary>現在、会場は確定していますか？</summary><p>確定前です。珠洲市内の候補地について、地域の方と相談しながら、アクセス・安全面・整備費・翌年度以降の活用可能性を確認しています。</p></details>
-          <details><summary>ドロンコ運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details>
+          <details><summary>泥ん子運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details>
           <details><summary>学生はどのように関われますか？</summary><p>当日の運営、SNS発信、写真・動画の記録、広報、企画づくりなど、できるところから関われます。</p></details>
           <details><summary>企業・団体は資金協賛以外でも関われますか？</summary><p>可能です。物品協力、広報協力、社員参加、専門的助言、地域団体の紹介など、さまざまな形での連携を歓迎しています。</p></details>
+          <details><summary>どんな服装で行けばいいですか？</summary><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。泥に入る企画のため、当日は濡れてもよい準備でお越しください。</p></details>
+          <details><summary>見学だけでも大丈夫ですか？</summary><p>大丈夫です。見学・応援は無料を想定しています。泥に入らず、雰囲気を楽しむだけでも歓迎です。</p></details>
+          <details><summary>小さな子どもでも参加できますか？</summary><p>参加人数や年齢構成を見ながら、安全に楽しめる形でチーム分けや競技内容を調整します。</p></details>
+          <details><summary>雨天時はどうなりますか？</summary><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。変更がある場合は、申込者へご案内します。</p></details>
         </div>
       </div>
     </section>
@@ -4571,6 +4672,12 @@ section{
       <a href="#top">PAGE TOP ↑</a>
     </div>
   </footer>
+
+  <div class="sticky-cta" id="stickyCta" aria-label="READYFORへの固定リンク">
+    <button type="button" class="sticky-close" aria-label="応援ボタンを閉じる">×</button>
+    <span>最初の1㎡から応援</span>
+    <a href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social" target="_blank" rel="noopener">READYFORへ</a>
+  </div>
   <script>
 (() => {
   const body = document.body;
@@ -4696,6 +4803,61 @@ section{
       });
     });
     update();
+  }
+
+
+  // v19: scroll story stage update
+  const storySection = document.querySelector('.scroll-story');
+  const storySteps = [...document.querySelectorAll('.story-step')];
+  if (storySection && storySteps.length) {
+    const storyObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const stage = entry.target.dataset.stage || 'before';
+        storySection.dataset.current = stage;
+        storySteps.forEach(step => step.classList.toggle('is-current', step === entry.target));
+      });
+    }, { threshold: 0.58, rootMargin: '-18% 0px -34% 0px' });
+    storySteps.forEach(step => storyObserver.observe(step));
+  }
+
+  // v19: land meter tiles connected to the support amount slider
+  const riceGrid = document.querySelector('#riceGrid');
+  const riceGridLabel = document.querySelector('#riceGridLabel');
+  if (riceGrid) {
+    const totalTiles = 72;
+    riceGrid.innerHTML = Array.from({ length: totalTiles }, (_, i) => `<span class="rice-tile" data-i="${i}"></span>`).join('');
+    const riceTiles = [...riceGrid.querySelectorAll('.rice-tile')];
+    const updateRiceGrid = () => {
+      const value = amountSlider ? Number(amountSlider.value) : 3000;
+      const area = value / 300;
+      const lit = Math.max(1, Math.min(totalTiles, Math.round((area / 333) * totalTiles)));
+      riceTiles.forEach((tile, i) => tile.classList.toggle('is-lit', i < lit));
+      if (riceGridLabel) riceGridLabel.textContent = formatArea(area);
+    };
+    updateRiceGrid();
+    if (amountSlider) amountSlider.addEventListener('input', updateRiceGrid);
+    chips.forEach(chip => chip.addEventListener('click', () => setTimeout(updateRiceGrid, 0)));
+  }
+
+  // v19: sticky READYFOR button
+  const stickyCta = document.querySelector('#stickyCta');
+  const stickyClose = stickyCta?.querySelector('.sticky-close');
+  let stickyClosed = sessionStorage.getItem('rebloomStickyClosed') === '1';
+  const updateStickyCta = () => {
+    if (!stickyCta || stickyClosed) return;
+    const show = window.scrollY > Math.min(720, document.documentElement.scrollHeight * 0.12);
+    stickyCta.classList.toggle('is-visible', show);
+  };
+  window.addEventListener('scroll', updateStickyCta, { passive: true });
+  window.addEventListener('resize', updateStickyCta);
+  updateStickyCta();
+  if (stickyClose) {
+    stickyClose.addEventListener('click', () => {
+      stickyClosed = true;
+      sessionStorage.setItem('rebloomStickyClosed', '1');
+      stickyCta.classList.remove('is-visible');
+    });
   }
 })();
 
