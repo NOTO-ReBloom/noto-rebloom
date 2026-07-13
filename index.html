@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NOTO Re:Bloom v25 single-file: Re:Bloom Weed Pop puzzle game -->
+<!-- NOTO Re:Bloom v20 single-file: crowdfunding route + safe fun UI + no overlap layout -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -3999,525 +3999,70 @@ img,svg{max-width:100%;height:auto;}
 }
 @media (prefers-reduced-motion:reduce){.v20-reward-card,.v20-cf-copy,.v20-cf-panel,.v20-choice-grid article,.v20-share-card{transition:none!important;}}
 
-/* v21: Re:Bloom mini game */
-.rebloom-game{
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 14% 12%,rgba(255,212,90,.44) 0 82px,transparent 84px),
-    radial-gradient(circle at 92% 18%,rgba(183,228,255,.38) 0 112px,transparent 114px),
-    linear-gradient(180deg,#fffaf0 0%,#eef9df 100%);
-}
-.rebloom-game::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  opacity:.18;
-  background-image:
-    linear-gradient(90deg,var(--green) 1px,transparent 1px),
-    linear-gradient(0deg,var(--green) 1px,transparent 1px);
-  background-size:56px 56px;
-  transform:rotate(-1.5deg) scale(1.03);
-}
-.rebloom-game .container{position:relative;z-index:1}
-.game-shell{
-  display:grid;
-  grid-template-columns:minmax(0,.82fr) minmax(320px,1.18fr);
-  gap:clamp(22px,4vw,42px);
-  align-items:start;
-}
-.game-copy{
-  position:sticky;
-  top:110px;
-  padding:clamp(24px,4vw,38px);
-  border:var(--border);
-  border-radius:32px;
-  background:#fffefa;
-  box-shadow:var(--shadow);
-}
-.game-copy h2{font-size:clamp(31px,5vw,58px);line-height:1.18;color:var(--soil-dark)}
-.game-copy h2 .pop-word{display:inline-block;position:relative;color:var(--coral)}
-.game-copy h2 .pop-word::after{content:"";position:absolute;left:-5%;right:-5%;bottom:.02em;height:.22em;background:var(--sun);z-index:-1;border-radius:999px}
-.game-rule-list{display:grid;gap:12px;margin:22px 0 0;padding:0;list-style:none}
-.game-rule-list li{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:2px solid rgba(53,33,22,.18);border-radius:18px;background:#fff7db;font-weight:800;color:var(--ink-soft);line-height:1.7}
-.game-rule-list b{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border:2px solid var(--line);border-radius:50%;background:var(--sun);color:var(--soil-dark);font-size:13px}
-.game-card{
-  min-width:0;
-  padding:clamp(16px,3vw,24px);
-  border:var(--border);
-  border-radius:34px;
-  background:#fff;
-  box-shadow:var(--shadow);
-}
-.game-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
-.game-difficulty{display:flex;flex-wrap:wrap;gap:8px}
-.game-difficulty button,.game-action button{
-  cursor:pointer;
-  border:2px solid var(--line);
-  border-radius:999px;
-  padding:9px 12px;
-  background:#fff7dc;
-  color:var(--soil-dark);
-  font-weight:900;
-  box-shadow:0 3px 0 var(--line);
-  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
-}
-.game-difficulty button:hover,.game-action button:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--line)}
-.game-difficulty button.is-active{background:var(--sun);color:var(--soil-dark)}
-.game-action{display:flex;gap:8px;flex-wrap:wrap}
-.game-action button.primary-game{background:var(--green);color:#fff}
-.game-hud{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 14px}
-.game-hud div{min-width:0;border:2px solid rgba(53,33,22,.2);border-radius:16px;background:#fffaf0;padding:10px;text-align:center}
-.game-hud span{display:block;color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.06em}
-.game-hud b{display:block;margin-top:2px;color:var(--soil-dark);font-size:clamp(16px,2.2vw,22px);line-height:1.2;font-weight:900}
-.game-canvas-wrap{position:relative;aspect-ratio:16/9;border:3px solid var(--line);border-radius:24px;overflow:hidden;background:#e9f6d9;box-shadow:inset 0 0 0 5px rgba(255,255,255,.55)}
-#rebloomGameCanvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
-#rebloomGameCanvas:active{cursor:grabbing}
-.game-overlay-message{position:absolute;inset:auto 18px 18px 18px;display:flex;justify-content:center;pointer-events:none}
-.game-overlay-message p{max-width:680px;width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:999px;background:rgba(255,255,255,.91);box-shadow:0 4px 0 rgba(53,33,22,.28);text-align:center;font-size:13px;font-weight:900;color:var(--soil-dark);line-height:1.55}
-.game-note{margin-top:12px;font-size:12px;line-height:1.7;color:var(--muted);font-weight:800}
-.game-mobile-hint{display:none;margin-top:10px;padding:11px 13px;border-radius:16px;background:#eff9e7;border:2px dashed rgba(53,33,22,.22);font-size:12px;font-weight:800;color:var(--ink-soft)}
-@media (max-width: 920px){
-  .game-shell{grid-template-columns:1fr}
-  .game-copy{position:relative;top:auto}
-}
-@media (max-width: 640px){
-  .game-hud{grid-template-columns:repeat(2,1fr)}
-  .game-toolbar{align-items:stretch}
-  .game-difficulty,.game-action{width:100%}
-  .game-difficulty button,.game-action button{flex:1 1 auto}
-  .game-overlay-message{inset:auto 8px 8px 8px}
-  .game-overlay-message p{border-radius:18px;font-size:11.5px}
-  .game-mobile-hint{display:block}
-}
-@media (prefers-reduced-motion: reduce){
-  .game-difficulty button,.game-action button{transition:none}
-}
-
-
-
-/* v22: hero clean-up and special mini game polish */
-.hero::before{display:none!important;content:none!important;}
-.hero{padding-top:clamp(112px,10vw,150px)!important;overflow:hidden!important;min-height:auto!important;}
-.hero-layout{grid-template-columns:minmax(0,1.06fr) minmax(300px,.94fr)!important;align-items:center!important;gap:clamp(28px,5vw,64px)!important;}
-.hero-copy{position:relative!important;z-index:4!important;padding-top:0!important;max-width:820px!important;}
-.hero-burst{position:relative!important;z-index:5!important;display:inline-flex!important;width:max-content!important;max-width:100%!important;white-space:nowrap!important;margin:0 0 14px!important;}
-.hero-fun-line{display:inline-block!important;max-width:100%!important;margin:0 0 16px!important;line-height:1.65!important;}
-.hero h1{position:relative!important;z-index:3!important;margin-top:8px!important;letter-spacing:.01em!important;}
-.hero .lead{max-width:760px!important;}
-.hero-visual{position:relative!important;z-index:2!important;min-height:clamp(440px,46vw,590px)!important;}
-.sticker{z-index:5!important;max-width:min(260px,44vw)!important;line-height:1.55!important;}
-@media (max-width:920px){
-  .hero{padding-top:118px!important;}
-  .hero-layout{grid-template-columns:1fr!important;}
-  .hero-visual{min-height:auto!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:14px!important;}
-  .sticker{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;max-width:none!important;margin:8px 0 0!important;transform:rotate(-1deg)!important;}
-}
-@media (max-width:620px){
-  .hero-visual{grid-template-columns:1fr!important;}
-  .hero-burst{font-size:20px!important;}
-  .hero-fun-line{font-size:13px!important;}
-}
-
-.rebloom-game{padding-top:clamp(56px,7vw,92px)!important;background:radial-gradient(circle at 10% 6%,rgba(255,212,90,.46) 0 100px,transparent 102px),radial-gradient(circle at 94% 22%,rgba(151,211,255,.42) 0 132px,transparent 134px),linear-gradient(180deg,#fffaf0 0%,#eff9df 100%)!important;}
-.game-shell{grid-template-columns:1fr!important;max-width:1240px!important;margin:0 auto!important;gap:22px!important;}
-.game-copy{position:relative!important;top:auto!important;display:grid!important;grid-template-columns:minmax(0,.86fr) minmax(320px,1.14fr)!important;gap:20px!important;align-items:center!important;padding:clamp(22px,3vw,34px)!important;}
-.game-copy .eyebrow,.game-copy h2,.game-copy p{min-width:0!important;}
-.game-copy h2{font-size:clamp(30px,4.2vw,56px)!important;margin:0!important;}
-.game-copy > p:not(.eyebrow){font-size:15px!important;line-height:1.9!important;margin:8px 0 0!important;}
-.game-rule-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;margin:0!important;gap:10px!important;}
-.game-rule-list li{min-width:0!important;padding:11px 12px!important;line-height:1.6!important;}
-.game-rule-list b{flex:0 0 34px!important;width:34px!important;height:34px!important;border-radius:12px!important;}
-.game-card{width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:clamp(14px,2.4vw,26px)!important;}
-.game-toolbar{gap:12px!important;align-items:center!important;}
-.game-difficulty,.game-action{gap:9px!important;}
-.game-action button[disabled]{opacity:.42!important;cursor:not-allowed!important;transform:none!important;box-shadow:0 3px 0 var(--line)!important;}
-.game-hud{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:9px!important;}
-.game-hud div{padding:10px 8px!important;min-height:64px!important;display:grid!important;place-items:center!important;}
-.game-canvas-wrap{aspect-ratio:16/9!important;min-height:520px!important;border-width:4px!important;border-radius:28px!important;background:#ecf7da!important;}
-#rebloomGameCanvas{width:100%!important;height:100%!important;display:block!important;}
-.game-overlay-message{inset:auto 20px 18px 20px!important;}
-.game-overlay-message p{border-radius:20px!important;max-width:860px!important;}
-@media (max-width:1050px){.game-canvas-wrap{min-height:460px!important}.game-copy{grid-template-columns:1fr!important}.game-rule-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media (max-width:720px){.game-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important}.game-hud div:last-child{grid-column:1/-1!important}.game-rule-list{grid-template-columns:1fr!important}.game-canvas-wrap{min-height:auto!important}.game-toolbar{align-items:stretch!important}.game-difficulty,.game-action{width:100%!important}.game-difficulty button,.game-action button{flex:1 1 auto!important}.game-overlay-message{inset:auto 9px 9px 9px!important}.game-overlay-message p{font-size:11.5px!important;line-height:1.55!important}}
-
-
-
-/* =========================================================
-   v23: One-button rhythm game / Re:Bloom Beat Farm
-   - One button play: tap / click / space
-   - Larger readable game UI
-   - No hero layout changes
-========================================================= */
-.rhythm-game{
-  padding-top:clamp(64px,8vw,106px)!important;
-  background:
-    radial-gradient(circle at 9% 10%,rgba(255,212,90,.48) 0 118px,transparent 120px),
-    radial-gradient(circle at 92% 16%,rgba(255,156,196,.32) 0 128px,transparent 130px),
-    radial-gradient(circle at 84% 90%,rgba(113,200,109,.32) 0 170px,transparent 172px),
-    linear-gradient(180deg,#fffaf0 0%,#eff9df 100%)!important;
-}
-.rhythm-game::before{
-  opacity:.12!important;
-  background-image:
-    radial-gradient(circle,rgba(53,33,22,.42) 0 2px,transparent 2.5px),
-    linear-gradient(90deg,rgba(63,125,63,.22) 1px,transparent 1px),
-    linear-gradient(0deg,rgba(63,125,63,.18) 1px,transparent 1px)!important;
-  background-size:34px 34px,72px 72px,72px 72px!important;
-}
-.rhythm-shell{max-width:1240px!important;}
-.rhythm-copy{
-  grid-template-columns:minmax(0,.9fr) minmax(300px,1.1fr)!important;
-  overflow:hidden!important;
-}
-.rhythm-copy::after{
-  content:"ONE BUTTON";
-  position:absolute;
-  right:18px;
-  top:16px;
-  font-family:'Bangers','Luckiest Guy',cursive;
-  font-size:clamp(30px,4vw,58px);
-  color:rgba(216,95,85,.12);
-  transform:rotate(6deg);
-  pointer-events:none;
-}
-.rhythm-rule-list li{background:#fffaf0!important;}
-.rhythm-rule-list b{font-family:'Bangers','Luckiest Guy',cursive;font-size:18px!important;}
-.rhythm-card{position:relative;overflow:hidden!important;background:#fffefa!important;}
-.rhythm-card::before{
-  content:"";
-  position:absolute;
-  inset:12px;
-  border:2px dashed rgba(53,33,22,.14);
-  border-radius:28px;
-  pointer-events:none;
-}
-.rhythm-toolbar,.rhythm-hud,.rhythm-canvas-wrap,.rhythm-hit-button,.rhythm-mobile-hint,.rhythm-card .game-note{position:relative;z-index:1;}
-.rhythm-actions button{min-width:92px;}
-.rhythm-hud{grid-template-columns:repeat(5,minmax(0,1fr))!important;}
-.rhythm-hud div{background:#fff6dc!important;}
-.rhythm-hud b{font-family:'M PLUS Rounded 1c','Zen Maru Gothic',sans-serif!important;}
-.rhythm-canvas-wrap{
-  min-height:clamp(460px,52vw,650px)!important;
-  background:#f4f7d4!important;
-  border-radius:30px!important;
-  box-shadow:inset 0 0 0 6px rgba(255,255,255,.62),0 8px 0 rgba(53,33,22,.22)!important;
-}
-.rhythm-canvas-wrap #rebloomGameCanvas{cursor:pointer!important;touch-action:manipulation!important;}
-.rhythm-hit-button{
-  width:100%;
-  margin-top:14px;
-  min-height:70px;
-  border:4px solid var(--line);
-  border-radius:999px;
-  background:linear-gradient(180deg,#ffd45a,#ffad5c);
-  color:var(--soil-dark);
-  font-family:'Bangers','Luckiest Guy','M PLUS Rounded 1c',cursive;
-  font-size:clamp(28px,4.2vw,56px);
-  letter-spacing:.06em;
-  box-shadow:0 9px 0 var(--line),0 22px 42px rgba(53,33,22,.14);
-  cursor:pointer;
-  transition:transform .08s ease, box-shadow .08s ease, filter .12s ease;
-}
-.rhythm-hit-button:active,
-.rhythm-hit-button.is-hit{
-  transform:translateY(6px) scale(.995);
-  box-shadow:0 3px 0 var(--line),0 12px 24px rgba(53,33,22,.12);
-  filter:saturate(1.15);
-}
-.rhythm-overlay{inset:auto 16px 16px 16px!important;}
-.rhythm-overlay p{max-width:980px!important;background:rgba(255,255,255,.94)!important;}
-@media (max-width:900px){
-  .rhythm-copy{grid-template-columns:1fr!important;}
-  .rhythm-canvas-wrap{min-height:420px!important;}
-}
-@media (max-width:720px){
-  .rhythm-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
-  .rhythm-hud div:last-child{grid-column:auto!important;}
-  .rhythm-canvas-wrap{min-height:360px!important;}
-  .rhythm-hit-button{min-height:64px;}
-}
-@media (max-width:520px){
-  .rhythm-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
-  .rhythm-card{padding:14px!important;border-radius:28px!important;}
-  .rhythm-canvas-wrap{min-height:320px!important;border-radius:22px!important;}
-  .rhythm-overlay{inset:auto 8px 8px 8px!important;}
-  .rhythm-overlay p{font-size:11px!important;}
-}
-@media (prefers-reduced-motion: reduce){
-  .rhythm-hit-button{transition:none!important;}
-}
-
-
-
-/* =========================================================
-   v24: Original one-button call-and-response rhythm game
-   - No note highway; audio cue + response timing
-   - Stronger game UI, warmer white placement, bigger cartoon stage
-========================================================= */
-.rhythm-game{
-  background:
-    radial-gradient(circle at 12% 9%,rgba(255,212,90,.50) 0 112px,transparent 114px),
-    radial-gradient(circle at 88% 18%,rgba(255,159,202,.34) 0 132px,transparent 134px),
-    radial-gradient(circle at 78% 88%,rgba(79,154,92,.28) 0 172px,transparent 174px),
-    linear-gradient(180deg,#fff7df 0%,#eff9df 100%)!important;
-}
-.rhythm-copy{
-  grid-template-columns:minmax(0,.92fr) minmax(340px,1.08fr)!important;
-  border-width:4px!important;
-  background:#fffefa!important;
-}
-.rhythm-copy::after{content:"LISTEN → TAP"!important;color:rgba(232,95,85,.13)!important;right:22px!important;top:18px!important;}
-.rhythm-rule-list li{
-  background:#fff7df!important;
-  border:3px solid var(--line)!important;
-  border-radius:18px!important;
-  box-shadow:0 5px 0 rgba(53,33,22,.14)!important;
-}
-.rhythm-rule-list li span{font-size:13px!important;line-height:1.7!important;}
-.rhythm-rule-list li strong{font-weight:900;color:#c34b3f;}
-.rhythm-card{
-  background:linear-gradient(180deg,#fffefa,#fff4d5)!important;
-  border-width:5px!important;
-  box-shadow:0 12px 0 var(--line),0 26px 50px rgba(53,33,22,.16)!important;
-}
-.rhythm-card::before{display:none!important;}
-.rhythm-toolbar{margin-bottom:12px!important;}
-.rhythm-difficulty button,.game-difficulty button{white-space:nowrap!important;}
-.rhythm-hud div{
-  background:#fffaf0!important;
-  border:3px solid var(--line)!important;
-  border-radius:18px!important;
-  box-shadow:0 5px 0 rgba(53,33,22,.12)!important;
-}
-.rhythm-hud span{font-weight:900!important;letter-spacing:.08em!important;}
-.rhythm-hud b{font-size:clamp(19px,2.2vw,30px)!important;color:#352116!important;}
-.rhythm-canvas-wrap{
-  min-height:clamp(540px,53vw,700px)!important;
-  background:#f6edc9!important;
-  border:5px solid var(--line)!important;
-  border-radius:32px!important;
-  overflow:hidden!important;
-  box-shadow:inset 0 0 0 8px rgba(255,255,255,.70),0 9px 0 rgba(53,33,22,.24)!important;
-}
-.rhythm-hit-button{
-  background:linear-gradient(180deg,#ffdc66 0%,#ff995d 100%)!important;
-  color:#352116!important;
-  border-width:5px!important;
-  box-shadow:0 10px 0 var(--line),0 22px 42px rgba(53,33,22,.18)!important;
-  text-shadow:0 2px 0 rgba(255,255,255,.55)!important;
-}
-.rhythm-hit-button:active,.rhythm-hit-button.is-hit{transform:translateY(7px) scale(.992)!important;box-shadow:0 3px 0 var(--line),0 10px 20px rgba(53,33,22,.14)!important;}
-.rhythm-overlay p{
-  background:rgba(255,250,240,.94)!important;
-  border:3px solid rgba(53,33,22,.22)!important;
-  box-shadow:0 8px 26px rgba(53,33,22,.13)!important;
-}
-@media (max-width:900px){
-  .rhythm-copy{grid-template-columns:1fr!important;}
-  .rhythm-canvas-wrap{min-height:430px!important;}
-}
-@media (max-width:520px){
-  .rhythm-canvas-wrap{min-height:340px!important;border-radius:22px!important;}
-  .rhythm-hit-button{font-size:38px!important;min-height:68px!important;}
-}
-
-
-
-/* =========================================================
-   v25: Re:Bloom Weed Pop / one-tap field restoration puzzle
-   - Replaces rhythm mini-game with a calmer, juicier tap puzzle
-   - Large UI, touch-friendly, no overlapping text
-   ========================================================= */
-.field-pop-game{
-  padding-top:clamp(58px,7vw,96px)!important;
-  background:
-    radial-gradient(circle at 12% 8%, rgba(255,212,90,.45) 0 110px, transparent 112px),
-    radial-gradient(circle at 92% 16%, rgba(114,200,232,.34) 0 140px, transparent 142px),
-    linear-gradient(180deg,#fffaf0 0%,#eff8df 55%,#fffaf0 100%)!important;
-}
-.field-pop-shell{
-  display:grid!important;
-  grid-template-columns:1fr!important;
-  gap:24px!important;
-  max-width:1240px!important;
-  margin:0 auto!important;
-}
-.field-pop-copy{
-  position:relative!important;
-  top:auto!important;
-  display:grid!important;
-  grid-template-columns:minmax(0,.82fr) minmax(320px,1.18fr)!important;
-  gap:20px!important;
-  align-items:center!important;
-  padding:clamp(22px,3vw,34px)!important;
-  overflow:hidden!important;
-}
-.field-pop-copy::after{
-  content:"POP POP";
-  position:absolute;
-  right:22px;
-  top:12px;
-  z-index:0;
-  font-family:'Bangers','Luckiest Guy',cursive;
-  font-size:clamp(46px,8vw,108px);
-  letter-spacing:.04em;
-  color:rgba(232,95,85,.10);
-  transform:rotate(5deg);
-  pointer-events:none;
-}
-.field-pop-copy > *{position:relative;z-index:1;min-width:0;}
-.field-pop-copy h2{font-size:clamp(31px,4.8vw,62px)!important;line-height:1.18!important;margin:0!important;color:var(--soil-dark)!important;}
-.field-pop-copy h2 .pop-word{display:inline-block;position:relative;color:#e85f55!important;}
-.field-pop-copy h2 .pop-word::after{content:"";position:absolute;left:-5%;right:-5%;bottom:.02em;height:.22em;background:#ffd45a;z-index:-1;border-radius:999px;}
-.field-pop-copy > p:not(.eyebrow){font-size:15.5px!important;line-height:1.9!important;margin:10px 0 0!important;}
-.field-pop-rules{grid-template-columns:repeat(2,minmax(0,1fr))!important;margin:0!important;gap:10px!important;}
-.field-pop-rules li{background:#fffefa!important;min-width:0!important;padding:12px 13px!important;border-radius:18px!important;line-height:1.65!important;box-shadow:0 4px 0 rgba(53,33,22,.10)!important;}
-.field-pop-rules b{font-family:'Bangers','Luckiest Guy',cursive;font-size:19px!important;flex:0 0 34px!important;width:34px!important;height:34px!important;border-radius:12px!important;}
-.field-pop-card{
-  width:100%!important;
-  max-width:1180px!important;
-  margin:0 auto!important;
-  padding:clamp(14px,2.4vw,26px)!important;
-  border:5px solid var(--line)!important;
-  border-radius:34px!important;
-  background:linear-gradient(180deg,#fffefa 0%,#fff7df 100%)!important;
-  box-shadow:12px 12px 0 rgba(53,33,22,.98)!important;
-  overflow:hidden!important;
-}
-.field-pop-card.is-fever{animation:fieldFeverPulse .55s ease-in-out infinite alternate;}
-@keyframes fieldFeverPulse{from{box-shadow:12px 12px 0 rgba(53,33,22,.98),0 0 0 rgba(255,212,90,0)}to{box-shadow:12px 12px 0 rgba(53,33,22,.98),0 0 42px rgba(255,212,90,.78)}}
-.field-pop-toolbar{gap:12px!important;align-items:center!important;margin-bottom:12px!important;}
-.field-pop-difficulty,.field-pop-actions{gap:9px!important;}
-.field-pop-difficulty button,.field-pop-actions button{white-space:nowrap!important;min-height:44px!important;}
-.field-pop-actions button[disabled]{opacity:.45!important;cursor:not-allowed!important;transform:none!important;}
-.field-pop-hud{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:9px!important;margin-bottom:14px!important;}
-.field-pop-hud div{background:#fff6dc!important;padding:11px 8px!important;min-height:66px!important;display:grid!important;place-items:center!important;border-radius:18px!important;}
-.field-pop-hud span{font-weight:900!important;letter-spacing:.08em!important;}
-.field-pop-hud b{font-size:clamp(18px,2.4vw,30px)!important;color:#352116!important;line-height:1.15!important;}
-.field-pop-stage{
-  position:relative;
-  border:4px solid var(--line);
-  border-radius:28px;
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.58) 25%,transparent 25%) 0 0/38px 38px,
-    linear-gradient(315deg,rgba(255,255,255,.36) 25%,transparent 25%) 0 0/38px 38px,
-    linear-gradient(180deg,#dff1b1,#c8df91);
-  box-shadow:inset 0 0 0 5px rgba(255,255,255,.62);
-  overflow:hidden;
-  padding:clamp(12px,2vw,22px);
-  min-height:clamp(520px,58vw,670px);
-  touch-action:manipulation;
-}
-.field-pop-stage::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 24% 20%,rgba(255,212,90,.22),transparent 32%),radial-gradient(circle at 82% 18%,rgba(232,95,85,.14),transparent 28%);
-  pointer-events:none;
-}
-.field-pop-board{
-  position:relative;
-  z-index:1;
-  display:grid;
-  gap:8px;
-  width:min(100%,760px);
-  margin:0 auto;
-  padding:10px;
-  border:4px solid rgba(53,33,22,.30);
-  border-radius:28px;
-  background:rgba(255,250,240,.68);
-  box-shadow:inset 0 0 0 4px rgba(255,255,255,.58),0 8px 0 rgba(53,33,22,.16);
-}
-.field-tile{
-  position:relative;
-  display:grid;
-  place-items:center;
-  aspect-ratio:1/1;
-  min-width:0;
-  border:3px solid rgba(53,33,22,.70);
-  border-radius:20px;
-  color:#352116;
-  font-size:clamp(22px,5vw,42px);
-  font-weight:900;
-  line-height:1;
-  cursor:pointer;
-  user-select:none;
-  -webkit-tap-highlight-color:transparent;
-  box-shadow:0 6px 0 rgba(53,33,22,.28), inset 0 -7px 0 rgba(53,33,22,.10), inset 0 7px 0 rgba(255,255,255,.36);
-  transition:transform .12s ease, filter .12s ease, box-shadow .12s ease, opacity .18s ease;
-}
-.field-tile:hover,.field-tile:focus-visible{transform:translateY(-3px);filter:saturate(1.1);outline:4px solid rgba(255,212,90,.75);outline-offset:2px;}
-.field-tile:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(53,33,22,.30), inset 0 -5px 0 rgba(53,33,22,.10);}
-.field-tile.grass-a{background:linear-gradient(180deg,#a8d66d,#6fae45);}
-.field-tile.grass-b{background:linear-gradient(180deg,#b8e187,#7eb956);}
-.field-tile.grass-c{background:linear-gradient(180deg,#d9ef8f,#9fc55b);}
-.field-tile.mud{background:linear-gradient(180deg,#c48a58,#8d5b34);color:#fff9de;}
-.field-tile.water{background:linear-gradient(180deg,#a7e3ff,#56b9df);}
-.field-tile.seed{background:linear-gradient(180deg,#fff0a0,#f0bc3a);}
-.field-tile.support{background:linear-gradient(180deg,#ffb2c6,#e85f55);color:#fff;}
-.field-tile.stone{background:linear-gradient(180deg,#c8c2b6,#7c756b);color:#fff;cursor:not-allowed;filter:saturate(.8);}
-.field-tile.bloom{background:linear-gradient(180deg,#ffe6ef,#ff9fca)!important;color:#352116!important;}
-.field-tile.is-hint{animation:hintPulse .9s ease-in-out infinite alternate;}
-.field-tile.is-clearing{animation:tileClear .38s cubic-bezier(.2,1.7,.25,1) forwards;z-index:3;}
-.field-tile.is-new{animation:tileDrop .22s ease-out both;}
-@keyframes hintPulse{from{box-shadow:0 6px 0 rgba(53,33,22,.28),0 0 0 rgba(255,212,90,0)}to{box-shadow:0 6px 0 rgba(53,33,22,.28),0 0 0 7px rgba(255,212,90,.58)}}
-@keyframes tileClear{0%{transform:scale(1) rotate(0);opacity:1}45%{transform:scale(1.18) rotate(-4deg);opacity:1}100%{transform:scale(.2) rotate(10deg);opacity:0}}
-@keyframes tileDrop{from{transform:translateY(-20px) scale(.92);opacity:.35}to{transform:translateY(0) scale(1);opacity:1}}
-.field-pop-overlay{inset:auto 16px 16px 16px!important;}
-.field-pop-overlay p{max-width:980px!important;background:rgba(255,255,255,.95)!important;border-radius:20px!important;}
-.field-pop-float{
-  position:absolute;
-  z-index:5;
-  pointer-events:none;
-  left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  padding:10px 18px;
-  border:4px solid var(--line);
-  border-radius:999px;
-  background:#fffefa;
-  color:#e85f55;
-  font-size:clamp(24px,5vw,58px);
-  font-weight:900;
-  box-shadow:7px 7px 0 var(--line);
-  opacity:0;
-}
-.field-pop-float.is-show{animation:floatPop 1s ease-out both;}
-@keyframes floatPop{0%{opacity:0;transform:translate(-50%,-38%) scale(.65) rotate(-4deg)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.05) rotate(2deg)}100%{opacity:0;transform:translate(-50%,-92%) scale(.92) rotate(-2deg)}}
-.field-pop-progress{position:relative;z-index:1;display:grid;grid-template-columns:minmax(120px,.35fr) minmax(0,1fr);gap:12px;align-items:center;margin:12px auto 0;width:min(100%,760px);}
-.field-pop-progress-label{font-weight:900;color:#352116;font-size:13px;}
-.field-pop-progress-bar{height:22px;border:3px solid var(--line);border-radius:999px;background:#fffaf0;overflow:hidden;box-shadow:inset 0 3px 0 rgba(53,33,22,.12)}
-.field-pop-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#ffd45a,#ff9fca,#72c8e8);border-radius:999px;transition:width .18s ease;}
-.field-pop-result{position:relative;z-index:1;margin:14px auto 0;width:min(100%,760px);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 16px;border:3px solid rgba(53,33,22,.22);border-radius:20px;background:rgba(255,254,250,.82);}
-.field-pop-result p{margin:0;font-weight:850;line-height:1.65;color:#352116;}
-.field-pop-result b{font-size:1.12em;color:#e85f55;}
-.field-pop-result a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 15px;border:3px solid var(--line);border-radius:999px;background:#4f9a5c;color:#fff!important;font-weight:900;text-decoration:none;box-shadow:0 4px 0 var(--line);white-space:nowrap;}
-.field-pop-game .game-mobile-hint{display:block!important;}
-@media (max-width:1050px){
-  .field-pop-copy{grid-template-columns:1fr!important;}
-  .field-pop-rules{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
-  .field-pop-stage{min-height:520px;}
-}
-@media (max-width:720px){
-  .field-pop-card{padding:14px!important;border-radius:28px!important;box-shadow:7px 7px 0 rgba(53,33,22,.98)!important;}
-  .field-pop-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
-  .field-pop-hud div:last-child{grid-column:1/-1!important;}
-  .field-pop-toolbar{align-items:stretch!important;}
-  .field-pop-difficulty,.field-pop-actions{width:100%!important;}
-  .field-pop-difficulty button,.field-pop-actions button{flex:1 1 auto!important;}
-  .field-pop-rules{grid-template-columns:1fr!important;}
-  .field-pop-stage{min-height:auto;padding:10px;border-radius:22px;}
-  .field-pop-board{gap:5px;padding:6px;border-radius:18px;}
-  .field-tile{border-width:2px;border-radius:14px;box-shadow:0 4px 0 rgba(53,33,22,.26), inset 0 -5px 0 rgba(53,33,22,.10);}
-  .field-pop-progress{grid-template-columns:1fr;gap:6px;}
-  .field-pop-result{grid-template-columns:1fr;}
-  .field-pop-result a{width:100%;}
-  .field-pop-overlay{inset:auto 8px 8px 8px!important;}
-  .field-pop-overlay p{font-size:11px!important;line-height:1.55!important;}
-}
-@media (prefers-reduced-motion: reduce){
-  .field-tile,.field-pop-card,.field-pop-float,.field-pop-progress-fill{animation:none!important;transition:none!important;}
-}
+/* ===== v26 Flower diagnosis ===== */
+.flower-diagnosis{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffaf1 0%,#fff 52%,#f7fff0 100%);} 
+.flower-diagnosis:before{content:"";position:absolute;inset:24px auto auto -80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,var(--sun-soft),transparent 65%);opacity:.75;pointer-events:none;}
+.flower-diagnosis:after{content:"";position:absolute;right:-110px;bottom:24px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,#dff7ff,transparent 66%);opacity:.75;pointer-events:none;}
+.diagnosis-shell{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:28px;align-items:start;}
+.diagnosis-intro,.diagnosis-panel,.diagnosis-result,.flower-gallery{border:4px solid var(--ink);border-radius:30px;background:#fff;box-shadow:0 8px 0 var(--ink);}
+.diagnosis-intro{padding:30px;background:linear-gradient(135deg,#fff,#fff8db);}
+.diagnosis-intro h2{margin:.2em 0 .45em;font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-.04em;}
+.diagnosis-intro p{color:var(--ink-soft);font-weight:800;line-height:1.85;}
+.diagnosis-tags{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none;}
+.diagnosis-tags li{border:2px solid var(--ink);border-radius:999px;background:#fff4ba;padding:8px 12px;font-weight:900;box-shadow:0 3px 0 var(--ink);}
+.diagnosis-start-card{padding:24px;border:4px solid var(--ink);border-radius:28px;background:linear-gradient(135deg,#e8ffe0,#fff);box-shadow:0 8px 0 var(--ink);}
+.diagnosis-start-card h3{font-size:clamp(24px,3vw,34px);margin:0 0 12px;}
+.diagnosis-start-card p{margin:0 0 18px;font-weight:800;color:var(--ink-soft);line-height:1.8;}
+.diagnosis-note{font-size:13px!important;opacity:.75;margin-top:14px!important;}
+.diagnosis-panel{padding:24px;min-height:520px;display:none;}
+.diagnosis-panel.is-active{display:block;}
+.diagnosis-progress{display:grid;gap:10px;margin-bottom:20px;}
+.diagnosis-progress-top{display:flex;align-items:center;justify-content:space-between;gap:14px;font-weight:900;}
+.diagnosis-progress-track{height:14px;border:3px solid var(--ink);border-radius:999px;background:#fff3d7;overflow:hidden;}
+.diagnosis-progress-fill{display:block;height:100%;width:0%;background:linear-gradient(90deg,#ffd44d,#ff7ea4,#6bd66f);transition:width .25s ease;}
+.diagnosis-question-card{border:3px solid var(--ink);border-radius:24px;padding:22px;background:#fffaf0;}
+.diagnosis-q-category{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;background:#dff7ff;padding:5px 11px;font-weight:900;font-size:13px;margin-bottom:14px;}
+.diagnosis-question{font-size:clamp(22px,3.4vw,34px);line-height:1.42;font-weight:900;letter-spacing:-.03em;margin:0;}
+.diagnosis-answer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px;}
+.diagnosis-answer{border:3px solid var(--ink);border-radius:20px;background:#fff;color:var(--ink);box-shadow:0 5px 0 var(--ink);padding:18px 10px;font-weight:900;font-size:clamp(16px,2vw,22px);cursor:pointer;transition:transform .12s ease,box-shadow .12s ease,background .12s ease;}
+.diagnosis-answer:hover,.diagnosis-answer:focus-visible{transform:translateY(-3px);box-shadow:0 8px 0 var(--ink);background:#fff4ba;}
+.diagnosis-answer[data-value="1"]{background:#f0ffe7;}
+.diagnosis-answer[data-value="0"]{background:#fff7df;}
+.diagnosis-answer[data-value="-1"]{background:#f3f3f3;}
+.diagnosis-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;}
+.diagnosis-controls .btn{min-height:44px;}
+.diagnosis-mini-field{margin-top:18px;border:3px solid var(--ink);border-radius:20px;padding:14px;background:#f8fff3;}
+.diagnosis-mini-field p{margin:0 0 10px;font-weight:900;color:var(--ink-soft);font-size:13px;}
+.flower-seed-row{display:grid;grid-template-columns:repeat(14,1fr);gap:5px;}
+.flower-seed-row i{display:block;aspect-ratio:1;border:2px solid var(--ink);border-radius:50%;background:#fff;transition:transform .2s ease,background .2s ease;}
+.flower-seed-row i.is-on{background:radial-gradient(circle at 40% 40%,#fff 0 14%,#ff7ea4 15% 42%,#ffd44d 43% 58%,#67be5b 59%);transform:scale(1.06) rotate(-10deg);}
+.diagnosis-result{display:none;padding:24px;margin-top:26px;background:linear-gradient(135deg,#fff,#fff8e8);}
+.diagnosis-result.is-active{display:block;}
+.result-hero{display:grid;grid-template-columns:minmax(260px,420px) minmax(0,1fr);gap:22px;align-items:start;}
+.result-image-wrap{border:4px solid var(--ink);border-radius:24px;background:#fff;overflow:hidden;box-shadow:0 7px 0 var(--ink);}
+.result-image-wrap img{width:100%;display:block;}
+.result-content h3{font-size:clamp(34px,5vw,62px);line-height:1.02;margin:.15em 0 .2em;letter-spacing:-.04em;}
+.result-group-badge{display:inline-flex;border:3px solid var(--ink);border-radius:999px;background:#fff4ba;padding:7px 13px;font-weight:900;box-shadow:0 4px 0 var(--ink);}
+.result-lead{font-size:clamp(18px,2.2vw,23px);font-weight:900;line-height:1.7;color:var(--ink);}
+.result-desc{font-weight:800;line-height:1.9;color:var(--ink-soft);}
+.result-section-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px;}
+.result-box{border:3px solid var(--ink);border-radius:22px;background:#fff;padding:18px;}
+.result-box h4{margin:0 0 10px;font-size:18px;}
+.result-box ul{margin:0;padding-left:1.2em;font-weight:800;line-height:1.8;color:var(--ink-soft);}
+.result-box p{margin:0;font-weight:800;line-height:1.8;color:var(--ink-soft);}
+.axis-bars{display:grid;gap:11px;margin-top:12px;}
+.axis-row{display:grid;grid-template-columns:110px 1fr 110px;gap:10px;align-items:center;font-weight:900;font-size:13px;}
+.axis-track{height:18px;border:3px solid var(--ink);border-radius:999px;background:#fff3d7;position:relative;overflow:hidden;}
+.axis-track span{position:absolute;top:0;bottom:0;left:50%;width:0;background:linear-gradient(90deg,#75d66c,#ffd44d);transition:all .45s ease;}
+.axis-track span.neg{left:auto;right:50%;background:linear-gradient(90deg,#a7c8ff,#75d66c);}
+.result-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.diagnosis-copy-status{font-weight:900;color:var(--green-dark);margin:8px 0 0;}
+.flower-gallery{margin-top:28px;padding:24px;}
+.flower-gallery summary{cursor:pointer;font-size:clamp(22px,3vw,32px);font-weight:900;}
+.flower-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px;}
+.flower-card-grid img{width:100%;display:block;border:3px solid var(--ink);border-radius:18px;background:#fff;box-shadow:0 5px 0 var(--ink);}
+@media(max-width:960px){.diagnosis-shell,.result-hero{grid-template-columns:1fr}.flower-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.diagnosis-panel{min-height:auto;}}
+@media(max-width:620px){.diagnosis-answer-grid{grid-template-columns:1fr}.diagnosis-intro,.diagnosis-panel,.diagnosis-start-card,.diagnosis-result,.flower-gallery{padding:18px;border-width:3px;border-radius:22px}.axis-row{grid-template-columns:82px 1fr 82px;font-size:12px}.flower-card-grid{grid-template-columns:1fr}.flower-seed-row{grid-template-columns:repeat(8,1fr);}.diagnosis-question{font-size:23px;}.result-section-grid{grid-template-columns:1fr;}}
 
 </style>
 </head>
@@ -4532,7 +4077,8 @@ img,svg{max-width:100%;height:auto;}
 <button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
 <nav aria-label="サイト内メニュー" class="site-nav" id="site-nav">
 <a href="#about">概要</a>
-<a href="#fun-mission">楽しさ</a><a href="#game">ゲーム</a><a href="#crowdfunding">クラファン</a>
+<a href="#fun-mission">楽しさ</a>
+<a href="#flower-diagnosis">花診断</a><a href="#crowdfunding">クラファン</a>
 <a href="#impact">支援の目安</a>
 <a href="#status">現在地</a>
 <a href="#ways">関わり方</a>
@@ -4561,6 +4107,7 @@ img,svg{max-width:100%;height:auto;}
 <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、毎年少しずつでも再生していくプロジェクトです。土地を整え、人が入り、関係が生まれ、翌年度以降の活用へつながる流れをつくります。</p>
 <div class="hero-actions">
 <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn ghost" href="#flower-diagnosis">花診断を試す</a>
 <a class="btn ghost" href="#impact">支援の目安を見る</a>
 <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加・連携を相談する</a>
 </div>
@@ -4657,6 +4204,7 @@ img,svg{max-width:100%;height:auto;}
 <p>耕作放棄地の再生を、難しい話だけで終わらせない。泥に入る、写真を撮る、応援する、種を育てる。小さな楽しさを入口にして、能登の土地に関わる人を増やしていきます。</p>
 <div class="ways-actions">
 <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">クラファンで応援する</a>
+<a class="btn ghost" href="#flower-diagnosis">花タイプ診断を試す</a>
 <a class="btn ghost" href="#event">泥ん子運動会を見る</a>
 </div>
 </div>
@@ -4680,56 +4228,82 @@ img,svg{max-width:100%;height:auto;}
 </div>
 </section>
 
-<section class="section rebloom-game field-pop-game" id="game">
-  <div class="container game-shell field-pop-shell">
-    <div class="game-copy field-pop-copy reveal">
-      <p class="eyebrow"><i></i>ONE TAP FIELD PUZZLE</p>
-      <h2><span class="keep">草むらを、</span><br/><span class="pop-word">ポンポン整える。</span></h2>
-      <p>同じ種類の草がつながっている場所をタップするだけ。大きなかたまりを見つけるほど、コンボ・フィーバー・レンゲ開花が気持ちよく広がる、耕作放棄地テーマのブラウザパズルです。</p>
-      <ul class="game-rule-list field-pop-rules">
-        <li><b>1</b><span>同じ草が<strong>2つ以上</strong>つながった場所をタップ。難しいモードでは3つ以上から。</span></li>
-        <li><b>水</b><span>大きく消すと、水バケツ・種袋・応援旗が出現。まとめて整備できます。</span></li>
-        <li><b>花</b><span>連続で消すとフィーバー。レンゲが一気に咲いて、スコアが跳ねます。</span></li>
-        <li><b>泥</b><span>子ども向けのゆったりから、石・再生草が多い高難度まで選べます。</span></li>
-      </ul>
+<section class="section flower-diagnosis" id="flower-diagnosis">
+  <div class="container">
+    <div class="diagnosis-shell">
+      <div class="diagnosis-intro reveal">
+        <p class="eyebrow"><i></i>FLOWER TYPE DIAGNOSIS</p>
+        <h2><span class="keep">あなたの中に咲く花は？</span><br/><span class="keep">Re:Bloom 花タイプ診断</span></h2>
+        <p>56問の質問に、<b>はい / どちらともいえない / いいえ</b>で答えるだけ。人との関わり方、行動の起こし方、判断のくせ、地域との向き合い方から、32種類の花タイプの中からあなたに近い花を表示します。</p>
+        <ul class="diagnosis-tags" aria-label="診断の特徴">
+          <li>56問</li><li>3択で回答</li><li>32花タイプ</li><li>分析グラフ付き</li><li>結果をコピー可能</li>
+        </ul>
+      </div>
+      <div class="diagnosis-start-card reveal" id="diagnosisStartCard">
+        <h3>花に直接関係する質問はありません。</h3>
+        <p>あなたの人となりを聞いたうえで、「花でたとえるなら何か」を診断します。途中で閉じても、同じブラウザなら回答を保存できます。</p>
+        <button class="btn primary" id="diagnosisStart" type="button">診断をはじめる</button>
+        <button class="btn ghost" id="diagnosisResume" type="button">途中から再開する</button>
+        <p class="diagnosis-note">※この診断は性格を決めつけるものではありません。回答傾向をもとに、花タイプとして楽しく表示するコンテンツです。</p>
+      </div>
     </div>
-    <div class="game-card field-pop-card reveal" aria-label="Re:Bloom Weed Pop ゲーム">
-      <div class="game-toolbar field-pop-toolbar">
-        <div class="game-difficulty field-pop-difficulty" aria-label="難易度選択">
-          <button type="button" data-game-diff="easy" class="is-active">やさしい</button>
-          <button type="button" data-game-diff="normal">ふつう</button>
-          <button type="button" data-game-diff="hard">本気</button>
-          <button type="button" data-game-diff="mud">どろんこ</button>
-        </div>
-        <div class="game-action field-pop-actions">
-          <button type="button" class="primary-game" id="gameStartBtn">スタート</button>
-          <button type="button" id="gamePauseBtn">停止</button>
-          <button type="button" id="gameResetBtn">リセット</button>
+
+    <div class="diagnosis-panel" id="diagnosisPanel" aria-live="polite">
+      <div class="diagnosis-progress">
+        <div class="diagnosis-progress-top"><span id="diagnosisCount">1 / 56</span><span id="diagnosisPercent">0%</span></div>
+        <div class="diagnosis-progress-track"><span class="diagnosis-progress-fill" id="diagnosisProgressFill"></span></div>
+      </div>
+      <div class="diagnosis-question-card">
+        <span class="diagnosis-q-category" id="diagnosisCategory">人との関わり方</span>
+        <p class="diagnosis-question" id="diagnosisQuestion">質問が入ります。</p>
+        <div class="diagnosis-answer-grid" role="group" aria-label="回答を選択">
+          <button class="diagnosis-answer" data-value="1" type="button">はい</button>
+          <button class="diagnosis-answer" data-value="0" type="button">どちらとも<br/>いえない</button>
+          <button class="diagnosis-answer" data-value="-1" type="button">いいえ</button>
         </div>
       </div>
-      <div class="game-hud field-pop-hud" aria-live="polite">
-        <div><span>整備</span><b id="gameArea">0㎡</b></div>
-        <div><span>コンボ</span><b id="gameBloom">0</b></div>
-        <div><span>フィーバー</span><b id="gameSupport">0%</b></div>
-        <div><span>残り</span><b id="gameLives">90s</b></div>
-        <div><span>スコア</span><b id="gameScore">0</b></div>
+      <div class="diagnosis-controls">
+        <button class="btn ghost" id="diagnosisBack" type="button">前の質問へ</button>
+        <button class="btn ghost" id="diagnosisReset" type="button">最初からやり直す</button>
       </div>
-      <div class="field-pop-stage" id="fieldPopStage">
-        <div id="rebloomPuzzleBoard" class="field-pop-board" role="grid" aria-label="同じ草のかたまりをタップして整えるパズル盤面"></div>
-        <div class="field-pop-progress" aria-hidden="true">
-          <div class="field-pop-progress-label">Re:Bloom Fever</div>
-          <div class="field-pop-progress-bar"><div class="field-pop-progress-fill" id="fieldFeverFill"></div></div>
-        </div>
-        <div class="field-pop-result" id="fieldResultBox">
-          <p id="fieldResultText">スタートして、同じ草のかたまりをタップ。大きく消すほど気持ちよく伸びます。</p>
-          <a href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">READYFORで応援</a>
-        </div>
-        <div class="field-pop-float" id="fieldFloatText" aria-hidden="true">POP!</div>
-        <div class="game-overlay-message field-pop-overlay"><p id="gameMessage">難易度を選んでスタート。同じ草のかたまりをタップして、能登の土地をポンポン整えよう。</p></div>
+      <div class="diagnosis-mini-field" aria-hidden="true">
+        <p>答えるほど、心の畑に小さな花が増えていきます。</p>
+        <div class="flower-seed-row" id="flowerSeedRow"></div>
       </div>
-      <p class="game-mobile-hint">スマホは指でタップするだけ。PCはクリック、またはTabでマスを選んでEnter/Spaceでも遊べます。連打より「大きなかたまり探し」がコツです。</p>
-      <p class="game-note">※このゲームは、NOTO Re:Bloomの世界観を楽しむためのオリジナル演出です。実際の整備工程や費用を表すものではありません。</p>
     </div>
+
+    <div class="diagnosis-result" id="diagnosisResult">
+      <div class="result-hero">
+        <div class="result-image-wrap"><img id="resultImage" alt="診断結果の花カード" src="assets/flower-cards/renge.png" loading="lazy"/></div>
+        <div class="result-content">
+          <span class="result-group-badge" id="resultGroup">里山の花</span>
+          <h3 id="resultTitle">レンゲタイプ</h3>
+          <p class="result-lead" id="resultLead">小さな場所にも根を張り、周りをやさしく豊かにする人。</p>
+          <p class="result-desc" id="resultDesc">結果説明が入ります。</p>
+          <div class="axis-bars" id="axisBars"></div>
+          <div class="result-actions">
+            <button class="btn primary" id="copyDiagnosisResult" type="button">結果をコピーする</button>
+            <a class="btn ghost" id="downloadCard" href="assets/flower-cards/renge.png" download>花カードを保存</a>
+            <a class="btn ghost comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
+            <button class="btn ghost" id="retryDiagnosis" type="button">もう一度診断する</button>
+          </div>
+          <p class="diagnosis-copy-status" id="diagnosisCopyStatus"></p>
+        </div>
+      </div>
+      <div class="result-section-grid">
+        <article class="result-box"><h4>強み</h4><ul id="resultStrengths"></ul></article>
+        <article class="result-box"><h4>気をつけたいこと</h4><ul id="resultWatch"></ul></article>
+        <article class="result-box"><h4>人との関わり方</h4><p id="resultRelation"></p></article>
+        <article class="result-box"><h4>地域活動での向き合い方</h4><p id="resultRegional"></p></article>
+        <article class="result-box"><h4>おすすめの応援スタイル</h4><p id="resultRecommended"></p></article>
+        <article class="result-box"><h4>グループの特徴</h4><p id="resultGroupLead"></p></article>
+      </div>
+    </div>
+
+    <details class="flower-gallery reveal">
+      <summary>32種類の花タイプカードを見る</summary>
+      <div class="flower-card-grid" id="flowerCardGrid"></div>
+    </details>
   </div>
 </section>
 
@@ -5544,363 +5118,113 @@ img,svg{max-width:100%;height:auto;}
 </script>
 
 <script>
-(() => {
-  const boardEl = document.getElementById('rebloomPuzzleBoard');
-  if (!boardEl) return;
-
-  const ui = {
-    area: document.getElementById('gameArea'),
-    combo: document.getElementById('gameBloom'),
-    fever: document.getElementById('gameSupport'),
-    time: document.getElementById('gameLives'),
-    score: document.getElementById('gameScore'),
-    message: document.getElementById('gameMessage'),
-    start: document.getElementById('gameStartBtn'),
-    stop: document.getElementById('gamePauseBtn'),
-    reset: document.getElementById('gameResetBtn'),
-    diffButtons: [...document.querySelectorAll('[data-game-diff]')],
-    float: document.getElementById('fieldFloatText'),
-    fill: document.getElementById('fieldFeverFill'),
-    result: document.getElementById('fieldResultText'),
-    card: document.querySelector('.field-pop-card')
+(function(){
+  const FLOWERS = [{"slug": "himawari", "name": "ヒマワリ", "group": "太陽の花", "tagline": "場を明るく照らし、前向きな空気を広げる人。", "short": "場を照らす前向きエンジン", "desc": "ヒマワリタイプは、まわりを明るく照らし、場の空気を前向きに変える人です。迷っている人の背中を押し、自然と人を集める力があります。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "人の背中を押せる", "最初の一歩をつくる", "応援の輪を広げる"], "watch": ["細かい確認を急ぎすぎること", "明るく見せようとして疲れること", "周囲の温度差に気づきにくいこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F7B500", "image": "assets/flower-cards/himawari.png"}, {"slug": "gerbera", "name": "ガーベラ", "group": "太陽の花", "tagline": "親しみやすく、人を自然に巻き込める人。", "short": "やわらかく巻き込む人気者", "desc": "ガーベラタイプは、親しみやすく、誰とでも自然に距離を縮められる人です。場をやわらかくし、初対面の人にも安心感を与えます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "行動のきっかけをつくる", "人を前向きにする", "周囲を巻き込める"], "watch": ["勢いで細部を見落とすこと", "明るく振る舞いすぎて疲れること", "周りのペースを置いていくこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#FF6B8A", "image": "assets/flower-cards/gerbera.png"}, {"slug": "salvia", "name": "サルビア", "group": "太陽の花", "tagline": "熱量と発想で、突破口をつくる人。", "short": "熱で道をひらく突破役", "desc": "サルビアタイプは、情熱を持って行動し、人の心に火をつける人です。言葉や態度に熱量があり、応援する時も全力です。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "行動のきっかけをつくる", "人を前向きにする", "周囲を巻き込める"], "watch": ["勢いで細部を見落とすこと", "明るく振る舞いすぎて疲れること", "周りのペースを置いていくこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#E82929", "image": "assets/flower-cards/salvia.png"}, {"slug": "dahlia", "name": "ダリア", "group": "太陽の花", "tagline": "こだわりと構想力で、大きな形をつくる人。", "short": "美意識で形をつくる人", "desc": "ダリアタイプは、存在感があり、自分の美意識やこだわりを持っている人です。やるなら中途半端にしたくないタイプです。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "行動のきっかけをつくる", "人を前向きにする", "周囲を巻き込める"], "watch": ["勢いで細部を見落とすこと", "明るく振る舞いすぎて疲れること", "周りのペースを置いていくこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#E8388B", "image": "assets/flower-cards/dahlia.png"}, {"slug": "tulip", "name": "チューリップ", "group": "太陽の花", "tagline": "素直な行動力で、最初の一歩をつくる人。", "short": "まっすぐ始める春の人", "desc": "チューリップタイプは、素直でまっすぐ、自分の気持ちを表に出せる人です。人から応援されやすく、場に春のような明るさを運びます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "行動のきっかけをつくる", "人を前向きにする", "周囲を巻き込める"], "watch": ["勢いで細部を見落とすこと", "明るく振る舞いすぎて疲れること", "周りのペースを置いていくこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F0443E", "image": "assets/flower-cards/tulip.png"}, {"slug": "marigold", "name": "マリーゴールド", "group": "太陽の花", "tagline": "元気で粘り強く、地道なことも続けられる人。", "short": "元気に続ける粘り強さ", "desc": "マリーゴールドタイプは、元気で粘り強く、多少のトラブルにも負けない人です。失敗しても切り替えが早く、周囲に活力を与えます。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "行動のきっかけをつくる", "人を前向きにする", "周囲を巻き込める"], "watch": ["勢いで細部を見落とすこと", "明るく振る舞いすぎて疲れること", "周りのペースを置いていくこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F47A00", "image": "assets/flower-cards/marigold.png"}, {"slug": "poppy", "name": "ポピー", "group": "太陽の花", "tagline": "軽やかなひらめきで、新しい風を入れる人。", "short": "空気を変える軽やかさ", "desc": "ポピータイプは、軽やかで自由、思いついたらすぐ動ける人です。深刻になりすぎず、空気を変えるのが得意です。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "行動のきっかけをつくる", "人を前向きにする", "周囲を巻き込める"], "watch": ["勢いで細部を見落とすこと", "明るく振る舞いすぎて疲れること", "周りのペースを置いていくこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F03A2E", "image": "assets/flower-cards/poppy.png"}, {"slug": "hibiscus", "name": "ハイビスカス", "group": "太陽の花", "tagline": "華やかな存在感で、気持ちを前向きにする人。", "short": "場を盛り上げる華やかさ", "desc": "ハイビスカスタイプは、大胆で華やか、日常に非日常の楽しさを持ち込める人です。人を楽しませるセンスがあります。", "groupLead": "外へ広げ、まず動くエネルギーを持つグループ。人や場を前向きに動かす力があります。", "strengths": ["場を明るくする", "行動のきっかけをつくる", "人を前向きにする", "周囲を巻き込める"], "watch": ["勢いで細部を見落とすこと", "明るく振る舞いすぎて疲れること", "周りのペースを置いていくこと"], "relation": "初対面でも距離を縮めやすく、場にいる人の気持ちを前向きにできます。周囲の反応を見ながら進むと、さらに魅力が伝わります。", "regional": "イベント参加、SNSでの紹介、友人を誘う応援など、人を巻き込む関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F72D79", "image": "assets/flower-cards/hibiscus.png"}, {"slug": "cosmos", "name": "コスモス", "group": "風の花", "tagline": "自由で軽やか。新しい見方を届ける人。", "short": "自由に景色を変える人", "desc": "コスモスタイプは、自由で軽やか、変化を前向きに楽しめる人です。余白のある場所で力を発揮します。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F36CA3", "image": "assets/flower-cards/cosmos.png"}, {"slug": "mimosa", "name": "ミモザ", "group": "風の花", "tagline": "やわらかく人を励まし、変化のきっかけを運ぶ人。", "short": "春を運ぶやわらかな励まし", "desc": "ミモザタイプは、明るさと繊細さをあわせ持ち、人をそっと励ます人です。春を知らせるように、変化のきっかけを運びます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#E8B400", "image": "assets/flower-cards/mimosa.png"}, {"slug": "lupinus", "name": "ルピナス", "group": "風の花", "tagline": "成長意欲が強く、挑戦の空気を広げる人。", "short": "上へ伸びる挑戦の人", "desc": "ルピナスタイプは、成長意欲が強く、新しい挑戦や学びに前向きな人です。周りにも「やってみよう」と思わせます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#7E4FD8", "image": "assets/flower-cards/lupinus.png"}, {"slug": "iris", "name": "アイリス", "group": "風の花", "tagline": "知的な観察力で、道を示す人。", "short": "構造を見抜く知性", "desc": "アイリスタイプは、知的で観察力があり、物事の構造を見抜く人です。全体像や意味を考えながら進みます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#4557D6", "image": "assets/flower-cards/iris.png"}, {"slug": "freesia", "name": "フリージア", "group": "風の花", "tagline": "気づかい上手で、やわらかな調和をつくる人。", "short": "会話から楽しさを広げる", "desc": "フリージアタイプは、軽やかで好奇心があり、人との会話から新しい発想を得る人です。楽しさと気配りのバランスがあります。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F1B900", "image": "assets/flower-cards/freesia.png"}, {"slug": "clematis", "name": "クレマチス", "group": "風の花", "tagline": "自分らしい世界観で、人を惹きつける人。", "short": "関係の中で伸びる美意識", "desc": "クレマチスタイプは、人や場所との関係の中で、自分の力を広げる人です。つなぐ力と独自の美意識を持っています。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#7B4BC5", "image": "assets/flower-cards/clematis.png"}, {"slug": "anemone", "name": "アネモネ", "group": "風の花", "tagline": "感性の鋭さで、物事の核心をつかむ人。", "short": "直感で違う道を出す人", "desc": "アネモネタイプは、感情の動きが豊かで、直感的に物事をつかむ人です。人と違う視点を持っています。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#E72D55", "image": "assets/flower-cards/anemone.png"}, {"slug": "edelweiss", "name": "エーデルワイス", "group": "風の花", "tagline": "静かな誠実さで、信頼を積み重ねる人。", "short": "流されない希少な芯", "desc": "エーデルワイスタイプは、簡単には流されない、希少で芯の強い人です。自分の価値観を守り、静かに立ち続けます。", "groupLead": "外へ広げながら、じっくり整えるグループ。人や場所に新しい見方を運ぶ力があります。", "strengths": ["新しい視点を出せる", "人や場をつなげる", "変化を前向きに扱える", "空気に彩りを加える"], "watch": ["考えが広がりすぎること", "自分の世界に入りすぎること", "現実的な段取りが後回しになること"], "relation": "会話や関係の中で力が伸びるタイプです。自分の視点を押しつけず、相手と混ぜ合わせると良さが出ます。", "regional": "広報、企画、紹介、アイデア出しなど、プロジェクトの可能性を広げる関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#8FA3B8", "image": "assets/flower-cards/edelweiss.png"}, {"slug": "renge", "name": "レンゲ", "group": "里山の花", "tagline": "小さな場所にも根を張り、周りを豊かにする人。", "short": "土台をやさしく育てる人", "desc": "レンゲタイプは、小さな場所にも根を張り、周りをやさしく豊かにする人です。誰かの挑戦や場の土台を支えることに力を発揮します。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["人を安心させる", "小さな変化に気づける", "継続的に支えられる", "場の土台を整えられる"], "watch": ["遠慮して本音を出せなくなること", "自分の頑張りを後回しにしすぎること", "人を支えるうちに疲れてしまうこと"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#EC6AA0", "image": "assets/flower-cards/renge.png"}, {"slug": "shirotsumekusa", "name": "シロツメクサ", "group": "里山の花", "tagline": "親しみやすく、仲間との輪を広げる人。", "short": "つながりを穏やかに育てる", "desc": "シロツメクサタイプは、人と人の間に入り、自然とつながりを生む人です。穏やかな雰囲気で場の緊張をほどきます。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["小さな変化に気づける", "継続的に支えられる", "場に安心感をつくる", "目の前の人を大切にできる"], "watch": ["自分の頑張りを後回しにすること", "遠慮して本音を出せなくなること", "責任を一人で抱えすぎること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#45A943", "image": "assets/flower-cards/shirotsumekusa.png"}, {"slug": "tanpopo", "name": "タンポポ", "group": "里山の花", "tagline": "しなやかな強さで、どこでも芽吹ける人。", "short": "どこでも咲けるしなやかさ", "desc": "タンポポタイプは、どんな場所でも自分らしく咲ける、しなやかな人です。環境が変わっても少しずつ居場所をつくれます。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["小さな変化に気づける", "継続的に支えられる", "場に安心感をつくる", "目の前の人を大切にできる"], "watch": ["自分の頑張りを後回しにすること", "遠慮して本音を出せなくなること", "責任を一人で抱えすぎること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F4B400", "image": "assets/flower-cards/tanpopo.png"}, {"slug": "nadeshiko", "name": "ナデシコ", "group": "里山の花", "tagline": "細やかな心配りで、魅力を深める人。", "short": "誠実で芯のある信頼感", "desc": "ナデシコタイプは、誠実で芯があり、信頼を積み重ねる人です。派手な言葉より、行動で気持ちを示します。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["小さな変化に気づける", "継続的に支えられる", "場に安心感をつくる", "目の前の人を大切にできる"], "watch": ["自分の頑張りを後回しにすること", "遠慮して本音を出せなくなること", "責任を一人で抱えすぎること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F05C9B", "image": "assets/flower-cards/nadeshiko.png"}, {"slug": "nanohana", "name": "菜の花", "group": "里山の花", "tagline": "まっすぐな明るさで、希望を広げる人。", "short": "暮らしに灯るあたたかさ", "desc": "菜の花タイプは、あたたかく、親しみやすく、場にやわらかな明るさを広げる人です。目の前の人を大事にします。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["小さな変化に気づける", "継続的に支えられる", "場に安心感をつくる", "目の前の人を大切にできる"], "watch": ["自分の頑張りを後回しにすること", "遠慮して本音を出せなくなること", "責任を一人で抱えすぎること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#E6B800", "image": "assets/flower-cards/nanohana.png"}, {"slug": "kasumisou", "name": "カスミソウ", "group": "里山の花", "tagline": "さりげない支えで、全体を美しく整える人。", "short": "主役を引き立てる支え", "desc": "カスミソウタイプは、主役を引き立て、全体の雰囲気を美しく整える人です。気づかれないところで人を支えます。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["小さな変化に気づける", "継続的に支えられる", "場に安心感をつくる", "目の前の人を大切にできる"], "watch": ["自分の頑張りを後回しにすること", "遠慮して本音を出せなくなること", "責任を一人で抱えすぎること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#9EA6AD", "image": "assets/flower-cards/kasumisou.png"}, {"slug": "clover", "name": "クローバー", "group": "里山の花", "tagline": "幸運を引き寄せるように、前向きな流れをつくる人。", "short": "安心を生むそばの人", "desc": "クローバータイプは、人を安心させる雰囲気があり、そばにいるだけで場が落ち着く人です。日々の中に小さな安心をつくれます。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["小さな変化に気づける", "継続的に支えられる", "場に安心感をつくる", "目の前の人を大切にできる"], "watch": ["自分の頑張りを後回しにすること", "遠慮して本音を出せなくなること", "責任を一人で抱えすぎること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#2E9D3C", "image": "assets/flower-cards/clover.png"}, {"slug": "sumire", "name": "スミレ", "group": "里山の花", "tagline": "控えめでも確かな魅力で、心に残る人。", "short": "小さくても芯を守る人", "desc": "スミレタイプは、静かで控えめですが、自分の大切なものをしっかり持っている人です。必要な場所で確実に力を出します。", "groupLead": "内で深めながら、まず動くグループ。静かな行動で場の土台を支える力があります。", "strengths": ["小さな変化に気づける", "継続的に支えられる", "場に安心感をつくる", "目の前の人を大切にできる"], "watch": ["自分の頑張りを後回しにすること", "遠慮して本音を出せなくなること", "責任を一人で抱えすぎること"], "relation": "一気に距離を縮めるより、時間をかけて信頼を育てるタイプです。あなたといると相手は自然体でいられます。", "regional": "現地作業、見守り、活動報告の共有、小さな継続支援など、土台を支える関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#7A4BC5", "image": "assets/flower-cards/sumire.png"}, {"slug": "nemophila", "name": "ネモフィラ", "group": "水辺の花", "tagline": "澄んだ感性で、心地よい景色をつくる人。", "short": "未来の空気を感じ取る", "desc": "ネモフィラタイプは、やさしく澄んだ感性を持ち、広い景色や未来を感じ取れる人です。内側には大きな世界があります。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "丁寧に考えられる", "人を安心させられる", "本質を見つめられる"], "watch": ["考えすぎて動き出しが遅れること", "気持ちを抱え込みすぎること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#2796E6", "image": "assets/flower-cards/nemophila.png"}, {"slug": "wasurenagusa", "name": "ワスレナグサ", "group": "水辺の花", "tagline": "小さなやさしさを積み重ね、記憶に残る人。", "short": "思い出と約束を大切にする", "desc": "ワスレナグサタイプは、記憶や思い出、人との約束を大切にする人です。誰かの心に残る関わり方をします。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "丁寧に考えられる", "人を安心させられる", "本質を見つめられる"], "watch": ["考えすぎて動き出しが遅れること", "気持ちを抱え込みすぎること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#2E83D6", "image": "assets/flower-cards/wasurenagusa.png"}, {"slug": "suiren", "name": "睡蓮", "group": "水辺の花", "tagline": "落ち着きと奥行きで、静かな強さを持つ人。", "short": "内側に深い世界を持つ", "desc": "睡蓮タイプは、深く考え、感情を静かに整えながら進む人です。表面は穏やかでも、内側には強い芯があります。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "丁寧に考えられる", "人を安心させられる", "本質を見つめられる"], "watch": ["考えすぎて動き出しが遅れること", "気持ちを抱え込みすぎること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#F06C9B", "image": "assets/flower-cards/suiren.png"}, {"slug": "kikyo", "name": "桔梗", "group": "水辺の花", "tagline": "涼やかな誠実さで、言葉に芯を通す人。", "short": "凛とした言葉を大切に", "desc": "桔梗タイプは、凛としていて、誠実な言葉を大切にする人です。簡単に流されず、自分の考えを静かに持っています。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "丁寧に考えられる", "人を安心させられる", "本質を見つめられる"], "watch": ["考えすぎて動き出しが遅れること", "気持ちを抱え込みすぎること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#343CA5", "image": "assets/flower-cards/kikyo.png"}, {"slug": "ajisai", "name": "アジサイ", "group": "水辺の花", "tagline": "気持ちの機微を受け止め、場に深みを出す人。", "short": "しなやかに変化できる", "desc": "アジサイタイプは、状況や相手に合わせて、表情を変えられる柔軟な人です。複雑なものをそのまま受け止める深さがあります。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "丁寧に考えられる", "人を安心させられる", "本質を見つめられる"], "watch": ["考えすぎて動き出しが遅れること", "気持ちを抱え込みすぎること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#3569D6", "image": "assets/flower-cards/ajisai.png"}, {"slug": "chamomile", "name": "カモミール", "group": "水辺の花", "tagline": "自然体のやさしさで、人をほっとさせる人。", "short": "疲れた空気をやわらげる", "desc": "カモミールタイプは、人を癒やし、疲れた空気をやわらげる人です。無理に励ますのではなく、そっと寄り添えます。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "丁寧に考えられる", "人を安心させられる", "本質を見つめられる"], "watch": ["考えすぎて動き出しが遅れること", "気持ちを抱え込みすぎること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#E5A900", "image": "assets/flower-cards/chamomile.png"}, {"slug": "lavender", "name": "ラベンダー", "group": "水辺の花", "tagline": "穏やかな空気で、心を整える人。", "short": "自分のペースを整える", "desc": "ラベンダータイプは、落ち着いた雰囲気で、周りの心を整える人です。急がず、焦らず、安心できる空気をつくります。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["空気の変化に気づける", "丁寧に考えられる", "人を安心させられる", "本質を見つめられる"], "watch": ["考えすぎて動き出しが遅れること", "気持ちを抱え込みすぎること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#7D56C6", "image": "assets/flower-cards/lavender.png"}, {"slug": "rindou", "name": "リンドウ", "group": "水辺の花", "tagline": "静かな意志を持ち、最後までやり抜く人。", "short": "苦しい時ほど本質を見る", "desc": "リンドウタイプは、静かな強さを持ち、苦しい時ほど本質を見つめる人です。内側の粘り強さが魅力です。", "groupLead": "内で深め、じっくり整えるグループ。感性と観察力で本質に近づく力があります。", "strengths": ["静かに粘れる", "本質を見つめられる", "簡単に流されない", "苦しい時ほど強い"], "watch": ["一人で抱え込みやすいこと", "助けを求めるのが遅れること", "自分の良さを控えめに見せすぎること"], "relation": "深く関わるほど魅力が伝わるタイプです。無理に明るく振る舞わなくても、落ち着いた存在感が周りを支えます。", "regional": "活動報告を読む、丁寧に広める、長く見守る、静かに応援する関わり方が向いています。", "recommended": "応援コース、活動報告の共有、READYFORのシェアが合っています。能登の魅力も受け取りたい場合は、能登の特産品コースもおすすめです。", "color": "#245CD6", "image": "assets/flower-cards/rindou.png"}];
+  const FLOWER_MAP = {"11111": "himawari", "11110": "gerbera", "11101": "salvia", "11100": "dahlia", "11011": "tulip", "11010": "marigold", "11001": "poppy", "11000": "hibiscus", "10111": "cosmos", "10110": "mimosa", "10101": "lupinus", "10100": "iris", "10011": "freesia", "10010": "clematis", "10001": "anemone", "10000": "edelweiss", "01111": "renge", "01110": "shirotsumekusa", "01101": "tanpopo", "01100": "nadeshiko", "01011": "nanohana", "01010": "kasumisou", "01001": "clover", "01000": "sumire", "00111": "nemophila", "00110": "wasurenagusa", "00101": "suiren", "00100": "kikyo", "00011": "ajisai", "00010": "chamomile", "00001": "lavender", "00000": "rindou"};
+  const QUESTIONS = [{"text": "初対面の人が多い場でも、自分から話しかけることが多い。", "category": "人との関わり方", "axes": {"G": 1}}, {"text": "大人数の場にいると、自然と元気が出る。", "category": "人との関わり方", "axes": {"G": 1}}, {"text": "一人の時間がないと、気持ちを整えにくい。", "category": "人との関わり方", "axes": {"G": -1}}, {"text": "誰かが落ち込んでいると、まず気持ちを受け止めたい。", "category": "人との関わり方", "axes": {"H": 1}}, {"text": "人と仲良くなるには、一緒に体験することが大事だと思う。", "category": "人との関わり方", "axes": {"A": 1, "H": 1}}, {"text": "話し合いでは、発言しにくい人の様子が気になる。", "category": "人との関わり方", "axes": {"H": 1}}, {"text": "人間関係では、正しさよりも無理のない距離感を大切にしたい。", "category": "人との関わり方", "axes": {"G": -1, "H": 1}}, {"text": "場を盛り上げるより、落ち着いて全体を見ていたい。", "category": "人との関わり方", "axes": {"G": -1, "A": -1}}, {"text": "新しいことは、考えすぎる前に一度やってみたい。", "category": "行動の起こし方", "axes": {"A": 1}}, {"text": "予定のない休日は、外に出て何かしたくなる。", "category": "行動の起こし方", "axes": {"G": 1, "A": 1}}, {"text": "予定のない休日は、家で自分の時間を整えたい。", "category": "行動の起こし方", "axes": {"G": -1, "A": -1}}, {"text": "失敗しても経験になるなら、挑戦してみたい。", "category": "行動の起こし方", "axes": {"A": 1, "P": 1}}, {"text": "長く続けるには、楽しさがかなり大事だと思う。", "category": "行動の起こし方", "axes": {"F": 1}}, {"text": "予定や手順が決まっている方が、安心して力を出せる。", "category": "行動の起こし方", "axes": {"F": -1, "A": -1}}, {"text": "人から期待されると、力が出やすい。", "category": "行動の起こし方", "axes": {"G": 1, "A": 1}}, {"text": "苦手な作業でも、自分なりに楽しくする工夫をしたい。", "category": "行動の起こし方", "axes": {"F": 1, "P": 1}}, {"text": "何かを決める時、直感的に良いと思えるかを大切にする。", "category": "判断の仕方", "axes": {"P": 1, "F": 1}}, {"text": "意見が分かれた時は、まずそれぞれの気持ちを聞きたい。", "category": "判断の仕方", "axes": {"H": 1}}, {"text": "選択に迷った時は、少し個性のある方を選びたくなる。", "category": "判断の仕方", "axes": {"P": 1, "F": 1}}, {"text": "正しいことでも、伝え方で人を傷つけるなら慎重になる。", "category": "判断の仕方", "axes": {"H": 1, "A": -1}}, {"text": "根拠や条件が整理されている話に納得しやすい。", "category": "判断の仕方", "axes": {"H": -1, "F": -1}}, {"text": "説明は、具体例がある方が納得しやすい。", "category": "判断の仕方", "axes": {"P": -1}}, {"text": "チームの方針は、みんなが動き出したくなるものがいい。", "category": "判断の仕方", "axes": {"G": 1, "A": 1}}, {"text": "大きな可能性より、実行できる現実性を重視したい。", "category": "判断の仕方", "axes": {"P": -1, "F": -1}}, {"text": "うまくいかない時は、気持ちを切り替えてもう一度進みたい。", "category": "困った時の反応", "axes": {"A": 1, "F": 1}}, {"text": "忙しすぎる時は、まずやることを整理したい。", "category": "困った時の反応", "axes": {"A": -1, "F": -1}}, {"text": "人に誤解されたら、早めに話して解きたい。", "category": "困った時の反応", "axes": {"G": 1, "A": 1}}, {"text": "プレッシャーがある時、応援してくれる人の存在が力になる。", "category": "困った時の反応", "axes": {"H": 1, "G": 1}}, {"text": "気分が落ちた時は、静かな時間を過ごすと回復しやすい。", "category": "困った時の反応", "axes": {"G": -1, "A": -1}}, {"text": "トラブルが起きたら、まず現場を動かすことを考える。", "category": "困った時の反応", "axes": {"A": 1, "H": -1}}, {"text": "自分の弱さに気づいた時は、改善策を考えたくなる。", "category": "困った時の反応", "axes": {"H": -1, "F": -1}}, {"text": "長く大変なことには、意味を確認しながら向き合いたい。", "category": "困った時の反応", "axes": {"P": 1, "G": -1}}, {"text": "自分がいると、チームに明るさが増えると思う。", "category": "チームでの役割", "axes": {"G": 1, "A": 1}}, {"text": "チームに足りないものがあると、自分が動いて雰囲気を変えたくなる。", "category": "チームでの役割", "axes": {"A": 1, "G": 1}}, {"text": "リーダーを任されたら、みんなを巻き込んで進めたい。", "category": "チームでの役割", "axes": {"G": 1, "H": 1}}, {"text": "裏方を任されたら、正確に仕上げることを大事にしたい。", "category": "チームでの役割", "axes": {"H": -1, "F": -1}}, {"text": "自分の強みは、行動力よりも責任感に近いと思う。", "category": "チームでの役割", "axes": {"A": -1, "F": -1}}, {"text": "意見がぶつかった時は、違いを活かす方法を探したい。", "category": "チームでの役割", "axes": {"P": 1, "H": 1}}, {"text": "チームの雰囲気が悪い時、明るい話題を出したくなる。", "category": "チームでの役割", "axes": {"G": 1, "F": 1}}, {"text": "自分が自然にできるのは、場を整えて支えることだ。", "category": "チームでの役割", "axes": {"G": -1, "A": -1, "H": 1}}, {"text": "地域活動に関わるなら、現地で一緒に動きたい。", "category": "地域・社会との関わり方", "axes": {"A": 1}}, {"text": "応援したいと思うのは、楽しそうで人が集まる活動だ。", "category": "地域・社会との関わり方", "axes": {"G": 1, "F": 1}}, {"text": "まちに必要なのは、続けられる仕組みだと思う。", "category": "地域・社会との関わり方", "axes": {"F": -1, "P": -1}}, {"text": "自分にできる応援は、参加して盛り上げることに近い。", "category": "地域・社会との関わり方", "axes": {"G": 1, "A": 1}}, {"text": "地域に関わるなら、人の思いや背景を聞くことに惹かれる。", "category": "地域・社会との関わり方", "axes": {"H": 1, "G": -1}}, {"text": "活動報告では、支援金の使い道や進捗を知りたい。", "category": "地域・社会との関わり方", "axes": {"H": -1, "F": -1}}, {"text": "支援する時は、応援したい気持ちが湧くかを重視する。", "category": "地域・社会との関わり方", "axes": {"H": 1, "F": 1}}, {"text": "自分にとって「関わる」とは、可能性を広げることに近い。", "category": "地域・社会との関わり方", "axes": {"P": 1, "G": 1}}, {"text": "これからの自分に必要なのは、行動する勇気だと思う。", "category": "未来への向き合い方", "axes": {"A": 1}}, {"text": "理想の未来は、地道な努力が実っている未来だ。", "category": "未来への向き合い方", "axes": {"F": -1, "P": -1}}, {"text": "変化は、面白そうなら乗ってみたい。", "category": "未来への向き合い方", "axes": {"F": 1, "P": 1}}, {"text": "自分らしい成長とは、見える世界が広がることだ。", "category": "未来への向き合い方", "axes": {"P": 1}}, {"text": "次の世代に残すなら、あたたかいつながりを残したい。", "category": "未来への向き合い方", "axes": {"H": 1}}, {"text": "大事にしたい言葉は「まずやってみよう」だ。", "category": "未来への向き合い方", "axes": {"A": 1, "F": 1}}, {"text": "最後までやり遂げるには、計画が大切だと思う。", "category": "未来への向き合い方", "axes": {"F": -1, "A": -1}}, {"text": "誰かに残したいものは、新しい可能性だ。", "category": "未来への向き合い方", "axes": {"P": 1}}];
+  const STORAGE_KEY = 'rebloomFlowerDiagnosisAnswersV1';
+  const AXIS_LABELS = {
+    G: ['内で深める','外へ広げる'],
+    A: ['じっくり整える','まず動く'],
+    P: ['現実を見る','可能性を見る'],
+    H: ['筋道で考える','気持ちを汲む'],
+    F: ['計画して積む','余白を楽しむ']
   };
-
-  const difficulties = {
-    easy:   { label:'やさしい', size:6, seconds:90, minGroup:2, types:['grass-a','grass-b','grass-c'], stones:0,  refillStone:.00, scoreMul:1.0, feverGain:5.8, hint:'2つから消せます。子ども・初めて向け。' },
-    normal: { label:'ふつう',   size:7, seconds:75, minGroup:2, types:['grass-a','grass-b','grass-c','mud'], stones:3,  refillStone:.02, scoreMul:1.25, feverGain:5.0, hint:'石が少し出ます。大きなかたまりを探すと伸びます。' },
-    hard:   { label:'本気',     size:8, seconds:65, minGroup:3, types:['grass-a','grass-b','grass-c','mud'], stones:7,  refillStone:.05, scoreMul:1.65, feverGain:4.4, hint:'3つ以上から。石が増え、考えるほど高得点。' },
-    mud:    { label:'どろんこ', size:8, seconds:55, minGroup:3, types:['grass-a','grass-b','grass-c','mud'], stones:11, refillStone:.08, scoreMul:2.2, feverGain:3.8, hint:'短時間・石多め・高倍率。大人向けの高難度。' }
-  };
-  const tileLabel = {
-    'grass-a': '草A', 'grass-b': '草B', 'grass-c': '草C', mud:'泥', water:'水バケツ', seed:'種袋', support:'応援旗', stone:'石', bloom:'レンゲ'
-  };
-  const tileIcon = {
-    'grass-a':'🌿', 'grass-b':'🍃', 'grass-c':'🌱', mud:'泥', water:'💧', seed:'種', support:'旗', stone:'石', bloom:'✿'
-  };
-
-  let diffKey = 'easy', config = difficulties.easy;
-  let board = [], cells = [];
-  let running = false, paused = false, locked = false;
-  let score = 0, area = 0, combo = 0, fever = 0, timeLeft = config.seconds;
-  let timerId = null, comboTimer = null, audio = null, master = null;
-  let highScore = 0;
-
-  const rnd = arr => arr[Math.floor(Math.random() * arr.length)];
-  const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
-
-  function ensureAudio(){
-    if (!audio) {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return null;
-      audio = new AC();
-      master = audio.createGain();
-      master.gain.value = .38;
-      master.connect(audio.destination);
-    }
-    if (audio.state === 'suspended') audio.resume();
-    return audio;
+  let answers = [];
+  let index = 0;
+  const $ = (id)=>document.getElementById(id);
+  const panel=$('diagnosisPanel');
+  const start=$('diagnosisStart');
+  const resume=$('diagnosisResume');
+  const back=$('diagnosisBack');
+  const reset=$('diagnosisReset');
+  const result=$('diagnosisResult');
+  const qText=$('diagnosisQuestion');
+  const qCat=$('diagnosisCategory');
+  const count=$('diagnosisCount');
+  const percent=$('diagnosisPercent');
+  const fill=$('diagnosisProgressFill');
+  const seedRow=$('flowerSeedRow');
+  if(!panel || !start) return;
+  function flowerBySlug(slug){return FLOWERS.find(f=>f.slug===slug)||FLOWERS[0];}
+  function save(){localStorage.setItem(STORAGE_KEY, JSON.stringify({answers,index}));}
+  function load(){try{const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); if(Array.isArray(data.answers)){answers=data.answers; index=Math.min(data.index||0, QUESTIONS.length-1);} }catch(e){}}
+  function clear(){answers=[];index=0;localStorage.removeItem(STORAGE_KEY);}
+  function updateSeeds(){
+    if(!seedRow) return; seedRow.innerHTML='';
+    for(let i=0;i<56;i++){const dot=document.createElement('i'); if(i<answers.length) dot.className='is-on'; seedRow.appendChild(dot);}
   }
-  function tone(freq, dur=.06, type='sine', gain=.045){
-    if (!audio || !master) return;
-    const t = audio.currentTime + .002;
-    const osc = audio.createOscillator();
-    const g = audio.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, t);
-    g.gain.setValueAtTime(.0001, t);
-    g.gain.exponentialRampToValueAtTime(Math.max(.0002,gain), t+.012);
-    g.gain.exponentialRampToValueAtTime(.0001, t+dur);
-    osc.connect(g); g.connect(master); osc.start(t); osc.stop(t+dur+.04);
+  function render(){
+    panel.classList.add('is-active'); result.classList.remove('is-active');
+    const q=QUESTIONS[index]; qText.textContent=q.text; qCat.textContent=q.category;
+    count.textContent = `${index+1} / ${QUESTIONS.length}`;
+    const pct=Math.round((answers.length/QUESTIONS.length)*100);
+    percent.textContent = `${pct}%`; fill.style.width = `${pct}%`;
+    updateSeeds(); save();
+    panel.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  function sfx(kind){
-    if (!audio) return;
-    if (kind === 'pop') { tone(520,.045,'square',.035); tone(760,.055,'triangle',.03); }
-    if (kind === 'big') { [480,640,820].forEach((f,i)=>setTimeout(()=>tone(f,.055,'triangle',.045),i*42)); }
-    if (kind === 'bad') { tone(145,.12,'sawtooth',.035); }
-    if (kind === 'fever') { [520,660,780,1040].forEach((f,i)=>setTimeout(()=>tone(f,.12,'triangle',.055),i*55)); }
-    if (kind === 'special') { [380,760].forEach((f,i)=>setTimeout(()=>tone(f,.08,'square',.05),i*60)); }
+  function startNew(){clear();render();}
+  function resumeOld(){load();render();}
+  function calc(){
+    const scores={G:0,A:0,P:0,H:0,F:0}; const counts={G:0,A:0,P:0,H:0,F:0};
+    answers.forEach((ans,i)=>{ const axes=QUESTIONS[i].axes; Object.keys(axes).forEach(k=>{scores[k]+= ans*axes[k]; counts[k]++;}); });
+    const bits=['G','A','P','H','F'].map(k=>scores[k]>=0 ? '1':'0').join('');
+    const slug=FLOWER_MAP[bits] || 'renge';
+    return {scores,counts,bits,flower:flowerBySlug(slug)};
   }
-
-  function setMessage(text){ if (ui.message) ui.message.textContent = text; }
-  function showFloat(text){
-    if (!ui.float) return;
-    ui.float.textContent = text;
-    ui.float.classList.remove('is-show');
-    void ui.float.offsetWidth;
-    ui.float.classList.add('is-show');
+  function barHTML(key,score,count){
+    const max=Math.max(1,count); const pct=Math.min(100,Math.round(Math.abs(score)/max*100));
+    const neg = score < 0;
+    const labels=AXIS_LABELS[key];
+    return `<div class="axis-row"><span>${labels[0]}</span><div class="axis-track"><span class="${neg?'neg':''}" style="width:${pct/2}%"></span></div><span>${labels[1]}</span></div>`;
   }
-  function vibrate(ms=18){ if (navigator.vibrate) navigator.vibrate(ms); }
-
-  function getHighScore(){
-    try { return Number(localStorage.getItem('rebloomWeedPopHigh_' + diffKey) || 0); } catch(e) { return 0; }
+  function listHTML(items){return items.map(x=>`<li>${x}</li>`).join('');}
+  function showResult(){
+    const {scores,counts,flower}=calc();
+    panel.classList.remove('is-active'); result.classList.add('is-active');
+    $('resultImage').src=flower.image; $('resultImage').alt=`${flower.name}タイプの花カード`;
+    $('downloadCard').href=flower.image; $('downloadCard').download=`${flower.name}タイプ.png`;
+    $('resultGroup').textContent=flower.group;
+    $('resultTitle').textContent=`${flower.name}タイプ`;
+    $('resultLead').textContent=flower.tagline;
+    $('resultDesc').textContent=flower.desc;
+    $('resultStrengths').innerHTML=listHTML(flower.strengths);
+    $('resultWatch').innerHTML=listHTML(flower.watch);
+    $('resultRelation').textContent=flower.relation;
+    $('resultRegional').textContent=flower.regional;
+    $('resultRecommended').textContent=flower.recommended;
+    $('resultGroupLead').textContent=flower.groupLead;
+    $('axisBars').innerHTML=['G','A','P','H','F'].map(k=>barHTML(k,scores[k],counts[k])).join('');
+    save();
+    result.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  function saveHighScore(){
-    highScore = Math.max(highScore, score);
-    try { localStorage.setItem('rebloomWeedPopHigh_' + diffKey, String(highScore)); } catch(e) {}
-  }
-
-  function randomTile(){
-    if (Math.random() < config.refillStone) return 'stone';
-    return rnd(config.types);
-  }
-  function makeBoard(){
-    board = Array.from({length: config.size}, () => Array.from({length: config.size}, () => randomTile()));
-    let placed = 0;
-    while (placed < config.stones) {
-      const r = Math.floor(Math.random()*config.size), c = Math.floor(Math.random()*config.size);
-      if (board[r][c] !== 'stone') { board[r][c] = 'stone'; placed++; }
-    }
-    ensurePlayable();
-  }
-  function renderBoard(){
-    boardEl.style.gridTemplateColumns = `repeat(${config.size}, minmax(0,1fr))`;
-    boardEl.innerHTML = '';
-    cells = [];
-    for (let r=0; r<config.size; r++) {
-      for (let c=0; c<config.size; c++) {
-        const type = board[r][c];
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = `field-tile ${type}`;
-        btn.dataset.r = String(r); btn.dataset.c = String(c);
-        btn.setAttribute('role','gridcell');
-        btn.setAttribute('aria-label', `${tileLabel[type] || type}、${r+1}行${c+1}列`);
-        btn.textContent = tileIcon[type] || '';
-        if (type === 'stone') btn.setAttribute('aria-disabled','true');
-        btn.addEventListener('click', () => handleCell(r,c));
-        boardEl.appendChild(btn);
-        cells.push(btn);
-      }
-    }
-    markHints();
-  }
-  function cellAt(r,c){ return cells[r*config.size + c]; }
-  function inBounds(r,c){ return r>=0 && c>=0 && r<config.size && c<config.size; }
-  function neighbors(r,c){ return [[r-1,c],[r+1,c],[r,c-1],[r,c+1]].filter(([rr,cc])=>inBounds(rr,cc)); }
-  function isNormal(type){ return config.types.includes(type); }
-
-  function findGroup(r,c){
-    const type = board[r]?.[c];
-    if (!isNormal(type)) return [];
-    const seen = new Set([`${r},${c}`]);
-    const out = [[r,c]];
-    const stack = [[r,c]];
-    while (stack.length) {
-      const [cr,cc] = stack.pop();
-      neighbors(cr,cc).forEach(([nr,nc]) => {
-        const key = `${nr},${nc}`;
-        if (!seen.has(key) && board[nr][nc] === type) {
-          seen.add(key); out.push([nr,nc]); stack.push([nr,nc]);
-        }
-      });
-    }
-    return out;
-  }
-  function allGroups(){
-    const seen = new Set();
-    const groups = [];
-    for (let r=0; r<config.size; r++) for (let c=0; c<config.size; c++) {
-      const key = `${r},${c}`;
-      if (seen.has(key) || !isNormal(board[r][c])) continue;
-      const g = findGroup(r,c);
-      g.forEach(([rr,cc])=>seen.add(`${rr},${cc}`));
-      if (g.length >= config.minGroup) groups.push(g);
-    }
-    return groups.sort((a,b)=>b.length-a.length);
-  }
-  function ensurePlayable(){
-    let guard = 0;
-    while (allGroups().length === 0 && guard < 50) {
-      const r = Math.floor(Math.random()*config.size), c = Math.floor(Math.random()*config.size);
-      if (board[r][c] !== 'stone') board[r][c] = rnd(config.types);
-      if (c+1 < config.size && board[r][c+1] !== 'stone') board[r][c+1] = board[r][c];
-      if (config.minGroup >= 3 && r+1 < config.size && board[r+1][c] !== 'stone') board[r+1][c] = board[r][c];
-      guard++;
-    }
-  }
-  function markHints(){
-    cells.forEach(el=>el.classList.remove('is-hint'));
-    const top = allGroups()[0];
-    if (!running || !top || top.length < Math.max(config.minGroup+2,4)) return;
-    top.slice(0,10).forEach(([r,c]) => cellAt(r,c)?.classList.add('is-hint'));
-  }
-
-  function clearCells(list, opts={}){
-    if (!list.length) return;
-    locked = true;
-    const unique = [];
-    const seen = new Set();
-    list.forEach(([r,c])=>{
-      if (!inBounds(r,c)) return;
-      const key = `${r},${c}`;
-      if (seen.has(key) || board[r][c] === 'stone' && !opts.breakStone) return;
-      seen.add(key); unique.push([r,c]);
+  document.querySelectorAll('.diagnosis-answer').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      answers[index]=Number(btn.dataset.value);
+      if(index < QUESTIONS.length-1){ index++; render(); } else { showResult(); }
     });
-    unique.forEach(([r,c]) => {
-      const el = cellAt(r,c);
-      if (el) { el.classList.add('is-clearing'); el.textContent = '✿'; }
-      board[r][c] = 'bloom';
-    });
-    setTimeout(() => {
-      unique.forEach(([r,c]) => { board[r][c] = randomTile(); });
-      ensurePlayable();
-      renderBoard();
-      locked = false;
-    }, 280);
-  }
+  });
+  start.addEventListener('click',startNew);
+  resume.addEventListener('click',resumeOld);
+  back.addEventListener('click',()=>{ if(index>0){index--;answers=answers.slice(0,index);render();} });
+  reset.addEventListener('click',startNew);
+  $('retryDiagnosis')?.addEventListener('click',startNew);
+  $('copyDiagnosisResult')?.addEventListener('click',async()=>{
+    const {flower}=calc();
+    const text=`私は「${flower.name}タイプ」でした。
+${flower.tagline}
 
-  function addSpecialNear(r,c,groupSize){
-    if (groupSize < 5) return;
-    setTimeout(() => {
-      if (!running) return;
-      const choices = [[r,c],...neighbors(r,c)].filter(([rr,cc]) => inBounds(rr,cc) && board[rr][cc] !== 'stone');
-      if (!choices.length) return;
-      const [sr,sc] = rnd(choices);
-      const type = groupSize >= 9 ? 'support' : groupSize >= 7 ? 'seed' : 'water';
-      board[sr][sc] = type;
-      renderBoard();
-      showFloat(type === 'water' ? '水バケツ！' : type === 'seed' ? '種袋！' : '応援旗！');
-      sfx('special');
-    }, 340);
+あなたの中に咲く花は？
+Re:Bloom 花タイプ診断
+https://noto-rebloom.github.io/noto-rebloom/#flower-diagnosis`;
+    try{ await navigator.clipboard.writeText(text); $('diagnosisCopyStatus').textContent='結果をコピーしました。'; }
+    catch(e){ $('diagnosisCopyStatus').textContent='コピーできませんでした。'; }
+  });
+  const grid=$('flowerCardGrid');
+  if(grid){
+    grid.innerHTML = FLOWERS.map(f=>`<img src="${f.image}" alt="${f.name}タイプの診断カード" loading="lazy">`).join('');
   }
-
-  function handleCell(r,c){
-    if (!running || paused || locked) return;
-    ensureAudio();
-    const type = board[r][c];
-    if (type === 'stone') { miss('石は水や種で崩せます'); return; }
-    if (type === 'water') return useWater(r,c);
-    if (type === 'seed') return useSeed(r,c);
-    if (type === 'support') return triggerFever(true);
-    const group = findGroup(r,c);
-    if (group.length < config.minGroup) {
-      miss(`${config.label}は${config.minGroup}つ以上から。大きなかたまりを探そう。`);
-      return;
-    }
-    combo++;
-    clearTimeout(comboTimer);
-    comboTimer = setTimeout(()=>{ combo = 0; updateHud(); }, 3300);
-    const base = Math.round((group.length * group.length * 12 + group.length * 20) * config.scoreMul * (1 + Math.min(combo,12)*.08));
-    score += base; area += group.length; fever = clamp(fever + group.length * config.feverGain + Math.min(combo,10), 0, 100);
-    clearCells(group);
-    addSpecialNear(r,c,group.length);
-    const label = group.length >= 10 ? '超再生！' : group.length >= 7 ? 'BIG POP!' : group.length >= 5 ? 'NICE!' : 'POP!';
-    setMessage(`${group.length}マス整備。${combo}コンボ！ 大きなかたまりほどスコアが伸びます。`);
-    showFloat(`${label} +${base.toLocaleString()}`);
-    sfx(group.length >= 5 ? 'big' : 'pop');
-    vibrate(group.length >= 7 ? 36 : 18);
-    if (fever >= 100) setTimeout(()=>triggerFever(false), 360);
-    updateHud();
-  }
-  function miss(text){
-    combo = 0;
-    score = Math.max(0, score - Math.round(35 * config.scoreMul));
-    setMessage(text);
-    showFloat('もう一歩！');
-    sfx('bad'); vibrate(24);
-    updateHud();
-  }
-  function useWater(r,c){
-    const list = [];
-    for (let i=0; i<config.size; i++) { list.push([r,i],[i,c]); }
-    board[r][c] = 'bloom';
-    const count = new Set(list.map(v=>v.join(','))).size;
-    score += Math.round(count * 80 * config.scoreMul); area += count; fever = clamp(fever + 22,0,100); combo++;
-    clearCells(list,{breakStone:true});
-    setMessage('水路が通った！ 十字方向をまとめて整備しました。');
-    showFloat('水路コンボ！'); sfx('big'); vibrate(42); updateHud();
-    if (fever >= 100) setTimeout(()=>triggerFever(false), 360);
-  }
-  function useSeed(r,c){
-    const list = [];
-    for (let dr=-1; dr<=1; dr++) for (let dc=-1; dc<=1; dc++) list.push([r+dr,c+dc]);
-    const valid = list.filter(([rr,cc])=>inBounds(rr,cc));
-    score += Math.round(valid.length * 120 * config.scoreMul); area += valid.length; fever = clamp(fever + 28,0,100); combo++;
-    clearCells(valid,{breakStone:true});
-    setMessage('種袋からレンゲが広がった！ 周囲をまとめて開花。');
-    showFloat('レンゲ開花！'); sfx('big'); vibrate(50); updateHud();
-    if (fever >= 100) setTimeout(()=>triggerFever(false), 360);
-  }
-  function triggerFever(fromFlag){
-    if (!running || locked) return;
-    fever = 0;
-    ui.card?.classList.add('is-fever');
-    const clearable = [];
-    for (let r=0; r<config.size; r++) for (let c=0; c<config.size; c++) if (board[r][c] !== 'stone') clearable.push([r,c]);
-    const amount = Math.min(clearable.length, Math.floor(config.size * config.size * (fromFlag ? .42 : .32)));
-    const picked = [];
-    for (let i=0; i<amount && clearable.length; i++) picked.push(clearable.splice(Math.floor(Math.random()*clearable.length),1)[0]);
-    score += Math.round(amount * 180 * config.scoreMul * (1 + combo*.05));
-    area += amount; combo += 2;
-    clearCells(picked,{breakStone:false});
-    setMessage('Re:Bloom Fever！ 応援の波で一気に土地が明るくなりました。');
-    showFloat('Re:Bloom Fever!!'); sfx('fever'); vibrate([30,40,30]);
-    setTimeout(()=>ui.card?.classList.remove('is-fever'), 1100);
-    updateHud();
-  }
-
-  function updateHud(){
-    ui.area.textContent = `${area}㎡`;
-    ui.combo.textContent = String(combo);
-    ui.fever.textContent = `${Math.round(fever)}%`;
-    ui.time.textContent = `${Math.max(0,Math.ceil(timeLeft))}s`;
-    ui.score.textContent = score.toLocaleString();
-    if (ui.fill) ui.fill.style.width = `${clamp(fever,0,100)}%`;
-    if (ui.result) ui.result.innerHTML = `現在 <b>${area}㎡</b> を整備中。ベストスコア：<b>${highScore.toLocaleString()}</b>`;
-  }
-  function tick(){
-    if (!running || paused) return;
-    timeLeft -= .1;
-    if (timeLeft <= 0) return endGame();
-    updateHud();
-  }
-  function startGame(){
-    ensureAudio();
-    if (running && paused) { paused = false; setMessage('再開しました。大きなかたまりを探そう。'); return; }
-    running = true; paused = false; locked = false;
-    score = 0; area = 0; combo = 0; fever = 0; timeLeft = config.seconds;
-    highScore = getHighScore();
-    makeBoard(); renderBoard(); updateHud();
-    clearInterval(timerId); timerId = setInterval(tick,100);
-    setMessage(`${config.label}モード開始。${config.hint}`);
-    showFloat('START!'); sfx('special');
-  }
-  function pauseGame(){
-    if (!running) return;
-    paused = !paused;
-    setMessage(paused ? '停止中。もう一度「停止」を押すと再開します。' : '再開しました。');
-  }
-  function resetGame(keepMessage=false){
-    running = false; paused = false; locked = false;
-    clearInterval(timerId); clearTimeout(comboTimer);
-    score = 0; area = 0; combo = 0; fever = 0; timeLeft = config.seconds; highScore = getHighScore();
-    makeBoard(); renderBoard(); updateHud();
-    ui.card?.classList.remove('is-fever');
-    if (!keepMessage) setMessage(`難易度を選んでスタート。${config.hint}`);
-  }
-  function endGame(){
-    running = false; paused = false; locked = false;
-    clearInterval(timerId); clearTimeout(comboTimer);
-    saveHighScore(); updateHud();
-    const rank = score >= 18000 ? 'S' : score >= 11000 ? 'A' : score >= 6000 ? 'B' : 'C';
-    setMessage(`結果：${area}㎡を整備、スコア${score.toLocaleString()}。ランク${rank}！`);
-    if (ui.result) ui.result.innerHTML = `結果：<b>${area}㎡</b> を整備。スコア <b>${score.toLocaleString()}</b> / ランク <b>${rank}</b>。実際の活動では、300円で約1㎡が動き出す目安です。`;
-    showFloat(`RANK ${rank}`);
-    sfx(rank === 'S' || rank === 'A' ? 'fever' : 'big');
-  }
-
-  ui.start?.addEventListener('click', startGame);
-  ui.stop?.addEventListener('click', pauseGame);
-  ui.reset?.addEventListener('click', () => resetGame());
-  ui.diffButtons.forEach(btn => btn.addEventListener('click', () => {
-    diffKey = btn.dataset.gameDiff || 'easy';
-    config = difficulties[diffKey];
-    ui.diffButtons.forEach(b => b.classList.toggle('is-active', b === btn));
-    resetGame(true);
-    setMessage(`${config.label}モード：${config.hint}`);
-  }));
-  document.addEventListener('visibilitychange', () => { if (document.hidden && running) paused = true; });
-  resetGame();
+  load(); updateSeeds();
 })();
 </script>
 
