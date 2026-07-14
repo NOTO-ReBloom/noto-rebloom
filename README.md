@@ -1,45 +1,25 @@
-# NOTO Re:Bloom — GitHub Pagesサイト
+# NOTO Re:Bloom website
 
-企業・団体への協賛・地域連携の説明に使える、静的な公式サイトです。HTML / CSS / JavaScriptのみで動き、GitHub Pagesにそのまま公開できます。
+GitHub Pagesで公開する静的サイトです。
 
-## 公開手順（GitHub Pages）
+## 公開ページ
 
-1. GitHubで新しいリポジトリを作成します。例：`noto-rebloom`
-2. このフォルダ内のファイルを、リポジトリの**ルート**へすべてアップロードします。
-3. GitHubのリポジトリ画面で **Settings → Pages** を開きます。
-4. **Build and deployment** を `Deploy from a branch` に設定します。
-5. Branchを `main`、Folderを `/ (root)` に設定して **Save** を押します。
-6. 数分後、GitHub PagesのURLが表示されます。
+- `index.html`：トップページ
+- `event.html`：イベント参加・見学案内
+- `partner.html`：法人・団体の協賛・連携案内
+- `diagnosis.html`：Re:Bloom 花タイプ診断
 
-## 主な更新箇所
+## 主要リンク
 
-- `index.html`
-  - 本文・お知らせ・連絡先・クラウドファンディングのリンク
-- `style.css`
-  - 色・レイアウト・スマホ表示
-- `assets/images/`
-  - 紹介資料・画像
-- `assets/images/`
-  - 企業・団体様向けの説明画像
+- イベント参加・見学フォーム：https://forms.gle/6ZMrhrhtWmBCQViD8
+- 法人・団体 協賛・連携フォーム：https://forms.gle/cRdr2oa2pxBhrFE3A
+- READYFOR：https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&utm_source=pj_share_url&utm_medium=social
+- 問い合わせ：infonotorebloom@gmail.com
 
-## 公開前に確認したいこと
+## 更新時の注意
 
-- `index.html` の「お知らせ」日付を最新のものに更新
-- 連絡先メール・電話番号が正しいか確認
-- 掲載画像やロゴの利用許諾を確認
-- 独自ドメインを使う場合は、GitHub Pages側でドメインを設定
-
-## 更新例：お知らせを追加する
-
-`index.html` 内の `id="news"` の中に、以下を複製して日付・内容・リンクを置き換えます。
-
-```html
-<article>
-  <time datetime="2026-07">2026.07</time>
-  <div>
-    <span class="tag">EVENT</span>
-    <h3>ここにお知らせのタイトルを入れます。</h3>
-  </div>
-  <a href="#" aria-label="詳細を見る">→</a>
-</article>
-```
+- 会場表現は「実施可能な土地は確保済み。複数候補から最適な会場を選定中」で統一しています。
+- READYFORの金額を更新する場合は、`index.html` の支援状況カード内の金額・割合・確認日を同時に更新してください。
+- 法人協賛額は 3万円・5万円・8.5万円で統一しています。
+- `site.css` と `site.js` はトップ・イベント・法人ページで共通使用します。
+- 花タイプ診断は既存の機能を保つため、`diagnosis.html` 内に診断用スタイルとスクリプトを含みます。
