@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- NOTO Re:Bloom v35 single-file: wording and visual rhythm polish -->
+<!-- NOTO Re:Bloom v36 single-file: persona concern resolver / final trust UX -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -5110,6 +5110,85 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
   }
 }
 
+
+
+/* =========================================================
+   V36 persona concern resolver
+   - Turn likely viewer concerns into visible reassurance
+   - Strengthen corporate partner value
+   - Add participant safety quick guide
+   - Preserve clean responsive layout
+========================================================= */
+:root{
+  --v36-cream:#fffaf0;
+  --v36-green:#3f9250;
+  --v36-mint:#eaf8df;
+  --v36-blue:#e7f4ff;
+  --v36-pink:#ffe8ee;
+  --v36-yellow:#fff0a8;
+}
+.v36-concern-note,
+.v36-safe-guide,
+.v36-partner-proof,
+.v36-diagnosis-nudge{
+  position:relative;
+  overflow:hidden;
+}
+.v36-concern-note{background:linear-gradient(180deg,#f4fbec 0%,#fffaf0 100%);padding:clamp(56px,7vw,92px) 0;}
+.v36-concern-note::before,
+.v36-safe-guide::before{
+  content:"";position:absolute;inset:auto auto 8% 6%;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#d6efc7 0 22%,transparent 23%),radial-gradient(circle,#d6efc7 0 9%,transparent 10%);background-size:100% 100%,34px 34px;opacity:.42;pointer-events:none;
+}
+.v36-head{max-width:880px;margin:0 auto 28px;text-align:center;position:relative;z-index:2;}
+.v36-head .eyebrow{justify-content:center;}
+.v36-head h2{font-family:var(--display);font-size:clamp(30px,4.5vw,54px);line-height:1.28;color:var(--soil-dark);letter-spacing:-.015em;text-wrap:balance;}
+.v36-head p{margin:14px auto 0;max-width:760px;font-weight:850;line-height:1.9;color:rgba(47,33,23,.82);}
+.v36-resolve-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}
+.v36-resolve-card{border:4px solid var(--line);border-radius:26px;background:#fff;box-shadow:0 6px 0 var(--line),0 16px 28px rgba(47,33,23,.09);padding:20px;min-width:0;}
+.v36-resolve-card:nth-child(1){background:#fff4d9}.v36-resolve-card:nth-child(2){background:#e7f5ff}.v36-resolve-card:nth-child(3){background:#eaf8df}.v36-resolve-card:nth-child(4){background:#ffe7ee}
+.v36-resolve-card span{display:inline-flex;border:3px solid var(--line);border-radius:999px;background:#fff;padding:5px 9px;font-family:var(--english);font-size:11px;font-weight:1000;box-shadow:0 3px 0 var(--line);}
+.v36-resolve-card h3{margin:14px 0 8px;font-size:clamp(18px,2vw,23px);line-height:1.35;color:var(--soil-dark);}
+.v36-resolve-card p{font-size:13.5px;line-height:1.78;font-weight:820;color:rgba(47,33,23,.82);}
+.v36-resolve-card ul{margin:10px 0 0;padding-left:1.1em;font-size:13px;line-height:1.75;font-weight:820;color:rgba(47,33,23,.78);}
+.v36-resolve-actions{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px;padding:16px;border:3px solid rgba(47,33,23,.25);border-radius:24px;background:rgba(255,255,255,.82);box-shadow:0 4px 0 rgba(47,33,23,.72);}
+
+.v36-partner-proof{margin-top:20px;border:4px solid var(--line);border-radius:30px;background:linear-gradient(145deg,#fff,#effbe7);box-shadow:0 7px 0 var(--line);padding:clamp(18px,3vw,28px);}
+.v36-partner-proof-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px;}
+.v36-partner-proof h3{font-family:var(--display);font-size:clamp(24px,3.3vw,40px);line-height:1.25;color:var(--soil-dark);margin:0;}
+.v36-partner-proof p{font-weight:820;line-height:1.8;color:rgba(47,33,23,.82);margin:8px 0 0;}
+.v36-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;counter-reset:v36flow;}
+.v36-flow article{counter-increment:v36flow;position:relative;border:3px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 4px 0 var(--line);padding:16px;min-width:0;}
+.v36-flow article::before{content:counter(v36flow, decimal-leading-zero);display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:3px solid var(--line);border-radius:50%;background:#ffe16b;font-family:var(--english);font-weight:1000;box-shadow:0 3px 0 var(--line);margin-bottom:10px;}
+.v36-flow b{display:block;font-size:16px;color:var(--leaf-dark);}
+.v36-flow span{display:block;margin-top:5px;font-size:12px;font-weight:820;line-height:1.65;color:rgba(47,33,23,.72);}
+
+.v36-safe-guide{background:linear-gradient(180deg,#fffaf0 0%,#f5fbef 100%);padding:clamp(56px,7vw,90px) 0;}
+.v36-safe-cards{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.v36-safe-card{border:4px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 6px 0 var(--line),0 14px 28px rgba(47,33,23,.08);padding:18px;min-width:0;}
+.v36-safe-card:nth-child(1){background:#fff4d8}.v36-safe-card:nth-child(2){background:#e9f7df}.v36-safe-card:nth-child(3){background:#e4f2ff}.v36-safe-card:nth-child(4){background:#ffe8ef}.v36-safe-card:nth-child(5){background:#fff}.v36-safe-card:nth-child(6){background:#f2edff}
+.v36-safe-card i{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:3px solid var(--line);border-radius:50%;background:#fff;font-style:normal;font-size:22px;box-shadow:0 3px 0 var(--line);}
+.v36-safe-card h3{margin:12px 0 7px;font-size:clamp(18px,2.1vw,22px);line-height:1.35;color:var(--soil-dark);}
+.v36-safe-card p{font-size:13.5px;line-height:1.8;font-weight:820;color:rgba(47,33,23,.8);}
+.v36-safe-actions{position:relative;z-index:2;margin-top:22px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+
+.v36-report-mini{margin-top:14px;border:3px solid rgba(255,255,255,.56);border-radius:20px;background:rgba(255,255,255,.12);padding:16px;display:flex;gap:12px;align-items:center;justify-content:space-between;}
+.v36-report-mini b{color:#fff;font-size:17px;}.v36-report-mini span{font-size:12px;font-weight:800;line-height:1.65;color:rgba(255,255,255,.88);}
+
+.v36-diagnosis-nudge{margin-top:18px;border:3px dashed rgba(47,33,23,.28);border-radius:24px;background:#fffdf4;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;}
+.v36-diagnosis-nudge b{display:block;color:var(--soil-dark);font-size:16px;}.v36-diagnosis-nudge span{font-size:12.5px;font-weight:800;line-height:1.7;color:rgba(47,33,23,.72);}
+
+/* V36 stronger readability on narrow screens */
+@media (max-width:1100px){
+  .v36-resolve-grid,.v36-flow,.v36-safe-cards{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:740px){
+  .v36-resolve-grid,.v36-flow,.v36-safe-cards,.v36-diagnosis-nudge{grid-template-columns:1fr;}
+  .v36-resolve-actions,.v36-safe-actions,.v36-report-mini{align-items:stretch;flex-direction:column;}
+  .v36-resolve-actions .btn,.v36-safe-actions .btn,.v36-report-mini .btn,.v36-diagnosis-nudge .btn{width:100%;justify-content:center;}
+  .v36-head h2{font-size:clamp(27px,8.5vw,38px);line-height:1.35;}
+  .v36-resolve-card,.v36-safe-card,.v36-partner-proof{border-width:3px;box-shadow:0 5px 0 var(--line);}
+}
+
 </style>
 <!-- v34: UX and sponsor path final polish -->
 </head>
@@ -5122,7 +5201,7 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <span><b>NOTO Re:Bloom</b><small>耕作放棄地を、もう一度人が関わる場所へ。</small></span>
 </a>
 <button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
-<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#quick-brief">3つの要点</a><a href="#crowdfunding">クラファン</a><a href="#partners">法人協賛</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><button class="nav-mail mail-modal-trigger" type="button">メール</button><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
+<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#quick-brief">3つの要点</a><a href="#crowdfunding">クラファン</a><a href="#partners">法人協賛</a><a href="#safety-guide">参加前確認</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><button class="nav-mail mail-modal-trigger" type="button">メール</button><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
 </header>
 <main id="main">
 <section class="hero" id="top">
@@ -5177,6 +5256,26 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <div class="v34-next-action reveal"><span>協賛・クラファンの現在地</span><a class="btn small" href="#partners">上部の掲載枠へ</a></div></div>
 </section>
 
+<section class="v36-concern-note" id="current-guide">
+  <div class="container">
+    <div class="v36-head reveal">
+      <p class="eyebrow"><i></i>CURRENT GUIDE</p>
+      <h2>今わかっていることを、先にまとめました。</h2>
+      <p>支援・参加・協賛を考える前に気になりやすい点を、できるだけ短く整理しています。未確定の部分は、決まり次第、活動報告やサイト内で更新します。</p>
+    </div>
+    <div class="v36-resolve-grid reveal" aria-label="現在の確認事項">
+      <article class="v36-resolve-card"><span>STATUS</span><h3>会場は調整中です</h3><p>珠洲市内の候補地について、土地所有者の方と状態・整備範囲・安全面を確認しています。</p><ul><li>開催候補日：9月20日</li><li>午後開催を想定</li></ul></article>
+      <article class="v36-resolve-card"><span>SAFETY</span><h3>安全確認を優先します</h3><p>人が入れる状態にするため、草刈り、足元確認、導線づくり、備品準備を重視します。</p><ul><li>雨天・足元状況で内容変更あり</li><li>見学のみの参加も歓迎</li></ul></article>
+      <article class="v36-resolve-card"><span>MONEY</span><h3>支援は整備に使います</h3><p>土地整備、安全確認、運営準備、レンゲカップ資材、活動記録に活用します。</p><ul><li>1㎡あたり約300円が目安</li><li>使い道は順次公開予定</li></ul></article>
+      <article class="v36-resolve-card"><span>REPORT</span><h3>進捗を残します</h3><p>会場決定、整備前後の写真、当日の様子、費用の使い道を、活動報告として見える形にします。</p><ul><li>READYFOR活動報告で更新</li><li>写真でも変化を記録</li></ul></article>
+    </div>
+    <div class="v36-resolve-actions reveal">
+      <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
+      <a class="btn ghost" href="#safety-guide">参加前の確認へ</a>
+      <button class="btn ghost mail-modal-trigger" type="button">協賛・連携を相談する</button>
+    </div>
+  </div>
+</section>
 
 <section class="section v34-partner-showcase" id="partners">
 <div aria-hidden="true" class="v34-partner-bg"><span></span><span></span><span></span></div>
@@ -5222,6 +5321,24 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 </div>
 <p class="v34-logo-note">※個人支援者名・法人名のテキスト掲載欄は設けず、法人・団体ロゴの掲載スペースとして運用します。掲載可否・サイズ・文言は個別に確認します。</p>
 </div>
+
+<div class="v36-partner-proof reveal" aria-label="法人パートナー掲載までの流れ">
+  <div class="v36-partner-proof-head">
+    <div>
+      <p class="eyebrow"><i></i>PARTNER FLOW</p>
+      <h3>ロゴ掲載までの流れも、わかりやすく。</h3>
+      <p>企業・団体内で共有しやすいように、協賛後の見え方と掲載までの進み方を整理しています。</p>
+    </div>
+    <button class="btn primary mail-modal-trigger" type="button">協賛について相談する</button>
+  </div>
+  <div class="v36-flow">
+    <article><b>まず相談</b><span>協賛金額、物品協力、広報協力など、できる形を確認します。</span></article>
+    <article><b>掲載内容を確認</b><span>ロゴデータ、紹介可否、掲載表現を事前に確認します。</span></article>
+    <article><b>サイトへ掲載</b><span>法人・団体ロゴをパートナー欄に反映します。</span></article>
+    <article><b>活動報告で共有</b><span>整備や当日の様子とともに、支援の使われ方を残します。</span></article>
+  </div>
+</div>
+
 <div class="v34-next-action reveal"><span>次は、支援金が何に変わるかを見る</span><a class="btn small" href="#crowdfunding">クラファン紹介へ</a></div></div>
 </section>
 
@@ -5317,6 +5434,10 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <button class="btn ghost v20-copy-btn" data-copy-text="NOTO Re:Bloomを応援しています。能登の耕作放棄地を、泥ん子運動会とレンゲカップをきっかけに、もう一度人が関わる場所へ変えていく学生発の取り組みです。 https://noto-rebloom.github.io/noto-rebloom/" type="button">応援文をコピーする</button>
 </div>
 <p aria-live="polite" class="v20-copy-status"></p>
+<div class="v36-report-mini">
+  <div><b>支援後も、進捗を追えるようにします。</b><br/><span>会場決定、整備費、当日の様子、次年度に向けた動きは、活動報告で順次共有します。</span></div>
+  <a class="btn ghost" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">活動報告を見る</a>
+</div>
 </div>
 <div aria-label="クラウドファンディングの使い道" class="v20-cf-panel">
 <div class="v20-cf-badge">READYFOR</div>
@@ -5501,6 +5622,26 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
 <a class="btn ghost" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">協賛・連携を相談する</a>
 </div>
+</div>
+</section><section class="v36-safe-guide" id="safety-guide">
+<div class="container">
+  <div class="v36-head reveal">
+    <p class="eyebrow"><i></i>JOIN SAFELY</p>
+    <h2>参加前に、ここだけ確認できます。</h2>
+    <p>泥ん子運動会は楽しい場にするために、服装・見学・子どもの参加・雨天時の判断を事前に案内します。</p>
+  </div>
+  <div class="v36-safe-cards reveal" aria-label="参加前の確認事項">
+    <article class="v36-safe-card"><i>👕</i><h3>服装</h3><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。</p></article>
+    <article class="v36-safe-card"><i>👀</i><h3>見学</h3><p>泥に入らず、見学・応援だけでも歓迎です。見学・応援は無料を想定しています。</p></article>
+    <article class="v36-safe-card"><i>🧒</i><h3>子ども参加</h3><p>年齢構成や人数を見ながら、安全に楽しめるチーム分け・競技内容に調整します。</p></article>
+    <article class="v36-safe-card"><i>☔</i><h3>雨天時</h3><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。</p></article>
+    <article class="v36-safe-card"><i>🧰</i><h3>安全確認</h3><p>足元、導線、備品、参加者の動き方を事前に確認し、無理のない運営を目指します。</p></article>
+    <article class="v36-safe-card"><i>✉</i><h3>相談</h3><p>参加方法や持ち物が不安な場合は、メールでも相談できます。</p></article>
+  </div>
+  <div class="v36-safe-actions reveal">
+    <a class="btn primary" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">参加・見学を相談する</a>
+    <button class="btn ghost mail-modal-trigger" type="button">メールで問い合わせる</button>
+  </div>
 </div>
 </section><section class="section event" id="event">
 <div class="container event-stack">
@@ -5974,6 +6115,7 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <div aria-label="キーボード操作の説明" class="keyboard-help">
           PCでは <kbd>1</kbd>はい / <kbd>2</kbd>どちらとも / <kbd>3</kbd>いいえ / <kbd>←</kbd>前の質問 で回答できます。
         </div>
+<div class="v36-diagnosis-nudge"><div><b>長めの診断でも、途中から再開できます。</b><span>回答はブラウザ内に一時保存されます。時間がない時は、途中で閉じても再開できます。</span></div><button class="btn ghost" id="diagnosisResumeInline" type="button">途中から再開する</button></div>
 <p class="diagnosis-note">※この診断は性格を決めつけるものではありません。回答傾向をもとに、花タイプとして楽しく表示するコンテンツです。</p>
 </div>
 </div>
@@ -6278,7 +6420,14 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
   }
 })();
 
-  </script>
+  
+
+  // v36: inline resume button for long flower diagnosis
+  document.getElementById('diagnosisResumeInline')?.addEventListener('click', () => {
+    document.getElementById('diagnosisResume')?.click();
+  });
+
+</script>
 <script>
 (() => {
   const buttons = document.querySelectorAll('.v20-copy-btn');
@@ -6310,6 +6459,13 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
     });
   });
 })();
+
+
+  // v36: inline resume button for long flower diagnosis
+  document.getElementById('diagnosisResumeInline')?.addEventListener('click', () => {
+    document.getElementById('diagnosisResume')?.click();
+  });
+
 </script>
 <script>
 (function(){
@@ -6562,6 +6718,13 @@ https://noto-rebloom.github.io/noto-rebloom/#flower-diagnosis`;
   function load(){try{const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); if(Array.isArray(data.answers)){answers=data.answers; index=Math.min(data.index||0, QUESTIONS.length-1);} }catch(e){}}
   load(); updateSeeds();
 })();
+
+
+  // v36: inline resume button for long flower diagnosis
+  document.getElementById('diagnosisResumeInline')?.addEventListener('click', () => {
+    document.getElementById('diagnosisResume')?.click();
+  });
+
 </script>
 </body>
 </html>
