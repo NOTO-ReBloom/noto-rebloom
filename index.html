@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- NOTO Re:Bloom v32 single-file: partner logo board + UX polish -->
+<!-- NOTO Re:Bloom v33 single-file: partner logo board + visual overlap polish -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -4415,6 +4415,143 @@ section{scroll-margin-top:96px;}
 @media(max-width:430px){.v32-logo-grid{grid-template-columns:1fr;}.v32-progress-label{align-items:flex-start;flex-direction:column;gap:6px}.v32-progress-label strong{font-size:70px}.section::before{display:none;}}
 @media(prefers-reduced-motion:reduce){.comic-cf-btn:after,.nav-cf:after{display:none}.v32-bloom-field{display:none}}
 
+
+
+/* ===== v33 visual overlap polish + sponsor appeal ===== */
+html,body{overflow-x:hidden;}
+body{word-break:normal;}
+.keep{display:inline;}
+.hero h1 .keep{display:block;white-space:normal;}
+.hero-copy,.hero-visual,.section-copy,.center-heading,.v20-cf-copy,.diagnosis-intro,.diagnosis-start-card,.final-card{min-width:0;}
+.hero-copy{overflow:visible;}
+.hero-layout{align-items:center;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);}
+.hero h1{max-width:680px;text-wrap:balance;overflow-wrap:break-word;}
+.hero .lead{overflow-wrap:anywhere;}
+.hero-actions{display:flex;align-items:center;gap:10px;}
+.hero-actions .btn{white-space:normal;text-align:center;line-height:1.25;}
+.hero-visual{min-width:0;overflow:visible;}
+.hero-visual .photo-frame{max-width:100%;}
+.hero-visual .main-photo{width:min(88%,430px);}
+.hero-visual .sub-photo{width:min(44%,220px);}
+.hero-visual .sticker{max-width:220px;overflow-wrap:anywhere;}
+.hero-visual .sticker-top{right:0;top:8px;}
+.hero-visual .sticker-bottom{left:0;bottom:26px;}
+
+/* keep decorative layers behind readable content */
+.hero-copy > *, .section-copy > *, .center-heading > *, .v20-cf-copy > *, .diagnosis-intro > *, .diagnosis-start-card > *, .final-card > *{position:relative;z-index:2;}
+.step-cards article,.issue-grid article,.event-cards article,.ways-card,.action-card,.material-card,.faq details,.garden-step,.v20-reward-card,.status-card,.amount-card{position:relative;overflow:hidden;}
+.step-cards article > *, .issue-grid article > *, .event-cards article > *, .ways-card > *, .action-card > *, .material-card > *, .garden-step > *, .v20-reward-card > *, .amount-card > *{position:relative;z-index:2;}
+
+/* safer responsive header */
+.site-header{isolation:isolate;}
+.site-nav{min-width:0;}
+.site-nav a,.site-nav button{white-space:nowrap;}
+@media(max-width:1160px){
+  .site-nav{position:fixed;left:14px;right:14px;top:82px;display:none;grid-template-columns:1fr;gap:6px;padding:14px;border:3px solid var(--line);border-radius:24px;background:#fff8dc;box-shadow:0 7px 0 var(--line);}
+  .menu-open .site-nav{display:grid;}
+  .menu-button{display:block;flex:0 0 auto;}
+  .brand small{display:none!important;}
+  .site-nav a,.site-nav button{width:100%;justify-content:flex-start;text-align:left;border-radius:16px;padding:11px 16px;}
+}
+
+/* New partner showcase */
+.v33-partner-showcase{position:relative;overflow:hidden;padding:clamp(72px,8vw,118px) 0;background:linear-gradient(180deg,#f3ffe7 0%,#fff8e4 48%,#fffdf4 100%);border-top:4px solid var(--line);border-bottom:4px solid var(--line);}
+.v33-partner-inner{position:relative;z-index:2;}
+.v33-garden-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.55;}
+.v33-garden-bg span{position:absolute;width:36px;height:26px;border:3px solid rgba(53,33,22,.45);border-radius:80% 20% 80% 20%;background:linear-gradient(135deg,#8fd06d,#e9ffd7);transform:rotate(-24deg);}
+.v33-garden-bg span:nth-child(1){left:5%;top:12%;}.v33-garden-bg span:nth-child(2){right:8%;top:18%;transform:rotate(28deg);background:#ffd45a}.v33-garden-bg span:nth-child(3){left:12%;bottom:18%;transform:rotate(42deg)}.v33-garden-bg span:nth-child(4){right:16%;bottom:10%;transform:rotate(-12deg);background:#ffc5d6}.v33-garden-bg span:nth-child(5){left:45%;top:8%;transform:rotate(12deg);opacity:.4}.v33-garden-bg span:nth-child(6){right:4%;top:48%;transform:rotate(64deg);opacity:.35}
+.v33-partner-heading{max-width:880px;margin:0 auto 28px;text-align:center;}
+.v33-partner-heading h2{font-size:clamp(32px,5vw,62px);line-height:1.13;letter-spacing:-.04em;text-wrap:balance;margin:8px 0 12px;}
+.v33-partner-heading p{max-width:760px;margin-inline:auto;font-weight:800;line-height:1.82;}
+.v33-partner-top{display:grid;grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);gap:22px;align-items:stretch;margin-bottom:24px;}
+.v33-progress-card,.v33-partner-message,.v33-logo-stage{border:4px solid var(--line);border-radius:32px;background:rgba(255,255,255,.94);box-shadow:0 8px 0 var(--line),0 20px 46px rgba(53,33,22,.13);padding:clamp(22px,3vw,34px);min-width:0;position:relative;overflow:hidden;}
+.v33-progress-card{background:linear-gradient(135deg,#fff 0%,#eeffe4 100%);display:flex;flex-direction:column;gap:18px;}
+.v33-progress-label{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;}
+.v33-progress-label span{font-size:12px;font-weight:900;color:var(--green-dark);letter-spacing:.12em;}
+.v33-progress-label strong{font-family:var(--display);font-size:clamp(68px,9vw,108px);line-height:.82;color:var(--green);letter-spacing:-.07em;text-shadow:3px 3px 0 #fff,6px 6px 0 var(--line);}
+.v33-progress-meter{height:24px;border:4px solid var(--line);border-radius:999px;background:#fff;overflow:hidden;box-shadow:inset 0 3px 0 rgba(0,0,0,.08);}
+.v33-progress-meter span{display:block;height:100%;width:10%;background:linear-gradient(90deg,#61ba52,#ffd45a);border-right:4px solid var(--line);}
+.v33-progress-card p,.v33-partner-message p,.v33-logo-stage p{font-weight:800;line-height:1.75;overflow-wrap:anywhere;}
+.v33-progress-card .btn{margin-top:auto;}
+.v33-ribbon{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:3px solid var(--line);border-radius:999px;background:#fff0a8;box-shadow:0 4px 0 var(--line);font-weight:900;transform:rotate(-1deg);}
+.v33-partner-message h3{font-size:clamp(28px,4vw,48px);line-height:1.16;letter-spacing:-.04em;margin:16px 0 12px;text-wrap:balance;}
+.v33-partner-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+.v33-logo-stage{background:linear-gradient(180deg,#fffdf4,#ffffff 58%,#f5ffec 100%);}
+.v33-logo-stage-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.82fr);gap:20px;align-items:end;margin-bottom:20px;}
+.v33-logo-stage-head h3{font-size:clamp(26px,3.7vw,48px);line-height:1.14;letter-spacing:-.035em;margin:6px 0 0;text-wrap:balance;}
+.v33-logo-stage-head p{font-size:13.5px;margin:0;}
+.v33-logo-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;align-items:stretch;}
+.v33-logo-slot{min-height:122px;border:3px dashed rgba(53,33,22,.56);border-radius:24px;background:linear-gradient(180deg,#fff 0%,#f7fff0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;box-shadow:0 5px 0 rgba(53,33,22,.82);padding:14px 10px;overflow:hidden;}
+.v33-logo-slot-main{grid-column:span 2;min-height:156px;border-style:solid;background:linear-gradient(135deg,#fff8cf,#fff 55%,#eaffdf);}
+.v33-logo-slot b{font-size:11px;letter-spacing:.09em;color:var(--green-dark);}
+.v33-logo-slot span{display:flex;align-items:center;justify-content:center;width:min(92%,130px);height:46px;border:3px solid var(--line);border-radius:999px;background:#fff7cf;color:rgba(53,33,22,.6);font-family:var(--display);font-size:clamp(17px,2vw,24px);letter-spacing:.06em;box-shadow:0 3px 0 var(--line);}
+.v33-logo-slot-main span{width:min(92%,210px);height:58px;font-size:clamp(22px,3vw,34px);background:#fff;}
+.v33-logo-slot small{font-size:11.5px;font-weight:900;color:rgba(53,33,22,.7);line-height:1.35;}
+.v33-partner-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px;}
+.v33-partner-benefits article{border:3px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 4px 0 var(--line);padding:14px;min-width:0;}
+.v33-partner-benefits strong{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:2px solid var(--line);border-radius:50%;background:#ffd45a;font-weight:900;margin-bottom:8px;}
+.v33-partner-benefits b{display:block;font-size:15px;line-height:1.35;margin-bottom:5px;}
+.v33-partner-benefits span{display:block;font-size:12px;font-weight:800;color:rgba(46,36,24,.7);line-height:1.55;}
+.v33-logo-note{margin-top:16px!important;padding:12px 14px;border:2px solid rgba(53,33,22,.32);border-radius:18px;background:#fff9e8;font-size:12px!important;line-height:1.7!important;}
+
+/* override older partner board pieces when same page is cached */
+.supporter-board.v32-partner-board,.supporter-head,.supporter-grid,.v32-logo-board{display:none!important;}
+
+/* cleaner grids that previously caused text crowding */
+.v20-reward-grid,.event-cards,.ways-grid,.action-grid,.status-garden-grid,.garden-steps{align-items:stretch;}
+.v20-reward-card,.event-cards article,.ways-card,.action-card,.garden-step{min-height:auto;}
+.v20-reward-card h3,.event-cards h3,.ways-card h3,.action-card h3,.garden-step h4{line-height:1.28;overflow-wrap:anywhere;}
+.v20-reward-card p,.event-cards p,.ways-card p,.action-card p,.garden-step p{line-height:1.68;}
+
+/* mobile/tablet proofing */
+@media(max-width:1180px){
+  .hero-layout{grid-template-columns:1fr;gap:28px;}
+  .hero-copy{max-width:none;}
+  .hero-visual{max-width:620px;margin-inline:auto;width:100%;}
+  .v33-partner-top,.v33-logo-stage-head{grid-template-columns:1fr;}
+  .v33-logo-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .v33-logo-slot-main{grid-column:span 3;}
+  .v33-partner-benefits{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:760px){
+  .container{width:min(100% - 28px,var(--container));}
+  .hero{padding-top:106px;}
+  .hero-copy{padding:20px;border-radius:24px;}
+  .hero h1{font-size:clamp(31px,9.4vw,44px);line-height:1.22;letter-spacing:-.025em;}
+  .hero-burst{font-size:12px;padding:7px 12px;}
+  .hero-fun-line{font-size:12.8px;line-height:1.58;}
+  .hero-actions{display:grid;grid-template-columns:1fr;}
+  .hero-actions .btn{width:100%;justify-content:center;}
+  .hero-visual{display:grid!important;grid-template-columns:1fr!important;gap:12px;}
+  .hero-visual .main-photo,.hero-visual .sub-photo,.hero-visual .sticker{position:relative!important;inset:auto!important;width:100%!important;max-width:none!important;margin:0!important;transform:none!important;}
+  .v33-partner-showcase{padding:68px 0;}
+  .v33-partner-heading{text-align:left;}
+  .v33-partner-heading h2{font-size:clamp(30px,8vw,42px);line-height:1.22;}
+  .v33-progress-card,.v33-partner-message,.v33-logo-stage{border-radius:24px;padding:18px;}
+  .v33-progress-label{align-items:center;}
+  .v33-progress-label strong{font-size:72px;}
+  .v33-partner-message h3{font-size:clamp(25px,7vw,36px);}
+  .v33-partner-actions{display:grid;grid-template-columns:1fr;}
+  .v33-partner-actions .btn,.v33-progress-card .btn{width:100%;justify-content:center;}
+  .v33-logo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .v33-logo-slot-main{grid-column:span 2;}
+  .v33-logo-slot{min-height:100px;border-radius:18px;padding:12px 8px;}
+  .v33-logo-slot-main{min-height:126px;}
+  .v33-partner-benefits{grid-template-columns:1fr;}
+  .flower-card-grid{grid-template-columns:1fr!important;}
+}
+@media(max-width:420px){
+  .site-header{top:8px;width:calc(100% - 16px);padding:8px 9px;}
+  .brand b{font-size:14px;}
+  .brand-seed{width:36px;height:36px;}
+  .hero h1{font-size:clamp(29px,9vw,39px);}
+  .v33-logo-grid{grid-template-columns:1fr;}
+  .v33-logo-slot-main{grid-column:auto;}
+  .v33-progress-label{display:block;}
+  .v33-progress-label strong{display:block;margin-top:6px;}
+}
+@media(prefers-reduced-motion:reduce){.v33-garden-bg span{display:none;}}
+
 </style>
 </head>
 <body>
@@ -4486,46 +4623,69 @@ section{scroll-margin-top:96px;}
 </div>
 </section>
 
-<section class="section supporter-board v32-partner-board" id="partners">
-  <div aria-hidden="true" class="supporter-petals"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div aria-hidden="true" class="v32-bloom-field"><span></span><span></span><span></span><span></span><span></span></div>
-  <div class="container">
-    <div class="v32-partner-kicker reveal">
-      <span>SUPPORT / PARTNERSHIP</span>
-      <b>法人パートナー・協賛ロゴ掲載エリア</b>
-    </div>
-    <div class="v32-partner-hero reveal">
-      <div class="v32-partner-copy">
-        <p class="eyebrow"><i></i>PARTNER BOARD</p>
-        <h2>能登の土地を育てる仲間を、ここに紹介します。</h2>
-        <p>NOTO Re:Bloomでは、資金協賛・物品協力・広報協力・当日運営協力など、プロジェクトを一緒に育ててくださる法人・団体パートナーを募集しています。ご協力いただいた法人ロゴは、このエリアに掲載予定です。</p>
-        <div class="v32-partner-actions">
-          <button class="btn primary mail-modal-trigger" type="button">協賛について相談する</button>
-          <a class="btn ghost" href="#crowdfunding">クラファンの内容を見る</a>
-        </div>
-      </div>
-      <aside class="v32-progress-card" aria-label="READYFOR達成率">
-        <div class="v32-progress-label"><span>READYFOR 達成率</span><strong>10%</strong></div>
-        <div class="v32-progress-meter" aria-hidden="true"><span></span></div>
-        <p>現在の達成率は約10%です。支援者数ではなく、目標に対してどこまで進んでいるかを表示しています。最新の支援状況はREADYFORページをご確認ください。</p>
-        <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
-      </aside>
+<section class="section v33-partner-showcase" id="partners">
+  <div aria-hidden="true" class="v33-garden-bg">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="container v33-partner-inner">
+    <div class="v33-partner-heading reveal">
+      <p class="eyebrow"><i></i>PARTNER / CROWDFUNDING</p>
+      <h2>応援が、能登に残る景色になります。</h2>
+      <p>法人・団体パートナーのロゴは、このエリアに掲載予定です。支援や協賛が「見える形」で残るよう、サイト上部に専用の紹介スペースを用意しています。</p>
     </div>
 
-    <div class="v32-logo-board reveal" aria-label="法人パートナーロゴ掲載予定欄">
-      <div class="v32-logo-head">
-        <h3>法人パートナーロゴ掲載予定欄</h3>
-        <p>現在、協賛パートナーを募集しています。掲載ロゴは準備中です。</p>
+    <div class="v33-partner-top reveal">
+      <article class="v33-progress-card" aria-label="READYFOR達成率">
+        <div class="v33-progress-label">
+          <span>READYFOR 達成率</span>
+          <strong>10%</strong>
+        </div>
+        <div class="v33-progress-meter" aria-hidden="true"><span></span></div>
+        <p>目標金額に対する現在の達成率です。支援者数ではなく、プロジェクトがどこまで進んでいるかを表示しています。</p>
+        <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
+      </article>
+
+      <article class="v33-partner-message">
+        <span class="v33-ribbon">ロゴ掲載枠を準備中</span>
+        <h3>ここに、協賛企業・団体のロゴが入ります。</h3>
+        <p>資金協賛、物品協力、広報協力、当日運営協力など、NOTO Re:Bloomを一緒に育ててくださる法人・団体を募集しています。掲載内容は事前確認のうえ反映します。</p>
+        <div class="v33-partner-actions">
+          <button class="btn primary mail-modal-trigger" type="button">協賛について相談する</button>
+          <a class="btn ghost" href="#support">協賛メニューを見る</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="v33-logo-stage reveal" aria-label="法人団体パートナーロゴ掲載予定欄">
+      <div class="v33-logo-stage-head">
+        <div>
+          <p class="eyebrow"><i></i>LOGO BOARD</p>
+          <h3>法人・団体パートナー掲載イメージ</h3>
+        </div>
+        <p>協賛いただいた法人・団体のロゴを、プロジェクト上部の目立つ位置に掲載します。現在は募集前のため、掲載枠のみ表示しています。</p>
       </div>
-      <div class="v32-logo-grid">
-        <div class="v32-logo-slot"><span>LOGO</span><small>メインパートナー</small></div>
-        <div class="v32-logo-slot"><span>LOGO</span><small>協賛パートナー</small></div>
-        <div class="v32-logo-slot"><span>LOGO</span><small>物品協力</small></div>
-        <div class="v32-logo-slot"><span>LOGO</span><small>広報協力</small></div>
-        <div class="v32-logo-slot"><span>LOGO</span><small>地域連携</small></div>
-        <div class="v32-logo-slot"><span>LOGO</span><small>運営協力</small></div>
+
+      <div class="v33-logo-grid">
+        <div class="v33-logo-slot v33-logo-slot-main">
+          <b>MAIN PARTNER</b>
+          <span>YOUR LOGO</span>
+          <small>メインパートナー</small>
+        </div>
+        <div class="v33-logo-slot"><b>PARTNER</b><span>LOGO</span><small>協賛</small></div>
+        <div class="v33-logo-slot"><b>SUPPORT</b><span>LOGO</span><small>物品協力</small></div>
+        <div class="v33-logo-slot"><b>MEDIA</b><span>LOGO</span><small>広報協力</small></div>
+        <div class="v33-logo-slot"><b>LOCAL</b><span>LOGO</span><small>地域連携</small></div>
+        <div class="v33-logo-slot"><b>CREW</b><span>LOGO</span><small>運営協力</small></div>
       </div>
-      <p class="v32-logo-note">※法人名や個人支援者名はここには表示せず、法人・団体ロゴの掲載スペースとして運用する想定です。掲載内容は事前確認のうえ反映します。</p>
+
+      <div class="v33-partner-benefits" aria-label="法人パートナー掲載メリット">
+        <article><strong>01</strong><b>Web上部に掲載</b><span>プロジェクトの顔に近い位置で紹介</span></article>
+        <article><strong>02</strong><b>活動報告で紹介</b><span>支援の意味を記録として残す</span></article>
+        <article><strong>03</strong><b>地域貢献の発信</b><span>能登との関わりを見える化</span></article>
+        <article><strong>04</strong><b>現地連携へ発展</b><span>物品・広報・運営協力も相談可</span></article>
+      </div>
+
+      <p class="v33-logo-note">※個人支援者名はこの欄には掲載しません。法人・団体ロゴの掲載スペースとして運用します。ロゴ掲載の可否・サイズ・文言は事前確認のうえ調整します。</p>
     </div>
   </div>
 </section>
