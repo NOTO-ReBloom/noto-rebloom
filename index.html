@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- NOTO Re:Bloom v36 single-file: persona concern resolver / final trust UX -->
+<!-- NOTO Re:Bloom v37 single-file: corporate sponsor ready / visual unified -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -5189,6 +5189,72 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
   .v36-resolve-card,.v36-safe-card,.v36-partner-proof{border-width:3px;box-shadow:0 5px 0 var(--line);}
 }
 
+
+
+/* =========================================================
+   v37 Corporate sponsor ready / Ringi support / visual unified
+   ========================================================= */
+:root{--sponsor-green:#2f7d45;--sponsor-gold:#f0c94a;--ink-soft:#4d3a28;}
+.v37-section-note{font-size:13px;font-weight:850;color:rgba(48,37,26,.72);line-height:1.7;}
+.v37-current-guide{background:linear-gradient(180deg,#f8fff2 0%,#fff9e9 100%);position:relative;overflow:hidden;}
+.v37-current-guide:before,.v37-current-guide:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(94,167,93,.12),transparent 70%);z-index:0;}
+.v37-current-guide:before{left:-70px;top:70px}.v37-current-guide:after{right:-50px;bottom:40px}
+.v37-current-guide .container{position:relative;z-index:1;}
+.v37-head{text-align:center;max-width:880px;margin:0 auto 28px;}
+.v37-head h2{font-family:var(--display);font-size:clamp(30px,4vw,52px);line-height:1.18;letter-spacing:.01em;color:var(--soil-dark);}
+.v37-head p:not(.eyebrow){margin:14px auto 0;max-width:760px;font-weight:850;line-height:1.85;color:rgba(48,37,26,.78);}
+.v37-status-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:24px;}
+.v37-status-card{background:#fff;border:3px solid var(--soil-dark);border-radius:22px;box-shadow:0 6px 0 var(--soil-dark);padding:20px;min-width:0;position:relative;overflow:hidden;}
+.v37-status-card:after{content:"";position:absolute;right:-26px;top:-26px;width:86px;height:86px;border-radius:50%;background:rgba(92,163,83,.12);}
+.v37-status-card span{display:inline-flex;border:2px solid var(--soil-dark);border-radius:999px;background:#fff3b2;padding:4px 10px;font-size:11px;font-weight:1000;letter-spacing:.06em;margin-bottom:10px;}
+.v37-status-card h3{font-family:var(--display);font-size:clamp(19px,2.2vw,26px);line-height:1.22;color:var(--soil-dark);margin:0 0 8px;}
+.v37-status-card p{font-weight:850;line-height:1.75;color:rgba(48,37,26,.78);font-size:14px;}
+.v37-mini-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.v37-mini-list b{display:inline-flex;background:#eff9e8;border:2px solid rgba(48,37,26,.18);border-radius:999px;padding:5px 9px;font-size:12px;color:var(--sponsor-green);}
+.v37-sponsor-showcase{background:linear-gradient(180deg,#2f7d45 0%,#2f8a4f 100%);color:#fff;position:relative;overflow:hidden;}
+.v37-sponsor-showcase:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.15) 2px,transparent 2px);background-size:28px 28px;opacity:.2;}
+.v37-partner-inner{position:relative;z-index:1;}
+.v37-partner-top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:28px;align-items:stretch;margin-bottom:28px;}
+.v37-partner-copy{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.22);border-radius:28px;padding:30px;min-width:0;}
+.v37-partner-copy h2{font-family:var(--display);font-size:clamp(34px,4.8vw,64px);line-height:1.12;letter-spacing:.01em;margin:10px 0 14px;}
+.v37-partner-copy p{font-weight:850;line-height:1.85;max-width:780px;color:rgba(255,255,255,.92);}
+.v37-progress-card{background:#fff7d9;color:var(--soil-dark);border:4px solid var(--soil-dark);border-radius:28px;box-shadow:0 8px 0 var(--soil-dark);padding:24px;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.v37-progress-card span{font-size:12px;font-weight:1000;letter-spacing:.08em;color:var(--sponsor-green);}
+.v37-progress-card strong{font-family:var(--display);font-size:clamp(56px,8vw,96px);line-height:.95;margin:10px 0;color:var(--sponsor-green);}
+.v37-progress-meter{height:18px;border:3px solid var(--soil-dark);border-radius:999px;background:#fff;margin:6px 0 12px;overflow:hidden;box-shadow:inset 0 2px 0 rgba(0,0,0,.08)}
+.v37-progress-meter i{display:block;width:10%;height:100%;background:linear-gradient(90deg,#63bd5f,#f1cd45);}
+.v37-progress-card p{font-weight:850;line-height:1.65;color:rgba(48,37,26,.78);font-size:14px;margin-bottom:14px;}
+.v37-logo-wall{background:#fffdf3;color:var(--soil-dark);border:4px solid var(--soil-dark);border-radius:30px;box-shadow:0 8px 0 var(--soil-dark);padding:26px;margin:0 0 24px;}
+.v37-logo-wall-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.55fr);gap:18px;align-items:end;margin-bottom:18px;}
+.v37-logo-wall h3{font-family:var(--display);font-size:clamp(27px,3.4vw,44px);line-height:1.2;}
+.v37-logo-wall p{font-weight:850;line-height:1.75;color:rgba(48,37,26,.76);}
+.v37-logo-board{display:grid;grid-template-columns:1.35fr repeat(4,1fr);gap:12px;margin-top:16px;}
+.v37-logo-slot{min-height:118px;border:3px dashed rgba(47,125,69,.44);background:linear-gradient(180deg,#fff 0%,#f8fff2 100%);border-radius:20px;display:grid;place-items:center;text-align:center;padding:14px;position:relative;overflow:hidden;}
+.v37-logo-slot:before{content:"";position:absolute;inset:auto -30px -35px auto;width:100px;height:100px;border-radius:50%;background:rgba(240,201,74,.18);}
+.v37-logo-slot b{font-family:var(--display);font-size:clamp(14px,1.8vw,24px);color:var(--sponsor-green);letter-spacing:.03em;}
+.v37-logo-slot span{font-weight:1000;font-size:clamp(18px,2.8vw,34px);color:rgba(48,37,26,.42);}
+.v37-logo-slot small{font-weight:900;color:rgba(48,37,26,.62);}
+.v37-logo-slot.is-main{min-height:150px;border-style:solid;background:linear-gradient(135deg,#fff7d9,#fff);}
+.v37-value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px;}
+.v37-value-grid article{background:#eaf7e5;border:2px solid rgba(48,37,26,.16);border-radius:18px;padding:14px;min-width:0;}
+.v37-value-grid b{display:block;font-family:var(--display);font-size:18px;margin-bottom:4px;color:var(--sponsor-green);}.v37-value-grid span{font-size:13px;font-weight:850;line-height:1.55;}
+.v37-sponsor-menu{background:#fff7e6;position:relative;overflow:hidden;}
+.v37-sponsor-menu:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(47,125,69,.13) 1.5px,transparent 1.5px);background-size:34px 34px;opacity:.36;}
+.v37-sponsor-menu .container{position:relative;z-index:1;}
+.v37-menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px;}
+.v37-menu-card{background:#fff;border:3px solid var(--soil-dark);border-radius:24px;box-shadow:0 6px 0 var(--soil-dark);padding:20px;min-width:0;display:flex;flex-direction:column;gap:10px;}
+.v37-menu-card .tier{display:inline-flex;align-self:flex-start;border:2px solid var(--soil-dark);border-radius:999px;background:#fff3b2;padding:4px 10px;font-weight:1000;font-size:12px;}
+.v37-menu-card h3{font-family:var(--display);font-size:clamp(22px,2.8vw,32px);line-height:1.2;color:var(--soil-dark);}.v37-menu-card .price{font-size:18px;font-weight:1000;color:var(--sponsor-green);}.v37-menu-card p,.v37-menu-card li{font-weight:850;line-height:1.7;color:rgba(48,37,26,.78);font-size:14px;}.v37-menu-card ul{padding-left:1.1em;margin:0;}.v37-menu-card.featured{background:linear-gradient(180deg,#f4ffe8,#fff);border-color:#2f7d45;}
+.v37-spec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px;}
+.v37-spec-card{background:#f4fff0;border:2px solid rgba(48,37,26,.18);border-radius:22px;padding:18px;}.v37-spec-card b{display:block;font-family:var(--display);font-size:22px;margin-bottom:6px;color:var(--sponsor-green);}.v37-spec-card p{font-weight:850;line-height:1.75;color:rgba(48,37,26,.78);}
+.v37-safety-corporate{background:#f6fff0;}
+.v37-corp-safety-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px;}.v37-corp-safety-grid article{background:#fff;border:3px solid var(--soil-dark);box-shadow:0 5px 0 var(--soil-dark);border-radius:22px;padding:18px;}.v37-corp-safety-grid b{display:block;font-family:var(--display);font-size:21px;line-height:1.25;color:var(--soil-dark);margin-bottom:8px}.v37-corp-safety-grid p{font-weight:850;line-height:1.7;color:rgba(48,37,26,.78);font-size:14px;}
+.v37-pack{background:#fffdf5;}.v37-pack-card{background:#fff;border:4px solid var(--soil-dark);box-shadow:0 8px 0 var(--soil-dark);border-radius:28px;padding:26px;}.v37-pack-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;}.v37-pack-top h2{font-family:var(--display);font-size:clamp(30px,4.2vw,52px);line-height:1.15;color:var(--soil-dark);}.v37-pack-top p{font-weight:850;line-height:1.75;color:rgba(48,37,26,.78);max-width:760px;margin-top:10px;}.v37-pack-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0;}.v37-pack-list article{border:2px solid rgba(48,37,26,.18);background:#fff9e6;border-radius:18px;padding:16px;}.v37-pack-list b{display:block;font-family:var(--display);font-size:20px;margin-bottom:4px;color:var(--soil-dark);}.v37-pack-list span{font-weight:850;line-height:1.65;color:rgba(48,37,26,.76);}.v37-ringi-box{background:#eff9e8;border:3px dashed #2f7d45;border-radius:20px;padding:18px;margin-top:14px;}.v37-ringi-box pre{white-space:pre-wrap;font-family:inherit;font-weight:850;line-height:1.75;margin:0;color:rgba(48,37,26,.85);font-size:14px;}
+.v37-summary{background:linear-gradient(180deg,#fff7e4,#f8fff2);}.v37-summary-board{background:#fff;border:4px solid var(--soil-dark);border-radius:34px;box-shadow:0 8px 0 var(--soil-dark);padding:28px;position:relative;overflow:hidden;}.v37-summary-board:before{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;background:rgba(240,201,74,.22);}.v37-summary-head{position:relative;z-index:1;text-align:center;margin-bottom:22px;}.v37-summary-head h2{font-family:var(--display);font-size:clamp(32px,4.6vw,58px);line-height:1.12;color:var(--soil-dark);}.v37-summary-head p{font-weight:850;color:rgba(48,37,26,.74);line-height:1.75;max-width:760px;margin:12px auto 0;}.v37-summary-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}.v37-summary-step{background:#fffaf0;border:3px solid var(--soil-dark);border-radius:22px;padding:18px;min-width:0;}.v37-summary-icon{height:88px;border-radius:18px;background:#eff9e8;border:2px solid rgba(48,37,26,.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}.v37-summary-icon svg{width:92%;height:74px}.v37-summary-step span{display:inline-flex;background:#2f7d45;color:#fff;border-radius:999px;padding:4px 9px;font-size:11px;font-weight:1000;margin-bottom:8px;}.v37-summary-step h3{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);line-height:1.2;color:var(--soil-dark);}.v37-summary-step p{margin-top:8px;font-weight:850;line-height:1.65;color:rgba(48,37,26,.78);font-size:14px;}.v37-summary-cta{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px;}
+.v37-mail-intro{background:#fff7d9;border:2px solid rgba(48,37,26,.18);border-radius:18px;padding:14px;margin-top:12px;font-weight:850;line-height:1.65;color:rgba(48,37,26,.78);}
+@media (max-width: 1100px){.v37-status-grid,.v37-menu-grid,.v37-corp-safety-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.v37-logo-board{grid-template-columns:repeat(2,minmax(0,1fr));}.v37-logo-slot.is-main{grid-column:1/-1;}.v37-summary-steps{grid-template-columns:repeat(2,minmax(0,1fr));}.v37-partner-top,.v37-logo-wall-head{grid-template-columns:1fr;}.v37-value-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width: 720px){.v37-status-grid,.v37-menu-grid,.v37-spec-grid,.v37-corp-safety-grid,.v37-pack-list,.v37-summary-steps,.v37-value-grid{grid-template-columns:1fr;}.v37-partner-copy,.v37-logo-wall,.v37-pack-card,.v37-summary-board{padding:20px;border-radius:24px}.v37-logo-board{grid-template-columns:1fr}.v37-pack-top{grid-template-columns:1fr}.v37-progress-card strong{font-size:64px}.v37-status-card,.v37-menu-card,.v37-corp-safety-grid article{box-shadow:0 4px 0 var(--soil-dark)}}
+
 </style>
 <!-- v34: UX and sponsor path final polish -->
 </head>
@@ -5201,7 +5267,7 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <span><b>NOTO Re:Bloom</b><small>耕作放棄地を、もう一度人が関わる場所へ。</small></span>
 </a>
 <button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
-<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#quick-brief">3つの要点</a><a href="#crowdfunding">クラファン</a><a href="#partners">法人協賛</a><a href="#safety-guide">参加前確認</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><button class="nav-mail mail-modal-trigger" type="button">メール</button><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
+<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#quick-brief">3つの要点</a><a href="#crowdfunding">クラファン</a><a href="#partners">法人協賛</a><a href="#sponsor-menu">協賛メニュー</a><a href="#partner-pack">稟議要点</a><a href="#safety-guide">参加前確認</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><button class="nav-mail mail-modal-trigger" type="button">メール</button><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
 </header>
 <main id="main">
 <section class="hero" id="top">
@@ -5220,7 +5286,7 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <div class="hero-actions"><a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a><button class="btn ghost mail-modal-trigger" type="button">協賛・連携を相談する</button><a class="btn ghost" href="#quick-brief">活動の要点を見る</a><a class="btn ghost subtle-diagnosis-link" href="#flower-diagnosis">花タイプ診断を試す</a></div>
 <div aria-label="プロジェクトの現在地" class="hero-facts">
 <article><span>START</span><b><span class="nowrap">NOTO-REBOOST U-23</span><br/>最優秀賞から始動</b></article>
-<article><span>FIELD</span><b>珠洲市内で<br/>会場候補を調整中</b></article>
+<article><span>FIELD</span><b>現地調査・<br/>土地使用許可取得済</b></article>
 <article><span>FIRST GOAL</span><b>初年度1か所の<br/>再生モデルづくり</b></article>
 </div>
 </div>
@@ -5231,8 +5297,8 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <figure class="photo-frame sub-photo">
 <img alt="再生候補地の地表の様子" src="field-detail.webp"/>
 </figure>
-<div class="sticker sticker-top">最初の一歩となる土地を<br/>地域の方と調整中</div>
-<div class="sticker sticker-bottom">一日で終わらせず、<br/>次の季節へつなぐ</div>
+<div class="sticker sticker-top">現地調査と土地使用許可を<br/>確認済み</div>
+<div class="sticker sticker-bottom">安全確認を重ね、<br/>次の季節へつなぐ</div>
 </div>
 </div>
 </section>
@@ -5256,92 +5322,138 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <div class="v34-next-action reveal"><span>協賛・クラファンの現在地</span><a class="btn small" href="#partners">上部の掲載枠へ</a></div></div>
 </section>
 
-<section class="v36-concern-note" id="current-guide">
+
+<section class="section v37-current-guide" id="current-guide">
   <div class="container">
-    <div class="v36-head reveal">
-      <p class="eyebrow"><i></i>CURRENT GUIDE</p>
-      <h2>今わかっていることを、先にまとめました。</h2>
-      <p>支援・参加・協賛を考える前に気になりやすい点を、できるだけ短く整理しています。未確定の部分は、決まり次第、活動報告やサイト内で更新します。</p>
+    <div class="v37-head reveal">
+      <p class="eyebrow"><i></i>CURRENT STATUS</p>
+      <h2>現地を確認し、土地使用の許可を得たうえで進めています。</h2>
+      <p>協賛や支援を検討する時に気になりやすい「実施確度・安全面・資金使途・報告方法」を、先に整理しました。</p>
     </div>
-    <div class="v36-resolve-grid reveal" aria-label="現在の確認事項">
-      <article class="v36-resolve-card"><span>STATUS</span><h3>会場は調整中です</h3><p>珠洲市内の候補地について、土地所有者の方と状態・整備範囲・安全面を確認しています。</p><ul><li>開催候補日：9月20日</li><li>午後開催を想定</li></ul></article>
-      <article class="v36-resolve-card"><span>SAFETY</span><h3>安全確認を優先します</h3><p>人が入れる状態にするため、草刈り、足元確認、導線づくり、備品準備を重視します。</p><ul><li>雨天・足元状況で内容変更あり</li><li>見学のみの参加も歓迎</li></ul></article>
-      <article class="v36-resolve-card"><span>MONEY</span><h3>支援は整備に使います</h3><p>土地整備、安全確認、運営準備、レンゲカップ資材、活動記録に活用します。</p><ul><li>1㎡あたり約300円が目安</li><li>使い道は順次公開予定</li></ul></article>
-      <article class="v36-resolve-card"><span>REPORT</span><h3>進捗を残します</h3><p>会場決定、整備前後の写真、当日の様子、費用の使い道を、活動報告として見える形にします。</p><ul><li>READYFOR活動報告で更新</li><li>写真でも変化を記録</li></ul></article>
+    <div class="v37-status-grid reveal" aria-label="現在の確認事項">
+      <article class="v37-status-card"><span>FIELD</span><h3>現地調査・使用許可取得済</h3><p>開催候補地について、土地所有者の方と現地状況を確認し、使用許可を得たうえで準備を進めています。</p><div class="v37-mini-list"><b>珠洲市内</b><b>土地所有者確認済</b></div></article>
+      <article class="v37-status-card"><span>SAFETY</span><h3>安全に入れる状態を優先</h3><p>草刈り、足元確認、導線づくり、備品準備を重視します。天候や会場状態により内容を調整します。</p><div class="v37-mini-list"><b>雨天判断</b><b>見学可</b></div></article>
+      <article class="v37-status-card"><span>MONEY</span><h3>土地整備へ重点配分</h3><p>現地確認を踏まえ、支援金は土地整備・安全確認・運営準備・レンゲカップ資材・記録発信に活用します。</p><div class="v37-mini-list"><b>1㎡ 約300円目安</b><b>使途報告</b></div></article>
+      <article class="v37-status-card"><span>REPORT</span><h3>協賛後も進捗を共有</h3><p>整備前後の写真、当日の様子、支援金の使い道を、READYFOR活動報告やサイト上で見える形にします。</p><div class="v37-mini-list"><b>写真記録</b><b>活動報告</b></div></article>
     </div>
     <div class="v36-resolve-actions reveal">
       <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
-      <a class="btn ghost" href="#safety-guide">参加前の確認へ</a>
+      <a class="btn ghost" href="#sponsor-menu">協賛メニューを見る</a>
       <button class="btn ghost mail-modal-trigger" type="button">協賛・連携を相談する</button>
     </div>
   </div>
 </section>
 
-<section class="section v34-partner-showcase" id="partners">
-<div aria-hidden="true" class="v34-partner-bg"><span></span><span></span><span></span></div>
-<div class="container v34-partner-inner">
-<div class="v34-partner-kv reveal">
-<div>
-<p class="eyebrow"><i></i>PARTNER / READYFOR</p>
-<h2>地域をともに咲かせる<br/>パートナーを募集しています。</h2>
-<p>法人・団体パートナーのロゴは、サイト上部の目立つ位置に掲載予定です。協賛が「能登との関わり」として見える形で残るよう、専用のロゴボードを用意しています。</p>
-</div>
-<article aria-label="READYFOR達成率" class="v34-progress-card">
-<span>READYFOR 達成率</span>
-<strong>10%</strong>
-<div aria-hidden="true" class="v34-progress-meter"><i></i></div>
-<p>まだ最初の一歩の途中です。土地整備・安全確認・運営準備を進めるため、応援を募っています。</p>
-<a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
-</article>
-</div>
-<div aria-label="法人団体パートナーロゴ掲載予定欄" class="v34-sponsor-wall reveal">
-<div class="v34-sponsor-wall-head">
-<div>
-<p class="eyebrow"><i></i>LOGO WALL</p>
-<h3>ここに、協賛企業・団体のロゴが入ります。</h3>
-</div>
-<p>ロゴ掲載は、協賛いただいた法人・団体のみを対象に、事前確認のうえ反映します。現在は募集前のため、掲載イメージとして空き枠を表示しています。</p>
-</div>
-<div class="v34-logo-board">
-<div class="v34-logo-slot is-main"><b>MAIN PARTNER</b><span>YOUR LOGO</span><small>メイン協賛枠</small></div>
-<div class="v34-logo-slot"><b>PARTNER</b><span>LOGO</span><small>資金協賛</small></div>
-<div class="v34-logo-slot"><b>SUPPORT</b><span>LOGO</span><small>物品協力</small></div>
-<div class="v34-logo-slot"><b>LOCAL</b><span>LOGO</span><small>地域連携</small></div>
-<div class="v34-logo-slot"><b>CREW</b><span>LOGO</span><small>運営協力</small></div>
-</div>
-<div aria-label="協賛すると見えること" class="v34-sponsor-value">
-<article><b>Web掲載</b><span>サイト上部のロゴボードに掲載</span></article>
-<article><b>活動報告</b><span>支援の意味を記録として発信</span></article>
-<article><b>現地連携</b><span>物品・広報・参加協力も相談可</span></article>
-<article><b>地域貢献</b><span>能登との関わりを社内外へ示せる</span></article>
-</div>
-<div class="v34-partner-cta">
-<button class="btn primary mail-modal-trigger" type="button">協賛について相談する</button>
-<a class="btn ghost" href="#support">協賛メニューを見る</a>
-</div>
-<p class="v34-logo-note">※個人支援者名・法人名のテキスト掲載欄は設けず、法人・団体ロゴの掲載スペースとして運用します。掲載可否・サイズ・文言は個別に確認します。</p>
-</div>
-
-<div class="v36-partner-proof reveal" aria-label="法人パートナー掲載までの流れ">
-  <div class="v36-partner-proof-head">
-    <div>
-      <p class="eyebrow"><i></i>PARTNER FLOW</p>
-      <h3>ロゴ掲載までの流れも、わかりやすく。</h3>
-      <p>企業・団体内で共有しやすいように、協賛後の見え方と掲載までの進み方を整理しています。</p>
+<section class="section v37-sponsor-showcase" id="partners">
+  <div class="container v37-partner-inner">
+    <div class="v37-partner-top reveal">
+      <div class="v37-partner-copy">
+        <p class="eyebrow"><i></i>PARTNER / READYFOR</p>
+        <h2>地域をともに咲かせる<br/>法人・団体パートナーへ。</h2>
+        <p>NOTO Re:Bloomでは、協賛企業・団体のロゴをサイト上部の目立つ位置に掲載します。地域貢献、復興支援、学生の挑戦支援、社員参加のきっかけとして、社内外に説明しやすい形で協賛の価値を残します。</p>
+        <div class="v37-mini-list"><b>Webロゴ掲載</b><b>活動報告で共有</b><b>現物・技術協力も歓迎</b><b>社員参加相談可</b></div>
+      </div>
+      <article aria-label="READYFOR達成率" class="v37-progress-card">
+        <span>READYFOR 達成率</span>
+        <strong>10%</strong>
+        <div aria-hidden="true" class="v37-progress-meter"><i></i></div>
+        <p>まだ最初の一歩の途中です。土地整備・安全確認・運営準備を進めるため、応援を募っています。</p>
+        <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
+      </article>
     </div>
-    <button class="btn primary mail-modal-trigger" type="button">協賛について相談する</button>
+    <div aria-label="法人団体パートナーロゴ掲載予定欄" class="v37-logo-wall reveal">
+      <div class="v37-logo-wall-head">
+        <div>
+          <p class="eyebrow"><i></i>LOGO WALL</p>
+          <h3>ここに、協賛企業・団体のロゴが入ります。</h3>
+        </div>
+        <p>ロゴ掲載は、協賛いただいた法人・団体のみを対象に、事前確認のうえ反映します。現在は募集前のため、掲載イメージとして空き枠を表示しています。</p>
+      </div>
+      <div class="v37-logo-board">
+        <div class="v37-logo-slot is-main"><b>MAIN PARTNER</b><span>YOUR LOGO</span><small>メイン協賛枠</small></div>
+        <div class="v37-logo-slot"><b>PARTNER</b><span>LOGO</span><small>資金協賛</small></div>
+        <div class="v37-logo-slot"><b>SUPPORT</b><span>LOGO</span><small>物品協力</small></div>
+        <div class="v37-logo-slot"><b>LOCAL</b><span>LOGO</span><small>地域連携</small></div>
+        <div class="v37-logo-slot"><b>CREW</b><span>LOGO</span><small>運営協力</small></div>
+      </div>
+      <div aria-label="協賛すると見えること" class="v37-value-grid">
+        <article><b>Web掲載</b><span>サイト上部のロゴボードに掲載。協賛の見え方を社内外に示せます。</span></article>
+        <article><b>活動報告</b><span>整備や当日の様子とともに、支援の意味を記録として発信します。</span></article>
+        <article><b>現地連携</b><span>物品・広報・社員参加・専門的助言なども相談できます。</span></article>
+        <article><b>地域貢献</b><span>能登との関わり、学生支援、復興支援の取り組みとして説明しやすくします。</span></article>
+      </div>
+      <div class="v34-partner-cta">
+        <button class="btn primary mail-modal-trigger" type="button">協賛について相談する</button>
+        <a class="btn ghost" href="#sponsor-menu">協賛メニューを見る</a>
+        <a class="btn ghost" href="#partner-pack">社内共有の要点を見る</a>
+      </div>
+      <p class="v34-logo-note">※個人支援者名・法人名のテキスト掲載欄は設けず、法人・団体ロゴの掲載スペースとして運用します。掲載可否・サイズ・文言は個別に確認します。</p>
+    </div>
   </div>
-  <div class="v36-flow">
-    <article><b>まず相談</b><span>協賛金額、物品協力、広報協力など、できる形を確認します。</span></article>
-    <article><b>掲載内容を確認</b><span>ロゴデータ、紹介可否、掲載表現を事前に確認します。</span></article>
-    <article><b>サイトへ掲載</b><span>法人・団体ロゴをパートナー欄に反映します。</span></article>
-    <article><b>活動報告で共有</b><span>整備や当日の様子とともに、支援の使われ方を残します。</span></article>
-  </div>
-</div>
-
-<div class="v34-next-action reveal"><span>次は、支援金が何に変わるかを見る</span><a class="btn small" href="#crowdfunding">クラファン紹介へ</a></div></div>
 </section>
 
+<section class="section v37-sponsor-menu" id="sponsor-menu">
+  <div class="container">
+    <div class="v37-head reveal">
+      <p class="eyebrow"><i></i>SPONSOR MENU</p>
+      <h2>協賛の形を、社内で共有しやすく。</h2>
+      <p>金額や協力内容は個別相談できます。まずは、以下を目安として「どの形なら関われるか」をご検討ください。</p>
+    </div>
+    <div class="v37-menu-grid reveal" aria-label="協賛メニューの目安">
+      <article class="v37-menu-card"><span class="tier">LIGHT</span><h3>ライト協賛</h3><div class="price">目安：3万円〜</div><p>まずはWeb掲載から関わる協賛枠です。</p><ul><li>公式サイトのロゴ掲載</li><li>活動報告での謝意掲載</li><li>メールでの進捗共有</li></ul></article>
+      <article class="v37-menu-card"><span class="tier">STANDARD</span><h3>スタンダード協賛</h3><div class="price">目安：5万円〜</div><p>活動の実施と発信を支える協賛枠です。</p><ul><li>公式サイトのロゴ掲載</li><li>活動報告での紹介</li><li>現地掲示・資料掲載の相談</li></ul></article>
+      <article class="v37-menu-card featured"><span class="tier">PARTNER</span><h3>法人・団体パートナー</h3><div class="price">目安：8.5万円〜</div><p>プロジェクト全体を支える中心的な協賛枠です。</p><ul><li>上部ロゴボード掲載</li><li>活動報告・SNS紹介の相談</li><li>社員・メンバー参加の相談</li></ul></article>
+      <article class="v37-menu-card"><span class="tier">IN-KIND</span><h3>物品・技術協力</h3><div class="price">内容相談</div><p>資金以外の協力も歓迎します。</p><ul><li>重機・運搬・資材</li><li>広報・写真・動画</li><li>安全管理や専門的助言</li></ul></article>
+    </div>
+    <div class="v37-spec-grid reveal" aria-label="ロゴ掲載の条件">
+      <article class="v37-spec-card"><b>掲載場所</b><p>公式サイト上部の法人・団体パートナー欄に掲載します。協賛内容に応じて掲載サイズを調整します。</p></article>
+      <article class="v37-spec-card"><b>掲載期間</b><p>原則としてクラウドファンディング期間中から、活動報告完了後までの掲載を想定しています。</p></article>
+      <article class="v37-spec-card"><b>掲載形式</b><p>ロゴデータをご提供いただき、掲載前に表示内容を確認します。公序良俗に反する内容は掲載できません。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section v37-safety-corporate" id="corporate-safety">
+  <div class="container">
+    <div class="v37-head reveal">
+      <p class="eyebrow"><i></i>RISK / SAFETY</p>
+      <h2>協賛前に気になる点も、先に整理します。</h2>
+      <p>企業・団体として関わる際に確認されやすい、安全面・雨天時・保険・実施状況についての考え方です。</p>
+    </div>
+    <div class="v37-corp-safety-grid reveal">
+      <article><b>土地使用</b><p>現地調査を行い、土地所有者の方から使用許可を得たうえで準備を進めています。</p></article>
+      <article><b>安全管理</b><p>草刈り、足元確認、導線づくり、受付・誘導体制を整え、当日の状況に応じて内容を調整します。</p></article>
+      <article><b>雨天・荒天</b><p>天候や会場の状態を確認し、安全確保が難しい場合は内容変更または中止を判断します。</p></article>
+      <article><b>保険・参加対応</b><p>参加者の安全案内、必要な保険や当日の対応体制について、実施前に確認・調整します。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section v37-pack" id="partner-pack">
+  <div class="container">
+    <div class="v37-pack-card reveal">
+      <div class="v37-pack-top">
+        <div><p class="eyebrow"><i></i>FOR INTERNAL APPROVAL</p><h2>社内共有に使える要点。</h2><p>協賛を検討する担当者の方が、稟議や社内相談に進めやすいよう、プロジェクトの要点を短く整理しました。</p></div>
+        <button class="btn primary v20-copy-btn" type="button" data-copy-text="【NOTO Re:Bloom 協賛検討メモ】
+目的：能登の耕作放棄地を、学生・地域・企業の協働で人が関われる場所へ戻すプロジェクト。
+初年度内容：珠洲市内の土地で、整備・安全確認を行い、泥ん子運動会とレンゲカップを実施予定。
+現状：現地調査・土地使用許可取得済。安全面・導線・運営体制を調整中。
+協賛価値：地域貢献、復興支援、学生支援、社員参加、Web・活動報告でのロゴ掲載。
+相談可能：資金協賛、物品協力、技術協力、広報協力、社員参加。
+問い合わせ：infonotorebloom@gmail.com">社内共有メモをコピー</button>
+      </div>
+      <div class="v37-pack-list">
+        <article><b>目的</b><span>耕作放棄地に人が関わる入口をつくり、翌年度以降の活用へつなげる。</span></article>
+        <article><b>実施確度</b><span>現地調査・土地使用許可取得済。安全確認と運営準備を進行中。</span></article>
+        <article><b>協賛価値</b><span>Webロゴ掲載、活動報告での紹介、現地連携、地域貢献発信。</span></article>
+        <article><b>相談できること</b><span>資金協賛、物品協力、技術協力、広報協力、社員・メンバー参加。</span></article>
+      </div>
+      <div class="v37-ringi-box"><pre>社内説明の要旨：
+NOTO Re:Bloomは、能登の耕作放棄地を、学生・地域・企業の協働で再び人が関われる場所へ戻すプロジェクトです。協賛により、土地整備・安全確認・運営準備を支えるとともに、公式サイトや活動報告を通じて、地域貢献・復興支援・学生支援の取り組みとして社内外に発信できます。</pre></div>
+      <p class="v37-section-note">※協賛内容・掲載方法・ロゴサイズ・掲載期間は、個別相談のうえ決定します。</p>
+    </div>
+  </div>
+</section>
 <section aria-label="プロジェクトの一文" class="mud-band">
 <div class="container band-inner">
 <p>荒れた土地を整えることは、イベントの準備ではありません。<strong>土地に、人が関わり続ける理由をつくることです。</strong></p>
@@ -6062,21 +6174,26 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <a class="btn ghost" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORを開く</a>
 </div>
 </div>
-</section><section class="section materials" id="materials">
-<div class="container">
-<div class="center-heading reveal">
-<p class="eyebrow"><i></i>MATERIALS</p>
-<h2>資料から、詳しく知る。</h2>
-<p>プロジェクトの背景、再生モデル、協賛価値、資金計画などを資料として整理しています。</p>
-</div>
-<div class="material-grid reveal">
-<figure><img alt="プロジェクト概要資料" src="project-overview.webp"/></figure>
-<figure><img alt="再生モデル資料" src="regeneration-model.webp"/></figure>
-<figure><img alt="協賛価値資料" src="sponsor-value.webp"/></figure>
-<figure><img alt="資金計画資料" src="funding-plan.webp"/></figure>
-</div>
-</div>
-</section><section class="section faq" id="faq">
+</section>
+<section class="section v37-summary" id="materials">
+  <div class="container">
+    <div class="v37-summary-board reveal">
+      <div class="v37-summary-head">
+        <p class="eyebrow"><i></i>PROJECT SUMMARY</p>
+        <h2>1枚で見る、NOTO Re:Bloom。</h2>
+        <p>資料画像の雰囲気をサイト全体のスタイルに合わせ直し、土地整備から活動報告までの流れを4つのカードにまとめました。</p>
+      </div>
+      <div class="v37-summary-steps" aria-label="プロジェクトの流れ">
+        <article class="v37-summary-step"><div class="v37-summary-icon"><svg viewBox="0 0 220 90" aria-hidden="true"><rect x="10" y="55" width="200" height="22" rx="10" fill="#8bcf74"/><path d="M22 64c20-19 42-24 65-13 20 10 40 4 59-6 22-12 42-8 58 8" fill="none" stroke="#2f7d45" stroke-width="8" stroke-linecap="round"/><path d="M30 48c5-18 15-28 31-31" stroke="#543b24" stroke-width="5" stroke-linecap="round"/><circle cx="55" cy="20" r="9" fill="#f0c94a"/></svg></div><span>STEP 1</span><h3>土地を整える</h3><p>現地確認、草刈り、導線づくり、安全確認を行い、人が入れる状態へ近づけます。</p></article>
+        <article class="v37-summary-step"><div class="v37-summary-icon"><svg viewBox="0 0 220 90" aria-hidden="true"><path d="M30 65h160" stroke="#543b24" stroke-width="6" stroke-linecap="round"/><circle cx="62" cy="47" r="13" fill="#f0c94a" stroke="#2f2418" stroke-width="4"/><circle cx="110" cy="38" r="13" fill="#77b7e5" stroke="#2f2418" stroke-width="4"/><circle cx="157" cy="50" r="13" fill="#ef7a87" stroke="#2f2418" stroke-width="4"/><path d="M62 60v16M110 51v25M157 63v13" stroke="#2f2418" stroke-width="5"/><path d="M43 28c18-17 44-18 65-5" stroke="#2f7d45" stroke-width="5" stroke-linecap="round"/></svg></div><span>STEP 2</span><h3>人が集まる</h3><p>泥ん子運動会を入口に、子ども・学生・地域の方・企業の方が同じ場所で関わります。</p></article>
+        <article class="v37-summary-step"><div class="v37-summary-icon"><svg viewBox="0 0 220 90" aria-hidden="true"><path d="M75 70h70l9-50H66z" fill="#fff7d9" stroke="#2f2418" stroke-width="5"/><path d="M82 32h56" stroke="#2f7d45" stroke-width="6" stroke-linecap="round"/><path d="M110 30c-3-14 4-20 13-25 2 13-3 23-13 25z" fill="#68bd5f" stroke="#2f2418" stroke-width="3"/><path d="M110 30c-11-2-17-9-17-22 12 3 18 11 17 22z" fill="#8bd77e" stroke="#2f2418" stroke-width="3"/><circle cx="110" cy="52" r="7" fill="#e95c9a"/></svg></div><span>STEP 3</span><h3>未来を持ち帰る</h3><p>Re:Bloomレンゲカップで、能登の泥とレンゲの種を持ち帰る体験につなげます。</p></article>
+        <article class="v37-summary-step"><div class="v37-summary-icon"><svg viewBox="0 0 220 90" aria-hidden="true"><rect x="42" y="16" width="136" height="60" rx="10" fill="#fff" stroke="#2f2418" stroke-width="5"/><path d="M62 35h48M62 50h96M62 63h70" stroke="#2f7d45" stroke-width="5" stroke-linecap="round"/><circle cx="148" cy="34" r="12" fill="#f0c94a" stroke="#2f2418" stroke-width="4"/></svg></div><span>STEP 4</span><h3>記録して続ける</h3><p>整備前後の写真、費用の使い道、次年度への活用方針を活動報告として残します。</p></article>
+      </div>
+      <div class="v37-summary-cta"><a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a><button class="btn ghost mail-modal-trigger" type="button">協賛・連携を相談する</button></div>
+    </div>
+  </div>
+</section>
+<section class="section faq" id="faq">
 <div class="container faq-grid">
 <div class="section-copy reveal">
 <p class="eyebrow"><i></i>FAQ</p>
@@ -6088,13 +6205,13 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <h3>参加前に、まずここだけ。</h3>
 <div>
 <span>服装：汚れてもよい服</span>
-<span>見学：無料を想定</span>
+<span>見学：無料を想定</span><span>土地使用：許可取得済</span>
 <span>子ども：安全に応じて調整</span>
 <span>雨天：安全状況で判断</span>
 </div>
 </div>
 <div class="faq-list reveal">
-<details open=""><summary>現在、会場は確定していますか？</summary><p>確定前です。珠洲市内の候補地について、地域の方と相談しながら、アクセス・安全面・整備費・翌年度以降の活用可能性を確認しています。</p></details><details><summary>泥ん子運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details><details><summary>どんな服装で行けばいいですか？</summary><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。泥に入る企画のため、当日は濡れてもよい準備でお越しください。</p></details><details><summary>見学だけでも大丈夫ですか？</summary><p>大丈夫です。見学・応援は無料を想定しています。泥に入らず、雰囲気を楽しむだけでも歓迎です。</p></details><details><summary>小さな子どもでも参加できますか？</summary><p>参加人数や年齢構成を見ながら、安全に楽しめる形でチーム分けや競技内容を調整します。</p></details><details><summary>雨天時はどうなりますか？</summary><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。変更がある場合は、申込者へご案内します。</p></details><details><summary>学生はどのように関われますか？</summary><p>当日の運営、SNS発信、写真・動画の記録、広報、企画づくりなど、できるところから関われます。</p></details><details><summary>企業・団体は資金協賛以外でも関われますか？</summary><p>可能です。物品協力、広報協力、社員参加、専門的助言、地域団体の紹介など、さまざまな形での連携を歓迎しています。</p></details></div>
+<details open=""><summary>現在、会場の使用許可は取れていますか？</summary><p>はい。現地調査を行い、土地所有者の方から土地使用の許可を得たうえで準備を進めています。今後は安全面、導線、当日の運営方法を詰めていきます。</p></details><details><summary>泥ん子運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details><details><summary>どんな服装で行けばいいですか？</summary><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。泥に入る企画のため、当日は濡れてもよい準備でお越しください。</p></details><details><summary>見学だけでも大丈夫ですか？</summary><p>大丈夫です。見学・応援は無料を想定しています。泥に入らず、雰囲気を楽しむだけでも歓迎です。</p></details><details><summary>小さな子どもでも参加できますか？</summary><p>参加人数や年齢構成を見ながら、安全に楽しめる形でチーム分けや競技内容を調整します。</p></details><details><summary>雨天時はどうなりますか？</summary><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。変更がある場合は、申込者へご案内します。</p></details><details><summary>学生はどのように関われますか？</summary><p>当日の運営、SNS発信、写真・動画の記録、広報、企画づくりなど、できるところから関われます。</p></details><details><summary>企業・団体は資金協賛以外でも関われますか？</summary><p>可能です。物品協力、広報協力、社員参加、専門的助言、地域団体の紹介など、さまざまな形での連携を歓迎しています。</p></details></div>
 <div class="v34-next-action reveal"><span>あなたの花タイプを診断する</span><a class="btn small" href="#flower-diagnosis">診断へ進む</a></div></div>
 </section><section class="section flower-diagnosis" id="flower-diagnosis">
 <div class="container">
@@ -6203,7 +6320,7 @@ article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.d
 <button aria-label="閉じる" class="mail-modal-close" type="button">×</button>
 <p class="eyebrow"><i></i>MAIL CONTACT</p>
 <h2 id="mailModalTitle">メールで問い合わせる</h2>
-<p>参加・協賛・連携・取材などのご相談は、下記メールアドレスまでお送りください。ボタンからコピー、またはメールアプリを開けます。</p>
+<p>参加・協賛・連携・取材などのご相談は、下記メールアドレスまでお送りください。協賛相談の場合は、法人・団体名、担当者名、協力できそうな内容を書いていただけると確認がスムーズです。</p><div class="v37-mail-intro">相談できる内容：資金協賛、物品協力、技術協力、広報協力、社員・メンバー参加、取材相談など。</div>
 <div class="mail-address-box" id="mailAddress">infonotorebloom@gmail.com</div>
 <div class="mail-modal-actions">
 <button class="btn primary" id="copyMailAddress" type="button">メールアドレスをコピー</button>
