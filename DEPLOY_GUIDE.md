@@ -1,32 +1,24 @@
 # GitHub Pages 反映手順
 
-このフォルダの内容が、公開用の完成版です。
+1. 現在のリポジトリを `Code → Download ZIP` でバックアップします。
+2. このZIPを解凍します。
+3. GitHubリポジトリのルートで `Add file → Upload files` を選びます。
+4. 解凍したフォルダの**中身をすべて**アップロードします。`index.html` がリポジトリ直下に来る状態にしてください。
+5. コミットメッセージ例: `Rebuild site with playful farmland learning design`
+6. `Commit directly to the main branch` を選び、コミットします。
+7. 数分後、公開サイトを強制再読み込みします。
 
-## 推奨手順
+## 公開後チェック
+- トップ、学ぶ、イベント、法人、診断の5ページで同じヘッダー・配色になっている
+- イベントフォームが `6ZMrhrhtWmBCQViD8` へ移動する
+- 協賛フォームが `cRdr2oa2pxBhrFE3A` へ移動する
+- READYFORリンクが開く
+- モバイルメニューが開閉する
+- `learn.html` のクイズが動く
+- `diagnosis.html` が開始・途中保存・結果表示できる
+- `partner.html` の要点コピーが動く
 
-1. GitHubで `noto-rebloom/noto-rebloom` リポジトリを開く。
-2. 念のため、現在のリポジトリを `Code` → `Download ZIP` で保存する。
-3. リポジトリのルートにある既存ファイルを削除し、このフォルダ内のファイルをすべてアップロードする。
-4. コミットメッセージに `Website redesign: event and partner pages` などを入力して確定する。
-5. 数分後、次の4ページを確認する。
-   - `https://noto-rebloom.github.io/noto-rebloom/`
-   - `https://noto-rebloom.github.io/noto-rebloom/event.html`
-   - `https://noto-rebloom.github.io/noto-rebloom/partner.html`
-   - `https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`
-
-## 公開後の確認
-
-- PCとスマートフォンでメニューが開閉できる。
-- 参加・見学ボタンが参加フォームへ移動する。
-- 協賛・連携ボタンが法人・団体フォームへ移動する。
-- READYFORボタンが正しいプロジェクトへ移動する。
-- 法人ページの「要点をコピー」が動作する。
-- 花タイプ診断で最初の質問が表示される。
-
-## 更新時に注意する情報
-
-- 会場表現：実施可能な土地は確保済み。複数候補から最適な会場を選定中。
-- 開催日：2026年9月20日（日）。
-- 参加費：一律500円。見学・応援は無料。
-- 法人協賛：3万円、5万円、8.5万円、物品・技術協力。
-- READYFOR支援状況：金額、達成率、確認日を同時に更新する。
+## 更新時に注意する項目
+- READYFOR支援額・支援者数・確認日
+- 会場、時間、保険、雨天対応
+- 最新の荒廃農地統計
