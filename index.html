@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- NOTO Re:Bloom v34 single-file: final UX / partner logo board / crowdfunding path polish -->
+<!-- NOTO Re:Bloom v35 single-file: wording and visual rhythm polish -->
 <!-- NOTO Re:Bloom single-file version: この1ファイルを index.html に全文貼り替えれば反映できます。 -->
 <html lang="ja">
 <head>
@@ -4695,6 +4695,421 @@ body{overflow-x:hidden;}
   .v34-faq-quick div{display:grid;grid-template-columns:1fr;}
 }
 
+
+
+/* =========================================================
+   V35 visual wording polish
+   - Remove meta-style copy from user-facing areas
+   - Make text blocks stable on desktop / mobile
+   - Prevent decorative elements from overlapping copy
+========================================================= */
+
+:root{
+  --v35-readable:#2d2117;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+/* Typographic stability */
+h1,h2,h3,
+.hero h1,
+.quick-brief h2,
+.v34-partner-kv h2,
+.v34-sponsor-wall-head h3,
+.center-heading h2,
+.section-copy h2,
+.impact-head h2,
+.support h2,
+.final-card h2{
+  text-wrap:pretty;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  line-break:strict;
+}
+
+p,li,small,span,b,a,button{
+  word-break:normal;
+  overflow-wrap:break-word;
+}
+
+.keep{
+  display:inline-block;
+  max-width:100%;
+}
+
+/* Hero: make copy and visual independent, no collision */
+.hero{
+  min-height:auto !important;
+  padding:clamp(118px,13vw,158px) 0 clamp(58px,7vw,86px) !important;
+}
+.hero-layout{
+  grid-template-columns:minmax(0,1.02fr) minmax(320px,.88fr) !important;
+  gap:clamp(28px,5vw,58px) !important;
+  align-items:center !important;
+}
+.hero-copy{
+  background:rgba(255,252,239,.90);
+  border:4px solid rgba(53,33,22,.95);
+  border-radius:34px;
+  padding:clamp(22px,4vw,42px);
+  box-shadow:0 8px 0 rgba(53,33,22,.95), 0 22px 44px rgba(53,33,22,.13);
+  max-width:760px;
+}
+.hero h1{
+  font-size:clamp(36px,5.05vw,66px) !important;
+  line-height:1.18 !important;
+  letter-spacing:-.015em !important;
+  margin:12px 0 0;
+}
+.hero h1::after{
+  display:none !important;
+}
+.hero .lead{
+  max-width:620px;
+  font-size:clamp(14.5px,1.28vw,17px) !important;
+  line-height:1.9 !important;
+  margin-top:18px !important;
+}
+.hero-burst{
+  margin-bottom:12px !important;
+  transform:rotate(-1deg) !important;
+  max-width:max-content;
+}
+.hero-fun-line{
+  display:inline-flex !important;
+  max-width:100%;
+  white-space:normal;
+  border-radius:18px !important;
+  line-height:1.55;
+  padding:8px 12px !important;
+  transform:none !important;
+}
+.hero-actions{
+  gap:10px !important;
+}
+.hero-actions .btn{
+  min-height:46px;
+  padding-inline:16px;
+}
+.hero-facts{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:10px !important;
+  max-width:100% !important;
+}
+.hero-facts article{
+  transform:none !important;
+  padding:13px !important;
+}
+.hero-visual{
+  min-height:470px !important;
+  align-self:stretch;
+}
+.main-photo{
+  width:min(86%,420px) !important;
+  height:440px !important;
+}
+.sub-photo{
+  width:190px !important;
+  height:245px !important;
+  bottom:28px !important;
+}
+.sticker{
+  z-index:4;
+  max-width:200px !important;
+  font-size:11.5px !important;
+}
+.sticker-top{top:68px !important;left:0 !important;}
+.sticker-bottom{right:0 !important;bottom:66px !important;}
+
+/* Project point: user-facing, not meta-facing */
+.quick-brief{
+  padding-top:clamp(54px,7vw,86px) !important;
+}
+.quick-brief-head{
+  max-width:880px !important;
+  margin-bottom:26px !important;
+}
+.quick-brief h2{
+  font-size:clamp(30px,4.2vw,50px) !important;
+  line-height:1.32 !important;
+  letter-spacing:-.01em;
+}
+.quick-brief-head p:not(.eyebrow){
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:clamp(14px,1.3vw,16.5px) !important;
+  line-height:1.9 !important;
+}
+.quick-brief-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+.quick-brief-grid article{
+  min-width:0;
+  padding:20px !important;
+}
+.quick-brief-grid article::after{
+  opacity:.24 !important;
+  right:-44px !important;
+  top:-44px !important;
+}
+.quick-brief-grid h3{
+  font-size:clamp(19px,2vw,24px) !important;
+  line-height:1.35 !important;
+}
+.quick-brief-grid p{
+  font-size:clamp(13px,1.14vw,14.5px) !important;
+  line-height:1.75 !important;
+}
+.quick-next-actions,
+.v34-next-action{
+  background:#fffdf4 !important;
+  border-style:solid !important;
+  box-shadow:0 4px 0 rgba(53,33,22,.86);
+  gap:10px !important;
+}
+.v34-next-action span{
+  font-size:14px;
+  letter-spacing:.02em;
+}
+
+/* Partner area: keep logo board attractive but not cramped */
+.v34-partner-kv{
+  grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr) !important;
+  gap:20px !important;
+}
+.v34-partner-kv h2{
+  font-size:clamp(30px,4.1vw,52px) !important;
+  line-height:1.25 !important;
+}
+.v34-partner-kv p{
+  font-size:clamp(13.5px,1.15vw,15.5px) !important;
+  line-height:1.85 !important;
+}
+.v34-sponsor-wall-head{
+  grid-template-columns:minmax(0,1fr) !important;
+  gap:10px !important;
+  align-items:start !important;
+}
+.v34-sponsor-wall-head h3{
+  font-size:clamp(27px,3.6vw,46px) !important;
+  line-height:1.25 !important;
+}
+.v34-logo-board{
+  grid-template-columns:1.25fr repeat(4,minmax(0,1fr)) !important;
+}
+.v34-logo-slot{
+  min-height:112px !important;
+  padding:12px 10px !important;
+}
+.v34-logo-slot span{
+  font-size:clamp(18px,2.25vw,30px) !important;
+  letter-spacing:.02em;
+}
+.v34-sponsor-value{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+.v34-sponsor-value article{
+  min-width:0;
+}
+.v34-sponsor-value span{
+  font-size:12px !important;
+}
+
+/* Generic card rhythm: reduce accidental overflow */
+article,.panel,.status-card,.faq-list details,.v20-cf-panel,.v34-budget-brief,.diagnosis-start-card,.diagnosis-result-card{
+  min-width:0;
+}
+.section-copy p,
+.center-heading p,
+.impact-head p,
+.v20-cf-copy p,
+.v34-budget-copy p,
+.join-card p,
+.report-card p,
+.faq-list p{
+  line-height:1.85 !important;
+}
+
+.btn{
+  white-space:normal !important;
+  text-align:center;
+  line-height:1.25;
+}
+
+/* Keep decorative flowers/leaves behind content */
+.section::after,
+.v32-bloom-field,
+.v33-garden-bg,
+.v34-partner-bg{
+  pointer-events:none;
+  z-index:0 !important;
+}
+.section > .container,
+.v34-partner-inner{
+  position:relative;
+  z-index:2;
+}
+
+/* Medium screens: switch before things collide */
+@media (max-width:1100px){
+  .hero-layout,
+  .v34-partner-kv,
+  .v34-budget-brief,
+  .land-meter-card,
+  .diagnosis-hero-grid{
+    grid-template-columns:1fr !important;
+  }
+  .hero-copy{
+    max-width:860px;
+    margin-inline:auto;
+  }
+  .hero-visual{
+    min-height:auto !important;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    align-items:stretch;
+  }
+  .main-photo,
+  .sub-photo{
+    position:relative !important;
+    inset:auto !important;
+    width:100% !important;
+    height:320px !important;
+    margin:0 !important;
+    transform:none !important;
+  }
+  .sticker{
+    position:relative !important;
+    inset:auto !important;
+    transform:none !important;
+    max-width:none !important;
+    grid-column:span 1;
+  }
+  .quick-brief-grid,
+  .v34-sponsor-value{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .v34-logo-board{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  .v34-logo-slot.is-main{
+    grid-column:span 3;
+  }
+}
+
+@media (max-width:740px){
+  .hero{
+    padding-top:104px !important;
+  }
+  .hero-copy{
+    border-width:3px;
+    border-radius:26px;
+    padding:22px 18px;
+  }
+  .hero h1{
+    font-size:clamp(31px,10vw,42px) !important;
+    line-height:1.23 !important;
+  }
+  .hero-fun-line{
+    font-size:12.5px;
+  }
+  .lead{
+    font-size:14px !important;
+  }
+  .hero-actions,
+  .quick-next-actions,
+  .v34-partner-cta,
+  .ways-actions,
+  .final-card-actions{
+    flex-direction:column;
+    align-items:stretch !important;
+  }
+  .hero-actions .btn,
+  .quick-next-actions .btn,
+  .v34-partner-cta .btn,
+  .ways-actions .btn,
+  .final-card-actions .btn{
+    width:100%;
+  }
+  .hero-facts,
+  .quick-brief-grid,
+  .v34-sponsor-value,
+  .v34-logo-board,
+  .v34-budget-grid,
+  .action-menu,
+  .join-garden,
+  .use-cases,
+  .flower-gallery-grid{
+    grid-template-columns:1fr !important;
+  }
+  .v34-logo-slot.is-main{
+    grid-column:auto;
+  }
+  .hero-visual{
+    grid-template-columns:1fr;
+  }
+  .main-photo,.sub-photo{
+    height:260px !important;
+  }
+  .quick-brief h2,
+  .v34-partner-kv h2,
+  .v34-sponsor-wall-head h3,
+  .center-heading h2,
+  .section-copy h2{
+    font-size:clamp(27px,8.4vw,37px) !important;
+    line-height:1.34 !important;
+  }
+  .v34-progress-card strong{
+    font-size:64px !important;
+  }
+  .sticky-cta{
+    left:12px !important;
+    right:12px !important;
+    bottom:12px !important;
+    transform:translateY(150%) !important;
+    max-width:none !important;
+    border-radius:22px !important;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .sticky-cta.is-visible{
+    transform:translateY(0) !important;
+  }
+  .sticky-cta span{
+    flex-basis:100%;
+    text-align:center;
+    font-size:12px;
+  }
+}
+
+@media (max-width:420px){
+  .hero-copy{
+    padding:18px 14px;
+  }
+  .hero h1{
+    font-size:30px !important;
+    letter-spacing:-.03em !important;
+  }
+  .quick-brief-grid article,
+  .v34-sponsor-wall,
+  .v34-progress-card,
+  .v34-partner-kv > div{
+    border-width:3px !important;
+    border-radius:24px !important;
+    padding:18px !important;
+  }
+  .btn{
+    min-height:46px;
+    padding-inline:14px;
+    font-size:12.5px;
+  }
+}
+
 </style>
 <!-- v34: UX and sponsor path final polish -->
 </head>
@@ -4707,7 +5122,7 @@ body{overflow-x:hidden;}
 <span><b>NOTO Re:Bloom</b><small>耕作放棄地を、もう一度人が関わる場所へ。</small></span>
 </a>
 <button aria-controls="site-nav" aria-expanded="false" class="menu-button" type="button"><span></span><span></span><span></span><b>MENU</b></button>
-<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#quick-brief">10秒でわかる</a><a href="#crowdfunding">クラファン</a><a href="#partners">法人協賛</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><button class="nav-mail mail-modal-trigger" type="button">メール</button><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
+<nav aria-label="サイト内メニュー" class="site-nav" id="site-nav"><a href="#about">概要</a><a href="#quick-brief">3つの要点</a><a href="#crowdfunding">クラファン</a><a href="#partners">法人協賛</a><a href="#event">イベント</a><a href="#impact">支援の目安</a><a href="#flower-diagnosis">花診断</a><a href="#faq">FAQ</a><a class="nav-cf" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFOR</a><button class="nav-mail mail-modal-trigger" type="button">メール</button><a class="nav-cta" href="https://forms.gle/BTcMERE34qfghFiV8" rel="noopener" target="_blank">相談する</a></nav>
 </header>
 <main id="main">
 <section class="hero" id="top">
@@ -4723,7 +5138,7 @@ body{overflow-x:hidden;}
 <p class="hero-fun-line">泥だらけで笑う一日が、能登の土地に人が戻るきっかけになる。</p>
 <h1><span class="keep hero-line">耕作放棄地を、</span><span class="keep hero-line">もう一度</span><span class="keep hero-line">人が関わる場所へ。</span></h1>
 <p class="lead">NOTO Re:Bloomは、能登で増えている耕作放棄地を、学生・地域・企業の協働で毎年少しずつ再生していくプロジェクトです。まずは土地を整え、楽しく人が集まる入口をつくり、翌年度以降の活用へつなげます。</p>
-<div class="hero-actions"><a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a><button class="btn ghost mail-modal-trigger" type="button">協賛・連携を相談する</button><a class="btn ghost" href="#quick-brief">10秒で概要を見る</a><a class="btn ghost subtle-diagnosis-link" href="#flower-diagnosis">花タイプ診断で遊ぶ</a></div>
+<div class="hero-actions"><a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a><button class="btn ghost mail-modal-trigger" type="button">協賛・連携を相談する</button><a class="btn ghost" href="#quick-brief">活動の要点を見る</a><a class="btn ghost subtle-diagnosis-link" href="#flower-diagnosis">花タイプ診断を試す</a></div>
 <div aria-label="プロジェクトの現在地" class="hero-facts">
 <article><span>START</span><b><span class="nowrap">NOTO-REBOOST U-23</span><br/>最優秀賞から始動</b></article>
 <article><span>FIELD</span><b>珠洲市内で<br/>会場候補を調整中</b></article>
@@ -4745,21 +5160,21 @@ body{overflow-x:hidden;}
 <section class="section quick-brief" id="quick-brief">
 <div class="container">
 <div class="quick-brief-head reveal">
-<p class="eyebrow"><i></i>10 SEC SUMMARY</p>
-<h2>はじめて見る人にも、すぐ伝わるように。</h2>
-<p>NOTO Re:Bloomは「社会課題を説明するサイト」だけでなく、参加・支援・協賛の入口です。まずは3つだけ見れば、全体像が分かります。</p>
+<p class="eyebrow"><i></i>PROJECT POINT</p>
+<h2><span class="keep">泥だらけの楽しさを、</span><br/><span class="keep">土地の再生につなげる。</span></h2>
+<p>使われなくなった土地を整え、泥ん子運動会とレンゲカップをきっかけに、人が関われる場所へ少しずつ戻していきます。</p>
 </div>
-<div aria-label="10秒でわかるNOTO Re:Bloom" class="quick-brief-grid reveal">
-<article><span>WHAT</span><h3>何をする？</h3><p>能登の耕作放棄地に、もう一度人が関われる入口をつくります。</p></article>
-<article><span>HOW</span><h3>どうやって？</h3><p>土地整備、泥ん子運動会、Re:Bloomレンゲカップで、楽しく関わる流れをつくります。</p></article>
-<article><span>WHY NOW</span><h3>なぜ支援が必要？</h3><p>安全に人が入れる状態へ整えるため、草刈り・簡易整備・備品・記録発信に費用が必要です。</p></article>
+<div aria-label="NOTO Re:Bloomの3つの要点" class="quick-brief-grid reveal">
+<article><span>WHAT</span><h3>土地を整える</h3><p>草刈り・簡易整備・安全確認を行い、人が入れる状態へ近づけます。</p></article>
+<article><span>HOW</span><h3>楽しく関わる</h3><p>泥ん子運動会を入口に、子ども・学生・地域の方が同じ場所で楽しめる時間をつくります。</p></article>
+<article><span>SUPPORT</span><h3>次へつなげる</h3><p>集まった支援を、土地整備・備品・レンゲカップ資材・活動記録に活用します。</p></article>
 </div>
 <div aria-label="次の行動" class="quick-next-actions reveal">
 <a class="btn primary comic-cf-btn" href="https://readyfor.jp/projects/kousakuhoukiti-saisei?sns_share_token=2fe70039a6bbf1728a25&amp;utm_source=pj_share_url&amp;utm_medium=social" rel="noopener" target="_blank">READYFORで応援する</a>
-<a class="btn ghost" href="#partners">法人ロゴ掲載枠を見る</a>
-<a class="btn ghost" href="#faq">参加前の不安を見る</a>
+<a class="btn ghost" href="#partners">法人ロゴ掲載枠へ</a>
+<a class="btn ghost" href="#faq">参加前に確認する</a>
 </div>
-<div class="v34-next-action reveal"><span>次は、支援・協賛の現在地を見る</span><a class="btn small" href="#partners">パートナー欄を見る</a></div></div>
+<div class="v34-next-action reveal"><span>協賛・クラファンの現在地</span><a class="btn small" href="#partners">上部の掲載枠へ</a></div></div>
 </section>
 
 
@@ -5539,7 +5954,7 @@ body{overflow-x:hidden;}
 </div>
 <div class="faq-list reveal">
 <details open=""><summary>現在、会場は確定していますか？</summary><p>確定前です。珠洲市内の候補地について、地域の方と相談しながら、アクセス・安全面・整備費・翌年度以降の活用可能性を確認しています。</p></details><details><summary>泥ん子運動会が目的ですか？</summary><p>目的ではありません。耕作放棄地に人が関わる入口として企画しています。本来の目的は、毎年少しずつでも耕作放棄地を再生していく仕組みづくりです。</p></details><details><summary>どんな服装で行けばいいですか？</summary><p>汚れてもよい服、着替え、タオル、替えの靴やサンダルの持参をおすすめします。泥に入る企画のため、当日は濡れてもよい準備でお越しください。</p></details><details><summary>見学だけでも大丈夫ですか？</summary><p>大丈夫です。見学・応援は無料を想定しています。泥に入らず、雰囲気を楽しむだけでも歓迎です。</p></details><details><summary>小さな子どもでも参加できますか？</summary><p>参加人数や年齢構成を見ながら、安全に楽しめる形でチーム分けや競技内容を調整します。</p></details><details><summary>雨天時はどうなりますか？</summary><p>天候や会場の安全状況を確認し、実施内容の変更や中止を判断します。変更がある場合は、申込者へご案内します。</p></details><details><summary>学生はどのように関われますか？</summary><p>当日の運営、SNS発信、写真・動画の記録、広報、企画づくりなど、できるところから関われます。</p></details><details><summary>企業・団体は資金協賛以外でも関われますか？</summary><p>可能です。物品協力、広報協力、社員参加、専門的助言、地域団体の紹介など、さまざまな形での連携を歓迎しています。</p></details></div>
-<div class="v34-next-action reveal"><span>最後に、花タイプ診断で遊ぶ</span><a class="btn small" href="#flower-diagnosis">花タイプ診断へ</a></div></div>
+<div class="v34-next-action reveal"><span>あなたの花タイプを診断する</span><a class="btn small" href="#flower-diagnosis">診断へ進む</a></div></div>
 </section><section class="section flower-diagnosis" id="flower-diagnosis">
 <div class="container">
 <div class="diagnosis-shell">
