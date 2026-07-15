@@ -83,6 +83,37 @@
     ];
   }
 
+  function roleSuggestions(flower){
+    const byGroup={
+      '太陽の花':['最初の声かけ','参加者を迎える','場を盛り上げる','活動を外へ伝える'],
+      '風の花':['企画を考える','文章・SNSで伝える','人や情報をつなぐ','新しい見方を提案する'],
+      '里山の花':['準備を整える','道具や進行を支える','継続の仕組みをつくる','少人数を見守る'],
+      '水辺の花':['記録を残す','安全や配慮を確認する','相談を受け止める','背景を丁寧に伝える']
+    };
+    return [flower.strengths[0],flower.strengths[1],...(byGroup[flower.group]||byGroup['里山の花'])].slice(0,6);
+  }
+  function sceneAdvice(flower){
+    const group=groupProfile(flower);
+    return{
+      school:`授業や学びの場では、「${flower.strengths[0]}」力を、発表だけでなく準備や対話にも使えます。${flower.watch[0]}状態になりやすい時は、課題を小さく区切り、得意な部分を先に引き受けると取り組みやすくなります。`,
+      work:`チームでは、${group.role}役割で力が出やすいタイプです。自分の中だけで判断せず、「ここは得意」「ここは助けてほしい」と先に共有すると、${flower.strengths[1]}良さが周囲にも伝わります。`,
+      community:`地域活動では、${flower.fit}場面と相性があります。大きな責任を一度に背負うより、${flower.recommended}という入口から始め、続けられる大きさを確かめることが大切です。`
+    };
+  }
+  function communicationAdvice(flower){
+    return `${flower.relation} 相手へ伝える時は、結論だけでなく「なぜそう思ったか」と「相手に何をお願いしたいか」を一つずつ添えると、あなたの意図が誤解されにくくなります。`;
+  }
+  function boundaryAdvice(flower){
+    return `「${flower.watch[0]}」「${flower.watch[1]}」が続く時は、能力が足りないのではなく、役割や量が合っていない可能性があります。返事を少し待つ、期限を確認する、担当を分ける、休む時間を予定に入れる、のどれかを先に選んでください。`;
+  }
+  function reflectionQuestions(flower){
+    return [
+      `最近、「${flower.strengths[0]}」力が自然に出たのは、どんな場面でしたか。`,
+      `「${flower.watch[0]}」状態になる前に、周囲へ伝えられる合図は何ですか。`,
+      `${flower.fit}場を、今の生活の中に小さくつくるなら、何から始められますか。`
+    ];
+  }
+
   const STORAGE_KEY='noto-rebloom-flower-diagnosis-v3';
   const $=id=>document.getElementById(id);
   const esc=(s)=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
@@ -219,6 +250,28 @@
   }
 
   function svgDataUri(f){ return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(flowerSvg(f)); }
+
+  function flowerPortraitSvg(f){
+    const W=900,H=900,c=f.color||'#6bd66f',profile=groupProfile(f);
+    const soft=profile.color,ink='#24180f';
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+      <defs>
+        <pattern id="paperDots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.4" fill="${c}" opacity=".2"/></pattern>
+        <linearGradient id="portraitBg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf6"/><stop offset="1" stop-color="${soft}" stop-opacity=".55"/></linearGradient>
+        <filter id="portraitShadow"><feDropShadow dx="8" dy="10" stdDeviation="0" flood-color="${ink}" flood-opacity=".95"/></filter>
+      </defs>
+      <rect x="18" y="18" width="864" height="864" rx="54" fill="url(#portraitBg)" stroke="${ink}" stroke-width="10"/>
+      <path d="M30 30 H870 V210 C700 175 630 260 470 204 C300 145 190 238 30 175Z" fill="url(#paperDots)"/>
+      <path d="M68 72 H420 L380 140 H68Z" fill="${soft}" stroke="${ink}" stroke-width="7" filter="url(#portraitShadow)"/>
+      <text x="100" y="119" font-family="Arial,'Noto Sans JP',sans-serif" font-size="38" font-weight="900" fill="${ink}">${esc(profile.symbol)} ${esc(f.group)}</text>
+      <g transform="translate(0 88)">${svgShape(f.shape,c,450,330)}</g>
+      <path d="M112 690 H788" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="12 16"/>
+      <text x="450" y="758" text-anchor="middle" font-family="Arial,'Noto Sans JP',sans-serif" font-size="70" font-weight="900" fill="${ink}">${esc(f.name)}</text>
+      <text x="450" y="812" text-anchor="middle" font-family="Arial,'Noto Sans JP',sans-serif" font-size="25" font-weight="800" fill="${ink}">${esc(f.short)}</text>
+      <g font-family="Arial,'Noto Sans JP',sans-serif" font-size="18" font-weight="800" fill="${ink}"><text x="74" y="852">BLOOM / ${esc(f.bloom)}</text><text x="826" y="852" text-anchor="end">LANGUAGE / ${esc(f.language)}</text></g>
+    </svg>`;
+  }
+  function portraitDataUri(f){return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(flowerPortraitSvg(f));}
   
   function updateSeeds(){if(!seedRow)return;seedRow.innerHTML='';for(let i=0;i<QUESTIONS.length;i++){const dot=document.createElement('i');if(i<answers.length)dot.className='is-on';seedRow.appendChild(dot);}}
   function render(scroll=false){panel.classList.add('is-active');result.classList.remove('is-active');const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';updateSeeds();save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
@@ -285,8 +338,9 @@
     result.classList.add('is-active');
     result.style.setProperty('--result-accent',flower.color);
     result.style.setProperty('--group-accent',profile.color);
-    $('resultImage').src=svgDataUri(flower);
-    $('resultImage').alt=flower.name+'タイプの診断カード';
+    $('resultImage').src=portraitDataUri(flower);
+    const shareImage=$('resultShareImage');if(shareImage)shareImage.src=svgDataUri(flower);
+    $('resultImage').alt=flower.name+'のボタニカルポートレート';
     $('downloadCard').href=svgDataUri(flower);
     $('downloadCard').download=flower.name+'タイプ_ReBloom花診断.svg';
     $('resultGroup').textContent=flower.group;
@@ -309,6 +363,10 @@
     $('resultGroupRole').textContent=profile.role;
     $('resultGroupCare').textContent=profile.care;
     $('resultGroupFlowers').textContent=FLOWERS.filter(item=>item.group===flower.group).map(item=>item.name).join('・');
+    const roles=roleSuggestions(flower);const roleWrap=$('resultRoleChips');if(roleWrap)roleWrap.innerHTML=roles.map(item=>`<span>${esc(item)}</span>`).join('');
+    const scenes=sceneAdvice(flower);$('resultInSchool').textContent=scenes.school;$('resultInWork').textContent=scenes.work;$('resultInCommunity').textContent=scenes.community;
+    $('resultCommunication').textContent=communicationAdvice(flower);$('resultBoundary').textContent=boundaryAdvice(flower);
+    $('resultReflectionQuestions').innerHTML=reflectionQuestions(flower).map(item=>`<li>${esc(item)}</li>`).join('');
     $('resultLongAdvice').innerHTML=longAdvice(flower).map(text=>`<p>${esc(text)}</p>`).join('');
     $('resultRecovery').textContent=recoveryAdvice(flower);
     $('resultGrowth').textContent=growthAdvice(flower);
@@ -373,5 +431,20 @@ ${flower.tagline}
 
 Re:Bloom 花タイプ診断
 https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`;try{await navigator.clipboard.writeText(text);$('diagnosisCopyStatus').textContent='結果をコピーしました。';}catch(e){$('diagnosisCopyStatus').textContent='コピーできませんでした。';}});
+  function renderFlowerAtlas(){
+    const grid=$('flowerAtlasGrid');if(!grid)return;
+    const makeCard=(flower)=>`<button class="flower-atlas-card" data-flower-slug="${flower.slug}" data-flower-group="${flower.group}" type="button"><img src="${portraitDataUri(flower)}" alt="${flower.name}の花タイプイラスト" loading="lazy"><span>${flower.group}</span><b>${flower.name}</b><small>${flower.short}</small></button>`;
+    grid.innerHTML=FLOWERS.map(makeCard).join('');
+    document.querySelectorAll('[data-group-preview]').forEach((box)=>{const flower=FLOWERS.find(f=>f.group===box.dataset.groupPreview);if(flower)box.innerHTML=`<img src="${portraitDataUri(flower)}" alt="${flower.group}を代表する${flower.name}のイラスト" loading="lazy">`;});
+    const filters=[...document.querySelectorAll('[data-atlas-filter]')];
+    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(x=>x.classList.remove('is-active'));btn.classList.add('is-active');const value=btn.dataset.atlasFilter;grid.querySelectorAll('.flower-atlas-card').forEach(card=>{card.hidden=value!=='all'&&card.dataset.flowerGroup!==value;});}));
+    const dialog=$('flowerAtlasDialog'),close=$('atlasDialogClose'),startAtlas=$('atlasStartDiagnosis');
+    function openFlower(slug){const flower=flowerBySlug(slug);$('atlasDialogImage').src=portraitDataUri(flower);$('atlasDialogImage').alt=flower.name+'の花タイプイラスト';$('atlasDialogGroup').textContent=flower.group;$('atlasDialogName').textContent=flower.name;$('atlasDialogTagline').textContent=flower.tagline;$('atlasDialogDesc').textContent=flower.desc;$('atlasDialogOrigin').textContent=flower.origin;$('atlasDialogBloom').textContent=flower.bloom;$('atlasDialogLanguage').textContent=flower.language;if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');}
+    grid.addEventListener('click',(e)=>{const card=e.target.closest('.flower-atlas-card');if(card)openFlower(card.dataset.flowerSlug);});
+    close?.addEventListener('click',()=>dialog.close?dialog.close():dialog.removeAttribute('open'));
+    dialog?.addEventListener('click',(e)=>{if(e.target===dialog)(dialog.close?dialog.close():dialog.removeAttribute('open'));});
+    startAtlas?.addEventListener('click',()=>{if(dialog.open)dialog.close();clearAll();render(true);});
+  }
+  renderFlowerAtlas();
   load();if(answers.length>0)resume.hidden=false;
 })();
