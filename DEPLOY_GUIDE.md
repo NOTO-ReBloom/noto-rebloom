@@ -1,24 +1,37 @@
 # GitHub Pages 反映手順
 
-1. 現在のリポジトリを `Code → Download ZIP` でバックアップします。
-2. このZIPを解凍します。
-3. GitHubリポジトリのルートで `Add file → Upload files` を選びます。
-4. 解凍したフォルダの**中身をすべて**アップロードします。`index.html` がリポジトリ直下に来る状態にしてください。
-5. コミットメッセージ例: `Rebuild site with playful farmland learning design`
-6. `Commit directly to the main branch` を選び、コミットします。
-7. 数分後、公開サイトを強制再読み込みします。
+この完成版は、GitHubリポジトリの**最上位（ルート）に全ファイルを置く構成**です。
 
-## 公開後チェック
-- トップ、学ぶ、イベント、法人、診断の5ページで同じヘッダー・配色になっている
-- イベントフォームが `6ZMrhrhtWmBCQViD8` へ移動する
-- 協賛フォームが `cRdr2oa2pxBhrFE3A` へ移動する
-- READYFORリンクが開く
-- モバイルメニューが開閉する
-- `learn.html` のクイズが動く
-- `diagnosis.html` が開始・途中保存・結果表示できる
-- `partner.html` の要点コピーが動く
+## 1. バックアップ
+現在のGitHubリポジトリで `Code` → `Download ZIP` を押し、現行版を保存します。
 
-## 更新時に注意する項目
-- READYFOR支援額・支援者数・確認日
-- 会場、時間、保険、雨天対応
-- 最新の荒廃農地統計
+## 2. 完成版をアップロード
+1. このZIPを解凍します。
+2. 解凍したフォルダを開き、中のファイルをすべて選択します。
+3. GitHubのリポジトリで `Add file` → `Upload files` を開きます。
+4. 選択したファイルをすべてドラッグ＆ドロップします。
+5. コミットメッセージを `Rebuild NOTO ReBloom website` とし、`Commit changes` を押します。
+
+外側のフォルダやZIPそのものはアップロードしません。`index.html`、`site.css`、`site.js`、画像ファイルがリポジトリ直下に並ぶ状態が正解です。
+
+## 3. 公開後の確認
+反映には数分かかることがあります。公開後、次のページを確認します。
+
+- `https://noto-rebloom.github.io/noto-rebloom/index.html`
+- `https://noto-rebloom.github.io/noto-rebloom/learn.html`
+- `https://noto-rebloom.github.io/noto-rebloom/event.html`
+- `https://noto-rebloom.github.io/noto-rebloom/partner.html`
+- `https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`
+
+古い表示が残る場合は、Windowsでは `Ctrl + Shift + R`、スマートフォンではシークレットタブで再確認します。
+
+## 4. 最低限の動作確認
+- トップの写真が縦横比を保って表示される
+- 「耕作放棄地を知る」が `learn.html` へ移動する
+- 参加ボタンがイベント参加フォームへ移動する
+- 法人・団体ボタンが協賛・連携フォームへ移動する
+- 花タイプ診断を最後まで進められる
+- スマートフォンで横スクロールが発生しない
+
+## 5. 旧ファイル
+旧 `style.css`、`script.js`、未使用画像が残っていても、新版から参照していなければ表示には影響しません。新サイトの正常表示を確認した後に整理してください。

@@ -13,8 +13,8 @@
   const STORAGE_KEY='noto-rebloom-flower-diagnosis-v2';
   const $=id=>document.getElementById(id);
   const esc=(s)=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-  const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('diagnosisQuestion'),qCat=$('diagnosisCategory'),count=$('diagnosisCount'),percent=$('diagnosisPercent'),fill=$('diagnosisProgressFill'),seedRow=$('flowerSeedRow');
-  const start=$('diagnosisStart'),resume=$('diagnosisResume'),back=$('diagnosisBack'),reset=$('diagnosisReset');
+  const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),percent=$('progressPercent'),fill=$('progressFill'),seedRow=$('seedRow');
+  const start=$('startDiagnosis'),resume=$('resumeDiagnosis'),back=$('backQuestion'),reset=$('resetDiagnosis');
   let answers=[],index=0;
   function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify({answers,index}));}
   function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(Array.isArray(d.answers)){answers=d.answers;index=Math.min(Number(d.index)||0,QUESTIONS.length-1);}}catch(e){}}
