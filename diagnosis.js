@@ -16,7 +16,7 @@
   const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),percent=$('progressPercent'),fill=$('progressFill'),seedRow=$('seedRow');
   const start=$('startDiagnosis'),resume=$('resumeDiagnosis'),back=$('backQuestion'),reset=$('resetDiagnosis');
   let answers=[],index=0;
-  function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify({answers,index}));}
+  function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({answers,index}));}catch(e){}}
   function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(Array.isArray(d.answers)){answers=d.answers;index=Math.min(Number(d.index)||0,QUESTIONS.length-1);}}catch(e){}}
   function flowerBySlug(slug){return FLOWERS.find(f=>f.slug===slug)||FLOWERS[0];}
   function svgShape(kind, c, cx=705, cy=235){
@@ -149,13 +149,39 @@
   
   function updateSeeds(){if(!seedRow)return;seedRow.innerHTML='';for(let i=0;i<QUESTIONS.length;i++){const dot=document.createElement('i');if(i<answers.length)dot.className='is-on';seedRow.appendChild(dot);}}
   function render(scroll=false){panel.classList.add('is-active');result.classList.remove('is-active');const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';updateSeeds();save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
-  function clearAll(){answers=[];index=0;localStorage.removeItem(STORAGE_KEY);}
+  function clearAll(){answers=[];index=0;try{localStorage.removeItem(STORAGE_KEY);}catch(e){}}
   function calc(){const scores={G:0,A:0,P:0,H:0,F:0},counts={G:0,A:0,P:0,H:0,F:0};QUESTIONS.forEach((q,i)=>{const val=answers[i]??0;Object.entries(q.axes).forEach(([k,w])=>{scores[k]+=val*w;counts[k]+=Math.abs(w);});});const bits=['G','A','P','H','F'].map(k=>scores[k]>=0?'1':'0').join('');return{scores,counts,flower:flowerBySlug(FLOWER_MAP[bits]||'renge')};}
   function list(items){return items.map(x=>`<li>${esc(x)}</li>`).join('');}
   function bar(k,score,count){const pct=Math.min(100,Math.round(Math.abs(score)/Math.max(1,count)*100));const neg=score<0,l=AXIS_LABELS[k];return `<div class="axis-row"><span>${l[0]}</span><div class="axis-track"><span class="${neg?'neg':''}" style="width:${pct/2}%"></span></div><span>${l[1]}</span></div>`;}
   function showResult(){const{scores,counts,flower}=calc();panel.classList.remove('is-active');result.classList.add('is-active');$('resultImage').src=svgDataUri(flower);$('resultImage').alt=flower.name+'タイプの診断カード';$('downloadCard').href=svgDataUri(flower);$('downloadCard').download=flower.name+'タイプ_ReBloom花診断.svg';$('resultGroup').textContent=flower.group;$('resultTitle').textContent=flower.name+'タイプ';$('resultLead').textContent=flower.tagline;$('resultDesc').textContent=flower.desc;$('resultStrengths').innerHTML=list(flower.strengths);$('resultWatch').innerHTML=list(flower.watch);$('resultRelation').textContent=flower.relation;$('resultFit').textContent=flower.fit;$('resultRecommended').textContent=flower.recommended;$('resultOrigin').textContent=flower.origin;$('resultBloom').textContent=flower.bloom;$('resultLanguage').textContent=flower.language;$('axisBars').innerHTML=['G','A','P','H','F'].map(k=>bar(k,scores[k],counts[k])).join('');save();result.scrollIntoView({behavior:'smooth',block:'start'});}
   function answer(v){answers[index]=Number(v);if(index<QUESTIONS.length-1){index++;render(false);}else showResult();}
-  document.querySelectorAll('.diagnosis-answer').forEach(b=>b.addEventListener('click',()=>answer(b.dataset.value)));
+  const answerButtons=[...document.querySelectorAll('.diagnosis-answer')];
+  answerButtons.forEach(b=>b.addEventListener('click',()=>answer(b.dataset.value)));
+  const keyboardMap={
+    '1':1,'y':1,'Y':1,'ArrowRight':1,
+    '2':0,'m':0,'M':0,'ArrowDown':0,
+    '3':-1,'n':-1,'N':-1,'ArrowLeft':-1
+  };
+  document.addEventListener('keydown',(event)=>{
+    if(event.repeat||!panel.classList.contains('is-active')||result.classList.contains('is-active')) return;
+    const target=event.target;
+    if(target instanceof HTMLElement && target.matches('input,textarea,select,[contenteditable="true"]')) return;
+    if(Object.prototype.hasOwnProperty.call(keyboardMap,event.key)){
+      event.preventDefault();
+      const value=keyboardMap[event.key];
+      const button=answerButtons.find(item=>Number(item.dataset.value)===value);
+      button?.classList.add('is-key-pressed');
+      setTimeout(()=>button?.classList.remove('is-key-pressed'),180);
+      answer(value);
+      return;
+    }
+    if((event.key==='Backspace'||event.key==='b'||event.key==='B'||event.key==='ArrowUp')&&index>0){
+      event.preventDefault();
+      index--;
+      answers=answers.slice(0,index);
+      render(false);
+    }
+  });
   start?.addEventListener('click',()=>{clearAll();render(true);});resume?.addEventListener('click',()=>{load();render(true);});back?.addEventListener('click',()=>{if(index>0){index--;answers=answers.slice(0,index);render(false);}});reset?.addEventListener('click',()=>{clearAll();render(true);});$('retryDiagnosis')?.addEventListener('click',()=>{clearAll();render(true);});
   $('copyDiagnosisResult')?.addEventListener('click',async()=>{const{flower}=calc();const text=`私は「${flower.name}タイプ」でした。
 ${flower.tagline}

@@ -6,7 +6,13 @@
   if(legacy[location.hash]) location.replace(legacy[location.hash]);
  }
  const body=document.body,menu=document.querySelector('.menu-button'),nav=document.querySelector('.site-nav');
+ const currentFile=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+ nav?.querySelectorAll('a[href]').forEach(link=>{
+   const href=(link.getAttribute('href')||'').split('#')[0].toLowerCase();
+   if(href===currentFile||(currentFile===''&&href==='index.html')) link.setAttribute('aria-current','page');
+ });
  menu?.addEventListener('click',()=>{const open=body.classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(open));});
+ addEventListener('keydown',event=>{if(event.key==='Escape'&&body.classList.contains('menu-open')){body.classList.remove('menu-open');menu?.setAttribute('aria-expanded','false');menu?.focus();}});
  nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{body.classList.remove('menu-open');menu?.setAttribute('aria-expanded','false');}));
  const progress=document.querySelector('.scroll-progress span'),back=document.querySelector('.back-top'),dock=document.querySelector('.mobile-dock');
  const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;const pct=max>0?scrollY/max*100:0;if(progress)progress.style.width=pct+'%';back?.classList.toggle('is-visible',scrollY>700);dock?.classList.toggle('is-visible',scrollY>520)};

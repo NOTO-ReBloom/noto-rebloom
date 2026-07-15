@@ -1,37 +1,44 @@
 # GitHub Pages 反映手順
 
-この完成版は、GitHubリポジトリの**最上位（ルート）に全ファイルを置く構成**です。
+この完成版は、現在のリポジトリと同じく、**全ファイルを最上位（ルート）へ置く構成**です。
 
-## 1. バックアップ
-現在のGitHubリポジトリで `Code` → `Download ZIP` を押し、現行版を保存します。
+## 1. 現行版を保存
+GitHubのリポジトリで `Code` → `Download ZIP` を押し、現在の状態をバックアップします。
 
 ## 2. 完成版をアップロード
-1. このZIPを解凍します。
-2. 解凍したフォルダを開き、中のファイルをすべて選択します。
-3. GitHubのリポジトリで `Add file` → `Upload files` を開きます。
-4. 選択したファイルをすべてドラッグ＆ドロップします。
-5. コミットメッセージを `Rebuild NOTO ReBloom website` とし、`Commit changes` を押します。
+1. 配布ZIPを解凍します。
+2. 解凍したフォルダの中を開き、全ファイルを選択します。
+3. GitHubで `Add file` → `Upload files` を開きます。
+4. 選択した全ファイルをドラッグ＆ドロップします。
+5. コミットメッセージを `Enhance field, mud and flower design` とし、`Commit changes` を押します。
 
-外側のフォルダやZIPそのものはアップロードしません。`index.html`、`site.css`、`site.js`、画像ファイルがリポジトリ直下に並ぶ状態が正解です。
+ZIPそのものや外側のフォルダはアップロードしません。`index.html`、`site.css`、`site.js`、`doodle-flower.svg` 等がリポジトリ直下に並ぶ状態が正解です。
 
-## 3. 公開後の確認
-反映には数分かかることがあります。公開後、次のページを確認します。
+## 3. 新たに必ずアップロードするファイル
+次の装飾ファイルも必要です。
+- `doodle-vine.svg`
+- `doodle-mud.svg`
+- `doodle-flower.svg`
+- `doodle-leaves.svg`
+- `doodle-footprints.svg`
+- `doodle-seeds.svg`
 
+これらが欠けると、植物・泥・花のあしらいが表示されません。
+
+## 4. 公開後の確認
+数分待ち、次のページを開きます。
 - `https://noto-rebloom.github.io/noto-rebloom/index.html`
 - `https://noto-rebloom.github.io/noto-rebloom/learn.html`
 - `https://noto-rebloom.github.io/noto-rebloom/event.html`
 - `https://noto-rebloom.github.io/noto-rebloom/partner.html`
 - `https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`
 
-古い表示が残る場合は、Windowsでは `Ctrl + Shift + R`、スマートフォンではシークレットタブで再確認します。
+古い表示の場合はWindowsで `Ctrl + Shift + R`、スマートフォンではシークレットタブで確認します。
 
-## 4. 最低限の動作確認
-- トップの写真が縦横比を保って表示される
-- 「耕作放棄地を知る」が `learn.html` へ移動する
-- 参加ボタンがイベント参加フォームへ移動する
-- 法人・団体ボタンが協賛・連携フォームへ移動する
-- 花タイプ診断を最後まで進められる
+## 5. 最低限の確認
+- 写真が見え、縦横比が崩れていない
+- 植物・泥・花の装飾が表示される
+- 白い背景上に白文字がない
+- 参加フォーム、法人・団体フォームへ移動できる
+- 花タイプ診断で数字キー `1` `2` `3` と `Backspace` が動く
 - スマートフォンで横スクロールが発生しない
-
-## 5. 旧ファイル
-旧 `style.css`、`script.js`、未使用画像が残っていても、新版から参照していなければ表示には影響しません。新サイトの正常表示を確認した後に整理してください。
