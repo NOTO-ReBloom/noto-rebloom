@@ -1,19 +1,12 @@
-# NOTO Re:Bloom website
+# NOTO Re:Bloom Website Final
 
-NOTO Re:BloomのGitHub Pages用静的サイトです。ZIPを解凍し、**中の全ファイルをリポジトリ直下へアップロード**してください。
+耕作放棄地の問題を知り、泥ん子運動会への参加、READYFORでの応援、企業・団体との連携へつなげる公式サイトです。
 
-## ページ
-- `index.html`：トップページ
-- `learn.html`：耕作放棄地を知る
-- `event.html`：泥ん子運動会
-- `partner.html`：法人・団体向け
-- `diagnosis.html`：花タイプ診断
-- `404.html`：ページが見つからない場合
+## 主なページ
+- `index.html`：プロジェクト全体
+- `learn.html`：耕作放棄地と能登の状況
+- `event.html`：泥ん子運動会・レンゲカップ
+- `partner.html`：法人・団体向け協賛・連携
+- `diagnosis.html`：Re:Bloom花タイプ診断
 
-## 共通ファイル
-- `site.css`：全ページ共通デザイン
-- `site.js`：共通操作
-- `diagnosis.js`：花タイプ診断
-- `doodle-*.svg`：植物・泥・花・足跡などの装飾
-
-今回の版では、耕作放棄地というテーマが視覚からも伝わるよう、植物・土・泥・レンゲをモチーフにしたあしらいを全ページへ追加しました。文章は読みやすいゴシック体を維持しながら、丸み、付箋、スタンプ、手描き風の線で学生プロジェクトらしい楽しさを表現しています。
+公開手順は `DEPLOY_GUIDE.md`、検査内容は `QUALITY_CHECK.md` を参照してください。

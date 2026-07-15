@@ -10,7 +10,80 @@
     H: ['筋道で考える','気持ちを汲む'],
     F: ['計画して積む','余白を楽しむ']
   };
-  const STORAGE_KEY='noto-rebloom-flower-diagnosis-v2';
+
+  const GROUP_PROFILES={
+    '太陽の花':{
+      symbol:'☀',
+      lead:'人や場を明るくし、最初の一歩をつくるグループです。考えを内側に留めるより、言葉や行動に変えることで周囲にも前向きな流れを生み出します。',
+      action:'まず動き、反応を見ながら前へ進む。',
+      relation:'初対面や大人数の場でも、空気を温める。',
+      role:'人を集める、挑戦の背中を押す、発信する。',
+      care:'明るさを保つために、休む時間と周囲のペースも大切に。',
+      color:'#f2c94c',
+      actionHref:'event.html',
+      actionLabel:'イベントに参加・見学する',
+      actionReason:'人が集まる場でこそ、あなたの明るさと行動力が生きます。まずは現地の雰囲気に触れる一歩がおすすめです。'
+    },
+    '風の花':{
+      symbol:'≋',
+      lead:'新しい見方や言葉を運び、関係の間に風を通すグループです。決まりきった答えに縛られず、企画・表現・対話から可能性を広げます。',
+      action:'余白を残し、新しい選択肢を見つける。',
+      relation:'相手に別の景色を見せ、会話を広げる。',
+      role:'発信する、企画する、紹介する、つなぐ。',
+      care:'アイデアを広げた後は、実行する一つを選ぶ。',
+      color:'#a8d8e8',
+      actionHref:'https://readyfor.jp/projects/kousakuhoukiti-saisei',
+      actionLabel:'READYFORで活動を知り、広める',
+      actionReason:'あなたの言葉や視点は、まだこの活動を知らない人への入口になります。共感した部分を自分の言葉で広める一歩がおすすめです。'
+    },
+    '里山の花':{
+      symbol:'⌂',
+      lead:'身近な人や場所を大切にし、日々の積み重ねで関係を育てるグループです。派手さよりも、続けること、支えること、安心できる場をつくることに強みがあります。',
+      action:'足元を確かめ、できることを丁寧に続ける。',
+      relation:'少人数の信頼を、時間をかけて育てる。',
+      role:'準備する、支える、見守る、地域に根づかせる。',
+      care:'責任を抱え込みすぎず、役割を分けて頼る。',
+      color:'#9fca75',
+      actionHref:'event.html#preparation',
+      actionLabel:'準備や見学から関わる',
+      actionReason:'継続や準備を大切にするあなたは、目立つ役割だけでなく、活動の土台を整える関わり方と相性があります。現地の準備や見学から、自分にできることを探す一歩がおすすめです。'
+    },
+    '水辺の花':{
+      symbol:'◌',
+      lead:'静かに観察し、感情や状況の変化を丁寧に受け取るグループです。すぐに答えを出すより、深く理解してから動くことで、見落とされやすい本質を見つけます。',
+      action:'立ち止まり、状況と自分の気持ちを整える。',
+      relation:'少人数で深く話し、安心をつくる。',
+      role:'記録する、見守る、相談に乗る、丁寧に伝える。',
+      care:'感じ取ったものを抱え込まず、言葉にして共有する。',
+      color:'#9f91d6',
+      actionHref:'learn.html',
+      actionLabel:'耕作放棄地をもう少し知る',
+      actionReason:'深く理解してから関わりたいあなたには、背景や現地の状況を知り、自分のペースで応援の形を選ぶ一歩がおすすめです。'
+    }
+  };
+  function groupProfile(flower){return GROUP_PROFILES[flower.group]||GROUP_PROFILES['里山の花'];}
+  function longAdvice(flower){
+    return [
+      `${flower.name}タイプの中心にあるのは、「${flower.strengths[0]}」ことと、「${flower.strengths[1]}」ことです。${flower.desc} ${flower.relation}`,
+      `あなたの良さは、力を出そうと無理をした時よりも、${flower.fit}という環境で自然に現れます。自分だけで完成させようとせず、得意な役割を言葉にして周囲と共有すると、強みがより安定して続きます。`,
+      `一方で、「${flower.watch[0]}」「${flower.watch[1]}」という傾向が強くなる時は、頑張り方を見直す合図です。弱点を消そうとするのではなく、予定を減らす、誰かに頼る、短い休みを先に確保するなど、自分を守る仕組みを持つことが大切です。`
+    ];
+  }
+  function recoveryAdvice(flower){
+    return `「${flower.watch[0]}」と感じ始めたら、いったん成果から離れ、安心できる場所や人に戻ってください。${flower.watch[2]}こともあるため、頭の中だけで整理せず、短い言葉でも状態を共有すると回復が早まります。`;
+  }
+  function growthAdvice(flower){
+    return `${flower.strengths[0]}という力を、日常の小さな場面で意識して使ってみましょう。${flower.fit}場を選び、終わった後に「何が自然にできたか」を振り返ると、自分らしい再現可能な強みとして育ちます。`;
+  }
+  function firstSteps(flower){
+    return [
+      `今日：${flower.strengths[0]}場面を一つ思い出し、自分の強みとして言葉にする。`,
+      `今週：${flower.watch[0]}状態になっていないか確認し、休む時間か頼る相手を先に決める。`,
+      `地域との関わり：${flower.recommended}`
+    ];
+  }
+
+  const STORAGE_KEY='noto-rebloom-flower-diagnosis-v3';
   const $=id=>document.getElementById(id);
   const esc=(s)=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
   const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),percent=$('progressPercent'),fill=$('progressFill'),seedRow=$('seedRow');
@@ -153,7 +226,51 @@
   function calc(){const scores={G:0,A:0,P:0,H:0,F:0},counts={G:0,A:0,P:0,H:0,F:0};QUESTIONS.forEach((q,i)=>{const val=answers[i]??0;Object.entries(q.axes).forEach(([k,w])=>{scores[k]+=val*w;counts[k]+=Math.abs(w);});});const bits=['G','A','P','H','F'].map(k=>scores[k]>=0?'1':'0').join('');return{scores,counts,flower:flowerBySlug(FLOWER_MAP[bits]||'renge')};}
   function list(items){return items.map(x=>`<li>${esc(x)}</li>`).join('');}
   function bar(k,score,count){const pct=Math.min(100,Math.round(Math.abs(score)/Math.max(1,count)*100));const neg=score<0,l=AXIS_LABELS[k];return `<div class="axis-row"><span>${l[0]}</span><div class="axis-track"><span class="${neg?'neg':''}" style="width:${pct/2}%"></span></div><span>${l[1]}</span></div>`;}
-  function showResult(){const{scores,counts,flower}=calc();panel.classList.remove('is-active');result.classList.add('is-active');$('resultImage').src=svgDataUri(flower);$('resultImage').alt=flower.name+'タイプの診断カード';$('downloadCard').href=svgDataUri(flower);$('downloadCard').download=flower.name+'タイプ_ReBloom花診断.svg';$('resultGroup').textContent=flower.group;$('resultTitle').textContent=flower.name+'タイプ';$('resultLead').textContent=flower.tagline;$('resultDesc').textContent=flower.desc;$('resultStrengths').innerHTML=list(flower.strengths);$('resultWatch').innerHTML=list(flower.watch);$('resultRelation').textContent=flower.relation;$('resultFit').textContent=flower.fit;$('resultRecommended').textContent=flower.recommended;$('resultOrigin').textContent=flower.origin;$('resultBloom').textContent=flower.bloom;$('resultLanguage').textContent=flower.language;$('axisBars').innerHTML=['G','A','P','H','F'].map(k=>bar(k,scores[k],counts[k])).join('');save();result.scrollIntoView({behavior:'smooth',block:'start'});}
+  function showResult(){
+    const{scores,counts,flower}=calc();
+    const profile=groupProfile(flower);
+    panel.classList.remove('is-active');
+    result.classList.add('is-active');
+    result.style.setProperty('--result-accent',flower.color);
+    result.style.setProperty('--group-accent',profile.color);
+    $('resultImage').src=svgDataUri(flower);
+    $('resultImage').alt=flower.name+'タイプの診断カード';
+    $('downloadCard').href=svgDataUri(flower);
+    $('downloadCard').download=flower.name+'タイプ_ReBloom花診断.svg';
+    $('resultGroup').textContent=flower.group;
+    $('resultTitle').textContent=flower.name+'タイプ';
+    $('resultLead').textContent=flower.tagline;
+    $('resultDesc').textContent=flower.desc;
+    $('resultStrengths').innerHTML=list(flower.strengths);
+    $('resultWatch').innerHTML=list(flower.watch);
+    $('resultRelation').textContent=flower.relation;
+    $('resultFit').textContent=flower.fit;
+    $('resultRecommended').textContent=flower.recommended;
+    $('resultOrigin').textContent=flower.origin;
+    $('resultBloom').textContent=flower.bloom;
+    $('resultLanguage').textContent=flower.language;
+    $('resultGroupSymbol').textContent=profile.symbol;
+    $('resultGroupHeading').textContent=flower.group+'の人';
+    $('resultGroupLead').textContent=profile.lead;
+    $('resultGroupAction').textContent=profile.action;
+    $('resultGroupRelation').textContent=profile.relation;
+    $('resultGroupRole').textContent=profile.role;
+    $('resultGroupCare').textContent=profile.care;
+    $('resultGroupFlowers').textContent=FLOWERS.filter(item=>item.group===flower.group).map(item=>item.name).join('・');
+    $('resultLongAdvice').innerHTML=longAdvice(flower).map(text=>`<p>${esc(text)}</p>`).join('');
+    $('resultRecovery').textContent=recoveryAdvice(flower);
+    $('resultGrowth').textContent=growthAdvice(flower);
+    $('resultFirstSteps').innerHTML=firstSteps(flower).map(text=>`<li>${esc(text)}</li>`).join('');
+    $('resultActionReason').textContent=profile.actionReason;
+    const primary=$('resultPrimaryAction');
+    primary.href=profile.actionHref;
+    primary.textContent=profile.actionLabel;
+    if(profile.actionHref.startsWith('http')){primary.target='_blank';primary.rel='noopener';}
+    else{primary.removeAttribute('target');primary.removeAttribute('rel');}
+    $('axisBars').innerHTML=['G','A','P','H','F'].map(k=>bar(k,scores[k],counts[k])).join('');
+    save();
+    result.scrollIntoView({behavior:'smooth',block:'start'});
+  }
   function answer(v){answers[index]=Number(v);if(index<QUESTIONS.length-1){index++;render(false);}else showResult();}
   const answerButtons=[...document.querySelectorAll('.diagnosis-answer')];
   answerButtons.forEach(b=>b.addEventListener('click',()=>answer(b.dataset.value)));
