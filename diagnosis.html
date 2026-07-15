@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Re:Bloom 花タイプ診断｜NOTO Re:Bloom</title><meta content="56の質問から考え方の傾向を30種類以上の花タイプで表示し、自分に合う地域との関わり方を見つける診断です。" name="description"/><meta content="#15483b" name="theme-color"/><link href="favicon.svg" rel="icon"/><link href="site.css" rel="stylesheet"/><link href="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" rel="canonical"/><meta content="website" property="og:type"/><meta content="NOTO Re:Bloom" property="og:site_name"/><meta content="Re:Bloom 花タイプ診断｜NOTO Re:Bloom" property="og:title"/><meta content="56の質問から考え方の傾向を30種類以上の花タイプで表示し、自分に合う地域との関わり方を見つける診断です。" property="og:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" property="og:url"/><meta content="https://noto-rebloom.github.io/noto-rebloom/field-overview.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Re:Bloom 花タイプ診断｜NOTO Re:Bloom" name="twitter:title"/><meta content="56の質問から考え方の傾向を30種類以上の花タイプで表示し、自分に合う地域との関わり方を見つける診断です。" name="twitter:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/field-overview.webp" name="twitter:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&amp;family=Noto+Sans+JP:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/></head><body class="page-diagnosis">
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Re:Bloom 花タイプ診断｜NOTO Re:Bloom</title><meta content="56問から5つの行動傾向を読み解き、32種類の花タイプと4つの花グループで結果を表示。強み、疲れ方、チームでの役割、30日プラン、能登との関わり方まで提案します。" name="description"/><meta content="#15483b" name="theme-color"/><link href="favicon.svg" rel="icon"/><link href="site.css" rel="stylesheet"/><link href="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" rel="canonical"/><meta content="website" property="og:type"/><meta content="NOTO Re:Bloom" property="og:site_name"/><meta content="Re:Bloom 花タイプ診断｜NOTO Re:Bloom" property="og:title"/><meta content="56の質問から考え方の傾向を30種類以上の花タイプで表示し、自分に合う地域との関わり方を見つける診断です。" property="og:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" property="og:url"/><meta content="https://noto-rebloom.github.io/noto-rebloom/field-overview.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Re:Bloom 花タイプ診断｜NOTO Re:Bloom" name="twitter:title"/><meta content="56の質問から考え方の傾向を30種類以上の花タイプで表示し、自分に合う地域との関わり方を見つける診断です。" name="twitter:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/field-overview.webp" name="twitter:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&amp;family=Noto+Sans+JP:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/></head><body class="page-diagnosis">
 <a class="skip-link" href="#main">本文へ移動</a>
 <div aria-hidden="true" class="scroll-progress"><span></span></div>
 <header class="site-header">
@@ -70,7 +70,19 @@
 </div>
 <ol id="resultFirstSteps"></ol>
 </article>
-</section><div class="result-card"><h3>5つの軸</h3><div class="axis-bars" id="axisBars"></div></div><section aria-labelledby="resultNextHeading" class="result-next-action">
+</section><div class="result-card"><h3>5つの軸</h3><div class="axis-bars" id="axisBars"></div></div><section aria-labelledby="resultTendencyHeading" class="result-tendency-section">
+<div class="result-deep-heading"><p class="result-kicker">5つの軸を言葉にする</p><h3 id="resultTendencyHeading">あなたの答え方に出た、5つの傾向。</h3><p>割合は優劣ではなく、どちら側を自然に選びやすかったかを示します。中央に近い軸は、状況に応じて両方を使えるバランス型です。</p></div>
+<div class="axis-narrative-grid" id="resultAxisNarratives"></div>
+<div class="result-clarity"><div><span>傾向のはっきり度</span><strong id="resultClarity"></strong></div><p id="resultClarityText"></p></div>
+</section><section aria-labelledby="resultNeighborHeading" class="result-neighbor-section">
+<div class="neighbor-card">
+<span class="neighbor-flower-mark">＋</span><div><p class="result-kicker">あなたに近い、もう一輪</p><h3 id="resultNeighborHeading"><span id="resultNeighborName"></span>タイプ</h3><p id="resultNeighborText"></p></div>
+</div>
+<div class="collaboration-card"><p class="result-kicker">チームで補い合うなら</p><h3 id="resultPartnerGroup"></h3><p id="resultPartnerText"></p></div>
+</section><section aria-labelledby="resultMonthHeading" class="result-month-plan">
+<div class="result-deep-heading"><p class="result-kicker">30日で育てる</p><h3 id="resultMonthHeading">あなたの花を、日常で少し育てる。</h3><p>大きく変わるためではなく、自分の強みを無理なく使える状態をつくる4週間です。</p></div>
+<ol id="resultMonthPlan"></ol>
+</section><section aria-labelledby="resultNextHeading" class="result-next-action">
 <div>
 <p class="result-kicker">花から、能登への一歩へ</p>
 <h3 id="resultNextHeading">あなたに合う関わり方</h3>
@@ -80,7 +92,7 @@
 <a class="btn btn--green" href="event.html" id="resultPrimaryAction">おすすめの一歩を見る</a>
 <a class="btn btn--paper" href="https://readyfor.jp/projects/kousakuhoukiti-saisei" rel="noopener" target="_blank">クラファンで応援</a>
 </div>
-</section><div class="button-row button-row--center"><button class="btn btn--green" id="retryDiagnosis" type="button">もう一度診断する</button><a class="btn btn--paper" href="index.html#issue">プロジェクトを知る</a></div></div></section>
+</section><p class="diagnosis-disclaimer">※この診断は心理検査・医学的診断ではありません。回答時点の傾向を、自己理解と会話のきっかけとして楽しむコンテンツです。</p><div class="button-row button-row--center"><button class="btn btn--green" id="retryDiagnosis" type="button">もう一度診断する</button><a class="btn btn--paper" href="index.html#issue">プロジェクトを知る</a></div></div></section>
 <section class="final-cta motif motif--garden"><div class="container reveal"><span class="final-flower">花</span><h2>花が違うから、<br/>関わり方も違っていい。</h2><p>現地へ行く、応援する、伝える、専門性を貸す。自分らしい入口から、能登の土地に関わってください。</p><div class="button-row button-row--center"><a class="btn btn--yellow" href="event.html">イベントを見る</a><a class="btn btn--paper" href="https://readyfor.jp/projects/kousakuhoukiti-saisei" rel="noopener" target="_blank">READYFORで応援</a></div></div></section>
 </main>
 <footer class="site-footer">

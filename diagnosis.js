@@ -223,9 +223,61 @@
   function updateSeeds(){if(!seedRow)return;seedRow.innerHTML='';for(let i=0;i<QUESTIONS.length;i++){const dot=document.createElement('i');if(i<answers.length)dot.className='is-on';seedRow.appendChild(dot);}}
   function render(scroll=false){panel.classList.add('is-active');result.classList.remove('is-active');const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';updateSeeds();save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
   function clearAll(){answers=[];index=0;try{localStorage.removeItem(STORAGE_KEY);}catch(e){}}
-  function calc(){const scores={G:0,A:0,P:0,H:0,F:0},counts={G:0,A:0,P:0,H:0,F:0};QUESTIONS.forEach((q,i)=>{const val=answers[i]??0;Object.entries(q.axes).forEach(([k,w])=>{scores[k]+=val*w;counts[k]+=Math.abs(w);});});const bits=['G','A','P','H','F'].map(k=>scores[k]>=0?'1':'0').join('');return{scores,counts,flower:flowerBySlug(FLOWER_MAP[bits]||'renge')};}
+  function calc(){const scores={G:0,A:0,P:0,H:0,F:0},counts={G:0,A:0,P:0,H:0,F:0};QUESTIONS.forEach((q,i)=>{const val=answers[i]??0;Object.entries(q.axes).forEach(([k,w])=>{scores[k]+=val*w;counts[k]+=Math.abs(w);});});const allNeutral=Object.values(scores).every(value=>value===0);const bits=['G','A','P','H','F'].map(k=>scores[k]>=0?'1':'0').join('');return{scores,counts,flower:flowerBySlug(allNeutral?'renge':(FLOWER_MAP[bits]||'renge'))};}
   function list(items){return items.map(x=>`<li>${esc(x)}</li>`).join('');}
   function bar(k,score,count){const pct=Math.min(100,Math.round(Math.abs(score)/Math.max(1,count)*100));const neg=score<0,l=AXIS_LABELS[k];return `<div class="axis-row"><span>${l[0]}</span><div class="axis-track"><span class="${neg?'neg':''}" style="width:${pct/2}%"></span></div><span>${l[1]}</span></div>`;}
+  const AXIS_KEYS=['G','A','P','H','F'];
+  const AXIS_COPY={
+    G:{negative:['内で深める','一人や少人数の時間で考えを深め、納得してから言葉にする傾向があります。静かな環境では観察力と集中力が高まります。'],positive:['外へ広げる','人と話しながら考えを育て、周囲へ働きかけることで力が出る傾向があります。会話や共有が次の発想につながります。'],balanced:'一人で考える時間と、人と共有する時間の両方を使い分けられる傾向です。'},
+    A:{negative:['じっくり整える','準備や条件を確かめ、無理のない順番をつくってから動く傾向があります。継続性や安全性を支える力になります。'],positive:['まず動く','小さく試しながら答えを見つける傾向があります。停滞した場面で最初の一歩を生み出す力になります。'],balanced:'準備と行動のどちらかに偏らず、状況に応じて速度を調整できる傾向です。'},
+    P:{negative:['現実を見る','今ある条件、資源、数字を丁寧に捉え、実行可能な形へ落とし込む傾向があります。計画の足場をつくる力です。'],positive:['可能性を見る','まだ形になっていない未来や、新しい組み合わせを思い描く傾向があります。活動の意味や広がりを発見する力です。'],balanced:'現実的な条件と、将来の可能性を往復しながら考えられる傾向です。'},
+    H:{negative:['筋道で考える','事実や構造を整理し、理由の通った判断を大切にする傾向があります。複雑な話を分かりやすくする力があります。'],positive:['気持ちを汲む','相手の表情や背景を受け取り、納得できる関わり方を探す傾向があります。安心して参加できる場をつくる力です。'],balanced:'論理と気持ちの両方を確認しながら、納得感のある判断をつくれる傾向です。'},
+    F:{negative:['計画して積む','期限や役割を見通し、少しずつ完成へ近づける傾向があります。準備を抜け漏れなく進める力になります。'],positive:['余白を楽しむ','その場で起きたことを受け入れ、予定外の展開を面白さへ変える傾向があります。柔軟な対応と遊び心につながります。'],balanced:'計画を持ちながら、必要な時には柔軟に変えられる傾向です。'}
+  };
+  function normalizedAxis(score,count){return Math.max(-1,Math.min(1,score/Math.max(1,count)));}
+  function axisStrengthLabel(value){const a=Math.abs(value);if(a<.16)return'バランス';if(a<.38)return'やや傾向';if(a<.66)return'はっきり';return'とても強い';}
+  function axisNarrative(k,score,count){
+    const value=normalizedAxis(score,count),copy=AXIS_COPY[k],labels=AXIS_LABELS[k];
+    if(Math.abs(value)<.16)return{title:`${labels[0]} × ${labels[1]}`,badge:'バランス',text:copy.balanced,pct:Math.round((value+1)*50)};
+    const side=value>0?copy.positive:copy.negative;
+    return{title:side[0],badge:axisStrengthLabel(value),text:side[1],pct:Math.round((value+1)*50)};
+  }
+  function resultClarityData(scores,counts){
+    const values=AXIS_KEYS.map(k=>Math.abs(normalizedAxis(scores[k],counts[k])));
+    const pct=Math.round(values.reduce((a,b)=>a+b,0)/values.length*100);
+    let text='回答は中央に近く、状況によって両方の力を使い分ける柔軟さが表れています。';
+    if(pct>=28)text='いくつかの軸に自分らしい選び方が見えつつ、場面に応じて調整できる余白もあります。';
+    if(pct>=50)text='回答に一貫した方向性があり、自然に力を出しやすい環境や役割が比較的はっきりしています。';
+    if(pct>=72)text='選び方の輪郭がとても明確です。強みが出やすい一方、反対側の力を持つ人と組むと視野が広がります。';
+    return{pct,text};
+  }
+  function resultBits(scores){return AXIS_KEYS.map(k=>scores[k]>=0?'1':'0').join('');}
+  function nearestFlower(scores,counts,currentFlower){
+    const bits=resultBits(scores).split('');
+    const values=AXIS_KEYS.map(k=>Math.abs(normalizedAxis(scores[k],counts[k])));
+    const order=values.map((v,i)=>({v,i})).sort((a,b)=>a.v-b.v);
+    for(const item of order){
+      const alt=[...bits];alt[item.i]=alt[item.i]==='1'?'0':'1';
+      const slug=FLOWER_MAP[alt.join('')];
+      const flower=flowerBySlug(slug);
+      if(flower&&flower.slug!==currentFlower.slug)return{flower,axis:AXIS_KEYS[item.i],value:values[item.i]};
+    }
+    return{flower:flowerBySlug('renge'),axis:'F',value:0};
+  }
+  const COMPLEMENT_GROUP={
+    '太陽の花':{group:'水辺の花',text:'勢いを、観察と丁寧な言葉で整えてくれる相手です。あなたが前へ進め、相手が見落としやすい声やリスクを拾うと、熱意と安心が両立します。'},
+    '風の花':{group:'里山の花',text:'広がったアイデアを、日々の準備と継続へつなげてくれる相手です。あなたが人や情報を結び、相手が足元を整えると、企画が長く続く形になります。'},
+    '里山の花':{group:'風の花',text:'積み重ねてきた価値を、外へ伝え、新しい仲間と結んでくれる相手です。あなたが信頼の土台をつくり、相手が入口を広げると、無理なく輪が育ちます。'},
+    '水辺の花':{group:'太陽の花',text:'深く考えたことを、行動と前向きな空気へ変えてくれる相手です。あなたが本質や配慮を示し、相手が最初の一歩をつくると、考えることと動くことがつながります。'}
+  };
+  function monthPlan(flower,profile){
+    return[
+      `<b>1週目｜観察する</b><span>自分が自然に「${esc(flower.strengths[0])}」できた場面を3つメモします。成果ではなく、無理なくできた行動に注目してください。</span>`,
+      `<b>2週目｜小さく使う</b><span>${esc(profile.action)}ことを、学校・仕事・家庭のどこか一つで試します。10分で終わる小ささで十分です。</span>`,
+      `<b>3週目｜補い合う</b><span>苦手を一人で埋めず、反対の得意を持つ人に一つ頼ります。頼み方を具体的にすると、関係も育ちます。</span>`,
+      `<b>4週目｜地域とつなぐ</b><span>${esc(flower.recommended)} 終えた後に「続けたいこと」と「減らしたいこと」を一つずつ決めます。</span>`
+    ];
+  }
   function showResult(){
     const{scores,counts,flower}=calc();
     const profile=groupProfile(flower);
@@ -267,7 +319,22 @@
     primary.textContent=profile.actionLabel;
     if(profile.actionHref.startsWith('http')){primary.target='_blank';primary.rel='noopener';}
     else{primary.removeAttribute('target');primary.removeAttribute('rel');}
-    $('axisBars').innerHTML=['G','A','P','H','F'].map(k=>bar(k,scores[k],counts[k])).join('');
+    $('axisBars').innerHTML=AXIS_KEYS.map(k=>bar(k,scores[k],counts[k])).join('');
+    $('resultAxisNarratives').innerHTML=AXIS_KEYS.map(k=>{
+      const item=axisNarrative(k,scores[k],counts[k]);
+      return `<article class="axis-narrative-card"><div><span>${esc(item.badge)}</span><b>${esc(item.title)}</b></div><p>${esc(item.text)}</p><div class="axis-position" aria-label="軸上の位置"><i style="left:${item.pct}%"></i></div></article>`;
+    }).join('');
+    const clarity=resultClarityData(scores,counts);
+    $('resultClarity').textContent=clarity.pct+'%';
+    $('resultClarityText').textContent=clarity.text;
+    const neighbor=nearestFlower(scores,counts,flower);
+    $('resultNeighborName').textContent=neighbor.flower.name;
+    const axisLabel=AXIS_LABELS[neighbor.axis];
+    $('resultNeighborText').textContent=`「${axisLabel[0]}／${axisLabel[1]}」の軸が比較的中央に近いため、答える時の状況が少し変わると${neighbor.flower.name}タイプの良さも表れます。今の結果と矛盾するのではなく、あなたの中にある別の使える力です。`;
+    const complement=COMPLEMENT_GROUP[flower.group]||COMPLEMENT_GROUP['里山の花'];
+    $('resultPartnerGroup').textContent=complement.group+'と組むと';
+    $('resultPartnerText').textContent=complement.text;
+    $('resultMonthPlan').innerHTML=monthPlan(flower,profile).map(item=>`<li>${item}</li>`).join('');
     save();
     result.scrollIntoView({behavior:'smooth',block:'start'});
   }
