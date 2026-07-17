@@ -966,3 +966,34 @@ html,body{max-width:100%;overflow-x:clip}
 @media(max-width:1000px){.flower-group-grid,.flower-atlas-grid{grid-template-columns:repeat(2,1fr)}.flower-atlas-heading{grid-template-columns:1fr}.flower-atlas-filters{justify-content:flex-start}.life-scene-grid{grid-template-columns:1fr}.result-reflection,.result-share-section{grid-template-columns:1fr}}
 @media(max-width:700px){.flower-group-showcase{margin-top:54px}.flower-group-grid,.flower-atlas-grid{grid-template-columns:1fr 1fr;gap:11px}.flower-atlas{padding:20px 14px;border-radius:24px}.flower-atlas-card{padding:7px 7px 12px;border-radius:16px}.flower-atlas-card b{font-size:16px}.flower-atlas-card small{font-size:9px}.atlas-dialog-grid{grid-template-columns:1fr;padding:18px}.atlas-dialog-grid>img{max-width:420px;margin-inline:auto}.atlas-dialog-facts{grid-template-columns:1fr}.result-communication-grid{grid-template-columns:1fr}.result-life-scenes,.result-reflection,.result-share-section{padding:20px}.result-portrait-wrap{max-width:520px;margin-inline:auto}}
 @media(max-width:420px){.flower-group-grid,.flower-atlas-grid{grid-template-columns:1fr}.flower-atlas-filters button{font-size:10px;padding:8px 10px}}
+
+/* 2026-07-17: student member flower profiles */
+.team-flower-link{margin-top:20px}
+.member-flower-panel{position:relative;margin-top:clamp(30px,5vw,64px);padding:clamp(26px,4vw,44px);border:1px solid rgba(23,63,42,.14);border-radius:32px;background:rgba(255,250,240,.82);box-shadow:var(--shadow-small);overflow:hidden}
+.member-flower-panel::before{content:"";position:absolute;inset:auto -70px -90px auto;width:250px;height:220px;background:url("doodle-flower.svg") center/contain no-repeat;opacity:.08;pointer-events:none}
+.member-flower-heading{position:relative;max-width:780px;margin-bottom:28px}
+.member-flower-heading h3{font-family:var(--serif);font-size:clamp(32px,4.1vw,54px);line-height:1.3;letter-spacing:-.03em}
+.member-flower-heading>p:last-child{margin-top:16px;max-width:720px}
+.member-flower-grid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.member-flower-card{--member-flower-accent:var(--forest);position:relative;display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid rgba(23,63,42,.14);border-radius:25px;background:#fff;box-shadow:0 12px 30px rgba(23,63,42,.08);transition:transform .22s ease,box-shadow .22s ease}
+.member-flower-card::before{content:"";position:absolute;z-index:2;top:0;left:0;right:0;height:6px;background:var(--member-flower-accent)}
+.member-flower-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(23,63,42,.13)}
+.member-flower-card--rindou{--member-flower-accent:#245cd6}
+.member-flower-card--wasurenagusa{--member-flower-accent:#2e83d6}
+.member-flower-card--renge{--member-flower-accent:#f05e9a}
+.member-flower-card figure{margin:0;aspect-ratio:16/9;overflow:hidden;background:var(--paper-2)}
+.member-flower-card figure img{width:100%;height:100%;object-fit:cover;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.member-flower-card:hover figure img{transform:scale(1.025)}
+.member-flower-body{display:flex;flex:1;flex-direction:column;padding:22px}
+.member-flower-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.member-flower-result,.member-flower-role{display:inline-flex;align-items:center;min-height:30px;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:900;line-height:1.3}
+.member-flower-result{background:color-mix(in srgb,var(--member-flower-accent) 13%,white);color:var(--member-flower-accent)}
+.member-flower-role{background:var(--mint);color:var(--forest)}
+.member-flower-body h4{font-family:var(--serif);font-size:28px;line-height:1.25}
+.member-flower-meta{margin-top:5px!important;font-size:12px!important;font-weight:800;color:var(--muted)}
+.member-flower-typecopy{margin-top:16px!important;font-size:15px!important;font-weight:900;line-height:1.7;color:var(--ink)}
+.member-flower-bio{margin-top:9px!important;font-size:13px!important;line-height:1.8}
+.member-flower-note{position:relative;margin-top:18px!important;font-size:12px!important;color:var(--muted)}
+.member-flower-actions{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:22px}
+@media(max-width:900px){.member-flower-grid{grid-template-columns:1fr}.member-flower-card{display:grid;grid-template-columns:minmax(210px,.8fr) 1.2fr}.member-flower-card figure{height:100%;aspect-ratio:auto}.member-flower-card figure img{min-height:100%;object-fit:cover}}
+@media(max-width:600px){.member-flower-panel{padding:22px 18px;border-radius:25px}.member-flower-heading h3{font-size:clamp(29px,8.3vw,38px);line-height:1.42}.member-flower-card{display:flex}.member-flower-card figure{aspect-ratio:16/9}.member-flower-body{padding:19px}.member-flower-actions{align-items:stretch}.member-flower-actions .btn,.member-flower-actions .text-link{width:100%;justify-content:center;text-align:center}}
