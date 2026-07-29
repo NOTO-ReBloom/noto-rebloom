@@ -969,6 +969,10 @@ html,body{max-width:100%;overflow-x:clip}
 
 /* 2026-07-17: student member flower profiles */
 .team-flower-link{margin-top:20px}
+.program-credit{margin-top:22px;padding:16px 18px;border:1px solid rgba(23,72,59,.16);border-left:4px solid var(--forest);border-radius:0 16px 16px 0;background:rgba(255,255,255,.62)}
+.program-credit small{display:block;color:var(--forest);font-size:9px;font-weight:900;letter-spacing:.14em}
+.program-credit p{margin-top:7px!important;color:var(--muted);font-size:12.5px!important;line-height:1.8}
+.program-credit a{display:inline-block;margin-top:8px;color:var(--forest);font-size:12px;font-weight:900;text-decoration:underline;text-underline-offset:4px}
 
 .member-flower-panel{position:relative;margin-top:clamp(34px,5vw,68px);padding:clamp(28px,4.2vw,48px);border:1px solid rgba(23,63,42,.14);border-radius:34px;background:linear-gradient(180deg,rgba(255,251,243,.96),rgba(249,243,232,.92));box-shadow:var(--shadow-small);overflow:hidden}
 .member-flower-panel::before{content:"";position:absolute;inset:auto -84px -98px auto;width:280px;height:250px;background:url("doodle-flower.svg") center/contain no-repeat;opacity:.08;pointer-events:none}

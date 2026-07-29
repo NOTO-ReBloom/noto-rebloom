@@ -20,7 +20,7 @@
       role:'人を集める、挑戦の背中を押す、発信する。',
       care:'明るさを保つために、休む時間と周囲のペースも大切に。',
       color:'#f2c94c',
-      actionHref:'https://forms.gle/Vx3KztvXKJiJLC5A9',
+      actionHref:'https://forms.gle/jdSpe6Pb3pyFf7QU6',
       actionLabel:'学生企画メンバーの募集を見る',
       actionReason:'人が集まる場でこそ、あなたの明るさと行動力が生きます。当日だけでなく、企画から一緒につくる一歩がおすすめです。'
     },
@@ -44,9 +44,9 @@
       role:'準備する、支える、見守る、地域に根づかせる。',
       care:'責任を抱え込みすぎず、役割を分けて頼る。',
       color:'#9fca75',
-      actionHref:'event.html#current-status',
-      actionLabel:'現在の実施条件を見る',
-      actionReason:'継続や準備を大切にするあなたは、目立つ役割だけでなく、活動の土台を整える関わり方と相性があります。会場・交通・安全の現在地から、自分にできることを探す一歩がおすすめです。'
+      actionHref:'https://readyfor.jp/projects/kousakuhoukiti-saisei',
+      actionLabel:'READYFORで活動を支える',
+      actionReason:'継続や準備を大切にするあなたは、目立つ役割だけでなく、活動の土台を支える関わり方と相性があります。会場・安全・移動・記録を支える一歩がおすすめです。'
     },
     '水辺の花':{
       symbol:'◌',
