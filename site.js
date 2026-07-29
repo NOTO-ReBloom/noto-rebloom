@@ -93,6 +93,6 @@
    if(questions.length) showQuestion(0);
  });
 
- const actionBtn=document.querySelector('[data-action-spinner]'),actionOut=document.querySelector('[data-action-output]');const actions=['家族や友人に、このサイトを1人だけ共有する。','READYFORで支援の使いみちを確認する。','身近な空き地や農地の変化に目を向ける。','花タイプ診断で、自分に合う関わり方を見つける。','企業・団体でできる協力を一つ考える。','学生企画メンバーの募集内容を確認する。'];actionBtn?.addEventListener('click',()=>{if(actionOut)actionOut.textContent=actions[Math.floor(Math.random()*actions.length)]});
+ const actionBtn=document.querySelector('[data-action-spinner]'),actionOut=document.querySelector('[data-action-output]');const actions=['家族や友人に、NOTO Re:Bloomを1人だけ紹介する。','READYFORで支援の使いみちを確認する。','身近な空き地や農地の変化に目を向ける。','花タイプ診断で、自分に合う関わり方を見つける。','企業・団体でできる協力を一つ考える。','学生企画メンバーの募集内容を確認する。'];actionBtn?.addEventListener('click',()=>{if(actionOut)actionOut.textContent=actions[Math.floor(Math.random()*actions.length)]});
  const bloomBtn=document.querySelector('[data-bloom-button]'),garden=document.querySelector('.bloom-garden'),flowers=['🌱','🌸','🌼','🪻','☘️','🌷'];let count=0;bloomBtn?.addEventListener('click',()=>{if(!garden)return;const f=document.createElement('span');f.className='bloom-flower';f.textContent=flowers[count%flowers.length];f.style.left=(4+Math.random()*92)+'%';f.style.fontSize=(30+Math.random()*28)+'px';garden.appendChild(f);count++;bloomBtn.textContent=count<8?'もう一輪、咲かせる':'花がいっぱい！';if(garden.children.length>14)garden.firstElementChild.remove()});
 })();

@@ -1018,3 +1018,8 @@ html,body{max-width:100%;overflow-x:clip}
 .member-flower-actions{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:24px}
 @media(max-width:900px){.member-flower-grid{grid-template-columns:1fr}.member-flower-card{border-radius:28px}.member-flower-top{padding:22px 22px 12px}.member-flower-visual{padding:0 20px}.member-flower-result{left:30px}.member-flower-body{padding:30px 22px 22px}}
 @media(max-width:600px){.member-flower-panel{padding:22px 18px;border-radius:26px}.member-flower-heading h3{font-size:clamp(29px,8.3vw,38px);line-height:1.42}.member-flower-card{display:flex;border-radius:24px}.member-flower-top{flex-direction:column;align-items:flex-start;padding:20px 18px 10px}.member-flower-role{min-height:auto}.member-flower-visual{padding:0 16px}.member-flower-result{left:24px;right:24px;bottom:-16px;justify-content:center;text-align:center}.member-flower-body{padding:32px 18px 18px}.member-flower-body h4{font-size:30px}.member-flower-typecopy{padding:16px 14px 16px 18px}.member-flower-actions{align-items:stretch}.member-flower-actions .btn,.member-flower-actions .text-link{width:100%;justify-content:center;text-align:center}}
+
+/* 2026-07-29: concrete support-use list */
+.budget-list>div{grid-template-columns:130px 1fr;padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-small)}
+.budget-list p{font-size:14px;line-height:1.75}
+@media(max-width:600px){.budget-list>div{grid-template-columns:1fr;gap:6px}.budget-list p{grid-column:auto}}
