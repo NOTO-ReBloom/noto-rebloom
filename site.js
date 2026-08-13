@@ -57,30 +57,38 @@
  const PARTICIPANT_FORM='https://forms.gle/6ZMrhrhtWmBCQViD8';
  const recruitmentPattern=/学生企画メンバー|学生募集|企画メンバー募集|企画から関わる|共創メンバー|申込は8月8日まで|8月8日まで・学生募集/;
  const removeRecruitment=()=>{
-   document.querySelectorAll(`a[href*="${OLD_STUDENT_FORM}"]`).forEach(a=>{
-     const quick=a.closest('.quick-card');
-     if(quick){quick.remove();return;}
-     const source=a.closest('.source-note');
-     if(source && source.querySelectorAll('a').length===1){source.remove();return;}
-     const row=a.closest('.button-row');
-     a.remove();
-     if(row && !row.querySelector('a,button')) row.remove();
-   });
-
+   // Dedicated student-planning sections are no longer part of the public website.
    ['co-creation','student-members','student-recruitment','recruitment'].forEach(id=>document.getElementById(id)?.remove());
-
    document.querySelectorAll('section').forEach(section=>{
      const heading=section.querySelector('h1,h2,h3,.eyebrow');
      if(heading && recruitmentPattern.test(heading.textContent||'')) section.remove();
    });
 
-   document.querySelectorAll('a,p,li,article,.callout,.quick-card,.renge-event-facts>div').forEach(el=>{
-     if(!el.isConnected) return;
-     if(recruitmentPattern.test(el.textContent||'')){
-       const row=el.closest('.button-row');
-       el.remove();
-       if(row && !row.querySelector('a,button')) row.remove();
+   // Any surviving legacy student-form link is converted into the public event form.
+   document.querySelectorAll(`a[href*="${OLD_STUDENT_FORM}"]`).forEach(a=>{
+     if(!a.isConnected) return;
+     a.href=PARTICIPANT_FORM;
+     a.target='_blank';
+     a.rel='noopener';
+
+     if(a.classList.contains('conversion-card')){
+       const small=a.querySelector('small'); if(small) small.textContent='イベントに参加';
+       const h3=a.querySelector('h3'); if(h3) h3.textContent='泥ん子運動会に参加';
+       const p=a.querySelector('p'); if(p) p.textContent='2026年9月20日、珠洲市・洲巻地区で開催。参加費は無料です。';
+       const b=a.querySelector('b'); if(b) b.textContent='参加フォームを開く →';
+       return;
      }
+     if(a.closest('.header-actions')){a.textContent='9/20 参加申込';return;}
+     if(a.closest('.mobile-dock')){a.textContent='イベント参加';return;}
+     if(a.closest('.site-footer')){a.textContent='泥ん子運動会に参加';return;}
+     if(a.closest('.diagnosis-result')||a.closest('.final-cta')){a.textContent='泥ん子運動会に参加';return;}
+     a.textContent='9/20 参加申込';
+   });
+
+   // Remove any standalone explanatory fragments that only belonged to student-member recruitment.
+   document.querySelectorAll('p,li,article,.callout,.renge-event-facts>div').forEach(el=>{
+     if(!el.isConnected) return;
+     if(recruitmentPattern.test(el.textContent||'')) el.remove();
    });
 
    document.querySelectorAll('.button-row,.header-actions,.quick-grid,.renge-event-facts,.callout,.source-note').forEach(el=>{
@@ -90,14 +98,14 @@
  };
  removeRecruitment();
 
- // Keep venue wording current on legacy informational pages without reintroducing recruitment CTAs.
  const textReplacements=[
    ['会場候補を確認中','会場確定・使用許可済み'],
    ['珠洲市内で実施予定','珠洲市・洲巻地区で開催'],
    ['珠洲市内で午後開催予定','珠洲市・洲巻地区で午後開催'],
    ['上黒丸地区の元レンコン田。許可・安全条件は未確定','洲巻地区の田んぼ（約20m×50m・約1,000㎡）。土地使用許可取得済み'],
    ['会場候補となる土地の一つ','能登で確認してきた農地の様子'],
-   ['活動候補となる土地の一つ','能登で確認してきた農地の様子']
+   ['活動候補となる土地の一つ','能登で確認してきた農地の様子'],
+   ['企画への参加、個人からの支援、企業・団体としての協力から選んでください。','9月20日のイベント参加、個人からの支援、企業・団体としての協力から選んでください。']
  ];
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
  const textNodes=[];
@@ -161,7 +169,6 @@
    }
  }
 
- // General participant recruitment only. No student-project-member recruitment is shown anywhere.
  if(body.classList.contains('nr-new-event')){
    const headerActions=document.querySelector('.header-actions');
    if(headerActions && !headerActions.querySelector(`[href="${PARTICIPANT_FORM}"]`)){
@@ -287,7 +294,6 @@
    if(garden.children.length>14) garden.firstElementChild.remove();
  });
 
- // Final pass after page-specific scripts have had a chance to run.
  setTimeout(removeRecruitment,0);
  setTimeout(removeRecruitment,300);
 })();
