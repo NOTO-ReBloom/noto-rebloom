@@ -1,0 +1,52 @@
+/* 2026-08-13: warmer, more approachable NOTO Re:Bloom presentation */
+:root{--warm-paper:#fffaf2;--warm-card:#fffefb;--warm-ink:#183a31;--warm-muted:#64716c;--warm-green:#174b3e;--warm-yellow:#f4cf58;--warm-purple:#7652a8;--warm-line:rgba(24,58,49,.14)}
+body,button,input{font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
+h1,h2,h3,.brand b,.btn,.nr-choice h2,.nr-section-head h2,.nr-sponsor-story h3{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif}
+body{background:var(--warm-paper)}
+
+/* Fixed header must have enough breathing room below it. */
+.nr-home-hero{padding:clamp(128px,12vw,154px) 0 64px!important;background:linear-gradient(145deg,#fff6cf 0%,#fffaf2 48%,#eaf6ec 100%)!important}
+.nr-home-hero .hero-copy{padding:8px 0 18px!important}
+.nr-home-hero .hero-media{align-self:center}
+.nr-choice-grid{position:relative;z-index:1;margin:34px auto 82px!important;gap:18px!important}
+.nr-choice{border-radius:20px!important;box-shadow:0 7px 0 rgba(24,75,62,.07),0 16px 34px rgba(24,58,49,.06)!important}
+.nr-choice:nth-child(1){transform:rotate(-.35deg)}
+.nr-choice:nth-child(2){transform:rotate(.25deg)}
+.nr-choice:nth-child(3){transform:rotate(-.18deg)}
+.nr-choice:hover{transform:translateY(-4px) rotate(0deg)!important}
+
+/* Friendly, handmade-feeling section rhythm without becoming childish. */
+.section{padding-top:clamp(72px,8vw,108px);padding-bottom:clamp(72px,8vw,108px)}
+.section-heading h2,.split-story h2{letter-spacing:-.025em!important}
+.eyebrow{letter-spacing:.1em!important}
+.photo-frame{border-radius:18px!important;box-shadow:0 10px 0 rgba(24,58,49,.06),0 20px 44px rgba(43,48,36,.10)!important}
+.event-values article,.game-grid article,.check-list>div,.industry-grid article,.definition-card,.cause-grid article{border-radius:20px!important}
+.event-values article:nth-child(odd),.game-grid article:nth-child(odd){transform:rotate(-.18deg)}
+.event-values article:nth-child(even),.game-grid article:nth-child(even){transform:rotate(.18deg)}
+
+/* Sponsor presentation: appreciative and easy to understand. */
+.nr-sponsor-feature{background:#f4eef9!important;border-radius:24px!important;padding:clamp(24px,4vw,42px)!important}
+.nr-main-sponsor{border-radius:20px!important;box-shadow:0 8px 0 rgba(111,75,163,.06)!important}
+.nr-logo-placeholder{background:#fcf9ff!important}
+.nr-section-head>p:last-child{font-size:14px!important;line-height:1.9!important}
+.nr-supporting{align-items:stretch}
+.nr-supporting>p{align-self:center;margin:0;font-size:10px!important;font-weight:900;color:var(--warm-purple)!important;letter-spacing:.1em}
+
+/* Learn page and all new pages use the same font and heading feel. */
+.page-learn,.nr-new-home,.nr-new-event,.nr-new-partner{font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
+.page-learn h1,.page-learn h2,.page-learn h3{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif}
+.page-learn .page-hero{padding-top:clamp(128px,12vw,154px)}
+
+/* Keep mobile spacing clear of the fixed header too. */
+@media(max-width:900px){
+ .nr-home-hero{padding-top:122px!important}
+ .page-learn .page-hero{padding-top:122px!important}
+ .nr-choice-grid{margin-top:26px!important}
+ .nr-choice:nth-child(n){transform:none}
+}
+@media(max-width:600px){
+ .nr-home-hero{padding-top:112px!important;padding-bottom:46px!important}
+ .page-learn .page-hero{padding-top:112px!important}
+ .nr-choice-grid{margin-top:20px!important;margin-bottom:58px!important}
+ .nr-sponsor-feature{padding:22px!important}
+}
