@@ -54,6 +54,7 @@
  }else reveals.forEach(el=>el.classList.add('is-visible'));
 
  const OLD_STUDENT_FORM='jdSpe6Pb3pyFf7QU6';
+ const PARTICIPANT_FORM='https://forms.gle/6ZMrhrhtWmBCQViD8';
  const recruitmentPattern=/学生企画メンバー|学生募集|企画メンバー募集|企画から関わる|共創メンバー|申込は8月8日まで|8月8日まで・学生募集/;
  const removeRecruitment=()=>{
    document.querySelectorAll(`a[href*="${OLD_STUDENT_FORM}"]`).forEach(a=>{
@@ -73,16 +74,20 @@
      if(heading && recruitmentPattern.test(heading.textContent||'')) section.remove();
    });
 
-   document.querySelectorAll('p,li,article,.callout,.quick-card,.renge-event-facts>div').forEach(el=>{
+   document.querySelectorAll('a,p,li,article,.callout,.quick-card,.renge-event-facts>div').forEach(el=>{
      if(!el.isConnected) return;
-     if(recruitmentPattern.test(el.textContent||'')) el.remove();
+     if(recruitmentPattern.test(el.textContent||'')){
+       const row=el.closest('.button-row');
+       el.remove();
+       if(row && !row.querySelector('a,button')) row.remove();
+     }
    });
 
    document.querySelectorAll('.button-row,.header-actions,.quick-grid,.renge-event-facts,.callout,.source-note').forEach(el=>{
      const meaningful=(el.textContent||'').replace(/\s+/g,'').trim();
      if(!meaningful && !el.querySelector('a,button,img,input,svg')) el.remove();
    });
-  };
+ };
  removeRecruitment();
 
  // Keep venue wording current on legacy informational pages without reintroducing recruitment CTAs.
@@ -103,6 +108,87 @@
    node.nodeValue=value;
  });
  removeRecruitment();
+
+ // Rebuild the home-page narrative around origin, purpose and intended effects.
+ if(body.classList.contains('nr-new-home')){
+   const headerActions=document.querySelector('.header-actions');
+   if(headerActions && !headerActions.querySelector(`[href="${PARTICIPANT_FORM}"]`)){
+     const join=document.createElement('a');
+     join.className='btn btn--small btn--green';
+     join.href=PARTICIPANT_FORM;
+     join.target='_blank';
+     join.rel='noopener';
+     join.textContent='9/20 参加申込';
+     headerActions.appendChild(join);
+   }
+
+   const heroButtons=document.querySelector('.nr-home-hero .button-row');
+   if(heroButtons && !heroButtons.querySelector(`[href="${PARTICIPANT_FORM}"]`)){
+     const join=document.createElement('a');
+     join.className='btn btn--green';
+     join.href=PARTICIPANT_FORM;
+     join.target='_blank';
+     join.rel='noopener';
+     join.textContent='泥ん子運動会に参加する';
+     heroButtons.prepend(join);
+   }
+
+   const firstChoice=document.querySelector('.nr-choice-grid .nr-choice');
+   if(firstChoice){
+     firstChoice.href=PARTICIPANT_FORM;
+     firstChoice.target='_blank';
+     firstChoice.rel='noopener';
+     const span=firstChoice.querySelector('span'); if(span) span.textContent='01 / JOIN';
+     const h2=firstChoice.querySelector('h2'); if(h2) h2.textContent='9月20日に参加する';
+     const p=firstChoice.querySelector('p'); if(p) p.textContent='参加費無料。地域の方、子ども、学生、家族で参加できます。';
+     const b=firstChoice.querySelector('b'); if(b) b.textContent='参加フォームを開く →';
+   }
+
+   const choiceGrid=document.querySelector('.nr-choice-grid');
+   if(choiceGrid && !document.getElementById('origin')){
+     const origin=document.createElement('section');
+     origin.id='origin';
+     origin.className='section section--paper motif motif--sprout';
+     origin.innerHTML=`<div class="container split-story"><div><p class="eyebrow"><span>このチームが始まった理由</span><small>OUR ORIGIN</small></p><h2>「復旧したあと」にも、<br>人が関わり続ける理由をつくりたい。</h2><p>NOTO Re:Bloomの出発点は、学生向けの地域プロジェクト「NOTO-REBOOST U-23」で能登の課題と向き合ったことでした。使われなくなった農地を前にして、私たちは「土地を整えるだけでなく、まず人がこの場所を知り、訪れ、地域の人と話す入口をつくれないか」と考えました。</p><p>農地再生を一度のイベントで完成させることはできません。だからこそ、泥スポーツという楽しい入口から人を呼び、土地の状態や地域の声を知り、次に関わる人を増やす。その小さな一歩を実際に形にするため、3人の学生でNOTO Re:Bloomを立ち上げました。</p><div class="button-row"><a class="btn btn--outline" href="learn.html">土地の課題と企画を詳しく知る</a></div></div><figure class="photo-frame"><img src="team-reboost.webp" alt="NOTO-REBOOST U-23で活動するNOTO Re:Bloomメンバー"><figcaption>NOTO-REBOOST U-23での挑戦をきっかけに、企画を具体化してきました。</figcaption></figure></div>`;
+
+     const purpose=document.createElement('section');
+     purpose.id='purpose';
+     purpose.className='section motif motif--vine';
+     purpose.innerHTML=`<div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>何のためにやるのか</span><small>PURPOSE & EFFECT</small></p><h2>目標は、イベントを成功させることだけではありません。</h2><p>9月20日の一日を、能登の土地と人の次の関係につなげるための実証として位置づけています。</p></div><div class="event-values"><article><span>土</span><h3>土地に再び人が入るきっかけ</h3><p>使われていない農地を実際に活用し、安全性、排水、動線、運営に必要な条件を確かめ、今後の活用につながる情報を残します。</p></article><article><span>人</span><h3>能登を訪れる理由をつくる</h3><p>「復興支援だから行く」だけではなく、「楽しいから行ってみたい」という入口をつくり、地域外の学生や家族が能登と出会う機会を増やします。</p></article><article><span>話</span><h3>地域の人と話す接点をつくる</h3><p>競技や休憩、作業を一緒にする中で、地域の方と参加者が自然に会話し、能登の現在を直接知る時間をつくります。</p></article><article><span>次</span><h3>一日で終わらせない</h3><p>参加者の反応、費用、土地の条件、運営上の課題を記録し、次年度以降に活用できる形へつなげます。</p></article></div></div>`;
+
+     choiceGrid.after(purpose);
+     choiceGrid.after(origin);
+   }
+ }
+
+ // General participant recruitment only. No student-project-member recruitment is shown anywhere.
+ if(body.classList.contains('nr-new-event')){
+   const headerActions=document.querySelector('.header-actions');
+   if(headerActions && !headerActions.querySelector(`[href="${PARTICIPANT_FORM}"]`)){
+     const join=document.createElement('a');
+     join.className='btn btn--small btn--green';
+     join.href=PARTICIPANT_FORM;
+     join.target='_blank';
+     join.rel='noopener';
+     join.textContent='参加申込';
+     headerActions.appendChild(join);
+   }
+   const heroText=document.querySelector('.page-hero--event .page-hero-grid>div');
+   if(heroText && !heroText.querySelector(`[href="${PARTICIPANT_FORM}"]`)){
+     const row=document.createElement('div');
+     row.className='button-row';
+     row.innerHTML=`<a class="btn btn--green" href="${PARTICIPANT_FORM}" target="_blank" rel="noopener">参加フォームを開く</a>`;
+     heroText.appendChild(row);
+   }
+   const main=document.querySelector('main');
+   if(main && !document.getElementById('event-join-final')){
+     const cta=document.createElement('section');
+     cta.id='event-join-final';
+     cta.className='section section--paper';
+     cta.innerHTML=`<div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加する</span><small>JOIN THE EVENT</small></p><h2>9月20日、泥だらけになって能登と出会う。</h2><p>参加費は無料です。内容と安全ルールを確認のうえ、参加フォームからお申し込みください。</p><div class="button-row button-row--center"><a class="btn btn--green" href="${PARTICIPANT_FORM}" target="_blank" rel="noopener">参加フォームを開く</a></div></div></div>`;
+     main.appendChild(cta);
+   }
+ }
 
  document.querySelectorAll('.quiz-choice').forEach(btn=>btn.addEventListener('click',()=>{
    const shell=btn.closest('.quiz-shell');
@@ -200,4 +286,8 @@
    bloomBtn.textContent=count<8?'もう一輪、咲かせる':'花がいっぱい！';
    if(garden.children.length>14) garden.firstElementChild.remove();
  });
+
+ // Final pass after page-specific scripts have had a chance to run.
+ setTimeout(removeRecruitment,0);
+ setTimeout(removeRecruitment,300);
 })();
