@@ -4,11 +4,12 @@ body,button,input{font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,
 h1,h2,h3,.brand b,.btn,.nr-choice h2,.nr-section-head h2,.nr-sponsor-story h3{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif}
 body{background:var(--warm-paper)}
 
-/* Fixed header must have enough breathing room below it. */
-.nr-home-hero{padding:clamp(128px,12vw,154px) 0 64px!important;background:linear-gradient(145deg,#fff6cf 0%,#fffaf2 48%,#eaf6ec 100%)!important}
+/* Give the fixed header a clear area of its own. */
+.nr-home-hero{padding:clamp(132px,12vw,158px) 0 68px!important;background:linear-gradient(145deg,#fff6cf 0%,#fffaf2 48%,#eaf6ec 100%)!important}
 .nr-home-hero .hero-copy{padding:8px 0 18px!important}
-.nr-home-hero .hero-media{align-self:center}
-.nr-choice-grid{position:relative;z-index:1;margin:34px auto 82px!important;gap:18px!important}
+.nr-home-hero .hero-media{align-self:center;grid-template-columns:1fr!important}
+.nr-new-event .page-hero,.nr-new-partner .page-hero,.page-learn .page-hero{padding-top:clamp(132px,12vw,158px)!important}
+.nr-choice-grid{position:relative;z-index:1;margin:38px auto 86px!important;gap:18px!important}
 .nr-choice{border-radius:20px!important;box-shadow:0 7px 0 rgba(24,75,62,.07),0 16px 34px rgba(24,58,49,.06)!important}
 .nr-choice:nth-child(1){transform:rotate(-.35deg)}
 .nr-choice:nth-child(2){transform:rotate(.25deg)}
@@ -32,21 +33,19 @@ body{background:var(--warm-paper)}
 .nr-supporting{align-items:stretch}
 .nr-supporting>p{align-self:center;margin:0;font-size:10px!important;font-weight:900;color:var(--warm-purple)!important;letter-spacing:.1em}
 
-/* Learn page and all new pages use the same font and heading feel. */
+/* Learn page and all new pages use the same type system. */
 .page-learn,.nr-new-home,.nr-new-event,.nr-new-partner{font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
 .page-learn h1,.page-learn h2,.page-learn h3{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif}
-.page-learn .page-hero{padding-top:clamp(128px,12vw,154px)}
 
-/* Keep mobile spacing clear of the fixed header too. */
 @media(max-width:900px){
- .nr-home-hero{padding-top:122px!important}
- .page-learn .page-hero{padding-top:122px!important}
- .nr-choice-grid{margin-top:26px!important}
+ .nr-home-hero{padding-top:124px!important}
+ .nr-new-event .page-hero,.nr-new-partner .page-hero,.page-learn .page-hero{padding-top:124px!important}
+ .nr-choice-grid{margin-top:28px!important}
  .nr-choice:nth-child(n){transform:none}
 }
 @media(max-width:600px){
- .nr-home-hero{padding-top:112px!important;padding-bottom:46px!important}
- .page-learn .page-hero{padding-top:112px!important}
- .nr-choice-grid{margin-top:20px!important;margin-bottom:58px!important}
+ .nr-home-hero{padding-top:114px!important;padding-bottom:48px!important}
+ .nr-new-event .page-hero,.nr-new-partner .page-hero,.page-learn .page-hero{padding-top:114px!important}
+ .nr-choice-grid{margin-top:22px!important;margin-bottom:60px!important}
  .nr-sponsor-feature{padding:22px!important}
 }
