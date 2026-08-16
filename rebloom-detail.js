@@ -165,12 +165,12 @@
   if(!document.querySelector('link[href*="rebloom-fun.css"]')){
     const funStyle=document.createElement('link');
     funStyle.rel='stylesheet';
-    funStyle.href='rebloom-fun.css?v=20260817h';
+    funStyle.href='rebloom-fun.css?v=20260817i';
     document.head.appendChild(funStyle);
   }
   if(!document.querySelector('script[src*="rebloom-fun.js"]')){
     const funScript=document.createElement('script');
-    funScript.src='rebloom-fun.js?v=20260817h';
+    funScript.src='rebloom-fun.js?v=20260817i';
     funScript.defer=true;
     document.body.appendChild(funScript);
   }
