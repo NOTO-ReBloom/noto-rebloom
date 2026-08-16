@@ -5,12 +5,20 @@
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   document.body.classList.add('rb-unified');
 
-  // site.js can append legacy styles at runtime. Move the unified sheets to the end
-  // so every page resolves to the same final design language.
-  ['rebloom-unified.css','rebloom-polish.css'].forEach(name=>{
-    const link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
-    if(link) document.head.appendChild(link);
-  });
+  // site.js can append legacy styles at runtime. Keep every unified layer last.
+  const ensureStyle=(name,href)=>{
+    let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
+    if(!link){
+      link=document.createElement('link');
+      link.rel='stylesheet';
+      link.href=href;
+    }
+    document.head.appendChild(link);
+    return link;
+  };
+  ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260817b');
+  ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817c');
+  ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817d');
 
   // Keep the navigation wording and priority consistent everywhere.
   const labels={
@@ -154,4 +162,12 @@
 
   // A small amount of movement for decorative assets only.
   document.querySelectorAll('.brand-mark,.hero-motif').forEach(el=>el.classList.add('rb-float'));
+
+  // Detail layer: scroll depth, micro-interactions, page-specific atmosphere.
+  if(!document.querySelector('script[src*="rebloom-detail.js"]')){
+    const detail=document.createElement('script');
+    detail.src='rebloom-detail.js?v=20260817d';
+    detail.defer=true;
+    document.body.appendChild(detail);
+  }
 })();
