@@ -22,7 +22,6 @@
   ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
   ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
 
-  // Keep the navigation wording and priority consistent everywhere.
   const labels={
     'index.html':'ホーム','learn.html':'土地と企画','event.html':'泥ん子運動会',
     'partner.html':'協賛・協力','diagnosis.html':'花タイプ診断'
@@ -53,7 +52,6 @@
     actions.appendChild(join);
   }
 
-  // Defensive cleanup in case an old cached HTML page is served.
   const replacements=new Map([
     ['文字より先に、\n会場と私たちを見てください。','この場所で、\n泥だらけの一日を。'],
     ['文字より先に、会場と私たちを見てください。','この場所で、泥だらけの一日を。'],
@@ -86,7 +84,6 @@
     <div class="rb-project-node rb-project-node--next"><span class="rb-project-node-icon">花</span><b>次の関わりへ</b><small>また来る・続け方を考える</small></div>
   </div>`;
 
-  // Add illustration-led sections where real photo variety is limited.
   const makeIllustrationSection=(title,lead,cards)=>{
     const cardMarkup=(c)=>c.type==='map'
       ? `<figure class="rb-illustration-card rb-project-map-card">${projectMap()}<figcaption>${c.cap}</figcaption></figure>`
@@ -135,7 +132,6 @@
     hero?.after(ribbon);
   }
 
-  // Break long text-only stretches with quiet project motifs.
   document.querySelectorAll('main>section').forEach((section,i)=>{
     const imageCount=section.querySelectorAll('img').length;
     const textLength=(section.innerText||'').replace(/\s/g,'').length;
@@ -144,7 +140,6 @@
     if(i%3===1) section.classList.add('rb-section-wave');
   });
 
-  // Standard footer across all public pages.
   const footer=document.querySelector('.site-footer');
   if(footer){
     footer.classList.add('rb-footer');
@@ -161,7 +156,6 @@
       <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
   }
 
-  // Replace old mobile docks with one consistent participant CTA.
   document.querySelectorAll('.mobile-dock,.join-dock,.rb-mobile-join').forEach(el=>el.remove());
   if(page!=='404.html'){
     const dock=document.createElement('div');
@@ -170,7 +164,6 @@
     document.body.appendChild(dock);
   }
 
-  // Calm reveal motion; avoid hiding interactive diagnosis panels.
   const revealTargets=[...document.querySelectorAll('main>section,.rb-illustration-section')].filter(el=>!el.classList.contains('diagnosis-panel'));
   revealTargets.forEach(el=>el.classList.add('rb-reveal'));
   if('IntersectionObserver' in window){
@@ -180,10 +173,8 @@
     revealTargets.forEach(el=>io.observe(el));
   }else revealTargets.forEach(el=>el.classList.add('rb-inview'));
 
-  // A small amount of movement for decorative assets only.
   document.querySelectorAll('.brand-mark,.hero-motif').forEach(el=>el.classList.add('rb-float'));
 
-  // Detail layer: scroll depth, micro-interactions, page-specific atmosphere.
   if(!document.querySelector('script[src*="rebloom-detail.js"]')){
     const detail=document.createElement('script');
     detail.src='rebloom-detail.js?v=20260817j';
@@ -191,16 +182,21 @@
     document.body.appendChild(detail);
   }
 
-  // Cinematic layer: large content-linked transitions and the animated project diagram.
   if(!document.querySelector('link[href*="rebloom-cinematic.css"]')){
     const cinematicStyle=document.createElement('link');
     cinematicStyle.rel='stylesheet';
-    cinematicStyle.href='rebloom-cinematic.css?v=20260817j';
+    cinematicStyle.href='rebloom-cinematic.css?v=20260817k';
     document.head.appendChild(cinematicStyle);
+  }
+  if(!document.querySelector('link[href*="rebloom-cinematic-addon.css"]')){
+    const addon=document.createElement('link');
+    addon.rel='stylesheet';
+    addon.href='rebloom-cinematic-addon.css?v=20260817k';
+    document.head.appendChild(addon);
   }
   if(!document.querySelector('script[src*="rebloom-cinematic.js"]')){
     const cinematic=document.createElement('script');
-    cinematic.src='rebloom-cinematic.js?v=20260817j';
+    cinematic.src='rebloom-cinematic.js?v=20260817k';
     cinematic.defer=true;
     document.body.appendChild(cinematic);
   }
