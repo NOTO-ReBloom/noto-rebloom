@@ -1,0 +1,29 @@
+/* 2026-08-17: reduce wall-of-text feeling without removing essential information */
+.nr-new-home .story-step p{display:none}
+.nr-new-home .story-step h3{font-size:15px!important;line-height:1.45!important}
+.nr-new-home .story-timeline{margin-top:28px!important}
+.nr-new-home #crowdfunding-result{padding-block:48px!important}
+.nr-new-home #crowdfunding-result .split-story>div:first-child>p:not(.eyebrow):nth-of-type(3){display:none}
+.nr-new-home #crowdfunding-result .event-values article{padding:20px!important}
+.nr-new-home #crowdfunding-result .event-values h3{font-size:28px!important}
+.nr-new-home #origin .split-story>div:first-child>p:not(.eyebrow):last-of-type{display:none}
+.nr-new-home #purpose .section-heading>p:last-child{max-width:620px}
+.nr-new-home #purpose .event-values p{font-size:12px!important;line-height:1.65!important}
+.nr-new-home .nr-sponsor-story p+p{display:none}
+
+.nr-new-event .game-grid article p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nr-new-event .section-heading>p:last-child{max-width:650px}
+.nr-new-event .check-list p{font-size:12px!important;line-height:1.65!important}
+.nr-new-event .faq-card p{font-size:12px!important;line-height:1.7!important}
+
+.page-learn .definition-card p,.page-learn .cause-grid p,.page-learn .event-values p{font-size:12px!important;line-height:1.65!important}
+.page-learn .section-heading>p:last-child{max-width:650px}
+
+.nr-new-partner .nr-value-grid p,.nr-new-partner .industry-grid p{font-size:12px!important;line-height:1.65!important}
+.nr-new-partner .nr-sponsor-story p+p{display:none}
+
+@media(max-width:640px){
+  .nr-new-home #origin .split-story>div:first-child>p:not(.eyebrow):last-of-type{display:none}
+  .nr-new-home .story-step p{display:none!important}
+  .nr-new-home #crowdfunding-result{padding-block:38px!important}
+}
