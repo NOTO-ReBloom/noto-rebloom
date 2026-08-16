@@ -18,4 +18,36 @@ body.rb-unified .people-trust::after{content:"";position:absolute;width:180px;he
 body.rb-unified .people-trust-photo img{width:100%;height:100%;object-fit:cover}
 body.rb-unified .section--soil{position:relative;overflow:hidden}
 body.rb-unified .section--soil::after{content:"";position:absolute;left:-30px;bottom:-30px;width:150px;height:150px;opacity:.08;background:url('doodle-mud.svg') center/contain no-repeat;filter:brightness(4)}
+
+/* browser-level finish: selection, focus, scrollbars */
+body.rb-unified ::selection{background:rgba(244,207,88,.58);color:#173a31}
+body.rb-unified{scrollbar-color:#8dbb78 #f4eee2;scrollbar-width:thin}
+body.rb-unified::-webkit-scrollbar{width:10px}
+body.rb-unified::-webkit-scrollbar-track{background:#f4eee2}
+body.rb-unified::-webkit-scrollbar-thumb{background:linear-gradient(#8dbb78,#2f725b);border:2px solid #f4eee2;border-radius:99px}
+body.rb-unified :is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid rgba(244,207,88,.92)!important;outline-offset:4px!important;border-radius:8px}
+
+/* homepage gets its own quiet story rhythm while staying inside the shared language */
+body.rb-unified.nr-new-home .story-timeline{position:relative}
+body.rb-unified.nr-new-home .story-timeline::before{content:"";position:absolute;left:27px;top:24px;bottom:24px;width:2px;background:linear-gradient(180deg,rgba(47,114,91,.12),rgba(47,114,91,.42),rgba(244,207,88,.32));border-radius:99px}
+body.rb-unified.nr-new-home .story-step{position:relative}
+body.rb-unified.nr-new-home .story-dot{box-shadow:0 0 0 6px rgba(244,207,88,.10)}
+body.rb-unified.nr-new-home .nr-choice-grid{position:relative;isolation:isolate}
+body.rb-unified.nr-new-home .nr-choice-grid::before{content:"";position:absolute;z-index:-1;inset:-22px 3%;border-radius:38px;background:radial-gradient(circle at 12% 25%,rgba(244,207,88,.10),transparent 32%),radial-gradient(circle at 85% 78%,rgba(141,187,120,.09),transparent 34%)}
+body.rb-unified.nr-new-home .nr-sponsor-feature{position:relative;overflow:hidden}
+body.rb-unified.nr-new-home .nr-sponsor-feature::before{content:"";position:absolute;width:190px;height:190px;left:-45px;top:18px;opacity:.055;background:url('doodle-leaves.svg') center/contain no-repeat;pointer-events:none}
+
+/* cross-page navigation softly dissolves where supported */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:rbPageOut .18s ease both}
+::view-transition-new(root){animation:rbPageIn .30s cubic-bezier(.22,.8,.24,1) both}
+@keyframes rbPageOut{to{opacity:0;transform:translateY(-3px)}}
+@keyframes rbPageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
 @media(max-width:900px){body.rb-unified .visual-mosaic-head>p{margin-left:0!important}}
+@media(max-width:700px){
+  body.rb-unified.nr-new-home .story-timeline::before{left:23px}
+}
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+}
