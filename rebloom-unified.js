@@ -5,7 +5,6 @@
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   document.body.classList.add('rb-unified');
 
-  // site.js can append legacy styles at runtime. Keep every unified layer last.
   const ensureStyle=(name,href)=>{
     let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
     if(!link){
@@ -177,27 +176,8 @@
 
   if(!document.querySelector('script[src*="rebloom-detail.js"]')){
     const detail=document.createElement('script');
-    detail.src='rebloom-detail.js?v=20260817j';
+    detail.src='rebloom-detail.js?v=20260817l';
     detail.defer=true;
     document.body.appendChild(detail);
-  }
-
-  if(!document.querySelector('link[href*="rebloom-cinematic.css"]')){
-    const cinematicStyle=document.createElement('link');
-    cinematicStyle.rel='stylesheet';
-    cinematicStyle.href='rebloom-cinematic.css?v=20260817k';
-    document.head.appendChild(cinematicStyle);
-  }
-  if(!document.querySelector('link[href*="rebloom-cinematic-addon.css"]')){
-    const addon=document.createElement('link');
-    addon.rel='stylesheet';
-    addon.href='rebloom-cinematic-addon.css?v=20260817k';
-    document.head.appendChild(addon);
-  }
-  if(!document.querySelector('script[src*="rebloom-cinematic.js"]')){
-    const cinematic=document.createElement('script');
-    cinematic.src='rebloom-cinematic.js?v=20260817k';
-    cinematic.defer=true;
-    document.body.appendChild(cinematic);
   }
 })();
