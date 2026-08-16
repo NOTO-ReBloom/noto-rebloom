@@ -1,10 +1,16 @@
 (()=>{
   'use strict';
   const JOIN='https://forms.gle/6ZMrhrhtWmBCQViD8';
-  const PARTNER='https://forms.gle/cRdr2oa2pxBhrFE3A';
   const CROWD='https://readyfor.jp/projects/kousakuhoukiti-saisei';
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   document.body.classList.add('rb-unified');
+
+  // site.js can append legacy styles at runtime. Move the unified sheets to the end
+  // so every page resolves to the same final design language.
+  ['rebloom-unified.css','rebloom-polish.css'].forEach(name=>{
+    const link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
+    if(link) document.head.appendChild(link);
+  });
 
   // Keep the navigation wording and priority consistent everywhere.
   const labels={
@@ -37,7 +43,7 @@
     actions.appendChild(join);
   }
 
-  // Remove wording that talks about how the visitor should read the site.
+  // Defensive cleanup in case an old cached HTML page is served.
   const replacements=new Map([
     ['文字より先に、\n会場と私たちを見てください。','この場所で、\n泥だらけの一日を。'],
     ['文字より先に、会場と私たちを見てください。','この場所で、泥だらけの一日を。'],
@@ -46,7 +52,9 @@
     ['どんな場所か、\n先に見ておけます。','洲巻の田んぼで、\n泥だらけの一日を。'],
     ['どんな場所か、先に見ておけます。','洲巻の田んぼで、泥だらけの一日を。'],
     ['迷いやすいところだけ、先に。','参加前のよくある質問'],
-    ['32の花を先に見る','32の花を見る']
+    ['32の花を先に見る','32の花を見る'],
+    ['まず、土地を見てください。','この土地から、企画を考えました。'],
+    ['時間は、これだけ覚えればOK。','12:30受付、13:00スタート。']
   ]);
   document.querySelectorAll('h1,h2,h3,p,span,a,b').forEach(el=>{
     const t=el.textContent.trim();
