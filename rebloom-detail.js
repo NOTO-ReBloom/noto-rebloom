@@ -8,7 +8,6 @@
   const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer=window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  /* Page progress. Reuse nothing from the old implementation so the visual is identical on every page. */
   let progress=document.querySelector('.rb-detail-progress');
   if(!progress){
     progress=document.createElement('div');
@@ -18,7 +17,6 @@
     body.appendChild(progress);
   }
 
-  /* Give long sections a quiet atmosphere and connect some sections visually. */
   const sections=[...document.querySelectorAll('main>section')];
   sections.forEach((section,index)=>{
     section.classList.add('rb-section-atmosphere');
@@ -30,7 +28,6 @@
     }
   });
 
-  /* Cards share one tactile language across the entire site. */
   const cardSelector=[
     '.nr-choice','.visual-tile','.join-fact','.summary-grid>div',
     '.event-values article','.definition-card','.cause-grid article','.game-grid article',
@@ -40,7 +37,6 @@
   ].join(',');
   document.querySelectorAll(cardSelector).forEach(el=>el.classList.add('rb-detail-card'));
 
-  /* Reveal choreography. Interactive diagnosis panels/results are deliberately excluded. */
   const unsafeParent='dialog,.diagnosis-panel,.diagnosis-result,[hidden]';
   const revealGroups=[
     ['.section-heading,.visual-mosaic-head,.rb-illustration-head,.people-trust-copy,.nr-section-head',0,'left'],
@@ -59,10 +55,9 @@
     });
   });
 
-  /* Event timeline gets its own tiny sequence. */
   document.querySelectorAll('.event-flow article').forEach((el,i)=>{
     el.classList.add('rb-detail-reveal');
-    el.style.setProperty('--rb-reveal-delay',`${i*100}ms`);
+    el.style.setProperty('--rb-reveal-delay',`${i*90}ms`);
     revealSet.add(el);
   });
 
@@ -79,7 +74,6 @@
     revealSet.forEach(el=>el.classList.add('rb-detail-inview','rb-inview'));
   }
 
-  /* Pointer light follows only the card currently under the cursor. */
   if(finePointer&&!reduced){
     document.addEventListener('pointermove',event=>{
       const card=event.target.closest?.('.rb-detail-card');
@@ -93,7 +87,6 @@
     },{passive:true});
   }
 
-  /* Scroll-linked values: one RAF per visual frame, no layout-heavy animation loop. */
   let ticking=false;
   const updateScroll=()=>{
     ticking=false;
@@ -104,20 +97,20 @@
     body.classList.toggle('rb-scrolled',y>18);
 
     if(!reduced){
-      const heroShift=Math.max(-38,Math.min(38,y*.045));
-      const bgShift=Math.max(-24,Math.min(24,y*.025));
-      const mediaShift=Math.max(-26,Math.min(20,y*.032));
+      const heroShift=Math.max(-30,Math.min(30,y*.035));
+      const bgShift=Math.max(-18,Math.min(18,y*.02));
+      const mediaShift=Math.max(-20,Math.min(16,y*.025));
       body.style.setProperty('--rb-hero-shift',`${heroShift.toFixed(2)}px`);
       body.style.setProperty('--rb-bg-shift',`${bgShift.toFixed(2)}px`);
       body.style.setProperty('--rb-media-shift',`${mediaShift.toFixed(2)}px`);
-      body.style.setProperty('--rb-hero-rotate',`${Math.min(1.4,y*.0015).toFixed(2)}deg`);
-      body.style.setProperty('--rb-flow-shift',`${(y*.08).toFixed(1)}px`);
+      body.style.setProperty('--rb-hero-rotate',`${Math.min(.8,y*.001).toFixed(2)}deg`);
+      body.style.setProperty('--rb-flow-shift',`${(y*.05).toFixed(1)}px`);
 
       document.querySelectorAll('.rb-text-heavy').forEach(section=>{
         const r=section.getBoundingClientRect();
-        const local=(window.innerHeight-r.top)*.012;
+        const local=(window.innerHeight-r.top)*.008;
         section.style.setProperty('--rb-grid-y',`${local.toFixed(1)}px`);
-        section.style.setProperty('--rb-grid-x',`${(-local*.35).toFixed(1)}px`);
+        section.style.setProperty('--rb-grid-x',`${(-local*.25).toFixed(1)}px`);
       });
     }
   };
@@ -147,45 +140,17 @@
     }
   }
 
-  /* The playful mud layer is isolated from the layout and diagnosis logic. */
-  if(!document.querySelector('link[href*="rebloom-mudfx.css"]')){
-    const mudStyle=document.createElement('link');
-    mudStyle.rel='stylesheet';
-    mudStyle.href='rebloom-mudfx.css?v=20260817g';
-    document.head.appendChild(mudStyle);
+  /* One final experience layer replaces the former mud + fun + cinematic stack. */
+  if(!document.querySelector('link[href*="rebloom-refine.css"]')){
+    const refineStyle=document.createElement('link');
+    refineStyle.rel='stylesheet';
+    refineStyle.href='rebloom-refine.css?v=20260817l';
+    document.head.appendChild(refineStyle);
   }
-  if(!document.querySelector('script[src*="rebloom-mudfx.js"]')){
-    const mudScript=document.createElement('script');
-    mudScript.src='rebloom-mudfx.js?v=20260817g';
-    mudScript.defer=true;
-    document.body.appendChild(mudScript);
-  }
-
-  /* Student-led fun layer: participation energy without touching core content or forms. */
-  if(!document.querySelector('link[href*="rebloom-fun.css"]')){
-    const funStyle=document.createElement('link');
-    funStyle.rel='stylesheet';
-    funStyle.href='rebloom-fun.css?v=20260817i';
-    document.head.appendChild(funStyle);
-  }
-  if(!document.querySelector('script[src*="rebloom-fun.js"]')){
-    const funScript=document.createElement('script');
-    funScript.src='rebloom-fun.js?v=20260817i';
-    funScript.defer=true;
-    document.body.appendChild(funScript);
-  }
-
-  /* Cinematic layer: full-screen mud impacts and the live project overview diagram. */
-  if(!document.querySelector('link[href*="rebloom-cinematic.css"]')){
-    const cinemaStyle=document.createElement('link');
-    cinemaStyle.rel='stylesheet';
-    cinemaStyle.href='rebloom-cinematic.css?v=20260817j';
-    document.head.appendChild(cinemaStyle);
-  }
-  if(!document.querySelector('script[src*="rebloom-cinematic.js"]')){
-    const cinemaScript=document.createElement('script');
-    cinemaScript.src='rebloom-cinematic.js?v=20260817j';
-    cinemaScript.defer=true;
-    document.body.appendChild(cinemaScript);
+  if(!document.querySelector('script[src*="rebloom-refine.js"]')){
+    const refineScript=document.createElement('script');
+    refineScript.src='rebloom-refine.js?v=20260817l';
+    refineScript.defer=true;
+    document.body.appendChild(refineScript);
   }
 })();
