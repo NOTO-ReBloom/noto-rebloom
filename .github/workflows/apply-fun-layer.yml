@@ -1,0 +1,44 @@
+name: Apply ReBloom fun layer
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire playful participation layer
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          detail=Path('rebloom-detail.js')
+          t=detail.read_text(encoding='utf-8')
+          if 'rebloom-fun.css' not in t:
+              block='''\n  /* Student-led fun layer: participation energy without touching core content or forms. */\n  if(!document.querySelector('link[href*="rebloom-fun.css"]')){\n    const funStyle=document.createElement('link');\n    funStyle.rel='stylesheet';\n    funStyle.href='rebloom-fun.css?v=20260817h';\n    document.head.appendChild(funStyle);\n  }\n  if(!document.querySelector('script[src*="rebloom-fun.js"]')){\n    const funScript=document.createElement('script');\n    funScript.src='rebloom-fun.js?v=20260817h';\n    funScript.defer=true;\n    document.body.appendChild(funScript);\n  }\n'''
+              pos=t.rfind('})();')
+              t=t[:pos]+block+t[pos:]
+          detail.write_text(t,encoding='utf-8')
+
+          unified=Path('rebloom-unified.js')
+          t=unified.read_text(encoding='utf-8').replace('rebloom-detail.js?v=20260817g','rebloom-detail.js?v=20260817h')
+          unified.write_text(t,encoding='utf-8')
+
+          for name in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+              p=Path(name)
+              t=p.read_text(encoding='utf-8').replace('rebloom-unified.js?v=20260817g','rebloom-unified.js?v=20260817h')
+              p.write_text(t,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rebloom-detail.js rebloom-unified.js index.html learn.html event.html partner.html diagnosis.html 404.html
+          git diff --cached --quiet || git commit -m "学生らしい参加体験を全公開ページへ反映"
+          git push
