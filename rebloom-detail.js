@@ -113,7 +113,6 @@
       body.style.setProperty('--rb-hero-rotate',`${Math.min(1.4,y*.0015).toFixed(2)}deg`);
       body.style.setProperty('--rb-flow-shift',`${(y*.08).toFixed(1)}px`);
 
-      /* the field-like grid shifts so slowly it is felt more than noticed */
       document.querySelectorAll('.rb-text-heavy').forEach(section=>{
         const r=section.getBoundingClientRect();
         const local=(window.innerHeight-r.top)*.012;
@@ -131,17 +130,14 @@
   window.addEventListener('resize',requestScrollUpdate,{passive:true});
   updateScroll();
 
-  /* Page entrance is delayed by a single paint so the hand-drawn headline marker actually draws in. */
   requestAnimationFrame(()=>requestAnimationFrame(()=>body.classList.add('rb-page-entered')));
 
-  /* Images loaded late should settle in rather than pop in. */
   document.querySelectorAll('main img').forEach(img=>{
     img.classList.add('rb-detail-image');
     if(img.complete) img.classList.add('rb-image-loaded');
     else img.addEventListener('load',()=>img.classList.add('rb-image-loaded'),{once:true});
   });
 
-  /* Dynamically added diagnosis atlas cards still receive the shared card language. */
   if(document.body.classList.contains('page-diagnosis')&&'MutationObserver' in window){
     const atlas=document.querySelector('#flowerAtlasGrid');
     if(atlas){
@@ -149,5 +145,19 @@
       decorate();
       new MutationObserver(decorate).observe(atlas,{childList:true,subtree:true});
     }
+  }
+
+  /* The playful mud layer is isolated from the layout and diagnosis logic. */
+  if(!document.querySelector('link[href*="rebloom-mudfx.css"]')){
+    const mudStyle=document.createElement('link');
+    mudStyle.rel='stylesheet';
+    mudStyle.href='rebloom-mudfx.css?v=20260817f';
+    document.head.appendChild(mudStyle);
+  }
+  if(!document.querySelector('script[src*="rebloom-mudfx.js"]')){
+    const mudScript=document.createElement('script');
+    mudScript.src='rebloom-mudfx.js?v=20260817f';
+    mudScript.defer=true;
+    document.body.appendChild(mudScript);
   }
 })();
