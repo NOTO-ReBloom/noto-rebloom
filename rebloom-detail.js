@@ -151,12 +151,12 @@
   if(!document.querySelector('link[href*="rebloom-mudfx.css"]')){
     const mudStyle=document.createElement('link');
     mudStyle.rel='stylesheet';
-    mudStyle.href='rebloom-mudfx.css?v=20260817f';
+    mudStyle.href='rebloom-mudfx.css?v=20260817g';
     document.head.appendChild(mudStyle);
   }
   if(!document.querySelector('script[src*="rebloom-mudfx.js"]')){
     const mudScript=document.createElement('script');
-    mudScript.src='rebloom-mudfx.js?v=20260817f';
+    mudScript.src='rebloom-mudfx.js?v=20260817g';
     mudScript.defer=true;
     document.body.appendChild(mudScript);
   }

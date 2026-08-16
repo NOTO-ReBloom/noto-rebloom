@@ -168,7 +168,7 @@
   // Detail layer: scroll depth, micro-interactions, page-specific atmosphere.
   if(!document.querySelector('script[src*="rebloom-detail.js"]')){
     const detail=document.createElement('script');
-    detail.src='rebloom-detail.js?v=20260817f';
+    detail.src='rebloom-detail.js?v=20260817g';
     detail.defer=true;
     document.body.appendChild(detail);
   }
