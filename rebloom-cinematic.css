@@ -88,3 +88,6 @@ body.rb-cinema-obscured{overflow-x:hidden}
 }
 @media(max-width:620px){.rb-cinema-screen{inset:-4vh -6vw}.rb-cinema-fly{display:none}.rb-cinema-edge-splat{width:105px;height:82px}.rb-project-diagram-card{min-height:540px}.rb-project-diagram{min-height:500px}.rb-project-node{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.rb-cinema-stage,.rb-cinema-local-mud,.rb-cinema-edge-splat,.rb-project-traveller{display:none!important}.rb-project-route-draw{stroke-dashoffset:0!important}.rb-project-node{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* Keep the big transition visual-only: no extra interstitial copy. */
+.rb-fun-wipe-mark{display:none!important}

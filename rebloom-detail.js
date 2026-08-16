@@ -174,4 +174,18 @@
     funScript.defer=true;
     document.body.appendChild(funScript);
   }
+
+  /* Cinematic layer: full-screen mud impacts and the live project overview diagram. */
+  if(!document.querySelector('link[href*="rebloom-cinematic.css"]')){
+    const cinemaStyle=document.createElement('link');
+    cinemaStyle.rel='stylesheet';
+    cinemaStyle.href='rebloom-cinematic.css?v=20260817j';
+    document.head.appendChild(cinemaStyle);
+  }
+  if(!document.querySelector('script[src*="rebloom-cinematic.js"]')){
+    const cinemaScript=document.createElement('script');
+    cinemaScript.src='rebloom-cinematic.js?v=20260817j';
+    cinemaScript.defer=true;
+    document.body.appendChild(cinemaScript);
+  }
 })();
