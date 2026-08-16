@@ -7,7 +7,7 @@
 .rb-fun-chip strong{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif;font-size:14px}
 
 /* playful sticker field */
-.rb-fun-sticker{position:absolute;z-index:4;display:grid;place-items:center;min-width:76px;min-height:76px;padding:10px;border-radius:26% 74% 58% 42%/51% 43% 57% 49%;background:var(--fun-yellow);color:#17483c;text-align:center;font:900 12px/1.15 "M PLUS Rounded 1c","Noto Sans JP",sans-serif;letter-spacing:.03em;box-shadow:0 9px 20px rgba(45,58,46,.12);transform:rotate(var(--sticker-r,-8deg));pointer-events:none}
+.rb-fun-sticker{position:absolute;z-index:4;display:grid;place-items:center;min-width:76px;min-height:76px;padding:10px;border-radius:26% 74% 58% 42%/51% 43% 57% 49%;background:var(--fun-yellow);color:#17483c;text-align:center;white-space:pre-line;font:900 12px/1.15 "M PLUS Rounded 1c","Noto Sans JP",sans-serif;letter-spacing:.03em;box-shadow:0 9px 20px rgba(45,58,46,.12);transform:rotate(var(--sticker-r,-8deg));pointer-events:none}
 .rb-fun-sticker::after{content:"";position:absolute;inset:5px;border:1px dashed rgba(23,72,60,.23);border-radius:inherit}
 .rb-fun-sticker--mud{background:#6a4938;color:#fff7e9}
 .rb-fun-sticker--paper{background:#fffaf0}
