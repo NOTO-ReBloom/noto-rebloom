@@ -13,13 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply shared design and remove meta copy
+      - name: Apply final shared design and copy audit
         run: |
           python3 - <<'PY'
           from pathlib import Path
 
           pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']
-          css='<link rel="stylesheet" href="rebloom-unified.css?v=20260817b">'
+          css1='<link rel="stylesheet" href="rebloom-unified.css?v=20260817b">'
+          css2='<link rel="stylesheet" href="rebloom-polish.css?v=20260817c">'
           js='<script defer src="rebloom-unified.js?v=20260817b"></script>'
 
           replacements={
@@ -31,6 +32,18 @@ jobs:
             'どんな場所か、<br/>先に見ておけます。':'洲巻の田んぼで、<br/>泥だらけの一日を。',
             '迷いやすいところだけ、先に。':'参加前のよくある質問',
             '32の花を先に見る':'32の花を見る',
+            'SEE BEFORE READING':'FROM THE LAND',
+            'まず、土地を見てください。':'この土地から、企画を考えました。',
+            'まず言葉を知る':'言葉を知る',
+            'WORDS FIRST':'BASIC WORDS',
+            '私たちも最初は混同していました。まずは基本の言葉から整理しました。':'似た言葉を混同しないよう、基本の意味を整理しました。',
+            '土地をお借りする相談から、競技、安全面、協賛、参加募集まで、一つずつ準備しています。顔が見える運営にして、初めてサイトを見た方にも安心して参加を検討してもらえるようにします。':'土地をお借りする相談から、競技、安全面、協賛、参加募集まで、学生メンバーで一つずつ準備しています。',
+            '参加費は無料。イベントの内容を見てからでも、今そのまま申し込んでも大丈夫です。':'参加費無料。受付12:30、13:00開始です。',
+            '知ったあと、一度この田んぼへ。':'9月20日、洲巻の田んぼへ。',
+            '9月20日の泥ん子運動会は参加費無料です。企画を読むだけでなく、実際に能登へ来るきっかけにしてもらえたらと思っています。':'9月20日の泥ん子運動会は参加費無料。洲巻地区の田んぼで開催します。',
+            '時間は、これだけ覚えればOK。':'12:30受付、13:00スタート。',
+            '「泥の中で遊んでみたい」と思ったら、そのまま参加申込へ進めます。':'子どもから大人まで参加できます。',
+            '会場になる田んぼ、準備を進めるメンバー、最後に持ち帰るレンゲ。参加前にイメージできるものをまとめました。':'会場になる田んぼ、準備を進めるメンバー、最後に持ち帰るレンゲです。',
             '>土地と企画を知る<':'>土地と企画<',
             '>法人・団体<':'>協賛・協力<',
             '>法人・団体の方へ<':'>協賛・協力<' 
@@ -42,7 +55,9 @@ jobs:
             for old,new in replacements.items():
               text=text.replace(old,new)
             if 'rebloom-unified.css' not in text:
-              text=text.replace('</head>',css+'</head>',1)
+              text=text.replace('</head>',css1+'</head>',1)
+            if 'rebloom-polish.css' not in text:
+              text=text.replace('</head>',css2+'</head>',1)
             if 'rebloom-unified.js' not in text:
               text=text.replace('</body>',js+'</body>',1)
             p.write_text(text,encoding='utf-8')
@@ -52,5 +67,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html learn.html event.html partner.html diagnosis.html 404.html
-          git diff --cached --quiet || git commit -m "全ページのデザインを統一しメタ表現を削除"
+          git diff --cached --quiet || git commit -m "全ページのメタ表現を削除し統一デザインを仕上げる"
           git push
