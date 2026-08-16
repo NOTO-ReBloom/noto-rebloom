@@ -1,0 +1,56 @@
+name: Apply unified ReBloom design
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply shared design and remove meta copy
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']
+          css='<link rel="stylesheet" href="rebloom-unified.css?v=20260817b">'
+          js='<script defer src="rebloom-unified.js?v=20260817b"></script>'
+
+          replacements={
+            '文字より先に、<br>会場と私たちを見てください。':'この場所で、<br>泥だらけの一日を。',
+            '文字より先に、<br/>会場と私たちを見てください。':'この場所で、<br/>泥だらけの一日を。',
+            '「ちょっと楽しそう」で、参加して大丈夫です。':'子どもも大人も、参加費は無料です。',
+            '詳しい企画背景を全部読まなくても、まずイベントから能登と出会えます。':'受付12:30、13:00開始。子どもから大人まで参加できます。',
+            'どんな場所か、<br>先に見ておけます。':'洲巻の田んぼで、<br>泥だらけの一日を。',
+            'どんな場所か、<br/>先に見ておけます。':'洲巻の田んぼで、<br/>泥だらけの一日を。',
+            '迷いやすいところだけ、先に。':'参加前のよくある質問',
+            '32の花を先に見る':'32の花を見る',
+            '>土地と企画を知る<':'>土地と企画<',
+            '>法人・団体<':'>協賛・協力<',
+            '>法人・団体の方へ<':'>協賛・協力<' 
+          }
+
+          for name in pages:
+            p=Path(name)
+            text=p.read_text(encoding='utf-8')
+            for old,new in replacements.items():
+              text=text.replace(old,new)
+            if 'rebloom-unified.css' not in text:
+              text=text.replace('</head>',css+'</head>',1)
+            if 'rebloom-unified.js' not in text:
+              text=text.replace('</body>',js+'</body>',1)
+            p.write_text(text,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html learn.html event.html partner.html diagnosis.html 404.html
+          git diff --cached --quiet || git commit -m "全ページのデザインを統一しメタ表現を削除"
+          git push
