@@ -29,20 +29,46 @@
     }
   };
 
+  const addResidue=()=>{
+    if(reduce)return;
+    ['left','right'].forEach((side,i)=>{
+      const mark=document.createElement('i');
+      mark.className=`rb-cinema-residue rb-cinema-residue--${side}`;
+      mark.style.setProperty('--rr',`${i?18:-16}deg`);
+      stage.appendChild(mark);
+      requestAnimationFrame(()=>mark.classList.add('is-show'));
+      setTimeout(()=>mark.remove(),1850);
+    });
+  };
+
   let splashBusy=false;
   const fullSplash=({x=.5,y=.55,soft=false}={})=>{
     if(reduce||splashBusy) return;
     splashBusy=true;
     const sx=innerWidth*x, sy=innerHeight*y;
-    fly(sx,sy,soft?12:22,soft?.75:1.08);
+    fly(sx,sy,soft?16:30,soft?.82:1.2);
     const sheet=document.createElement('div');
     sheet.className='rb-cinema-screen'+(soft?' is-soft':'');
     sheet.style.setProperty('--sx',`${x*100}%`);sheet.style.setProperty('--sy',`${y*100}%`);
     stage.appendChild(sheet);
     requestAnimationFrame(()=>requestAnimationFrame(()=>sheet.classList.add('is-impact')));
     body.classList.add('rb-cinema-obscured');
-    setTimeout(()=>sheet.classList.add('is-drain'),soft?300:370);
-    setTimeout(()=>{sheet.remove();body.classList.remove('rb-cinema-obscured');splashBusy=false},soft?990:1120);
+    setTimeout(()=>sheet.classList.add('is-drain'),soft?330:410);
+    setTimeout(addResidue,soft?620:720);
+    setTimeout(()=>{sheet.remove();body.classList.remove('rb-cinema-obscured');splashBusy=false},soft?1040:1190);
+  };
+
+  const flowerBurst=(target,count=20)=>{
+    if(reduce||!target)return;
+    const r=target.getBoundingClientRect();
+    const cx=r.left+r.width*.5,cy=Math.max(80,Math.min(innerHeight-80,r.top+r.height*.45));
+    const colors=['#f4cf58','#e99a91','#9bbd7c','#c5a7d8','#f1b6cb'];
+    for(let i=0;i<count;i++){
+      const petal=document.createElement('i');petal.className='rb-cinema-petal';
+      const a=(Math.PI*2/count)*i+(Math.random()-.5)*.5;const d=90+Math.random()*190;
+      petal.style.left=`${cx}px`;petal.style.top=`${cy}px`;petal.style.setProperty('--px',`${Math.cos(a)*d}px`);petal.style.setProperty('--py',`${Math.sin(a)*d+45}px`);petal.style.setProperty('--ps',`${7+Math.random()*10}px`);petal.style.setProperty('--pr',`${Math.random()*180}deg`);petal.style.setProperty('--pc',colors[i%colors.length]);
+      body.appendChild(petal);setTimeout(()=>petal.remove(),1350);
+    }
   };
 
   const observeOnce=(target,callback,{threshold=.2,rootMargin='0px 0px -12% 0px'}={})=>{
@@ -55,11 +81,11 @@
     io.observe(target);
   };
 
-  /* Cinematic splashes only at meaningful content changes. */
+  /* One bold mud impact per page, tied to the page's central idea. */
   const sceneConfigs={
     'index.html':[{selector:'#rb-fun-day',x:.72,y:.66,threshold:.16},{selector:'#people-behind-project',x:.24,y:.48,threshold:.25,soft:true}],
-    'event.html':[{selector:'.game-grid',x:.52,y:.73,threshold:.24},{selector:'.section--mint',x:.78,y:.58,threshold:.27,soft:true}],
-    'learn.html':[{selector:'#project',x:.5,y:.68,threshold:.2},{selector:'#numbers',x:.2,y:.54,threshold:.3,soft:true}],
+    'event.html':[{selector:'.game-grid',x:.52,y:.73,threshold:.24}],
+    'learn.html':[{selector:'#rb-learn-illustrations',x:.5,y:.68,threshold:.18},{selector:'#numbers',x:.2,y:.54,threshold:.3,soft:true}],
     'partner.html':[{selector:'#current-partners',x:.3,y:.58,threshold:.24,soft:true}]
   };
   (sceneConfigs[page]||[]).forEach(cfg=>{
@@ -67,7 +93,17 @@
     observeOnce(target,()=>fullSplash(cfg),{threshold:cfg.threshold||.2});
   });
 
-  /* Replace every old project-overview image card with a living diagram. */
+  /* Flower-related content gets flower motion instead of an unrelated mud wipe. */
+  if(page==='event.html'){
+    const flowerSection=[...document.querySelectorAll('.section--mint')].find(s=>s.querySelector('img[src*="renge"]'));
+    observeOnce(flowerSection,t=>flowerBurst(t,18),{threshold:.28});
+  }
+  if(page==='diagnosis.html'){
+    const ribbon=document.querySelector('.rb-flower-ribbon')||document.querySelector('.page-hero--diagnosis');
+    observeOnce(ribbon,t=>flowerBurst(t,26),{threshold:.2,rootMargin:'0px'});
+  }
+
+  /* The project overview is a live DOM/SVG diagram, never a flat image. */
   const diagramHTML=(caption='NOTO Re:Bloomの企画全体像')=>`<figure class="rb-illustration-card rb-project-diagram-card">
     <div class="rb-project-diagram" role="img" aria-label="使われない農地から、人が来て、泥ん子運動会で遊び、地域の人と話し、次の関わりにつなげるNOTO Re:Bloomの流れ">
       <svg viewBox="0 0 1000 330" preserveAspectRatio="none" aria-hidden="true"><path class="rb-project-route" d="M80 225 C170 225 190 90 290 90 S390 235 495 225 S600 82 700 88 S805 220 920 220"/><path class="rb-project-route-draw" d="M80 225 C170 225 190 90 290 90 S390 235 495 225 S600 82 700 88 S805 220 920 220"/></svg>
@@ -79,26 +115,27 @@
       <div class="rb-project-node rb-project-node--5"><span>次</span><strong>次の関わりへ</strong></div>
     </div><figcaption>${caption}</figcaption></figure>`;
 
-  const replaceOverviewImages=()=>{
-    document.querySelectorAll('img[src*="project-overview.webp"]').forEach(img=>{
-      const fig=img.closest('figure');
-      if(!fig||fig.classList.contains('rb-project-diagram-card')) return;
+  const replaceOverview=()=>{
+    const replaceFigure=(fig)=>{
+      if(!fig||fig.classList.contains('rb-project-diagram-card'))return;
       const oldCaption=fig.querySelector('figcaption')?.textContent?.trim()||'NOTO Re:Bloomの企画全体像';
-      const holder=document.createElement('div');holder.innerHTML=diagramHTML(oldCaption);
-      fig.replaceWith(holder.firstElementChild);
-    });
+      const holder=document.createElement('div');holder.innerHTML=diagramHTML(oldCaption);fig.replaceWith(holder.firstElementChild);
+    };
+    document.querySelectorAll('img[src*="project-overview.webp"]').forEach(img=>replaceFigure(img.closest('figure')));
+    document.querySelectorAll('.rb-project-map-card').forEach(replaceFigure);
     document.querySelectorAll('.rb-project-diagram').forEach(diagram=>{
+      if(diagram.dataset.rbObserved)return;diagram.dataset.rbObserved='1';
       observeOnce(diagram,()=>diagram.classList.add('is-visible'),{threshold:.28,rootMargin:'0px 0px -8% 0px'});
     });
   };
-  replaceOverviewImages();
+  replaceOverview();
   if('MutationObserver' in window){
-    const mo=new MutationObserver(()=>replaceOverviewImages());
+    const mo=new MutationObserver(()=>replaceOverview());
     mo.observe(document.body,{childList:true,subtree:true});
     setTimeout(()=>mo.disconnect(),4000);
   }
 
-  /* Local mud masks are tied to actual content instead of random decoration. */
+  /* Local mud masks: the wipe itself explains that the content is about mud. */
   const prepareLocalReveal=(containerSelector,itemSelector,step=90)=>{
     const container=document.querySelector(containerSelector);
     if(!container) return;
@@ -112,7 +149,7 @@
     observeOnce(container,()=>items.forEach((el,i)=>setTimeout(()=>el.classList.add('is-cleared'),i*step)),{threshold:.24});
   };
 
-  if(page==='event.html') prepareLocalReveal('.game-grid',':scope > article',105);
+  if(page==='event.html') prepareLocalReveal('.game-grid',':scope > article',115);
   if(page==='learn.html') prepareLocalReveal('#numbers .data-grid',':scope > article',120);
   if(page==='partner.html') prepareLocalReveal('#current-partners','.nr-main-sponsor',0);
 
@@ -121,7 +158,19 @@
     if(numbers) observeOnce(numbers,()=>numbers.querySelectorAll('article').forEach((el,i)=>setTimeout(()=>el.classList.add('rb-number-clean'),i*130)),{threshold:.32});
   }
 
-  /* Edge splashes mark a new chapter, but sit outside the reading area. */
+  /* Sponsor/cooperation content uses connection motion. */
+  if(page==='partner.html'){
+    const partnerSection=document.querySelector('#current-partners');
+    if(partnerSection){
+      partnerSection.classList.add('rb-cinema-connected');
+      const field=document.createElement('div');field.className='rb-cinema-connect-field';field.setAttribute('aria-hidden','true');
+      for(let i=0;i<5;i++){const p=document.createElement('i');p.style.setProperty('--ci',i);field.appendChild(p)}
+      partnerSection.appendChild(field);
+      observeOnce(partnerSection,()=>partnerSection.classList.add('is-connected'),{threshold:.22});
+    }
+  }
+
+  /* Edge splashes mark chapter changes while staying away from reading lines. */
   const edgeTargets=[];
   if(page==='index.html') edgeTargets.push(document.querySelector('#origin'),document.querySelector('#people-behind-project'));
   if(page==='event.html') edgeTargets.push(document.querySelector('.event-flow-section'),document.querySelector('#event-faq'));
