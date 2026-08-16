@@ -1,0 +1,70 @@
+/* NOTO Re:Bloom — playful student-led participation layer / 2026-08-17 */
+:root{--fun-yellow:#f6d45b;--fun-green:#184c3f;--fun-paper:#fffaf0;--fun-mud:#684735;--fun-pink:#ef8e78}
+.rb-fun-live{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 18px}
+.rb-fun-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid rgba(24,76,63,.14);box-shadow:0 6px 16px rgba(29,57,48,.07);font:800 12px/1.2 "Noto Sans JP",sans-serif;color:var(--fun-green);transform:rotate(var(--chip-r,0deg))}
+.rb-fun-chip--yellow{background:var(--fun-yellow);border-color:rgba(88,64,20,.12)}
+.rb-fun-chip--student::before{content:"";width:8px;height:8px;border-radius:50%;background:#35a66f;box-shadow:0 0 0 5px rgba(53,166,111,.12)}
+.rb-fun-chip strong{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif;font-size:14px}
+
+/* playful sticker field */
+.rb-fun-sticker{position:absolute;z-index:4;display:grid;place-items:center;min-width:76px;min-height:76px;padding:10px;border-radius:26% 74% 58% 42%/51% 43% 57% 49%;background:var(--fun-yellow);color:#17483c;text-align:center;font:900 12px/1.15 "M PLUS Rounded 1c","Noto Sans JP",sans-serif;letter-spacing:.03em;box-shadow:0 9px 20px rgba(45,58,46,.12);transform:rotate(var(--sticker-r,-8deg));pointer-events:none}
+.rb-fun-sticker::after{content:"";position:absolute;inset:5px;border:1px dashed rgba(23,72,60,.23);border-radius:inherit}
+.rb-fun-sticker--mud{background:#6a4938;color:#fff7e9}
+.rb-fun-sticker--paper{background:#fffaf0}
+.rb-fun-sticker--pink{background:#f4a28e}
+.rb-fun-sticker[data-float="1"]{animation:rbFunFloat 3.6s ease-in-out infinite alternate}
+@keyframes rbFunFloat{to{transform:translateY(-8px) rotate(calc(var(--sticker-r,-8deg) + 3deg))}}
+
+/* participation playground */
+.rb-fun-playground{position:relative;overflow:hidden;padding:clamp(62px,8vw,104px) 20px;background:linear-gradient(180deg,#fffaf0 0%,#fff4d6 55%,#f0e3c8 100%);isolation:isolate}
+.rb-fun-playground::before{content:"";position:absolute;inset:0;z-index:-2;background:
+ radial-gradient(circle at 12% 22%,rgba(104,71,53,.13) 0 8px,transparent 9px),
+ radial-gradient(circle at 86% 18%,rgba(104,71,53,.09) 0 13px,transparent 14px),
+ radial-gradient(circle at 76% 82%,rgba(104,71,53,.11) 0 6px,transparent 7px),
+ repeating-linear-gradient(0deg,transparent 0 54px,rgba(24,76,63,.035) 55px 56px),
+ repeating-linear-gradient(90deg,transparent 0 54px,rgba(24,76,63,.035) 55px 56px)}
+.rb-fun-playground-inner{width:min(1180px,100%);margin:auto}
+.rb-fun-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-bottom:30px}
+.rb-fun-head h2{margin:.15em 0;font:900 clamp(32px,5vw,64px)/1.05 "M PLUS Rounded 1c","Noto Sans JP",sans-serif;color:#173f36;letter-spacing:-.035em}
+.rb-fun-head p{max-width:620px;margin:0;color:#4b5d55;line-height:1.9}
+.rb-fun-meter{width:min(250px,34vw);padding:14px 16px;border-radius:20px;background:#fff;border:1px solid rgba(24,76,63,.12);box-shadow:0 10px 24px rgba(37,55,47,.08);transform:rotate(2deg)}
+.rb-fun-meter-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;font-size:12px;font-weight:900;color:#5e5149}.rb-fun-meter-top strong{color:#6a4938;font-size:15px}
+.rb-fun-meter-track{height:13px;overflow:hidden;border-radius:99px;background:#eee4d3}.rb-fun-meter-fill{height:100%;width:var(--mud-level,0%);border-radius:inherit;background:linear-gradient(90deg,#b48460,#684735);transition:width .25s ease}
+.rb-fun-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+.rb-fun-step{position:relative;min-height:250px;padding:26px 22px 24px;border-radius:28px;background:#fff;box-shadow:0 15px 32px rgba(43,58,49,.09);border:1px solid rgba(24,76,63,.1);overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+.rb-fun-step:nth-child(2){transform:rotate(1.5deg)}.rb-fun-step:nth-child(3){transform:rotate(-1deg)}
+.rb-fun-step:hover{transform:translateY(-8px) rotate(0);box-shadow:0 22px 42px rgba(43,58,49,.14)}
+.rb-fun-step-no{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--fun-yellow);font:900 16px/1 "M PLUS Rounded 1c",sans-serif;color:#17483c;box-shadow:4px 5px 0 rgba(104,71,53,.18)}
+.rb-fun-step h3{margin:24px 0 10px;font:900 28px/1.1 "M PLUS Rounded 1c","Noto Sans JP",sans-serif;color:#173f36}
+.rb-fun-step p{margin:0;color:#52625a;line-height:1.75}
+.rb-fun-step-word{position:absolute;right:-7px;bottom:-13px;font:900 74px/.9 "M PLUS Rounded 1c",sans-serif;color:rgba(104,71,53,.075);transform:rotate(-8deg);pointer-events:none}
+.rb-fun-step.is-played{animation:rbFunCardPop .55s cubic-bezier(.18,.9,.2,1)}
+@keyframes rbFunCardPop{45%{transform:translateY(-12px) rotate(-2deg) scale(1.025)}100%{transform:none}}
+.rb-fun-join{display:flex;justify-content:space-between;gap:22px;align-items:center;margin-top:24px;padding:22px 24px;border-radius:28px;background:#194d40;color:white;box-shadow:0 16px 32px rgba(23,66,55,.15)}
+.rb-fun-join b{display:block;font:900 clamp(22px,3.5vw,38px)/1.12 "M PLUS Rounded 1c","Noto Sans JP",sans-serif}.rb-fun-join span{display:block;margin-top:6px;opacity:.82}.rb-fun-join .btn{white-space:nowrap;background:var(--fun-yellow)!important;color:#173f36!important;border-color:transparent!important}
+
+/* little student-made note pinned to sections */
+.rb-student-note{position:absolute;z-index:3;right:max(14px,4vw);top:24px;max-width:180px;padding:12px 14px;background:#fff2b8;color:#594c2e;border:1px solid rgba(87,73,45,.12);box-shadow:0 9px 18px rgba(65,57,44,.09);font:800 12px/1.55 "Noto Sans JP",sans-serif;transform:rotate(4deg);pointer-events:none}
+.rb-student-note::before{content:"";position:absolute;left:50%;top:-10px;width:52px;height:18px;background:rgba(255,255,255,.62);border:1px solid rgba(119,105,72,.08);transform:translateX(-50%) rotate(-4deg)}
+
+/* cursor mud crumbs — home/event only */
+.rb-fun-crumb{position:fixed;z-index:10030;width:8px;height:8px;border-radius:50%;background:#704b38;pointer-events:none;opacity:.55;animation:rbCrumbOut .72s ease-out forwards}
+@keyframes rbCrumbOut{to{transform:translate(var(--dx,0),var(--dy,12px)) scale(.15);opacity:0}}
+
+/* internal event-link full-screen mud wipe */
+.rb-fun-wipe{position:fixed;z-index:20000;inset:0;pointer-events:none;opacity:0;visibility:hidden;background:#6a4938;clip-path:circle(0 at var(--wipe-x,50%) var(--wipe-y,50%));transition:clip-path .5s cubic-bezier(.22,.8,.18,1),opacity .12s ease,visibility 0s linear .55s}
+.rb-fun-wipe::before,.rb-fun-wipe::after{content:"";position:absolute;border-radius:50%;background:#805942}.rb-fun-wipe::before{width:18vw;height:18vw;left:8%;top:13%}.rb-fun-wipe::after{width:12vw;height:12vw;right:7%;bottom:16%}
+.rb-fun-wipe.is-going{visibility:visible;opacity:1;clip-path:circle(145% at var(--wipe-x,50%) var(--wipe-y,50%));transition:clip-path .5s cubic-bezier(.22,.8,.18,1),opacity .1s ease}
+.rb-fun-wipe-mark{position:absolute;inset:0;display:grid;place-items:center;color:#fff7e9;font:900 clamp(28px,6vw,72px)/1 "M PLUS Rounded 1c",sans-serif;letter-spacing:.02em;transform:rotate(-4deg)}
+
+/* magnet CTA */
+.rb-fun-magnet{transition:transform .18s ease,box-shadow .2s ease!important;will-change:transform}
+
+body.nr-new-home .hero,body.nr-new-event .page-hero{position:relative;overflow:hidden}
+body.nr-new-home .rb-fun-sticker--hero-a{right:3%;top:12%}body.nr-new-home .rb-fun-sticker--hero-b{left:46%;bottom:8%}
+body.nr-new-event .rb-fun-sticker--hero-a{right:4%;top:12%}body.nr-new-event .rb-fun-sticker--hero-b{left:48%;bottom:8%}
+body.page-learn .rb-fun-sticker--hero-a,body.nr-new-partner .rb-fun-sticker--hero-a{right:4%;top:18%;opacity:.82}
+
+@media(max-width:900px){.rb-fun-head{grid-template-columns:1fr}.rb-fun-meter{width:min(320px,100%)}.rb-fun-steps{grid-template-columns:repeat(2,1fr)}.rb-fun-sticker--hero-b{display:none}}
+@media(max-width:620px){.rb-fun-playground{padding:54px 14px}.rb-fun-steps{grid-template-columns:1fr}.rb-fun-step{min-height:190px}.rb-fun-step-word{font-size:58px}.rb-fun-join{align-items:stretch;flex-direction:column}.rb-fun-join .btn{text-align:center}.rb-fun-sticker{min-width:62px;min-height:62px;font-size:10px}.rb-student-note{display:none}}
+@media(prefers-reduced-motion:reduce){.rb-fun-sticker[data-float="1"]{animation:none}.rb-fun-step,.rb-fun-meter-fill,.rb-fun-wipe,.rb-fun-magnet{transition:none!important}.rb-fun-crumb{display:none!important}}
