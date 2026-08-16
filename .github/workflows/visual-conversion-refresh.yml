@@ -1,0 +1,119 @@
+name: Visual conversion refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/visual-conversion-refresh.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add visual-first sections and participant CTAs
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          FORM='https://forms.gle/6ZMrhrhtWmBCQViD8'
+          CSS='<link rel="stylesheet" href="visual-conversion.css?v=20260817a">'
+
+          def load(name):
+              p=Path(name); return p, p.read_text(encoding='utf-8')
+          def save(p, text):
+              p.write_text(text, encoding='utf-8')
+              print('updated:', p)
+          def add_css(text):
+              if 'visual-conversion.css' not in text:
+                  text=text.replace('</head>', CSS+'</head>', 1)
+              return text
+          def add_dock(text):
+              if 'class="join-dock"' not in text:
+                  dock=f'<div class="join-dock"><a href="{FORM}" target="_blank" rel="noopener"><span>9/20 参加申込</span><small>参加費無料</small></a></div>'
+                  text=text.replace('</body>',dock+'</body>',1)
+              return text
+
+          # HOME
+          p,t=load('index.html'); t=add_css(t)
+          t=t.replace('9月20日、珠洲市・洲巻地区の約1,000㎡の田んぼで「泥ん子運動会」を開催します。思いきり遊ぶことをきっかけに、能登の今を知り、また来たくなるような一日をつくります。','9月20日、珠洲市・洲巻地区で「泥ん子運動会」を開催。子どもも大人も、約1,000㎡の田んぼで思いきり遊びます。')
+          if 'id="visual-day"' not in t:
+              home_visual=f'''<section class="visual-mosaic-section" id="visual-day"><div class="visual-mosaic-wrap"><div class="visual-mosaic-head"><div><p class="eyebrow"><span>この場所でつくる一日</span><small>SEE THE PLACE</small></p><h2>文字より先に、<br>会場と私たちを見てください。</h2></div><p>実際に使う田んぼと、能登で活動してきた学生メンバーです。9月20日は、この場所をみんなで思いきり楽しめる一日にします。</p></div><div class="visual-mosaic"><figure class="visual-tile"><span class="visual-label">VENUE</span><img src="field-detail.webp" alt="泥ん子運動会の会場となる田んぼの近景"><figcaption>約1,000㎡。泥ん子運動会の舞台になる田んぼです。</figcaption></figure><figure class="visual-tile"><span class="visual-label">IN NOTO</span><img src="team-reboost.webp" alt="能登で活動するNOTO Re:Bloomメンバー"><figcaption>能登で現地を見て、人と話すところから始めました。</figcaption></figure><figure class="visual-tile"><span class="visual-label">TEAM</span><img src="team-presentation.webp" alt="企画を発表するNOTO Re:Bloomメンバー"><figcaption>学生メンバーが9月20日に向けて準備を進めています。</figcaption></figure></div><div class="join-facts"><div class="join-fact"><small>DATE</small><strong>9/20</strong><span>2026年・日曜日</span></div><div class="join-fact"><small>FEE</small><strong>0円</strong><span>参加費無料</span></div><div class="join-fact"><small>RECEPTION</small><strong>12:30</strong><span>受付開始</span></div><div class="join-fact"><small>START</small><strong>13:00</strong><span>17:00頃終了予定</span></div></div><div class="visual-join-action"><div><b>「ちょっと楽しそう」で、参加して大丈夫です。</b><span>詳しい企画背景を全部読まなくても、まずイベントから能登と出会えます。</span></div><a class="btn" href="{FORM}" target="_blank" rel="noopener">9月20日に参加する</a></div></div></section>'''
+              marker='</section><section class="nr-choice-grid">'
+              if marker not in t: raise SystemExit('home hero marker not found')
+              t=t.replace(marker,'</section>'+home_visual+'<section class="nr-choice-grid">',1)
+          if 'id="people-behind-project"' not in t:
+              people=f'''<section class="people-trust" id="people-behind-project"><div class="people-trust-grid"><div class="people-trust-photo"><img src="team-presentation.webp" alt="NOTO Re:Bloomの学生メンバー"></div><div class="people-trust-copy"><p class="eyebrow"><span>WHO WE ARE</span><small>STUDENT TEAM</small></p><h2>当日をつくるのは、<br>私たち学生メンバーです。</h2><p>土地をお借りする相談から、競技、安全面、協賛、参加募集まで、一つずつ準備しています。顔が見える運営にして、初めてサイトを見た方にも安心して参加を検討してもらえるようにします。</p><div class="people-trust-tags"><span>会場使用許可済み</span><span>安全面を準備中</span><span>9/20開催</span></div></div></div></section><section class="conversion-band"><div><h2>9月20日、田んぼで会いましょう。</h2><p>参加費は無料。イベントの内容を見てからでも、今そのまま申し込んでも大丈夫です。</p></div><a class="btn" href="{FORM}" target="_blank" rel="noopener">参加フォームを開く</a></section>'''
+              marker='<section class="nr-sponsor-feature">'
+              if marker not in t: raise SystemExit('home sponsor marker not found')
+              t=t.replace(marker,people+marker,1)
+          t=add_dock(t); save(p,t)
+
+          # EVENT
+          p,t=load('event.html'); t=add_css(t)
+          if 'id="event-visual"' not in t:
+              visual=f'''<section class="visual-mosaic-section" id="event-visual"><div class="visual-mosaic-wrap"><div class="visual-mosaic-head"><div><p class="eyebrow"><span>会場と準備</span><small>PLACE & PREPARATION</small></p><h2>どんな場所か、<br>先に見ておけます。</h2></div><p>会場になる田んぼ、準備を進めるメンバー、最後に持ち帰るレンゲ。参加前にイメージできるものをまとめました。</p></div><div class="visual-mosaic"><figure class="visual-tile"><span class="visual-label">FIELD</span><img src="field-detail.webp" alt="泥ん子運動会の会場の田んぼ"><figcaption>実際にお借りする洲巻地区の田んぼです。</figcaption></figure><figure class="visual-tile"><span class="visual-label">TEAM</span><img src="team-reboost.webp" alt="能登で活動する学生メンバー"><figcaption>現地で土地を見ながら企画を進めています。</figcaption></figure><figure class="visual-tile"><span class="visual-label">TAKE HOME</span><img src="renge-cup-illustration.png" alt="レンゲを持ち帰るイメージ"><figcaption>最後には小さなレンゲを持ち帰る予定です。</figcaption></figure></div></div></section><section class="event-flow-section"><div class="visual-mosaic-wrap"><div class="visual-mosaic-head"><div><p class="eyebrow"><span>当日の流れ</span><small>DAY FLOW</small></p><h2>時間は、これだけ覚えればOK。</h2></div><p>競技や休憩をはさみながら、無理のないペースで進めます。</p></div></div><div class="event-flow"><article><span class="flow-time">12:30</span><h3>受付</h3><p>参加受付を行います。</p></article><article><span class="flow-time">13:00</span><h3>スタート</h3><p>田んぼの状態を見ながら、泥遊びや競技を始めます。</p></article><article><span class="flow-time">17:00</span><h3>終了目安</h3><p>終了時刻は17:00頃を予定しています。</p></article></div></section>'''
+              m=re.search(r'(<section class="event-summary">.*?</section>)',t,re.S)
+              if not m: raise SystemExit('event summary not found')
+              t=t[:m.end()]+visual+t[m.end():]
+          if 'id="event-mid-cta"' not in t:
+              mid=f'''<section class="conversion-band" id="event-mid-cta"><div><h2>参加費は無料です。</h2><p>「泥の中で遊んでみたい」と思ったら、そのまま参加申込へ進めます。</p></div><a class="btn" href="{FORM}" target="_blank" rel="noopener">参加フォームを開く</a></section>'''
+              marker='<section class="section section--paper"><div class="container"><div class="section-heading"><p class="eyebrow"><span>安心して参加するために</span>'
+              if marker not in t: raise SystemExit('event safety marker not found')
+              t=t.replace(marker,mid+marker,1)
+          if 'id="event-faq"' not in t:
+              faq=f'''<section class="faq-visual" id="event-faq"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加前によく確認したいこと</span><small>FAQ</small></p><h2>迷いやすいところだけ、先に。</h2><p>参加を決める前に気になる情報を、短くまとめました。</p></div><div class="faq-grid"><article class="faq-card"><div class="q">参加費はいくらですか？</div><p><strong>無料です。</strong> 参加フォームからお申し込みください。</p></article><article class="faq-card"><div class="q">小さな子どもも参加できますか？</div><p>幼稚園以下は保護者の方と一緒にご参加ください。中学生未満の受付は保護者の方にお願いしています。</p></article><article class="faq-card"><div class="q">安全面はどうしますか？</div><p>ぶつかり合う競技は避け、保険・救護・緊急時の対応も準備します。</p></article><article class="faq-card"><div class="q">何時から何時までですか？</div><p>12:30受付、13:00開始、17:00頃終了予定です。</p></article></div></div></section>'''
+              marker='<section class="section section--paper"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加する</span>'
+              if marker not in t: raise SystemExit('event join marker not found')
+              t=t.replace(marker,faq+marker,1)
+          t=add_dock(t); save(p,t)
+
+          # LEARN
+          p,t=load('learn.html'); t=add_css(t)
+          if 'id="learn-visual"' not in t:
+              learn_visual=f'''<section class="visual-mosaic-section" id="learn-visual"><div class="visual-mosaic-wrap"><div class="visual-mosaic-head"><div><p class="eyebrow"><span>現地から考える</span><small>SEE BEFORE READING</small></p><h2>まず、土地を見てください。</h2></div><p>数字や制度だけではなく、実際の農地と、そこで活動してきた人の姿から企画を考えています。</p></div><div class="visual-mosaic"><figure class="visual-tile"><span class="visual-label">LAND</span><img src="field-detail.webp" alt="能登の農地の近景"><figcaption>実際の土地を見ると、排水や動線など考えることが見えてきます。</figcaption></figure><figure class="visual-tile"><span class="visual-label">FIELD</span><img src="field-overview.webp" alt="能登の農地の全景"><figcaption>9月20日は、この土地を人が集まる場所として使います。</figcaption></figure><figure class="visual-tile"><span class="visual-label">PEOPLE</span><img src="team-reboost.webp" alt="能登で活動する学生メンバー"><figcaption>現地で話を聞き、できることを考えてきました。</figcaption></figure></div></div></section>'''
+              marker='</section><section class="section" id="words">'
+              if marker not in t: raise SystemExit('learn hero marker not found')
+              t=t.replace(marker,'</section>'+learn_visual+'<section class="section" id="words">',1)
+          if 'id="learn-join-cta"' not in t:
+              cta=f'''<section class="conversion-band" id="learn-join-cta"><div><h2>知ったあと、一度この田んぼへ。</h2><p>9月20日の泥ん子運動会は参加費無料です。企画を読むだけでなく、実際に能登へ来るきっかけにしてもらえたらと思っています。</p></div><a class="btn" href="{FORM}" target="_blank" rel="noopener">9月20日に参加する</a></section>'''
+              pos=t.rfind('<section class="section section--mint">')
+              if pos<0: raise SystemExit('learn final mint section not found')
+              t=t[:pos]+cta+t[pos:]
+          t=add_dock(t); save(p,t)
+
+          # PARTNER: make the page more visual without stealing its sponsor-focused CTA.
+          p,t=load('partner.html'); t=add_css(t)
+          if 'id="partner-visual"' not in t:
+              partner_visual='''<section class="visual-mosaic-section" id="partner-visual"><div class="visual-mosaic-wrap"><div class="visual-mosaic-head"><div><p class="eyebrow"><span>活動の現場</span><small>PEOPLE & PLACE</small></p><h2>支援の先にいる人と、場所。</h2></div><p>企画を進める学生メンバーと、9月20日に実際に使う田んぼです。</p></div><div class="visual-mosaic"><figure class="visual-tile"><span class="visual-label">TEAM</span><img src="team-presentation.webp" alt="企画を発表する学生メンバー"><figcaption>学生メンバーが企業・地域の方と相談しながら準備しています。</figcaption></figure><figure class="visual-tile"><span class="visual-label">NOTO</span><img src="team-reboost.webp" alt="能登で活動する学生メンバー"><figcaption>現地で活動してきたことがプロジェクトの出発点です。</figcaption></figure><figure class="visual-tile"><span class="visual-label">VENUE</span><img src="field-overview.webp" alt="泥ん子運動会の会場"><figcaption>9月20日に使用する洲巻地区の田んぼです。</figcaption></figure></div></div></section>'''
+              marker='</section><section class="nr-value-prop">'
+              if marker not in t: raise SystemExit('partner hero marker not found')
+              t=t.replace(marker,'</section>'+partner_visual+'<section class="nr-value-prop">',1)
+          save(p,t)
+
+          # Basic checks
+          for name in ('index.html','event.html','learn.html','partner.html'):
+              s=Path(name).read_text(encoding='utf-8')
+              if 'visual-conversion.css' not in s: raise SystemExit(f'CSS missing in {name}')
+          if 'id="visual-day"' not in Path('index.html').read_text(encoding='utf-8'): raise SystemExit('home visual missing')
+          if 'id="event-faq"' not in Path('event.html').read_text(encoding='utf-8'): raise SystemExit('event faq missing')
+          PY
+
+      - name: Commit visual refresh
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html event.html learn.html partner.html
+          git commit -m "写真中心の構成と参加導線を強化"
+          git push
