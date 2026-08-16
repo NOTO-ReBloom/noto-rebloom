@@ -1,0 +1,34 @@
+/* NOTO Re:Bloom — cinematic add-on / 2026-08-17 */
+.rb-cinema-residue{position:fixed;z-index:32005;width:190px;height:240px;pointer-events:none;opacity:0;background:
+ radial-gradient(ellipse at 48% 52%,rgba(101,67,49,.90) 0 32%,transparent 33%),
+ radial-gradient(circle at 12% 20%,rgba(101,67,49,.82) 0 7%,transparent 8%),
+ radial-gradient(circle at 84% 14%,rgba(63,41,31,.76) 0 6%,transparent 7%),
+ radial-gradient(circle at 94% 72%,rgba(118,81,60,.78) 0 7%,transparent 8%),
+ radial-gradient(circle at 25% 91%,rgba(101,67,49,.70) 0 6%,transparent 7%);filter:drop-shadow(0 8px 10px rgba(46,28,20,.09));transform:scale(.42) rotate(var(--rr,0deg))}
+.rb-cinema-residue--left{left:-58px;top:18%}.rb-cinema-residue--right{right:-66px;bottom:9%}
+.rb-cinema-residue.is-show{animation:rbCinemaResidue 1.75s ease both}
+@keyframes rbCinemaResidue{0%{opacity:0;transform:scale(.3) rotate(var(--rr,0deg))}18%,62%{opacity:.28;transform:scale(1) rotate(var(--rr,0deg))}100%{opacity:0;transform:translateY(34px) scale(1.04) rotate(var(--rr,0deg))}}
+
+/* Partner/cooperation: connections grow across the section instead of another random splash. */
+.rb-cinema-connected{position:relative;overflow:hidden;isolation:isolate}
+.rb-cinema-connect-field{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.rb-cinema-connect-field::before,.rb-cinema-connect-field::after{content:"";position:absolute;border:2px dashed rgba(244,207,88,.34);border-radius:50%;opacity:0}
+.rb-cinema-connect-field::before{width:330px;height:330px;left:-120px;top:4%}.rb-cinema-connect-field::after{width:240px;height:240px;right:-78px;bottom:-36px}
+.rb-cinema-connected.is-connected .rb-cinema-connect-field::before{animation:rbPartnerOrbit 1.25s ease both}.rb-cinema-connected.is-connected .rb-cinema-connect-field::after{animation:rbPartnerOrbit 1.25s .15s ease both}
+.rb-cinema-connect-field i{position:absolute;width:11px;height:11px;border-radius:50%;background:#f4cf58;box-shadow:0 0 0 7px rgba(244,207,88,.12);opacity:0}
+.rb-cinema-connect-field i:nth-child(1){left:9%;top:23%}.rb-cinema-connect-field i:nth-child(2){left:31%;top:70%}.rb-cinema-connect-field i:nth-child(3){left:53%;top:30%}.rb-cinema-connect-field i:nth-child(4){left:74%;top:67%}.rb-cinema-connect-field i:nth-child(5){left:91%;top:27%}
+.rb-cinema-connected.is-connected .rb-cinema-connect-field i{animation:rbPartnerPoint .55s cubic-bezier(.18,.88,.2,1) calc(var(--ci)*110ms + 160ms) both}
+@keyframes rbPartnerOrbit{0%{opacity:0;transform:scale(.5) rotate(-30deg)}60%{opacity:.5}100%{opacity:.22;transform:scale(1) rotate(0)}}
+@keyframes rbPartnerPoint{0%{opacity:0;transform:scale(.2)}60%{opacity:1;transform:scale(1.35)}100%{opacity:.72;transform:scale(1)}}
+.rb-cinema-connected>.nr-section-head,.rb-cinema-connected>.nr-main-sponsor{position:relative;z-index:2}
+
+/* Flower-related pages burst with petals, not mud. */
+.rb-cinema-petal{position:fixed;z-index:19000;width:var(--ps,12px);height:calc(var(--ps,12px)*1.6);border-radius:72% 28% 68% 32%;background:var(--pc,#f4cf58);pointer-events:none;opacity:0;transform:translate(-50%,-50%) rotate(var(--pr,0deg));animation:rbCinemaPetal 1.25s cubic-bezier(.18,.74,.22,1) both}
+@keyframes rbCinemaPetal{0%{opacity:0;transform:translate(-50%,-50%) scale(.25) rotate(var(--pr,0deg))}16%{opacity:.95;transform:translate(-50%,-50%) scale(1) rotate(var(--pr,0deg))}100%{opacity:0;transform:translate(calc(-50% + var(--px)),calc(-50% + var(--py))) scale(.68) rotate(calc(var(--pr,0deg) + 230deg))}}
+
+/* Make the full-screen hit feel like wet mud, without leaving the page unreadable afterward. */
+.rb-cinema-screen.is-impact{opacity:.995!important;box-shadow:inset 0 0 170px rgba(25,14,10,.42)!important}
+.rb-cinema-screen.is-drain{transition:transform .72s cubic-bezier(.55,.02,.82,.32),opacity .12s linear .62s!important}
+
+@media(max-width:700px){.rb-cinema-residue{display:none}.rb-cinema-connect-field::before{left:-190px}.rb-cinema-connect-field::after{right:-150px}.rb-cinema-connect-field i{width:8px;height:8px}}
+@media(prefers-reduced-motion:reduce){.rb-cinema-residue,.rb-cinema-connect-field,.rb-cinema-petal{display:none!important}}
