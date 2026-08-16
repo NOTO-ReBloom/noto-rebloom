@@ -71,11 +71,29 @@
     if(replacements.has(t)) el.textContent=replacements.get(t);
   });
 
+  const projectMap=()=>`<div class="rb-project-map" role="img" aria-label="使われなくなった田んぼを泥ん子運動会の会場として使い、人が能登へ来て地域と関わり、次の関わりにつなげるNOTO Re:Bloomの全体像">
+    <div class="rb-project-map-path" aria-hidden="true"></div>
+    <div class="rb-project-node rb-project-node--land"><span class="rb-project-node-icon">土</span><b>田んぼ</b><small>使われなくなった土地</small></div>
+    <div class="rb-project-arrow rb-project-arrow--a" aria-hidden="true"><i></i></div>
+    <div class="rb-project-node rb-project-node--event"><span class="rb-project-node-icon">泥</span><b>泥ん子運動会</b><small>楽しいから、来てみる</small></div>
+    <div class="rb-project-arrow rb-project-arrow--b" aria-hidden="true"><i></i></div>
+    <div class="rb-project-cluster">
+      <div class="rb-project-mini"><span>来</span><b>能登に来る</b></div>
+      <div class="rb-project-mini"><span>話</span><b>地域と話す</b></div>
+      <div class="rb-project-mini"><span>知</span><b>土地を知る</b></div>
+    </div>
+    <div class="rb-project-arrow rb-project-arrow--c" aria-hidden="true"><i></i></div>
+    <div class="rb-project-node rb-project-node--next"><span class="rb-project-node-icon">花</span><b>次の関わりへ</b><small>また来る・続け方を考える</small></div>
+  </div>`;
+
   // Add illustration-led sections where real photo variety is limited.
   const makeIllustrationSection=(title,lead,cards)=>{
+    const cardMarkup=(c)=>c.type==='map'
+      ? `<figure class="rb-illustration-card rb-project-map-card">${projectMap()}<figcaption>${c.cap}</figcaption></figure>`
+      : `<figure class="rb-illustration-card"><img src="${c.src}" alt="${c.alt}" loading="lazy"><figcaption>${c.cap}</figcaption></figure>`;
     const s=document.createElement('section');
     s.className='rb-illustration-section rb-reveal';
-    s.innerHTML=`<div class="rb-illustration-inner"><div class="rb-illustration-head"><h2>${title}</h2><p>${lead}</p></div><div class="rb-illustration-grid">${cards.map(c=>`<figure class="rb-illustration-card"><img src="${c.src}" alt="${c.alt}" loading="lazy"><figcaption>${c.cap}</figcaption></figure>`).join('')}</div></div>`;
+    s.innerHTML=`<div class="rb-illustration-inner"><div class="rb-illustration-head"><h2>${title}</h2><p>${lead}</p></div><div class="rb-illustration-grid">${cards.map(cardMarkup).join('')}</div></div>`;
     return s;
   };
 
@@ -84,7 +102,7 @@
       '田んぼを、次の関わりにつなげる。',
       '農地を一度で解決するのではなく、人が来るきっかけをつくり、土地と地域との関係を少しずつ育てていきます。',
       [
-        {src:'project-overview.webp',alt:'NOTO Re:Bloomの企画全体像',cap:'NOTO Re:Bloomの企画全体像'},
+        {type:'map',cap:'NOTO Re:Bloomの全体像'},
         {src:'regeneration-model.webp',alt:'農地との関わりを続けるイメージ',cap:'一日のイベントから、その後の関わりへ'}
       ]
     );
@@ -99,7 +117,7 @@
       '資金だけでなく、物品、広報、サービス、地域とのつながりなど、それぞれの強みを生かした協力を相談しています。',
       [
         {src:'sponsor-value.webp',alt:'協賛・協力によって生まれる価値のイメージ',cap:'協賛・協力の考え方'},
-        {src:'project-overview.webp',alt:'NOTO Re:Bloomの企画全体像',cap:'9月20日のイベントと、その先の活動'}
+        {type:'map',cap:'9月20日のイベントと、その先の活動'}
       ]
     );
     s.id='rb-partner-illustrations';
@@ -171,5 +189,19 @@
     detail.src='rebloom-detail.js?v=20260817i';
     detail.defer=true;
     document.body.appendChild(detail);
+  }
+
+  // Cinematic layer: large content-linked transitions and the animated project diagram.
+  if(!document.querySelector('link[href*="rebloom-cinematic.css"]')){
+    const cinematicStyle=document.createElement('link');
+    cinematicStyle.rel='stylesheet';
+    cinematicStyle.href='rebloom-cinematic.css?v=20260817j';
+    document.head.appendChild(cinematicStyle);
+  }
+  if(!document.querySelector('script[src*="rebloom-cinematic.js"]')){
+    const cinematic=document.createElement('script');
+    cinematic.src='rebloom-cinematic.js?v=20260817j';
+    cinematic.defer=true;
+    document.body.appendChild(cinematic);
   }
 })();
