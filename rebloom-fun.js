@@ -29,7 +29,7 @@
     el.className=`rb-fun-sticker ${cls||''}`;
     el.dataset.float='1';
     el.textContent=text;
-    Object.entries(pos).forEach(([k,v])=>el.style[k]=v);
+    Object.entries(pos).forEach(([k,v])=>k.startsWith('--')?el.style.setProperty(k,v):(el.style[k]=v));
     hero.appendChild(el);
   };
   const hero=document.querySelector('.hero,.page-hero');
