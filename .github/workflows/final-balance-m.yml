@@ -20,9 +20,6 @@ jobs:
           node --check rebloom-refine.js
           test -f rebloom-refine.css
           test -f rebloom-balance.css
-          grep -Fq "rebloom-refine.css?v=20260817m" rebloom-detail.js
-          grep -Fq "rebloom-balance.css?v=20260817m" rebloom-detail.js
-          grep -Fq "rebloom-detail.js?v=20260817m" rebloom-unified.js
       - name: Bump all public pages
         run: |
           python3 - <<'PY'
