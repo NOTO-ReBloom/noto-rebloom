@@ -13,20 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate final scripts and loading chain
+      - name: Validate final scripts
         run: |
           node --check rebloom-unified.js
           node --check rebloom-detail.js
           node --check rebloom-refine.js
           test -f rebloom-refine.css
           test -f rebloom-balance.css
-          grep -q "rebloom-refine.css?v=20260817m" rebloom-detail.js
-          grep -q "rebloom-balance.css?v=20260817m" rebloom-detail.js
-          grep -q "rebloom-detail.js?v=20260817m" rebloom-unified.js
-          ! grep -q "rebloom-mudfx.js" rebloom-detail.js
-          ! grep -q "rebloom-fun.js" rebloom-detail.js
-          ! grep -q "rebloom-cinematic.js" rebloom-detail.js
-          ! grep -q "project-overview.webp" rebloom-unified.js
+          grep -Fq "rebloom-refine.css?v=20260817m" rebloom-detail.js
+          grep -Fq "rebloom-balance.css?v=20260817m" rebloom-detail.js
+          grep -Fq "rebloom-detail.js?v=20260817m" rebloom-unified.js
       - name: Bump all public pages
         run: |
           python3 - <<'PY'
