@@ -1,0 +1,141 @@
+/* NOTO Re:Bloom — final balance pass / 2026-08-17 */
+:root{--rr-green:#184c3f;--rr-ink:#173a31;--rr-muted:#596c64;--rr-paper:#fffaf1;--rr-yellow:#f4cf58;--rr-line:rgba(23,58,49,.13);--rr-mud:#684735}
+
+/* 1. Readability first: the previous system used large shells with 12px copy. */
+body.rb-unified{font-size:16px}
+body.rb-unified p{font-size:15px;line-height:1.78;color:var(--rr-muted)}
+body.rb-unified .section{padding-top:clamp(56px,6.4vw,82px)!important;padding-bottom:clamp(56px,6.4vw,82px)!important}
+body.rb-unified .section-heading{margin-bottom:24px}
+body.rb-unified .section-heading h2,body.rb-unified .split-story h2{font-size:clamp(29px,3.6vw,46px)!important;line-height:1.24!important}
+body.rb-unified .section-heading>p:last-child{max-width:720px;font-size:15px!important;line-height:1.78!important}
+body.rb-unified .eyebrow{margin-bottom:10px}
+
+/* 2. Cards fit their content instead of forcing empty height. */
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article){
+ min-height:0!important;height:auto!important;padding:21px 22px!important;border-radius:20px!important;box-shadow:0 7px 20px rgba(23,58,49,.055)!important
+}
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article) h3{
+ margin:10px 0 7px!important;font-size:clamp(20px,2vw,24px)!important;line-height:1.38!important
+}
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article) p{
+ margin:0!important;max-width:none!important;font-size:14px!important;line-height:1.72!important;color:#5b6b65!important
+}
+body.rb-unified :is(.event-values article,.cause-grid article,.check-list>div)>span{
+ width:43px!important;height:43px!important;margin-bottom:8px!important;font-size:14px!important
+}
+body.rb-unified :is(.event-values,.definition-grid,.cause-grid,.game-grid,.check-list,.nr-value-grid,.industry-grid){gap:13px!important;align-items:start}
+
+/* Project / navigation cards: more useful text per pixel. */
+body.rb-unified .nr-choice{min-height:0!important;padding:24px!important;border-radius:20px!important}
+body.rb-unified .nr-choice h2{margin:10px 0 8px!important;font-size:clamp(22px,2.5vw,30px)!important;line-height:1.3!important}
+body.rb-unified .nr-choice p{margin:0 0 13px!important;font-size:14px!important;line-height:1.7!important}
+body.rb-unified .nr-choice>b{font-size:13px}
+body.rb-unified .nr-choice-grid{gap:13px!important;margin-top:28px!important;margin-bottom:66px!important}
+
+/* Event program cards keep a visual cue, but the illustration no longer creates a giant empty header. */
+body.rb-unified.nr-new-event .game-grid article{min-height:0!important;padding:68px 22px 21px!important}
+body.rb-unified.nr-new-event .game-grid article::before{left:18px!important;right:auto!important;top:15px!important;width:76px!important;height:42px!important;background-size:54px auto!important;border-radius:12px!important}
+body.rb-unified.nr-new-event .game-grid article>span{top:21px!important;right:21px!important;font-size:12px!important}
+body.rb-unified.nr-new-event .game-grid article h3{font-size:23px!important}
+
+/* Facts are data tiles, so a little size is useful — but not 116px of empty box. */
+body.rb-unified .join-fact,body.rb-unified .summary-grid>div{min-height:88px!important;padding:14px 16px!important}
+body.rb-unified .join-fact strong{font-size:clamp(25px,2.8vw,36px)!important}
+body.rb-unified .join-fact span{font-size:12px!important}
+
+/* Timeline and FAQ were also too small inside their boxes. */
+body.rb-unified .event-flow-section{padding:56px 20px!important}
+body.rb-unified .event-flow article{padding:19px!important;border-radius:20px!important}
+body.rb-unified .event-flow .flow-time{width:70px!important;height:70px!important;font-size:17px!important;margin-bottom:10px!important}
+body.rb-unified .event-flow h3{font-size:20px!important}
+body.rb-unified .event-flow p{font-size:14px!important;line-height:1.65!important;margin-top:5px!important}
+body.rb-unified .faq-visual{padding:58px 0!important}
+body.rb-unified .faq-card{padding:20px!important;border-radius:19px!important}
+body.rb-unified .faq-card .q{font-size:16px!important;line-height:1.5!important}
+body.rb-unified .faq-card p{font-size:14px!important;line-height:1.7!important}
+body.rb-unified .story-step h3{font-size:18px!important;line-height:1.4!important}
+body.rb-unified .story-step p{font-size:13.5px!important;line-height:1.68!important}
+
+/* Photo mosaic stays visual, while captions become readable. */
+body.rb-unified .visual-mosaic-section{padding:46px 0 64px!important}
+body.rb-unified .visual-mosaic-head{margin-bottom:19px!important}
+body.rb-unified .visual-mosaic-head h2{font-size:clamp(29px,3.6vw,46px)!important}
+body.rb-unified .visual-mosaic-head>p{font-size:14px!important;line-height:1.72!important}
+body.rb-unified .visual-tile figcaption{font-size:13px!important;line-height:1.55!important}
+
+/* CTA bands: strong but not oversized. */
+body.rb-unified .visual-join-action,body.rb-unified .conversion-band{border-radius:22px!important}
+body.rb-unified .visual-join-action{padding:19px 22px!important}
+body.rb-unified .visual-join-action div b{font-size:clamp(19px,2.3vw,27px)!important}
+body.rb-unified .visual-join-action div span,body.rb-unified .conversion-band p{font-size:13px!important;line-height:1.65!important}
+body.rb-unified .conversion-band{margin-bottom:64px!important;padding:23px 26px!important}
+body.rb-unified .conversion-band h2{font-size:clamp(25px,3vw,36px)!important}
+
+/* People section: reduce poster-like empty height. */
+body.rb-unified .people-trust{padding:58px 0!important}
+body.rb-unified .people-trust-photo{min-height:320px!important}
+body.rb-unified .people-trust-copy h2{font-size:clamp(29px,3.6vw,44px)!important}
+body.rb-unified .people-trust-copy p{font-size:15px!important;line-height:1.76!important}
+
+/* Illustration section + live project map. No flat overview image. */
+body.rb-unified .rb-illustration-section{padding:56px 0!important}
+body.rb-unified .rb-illustration-head{margin-bottom:19px!important}
+body.rb-unified .rb-illustration-head h2{font-size:clamp(29px,3.6vw,44px)!important}
+body.rb-unified .rb-illustration-head p{font-size:14px!important;line-height:1.72!important}
+body.rb-unified .rb-illustration-grid{grid-template-columns:1.18fr .82fr!important;gap:14px!important;align-items:stretch}
+body.rb-unified .rb-illustration-card{border-radius:21px!important;box-shadow:0 9px 25px rgba(23,58,49,.07)!important}
+body.rb-unified .rb-illustration-card figcaption{padding:12px 16px!important;font-size:13px!important}
+
+.rb-project-map-card{background:linear-gradient(145deg,#fffdf7,#edf5e9)!important;overflow:hidden!important}
+.rb-project-map{position:relative;display:grid;grid-template-columns:minmax(112px,1fr) 34px minmax(125px,1.05fr) 34px minmax(180px,1.45fr) 34px minmax(125px,1.08fr);align-items:center;gap:4px;min-height:300px;padding:28px 22px;isolation:isolate}
+.rb-project-map::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 8% 12%,rgba(244,207,88,.25),transparent 24%),radial-gradient(circle at 88% 82%,rgba(141,187,120,.18),transparent 28%),repeating-linear-gradient(0deg,transparent 0 45px,rgba(24,76,63,.025) 46px 47px)}
+.rb-project-map-path{position:absolute;left:8%;right:8%;top:50%;height:4px;z-index:-1;border-radius:99px;background:linear-gradient(90deg,#9fc38d,#184c3f,#9fc38d);transform:scaleX(.02);transform-origin:left;opacity:.42;transition:transform 1s cubic-bezier(.2,.75,.18,1)}
+.rb-project-map.is-visible .rb-project-map-path{transform:scaleX(1)}
+.rb-project-node,.rb-project-mini{opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.rb-project-map.is-visible :is(.rb-project-node,.rb-project-mini){opacity:1;transform:none}
+.rb-project-node--land{transition-delay:.05s}.rb-project-node--event{transition-delay:.2s}.rb-project-cluster .rb-project-mini:nth-child(1){transition-delay:.38s}.rb-project-cluster .rb-project-mini:nth-child(2){transition-delay:.5s}.rb-project-cluster .rb-project-mini:nth-child(3){transition-delay:.62s}.rb-project-node--next{transition-delay:.8s}
+.rb-project-node{padding:16px 14px;border:1px solid rgba(24,76,63,.12);border-radius:18px;background:rgba(255,255,255,.95);box-shadow:0 8px 18px rgba(26,64,52,.07);text-align:center}
+.rb-project-node--event{background:#184c3f;color:#fff}.rb-project-node--event b,.rb-project-node--event small{color:#fff!important}
+.rb-project-node-icon{display:grid;place-items:center;width:45px;height:45px;margin:0 auto 9px;border-radius:50%;background:#f4cf58;color:#184c3f;font:900 15px/1 "M PLUS Rounded 1c","Noto Sans JP",sans-serif}
+.rb-project-node b{display:block;font:900 18px/1.35 "M PLUS Rounded 1c","Noto Sans JP",sans-serif;color:#184c3f}
+.rb-project-node small{display:block;margin-top:5px;font-size:12px;line-height:1.55;color:#607069}
+.rb-project-arrow{position:relative;height:3px;background:#86aa79;border-radius:99px;transform:scaleX(0);transform-origin:left;transition:transform .38s ease}
+.rb-project-map.is-visible .rb-project-arrow{transform:scaleX(1)}.rb-project-arrow--a{transition-delay:.13s}.rb-project-arrow--b{transition-delay:.31s}.rb-project-arrow--c{transition-delay:.71s}
+.rb-project-arrow i{position:absolute;right:-1px;top:50%;width:9px;height:9px;border-top:3px solid #557e56;border-right:3px solid #557e56;transform:translateY(-50%) rotate(45deg)}
+.rb-project-cluster{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:9px;border:1px dashed rgba(24,76,63,.18);border-radius:18px;background:rgba(255,255,255,.6)}
+.rb-project-mini{padding:10px 6px;border-radius:13px;background:#fff;text-align:center;box-shadow:0 5px 12px rgba(26,64,52,.05)}
+.rb-project-mini span{display:grid;place-items:center;width:31px;height:31px;margin:0 auto 6px;border-radius:50%;background:#eef5e9;color:#184c3f;font-weight:900;font-size:12px}
+.rb-project-mini b{display:block;font-size:11px;line-height:1.45;color:#184c3f}
+
+/* 3. Mud is a signature moment, not a wallpaper. Hide every legacy repetitive mud/fun layer. */
+.rb-mudfx-layer,.rb-mud-word,.rb-hero-splat,.rb-mud-wipe,.rb-mud-wipe-drops,.rb-mud-stamp,.rb-mud-footprint,.rb-cinema-stage,.rb-cinema-edge-splat,.rb-cinema-residue,.rb-cinema-local-mud,.rb-fun-crumb,.rb-fun-popword,.rb-fun-wipe,.rb-fun-sticker,.rb-fun-live,.rb-fun-playground,.rb-fun-choose{display:none!important}
+
+/* One intentional full-screen splash on the event page. */
+.rb-refine-splash{position:fixed;inset:-4vh -4vw;z-index:40000;pointer-events:none;opacity:0;clip-path:circle(0 at 52% 63%);background:radial-gradient(circle at 17% 21%,#987057 0 5%,transparent 5.5%),radial-gradient(circle at 81% 27%,#4c3025 0 4%,transparent 4.5%),radial-gradient(circle at 69% 78%,#8d654d 0 7%,transparent 7.5%),linear-gradient(128deg,#40291f,#684735 38%,#7b5640 68%,#3f291f);box-shadow:inset 0 0 150px rgba(28,16,11,.35);will-change:clip-path,transform,opacity}
+.rb-refine-splash.is-hit{opacity:.99;clip-path:circle(165vmax at 52% 63%);transition:clip-path .28s cubic-bezier(.12,.8,.16,1),opacity .05s linear}
+.rb-refine-splash.is-drain{opacity:.96;clip-path:circle(165vmax at 52% 63%);transform:translateY(110vh) rotate(.5deg);transition:transform .66s cubic-bezier(.55,.02,.82,.32),opacity .1s linear .55s}
+.rb-refine-drop{position:fixed;z-index:40002;left:52vw;top:63vh;width:var(--s);height:var(--s);border-radius:60% 40% 55% 45%;background:#684735;pointer-events:none;opacity:0;animation:rrDrop .72s cubic-bezier(.14,.75,.22,1) forwards}
+@keyframes rrDrop{10%{opacity:.9;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r)) scale(.45)}}
+
+/* Keep general motion calm. */
+body.rb-unified .rb-detail-card{transition:transform .22s ease,box-shadow .22s ease!important}
+body.rb-unified .rb-detail-card:hover{transform:translateY(-3px)!important}
+body.rb-unified .photo-frame:hover img,body.rb-unified .visual-tile:hover img{transform:scale(1.018)!important}
+
+@media(max-width:980px){
+ body.rb-unified .rb-illustration-grid{grid-template-columns:1fr!important}
+ .rb-project-map{grid-template-columns:1fr;gap:10px;min-height:0;padding:22px 18px}
+ .rb-project-map-path{display:none}.rb-project-arrow{width:3px;height:22px;margin:auto;transform:scaleY(0);transform-origin:top}.rb-project-map.is-visible .rb-project-arrow{transform:scaleY(1)}.rb-project-arrow i{right:50%;top:auto;bottom:-1px;transform:translateX(50%) rotate(135deg)}
+ .rb-project-cluster{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:700px){
+ body.rb-unified p{font-size:14px}
+ body.rb-unified .section{padding-top:50px!important;padding-bottom:50px!important}
+ body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article,.nr-choice){padding:18px!important}
+ body.rb-unified.nr-new-event .game-grid article{padding:63px 18px 18px!important}
+ body.rb-unified .story-step p{font-size:13px!important}
+ body.rb-unified .people-trust-photo{min-height:270px!important}
+ .rb-project-cluster{grid-template-columns:1fr;gap:6px}.rb-project-mini{display:grid;grid-template-columns:34px 1fr;align-items:center;text-align:left;padding:8px 10px}.rb-project-mini span{margin:0}.rb-project-mini b{font-size:12px}
+ .rb-refine-drop{display:none}
+}
+@media(prefers-reduced-motion:reduce){.rb-refine-splash,.rb-refine-drop{display:none!important}.rb-project-map-path,.rb-project-arrow{transform:none!important}.rb-project-node,.rb-project-mini{opacity:1!important;transform:none!important;transition:none!important}}
