@@ -1,0 +1,21 @@
+/* Final visual polish for the unified Re:Bloom design */
+body.rb-unified .mobile-dock,body.rb-unified .join-dock{display:none!important}
+body.rb-unified .rb-text-heavy{overflow:hidden}
+body.rb-unified .rb-text-heavy::before{content:"";position:absolute;left:-18px;bottom:18px;width:118px;height:118px;opacity:.065;background:url('doodle-footprints.svg') center/contain no-repeat;pointer-events:none}
+body.rb-unified .rb-text-heavy::after{content:"";position:absolute;right:-20px;top:24px;width:126px;height:126px;opacity:.065;background:url('doodle-vine.svg') center/contain no-repeat;pointer-events:none}
+body.rb-unified .rb-image-rich{isolation:isolate}
+body.rb-unified .rb-image-rich::before{content:"";position:absolute;inset:8% 4%;z-index:-1;border-radius:42px;background:radial-gradient(circle at 15% 20%,rgba(244,207,88,.12),transparent 32%),radial-gradient(circle at 85% 75%,rgba(141,187,120,.11),transparent 34%);pointer-events:none}
+body.rb-unified .data-grid article{position:relative;overflow:hidden;border:1px solid var(--rb-line)!important;border-radius:24px!important;background:#fff!important;box-shadow:0 9px 28px rgba(23,58,49,.06)!important}
+body.rb-unified .data-grid article::after{content:"";position:absolute;width:90px;height:90px;right:-14px;bottom:-16px;opacity:.075;background:url('doodle-seeds.svg') center/contain no-repeat}
+body.rb-unified .data-grid strong{color:var(--rb-green)!important}
+body.rb-unified .page-learn .visual-mosaic-head small,body.rb-unified.page-learn .visual-mosaic-head small{letter-spacing:.12em}
+body.rb-unified .nr-choice{position:relative;overflow:hidden!important;border:1px solid var(--rb-line)!important;background:#fffdf8!important}
+body.rb-unified .nr-choice::after{content:"";position:absolute;width:100px;height:100px;right:-20px;bottom:-20px;opacity:.065;background:url('doodle-flower.svg') center/contain no-repeat;pointer-events:none}
+body.rb-unified .nr-choice:nth-child(2)::after{background-image:url('doodle-leaves.svg')}
+body.rb-unified .nr-choice:nth-child(3)::after{background-image:url('doodle-seeds.svg')}
+body.rb-unified .people-trust{position:relative;overflow:hidden;background:linear-gradient(135deg,#f4eedf,#eaf5e9)!important}
+body.rb-unified .people-trust::after{content:"";position:absolute;width:180px;height:180px;right:-35px;bottom:-35px;opacity:.08;background:url('doodle-vine.svg') center/contain no-repeat}
+body.rb-unified .people-trust-photo img{width:100%;height:100%;object-fit:cover}
+body.rb-unified .section--soil{position:relative;overflow:hidden}
+body.rb-unified .section--soil::after{content:"";position:absolute;left:-30px;bottom:-30px;width:150px;height:150px;opacity:.08;background:url('doodle-mud.svg') center/contain no-repeat;filter:brightness(4)}
+@media(max-width:900px){body.rb-unified .visual-mosaic-head>p{margin-left:0!important}}
