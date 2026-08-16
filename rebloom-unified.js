@@ -12,13 +12,15 @@
       link=document.createElement('link');
       link.rel='stylesheet';
       link.href=href;
+    }else{
+      link.href=href;
     }
     document.head.appendChild(link);
     return link;
   };
-  ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260817b');
-  ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817c');
-  ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817d');
+  ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260817e');
+  ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
+  ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
 
   // Keep the navigation wording and priority consistent everywhere.
   const labels={
@@ -166,7 +168,7 @@
   // Detail layer: scroll depth, micro-interactions, page-specific atmosphere.
   if(!document.querySelector('script[src*="rebloom-detail.js"]')){
     const detail=document.createElement('script');
-    detail.src='rebloom-detail.js?v=20260817d';
+    detail.src='rebloom-detail.js?v=20260817e';
     detail.defer=true;
     document.body.appendChild(detail);
   }
