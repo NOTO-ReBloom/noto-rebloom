@@ -1,0 +1,116 @@
+/* NOTO Re:Bloom — final density/readability calibration / 2026-08-17 */
+
+/* Reading rhythm: keep breathing room, remove poster-like emptiness. */
+body.rb-unified .section{padding-top:clamp(52px,6vw,78px)!important;padding-bottom:clamp(52px,6vw,78px)!important}
+body.rb-unified .section-heading{margin-bottom:23px!important}
+body.rb-unified .section-heading h2,body.rb-unified .split-story h2{font-size:clamp(30px,3.65vw,47px)!important;line-height:1.22!important}
+body.rb-unified .section-heading>p:last-child,body.rb-unified .visual-mosaic-head>p,.rb-illustration-head p{font-size:15px!important;line-height:1.75!important}
+body.rb-unified p{line-height:1.75}
+
+/* Common cards: content determines height; typography carries the hierarchy. */
+body.rb-unified :is(.event-values,.definition-grid,.cause-grid,.game-grid,.check-list,.nr-value-grid,.industry-grid){gap:13px!important;align-items:stretch}
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article){
+  min-height:0!important;height:auto!important;padding:21px 22px 20px!important;border-radius:21px!important;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start
+}
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article) h3{
+  margin:9px 0 7px!important;font-size:clamp(22px,2.05vw,25px)!important;line-height:1.32!important
+}
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article) p{
+  margin:0!important;max-width:none!important;font-size:14.5px!important;line-height:1.68!important;color:#53645c!important
+}
+body.rb-unified :is(.event-values article,.cause-grid article,.check-list>div)>span{width:44px!important;height:44px!important;margin-bottom:7px!important;font-size:14px!important}
+body.rb-unified .definition-card>span,body.rb-unified .game-grid article>span,body.rb-unified .nr-value-grid article>span{font-size:11px!important;font-weight:900!important;margin-bottom:2px!important}
+body.rb-unified .industry-grid article a{margin-top:12px!important;font-size:13px!important;font-weight:800}
+
+/* Navigation cards and data tiles should scan quickly. */
+body.rb-unified .nr-choice{min-height:0!important;padding:22px!important;border-radius:20px!important}
+body.rb-unified .nr-choice h2{margin:9px 0 7px!important;font-size:clamp(22px,2.4vw,29px)!important;line-height:1.3!important}
+body.rb-unified .nr-choice p{margin:0 0 12px!important;font-size:14px!important;line-height:1.68!important}
+body.rb-unified .nr-choice-grid{gap:13px!important;margin-top:26px!important;margin-bottom:58px!important}
+body.rb-unified .summary-grid{gap:9px!important}
+body.rb-unified .summary-grid>div,body.rb-unified .join-fact{min-height:0!important;padding:15px 17px!important;border-radius:18px!important}
+body.rb-unified .summary-grid>div span,body.rb-unified .join-fact span{font-size:12px!important}
+body.rb-unified .summary-grid>div b{font-size:clamp(19px,2vw,23px)!important}
+
+/* Event program keeps its small visual cue but avoids a huge blank header. */
+body.rb-unified.nr-new-event .game-grid article{min-height:0!important;padding:65px 22px 20px!important}
+body.rb-unified.nr-new-event .game-grid article::before{left:18px!important;right:auto!important;top:14px!important;width:74px!important;height:40px!important;background-size:52px auto!important;border-radius:12px!important}
+body.rb-unified.nr-new-event .game-grid article>span{top:20px!important;right:20px!important;font-size:12px!important}
+body.rb-unified.nr-new-event .game-grid article h3{font-size:23px!important}
+
+/* Timeline and FAQ: more text, less box. */
+body.rb-unified .event-flow-section{padding:56px 20px!important}
+body.rb-unified .event-flow{gap:13px!important;margin-top:22px!important}
+body.rb-unified .event-flow article{padding:18px!important;border-radius:20px!important}
+body.rb-unified .flow-time{width:68px!important;height:68px!important;margin-bottom:10px!important;font-size:18px!important}
+body.rb-unified .event-flow article h3{font-size:22px!important;margin:7px 0 5px!important}
+body.rb-unified .event-flow article p{font-size:14px!important;line-height:1.65!important;margin:0!important}
+body.rb-unified .faq-visual{padding:56px 0!important}
+body.rb-unified .faq-grid{gap:10px!important}
+body.rb-unified .faq-card{padding:19px 20px!important;border-radius:20px!important}
+body.rb-unified .faq-card .q{font-size:16px!important;line-height:1.52!important;padding-right:30px}
+body.rb-unified .faq-card p{font-size:14px!important;line-height:1.68!important;margin-bottom:0!important}
+body.rb-unified .story-step h3{font-size:19px!important;line-height:1.38!important}
+body.rb-unified .story-step p{font-size:14px!important;line-height:1.65!important}
+
+/* Images stay prominent without making every section tall. */
+body.rb-unified .visual-mosaic-section{padding:46px 0 62px!important}
+body.rb-unified .visual-mosaic-head{margin-bottom:19px!important}
+body.rb-unified .visual-tile figcaption,body.rb-unified .photo-frame figcaption{font-size:13px!important;line-height:1.55!important}
+body.rb-unified .people-trust{padding:56px 0!important}
+body.rb-unified .people-trust-photo{min-height:310px!important}
+body.rb-unified .people-trust-copy p{font-size:15px!important;line-height:1.74!important}
+
+/* Project overview: one large diagram, not two sparse cards. */
+.rb-illustration-section{padding:54px 0!important}
+.rb-illustration-head{margin-bottom:18px!important;gap:22px!important}
+.rb-illustration-grid--single{grid-template-columns:1fr!important}
+.rb-illustration-grid--single .rb-illustration-card{width:100%!important}
+.rb-illustration-card figcaption{padding:12px 16px!important;font-size:13px!important;line-height:1.5!important}
+.rb-project-map-card{min-height:0!important}
+.rb-project-map{min-height:280px!important;padding:24px 20px!important}
+.rb-project-node{padding:14px 12px!important;border-radius:17px!important}
+.rb-project-node b{font-size:18px!important}.rb-project-node small{font-size:12.5px!important;line-height:1.5!important}
+.rb-project-mini b{font-size:12px!important}
+
+/* CTA bands: decisive, not oversized. */
+body.rb-unified .visual-join-action,body.rb-unified .conversion-band{border-radius:22px!important}
+body.rb-unified .visual-join-action{padding:18px 21px!important}
+body.rb-unified .conversion-band{padding:22px 25px!important;margin-bottom:58px!important}
+body.rb-unified .conversion-band h2{font-size:clamp(25px,3vw,35px)!important}
+body.rb-unified .conversion-band p{font-size:13.5px!important;line-height:1.6!important}
+
+/* Any legacy decorative layer that survives a stale cache is visually suppressed. */
+.rb-mudfx-layer,.rb-mud-word,.rb-hero-splat,.rb-mud-wipe,.rb-mud-wipe-drops,.rb-mud-stamp,.rb-mud-footprint,
+.rb-cinema-stage,.rb-cinema-edge-splat,.rb-cinema-residue,.rb-cinema-local-mud,.rb-fun-crumb,.rb-fun-popword,.rb-fun-wipe,
+.rb-fun-sticker,.rb-fun-live,.rb-fun-playground,.rb-fun-choose,.rb-section-thread{display:none!important}
+
+/* Keep interaction feedback restrained. */
+body.rb-unified .rb-detail-card{transition:transform .2s ease,box-shadow .2s ease!important}
+body.rb-unified .rb-detail-card:hover{transform:translateY(-2px)!important}
+body.rb-unified .photo-frame:hover img,body.rb-unified .visual-tile:hover img{transform:scale(1.015)!important}
+
+@media(max-width:900px){
+  body.rb-unified .section{padding-top:48px!important;padding-bottom:48px!important}
+  body.rb-unified .visual-mosaic-section{padding:43px 0 52px!important}
+  body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article){padding:19px 18px 18px!important}
+  body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article) h3{font-size:22px!important}
+  body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article) p{font-size:14px!important}
+  .rb-illustration-section{padding:46px 0!important}.rb-illustration-head{grid-template-columns:1fr!important;gap:8px!important}
+  .rb-project-map{min-height:0!important;padding:20px 17px!important}
+  .rb-project-node{min-height:0!important}
+}
+
+@media(max-width:620px){
+  body.rb-unified .section{padding-top:42px!important;padding-bottom:42px!important}
+  body.rb-unified .section-heading{margin-bottom:19px!important}
+  body.rb-unified .section-heading>p:last-child,body.rb-unified .visual-mosaic-head>p,.rb-illustration-head p{font-size:14px!important}
+  body.rb-unified .summary-grid>div,body.rb-unified .join-fact{padding:13px 14px!important}
+  body.rb-unified .event-flow-section{padding:46px 16px!important}
+  body.rb-unified .faq-visual{padding:46px 0!important}
+  body.rb-unified .people-trust{padding:46px 0!important}
+  body.rb-unified .people-trust-photo{min-height:260px!important}
+}
+
+@media(prefers-reduced-motion:reduce){.rb-refine-splash,.rb-refine-drop{display:none!important}}
