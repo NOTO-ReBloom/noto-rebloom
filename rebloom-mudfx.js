@@ -71,7 +71,6 @@
     }else word.classList.add('rb-mud-word-done');
   }
 
-  // Mud-wipe selected images. Never apply to interactive diagnosis panels.
   const revealCandidates=[
     ...document.querySelectorAll('.visual-mosaic .visual-tile:first-child'),
     ...document.querySelectorAll('.rb-illustration-card:first-child'),
@@ -80,7 +79,17 @@
   if((page==='index.html'||page==='event.html')&&document.querySelector('.hero .photo-frame,.page-hero .photo-frame')){
     revealCandidates.unshift(document.querySelector('.hero .photo-frame,.page-hero .photo-frame'));
   }
-  revealCandidates.forEach(el=>el&&el.classList.add('rb-mud-reveal'));
+  revealCandidates.forEach(el=>{
+    if(!el)return;
+    el.classList.add('rb-mud-reveal');
+    if(!el.querySelector(':scope>.rb-mud-wipe')){
+      const wipe=document.createElement('span');
+      wipe.className='rb-mud-wipe';wipe.setAttribute('aria-hidden','true');
+      const drops=document.createElement('span');
+      drops.className='rb-mud-wipe-drops';drops.setAttribute('aria-hidden','true');
+      el.append(wipe,drops);
+    }
+  });
   if(!reduce&&'IntersectionObserver' in window){
     const rio=new IntersectionObserver(entries=>entries.forEach(e=>{
       if(!e.isIntersecting)return;
@@ -90,7 +99,6 @@
     revealCandidates.forEach(el=>el&&rio.observe(el));
   }else revealCandidates.forEach(el=>el&&el.classList.add('rb-mud-revealed'));
 
-  // Mud stamps punctuate long pages without covering content.
   const sections=[...document.querySelectorAll('main>section')];
   const stamped=sections.filter((s,i)=>i>0&&i<sections.length-1&&i%3===1&&!s.classList.contains('diagnosis-panel'));
   stamped.forEach((s,i)=>{
@@ -98,7 +106,7 @@
     const stamp=document.createElement('i');
     stamp.className='rb-mud-stamp'; stamp.setAttribute('aria-hidden','true');
     stamp.style.top=i%2?'18px':'34px';
-    stamp.style[i%2?'left':'right']=i%2?'max(10px,3vw)':'max(10px,3vw)';
+    stamp.style[i%2?'left':'right']='max(10px,3vw)';
     stamp.style.setProperty('--mud-r',`${i%2?11:-14}deg`);
     s.appendChild(stamp);
   });
@@ -109,7 +117,6 @@
     document.querySelectorAll('.rb-mud-stamp').forEach(el=>sio.observe(el));
   }
 
-  // Buttons spit a tiny amount of mud on hover/tap. No navigation delay.
   const burstTargets=[...document.querySelectorAll('.btn,.nr-btn,.rb-mobile-join a,.visual-join-action .btn')];
   burstTargets.forEach(el=>{
     el.classList.add('rb-mud-burst-host');
@@ -126,7 +133,6 @@
     el.addEventListener('pointerdown',pop,{passive:true});
   });
 
-  // Event day flow: muddy footprints walk through the schedule.
   if(page==='event.html'){
     const flow=document.querySelector('.event-flow');
     if(flow){
@@ -147,7 +153,6 @@
     }
   }
 
-  // A rare scroll splash: only home/event, only once, well below hero.
   if(!reduce&&(page==='index.html'||page==='event.html')){
     let fired=false;
     addEventListener('scroll',()=>{
