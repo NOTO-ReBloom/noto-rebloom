@@ -1,0 +1,34 @@
+name: Bump mud FX cache
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump unified and detail versions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          u=Path('rebloom-unified.js')
+          t=u.read_text(encoding='utf-8').replace("rebloom-detail.js?v=20260817e","rebloom-detail.js?v=20260817f")
+          u.write_text(t,encoding='utf-8')
+          for name in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+            p=Path(name)
+            t=p.read_text(encoding='utf-8').replace('rebloom-unified.js?v=20260817e','rebloom-unified.js?v=20260817f')
+            p.write_text(t,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rebloom-unified.js index.html learn.html event.html partner.html diagnosis.html 404.html
+          git diff --cached --quiet || git commit -m "泥演出を全公開ページへ反映"
+          git push
