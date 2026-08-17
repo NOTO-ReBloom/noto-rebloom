@@ -36,9 +36,10 @@ jobs:
               const ctx=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},reducedMotion:'reduce'});
               for(const file of pages){
                 const page=await ctx.newPage();
+                await page.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
                 const errors=[]; page.on('pageerror',e=>errors.push(String(e)));
-                const res=await page.goto(base+file,{waitUntil:'load',timeout:20000});
-                await page.waitForTimeout(700);
+                const res=await page.goto(base+file,{waitUntil:'domcontentloaded',timeout:10000});
+                await page.waitForTimeout(850);
                 const metrics=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,h1:document.querySelectorAll('h1').length}));
                 if(!res||res.status()>=400) throw new Error(`${file}/${viewport.name}: HTTP ${res&&res.status()}`);
                 if(metrics.overflow>2) throw new Error(`${file}/${viewport.name}: overflow ${metrics.overflow}`);
