@@ -28,6 +28,7 @@ t=t.replace('<div class="nr-logo-placeholder">Bukatsu<br><small>正式ロゴ受�
 old='<article><span>02</span><h3>スタッフTシャツ</h3><p>ご提供いただいた正式ロゴを、スタッフTシャツに掲載する予定です。</p></article>'
 new='<article><span>02</span><h3>サービス・事業紹介</h3><p>企業名だけでなく、サービス名や取り組みもWebサイト上でご紹介します。</p></article>'
 assert old in t; t=t.replace(old,new,1)
+t=t.replace('スタッフTシャツなどの制作準備があるため、9月20日のイベントに向けた協賛は8月21日を締切とします。','掲載準備や当日運営の調整があるため、9月20日のイベントに向けた協賛は8月21日を締切とします。')
 p.write_text(t,encoding='utf-8')
 
 # GLOBAL: source HTML starts close to its final rendered state and loads final CSS in parallel.
