@@ -56,7 +56,7 @@
     if(atlas){const decorate=()=>atlas.querySelectorAll('.flower-atlas-card').forEach(el=>el.classList.add('rb-detail-card'));decorate();new MutationObserver(decorate).observe(atlas,{childList:true,subtree:true})}
   }
 
-  /* Final loading order: refinement -> density -> structural cleanup -> purpose-led hierarchy. */
+  /* Final loading order: refinement -> density -> structural cleanup -> hierarchy -> complete purpose pass. */
   const ensureStyle=(name,href)=>{
     let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
     if(!link){link=document.createElement('link');link.rel='stylesheet'}link.href=href;document.head.appendChild(link);
@@ -70,7 +70,9 @@
   ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817n');
   ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817n');
   ensureStyle('rebloom-purpose.css','rebloom-purpose.css?v=20260817o');
+  ensureStyle('rebloom-purpose-complete.css','rebloom-purpose-complete.css?v=20260817p');
   ensureScript('rebloom-refine.js','rebloom-refine.js?v=20260817n');
   ensureScript('rebloom-tight.js','rebloom-tight.js?v=20260817n');
   ensureScript('rebloom-purpose.js','rebloom-purpose.js?v=20260817o');
+  ensureScript('rebloom-purpose-complete.js','rebloom-purpose-complete.js?v=20260817p');
 })();
