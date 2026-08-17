@@ -48,7 +48,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
-          cat > /tmp/audit.cjs <<'JS'
+          cat > audit-run.cjs <<'JS'
           const { chromium } = require('playwright');
           const { AxeBuilder } = require('@axe-core/playwright');
           const fs = require('fs');
@@ -76,11 +76,11 @@ jobs:
                     const s=getComputedStyle(el),r=el.getBoundingClientRect();
                     return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0;
                   });
-                  const offenders=visible.filter(el=>{const r=el.getBoundingClientRect();return r.left < -2 || r.right > vw+2}).slice(0,20).map(el=>({tag:el.tagName,cls:el.className||'',id:el.id||'',left:Math.round(el.getBoundingClientRect().left),right:Math.round(el.getBoundingClientRect().right)}));
+                  const offenders=visible.filter(el=>{const r=el.getBoundingClientRect();return r.left < -2 || r.right > vw+2}).slice(0,20).map(el=>({tag:el.tagName,cls:String(el.className||''),id:el.id||'',left:Math.round(el.getBoundingClientRect().left),right:Math.round(el.getBoundingClientRect().right)}));
                   const brokenImages=[...document.images].filter(i=>i.offsetParent!==null && (!i.complete || i.naturalWidth===0)).map(i=>i.getAttribute('src'));
                   const ids=[...document.querySelectorAll('[id]')].map(e=>e.id); const duplicateIds=[...new Set(ids.filter((x,i)=>ids.indexOf(x)!==i))];
                   const h1s=[...document.querySelectorAll('h1')].filter(e=>e.offsetParent!==null).map(e=>e.textContent.trim());
-                  const smallTargets=[...document.querySelectorAll('a.btn,button.btn,.menu-button,.diagnosis-answer,.flower-atlas-filters button,.rb-mobile-join a')].filter(e=>e.offsetParent!==null).map(e=>{const r=e.getBoundingClientRect();return {text:(e.textContent||'').trim().replace(/\s+/g,' ').slice(0,60),w:Math.round(r.width),h:Math.round(r.height),cls:e.className||''}}).filter(x=>x.w<44||x.h<44);
+                  const smallTargets=[...document.querySelectorAll('a.btn,button.btn,.menu-button,.diagnosis-answer,.flower-atlas-filters button,.rb-mobile-join a')].filter(e=>e.offsetParent!==null).map(e=>{const r=e.getBoundingClientRect();return {text:(e.textContent||'').trim().replace(/\s+/g,' ').slice(0,60),w:Math.round(r.width),h:Math.round(r.height),cls:String(e.className||'')}}).filter(x=>x.w<44||x.h<44);
                   const current=[...document.querySelectorAll('.site-nav a[aria-current="page"]')].map(a=>a.getAttribute('href'));
                   return {vw,scrollWidth:document.documentElement.scrollWidth,overflow,offenders,brokenImages,duplicateIds,h1s,smallTargets,current,bodyHeight:document.body.scrollHeight};
                 });
@@ -137,7 +137,7 @@ jobs:
             if(hard.length){console.error(hard.join('\n'));process.exitCode=1;}
           })();
           JS
-          node /tmp/audit.cjs
+          node audit-run.cjs
       - name: Upload audit artifact
         if: always()
         uses: actions/upload-artifact@v4
