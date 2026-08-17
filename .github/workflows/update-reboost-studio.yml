@@ -1,0 +1,114 @@
+name: Update RE-BOOST STUDIO
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update-and-audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Update home and event
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          css = r'''/* RE-BOOST STUDIO 2026.9.19 */
+          .rb-reboost-section{padding:54px 0;background:linear-gradient(180deg,#f8f6ec 0%,#f3f7f1 100%)}
+          .rb-reboost-card{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:30px;align-items:stretch;padding:26px;border:1px solid rgba(21,73,59,.14);border-radius:26px;background:#fff;box-shadow:0 18px 44px rgba(20,61,50,.08)}
+          .rb-reboost-photo{margin:0;min-height:320px;border-radius:20px;overflow:hidden;background:#eef2ec}
+          .rb-reboost-photo img{display:block;width:100%;height:100%;min-height:320px;object-fit:cover;object-position:center}
+          .rb-reboost-copy{display:flex;flex-direction:column;justify-content:center;min-width:0}
+          .rb-reboost-kicker{margin:0 0 8px;font-size:12px;font-weight:900;letter-spacing:.12em;color:#2461a8}
+          .rb-reboost-copy h2{margin:0;font-size:clamp(28px,3.2vw,46px);line-height:1.22;color:#173f35;letter-spacing:-.025em}
+          .rb-reboost-copy>p{margin:14px 0 0;max-width:720px;font-size:15px;line-height:1.9;color:#52675f}
+          .rb-reboost-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0 0}
+          .rb-reboost-facts div{min-width:0;padding:13px 14px;border-radius:15px;background:#f5f7f3;border:1px solid rgba(23,75,62,.1)}
+          .rb-reboost-facts small{display:block;margin-bottom:3px;font-size:10px;font-weight:900;letter-spacing:.1em;color:#6b7c74}
+          .rb-reboost-facts b{display:block;font-size:15px;line-height:1.45;color:#173f35;overflow-wrap:anywhere}
+          .rb-reboost-highlight{margin-top:18px;padding:14px 16px;border-left:4px solid #2461a8;border-radius:0 14px 14px 0;background:#edf4fb;color:#294a68;font-size:14px;line-height:1.75}
+          .rb-reboost-program{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:18px 0 0;padding:0;list-style:none}
+          .rb-reboost-program li{padding:10px 12px;border-radius:12px;background:#f8f7f1;border:1px solid rgba(23,75,62,.09);font-size:13px;font-weight:700;line-height:1.45;color:#324d44}
+          .rb-reboost-home-note{margin-top:16px;font-size:13px!important;color:#687871!important}
+          @media(max-width:760px){
+            .rb-reboost-section{padding:34px 0}
+            .rb-reboost-card{grid-template-columns:1fr;gap:18px;padding:16px;border-radius:20px}
+            .rb-reboost-photo{min-height:0;aspect-ratio:16/10}
+            .rb-reboost-photo img{min-height:0;aspect-ratio:16/10;object-fit:cover}
+            .rb-reboost-copy h2{font-size:27px}
+            .rb-reboost-copy>p{font-size:14px;line-height:1.8}
+            .rb-reboost-facts{grid-template-columns:1fr;gap:7px;margin-top:16px}
+            .rb-reboost-facts div{padding:11px 12px}
+            .rb-reboost-program{grid-template-columns:1fr;gap:6px}
+            .rb-reboost-highlight{font-size:13px}
+          }
+          '''
+          Path('reboost-studio.css').write_text(css,encoding='utf-8')
+
+          for fn in ['index.html','event.html']:
+            p=Path(fn); s=p.read_text(encoding='utf-8')
+            if 'reboost-studio.css' not in s:
+              s=s.replace('</head>','<link rel="stylesheet" href="reboost-studio.css?v=20260817ac"></head>')
+            p.write_text(s,encoding='utf-8')
+
+          p=Path('index.html'); s=p.read_text(encoding='utf-8')
+          old='<article class="story-step"><span class="story-dot">9.20</span><small>9.19報告会 → 9.20本番</small><h3>報告会から、泥ん子運動会へ</h3><p>9月19日に香林坊で報告会、20日に洲巻の田んぼで本番を迎えます。</p></article>'
+          new='<article class="story-step"><span class="story-dot">9.19</span><small>RE-BOOST STUDIO</small><h3>香林坊で、活動を発表</h3><p>15:00〜17:00、コワーキングスクエア金沢香林坊で、これまでの活動と翌日の泥ん子運動会について発表します。</p></article><article class="story-step"><span class="story-dot">9.20</span><small>泥ん子運動会</small><h3>洲巻の田んぼで、本番へ</h3><p>約1,000㎡の田んぼで、子どもも大人も一緒に泥だらけになって遊ぶ一日を迎えます。</p></article>'
+          if old not in s: raise SystemExit('home timeline target not found')
+          s=s.replace(old,new)
+          insert='''<section class="rb-reboost-section" id="reboost-studio"><div class="container"><div class="rb-reboost-card"><figure class="rb-reboost-photo"><img src="team-reboost.webp" alt="KANAZAWA RE-BOOST U23に参加した学生たち"></figure><div class="rb-reboost-copy"><p class="rb-reboost-kicker">9.19 / RE-BOOST STUDIO</p><h2>泥ん子運動会の前日、<br>香林坊で活動を発表します。</h2><p>「学生の挑戦を、地域の熱狂に変える」を掲げるRE-BOOST STUDIO。学生・地域・企業がつながる場で、NOTO Re:Bloomもこれまでの活動と9月20日の泥ん子運動会について発表します。</p><div class="rb-reboost-facts"><div><small>DATE / TIME</small><b>9月19日（土）15:00–17:00</b></div><div><small>PLACE</small><b>コワーキングスクエア金沢香林坊</b></div><div><small>FEE</small><b>参加無料</b></div></div><p class="rb-reboost-home-note">会場：香林坊東急スクエア2F。学生の発表、交流会、参加企業紹介などを予定しています。</p></div></div></div></section>'''
+          anchor='<section class="nr-sponsor-feature nr-sponsor-feature--spotlight">'
+          if anchor not in s: raise SystemExit('home insert anchor not found')
+          s=s.replace(anchor,insert+anchor,1)
+          p.write_text(s,encoding='utf-8')
+
+          p=Path('event.html'); s=p.read_text(encoding='utf-8')
+          old='<section class="section section--soil"><div class="container split-story"><div><p class="eyebrow eyebrow--light"><span>9月19日</span><small>REPORT</small></p><h2>前日は、香林坊で報告会。</h2><p>ここまで準備してきたことや、能登で見てきたこと、9月20日に向けて考えていることをまとめてお話しする予定です。</p></div><div><p class="eyebrow eyebrow--light"><span>お問い合わせ</span><small>CONTACT</small></p><h2>気になることがあれば、ご連絡ください。</h2><p>参加についてのご質問は infonotorebloom@gmail.com までお願いします。</p></div></div></section>'
+          new='''<section class="rb-reboost-section" id="reboost-studio"><div class="container"><div class="rb-reboost-card"><figure class="rb-reboost-photo"><img src="team-presentation.webp" alt="RE-BOOSTの場で活動を発表する学生"></figure><div class="rb-reboost-copy"><p class="rb-reboost-kicker">9.19 SAT / RE-BOOST STUDIO</p><h2>前日は香林坊で、<br>NOTO Re:Bloomを発表します。</h2><p>RE-BOOST STUDIOは、「復興支援」で終わらず、その先の地域の発展につなげる挑戦を共有する場です。スポーツを軸に、学生・地域・企業が出会い、次の行動につなげます。</p><div class="rb-reboost-facts"><div><small>DATE / TIME</small><b>2026年9月19日（土）<br>15:00–17:00</b></div><div><small>PLACE</small><b>コワーキングスクエア金沢香林坊<br>香林坊東急スクエア2F</b></div><div><small>FEE</small><b>参加無料</b></div></div><div class="rb-reboost-highlight"><strong>NOTO Re:Bloomも登壇予定。</strong><br>これまで能登で進めてきた活動と、翌20日に珠洲で開催する泥ん子運動会についてお話しします。</div><ul class="rb-reboost-program"><li>NOTO REBOOST U23 実績報告</li><li>参加大学生の体験談</li><li>Team A の発表</li><li>地元大学生ライトピッチ</li><li>交流会</li><li>参加企業紹介</li><li>グループチャット作成</li></ul></div></div></div></section><section class="section section--soil"><div class="container"><div><p class="eyebrow eyebrow--light"><span>お問い合わせ</span><small>CONTACT</small></p><h2>気になることがあれば、ご連絡ください。</h2><p>泥ん子運動会の参加についてのご質問は infonotorebloom@gmail.com までお願いします。</p></div></div></section>'''
+          if old not in s: raise SystemExit('event report target not found')
+          s=s.replace(old,new)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Install browser runtime
+        run: npm install --no-save playwright-core@1.55.0
+      - name: Audit desktop and mobile
+        run: |
+          cat > audit-reboost.cjs <<'JS'
+          const {chromium}=require('playwright-core');
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
+            for(const [vp,w,h] of [['desktop',1440,1000],['mobile',390,844]]){
+              const ctx=await browser.newContext({viewport:{width:w,height:h},reducedMotion:'reduce'});
+              for(const file of ['index.html','event.html']){
+                const page=await ctx.newPage(), errors=[]; page.on('pageerror',e=>errors.push(String(e)));
+                await page.route('**/*',r=>{const u=r.request().url(); if(u.startsWith('http://127.0.0.1:8000/')||u.startsWith('data:')||u.startsWith('blob:'))r.continue();else r.abort();});
+                const res=await page.goto('http://127.0.0.1:8000/'+file,{waitUntil:'load',timeout:20000}); await page.waitForTimeout(1200);
+                const m=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,blocks:document.querySelectorAll('.rb-reboost-section').length,text:document.body.innerText,img:[...document.querySelectorAll('.rb-reboost-photo img')].map(i=>({w:i.naturalWidth,h:i.naturalHeight}))}));
+                if(!res||res.status()>=400||errors.length||m.overflow>2||m.blocks<1)throw new Error(file+'/'+vp+' '+JSON.stringify({errors,m}));
+                if(!m.text.includes('15:00–17:00')||!m.text.includes('コワーキングスクエア金沢香林坊')||!m.text.includes('参加無料'))throw new Error('missing facts '+file+'/'+vp);
+                if(m.text.includes('前日は、香林坊で報告会。')||m.text.includes('15:00–20:30'))throw new Error('stale info '+file+'/'+vp);
+                if(m.img.some(x=>x.w<100||x.h<100))throw new Error('image failed '+file+'/'+vp);
+                if(file==='index.html'&&(!m.text.includes('9.19')||!m.text.includes('9.20')))throw new Error('home timeline '+vp);
+                if(file==='event.html'&&(!m.text.includes('地元大学生ライトピッチ')||!m.text.includes('参加企業紹介')||!m.text.includes('グループチャット作成')))throw new Error('event program '+vp);
+                await page.close();
+              }
+              await ctx.close();
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          python3 -m http.server 8000 >/tmp/reboost-http.log 2>&1 &
+          PID=$!; trap 'kill $PID || true' EXIT; sleep 1; node audit-reboost.cjs
+      - name: Commit changes
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm -f audit-reboost.cjs
+          git add index.html event.html reboost-studio.css
+          git commit -m '9月19日RE-BOOST STUDIOの正式情報を反映'
+          git push
