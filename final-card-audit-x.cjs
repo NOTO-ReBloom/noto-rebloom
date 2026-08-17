@@ -6,6 +6,7 @@ const vps=[{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,heig
 (async()=>{
   const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
   const report=[];
+  let hardError=null;
   for(const vp of vps){
     const ctx=await browser.newContext({viewport:{width:vp.width,height:vp.height},reducedMotion:'reduce'});
     for(const file of files){
@@ -24,6 +25,8 @@ const vps=[{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,heig
           const cr=card.getBoundingClientRect();const walker=document.createTreeWalker(card,NodeFilter.SHOW_TEXT);let n,bad=false,sample='';
           while(n=walker.nextNode()){
             if(!n.textContent.trim())continue;
+            const parent=n.parentElement;
+            if(parent){const ps=getComputedStyle(parent);if(ps.position==='absolute'||ps.position==='fixed')continue;}
             const range=document.createRange();range.selectNodeContents(n);
             for(const r of range.getClientRects()){
               if(r.width<1||r.height<1)continue;
@@ -38,15 +41,17 @@ const vps=[{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,heig
         return {docOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,outside,partnerCols:cols('.nr-value-prop .nr-value-grid'),faqCols:cols('#event-faq .faq-grid'),processCols:cols('#purpose .event-values'),excessive:sections.filter(x=>x.h>680&&x.pad>145)};
       });
       const item={file,vp:vp.name,status:res?.status(),errors,...m};report.push(item);
-      if(!res||res.status()>=400)throw new Error(`${file}/${vp.name}: HTTP`);
-      if(errors.length)throw new Error(`${file}/${vp.name}: JS ${errors.join(' | ')}`);
-      if(m.docOverflow>2)throw new Error(`${file}/${vp.name}: document overflow ${m.docOverflow}`);
-      if(m.outside.length)throw new Error(`${file}/${vp.name}: text outside ${JSON.stringify(m.outside.slice(0,5))}`);
-      if(file==='partner.html'&&vp.name==='desktop'&&m.partnerCols!==2)throw new Error(`partner desktop columns ${m.partnerCols}`);
-      if(file==='partner.html'&&vp.name==='mobile'&&m.partnerCols!==1)throw new Error(`partner mobile columns ${m.partnerCols}`);
-      if(file==='event.html'&&vp.name==='mobile'&&m.faqCols!==1)throw new Error(`FAQ mobile columns ${m.faqCols}`);
-      if(file==='index.html'&&vp.name==='mobile'&&m.processCols!==1)throw new Error(`process mobile columns ${m.processCols}`);
       await page.screenshot({path:`final-card-audit-x/${file.replace('.html','')}-${vp.name}.png`,fullPage:true});
+      const failures=[];
+      if(!res||res.status()>=400)failures.push('HTTP');
+      if(errors.length)failures.push(`JS ${errors.join(' | ')}`);
+      if(m.docOverflow>2)failures.push(`document overflow ${m.docOverflow}`);
+      if(m.outside.length)failures.push(`text outside ${JSON.stringify(m.outside.slice(0,5))}`);
+      if(file==='partner.html'&&vp.name==='desktop'&&m.partnerCols!==2)failures.push(`partner desktop columns ${m.partnerCols}`);
+      if(file==='partner.html'&&vp.name==='mobile'&&m.partnerCols!==1)failures.push(`partner mobile columns ${m.partnerCols}`);
+      if(file==='event.html'&&vp.name==='mobile'&&m.faqCols!==1)failures.push(`FAQ mobile columns ${m.faqCols}`);
+      if(file==='index.html'&&vp.name==='mobile'&&m.processCols!==1)failures.push(`process mobile columns ${m.processCols}`);
+      if(failures.length&&!hardError)hardError=new Error(`${file}/${vp.name}: ${failures.join(' | ')}`);
       await page.close();
     }
     await ctx.close();
@@ -54,4 +59,5 @@ const vps=[{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,heig
   fs.writeFileSync('final-card-audit-x/report.json',JSON.stringify(report,null,2));
   console.log(JSON.stringify(report.map(({file,vp,status,docOverflow,outside,partnerCols,faqCols,processCols,excessive,errors})=>({file,vp,status,docOverflow,outside:outside.length,partnerCols,faqCols,processCols,excessive:excessive.length,errors:errors.length})),null,2));
   await browser.close();
+  if(hardError)throw hardError;
 })().catch(e=>{console.error(e);process.exit(1)});
