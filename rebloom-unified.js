@@ -73,11 +73,9 @@
   /* Partner already has a photo mosaic, sponsor value block and sponsor feature. Avoid another duplicate illustration section. */
   document.querySelector('#rb-partner-illustrations')?.remove();
 
-  if(page==='diagnosis.html'&&!document.querySelector('.rb-flower-ribbon')){
-    const flowers=['renge.png','himawari.png','nemophila.png','lavender.png','cosmos.png','mimosa.png','ajisai.png','tulip.png','gerbera.png','sumire.png','rindou.png','poppy.png'];
-    const ribbon=document.createElement('div');ribbon.className='rb-flower-ribbon';const twice=[...flowers,...flowers];
-    ribbon.innerHTML=`<div class="rb-flower-track" aria-hidden="true">${twice.map((src,i)=>`<img src="${src}" alt="" loading="lazy" style="animation-delay:${(i%6)*-.2}s">`).join('')}</div>`;document.querySelector('.page-hero--diagnosis')?.after(ribbon);
-  }
+  /* Continuous decorative motion was intentionally removed. The diagnosis page already has rich flower imagery in its actual content. */
+  document.querySelector('.rb-flower-ribbon')?.remove();
+  document.querySelectorAll('.brand-mark,.hero-motif').forEach(el=>el.classList.remove('rb-float'));
 
   document.querySelectorAll('main>section').forEach(section=>{
     const imageCount=section.querySelectorAll('img').length;const textLength=(section.innerText||'').replace(/\s/g,'').length;
@@ -100,8 +98,6 @@
   const revealTargets=[...document.querySelectorAll('main>section,.rb-illustration-section')].filter(el=>!el.classList.contains('diagnosis-panel'));
   revealTargets.forEach(el=>el.classList.add('rb-reveal'));
   if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('rb-inview');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -50px'});revealTargets.forEach(el=>io.observe(el))}else revealTargets.forEach(el=>el.classList.add('rb-inview'));
-
-  document.querySelectorAll('.brand-mark,.hero-motif').forEach(el=>el.classList.add('rb-float'));
 
   if(!document.querySelector('script[src*="rebloom-detail.js"]')){
     const detail=document.createElement('script');detail.src='rebloom-detail.js?v=20260817p';detail.defer=true;document.body.appendChild(detail);
