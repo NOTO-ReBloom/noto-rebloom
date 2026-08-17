@@ -1,0 +1,17 @@
+name: Apply sponsor effect and crowdfunding visual fix
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply content and visual refinements
+        run: python3 -c "import base64;exec(base64.b64decode('CkZST00gUExBQ0VIT0xERVIK'))"
