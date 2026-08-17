@@ -1,0 +1,147 @@
+name: Render audit Q
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static validation
+        run: |
+          node --check site.js
+          node --check rebloom-unified.js
+          node --check rebloom-detail.js
+          node --check rebloom-tight.js
+          node --check rebloom-purpose.js
+          node --check rebloom-purpose-complete.js
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']
+          for name in pages:
+              t=Path(name).read_text(encoding='utf-8')
+              assert 'rebloom-unified.js?v=20260817p' in t, (name,'cache version')
+              ids=re.findall(r'\bid=["\']([^"\']+)',t)
+              dup=sorted({x for x in ids if ids.count(x)>1})
+              assert not dup,(name,'duplicate ids',dup)
+          for name in ['rebloom-purpose.css','rebloom-purpose-complete.css','rebloom-tight.css','rebloom-balance.css','rebloom-refine.css']:
+              t=Path(name).read_text(encoding='utf-8')
+              assert t.count('{')==t.count('}'),(name,'brace mismatch')
+          PY
+      - name: Install browser audit tools
+        run: |
+          npm install --no-save playwright@1.55.0 @axe-core/playwright@4.10.2
+          npx playwright install --with-deps chromium
+      - name: Run rendered audit
+        run: |
+          mkdir -p audit/screens
+          python3 -m http.server 8000 >/tmp/rebloom-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          cat > /tmp/audit.cjs <<'JS'
+          const { chromium } = require('playwright');
+          const { AxeBuilder } = require('@axe-core/playwright');
+          const fs = require('fs');
+          const base='http://127.0.0.1:8000/';
+          const pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html'];
+          const modes={desktop:{width:1440,height:1000},mobile:{width:390,height:844}};
+          const report={generated:new Date().toISOString(),pages:{},diagnosis:{}};
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            for(const [mode,viewport] of Object.entries(modes)){
+              const context=await browser.newContext({viewportSize:viewport,reducedMotion:'reduce'});
+              for(const file of pages){
+                const page=await context.newPage();
+                const key=`${file}:${mode}`;
+                const consoleErrors=[]; const pageErrors=[]; const failed=[];
+                page.on('console',msg=>{if(msg.type()==='error')consoleErrors.push(msg.text())});
+                page.on('pageerror',err=>pageErrors.push(String(err)));
+                page.on('requestfailed',req=>failed.push({url:req.url(),error:req.failure()?.errorText||''}));
+                const response=await page.goto(base+file,{waitUntil:'networkidle',timeout:30000});
+                await page.waitForTimeout(500);
+                const metrics=await page.evaluate(()=>{
+                  const vw=document.documentElement.clientWidth;
+                  const overflow=document.documentElement.scrollWidth-vw;
+                  const visible=[...document.querySelectorAll('body *')].filter(el=>{
+                    const s=getComputedStyle(el),r=el.getBoundingClientRect();
+                    return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0;
+                  });
+                  const offenders=visible.filter(el=>{const r=el.getBoundingClientRect();return r.left < -2 || r.right > vw+2}).slice(0,20).map(el=>({tag:el.tagName,cls:el.className||'',id:el.id||'',left:Math.round(el.getBoundingClientRect().left),right:Math.round(el.getBoundingClientRect().right)}));
+                  const brokenImages=[...document.images].filter(i=>i.offsetParent!==null && (!i.complete || i.naturalWidth===0)).map(i=>i.getAttribute('src'));
+                  const ids=[...document.querySelectorAll('[id]')].map(e=>e.id); const duplicateIds=[...new Set(ids.filter((x,i)=>ids.indexOf(x)!==i))];
+                  const h1s=[...document.querySelectorAll('h1')].filter(e=>e.offsetParent!==null).map(e=>e.textContent.trim());
+                  const smallTargets=[...document.querySelectorAll('a.btn,button.btn,.menu-button,.diagnosis-answer,.flower-atlas-filters button,.rb-mobile-join a')].filter(e=>e.offsetParent!==null).map(e=>{const r=e.getBoundingClientRect();return {text:(e.textContent||'').trim().replace(/\s+/g,' ').slice(0,60),w:Math.round(r.width),h:Math.round(r.height),cls:e.className||''}}).filter(x=>x.w<44||x.h<44);
+                  const current=[...document.querySelectorAll('.site-nav a[aria-current="page"]')].map(a=>a.getAttribute('href'));
+                  return {vw,scrollWidth:document.documentElement.scrollWidth,overflow,offenders,brokenImages,duplicateIds,h1s,smallTargets,current,bodyHeight:document.body.scrollHeight};
+                });
+                let axe=[];
+                try{
+                  const res=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
+                  axe=res.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.length,targets:v.nodes.slice(0,5).map(n=>n.target)}));
+                }catch(e){axe=[{id:'axe-error',impact:'error',help:String(e),nodes:0,targets:[]}];}
+                if(mode==='mobile'&&file!=='404.html'){
+                  const menu=page.locator('.menu-button');
+                  if(await menu.count()){
+                    await menu.click();
+                    metrics.mobileMenuExpanded=await menu.getAttribute('aria-expanded');
+                    metrics.mobileNavVisible=await page.locator('.site-nav').isVisible();
+                  }
+                }
+                await page.screenshot({path:`audit/screens/${file.replace('.html','')}-${mode}.png`,fullPage:true});
+                report.pages[key]={status:response?.status()||0,consoleErrors,pageErrors,failed:failed.filter(x=>!x.url.includes('fonts.googleapis.com')&&!x.url.includes('fonts.gstatic.com')),metrics,axe};
+                await page.close();
+              }
+              await context.close();
+            }
+            const ctx=await browser.newContext({viewportSize:modes.desktop,reducedMotion:'reduce'});
+            const d=await ctx.newPage(); const errors=[]; d.on('pageerror',e=>errors.push(String(e))); d.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+            await d.goto(base+'diagnosis.html',{waitUntil:'networkidle'}); await d.waitForTimeout(500);
+            const start=d.locator('#startDiagnosis');
+            report.diagnosis.startVisible=await start.isVisible();
+            if(report.diagnosis.startVisible){
+              await start.click(); await d.waitForTimeout(200);
+              report.diagnosis.panelVisible=await d.locator('#diagnosisPanel').isVisible();
+              report.diagnosis.questionText=(await d.locator('#questionText').textContent()||'').trim();
+              for(let i=0;i<3;i++){await d.locator('.diagnosis-answer').nth(i%3).click(); await d.waitForTimeout(80);}
+              report.diagnosis.after3=await d.locator('#questionCount').textContent();
+              await d.locator('#backQuestion').click(); await d.waitForTimeout(80);
+              report.diagnosis.afterBack=await d.locator('#questionCount').textContent();
+            }
+            report.diagnosis.errors=errors;
+            await d.screenshot({path:'audit/screens/diagnosis-interaction.png',fullPage:false});
+            await ctx.close(); await browser.close();
+            fs.writeFileSync('audit/audit-report.json',JSON.stringify(report,null,2));
+            const hard=[];
+            for(const [k,v] of Object.entries(report.pages)){
+              if(v.status>=400||!v.status) hard.push(`${k}: http ${v.status}`);
+              if(v.pageErrors.length) hard.push(`${k}: page errors ${v.pageErrors.join(' | ')}`);
+              if(v.metrics.overflow>2) hard.push(`${k}: horizontal overflow ${v.metrics.overflow}`);
+              if(v.metrics.brokenImages.length) hard.push(`${k}: broken images ${v.metrics.brokenImages.join(',')}`);
+              if(v.metrics.duplicateIds.length) hard.push(`${k}: duplicate ids ${v.metrics.duplicateIds.join(',')}`);
+              if(v.metrics.h1s.length!==1) hard.push(`${k}: visible h1 count ${v.metrics.h1s.length}`);
+              if(v.metrics.smallTargets.length) hard.push(`${k}: small targets ${JSON.stringify(v.metrics.smallTargets)}`);
+              if(k.endsWith(':mobile')&&k!=='404.html:mobile'&&v.metrics.mobileMenuExpanded!=='true') hard.push(`${k}: mobile menu did not expand`);
+            }
+            if(!report.diagnosis.startVisible||!report.diagnosis.panelVisible||report.diagnosis.errors.length) hard.push(`diagnosis interaction failed ${JSON.stringify(report.diagnosis)}`);
+            fs.writeFileSync('audit/hard-failures.txt',hard.join('\n'));
+            if(hard.length){console.error(hard.join('\n'));process.exitCode=1;}
+          })();
+          JS
+          node /tmp/audit.cjs
+      - name: Upload audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-audit-q
+          path: audit
+          retention-days: 3
