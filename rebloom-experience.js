@@ -61,3 +61,47 @@
     }
   }
 })();
+
+/* Text-only conversion stabilization 20260817ab */
+(()=>{
+  const refine=()=>{
+    const body=document.body;
+    if(!body)return;
+
+    if(body.classList.contains('nr-new-home')){
+      const lead=document.querySelector('.nr-home-hero .hero-lead');
+      if(lead) lead.innerHTML='NOTO Re:Bloomは、<strong>使われなくなった農地を、もう一度人が集まる場所にしていく学生プロジェクト</strong>です。まず9月20日、約1,000㎡の田んぼで泥ん子運動会を開きます。';
+      const chips=document.querySelector('.nr-home-hero .status-chips');
+      if(chips&&!document.querySelector('.rb-project-formula')){
+        chips.insertAdjacentHTML('beforebegin','<div class="rb-project-formula" aria-label="プロジェクトの3つの要素"><span>使われなくなった農地</span><b>×</b><span>泥ん子運動会</span><b>×</b><span>能登とのつながり</span></div>');
+      }
+    }
+
+    if(body.classList.contains('nr-new-event')){
+      const heroCopy=document.querySelector('.page-hero--event .page-hero-grid>div');
+      const heroP=heroCopy&&[...heroCopy.children].find(el=>el.tagName==='P'&&!el.classList.contains('eyebrow'));
+      if(heroP) heroP.textContent='走る、探す、投げる、運ぶ。泥の中なら、いつもの遊びも思った通りにいかない。それも含めて、子どもも大人も一緒に笑える一日をつくります。';
+      const sticker=document.querySelector('.page-hero--event .hero-sticker-note');
+      if(sticker) sticker.textContent='参加費無料。競技はまだ検討中。田んぼの状態と安全を確認しながら、当日の遊びを決めます。';
+
+      const play=document.querySelector('.rb-mud-play-section');
+      const summary=document.querySelector('.event-summary');
+      if(play&&summary&&summary.nextElementSibling!==play) summary.insertAdjacentElement('afterend',play);
+
+      if(play){
+        const heading=play.querySelector('.section-heading');
+        if(heading&&!heading.querySelector('.rb-play-status')){
+          heading.insertAdjacentHTML('beforeend','<div class="rb-play-status"><b>競技例</b><span>内容は検討中です</span></div>');
+        }
+        if(!play.querySelector('.rb-play-cta')){
+          const note=play.querySelector('.rb-play-note');
+          const html='<div class="rb-play-cta"><div><strong>「ちょっとやってみたい」で大丈夫。</strong><span>上手さより、泥だらけになって笑えることを大事にします。</span></div><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">9月20日に参加する</a></div>';
+          if(note) note.insertAdjacentHTML('afterend',html);
+        }
+      }
+    }
+  };
+  refine();
+  requestAnimationFrame(()=>requestAnimationFrame(refine));
+  setTimeout(refine,450);
+})();
