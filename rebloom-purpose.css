@@ -1,0 +1,96 @@
+/* NOTO Re:Bloom — purpose-led hierarchy / 2026-08-17 */
+:root{--rbp-green:#184c3f;--rbp-ink:#173a31;--rbp-muted:#5d6c66;--rbp-paper:#fffaf1;--rbp-yellow:#f4cf58;--rbp-mint:#edf6eb;--rbp-lilac:#f2edf7;--rbp-line:rgba(23,58,49,.14)}
+
+/* A denser site still needs consistent rhythm. These values intentionally map to a small responsive spacing scale. */
+body.rb-unified .rb-purpose-section{position:relative}
+body.rb-unified .rb-purpose-target{min-height:44px}
+body.rb-unified .btn.rb-purpose-target,body.rb-unified a.rb-purpose-target{display:inline-flex;align-items:center;justify-content:center}
+body.rb-unified [data-rb-purpose="orientation"] p:not(.eyebrow){max-width:42em}
+body.rb-unified [data-rb-purpose="story"] p,body.rb-unified [data-rb-purpose="rationale"] p{max-width:46em}
+
+/* PROOF: figures are the evidence. The right-hand metrics are deliberately large and calm. */
+body.rb-unified #crowdfunding-result{padding-top:clamp(48px,5.2vw,68px)!important;padding-bottom:clamp(48px,5.2vw,68px)!important;background:linear-gradient(135deg,#fffaf1 0%,#fffdf8 56%,#edf5e9 100%)!important}
+body.rb-unified #crowdfunding-result .split-story{grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr)!important;gap:clamp(34px,5vw,66px)!important;align-items:stretch!important}
+body.rb-unified #crowdfunding-result .split-story>div:first-child{display:flex;flex-direction:column;justify-content:center}
+body.rb-unified #crowdfunding-result .split-story>div:first-child>p{max-width:56ch}
+body.rb-unified #crowdfunding-result .rb-proof-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;align-items:stretch!important;margin:0!important}
+body.rb-unified #crowdfunding-result .rb-proof-card{min-height:228px!important;padding:27px 25px 24px!important;border:1px solid rgba(24,76,63,.16)!important;border-radius:24px!important;justify-content:center!important;box-shadow:0 12px 30px rgba(23,58,49,.08)!important;transform:none!important;overflow:hidden;position:relative}
+body.rb-unified #crowdfunding-result .rb-proof-card:first-child{background:linear-gradient(145deg,#fff7cf,#fffdf5)!important}
+body.rb-unified #crowdfunding-result .rb-proof-card:nth-child(2){background:linear-gradient(145deg,#edf6eb,#fbfdf9)!important}
+body.rb-unified #crowdfunding-result .rb-proof-card::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-46px;bottom:-48px;background:rgba(24,76,63,.05);pointer-events:none}
+body.rb-unified #crowdfunding-result .rb-proof-card>span{width:52px!important;height:52px!important;margin:0 0 17px!important;font-size:15px!important;background:#fff!important;border:1px solid rgba(24,76,63,.12)!important;box-shadow:0 5px 12px rgba(23,58,49,.05)!important}
+body.rb-unified #crowdfunding-result .rb-proof-label{display:block;margin:0 0 4px;font-size:11px;line-height:1.3;font-weight:900;letter-spacing:.1em;color:#6b766f}
+body.rb-unified #crowdfunding-result .rb-proof-card h3{margin:0 0 10px!important;font-size:clamp(34px,3.7vw,50px)!important;line-height:1.06!important;letter-spacing:-.045em!important;color:var(--rbp-green)!important;font-variant-numeric:tabular-nums}
+body.rb-unified #crowdfunding-result .rb-proof-card p{font-size:14px!important;line-height:1.6!important;color:#53645c!important}
+body.rb-unified #crowdfunding-result .rb-proof-source{align-self:flex-start;margin-top:2px;font-weight:800}
+
+/* DATA PROOF: numerical sections should read as facts at a glance. */
+body.rb-unified #numbers .data-grid{gap:12px!important}
+body.rb-unified #numbers .data-grid article{padding:24px 20px!important;min-height:150px!important;display:flex;flex-direction:column;justify-content:center;border-radius:20px!important}
+body.rb-unified #numbers .data-grid strong{font-size:clamp(38px,4.5vw,58px)!important;line-height:1!important;letter-spacing:-.04em}
+body.rb-unified #numbers .data-grid h3{margin-top:12px!important;font-size:15px!important;line-height:1.45!important}
+
+/* RATIONALE / DEFINITIONS: equal cards support comparison, so they stay compact rather than becoming banners. */
+body.rb-unified [data-rb-purpose="rationale"] :is(.event-values,.cause-grid),body.rb-unified [data-rb-purpose="definition"] .definition-grid{align-items:stretch!important}
+body.rb-unified [data-rb-purpose="rationale"] article,body.rb-unified [data-rb-purpose="definition"] article{min-height:0!important}
+
+/* STORY: imagery is evidence of real people and places; text remains the narrative anchor. */
+body.rb-unified [data-rb-purpose="story"] .split-story,body.rb-unified [data-rb-purpose="people"] .people-trust-grid{grid-template-columns:minmax(0,1.06fr) minmax(300px,.94fr)!important}
+body.rb-unified [data-rb-purpose="story"] .photo-frame img{height:clamp(290px,31vw,390px)!important}
+body.rb-unified [data-rb-purpose="people"] .people-trust-photo{min-height:300px!important}
+
+/* LOGISTICS: compact and highly scannable; dates/times are visually stronger than explanation. */
+body.rb-unified [data-rb-purpose="logistics"] .summary-grid>div{border:1px solid var(--rbp-line)!important;background:#fff!important}
+body.rb-unified [data-rb-purpose="logistics"] .summary-grid>div b{font-variant-numeric:tabular-nums;font-weight:900!important}
+body.rb-unified [data-rb-purpose="logistics"] .event-flow article{box-shadow:0 6px 18px rgba(23,58,49,.05)!important}
+
+/* SAFETY: reassurance deserves more visual weight than ordinary program cards. */
+body.rb-unified [data-rb-purpose="safety"]{gap:13px!important}
+body.rb-unified [data-rb-purpose="safety"]>div{min-height:155px!important;padding:23px 22px!important;border:1.5px solid rgba(24,76,63,.16)!important;background:linear-gradient(145deg,#fff,#f5faf3)!important;box-shadow:0 8px 22px rgba(23,58,49,.055)!important}
+body.rb-unified [data-rb-purpose="safety"]>div>b{font-size:20px!important;color:var(--rbp-green)}
+body.rb-unified [data-rb-purpose="safety"]>div p{margin-top:7px!important;font-size:14.5px!important}
+
+/* PROGRAM: activity names lead, illustrations support. */
+body.rb-unified [data-rb-purpose="program"] article h3{font-size:22px!important}
+body.rb-unified [data-rb-purpose="program"] article p{max-width:32em}
+
+/* PARTNER PROOF: one sponsor block should clearly outrank general benefit cards. */
+body.rb-unified #current-partners .nr-main-sponsor{grid-template-columns:minmax(230px,.78fr) minmax(0,1.22fr)!important;padding:27px!important;border:1.5px solid rgba(111,75,163,.18)!important;box-shadow:0 12px 32px rgba(61,43,83,.08)!important}
+body.rb-unified #current-partners .nr-sponsor-story h3{font-size:clamp(23px,2.5vw,30px)!important;line-height:1.32!important}
+body.rb-unified #current-partners .nr-logo-placeholder{min-height:126px!important}
+
+/* ACTION: short, decisive, with enough breathing room around the actual choice. */
+body.rb-unified [data-rb-purpose="action"] .btn{min-height:46px;padding-inline:22px}
+body.rb-unified [data-rb-purpose="action"].section{padding-top:40px!important;padding-bottom:40px!important}
+
+/* ROUTING / QUESTIONS / BROWSE: supporting content should not visually compete with proof or action. */
+body.rb-unified [data-rb-purpose="routing"]{opacity:.985}
+body.rb-unified [data-rb-purpose="questions"] .faq-card{box-shadow:none!important;border:1px solid var(--rbp-line)!important}
+body.rb-unified [data-rb-purpose="browse"]{scroll-margin-top:90px}
+
+@media(max-width:980px){
+  body.rb-unified #crowdfunding-result .split-story{grid-template-columns:1fr!important;gap:26px!important}
+  body.rb-unified #crowdfunding-result .rb-proof-grid{width:100%}
+  body.rb-unified #crowdfunding-result .rb-proof-card{min-height:180px!important}
+  body.rb-unified [data-rb-purpose="story"] .split-story,body.rb-unified [data-rb-purpose="people"] .people-trust-grid{grid-template-columns:1fr!important}
+  body.rb-unified #current-partners .nr-main-sponsor{grid-template-columns:1fr!important}
+}
+
+@media(max-width:620px){
+  body.rb-unified #crowdfunding-result{padding-top:38px!important;padding-bottom:38px!important}
+  body.rb-unified #crowdfunding-result .split-story{gap:20px!important}
+  body.rb-unified #crowdfunding-result .rb-proof-grid{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  body.rb-unified #crowdfunding-result .rb-proof-card{min-height:158px!important;padding:18px 15px 16px!important;border-radius:18px!important}
+  body.rb-unified #crowdfunding-result .rb-proof-card>span{width:40px!important;height:40px!important;margin-bottom:10px!important}
+  body.rb-unified #crowdfunding-result .rb-proof-label{font-size:9.5px}
+  body.rb-unified #crowdfunding-result .rb-proof-card h3{font-size:clamp(27px,8.3vw,36px)!important;margin-bottom:7px!important}
+  body.rb-unified #crowdfunding-result .rb-proof-card p{font-size:12.5px!important;line-height:1.5!important}
+  body.rb-unified #numbers .data-grid article{min-height:125px!important;padding:18px 16px!important}
+  body.rb-unified [data-rb-purpose="safety"]>div{min-height:0!important;padding:19px 18px!important}
+  body.rb-unified #current-partners .nr-main-sponsor{padding:20px!important}
+}
+
+@media(max-width:420px){
+  body.rb-unified #crowdfunding-result .rb-proof-grid{grid-template-columns:1fr!important}
+  body.rb-unified #crowdfunding-result .rb-proof-card{min-height:135px!important}
+}
