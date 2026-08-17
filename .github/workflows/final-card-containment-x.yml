@@ -1,0 +1,260 @@
+name: Final card containment X
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply final containment and density rules
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('rebloom-fit.css')
+          s=p.read_text(encoding='utf-8')
+          marker='/* FINAL X — readable cards at PC and mobile widths */'
+          if marker not in s:
+              s += r'''
+
+/* FINAL X — readable cards at PC and mobile widths */
+/* Photo mosaics are real cards: image and caption now share the same box. */
+body.rb-unified .visual-tile{
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr) auto!important;
+  align-content:stretch!important;
+  overflow:hidden!important;
+  min-width:0!important;
+}
+body.rb-unified .visual-tile>img{
+  grid-row:1!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  object-fit:cover!important;
+  align-self:stretch!important;
+}
+body.rb-unified .visual-tile::after{display:none!important}
+body.rb-unified .visual-tile figcaption{
+  position:static!important;
+  grid-row:2!important;
+  inset:auto!important;
+  transform:none!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:9px 11px!important;
+  box-sizing:border-box!important;
+  border-top:1px solid rgba(24,76,63,.10)!important;
+  border-radius:0!important;
+  background:#fffaf1!important;
+  color:#315047!important;
+  font-size:11.5px!important;
+  line-height:1.5!important;
+  text-shadow:none!important;
+  overflow-wrap:break-word!important;
+  z-index:2!important;
+}
+body.rb-unified .visual-tile .visual-label{z-index:4!important}
+
+/* Text-heavy sponsor benefits get real reading width on desktop. */
+body.rb-unified.nr-new-partner .nr-value-prop .nr-value-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+  width:min(100%,980px)!important;
+  max-width:980px!important;
+  margin-inline:auto!important;
+}
+body.rb-unified.nr-new-partner .nr-value-prop .nr-value-grid>article{
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:auto!important;
+  overflow:hidden!important;
+}
+
+/* Keep schedule badges structurally inside schedule cards. */
+body.rb-unified .rbpc-schedule-flow article{
+  position:relative!important;
+  min-width:0!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:hidden!important;
+}
+body.rb-unified .rbpc-schedule-flow .flow-time{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  box-sizing:border-box!important;
+}
+
+/* Two small routing cards do not need a tall empty band. */
+body.rb-unified .nr-choice-grid{padding-top:32px!important;padding-bottom:32px!important}
+
+@media(max-width:900px){
+  body.rb-unified .rbpc-schedule-flow article{
+    display:grid!important;
+    grid-template-columns:64px minmax(0,1fr)!important;
+    grid-template-rows:auto auto!important;
+    column-gap:11px!important;
+    align-items:center!important;
+    padding:14px 15px!important;
+    text-align:left!important;
+  }
+  body.rb-unified .rbpc-schedule-flow .flow-time{
+    grid-column:1!important;
+    grid-row:1/3!important;
+    width:56px!important;
+    height:56px!important;
+    margin:0!important;
+  }
+  body.rb-unified .rbpc-schedule-flow article h3{
+    grid-column:2!important;
+    grid-row:1!important;
+    margin:0 0 3px!important;
+  }
+  body.rb-unified .rbpc-schedule-flow article p{
+    grid-column:2!important;
+    grid-row:2!important;
+    margin:0!important;
+    max-width:none!important;
+  }
+}
+
+@media(max-width:720px){
+  /* Paragraph cards become one-column before copy gets cramped. */
+  body.rb-unified #purpose .rbpc-process-flow{grid-template-columns:1fr!important;gap:9px!important}
+  body.rb-unified #purpose .rbpc-process-flow::before{display:none!important}
+  body.rb-unified.nr-new-event #event-faq :is(.faq-grid,.rbpc-question-grid),
+  body.rb-unified.nr-new-event :is(.faq-grid,.rbpc-question-grid){grid-template-columns:1fr!important;gap:0!important}
+  body.rb-unified.nr-new-event .rbpc-question-grid .faq-card{border-right:0!important}
+  body.rb-unified.nr-new-partner .nr-value-prop .nr-value-grid{grid-template-columns:1fr!important;gap:9px!important;width:100%!important}
+  body.rb-unified .rbpc--experience .visual-mosaic,
+  body.rb-unified .rbpc--evidence .visual-mosaic{grid-template-rows:245px 170px 170px!important}
+  body.rb-unified .visual-tile figcaption{padding:8px 10px!important;font-size:10.75px!important;line-height:1.45!important}
+  body.rb-unified .nr-choice-grid{padding-top:24px!important;padding-bottom:24px!important}
+}
+'''
+          p.write_text(s,encoding='utf-8')
+
+          p=Path('rebloom-detail.js')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(r"rebloom-fit\.css\?v=20260817[a-z]","rebloom-fit.css?v=20260817x",s)
+          p.write_text(s,encoding='utf-8')
+
+          p=Path('rebloom-unified.js')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(r'rebloom-detail\.js\?v=20260817[a-z]','rebloom-detail.js?v=20260817x',s)
+          p.write_text(s,encoding='utf-8')
+
+          for name in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+              p=Path(name)
+              s=p.read_text(encoding='utf-8')
+              s=re.sub(r'rebloom-unified\.js\?v=20260817[a-z]','rebloom-unified.js?v=20260817x',s)
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Validate source
+        run: |
+          node --check rebloom-detail.js
+          node --check rebloom-unified.js
+          python3 - <<'PY'
+          from pathlib import Path
+          c=Path('rebloom-fit.css').read_text(encoding='utf-8')
+          assert c.count('{')==c.count('}')
+          assert 'FINAL X — readable cards' in c
+          assert 'rebloom-fit.css?v=20260817x' in Path('rebloom-detail.js').read_text(encoding='utf-8')
+          assert 'rebloom-detail.js?v=20260817x' in Path('rebloom-unified.js').read_text(encoding='utf-8')
+          for n in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+              assert 'rebloom-unified.js?v=20260817x' in Path(n).read_text(encoding='utf-8')
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser runtime
+        run: npm install --no-save playwright-core@1.55.0
+      - name: Render strict PC and mobile audit
+        run: |
+          mkdir -p final-card-audit-x
+          python3 -m http.server 8000 >/tmp/rebloom-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          cat > final-card-audit-x.cjs <<'JS'
+          const {chromium}=require('playwright-core');
+          const fs=require('fs');
+          const base='http://127.0.0.1:8000/';
+          const files=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html'];
+          const vps=[{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}];
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
+            const report=[];
+            for(const vp of vps){
+              const ctx=await browser.newContext({viewport:{width:vp.width,height:vp.height},reducedMotion:'reduce'});
+              for(const file of files){
+                const page=await ctx.newPage(); const errors=[];
+                page.on('pageerror',e=>errors.push(String(e)));
+                await page.route('**/*',route=>{const u=route.request().url();if(u.startsWith(base)||u.startsWith('data:')||u.startsWith('blob:'))return route.continue();return route.abort()});
+                const res=await page.goto(base+file,{waitUntil:'load',timeout:20000});
+                await page.waitForTimeout(1000);
+                await page.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=620){scrollTo(0,y);await new Promise(r=>setTimeout(r,10));}scrollTo(0,0)});
+                await page.waitForTimeout(150);
+                const m=await page.evaluate(()=>{
+                  const visible=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&+s.opacity!==0&&r.width>8&&r.height>8};
+                  const cards=[...new Set([...document.querySelectorAll('article,.visual-tile,.join-fact,.nr-choice,.rb-detail-card,.definition-card,.faq-card,.story-step,.rbpc-venue-facts>span')])].filter(visible);
+                  const outside=[];
+                  for(const card of cards){
+                    const cr=card.getBoundingClientRect();const walker=document.createTreeWalker(card,NodeFilter.SHOW_TEXT);let n,bad=false,sample='';
+                    while(n=walker.nextNode()){
+                      if(!n.textContent.trim())continue;
+                      const range=document.createRange();range.selectNodeContents(n);
+                      for(const r of range.getClientRects()){
+                        if(r.width<1||r.height<1)continue;
+                        if(r.left<cr.left-2||r.right>cr.right+2||r.top<cr.top-2||r.bottom>cr.bottom+2){bad=true;sample=n.textContent.trim().slice(0,70);break}
+                      }
+                      if(bad)break;
+                    }
+                    if(bad)outside.push({tag:card.tagName.toLowerCase(),cls:(card.className||'').toString().slice(0,140),sample,w:Math.round(cr.width),h:Math.round(cr.height)});
+                  }
+                  const cols=sel=>{const e=document.querySelector(sel);if(!e||!visible(e))return null;return getComputedStyle(e).gridTemplateColumns.trim().split(/\s+/).filter(Boolean).length};
+                  const sections=[...document.querySelectorAll('main>section')].filter(visible).map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {cls:(e.className||'').toString().slice(0,120),h:Math.round(r.height),pad:Math.round((parseFloat(s.paddingTop)||0)+(parseFloat(s.paddingBottom)||0))}});
+                  return {docOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,outside,partnerCols:cols('.nr-value-prop .nr-value-grid'),faqCols:cols('#event-faq .faq-grid'),processCols:cols('#purpose .event-values'),excessive:sections.filter(x=>x.h>680&&x.pad>145)};
+                });
+                const item={file,vp:vp.name,status:res?.status(),errors,...m};report.push(item);
+                if(!res||res.status()>=400)throw new Error(`${file}/${vp.name}: HTTP`);
+                if(errors.length)throw new Error(`${file}/${vp.name}: JS ${errors.join(' | ')}`);
+                if(m.docOverflow>2)throw new Error(`${file}/${vp.name}: document overflow ${m.docOverflow}`);
+                if(m.outside.length)throw new Error(`${file}/${vp.name}: text outside ${JSON.stringify(m.outside.slice(0,5))}`);
+                if(file==='partner.html'&&vp.name==='desktop'&&m.partnerCols!==2)throw new Error(`partner desktop columns ${m.partnerCols}`);
+                if(file==='partner.html'&&vp.name==='mobile'&&m.partnerCols!==1)throw new Error(`partner mobile columns ${m.partnerCols}`);
+                if(file==='event.html'&&vp.name==='mobile'&&m.faqCols!==1)throw new Error(`FAQ mobile columns ${m.faqCols}`);
+                if(file==='index.html'&&vp.name==='mobile'&&m.processCols!==1)throw new Error(`process mobile columns ${m.processCols}`);
+                await page.screenshot({path:`final-card-audit-x/${file.replace('.html','')}-${vp.name}.png`,fullPage:true});
+                await page.close();
+              }
+              await ctx.close();
+            }
+            fs.writeFileSync('final-card-audit-x/report.json',JSON.stringify(report,null,2));
+            console.log(JSON.stringify(report.map(({file,vp,status,docOverflow,outside,partnerCols,faqCols,processCols,excessive,errors})=>({file,vp,status,docOverflow,outside:outside.length,partnerCols,faqCols,processCols,excessive:excessive.length,errors:errors.length})),null,2));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          node final-card-audit-x.cjs
+      - name: Commit audited site changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rebloom-fit.css rebloom-detail.js rebloom-unified.js index.html learn.html event.html partner.html diagnosis.html 404.html
+          git commit -m 'PC・スマホのカード文字収まりを最終改善'
+          git push
+      - name: Upload final screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-card-audit-x
+          path: final-card-audit-x
+          retention-days: 2
