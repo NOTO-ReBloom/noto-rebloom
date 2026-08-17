@@ -1,0 +1,31 @@
+name: Final card audit X
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser runtime
+        run: npm install --no-save playwright-core@1.55.0
+      - name: Render strict PC and mobile audit
+        run: |
+          mkdir -p final-card-audit-x
+          python3 -m http.server 8000 >/tmp/rebloom-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          node final-card-audit-x.cjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-card-audit-x
+          path: final-card-audit-x
+          retention-days: 2
