@@ -56,12 +56,14 @@
     if(atlas){const decorate=()=>atlas.querySelectorAll('.flower-atlas-card').forEach(el=>el.classList.add('rb-detail-card'));decorate();new MutationObserver(decorate).observe(atlas,{childList:true,subtree:true})}
   }
 
-  /* Fixed loading order: refinement first, final density/readability calibration last. */
+  /* Final loading order: visual refinement -> density calibration -> structural whitespace cleanup. */
   const ensureStyle=(name,href)=>{
     let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
     if(!link){link=document.createElement('link');link.rel='stylesheet'}link.href=href;document.head.appendChild(link);
   };
-  ensureStyle('rebloom-refine.css','rebloom-refine.css?v=20260817m');
-  if(!document.querySelector('script[src*="rebloom-refine.js"]')){const script=document.createElement('script');script.src='rebloom-refine.js?v=20260817m';script.defer=true;document.body.appendChild(script)}
-  ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817m');
+  ensureStyle('rebloom-refine.css','rebloom-refine.css?v=20260817n');
+  if(!document.querySelector('script[src*="rebloom-refine.js"]')){const script=document.createElement('script');script.src='rebloom-refine.js?v=20260817n';script.defer=true;document.body.appendChild(script)}
+  ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817n');
+  ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817n');
+  if(!document.querySelector('script[src*="rebloom-tight.js"]')){const script=document.createElement('script');script.src='rebloom-tight.js?v=20260817n';script.defer=true;document.body.appendChild(script)}
 })();
