@@ -1,0 +1,220 @@
+/* NOTO Re:Bloom — complete purpose-led layout pass / 2026-08-17 */
+:root{--rbpc-green:#184c3f;--rbpc-green-2:#245e4e;--rbpc-ink:#173a31;--rbpc-muted:#5a6a63;--rbpc-paper:#fffaf1;--rbpc-yellow:#f4cf58;--rbpc-mint:#edf6eb;--rbpc-lilac:#f2edf7;--rbpc-soil:#654737;--rbpc-line:rgba(23,58,49,.14);--rbpc-shadow:0 10px 28px rgba(23,58,49,.07)}
+
+/* System-level rules: hierarchy stays visible even after density reductions. */
+body.rb-unified .rbpc-section{position:relative}
+body.rb-unified .rbpc-hit-target{min-height:44px}
+body.rb-unified .section-heading h2,body.rb-unified .nr-section-head h2,body.rb-unified .visual-mosaic-head h2{max-width:18em}
+body.rb-unified .section-heading--center h2{margin-inline:auto}
+body.rb-unified [data-rbpc-priority="high"]>.container>.section-heading>p:last-child{max-width:62ch}
+body.rb-unified .rbpc--action{isolation:isolate}
+
+/* ORIENTATION — first screen answers what / where / when, with image as evidence. */
+body.rb-unified .rbpc--orientation :is(.hero-grid,.page-hero-grid){grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr)!important;align-items:center!important}
+body.rb-unified .rbpc--orientation h1{max-width:14em}
+body.rb-unified .rbpc--orientation p:not(.eyebrow){max-width:58ch}
+body.rb-unified .rbpc--orientation .photo-frame{box-shadow:0 15px 38px rgba(23,58,49,.11)!important}
+body.rb-unified .rbpc-key-facts{display:flex!important;flex-wrap:wrap;gap:7px!important}
+body.rb-unified .rbpc-key-facts span{padding:7px 10px!important;border:1px solid rgba(24,76,63,.12);background:rgba(255,255,255,.78)!important;font-size:11px!important}
+
+/* EXPERIENCE / EVIDENCE — one dominant real-world image, supporting images smaller. */
+body.rb-unified .rbpc--experience .visual-mosaic,body.rb-unified .rbpc--evidence .visual-mosaic{grid-template-columns:1.42fr .58fr!important;grid-template-rows:190px 190px!important}
+body.rb-unified .rbpc--experience .visual-tile:first-child,body.rb-unified .rbpc--evidence .visual-tile:first-child{grid-row:1/3}
+body.rb-unified .rbpc--experience .visual-label,body.rb-unified .rbpc--evidence .visual-label{background:rgba(255,250,241,.94)!important}
+body.rb-unified .rbpc--experience .visual-tile:first-child figcaption,body.rb-unified .rbpc--evidence .visual-tile:first-child figcaption{font-size:14px!important}
+
+/* ROUTING — routes should feel like navigation, not another content block. */
+body.rb-unified .rbpc--routing{background:transparent!important}
+body.rb-unified .rbpc--routing .rbpc-route-card{border:1px solid var(--rbpc-line)!important;box-shadow:none!important;background:rgba(255,255,255,.7)!important;transform:none!important}
+body.rb-unified .rbpc--routing .rbpc-route-card:hover{transform:translateY(-2px)!important;border-color:rgba(24,76,63,.3)!important}
+body.rb-unified .rbpc--routing .rbpc-route-card>span{font-size:10px!important;letter-spacing:.1em}
+body.rb-unified .rbpc--routing .rbpc-route-card>b{margin-top:auto;padding-top:8px}
+
+/* STORY / IDENTITY — real people and real places carry credibility. */
+body.rb-unified .rbpc--story .rbpc-story-split{grid-template-columns:minmax(0,1fr) minmax(340px,.92fr)!important}
+body.rb-unified .rbpc--story .photo-frame{transform:rotate(.35deg)}
+body.rb-unified .rbpc--story .photo-frame figcaption{font-size:12.5px!important}
+body.rb-unified .rbpc--identity .people-trust-grid{grid-template-columns:minmax(360px,.96fr) minmax(0,1.04fr)!important;gap:clamp(28px,4vw,48px)!important}
+body.rb-unified .rbpc--identity .people-trust-photo{min-height:325px!important}
+body.rb-unified .rbpc-trust-badges{gap:7px!important}
+body.rb-unified .rbpc-trust-badges span{padding:8px 11px!important;border:1px solid rgba(24,76,63,.11)!important;background:#fff!important;color:var(--rbpc-green)!important}
+
+/* PROCESS — this is a sequence, not four unrelated boxes. */
+body.rb-unified #purpose .rbpc-process-flow{position:relative;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important;padding-top:4px}
+body.rb-unified #purpose .rbpc-process-flow::before{content:"";position:absolute;left:8%;right:8%;top:39px;height:2px;background:linear-gradient(90deg,rgba(24,76,63,.18),rgba(24,76,63,.5),rgba(24,76,63,.18));z-index:0}
+body.rb-unified #purpose .rbpc-process-step{position:relative;z-index:1;padding:18px 17px!important;border:1px solid var(--rbpc-line)!important;border-radius:18px!important;background:rgba(255,255,255,.93)!important;box-shadow:none!important;transform:none!important}
+body.rb-unified #purpose .rbpc-process-step>span{background:var(--rbpc-yellow)!important;border:5px solid #fff!important;box-sizing:content-box!important;margin-top:-2px}
+body.rb-unified #purpose .rbpc-process-step h3{font-size:20px!important}
+body.rb-unified #purpose .rbpc-process-step p{font-size:13.5px!important}
+
+/* PROGRESS — past, latest, next are visually distinct. */
+body.rb-unified #project-story .rbpc-progress::before{background:linear-gradient(90deg,var(--rbpc-green) 0 80%,#d7ddd8 80% 100%)!important}
+body.rb-unified #project-story .story-step.is-complete .story-dot{background:#e9f4e7!important;border-color:var(--rbpc-green)!important}
+body.rb-unified #project-story .story-step.is-latest .story-dot{background:var(--rbpc-yellow)!important;box-shadow:0 0 0 7px rgba(244,207,88,.18)!important}
+body.rb-unified #project-story .story-step.is-next .story-dot{background:#fff!important;border-style:dashed!important}
+body.rb-unified #project-story .story-step.is-next h3{color:var(--rbpc-green)!important}
+body.rb-unified #project-story .story-step.is-upcoming p{color:#728079!important}
+
+/* LEARN — comparisons, data, causes, scope and model each need a different shape. */
+body.rb-unified #words .rbpc-comparison-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;border:1px solid var(--rbpc-line);border-radius:20px;overflow:hidden;background:#fff}
+body.rb-unified #words .definition-card{border:0!important;border-right:1px solid var(--rbpc-line)!important;border-radius:0!important;box-shadow:none!important;background:#fff!important;padding:21px 22px!important}
+body.rb-unified #words .definition-card:last-child{border-right:0!important}
+body.rb-unified #words .definition-card>span{display:inline-block;padding:5px 8px;border-radius:999px;background:var(--rbpc-mint);color:var(--rbpc-green)}
+body.rb-unified #numbers .rbpc-data-proof{grid-template-columns:1.12fr .94fr .94fr!important}
+body.rb-unified #numbers .rbpc-data-proof article:first-child{background:var(--rbpc-green)!important;color:#fff!important}
+body.rb-unified #numbers .rbpc-data-proof article:first-child :is(strong,h3,small){color:#fff!important}
+body.rb-unified .rbpc-cause-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+body.rb-unified .rbpc-cause-grid article{display:grid!important;grid-template-columns:42px 1fr!important;column-gap:13px;align-items:start!important}
+body.rb-unified .rbpc-cause-grid article>span{grid-row:1/3!important}
+body.rb-unified .rbpc-cause-grid article h3{margin-top:1px!important}
+body.rb-unified .rbpc--scope{overflow:hidden;background:linear-gradient(120deg,#5a3d30,#74513e)!important}
+body.rb-unified .rbpc--scope .split-story{grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr)!important}
+body.rb-unified .rbpc--scope h2{font-size:clamp(34px,4.3vw,54px)!important;max-width:15em;color:#fff!important}
+body.rb-unified .rbpc--scope p{font-size:15px!important;color:rgba(255,255,255,.82)!important}
+body.rb-unified .rbpc--scope .photo-frame{border:6px solid rgba(255,255,255,.14)!important;box-shadow:none!important}
+body.rb-unified .rbpc--model .rbpc-model-map{border:1px solid rgba(24,76,63,.14)!important;box-shadow:0 12px 30px rgba(23,58,49,.08)!important}
+body.rb-unified .rbpc-venue-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:17px 0 3px}
+body.rb-unified .rbpc-venue-facts span{display:flex;flex-direction:column;padding:12px 14px;border:1px solid rgba(24,76,63,.13);border-radius:15px;background:rgba(255,255,255,.82)}
+body.rb-unified .rbpc-venue-facts b{font:900 19px/1.2 "M PLUS Rounded 1c","Noto Sans JP",sans-serif;color:var(--rbpc-green)}
+body.rb-unified .rbpc-venue-facts small{margin-top:4px;font-size:11px;color:var(--rbpc-muted)}
+body.rb-unified .rbpc--venue-proof .split-story{grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr)!important}
+
+/* EVENT LOGISTICS — the date and fee deserve more scanning weight than supporting times. */
+body.rb-unified .rbpc-logistics-grid{grid-template-columns:1.65fr .72fr .72fr .72fr .8fr!important;gap:8px!important}
+body.rb-unified .rbpc-logistics-grid>div{min-height:76px!important;display:flex;flex-direction:column;justify-content:center}
+body.rb-unified .rbpc-logistic-1{background:var(--rbpc-green)!important;border-color:var(--rbpc-green)!important}
+body.rb-unified .rbpc-logistic-1 :is(span,b){color:#fff!important}
+body.rb-unified .rbpc-logistic-5{background:#fff3b9!important;border-color:rgba(156,120,16,.18)!important}
+body.rb-unified .rbpc-logistic-5 b{font-size:25px!important;color:var(--rbpc-green)!important}
+body.rb-unified .rbpc-schedule-flow{grid-template-columns:repeat(3,1fr)!important;gap:12px!important}
+body.rb-unified .rbpc-schedule-flow article{box-shadow:none!important;border:1px solid var(--rbpc-line)!important}
+body.rb-unified .rbpc-schedule-flow .flow-time{box-shadow:0 0 0 5px #fff!important}
+
+/* PROGRAM — quick comparison; SAFETY — reassurance gets more space. */
+body.rb-unified .rbpc-program-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:9px!important}
+body.rb-unified .rbpc-program-grid article{min-height:175px!important;box-shadow:none!important;border:1px solid var(--rbpc-line)!important}
+body.rb-unified .rbpc-program-grid article h3{font-size:20px!important}
+body.rb-unified .rbpc-safety-grid{display:grid!important;grid-template-columns:.9fr .9fr 1.2fr!important;gap:10px!important}
+body.rb-unified .rbpc-safety-grid>div{min-height:170px!important;justify-content:center!important}
+body.rb-unified .rbpc-safety-grid .rbpc-safety-primary{background:linear-gradient(145deg,#eaf5e8,#fff)!important;border:2px solid rgba(24,76,63,.2)!important;box-shadow:0 10px 26px rgba(23,58,49,.07)!important}
+body.rb-unified .rbpc-safety-grid .rbpc-safety-primary>b{font-size:22px!important}
+
+/* MEMORY — emotional takeaway should feel lighter and distinct from logistics. */
+body.rb-unified .rbpc--memory{background:linear-gradient(135deg,#edf7ea,#fffaf1)!important}
+body.rb-unified .rbpc--memory .split-story{grid-template-columns:minmax(0,1.08fr) minmax(290px,.72fr)!important}
+body.rb-unified .rbpc--memory .photo-frame{max-width:360px;justify-self:end;transform:rotate(1deg)}
+body.rb-unified .rbpc--memory .photo-frame img{height:auto!important;aspect-ratio:1.12/1;object-fit:contain!important;background:#fffaf1}
+
+/* REPORT + CONTACT — information and action are not equal-weight columns. */
+body.rb-unified .rbpc--support-info .split-story{grid-template-columns:minmax(0,1fr) minmax(340px,.8fr)!important;align-items:stretch!important}
+body.rb-unified .rbpc--support-info .rbpc-report-panel{padding:9px 0}
+body.rb-unified .rbpc--support-info .rbpc-contact-panel{padding:23px 24px;border-radius:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}
+body.rb-unified .rbpc--support-info .rbpc-contact-panel h2{font-size:30px!important}
+body.rb-unified .rbpc-contact-button{margin-top:13px!important}
+
+/* FAQ — calm utility; reduce the feeling of a wall of cards. */
+body.rb-unified .rbpc-question-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important;border-top:1px solid var(--rbpc-line);border-left:1px solid var(--rbpc-line);border-radius:18px;overflow:hidden}
+body.rb-unified .rbpc-question-grid .faq-card{border:0!important;border-right:1px solid var(--rbpc-line)!important;border-bottom:1px solid var(--rbpc-line)!important;border-radius:0!important;background:#fff!important}
+body.rb-unified .rbpc-question-grid .faq-card .q::before{flex-basis:30px;height:30px}
+
+/* PARTNER — benefits support a decision; current sponsor proves reality; network shows reach. */
+body.rb-unified .rbpc-benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+body.rb-unified .rbpc-benefit-grid article{display:grid!important;grid-template-columns:42px 1fr!important;column-gap:12px;align-items:start!important;box-shadow:none!important;border:1px solid var(--rbpc-line)!important}
+body.rb-unified .rbpc-benefit-grid article>span{grid-row:1/3!important;width:36px!important;height:36px!important;margin:0!important;display:grid;place-items:center;border-radius:50%;background:var(--rbpc-mint);color:var(--rbpc-green);font-weight:900}
+body.rb-unified .rbpc-benefit-grid article h3{margin-top:2px!important}
+body.rb-unified .rbpc-sponsor-proof{background:linear-gradient(135deg,#fff,#f6f0fb)!important}
+body.rb-unified .rbpc-network-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;border:1px solid var(--rbpc-line);border-radius:20px;overflow:hidden;background:#fff}
+body.rb-unified .rbpc-network-grid article{border:0!important;border-right:1px solid var(--rbpc-line)!important;border-radius:0!important;box-shadow:none!important;padding:21px!important}
+body.rb-unified .rbpc-network-grid article:last-child{border-right:0!important}
+body.rb-unified .rbpc-network-grid article h3{font-size:21px!important}
+body.rb-unified .rbpc--deadline .split-story{grid-template-columns:.8fr 1.2fr!important;align-items:stretch!important;gap:14px!important}
+body.rb-unified .rbpc-deadline-panel{display:flex;flex-direction:column;justify-content:center;padding:25px!important;border-radius:22px;background:var(--rbpc-yellow);color:var(--rbpc-green)!important}
+body.rb-unified .rbpc-deadline-panel :is(.eyebrow,.eyebrow span,.eyebrow small,h2,p){color:var(--rbpc-green)!important}
+body.rb-unified .rbpc-deadline-panel h2{font-size:clamp(34px,4vw,50px)!important;line-height:1.12!important}
+body.rb-unified .rbpc-partner-contact-panel{padding:25px!important;border:1px solid rgba(255,255,255,.18);border-radius:22px;background:rgba(255,255,255,.08)}
+
+/* DIAGNOSIS — interaction, not decoration, is the primary job. */
+body.rb-unified.page-diagnosis .rbpc-diagnosis-start{grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr)!important;gap:16px!important}
+body.rb-unified.page-diagnosis .rbpc-diagnosis-explain{background:#fff!important;box-shadow:none!important}
+body.rb-unified.page-diagnosis .rbpc-diagnosis-primary{border:2px solid rgba(133,103,20,.16)!important;background:linear-gradient(145deg,#fff0a8,#fff7d6)!important;box-shadow:0 12px 28px rgba(118,92,17,.08)!important;display:flex;flex-direction:column;justify-content:center}
+body.rb-unified.page-diagnosis .rbpc-diagnosis-primary h3{font-size:clamp(26px,3vw,34px)!important}
+body.rb-unified.page-diagnosis .rbpc-diagnosis-primary .btn{min-height:52px!important;font-size:15px!important}
+body.rb-unified.page-diagnosis .rbpc-flower-groups{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}
+body.rb-unified.page-diagnosis .rbpc-flower-groups .flower-group-card{padding:15px!important;border-radius:18px!important}
+body.rb-unified.page-diagnosis .rbpc-flower-groups .flower-group-visual{aspect-ratio:1.3/1}
+body.rb-unified.page-diagnosis .rbpc-atlas-filters{gap:6px!important}
+body.rb-unified.page-diagnosis .rbpc-atlas-filters button{min-height:40px;padding:8px 13px!important}
+body.rb-unified.page-diagnosis .rbpc-question-card{box-shadow:0 14px 36px rgba(23,58,49,.09)!important}
+body.rb-unified.page-diagnosis .rbpc-answer-grid{gap:10px!important}
+body.rb-unified.page-diagnosis .rbpc-answer-grid .diagnosis-answer{min-height:86px!important;border-radius:18px!important}
+body.rb-unified.page-diagnosis .rbpc-answer-grid .diagnosis-answer span{font-size:16px!important;font-weight:900!important}
+
+/* Diagnosis results: identity -> application -> reflection/data -> plan -> action. */
+body.rb-unified.page-diagnosis .rbpc-result-block{margin-top:26px!important}
+body.rb-unified.page-diagnosis .rbpc-result--identity{padding:28px!important;border-radius:26px!important;background:linear-gradient(135deg,#fffdf8,#edf6eb)!important;border:1px solid var(--rbpc-line)!important}
+body.rb-unified.page-diagnosis .rbpc-result--application .life-scene-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important}
+body.rb-unified.page-diagnosis .rbpc-result--application .life-scene-grid article{padding:18px!important;border:1px solid var(--rbpc-line)!important;border-radius:17px!important;background:#fff!important}
+body.rb-unified.page-diagnosis .rbpc-result--application .result-communication-grid{gap:9px!important}
+body.rb-unified.page-diagnosis .rbpc-result--reflection{padding:22px 24px!important;border-left:5px solid var(--rbpc-yellow)!important;background:#fffaf0!important;border-radius:0 18px 18px 0!important}
+body.rb-unified.page-diagnosis .rbpc-result--data{border:1px solid var(--rbpc-line)!important;border-radius:20px!important;background:#fff!important}
+body.rb-unified.page-diagnosis .rbpc-result--relationship{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+body.rb-unified.page-diagnosis .rbpc-result--plan{padding:26px!important;border-radius:22px!important;background:linear-gradient(135deg,#f0f7ed,#fff)!important}
+body.rb-unified.page-diagnosis .rbpc-result--share{display:grid!important;grid-template-columns:1fr minmax(260px,.8fr)!important;gap:24px!important;align-items:center!important}
+body.rb-unified.page-diagnosis .rbpc-result--share img{border-radius:18px!important;box-shadow:var(--rbpc-shadow)!important}
+body.rb-unified.page-diagnosis .rbpc-result--action{padding:25px!important;border-radius:22px!important;background:var(--rbpc-green)!important;color:#fff!important}
+body.rb-unified.page-diagnosis .rbpc-result--action :is(h3,p,.result-kicker){color:#fff!important}
+body.rb-unified.page-diagnosis .rbpc-result--action .btn--green{background:var(--rbpc-yellow)!important;color:var(--rbpc-green)!important}
+
+/* FOOTER — supporting routes stay useful without competing with the page. */
+body.rb-unified .rbpc--footer .rb-footer-cta h2{font-size:clamp(22px,2.5vw,31px)!important}
+body.rb-unified .rbpc--footer .rb-footer-grid{font-size:13px}
+body.rb-unified .rbpc--footer .rb-footer-links strong{font-size:10px;letter-spacing:.1em;opacity:.7}
+
+@media(max-width:980px){
+  body.rb-unified .rbpc--orientation :is(.hero-grid,.page-hero-grid),body.rb-unified .rbpc--story .rbpc-story-split,body.rb-unified .rbpc--scope .split-story,body.rb-unified .rbpc--venue-proof .split-story,body.rb-unified .rbpc--identity .people-trust-grid{grid-template-columns:1fr!important}
+  body.rb-unified #purpose .rbpc-process-flow{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.rb-unified #purpose .rbpc-process-flow::before{display:none}
+  body.rb-unified .rbpc-logistics-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.rb-unified .rbpc-logistic-1{grid-column:span 2}
+  body.rb-unified .rbpc-program-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.rb-unified .rbpc-safety-grid{grid-template-columns:1fr 1fr!important}
+  body.rb-unified .rbpc-safety-primary{grid-column:1/-1}
+  body.rb-unified .rbpc--memory .split-story,body.rb-unified .rbpc--support-info .split-story,body.rb-unified .rbpc--deadline .split-story{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc--memory .photo-frame{justify-self:start;max-width:420px}
+  body.rb-unified.page-diagnosis .rbpc-diagnosis-start{grid-template-columns:1fr!important}
+  body.rb-unified.page-diagnosis .rbpc-flower-groups{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.rb-unified.page-diagnosis .rbpc-result--share{grid-template-columns:1fr!important}
+}
+
+@media(max-width:700px){
+  body.rb-unified .rbpc--experience .visual-mosaic,body.rb-unified .rbpc--evidence .visual-mosaic{grid-template-columns:1fr!important;grid-template-rows:240px 135px 135px!important}
+  body.rb-unified .rbpc--experience .visual-tile:first-child,body.rb-unified .rbpc--evidence .visual-tile:first-child{grid-row:auto!important}
+  body.rb-unified #words .rbpc-comparison-grid{grid-template-columns:1fr!important}
+  body.rb-unified #words .definition-card{border-right:0!important;border-bottom:1px solid var(--rbpc-line)!important}
+  body.rb-unified #words .definition-card:last-child{border-bottom:0!important}
+  body.rb-unified #numbers .rbpc-data-proof{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-cause-grid{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-logistics-grid{grid-template-columns:1fr 1fr!important}
+  body.rb-unified .rbpc-logistic-1{grid-column:1/-1}
+  body.rb-unified .rbpc-logistic-5{grid-column:1/-1}
+  body.rb-unified .rbpc-schedule-flow{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-network-grid{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-network-grid article{border-right:0!important;border-bottom:1px solid var(--rbpc-line)!important}
+  body.rb-unified .rbpc-network-grid article:last-child{border-bottom:0!important}
+  body.rb-unified .rbpc-benefit-grid{grid-template-columns:1fr!important}
+  body.rb-unified.page-diagnosis .rbpc-result--application .life-scene-grid,body.rb-unified.page-diagnosis .rbpc-result--relationship{grid-template-columns:1fr!important}
+}
+
+@media(max-width:520px){
+  body.rb-unified #purpose .rbpc-process-flow{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-program-grid{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-program-grid article{min-height:0!important}
+  body.rb-unified .rbpc-safety-grid{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-safety-primary{grid-column:auto}
+  body.rb-unified .rbpc-venue-facts{grid-template-columns:1fr!important}
+  body.rb-unified.page-diagnosis .rbpc-flower-groups{grid-template-columns:1fr 1fr!important}
+  body.rb-unified.page-diagnosis .rbpc-answer-grid{grid-template-columns:1fr!important}
+  body.rb-unified.page-diagnosis .rbpc-answer-grid .diagnosis-answer{min-height:66px!important}
+}
+
+@media(prefers-reduced-motion:reduce){body.rb-unified .rbpc-section *{scroll-behavior:auto!important}}
