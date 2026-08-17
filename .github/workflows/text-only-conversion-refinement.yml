@@ -1,0 +1,110 @@
+name: Text only conversion refinement
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  refine-and-audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply copy and ordering refinement
+        env:
+          JS_PATCH_B64: "Ci8qIFRleHQtb25seSBjb252ZXJzaW9uIHJlZmluZW1lbnQgMjAyNjA4MTdhYSAqLwooKCk9PnsKICBjb25zdCBib2R5PWRvY3VtZW50LmJvZHk7CiAgaWYoIWJvZHkpcmV0dXJuOwoKICBpZihib2R5LmNsYXNzTGlzdC5jb250YWlucygnbnItbmV3LWhvbWUnKSl7CiAgICBjb25zdCBsZWFkPWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5uci1ob21lLWhlcm8gLmhlcm8tbGVhZCcpOwogICAgaWYobGVhZCkgbGVhZC5pbm5lckhUTUw9J05PVE8gUmU6Qmxvb23jga/jgIE8c3Ryb25nPuS9v+OCj+OCjOOBquOBj+OBquOBo+OBn+i+suWcsOOCkuOAgeOCguOBhuS4gOW6puS6uuOBjOmbhuOBvuOCi+WgtOaJgOOBq+OBl+OBpuOBhOOBj+WtpueUn+ODl+ODreOCuOOCp+OCr+ODiDwvc3Ryb25nPuOBp+OBmeOAguOBvuOBmjnmnIgyMOaXpeOAgee0hDEsMDAw446h44Gu55Sw44KT44G844Gn5rOl44KT5a2Q6YGL5YuV5Lya44KS6ZaL44GN44G+44GZ44CCJzsKICAgIGNvbnN0IGNoaXBzPWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5uci1ob21lLWhlcm8gLnN0YXR1cy1jaGlwcycpOwogICAgaWYoY2hpcHMmJiFkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcucmItcHJvamVjdC1mb3JtdWxhJykpewogICAgICBjaGlwcy5pbnNlcnRBZGphY2VudEhUTUwoJ2JlZm9yZWJlZ2luJywnPGRpdiBjbGFzcz0icmItcHJvamVjdC1mb3JtdWxhIiBhcmlhLWxhYmVsPSLjg5fjg63jgrjjgqfjgq/jg4jjga4z44Gk44Gu6KaB57SgIj48c3Bhbj7kvb/jgo/jgozjgarjgY/jgarjgaPjgZ/ovrLlnLA8L3NwYW4+PGI+w5c8L2I+PHNwYW4+5rOl44KT5a2Q6YGL5YuV5LyaPC9zcGFuPjxiPsOXPC9iPjxzcGFuPuiDveeZu+OBqOOBruOBpOOBquOBjOOCijwvc3Bhbj48L2Rpdj4nKTsKICAgIH0KICB9CgogIGlmKGJvZHkuY2xhc3NMaXN0LmNvbnRhaW5zKCduci1uZXctZXZlbnQnKSl7CiAgICBjb25zdCBoZXJvQ29weT1kb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcucGFnZS1oZXJvLS1ldmVudCAucGFnZS1oZXJvLWdyaWQ+ZGl2Jyk7CiAgICBjb25zdCBoZXJvUD1oZXJvQ29weSYmWy4uLmhlcm9Db3B5LmNoaWxkcmVuXS5maW5kKGVsPT5lbC50YWdOYW1lPT09J1AnJiYhZWwuY2xhc3NMaXN0LmNvbnRhaW5zKCdleWVicm93JykpOwogICAgaWYoaGVyb1ApIGhlcm9QLnRleHRDb250ZW50PSfotbDjgovjgIHmjqLjgZnjgIHmipXjgZLjgovjgIHpgYvjgbbjgILms6Xjga7kuK3jgarjgonjgIHjgYTjgaTjgoLjga7pgYrjgbPjgoLmgJ3jgaPjgZ/pgJrjgorjgavjgYTjgYvjgarjgYTjgILjgZ3jgozjgoLlkKvjgoHjgabjgIHlrZDjganjgoLjgoLlpKfkurrjgoLkuIDnt5LjgavnrJHjgYjjgovkuIDml6XjgpLjgaTjgY/jgorjgb7jgZnjgIInOwogICAgY29uc3Qgc3RpY2tlcj1kb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcucGFnZS1oZXJvLS1ldmVudCAuaGVyby1zdGlja2VyLW5vdGUnKTsKICAgIGlmKHN0aWNrZXIpIHN0aWNrZXIudGV4dENvbnRlbnQ9J+WPguWKoOiyu+eEoeaWmeOAguertuaKgOOBr+OBvuOBoOaknOiojuS4reOAgueUsOOCk+OBvOOBrueKtuaFi+OBqOWuieWFqOOCkueiuuiqjeOBl+OBquOBjOOCieOAgeW9k+aXpeOBrumBiuOBs+OCkuaxuuOCgeOBvuOBmeOAgic7CgogICAgY29uc3QgcGxheT1kb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcucmItbXVkLXBsYXktc2VjdGlvbicpOwogICAgY29uc3Qgc3VtbWFyeT1kb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcuZXZlbnQtc3VtbWFyeScpOwogICAgaWYocGxheSYmc3VtbWFyeSYmc3VtbWFyeS5uZXh0RWxlbWVudFNpYmxpbmchPT1wbGF5KSBzdW1tYXJ5Lmluc2VydEFkamFjZW50RWxlbWVudCgnYWZ0ZXJlbmQnLHBsYXkpOwoKICAgIGlmKHBsYXkmJiFwbGF5LnF1ZXJ5U2VsZWN0b3IoJy5yYi1wbGF5LWN0YScpKXsKICAgICAgY29uc3Qgbm90ZT1wbGF5LnF1ZXJ5U2VsZWN0b3IoJy5yYi1wbGF5LW5vdGUnKTsKICAgICAgY29uc3QgaHRtbD0nPGRpdiBjbGFzcz0icmItcGxheS1jdGEiPjxkaXY+PHN0cm9uZz7jgIzjgaHjgofjgaPjgajjgoTjgaPjgabjgb/jgZ/jgYTjgI3jgaflpKfkuIjlpKvjgII8L3N0cm9uZz48c3Bhbj7kuIrmiYvjgZXjgojjgorjgIHms6XjgaDjgonjgZHjgavjgarjgaPjgabnrJHjgYjjgovjgZPjgajjgpLlpKfkuovjgavjgZfjgb7jgZnjgII8L3NwYW4+PC9kaXY+PGEgY2xhc3M9ImJ0biBidG4tLWdyZWVuIiBocmVmPSJodHRwczovL2Zvcm1zLmdsZS82Wk1yaHJodFdtQkNRVmlEOCIgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9vcGVuZXIiPjnmnIgyMOaXpeOBq+WPguWKoOOBmeOCizwvYT48L2Rpdj4nOwogICAgICBpZihub3RlKSBub3RlLmluc2VydEFkamFjZW50SFRNTCgnYWZ0ZXJlbmQnLGh0bWwpOwogICAgfQogIH0KfSkoKTsK"
+          CSS_PATCH_B64: "Ci8qIFRleHQtb25seSBjb252ZXJzaW9uIHJlZmluZW1lbnQgMjAyNjA4MTdhYSAqLwoucmItcHJvamVjdC1mb3JtdWxhewogIGRpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7ZmxleC13cmFwOndyYXA7Z2FwOjdweCA4cHg7CiAgbWFyZ2luOjE4cHggMCAycHg7cGFkZGluZzoxMHB4IDEycHg7Ym9yZGVyOjFweCBzb2xpZCByZ2JhKDIzLDc1LDYyLC4xMyk7CiAgYm9yZGVyLXJhZGl1czoxNXB4O2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuNjgpCn0KLnJiLXByb2plY3QtZm9ybXVsYSBzcGFuewogIHBhZGRpbmc6NXB4IDhweDtib3JkZXItcmFkaXVzOjlweDtiYWNrZ3JvdW5kOiNmZmY7Zm9udC1zaXplOjExcHg7Zm9udC13ZWlnaHQ6OTAwO2NvbG9yOiMxNzRiM2UKfQoucmItcHJvamVjdC1mb3JtdWxhIGJ7Zm9udC1zaXplOjE1cHg7Y29sb3I6IzliNjc0OX0KLm5yLWhvbWUtaGVybyAuaGVyby1sZWFkIHN0cm9uZ3tjb2xvcjojMTc0YjNlO2ZvbnQtd2VpZ2h0OjkwMH0KLm5yLW5ldy1ldmVudCAucmItbXVkLXBsYXktc2VjdGlvbntwYWRkaW5nLXRvcDo0MnB4IWltcG9ydGFudDtwYWRkaW5nLWJvdHRvbTo0MnB4IWltcG9ydGFudH0KLnJiLXBsYXktY3RhewogIGRpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6bWlubWF4KDAsMWZyKSBhdXRvO2dhcDoyMHB4O2FsaWduLWl0ZW1zOmNlbnRlcjsKICBtYXJnaW4tdG9wOjE0cHg7cGFkZGluZzoxOHB4IDIwcHg7Ym9yZGVyLXJhZGl1czoyMHB4O2JhY2tncm91bmQ6IzE3NGIzZTtjb2xvcjojZmZmCn0KLnJiLXBsYXktY3RhIHN0cm9uZ3tkaXNwbGF5OmJsb2NrO2NvbG9yOiNmZmY7Zm9udC1zaXplOjE4cHg7bGluZS1oZWlnaHQ6MS40NX0KLnJiLXBsYXktY3RhIHNwYW57ZGlzcGxheTpibG9jazttYXJnaW4tdG9wOjRweDtmb250LXNpemU6MTEuNXB4O2xpbmUtaGVpZ2h0OjEuNjU7Y29sb3I6cmdiYSgyNTUsMjU1LDI1NSwuNzgpfQoucmItcGxheS1jdGEgLmJ0bnttaW4td2lkdGg6MTkwcHg7YmFja2dyb3VuZDojZjNjZjU4IWltcG9ydGFudDtjb2xvcjojMTc0YjNlIWltcG9ydGFudH0KQG1lZGlhKG1heC13aWR0aDo3MjBweCl7CiAgLnJiLXByb2plY3QtZm9ybXVsYXtnYXA6NnB4O21hcmdpbi10b3A6MTRweDtwYWRkaW5nOjlweH0KICAucmItcHJvamVjdC1mb3JtdWxhIHNwYW57Zm9udC1zaXplOjEwcHg7cGFkZGluZzo1cHggN3B4fQogIC5uci1uZXctZXZlbnQgLnJiLW11ZC1wbGF5LXNlY3Rpb257cGFkZGluZy10b3A6MzBweCFpbXBvcnRhbnQ7cGFkZGluZy1ib3R0b206MzBweCFpbXBvcnRhbnR9CiAgLnJiLXBsYXktY3Rhe2dyaWQtdGVtcGxhdGUtY29sdW1uczoxZnI7Z2FwOjEycHg7cGFkZGluZzoxNXB4fQogIC5yYi1wbGF5LWN0YSBzdHJvbmd7Zm9udC1zaXplOjE2cHh9CiAgLnJiLXBsYXktY3RhIC5idG57d2lkdGg6MTAwJX0KfQo="
+        run: |
+          python3 - <<'PY'
+          import os, base64
+          from pathlib import Path
+          j=Path('rebloom-experience.js')
+          js=j.read_text(encoding='utf-8')
+          patch=base64.b64decode(os.environ['JS_PATCH_B64']).decode('utf-8')
+          marker='/* Text-only conversion refinement 20260817aa */'
+          if marker not in js:
+              j.write_text(js.rstrip()+"\n\n"+patch.strip()+"\n",encoding='utf-8')
+          c=Path('rebloom-experience.css')
+          css=c.read_text(encoding='utf-8')
+          cpatch=base64.b64decode(os.environ['CSS_PATCH_B64']).decode('utf-8')
+          if marker not in css:
+              c.write_text(css.rstrip()+"\n\n"+cpatch.strip()+"\n",encoding='utf-8')
+          d=Path('rebloom-detail.js')
+          s=d.read_text(encoding='utf-8')
+          s=s.replace('rebloom-experience.css?v=20260817z','rebloom-experience.css?v=20260817aa')
+          s=s.replace('rebloom-experience.js?v=20260817z','rebloom-experience.js?v=20260817aa')
+          d.write_text(s,encoding='utf-8')
+          PY
+      - name: Install browser runtime
+        run: npm install --no-save playwright-core@1.55.0
+      - name: Audit home and event on PC and mobile
+        run: |
+          cat > conversion-audit.cjs <<'JS'
+          const {chromium}=require('playwright-core');
+          const fs=require('fs');
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
+            fs.mkdirSync('conversion-audit',{recursive:true});
+            for(const [vp,w,h] of [['desktop',1440,1000],['mobile',390,844]]){
+              const ctx=await browser.newContext({viewport:{width:w,height:h},reducedMotion:'reduce'});
+              for(const file of ['index.html','event.html']){
+                const page=await ctx.newPage(); const errors=[];
+                page.on('pageerror',e=>errors.push(String(e)));
+                await page.route('**/*',r=>{
+                  const u=r.request().url();
+                  if(u.startsWith('http://127.0.0.1:8000/')||u.startsWith('data:')||u.startsWith('blob:')) r.continue(); else r.abort();
+                });
+                const res=await page.goto('http://127.0.0.1:8000/'+file,{waitUntil:'load',timeout:20000});
+                await page.waitForTimeout(1000);
+                const m=await page.evaluate((file)=>{
+                  const overflow=document.documentElement.scrollWidth-document.documentElement.clientWidth;
+                  if(file==='index.html'){
+                    const lead=document.querySelector('.nr-home-hero .hero-lead')?.textContent||'';
+                    const formula=document.querySelectorAll('.rb-project-formula span').length;
+                    const glance=!!document.querySelector('.rb-project-glance');
+                    return {overflow,lead,formula,glance};
+                  }
+                  const summary=document.querySelector('.event-summary');
+                  const play=document.querySelector('.rb-mud-play-section');
+                  return {
+                    overflow,
+                    hero:[...document.querySelectorAll('.page-hero--event p')].map(x=>x.textContent).join(' '),
+                    playCards:document.querySelectorAll('.rb-play-grid article').length,
+                    playStatus:document.querySelector('.rb-play-status')?.textContent||'',
+                    playAfterSummary:!!(summary&&play&&summary.nextElementSibling===play),
+                    cta:!!document.querySelector('.rb-play-cta')
+                  };
+                },file);
+                if(!res||res.status()>=400||errors.length||m.overflow>2) throw new Error(file+'/'+vp+' base '+JSON.stringify({status:res&&res.status(),errors,m}));
+                if(file==='index.html'&&(!m.lead.includes('学生プロジェクト')||m.formula!==3||!m.glance)) throw new Error('home '+vp+' '+JSON.stringify(m));
+                if(file==='event.html'&&(!m.hero.includes('走る、探す、投げる、運ぶ')||m.playCards!==4||!m.playStatus.includes('内容は検討中です')||!m.playAfterSummary||!m.cta)) throw new Error('event '+vp+' '+JSON.stringify(m));
+                await page.screenshot({path:`conversion-audit/${file.replace('.html','')}-${vp}.png`,fullPage:true});
+                await page.close();
+              }
+              await ctx.close();
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          python3 -m http.server 8000 >/tmp/rebloom-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID || true' EXIT
+          sleep 1
+          node conversion-audit.cjs
+      - name: Upload audit screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: text-only-conversion-audit
+          path: conversion-audit
+          retention-days: 2
+      - name: Commit refinement
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add rebloom-experience.js rebloom-experience.css rebloom-detail.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'ホームの一目理解と泥ん子運動会の参加動機を強化'
+          git push
