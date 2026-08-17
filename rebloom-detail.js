@@ -68,11 +68,11 @@
   };
   ensureStyle('rebloom-refine.css','rebloom-refine.css?v=20260817n');
   ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817n');
-  ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817n');
+  ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817q');
   ensureStyle('rebloom-purpose.css','rebloom-purpose.css?v=20260817q');
   ensureStyle('rebloom-purpose-complete.css','rebloom-purpose-complete.css?v=20260817q');
   ensureScript('rebloom-refine.js','rebloom-refine.js?v=20260817n');
-  ensureScript('rebloom-tight.js','rebloom-tight.js?v=20260817n');
+  ensureScript('rebloom-tight.js','rebloom-tight.js?v=20260817q');
   ensureScript('rebloom-purpose.js','rebloom-purpose.js?v=20260817q');
   ensureScript('rebloom-purpose-complete.js','rebloom-purpose-complete.js?v=20260817q');
 })();
