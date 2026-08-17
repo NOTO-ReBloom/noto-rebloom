@@ -104,6 +104,6 @@
   document.querySelectorAll('.brand-mark,.hero-motif').forEach(el=>el.classList.add('rb-float'));
 
   if(!document.querySelector('script[src*="rebloom-detail.js"]')){
-    const detail=document.createElement('script');detail.src='rebloom-detail.js?v=20260817n';detail.defer=true;document.body.appendChild(detail);
+    const detail=document.createElement('script');detail.src='rebloom-detail.js?v=20260817o';detail.defer=true;document.body.appendChild(detail);
   }
 })();
