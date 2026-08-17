@@ -56,14 +56,21 @@
     if(atlas){const decorate=()=>atlas.querySelectorAll('.flower-atlas-card').forEach(el=>el.classList.add('rb-detail-card'));decorate();new MutationObserver(decorate).observe(atlas,{childList:true,subtree:true})}
   }
 
-  /* Final loading order: visual refinement -> density calibration -> structural whitespace cleanup. */
+  /* Final loading order: refinement -> density -> structural cleanup -> purpose-led hierarchy. */
   const ensureStyle=(name,href)=>{
     let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
     if(!link){link=document.createElement('link');link.rel='stylesheet'}link.href=href;document.head.appendChild(link);
   };
+  const ensureScript=(name,src)=>{
+    const existing=document.querySelector(`script[src*="${name}"]`);
+    if(existing)return existing;
+    const script=document.createElement('script');script.src=src;script.async=false;document.body.appendChild(script);return script;
+  };
   ensureStyle('rebloom-refine.css','rebloom-refine.css?v=20260817n');
-  if(!document.querySelector('script[src*="rebloom-refine.js"]')){const script=document.createElement('script');script.src='rebloom-refine.js?v=20260817n';script.defer=true;document.body.appendChild(script)}
   ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817n');
   ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817n');
-  if(!document.querySelector('script[src*="rebloom-tight.js"]')){const script=document.createElement('script');script.src='rebloom-tight.js?v=20260817n';script.defer=true;document.body.appendChild(script)}
+  ensureStyle('rebloom-purpose.css','rebloom-purpose.css?v=20260817o');
+  ensureScript('rebloom-refine.js','rebloom-refine.js?v=20260817n');
+  ensureScript('rebloom-tight.js','rebloom-tight.js?v=20260817n');
+  ensureScript('rebloom-purpose.js','rebloom-purpose.js?v=20260817o');
 })();
