@@ -47,7 +47,7 @@ jobs:
           python3 -m http.server 8000 >/tmp/rebloom-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
-          sleep 2
+          sleep 1
           cat > audit-run.cjs <<'JS'
           const { chromium } = require('playwright');
           const { AxeBuilder } = require('@axe-core/playwright');
@@ -56,10 +56,16 @@ jobs:
           const pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html'];
           const modes={desktop:{width:1440,height:1000},mobile:{width:390,height:844}};
           const report={generated:new Date().toISOString(),pages:{},diagnosis:{}};
+          const keepLocal=async route=>{
+            const url=route.request().url();
+            if(url.startsWith(base)||url.startsWith('data:')||url.startsWith('blob:')) return route.continue();
+            return route.abort();
+          };
           (async()=>{
             const browser=await chromium.launch({headless:true});
             for(const [mode,viewport] of Object.entries(modes)){
               const context=await browser.newContext({viewportSize:viewport,reducedMotion:'reduce'});
+              await context.route('**/*',keepLocal);
               for(const file of pages){
                 const page=await context.newPage();
                 const key=`${file}:${mode}`;
@@ -67,8 +73,8 @@ jobs:
                 page.on('console',msg=>{if(msg.type()==='error')consoleErrors.push(msg.text())});
                 page.on('pageerror',err=>pageErrors.push(String(err)));
                 page.on('requestfailed',req=>failed.push({url:req.url(),error:req.failure()?.errorText||''}));
-                const response=await page.goto(base+file,{waitUntil:'networkidle',timeout:30000});
-                await page.waitForTimeout(500);
+                const response=await page.goto(base+file,{waitUntil:'load',timeout:15000});
+                await page.waitForTimeout(700);
                 const metrics=await page.evaluate(()=>{
                   const vw=document.documentElement.clientWidth;
                   const overflow=document.documentElement.scrollWidth-vw;
@@ -98,14 +104,15 @@ jobs:
                   }
                 }
                 await page.screenshot({path:`audit/screens/${file.replace('.html','')}-${mode}.png`,fullPage:true});
-                report.pages[key]={status:response?.status()||0,consoleErrors,pageErrors,failed:failed.filter(x=>!x.url.includes('fonts.googleapis.com')&&!x.url.includes('fonts.gstatic.com')),metrics,axe};
+                report.pages[key]={status:response?.status()||0,consoleErrors,pageErrors,failed:failed.filter(x=>x.url.startsWith(base)),metrics,axe};
                 await page.close();
               }
               await context.close();
             }
             const ctx=await browser.newContext({viewportSize:modes.desktop,reducedMotion:'reduce'});
+            await ctx.route('**/*',keepLocal);
             const d=await ctx.newPage(); const errors=[]; d.on('pageerror',e=>errors.push(String(e))); d.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
-            await d.goto(base+'diagnosis.html',{waitUntil:'networkidle'}); await d.waitForTimeout(500);
+            await d.goto(base+'diagnosis.html',{waitUntil:'load',timeout:15000}); await d.waitForTimeout(700);
             const start=d.locator('#startDiagnosis');
             report.diagnosis.startVisible=await start.isVisible();
             if(report.diagnosis.startVisible){
