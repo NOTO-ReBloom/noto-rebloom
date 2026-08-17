@@ -1,0 +1,127 @@
+from pathlib import Path
+import re
+
+PAGES=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']
+
+# HOME: remove the duplicate JOIN route, move sponsor proof before the team,
+# remove the repeated closing explanation, and make the final step precise.
+p=Path('index.html'); t=p.read_text(encoding='utf-8')
+t,n=re.subn(r'<a class="nr-choice" href="https://forms\.gle/6ZMrhrhtWmBCQViD8".*?</a>','',t,count=1,flags=re.S); assert n==1
+sponsor=re.search(r'<section class="nr-sponsor-feature">.*?</section>',t,re.S); assert sponsor
+sponsor_html=sponsor.group(0); t=t[:sponsor.start()]+t[sponsor.end():]
+anchor='<section class="people-trust" id="people-behind-project">'; assert anchor in t
+t=t.replace(anchor,sponsor_html+anchor,1)
+t,n=re.subn(r'<section class="section section--soil"><div class="container split-story"><div><p class="eyebrow eyebrow--light"><span>WHY RE:BLOOM\?</span>.*?</section>','',t,count=1,flags=re.S); assert n==1
+t=t.replace('<span class="story-dot">9.20</span><small>次へ</small><h3>報告会、そして泥ん子運動会</h3>','<span class="story-dot">9.20</span><small>本番へ</small><h3>泥ん子運動会本番へ</h3>')
+t=t.replace('<div class="nr-logo-placeholder">Bukatsu<br><small>正式ロゴ受領後に差し替え</small></div>','<div class="nr-logo-placeholder">Bukatsu Page</div>')
+p.write_text(t,encoding='utf-8')
+
+# EVENT: remove the duplicate middle CTA.
+p=Path('event.html'); t=p.read_text(encoding='utf-8')
+t,n=re.subn(r'<section class="conversion-band" id="event-mid-cta">.*?</section>','',t,count=1,flags=re.S); assert n==1
+p.write_text(t,encoding='utf-8')
+
+# PARTNER: remove duplicate gallery and unfinished/conditional public promises.
+p=Path('partner.html'); t=p.read_text(encoding='utf-8')
+t,n=re.subn(r'<section class="visual-mosaic-section" id="partner-visual">.*?</section>','',t,count=1,flags=re.S); assert n==1
+t=t.replace('<div class="nr-logo-placeholder">Bukatsu<br><small>正式ロゴ受領後に差し替え</small></div>','<div class="nr-logo-placeholder">Bukatsu Page</div>')
+old='<article><span>02</span><h3>スタッフTシャツ</h3><p>ご提供いただいた正式ロゴを、スタッフTシャツに掲載する予定です。</p></article>'
+new='<article><span>02</span><h3>サービス・事業紹介</h3><p>企業名だけでなく、サービス名や取り組みもWebサイト上でご紹介します。</p></article>'
+assert old in t; t=t.replace(old,new,1)
+p.write_text(t,encoding='utf-8')
+
+# GLOBAL: source HTML starts close to its final rendered state and loads final CSS in parallel.
+final_css=''.join([
+    '<link rel="stylesheet" href="rebloom-detail.css?v=20260817e">',
+    '<link rel="stylesheet" href="rebloom-refine.css?v=20260817n">',
+    '<link rel="stylesheet" href="rebloom-balance.css?v=20260817n">',
+    '<link rel="stylesheet" href="rebloom-tight.css?v=20260817n">',
+    '<link rel="stylesheet" href="rebloom-purpose.css?v=20260817q">',
+    '<link rel="stylesheet" href="rebloom-purpose-complete.css?v=20260817q">'
+])
+for name in PAGES:
+    p=Path(name); t=p.read_text(encoding='utf-8')
+    t=re.sub(r'student-refresh\.css\?v=20260813[a-z]','student-refresh.css?v=20260813c',t)
+    t=re.sub(r'<div class="join-dock">.*?</div>','',t,flags=re.S)
+    if 'rebloom-purpose-complete.css?v=20260817q' not in t:
+        t=t.replace('</head>',final_css+'</head>',1)
+    if not re.search(r'<main\b[^>]*\bid="main"',t):
+        t=re.sub(r'<main(\s*[^>]*)>',lambda m:'<main id="main"'+m.group(1)+'>',t,count=1)
+    if 'class="skip-link"' not in t:
+        t=re.sub(r'(<body\b[^>]*>)',r'\1<a class="skip-link" href="#main">本文へ移動</a>',t,count=1)
+    t=re.sub(r'site\.js\?v=[^"\']+','site.js?v=20260817q',t)
+    t=re.sub(r'rebloom-unified\.js\?v=20260817[a-z]','rebloom-unified.js?v=20260817q',t)
+    p.write_text(t,encoding='utf-8')
+
+# EVENT accountability: keep the promise to report results, but avoid four empty pre-event cards.
+p=Path('site.js'); t=p.read_text(encoding='utf-8')
+pattern=re.compile(r'report\.innerHTML=`<div class="container"><div class="after-report-board">.*?</div></div>`;',re.S)
+replacement='''report.innerHTML=`<div class="container"><div class="after-report-board after-report-board--compact"><div class="after-report-head"><div><p class="eyebrow"><span>開催後の報告</span><small>EVENT REPORT</small></p><h2>開催後は、結果と次の改善点を公開します。</h2><p>参加人数やアンケート、運営で分かった課題を整理し、次の活動につなげます。</p></div><span class="after-report-status">開催後に更新</span></div></div></div>`;'''
+t,n=pattern.subn(replacement,t,count=1); assert n==1,n
+p.write_text(t,encoding='utf-8')
+
+# HOME sponsor section participates in the proof hierarchy.
+p=Path('rebloom-purpose.js'); t=p.read_text(encoding='utf-8')
+needle="    tag('#people-behind-project','people','high');"
+if "tag('.nr-sponsor-feature','proof');" not in t:
+    assert needle in t
+    t=t.replace(needle,"    tag('.nr-sponsor-feature','proof');\n"+needle,1)
+p.write_text(t,encoding='utf-8')
+
+# Final CSS: fix remaining 44px target failure and compact pre-event reporting.
+p=Path('rebloom-purpose-complete.css'); css=p.read_text(encoding='utf-8')
+marker='/* FINAL Q — last-mile usability and pre-event clarity */'
+append=r'''
+
+/* FINAL Q — last-mile usability and pre-event clarity */
+body.rb-unified .flower-atlas-filters button,
+body.rb-unified .rbpc-atlas-filters button{min-width:44px!important;min-height:44px!important;padding:9px 12px!important;display:inline-flex;align-items:center;justify-content:center}
+body.rb-unified #after-event-report{padding-top:clamp(28px,3.5vw,42px)!important;padding-bottom:clamp(28px,3.5vw,42px)!important;background:linear-gradient(135deg,#fffaf1,#f4f8ef)!important}
+body.rb-unified #after-event-report .after-report-board--compact{padding:clamp(22px,3vw,32px)!important;border-radius:22px!important;border:1px solid rgba(24,76,63,.14)!important;box-shadow:0 8px 24px rgba(23,58,49,.055)!important;background:rgba(255,255,255,.88)!important}
+body.rb-unified #after-event-report .after-report-board--compact .after-report-head{margin:0!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:24px!important}
+body.rb-unified #after-event-report .after-report-board--compact h2{margin:7px 0 8px!important;font-size:clamp(25px,3vw,36px)!important;line-height:1.25!important;max-width:18em}
+body.rb-unified #after-event-report .after-report-board--compact p:last-child{margin:0!important;max-width:62ch;color:#586a62!important}
+body.rb-unified #after-event-report .after-report-status{flex:0 0 auto;white-space:nowrap}
+body.rb-unified .nr-sponsor-feature[data-rb-purpose="proof"]{margin-top:0}
+body.rb-unified .rbpc-deadline-panel h2{font-size:clamp(34px,4.2vw,58px)!important;line-height:1.08!important;overflow-wrap:anywhere}
+@media(max-width:620px){
+  body.rb-unified #after-event-report .after-report-board--compact{padding:20px 18px!important}
+  body.rb-unified #after-event-report .after-report-board--compact .after-report-head{display:block!important}
+  body.rb-unified #after-event-report .after-report-status{display:inline-flex;margin-top:13px}
+  body.rb-unified #after-event-report .after-report-board--compact h2{font-size:25px!important}
+  body.rb-unified .rbpc-deadline-panel h2{font-size:36px!important;overflow-wrap:normal}
+}
+'''
+if marker not in css:
+    css += append
+p.write_text(css,encoding='utf-8')
+
+# Bump active loading chain.
+p=Path('rebloom-detail.js'); t=p.read_text(encoding='utf-8')
+t=re.sub(r'rebloom-purpose\.css\?v=20260817[a-z]','rebloom-purpose.css?v=20260817q',t)
+t=re.sub(r'rebloom-purpose-complete\.css\?v=20260817[a-z]','rebloom-purpose-complete.css?v=20260817q',t)
+t=re.sub(r'rebloom-purpose\.js\?v=20260817[a-z]','rebloom-purpose.js?v=20260817q',t)
+t=re.sub(r'rebloom-purpose-complete\.js\?v=20260817[a-z]','rebloom-purpose-complete.js?v=20260817q',t)
+p.write_text(t,encoding='utf-8')
+p=Path('rebloom-unified.js'); t=p.read_text(encoding='utf-8')
+t=re.sub(r'rebloom-detail\.js\?v=20260817[a-z]','rebloom-detail.js?v=20260817q',t)
+p.write_text(t,encoding='utf-8')
+
+# Assertions before the workflow is allowed to commit.
+for name in PAGES:
+    t=Path(name).read_text(encoding='utf-8')
+    assert 'rebloom-unified.js?v=20260817q' in t,name
+    assert 'rebloom-purpose-complete.css?v=20260817q' in t,name
+    assert 'class="skip-link"' in t,name
+    assert re.search(r'<main\b[^>]*\bid="main"',t),name
+    assert 'join-dock' not in t,name
+assert 'event-mid-cta' not in Path('event.html').read_text(encoding='utf-8')
+assert 'partner-visual' not in Path('partner.html').read_text(encoding='utf-8')
+home=Path('index.html').read_text(encoding='utf-8')
+assert 'WHY RE:BLOOM?' not in home
+assert home.index('nr-sponsor-feature') < home.index('people-behind-project') < home.index('conversion-band')
+assert '正式ロゴ受領後に差し替え' not in home
+partner=Path('partner.html').read_text(encoding='utf-8')
+assert 'スタッフTシャツ' not in partner and '正式ロゴ受領後に差し替え' not in partner
+for name in ['rebloom-purpose.css','rebloom-purpose-complete.css','rebloom-tight.css','rebloom-balance.css','rebloom-refine.css']:
+    x=Path(name).read_text(encoding='utf-8'); assert x.count('{')==x.count('}'),name
