@@ -26,7 +26,7 @@ const vps=[{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,heig
           while(n=walker.nextNode()){
             if(!n.textContent.trim())continue;
             const parent=n.parentElement;
-            if(parent){const ps=getComputedStyle(parent);if(ps.position==='absolute'||ps.position==='fixed')continue;}
+            if(parent){if(parent.closest('.visual-label'))continue;const ps=getComputedStyle(parent);if(ps.position==='absolute'||ps.position==='fixed')continue;}
             const range=document.createRange();range.selectNodeContents(n);
             for(const r of range.getClientRects()){
               if(r.width<1||r.height<1)continue;
