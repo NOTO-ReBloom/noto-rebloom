@@ -1,0 +1,32 @@
+name: Apply sponsor effect and crowdfunding visual fix v3
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply refinements
+        run: python3 tools/apply_sponsor_effect.py
+      - name: Validate
+        run: |
+          node --check site.js
+          node --check rebloom-unified.js
+          node --check rebloom-detail.js
+          node --check rebloom-purpose.js
+          node --check rebloom-purpose-complete.js
+          python3 -c "from pathlib import Path; t=Path('rebloom-purpose-complete.css').read_text(); assert t.count('{')==t.count('}')"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html partner.html learn.html event.html diagnosis.html 404.html rebloom-purpose-complete.css rebloom-detail.js rebloom-unified.js
+          git diff --cached --quiet || git commit -m "協賛紹介の効果とクラファン実績カードを改善"
+          git push
