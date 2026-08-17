@@ -242,3 +242,11 @@ body.rb-unified .rbpc-deadline-panel h2{font-size:clamp(34px,4.2vw,58px)!importa
   body.rb-unified #after-event-report .after-report-board--compact h2{font-size:25px!important}
   body.rb-unified .rbpc-deadline-panel h2{font-size:36px!important;overflow-wrap:normal}
 }
+
+
+/* BUKATSU NAVI — official sponsor logo */
+body.rb-unified .nr-sponsor-logo{display:flex;align-items:center;justify-content:center;width:100%;min-height:142px;padding:18px 20px;border:1px solid rgba(24,58,49,.12);border-radius:18px;background:#fff;text-decoration:none;overflow:hidden}
+body.rb-unified .nr-sponsor-logo img{display:block;width:min(100%,360px);height:auto;max-height:126px;object-fit:contain}
+body.rb-unified .nr-sponsor-identity>.nr-sponsor-logo+p{margin-top:12px!important}
+body.rb-unified .nr-sponsor-story>p:first-of-type{font-size:15px!important;line-height:1.95!important;color:#40564d!important}
+@media(max-width:620px){body.rb-unified .nr-sponsor-logo{min-height:112px;padding:14px 16px}body.rb-unified .nr-sponsor-logo img{max-height:96px}body.rb-unified .nr-sponsor-story>p:first-of-type{font-size:14px!important}}
