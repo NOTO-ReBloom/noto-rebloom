@@ -1,0 +1,69 @@
+name: Audit Bukatsu Navi sponsor update
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install audit runtime
+        run: npm install --no-save playwright-core@1.55.0
+      - name: Run browser checks
+        run: |
+          mkdir -p sponsor-audit
+          python3 -m http.server 8000 >/tmp/rebloom-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          cat > sponsor-audit.cjs <<'JS'
+          const { chromium } = require('playwright-core');
+          const fs=require('fs');
+          const base='http://127.0.0.1:8000/';
+          const pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html'];
+          const desc='全国の高校・中学・大学の”部活”が検索できるサイトです。偏差値だけじゃない、部活動でも学校探しができる、部活動に特化した新しいメディアです。';
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
+            for(const viewport of [{name:'desktop',width:1440,height:1000},{name:'mobile',width:390,height:844}]){
+              const ctx=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},reducedMotion:'reduce'});
+              for(const file of pages){
+                const page=await ctx.newPage();
+                const errors=[]; page.on('pageerror',e=>errors.push(String(e)));
+                const res=await page.goto(base+file,{waitUntil:'load',timeout:20000});
+                await page.waitForTimeout(700);
+                const metrics=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,h1:document.querySelectorAll('h1').length}));
+                if(!res||res.status()>=400) throw new Error(`${file}/${viewport.name}: HTTP ${res&&res.status()}`);
+                if(metrics.overflow>2) throw new Error(`${file}/${viewport.name}: overflow ${metrics.overflow}`);
+                if(errors.length) throw new Error(`${file}/${viewport.name}: ${errors.join(' | ')}`);
+                if(['index.html','partner.html'].includes(file)){
+                  const data=await page.evaluate((desc)=>{
+                    const logo=document.querySelector('.nr-sponsor-logo img');
+                    const sponsor=document.querySelector('.nr-sponsor-feature');
+                    return {logo:!!logo,visible:!!logo&&logo.getBoundingClientRect().width>80,natural:!!logo&&logo.naturalWidth>0,src:logo&&logo.getAttribute('src'),hasDesc:sponsor&&sponsor.textContent.includes(desc),old:sponsor&&sponsor.textContent.includes('Bukatsu Page')};
+                  },desc);
+                  if(!data.logo||!data.visible||!data.natural||data.src!=='bukatsu-navi-logo.svg'||!data.hasDesc||data.old) throw new Error(`${file}/${viewport.name}: sponsor ${JSON.stringify(data)}`);
+                  await page.screenshot({path:`sponsor-audit/${file.replace('.html','')}-${viewport.name}.png`,fullPage:true});
+                }
+                await page.close();
+              }
+              await ctx.close();
+            }
+            await browser.close();
+            fs.writeFileSync('sponsor-audit/result.txt','All sponsor and page checks passed.\n');
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          node sponsor-audit.cjs
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: bukatsu-navi-audit
+          path: sponsor-audit
+          retention-days: 2
