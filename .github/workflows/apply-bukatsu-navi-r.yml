@@ -1,0 +1,106 @@
+name: Apply Bukatsu Navi sponsor update
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update sponsor presentation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          description='全国の高校・中学・大学の”部活”が検索できるサイトです。偏差値だけじゃない、部活動でも学校探しができる、部活動に特化した新しいメディアです。'
+
+          home_section=f'''<section class="nr-sponsor-feature"><div class="nr-section-head"><p class="nr-kicker">SPONSOR</p><h2>協賛企業のご紹介</h2><p>NOTO Re:Bloomの活動を応援してくださっている企業と、そのサービスをご紹介します。</p></div><article class="nr-main-sponsor"><div class="nr-sponsor-identity"><span class="nr-badge">協賛企業</span><a class="nr-sponsor-logo" href="https://bukatsunavi.com/" target="_blank" rel="sponsored noopener" aria-label="部活ナビ公式サイト"><img src="bukatsu-navi-logo.svg" alt="部活ナビ"></a><p>株式会社アーネストテクノロジーズ</p></div><div class="nr-sponsor-story"><h3>部活動から学校を探せる「部活ナビ」</h3><p>{description}</p><p>株式会社アーネストテクノロジーズからREADYFORを通じてご支援いただきました。</p><div class="nr-actions"><a class="nr-btn nr-btn--purple" href="https://bukatsunavi.com/" target="_blank" rel="sponsored noopener">部活ナビを見る</a><a class="nr-link" href="partner.html">協賛・協力について →</a></div></div></article></section>'''
+
+          partner_section=f'''<section class="nr-sponsor-feature" id="current-partners"><div class="nr-section-head"><p class="nr-kicker">CURRENT SPONSOR</p><h2>現在の協賛企業</h2><p>ご支援いただいている企業と、そのサービスをご紹介します。</p></div><article class="nr-main-sponsor"><div class="nr-sponsor-identity"><span class="nr-badge">協賛企業</span><a class="nr-sponsor-logo" href="https://bukatsunavi.com/" target="_blank" rel="sponsored noopener" aria-label="部活ナビ公式サイト"><img src="bukatsu-navi-logo.svg" alt="部活ナビ"></a><p>株式会社アーネストテクノロジーズ</p></div><div class="nr-sponsor-story"><h3>学校選びに、部活動という新しい軸を。「部活ナビ」</h3><p>{description}</p><p>「部活ナビ」は株式会社アーネストテクノロジーズが提供しています。今回、READYFORを通じてNOTO Re:Bloomをご支援いただきました。</p><div class="nr-actions"><a class="nr-btn nr-btn--purple" href="https://bukatsunavi.com/" target="_blank" rel="sponsored noopener">部活ナビを見る</a></div></div></article></section>'''
+
+          p=Path('index.html'); t=p.read_text(encoding='utf-8')
+          t,n=re.subn(r'<section class="nr-sponsor-feature">.*?</section>',home_section,t,count=1,flags=re.S)
+          assert n==1,n
+          p.write_text(t,encoding='utf-8')
+
+          p=Path('partner.html'); t=p.read_text(encoding='utf-8')
+          t,n=re.subn(r'<section class="nr-sponsor-feature" id="current-partners">.*?</section>',partner_section,t,count=1,flags=re.S)
+          assert n==1,n
+          p.write_text(t,encoding='utf-8')
+
+          css=Path('rebloom-purpose-complete.css')
+          t=css.read_text(encoding='utf-8')
+          marker='/* BUKATSU NAVI — official sponsor logo */'
+          if marker not in t:
+              t += r'''
+
+/* BUKATSU NAVI — official sponsor logo */
+body.rb-unified .nr-sponsor-logo{display:flex;align-items:center;justify-content:center;width:100%;min-height:142px;padding:18px 20px;border:1px solid rgba(24,58,49,.12);border-radius:18px;background:#fff;text-decoration:none;overflow:hidden}
+body.rb-unified .nr-sponsor-logo img{display:block;width:min(100%,360px);height:auto;max-height:126px;object-fit:contain}
+body.rb-unified .nr-sponsor-identity>.nr-sponsor-logo+p{margin-top:12px!important}
+body.rb-unified .nr-sponsor-story>p:first-of-type{font-size:15px!important;line-height:1.95!important;color:#40564d!important}
+@media(max-width:620px){body.rb-unified .nr-sponsor-logo{min-height:112px;padding:14px 16px}body.rb-unified .nr-sponsor-logo img{max-height:96px}body.rb-unified .nr-sponsor-story>p:first-of-type{font-size:14px!important}}
+'''
+          css.write_text(t,encoding='utf-8')
+
+          # New public cache generation for the changed sponsor assets/styles.
+          pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']
+          for name in pages:
+              p=Path(name); t=p.read_text(encoding='utf-8')
+              t=re.sub(r'rebloom-purpose-complete\.css\?v=20260817[a-z]','rebloom-purpose-complete.css?v=20260817r',t)
+              t=re.sub(r'rebloom-unified\.js\?v=20260817[a-z]','rebloom-unified.js?v=20260817r',t)
+              p.write_text(t,encoding='utf-8')
+
+          p=Path('rebloom-detail.js'); t=p.read_text(encoding='utf-8')
+          t=re.sub(r'rebloom-purpose-complete\.css\?v=20260817[a-z]','rebloom-purpose-complete.css?v=20260817r',t)
+          p.write_text(t,encoding='utf-8')
+          p=Path('rebloom-unified.js'); t=p.read_text(encoding='utf-8')
+          t=re.sub(r'rebloom-detail\.js\?v=20260817[a-z]','rebloom-detail.js?v=20260817r',t)
+          p.write_text(t,encoding='utf-8')
+
+          assert Path('bukatsu-navi-logo.svg').exists()
+          for name in ['index.html','partner.html']:
+              x=Path(name).read_text(encoding='utf-8')
+              assert 'bukatsu-navi-logo.svg' in x
+              assert 'https://bukatsunavi.com/' in x
+              assert description in x
+              assert 'Bukatsu Page' not in x
+          for name in pages:
+              x=Path(name).read_text(encoding='utf-8')
+              assert 'rebloom-purpose-complete.css?v=20260817r' in x,name
+              assert 'rebloom-unified.js?v=20260817r' in x,name
+          PY
+      - name: Validate JavaScript and local references
+        run: |
+          node --check site.js
+          node --check rebloom-unified.js
+          node --check rebloom-detail.js
+          node --check rebloom-tight.js
+          node --check rebloom-purpose.js
+          node --check rebloom-purpose-complete.js
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          for name in ['index.html','partner.html']:
+              t=Path(name).read_text(encoding='utf-8')
+              for url in re.findall(r'\bsrc=["\']([^"\']+)',t):
+                  if url.startswith(('http:','https:','data:','//')): continue
+                  local=url.split('?',1)[0]
+                  assert Path(local).exists(),(name,url)
+          css=Path('rebloom-purpose-complete.css').read_text(encoding='utf-8')
+          assert css.count('{')==css.count('}')
+          PY
+      - name: Commit sponsor update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html learn.html event.html partner.html diagnosis.html 404.html rebloom-purpose-complete.css rebloom-detail.js rebloom-unified.js
+          git diff --cached --quiet || git commit -m "協賛企業の部活ナビ正式ロゴと紹介文を反映"
+          git push
