@@ -1,0 +1,65 @@
+name: Apply layout fit V
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply second visual pass
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          css=Path('rebloom-purpose-complete.css')
+          t=css.read_text(encoding='utf-8')
+          marker='/* VISUAL DENSITY + CARD FIT V / second pass */'
+          block=r'''
+          /* VISUAL DENSITY + CARD FIT V / second pass */
+          body.rb-unified .nr-value-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;max-width:920px!important;margin-inline:auto!important}
+          body.rb-unified .rbpc-logistics-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:9px!important;background:transparent!important}
+          body.rb-unified .rbpc-logistic-1,body.rb-unified .rbpc-logistic-2,body.rb-unified .rbpc-logistic-3{grid-column:span 2!important}
+          body.rb-unified .rbpc-logistic-4,body.rb-unified .rbpc-logistic-5{grid-column:span 3!important}
+          body.rb-unified .rbpc-logistics-grid>div{width:auto!important;max-width:none!important;min-width:0!important}
+          @media (max-width:720px){
+            body.rb-unified .nr-value-grid{grid-template-columns:1fr!important;gap:9px!important}
+            body.rb-unified .rbpc-logistics-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+            body.rb-unified .rbpc-logistic-1{grid-column:1/-1!important}
+            body.rb-unified .rbpc-logistic-2,body.rb-unified .rbpc-logistic-3,body.rb-unified .rbpc-logistic-4,body.rb-unified .rbpc-logistic-5{grid-column:auto!important}
+            body.rb-unified .nr-main-sponsor--navi::before,body.rb-unified .nr-main-sponsor--navi::after{display:none!important}
+          }
+          '''
+          if marker not in t:
+              t += '\n'+block+'\n'
+          css.write_text(t,encoding='utf-8')
+          for name in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+              p=Path(name); x=p.read_text(encoding='utf-8')
+              x=re.sub(r'rebloom-purpose-complete\.css\?v=20260817[a-z]','rebloom-purpose-complete.css?v=20260817v',x)
+              p.write_text(x,encoding='utf-8')
+          p=Path('rebloom-detail.js'); x=p.read_text(encoding='utf-8')
+          x=re.sub(r'rebloom-purpose-complete\.css\?v=20260817[a-z]','rebloom-purpose-complete.css?v=20260817v',x)
+          p.write_text(x,encoding='utf-8')
+          PY
+      - name: Validate
+        run: |
+          node --check rebloom-detail.js
+          python3 - <<'PY'
+          from pathlib import Path
+          css=Path('rebloom-purpose-complete.css').read_text(encoding='utf-8')
+          assert css.count('{')==css.count('}')
+          assert 'VISUAL DENSITY + CARD FIT V' in css
+          for n in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+              assert 'rebloom-purpose-complete.css?v=20260817v' in Path(n).read_text(encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rebloom-purpose-complete.css rebloom-detail.js index.html learn.html event.html partner.html diagnosis.html 404.html
+          git diff --cached --quiet && exit 0
+          git commit -m '横並びカードの残る詰まりと空白を修正'
+          git push
