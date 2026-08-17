@@ -163,7 +163,7 @@
     const report=document.createElement('section');
     report.id='after-event-report';
     report.className='section after-report';
-    report.innerHTML=`<div class="container"><div class="after-report-board"><div class="after-report-head"><div><p class="eyebrow"><span>開催後の報告</span><small>EVENT REPORT</small></p><h2>9月20日の結果も、このサイトに残します。</h2><p>開催して終わりにせず、実際に何人が参加したのか、どんな反応があったのか、次に直したいことまでまとめて公開する予定です。</p></div><span class="after-report-status">開催後に更新</span></div><div class="after-report-grid"><article><span>01</span><b>参加人数</b><p>実際に当日参加した人数を掲載します。</p><strong>—</strong></article><article><span>02</span><b>子どもの参加</b><p>子どもたちがどれくらい参加したかを残します。</p><strong>—</strong></article><article><span>03</span><b>また能登に来たい</b><p>参加後アンケートで、次の来訪につながったかを確認します。</p><strong>—</strong></article><article><span>04</span><b>次に直したいこと</b><p>良かった点だけでなく、運営や土地利用で分かった課題も整理します。</p><strong>—</strong></article></div></div></div>`;
+    report.innerHTML=`<div class="container"><div class="after-report-board after-report-board--compact"><div class="after-report-head"><div><p class="eyebrow"><span>開催後の報告</span><small>EVENT REPORT</small></p><h2>開催後は、結果と次の改善点を公開します。</h2><p>参加人数やアンケート、運営で分かった課題を整理し、次の活動につなげます。</p></div><span class="after-report-status">開催後に更新</span></div></div></div>`;
     if(join) main.insertBefore(report,join); else main.appendChild(report);
   };
 

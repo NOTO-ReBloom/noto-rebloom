@@ -24,6 +24,7 @@
     tag('#origin','story');
     tag('#purpose','rationale');
     tag('#project-story','progress');
+    tag('.nr-sponsor-feature','proof');
     tag('#people-behind-project','people','high');
     tag('main>.conversion-band','action','high');
 
