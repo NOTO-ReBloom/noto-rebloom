@@ -29,11 +29,11 @@ jobs:
           body.rb-unified.nr-new-partner .nr-value-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;max-width:940px!important;margin-inline:auto!important}
           body.rb-unified.nr-new-partner .nr-value-grid>article{width:auto!important;max-width:none!important;min-width:0!important;height:auto!important;overflow:hidden!important}
 
-          /* Event facts: 3 balanced cards + 2 balanced cards. */
-          body.rb-unified .rbpc-logistics-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:9px!important;background:transparent!important}
-          body.rb-unified .rbpc-logistics-grid>:nth-child(1),body.rb-unified .rbpc-logistics-grid>:nth-child(2),body.rb-unified .rbpc-logistics-grid>:nth-child(3){grid-column:span 2!important}
-          body.rb-unified .rbpc-logistics-grid>:nth-child(4),body.rb-unified .rbpc-logistics-grid>:nth-child(5){grid-column:span 3!important}
-          body.rb-unified .rbpc-logistics-grid>div{width:auto!important;max-width:none!important;min-width:0!important;height:auto!important;overflow:hidden!important}
+          /* Event facts: target the static event-summary DOM with higher specificity. */
+          body.rb-unified.nr-new-event .event-summary .summary-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:9px!important;background:transparent!important}
+          body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(1),body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(2),body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(3){grid-column:span 2!important}
+          body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(4),body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(5){grid-column:span 3!important}
+          body.rb-unified.nr-new-event .event-summary .summary-grid>div{width:auto!important;max-width:none!important;min-width:0!important;height:auto!important;overflow:hidden!important}
 
           /* Photo captions stay inside their photo cards. */
           body.rb-unified .visual-tile{position:relative!important;overflow:hidden!important}
@@ -47,9 +47,9 @@ jobs:
           @media(max-width:720px){
             body.rb-unified :is(.nr-home-hero,.page-hero):not(.page-hero--diagnosis){padding-top:72px!important;padding-bottom:24px!important}
             body.rb-unified.nr-new-partner .nr-value-grid{grid-template-columns:1fr!important;gap:9px!important}
-            body.rb-unified .rbpc-logistics-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-            body.rb-unified .rbpc-logistics-grid>:nth-child(1){grid-column:1/-1!important}
-            body.rb-unified .rbpc-logistics-grid>:nth-child(2),body.rb-unified .rbpc-logistics-grid>:nth-child(3),body.rb-unified .rbpc-logistics-grid>:nth-child(4),body.rb-unified .rbpc-logistics-grid>:nth-child(5){grid-column:auto!important}
+            body.rb-unified.nr-new-event .event-summary .summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+            body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(1){grid-column:1/-1!important}
+            body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(2),body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(3),body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(4),body.rb-unified.nr-new-event .event-summary .summary-grid>div:nth-child(5){grid-column:auto!important}
             body.rb-unified .visual-tile figcaption{left:7px!important;right:7px!important;bottom:7px!important;max-width:calc(100% - 14px)!important;padding:7px 9px!important;font-size:10.5px!important}
             body.rb-unified .rbpc-schedule-flow article{padding:14px!important}
           }
@@ -98,20 +98,20 @@ jobs:
                 await page.waitForTimeout(1000);
                 await page.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=650){scrollTo(0,y);await new Promise(r=>setTimeout(r,12));}scrollTo(0,0)});
                 await page.waitForTimeout(180);
-                const m=await page.evaluate(({file,vpName})=>{
+                const m=await page.evaluate(()=>{
                   const visible=el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&+s.opacity!==0&&r.width>8&&r.height>8};
-                  const selectors='article,.join-fact,.nr-choice,.definition-card,.faq-card,.visual-tile,.nr-value-grid>article,.industry-grid>article,.rbpc-logistics-grid>div';
+                  const selectors='article,.join-fact,.nr-choice,.definition-card,.faq-card,.visual-tile,.nr-value-grid>article,.industry-grid>article,.event-summary .summary-grid>div';
                   const cards=[...new Set([...document.querySelectorAll(selectors)])].filter(visible);
                   const outside=[];
                   for(const card of cards){const r=card.getBoundingClientRect();const walker=document.createTreeWalker(card,NodeFilter.SHOW_TEXT);let n,bad=false,sample='';while(n=walker.nextNode()){if(!n.textContent.trim())continue;const range=document.createRange();range.selectNodeContents(n);for(const tr of range.getClientRects()){if(tr.width<1||tr.height<1)continue;if(tr.left<r.left-2||tr.right>r.right+2||tr.top<r.top-2||tr.bottom>r.bottom+2){bad=true;sample=n.textContent.trim().slice(0,60);break}}if(bad)break}if(bad)outside.push({cls:(card.className||'').toString().slice(0,140),sample,w:Math.round(r.width),h:Math.round(r.height)})}
                   const value=document.querySelector('.nr-value-grid');
                   const valueCols=value?getComputedStyle(value).gridTemplateColumns.split(/\s+/).filter(Boolean).length:null;
-                  const logistics=document.querySelector('.rbpc-logistics-grid');
+                  const logistics=document.querySelector('.event-summary .summary-grid');
                   let logisticsRows=null;
                   if(logistics){const tops=[...logistics.children].map(e=>Math.round(e.getBoundingClientRect().top));const groups=[];for(const t of tops){let g=groups.find(x=>Math.abs(x.top-t)<3);if(g)g.count++;else groups.push({top:t,count:1})}logisticsRows=groups.map(x=>x.count)}
                   const sections=[...document.querySelectorAll('main>section')].filter(visible).map(sec=>{const r=sec.getBoundingClientRect(),s=getComputedStyle(sec);return {h:Math.round(r.height),pt:Math.round(parseFloat(s.paddingTop)||0),pb:Math.round(parseFloat(s.paddingBottom)||0)}});
                   return {docOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,outside,valueCols,logisticsRows,hugeSpace:sections.filter(x=>x.h>680&&x.pt+x.pb>145).length};
-                },{file,vpName:vp.name});
+                });
                 const badSponsor=file==='partner.html'&&((vp.name==='desktop'&&m.valueCols!==2)||(vp.name==='mobile'&&m.valueCols!==1));
                 const badLogistics=file==='event.html'&&vp.name==='desktop'&&JSON.stringify(m.logisticsRows)!=='[3,2]';
                 report.push({file,vp:vp.name,status:res?.status(),errors,m,badSponsor,badLogistics});
