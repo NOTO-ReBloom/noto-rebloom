@@ -1,0 +1,52 @@
+name: Cache final Q
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump structural cache references
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('rebloom-detail.js')
+          t=p.read_text(encoding='utf-8')
+          t=re.sub(r'rebloom-tight\.css\?v=20260817[a-z]','rebloom-tight.css?v=20260817q',t)
+          t=re.sub(r'rebloom-tight\.js\?v=20260817[a-z]','rebloom-tight.js?v=20260817q',t)
+          p.write_text(t,encoding='utf-8')
+          for name in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+              p=Path(name); t=p.read_text(encoding='utf-8')
+              t=re.sub(r'rebloom-tight\.css\?v=20260817[a-z]','rebloom-tight.css?v=20260817q',t)
+              t=re.sub(r'rebloom-unified\.js\?v=20260817[a-z]','rebloom-unified.js?v=20260817q',t)
+              p.write_text(t,encoding='utf-8')
+          PY
+      - name: Validate final loading chain
+        run: |
+          node --check rebloom-detail.js
+          node --check rebloom-tight.js
+          python3 - <<'PY'
+          from pathlib import Path
+          d=Path('rebloom-detail.js').read_text(encoding='utf-8')
+          assert 'rebloom-tight.css?v=20260817q' in d
+          assert 'rebloom-tight.js?v=20260817q' in d
+          for name in ['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']:
+              t=Path(name).read_text(encoding='utf-8')
+              assert 'rebloom-tight.css?v=20260817q' in t,name
+              assert 'rebloom-unified.js?v=20260817q' in t,name
+          PY
+      - name: Commit cache bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rebloom-detail.js index.html learn.html event.html partner.html diagnosis.html 404.html
+          git diff --cached --quiet || git commit -m "構造改善を最終キャッシュ世代へ統一"
+          git push
