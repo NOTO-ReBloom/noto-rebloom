@@ -144,3 +144,79 @@ body.rb-unified .nr-choice-grid{padding-top:32px!important;padding-bottom:32px!i
   body.rb-unified .visual-tile figcaption{padding:8px 10px!important;font-size:10.75px!important;line-height:1.45!important}
   body.rb-unified .nr-choice-grid{padding-top:24px!important;padding-bottom:24px!important}
 }
+
+/* FINAL Y — photo-card cleanup: no ghost edges, no cropped source images */
+body.rb-unified .visual-mosaic{
+  align-items:stretch!important;
+}
+body.rb-unified .visual-mosaic .visual-tile{
+  display:flex!important;
+  flex-direction:column!important;
+  grid-template-rows:none!important;
+  height:100!!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  border-radius:22px!important;
+  background:#e9eee8!important;
+  isolation:isolate;
+}
+body.rb-unified .visual-mosaic .visual-tile::before,
+body.rb-unified .visual-mosaic .visual-tile::after{
+  display:none!important;
+  content:none!important;
+}
+body.rb-unified .visual-mosaic .visual-tile .visual-label{
+  display:none!important;
+}
+body.rb-unified .visual-mosaic .visual-tile>img{
+  position:static!important;
+  flex:1 1 0!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#e9eee8!important;
+  border-radius:0!important;
+  transform:none!important;
+}
+body.rb-unified .visual-mosaic .visual-tile:hover>img{
+  transform:none!important;
+}
+body.rb-unified .visual-mosaic .visual-tile figcaption{
+  position:static!important;
+  flex:0 0 auto!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:10px 12px!important;
+  inset:auto!important;
+  box-sizing:border-box!important;
+  border:0!important;
+  border-top:1px solid rgba(24,76,63,.10)!important;
+  border-radius:0!important;
+  background:#fffaf1!important;
+  color:#315047!important;
+  font-size:12px!important;
+  line-height:1.5!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+  overflow-wrap:break-word!important;
+}
+@media(min-width:901px){
+  body.rb-unified .visual-mosaic{grid-template-rows:230px 230px!important}
+}
+@media(min-width:621px) and (max-width:900px){
+  body.rb-unified .visual-mosaic{grid-template-rows:330px 200px!important}
+}
+@media(max-width:620px){
+  body.rb-unified .visual-mosaic{grid-template-rows:300px 190px 190px!important}
+  body.rb-unified .visual-mosaic .visual-tile figcaption{
+    padding:9px 10px!important;
+    font-size:11px!important;
+  }
+}
