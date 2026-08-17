@@ -31,13 +31,20 @@
       oldCards.replaceWith(figure);
     }
     injected?.remove();
+    /* The venue proof and global footer already give a clear route to the event. Avoid three consecutive join prompts. */
+    document.querySelector('#learn-join-cta')?.remove();
   }
 
   /* EVENT: hero, sticky mobile action and final CTA are enough. Remove the duplicate middle CTA. */
   if(page==='event.html') document.querySelector('#event-mid-cta')?.remove();
 
-  /* PARTNER: sponsorship information should appear immediately after the hero, not after another photo gallery. */
-  if(page==='partner.html') document.querySelector('#partner-visual')?.remove();
+  /* PARTNER: show real sponsorship proof before generic sponsor benefits, then explain what additional partners receive. */
+  if(page==='partner.html'){
+    document.querySelector('#partner-visual')?.remove();
+    const sponsor=document.querySelector('#current-partners');
+    const benefits=document.querySelector('.nr-value-prop');
+    if(sponsor&&benefits) benefits.before(sponsor);
+  }
 
   /* Content-aware spacing classes. Sparse sections no longer receive the same vertical padding as dense sections. */
   document.querySelectorAll('main>section').forEach(section=>{
