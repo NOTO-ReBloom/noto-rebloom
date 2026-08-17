@@ -1,0 +1,95 @@
+/* NOTO Re:Bloom — responsive visual fit pass / 2026-08-17 */
+/* Goal: readable cards at every width, with less dead space and no text forced into narrow fixed boxes. */
+body.rb-unified .rb-detail-card,
+body.rb-unified .rb-detail-card>*{box-sizing:border-box;min-width:0}
+body.rb-unified :is(.rb-detail-card,.join-fact,.summary-grid>div,.faq-card) :is(h2,h3,p,strong,b,span,small,a){max-width:100%;overflow-wrap:break-word;word-break:normal}
+body.rb-unified :is(.btn,.nr-btn,.rb-mobile-join a){white-space:normal;text-align:center;line-height:1.35}
+
+/* Global vertical rhythm: retain separation, remove poster-like empty bands. */
+body.rb-unified .section{padding-top:clamp(40px,4.2vw,54px)!important;padding-bottom:clamp(40px,4.2vw,54px)!important}
+body.rb-unified .rb-tight-sparse{padding-top:clamp(30px,3.5vw,42px)!important;padding-bottom:clamp(30px,3.5vw,42px)!important}
+body.rb-unified .section-heading{margin-bottom:16px!important}
+body.rb-unified :is(.nr-home-hero,.page-hero):not(.page-hero--diagnosis){padding-top:112px!important;padding-bottom:34px!important}
+body.rb-unified :is(.hero-grid,.page-hero-grid){gap:clamp(24px,3.2vw,40px)!important}
+body.rb-unified :is(.nr-home-hero,.nr-new-event .page-hero,.page-learn .page-hero,.nr-new-partner .page-hero) .photo-frame img{height:clamp(300px,34vw,430px)!important}
+body.rb-unified .visual-mosaic-section{padding-top:28px!important;padding-bottom:38px!important}
+body.rb-unified .nr-value-prop,body.rb-unified .nr-sponsor-feature{padding-top:38px!important;padding-bottom:38px!important}
+
+/* Home facts: keep the 4-value scan, but never clip the third line. */
+body.rb-unified .join-facts{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+body.rb-unified .join-fact{height:auto!important;min-height:112px!important;padding:13px 14px!important;overflow:visible!important;align-content:center}
+body.rb-unified .join-fact strong{font-size:clamp(26px,2.5vw,34px)!important;line-height:1.08!important;letter-spacing:-.025em}
+body.rb-unified .join-fact span{font-size:12.5px!important;line-height:1.45!important}
+
+/* General content cards: content determines height. Equal-height rows come from grid stretch, not clipping. */
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article,.faq-card){height:auto!important;min-height:0!important}
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article,.faq-card) h3{line-height:1.35!important}
+body.rb-unified :is(.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article,.faq-card) p{line-height:1.68!important}
+
+/* Event facts: fixed 74px shells were too short for labels + values. */
+body.rb-unified .rbpc-logistics-grid>div,body.rb-unified .summary-grid>div{height:auto!important;min-height:88px!important;padding:12px 14px!important;overflow:visible!important;justify-content:center!important}
+body.rb-unified .rbpc-logistics-grid>div b,body.rb-unified .summary-grid>div b{font-size:clamp(19px,1.7vw,23px)!important;line-height:1.18!important;overflow-wrap:normal}
+body.rb-unified .rbpc-logistics-grid>div span,body.rb-unified .summary-grid>div span{font-size:11.5px!important;line-height:1.35!important}
+body.rb-unified .rbpc-schedule-flow article{height:auto!important;min-height:0!important}
+
+/* Sponsor: use the available width. The previous 820px shell made both desktop columns and mobile copy unnecessarily narrow. */
+body.rb-unified .nr-main-sponsor--navi{width:100%!important;max-width:1040px!important;margin-inline:auto!important;box-sizing:border-box!important}
+body.rb-unified .nr-main-sponsor--navi::after{display:none!important}
+body.rb-unified .nr-main-sponsor--navi>*{min-width:0!important}
+body.rb-unified .nr-sponsor-thanks{max-width:100%;white-space:normal!important}
+body.rb-unified .nr-navi-guide article{height:auto!important;min-height:0!important;min-width:0!important}
+body.rb-unified .nr-main-sponsor--navi .nr-sponsor-story h3{font-size:clamp(24px,2.5vw,34px)!important;line-height:1.35!important}
+
+/* Sponsor benefits: four cards in one row produced ~200px text columns. Use a 2×2 decision grid. */
+body.rb-unified .nr-new-partner .nr-value-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;max-width:1040px;margin-inline:auto}
+body.rb-unified .nr-new-partner .nr-value-grid article{padding:20px 21px!important;display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;column-gap:12px;align-items:start!important}
+body.rb-unified .nr-new-partner .nr-value-grid article>span{grid-row:1/3!important;margin:0!important}
+body.rb-unified .nr-new-partner .nr-value-grid article h3{margin:1px 0 5px!important;font-size:21px!important;line-height:1.35!important}
+body.rb-unified .nr-new-partner .nr-value-grid article p{font-size:14px!important;line-height:1.65!important}
+
+/* FAQ is utility content. On phones, one full-width answer is easier than two narrow columns. */
+body.rb-unified .nr-new-event .faq-card{height:auto!important;min-height:0!important}
+
+/* At laptop widths, 4-step process cards become cramped. Switch before they reach that point. */
+@media(max-width:1120px){
+  body.rb-unified #purpose .rbpc-process-flow{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.rb-unified #purpose .rbpc-process-flow::before{display:none!important}
+}
+
+@media(max-width:900px){
+  body.rb-unified .join-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.rb-unified .join-fact{min-height:94px!important;padding:11px 12px!important}
+  body.rb-unified .join-fact strong{font-size:27px!important}
+  body.rb-unified .nr-main-sponsor--navi{max-width:680px!important}
+}
+
+@media(max-width:700px){
+  body.rb-unified .nr-new-event :is(.rbpc-question-grid,.faq-grid){grid-template-columns:1fr!important}
+  body.rb-unified .nr-new-event .rbpc-question-grid .faq-card{border-right:0!important}
+  body.rb-unified .nr-new-partner .nr-value-grid{grid-template-columns:1fr!important}
+  body.rb-unified .rbpc-logistics-grid>div,body.rb-unified .summary-grid>div{min-height:82px!important;padding:11px 12px!important}
+}
+
+@media(max-width:620px){
+  body.rb-unified :is(.nr-home-hero,.page-hero):not(.page-hero--diagnosis){padding-top:86px!important;padding-bottom:24px!important}
+  body.rb-unified :is(.hero-grid,.page-hero-grid){gap:18px!important}
+  body.rb-unified :is(.nr-home-hero,.nr-new-event .page-hero,.page-learn .page-hero,.nr-new-partner .page-hero) .photo-frame img{height:225px!important}
+  body.rb-unified .section{padding-top:28px!important;padding-bottom:28px!important}
+  body.rb-unified .rb-tight-sparse{padding-top:24px!important;padding-bottom:24px!important}
+  body.rb-unified .visual-mosaic-section{padding-top:22px!important;padding-bottom:28px!important}
+  body.rb-unified .nr-value-prop,body.rb-unified .nr-sponsor-feature{padding-top:28px!important;padding-bottom:28px!important}
+  body.rb-unified .nr-main-sponsor--navi{width:100%!important;max-width:none!important;padding:18px 16px!important}
+  body.rb-unified .nr-main-sponsor--navi .nr-sponsor-story h3{font-size:24px!important}
+  body.rb-unified .nr-sponsor-thanks{font-size:9.5px!important;line-height:1.35!important;padding:6px 9px!important}
+  body.rb-unified .nr-new-partner .nr-value-grid article{padding:16px 17px!important;grid-template-columns:38px minmax(0,1fr)!important}
+  body.rb-unified .nr-new-partner .nr-value-grid article h3{font-size:19px!important}
+  body.rb-unified .nr-new-partner .nr-value-grid article p{font-size:13.5px!important}
+  body.rb-unified .section-heading h2,body.rb-unified .split-story h2{line-height:1.24!important}
+}
+
+@media(max-width:420px){
+  body.rb-unified .join-fact strong{font-size:24px!important}
+  body.rb-unified .join-fact span{font-size:11.5px!important}
+  body.rb-unified .join-fact small{font-size:9px!important}
+  body.rb-unified .rbpc-logistics-grid>div b,body.rb-unified .summary-grid>div b{font-size:20px!important}
+}
