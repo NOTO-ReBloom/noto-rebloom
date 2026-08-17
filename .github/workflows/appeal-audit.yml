@@ -1,0 +1,54 @@
+name: Appeal visual audit
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright-core@1.55.0
+      - name: Render home and event
+        run: |
+          cat > appeal-audit.cjs <<'JS'
+          const {chromium}=require('playwright-core');
+          const fs=require('fs');
+          (async()=>{
+            fs.mkdirSync('appeal-audit',{recursive:true});
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
+            for(const [name,w,h] of [['desktop',1440,1000],['mobile',390,844]]){
+              const ctx=await browser.newContext({viewport:{width:w,height:h},reducedMotion:'reduce'});
+              for(const file of ['index.html','event.html']){
+                const page=await ctx.newPage(); const errs=[]; page.on('pageerror',e=>errs.push(String(e)));
+                await page.route('**/*',r=>{const u=r.request().url(); if(u.startsWith('http://127.0.0.1:8000/')||u.startsWith('data:')||u.startsWith('blob:'))r.continue();else r.abort();});
+                const res=await page.goto('http://127.0.0.1:8000/'+file,{waitUntil:'load',timeout:20000});
+                await page.waitForTimeout(1000);
+                const m=await page.evaluate((file)=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,snapshot:!!document.querySelector('.rb-project-snapshot'),energy:!!document.querySelector('.rb-mud-energy'),cards:document.querySelectorAll('.rb-play-card').length}),file);
+                if(!res||res.status()>=400||errs.length||m.overflow>2)throw new Error(file+'/'+name+' '+JSON.stringify({errs,...m}));
+                if(file==='index.html'&&!m.snapshot)throw new Error('home snapshot missing');
+                if(file==='event.html'&&(!m.energy||m.cards!==4))throw new Error('event appeal missing '+JSON.stringify(m));
+                await page.screenshot({path:`appeal-audit/${file.replace('.html','')}-${name}.png`,fullPage:true});
+                await page.close();
+              }
+              await ctx.close();
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          python3 -m http.server 8000 >/tmp/http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID || true' EXIT
+          sleep 1
+          node appeal-audit.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: appeal-audit
+          path: appeal-audit
+          retention-days: 2
