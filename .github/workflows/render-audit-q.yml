@@ -29,10 +29,15 @@ jobs:
           pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html']
           for name in pages:
               t=Path(name).read_text(encoding='utf-8')
-              assert 'rebloom-unified.js?v=20260817p' in t, (name,'cache version')
+              assert re.search(r'rebloom-unified\.js\?v=20260817[a-z]',t),(name,'cache version')
               ids=re.findall(r'\bid=["\']([^"\']+)',t)
               dup=sorted({x for x in ids if ids.count(x)>1})
               assert not dup,(name,'duplicate ids',dup)
+              for attr,url in re.findall(r'\b(href|src)=["\']([^"\']+)',t):
+                  if url.startswith(('http:','https:','mailto:','tel:','#','data:','blob:','javascript:','//')): continue
+                  local=url.split('#',1)[0].split('?',1)[0]
+                  if local and not Path(local).exists():
+                      raise AssertionError((name,attr,url,'missing local target'))
           for name in ['rebloom-purpose.css','rebloom-purpose-complete.css','rebloom-tight.css','rebloom-balance.css','rebloom-refine.css']:
               t=Path(name).read_text(encoding='utf-8')
               assert t.count('{')==t.count('}'),(name,'brace mismatch')
@@ -56,25 +61,30 @@ jobs:
           const pages=['index.html','learn.html','event.html','partner.html','diagnosis.html','404.html'];
           const modes={desktop:{width:1440,height:1000},mobile:{width:390,height:844}};
           const report={generated:new Date().toISOString(),pages:{},diagnosis:{}};
-          const keepLocal=async route=>{
-            const url=route.request().url();
-            if(url.startsWith(base)||url.startsWith('data:')||url.startsWith('blob:')) return route.continue();
-            return route.abort();
+          const primeLazy=async page=>{
+            await page.evaluate(async()=>{
+              const max=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+              const step=Math.max(420,Math.floor(innerHeight*.72));
+              for(let y=0;y<max;y+=step){scrollTo(0,y);await new Promise(r=>setTimeout(r,35));}
+              scrollTo(0,max);await new Promise(r=>setTimeout(r,180));scrollTo(0,0);
+            });
+            await page.waitForTimeout(250);
           };
           (async()=>{
             const browser=await chromium.launch({headless:true});
             for(const [mode,viewport] of Object.entries(modes)){
-              const context=await browser.newContext({viewportSize:viewport,reducedMotion:'reduce'});
-              await context.route('**/*',keepLocal);
+              const context=await browser.newContext({viewport,reducedMotion:'reduce'});
               for(const file of pages){
                 const page=await context.newPage();
                 const key=`${file}:${mode}`;
-                const consoleErrors=[]; const pageErrors=[]; const failed=[];
+                const consoleErrors=[]; const pageErrors=[]; const failed=[]; const badResponses=[];
                 page.on('console',msg=>{if(msg.type()==='error')consoleErrors.push(msg.text())});
                 page.on('pageerror',err=>pageErrors.push(String(err)));
                 page.on('requestfailed',req=>failed.push({url:req.url(),error:req.failure()?.errorText||''}));
-                const response=await page.goto(base+file,{waitUntil:'load',timeout:15000});
-                await page.waitForTimeout(700);
+                page.on('response',res=>{if(res.url().startsWith(base)&&res.status()>=400)badResponses.push({url:res.url(),status:res.status()})});
+                const response=await page.goto(base+file,{waitUntil:'load',timeout:20000});
+                await page.waitForTimeout(900);
+                await primeLazy(page);
                 const metrics=await page.evaluate(()=>{
                   const vw=document.documentElement.clientWidth;
                   const overflow=document.documentElement.scrollWidth-vw;
@@ -82,7 +92,7 @@ jobs:
                     const s=getComputedStyle(el),r=el.getBoundingClientRect();
                     return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0;
                   });
-                  const offenders=visible.filter(el=>{const r=el.getBoundingClientRect();return r.left < -2 || r.right > vw+2}).slice(0,20).map(el=>({tag:el.tagName,cls:String(el.className||''),id:el.id||'',left:Math.round(el.getBoundingClientRect().left),right:Math.round(el.getBoundingClientRect().right)}));
+                  const offenders=visible.filter(el=>{const r=el.getBoundingClientRect();return r.left < -2 || r.right > vw+2}).slice(0,30).map(el=>({tag:el.tagName,cls:String(el.className||''),id:el.id||'',left:Math.round(el.getBoundingClientRect().left),right:Math.round(el.getBoundingClientRect().right)}));
                   const brokenImages=[...document.images].filter(i=>i.offsetParent!==null && (!i.complete || i.naturalWidth===0)).map(i=>i.getAttribute('src'));
                   const ids=[...document.querySelectorAll('[id]')].map(e=>e.id); const duplicateIds=[...new Set(ids.filter((x,i)=>ids.indexOf(x)!==i))];
                   const h1s=[...document.querySelectorAll('h1')].filter(e=>e.offsetParent!==null).map(e=>e.textContent.trim());
@@ -90,39 +100,42 @@ jobs:
                   const current=[...document.querySelectorAll('.site-nav a[aria-current="page"]')].map(a=>a.getAttribute('href'));
                   return {vw,scrollWidth:document.documentElement.scrollWidth,overflow,offenders,brokenImages,duplicateIds,h1s,smallTargets,current,bodyHeight:document.body.scrollHeight};
                 });
+                if(mode==='mobile'&&file!=='404.html'){
+                  const menu=page.locator('.menu-button');
+                  metrics.mobileMenuPresent=(await menu.count())>0;
+                  metrics.mobileMenuVisible=metrics.mobileMenuPresent?await menu.isVisible():false;
+                  if(metrics.mobileMenuVisible){
+                    await menu.click({timeout:5000});
+                    metrics.mobileMenuExpanded=await menu.getAttribute('aria-expanded');
+                    metrics.mobileNavVisible=await page.locator('.site-nav').isVisible();
+                    if(metrics.mobileMenuExpanded==='true') await menu.click({timeout:5000});
+                  }
+                }
                 let axe=[];
                 try{
                   const res=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
-                  axe=res.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.length,targets:v.nodes.slice(0,5).map(n=>n.target)}));
+                  axe=res.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.length,targets:v.nodes.slice(0,8).map(n=>n.target)}));
                 }catch(e){axe=[{id:'axe-error',impact:'error',help:String(e),nodes:0,targets:[]}];}
-                if(mode==='mobile'&&file!=='404.html'){
-                  const menu=page.locator('.menu-button');
-                  if(await menu.count()){
-                    await menu.click();
-                    metrics.mobileMenuExpanded=await menu.getAttribute('aria-expanded');
-                    metrics.mobileNavVisible=await page.locator('.site-nav').isVisible();
-                  }
-                }
+                await page.evaluate(()=>scrollTo(0,0));
                 await page.screenshot({path:`audit/screens/${file.replace('.html','')}-${mode}.png`,fullPage:true});
-                report.pages[key]={status:response?.status()||0,consoleErrors,pageErrors,failed:failed.filter(x=>x.url.startsWith(base)),metrics,axe};
+                report.pages[key]={status:response?.status()||0,consoleErrors,pageErrors,failed:failed.filter(x=>x.url.startsWith(base)),badResponses,metrics,axe};
                 await page.close();
               }
               await context.close();
             }
-            const ctx=await browser.newContext({viewportSize:modes.desktop,reducedMotion:'reduce'});
-            await ctx.route('**/*',keepLocal);
+            const ctx=await browser.newContext({viewport:modes.desktop,reducedMotion:'reduce'});
             const d=await ctx.newPage(); const errors=[]; d.on('pageerror',e=>errors.push(String(e))); d.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
-            await d.goto(base+'diagnosis.html',{waitUntil:'load',timeout:15000}); await d.waitForTimeout(700);
+            await d.goto(base+'diagnosis.html',{waitUntil:'load',timeout:20000}); await d.waitForTimeout(900);
             const start=d.locator('#startDiagnosis');
             report.diagnosis.startVisible=await start.isVisible();
             if(report.diagnosis.startVisible){
-              await start.click(); await d.waitForTimeout(200);
+              await start.click(); await d.waitForTimeout(250);
               report.diagnosis.panelVisible=await d.locator('#diagnosisPanel').isVisible();
               report.diagnosis.questionText=(await d.locator('#questionText').textContent()||'').trim();
-              for(let i=0;i<3;i++){await d.locator('.diagnosis-answer').nth(i%3).click(); await d.waitForTimeout(80);}
-              report.diagnosis.after3=await d.locator('#questionCount').textContent();
-              await d.locator('#backQuestion').click(); await d.waitForTimeout(80);
-              report.diagnosis.afterBack=await d.locator('#questionCount').textContent();
+              for(let i=0;i<3;i++){await d.locator('.diagnosis-answer').nth(i%3).click();await d.waitForTimeout(90);}
+              report.diagnosis.after3=(await d.locator('#questionCount').textContent()||'').trim();
+              await d.locator('#backQuestion').click();await d.waitForTimeout(90);
+              report.diagnosis.afterBack=(await d.locator('#questionCount').textContent()||'').trim();
             }
             report.diagnosis.errors=errors;
             await d.screenshot({path:'audit/screens/diagnosis-interaction.png',fullPage:false});
@@ -132,17 +145,20 @@ jobs:
             for(const [k,v] of Object.entries(report.pages)){
               if(v.status>=400||!v.status) hard.push(`${k}: http ${v.status}`);
               if(v.pageErrors.length) hard.push(`${k}: page errors ${v.pageErrors.join(' | ')}`);
+              if(v.badResponses.length) hard.push(`${k}: bad local responses ${JSON.stringify(v.badResponses)}`);
               if(v.metrics.overflow>2) hard.push(`${k}: horizontal overflow ${v.metrics.overflow}`);
               if(v.metrics.brokenImages.length) hard.push(`${k}: broken images ${v.metrics.brokenImages.join(',')}`);
               if(v.metrics.duplicateIds.length) hard.push(`${k}: duplicate ids ${v.metrics.duplicateIds.join(',')}`);
               if(v.metrics.h1s.length!==1) hard.push(`${k}: visible h1 count ${v.metrics.h1s.length}`);
               if(v.metrics.smallTargets.length) hard.push(`${k}: small targets ${JSON.stringify(v.metrics.smallTargets)}`);
-              if(k.endsWith(':mobile')&&k!=='404.html:mobile'&&v.metrics.mobileMenuExpanded!=='true') hard.push(`${k}: mobile menu did not expand`);
+              if(v.axe.length) hard.push(`${k}: serious/critical axe ${JSON.stringify(v.axe)}`);
+              if(k.endsWith(':mobile')&&k!=='404.html:mobile'&&(!v.metrics.mobileMenuVisible||v.metrics.mobileMenuExpanded!=='true'||!v.metrics.mobileNavVisible)) hard.push(`${k}: mobile menu failed ${JSON.stringify({present:v.metrics.mobileMenuPresent,visible:v.metrics.mobileMenuVisible,expanded:v.metrics.mobileMenuExpanded,nav:v.metrics.mobileNavVisible})}`);
+              if(!k.startsWith('404.html')&&v.metrics.current.length!==1) hard.push(`${k}: current nav count ${v.metrics.current.length}`);
             }
             if(!report.diagnosis.startVisible||!report.diagnosis.panelVisible||report.diagnosis.errors.length) hard.push(`diagnosis interaction failed ${JSON.stringify(report.diagnosis)}`);
             fs.writeFileSync('audit/hard-failures.txt',hard.join('\n'));
             if(hard.length){console.error(hard.join('\n'));process.exitCode=1;}
-          })();
+          })().catch(e=>{console.error(e);process.exit(1)});
           JS
           node audit-run.cjs
       - name: Upload audit artifact
