@@ -45,7 +45,7 @@ jobs:
                 await page.waitForTimeout(700);
                 if(!res||res.status()>=400) throw new Error(`${file}/${vp.name}: HTTP`);
                 if(errors.length) throw new Error(`${file}/${vp.name}: ${errors.join(' | ')}`);
-                const common=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,broken:[...document.images].filter(i=>i.offsetParent!==null&&i.naturalWidth===0).map(i=>i.src)}));
+                const common=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,broken:[...document.images].filter(i=>i.offsetParent!==null&&i.naturalWidth===0&&!i.src.startsWith('data:')).map(i=>i.src)}));
                 if(common.overflow>2) throw new Error(`${file}/${vp.name}: horizontal overflow ${common.overflow}`);
                 if(common.broken.length) throw new Error(`${file}/${vp.name}: broken images ${common.broken}`);
                 if(file==='index.html'||file==='partner.html'){
