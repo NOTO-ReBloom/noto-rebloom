@@ -398,3 +398,19 @@ body.rb-unified .diagnosis-start-card{min-height:0!important;overflow:visible!im
   body.rb-unified .diagnosis-start-card{padding:18px!important;margin-inline:0!important;width:auto!important;max-width:100%!important}
 }
 
+
+
+/* VISUAL DENSITY + CARD FIT V / second pass */
+body.rb-unified .nr-value-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;max-width:920px!important;margin-inline:auto!important}
+body.rb-unified .rbpc-logistics-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:9px!important;background:transparent!important}
+body.rb-unified .rbpc-logistic-1,body.rb-unified .rbpc-logistic-2,body.rb-unified .rbpc-logistic-3{grid-column:span 2!important}
+body.rb-unified .rbpc-logistic-4,body.rb-unified .rbpc-logistic-5{grid-column:span 3!important}
+body.rb-unified .rbpc-logistics-grid>div{width:auto!important;max-width:none!important;min-width:0!important}
+@media (max-width:720px){
+  body.rb-unified .nr-value-grid{grid-template-columns:1fr!important;gap:9px!important}
+  body.rb-unified .rbpc-logistics-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  body.rb-unified .rbpc-logistic-1{grid-column:1/-1!important}
+  body.rb-unified .rbpc-logistic-2,body.rb-unified .rbpc-logistic-3,body.rb-unified .rbpc-logistic-4,body.rb-unified .rbpc-logistic-5{grid-column:auto!important}
+  body.rb-unified .nr-main-sponsor--navi::before,body.rb-unified .nr-main-sponsor--navi::after{display:none!important}
+}
+
