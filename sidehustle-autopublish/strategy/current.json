@@ -1,69 +1,67 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-19T01:30:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-19T01:42:00+09:00",
   "objective": "maximize cumulative user profit with minimal user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "booth": {
-    "currentOfficialFeeAssumption": "5.6% + 45 JPY per order; verify official BOOTH source every run",
-    "publishedOrCompletedFlow": [
-      "001_interview_os"
-    ],
-    "pendingQueue": [
-      "002_consistency_os_20260819"
+    "currentOfficialFeeAssumption": "download product price x 5.6% + 45 JPY per order, decimals rounded up; verify official BOOTH help every run",
+    "publishedOrCompletedFlow": ["001_interview_os"],
+    "pendingQueue": ["002_consistency_os_20260819"],
+    "preparedBacklog": [
+      {
+        "id": "003_creator_profit_os_20260819",
+        "title": "【BOOTH・デジタル販売】クリエイター利益・価格テストOS｜手数料・制作費回収・実質時給・値上げ判断をExcelで可視化",
+        "targetPriceJPY": 1480,
+        "requiredFeatures": ["editable platform fee rate and fixed fee", "product development time and target hourly rate", "sales log", "take-home calculation", "production-cost recovery rate", "price test", "dashboard"],
+        "status": "complete local package prepared; if not in queue, recreate/queue before researching unrelated new product"
+      },
+      {
+        "id": "004_sponsorship_sales_os_20260819",
+        "title": "【学生団体・サークル・イベント】協賛営業OS｜スポンサー候補・連絡履歴・次回フォロー・履行管理をExcelで一元化",
+        "targetPriceJPY": 1480,
+        "requiredFeatures": ["sponsor pipeline", "stage probability", "expected pipeline value", "contact log", "next follow-up", "overdue warning", "deliverables tracker", "dashboard", "editable outreach templates"],
+        "status": "complete local package prepared; if not in queue, recreate/queue before researching unrelated new product"
+      },
+      {
+        "id": "005_jobhunting_complete_bundle_20260819",
+        "title": "【28卒・29卒】AI就活 面接完全対策バンドル｜面接改善OS＋ES/面接一貫性チェックOS｜Excel2本＋AIプロンプト18種",
+        "targetPriceJPY": 1980,
+        "requiredContents": ["面接改善OS", "AI就活 一貫性チェックOS", "short combined workflow guide"],
+        "pricingRule": "standalone total 2260 JPY; bundle 1980 JPY",
+        "status": "complete local package prepared; if not in queue, recreate/queue before researching unrelated new product"
+      }
     ],
     "portfolioRules": {
       "themeScoreThreshold": 70,
-      "scoreWeights": {
-        "painSeverity": 35,
-        "purchaseIntent": 25,
-        "competitionGap": 20,
-        "priceCeiling": 10,
-        "maintenanceAndPolicyRisk": 10
-      },
+      "scoreWeights": {"painSeverity": 35, "purchaseIntent": 25, "competitionGap": 20, "priceCeiling": 10, "maintenanceAndPolicyRisk": 10},
       "bundleDiscountTarget": "10-20% below sum of complementary standalone products",
-      "freeLite": "only when a confirmed paid-product URL exists for conversion"
+      "freeLite": "only add a paid-product CTA when its live public URL has been independently confirmed",
+      "avoidQuantityForQuantitySake": true,
+      "doNotCreateNearDuplicates": true
     }
   },
-  "priorityNiches": [
+  "funnels": [
     {
-      "niche": "event operations all-in-one OS",
-      "score": 86,
-      "reason": "current web demand is visible for event checklists, participant lists and run-of-show templates, while direct BOOTH all-in-one competition appears limited",
-      "targetPriceJPY": 1480
+      "slug": "booth-price-calc",
+      "title": "BOOTH手取り・販売価格逆算計算機",
+      "path": "auto-tools/booth-price-calc/",
+      "purpose": "organic/search entry point for creator pricing intent; add CTA to product 003 only after product 003 live URL is confirmed"
     },
     {
-      "niche": "sponsor / partnership sales CRM for events and small organizations",
-      "score": 83,
-      "reason": "specific operational pain and comparatively weak direct BOOTH template competition; higher willingness to pay than generic checklists",
-      "targetPriceJPY": 1680
-    },
-    {
-      "niche": "job-hunting interview bundle",
-      "score": 82,
-      "reason": "two complementary owned products already exist; bundle can raise average order value and reduce fixed-fee impact",
-      "targetPriceJPY": 1980
-    },
-    {
-      "niche": "research / thesis progress OS",
-      "score": 76,
-      "reason": "current BOOTH has thesis presentation templates and AI prompt products, but fewer integrated research-progress workbooks",
-      "targetPriceJPY": 1280
+      "slug": "charfit",
+      "title": "文字数ぴったりメーカー",
+      "path": "auto-tools/charfit/",
+      "purpose": "job-hunting/search entry point; add CTA to a relevant live job-hunting product only after URL confirmation"
     }
   ],
-  "avoidUnlessDifferentiated": [
-    "generic sales/expense bookkeeping spreadsheet",
-    "generic freelance project tracker",
-    "generic AI prompt collection",
-    "generic task list"
+  "nextPriorityNichesAfterPreparedBacklog": [
+    {"niche": "event operations all-in-one OS", "score": 86, "targetPriceJPY": 1480},
+    {"niche": "research / thesis progress OS", "score": 76, "targetPriceJPY": 1280},
+    {"niche": "small-organization volunteer / role assignment OS", "score": 74, "targetPriceJPY": 1280}
   ],
-  "sources": [
-    "https://booth.pm/guide",
-    "https://booth.pm/announcements/832",
-    "https://booth.pm/ja/items/8019870",
-    "https://booth.pm/ja/items/8610109",
-    "https://booth.pm/ja/items/8650551",
-    "https://note.com/ai_tmpl_design/n/n339aa0643695",
-    "https://exia.co.jp/bizroute/checklist-operation.html"
+  "avoidUnlessDifferentiated": ["generic sales/expense bookkeeping spreadsheet", "generic freelance project tracker", "generic AI prompt collection", "generic task list"],
+  "officialSources": [
+    "https://booth.pixiv.help/hc/ja/articles/115004576874-%E5%A3%B2%E4%B8%8A%E3%81%AB%E3%81%8B%E3%81%8B%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E5%88%A9%E7%94%A8%E6%96%99%E3%81%8C%E7%9F%A5%E3%82%8A%E3%81%9F%E3%81%84"
   ]
 }
