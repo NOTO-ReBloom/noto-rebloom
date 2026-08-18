@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-19T02:08:00+09:00",
+  "rules": {
+    "maxOneBoothProductPerProductionRun": true,
+    "skipIfMarketScoreBelow": 70,
+    "doNotPublishPlaintextPaidAssetsToGitHub": true,
+    "verifyCurrentCompetitionAndOfficialFeesBeforeBuild": true
+  },
+  "backlog": [
+    {
+      "priority": 1,
+      "idHint": "event_ops_os",
+      "status": "planned",
+      "titleDirection": "イベント運営OS｜TODO・参加者・スタッフ・当日進行・備品・リスク・予算を1つで管理",
+      "targetPriceJPY": 1480,
+      "marketScore": 86,
+      "requiredFeatures": [
+        "START_HERE",
+        "基本設定",
+        "TODO管理 with deadline and owner warnings",
+        "参加者管理",
+        "スタッフ配置",
+        "当日進行 with backup plan",
+        "備品管理 with shortage calculation",
+        "リスク管理 with probability x impact",
+        "予算管理 planned vs actual",
+        "当日チェック",
+        "AIプロンプト",
+        "ダッシュボード",
+        "sample data",
+        "at least one preview image"
+      ],
+      "freeFunnelSlug": "event-checklist"
+    },
+    {
+      "priority": 2,
+      "idHint": "jobhunt_interview_bundle",
+      "status": "planned_after_second_jobhunt_product_public",
+      "titleDirection": "AI面接 完全管理セット｜面接改善OS＋一貫性チェックOS",
+      "targetPriceJPY": 1980,
+      "marketScore": 82,
+      "bundleRule": "10-20% below standalone sum; do not duplicate paid assets outside encrypted queue"
+    },
+    {
+      "priority": 3,
+      "idHint": "sponsor_sales_crm_os",
+      "status": "planned",
+      "titleDirection": "協賛・スポンサー営業CRM OS｜候補企業→面談→提案→契約→入金→対価履行を一括管理",
+      "targetPriceJPY": 1680,
+      "marketScore": 83,
+      "requiredFeatures": [
+        "協賛パッケージ",
+        "営業先リスト",
+        "次アクション and deadline warnings",
+        "weighted pipeline value",
+        "接触ログ",
+        "提案・面談",
+        "契約・入金 with outstanding balance",
+        "対価履行",
+        "AIプロンプト",
+        "ダッシュボード",
+        "sample data",
+        "at least one preview image"
+      ],
+      "relatedNoteId": "note_20260819_02"
+    },
+    {
+      "priority": 4,
+      "idHint": "thesis_progress_os",
+      "status": "planned",
+      "titleDirection": "卒論・研究進行OS｜先行研究・仮説・分析・図表・締切を一括管理",
+      "targetPriceJPY": 1280,
+      "marketScore": 76,
+      "requiredFeatures": [
+        "研究計画",
+        "文献管理",
+        "仮説・問い管理",
+        "分析タスク",
+        "図表管理",
+        "指導コメント対応",
+        "締切逆算",
+        "ダッシュボード",
+        "sample data",
+        "at least one preview image"
+      ]
+    }
+  ]
+}
