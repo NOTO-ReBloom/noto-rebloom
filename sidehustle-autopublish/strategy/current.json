@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-19T01:30:00+09:00",
+  "objective": "maximize cumulative user profit with minimal user intervention",
+  "activeChannels": ["BOOTH", "note", "GitHub Pages"],
+  "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
+  "booth": {
+    "currentOfficialFeeAssumption": "5.6% + 45 JPY per order; verify official BOOTH source every run",
+    "publishedOrCompletedFlow": [
+      "001_interview_os"
+    ],
+    "pendingQueue": [
+      "002_consistency_os_20260819"
+    ],
+    "portfolioRules": {
+      "themeScoreThreshold": 70,
+      "scoreWeights": {
+        "painSeverity": 35,
+        "purchaseIntent": 25,
+        "competitionGap": 20,
+        "priceCeiling": 10,
+        "maintenanceAndPolicyRisk": 10
+      },
+      "bundleDiscountTarget": "10-20% below sum of complementary standalone products",
+      "freeLite": "only when a confirmed paid-product URL exists for conversion"
+    }
+  },
+  "priorityNiches": [
+    {
+      "niche": "event operations all-in-one OS",
+      "score": 86,
+      "reason": "current web demand is visible for event checklists, participant lists and run-of-show templates, while direct BOOTH all-in-one competition appears limited",
+      "targetPriceJPY": 1480
+    },
+    {
+      "niche": "sponsor / partnership sales CRM for events and small organizations",
+      "score": 83,
+      "reason": "specific operational pain and comparatively weak direct BOOTH template competition; higher willingness to pay than generic checklists",
+      "targetPriceJPY": 1680
+    },
+    {
+      "niche": "job-hunting interview bundle",
+      "score": 82,
+      "reason": "two complementary owned products already exist; bundle can raise average order value and reduce fixed-fee impact",
+      "targetPriceJPY": 1980
+    },
+    {
+      "niche": "research / thesis progress OS",
+      "score": 76,
+      "reason": "current BOOTH has thesis presentation templates and AI prompt products, but fewer integrated research-progress workbooks",
+      "targetPriceJPY": 1280
+    }
+  ],
+  "avoidUnlessDifferentiated": [
+    "generic sales/expense bookkeeping spreadsheet",
+    "generic freelance project tracker",
+    "generic AI prompt collection",
+    "generic task list"
+  ],
+  "sources": [
+    "https://booth.pm/guide",
+    "https://booth.pm/announcements/832",
+    "https://booth.pm/ja/items/8019870",
+    "https://booth.pm/ja/items/8610109",
+    "https://booth.pm/ja/items/8650551",
+    "https://note.com/ai_tmpl_design/n/n339aa0643695",
+    "https://exia.co.jp/bizroute/checklist-operation.html"
+  ]
+}
