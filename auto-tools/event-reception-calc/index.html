@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>イベント受付レーン数・待ち時間リスク計算機｜無料</title>
+<meta name="description" content="来場者数・受付時間・1人あたり処理秒数から、イベント受付に必要なレーン数、1レーンあたり処理可能人数、混雑余力を無料で計算。セミナー・地域イベント・学園祭・展示会の受付設計に。">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#687386;--line:#dfe5ee;--accent:#2457d6;--good:#157347;--warn:#a25b00;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+main{max-width:980px;margin:auto;padding:28px 18px 64px}header{margin-bottom:22px}.eyebrow{font-weight:700;color:var(--accent);font-size:.9rem}h1{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.25;margin:.35rem 0}.lead{color:var(--muted);max-width:760px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 8px 24px rgba(24,39,75,.05)}
+label{display:block;font-weight:700;margin:13px 0 5px}.hint{font-size:.85rem;color:var(--muted);font-weight:400}input{width:100%;padding:12px 13px;border:1px solid #cbd4e0;border-radius:10px;font-size:1rem;background:#fff}
+button{border:0;border-radius:11px;padding:12px 16px;font-weight:700;cursor:pointer}.primary{background:var(--accent);color:#fff;width:100%;margin-top:17px}.secondary{background:#eef3ff;color:var(--accent);margin-top:10px}
+.result{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}.metric{border:1px solid var(--line);border-radius:13px;padding:15px;background:#fbfcfe}.metric strong{font-size:1.7rem;display:block}.metric span{color:var(--muted);font-size:.88rem}.status{margin-top:14px;border-radius:12px;padding:13px 14px;font-weight:700}.status.good{background:#eaf7ef;color:var(--good)}.status.warn{background:#fff5df;color:var(--warn)}.status.bad{background:#fdeceb;color:var(--bad)}
+section{margin-top:28px}h2{font-size:1.4rem;margin-bottom:9px}h3{font-size:1.08rem;margin-top:20px}.formula{background:#f1f4f9;border-radius:12px;padding:14px;overflow:auto}.example{border-left:4px solid var(--accent);padding-left:14px}.note{font-size:.88rem;color:var(--muted)}
+@media(max-width:720px){.grid,.result{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">無料・ブラウザ内で完結</div><h1>イベント受付レーン数・待ち時間リスク計算機</h1><p class="lead">来場者数と受付条件から、必要な受付レーン数を概算します。受付の人員配置を「なんとなく2人」ではなく、処理能力から逆算したいときに使えます。</p></header>
+<div class="grid">
+<div class="card">
+<h2>条件を入力</h2>
+<label>受付対象人数 <span class="hint">例：80人</span></label><input id="people" type="number" min="1" value="80">
+<label>受付を集中して行う時間 <span class="hint">分。例：30分</span></label><input id="window" type="number" min="1" value="30">
+<label>通常の受付1人あたり処理時間 <span class="hint">秒。名前確認・参加証配布など</span></label><input id="seconds" type="number" min="1" value="25">
+<label>例外対応が必要な人の割合 <span class="hint">%：名前不明・当日参加・問い合わせ等</span></label><input id="exceptionRate" type="number" min="0" max="100" value="10">
+<label>例外対応1件の追加時間 <span class="hint">秒</span></label><input id="exceptionSeconds" type="number" min="0" value="90">
+<label>安全余力 <span class="hint">%：混雑の波や休止を吸収。15〜25%推奨</span></label><input id="buffer" type="number" min="0" max="80" value="20">
+<button class="primary" id="calc">計算する</button><button class="secondary" id="reset">サンプルに戻す</button>
+</div>
+<div class="card">
+<h2>計算結果</h2><div class="result">
+<div class="metric"><span>推奨受付レーン数</span><strong id="lanes">-</strong></div>
+<div class="metric"><span>1レーンの実効処理人数</span><strong id="cap">-</strong></div>
+<div class="metric"><span>平均実効処理時間</span><strong id="effSec">-</strong></div>
+<div class="metric"><span>推奨レーン時の余力</span><strong id="margin">-</strong></div>
+</div><div id="status" class="status warn">条件を入力して計算してください。</div>
+<p class="note">この計算は「受付時間内に処理し切れる能力」を基準にした概算です。来場が開始直前に集中すると、処理能力が足りていても一時的な行列は発生します。</p>
+</div></div>
+<section class="card"><h2>計算の考え方</h2><p>受付は、通常処理だけでなく例外対応で止まりやすくなります。このツールでは、例外率を平均処理時間へ加えたうえで、安全余力を差し引いて必要レーン数を算出します。</p><div class="formula">平均実効処理秒 = 通常秒 +（例外率 × 例外追加秒）<br>1レーン理論処理数 = 受付時間（秒）÷ 平均実効処理秒<br>実効処理数 = 理論処理数 ×（1 − 安全余力）<br>推奨レーン数 = 受付対象人数 ÷ 実効処理数 を切り上げ</div></section>
+<section class="card"><h2>使い方の目安</h2><div class="example"><strong>80人・30分・通常25秒・例外10%で追加90秒・余力20%</strong><p>平均処理時間は34秒。1レーンが安全側に処理できる人数は約42人なので、推奨は2レーンです。</p></div><h3>レーンを増やす前にできること</h3><p>受付時間を伸ばす、名簿を並べ替える、事前決済にする、参加証を事前準備する、通常受付と例外対応を分離する、案内係を受付処理から外す、といった方法でも必要人数を下げられます。</p></section>
+<section class="card"><h2>受付で行列を作りにくくする4原則</h2><ol><li><strong>通常処理と例外処理を分ける：</strong>名前が見つからない人を通常レーンで長時間処理しない。</li><li><strong>受付後の案内を別担当にする：</strong>受付担当が会場説明まで行うと処理時間が伸びます。</li><li><strong>開始直前の集中を前提にする：</strong>平均到着ではなくピークを想定し、安全余力を残します。</li><li><strong>切替条件を決める：</strong>「待ち列が10人を超えたら予備レーンを開く」など現場で判断できる条件を決めます。</li></ol></section>
+<section class="card"><h2>FAQ</h2><h3>安全余力は何%がよいですか？</h3><p>小規模イベントなら15〜25%から試すのが扱いやすいです。受付経験が浅い、参加者属性が多様、当日参加が多い場合は余力を大きめにしてください。</p><h3>必要レーン数＝必要スタッフ数ですか？</h3><p>必ずしも同じではありません。受付レーン以外に、列整理、例外対応、会場案内などを別担当にすると混雑を抑えやすくなります。</p><h3>待ち時間そのものを予測できますか？</h3><p>来場時刻の分布が分からないため、このツールは厳密な待ち時間予測ではなく、時間内に処理できる能力と余力を計算します。</p><h3>入力内容は送信されますか？</h3><p>いいえ。計算はこのページ内のJavaScriptだけで行い、入力内容を外部へ送信しません。</p></section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function n(id){return Number($(id).value)||0}
+function calc(){const people=n('people'),mins=n('window'),sec=n('seconds'),er=Math.min(100,Math.max(0,n('exceptionRate')))/100,extra=n('exceptionSeconds'),buf=Math.min(80,Math.max(0,n('buffer')))/100;if(!people||!mins||!sec){$('status').className='status bad';$('status').textContent='人数・受付時間・通常処理時間は1以上で入力してください。';return}const eff=sec+er*extra;const theoretical=mins*60/eff;const effective=theoretical*(1-buf);const lanes=Math.max(1,Math.ceil(people/effective));const totalCap=effective*lanes;const margin=(totalCap-people)/people*100;$('lanes').textContent=lanes+' レーン';$('cap').textContent=Math.floor(effective)+' 人';$('effSec').textContent=eff.toFixed(1)+' 秒';$('margin').textContent=margin.toFixed(0)+'%';let cls='good',txt=`${lanes}レーンを基準に検討。通常受付と例外対応を分けると、さらに安定しやすくなります。`;if(margin<10){cls='bad';txt='処理能力の余力が小さいです。受付開始を早めるか、予備レーンを用意してください。'}else if(margin<25){cls='warn';txt='処理可能ですが、来場が開始直前に集中すると行列が出る可能性があります。予備担当を決めてください。'}$('status').className='status '+cls;$('status').textContent=txt}
+$('calc').addEventListener('click',calc);$('reset').addEventListener('click',()=>{$('people').value=80;$('window').value=30;$('seconds').value=25;$('exceptionRate').value=10;$('exceptionSeconds').value=90;$('buffer').value=20;calc()});['people','window','seconds','exceptionRate','exceptionSeconds','buffer'].forEach(id=>$(id).addEventListener('input',calc));calc();
+</script></body></html>
