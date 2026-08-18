@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOOTH手取り・販売価格逆算計算機｜ダウンロード商品の利益を無料計算</title>
+<meta name="description" content="BOOTHのダウンロード商品について、販売価格から手取り額を計算し、欲しい手取り額から必要な販売価格を逆算できる無料計算機。手数料率と固定額は編集可能。">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;color:#172033;background:#f5f7fb}*{box-sizing:border-box}body{margin:0}.wrap{max-width:980px;margin:auto;padding:34px 18px 70px}h1{font-size:clamp(29px,5vw,46px);margin:0 0 12px}.lead{color:#5c6678;line-height:1.8;max-width:760px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:22px;box-shadow:0 8px 30px rgba(20,30,50,.05)}h2{margin:0 0 16px;font-size:20px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}label{font-size:13px;color:#596579;display:block;margin-bottom:6px}input{width:100%;padding:12px;border:1px solid #cfd6e0;border-radius:10px;font-size:17px}.big{font-size:34px;font-weight:800;margin:12px 0 2px}.muted{font-size:13px;color:#6b7280;line-height:1.7}.breakdown{margin-top:14px;border-top:1px solid #edf0f4;padding-top:12px}.line{display:flex;justify-content:space-between;gap:15px;padding:7px 0}.line strong{white-space:nowrap}.settings{margin-top:18px}.notice{margin-top:20px;padding:14px 16px;background:#eef4fb;border-radius:12px;font-size:13px;line-height:1.75;color:#46566d}button{border:0;border-radius:10px;background:#172033;color:white;padding:11px 16px;font-weight:700;cursor:pointer}.copy{margin-top:10px}.source{margin-top:28px;font-size:12px;color:#727b89;line-height:1.8}.source a{color:inherit}.wide{grid-column:1/-1}@media(max-width:720px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style>
+</head>
+<body><main class="wrap">
+<h1>BOOTH手取り・販売価格逆算計算機</h1>
+<p class="lead">「1,000円で売るといくら残る？」「手取り1,000円を残すにはいくらで売る？」をすぐ計算。ダウンロード商品向けの初期値として、現在のBOOTH公式サービス利用料を設定しています。</p>
+<div class="grid">
+<section class="card">
+<h2>販売価格 → 手取り</h2>
+<label>販売価格（税込・円）</label><input id="price" type="number" min="0" step="1" value="1280">
+<div class="big" id="takehome">0円</div><div class="muted">推定手取り（振込手数料・税務等は含めません）</div>
+<div class="breakdown"><div class="line"><span>サービス利用料</span><strong id="fee">0円</strong></div><div class="line"><span>手取り率</span><strong id="rate">0%</strong></div></div>
+<button class="copy" id="copyA">結果をコピー</button>
+</section>
+<section class="card">
+<h2>欲しい手取り → 必要価格</h2>
+<label>目標手取り（円）</label><input id="target" type="number" min="0" step="1" value="1000">
+<div class="big" id="needed">0円</div><div class="muted">目標以上の手取りになる最小の整数価格を探索します。</div>
+<div class="breakdown"><div class="line"><span>その価格での手取り</span><strong id="neededTake">0円</strong></div><div class="line"><span>サービス利用料</span><strong id="neededFee">0円</strong></div></div>
+<button class="copy" id="copyB">結果をコピー</button>
+</section>
+<section class="card wide settings">
+<h2>手数料設定</h2><div class="row"><div><label>料率（%）</label><input id="pct" type="number" min="0" step="0.1" value="5.6"></div><div><label>固定額（円/注文）</label><input id="fixed" type="number" min="0" step="1" value="45"></div></div>
+<div class="notice">初期値はBOOTH公式ヘルプのダウンロード商品「商品価格 × 5.6% + 45円」に合わせています。小数点以下は切り上げとして計算します。料金体系が変更された場合は、この欄を更新して使えます。</div>
+</section>
+</div>
+<p class="source">確認元：<a href="https://booth.pixiv.help/hc/ja/articles/115004576874" rel="noopener">BOOTHヘルプセンター「売上にかかるサービス利用料が知りたい」</a><br>※ 本ツールは非公式の無料計算機です。振込手数料、税金、BOOST、特殊なライセンス料等は状況により別途発生する場合があります。最終判断はBOOTH公式情報をご確認ください。</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);const yen=n=>Math.max(0,Math.round(n)).toLocaleString('ja-JP')+'円';
+function calc(p){const pct=Math.max(0,+$('pct').value||0)/100,fixed=Math.max(0,+$('fixed').value||0);const fee=Math.ceil(p*pct)+fixed;return{fee,take:Math.max(0,p-fee)}}
+function reverse(target){target=Math.max(0,target);let lo=0,hi=Math.max(100,target+500);while(calc(hi).take<target)hi*=2;while(lo<hi){const mid=Math.floor((lo+hi)/2);if(calc(mid).take>=target)hi=mid;else lo=mid+1}return lo}
+function update(){const p=Math.max(0,+$('price').value||0),a=calc(p);$('takehome').textContent=yen(a.take);$('fee').textContent=yen(a.fee);$('rate').textContent=(p?Math.max(0,a.take/p*100):0).toFixed(1)+'%';const t=Math.max(0,+$('target').value||0),need=reverse(t),b=calc(need);$('needed').textContent=yen(need);$('neededTake').textContent=yen(b.take);$('neededFee').textContent=yen(b.fee);localStorage.setItem('boothcalc',JSON.stringify({price:p,target:t,pct:$('pct').value,fixed:$('fixed').value}))}
+['price','target','pct','fixed'].forEach(id=>$(id).addEventListener('input',update));
+$('copyA').onclick=async()=>{await navigator.clipboard.writeText(`販売価格 ${$('price').value}円 / 手取り ${$('takehome').textContent} / 利用料 ${$('fee').textContent}`);$('copyA').textContent='コピーしました';setTimeout(()=>$('copyA').textContent='結果をコピー',1000)};
+$('copyB').onclick=async()=>{await navigator.clipboard.writeText(`目標手取り ${$('target').value}円 / 必要販売価格 ${$('needed').textContent} / 推定手取り ${$('neededTake').textContent}`);$('copyB').textContent='コピーしました';setTimeout(()=>$('copyB').textContent='結果をコピー',1000)};
+try{const s=JSON.parse(localStorage.getItem('boothcalc')||'{}');for(const k of ['price','target','pct','fixed'])if(s[k]!=null)$(k).value=s[k]}catch{}update();
+</script></body></html>
