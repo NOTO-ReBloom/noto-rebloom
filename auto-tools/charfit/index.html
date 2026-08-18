@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文字数ぴったりメーカー｜ES・レポート文字数チェック</title>
+<meta name="description" content="ES、レポート、自己PRなどの文字数をリアルタイムで確認し、目標文字数との差を見やすく表示する無料ツール。">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;color:#1f2937;background:#f7f8fa}
+*{box-sizing:border-box}body{margin:0}.wrap{max-width:920px;margin:0 auto;padding:32px 18px 64px}
+header{margin-bottom:22px}h1{font-size:clamp(28px,5vw,44px);margin:0 0 10px}.lead{color:#5b6472;line-height:1.8}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.04)}
+.controls{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;margin-bottom:14px}.controls label{font-size:13px;color:#596273}
+input[type=number]{width:100%;padding:10px 12px;border:1px solid #cfd5dd;border-radius:10px;font-size:16px}
+textarea{width:100%;min-height:300px;resize:vertical;padding:18px;border:1px solid #cfd5dd;border-radius:14px;font-size:17px;line-height:1.8;outline:none}
+textarea:focus{border-color:#6b7280;box-shadow:0 0 0 3px rgba(107,114,128,.12)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.kpi{background:#f8fafc;border-radius:12px;padding:14px}.kpi b{font-size:25px;display:block}.kpi span{font-size:12px;color:#6b7280}
+.bar{height:12px;background:#edf0f3;border-radius:999px;overflow:hidden}.bar>div{height:100%;width:0;background:#4b5563;transition:.2s}
+.status{margin:12px 0;font-weight:700}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button{border:1px solid #d0d5dc;background:#fff;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}button.primary{background:#111827;color:#fff;border-color:#111827}
+.small{font-size:13px;color:#6b7280;line-height:1.7}.options{display:flex;align-items:end;gap:10px}
+@media(max-width:700px){.controls{grid-template-columns:1fr 1fr}.options{grid-column:1/-1}.kpis{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<header><h1>文字数ぴったりメーカー</h1><p class="lead">ES・自己PR・レポート・応募文の「あと何文字？」を即確認。全角/半角を1文字として数えます。</p></header>
+<section class="card">
+<div class="controls">
+<div><label>目標（最低）</label><input id="min" type="number" min="0" value="380"></div>
+<div><label>目標（上限）</label><input id="max" type="number" min="1" value="400"></div>
+<div class="options"><label><input id="space" type="checkbox" checked> 空白・改行も数える</label></div>
+</div>
+<textarea id="text" placeholder="ここに文章を貼り付けてください。入力すると自動で文字数を計算します。"></textarea>
+<div class="kpis">
+<div class="kpi"><b id="count">0</b><span>現在の文字数</span></div>
+<div class="kpi"><b id="remain">380</b><span>最低まであと</span></div>
+<div class="kpi"><b id="over">0</b><span>上限オーバー</span></div>
+<div class="kpi"><b id="ratio">0%</b><span>目標達成率</span></div>
+</div>
+<div class="bar"><div id="bar"></div></div>
+<div class="status" id="status">文章を入力してください。</div>
+<div class="actions">
+<button class="primary" id="copy">文章をコピー</button>
+<button id="clean">連続空白を整理</button>
+<button id="clear">クリア</button>
+</div>
+<p class="small">※ Unicodeの文字列長をコードポイント単位で数えます。企業や学校のシステムによって文字数の数え方が異なる場合があるため、提出画面の表示も最終確認してください。</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const text=$('text'),min=$('min'),max=$('max'),space=$('space');
+function countChars(s){if(!space.checked)s=s.replace(/\s/g,'');return Array.from(s).length}
+function update(){
+ const n=countChars(text.value),lo=Math.max(0,+min.value||0),hi=Math.max(lo,+max.value||lo);
+ $('count').textContent=n;$('remain').textContent=Math.max(0,lo-n);$('over').textContent=Math.max(0,n-hi);
+ const ratio=lo?Math.min(999,Math.round(n/lo*100)):100;$('ratio').textContent=ratio+'%';
+ $('bar').style.width=Math.min(100,hi? n/hi*100:100)+'%';
+ let msg='';
+ if(!n)msg='文章を入力してください。';
+ else if(n<lo)msg=`あと${lo-n}文字で最低目標です。`;
+ else if(n<=hi)msg='目標範囲に入っています。';
+ else msg=`上限を${n-hi}文字オーバーしています。`;
+ $('status').textContent=msg;
+ localStorage.setItem('charfit-text',text.value);
+ localStorage.setItem('charfit-min',lo);localStorage.setItem('charfit-max',hi);
+}
+[text,min,max,space].forEach(e=>e.addEventListener('input',update));
+$('copy').onclick=async()=>{await navigator.clipboard.writeText(text.value);$('copy').textContent='コピーしました';setTimeout(()=>$('copy').textContent='文章をコピー',1200)};
+$('clean').onclick=()=>{text.value=text.value.replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();update()};
+$('clear').onclick=()=>{if(confirm('入力内容を消しますか？')){text.value='';update()}};
+text.value=localStorage.getItem('charfit-text')||'';min.value=localStorage.getItem('charfit-min')||380;max.value=localStorage.getItem('charfit-max')||400;update();
+</script></body></html>
