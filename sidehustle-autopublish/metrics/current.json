@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-19T11:19:00+09:00",
+  "updatedAt": "2026-08-19T12:14:00+09:00",
   "objective": "maximize cumulative profit, average order value, and speed of learning with minimal user intervention",
   "channels": {
     "BOOTH": {
@@ -13,15 +13,18 @@
     },
     "note": {
       "status": "active",
+      "rolling7DayProductionCapReached": true,
       "products": [
         {"id":"note_20260818_01","title":"大学生のタスクが多すぎる問題を15分で整理する｜授業・就活・バイトをAIで1枚にまとめる実践テンプレ","priceJPY":480,"publishFlow":"completed","publicUrlVerified":false,"salesObserved":null},
         {"id":"note_20260819_02","title":"協賛営業を「送ったら終わり」にしない｜スポンサー獲得を前に進める7段階の管理テンプレ","priceJPY":680,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null},
-        {"id":"note_20260819_03","title":"イベント当日マニュアルは「時系列」だけでは足りない｜事故と混乱を減らす5層設計テンプレ","priceJPY":680,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null}
+        {"id":"note_20260819_03","title":"イベント当日マニュアルは「時系列」だけでは足りない｜事故と混乱を減らす5層設計テンプレ","priceJPY":680,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null},
+        {"id":"note_20260819_04","title":"卒論が進まない人へ｜「書く」前に研究を7つの箱で管理する進行OS","priceJPY":1280,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null}
       ]
     },
     "GitHubPages": {
       "status": "active",
-      "tools": ["charfit","booth-price-calc","event-checklist","event-reception-calc","digital-store-compare"]
+      "rolling7DayNewToolCapReached": true,
+      "tools": ["charfit","booth-price-calc","event-checklist","event-reception-calc","digital-store-compare","digital-seller-profit"]
     },
     "futureChannels": {
       "PayhipPartner": {"status":"gated_by_one_time_enrollment_and_traffic_fit"},
@@ -32,12 +35,17 @@
     "AmazonKDP": {"status":"disabled"},
     "LINECreatorsMarket": {"status":"disabled"}
   },
+  "latestMarketLearning": {
+    "thesisResearch": "Current search results show abundant free/general thesis-writing guidance and generic student planners, while a BOOTH research-presentation template is priced at 1500 JPY. Differentiation should therefore be research workflow control (literature, questions, analysis, supervisor feedback) rather than generic thesis structure or formatting.",
+    "sourceCheckedAt": "2026-08-19T12:08:00+09:00"
+  },
   "optimizationRules": [
     "Do not infer a public URL until independently verified.",
     "Do not reduce price merely to increase item count; account for fixed per-order fees.",
     "Prefer complementary bundles after at least two products exist in the same buyer problem.",
     "Use actual sales and message data when available; otherwise state that evidence is still sparse.",
     "At 3 observed sales evaluate complement/bundle; at 5 evaluate organization license/localization; at 10 evaluate recurring/global expansion.",
-    "Do not reactivate KDP or LINE without explicit user instruction."
+    "Do not reactivate KDP or LINE without explicit user instruction.",
+    "No additional paid note article or new free Web tool should be created until the rolling 7-day caps reopen; use intervening runs for funnel and positioning improvements."
   ]
 }
