@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "checkedAt": "2026-08-19T16:58:55+09:00",
+  "status": "bottleneck_detected",
+  "reason": "enabled queue has remained unverified for more than 2 hours and publication throughput is behind production throughput",
+  "queue": {
+    "enabledCount": 3,
+    "publicUrlVerifiedCount": 0,
+    "oldestEnabledCreatedAt": "2026-08-19T01:07:00+09:00",
+    "oldestAgeMinutesAtCheck": 952,
+    "entries": [
+      {
+        "id": "002_consistency_os_20260819",
+        "createdAt": "2026-08-19T01:07:00+09:00",
+        "enabled": true,
+        "publishFlow": "queued",
+        "publicUrlVerified": false
+      },
+      {
+        "id": "003_event_ops_html_20260819",
+        "createdAt": "2026-08-19T08:06:00+09:00",
+        "enabled": true,
+        "publishFlow": "queued",
+        "publicUrlVerified": false
+      },
+      {
+        "id": "005_sponsor_crm_20260819",
+        "createdAt": "2026-08-19T14:42:00+09:00",
+        "enabled": true,
+        "publishFlow": "queued",
+        "publicUrlVerified": false
+      }
+    ]
+  },
+  "decision": {
+    "newProductProductionPriority": "deprioritized_until_consumer_throughput_recovers",
+    "highestImpactLever": "publication_pipeline_reliability_and_throughput",
+    "actionsCompletedThisRun": [
+      "built BOOTH Auto Publisher v4 pipeline-fix package",
+      "added UTF-8 BOM-safe JSON parsing",
+      "added encrypted queue SHA/decryption/required-file health check",
+      "added failure cooldown so one broken oldest item cannot starve later queue entries",
+      "changed published semantics so state is written only after a public BOOTH item URL is loaded and title-verified",
+      "added local publish_receipts.json with publicUrlVerified=true only after live verification",
+      "prepared a 2-hour Windows consumer task with at most one publish per run to raise throughput without burst posting"
+    ],
+    "remainingExternalStep": "the Windows machine that holds the authenticated BOOTH browser profile must install/run the v4 consumer package; GitHub alone cannot execute the authenticated BOOTH publish action"
+  }
+}
