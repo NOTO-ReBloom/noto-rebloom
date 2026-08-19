@@ -1,139 +1,17 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>イベント運営チェックリストメーカー｜無料・ブラウザ完結</title>
 <meta name="description" content="イベント運営の準備・当日・撤収チェックリストを無料で作成。担当・期限・優先度・完了状況を管理し、CSV保存・印刷もできます。データはブラウザ内だけに保存されます。">
 <meta name="robots" content="index,follow">
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#dfe5ee;--accent:#315b7d;--accent2:#17324d;--danger:#b42318;--warn:#b54708;--ok:#256029}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink)}
-header{background:linear-gradient(135deg,var(--accent2),var(--accent));color:white;padding:38px 20px}
-.wrap{max-width:1080px;margin:auto}h1{font-size:clamp(26px,5vw,42px);margin:0 0 10px}.lead{margin:0;opacity:.92;line-height:1.8}
-main{padding:24px 16px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px;box-shadow:0 8px 24px rgba(23,50,77,.06)}
-.controls{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px}input,select,button{font:inherit;border-radius:10px;border:1px solid var(--line);padding:11px 12px;background:white}
-button{cursor:pointer;font-weight:700}.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.ghost{background:#fff}.danger{color:var(--danger)}
-.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:14px;border-radius:12px;background:#f7f9fc}.metric b{display:block;font-size:24px;margin-top:4px}
-.progress{height:12px;background:#e8edf3;border-radius:999px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--accent);width:0}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.filter{padding:8px 12px}.filter.active{background:var(--accent2);color:white}
-table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:13px;color:var(--muted)}
-.done .task{text-decoration:line-through;color:#98a2b3}.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}.high{background:#fdecec;color:var(--danger)}.mid{background:#fff4e5;color:var(--warn)}.low{background:#e6f4ea;color:var(--ok)}
-.small{font-size:13px;color:var(--muted);line-height:1.7}.empty{text-align:center;color:var(--muted);padding:32px}.faq h3{margin-bottom:6px}.faq p{margin-top:0;color:#475467;line-height:1.8}
-@media(max-width:760px){.controls{grid-template-columns:1fr 1fr}.controls input:first-child{grid-column:1/-1}.summary{grid-template-columns:1fr 1fr}.tablebox{overflow:auto}table{min-width:760px}}
-@media print{header,.controls,.toolbar,.filters,.faq,.privacy{display:none!important}body{background:white}.card{box-shadow:none;border:0;padding:0}}
-</style>
-</head>
-<body>
-<header><div class="wrap">
-<h1>イベント運営チェックリストメーカー</h1>
-<p class="lead">準備・当日・撤収のタスクを、担当・期限・優先度つきで1枚に整理。無料・登録不要・データ外部送信なし。</p>
-</div></header>
-<main class="wrap">
-<section class="card">
-<h2>タスクを追加</h2>
-<div class="controls">
-<input id="task" placeholder="例：受付名簿を最新版に更新">
-<select id="phase"><option>準備</option><option>前日</option><option>当日</option><option>撤収</option><option>事後</option></select>
-<input id="owner" placeholder="担当">
-<input id="due" type="date">
-<select id="priority"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select>
-<button id="add" class="primary">追加</button>
-</div>
-<div class="toolbar">
-<button id="preset" class="ghost">定番16項目を追加</button>
-<button id="csv" class="ghost">CSV保存</button>
-<button id="print" class="ghost">印刷</button>
-<button id="clearDone" class="ghost">完了済みを削除</button>
-<button id="reset" class="ghost danger">全削除</button>
-</div>
-<p class="small privacy">入力内容はこの端末のブラウザ内にのみ保存され、外部へ送信しません。</p>
-</section>
-
-<section class="card">
-<div class="summary">
-<div class="metric">全タスク<b id="total">0</b></div>
-<div class="metric">完了<b id="done">0</b></div>
-<div class="metric">未完了<b id="left">0</b></div>
-<div class="metric">期限超過<b id="over">0</b></div>
-</div>
-<div style="margin-top:14px" class="progress"><i id="bar"></i></div>
-<p id="pct" class="small">完了率 0%</p>
-</section>
-
-<section class="card">
-<div class="filters" id="filters"></div>
-<div class="tablebox">
-<table>
-<thead><tr><th>完了</th><th>フェーズ</th><th>タスク</th><th>担当</th><th>期限</th><th>優先度</th><th></th></tr></thead>
-<tbody id="rows"></tbody>
-</table>
-<div id="empty" class="empty">まだタスクがありません。</div>
-</div>
-</section>
-
-<section class="card faq">
-<h2>イベント運営チェックリストの使い方</h2>
-<p>最初に「定番16項目を追加」を押し、不要な項目を削除して自分のイベント用に調整するのが最短です。担当者と期限まで入れると、「誰かがやるはず」のタスクを減らせます。</p>
-<h3>何日前から作ればいいですか？</h3>
-<p>規模によって異なりますが、開催日が決まった時点で作り、準備が進むたびに更新する使い方がおすすめです。前日・当日だけではなく、撤収・事後報告まで入れておくと抜け漏れを減らせます。</p>
-<h3>どんなイベントに使えますか？</h3>
-<p>地域イベント、学園祭、サークル企画、セミナー、交流会、ワークショップなど、小〜中規模イベントの基本管理を想定しています。</p>
-<h3>安全管理もこれだけで十分ですか？</h3>
-<p>いいえ。このツールは一般的な運営タスクの整理用です。施設ルール、法令、保険、医療、安全基準などはイベントごとに主催者が別途確認してください。</p>
-<h3>データは送信されますか？</h3>
-<p>送信しません。入力した内容はブラウザのlocalStorageに保存されます。共有PCでは利用後に全削除してください。</p>
-</section>
-</main>
-<script>
-const KEY='eventChecklistV1';
-const phases=['すべて','準備','前日','当日','撤収','事後'];
-let filter='すべて';
-let data=JSON.parse(localStorage.getItem(KEY)||'[]');
-const $=id=>document.getElementById(id);
-const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
-function addTask(x){data.push({id:crypto.randomUUID?crypto.randomUUID():Date.now()+Math.random(),task:x.task,phase:x.phase||'準備',owner:x.owner||'',due:x.due||'',priority:x.priority||'中',done:false});}
-const preset=[
-['会場利用条件・入退場方法を確認','準備'],['スタッフ役割分担を確定','準備'],['参加者名簿を最新版に更新','前日'],['スタッフへ集合時刻と役割を共有','前日'],
-['備品数量と不足を確認','前日'],['高リスク項目と代替案を確認','前日'],['受付机・名簿・案内表示を設置','当日'],['電源・音響・通信環境を確認','当日'],
-['スタッフ点呼を実施','当日'],['避難経路・救護場所を確認','当日'],['受付の混雑状況を確認','当日'],['次プログラムの担当と備品を先回り確認','当日'],
-['忘れ物案内・アンケートを準備','当日'],['借用品を返却','撤収'],['ごみ・忘れ物・原状回復を確認','撤収'],['参加者数・トラブル・改善点を記録','事後']
-];
-$('add').onclick=()=>{const task=$('task').value.trim();if(!task)return;$('task').value='';addTask({task,phase:$('phase').value,owner:$('owner').value.trim(),due:$('due').value,priority:$('priority').value});save()};
-$('task').addEventListener('keydown',e=>{if(e.key==='Enter')$('add').click()});
-$('preset').onclick=()=>{const existing=new Set(data.map(x=>x.task));preset.forEach(([task,phase])=>{if(!existing.has(task))addTask({task,phase,priority:'中'})});save()};
-$('clearDone').onclick=()=>{data=data.filter(x=>!x.done);save()};
-$('reset').onclick=()=>{if(confirm('すべてのタスクを削除しますか？')){data=[];save()}};
-$('print').onclick=()=>window.print();
-$('csv').onclick=()=>{
- const q=v=>'"'+String(v??'').replaceAll('"','""')+'"';
- const lines=[['フェーズ','タスク','担当','期限','優先度','状態'],...data.map(x=>[x.phase,x.task,x.owner,x.due,x.priority,x.done?'完了':'未完了'])];
- const blob=new Blob(['\ufeff'+lines.map(r=>r.map(q).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});
- const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='イベント運営チェックリスト.csv';a.click();URL.revokeObjectURL(a.href);
-};
-function renderFilters(){
- $('filters').innerHTML=phases.map(p=>`<button class="filter ${filter===p?'active':''}" data-f="${p}">${p}</button>`).join('');
- document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render()});
-}
-function render(){
- renderFilters();
- const today=new Date();today.setHours(0,0,0,0);
- const total=data.length,done=data.filter(x=>x.done).length;
- const over=data.filter(x=>!x.done&&x.due&&new Date(x.due+'T00:00:00')<today).length;
- $('total').textContent=total;$('done').textContent=done;$('left').textContent=total-done;$('over').textContent=over;
- const pct=total?Math.round(done/total*100):0;$('bar').style.width=pct+'%';$('pct').textContent=`完了率 ${pct}%`;
- const list=data.filter(x=>filter==='すべて'||x.phase===filter);
- $('empty').style.display=list.length?'none':'block';
- $('rows').innerHTML=list.map(x=>`<tr class="${x.done?'done':''}">
- <td><input type="checkbox" ${x.done?'checked':''} data-check="${x.id}"></td>
- <td>${esc(x.phase)}</td><td class="task">${esc(x.task)}</td><td>${esc(x.owner||'—')}</td>
- <td>${esc(x.due||'—')}</td><td><span class="badge ${x.priority==='高'?'high':x.priority==='低'?'low':'mid'}">${esc(x.priority)}</span></td>
- <td><button class="ghost danger" data-del="${x.id}">削除</button></td></tr>`).join('');
- document.querySelectorAll('[data-check]').forEach(c=>c.onchange=()=>{const x=data.find(v=>String(v.id)===c.dataset.check);if(x){x.done=c.checked;save()}});
- document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{data=data.filter(v=>String(v.id)!==b.dataset.del);save()});
-}
-render();
-</script>
-</body></html>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#dfe5ee;--accent:#315b7d;--accent2:#17324d;--danger:#b42318;--warn:#b54708;--ok:#256029}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink)}header{background:linear-gradient(135deg,var(--accent2),var(--accent));color:white;padding:38px 20px}.wrap{max-width:1080px;margin:auto}h1{font-size:clamp(26px,5vw,42px);margin:0 0 10px}.lead{margin:0;opacity:.92;line-height:1.8}main{padding:24px 16px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px;box-shadow:0 8px 24px rgba(23,50,77,.06)}.controls{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px}input,select,button{font:inherit;border-radius:10px;border:1px solid var(--line);padding:11px 12px;background:white}button{cursor:pointer;font-weight:700}.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.ghost{background:#fff}.danger{color:var(--danger)}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:14px;border-radius:12px;background:#f7f9fc}.metric b{display:block;font-size:24px;margin-top:4px}.progress{height:12px;background:#e8edf3;border-radius:999px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--accent);width:0}.toolbar,.filters{display:flex;gap:8px;flex-wrap:wrap}.toolbar{margin-top:12px}.filters{margin-bottom:12px}.filter{padding:8px 12px}.filter.active{background:var(--accent2);color:white}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:13px;color:var(--muted)}.done .task{text-decoration:line-through;color:#98a2b3}.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}.high{background:#fdecec;color:var(--danger)}.mid{background:#fff4e5;color:var(--warn)}.low{background:#e6f4ea;color:var(--ok)}.small{font-size:13px;color:var(--muted);line-height:1.7}.empty{text-align:center;color:var(--muted);padding:32px}.faq h3{margin-bottom:6px}.faq p{margin-top:0;color:#475467;line-height:1.8}.paid-cta{border-color:#b8cbe0;background:linear-gradient(135deg,#fff,#f2f7fc)}.paid-cta h2{margin-top:0}.paid-cta a{display:inline-block;background:var(--accent2);color:#fff;text-decoration:none;font-weight:800;border-radius:10px;padding:12px 16px;margin-top:4px}.paid-cta a:hover{opacity:.92}@media(max-width:760px){.controls{grid-template-columns:1fr 1fr}.controls input:first-child{grid-column:1/-1}.summary{grid-template-columns:1fr 1fr}.tablebox{overflow:auto}table{min-width:760px}}@media print{header,.controls,.toolbar,.filters,.faq,.privacy,.paid-cta{display:none!important}body{background:white}.card{box-shadow:none;border:0;padding:0}}
+</style></head><body>
+<header><div class="wrap"><h1>イベント運営チェックリストメーカー</h1><p class="lead">準備・当日・撤収のタスクを、担当・期限・優先度つきで1枚に整理。無料・登録不要・データ外部送信なし。</p></div></header>
+<main class="wrap"><section class="card"><h2>タスクを追加</h2><div class="controls"><input id="task" placeholder="例：受付名簿を最新版に更新"><select id="phase"><option>準備</option><option>前日</option><option>当日</option><option>撤収</option><option>事後</option></select><input id="owner" placeholder="担当"><input id="due" type="date"><select id="priority"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select><button id="add" class="primary">追加</button></div><div class="toolbar"><button id="preset" class="ghost">定番16項目を追加</button><button id="csv" class="ghost">CSV保存</button><button id="print" class="ghost">印刷</button><button id="clearDone" class="ghost">完了済みを削除</button><button id="reset" class="ghost danger">全削除</button></div><p class="small privacy">入力内容はこの端末のブラウザ内にのみ保存され、外部へ送信しません。</p></section>
+<section class="card"><div class="summary"><div class="metric">全タスク<b id="total">0</b></div><div class="metric">完了<b id="done">0</b></div><div class="metric">未完了<b id="left">0</b></div><div class="metric">期限超過<b id="over">0</b></div></div><div style="margin-top:14px" class="progress"><i id="bar"></i></div><p id="pct" class="small">完了率 0%</p></section>
+<section class="card"><div class="filters" id="filters"></div><div class="tablebox"><table><thead><tr><th>完了</th><th>フェーズ</th><th>タスク</th><th>担当</th><th>期限</th><th>優先度</th><th></th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">まだタスクがありません。</div></div></section>
+<section class="card paid-cta"><h2>チェックリストだけでは管理しきれなくなったら</h2><p>参加者・スタッフ・当日進行・備品・リスク・予算まで一つにまとめたい主催者向けに、買い切りの「イベント運営OS」を用意しています。この無料ツールで足りている間は、そのまま無料で使えます。</p><a href="https://booth.pm/ja/items/8736143" target="_blank" rel="noopener noreferrer">イベント運営OSの内容を見る（BOOTH）</a></section>
+<section class="card faq"><h2>イベント運営チェックリストの使い方</h2><p>最初に「定番16項目を追加」を押し、不要な項目を削除して自分のイベント用に調整するのが最短です。担当者と期限まで入れると、「誰かがやるはず」のタスクを減らせます。</p><h3>何日前から作ればいいですか？</h3><p>規模によって異なりますが、開催日が決まった時点で作り、準備が進むたびに更新する使い方がおすすめです。前日・当日だけではなく、撤収・事後報告まで入れておくと抜け漏れを減らせます。</p><h3>どんなイベントに使えますか？</h3><p>地域イベント、学園祭、サークル企画、セミナー、交流会、ワークショップなど、小〜中規模イベントの基本管理を想定しています。</p><h3>安全管理もこれだけで十分ですか？</h3><p>いいえ。このツールは一般的な運営タスクの整理用です。施設ルール、法令、保険、医療、安全基準などはイベントごとに主催者が別途確認してください。</p><h3>データは送信されますか？</h3><p>送信しません。入力した内容はブラウザのlocalStorageに保存されます。共有PCでは利用後に全削除してください。</p></section></main>
+<script>const KEY='eventChecklistV1',phases=['すべて','準備','前日','当日','撤収','事後'];let filter='すべて',data=JSON.parse(localStorage.getItem(KEY)||'[]');const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}function addTask(x){data.push({id:crypto.randomUUID?crypto.randomUUID():Date.now()+Math.random(),task:x.task,phase:x.phase||'準備',owner:x.owner||'',due:x.due||'',priority:x.priority||'中',done:false})}const preset=[['会場利用条件・入退場方法を確認','準備'],['スタッフ役割分担を確定','準備'],['参加者名簿を最新版に更新','前日'],['スタッフへ集合時刻と役割を共有','前日'],['備品数量と不足を確認','前日'],['高リスク項目と代替案を確認','前日'],['受付机・名簿・案内表示を設置','当日'],['電源・音響・通信環境を確認','当日'],['スタッフ点呼を実施','当日'],['避難経路・救護場所を確認','当日'],['受付の混雑状況を確認','当日'],['次プログラムの担当と備品を先回り確認','当日'],['忘れ物案内・アンケートを準備','当日'],['借用品を返却','撤収'],['ごみ・忘れ物・原状回復を確認','撤収'],['参加者数・トラブル・改善点を記録','事後']];$('add').onclick=()=>{const task=$('task').value.trim();if(!task)return;$('task').value='';addTask({task,phase:$('phase').value,owner:$('owner').value.trim(),due:$('due').value,priority:$('priority').value});save()};$('task').addEventListener('keydown',e=>{if(e.key==='Enter')$('add').click()});$('preset').onclick=()=>{const existing=new Set(data.map(x=>x.task));preset.forEach(([task,phase])=>{if(!existing.has(task))addTask({task,phase,priority:'中'})});save()};$('clearDone').onclick=()=>{data=data.filter(x=>!x.done);save()};$('reset').onclick=()=>{if(confirm('すべてのタスクを削除しますか？')){data=[];save()}};$('print').onclick=()=>window.print();$('csv').onclick=()=>{const q=v=>'"'+String(v??'').replaceAll('"','""')+'"',lines=[['フェーズ','タスク','担当','期限','優先度','状態'],...data.map(x=>[x.phase,x.task,x.owner,x.due,x.priority,x.done?'完了':'未完了'])],blob=new Blob(['\ufeff'+lines.map(r=>r.map(q).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='イベント運営チェックリスト.csv';a.click();URL.revokeObjectURL(a.href)};function renderFilters(){$('filters').innerHTML=phases.map(p=>`<button class="filter ${filter===p?'active':''}" data-f="${p}">${p}</button>`).join('');document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render()})}function render(){renderFilters();const today=new Date();today.setHours(0,0,0,0);const total=data.length,done=data.filter(x=>x.done).length,over=data.filter(x=>!x.done&&x.due&&new Date(x.due+'T00:00:00')<today).length;$('total').textContent=total;$('done').textContent=done;$('left').textContent=total-done;$('over').textContent=over;const pct=total?Math.round(done/total*100):0;$('bar').style.width=pct+'%';$('pct').textContent=`完了率 ${pct}%`;const list=data.filter(x=>filter==='すべて'||x.phase===filter);$('empty').style.display=list.length?'none':'block';$('rows').innerHTML=list.map(x=>`<tr class="${x.done?'done':''}"><td><input type="checkbox" ${x.done?'checked':''} data-check="${x.id}"></td><td>${esc(x.phase)}</td><td class="task">${esc(x.task)}</td><td>${esc(x.owner||'—')}</td><td>${esc(x.due||'—')}</td><td><span class="badge ${x.priority==='高'?'high':x.priority==='低'?'low':'mid'}">${esc(x.priority)}</span></td><td><button class="ghost danger" data-del="${x.id}">削除</button></td></tr>`).join('');document.querySelectorAll('[data-check]').forEach(c=>c.onchange=()=>{const x=data.find(v=>String(v.id)===c.dataset.check);if(x){x.done=c.checked;save()}});document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{data=data.filter(v=>String(v.id)!==b.dataset.del);save()})}render();</script></body></html>
