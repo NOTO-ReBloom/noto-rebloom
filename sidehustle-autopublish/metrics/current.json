@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-19T14:58:00+09:00",
+  "updatedAt": "2026-08-19T18:54:17+09:00",
   "objective": "maximize total sales by improving acquisition, conversion, average order value, repeat demand, and the number of high-quality products without arbitrary production caps",
   "channels": {
     "BOOTH": {
@@ -34,11 +34,38 @@
     "AmazonKDP": {"status":"disabled"},
     "LINECreatorsMarket": {"status":"disabled"}
   },
+  "pipelineMonitor": {
+    "checkedAt": "2026-08-19T18:54:17+09:00",
+    "gmailImportantEventsFound": 0,
+    "publicUrlsNewlyVerified": 0,
+    "BOOTH": {
+      "level": "pipeline_critical",
+      "enabledQueueCount": 3,
+      "oldestId": "002_consistency_os_20260819",
+      "oldestTitle": "【28卒・29卒】AI就活 一貫性チェックOS｜ES・自己PR・志望動機・面接回答の矛盾を防ぐExcel＋AIプロンプト6種",
+      "oldestCreatedAt": "2026-08-19T01:07:00+09:00",
+      "oldestAgeMinutes": 1067,
+      "lastPublicSearchResult": "not_verified",
+      "userActionRequiredNow": false,
+      "note": "Shop was manually switched to public shortly before this check. Public search still did not verify exact product pages; allow the Windows publisher/recovery flow and search indexing time before escalating again."
+    },
+    "note": {
+      "level": "pipeline_critical",
+      "enabledQueueCount": 4,
+      "oldestId": "note_20260818_01",
+      "oldestTitle": "大学生のタスクが多すぎる問題を15分で整理する｜授業・就活・バイトをAIで1枚にまとめる実践テンプレ",
+      "oldestCreatedAt": "2026-08-18T21:40:00+09:00",
+      "oldestAgeMinutes": 1274,
+      "lastPublicSearchResult": "not_verified",
+      "userActionRequiredNow": false,
+      "note": "No exact public page was verified by web search in this check. Search-index delay alone is not treated as a new failure."
+    }
+  },
   "latestMarketLearning": {
     "thesisResearch": "Fresh 2026 search results show strong, current demand for thesis/research planning: Notion's thesis-planning template has 200+ ratings and recent 2026 reviews, Asana actively markets a research-plan template to thesis/dissertation students, and current paid trackers on Gumroad/Etsy emphasize timeline, literature, supervisor feedback and progress tracking. This supports a two-step acquisition funnel: deadline reverse-planning for high-intent scheduling searches plus a progress diagnostic for users who know they are stuck. Differentiation should be research workflow control rather than generic thesis formatting.",
     "thesisFunnelBuild": "Created thesis-deadline-planner and thesis-progress-check as separate search-intent tools. The first captures deadline/schedule intent; the second captures stuck/progress-diagnosis intent. Both are standalone, local-only tools and can later route to the queued thesis note or planned thesis OS only after public URLs are verified.",
     "sponsorCrmResearch": "Current BOOTH search showed generic Excel CRM/sales-management products around 1480-1980 JPY and higher-priced business systems, while direct sponsor-acquisition workflow products were sparse. The 1680 JPY hypothesis positions the product above generic trackers by covering sponsor-package design, weighted pipeline, payment tracking and benefit fulfillment in one workbook.",
-    "sourceCheckedAt": "2026-08-19T14:58:00+09:00"
+    "sourceCheckedAt": "2026-08-19T18:54:17+09:00"
   },
   "optimizationRules": [
     "Do not infer a public URL until independently verified.",
