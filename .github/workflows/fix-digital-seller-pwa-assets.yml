@@ -1,0 +1,119 @@
+name: Fix Digital Seller PWA assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-digital-seller-pwa-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate PNG icons and repair manifest
+        shell: python
+        run: |
+          import json, math, struct, zlib
+          from pathlib import Path
+
+          root = Path('auto-tools/digital-seller-profit')
+          root.mkdir(parents=True, exist_ok=True)
+
+          def png_chunk(kind, data):
+              return struct.pack('>I', len(data)) + kind + data + struct.pack('>I', zlib.crc32(kind + data) & 0xffffffff)
+
+          def save_png(path, size):
+              # Branded navy square with simple white/cyan rising chart; pure stdlib PNG generation.
+              bg = (20, 42, 74)
+              white = (245, 248, 255)
+              cyan = (79, 209, 197)
+              pixels = [[list(bg) for _ in range(size)] for _ in range(size)]
+
+              def put(x, y, color, radius=0):
+                  for yy in range(max(0, y-radius), min(size, y+radius+1)):
+                      for xx in range(max(0, x-radius), min(size, x+radius+1)):
+                          if (xx-x)*(xx-x) + (yy-y)*(yy-y) <= radius*radius + 1:
+                              pixels[yy][xx] = list(color)
+
+              def line(x0,y0,x1,y1,color,width):
+                  dx=x1-x0; dy=y1-y0
+                  steps=max(abs(dx),abs(dy),1)
+                  for i in range(steps+1):
+                      x=round(x0+dx*i/steps); y=round(y0+dy*i/steps)
+                      put(x,y,color,max(1,width//2))
+
+              margin = int(size*0.22)
+              axis_w = max(3, int(size*0.025))
+              line(margin, size-margin, size-margin, size-margin, white, axis_w)
+              line(margin, size-margin, margin, margin, white, axis_w)
+              pts = [
+                  (int(size*.29), int(size*.67)),
+                  (int(size*.43), int(size*.52)),
+                  (int(size*.56), int(size*.61)),
+                  (int(size*.73), int(size*.35)),
+              ]
+              chart_w = max(4, int(size*0.035))
+              for a,b in zip(pts,pts[1:]):
+                  line(*a,*b,cyan,chart_w)
+              for x,y in pts:
+                  put(x,y,cyan,max(3,int(size*.028)))
+
+              raw = bytearray()
+              for row in pixels:
+                  raw.append(0)
+                  for r,g,b in row:
+                      raw.extend((r,g,b,255))
+              data = b'\x89PNG\r\n\x1a\n'
+              data += png_chunk(b'IHDR', struct.pack('>IIBBBBB', size, size, 8, 6, 0, 0, 0))
+              data += png_chunk(b'IDAT', zlib.compress(bytes(raw), 9))
+              data += png_chunk(b'IEND', b'')
+              path.write_bytes(data)
+
+          save_png(root/'icon-192.png', 192)
+          save_png(root/'icon-512.png', 512)
+
+          manifest_path = root/'manifest.webmanifest'
+          manifest = {}
+          if manifest_path.exists():
+              try:
+                  manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+              except Exception:
+                  manifest = {}
+
+          manifest.update({
+              'id': '/noto-rebloom/auto-tools/digital-seller-profit/',
+              'name': 'Digital Seller Profit Toolkit',
+              'short_name': 'Seller Profit',
+              'description': 'デジタル商品の販売価格・手数料・手取り・目標利益を比較計算する無料ツール',
+              'start_url': '/noto-rebloom/auto-tools/digital-seller-profit/',
+              'scope': '/noto-rebloom/auto-tools/digital-seller-profit/',
+              'display': 'standalone',
+              'orientation': 'any',
+              'background_color': '#f5f7fb',
+              'theme_color': '#142a4a',
+              'icons': [
+                  {'src': 'icon-192.png', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
+                  {'src': 'icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any maskable'}
+              ]
+          })
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+      - name: Commit generated assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add auto-tools/digital-seller-profit/icon-192.png auto-tools/digital-seller-profit/icon-512.png auto-tools/digital-seller-profit/manifest.webmanifest
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Fix Digital Seller PWA manifest and icons"
+            git push
+          fi
