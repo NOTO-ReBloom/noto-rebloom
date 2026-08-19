@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-19T10:50:00+09:00",
+  "objective": "maximize cumulative profit and learning speed while minimizing user intervention",
+  "nonNegotiables": [
+    "Do not reactivate Amazon KDP or LINE Creators Market without explicit user instruction.",
+    "Do not ask the user to perform repetitive browser or patch-test work.",
+    "Do not publish plaintext paid assets to public GitHub.",
+    "Do not fabricate sales, reviews, public URLs, demand, testimonials, or platform capabilities.",
+    "Do not optimize for item count; optimize for profit, average order value, and evidence quality.",
+    "Do not buy ads or add recurring software costs before organic product-market evidence exists."
+  ],
+  "activeEngine": {
+    "BOOTH": {
+      "role": "primary paid digital-product storefront",
+      "productionTimesJST": ["08:00", "11:00", "14:00", "17:00", "20:00"],
+      "maxPerRun": 1,
+      "currentFeeRule": "verify official fee every run; current official download fee observed 5.6% of item price + 45 JPY per order, decimals rounded up",
+      "offerLadder": {
+        "entry": "700-980 JPY",
+        "coreOS": "1280-2480 JPY",
+        "bundle": "1980-3980 JPY",
+        "teamLicense": "4980-9800 JPY only after B2B utility or sales evidence"
+      }
+    },
+    "note": {
+      "role": "paid knowledge product plus discovery channel",
+      "productionTimesJST": ["09:00", "12:00", "15:00", "18:00", "21:00"],
+      "maxPerRun": 1,
+      "priceDefault": "480-980 JPY",
+      "rule": "free section must solve one concrete problem; paid section must contain reusable assets, criteria, cases, templates, or prompts"
+    },
+    "GitHubPages": {
+      "role": "free search-intent tools and evergreen acquisition",
+      "maxPerRun": 1,
+      "rule": "each tool must solve a complete small problem without external data transmission; add paid CTA only after the exact paid public URL is verified"
+    }
+  },
+  "revenueLevers": [
+    {
+      "id": "L1_paid_core_products",
+      "priority": 1,
+      "action": "Create differentiated practical digital tools with a market score >= 70/100.",
+      "automatic": true
+    },
+    {
+      "id": "L2_complementary_bundles",
+      "priority": 2,
+      "action": "When two complementary products are live, create a bundle 10-20% below standalone total to raise average order value.",
+      "automatic": true
+    },
+    {
+      "id": "L3_free_search_tools",
+      "priority": 3,
+      "action": "Create one useful search-intent free tool per meaningful paid-product problem, not one per SKU.",
+      "automatic": true
+    },
+    {
+      "id": "L4_note_problem_articles",
+      "priority": 4,
+      "action": "Publish problem-focused note articles around high-intent themes; cross-sell only to verified live relevant products.",
+      "automatic": true
+    },
+    {
+      "id": "L5_booth_free_lite",
+      "priority": 5,
+      "action": "After a relevant paid product is live and the category has enough value, create at most one genuinely useful free Lite BOOTH product to build shop followers and future new-product exposure.",
+      "automatic": true,
+      "trigger": "paid public URL verified and no existing free Lite for that buyer problem"
+    },
+    {
+      "id": "L6_team_license",
+      "priority": 6,
+      "action": "For event, sponsor, NPO, student-organization, or business-operation products, add an organization/team license product only when B2B utility is obvious and either a standalone sale is observed or two complementary live products exist.",
+      "automatic": true,
+      "pricing": "roughly 3-5x individual price, justified by multi-user rights rather than duplicated files"
+    },
+    {
+      "id": "L7_product_updates",
+      "priority": 7,
+      "action": "Prepare meaningful version improvements for products with proven demand or buyer issues. BOOTH supports replacing download files and past buyers can re-download current files; do not create fake new editions merely to reset visibility.",
+      "automaticPreparation": true,
+      "automaticExistingListingUpdate": false
+    },
+    {
+      "id": "L8_recurring_revenue",
+      "priority": 8,
+      "action": "Evaluate note membership or Payhip membership only after repeat-demand evidence. Do not create a subscription whose value requires constant low-quality filler.",
+      "automaticEvaluation": true,
+      "trigger": "at least 10 strong related articles/products plus at least 5 observed paid buyers or clear repeat-purchase evidence"
+    },
+    {
+      "id": "L9_international_mirror",
+      "priority": 9,
+      "action": "Consider Payhip before Gumroad for English/localized mirrors after domestic validation because Payhip offers a free plan with 5% platform transaction fee and built-in bundles/referrals/affiliates; account/payment setup remains a one-time human step.",
+      "automaticEvaluation": true,
+      "trigger": "at least 3 paid sales across at least 2 products or 5000 JPY observed monthly revenue, plus a product with plausible non-Japanese demand"
+    },
+    {
+      "id": "L10_affiliate_income",
+      "priority": 10,
+      "action": "Do not add unrelated affiliate links while traffic is unproven. Re-evaluate only after free tools show meaningful traffic and only promote directly relevant services with clear disclosure.",
+      "automaticEvaluation": true,
+      "trigger": "measurable recurring search traffic"
+    }
+  ],
+  "scaleRules": [
+    "If one product gets >=2 sales within 14 days, prioritize one complementary product or bundle over unrelated themes.",
+    "If a category gets >=5 cumulative sales, create one free Lite funnel if absent and evaluate a team license where appropriate.",
+    "If two products in a category both sell, freeze unrelated expansion temporarily and deepen that category.",
+    "If 30 days pass with zero observed sales in a category, do not create near-duplicates; change buyer problem, positioning, or category.",
+    "If buyer complaints or refunds reveal a product defect, prioritize quality repair over new product creation."
+  ],
+  "measurement": {
+    "sourceOfTruth": ["Gmail sales/order notifications", "verified public product pages", "metrics/current.json"],
+    "neverInferMissingSales": true,
+    "publicUrlMustBeVerified": true,
+    "analyticsUpgrade": "After at least two live BOOTH products, recommend one-time GA4 connection because BOOTH officially supports Google Analytics for page/conversion analysis; do not force setup before there is enough inventory to justify it."
+  },
+  "channelDecisions": {
+    "BOOTH": "active-primary",
+    "note": "active-secondary",
+    "GitHubPages": "active-acquisition",
+    "AmazonKDP": "disabled-after-automation-failure",
+    "LINECreatorsMarket": "disabled-after-automation-failure",
+    "Payhip": "conditional-expansion",
+    "Gumroad": "lower-priority-expansion because current direct-sale fee stack is materially higher",
+    "paidAds": "disabled-until-conversion-data",
+    "printOnDemandMerch": "deprioritized due weak audience fit with current practical-template portfolio",
+    "customServices": "deprioritized because they create ongoing user labor instead of passive delivery"
+  }
+}
