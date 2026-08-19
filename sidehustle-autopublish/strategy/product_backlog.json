@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-19T14:47:00+09:00",
+  "updatedAt": "2026-08-19T21:16:00+09:00",
   "rules": {
     "maxOneBoothProductPerProductionRun": false,
     "skipIfMarketScoreBelow": 70,
@@ -12,20 +12,23 @@
   "backlog": [
     {
       "priority": 1,
-      "idHint": "sponsor_sales_crm_os",
-      "status": "completed_and_queued",
-      "queuedProductId": "005_sponsor_crm_20260819",
-      "titleDirection": "協賛・スポンサー営業CRM OS｜候補企業→面談→提案→契約→入金→対価履行を一括管理",
-      "targetPriceJPY": 1680,
-      "marketScore": 83,
-      "requiredFeatures": ["協賛パッケージ", "営業先リスト", "次アクション and deadline warnings", "weighted pipeline value", "接触ログ", "提案・面談", "契約・入金 with outstanding balance", "対価履行", "AIプロンプト", "ダッシュボード", "sample data", "at least one preview image"],
-      "relatedNoteId": "note_20260819_02",
-      "bundleFuture": "event_sponsor_bundle"
+      "idHint": "event_sponsor_bundle",
+      "status": "ready_for_build_both_components_public_verified",
+      "titleDirection": "イベント主催者 実務完全セット｜イベント運営OS＋協賛スポンサー営業CRM",
+      "targetPriceJPY": 2480,
+      "marketScore": 80,
+      "bundleRule": "price 10-20% below standalone sum",
+      "requiredContents": ["event operations product", "sponsorship CRM product", "combined organizer workflow guide"],
+      "sourceProducts": [
+        {"id":"003_event_ops_html_20260819","publicUrl":"https://booth.pm/ja/items/8736143"},
+        {"id":"005_sponsor_crm_20260819","publicUrl":"https://booth.pm/ja/items/8736208"}
+      ],
+      "goal": "raise average order value among student groups, local organizations, NPOs, and small event teams"
     },
     {
       "priority": 2,
       "idHint": "jobhunt_interview_bundle",
-      "status": "build_after_002_public_or_integrity_confirmed",
+      "status": "ready_for_build_002_public_verified",
       "titleDirection": "AI面接 完全管理セット｜面接改善OS＋一貫性チェックOS",
       "targetPriceJPY": 1980,
       "marketScore": 82,
@@ -36,25 +39,14 @@
     {
       "priority": 3,
       "idHint": "thesis_progress_os",
-      "status": "planned",
+      "status": "sales_ready_pack_completed_needs_encrypted_queue_and_publication",
       "titleDirection": "卒論・研究進行OS｜先行研究・仮説・分析・図表・締切を一括管理",
-      "targetPriceJPY": 1280,
+      "targetPriceJPY": 1480,
       "marketScore": 76,
       "requiredFeatures": ["研究計画", "文献管理", "仮説・問い管理", "分析タスク", "図表管理", "指導コメント対応", "締切逆算", "ダッシュボード", "sample data", "at least one preview image"]
     },
     {
       "priority": 4,
-      "idHint": "event_sponsor_bundle",
-      "status": "ready_for_build_both_components_queued",
-      "titleDirection": "イベント主催者 実務完全セット｜イベント運営OS＋協賛スポンサー営業CRM",
-      "targetPriceJPY": 2480,
-      "marketScore": 80,
-      "bundleRule": "price 10-20% below standalone sum",
-      "requiredContents": ["event operations product", "sponsorship CRM product", "combined organizer workflow guide"],
-      "goal": "raise average order value among student groups, local organizations, NPOs, and small event teams"
-    },
-    {
-      "priority": 5,
       "idHint": "creator_profit_pricing_os",
       "status": "planned_if_market_recheck_passes",
       "titleDirection": "デジタル販売 利益・価格テストOS｜手数料・制作費回収・実質時給・値上げ判断を可視化",
@@ -64,7 +56,7 @@
       "freeFunnelSlug": "booth-price-calc"
     },
     {
-      "priority": 6,
+      "priority": 5,
       "idHint": "small_org_role_os",
       "status": "planned",
       "titleDirection": "学生団体・小規模NPO 役割分担OS｜担当・期限・引継ぎ・会議アクションを一括管理",
@@ -73,7 +65,7 @@
       "requiredFeatures": ["role matrix", "task ownership", "deadline warnings", "meeting actions", "handover notes", "dashboard", "sample data"]
     },
     {
-      "priority": 7,
+      "priority": 6,
       "idHint": "organizer_team_license",
       "status": "conditional_after_demand_signal",
       "titleDirection": "イベント主催者 実務完全セット｜団体利用ライセンス版",
@@ -84,17 +76,19 @@
       "goal": "capture B2B/team willingness to pay without custom service labor"
     }
   ],
-  "alreadyQueued": [
+  "publishedVerified": [
     {
       "id": "003_event_ops_html_20260819",
       "title": "イベント運営OS｜TODO・参加者・スタッフ・当日進行・備品・リスク・予算を1つで管理｜オフラインHTML",
       "priceJPY": 1280,
+      "publicUrl": "https://booth.pm/ja/items/8736143",
       "freeFunnelSlug": "event-checklist"
     },
     {
       "id": "005_sponsor_crm_20260819",
       "title": "協賛・スポンサー営業CRM OS｜候補企業→面談→提案→契約→入金→対価履行を一括管理｜Excel",
       "priceJPY": 1680,
+      "publicUrl": "https://booth.pm/ja/items/8736208",
       "relatedNoteId": "note_20260819_02"
     }
   ]
