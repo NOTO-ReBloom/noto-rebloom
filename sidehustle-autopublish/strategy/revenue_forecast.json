@@ -1,22 +1,22 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-19T11:25:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-19T14:58:00+09:00",
   "basis": {
     "observedSalesData": "none yet",
     "currentPortfolio": {
-      "boothProducts": 3,
-      "noteProducts": 3,
-      "freeWebTools": 5
+      "boothProducts": 4,
+      "noteProducts": 4,
+      "freeWebTools": 8
     },
     "currentUnitEconomics": {
-      "boothTypicalNetPerSaleJPY": "about 880-1163 for current 980-1280 JPY products, before payout/tax effects; BOOTH download fee currently price x 5.6% + 45 JPY, verify every run",
-      "noteTypicalNetBeforeWithdrawalJPY": "about 410-581 for current 480-680 JPY products under 5% card processing then 10% platform fee; actual payment method varies",
+      "boothTypicalNetPerSaleJPY": "depends on current product price and BOOTH fee; verify official fee each run",
+      "noteTypicalNetBeforeWithdrawalJPY": "depends on price and payment method; verify current note fees when pricing",
       "planningBlendedNetPerTransactionJPY": 900
     },
     "externalBenchmarks": {
-      "genericEcommerceConversionRate": "roughly 1.6%-2.9% is a broad 2025 global ecommerce benchmark, not a BOOTH/note-specific rate",
+      "genericEcommerceConversionRate": "broad ecommerce benchmarks are context only and should not be treated as BOOTH/note-specific conversion rates",
       "seoLag": "Google states some search effects appear in days but site-level effects can take several months",
-      "noteMarket": "note reported paid-article sales +26.8% YoY in Nov 2025 and practical know-how articles in the top sales quintile averaged 1842 JPY"
+      "noteMarket": "practical know-how pricing should follow current demand, competition, conversion and value rather than a fixed low-price rule"
     }
   },
   "forecast": {
@@ -26,69 +26,25 @@
     "months7to12MonthlyNetJPY": {"downside": 3000, "baseLow": 12000, "baseHigh": 40000, "strong": 100000},
     "first12MonthsNetJPY": {"downsideRange": "20000-60000", "baseRange": "100000-250000", "strongRange": "350000-800000", "breakout": "above 1000000 is possible but should not be used as the planning expectation"}
   },
+  "revenueModel": {
+    "formula": "traffic x conversion rate x average order value x repeat purchase frequency",
+    "priorityRule": "choose the intervention with the highest expected sales impact multiplied by execution confidence and divided by cost",
+    "note": "SKU count, PV, margin and production volume are supporting metrics, not the objective. The top-level objective is total sales growth."
+  },
   "trafficMath": {
-    "note": "These are high-intent paid-product visits, not total free-tool pageviews.",
-    "salesNeededAt900Net": {
-      "5000JPY": 6,
-      "10000JPY": 12,
-      "30000JPY": 34,
-      "50000JPY": 56,
-      "100000JPY": 112
-    },
-    "highIntentVisitsNeededAt2PercentConversion": {
-      "5000JPY": 300,
-      "10000JPY": 600,
-      "30000JPY": 1700,
-      "50000JPY": 2800,
-      "100000JPY": 5600
-    }
+    "note": "Use observed high-intent paid-product visits and actual conversion once analytics exist; do not infer performance from total free-tool pageviews.",
+    "salesNeededAt900Net": {"5000JPY":6,"10000JPY":12,"30000JPY":34,"50000JPY":56,"100000JPY":112},
+    "highIntentVisitsNeededAt2PercentConversion": {"5000JPY":300,"10000JPY":600,"30000JPY":1700,"50000JPY":2800,"100000JPY":5600}
   },
   "interventionGates": [
-    {
-      "day": 30,
-      "minimumSignal": "at least 3 observed paid transactions across active channels",
-      "ifBelow": [
-        "do not increase paid SKU production rate",
-        "prioritize one canonical acquisition funnel per paid category",
-        "audit titles, previews, search intent, and buyer problem",
-        "keep entry products but raise future substantial note practical content toward 980-1480 JPY when justified"
-      ]
-    },
-    {
-      "day": 60,
-      "minimumSignal": "at least 5000 JPY monthly net run-rate or equivalent repeated purchase signal",
-      "ifBelow": [
-        "freeze generic new-product expansion",
-        "concentrate on the top two demand categories",
-        "evaluate one external distribution/affiliate setup with low recurring cost",
-        "request analytics setup only if the expected learning value exceeds user setup burden"
-      ]
-    },
-    {
-      "day": 90,
-      "minimumSignal": "at least 10000 JPY monthly net run-rate",
-      "ifBelow": [
-        "treat organic BOOTH/note-only strategy as insufficient",
-        "test a materially different acquisition channel or buyer segment",
-        "evaluate organization-license positioning for suitable practical tools",
-        "consider productized high-value offers only if delivery can stay low-touch"
-      ]
-    },
-    {
-      "day": 180,
-      "minimumSignal": "at least 20000 JPY monthly net run-rate",
-      "ifBelow": [
-        "pivot portfolio toward proven search demand and higher willingness-to-pay problems",
-        "stop weak categories rather than maintaining them",
-        "consider cross-platform English localization only for products with real domestic demand",
-        "do not compensate for weak economics by mass-producing more low-value items"
-      ]
-    }
+    {"day":30,"minimumSignal":"at least 3 observed paid transactions across active channels","ifBelow":["audit titles, previews, search intent, buyer problem and acquisition funnels","build or improve canonical high-intent acquisition funnels","continue creating additional products only where independent demand evidence and differentiation remain strong","raise value and pricing where low AOV is the bottleneck"]},
+    {"day":60,"minimumSignal":"at least 5000 JPY monthly net run-rate or equivalent repeated purchase signal","ifBelow":["concentrate on the strongest demand categories","test a materially different acquisition channel, buyer segment or offer structure","evaluate low-friction external distribution or affiliate opportunities","improve bundles, cross-sells and price ladders where appropriate"]},
+    {"day":90,"minimumSignal":"at least 10000 JPY monthly net run-rate","ifBelow":["treat organic BOOTH/note-only acquisition as insufficient","test organization-license positioning for suitable practical tools","evaluate higher-value productized offers that remain low-touch","retire or de-prioritize weak categories while continuing expansion in stronger ones"]},
+    {"day":180,"minimumSignal":"at least 20000 JPY monthly net run-rate","ifBelow":["pivot toward proven search demand and higher willingness-to-pay problems","stop weak categories rather than maintaining them","consider cross-platform English localization only for products with credible demand","do not compensate for weak economics by creating low-value clones"]}
   ],
-  "productionCaps": {
-    "boothNewProductsPerRolling7Days": 5,
-    "paidNoteArticlesPerRolling7Days": 4,
-    "newFreeToolsPerRolling7Days": 5,
-    "reason": "prevent quality dilution and shift capacity toward discovery, funnel improvement, bundles, and winner expansion"
+  "productionPolicy": {
+    "arbitraryCaps": false,
+    "rule": "No fixed weekly, daily or per-run production maximum. Create as many artifacts as can meet quality, demand, originality, policy and security standards.",
+    "qualityGuardrails": ["no thin SEO pages","no near-duplicate paid products","no plaintext paid assets in public repositories","verify current market and platform rules before pricing or distribution decisions","if a candidate is weak, switch to a stronger candidate or materially improve an existing funnel instead of ending without a deliverable"]
   }
 }
