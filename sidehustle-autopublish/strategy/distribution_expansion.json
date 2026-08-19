@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-19T11:36:00+09:00",
+  "objective": "increase profit by adding distribution channels only where expected value exceeds setup burden",
+  "immediate": [
+    {
+      "channel": "Microsoft Store",
+      "status": "prepare_now_one_time_partner_center_step_remaining",
+      "whyNow": [
+        "Microsoft states individual developer registration is free in the current onboarding flow.",
+        "Microsoft Store supports PWA pricing and discovery in 240+ countries and regions.",
+        "For non-game apps, developers may use their own commerce platform and Microsoft states the Store revenue share can be 0% for that commerce, or use Microsoft commerce with a 15% app fee.",
+        "The existing free web-tool portfolio can be packaged as PWAs and used as acquisition channels before building paid native software."
+      ],
+      "firstApp": {
+        "nameDirection": "Digital Seller Profit Toolkit",
+        "webPath": "auto-tools/digital-seller-profit/",
+        "storeBusinessModel": "free acquisition app first; no ads at launch; future disclosed affiliate and relevant paid-product links only",
+        "monetizationAfterTraffic": ["Payhip Partner recurring affiliate", "creator pricing BOOTH product", "English paid templates", "optional direct commerce"]
+      },
+      "automationGate": "Initial app reservation and first submission require Partner Center product identity and age-rating completion. After the first submission, evaluate Microsoft Store submission API automation.",
+      "doNot": ["do not build multiple Store apps before the first one is approved", "do not add affiliate links before enrollment", "do not charge for a PWA that exposes the exact same premium functionality publicly"]
+    }
+  ],
+  "highValueNext": [
+    {
+      "channel": "BOOTH license ladder",
+      "status": "activate after base product is public or demand signal exists",
+      "tiers": [
+        {"tier":"personal", "priceDirectionJPY":"1280-2480", "rights":"one purchaser / ordinary internal personal use"},
+        {"tier":"one organization", "priceDirectionJPY":"3980-5980", "rights":"internal use within one organization; no redistribution"},
+        {"tier":"PRO/support provider", "priceDirectionJPY":"9800-12800", "rights":"professional use in client support/projects without distributing raw editable template"}
+      ],
+      "marketEvidence": "BOOTH currently contains professional Excel/software around 4,980 JPY and commercial licenses around 9,800-12,800 JPY; use only where the buyer problem and rights justify the premium."
+    },
+    {
+      "channel": "Etsy English digital downloads",
+      "status": "after a product proves demand and English localization is ready",
+      "why": ["Etsy supports instant digital downloads", "listing fee is currently USD 0.20 and transaction fee 6.5% before payment-processing/other applicable fees", "marketplace discovery can diversify away from BOOTH/note"],
+      "gate": "do not pay listing/setup costs for unproven products; cross-list only proven products"
+    },
+    {
+      "channel": "Payhip Partner",
+      "status": "one-time enrollment required",
+      "why": "recurring affiliate revenue can monetize digital-seller traffic without creating another paid product",
+      "activation": "after meaningful traffic appears on digital-seller-profit or digital-store-compare, or earlier if enrollment burden is negligible"
+    }
+  ],
+  "trafficFirst": {
+    "rule": "The largest short-term constraint is qualified traffic, not product count.",
+    "actions": [
+      "Use free PWA/web tools as search and Microsoft Store acquisition surfaces.",
+      "Cap near-duplicate free tools and paid SKUs.",
+      "Once a paid URL is verified, add one context-matched CTA to the relevant free tool.",
+      "If a category shows sales, concentrate pages and products around that buyer problem instead of broadening randomly."
+    ]
+  },
+  "officialSources": [
+    "https://learn.microsoft.com/en-us/windows/apps/publish/whats-new-individual-developer",
+    "https://learn.microsoft.com/en-us/windows/apps/publish/get-started",
+    "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/pwa/price-and-availability",
+    "https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps/how-to/microsoft-store",
+    "https://www.etsy.com/legal/fees/",
+    "https://help.etsy.com/hc/ja/articles/115015628347-%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E5%95%86%E5%93%81%E3%82%92%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF"
+  ]
+}
