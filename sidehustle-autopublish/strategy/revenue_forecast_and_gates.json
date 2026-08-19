@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-19T11:18:00+09:00",
+  "basis": {
+    "observedSalesAtCreation": 0,
+    "importantCaveat": "These are management scenarios, not statistically validated platform-wide probabilities. Current observed sales are zero, public URLs are not yet independently verified for tracked paid products, and organic search/discovery starts from a low base.",
+    "currentPortfolioSnapshot": {
+      "booth": "1 completed flow + 2 queued in metrics snapshot",
+      "note": "1 completed flow + 2 queued in metrics snapshot",
+      "githubPagesTools": 4
+    }
+  },
+  "grossRevenueForecastJPY": {
+    "conservative": {
+      "planningWeight": 0.55,
+      "month1": 500,
+      "month3RunRate": 1500,
+      "month6RunRate": 4000,
+      "month12RunRate": 10000,
+      "first12MonthsCumulative": 55000,
+      "interpretation": "Most products receive little traffic; no clear winner emerges."
+    },
+    "base": {
+      "planningWeight": 0.35,
+      "month1": 1500,
+      "month3RunRate": 7000,
+      "month6RunRate": 18000,
+      "month12RunRate": 35000,
+      "first12MonthsCumulative": 215000,
+      "interpretation": "A few products sell intermittently, bundles increase AOV, and free tools/note begin contributing discovery."
+    },
+    "upside": {
+      "planningWeight": 0.10,
+      "month1": 3000,
+      "month3RunRate": 20000,
+      "month6RunRate": 60000,
+      "month12RunRate": 120000,
+      "first12MonthsCumulative": 700000,
+      "interpretation": "One or two strong product-category winners emerge and are successfully expanded into bundles/licenses/cross-listing."
+    },
+    "weightedManagementExpectation": {
+      "first12MonthsCumulativeApprox": 175500,
+      "month12RunRateApprox": 29250,
+      "warning": "Do not budget personal spending from the weighted figure; upside is highly skewed. Use conservative/base cases for planning."
+    }
+  },
+  "assessment": {
+    "currentSystemAloneIsEnoughFor": "small side-income experiment and product-market discovery",
+    "currentSystemAloneIsNotYetEnoughFor": "reliably producing meaningful compensation-level income",
+    "primaryBottleneck": "distribution and verified conversion evidence, not production capacity"
+  },
+  "revenueGates": [
+    {
+      "gate": "D14_ZERO_SALES",
+      "trigger": "14 days after at least 2 paid BOOTH products are verified live and 0 observed paid transactions across BOOTH/note",
+      "automaticActions": [
+        "pause near-duplicate expansion in the same categories",
+        "rewrite the strongest paid-product title/description/preview plan before lowering price",
+        "prioritize one genuinely useful free funnel per strongest buyer problem",
+        "publish problem-focused note discovery content rather than another similar paid SKU"
+      ],
+      "humanAction": "none"
+    },
+    {
+      "gate": "D30_LOW_REVENUE",
+      "trigger": "trailing 30-day observed gross revenue < 5000 JPY OR fewer than 3 paid transactions after at least 2 paid products are verified live",
+      "automaticActions": [
+        "shift strategy priority from SKU expansion to distribution/funnel improvement",
+        "create at most one BOOTH free Lite product for the strongest category if absent and technically supported",
+        "create or improve category landing pages and internal links",
+        "prioritize bundle/AOV improvement only when complementary paid products are live"
+      ],
+      "humanAction": "if BOOTH has at least 2 live products, request a one-time GA4 connection because traffic/conversion data becomes more valuable than more products"
+    },
+    {
+      "gate": "D60_BELOW_10K",
+      "trigger": "trailing 30-day observed gross revenue < 10000 JPY at day 60",
+      "automaticActions": [
+        "freeze weak categories for 30 days",
+        "focus production on the top 1-2 buyer problems by observed clicks/sales/messages",
+        "prepare English localization only for the strongest plausible product",
+        "research one external marketplace that adds discovery or a new buyer segment; do not choose solely on low fees"
+      ],
+      "humanAction": "ask for one-time account setup only if the expected value of the chosen external channel clearly exceeds setup burden"
+    },
+    {
+      "gate": "D90_BELOW_20K",
+      "trigger": "trailing 30-day observed gross revenue < 20000 JPY at day 90",
+      "automaticActions": [
+        "create an organization/team license for the strongest B2B-suitable product only if at least one sale or strong usage evidence exists",
+        "prioritize one high-AOV bundle over several new low-price products",
+        "audit whether free tools target purchase-intent problems rather than only informational traffic",
+        "evaluate affiliate or recurring revenue only where traffic/demand evidence exists"
+      ],
+      "humanAction": "none unless external payment/account verification is justified"
+    },
+    {
+      "gate": "D180_BELOW_30K",
+      "trigger": "trailing 30-day observed gross revenue < 30000 JPY at day 180",
+      "automaticActions": [
+        "classify current passive-template model as insufficient for compensation-level income",
+        "stop expanding low-converting categories",
+        "run a fresh business-model search for a different monetization class: higher-ticket low-touch digital licensing, secure paid micro-tool/SaaS, affiliate-led search assets, or a marketplace with stronger discovery",
+        "preserve profitable existing products but redirect new build capacity to the best alternative model"
+      ],
+      "humanAction": "request only the minimum one-time setup required for the selected replacement model"
+    }
+  ],
+  "trafficConversionDecisionRulesAfterAnalyticsAvailable": {
+    "note": "Thresholds below are internal management rules, not asserted industry benchmarks.",
+    "lowTraffic": "If a paid page gets <100 relevant visits/month, treat distribution as the main bottleneck.",
+    "trafficButNoSales": "If a paid page gets >=300 relevant visits/month and conversion remains <0.5%, prioritize offer, preview, positioning, trust, and pricing experiments rather than more traffic.",
+    "promisingConversion": "If observed purchase conversion is >=1% with enough sample size, prioritize traffic scaling and complementary offers.",
+    "winner": "If a product/category generates repeated purchases across multiple weeks, deepen the category before unrelated expansion."
+  }
+}
