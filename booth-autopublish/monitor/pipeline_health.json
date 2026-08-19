@@ -1,20 +1,26 @@
 {
-  "version": 1,
-  "checkedAt": "2026-08-19T16:58:55+09:00",
+  "version": 2,
+  "checkedAt": "2026-08-19T20:00:00+09:00",
   "status": "bottleneck_detected",
-  "reason": "enabled queue has remained unverified for more than 2 hours and publication throughput is behind production throughput",
+  "reason": "After reconciling one buyer-visible publication, two enabled queue entries remain unverified and the oldest has been waiting more than 2 hours; publication throughput is still behind production throughput.",
   "queue": {
-    "enabledCount": 3,
-    "publicUrlVerifiedCount": 0,
-    "oldestEnabledCreatedAt": "2026-08-19T01:07:00+09:00",
-    "oldestAgeMinutesAtCheck": 952,
+    "rawEnabledCount": 3,
+    "verifiedPublishedInRawQueue": 1,
+    "effectiveUnpublishedCount": 2,
+    "publicUrlVerifiedCount": 1,
+    "oldestEffectiveUnpublishedId": "003_event_ops_html_20260819",
+    "oldestEnabledCreatedAt": "2026-08-19T08:06:00+09:00",
+    "oldestAgeMinutesAtCheck": 714,
     "entries": [
       {
         "id": "002_consistency_os_20260819",
         "createdAt": "2026-08-19T01:07:00+09:00",
         "enabled": true,
-        "publishFlow": "queued",
-        "publicUrlVerified": false
+        "publishFlow": "completed",
+        "publicUrlVerified": true,
+        "publicUrl": "https://booth.pm/ja/items/8736698",
+        "boothItemId": "8736698",
+        "monitorDisposition": "exclude_from_unpublished_backlog"
       },
       {
         "id": "003_event_ops_html_20260819",
@@ -32,18 +38,22 @@
       }
     ]
   },
+  "publicationLedger": {
+    "path": "booth-autopublish/monitor/publication_ledger.json",
+    "rule": "An enabled queue entry is counted as unpublished unless a matching ledger record has publicUrlVerified=true. enabled=true never means published.",
+    "verifiedQueueIds": ["002_consistency_os_20260819"]
+  },
   "decision": {
     "newProductProductionPriority": "deprioritized_until_consumer_throughput_recovers",
     "highestImpactLever": "publication_pipeline_reliability_and_throughput",
     "actionsCompletedThisRun": [
-      "built BOOTH Auto Publisher v4 pipeline-fix package",
-      "added UTF-8 BOM-safe JSON parsing",
-      "added encrypted queue SHA/decryption/required-file health check",
-      "added failure cooldown so one broken oldest item cannot starve later queue entries",
-      "changed published semantics so state is written only after a public BOOTH item URL is loaded and title-verified",
-      "added local publish_receipts.json with publicUrlVerified=true only after live verification",
-      "prepared a 2-hour Windows consumer task with at most one publish per run to raise throughput without burst posting"
+      "reconciled the V11 buyer-visible publication success for 002_consistency_os_20260819",
+      "created a canonical GitHub-side publication ledger so verified published queue entries are not repeatedly counted as unpublished",
+      "changed pipeline monitoring semantics from raw enabled count to effective unpublished count",
+      "confirmed BOOTH current download-product fee remains price x 5.6% + 45 JPY per order",
+      "kept new product production paused because 003_event_ops_html_20260819 and 005_sponsor_crm_20260819 remain unverified"
     ],
-    "remainingExternalStep": "the Windows machine that holds the authenticated BOOTH browser profile must install/run the v4 consumer package; GitHub alone cannot execute the authenticated BOOTH publish action"
+    "remainingExternalDependency": "The authenticated Windows publisher must process or recover the remaining queue entries and produce buyer-visible verification receipts; GitHub-side automation cannot execute the BOOTH authenticated browser publication itself.",
+    "nextPriority": "reconcile the next verified Windows receipt into publication_ledger.json; if 003/005 remain unverified after the next consumer cycles, prioritize publisher recovery rather than adding more queue load"
   }
 }
