@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-19T11:36:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-19T11:42:00+09:00",
   "objective": "increase profit by adding distribution channels only where expected value exceeds setup burden",
   "immediate": [
     {
@@ -31,7 +31,19 @@
         {"tier":"one organization", "priceDirectionJPY":"3980-5980", "rights":"internal use within one organization; no redistribution"},
         {"tier":"PRO/support provider", "priceDirectionJPY":"9800-12800", "rights":"professional use in client support/projects without distributing raw editable template"}
       ],
-      "marketEvidence": "BOOTH currently contains professional Excel/software around 4,980 JPY and commercial licenses around 9,800-12,800 JPY; use only where the buyer problem and rights justify the premium."
+      "marketEvidence": "BOOTH currently contains professional Excel/software around 4,980 JPY and commercial-license examples around 9,800-12,800 JPY; use only where the buyer problem and rights justify the premium."
+    },
+    {
+      "channel": "Lemon Squeezy global digital sales",
+      "status": "strong_candidate_after_one_product_proves_demand",
+      "why": [
+        "Current ecommerce pricing starts at 5% + USD 0.50 per transaction with no monthly ecommerce fee, though additional fees can apply.",
+        "Acts as merchant of record and handles sales-tax/VAT responsibilities for sales through the platform.",
+        "Japan is currently listed for bank payouts.",
+        "Supports digital products, subscriptions, license keys, hosted checkout, APIs and webhooks."
+      ],
+      "gate": "Requires store activation review/KYC and non-US tax information; do not ask user to complete this until a product has demonstrated demand or a high-value software/license use case is ready.",
+      "preference": "For global software/digital-product expansion, evaluate Lemon Squeezy alongside Payhip and Ko-fi; prefer the channel with the best total fee/tax/fulfillment tradeoff for the proven product."
     },
     {
       "channel": "Etsy English digital downloads",
@@ -42,8 +54,15 @@
     {
       "channel": "Payhip Partner",
       "status": "one-time enrollment required",
-      "why": "recurring affiliate revenue can monetize digital-seller traffic without creating another paid product",
+      "why": "Payhip currently advertises 50% recurring commission on the revenue Payhip earns from referred sellers, making creator-tool traffic monetizable without another paid product.",
       "activation": "after meaningful traffic appears on digital-seller-profit or digital-store-compare, or earlier if enrollment burden is negligible"
+    },
+    {
+      "channel": "Canva Template Creator",
+      "status": "gated_application_opportunity",
+      "why": ["Canva Template Creators can earn royalties based on template usage/popularity", "there are no client deadlines or quotas in the Template Creator model", "Canva offers a global audience"],
+      "gate": "Requires a strong design portfolio and acceptance. Canva currently rejects obvious AI-generated submissions or work that cannot be considered wholly the creator's, so do not automate AI-template mass production or submit AI-generated design assets.",
+      "use": "Only pursue if a genuinely original human-authored design portfolio can be assembled; otherwise prioritize channels compatible with AI-assisted production."
     }
   ],
   "trafficFirst": {
@@ -52,7 +71,8 @@
       "Use free PWA/web tools as search and Microsoft Store acquisition surfaces.",
       "Cap near-duplicate free tools and paid SKUs.",
       "Once a paid URL is verified, add one context-matched CTA to the relevant free tool.",
-      "If a category shows sales, concentrate pages and products around that buyer problem instead of broadening randomly."
+      "If a category shows sales, concentrate pages and products around that buyer problem instead of broadening randomly.",
+      "Prefer distribution expansion or license ladders over increasing SKU count once a category has enough products."
     ]
   },
   "officialSources": [
@@ -60,7 +80,11 @@
     "https://learn.microsoft.com/en-us/windows/apps/publish/get-started",
     "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/pwa/price-and-availability",
     "https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps/how-to/microsoft-store",
+    "https://www.lemonsqueezy.com/pricing",
+    "https://docs.lemonsqueezy.com/help/getting-started/supported-countries",
+    "https://docs.lemonsqueezy.com/help/getting-started/activate-your-store",
     "https://www.etsy.com/legal/fees/",
-    "https://help.etsy.com/hc/ja/articles/115015628347-%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E5%95%86%E5%93%81%E3%82%92%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF"
+    "https://payhip.com/partner-program",
+    "https://www.canva.com/ja_jp/creators/"
   ]
 }
