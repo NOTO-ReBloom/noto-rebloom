@@ -1,83 +1,43 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-19T09:03:00+09:00",
+  "updatedAt": "2026-08-19T11:19:00+09:00",
   "objective": "maximize cumulative profit, average order value, and speed of learning with minimal user intervention",
   "channels": {
     "BOOTH": {
       "status": "active",
       "products": [
-        {
-          "id": "001_interview_os",
-          "title": "【28卒・29卒】面接改善OS｜面接ログ×弱点可視化×AIプロンプト12種｜Excel就活テンプレ",
-          "priceJPY": 980,
-          "publishFlow": "completed",
-          "publicUrlVerified": false,
-          "salesObserved": null
-        },
-        {
-          "id": "002_consistency_os_20260819",
-          "title": "【28卒・29卒】AI就活 一貫性チェックOS｜ES・自己PR・志望動機・面接回答の矛盾を防ぐExcel＋AIプロンプト6種",
-          "priceJPY": 1280,
-          "publishFlow": "queued",
-          "publicUrlVerified": false,
-          "salesObserved": null
-        },
-        {
-          "id": "003_event_ops_html_20260819",
-          "title": "イベント運営OS｜TODO・参加者・スタッフ・当日進行・備品・リスク・予算を1つで管理｜オフラインHTML",
-          "priceJPY": 1280,
-          "publishFlow": "queued",
-          "publicUrlVerified": false,
-          "salesObserved": null
-        }
+        {"id":"001_interview_os","title":"【28卒・29卒】面接改善OS｜面接ログ×弱点可視化×AIプロンプト12種｜Excel就活テンプレ","priceJPY":980,"publishFlow":"completed","publicUrlVerified":false,"salesObserved":null},
+        {"id":"002_consistency_os_20260819","title":"【28卒・29卒】AI就活 一貫性チェックOS｜ES・自己PR・志望動機・面接回答の矛盾を防ぐExcel＋AIプロンプト6種","priceJPY":1280,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null},
+        {"id":"003_event_ops_html_20260819","title":"イベント運営OS｜TODO・参加者・スタッフ・当日進行・備品・リスク・予算を1つで管理｜オフラインHTML","priceJPY":1280,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null}
       ]
     },
     "note": {
       "status": "active",
       "products": [
-        {
-          "id": "note_20260818_01",
-          "title": "大学生のタスクが多すぎる問題を15分で整理する｜授業・就活・バイトをAIで1枚にまとめる実践テンプレ",
-          "priceJPY": 480,
-          "publishFlow": "completed",
-          "publicUrlVerified": false,
-          "salesObserved": null
-        },
-        {
-          "id": "note_20260819_02",
-          "title": "協賛営業を「送ったら終わり」にしない｜スポンサー獲得を前に進める7段階の管理テンプレ",
-          "priceJPY": 680,
-          "publishFlow": "queued",
-          "publicUrlVerified": false,
-          "salesObserved": null
-        },
-        {
-          "id": "note_20260819_03",
-          "title": "イベント当日マニュアルは「時系列」だけでは足りない｜事故と混乱を減らす5層設計テンプレ",
-          "priceJPY": 680,
-          "publishFlow": "queued",
-          "publicUrlVerified": false,
-          "salesObserved": null
-        }
+        {"id":"note_20260818_01","title":"大学生のタスクが多すぎる問題を15分で整理する｜授業・就活・バイトをAIで1枚にまとめる実践テンプレ","priceJPY":480,"publishFlow":"completed","publicUrlVerified":false,"salesObserved":null},
+        {"id":"note_20260819_02","title":"協賛営業を「送ったら終わり」にしない｜スポンサー獲得を前に進める7段階の管理テンプレ","priceJPY":680,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null},
+        {"id":"note_20260819_03","title":"イベント当日マニュアルは「時系列」だけでは足りない｜事故と混乱を減らす5層設計テンプレ","priceJPY":680,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null}
       ]
     },
     "GitHubPages": {
       "status": "active",
-      "tools": [
-        "charfit",
-        "booth-price-calc",
-        "event-checklist",
-        "event-reception-calc"
-      ]
+      "tools": ["charfit","booth-price-calc","event-checklist","event-reception-calc","digital-store-compare"]
     },
-    "AmazonKDP": {"status": "disabled"},
-    "LINECreatorsMarket": {"status": "disabled"}
+    "futureChannels": {
+      "PayhipPartner": {"status":"gated_by_one_time_enrollment_and_traffic_fit"},
+      "KoFiOrPayhipSeller": {"status":"gated_until_proven_product_localization"},
+      "StripePaymentLinks": {"status":"gated_until_secure_fulfillment_or_license_use_case"},
+      "noteMembership": {"status":"gated_until_repeat_demand_signal"}
+    },
+    "AmazonKDP": {"status":"disabled"},
+    "LINECreatorsMarket": {"status":"disabled"}
   },
   "optimizationRules": [
     "Do not infer a public URL until independently verified.",
     "Do not reduce price merely to increase item count; account for fixed per-order fees.",
     "Prefer complementary bundles after at least two products exist in the same buyer problem.",
     "Use actual sales and message data when available; otherwise state that evidence is still sparse.",
+    "At 3 observed sales evaluate complement/bundle; at 5 evaluate organization license/localization; at 10 evaluate recurring/global expansion.",
     "Do not reactivate KDP or LINE without explicit user instruction."
   ]
 }
