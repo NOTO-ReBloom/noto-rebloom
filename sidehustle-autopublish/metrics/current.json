@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-19T21:16:00+09:00",
+  "updatedAt": "2026-08-19T23:36:50+09:00",
   "objective": "maximize total sales by improving acquisition, conversion, average order value, repeat demand, and the number of high-quality products without arbitrary production caps",
   "channels": {
     "BOOTH": {
@@ -35,9 +35,9 @@
     "LINECreatorsMarket": {"status":"disabled"}
   },
   "pipelineMonitor": {
-    "checkedAt": "2026-08-19T21:16:00+09:00",
+    "checkedAt": "2026-08-19T23:36:50+09:00",
     "gmailImportantEventsFound": 0,
-    "publicUrlsNewlyVerified": 2,
+    "publicUrlsNewlyVerified": 0,
     "BOOTH": {
       "level": "healthy",
       "rawEnabledQueueCount": 3,
@@ -47,9 +47,9 @@
       "oldestTitle": null,
       "oldestCreatedAt": null,
       "oldestAgeMinutes": 0,
-      "lastPublicSearchResult": "V14 buyer-anonymous Chrome verification returned HTTP 200 and titleOk=true for 003 item 8736143 and 005 item 8736208, each followed by PUBLIC_RECOVERY_SUCCESS.",
+      "lastPublicSearchResult": "Exact-title public web search did not establish a formal BOOTH page for the remaining unverified completed product 001_interview_os. Queue reconciliation remains healthy because all three enabled queue entries are already buyer-visible and verified.",
       "userActionRequiredNow": false,
-      "note": "BOOTH queue-truth reconciliation is healthy. 002, 003, and 005 are buyer-visible and verified. V14 final FAILED text was only a summary-count parsing bug; its per-item browser verification and state summary both proved 003 and 005 public."
+      "note": "No new BOOTH publication, sales/order email, or pipeline regression was established in this check."
     },
     "note": {
       "level": "pipeline_critical",
@@ -57,10 +57,10 @@
       "oldestId": "note_20260818_01",
       "oldestTitle": "大学生のタスクが多すぎる問題を15分で整理する｜授業・就活・バイトをAIで1枚にまとめる実践テンプレ",
       "oldestCreatedAt": "2026-08-18T21:40:00+09:00",
-      "oldestAgeMinutes": 1383,
-      "lastPublicSearchResult": "No official note page was established by exact-title public web searches for the unverified entries",
+      "oldestAgeMinutes": 1556,
+      "lastPublicSearchResult": "No official note page was established by exact-title public web searches for the four unverified entries.",
       "userActionRequiredNow": false,
-      "note": "No new note publication verification or Gmail sales/order/failure event was established in this check."
+      "note": "Existing note pipeline_critical persists without a new severity transition. No new publication verification or Gmail sales/order/failure event was established in this check."
     }
   },
   "latestMarketLearning": {
@@ -69,7 +69,7 @@
     "sponsorCrmResearch": "Current BOOTH search showed generic Excel CRM/sales-management products around 1480-1980 JPY and higher-priced business systems, while direct sponsor-acquisition workflow products were sparse. The 1680 JPY hypothesis positions the product above generic trackers by covering sponsor-package design, weighted pipeline, payment tracking and benefit fulfillment in one workbook.",
     "boothFeeResearch": "BOOTH's official 2025-10-28 fee revision remains current: download products are charged price x 5.6% + 45 JPY per order, rounded up. Fixed per-order cost continues to favor value-based pricing over unnecessary low-price SKUs.",
     "publicationReconciliation": "Windows V14 reconciled local state against buyer-visible reality. 003_event_ops_html_20260819 is public at BOOTH item 8736143 and 005_sponsor_crm_20260819 is public at item 8736208; both returned anonymous-browser HTTP 200 with titleOk=true and PUBLIC_RECOVERY_SUCCESS. Together with 002 item 8736698, all three encrypted queue entries are now verified public.",
-    "sourceCheckedAt": "2026-08-19T21:16:00+09:00"
+    "sourceCheckedAt": "2026-08-19T23:36:50+09:00"
   },
   "optimizationRules": [
     "Do not infer a public URL until independently verified.",
