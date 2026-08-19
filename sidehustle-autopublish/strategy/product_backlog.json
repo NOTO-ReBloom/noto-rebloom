@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-19T11:12:00+09:00",
+  "updatedAt": "2026-08-19T14:47:00+09:00",
   "rules": {
-    "maxOneBoothProductPerProductionRun": true,
+    "maxOneBoothProductPerProductionRun": false,
     "skipIfMarketScoreBelow": 70,
     "doNotPublishPlaintextPaidAssetsToGitHub": true,
     "verifyCurrentCompetitionAndOfficialFeesBeforeBuild": true,
@@ -13,7 +13,8 @@
     {
       "priority": 1,
       "idHint": "sponsor_sales_crm_os",
-      "status": "planned_next_high_value_standalone",
+      "status": "completed_and_queued",
+      "queuedProductId": "005_sponsor_crm_20260819",
       "titleDirection": "協賛・スポンサー営業CRM OS｜候補企業→面談→提案→契約→入金→対価履行を一括管理",
       "targetPriceJPY": 1680,
       "marketScore": 83,
@@ -44,7 +45,7 @@
     {
       "priority": 4,
       "idHint": "event_sponsor_bundle",
-      "status": "build_after_event_and_sponsor_products_exist",
+      "status": "ready_for_build_both_components_queued",
       "titleDirection": "イベント主催者 実務完全セット｜イベント運営OS＋協賛スポンサー営業CRM",
       "targetPriceJPY": 2480,
       "marketScore": 80,
@@ -89,6 +90,12 @@
       "title": "イベント運営OS｜TODO・参加者・スタッフ・当日進行・備品・リスク・予算を1つで管理｜オフラインHTML",
       "priceJPY": 1280,
       "freeFunnelSlug": "event-checklist"
+    },
+    {
+      "id": "005_sponsor_crm_20260819",
+      "title": "協賛・スポンサー営業CRM OS｜候補企業→面談→提案→契約→入金→対価履行を一括管理｜Excel",
+      "priceJPY": 1680,
+      "relatedNoteId": "note_20260819_02"
     }
   ]
 }
