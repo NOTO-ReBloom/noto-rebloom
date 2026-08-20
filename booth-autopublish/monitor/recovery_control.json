@@ -1,15 +1,17 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T15:53:00+09:00",
+  "updatedAt": "2026-08-20T16:47:00+09:00",
   "activeRecovery": {
     "queueId": "007_thesis_progress_os_20260820",
-    "forceRetryNonce": "007-r2-20260820T155100+0900",
+    "forceRetryNonce": "007-r4-20260820T161500+0900",
+    "retryGeneration": 4,
     "priority": "highest",
-    "reason": "Only enabled queue entry remains buyer-unverified more than 6 hours after creation, and generation 1 produced no verified ledger entry after more than 30 minutes.",
+    "reason": "Priority-five catch-up item remains buyer-unverified. Recovery control is synchronized to queue retry generation 4 so Windows V8/V14 must not honor stale local success or an older recovery generation.",
     "rules": [
       "Do not trust local success state unless publication_ledger has matching publicUrlVerified=true.",
+      "Treat queue retryGeneration=4 and forceRetryNonce=007-r4-20260820T161500+0900 as authoritative for this recovery cycle.",
       "Reconstruct all listed chunks in order and require SHA-256 to equal ce4ebfb5b07a9e05b8e1d79a920b09e1cb010f0521ee24130ff92270d284f79f before decrypting.",
-      "Generation 2 is escalated: reconcile an exact-title existing draft only if it can immediately become buyer-visible; otherwise perform a clean rebuild from the decrypted canonical package.",
+      "Reconcile an exact-title existing draft only if it can immediately become buyer-visible; otherwise perform a clean rebuild from the decrypted canonical package.",
       "Do not stop at management-page success, publish-click success, or a derived URL.",
       "Expected price is 1480 JPY.",
       "After publish, verify anonymously that the exact title is visible, the page is buyer-accessible, the item is a downloadable product, the expected price is shown, and a purchase path is present.",
