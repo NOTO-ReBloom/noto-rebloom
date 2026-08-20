@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T21:14:00+09:00",
-  "retryGeneration": 12,
+  "updatedAt": "2026-08-20T22:22:40+09:00",
+  "retryGeneration": 13,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -24,12 +24,12 @@
       "createdAt": "2026-08-20T17:40:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "monitor-r12-20260820T211400+0900",
+      "forceRetryNonce": "monitor-r13-20260820T222240+0900",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
       "recoveryMode": "publish-new-item-and-anonymously-verify-all-commerce-checks",
-      "recoveryEscalation": "009 is the sole active BOOTH candidate. Consumer must validate combined SHA-256 before decrypting, publish as a downloadable product at 980 JPY, then anonymously verify exact title, price, downloadable-product state and functioning purchase/cart path. Do not stop after admin-page success. If 009 cannot publish in the cycle, defer it and service another publishable candidate rather than ending without a verified publication."
+      "recoveryEscalation": "Invalidate stale local success for this generation, validate combined SHA-256 before decrypting, publish as a new downloadable product at 980 JPY, then anonymously verify exact title, price, downloadable-product state and functioning purchase/cart path. Admin-page success is insufficient. If 009 still cannot publish in this cycle, defer it and service another publishable candidate rather than ending without a verified publication."
     }
   ]
 }
