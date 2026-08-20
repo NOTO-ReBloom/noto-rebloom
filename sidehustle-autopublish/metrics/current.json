@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T19:08:00+09:00",
+  "updatedAt": "2026-08-20T20:22:00+09:00",
   "objective": "maximize total sales by improving acquisition, conversion, average order value, repeat demand, and the number of high-quality products without arbitrary production caps",
   "channels": {
     "BOOTH": {
@@ -26,8 +26,8 @@
     },
     "GitHubPages": {
       "status": "active",
-      "tools": ["charfit","booth-price-calc","event-checklist","event-reception-calc","digital-store-compare","digital-seller-profit","thesis-deadline-planner","thesis-progress-check","thesis-weekly-plan","thesis-question-builder","sponsor-plan-calc","sponsor-email-maker","handover-checklist"],
-      "latestVerifiedPublication": {"slug":"handover-checklist","title":"学生団体・サークル 引継ぎチェックリストメーカー","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/handover-checklist/","publicUrlVerified":true,"verifiedAt":"2026-08-20T19:08:05+09:00"}
+      "tools": ["charfit","booth-price-calc","event-checklist","event-reception-calc","digital-store-compare","digital-seller-profit","thesis-deadline-planner","thesis-progress-check","thesis-weekly-plan","thesis-question-builder","sponsor-plan-calc","sponsor-email-maker","handover-checklist","role-assignment"],
+      "latestVerifiedPublication": {"slug":"role-assignment","title":"学生団体・小規模NPO 役割分担メーカー","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/role-assignment/","publicUrlVerified":true,"verifiedAt":"2026-08-20T20:20:56+09:00"}
     },
     "futureChannels": {
       "PayhipPartner": {"status":"gated_by_one_time_enrollment_and_traffic_fit"},
@@ -39,41 +39,45 @@
     "LINECreatorsMarket": {"status":"disabled"}
   },
   "pipelineMonitor": {
-    "checkedAt": "2026-08-20T19:08:05+09:00",
+    "checkedAt": "2026-08-20T20:22:00+09:00",
     "gmailImportantEventsFound": 0,
     "publicUrlsNewlyVerified": 1,
-    "latestPublicEvent": {"service":"GitHubPages","slug":"handover-checklist","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/handover-checklist/","verified":true},
+    "latestPublicEvent": {"service":"GitHubPages","slug":"role-assignment","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/role-assignment/","verified":true},
     "BOOTH": {
-      "level": "healthy",
+      "level": "pipeline_warning",
       "rawEnabledQueueCount": 1,
       "verifiedPublishedInQueue": 0,
       "effectiveUnpublishedQueueCount": 1,
       "oldestId": "009_handover_os_20260820",
       "oldestTitle": "学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
       "oldestCreatedAt": "2026-08-20T17:40:00+09:00",
-      "oldestAgeMinutes": 88,
-      "consecutiveUnresolvedChecks": 1,
+      "oldestAgeMinutes": 162,
+      "consecutiveUnresolvedChecks": 2,
+      "retryGeneration": 11,
+      "lastRecoveryAction": "forceRetry nonce refreshed at 20:16 JST; strict buyer-visible checks retained; SHA reconcile workflow retriggered by queue commit",
       "userActionRequiredNow": false,
-      "note": "009 remains active with force retry and strict buyer-visible verification; exact-title public search did not confirm a page this run. Below warning age."
+      "note": "Exact-title public search still did not establish a buyer-visible official page. Search-index delay alone is not treated as failure; queue remains active and recoverable."
     },
     "note": {
-      "level": "healthy",
+      "level": "pipeline_warning",
       "enabledQueueCount": 1,
       "oldestId": "note_20260820_05",
       "oldestCreatedAt": "2026-08-20T18:08:00+09:00",
-      "oldestAgeMinutes": 60,
-      "consecutiveUnresolvedChecks": 1,
+      "oldestAgeMinutes": 134,
+      "consecutiveUnresolvedChecks": 2,
+      "retryGeneration": 6,
       "qualityLevel": "awaiting_verification",
       "qualityWarningCount": 0,
+      "lastRecoveryAction": "forceRetry nonce refreshed at 20:16 JST; reader-visible URL/title/price/paid-boundary/dedicated-cover requirements retained",
       "userActionRequiredNow": false,
-      "note": "note_20260820_05 remains active; exact-title public search did not confirm a reader-visible page this run. Below warning age."
+      "note": "Exact-title public search still did not establish a reader-visible official page. The item remains queued and is not counted as completed."
     },
-    "MicrosoftStore": {"status":"no_repository_state_found","gmailImportantEventsFound":0,"userActionRequiredNow":false}
+    "MicrosoftStore": {"status":"no_repository_state_found","gmailImportantEventsFound":0,"userActionRequiredNow":false,"note":"No Microsoft Store/Partner Center event was found in the connected Gmail window, and no repository state artifact was located in the searched sidehustle paths. No status or metrics inferred."}
   },
   "latestMarketLearning": {
-    "publicationReconciliation": "GitHub Pages handover-checklist was independently verified HTTP 200 with title, major UI, H1 and primary function checks on 2026-08-20 19:08 JST. BOOTH 009 and note 05 remain queued and unverified; neither is counted as public.",
-    "handoverFunnelBuild": "A standalone free handover checklist tool now exists as a high-intent acquisition asset. Do not add a CTA to BOOTH 009 until its strict buyer-visible public URL is verified.",
-    "sourceCheckedAt": "2026-08-20T19:08:05+09:00"
+    "publicationReconciliation": "GitHub Pages role-assignment was independently verified HTTP 200 with title, major UI, H1 and primary function checks at 2026-08-20 20:20:56 JST. BOOTH 009 and note 05 remain queued and unverified; force-retry generations were advanced rather than ending on monitoring alone.",
+    "roleAssignmentFunnelBuild": "A standalone free role-assignment tool is now a verified acquisition asset for the planned student-group/small-NPO role-management product. No paid-product CTA was added because the corresponding paid BOOTH product is not yet strictly buyer-visible verified.",
+    "sourceCheckedAt": "2026-08-20T20:22:00+09:00"
   },
   "optimizationRules": [
     "Do not infer a public URL until independently verified.",
