@@ -7,9 +7,9 @@
 - `enabled:true`: Windows publisherが取得してよい
 - `queued`: まだnote公開確認前
 - `published`: note上で公開処理成功を記録
-- `publicUrlVerified:true`: 公開ページを外部から確認済み
+- `publicUrlVerified:true`: reader-visibleな公開ページを外部から確認済み
 
-**キュー追加だけで公開済み扱いにはしません。**
+**キュー追加・編集画面URL・PUBLISH_SUCCESSだけで公開済み扱いにはしません。**
 
 ## 商品完成条件（v2）
 
@@ -41,19 +41,21 @@
 consumerは各実行で次を行います。
 
 1. `queue/index.json` を取得
-2. ローカル成功stateに未記録の `enabled:true` を1件選択
-3. `sha256` を検証
-4. Windows側だけにあるRSA秘密鍵でAES鍵をRSA-OAEP-SHA256復号
-5. AES-256-GCMで記事JSONを復号
-6. `title`, `freeBody`, `paidBody`, `tags`, `price`, `coverImageBase64`, `coverImageMime` を再検査
-7. `coverImageBase64` を一時PNG/JPGへ復元し、サイズ・容量・MIMEを検証
-8. noteに見出し画像をアップロードして設定
-9. noteに本文・有料境界・価格・タグを設定
-10. 公開直前に見出し画像が設定済みであることを再確認
-11. ユーザーの商品別確認なしで公開
-12. 公開ページでタイトル・価格・無料/有料境界に加え、見出し画像が表示されることを確認
-13. 成功時だけローカルstateへ記録
-14. 失敗時は未処理のまま残し、次回再試行
+2. `enabled:true` かつ reader-visible公開確認が未完了の商品を1件選択
+3. `retryGeneration` / `forceRetryNonce` がローカル最終処理世代より新しい場合、過去のローカル成功stateを無効化して必ず再処理する。`invalidateLocalSuccessWithoutReaderVerification:true` の商品は、reader-visible URLが確認できるまでskipしてはならない
+4. `sha256` を検証
+5. Windows側だけにあるRSA秘密鍵でAES鍵をRSA-OAEP-SHA256復号
+6. AES-256-GCMで記事JSONを復号
+7. `title`, `freeBody`, `paidBody`, `tags`, `price`, `coverImageBase64`, `coverImageMime` を再検査
+8. `coverImageBase64` を一時PNG/JPGへ復元し、サイズ・容量・MIMEを検証
+9. noteに見出し画像をアップロードして設定
+10. noteに本文・有料境界・価格・タグを設定
+11. 公開直前に見出し画像が設定済みであることを再確認
+12. ユーザーの商品別確認なしで公開
+13. 公開後は編集画面ではなくreader-visible URLを取得し、匿名/ログアウト相当でタイトル、価格、無料/有料境界、専用見出し画像が実際に表示されることを確認する
+14. 本文1枚目の自動サムネイルだけ、無関係画像、明らかな文字崩れ、画像欠落があれば成功扱いにせず補修して再公開確認する
+15. 13と14を満たした成功時だけローカルstateへ記録する
+16. 失敗時は未処理のまま残し、次回再試行する
 
 見出し画像のアップロードまたは設定に失敗した場合、本文だけを公開して成功扱いにしません。記事品質を守るため、見出し画像込みで再試行します。
 
@@ -79,4 +81,4 @@ Windows側は30分ごとのconsumer実行に加えて、次を満たすことを
 
 旧 `note-bot-v4.mjs` は `config.json` のローカルCSVを読み、GitHubの暗号化キューを読みません。新規キューを自動公開するにはremote queue consumerが必要です。
 
-またv2以降は、remote queue consumerが見出し画像の復号・一時ファイル化・アップロード・表示確認まで対応して初めて完成です。
+またv2以降は、remote queue consumerが見出し画像の復号・一時ファイル化・アップロード・reader-visible表示確認まで対応して初めて完成です。
