@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>協賛依頼メール作成メーカー｜スポンサー営業の件名・本文を無料生成</title>
+<meta name="description" content="イベント・学生団体・NPO向け。企画名、相手企業との接点、参加者数、協賛内容、企業メリットを入力すると、協賛依頼メールの件名・本文・フォローアップ文を無料生成。登録不要・データ送信なし。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://noto-rebloom.github.io/noto-rebloom/auto-tools/sponsor-email-maker/">
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--ink:#192235;--muted:#657188;--line:#dfe5ee;--accent:#2856d7;--soft:#edf3ff;--ok:#087747}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}.wrap{max-width:920px;margin:auto;padding:28px 18px 64px}h1{font-size:clamp(28px,5vw,44px);line-height:1.25;margin:12px 0}.lead{font-size:17px;color:var(--muted);max-width:800px}.badge{display:inline-block;background:var(--soft);color:var(--accent);font-weight:800;padding:6px 11px;border-radius:999px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:18px;box-shadow:0 8px 30px rgba(20,35,70,.05)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}label{display:block;font-weight:700;font-size:14px}input,select,textarea{width:100%;margin-top:6px;padding:12px;border:1px solid #cbd4e1;border-radius:10px;font:inherit;background:#fff}textarea{min-height:92px;resize:vertical}.full{grid-column:1/-1}button{padding:13px 16px;border:0;border-radius:11px;background:var(--accent);color:#fff;font-weight:800;font-size:15px;cursor:pointer}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.ghost{background:#eef2f8;color:#24344f}.output{white-space:pre-wrap;background:#f9fbff;border:1px solid #dbe5f5;border-radius:13px;padding:16px;min-height:120px}.subject{font-weight:800;background:#edf4ff;border-radius:10px;padding:12px;margin-bottom:12px}.status{color:var(--ok);font-weight:800;font-size:14px}.check{display:grid;gap:9px}.check label{font-weight:500}.cta{background:#17284a;color:#fff}.cta a{color:#fff;font-weight:800}.small{font-size:13px;color:var(--muted)}.faq h3{margin-bottom:4px}.footer{margin-top:30px;color:var(--muted);font-size:13px}@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"協賛依頼メール作成メーカー","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"description":"イベントや団体のスポンサー・協賛依頼メールをブラウザ内で作成する無料ツール"}</script>
+</head>
+<body><main class="wrap">
+<span class="badge">無料・登録不要・入力データ送信なし</span>
+<h1>協賛依頼メール<br>作成メーカー</h1>
+<p class="lead">例文をそのままコピペするのではなく、企画の数字・相手企業との接点・協賛メリットを入れて、相手が社内で検討しやすい依頼文のたたき台を作ります。初回依頼、フォローアップ、最終確認の3種類に対応しています。</p>
+<section class="card"><h2>1. 条件を入力</h2><div class="grid">
+<label>メール種類<select id="mode"><option value="first">初回の協賛依頼</option><option value="follow">未返信のフォローアップ</option><option value="final">締切前の最終確認</option></select></label>
+<label>相手企業名<input id="company" placeholder="例：〇〇株式会社"></label>
+<label>団体・主催者名<input id="org" placeholder="例：〇〇実行委員会"></label>
+<label>企画・イベント名<input id="event" placeholder="例：地域交流フェス2026"></label>
+<label>開催日・時期<input id="date" placeholder="例：2026年10月10日"></label>
+<label>想定参加者・規模<input id="audience" placeholder="例：地域住民約200名"></label>
+<label class="full">相手企業に声をかける理由<input id="fit" placeholder="例：貴社の地域貢献活動と、本企画の親子向け地域交流という目的が近いため"></label>
+<label>お願いしたい協賛内容<input id="ask" placeholder="例：協賛金5万円"></label>
+<label>提供できるメリット<input id="benefit" placeholder="例：会場・Webへのロゴ掲載、SNS紹介"></label>
+<label>返答・相談の期限<input id="deadline" placeholder="例：9月15日頃まで"></label>
+<label>次にお願いしたい行動<select id="next"><option>15〜30分のオンライン面談</option><option>企画資料の確認</option><option>メールでのご意向返信</option><option>社内ご担当者へのお取次ぎ</option></select></label>
+</div><div class="buttons"><button id="make">メールを作る</button><button class="ghost" id="sample">サンプル入力</button></div></section>
+<section class="card"><h2>2. 生成結果</h2><div class="subject" id="subject">件名がここに表示されます</div><div class="output" id="body">条件を入力して「メールを作る」を押してください。</div><div class="buttons"><button id="copy">件名＋本文をコピー</button></div><p class="status" id="status"></p><p class="small">送信前に、相手企業の事業・地域活動・採用・CSRなどとの具体的な接点を1つ確認してから使うのがおすすめです。</p></section>
+<section class="card"><h2>3. 送信前チェック</h2><div class="check"><label><input type="checkbox"> 件名だけで「何の依頼か」が分かる</label><label><input type="checkbox"> なぜこの企業に声をかけたのかを1文で説明している</label><label><input type="checkbox"> 参加者数・開催日など具体的な数字が入っている</label><label><input type="checkbox"> 協賛金額またはお願いしたい支援内容が明確</label><label><input type="checkbox"> 相手企業が得られるメリットが具体的</label><label><input type="checkbox"> 次に何をしてほしいかが1つに絞られている</label></div></section>
+<section class="card"><h2>使い方のコツ</h2><ol><li><b>相手企業に声をかける理由</b>を最も丁寧に書きます。ここが空欄だと一斉送信に見えやすくなります。</li><li>参加予定人数、対象年代、地域、開催日など、社内共有しやすい数字を1つ以上入れます。</li><li>協賛メリットは「地域貢献になります」だけで終えず、ロゴ、SNS、ブース、参加者との接点など具体化します。</li><li>初回メールでは全部を説明し切らず、資料確認や短い面談など次の1アクションにつなげます。</li></ol></section>
+<section class="card cta"><h2>送信後の企業管理までまとめたい場合</h2><p>依頼メールを送った後は、候補企業・送信日・返信・面談・提案・入金・協賛特典の履行を追う必要があります。公開確認済みの <a href="https://booth.pm/ja/items/8736208" rel="noopener">協賛・スポンサー営業CRM OS</a> では、その工程をExcelで一括管理できます。</p></section>
+<section class="card faq"><h2>よくある質問</h2><h3>そのまま送信して大丈夫ですか？</h3><p>たたき台として使い、相手企業の事業や地域活動との接点を確認して1文は個別化してください。宛名、日付、金額、特典内容も送信前に確認してください。</p><h3>協賛金額は書いた方がよいですか？</h3><p>プランが決まっている場合は具体的な金額や選択肢を示すと検討しやすくなります。まだ相談段階なら「資料をご覧いただき、面談で相談したい」とする方法もあります。</p><h3>返信がない場合はどうしますか？</h3><p>相手の繁忙状況もあるため、短いフォローアップで再確認します。このツールの「未返信のフォローアップ」に切り替えると、催促しすぎない文面を作れます。</p><h3>入力内容は保存されますか？</h3><p>いいえ。生成処理はブラウザ内だけで行い、入力内容を外部へ送信しません。</p></section>
+<p class="footer">本ツールは協賛獲得や返信を保証するものではありません。金額・契約条件・表示物・個人情報の取り扱い等は、実際の企画条件に合わせて確認してください。</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);const v=id=>$(id).value.trim();function make(){const mode=v('mode'),company=v('company')||'〇〇株式会社',org=v('org')||'〇〇団体',event=v('event')||'〇〇企画',date=v('date')||'開催予定日',aud=v('audience')||'参加予定者',fit=v('fit')||'貴社の取り組みと本企画の目的に親和性があると考えたため',ask=v('ask')||'ご協賛',benefit=v('benefit')||'企画内での企業名・ロゴのご紹介',deadline=v('deadline'),next=v('next');let subject='',body='';if(mode==='first'){subject=`【協賛のお願い】${event}へのご協力について`;body=`${company} ご担当者様\n\n突然のご連絡失礼いたします。${org}と申します。\n\nこのたび、${date}に「${event}」を実施予定で、${company}様にご協賛をご検討いただけないかと思い、ご連絡いたしました。\n\n本企画は${aud}を想定しています。今回ご連絡した理由は、${fit}です。\n\nご相談したい内容は「${ask}」です。ご協賛いただいた場合には、${benefit}を予定しています。\n\nまずは${next}のお時間・機会をいただけますと幸いです。${deadline?`可能でしたら、${deadline}に一度ご意向を伺えますと幸いです。`:''}\n\nご多忙のところ恐れ入りますが、ご検討のほどよろしくお願いいたします。\n\n${org}`;}else if(mode==='follow'){subject=`【再送・ご確認】${event} 協賛のご相談`;body=`${company} ご担当者様\n\nお世話になっております。${org}です。\n\n先日お送りした「${event}」への協賛のご相談について、念のため再度ご連絡いたしました。\n\n${date}の開催に向け、${ask}についてご相談できればと考えております。ご協賛時には、${benefit}を予定しています。\n\nご多忙のところ恐縮ですが、${next}が可能かどうかだけでもお知らせいただけますと幸いです。${deadline?` ${deadline}を目安にご返信いただけますと大変助かります。`:''}\n\n行き違いで既にご確認いただいておりましたら失礼いたしました。どうぞよろしくお願いいたします。\n\n${org}`;}else{subject=`【${deadline||'期限前'}・最終確認】${event} 協賛のご相談`;body=`${company} ご担当者様\n\nお世話になっております。${org}です。\n\n「${event}」への協賛のご相談について、募集・準備日程の都合から最終確認のご連絡です。\n\n今回お願いしている内容は「${ask}」で、ご協賛時には${benefit}を予定しています。\n\n${deadline?`${deadline}までに、`:''}ご検討の可否または${next}について一言ご返信いただけますと幸いです。難しい場合も、その旨だけお知らせいただければ今後の準備を進められます。\n\n重ねてのご連絡となり恐縮ですが、何卒よろしくお願いいたします。\n\n${org}`;} $('subject').textContent='件名：'+subject;$('body').textContent=body;$('status').textContent='';}
+$('make').addEventListener('click',make);$('sample').addEventListener('click',()=>{$('company').value='北陸〇〇株式会社';$('org').value='地域交流イベント実行委員会';$('event').value='地域交流フェス2026';$('date').value='2026年10月10日';$('audience').value='地域の親子・学生を中心に約200名';$('fit').value='貴社が地域の若者支援と地域貢献活動に継続的に取り組まれているため';$('ask').value='協賛金5万円';$('benefit').value='会場看板・公式Webへのロゴ掲載とSNSでの企業紹介';$('deadline').value='9月15日頃まで';make();});$('copy').addEventListener('click',async()=>{const text=$('subject').textContent+'\n\n'+$('body').textContent;try{await navigator.clipboard.writeText(text);$('status').textContent='コピーしました。';}catch(e){$('status').textContent='コピーできない場合は本文を選択してコピーしてください。';}});make();
+</script></body></html>
