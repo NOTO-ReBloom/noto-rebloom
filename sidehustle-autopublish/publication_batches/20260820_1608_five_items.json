@@ -2,18 +2,18 @@
   "version": 1,
   "batchId": "20260820_1608_five_items",
   "createdAt": "2026-08-20T16:08:00+09:00",
-  "lastCheckedAt": "2026-08-20T17:21:00+09:00",
+  "lastCheckedAt": "2026-08-20T17:40:00+09:00",
   "objective": "Publish and independently verify all five currently actionable items before treating this batch as complete.",
   "completionRule": "All five targets must have buyer/reader-visible official public pages independently verified. Local publisher success, editor/admin URLs, queue state or drafts do not count.",
   "status": "in_progress",
   "targets": [
-    {"channel":"note","id":"note_20260818_01","status":"verified_public","publicUrl":"https://note.com/royal_lion645/n/nf625206fc610","lastCheckedAt":"2026-08-20T17:21:00+09:00","verificationResult":"Windows V11 reported PUBLISH_SUCCESS_VERIFIED after API checks and anonymous reader-visible verification."},
-    {"channel":"note","id":"note_20260819_02","status":"pending_public_verification","lastCheckedAt":"2026-08-20T17:21:00+09:00","verificationResult":"V11 decrypted and passed the quality gate, but dedicated cover image upload failed before publication. Recovery remains active."},
-    {"channel":"note","id":"note_20260819_03","status":"verified_public","publicUrl":"https://note.com/royal_lion645/n/ne7c86017bfd3","lastCheckedAt":"2026-08-20T17:21:00+09:00","verificationResult":"Windows V11 reported PUBLISH_SUCCESS_VERIFIED after API checks and anonymous reader-visible verification."},
-    {"channel":"note","id":"note_20260819_04","status":"pending_public_verification","lastCheckedAt":"2026-08-20T17:21:00+09:00","verificationResult":"Publish was clicked for note key na1f8adc2bfa8, but reader-visible verification had not completed in the V11 run. Verification-only retry must be attempted before any fresh republish."},
-    {"channel":"BOOTH","id":"007_thesis_progress_os_20260820","status":"verified_public","publicUrl":"https://booth.pm/ja/items/8739122","boothItemId":"8739122","lastCheckedAt":"2026-08-20T17:21:00+09:00","verificationResult":"Windows buyer-anonymous verification returned HTTP 200 with titleOk=true and PUBLIC_RECOVERY_SUCCESS; repeated verification remained successful."}
+    {"channel":"note","id":"note_20260818_01","status":"verified_public","publicUrl":"https://note.com/royal_lion645/n/nf625206fc610","lastCheckedAt":"2026-08-20T17:40:00+09:00","verificationResult":"Windows V11 reported PUBLISH_SUCCESS_VERIFIED after API checks and anonymous reader-visible verification."},
+    {"channel":"note","id":"note_20260819_02","status":"verified_public","publicUrl":"https://note.com/royal_lion645/n/n0c48dab1b56e","lastCheckedAt":"2026-08-20T17:40:00+09:00","verificationResult":"Windows V12 discovered the current NOTE header-image menu, published a fresh corrected article, then verified published status, exact title, 680 JPY price, paid boundary, dedicated cover and anonymous reader-visible access in the first fresh verification round."},
+    {"channel":"note","id":"note_20260819_03","status":"verified_public","publicUrl":"https://note.com/royal_lion645/n/ne7c86017bfd3","lastCheckedAt":"2026-08-20T17:40:00+09:00","verificationResult":"Windows V11 reported PUBLISH_SUCCESS_VERIFIED after API checks and anonymous reader-visible verification."},
+    {"channel":"note","id":"note_20260819_04","status":"pending_public_verification","candidatePublicUrl":"https://note.com/royal_lion645/n/na1f8adc2bfa8","lastCheckedAt":"2026-08-20T17:40:00+09:00","verificationResult":"V12 API verification shows published status, exact title, 1280 JPY price, paid boundary and dedicated cover all true for na1f8adc2bfa8, but anonymous verification is still false. The current anonymous verifier does not normalize thousands separators, so V13 must correct price matching and reverify before any republish."},
+    {"channel":"BOOTH","id":"007_thesis_progress_os_20260820","status":"verified_public","publicUrl":"https://booth.pm/ja/items/8739122","boothItemId":"8739122","lastCheckedAt":"2026-08-20T17:40:00+09:00","verificationResult":"Windows buyer-anonymous verification returned HTTP 200 with titleOk=true and PUBLIC_RECOVERY_SUCCESS; repeated verification remained successful."}
   ],
-  "verifiedCount": 3,
+  "verifiedCount": 4,
   "targetCount": 5,
   "notifyWhenComplete": true
 }
