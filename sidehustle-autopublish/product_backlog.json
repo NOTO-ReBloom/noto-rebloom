@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-21T01:57:58+09:00",
+  "purpose": "Maintain multiple publishable fallback candidates so a blocked item never consumes an entire PC-available production cycle.",
+  "publicationDebtFirst": true,
+  "pcAssumption": "Windows publisher is normally unavailable after 01:00 JST; prepare assets and queues in cloud time, publish at next PC-available window.",
+  "note": {
+    "carriedDebt": 1,
+    "todayTarget": 5,
+    "requiredBeforeDaySatisfied": 6,
+    "active": [
+      {"id":"note_20260820_05","title":"引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト","priceJPY":980,"priority":1,"state":"queued_retry"}
+    ],
+    "fallbackConcepts": [
+      {"id":"note_event_sponsor_followup","concept":"協賛営業の面談後フォローと進捗管理","targetPriceJPY":680,"priority":2},
+      {"id":"note_student_org_role_design","concept":"学生団体の役割分担・属人化防止","targetPriceJPY":680,"priority":3},
+      {"id":"note_thesis_weekly_review","concept":"卒論の週次レビューと遅延回復","targetPriceJPY":680,"priority":4},
+      {"id":"note_event_risk_handoff","concept":"イベント運営の引継ぎ・リスク管理","targetPriceJPY":680,"priority":5},
+      {"id":"note_creator_pricing","concept":"デジタル商品の価格設計と利益計算","targetPriceJPY":680,"priority":6}
+    ]
+  },
+  "BOOTH": {
+    "carriedDebt": 4,
+    "todayTarget": 5,
+    "requiredBeforeDaySatisfied": 9,
+    "active": [
+      {"id":"009_handover_os_20260820","title":"学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML","priceJPY":980,"priority":1,"state":"queued_retry"}
+    ],
+    "fallbackConcepts": [
+      {"id":"event_sponsor_bundle","concept":"イベント運営OS＋協賛営業CRMの補完バンドル","targetPriceJPY":2480,"priority":2},
+      {"id":"jobhunt_interview_bundle","concept":"就活一貫性チェック＋面接改善の補完バンドル","targetPriceJPY":1980,"priority":3},
+      {"id":"creator_profit_pricing_os","concept":"デジタル商品利益・価格設計OS","targetPriceJPY":1480,"priority":4},
+      {"id":"small_org_role_os","concept":"学生団体・小規模NPOの役割分担OS","targetPriceJPY":1280,"priority":5},
+      {"id":"event_risk_register_os","concept":"小規模イベントのリスク・対応・担当管理OS","targetPriceJPY":1280,"priority":6}
+    ]
+  },
+  "rules": [
+    "At the next PC-available production run, service carried debt before treating today's quota as satisfied.",
+    "If the active candidate cannot reach strict buyer/reader-visible verification quickly, defer it and switch to a fallback candidate.",
+    "Queue insertion, local success, admin/editor URLs and commits do not count as publication.",
+    "Do not publish near-duplicate low-value products merely to satisfy count; use a distinct qualified fallback instead.",
+    "Do not require Windows execution after 01:00 JST; cloud preparation continues and debt remains intact."
+  ]
+}
