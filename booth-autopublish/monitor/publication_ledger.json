@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-19T21:14:25+09:00",
+  "updatedAt": "2026-08-20T17:04:25+09:00",
   "purpose": "Canonical GitHub-side ledger for BOOTH items whose buyer-visible public URL has been independently verified. Queue enabled=true alone is never treated as publication.",
   "entries": [
     {
@@ -32,6 +32,16 @@
       "publicUrlVerified": true,
       "verifiedAt": "2026-08-19T21:14:25+09:00",
       "verificationEvidence": "Windows BOOTH publisher V14 buyer-anonymous browser verification returned HTTP 200 with titleOk=true and PUBLIC_RECOVERY_SUCCESS.",
+      "publishMode": "queue-truth-reconcile"
+    },
+    {
+      "queueId": "007_thesis_progress_os_20260820",
+      "title": "卒論・研究進行OS｜先行研究・仮説・分析・図表・締切を一括管理｜オフラインHTML",
+      "boothItemId": "8739122",
+      "publicUrl": "https://booth.pm/ja/items/8739122",
+      "publicUrlVerified": true,
+      "verifiedAt": "2026-08-20T17:04:25+09:00",
+      "verificationEvidence": "Windows BOOTH catch-up performed anonymous-browser verification with HTTP 200, titleOk=true and PUBLIC_RECOVERY_SUCCESS; the same buyer-visible item was repeatedly reverified in subsequent runs.",
       "publishMode": "queue-truth-reconcile"
     }
   ]
