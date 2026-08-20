@@ -42,7 +42,7 @@ jobs:
           STATUS=0
           for i in $(seq 1 24); do
             STATUS=$(curl -L -sS -o /tmp/pages-check/page.html -w '%{http_code}' --max-time 20 "$URL" || true)
-            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html; then break; fi
+            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html && grep -Eq 'id="(make|calc|result|body|output)"' /tmp/pages-check/page.html; then break; fi
             sleep 10
           done
           TITLE_OK=false; UI_OK=false; CTA_OK=false
@@ -66,7 +66,7 @@ jobs:
           SLUG: ${{ steps.meta.outputs.slug }}
         run: |
           python <<'PY'
-          import json, os, shutil, sys, time
+          import os, sys, time
           from selenium import webdriver
           from selenium.webdriver.chrome.options import Options
           from selenium.webdriver.common.by import By
@@ -94,7 +94,6 @@ jobs:
                   body=driver.find_element(By.ID,'body').text
                   function_ok=('検証イベント' in subject and '検証株式会社' in body and len(body)>120)
               else:
-                  # Generic fallback: confirm at least one primary action and a live result/output area.
                   buttons=driver.find_elements(By.TAG_NAME,'button')
                   outputs=driver.find_elements(By.CSS_SELECTOR,'#result,#body,#output,[aria-live]')
                   function_ok=bool(buttons and outputs)
