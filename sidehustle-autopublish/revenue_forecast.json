@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-21T05:42:00+09:00",
+  "forecastPolicy": "Do not invent numeric revenue when observed sales, PV, conversion, acquisition or install data are absent. Use ranked opportunity bands until measurable signals exist.",
+  "observedDataAvailability": {
+    "BOOTH_sales": null,
+    "note_sales": null,
+    "note_pv": null,
+    "MicrosoftStore_acquisitions": null,
+    "MicrosoftStore_installs": null,
+    "MicrosoftStore_conversion": null
+  },
+  "hardConstraints": {
+    "noteRequiredVerifiedPublicationsTodayIncludingDebt": 6,
+    "boothRequiredVerifiedPublicationsTodayIncludingDebt": 9,
+    "debtFirst": true,
+    "doNotReduceQuotaForForecastOptimization": true
+  },
+  "rankedOpportunities": [
+    {"rank":1,"channel":"BOOTH","id":"event_sponsor_bundle","opportunityBand":"high-relative","basis":"Two complementary existing public assets reduce production risk and support higher average order value; no sales data yet, so no yen forecast."},
+    {"rank":2,"channel":"BOOTH","id":"jobhunt_interview_bundle","opportunityBand":"high-relative","basis":"Existing related products create a coherent buyer journey and low incremental production cost; no sales data yet."},
+    {"rank":3,"channel":"note","id":"note_ai_small_org_workflow","opportunityBand":"high-relative","basis":"note official 2026 analysis reports AI-utilization paid content growth of 268.6% YoY; candidate also uses existing small-organization domain assets."},
+    {"rank":4,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","opportunityBand":"medium-high-experiment","basis":"Microsoft Store exceeds 250M monthly active users; current web search showed less obvious direct CSV-cleanup competition than generic image/resizer and rename categories. Actual Store acquisition data are not yet available."},
+    {"rank":5,"channel":"note","id":"note_event_sponsor_followup","opportunityBand":"medium-high-relative","basis":"Strong cross-sell fit with public sponsor CRM and concrete operational pain point; no sales/PV data yet."},
+    {"rank":6,"channel":"BOOTH","id":"small_org_role_os","opportunityBand":"medium-relative","basis":"2026 organizational guidance identifies role allocation and handover as recurring problems; must remain distinct from handover OS."}
+  ],
+  "marketEvidence": {
+    "notePaidMarket":"Official note analysis of roughly 300,000 paid articles reports paid-article sales +26.8% YoY and creators with paid revenue +42.0% YoY; AI utilization +268.6%, SNS/content operations +258.7%, side jobs/remote work +179.0%.",
+    "noteDiscovery":"note reported recommendation-engine test results of category impressions 4.3x YoY, PV 2.2x, and internal circulation 1.5x in January 2026.",
+    "MicrosoftStore":"Microsoft states the Store serves over 250 million monthly active users and non-game apps may use their own commerce and retain 100% of revenue.",
+    "competitionSnapshot":"Current Store web search surfaced numerous image compressor/resizer and file-renamer products, so generic versions are deprioritized; CSV cleanup remains an experiment pending real acquisition data."
+  },
+  "nextDataNeeded": [
+    "BOOTH sales by product and date",
+    "note sales, PV and likes by article",
+    "Microsoft Store page views, acquisitions, installs and health metrics",
+    "conversion from GitHub Pages tools into paid or Store destinations"
+  ]
+}
