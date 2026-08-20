@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>学生団体・サークル 引継ぎチェックリストメーカー</title>
+<meta name="description" content="担当・資料・アカウント・定期業務・関係者・お金・年間予定・未完了事項を整理し、引継ぎ漏れを可視化する無料チェックリスト。ブラウザ内だけで動作します。">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172033;background:#f6f7fb}*{box-sizing:border-box}body{margin:0}.wrap{max-width:920px;margin:auto;padding:24px}header{padding:28px 0 14px}h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 10px}.lead{color:#536078;line-height:1.8}.panel{background:#fff;border:1px solid #e3e7ef;border-radius:18px;padding:20px;margin:18px 0;box-shadow:0 8px 30px rgba(20,30,55,.06)}label{display:block;font-weight:700;margin:12px 0 6px}input,textarea{width:100%;padding:12px;border:1px solid #cfd6e4;border-radius:10px;font:inherit}textarea{min-height:92px;resize:vertical}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.section{border-top:1px solid #edf0f5;padding:16px 0}.section:first-child{border-top:0}.row{display:flex;gap:12px;align-items:flex-start}.row input[type=checkbox]{width:20px;height:20px;margin-top:3px}.row .text{flex:1}.row small{display:block;color:#6b7487;margin-top:4px;line-height:1.5}.progress{height:12px;background:#edf0f5;border-radius:999px;overflow:hidden}.bar{height:100%;width:0;background:#222d45;transition:.2s}.score{font-size:28px;font-weight:800;margin:8px 0}.actions{display:flex;gap:10px;flex-wrap:wrap}button{border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer}.primary{background:#172033;color:#fff}.sub{background:#edf0f5;color:#172033}.notice{font-size:13px;color:#687387;line-height:1.7}footer{padding:28px 0;color:#7a8496;font-size:13px}@media(max-width:680px){.grid{grid-template-columns:1fr}.wrap{padding:18px}.panel{padding:16px}}
+@media print{button,.notice,footer{display:none}.panel{box-shadow:none;border:1px solid #bbb}body{background:#fff}.wrap{max-width:none}}
+</style>
+</head>
+<body><main class="wrap">
+<header><h1>引継ぎチェックリストメーカー</h1><p class="lead">学生団体・サークル・小規模NPO向け。資料を渡すだけで終わらせず、<strong>誰が・何を・どこまで引き継げたか</strong>を8領域で確認できます。入力内容は外部送信せず、このブラウザ内だけで扱います。</p></header>
+<section class="panel"><div class="grid"><div><label>団体・プロジェクト名</label><input id="org" placeholder="例：○○実行委員会"></div><div><label>引継ぎ対象の役割</label><input id="role" placeholder="例：代表／会計／広報"></div><div><label>引継ぐ人</label><input id="from" placeholder="氏名・担当"></div><div><label>引き継ぐ人</label><input id="to" placeholder="氏名・担当"></div></div></section>
+<section class="panel"><div class="score"><span id="score">0</span>% 完了</div><div class="progress"><div class="bar" id="bar"></div></div><p id="advice" class="lead">まずは8領域を順番に確認してください。</p></section>
+<section class="panel" id="checks"></section>
+<section class="panel"><label>引継ぎ後に残すメモ</label><textarea id="memo" placeholder="未確定事項、次回会議で確認すること、期限など"></textarea><div class="actions"><button class="primary" onclick="window.print()">印刷・PDF保存</button><button class="sub" id="copy">結果をコピー</button><button class="sub" id="reset">リセット</button></div><p class="notice">ブラウザのローカル保存を利用します。共有PCでは、利用後にリセットしてください。パスワードそのものは入力せず、「保管場所・管理者・変更要否」だけを記録するのがおすすめです。</p></section>
+<footer>無料ツール｜学生団体・小規模組織の引継ぎ漏れ防止用</footer>
+</main>
+<script>
+const items=[
+['担当・責任範囲','担当業務、最終責任者、判断してよい範囲が言語化されている'],
+['資料・ファイル','必要資料の保存場所、最新版、命名ルールが分かる'],
+['アカウント・権限','利用サービス、管理者、権限移管・変更の要否を確認した'],
+['定期業務','毎日・毎週・毎月・毎年の業務と締切が一覧化されている'],
+['関係者・連絡先','学内外の関係者、連絡目的、次回連絡時期が分かる'],
+['お金・契約','予算、支払、請求、契約、更新期限の所在を確認した'],
+['年間予定・重要日','イベント、申請、更新、募集など年間の重要日を確認した'],
+['未完了・リスク','進行中案件、未回答、トラブル、注意点、次の一手が明確']
+];
+const root=document.getElementById('checks');
+items.forEach((x,i)=>{const d=document.createElement('div');d.className='section';d.innerHTML=`<div class="row"><input type="checkbox" id="c${i}"><div class="text"><label for="c${i}" style="margin:0">${i+1}. ${x[0]}</label><small>${x[1]}</small><textarea id="n${i}" placeholder="保存場所・担当者・期限・補足など"></textarea></div></div>`;root.appendChild(d)});
+const fields=['org','role','from','to','memo',...items.flatMap((_,i)=>['c'+i,'n'+i])];
+function save(){const o={};fields.forEach(id=>{const e=document.getElementById(id);o[id]=e.type==='checkbox'?e.checked:e.value});localStorage.setItem('handover-checklist-v1',JSON.stringify(o));update()}
+function load(){try{const o=JSON.parse(localStorage.getItem('handover-checklist-v1')||'{}');fields.forEach(id=>{const e=document.getElementById(id);if(o[id]!==undefined)e.type==='checkbox'?e.checked=!!o[id]:e.value=o[id]})}catch{}update()}
+function update(){const done=items.filter((_,i)=>document.getElementById('c'+i).checked).length;const p=Math.round(done/items.length*100);score.textContent=p;bar.style.width=p+'%';advice.textContent=p===100?'8領域すべて確認済みです。最後に未完了事項と次回確認日を残して引継ぎを締めましょう。':p>=75?'あと少しです。未確認領域を、担当者と期限まで含めて埋めましょう。':p>=50?'半分以上進みました。権限・お金・未完了事項は特に口頭だけで済ませないよう確認しましょう。':'チェックだけでなく、保存場所・担当・期限をメモすると引継ぎ後の迷いが減ります。'}
+document.addEventListener('input',save);document.addEventListener('change',save);
+copy.onclick=async()=>{const lines=[`【引継ぎチェック】 ${org.value||''} ${role.value||''}`,`引継ぐ人: ${from.value||'-'} → ${to.value||'-'}`,'',...items.map((x,i)=>`${document.getElementById('c'+i).checked?'✓':'□'} ${i+1}. ${x[0]}\n${document.getElementById('n'+i).value||''}`),`\nメモ: ${memo.value||''}`];try{await navigator.clipboard.writeText(lines.join('\n'));copy.textContent='コピーしました';setTimeout(()=>copy.textContent='結果をコピー',1500)}catch{alert('コピーできませんでした。印刷・PDF保存をご利用ください。')}};
+reset.onclick=()=>{if(confirm('入力内容をすべて消しますか？')){localStorage.removeItem('handover-checklist-v1');fields.forEach(id=>{const e=document.getElementById(id);e.type==='checkbox'?e.checked=false:e.value=''});update()}};
+load();
+</script></body></html>
