@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T15:16:00+09:00",
-  "retryGeneration": 1,
+  "updatedAt": "2026-08-20T15:51:00+09:00",
+  "retryGeneration": 2,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -16,12 +16,13 @@
       "createdAt": "2026-08-20T09:00:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "007-r1-20260820T151600+0900",
+      "forceRetryNonce": "007-r2-20260820T155100+0900",
       "canonicalQueueId": "007_thesis_progress_os_20260820",
       "expectedPriceJPY": 1480,
-      "recoveryMode": "reconcile-existing-draft-then-clean-rebuild-if-unverifiable",
+      "recoveryMode": "clean-rebuild-after-unverified-reconcile-generation",
       "invalidateLocalSuccessWithoutVerifiedLedger": true,
-      "requireBuyerVisibleVerification": true
+      "requireBuyerVisibleVerification": true,
+      "recoveryEscalation": "Generation 1 produced no verified ledger entry after more than 30 minutes. Generation 2 must not stop at an existing draft or management-page success: if exact buyer-visible verification cannot be established, rebuild from the decrypted canonical package and publish a fresh downloadable item."
     }
   ]
 }
