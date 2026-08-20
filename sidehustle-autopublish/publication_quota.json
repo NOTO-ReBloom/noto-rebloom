@@ -1,7 +1,7 @@
 {
-  "version": 1,
+  "version": 2,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-20T15:53:00+09:00",
+  "updatedAt": "2026-08-20T17:37:00+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
@@ -18,7 +18,22 @@
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "catchUpPriority": "oldest_verified-unpublished first",
       "perCatchUpCycleSoftBatch": 5,
-      "productionCap": null
+      "productionCap": null,
+      "operationalState": {
+        "date": "2026-08-20",
+        "slotsDueAsOf": "2026-08-20T17:37:00+09:00",
+        "slotsDueCount": 4,
+        "strictVerifiedPublicationsCount": 0,
+        "publicationDebt": 4,
+        "candidateAwaitingStrictCommerceVerification": {
+          "queueId": "007_thesis_progress_os_20260820",
+          "publicUrlCandidate": "https://booth.pm/ja/items/8739122",
+          "reasonNotCountedYet": "Existing evidence proves buyer-visible HTTP success and exact title, but does not yet explicitly prove price=1480 JPY, downloadable-product state, and functioning purchase/cart path required by the current completion definition.",
+          "retryGeneration": 6
+        },
+        "nextScheduledSlot": "2026-08-20T20:20:00+09:00",
+        "debtRule": "Only explicit verification of all required buyer checks decrements debt. Generic publisher success or HTTP/title verification does not."
+      }
     }
   },
   "rules": [
