@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T15:54:00+09:00",
+  "updatedAt": "2026-08-20T16:43:06+09:00",
   "objective": "maximize total sales by improving acquisition, conversion, average order value, repeat demand, and the number of high-quality products without arbitrary production caps",
   "channels": {
     "BOOTH": {
@@ -36,7 +36,7 @@
     "LINECreatorsMarket": {"status":"disabled"}
   },
   "pipelineMonitor": {
-    "checkedAt": "2026-08-20T15:54:00+09:00",
+    "checkedAt": "2026-08-20T16:43:06+09:00",
     "gmailImportantEventsFound": 0,
     "publicUrlsNewlyVerified": 0,
     "BOOTH": {
@@ -47,13 +47,13 @@
       "oldestId": "007_thesis_progress_os_20260820",
       "oldestTitle": "卒論・研究進行OS｜先行研究・仮説・分析・図表・締切を一括管理｜オフラインHTML",
       "oldestCreatedAt": "2026-08-20T09:00:00+09:00",
-      "oldestAgeMinutes": 414,
-      "consecutiveUnresolvedChecks": 4,
-      "lastPublicSearchResult": "Fresh exact-title and site-restricted public web searches at 2026-08-20 15:50-15:54 JST did not establish a buyer-visible BOOTH page for 007. Search-index delay alone is not treated as proof of publication failure.",
+      "oldestAgeMinutes": 463,
+      "consecutiveUnresolvedChecks": 5,
+      "lastPublicSearchResult": "Fresh exact-title site-restricted public web search at 2026-08-20 16:43 JST returned no result establishing a buyer-visible BOOTH page for 007. Publication ledger still has no verified 007 entry. Search-index delay alone is not proof of failure.",
       "userActionRequiredNow": false,
       "lastNotifiedLevel": "pipeline_critical",
       "lastNotifiedAt": "2026-08-20T14:53:09+09:00",
-      "note": "007 is now over 6 hours old and remains buyer-unverified. GitHub-side recovery was escalated from generation 1 to generation 2: retryGeneration=2 and a new forceRetryNonce were committed, with clean rebuild required if an existing draft cannot immediately pass buyer-visible title/price/download/purchase-path verification. No user-only authentication or permission blocker is evidenced."
+      "note": "007 remains buyer-unverified. GitHub queue generation 4 with forceRetry and clean rebuild escalation remains active for Windows catch-up. No user-only authentication or permission blocker is evidenced."
     },
     "note": {
       "level": "pipeline_critical",
@@ -61,13 +61,13 @@
       "oldestId": "note_20260818_01",
       "oldestTitle": "大学生のタスクが多すぎる問題を15分で整理する｜授業・就活・バイトをAIで1枚にまとめる実践テンプレ",
       "oldestCreatedAt": "2026-08-18T21:40:00+09:00",
-      "oldestAgeMinutes": 2534,
-      "consecutiveUnresolvedChecks": 4,
-      "lastPublicSearchResult": "Fresh exact-title public searches still did not establish official reader-visible note pages for the unresolved entries at 2026-08-20 15:50-15:54 JST; title, price, free/paid boundary, dedicated cover image, PV, likes and sales therefore remain independently unverified.",
+      "oldestAgeMinutes": 2583,
+      "consecutiveUnresolvedChecks": 5,
+      "lastPublicSearchResult": "Fresh exact-title site-restricted searches at 2026-08-20 16:43 JST returned no official reader-visible results for the four priority note targets. URL, title, price, paid boundary, dedicated cover, PV, likes and sales remain independently unverified.",
       "qualityLevel": "unverified",
       "qualityWarningCount": 0,
       "userActionRequiredNow": false,
-      "note": "GitHub-side note recovery contract was strengthened: queue version 2 now carries retryGeneration=1 and forceRetryNonce per unresolved entry, invalidating local success when reader-visible verification is absent; README now requires reader-visible URL, title, price, paid boundary and dedicated cover image before completion. No user-only blocker is evidenced."
+      "note": "Retry generation 3 remains active with forceRetry on all four entries and local cover fallback for legacy payloads. No user-only authentication or permission blocker is evidenced."
     }
   },
   "latestMarketLearning": {
@@ -75,8 +75,8 @@
     "thesisFunnelBuild": "Existing thesis-deadline-planner and thesis-progress-check provide two free high-intent entry points that can route to 007 only after its public BOOTH URL is independently verified.",
     "sponsorCrmResearch": "Current BOOTH search showed generic Excel CRM/sales-management products around 1480-1980 JPY and higher-priced business systems, while direct sponsor-acquisition workflow products were sparse.",
     "boothFeeResearch": "BOOTH's current download-product fee remains price x 5.6% + 45 JPY per order, rounded up.",
-    "publicationReconciliation": "002, 003 and 005 remain verified public; 001 and 007 remain unverified, and 007 must not be counted as published until buyer-visible verification succeeds.",
-    "sourceCheckedAt": "2026-08-20T15:54:00+09:00"
+    "publicationReconciliation": "002, 003 and 005 remain verified public; the priority five batch remains 0/5 independently verified at 2026-08-20 16:43 JST.",
+    "sourceCheckedAt": "2026-08-20T16:43:06+09:00"
   },
   "optimizationRules": [
     "Do not infer a public URL until independently verified.",
