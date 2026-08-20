@@ -1,7 +1,7 @@
 {
   "version": 2,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-20T17:37:00+09:00",
+  "updatedAt": "2026-08-20T18:08:15+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
@@ -21,18 +21,26 @@
       "productionCap": null,
       "operationalState": {
         "date": "2026-08-20",
-        "slotsDueAsOf": "2026-08-20T17:37:00+09:00",
+        "slotsDueAsOf": "2026-08-20T18:08:15+09:00",
         "slotsDueCount": 4,
         "strictVerifiedPublicationsCount": 0,
         "publicationDebt": 4,
-        "candidateAwaitingStrictCommerceVerification": {
+        "activePublicationCandidate": {
+          "queueId": "009_handover_os_20260820",
+          "expectedPriceJPY": 980,
+          "activatedAt": "2026-08-20T17:54:18+09:00",
+          "forceRetryNonce": "009-r3-20260820T175418+0900",
+          "requiredChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
+          "status": "awaiting_windows_consumer_cycle_or_publisher_result"
+        },
+        "strictReverificationCandidate": {
           "queueId": "007_thesis_progress_os_20260820",
           "publicUrlCandidate": "https://booth.pm/ja/items/8739122",
-          "reasonNotCountedYet": "Existing evidence proves buyer-visible HTTP success and exact title, but does not yet explicitly prove price=1480 JPY, downloadable-product state, and functioning purchase/cart path required by the current completion definition.",
-          "retryGeneration": 6
+          "reasonNotCountedYet": "Buyer-visible HTTP/title verification exists, but current quota completion still lacks explicit recorded proof of price=1480 JPY, downloadable-product state, and functioning purchase/cart path."
         },
         "nextScheduledSlot": "2026-08-20T20:20:00+09:00",
-        "debtRule": "Only explicit verification of all required buyer checks decrements debt. Generic publisher success or HTTP/title verification does not."
+        "debtRule": "Only explicit verification of all required buyer checks decrements debt. Generic publisher success or HTTP/title verification does not.",
+        "cloudAutomationState": "enabled; recoverable failures must never self-disable"
       }
     }
   },
@@ -44,6 +52,7 @@
     "Do not count queue insertion, local publisher success logs, editor/admin URLs, drafts, or unverified pages as completed publications.",
     "Cloud-side planning and queue production should continue while the Windows PC is off; local publishing catches up when the PC is next available.",
     "If the PC is powered off for an entire calendar day, publication on that exact calendar day cannot be guaranteed; the missed quota must be caught up automatically on the next available PC session.",
-    "Do not silently lower daily targets because of outages or missed schedules."
+    "Do not silently lower daily targets because of outages or missed schedules.",
+    "Do not disable BOOTH cloud automation because of a recoverable publication or verification delay."
   ]
 }
