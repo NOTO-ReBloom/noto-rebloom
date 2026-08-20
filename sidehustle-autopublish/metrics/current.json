@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T20:22:00+09:00",
+  "updatedAt": "2026-08-20T22:22:40+09:00",
   "objective": "maximize total sales by improving acquisition, conversion, average order value, repeat demand, and the number of high-quality products without arbitrary production caps",
   "channels": {
     "BOOTH": {
@@ -39,45 +39,45 @@
     "LINECreatorsMarket": {"status":"disabled"}
   },
   "pipelineMonitor": {
-    "checkedAt": "2026-08-20T20:22:00+09:00",
+    "checkedAt": "2026-08-20T22:22:40+09:00",
     "gmailImportantEventsFound": 0,
-    "publicUrlsNewlyVerified": 1,
+    "publicUrlsNewlyVerified": 0,
     "latestPublicEvent": {"service":"GitHubPages","slug":"role-assignment","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/role-assignment/","verified":true},
     "BOOTH": {
-      "level": "pipeline_warning",
+      "level": "pipeline_critical",
       "rawEnabledQueueCount": 1,
       "verifiedPublishedInQueue": 0,
       "effectiveUnpublishedQueueCount": 1,
       "oldestId": "009_handover_os_20260820",
       "oldestTitle": "学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
       "oldestCreatedAt": "2026-08-20T17:40:00+09:00",
-      "oldestAgeMinutes": 162,
-      "consecutiveUnresolvedChecks": 2,
-      "retryGeneration": 11,
-      "lastRecoveryAction": "forceRetry nonce refreshed at 20:16 JST; strict buyer-visible checks retained; SHA reconcile workflow retriggered by queue commit",
+      "oldestAgeMinutes": 283,
+      "consecutiveUnresolvedChecks": 4,
+      "retryGeneration": 13,
+      "lastRecoveryAction": "forceRetry generation advanced to 13 and stale local success invalidation reinforced at 22:22 JST; strict buyer-visible commerce verification retained",
       "userActionRequiredNow": false,
       "note": "Exact-title public search still did not establish a buyer-visible official page. Search-index delay alone is not treated as failure; queue remains active and recoverable."
     },
     "note": {
-      "level": "pipeline_warning",
+      "level": "pipeline_critical",
       "enabledQueueCount": 1,
       "oldestId": "note_20260820_05",
       "oldestCreatedAt": "2026-08-20T18:08:00+09:00",
-      "oldestAgeMinutes": 134,
-      "consecutiveUnresolvedChecks": 2,
-      "retryGeneration": 6,
+      "oldestAgeMinutes": 255,
+      "consecutiveUnresolvedChecks": 4,
+      "retryGeneration": 8,
       "qualityLevel": "awaiting_verification",
       "qualityWarningCount": 0,
-      "lastRecoveryAction": "forceRetry nonce refreshed at 20:16 JST; reader-visible URL/title/price/paid-boundary/dedicated-cover requirements retained",
+      "lastRecoveryAction": "forceRetry generation advanced to 8 at 22:22 JST; stale local success invalidation and reader-visible URL/title/price/paid-boundary/dedicated-cover requirements retained",
       "userActionRequiredNow": false,
       "note": "Exact-title public search still did not establish a reader-visible official page. The item remains queued and is not counted as completed."
     },
-    "MicrosoftStore": {"status":"no_repository_state_found","gmailImportantEventsFound":0,"userActionRequiredNow":false,"note":"No Microsoft Store/Partner Center event was found in the connected Gmail window, and no repository state artifact was located in the searched sidehustle paths. No status or metrics inferred."}
+    "MicrosoftStore": {"status":"no_repository_state_found","gmailImportantEventsFound":0,"userActionRequiredNow":false,"note":"No Microsoft Store/Partner Center event was found in the connected Gmail window, and no repository state artifact was found at microsoft-store or sidehustle-autopublish/microsoft-store. No status or metrics inferred."}
   },
   "latestMarketLearning": {
-    "publicationReconciliation": "GitHub Pages role-assignment was independently verified HTTP 200 with title, major UI, H1 and primary function checks at 2026-08-20 20:20:56 JST. BOOTH 009 and note 05 remain queued and unverified; force-retry generations were advanced rather than ending on monitoring alone.",
-    "roleAssignmentFunnelBuild": "A standalone free role-assignment tool is now a verified acquisition asset for the planned student-group/small-NPO role-management product. No paid-product CTA was added because the corresponding paid BOOTH product is not yet strictly buyer-visible verified.",
-    "sourceCheckedAt": "2026-08-20T20:22:00+09:00"
+    "publicationReconciliation": "At 22:22 JST, exact-title public search still found no official buyer/reader-visible page for BOOTH 009 or note 05. Both pipelines remain critical after four unresolved checks, but no human-only authentication blocker is evidenced; retry generations were advanced to 13 and 8 respectively.",
+    "roleAssignmentFunnelBuild": "The verified role-assignment GitHub Pages tool remains the latest confirmed acquisition asset. No CTA to an unverified paid product is added.",
+    "sourceCheckedAt": "2026-08-20T22:22:40+09:00"
   },
   "optimizationRules": [
     "Do not infer a public URL until independently verified.",
