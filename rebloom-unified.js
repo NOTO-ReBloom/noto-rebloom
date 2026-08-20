@@ -84,12 +84,12 @@
       }
       const article=document.createElement('article');
       article.className=`nr-main-sponsor nr-main-sponsor--navi nr-main-sponsor--gyakuten${page==='index.html'?' nr-main-sponsor--compact':''}`;
-      article.innerHTML=`<div class="nr-sponsor-identity"><span class="nr-badge">協賛企業</span><a class="nr-sponsor-logo nr-sponsor-logo--gyakuten" href="${GYAKUTEN}" target="_blank" rel="sponsored noopener" aria-label="逆転コーチング公式サイト"><span class="gyakuten-logo-lockup"><img src="gyakuten-coaching-logo.svg" alt=""><strong>逆転コーチング</strong></span></a><p>TechsPlus株式会社</p><small>NOTO Re:Bloomの活動にご協賛いただいています。</small></div><div class="nr-sponsor-story"><p class="nr-sponsor-thanks">SUPPORTED BY TECHSPLUS</p><h3>志望校から逆算し、毎日の学習を支える。</h3><p>「逆転コーチング」は、志望校に合格したコーチが専属でつき、日々の学習計画の作成と進捗管理を行う大学受験オンライン塾です。</p><div class="nr-navi-features" aria-label="逆転コーチングの特徴"><span>志望校に特化</span><span>1日単位の学習管理</span><span>オンライン対応</span></div><div class="nr-actions"><a class="nr-btn nr-sponsor-primary nr-sponsor-primary--gyakuten" href="${GYAKUTEN}" target="_blank" rel="sponsored noopener">逆転コーチング公式サイト ↗</a></div></div>`;
+      article.innerHTML=`<div class="nr-sponsor-identity"><span class="nr-badge">協賛企業</span><a class="nr-sponsor-logo nr-sponsor-logo--gyakuten" href="${GYAKUTEN}" target="_blank" rel="sponsored noopener" aria-label="逆転コーチング公式サイト"><img class="gyakuten-official-logo" src="gyakuten-coaching-official-logo.png" alt="逆転コーチング"></a><p>TechsPlus株式会社</p><small>NOTO Re:Bloomの活動にご協賛いただいています。</small></div><div class="nr-sponsor-story"><p class="nr-sponsor-thanks">SUPPORTED BY TECHSPLUS</p><h3>志望校から逆算し、毎日の学習を支える。</h3><p>「逆転コーチング」は、志望校に合格したコーチが専属でつき、日々の学習計画の作成と進捗管理を行う大学受験オンライン塾です。</p><div class="nr-navi-features" aria-label="逆転コーチングの特徴"><span>志望校に特化</span><span>1日単位の学習管理</span><span>オンライン対応</span></div><div class="nr-actions"><a class="nr-btn nr-sponsor-primary nr-sponsor-primary--gyakuten" href="${GYAKUTEN}" target="_blank" rel="sponsored noopener">逆転コーチング公式サイト ↗</a></div></div>`;
       sponsorSection.appendChild(article);
     }
   }
 
-  const projectMap=()=>`<div class="rb-project-map" role="img" aria-label="使われなくなった田んぼを泥ん子運動会の会場として使い、人が能登へ来て地域と関わり、次の関わりにつなげるNOTO Re:Bloomの全体像">
+  const projectMap=()=>`<div class="rb-project-map" role="img" aria-label="使われなくなった田んぼを泥ん子運動会の会場として使い、人が能登へ来て地域と関わり、来年度以降の開催につなげるNOTO Re:Bloomの全体像">
     <div class="rb-project-map-path" aria-hidden="true"></div>
     <div class="rb-project-node rb-project-node--land"><span class="rb-project-node-icon">土</span><b>田んぼ</b><small>使われなくなった土地</small></div>
     <div class="rb-project-arrow rb-project-arrow--a" aria-hidden="true"><i></i></div>
@@ -97,7 +97,7 @@
     <div class="rb-project-arrow rb-project-arrow--b" aria-hidden="true"><i></i></div>
     <div class="rb-project-cluster"><div class="rb-project-mini"><span>来</span><b>能登に来る</b></div><div class="rb-project-mini"><span>話</span><b>地域と話す</b></div><div class="rb-project-mini"><span>知</span><b>土地を知る</b></div></div>
     <div class="rb-project-arrow rb-project-arrow--c" aria-hidden="true"><i></i></div>
-    <div class="rb-project-node rb-project-node--next"><span class="rb-project-node-icon">花</span><b>次の関わりへ</b><small>また来る・続け方を考える</small></div>
+    <div class="rb-project-node rb-project-node--next"><span class="rb-project-node-icon">花</span><b>来年度以降へ</b><small>記録とつながりを次の開催へ</small></div>
   </div>`;
 
   const makeIllustrationSection=(title,lead,cards)=>{

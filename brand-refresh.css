@@ -5,46 +5,26 @@
   --rb-brand-purple-soft:#f5ecff;
 }
 
-/* Use the supplied project artwork as the global brand mark. */
-body.rb-unified .brand{min-width:238px}
-body.rb-unified .brand-mark{
-  position:relative!important;
-  display:block!important;
-  flex:0 0 46px;
-  width:46px!important;
-  height:46px!important;
-  border:1px solid rgba(142,63,209,.22)!important;
-  border-radius:15px!important;
-  background:#fff url("noto-rebloom-logo.png") center/39px auto no-repeat!important;
-  box-shadow:0 6px 14px rgba(76,28,112,.12)!important;
-  color:transparent!important;
-  overflow:hidden;
-  transform:none!important;
-}
-body.rb-unified .brand-mark::before,
-body.rb-unified .brand-mark::after,
-body.rb-unified .brand-sprout{display:none!important}
-
-/* A hand-drawn project seal ties the top photograph back to the project. */
+/* Keep the supplied project artwork on the home photograph, away from its caption. */
 .nr-home-hero .hero-media{position:relative}
 .nr-hero-brand-badge{
   position:absolute;
   z-index:7;
-  left:-34px;
-  bottom:-30px;
+  top:18px;
+  left:18px;
   display:grid;
   place-items:center;
-  width:126px;
-  min-height:146px;
-  padding:12px 10px;
+  width:92px;
+  min-height:108px;
+  padding:10px 8px;
   border:1px solid rgba(142,63,209,.22);
-  border-radius:25px;
-  background:rgba(255,255,255,.96);
-  box-shadow:0 16px 36px rgba(69,34,85,.2);
-  transform:rotate(-4deg);
+  border-radius:20px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 12px 28px rgba(69,34,85,.18);
+  transform:rotate(-3deg);
   pointer-events:none;
 }
-.nr-hero-brand-badge img{display:block;width:auto;max-width:96px;height:auto;max-height:122px}
+.nr-hero-brand-badge img{display:block;width:auto;max-width:70px;height:auto;max-height:88px}
 
 /* Use both real logos in the collaboration lockup. */
 .ishimo-collaboration-mark{gap:10px!important;min-height:330px!important;padding:28px!important}
@@ -85,79 +65,54 @@ body.rb-unified .nr-main-sponsor--gyakuten{
   box-shadow:0 20px 52px rgba(31,129,159,.12)!important;
 }
 
-/* Keep the entire Gyakuten Coaching logo lockup inside its frame. */
+/* Preserve the official complete Gyakuten Coaching lockup, including its arrow mark. */
 body.rb-unified .nr-main-sponsor--gyakuten .nr-sponsor-identity{min-width:0}
 body.rb-unified .nr-sponsor-logo--gyakuten{
+  display:grid!important;
+  place-items:center!important;
   box-sizing:border-box!important;
   min-width:0!important;
-  min-height:150px!important;
-  padding:22px 24px!important;
+  min-height:136px!important;
+  padding:26px 24px!important;
   overflow:hidden!important;
 }
-body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-logo-lockup{
-  display:grid!important;
-  grid-template-columns:64px minmax(0,1fr)!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:14px!important;
-  width:min(100%,310px)!important;
-  max-width:310px!important;
-  min-width:0!important;
-  margin-inline:auto!important;
-  box-sizing:border-box!important;
-}
-body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-logo-lockup img{
+body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-official-logo{
   display:block!important;
-  width:64px!important;
-  max-width:64px!important;
-  height:64px!important;
-  max-height:64px!important;
-  border-radius:50%!important;
+  width:min(100%,228px)!important;
+  max-width:228px!important;
+  height:auto!important;
+  max-height:70px!important;
+  margin-inline:auto!important;
   object-fit:contain!important;
 }
-body.rb-unified .gyakuten-logo-lockup strong{
-  display:block!important;
-  min-width:0!important;
-  color:#1f7895!important;
-  font-size:clamp(18px,2.05vw,28px)!important;
-  line-height:1.18!important;
-  letter-spacing:-.045em!important;
-  text-align:left!important;
-  white-space:nowrap!important;
+
+.story-step--future{
+  border-color:rgba(142,63,209,.28)!important;
+  background:linear-gradient(155deg,#fff 0%,var(--rb-brand-purple-soft) 100%)!important;
+  box-shadow:0 16px 34px rgba(111,44,172,.12)!important;
+}
+.story-step--future .story-dot{
+  background:var(--rb-brand-purple)!important;
+  color:#fff!important;
 }
 
 @media(max-width:820px){
-  body.rb-unified .brand{min-width:0}
-  .nr-hero-brand-badge{left:12px;bottom:-18px;width:108px;min-height:126px;border-radius:21px}
-  .nr-hero-brand-badge img{max-width:82px;max-height:104px}
+  .nr-hero-brand-badge{top:14px;left:14px;width:82px;min-height:96px;border-radius:18px}
+  .nr-hero-brand-badge img{max-width:62px;max-height:78px}
   .ishimo-collaboration-mark{min-height:300px!important}
 }
 
 @media(max-width:600px){
-  body.rb-unified .brand-mark{flex-basis:42px;width:42px!important;height:42px!important;background-size:35px auto!important}
-  .nr-hero-brand-badge{left:10px;bottom:8px;width:86px;min-height:102px;padding:9px;border-radius:18px}
-  .nr-hero-brand-badge img{max-width:64px;max-height:82px}
+  .nr-hero-brand-badge{top:10px;left:10px;width:68px;min-height:80px;padding:7px 6px;border-radius:15px}
+  .nr-hero-brand-badge img{max-width:50px;max-height:64px}
   .ishimo-collaboration-mark{min-height:270px!important;padding:22px!important}
   .ishimo-collaboration-logo--ishimo{max-width:260px!important;max-height:96px!important}
   .ishimo-collaboration-logo--rebloom{max-width:94px!important;max-height:112px!important}
   body.rb-unified .nr-sponsor-feature--spotlight::after{top:24px;right:8px;width:84px;height:98px;opacity:.055}
-  body.rb-unified .nr-sponsor-logo--gyakuten{min-height:118px!important;padding:16px 14px!important}
-  body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-logo-lockup{
-    grid-template-columns:52px minmax(0,1fr)!important;
-    gap:10px!important;
-    width:min(100%,260px)!important;
-  }
-  body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-logo-lockup img{
-    width:52px!important;
-    max-width:52px!important;
-    height:52px!important;
-    max-height:52px!important;
-  }
-  body.rb-unified .gyakuten-logo-lockup strong{font-size:clamp(17px,5vw,21px)!important}
+  body.rb-unified .nr-sponsor-logo--gyakuten{min-height:112px!important;padding:22px 18px!important}
+  body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-official-logo{width:min(100%,210px)!important;max-width:210px!important;max-height:60px!important}
 }
 
 @media(max-width:360px){
-  body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-logo-lockup{grid-template-columns:46px minmax(0,1fr)!important;gap:8px!important}
-  body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-logo-lockup img{width:46px!important;max-width:46px!important;height:46px!important;max-height:46px!important}
-  body.rb-unified .gyakuten-logo-lockup strong{font-size:16px!important}
+  body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-official-logo{width:min(100%,188px)!important;max-width:188px!important}
 }
