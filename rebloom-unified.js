@@ -3,6 +3,7 @@
   const JOIN='https://forms.gle/6ZMrhrhtWmBCQViD8';
   const CROWD='https://readyfor.jp/projects/kousakuhoukiti-saisei';
   const ISHIMO='https://www.ishimo-ishikawa.jp/';
+  const GYAKUTEN='https://gyakuten-coaching.com/';
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   document.body.classList.add('rb-unified');
 
@@ -11,7 +12,7 @@
     if(!link){link=document.createElement('link');link.rel='stylesheet'}
     link.href=href;document.head.appendChild(link);return link;
   };
-  ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260817e');
+  ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260820sponsor');
   ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
   ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
 
@@ -53,7 +54,7 @@
     const section=document.createElement('section');
     section.id='ishimo-collaboration';
     section.className='section ishimo-collaboration';
-    section.innerHTML=`<div class="container"><article class="ishimo-collaboration-card"><div class="ishimo-collaboration-mark" aria-hidden="true"><span>ishimo</span><small>×</small><b>NOTO<br>Re:Bloom</b></div><div class="ishimo-collaboration-copy"><p class="ishimo-collaboration-kicker">COLLABORATION</p><h2>学生プロジェクト<br><span>ishimo（イシモ）</span>と連携します。</h2><p>2026年9月20日の泥ん子運動会に向け、石川県主催の学生プロジェクト「ishimo」と連携します。学生への情報発信や参加の呼びかけを通じて、能登と学生がつながる入口を一緒につくります。</p><p class="ishimo-collaboration-note">今回の連携を、学生が継続して能登に関わる仕組みへつなげていきます。</p><a class="btn btn--paper ishimo-collaboration-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイトを見る ↗</a></div></article></div>`;
+    section.innerHTML=`<div class="container"><article class="ishimo-collaboration-card"><div class="ishimo-collaboration-mark"><img src="ishimo-logo.svg" alt="石川をもっと、ishimo"><small aria-hidden="true">×</small><b>NOTO<br>Re:Bloom</b></div><div class="ishimo-collaboration-copy"><p class="ishimo-collaboration-kicker">COLLABORATION</p><h2>学生プロジェクト<br><span>ishimo（イシモ）</span>と連携します。</h2><p>2026年9月20日の泥ん子運動会に向け、石川県主催の学生プロジェクト「ishimo」と連携します。学生への情報発信や参加の呼びかけを通じて、能登と学生がつながる入口を一緒につくります。</p><p class="ishimo-collaboration-note">今回の連携を、学生が継続して能登に関わる仕組みへつなげていきます。</p><a class="btn btn--paper ishimo-collaboration-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイトを見る ↗</a></div></article></div>`;
     const target=document.querySelector('#project-story');
     if(target)target.before(section);else document.querySelector('main')?.appendChild(section);
   }
@@ -64,8 +65,27 @@
       grid.classList.add('industry-grid--partners');
       const article=document.createElement('article');
       article.className='industry-partner--ishimo';
-      article.innerHTML=`<span class="industry-partner-label">COLLABORATION</span><h3>ishimo（イシモ）</h3><p>石川県主催の学生プロジェクトです。NOTO Re:Bloomとは、泥ん子運動会の情報発信と学生参加に向けて連携します。</p><a class="text-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト →</a>`;
+      article.innerHTML=`<span class="industry-partner-label">COLLABORATION</span><a class="industry-partner-logo" href="${ISHIMO}" target="_blank" rel="noopener" aria-label="ishimo公式サイト"><img src="ishimo-logo.svg" alt="石川をもっと、ishimo"></a><h3>学生プロジェクト ishimo（イシモ）</h3><p>石川県主催の学生プロジェクトです。NOTO Re:Bloomとは、泥ん子運動会の情報発信と学生参加に向けて連携します。</p><a class="text-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト →</a>`;
       grid.prepend(article);
+    }
+  }
+
+  if((page==='index.html'||page==='partner.html')&&!document.querySelector('.nr-main-sponsor--gyakuten')){
+    const sponsorSection=page==='partner.html'?document.querySelector('#current-partners'):document.querySelector('main>.nr-sponsor-feature--spotlight');
+    if(sponsorSection){
+      const head=sponsorSection.querySelector('.nr-section-head');
+      const heading=head?.querySelector('h2');
+      const lead=head?.querySelector('h2+p');
+      if(page==='index.html'){
+        if(heading)heading.innerHTML='活動を支えてくださる、<br>協賛パートナー。';
+        if(lead)lead.textContent='株式会社アーネストテクノロジーズとTechsPlus株式会社に、NOTO Re:Bloomの活動をご支援いただいています。';
+      }else if(lead){
+        lead.textContent='ご支援への感謝を込めて、株式会社アーネストテクノロジーズの「部活ナビ」と、TechsPlus株式会社の「逆転コーチング」をご紹介します。';
+      }
+      const article=document.createElement('article');
+      article.className=`nr-main-sponsor nr-main-sponsor--navi nr-main-sponsor--gyakuten${page==='index.html'?' nr-main-sponsor--compact':''}`;
+      article.innerHTML=`<div class="nr-sponsor-identity"><span class="nr-badge">協賛企業</span><a class="nr-sponsor-logo nr-sponsor-logo--gyakuten" href="${GYAKUTEN}" target="_blank" rel="sponsored noopener" aria-label="逆転コーチング公式サイト"><span class="gyakuten-logo-lockup"><img src="gyakuten-coaching-logo.svg" alt=""><strong>逆転コーチング</strong></span></a><p>TechsPlus株式会社</p><small>NOTO Re:Bloomの活動にご協賛いただいています。</small></div><div class="nr-sponsor-story"><p class="nr-sponsor-thanks">SUPPORTED BY TECHSPLUS</p><h3>志望校から逆算し、毎日の学習を支える。</h3><p>「逆転コーチング」は、志望校に合格したコーチが専属でつき、日々の学習計画の作成と進捗管理を行う大学受験オンライン塾です。</p><div class="nr-navi-features" aria-label="逆転コーチングの特徴"><span>志望校に特化</span><span>1日単位の学習管理</span><span>オンライン対応</span></div><div class="nr-actions"><a class="nr-btn nr-sponsor-primary nr-sponsor-primary--gyakuten" href="${GYAKUTEN}" target="_blank" rel="sponsored noopener">逆転コーチング公式サイト ↗</a></div></div>`;
+      sponsorSection.appendChild(article);
     }
   }
 
