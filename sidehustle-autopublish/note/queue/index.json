@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T17:48:42+09:00",
-  "retryGeneration": 4,
+  "updatedAt": "2026-08-20T18:08:00+09:00",
+  "retryGeneration": 5,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted legacy payload lacks coverImageBase64/coverImageMime, Windows V8 must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the legacy payload predates cover support.",
   "entries": [
@@ -56,6 +56,21 @@
       "publicUrl": "https://note.com/royal_lion645/n/na1f8adc2bfa8",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Batch 20260820_1608_five_items records Windows V13 published-note verification with API status published, exact title, 1280 JPY price, paid boundary, dedicated cover, anonymous HTTP 200, title match, normalized price match and purchase path."
+    },
+    {
+      "id": "note_20260820_05",
+      "title": "引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト",
+      "path": "sidehustle-autopublish/note/queue/note_20260820_05.enc.json",
+      "sha256": "fb6c0a5b85e9f6c78ea59311e5b217a8272b363af5aecf8faa56e4b20bbfb896",
+      "createdAt": "2026-08-20T18:08:00+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "note-05-r1-20260820T180800+0900",
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": ["readerVisibleUrl", "title", "price", "paidBoundary", "dedicatedCover"],
+      "recoveryMode": "publish-and-anonymously-verify; if this item fails, defer it and continue to another candidate rather than ending the catch-up cycle"
     }
   ]
 }
