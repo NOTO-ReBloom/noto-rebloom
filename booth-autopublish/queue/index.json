@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T17:36:00+09:00",
-  "retryGeneration": 6,
+  "updatedAt": "2026-08-20T17:43:00+09:00",
+  "retryGeneration": 7,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -14,16 +14,30 @@
       ],
       "sha256": "ce4ebfb5b07a9e05b8e1d79a920b09e1cb010f0521ee24130ff92270d284f79f",
       "createdAt": "2026-08-20T09:00:00+09:00",
-      "enabled": true,
-      "forceRetry": true,
-      "forceRetryNonce": "007-r6-20260820T173600+0900",
+      "enabled": false,
+      "holdReason": "Temporarily held after repeated strict-commerce verification attempts so this run can satisfy the rule to skip a stuck item and publish another product. Preserve for later strict re-verification.",
       "canonicalQueueId": "007_thesis_progress_os_20260820",
       "expectedPriceJPY": 1480,
-      "recoveryMode": "strict-commerce-reverify-existing-public-item-then-clean-rebuild-if-any-required-check-fails",
-      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"]
+    },
+    {
+      "id": "009_handover_os_20260820",
+      "title": "学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/009_handover_os_20260820.part01.txt",
+        "booth-autopublish/queue/009_handover_os_20260820.part02.txt"
+      ],
+      "sha256": "1078f6cb158145a7c9f170ffaa24d8c69a10faa5410e3366ecca94f2ba53dd37",
+      "createdAt": "2026-08-20T17:43:00+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "009-r1-20260820T174300+0900",
+      "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-      "recoveryEscalation": "Generation 6 requires explicit per-check evidence for BOOTH item 8739122. Anonymous buyer verification must confirm HTTP success, exact title, price=1480 JPY, downloadable digital-product state, and a functioning buyer purchase/cart path. Generic HTTP200/titleOk or prior PUBLIC_RECOVERY_SUCCESS is insufficient. If any commerce check fails or cannot be proven, reconcile the existing item or clean-rebuild from the decrypted canonical package and repeat anonymous verification. Write the exact public URL and explicit results for all five checks to publication_ledger before this queue item can clear publication debt."
+      "recoveryMode": "publish-new-item-and-anonymously-verify-all-commerce-checks",
+      "recoveryEscalation": "009 is the active fallback after 007 was held. Consumer must validate combined SHA-256 before decrypting, publish as a downloadable product at 980 JPY, then anonymously verify exact title, price, downloadable-product state and functioning purchase/cart path. Only after all checks pass may publication_ledger and metrics be updated."
     }
   ]
 }
