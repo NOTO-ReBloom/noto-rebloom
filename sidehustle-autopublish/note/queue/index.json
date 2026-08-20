@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T23:08:17+09:00",
-  "retryGeneration": 9,
+  "updatedAt": "2026-08-21T00:20:16+09:00",
+  "retryGeneration": 10,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted legacy payload lacks coverImageBase64/coverImageMime, Windows V8 must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the legacy payload predates cover support.",
   "entries": [
@@ -17,7 +17,7 @@
       "createdAt": "2026-08-20T18:08:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "monitor-r9-20260820T230817+0900",
+      "forceRetryNonce": "monitor-r10-20260821T002016+0900",
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
