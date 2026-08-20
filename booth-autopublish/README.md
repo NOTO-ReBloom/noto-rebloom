@@ -5,6 +5,8 @@
 - `queue/index.json`: 出品待ち暗号化商品の一覧
 - `queue/*.enc.json` / `queue/*.part*.txt`: AES-256-GCMで暗号化された商品パッケージ
 - `public/device_public_key.pem`: 商品パッケージ暗号化用の公開鍵
+- `monitor/publication_ledger.json`: buyer-visible公開を独立確認できた商品の正本台帳
+- `monitor/recovery_control.json`: 未公開滞留時の強制再試行・復旧指示
 
 有料商品の本文・画像・ZIP・販売説明はGitHub上へ平文で保存しません。Windows側だけが保持する秘密鍵で復号します。
 
@@ -14,11 +16,26 @@
 
 ## Consumer契約
 
-Windows側の投稿ボットは、定期実行ごとに `queue/index.json` を取得し、ローカル `state.json` に成功記録のない `enabled:true` 商品を1件処理します。投稿が成功した場合だけstateへ記録し、失敗した場合は未処理のまま残して次回再試行します。
+Windows側の投稿ボットは定期実行ごとに次を行います。
+
+1. `queue/index.json` と `monitor/publication_ledger.json` と `monitor/recovery_control.json` を取得する。
+2. `enabled:true` かつ、ledgerに同一canonical queue IDの `publicUrlVerified:true` がない商品を未公開として扱う。
+3. ローカル `state.json` に成功記録があっても、ledgerにbuyer-visible確認がなければ公開済み扱いせず、`invalidateLocalSuccessWithoutVerifiedLedger:true` またはactive recoveryがあれば再処理する。
+4. `forceRetryNonce` / `retryGeneration` がローカル最終処理世代より新しければ必ず再処理する。
+5. chunksをindex記載順に連結し、復号前にSHA-256がindex記載値と完全一致することを確認する。不一致なら投稿せず次回再試行する。
+6. Windows側だけにあるRSA秘密鍵でAES鍵をRSA-OAEP-SHA256復号し、AES-256-GCMで商品パッケージを復号する。
+7. 同一タイトルの既存draft / 非公開itemがあれば、新規作成より先にそのitemを復旧・公開する。404、壊れたdraft、内容不一致などでbuyer-visibleにできない場合だけclean rebuildを行う。
+8. タイトル、価格、商品説明、ダウンロードファイル、プレビュー画像等を検証しBOOTHへ公開する。
+9. 管理画面で成功しても完了扱いにせず、ログアウト/匿名ブラウザ相当で実URLを開き、HTTP成功、完全一致タイトル、期待価格、ダウンロード商品状態、購入導線を確認する。
+10. 9を満たした場合だけローカルstateへ成功記録し、GitHub側publication ledgerへqueueId、itemId、実URL、verifiedAt、verificationEvidenceを返す。失敗時は未処理のまま残す。
+
+## Recovery契約
+
+`monitor/recovery_control.json` にactiveRecoveryがある間、そのqueueIdを他の新規商品より最優先する。clearConditionを満たすまで勝手に成功扱いしない。`forceRetry:true` は通常のローカル成功stateによるskipを上書きする。
 
 ## 長期無人運用要件
 
-推奨スケジュールは**30分ごと**です。加えてWindows側は次を持つことを推奨します。
+推奨スケジュールは**30分ごと**です。加えてWindows側は次を持ちます。
 
 - noteと同時刻にChromeを起動しないよう実行時刻をずらす
 - 二重起動防止ロックと古いロックの自動解除
@@ -35,4 +52,4 @@ Windows側の投稿ボットは、定期実行ごとに `queue/index.json` を�
 
 ## 重要
 
-ChatGPT側の自動制作タスクはキューへ追加するところまでで、Windowsのブラウザセッションを直接操作できません。したがって「キュー投入」と「ストア公開」は別状態として監視します。Windows publisherが正常なら、ユーザーによる商品ごとの承認は不要です。
+キュー投入とストア公開は別状態です。Windows publisherが正常なら商品ごとのユーザー承認は不要です。人間本人にしか解決できない再ログイン、2段階認証、CAPTCHA、本人確認、OS権限が実際に確認された場合だけユーザー介入を要求します。
