@@ -29,8 +29,8 @@ jobs:
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `title=${t.title}\n`);
           NODE
 
-      - name: Wait for Pages and verify buyer-visible page
-        id: verify
+      - name: Wait for Pages HTTP deployment
+        id: http
         shell: bash
         env:
           SLUG: ${{ steps.meta.outputs.slug }}
@@ -39,29 +39,72 @@ jobs:
           set -u
           URL="https://noto-rebloom.github.io/noto-rebloom/auto-tools/${SLUG}/"
           mkdir -p /tmp/pages-check
-          OK=0
           STATUS=0
           for i in $(seq 1 24); do
             STATUS=$(curl -L -sS -o /tmp/pages-check/page.html -w '%{http_code}' --max-time 20 "$URL" || true)
-            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html; then
-              OK=1
-              break
-            fi
+            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html; then break; fi
             sleep 10
           done
           TITLE_OK=false; UI_OK=false; CTA_OK=false
-          if grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html 2>/dev/null; then TITLE_OK=true; fi
-          if grep -Eq 'id="(make|calc|result|body|output)"' /tmp/pages-check/page.html 2>/dev/null; then UI_OK=true; fi
+          grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html 2>/dev/null && TITLE_OK=true || true
+          grep -Eq 'id="(make|calc|result|body|output)"' /tmp/pages-check/page.html 2>/dev/null && UI_OK=true || true
           if grep -Fq 'booth.pm/ja/items/' /tmp/pages-check/page.html 2>/dev/null || grep -Fq 'auto-tools/' /tmp/pages-check/page.html 2>/dev/null; then CTA_OK=true; fi
-          VERIFIED=false
-          if [ "$STATUS" = "200" ] && [ "$TITLE_OK" = true ] && [ "$UI_OK" = true ]; then VERIFIED=true; fi
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
           echo "title_ok=$TITLE_OK" >> "$GITHUB_OUTPUT"
           echo "ui_ok=$UI_OK" >> "$GITHUB_OUTPUT"
           echo "cta_ok=$CTA_OK" >> "$GITHUB_OUTPUT"
-          echo "verified=$VERIFIED" >> "$GITHUB_OUTPUT"
-          test "$VERIFIED" = true
+          test "$STATUS" = "200" && test "$TITLE_OK" = true && test "$UI_OK" = true
+
+      - name: Install Selenium
+        run: python -m pip install --quiet selenium
+
+      - name: Browser interaction test
+        id: browser
+        env:
+          URL: ${{ steps.http.outputs.url }}
+          SLUG: ${{ steps.meta.outputs.slug }}
+        run: |
+          python <<'PY'
+          import json, os, shutil, sys, time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+
+          url=os.environ['URL']
+          opts=Options()
+          opts.add_argument('--headless=new')
+          opts.add_argument('--no-sandbox')
+          opts.add_argument('--disable-dev-shm-usage')
+          opts.add_argument('--window-size=1280,1000')
+          driver=webdriver.Chrome(options=opts)
+          function_ok=False
+          h1_ok=False
+          try:
+              driver.get(url)
+              time.sleep(1)
+              h1=driver.find_element(By.TAG_NAME,'h1').text.strip()
+              h1_ok=bool(h1)
+              slug=os.environ['SLUG']
+              if slug=='sponsor-email-maker':
+                  driver.find_element(By.ID,'company').send_keys('検証株式会社')
+                  driver.find_element(By.ID,'event').send_keys('検証イベント')
+                  driver.find_element(By.ID,'make').click()
+                  subject=driver.find_element(By.ID,'subject').text
+                  body=driver.find_element(By.ID,'body').text
+                  function_ok=('検証イベント' in subject and '検証株式会社' in body and len(body)>120)
+              else:
+                  # Generic fallback: confirm at least one primary action and a live result/output area.
+                  buttons=driver.find_elements(By.TAG_NAME,'button')
+                  outputs=driver.find_elements(By.CSS_SELECTOR,'#result,#body,#output,[aria-live]')
+                  function_ok=bool(buttons and outputs)
+          finally:
+              driver.quit()
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+              f.write(f'h1_ok={str(h1_ok).lower()}\n')
+              f.write(f'function_ok={str(function_ok).lower()}\n')
+          if not (h1_ok and function_ok): sys.exit(1)
+          PY
 
       - name: Save verification evidence
         if: always()
@@ -69,16 +112,18 @@ jobs:
         env:
           SLUG: ${{ steps.meta.outputs.slug }}
           EXPECTED_TITLE: ${{ steps.meta.outputs.title }}
-          URL: ${{ steps.verify.outputs.url }}
-          STATUS: ${{ steps.verify.outputs.status }}
-          TITLE_OK: ${{ steps.verify.outputs.title_ok }}
-          UI_OK: ${{ steps.verify.outputs.ui_ok }}
-          CTA_OK: ${{ steps.verify.outputs.cta_ok }}
-          VERIFIED: ${{ steps.verify.outputs.verified }}
+          URL: ${{ steps.http.outputs.url }}
+          STATUS: ${{ steps.http.outputs.status }}
+          TITLE_OK: ${{ steps.http.outputs.title_ok }}
+          UI_OK: ${{ steps.http.outputs.ui_ok }}
+          CTA_OK: ${{ steps.http.outputs.cta_ok }}
+          H1_OK: ${{ steps.browser.outputs.h1_ok }}
+          FUNCTION_OK: ${{ steps.browser.outputs.function_ok }}
         run: |
           mkdir -p sidehustle-autopublish/monitor/pages-verification
           node <<'NODE'
           const fs=require('fs');
+          const verified=process.env.STATUS==='200' && process.env.TITLE_OK==='true' && process.env.UI_OK==='true' && process.env.H1_OK==='true' && process.env.FUNCTION_OK==='true';
           const data={
             checkedAt:new Date().toISOString(),
             sourceCommit:process.env.GITHUB_SHA,
@@ -88,8 +133,10 @@ jobs:
             httpStatus:Number(process.env.STATUS||0),
             titleOk:process.env.TITLE_OK==='true',
             majorUiOk:process.env.UI_OK==='true',
+            h1Ok:process.env.H1_OK==='true',
+            primaryFunctionOk:process.env.FUNCTION_OK==='true',
             ctaOrInternalLinkOk:process.env.CTA_OK==='true',
-            publicUrlVerified:process.env.VERIFIED==='true'
+            publicUrlVerified:verified
           };
           fs.writeFileSync('sidehustle-autopublish/monitor/pages-verification/latest.json',JSON.stringify(data,null,2)+'\n');
           NODE
