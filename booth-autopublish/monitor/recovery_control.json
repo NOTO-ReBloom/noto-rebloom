@@ -1,11 +1,21 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T17:04:25+09:00",
-  "activeRecovery": null,
+  "updatedAt": "2026-08-20T17:37:00+09:00",
+  "activeRecovery": {
+    "queueId": "009_handover_os_20260820",
+    "priority": "immediate",
+    "reason": "007 is held after repeated strict-commerce re-verification attempts; publish a different valid product in this run rather than ending with monitoring only.",
+    "expectedPriceJPY": 980,
+    "requireBuyerVisibleVerification": true,
+    "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
+    "requestedAt": "2026-08-20T17:37:00+09:00",
+    "forceRetry": true,
+    "reconcileLocalSuccessState": true
+  },
   "lastClearedRecovery": {
     "queueId": "007_thesis_progress_os_20260820",
     "clearedAt": "2026-08-20T17:04:25+09:00",
-    "reason": "publication_ledger now contains matching publicUrlVerified=true for BOOTH item 8739122",
+    "reason": "Prior generic publication ledger evidence existed, but 007 remains held for later strict commerce verification under the newer completion definition.",
     "publicUrl": "https://booth.pm/ja/items/8739122"
   }
 }
