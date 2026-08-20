@@ -1,7 +1,7 @@
 {
-  "version": 5,
-  "updatedAt": "2026-08-21T01:57:58+09:00",
-  "objective": "maximize cumulative user profit while enforcing verified-publication minimums and minimizing user intervention",
+  "version": 6,
+  "updatedAt": "2026-08-21T05:42:00+09:00",
+  "objective": "maximize cumulative user profit while enforcing verified-publication hard minimums and minimizing user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "hardPublicationPolicy": {
@@ -9,50 +9,67 @@
     "noteDailyMinimum": 5,
     "boothDailyMinimum": 5,
     "debtFirst": true,
-    "currentRequiredBefore2026_08_21Satisfied": {"note":6,"BOOTH":9},
-    "rule": "Expected-profit optimization may choose WHICH qualified products to publish, but must not silently reduce the daily verified-publication minimum or erase carried debt."
+    "currentRequiredBefore2026_08_21Satisfied": {"note": 6, "BOOTH": 9},
+    "currentDebt": {"note": 1, "BOOTH": 4},
+    "todayRemaining": {"note": 5, "BOOTH": 5},
+    "rule": "Expected-profit optimization may choose WHICH qualified products to publish, but may not reduce the verified-publication floor or erase carried debt."
   },
   "pcAvailabilityPolicy": {
     "assumption": "User normally closes Windows PC after 01:00 JST.",
-    "after0100": "Do not classify Windows publisher inactivity alone as an outage. Continue cloud planning, build preparation, queue/state/ledger repair and fallback preparation.",
+    "after0100": "Do not require Windows publisher execution. Continue cloud research, build preparation, queue/state/ledger repair and fallback preparation.",
     "nextPreferredRecoveryWindow": "2026-08-21T07:10:00+09:00",
-    "lateDayRecoveryWindows": ["23:10","00:10"]
+    "productionWindows": ["07:10", "10:10", "13:10", "16:10", "19:10", "22:10", "23:10", "00:10"],
+    "lateDayRecoveryWindows": ["23:10", "00:10"],
+    "frontLoadRule": "Debt and current-day publication minimums must be pushed toward verified public state before 01:00; do not depend on post-01:00 local execution."
   },
+  "runPlan": [
+    {"slot":"07:10","note":["note_20260820_05","note_ai_small_org_workflow"],"BOOTH":["009_handover_os_20260820","event_sponsor_bundle"],"goal":"Service oldest debt first; if either active item remains blocked after brief diagnosis, defer and switch immediately."},
+    {"slot":"10:10","note":["note_event_sponsor_followup"],"BOOTH":["jobhunt_interview_bundle"],"goal":"Add verified publications with already-proven adjacent assets and strong purchase intent."},
+    {"slot":"13:10","note":["note_creator_pricing"],"BOOTH":["small_org_role_os"],"goal":"Publish distinct qualified fallback products; preserve quality and strict commerce verification."},
+    {"slot":"16:10","note":["note_student_org_role_design"],"BOOTH":["event_risk_register_os"],"goal":"Continue quota recovery; do not let one failed item consume the cycle."},
+    {"slot":"19:10","note":["note_event_risk_handoff"],"BOOTH":["creator_profit_pricing_os"],"goal":"Close remaining daily minimums where possible; prepare late-day catch-up queue."},
+    {"slot":"22:10","note":["note_thesis_weekly_review"],"BOOTH":["sponsor_deliverables_tracker"],"goal":"Use additional distinct candidates if quota/debt remains; otherwise advance Microsoft Store submission-ready work."},
+    {"slot":"23:10","note":["note_ai_jobhunt_answer_audit"],"BOOTH":["volunteer_shift_comms_os"],"goal":"Late catch-up: prioritize any remaining debt/target shortfall while Windows is still expected available."},
+    {"slot":"00:10","note":["any_highest_priority_unverified_candidate"],"BOOTH":["research_interview_coding_os"],"goal":"Final PC-dependent recovery window before 01:00; verify formally or carry exact residual debt forward without clearing it."}
+  ],
   "productionRunPolicy": {
-    "normalCompletion": "At least one newly verified public artifact per PC-available production run, and continue with multiple publications when debt/target remains and safe qualified candidates are ready.",
+    "normalCompletion": "At least one newly verified public artifact per PC-available production run when debt or quota remains, with multiple publications encouraged when safe qualified candidates are ready.",
     "blockedCandidate": "Diagnose briefly; if strict publication cannot be reached, defer and switch to another qualified candidate rather than ending the run.",
-    "strictNoteChecks": ["readerVisibleUrl","exactTitle","price","paidBoundary","dedicatedCover"],
-    "strictBoothChecks": ["buyerVisibleUrl","exactTitle","price","downloadableProductState","purchasePath"],
-    "nonCompletionEvidence": ["queue insertion","PUBLISH_SUCCESS alone","editor/admin URL","commit","HTTP/title-only evidence when commerce checks are required"]
+    "strictNoteChecks": ["readerVisibleUrl", "exactTitle", "price", "paidBoundary", "dedicatedCover"],
+    "strictBoothChecks": ["buyerVisibleUrl", "exactTitle", "price", "downloadableProductState", "purchasePath"],
+    "nonCompletionEvidence": ["queue insertion", "PUBLISH_SUCCESS alone", "editor/admin URL", "commit", "HTTP/title-only evidence when commerce checks are required"]
   },
-  "backlogPath": "sidehustle-autopublish/product_backlog.json",
   "priorityOrder": {
-    "note": ["note_20260820_05","note_event_sponsor_followup","note_student_org_role_design","note_thesis_weekly_review","note_event_risk_handoff","note_creator_pricing"],
-    "BOOTH": ["009_handover_os_20260820","event_sponsor_bundle","jobhunt_interview_bundle","creator_profit_pricing_os","small_org_role_os","event_risk_register_os"]
+    "note": ["note_20260820_05", "note_ai_small_org_workflow", "note_event_sponsor_followup", "note_creator_pricing", "note_student_org_role_design", "note_event_risk_handoff", "note_thesis_weekly_review", "note_ai_jobhunt_answer_audit"],
+    "BOOTH": ["009_handover_os_20260820", "event_sponsor_bundle", "jobhunt_interview_bundle", "small_org_role_os", "event_risk_register_os", "creator_profit_pricing_os", "sponsor_deliverables_tracker", "volunteer_shift_comms_os", "research_interview_coding_os"],
+    "MicrosoftStore": ["ms_csv_cleaner_deduper", "ms_invoice_filename_organizer", "ms_local_qr_batch_generator", "ms_image_batch_optimizer"]
+  },
+  "marketEvidence": {
+    "checkedAt": "2026-08-21T05:42:00+09:00",
+    "note": [
+      "note official analysis of about 300k paid articles reports paid-article sales +26.8% YoY and creator count +42.0% YoY; AI utilization +268.6%, SNS/content operations +258.7%, side jobs/remote work +179.0%.",
+      "note recommendation-engine testing reported category impressions 4.3x YoY, PV 2.2x and internal circulation 1.5x in January 2026, supporting high-specificity topical content rather than generic duplication.",
+      "PTA operational guidance updated June 2026 explicitly identifies role allocation and standardized handover as recurring organizational problems, supporting adjacent small-organization workflow products."
+    ],
+    "MicrosoftStore": [
+      "Microsoft states the Store serves over 250 million monthly active users and allows non-game apps to use their own commerce and retain 100% of revenue.",
+      "Current Store search surfaced many direct image-resizer/compressor and file-renamer competitors, while the CSV search surfaced fewer direct Japanese CSV-cleanup-style results; therefore CSV cleanup/deduplication is ranked above generic image resizing and generic rename utilities for the next experiment."
+    ]
   },
   "profitRules": [
-    "Within the hard publication floor, prefer candidates with stronger purchase intent, differentiation, conversion fit and expected net profit.",
+    "Debt and today's verified-publication floor are first priority.",
+    "Within that floor, prefer stronger purchase intent, differentiation, conversion fit and expected net profit.",
+    "Use existing public assets to create coherent bundles before inventing unrelated BOOTH products.",
     "Do not publish plaintext paid assets to GitHub.",
     "Do not infer public URLs; independently verify them before marking completed or linking funnels.",
     "Use actual sales/message evidence when available; do not invent demand metrics.",
     "Avoid low-value near duplicates; switch to a distinct qualified fallback when needed.",
     "Do not reactivate KDP or LINE without explicit user instruction."
   ],
-  "freeAcquisition": {
-    "channels": ["GitHub Pages SEO tools","free note content","search-oriented landing pages"],
-    "rule": "A free tool must retain standalone value. Add a paid CTA only when the corresponding paid public URL is independently verified."
-  },
-  "pricingGuidesJPY": {
-    "note": "680-1280",
-    "boothEntry": "980-1480",
-    "boothCore": "1280-2480",
-    "bundle": "1980-3980",
-    "organizationLicense": "3980-9800"
-  },
   "currentPipeline": {
     "note": {"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":6,"active":"note_20260820_05"},
     "BOOTH": {"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":9,"active":"009_handover_os_20260820"},
-    "MicrosoftStore": {"status":"monitor connected Gmail and repository state when available; do not infer publication"},
+    "MicrosoftStore": {"status":"initial app publication route proven; next research priority is a local-first CSV cleanup/deduplication utility; no repository performance metrics available yet"},
     "GitHubPages": {"pendingStrictVerification":"meeting-action"}
   }
 }
