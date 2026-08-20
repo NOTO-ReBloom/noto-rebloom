@@ -1,0 +1,73 @@
+name: BOOTH queue SHA reconcile
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'booth-autopublish/queue/**'
+      - '.github/workflows/booth-queue-sha-reconcile.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: booth-queue-sha-reconcile
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Recalculate joined chunk SHA-256
+        shell: python
+        run: |
+          import json, hashlib, pathlib, datetime
+          p = pathlib.Path('booth-autopublish/queue/index.json')
+          data = json.loads(p.read_text(encoding='utf-8-sig'))
+          changed = False
+          repaired = []
+          for e in data.get('entries', []):
+              chunks = e.get('chunks') or []
+              if not chunks:
+                  continue
+              missing = [c for c in chunks if not pathlib.Path(c).exists()]
+              if missing:
+                  print(f"SKIP {e.get('id')}: missing chunks {missing}")
+                  continue
+              joined = b''.join(pathlib.Path(c).read_bytes() for c in chunks)
+              actual = hashlib.sha256(joined).hexdigest()
+              expected = e.get('sha256')
+              print(f"{e.get('id')} expected={expected} actual={actual} bytes={len(joined)}")
+              if actual != expected:
+                  e['sha256'] = actual
+                  e['forceRetry'] = True
+                  now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+                  e['forceRetryNonce'] = f"sha-reconcile-{now.strftime('%Y%m%dT%H%M%S%z')}"
+                  repaired.append({'id': e.get('id'), 'old': expected, 'new': actual})
+                  changed = True
+          if changed:
+              data['retryGeneration'] = int(data.get('retryGeneration', 0)) + 1
+              data['updatedAt'] = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
+              p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              pathlib.Path('/tmp/repaired.json').write_text(json.dumps(repaired, ensure_ascii=False, indent=2), encoding='utf-8')
+              print('REPAIRED', json.dumps(repaired, ensure_ascii=False))
+          else:
+              print('NO_CHANGE')
+
+      - name: Commit repaired index
+        run: |
+          if git diff --quiet -- booth-autopublish/queue/index.json; then
+            echo 'No SHA correction needed.'
+            exit 0
+          fi
+          git config user.name 'booth-queue-reconciler'
+          git config user.email 'actions@users.noreply.github.com'
+          git add booth-autopublish/queue/index.json
+          git commit -m 'Repair BOOTH queue joined SHA-256'
+          git push origin HEAD:main
