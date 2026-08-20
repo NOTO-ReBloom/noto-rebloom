@@ -1,0 +1,100 @@
+name: Verify latest auto tool on GitHub Pages
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Resolve latest tool
+        id: meta
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync('auto-tools/index.json','utf8'));
+          const t=x.tools[x.tools.length-1];
+          if(!t || !t.slug || !t.title) process.exit(2);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `slug=${t.slug}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `title=${t.title}\n`);
+          NODE
+
+      - name: Wait for Pages and verify buyer-visible page
+        id: verify
+        shell: bash
+        env:
+          SLUG: ${{ steps.meta.outputs.slug }}
+          EXPECTED_TITLE: ${{ steps.meta.outputs.title }}
+        run: |
+          set -u
+          URL="https://noto-rebloom.github.io/noto-rebloom/auto-tools/${SLUG}/"
+          mkdir -p /tmp/pages-check
+          OK=0
+          STATUS=0
+          for i in $(seq 1 24); do
+            STATUS=$(curl -L -sS -o /tmp/pages-check/page.html -w '%{http_code}' --max-time 20 "$URL" || true)
+            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html; then
+              OK=1
+              break
+            fi
+            sleep 10
+          done
+          TITLE_OK=false; UI_OK=false; CTA_OK=false
+          if grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html 2>/dev/null; then TITLE_OK=true; fi
+          if grep -Eq 'id="(make|calc|result|body|output)"' /tmp/pages-check/page.html 2>/dev/null; then UI_OK=true; fi
+          if grep -Fq 'booth.pm/ja/items/' /tmp/pages-check/page.html 2>/dev/null || grep -Fq 'auto-tools/' /tmp/pages-check/page.html 2>/dev/null; then CTA_OK=true; fi
+          VERIFIED=false
+          if [ "$STATUS" = "200" ] && [ "$TITLE_OK" = true ] && [ "$UI_OK" = true ]; then VERIFIED=true; fi
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          echo "title_ok=$TITLE_OK" >> "$GITHUB_OUTPUT"
+          echo "ui_ok=$UI_OK" >> "$GITHUB_OUTPUT"
+          echo "cta_ok=$CTA_OK" >> "$GITHUB_OUTPUT"
+          echo "verified=$VERIFIED" >> "$GITHUB_OUTPUT"
+          test "$VERIFIED" = true
+
+      - name: Save verification evidence
+        if: always()
+        shell: bash
+        env:
+          SLUG: ${{ steps.meta.outputs.slug }}
+          EXPECTED_TITLE: ${{ steps.meta.outputs.title }}
+          URL: ${{ steps.verify.outputs.url }}
+          STATUS: ${{ steps.verify.outputs.status }}
+          TITLE_OK: ${{ steps.verify.outputs.title_ok }}
+          UI_OK: ${{ steps.verify.outputs.ui_ok }}
+          CTA_OK: ${{ steps.verify.outputs.cta_ok }}
+          VERIFIED: ${{ steps.verify.outputs.verified }}
+        run: |
+          mkdir -p sidehustle-autopublish/monitor/pages-verification
+          node <<'NODE'
+          const fs=require('fs');
+          const data={
+            checkedAt:new Date().toISOString(),
+            sourceCommit:process.env.GITHUB_SHA,
+            slug:process.env.SLUG,
+            title:process.env.EXPECTED_TITLE,
+            publicUrl:process.env.URL || `https://noto-rebloom.github.io/noto-rebloom/auto-tools/${process.env.SLUG}/`,
+            httpStatus:Number(process.env.STATUS||0),
+            titleOk:process.env.TITLE_OK==='true',
+            majorUiOk:process.env.UI_OK==='true',
+            ctaOrInternalLinkOk:process.env.CTA_OK==='true',
+            publicUrlVerified:process.env.VERIFIED==='true'
+          };
+          fs.writeFileSync('sidehustle-autopublish/monitor/pages-verification/latest.json',JSON.stringify(data,null,2)+'\n');
+          NODE
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add sidehustle-autopublish/monitor/pages-verification/latest.json
+          git diff --cached --quiet || git commit -m "Record GitHub Pages verification for ${SLUG}"
+          git push
