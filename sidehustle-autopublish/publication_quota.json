@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "timezone": "Asia/Tokyo",
+  "updatedAt": "2026-08-20T15:53:00+09:00",
+  "policy": "daily_publication_quota_with_rollover_debt",
+  "channels": {
+    "note": {
+      "dailyPublicTarget": 5,
+      "completionDefinition": "buyer-visible official note page verified with title, price, paid boundary and cover image",
+      "missedPublicationPolicy": "carry_forward_until_verified_publication",
+      "catchUpPriority": "oldest_verified-unpublished first",
+      "perCatchUpCycleSoftBatch": 5,
+      "productionCap": null
+    },
+    "BOOTH": {
+      "dailyPublicTarget": 5,
+      "completionDefinition": "buyer-visible official BOOTH product page verified with title, price, downloadable-product state and purchase path",
+      "missedPublicationPolicy": "carry_forward_until_verified_publication",
+      "catchUpPriority": "oldest_verified-unpublished first",
+      "perCatchUpCycleSoftBatch": 5,
+      "productionCap": null
+    }
+  },
+  "rules": [
+    "A scheduled slot that cannot reach verified publication is not discarded; it becomes publication debt.",
+    "Publication debt survives date changes and PC power-off periods until buyer-visible publication is verified.",
+    "The next available production/publication run must service accumulated debt before treating the current day's quota as satisfied.",
+    "One run may complete multiple publications when debt exists; five per catch-up cycle is a pacing preference, not a lifetime or daily production cap.",
+    "Do not count queue insertion, local publisher success logs, editor/admin URLs, drafts, or unverified pages as completed publications.",
+    "Cloud-side planning and queue production should continue while the Windows PC is off; local publishing catches up when the PC is next available.",
+    "If the PC is powered off for an entire calendar day, publication on that exact calendar day cannot be guaranteed; the missed quota must be caught up automatically on the next available PC session.",
+    "Do not silently lower daily targets because of outages or missed schedules."
+  ]
+}
