@@ -1,20 +1,20 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T15:16:00+09:00",
+  "updatedAt": "2026-08-20T15:53:00+09:00",
   "activeRecovery": {
     "queueId": "007_thesis_progress_os_20260820",
-    "forceRetryNonce": "007-r1-20260820T151600+0900",
+    "forceRetryNonce": "007-r2-20260820T155100+0900",
     "priority": "highest",
-    "reason": "Only enabled queue entry remains buyer-unverified after repeated checks.",
+    "reason": "Only enabled queue entry remains buyer-unverified more than 6 hours after creation, and generation 1 produced no verified ledger entry after more than 30 minutes.",
     "rules": [
       "Do not trust local success state unless publication_ledger has matching publicUrlVerified=true.",
       "Reconstruct all listed chunks in order and require SHA-256 to equal ce4ebfb5b07a9e05b8e1d79a920b09e1cb010f0521ee24130ff92270d284f79f before decrypting.",
-      "If an existing BOOTH draft or unpublished item with the same exact title exists, reconcile and publish that item first.",
-      "If the existing draft/item is inconsistent, 404-only, or cannot be made buyer-visible, perform a clean rebuild from the decrypted package instead of marking success.",
+      "Generation 2 is escalated: reconcile an exact-title existing draft only if it can immediately become buyer-visible; otherwise perform a clean rebuild from the decrypted canonical package.",
+      "Do not stop at management-page success, publish-click success, or a derived URL.",
       "Expected price is 1480 JPY.",
-      "After publish, verify anonymously that the exact title is visible, the page is buyer-accessible, the item is a downloadable product, and a purchase path is present.",
+      "After publish, verify anonymously that the exact title is visible, the page is buyer-accessible, the item is a downloadable product, the expected price is shown, and a purchase path is present.",
       "Only after verification append the real BOOTH item ID and URL to publication_ledger.json with publicUrlVerified=true.",
-      "If verification fails, leave this recovery active and retry on the next consumer run."
+      "If verification fails, preserve the encrypted source package, leave recovery active, increment diagnostic failure state locally, and retry rather than marking success."
     ],
     "userActionRequired": false,
     "clearCondition": "matching publication_ledger entry with publicUrlVerified=true"
