@@ -1,73 +1,71 @@
 {
-  "version": 3,
-  "checkedAt": "2026-08-20T15:16:00+09:00",
+  "version": 4,
+  "checkedAt": "2026-08-20T18:08:40+09:00",
   "status": "recovery_in_progress",
-  "reason": "007_thesis_progress_os_20260820 is the only enabled queue entry and still has no independently verified buyer-visible BOOTH page. Exact-title public searches at 15:15 JST did not establish a BOOTH item.",
+  "reason": "009_handover_os_20260820 is the sole enabled unpublished BOOTH queue entry. Both listed encrypted chunks are present. No publication-ledger entry exists for 009 yet, and no user-only authentication or permission blocker is evidenced.",
+  "quota": {
+    "dailyPublicTarget": 5,
+    "strictVerifiedPublicationsCount": 0,
+    "publicationDebt": 4,
+    "note": "Debt remains unchanged because current strict completion requires buyer-visible URL, exact title, expected price, downloadable-product state and purchase path."
+  },
   "queue": {
     "rawEnabledCount": 1,
-    "verifiedPublishedInRawQueue": 0,
     "effectiveUnpublishedCount": 1,
-    "publicUrlVerifiedCount": 0,
-    "oldestEffectiveUnpublishedId": "007_thesis_progress_os_20260820",
-    "oldestEnabledCreatedAt": "2026-08-20T09:00:00+09:00",
-    "entries": [
-      {
-        "id": "007_thesis_progress_os_20260820",
-        "createdAt": "2026-08-20T09:00:00+09:00",
-        "enabled": true,
-        "publishFlow": "queued",
-        "publicUrlVerified": false,
-        "expectedPriceJPY": 1480,
-        "forceRetryNonce": "007-r1-20260820T151600+0900"
-      }
-    ]
+    "oldestEffectiveUnpublishedId": "009_handover_os_20260820",
+    "oldestEnabledCreatedAt": "2026-08-20T17:40:00+09:00",
+    "ageMinutesAtCheck": 29,
+    "retryGeneration": 9,
+    "forceRetryNonce": "009-r3-20260820T175418+0900"
   },
   "integrity": {
     "indexHasUniqueEnabledIds": true,
-    "listedChunkCount": 4,
+    "listedChunkCount": 2,
     "chunkPaths": [
-      "booth-autopublish/queue/007_thesis_progress_os_20260820.part01.txt",
-      "booth-autopublish/queue/007_thesis_progress_os_20260820.part02.txt",
-      "booth-autopublish/queue/007_thesis_progress_os_20260820.part03.txt",
-      "booth-autopublish/queue/007_thesis_progress_os_20260820.part04.txt"
+      "booth-autopublish/queue/009_handover_os_20260820.part01.txt",
+      "booth-autopublish/queue/009_handover_os_20260820.part02.txt"
     ],
     "chunkPresence": "confirmed_via_repository",
-    "expectedJoinedSha256": "ce4ebfb5b07a9e05b8e1d79a920b09e1cb010f0521ee24130ff92270d284f79f",
-    "joinedShaVerification": "must_be_rechecked_by_consumer_before_decrypt"
+    "expectedJoinedSha256": "447345d8ae125415bbb957e6e4cbb54f4cd9b3a038ec64895f5ae75d4f11e1c9",
+    "joinedShaVerification": "consumer_must_recheck_before_decrypt",
+    "recentPayloadShaRefreshCommitKnown": true
   },
   "publicationLedger": {
-    "path": "booth-autopublish/monitor/publication_ledger.json",
     "verifiedQueueIds": [
       "002_consistency_os_20260819",
       "003_event_ops_html_20260819",
-      "005_sponsor_crm_20260819"
+      "005_sponsor_crm_20260819",
+      "007_thesis_progress_os_20260820"
     ],
-    "007Present": false,
-    "rule": "Local state is non-canonical. Only a matching ledger record with publicUrlVerified=true clears the recovery."
+    "009Present": false
   },
   "recovery": {
-    "controlPath": "booth-autopublish/monitor/recovery_control.json",
-    "activeQueueId": "007_thesis_progress_os_20260820",
+    "activeQueueId": "009_handover_os_20260820",
     "forceRetry": true,
-    "invalidateLocalSuccessWithoutVerifiedLedger": true,
-    "recoveryMode": "reconcile-existing-draft-then-clean-rebuild-if-unverifiable",
+    "reconcileLocalSuccessState": true,
     "requiredAnonymousChecks": [
-      "HTTP success",
-      "exact title match",
-      "price 1480 JPY",
-      "download product state",
-      "buyer purchase path present"
+      "buyerVisibleUrl",
+      "exact title",
+      "price 980 JPY",
+      "downloadable product state",
+      "purchase/cart path"
     ],
-    "userActionRequired": false
+    "userActionRequired": false,
+    "userOnlyBlockerEvidence": null
+  },
+  "webCheck": {
+    "performedAt": "2026-08-20T18:08:40+09:00",
+    "exactTitleSearchEstablished009PublicPage": false,
+    "note": "Search-index absence alone is not treated as publication failure or authentication evidence."
   },
   "actionsCompletedThisRun": [
-    "reconciled queue against publication ledger",
-    "confirmed 007 is the only enabled effective unpublished item",
-    "confirmed all four listed 007 chunk paths exist",
-    "performed fresh exact-title public BOOTH searches; no verified item established",
-    "upgraded queue index to version 2 with forceRetry nonce and recovery metadata",
-    "created recovery_control.json with existing-draft-first and clean-rebuild fallback rules",
-    "hardened README consumer contract so local success state cannot override missing buyer-visible ledger verification"
+    "reconciled publication quota, queue, ledger, recovery control and metrics",
+    "confirmed 009 is the sole enabled unpublished item",
+    "confirmed both 009 encrypted chunk paths exist",
+    "confirmed 009 has forceRetry and a current retry nonce",
+    "confirmed no ledger record yet exists for 009",
+    "confirmed no evidence of re-login, 2FA, CAPTCHA, identity verification, account lock or OS permission blocker",
+    "kept recovery active without disabling BOOTH production or watchdog"
   ],
-  "nextPriority": "Windows consumer must process forceRetryNonce 007-r1-20260820T151600+0900, verify joined SHA, reconcile any same-title draft or clean rebuild, then return a real buyer-visible URL. Continue recovery until publication_ledger contains 007 with publicUrlVerified=true."
+  "nextPriority": "Windows consumer should process 009, recheck joined SHA-256 before decrypt, publish at 980 JPY as a downloadable product, then return strict anonymous commerce-verification evidence before debt is decremented."
 }
