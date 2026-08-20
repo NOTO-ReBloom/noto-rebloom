@@ -97,7 +97,7 @@ body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-official-logo{
 }
 
 /* Give every supporting organization equal, factual presentation. */
-body.rb-unified .industry-grid--partners{
+body.rb-unified .industry-grid.industry-grid--partners{
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
   align-items:stretch!important;
   gap:20px!important;
@@ -111,7 +111,15 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
   max-width:none;
 }
 .industry-partner-logo{
+  box-sizing:border-box;
+  height:124px;
+  min-height:124px;
+  flex:0 0 124px;
   overflow:hidden;
+}
+.industry-partner--ishimo .industry-partner-logo img{
+  width:min(100%,250px)!important;
+  max-height:86px!important;
 }
 .industry-partner-logo--hamonz img{
   width:min(100%,250px)!important;
@@ -156,7 +164,7 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
 }
 
 @media(max-width:700px){
-  body.rb-unified .industry-grid--partners{grid-template-columns:1fr!important}
+  body.rb-unified .industry-grid.industry-grid--partners{grid-template-columns:1fr!important}
 }
 
 @media(max-width:600px){
@@ -171,6 +179,7 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
   .industry-partner-logo--hamonz img{max-width:220px!important;max-height:68px!important}
   .industry-partner-logo--zukan img{width:170px!important;transform:scale(1.55)}
   .industry-partner-logo--kanazawa-port img{max-width:250px!important;max-height:80px!important}
+  .industry-partner-logo{height:112px;min-height:112px;flex-basis:112px}
 }
 
 @media(max-width:360px){
