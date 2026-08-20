@@ -97,7 +97,7 @@ body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-official-logo{
 }
 
 /* Give every supporting organization equal, factual presentation. */
-body.rb-unified .industry-grid.industry-grid--partners{
+body.rb-unified #partner-network-grid{
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
   align-items:stretch!important;
   gap:20px!important;
@@ -164,7 +164,7 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
 }
 
 @media(max-width:700px){
-  body.rb-unified .industry-grid.industry-grid--partners{grid-template-columns:1fr!important}
+  body.rb-unified #partner-network-grid{grid-template-columns:1fr!important}
 }
 
 @media(max-width:600px){
