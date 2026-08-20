@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T16:08:00+09:00",
-  "retryGeneration": 3,
+  "updatedAt": "2026-08-20T16:15:00+09:00",
+  "retryGeneration": 4,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -16,13 +16,13 @@
       "createdAt": "2026-08-20T09:00:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "007-r3-20260820T160800+0900",
+      "forceRetryNonce": "007-r4-20260820T161500+0900",
       "canonicalQueueId": "007_thesis_progress_os_20260820",
       "expectedPriceJPY": 1480,
       "recoveryMode": "clean-rebuild-after-unverified-reconcile-generation",
       "invalidateLocalSuccessWithoutVerifiedLedger": true,
       "requireBuyerVisibleVerification": true,
-      "recoveryEscalation": "Generation 3 is the active catch-up batch. The next Windows publisher cycle must process this item even if a prior local success exists. If an existing draft or management page cannot immediately pass anonymous buyer-visible verification for title, price, downloadable-product state and purchase path, rebuild from the decrypted canonical package and publish a fresh downloadable item."
+      "recoveryEscalation": "Generation 4 is active for priority5 catch-up. Windows V8 must ignore stale local success and process 007. Reconcile any existing draft/item first. If anonymous buyer-visible verification cannot immediately prove title, 1480 JPY price, downloadable-product state and purchase path, rebuild from the decrypted canonical package and publish a fresh downloadable item; then write the verified public URL to the publication ledger."
     }
   ]
 }
