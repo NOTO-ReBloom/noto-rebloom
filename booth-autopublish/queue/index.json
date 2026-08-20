@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-20T17:07:34+09:00",
-  "retryGeneration": 5,
+  "updatedAt": "2026-08-20T17:36:00+09:00",
+  "retryGeneration": 6,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -16,14 +16,14 @@
       "createdAt": "2026-08-20T09:00:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "007-r5-20260820T170734+0900",
+      "forceRetryNonce": "007-r6-20260820T173600+0900",
       "canonicalQueueId": "007_thesis_progress_os_20260820",
       "expectedPriceJPY": 1480,
-      "recoveryMode": "reverify-existing-public-item-then-clean-rebuild-if-any-required-commerce-check-fails",
+      "recoveryMode": "strict-commerce-reverify-existing-public-item-then-clean-rebuild-if-any-required-check-fails",
       "invalidateLocalSuccessWithoutVerifiedLedger": true,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-      "recoveryEscalation": "Generation 5 is active for priority5 catch-up. A prior anonymous verification established item 8739122 with HTTP 200 and titleOk, but priority-batch completion requires all commerce checks. Windows V8 must anonymously open the buyer page and verify exact title, 1480 JPY price, downloadable-product state, and a functioning purchase/cart path. If any check is absent or stale, reconcile the item or clean-rebuild from the decrypted canonical package, then write explicit per-check evidence and the verified public URL to the publication ledger."
+      "recoveryEscalation": "Generation 6 requires explicit per-check evidence for BOOTH item 8739122. Anonymous buyer verification must confirm HTTP success, exact title, price=1480 JPY, downloadable digital-product state, and a functioning buyer purchase/cart path. Generic HTTP200/titleOk or prior PUBLIC_RECOVERY_SUCCESS is insufficient. If any commerce check fails or cannot be proven, reconcile the existing item or clean-rebuild from the decrypted canonical package and repeat anonymous verification. Write the exact public URL and explicit results for all five checks to publication_ledger before this queue item can clear publication debt."
     }
   ]
 }
