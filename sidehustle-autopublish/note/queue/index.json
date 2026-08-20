@@ -61,7 +61,7 @@
       "id": "note_20260820_05",
       "title": "引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト",
       "path": "sidehustle-autopublish/note/queue/note_20260820_05.enc.json",
-      "sha256": "fb6c0a5b85e9f6c78ea59311e5b217a8272b363af5aecf8faa56e4b20bbfb896",
+      "sha256": "6e610e0ab348d474f8b87d1cf9a52af1faeb5e2653676c09ec760ba77bbd9375",
       "createdAt": "2026-08-20T18:08:00+09:00",
       "enabled": true,
       "forceRetry": true,
@@ -69,7 +69,13 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
-      "requiredReaderChecks": ["readerVisibleUrl", "title", "price", "paidBoundary", "dedicatedCover"],
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
       "recoveryMode": "publish-and-anonymously-verify; if this item fails, defer it and continue to another candidate rather than ending the catch-up cycle"
     }
   ]
