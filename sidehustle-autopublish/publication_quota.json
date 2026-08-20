@@ -1,7 +1,7 @@
 {
   "version": 2,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-20T18:08:15+09:00",
+  "updatedAt": "2026-08-20T18:09:00+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
@@ -10,7 +10,26 @@
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "catchUpPriority": "oldest_verified-unpublished first",
       "perCatchUpCycleSoftBatch": 5,
-      "productionCap": null
+      "productionCap": null,
+      "operationalState": {
+        "date": "2026-08-20",
+        "slotsDueAsOf": "2026-08-20T18:09:00+09:00",
+        "slotsDueCount": 4,
+        "strictVerifiedPublicationsCount": 4,
+        "publicationDebt": 0,
+        "dailyPublicTarget": 5,
+        "dailyRemainingToTarget": 1,
+        "activePublicationCandidate": {
+          "queueId": "note_20260820_05",
+          "title": "引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト",
+          "expectedPriceJPY": 980,
+          "activatedAt": "2026-08-20T18:08:00+09:00",
+          "forceRetryNonce": "note-05-r1-20260820T180800+0900",
+          "requiredChecks": ["readerVisibleUrl", "title", "price", "paidBoundary", "dedicatedCover"],
+          "status": "awaiting_windows_consumer_and_reader_visible_verification"
+        },
+        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements publication debt or counts toward the daily target."
+      }
     },
     "BOOTH": {
       "dailyPublicTarget": 5,
