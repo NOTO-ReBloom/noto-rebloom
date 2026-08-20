@@ -1,18 +1,21 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-20T17:54:18+09:00",
+  "version": 3,
+  "updatedAt": "2026-08-20T18:38:00+09:00",
   "activeRecovery": {
     "queueId": "009_handover_os_20260820",
     "priority": "immediate",
-    "reason": "Publication debt is outstanding. 009 is the sole enabled fallback and must be processed now rather than ending with monitoring only.",
+    "reason": "Publication debt is outstanding. The previous blocker was a joined encrypted-payload SHA-256 mismatch. GitHub Actions reconciled the queue index to the actual joined chunk SHA, so Windows consumer must retry immediately using the repaired generation/nonce rather than treating prior local results as authoritative.",
     "expectedPriceJPY": 980,
+    "expectedJoinedSha256": "19c158e93d8104eb101ac0ed1f86cc2e83b6480277ca9e9b984fea8764eabd27",
     "requireBuyerVisibleVerification": true,
     "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-    "requestedAt": "2026-08-20T17:54:18+09:00",
+    "requestedAt": "2026-08-20T18:38:00+09:00",
     "forceRetry": true,
-    "forceRetryNonce": "009-r3-20260820T175418+0900",
+    "forceRetryNonce": "sha-reconcile-20260820T183349+0900",
+    "retryGeneration": 10,
     "reconcileLocalSuccessState": true,
-    "clearOnlyAfterStrictVerification": true
+    "clearOnlyAfterStrictVerification": true,
+    "doNotSelfDisable": true
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
