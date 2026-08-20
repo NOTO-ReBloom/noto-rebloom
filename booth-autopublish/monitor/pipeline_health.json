@@ -1,59 +1,37 @@
 {
   "version": 2,
-  "checkedAt": "2026-08-19T20:00:00+09:00",
+  "checkedAt": "2026-08-20T14:20:00+09:00",
   "status": "bottleneck_detected",
-  "reason": "After reconciling one buyer-visible publication, two enabled queue entries remain unverified and the oldest has been waiting more than 2 hours; publication throughput is still behind production throughput.",
+  "reason": "Queue/ledger reconciliation shows 002, 003 and 005 are buyer-visible verified. The only remaining enabled queue entry without buyer-visible verification is 007_thesis_progress_os_20260820.",
   "queue": {
-    "rawEnabledCount": 3,
-    "verifiedPublishedInRawQueue": 1,
-    "effectiveUnpublishedCount": 2,
-    "publicUrlVerifiedCount": 1,
-    "oldestEffectiveUnpublishedId": "003_event_ops_html_20260819",
-    "oldestEnabledCreatedAt": "2026-08-19T08:06:00+09:00",
-    "oldestAgeMinutesAtCheck": 714,
+    "rawEnabledCount": 4,
+    "verifiedPublishedInRawQueue": 3,
+    "effectiveUnpublishedCount": 1,
+    "publicUrlVerifiedCount": 3,
+    "oldestEffectiveUnpublishedId": "007_thesis_progress_os_20260820",
+    "oldestEnabledCreatedAt": "2026-08-20T09:00:00+09:00",
     "entries": [
-      {
-        "id": "002_consistency_os_20260819",
-        "createdAt": "2026-08-19T01:07:00+09:00",
-        "enabled": true,
-        "publishFlow": "completed",
-        "publicUrlVerified": true,
-        "publicUrl": "https://booth.pm/ja/items/8736698",
-        "boothItemId": "8736698",
-        "monitorDisposition": "exclude_from_unpublished_backlog"
-      },
-      {
-        "id": "003_event_ops_html_20260819",
-        "createdAt": "2026-08-19T08:06:00+09:00",
-        "enabled": true,
-        "publishFlow": "queued",
-        "publicUrlVerified": false
-      },
-      {
-        "id": "005_sponsor_crm_20260819",
-        "createdAt": "2026-08-19T14:42:00+09:00",
-        "enabled": true,
-        "publishFlow": "queued",
-        "publicUrlVerified": false
-      }
+      {"id":"002_consistency_os_20260819","enabled":true,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://booth.pm/ja/items/8736698","boothItemId":"8736698","monitorDisposition":"exclude_from_unpublished_backlog"},
+      {"id":"003_event_ops_html_20260819","enabled":true,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://booth.pm/ja/items/8736143","boothItemId":"8736143","monitorDisposition":"exclude_from_unpublished_backlog"},
+      {"id":"005_sponsor_crm_20260819","enabled":true,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://booth.pm/ja/items/8736208","boothItemId":"8736208","monitorDisposition":"exclude_from_unpublished_backlog"},
+      {"id":"007_thesis_progress_os_20260820","createdAt":"2026-08-20T09:00:00+09:00","enabled":true,"publishFlow":"queued","publicUrlVerified":false}
     ]
   },
   "publicationLedger": {
     "path": "booth-autopublish/monitor/publication_ledger.json",
     "rule": "An enabled queue entry is counted as unpublished unless a matching ledger record has publicUrlVerified=true. enabled=true never means published.",
-    "verifiedQueueIds": ["002_consistency_os_20260819"]
+    "verifiedQueueIds": ["002_consistency_os_20260819","003_event_ops_html_20260819","005_sponsor_crm_20260819"]
   },
   "decision": {
-    "newProductProductionPriority": "deprioritized_until_consumer_throughput_recovers",
-    "highestImpactLever": "publication_pipeline_reliability_and_throughput",
+    "newProductProductionPriority": "paused_until_007_is_verified",
+    "highestImpactLever": "publish_and_verify_007",
     "actionsCompletedThisRun": [
-      "reconciled the V11 buyer-visible publication success for 002_consistency_os_20260819",
-      "created a canonical GitHub-side publication ledger so verified published queue entries are not repeatedly counted as unpublished",
-      "changed pipeline monitoring semantics from raw enabled count to effective unpublished count",
-      "confirmed BOOTH current download-product fee remains price x 5.6% + 45 JPY per order",
-      "kept new product production paused because 003_event_ops_html_20260819 and 005_sponsor_crm_20260819 remain unverified"
+      "reconciled publication ledger against queue",
+      "confirmed 007 is the only effective unpublished enabled queue entry",
+      "confirmed all four 007 encrypted chunks are present in the repository tree",
+      "refreshed queue index updatedAt to retrigger the Windows consumer"
     ],
-    "remainingExternalDependency": "The authenticated Windows publisher must process or recover the remaining queue entries and produce buyer-visible verification receipts; GitHub-side automation cannot execute the BOOTH authenticated browser publication itself.",
-    "nextPriority": "reconcile the next verified Windows receipt into publication_ledger.json; if 003/005 remain unverified after the next consumer cycles, prioritize publisher recovery rather than adding more queue load"
+    "remainingExternalDependency": "The authenticated Windows BOOTH publisher must consume 007 and perform the buyer-visible publication. GitHub does not contain the BOOTH login/session or private decryption key.",
+    "nextPriority": "verify 007 buyer-visible public URL and append its verified receipt to publication_ledger.json"
   }
 }
