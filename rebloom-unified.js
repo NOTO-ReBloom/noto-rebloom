@@ -2,6 +2,7 @@
   'use strict';
   const JOIN='https://forms.gle/6ZMrhrhtWmBCQViD8';
   const CROWD='https://readyfor.jp/projects/kousakuhoukiti-saisei';
+  const ISHIMO='https://www.ishimo-ishikawa.jp/';
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   document.body.classList.add('rb-unified');
 
@@ -48,6 +49,26 @@
   ]);
   document.querySelectorAll('h1,h2,h3,p,span,a,b').forEach(el=>{const t=el.textContent.trim();if(replacements.has(t))el.textContent=replacements.get(t)});
 
+  if(page==='index.html'&&!document.querySelector('#ishimo-collaboration')){
+    const section=document.createElement('section');
+    section.id='ishimo-collaboration';
+    section.className='section ishimo-collaboration';
+    section.innerHTML=`<div class="container"><article class="ishimo-collaboration-card"><div class="ishimo-collaboration-mark" aria-hidden="true"><span>ishimo</span><small>×</small><b>NOTO<br>Re:Bloom</b></div><div class="ishimo-collaboration-copy"><p class="ishimo-collaboration-kicker">COLLABORATION</p><h2>学生プロジェクト<br><span>ishimo（イシモ）</span>と連携します。</h2><p>2026年9月20日の泥ん子運動会に向け、石川県主催の学生プロジェクト「ishimo」と連携します。学生への情報発信や参加の呼びかけを通じて、能登と学生がつながる入口を一緒につくります。</p><p class="ishimo-collaboration-note">今回の連携を、学生が継続して能登に関わる仕組みへつなげていきます。</p><a class="btn btn--paper ishimo-collaboration-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイトを見る ↗</a></div></article></div>`;
+    const target=document.querySelector('#project-story');
+    if(target)target.before(section);else document.querySelector('main')?.appendChild(section);
+  }
+
+  if(page==='partner.html'&&!document.querySelector('.industry-partner--ishimo')){
+    const grid=document.querySelector('.industry-grid');
+    if(grid){
+      grid.classList.add('industry-grid--partners');
+      const article=document.createElement('article');
+      article.className='industry-partner--ishimo';
+      article.innerHTML=`<span class="industry-partner-label">COLLABORATION</span><h3>ishimo（イシモ）</h3><p>石川県主催の学生プロジェクトです。NOTO Re:Bloomとは、泥ん子運動会の情報発信と学生参加に向けて連携します。</p><a class="text-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト →</a>`;
+      grid.prepend(article);
+    }
+  }
+
   const projectMap=()=>`<div class="rb-project-map" role="img" aria-label="使われなくなった田んぼを泥ん子運動会の会場として使い、人が能登へ来て地域と関わり、次の関わりにつなげるNOTO Re:Bloomの全体像">
     <div class="rb-project-map-path" aria-hidden="true"></div>
     <div class="rb-project-node rb-project-node--land"><span class="rb-project-node-icon">土</span><b>田んぼ</b><small>使われなくなった土地</small></div>
@@ -86,7 +107,7 @@
   if(footer){
     footer.classList.add('rb-footer');footer.innerHTML=`
       <div class="container rb-footer-cta"><div><h2>9月20日、洲巻の田んぼで開催します。</h2><p>参加費無料。受付12:30、13:00開始、17:00頃終了予定です。</p></div><a class="btn" href="${JOIN}" target="_blank" rel="noopener">参加申込</a></div>
-      <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>泥スポーツをきっかけに能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
+      <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>泥スポーツをきっかけに能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
       <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
   }
 
