@@ -1,6 +1,7 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-20T14:23:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-20T15:16:00+09:00",
+  "retryGeneration": 1,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -13,7 +14,14 @@
       ],
       "sha256": "ce4ebfb5b07a9e05b8e1d79a920b09e1cb010f0521ee24130ff92270d284f79f",
       "createdAt": "2026-08-20T09:00:00+09:00",
-      "enabled": true
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "007-r1-20260820T151600+0900",
+      "canonicalQueueId": "007_thesis_progress_os_20260820",
+      "expectedPriceJPY": 1480,
+      "recoveryMode": "reconcile-existing-draft-then-clean-rebuild-if-unverifiable",
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "requireBuyerVisibleVerification": true
     }
   ]
 }
