@@ -1,65 +1,58 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-19T21:16:00+09:00",
-  "objective": "maximize cumulative user profit and learning speed while minimizing user intervention",
-  "activeChannels": ["BOOTH", "note", "GitHub Pages"],
+  "version": 5,
+  "updatedAt": "2026-08-21T01:57:58+09:00",
+  "objective": "maximize cumulative user profit while enforcing verified-publication minimums and minimizing user intervention",
+  "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
-  "corePrinciples": [
-    "Do not optimize for item count; optimize for cumulative profit, average order value, conversion evidence, and repeatable demand.",
+  "hardPublicationPolicy": {
+    "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
+    "noteDailyMinimum": 5,
+    "boothDailyMinimum": 5,
+    "debtFirst": true,
+    "currentRequiredBefore2026_08_21Satisfied": {"note":6,"BOOTH":9},
+    "rule": "Expected-profit optimization may choose WHICH qualified products to publish, but must not silently reduce the daily verified-publication minimum or erase carried debt."
+  },
+  "pcAvailabilityPolicy": {
+    "assumption": "User normally closes Windows PC after 01:00 JST.",
+    "after0100": "Do not classify Windows publisher inactivity alone as an outage. Continue cloud planning, build preparation, queue/state/ledger repair and fallback preparation.",
+    "nextPreferredRecoveryWindow": "2026-08-21T07:10:00+09:00",
+    "lateDayRecoveryWindows": ["23:10","00:10"]
+  },
+  "productionRunPolicy": {
+    "normalCompletion": "At least one newly verified public artifact per PC-available production run, and continue with multiple publications when debt/target remains and safe qualified candidates are ready.",
+    "blockedCandidate": "Diagnose briefly; if strict publication cannot be reached, defer and switch to another qualified candidate rather than ending the run.",
+    "strictNoteChecks": ["readerVisibleUrl","exactTitle","price","paidBoundary","dedicatedCover"],
+    "strictBoothChecks": ["buyerVisibleUrl","exactTitle","price","downloadableProductState","purchasePath"],
+    "nonCompletionEvidence": ["queue insertion","PUBLISH_SUCCESS alone","editor/admin URL","commit","HTTP/title-only evidence when commerce checks are required"]
+  },
+  "backlogPath": "sidehustle-autopublish/product_backlog.json",
+  "priorityOrder": {
+    "note": ["note_20260820_05","note_event_sponsor_followup","note_student_org_role_design","note_thesis_weekly_review","note_event_risk_handoff","note_creator_pricing"],
+    "BOOTH": ["009_handover_os_20260820","event_sponsor_bundle","jobhunt_interview_bundle","creator_profit_pricing_os","small_org_role_os","event_risk_register_os"]
+  },
+  "profitRules": [
+    "Within the hard publication floor, prefer candidates with stronger purchase intent, differentiation, conversion fit and expected net profit.",
     "Do not publish plaintext paid assets to GitHub.",
-    "Do not infer public product URLs; verify them independently before linking from funnels.",
-    "Do not reactivate KDP or LINE without explicit user instruction.",
-    "Prefer automation that reduces ongoing user labor rather than adding setup burden.",
-    "Use current official platform fees and rules at each production or pricing decision."
+    "Do not infer public URLs; independently verify them before marking completed or linking funnels.",
+    "Use actual sales/message evidence when available; do not invent demand metrics.",
+    "Avoid low-value near duplicates; switch to a distinct qualified fallback when needed.",
+    "Do not reactivate KDP or LINE without explicit user instruction."
   ],
-  "profitEngine": {
-    "layer1FreeAcquisition": {"channels":["GitHub Pages SEO tools","free note articles","search-oriented landing pages"],"goal":"capture high-intent searches and route only to verified relevant paid products","rules":["Each free tool must solve a real standalone problem.","Add one non-intrusive paid CTA only after the paid product URL is verified.","Use title, meta description, FAQ, sitemap, and internal links for organic discovery.","Avoid ad monetization until meaningful traffic exists."]},
-    "layer2PaidEntry": {"channels":["note paid articles","BOOTH entry products"],"targetPriceJPY":{"note":"680-1280","boothEntry":"980-1480"},"goal":"convert problem-aware users with low decision friction"},
-    "layer3CoreProducts": {"channels":["BOOTH practical OS products"],"targetPriceJPY":"1280-2480","goal":"sell reusable tools that reduce work time, omissions, or decision errors"},
-    "layer4Bundles": {"targetPriceJPY":"1980-3980","discountRule":"10-20% below the sum of complementary standalone products","activation":"create when at least two complementary products exist and their public URLs or queue integrity are confirmed","goal":"increase average order value without creating near-duplicate products"},
-    "layer5OrganizationLicenses": {"targetPriceJPY":"3980-9800","activation":"create organization/team-use editions for proven practical OS or bundles, with explicit internal-use license terms and the same core files plus organization license","goal":"capture higher willingness to pay from clubs, NPOs, event teams, small organizations, and businesses","rules":["Do not promise legal, tax, safety, or compliance outcomes.","Keep personal and organization license terms clearly separated.","Prefer a separate BOOTH product over complicated manual fulfillment."]},
-    "layer6RecurringRevenue": {"noteMembership":{"status":"defer until audience signal","activationSignal":"meaningful repeat paid readership or follower demand; do not launch merely because the feature exists","conceptDirection":"monthly practical templates, operating systems, and implementation notes for students/small organizations","priceGuideJPY":"980-1480 per month","reason":"note officially supports membership with no initial/monthly creator fee and a 10% platform fee before payment-processing/withdrawal fees"}},
-    "layer7GlobalCrossListing": {"status":"defer until a Japanese product proves demand","candidates":[{"channel":"Ko-fi Shop","useCase":"English-localized digital templates and optional tips/membership","currentFeeNote":"5% shop/membership service fee plus normal Stripe/PayPal processing; no listing fee","trigger":"a BOOTH product reaches at least 5 observed sales or clear demand evidence"},{"channel":"Payhip","useCase":"English-localized digital downloads with affiliate/coupon capability","currentFeeNote":"Free Forever plan 5% transaction fee plus payment-processor fees","trigger":"a proven product has a localization-ready buyer problem"},{"channel":"Gumroad","useCase":"global discovery for higher-priced bundles only","currentFeeNote":"direct/profile sales 10% + $0.50 plus processing; Discover sales 30%","trigger":"use only if discovery upside justifies materially higher fees"}]},
-    "layer8AffiliateRevenue": {"status":"one-time partner signup required before activation","priorityOpportunity":{"program":"Payhip Partner Program","currentPublicOffer":"50% recurring commission on Payhip revenue generated by referred sellers","fit":"existing creator-pricing tools and future digital-product comparison content","rule":"affiliate disclosure required; recommendations must remain evidence-based and not distort comparisons"},"activation":"after user completes unavoidable affiliate-account enrollment; then add tracked links only to relevant content"},
-    "layer9DirectPayments": {"candidate":"Stripe Payment Links","currentPublicFeeNote":"Payment Links has no additional platform fee; standard successful card payment fee shown by Stripe Japan is 3.6%","useCase":"organization-license payments, tips, or subscriptions only after secure digital fulfillment is solved","rule":"do not expose paid download files behind an unprotected static success URL"}
+  "freeAcquisition": {
+    "channels": ["GitHub Pages SEO tools","free note content","search-oriented landing pages"],
+    "rule": "A free tool must retain standalone value. Add a paid CTA only when the corresponding paid public URL is independently verified."
   },
-  "booth": {
-    "currentOfficialFeeAssumption": "download product price x 5.6% + 45 JPY per order, decimals rounded up; reconfirmed 2026-08-19 against BOOTH's 2025-10-28 fee revision notice",
-    "publicationLedgerPath": "booth-autopublish/monitor/publication_ledger.json",
-    "publicationSemantics": "enabled/queued is not published; only a publication-ledger record with publicUrlVerified=true may be treated as public/completed",
-    "publishedOrCompletedFlow": ["001_interview_os", "002_consistency_os_20260819", "003_event_ops_html_20260819", "005_sponsor_crm_20260819"],
-    "verifiedPublicProducts": [
-      {"id":"002_consistency_os_20260819","publicUrl":"https://booth.pm/ja/items/8736698","boothItemId":"8736698"},
-      {"id":"003_event_ops_html_20260819","publicUrl":"https://booth.pm/ja/items/8736143","boothItemId":"8736143"},
-      {"id":"005_sponsor_crm_20260819","publicUrl":"https://booth.pm/ja/items/8736208","boothItemId":"8736208"}
-    ],
-    "pendingQueue": [],
-    "pipelineStatus": {"level":"healthy","rawEnabledQueueCount":3,"effectiveUnpublishedQueueCount":0,"oldestUnpublishedId":null,"oldestUnpublishedCreatedAt":null,"productionDecision":"pipeline caught up; resume high-quality BOOTH production and prioritize the event+sponsor bundle and thesis/research OS"},
-    "portfolioRules": {
-      "themeScoreThreshold": 70,
-      "scoreWeights": {"painSeverity":35,"purchaseIntent":25,"competitionGap":20,"priceCeiling":10,"maintenanceAndPolicyRisk":10},
-      "bundleDiscountTarget": "10-20% below sum of complementary standalone products",
-      "freeLite": "only add a paid-product CTA when its live public URL has been independently confirmed",
-      "avoidQuantityForQuantitySake": true,
-      "doNotCreateNearDuplicates": true,
-      "noSaleReview": {"after30Days":"review title, preview, positioning, and funnel before lowering price","after60Days":"consider bundling, repackaging, or retiring; do not keep producing clones"},
-      "winnerExpansion": {"after3Sales":"prioritize one complementary product or bundle experiment","after5Sales":"evaluate organization license and English localization","after10Sales":"evaluate a higher-value bundle, recurring offer, and cross-platform listing"}
-    }
+  "pricingGuidesJPY": {
+    "note": "680-1280",
+    "boothEntry": "980-1480",
+    "boothCore": "1280-2480",
+    "bundle": "1980-3980",
+    "organizationLicense": "3980-9800"
   },
-  "funnels": [
-    {"slug":"booth-price-calc","path":"auto-tools/booth-price-calc/","purpose":"creator pricing intent; future affiliate/direct-product funnel"},
-    {"slug":"charfit","path":"auto-tools/charfit/","purpose":"job-hunting/search entry point"},
-    {"slug":"event-checklist","path":"auto-tools/event-checklist/","purpose":"event-operations entry point"},
-    {"slug":"event-reception-calc","path":"auto-tools/event-reception-calc/","purpose":"event reception staffing intent"}
-  ],
-  "nextPriorityNiches": [
-    {"niche":"event + sponsorship organizer bundle","score":80,"targetPriceJPY":2480},
-    {"niche":"job-hunting interview bundle","score":82,"targetPriceJPY":1980},
-    {"niche":"research / thesis progress OS","score":76,"targetPriceJPY":1480},
-    {"niche":"small-organization volunteer / role assignment OS","score":74,"targetPriceJPY":1280},
-    {"niche":"creator profit / pricing OS","score":75,"targetPriceJPY":1480}
-  ],
-  "futureMonetizationReview": ["organization/team licenses","verified-product bundles","note membership after repeat-demand signal","Payhip partner affiliate program after enrollment","Ko-fi/Payhip English cross-listing after proven demand","Stripe direct payments only with secure fulfillment","sponsorship/advertising on free tools only after meaningful traffic","ads only after traffic is large enough that UX cost is justified"],
-  "avoidUnlessDifferentiated": ["generic sales/expense bookkeeping spreadsheet","generic freelance project tracker","generic AI prompt collection","generic task list"],
-  "officialSources": ["https://booth.pm/announcements/832","https://note.com/lp/membership","https://payhip.com/pricing","https://payhip.com/partner-program","https://ko-fi.com/shop","https://gumroad.com/pricing","https://stripe.com/jp/payments/payment-links"]
+  "currentPipeline": {
+    "note": {"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":6,"active":"note_20260820_05"},
+    "BOOTH": {"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":9,"active":"009_handover_os_20260820"},
+    "MicrosoftStore": {"status":"monitor connected Gmail and repository state when available; do not infer publication"},
+    "GitHubPages": {"pendingStrictVerification":"meeting-action"}
+  }
 }
