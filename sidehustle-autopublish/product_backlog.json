@@ -1,22 +1,24 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-21T01:57:58+09:00",
-  "purpose": "Maintain multiple publishable fallback candidates so a blocked item never consumes an entire PC-available production cycle.",
+  "version": 2,
+  "updatedAt": "2026-08-21T05:42:00+09:00",
+  "purpose": "Maintain more qualified publishable candidates than the remaining hard quota so blocked items never consume an entire PC-available production cycle.",
   "publicationDebtFirst": true,
-  "pcAssumption": "Windows publisher is normally unavailable after 01:00 JST; prepare assets and queues in cloud time, publish at next PC-available window.",
+  "pcAssumption": "Windows publisher is normally unavailable after 01:00 JST; prepare assets and queues in cloud time, publish during PC-available windows ending with 23:10 and 00:10 catch-up.",
   "note": {
     "carriedDebt": 1,
     "todayTarget": 5,
     "requiredBeforeDaySatisfied": 6,
     "active": [
-      {"id":"note_20260820_05","title":"引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト","priceJPY":980,"priority":1,"state":"queued_retry"}
+      {"id":"note_20260820_05","title":"引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト","priceJPY":980,"priority":1,"state":"queued_retry","reason":"oldest carried debt; strict reader-visible publication required"}
     ],
     "fallbackConcepts": [
-      {"id":"note_event_sponsor_followup","concept":"協賛営業の面談後フォローと進捗管理","targetPriceJPY":680,"priority":2},
-      {"id":"note_student_org_role_design","concept":"学生団体の役割分担・属人化防止","targetPriceJPY":680,"priority":3},
-      {"id":"note_thesis_weekly_review","concept":"卒論の週次レビューと遅延回復","targetPriceJPY":680,"priority":4},
-      {"id":"note_event_risk_handoff","concept":"イベント運営の引継ぎ・リスク管理","targetPriceJPY":680,"priority":5},
-      {"id":"note_creator_pricing","concept":"デジタル商品の価格設計と利益計算","targetPriceJPY":680,"priority":6}
+      {"id":"note_ai_small_org_workflow","concept":"AIで学生団体・小規模チームの定例業務を整理する実践ワークフロー","targetPriceJPY":1280,"priority":2,"reason":"AI活用はnote公式分析で急成長カテゴリ。既存の小規模組織運営資産と差別化可能。"},
+      {"id":"note_event_sponsor_followup","concept":"協賛営業の面談後フォローと進捗管理","targetPriceJPY":980,"priority":3,"reason":"既存BOOTHスポンサーCRMとのクロスセル適合が強い。"},
+      {"id":"note_creator_pricing","concept":"デジタル商品の価格設計と利益計算","targetPriceJPY":1280,"priority":4,"reason":"複業・在宅ワーク領域の成長と既存digital-seller-profit無料導線に接続可能。"},
+      {"id":"note_student_org_role_design","concept":"学生団体の役割分担・属人化防止","targetPriceJPY":980,"priority":5,"reason":"2026年の団体運営ガイダンスで役割分担・引継ぎが明示課題。引継ぎ記事とは役割設計に焦点を分ける。"},
+      {"id":"note_event_risk_handoff","concept":"イベント運営の引継ぎ・リスク管理","targetPriceJPY":980,"priority":6,"reason":"既存イベント運営OSへの自然な有料導線を作れる。"},
+      {"id":"note_thesis_weekly_review","concept":"卒論の週次レビューと遅延回復","targetPriceJPY":980,"priority":7,"reason":"既存卒論OSと無料ツール群のクラスターを深める。"},
+      {"id":"note_ai_jobhunt_answer_audit","concept":"AIでES・自己PR・面接回答の矛盾を監査する就活実践法","targetPriceJPY":1280,"priority":8,"reason":"AI活用×就活の複合意図。既存就活BOOTH商品へのクロスセル候補。"}
     ]
   },
   "BOOTH": {
@@ -24,19 +26,32 @@
     "todayTarget": 5,
     "requiredBeforeDaySatisfied": 9,
     "active": [
-      {"id":"009_handover_os_20260820","title":"学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML","priceJPY":980,"priority":1,"state":"queued_retry"}
+      {"id":"009_handover_os_20260820","title":"学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML","priceJPY":980,"priority":1,"state":"queued_retry","reason":"oldest active carried debt; strict buyer-visible commerce verification required"}
     ],
     "fallbackConcepts": [
-      {"id":"event_sponsor_bundle","concept":"イベント運営OS＋協賛営業CRMの補完バンドル","targetPriceJPY":2480,"priority":2},
-      {"id":"jobhunt_interview_bundle","concept":"就活一貫性チェック＋面接改善の補完バンドル","targetPriceJPY":1980,"priority":3},
-      {"id":"creator_profit_pricing_os","concept":"デジタル商品利益・価格設計OS","targetPriceJPY":1480,"priority":4},
-      {"id":"small_org_role_os","concept":"学生団体・小規模NPOの役割分担OS","targetPriceJPY":1280,"priority":5},
-      {"id":"event_risk_register_os","concept":"小規模イベントのリスク・対応・担当管理OS","targetPriceJPY":1280,"priority":6}
+      {"id":"event_sponsor_bundle","concept":"イベント運営OS＋協賛営業CRMの補完バンドル","targetPriceJPY":2480,"priority":2,"reason":"既に公開確認済みの2資産を組み合わせるため制作リスクが低くAOVを上げやすい。"},
+      {"id":"jobhunt_interview_bundle","concept":"就活一貫性チェック＋面接改善の補完バンドル","targetPriceJPY":1980,"priority":3,"reason":"既存就活商品群を一貫した購入目的で束ねられる。"},
+      {"id":"small_org_role_os","concept":"学生団体・小規模NPOの役割分担OS","targetPriceJPY":1280,"priority":4,"reason":"引継ぎOSと重複させずRACI・担当負荷・代替担当・定例責任に焦点を分離。"},
+      {"id":"event_risk_register_os","concept":"小規模イベントのリスク・対応・担当管理OS","targetPriceJPY":1480,"priority":5,"reason":"イベント運営OSの深掘り用途で購入意図が明確。"},
+      {"id":"creator_profit_pricing_os","concept":"デジタル商品利益・価格設計OS","targetPriceJPY":1480,"priority":6,"reason":"無料digital-seller-profit導線と接続可能。"},
+      {"id":"sponsor_deliverables_tracker","concept":"スポンサー契約後の入金・ロゴ掲載・返礼・報告物の履行管理OS","targetPriceJPY":1480,"priority":7,"reason":"スポンサーCRMの後工程を補完し、既存商品との役割重複が小さい。"},
+      {"id":"volunteer_shift_comms_os","concept":"学生イベント・地域活動のボランティア配置・連絡・欠員対応OS","targetPriceJPY":1480,"priority":8,"reason":"イベント運営クラスター内で別の現場課題を解決。"},
+      {"id":"research_interview_coding_os","concept":"卒論・質的研究のインタビュー記録・コード・引用候補整理OS","targetPriceJPY":1680,"priority":9,"reason":"既存卒論進行OSの隣接需要で、進捗管理とは異なる分析工程を解決。"}
+    ]
+  },
+  "MicrosoftStore": {
+    "quota": null,
+    "priorityConcepts": [
+      {"id":"ms_csv_cleaner_deduper","concept":"CSV Cleaner & Duplicate Remover：重複削除・空白正規化・列名整理・文字コード確認をローカル完結","priority":1,"monetization":"free acquisition first; evaluate paid Pro/batch automation only after usage signal","evidence":"Current Store web search surfaced fewer direct Japanese CSV-cleanup-style results than generic image compressors or rename utilities."},
+      {"id":"ms_invoice_filename_organizer","concept":"請求書・領収書ファイルを日付・取引先・金額ルールで一括リネームするローカル整理ツール","priority":2,"monetization":"free core; paid advanced naming presets only after demand signal","evidence":"Generic renamers are crowded, so this candidate must remain workflow-specific rather than a generic renamer."},
+      {"id":"ms_local_qr_batch_generator","concept":"CSVからQRコードを一括生成・命名・ZIP出力するローカルツール","priority":3,"monetization":"free core; batch templates/export presets as possible Pro","evidence":"Clear business/event use case and reusable Windows component fit; direct Store demand metrics not yet observed."},
+      {"id":"ms_image_batch_optimizer","concept":"EC・SNS向けプリセット付き画像一括リサイズ・圧縮・WebP変換","priority":4,"monetization":"only pursue with strong niche differentiation","evidence":"Current Store search shows many direct image compressor/resizer competitors, so generic implementation is deprioritized."}
     ]
   },
   "rules": [
     "At the next PC-available production run, service carried debt before treating today's quota as satisfied.",
     "If the active candidate cannot reach strict buyer/reader-visible verification quickly, defer it and switch to a fallback candidate.",
+    "Maintain more qualified candidates than the remaining hard minimum so a blocked item does not stall the day.",
     "Queue insertion, local success, admin/editor URLs and commits do not count as publication.",
     "Do not publish near-duplicate low-value products merely to satisfy count; use a distinct qualified fallback instead.",
     "Do not require Windows execution after 01:00 JST; cloud preparation continues and debt remains intact."
