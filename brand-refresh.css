@@ -98,6 +98,7 @@ body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-official-logo{
 
 /* Give every supporting organization equal, factual presentation. */
 body.rb-unified .industry-grid--partners{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
   align-items:stretch!important;
   gap:20px!important;
 }
@@ -152,6 +153,10 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
   .nr-hero-brand-badge{top:14px;left:14px;width:82px;min-height:96px;border-radius:18px}
   .nr-hero-brand-badge img{max-width:62px;max-height:78px}
   .ishimo-collaboration-mark{min-height:300px!important}
+}
+
+@media(max-width:700px){
+  body.rb-unified .industry-grid--partners{grid-template-columns:1fr!important}
 }
 
 @media(max-width:600px){
