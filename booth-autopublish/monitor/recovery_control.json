@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-20T15:16:00+09:00",
+  "activeRecovery": {
+    "queueId": "007_thesis_progress_os_20260820",
+    "forceRetryNonce": "007-r1-20260820T151600+0900",
+    "priority": "highest",
+    "reason": "Only enabled queue entry remains buyer-unverified after repeated checks.",
+    "rules": [
+      "Do not trust local success state unless publication_ledger has matching publicUrlVerified=true.",
+      "Reconstruct all listed chunks in order and require SHA-256 to equal ce4ebfb5b07a9e05b8e1d79a920b09e1cb010f0521ee24130ff92270d284f79f before decrypting.",
+      "If an existing BOOTH draft or unpublished item with the same exact title exists, reconcile and publish that item first.",
+      "If the existing draft/item is inconsistent, 404-only, or cannot be made buyer-visible, perform a clean rebuild from the decrypted package instead of marking success.",
+      "Expected price is 1480 JPY.",
+      "After publish, verify anonymously that the exact title is visible, the page is buyer-accessible, the item is a downloadable product, and a purchase path is present.",
+      "Only after verification append the real BOOTH item ID and URL to publication_ledger.json with publicUrlVerified=true.",
+      "If verification fails, leave this recovery active and retry on the next consumer run."
+    ],
+    "userActionRequired": false,
+    "clearCondition": "matching publication_ledger entry with publicUrlVerified=true"
+  }
+}
