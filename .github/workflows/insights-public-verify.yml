@@ -1,0 +1,70 @@
+name: Verify free insight publications
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'insights/**/index.html'
+      - '.github/workflows/insights-public-verify.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for GitHub Pages and verify public pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://noto-rebloom.github.io/noto-rebloom/insights'
+          declare -A checks=(
+            [student-org-bus-factor]='学生団体の仕事が属人化している5つのサイン'
+            [sponsor-followup-timing]='協賛提案を送った後、いつ連絡する？'
+            [digital-product-pricing-myths]='デジタル商品の値付けで最初に捨てたい3つの思い込み'
+            [role-design-three-owners]='役割分担表があるのに仕事が止まる理由'
+            [thesis-weekly-review]='卒論が進まない週に確認したい5つの質問'
+            [es-interview-consistency]='ESと面接で話がズレていない？'
+          )
+          ok=0
+          for attempt in $(seq 1 30); do
+            ok=1
+            for slug in "${!checks[@]}"; do
+              url="$base/$slug/"
+              code=$(curl -L -sS -o /tmp/page.html -w '%{http_code}' "$url" || true)
+              if [ "$code" != '200' ] || ! grep -Fq "${checks[$slug]}" /tmp/page.html; then
+                echo "attempt=$attempt slug=$slug status=$code not-ready"
+                ok=0
+                break
+              fi
+            done
+            if [ "$ok" = 1 ]; then break; fi
+            sleep 10
+          done
+          test "$ok" = 1
+      - name: Write verified publication ledger
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, datetime, pathlib
+          base='https://noto-rebloom.github.io/noto-rebloom/insights'
+          items=[
+            ('student-org-bus-factor','学生団体の仕事が属人化している5つのサイン｜引継ぎ前に気づくためのセルフチェック'),
+            ('sponsor-followup-timing','協賛提案を送った後、いつ連絡する？｜48時間・7日・14日のフォローアップ目安'),
+            ('digital-product-pricing-myths','デジタル商品の値付けで最初に捨てたい3つの思い込み｜安ければ売れる、は本当か'),
+            ('role-design-three-owners','役割分担表があるのに仕事が止まる理由｜「担当者」だけでは足りない3つの情報'),
+            ('thesis-weekly-review','卒論が進まない週に確認したい5つの質問｜30分で次の一手を決める週次レビュー'),
+            ('es-interview-consistency','ESと面接で話がズレていない？｜提出前に見る5項目の一貫性チェック')]
+          now=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat()
+          data={'version':1,'verifiedAt':now,'verification':'GitHub-hosted runner HTTP 200 + exact page marker','items':[{'slug':s,'title':t,'publicUrl':f'{base}/{s}/','publicUrlVerified':True} for s,t in items]}
+          pathlib.Path('insights/publication_ledger.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Commit ledger
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add insights/publication_ledger.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Record verified free insight publications'
+          git push
