@@ -1,21 +1,21 @@
 {
   "version": 5,
-  "updatedAt": "2026-08-21T20:27:00+09:00",
+  "updatedAt": "2026-08-21T21:08:39+09:00",
   "activeRecovery": {
     "queueId": "001_interview_os",
     "priority": "immediate_next_windows_consumer_cycle",
-    "reason": "009 has consumed repeated recovery cycles without buyer-visible completion. Switch to an older fully materialized encrypted paid item so the current paid publication debt can be discharged instead of repeating the same blocked item.",
+    "reason": "009 has consumed repeated recovery cycles without buyer-visible completion. 001 remains the active fallback, but its joined SHA requires reconciliation before Windows consumer processing; SHA reconciliation was explicitly retriggered at 21:08 JST.",
     "expectedPriceJPY": 980,
     "requireBuyerVisibleVerification": true,
     "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
     "requestedAt": "2026-08-21T20:27:00+09:00",
     "forceRetry": true,
-    "forceRetryNonce": "paid-catchup-001-20260821T202700+0900",
-    "retryGeneration": 23,
+    "forceRetryNonce": "sha-reconcile-retrigger-20260821T210839+0900",
+    "retryGeneration": 24,
     "reconcileLocalSuccessState": true,
     "clearOnlyAfterStrictVerification": true,
     "doNotSelfDisable": true,
-    "fallbackPolicy": "If 001 cannot reach strict buyer-visible commerce verification quickly, defer it and activate another qualified BOOTH candidate rather than returning to repeated 009-only recovery or ending without a verified paid publication."
+    "fallbackPolicy": "If 001 still lacks a reconciled SHA or cannot reach strict buyer-visible commerce verification by the next PC production window, defer it and activate another qualified BOOTH candidate rather than returning to repeated 009-only recovery or ending without a verified paid publication."
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
