@@ -1,29 +1,30 @@
 {
-  "version": 5,
-  "updatedAt": "2026-08-21T21:08:39+09:00",
+  "version": 6,
+  "updatedAt": "2026-08-21T22:18:00+09:00",
   "activeRecovery": {
     "queueId": "001_interview_os",
     "priority": "immediate_next_windows_consumer_cycle",
-    "reason": "009 has consumed repeated recovery cycles without buyer-visible completion. 001 remains the active fallback, but its joined SHA requires reconciliation before Windows consumer processing; SHA reconciliation was explicitly retriggered at 21:08 JST.",
+    "reason": "009 is deferred after repeated strict failures. 001 is the active distinct paid fallback and its joined SHA is reconciled in queue generation 25; process it before any free-Web work.",
     "expectedPriceJPY": 980,
+    "expectedJoinedSha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
     "requireBuyerVisibleVerification": true,
-    "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-    "requestedAt": "2026-08-21T20:27:00+09:00",
+    "requiredBuyerChecks": ["buyerVisibleUrl", "title", "price", "downloadableProductState", "purchasePath"],
+    "requestedAt": "2026-08-21T22:18:00+09:00",
     "forceRetry": true,
-    "forceRetryNonce": "sha-reconcile-retrigger-20260821T210839+0900",
-    "retryGeneration": 24,
+    "forceRetryNonce": "sha-reconcile-20260821T211118+0900",
+    "retryGeneration": 25,
     "reconcileLocalSuccessState": true,
     "clearOnlyAfterStrictVerification": true,
     "doNotSelfDisable": true,
-    "fallbackPolicy": "If 001 still lacks a reconciled SHA or cannot reach strict buyer-visible commerce verification by the next PC production window, defer it and activate another qualified BOOTH candidate rather than returning to repeated 009-only recovery or ending without a verified paid publication."
+    "fallbackPolicy": "If 001 cannot reach strict buyer-visible verification in the next PC consumer cycle, defer it and activate a distinct newly materialized paid BOOTH candidate rather than returning to 009 or ending on monitoring/free-Web work."
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
     "publicUrl": "https://booth.pm/ja/items/8739122",
-    "reason": "Already counted once for 2026-08-20 after buyer-visible publication verification. Preserve for any later strict commerce re-verification without double-counting quota."
+    "reason": "Already counted once for 2026-08-20; never double-count quota."
   },
   "heldBlocked": {
     "queueId": "009_handover_os_20260820",
-    "reason": "Repeated strict publication failures; preserved but no longer allowed to monopolize paid recovery cycles."
+    "reason": "Repeated strict publication failures; preserved but not allowed to monopolize paid recovery cycles."
   }
 }
