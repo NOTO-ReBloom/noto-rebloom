@@ -1,15 +1,33 @@
 {
-  "version": 9,
-  "updatedAt": "2026-08-22T00:18:30+09:00",
+  "version": 10,
+  "updatedAt": "2026-08-22T02:04:00+09:00",
   "activeRecovery": null,
-  "nextPaidMaterialization": {
-    "queueId": "event_risk_register_os",
-    "priority": "immediate",
-    "reason": "001 was removed from new-publication debt recovery because historical Windows state already recorded buyer-visible publication on 2026-08-19. 009 remains deferred after repeated strict failures. A genuinely new paid BOOTH candidate is now required.",
-    "requiredBuild": ["complete downloadable product","product description","preview images","price","encrypted payload","queue integrity SHA"],
+  "readyPaidRecoveryBatch": {
+    "generatedAt": "2026-08-22T01:59:24+09:00",
+    "requiredStrictNewPublications": 14,
+    "queueIds": [
+      "010_event_risk_register_os_20260822",
+      "011_small_org_role_os_20260822",
+      "012_sponsor_deliverables_tracker_20260822",
+      "013_research_interview_coding_os_20260822",
+      "014_volunteer_shift_comms_os_20260822",
+      "015_creator_profit_pricing_os_20260822",
+      "016_event_sponsor_bundle_os_20260822",
+      "017_jobhunt_interview_bundle_os_20260822",
+      "018_grant_application_tracker_os_20260822",
+      "019_event_incident_log_os_20260822",
+      "020_meeting_decision_action_os_20260822",
+      "021_small_npo_donor_crm_os_20260822",
+      "022_research_literature_matrix_os_20260822",
+      "023_campus_project_budget_os_20260822"
+    ],
+    "priority": "oldest_in_batch_first_then_continue_without_stopping_after_first_success",
+    "queueRetryGeneration": 29,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
     "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
+    "consumerInstruction": "At the next Windows-available consumer session, process the enabled batch continuously. After each strict buyer-visible success, move immediately to the next ledger-absent queueId. A recoverable failure on one item must not block later items. Never count preparation or old-item reverification as current debt recovery.",
     "doNotFallbackToFreeWeb": true,
-    "doNotCountPreparationAsPublication": true
+    "doNotStopAfterFirstSuccess": true
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
