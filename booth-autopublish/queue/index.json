@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-21T12:06:33+09:00",
-  "retryGeneration": 19,
+  "updatedAt": "2026-08-21T13:59:00+09:00",
+  "retryGeneration": 20,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -24,13 +24,13 @@
       "createdAt": "2026-08-20T17:40:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "monitor-r19-20260821T120633+0900",
+      "forceRetryNonce": "monitor-r20-20260821T135900+0900",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-      "nextPreferredConsumerWindow": "2026-08-21T13:10:00+09:00",
+      "nextPreferredConsumerWindow": "2026-08-21T14:10:00+09:00",
       "recoveryMode": "publish-new-item-and-anonymously-verify-all-commerce-checks",
-      "recoveryEscalation": "07:10 and 10:10 recovery windows produced no buyer-visible page. At 13:10 make only a brief strict retry: invalidate stale local success, validate combined SHA-256 before decrypting, publish as a new downloadable product at 980 JPY, then anonymously verify exact title, price, downloadable-product state and functioning purchase/cart path. Admin-page success is insufficient. If 009 still cannot publish quickly, defer it immediately and switch in the same run to event_sponsor_bundle, then jobhunt_interview_bundle, rather than ending without a verified publication."
+      "recoveryEscalation": "14:10 forced debt retry after 07:10, 10:10 and 13:10 produced no buyer-visible page. Invalidate stale local success, validate combined SHA-256 before decrypting, make only a brief strict retry, and if 009 still fails defer immediately and switch in the same production run to a newly prepared qualified BOOTH fallback. Do not end the run with only a free Web tool publication while paid publication debt remains."
     }
   ]
 }
