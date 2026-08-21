@@ -1,9 +1,9 @@
 {
-  "version": 10,
-  "updatedAt": "2026-08-22T02:04:00+09:00",
+  "version": 11,
+  "updatedAt": "2026-08-22T02:11:00+09:00",
   "activeRecovery": null,
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-22T01:59:24+09:00",
+    "generatedAt": "2026-08-22T02:10:19+09:00",
     "requiredStrictNewPublications": 14,
     "queueIds": [
       "010_event_risk_register_os_20260822",
@@ -22,8 +22,9 @@
       "023_campus_project_budget_os_20260822"
     ],
     "priority": "oldest_in_batch_first_then_continue_without_stopping_after_first_success",
-    "queueRetryGeneration": 29,
+    "queueRetryGeneration": 30,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
+    "categoryCompatibility": {"parent":"ソフトウェア・ハードウェア","child":"ソフトウェア","source":"previous successful clean rebuild of item 8736698"},
     "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
     "consumerInstruction": "At the next Windows-available consumer session, process the enabled batch continuously. After each strict buyer-visible success, move immediately to the next ledger-absent queueId. A recoverable failure on one item must not block later items. Never count preparation or old-item reverification as current debt recovery.",
     "doNotFallbackToFreeWeb": true,
