@@ -1,7 +1,7 @@
 {
   "version": 5,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-21T21:58:22+09:00",
+  "updatedAt": "2026-08-21T23:10:00+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
@@ -27,8 +27,10 @@
           "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
           "expectedPriceJPY": 980,
           "createdAt": "2026-08-21T20:26:15+09:00",
+          "retryGeneration": 20,
+          "forceRetryNonce": "paid-catchup-06-20260821T231000+0900",
           "requiredChecks": ["readerVisibleUrl", "title", "price", "paidBoundary", "dedicatedCover"],
-          "status": "enabled_force_retry_paid_catchup"
+          "status": "enabled_force_retry_paid_catchup_23_10"
         },
         "additionalReadyCandidates": [
           "note_20260821_07_event_sponsor_followup",
@@ -66,8 +68,10 @@
           "expectedPriceJPY": 980,
           "expectedJoinedSha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
           "createdAt": "2026-08-18T20:00:00+09:00",
+          "retryGeneration": 27,
+          "forceRetryNonce": "paid-catchup-20260821T231000+0900",
           "requiredChecks": ["buyerVisibleUrl", "title", "price", "downloadableProductState", "purchasePath"],
-          "status": "enabled_force_retry_sha_reconciled"
+          "status": "enabled_force_retry_sha_reconciled_23_10"
         },
         "deferredLegacyCandidate": "009_handover_os_20260820",
         "strictReverificationCandidate": {
