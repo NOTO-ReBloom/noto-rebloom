@@ -5,7 +5,7 @@
 <title>イベント雨天・中止損失計算機</title>
 <meta name="description" content="屋外イベントの中止・縮小時に発生する損失、回収可能額、必要な予備費を無料で概算。会場費・印刷費・備品・キャンセル料・協賛・保険補填を整理できます。">
 <style>
-:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#182230;background:#f5f7fb}*{box-sizing:border-box}body{margin:0}main{max-width:980px;margin:auto;padding:32px 18px 64px}h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:0 0 10px}.lead{color:#536071;max-width:760px;line-height:1.8}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}.card{background:#fff;border:1px solid #dde3ec;border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(29,47,76,.06)}label{display:block;font-weight:700;margin:12px 0 6px}input,select{width:100%;padding:11px 12px;border:1px solid #cbd4e1;border-radius:10px;font-size:16px}button{margin-top:16px;width:100%;padding:13px;border:0;border-radius:12px;background:#172554;color:white;font-weight:800;font-size:16px;cursor:pointer}.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{background:#f8fafc;border-radius:14px;padding:14px}.metric strong{display:block;font-size:24px;margin-top:6px}.warn{margin-top:14px;padding:14px;border-radius:12px;background:#fff7ed;line-height:1.65}.ok{background:#ecfdf5}.small{font-size:13px;color:#657287;line-height:1.65}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{text-align:left;padding:9px 6px;border-bottom:1px solid #e5eaf0}th:last-child,td:last-child{text-align:right}@media(max-width:720px){.grid,.results{grid-template-columns:1fr}}
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#182230;background:#f5f7fb}*{box-sizing:border-box}body{margin:0}main{max-width:980px;margin:auto;padding:32px 18px 64px}h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:0 0 10px}.lead{color:#536071;max-width:760px;line-height:1.8}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}.card{background:#fff;border:1px solid #dde3ec;border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(29,47,76,.06)}label{display:block;font-weight:700;margin:12px 0 6px}input,select{width:100%;padding:11px 12px;border:1px solid #cbd4e1;border-radius:10px;font-size:16px}button{margin-top:16px;width:100%;padding:13px;border:0;border-radius:12px;background:#172554;color:white;font-weight:800;font-size:16px;cursor:pointer}.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{background:#f8fafc;border-radius:14px;padding:14px}.metric strong{display:block;font-size:24px;margin-top:6px}.warn{margin-top:14px;padding:14px;border-radius:12px;background:#fff7ed;line-height:1.65}.ok{background:#ecfdf5}.small{font-size:13px;color:#657287;line-height:1.65}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{text-align:left;padding:9px 6px;border-bottom:1px solid #e5eaf0}th:last-child,td:last-child{text-align:right}.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.links a{color:#172554;font-weight:700}@media(max-width:720px){.grid,.results{grid-template-columns:1fr}}
 </style>
 </head><body><main>
 <h1>イベント雨天・中止損失計算機</h1>
@@ -28,7 +28,7 @@
 <p class="small">※概算用です。契約上のキャンセル料・返還条件・保険約款を優先してください。</p>
 </section>
 </div>
-<section class="card" style="margin-top:16px"><h2>計算結果</h2><div class="results">
+<section id="result" aria-live="polite" class="card" style="margin-top:16px"><h2>計算結果</h2><div class="results">
 <div class="metric">総予定支出<strong id="total">—</strong></div>
 <div class="metric">完全中止時の実質損失<strong id="loss">—</strong></div>
 <div class="metric">縮小開催時の必要原資<strong id="reducedCost">—</strong></div>
@@ -36,7 +36,7 @@
 </div><div id="message" class="warn"></div>
 <table><thead><tr><th>項目</th><th>金額</th></tr></thead><tbody id="breakdown"></tbody></table>
 </section>
-<section class="card" style="margin-top:16px"><h2>使い方</h2><p class="small">①すでに契約・発注予定の支出を入力 → ②中止時に返金される割合を入力 → ③確定協賛や補償を入力 → ④「完全中止時の実質損失」を最低限の資金耐久ラインとして確認します。中止確率を入れると、リスク込み予算を考える際の目安も出ます。</p></section>
+<section class="card" style="margin-top:16px"><h2>使い方</h2><p class="small">①すでに契約・発注予定の支出を入力 → ②中止時に返金される割合を入力 → ③確定協賛や補償を入力 → ④「完全中止時の実質損失」を最低限の資金耐久ラインとして確認します。中止確率を入れると、リスク込み予算を考える際の目安も出ます。</p><div class="links"><a href="../event-budget-buffer/">イベント予算・予備費計算機も使う</a><a href="../event-break-even/">イベント損益分岐点・参加費計算機も使う</a></div></section>
 <script>
 const yen=n=>Math.round(n).toLocaleString('ja-JP')+'円';
 const num=id=>Math.max(0,Number(document.getElementById(id).value)||0);
