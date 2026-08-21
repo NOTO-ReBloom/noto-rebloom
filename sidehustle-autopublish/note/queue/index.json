@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-21T13:59:00+09:00",
-  "retryGeneration": 15,
+  "updatedAt": "2026-08-21T16:01:16+09:00",
+  "retryGeneration": 16,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted legacy payload lacks coverImageBase64/coverImageMime, Windows V8 must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the legacy payload predates cover support.",
   "entries": [
@@ -17,13 +17,13 @@
       "createdAt": "2026-08-20T18:08:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "monitor-r15-20260821T135900+0900",
+      "forceRetryNonce": "monitor-r16-20260821T160116+0900",
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": ["readerVisibleUrl","title","price","paidBoundary","dedicatedCover"],
-      "nextPreferredConsumerWindow": "2026-08-21T14:10:00+09:00",
-      "recoveryMode": "14:10 forced debt retry after 07:10, 10:10 and 13:10 failed to establish strict reader-visible publication. Make only a brief attempt; if strict verification still fails, defer immediately and switch in the same production run to a newly prepared qualified note fallback rather than ending with only a free Web tool publication."
+      "nextPreferredConsumerWindow": "2026-08-21T16:10:00+09:00",
+      "recoveryMode": "16:10 final brief legacy attempt for this cycle. If strict reader-visible verification does not succeed immediately, defer this item and materialize/publish a distinct qualified paid note fallback in the same production run. A free Web tool alone is not an acceptable completion while note publication debt remains."
     }
   ]
 }
