@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-21T13:59:00+09:00",
-  "retryGeneration": 20,
+  "updatedAt": "2026-08-21T16:01:16+09:00",
+  "retryGeneration": 21,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -24,13 +24,13 @@
       "createdAt": "2026-08-20T17:40:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "monitor-r20-20260821T135900+0900",
+      "forceRetryNonce": "monitor-r21-20260821T160116+0900",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-      "nextPreferredConsumerWindow": "2026-08-21T14:10:00+09:00",
+      "nextPreferredConsumerWindow": "2026-08-21T16:10:00+09:00",
       "recoveryMode": "publish-new-item-and-anonymously-verify-all-commerce-checks",
-      "recoveryEscalation": "14:10 forced debt retry after 07:10, 10:10 and 13:10 produced no buyer-visible page. Invalidate stale local success, validate combined SHA-256 before decrypting, make only a brief strict retry, and if 009 still fails defer immediately and switch in the same production run to a newly prepared qualified BOOTH fallback. Do not end the run with only a free Web tool publication while paid publication debt remains."
+      "recoveryEscalation": "16:10 final brief legacy attempt for this cycle. Invalidate stale local success, validate combined SHA-256 before decrypting, and require exact buyer-visible title, 980 JPY price, downloadable-product state and functioning purchase/cart path. If 009 still fails, defer immediately and materialize/publish a distinct qualified BOOTH fallback in the same production run. A free Web tool alone is not acceptable while BOOTH publication debt remains."
     }
   ]
 }
