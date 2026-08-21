@@ -1,12 +1,17 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-21T21:08:39+09:00",
-  "retryGeneration": 24,
+  "updatedAt": "2026-08-21T21:11:18+09:00",
+  "retryGeneration": 25,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
       "title": "卒論・研究進行OS｜先行研究・仮説・分析・図表・締切を一括管理｜オフラインHTML",
-      "chunks": ["booth-autopublish/queue/007_thesis_progress_os_20260820.part01.txt","booth-autopublish/queue/007_thesis_progress_os_20260820.part02.txt","booth-autopublish/queue/007_thesis_progress_os_20260820.part03.txt","booth-autopublish/queue/007_thesis_progress_os_20260820.part04.txt"],
+      "chunks": [
+        "booth-autopublish/queue/007_thesis_progress_os_20260820.part01.txt",
+        "booth-autopublish/queue/007_thesis_progress_os_20260820.part02.txt",
+        "booth-autopublish/queue/007_thesis_progress_os_20260820.part03.txt",
+        "booth-autopublish/queue/007_thesis_progress_os_20260820.part04.txt"
+      ],
       "sha256": "ce4ebfb5b07a9e05b8e1d79a920b09e1cb010f0521ee24130ff92270d284f79f",
       "createdAt": "2026-08-20T09:00:00+09:00",
       "enabled": false,
@@ -14,34 +19,62 @@
       "canonicalQueueId": "007_thesis_progress_os_20260820",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"]
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ]
     },
     {
       "id": "009_handover_os_20260820",
       "title": "学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
-      "chunks": ["booth-autopublish/queue/009_handover_os_20260820.part01.txt","booth-autopublish/queue/009_handover_os_20260820.part02.txt"],
+      "chunks": [
+        "booth-autopublish/queue/009_handover_os_20260820.part01.txt",
+        "booth-autopublish/queue/009_handover_os_20260820.part02.txt"
+      ],
       "sha256": "19c158e93d8104eb101ac0ed1f86cc2e83b6480277ca9e9b984fea8764eabd27",
       "createdAt": "2026-08-20T17:40:00+09:00",
       "enabled": false,
       "forceRetry": false,
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
       "holdReason": "Deferred after repeated strict publication failures so another qualified BOOTH item can discharge paid publication debt. Preserve for later repair."
     },
     {
       "id": "001_interview_os",
       "title": "【28卒・29卒】面接改善OS｜面接ログ×弱点可視化×AIプロンプト12種｜Excel就活テンプレ",
-      "chunks": ["booth-autopublish/queue/001_interview_os.enc.part01.txt","booth-autopublish/queue/001_interview_os.enc.part02.txt","booth-autopublish/queue/001_interview_os.enc.part03.txt","booth-autopublish/queue/001_interview_os.enc.part04.txt","booth-autopublish/queue/001_interview_os.enc.part05.txt","booth-autopublish/queue/001_interview_os.enc.part06.txt"],
-      "sha256": "pending_sha_reconcile",
+      "chunks": [
+        "booth-autopublish/queue/001_interview_os.enc.part01.txt",
+        "booth-autopublish/queue/001_interview_os.enc.part02.txt",
+        "booth-autopublish/queue/001_interview_os.enc.part03.txt",
+        "booth-autopublish/queue/001_interview_os.enc.part04.txt",
+        "booth-autopublish/queue/001_interview_os.enc.part05.txt",
+        "booth-autopublish/queue/001_interview_os.enc.part06.txt"
+      ],
+      "sha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
       "createdAt": "2026-08-18T20:00:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "sha-reconcile-retrigger-20260821T210839+0900",
+      "forceRetryNonce": "sha-reconcile-20260821T211118+0900",
       "canonicalQueueId": "001_interview_os",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
       "invalidateLocalSuccessWithoutVerifiedLedger": true,
       "recoveryMode": "recover same-title draft first; if not buyer-visible, clean rebuild; then anonymously verify exact title, 980 JPY price, downloadable-product state and purchase/cart path"
     }
