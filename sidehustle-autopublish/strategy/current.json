@@ -1,6 +1,6 @@
 {
-  "version": 6,
-  "updatedAt": "2026-08-21T05:42:00+09:00",
+  "version": 7,
+  "updatedAt": "2026-08-21T09:28:00+09:00",
   "objective": "maximize cumulative user profit while enforcing verified-publication hard minimums and minimizing user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -17,20 +17,31 @@
   "pcAvailabilityPolicy": {
     "assumption": "User normally closes Windows PC after 01:00 JST.",
     "after0100": "Do not require Windows publisher execution. Continue cloud research, build preparation, queue/state/ledger repair and fallback preparation.",
-    "nextPreferredRecoveryWindow": "2026-08-21T07:10:00+09:00",
+    "nextPreferredRecoveryWindow": "2026-08-21T10:10:00+09:00",
     "productionWindows": ["07:10", "10:10", "13:10", "16:10", "19:10", "22:10", "23:10", "00:10"],
     "lateDayRecoveryWindows": ["23:10", "00:10"],
     "frontLoadRule": "Debt and current-day publication minimums must be pushed toward verified public state before 01:00; do not depend on post-01:00 local execution."
   },
+  "amplificationPolicy": {
+    "confirmedWinnerRule": "A confirmed winner requires observed performance evidence such as sales, PV/CVR, acquisitions, installs or repeat usage. Asset count alone is not demand evidence.",
+    "currentConfirmedWinners": [],
+    "currentState": "No confirmed paid or Store winner can be declared because BOOTH sales, note sales/PV and Microsoft Store acquisition/install/CVR data are absent.",
+    "provisionalClusterOrder": [
+      {"cluster":"event_sponsor_operations","priority":1,"reason":"Strongest coherent cross-channel asset density plus lowest incremental bundle cost: two verified BOOTH assets, two verified paid note articles and four free tools cover one operational buyer journey."},
+      {"cluster":"thesis_research_workflow","priority":2,"reason":"One verified BOOTH OS, one verified paid note article and four complementary free tools cover distinct stages of one research workflow."},
+      {"cluster":"small_org_handover_roles_meetings","priority":3,"reason":"Four free tools form a coherent acquisition cluster, but paid handover assets are still unverified and therefore this cluster must not be over-expanded yet."}
+    ],
+    "actionRule": "Use provisional clusters only for low-cost, functionally distinct experiments and bundles. Do not create a large series until actual demand metrics confirm the cluster.",
+    "measurementRule": "Prioritize capture of product-level BOOTH sales, note sales/PV/likes, Microsoft Store page views/acquisitions/installs/CVR and measurable referral/campaign identifiers from free tools."
+  },
   "runPlan": [
-    {"slot":"07:10","note":["note_20260820_05","note_ai_small_org_workflow"],"BOOTH":["009_handover_os_20260820","event_sponsor_bundle"],"goal":"Service oldest debt first; if either active item remains blocked after brief diagnosis, defer and switch immediately."},
-    {"slot":"10:10","note":["note_event_sponsor_followup"],"BOOTH":["jobhunt_interview_bundle"],"goal":"Add verified publications with already-proven adjacent assets and strong purchase intent."},
-    {"slot":"13:10","note":["note_creator_pricing"],"BOOTH":["small_org_role_os"],"goal":"Publish distinct qualified fallback products; preserve quality and strict commerce verification."},
-    {"slot":"16:10","note":["note_student_org_role_design"],"BOOTH":["event_risk_register_os"],"goal":"Continue quota recovery; do not let one failed item consume the cycle."},
-    {"slot":"19:10","note":["note_event_risk_handoff"],"BOOTH":["creator_profit_pricing_os"],"goal":"Close remaining daily minimums where possible; prepare late-day catch-up queue."},
-    {"slot":"22:10","note":["note_thesis_weekly_review"],"BOOTH":["sponsor_deliverables_tracker"],"goal":"Use additional distinct candidates if quota/debt remains; otherwise advance Microsoft Store submission-ready work."},
-    {"slot":"23:10","note":["note_ai_jobhunt_answer_audit"],"BOOTH":["volunteer_shift_comms_os"],"goal":"Late catch-up: prioritize any remaining debt/target shortfall while Windows is still expected available."},
-    {"slot":"00:10","note":["any_highest_priority_unverified_candidate"],"BOOTH":["research_interview_coding_os"],"goal":"Final PC-dependent recovery window before 01:00; verify formally or carry exact residual debt forward without clearing it."}
+    {"slot":"10:10","note":["note_20260820_05","note_event_sponsor_followup"],"BOOTH":["009_handover_os_20260820","event_sponsor_bundle"],"goal":"Service debt first; if blocked, switch quickly to the strongest low-cost provisional amplification experiment: event+sponsor bundle or its distinct follow-up article."},
+    {"slot":"13:10","note":["note_ai_small_org_workflow"],"BOOTH":["jobhunt_interview_bundle"],"goal":"Continue verified-publication recovery while preserving distinct buyer value; do not infer winner status from asset density."},
+    {"slot":"16:10","note":["note_creator_pricing"],"BOOTH":["event_risk_register_os"],"goal":"Prefer coherent adjacent products over unrelated novelty; event risk must be clearly deeper than the existing event operations OS."},
+    {"slot":"19:10","note":["note_student_org_role_design"],"BOOTH":["small_org_role_os"],"goal":"Only expand the small-organization cluster with clear RACI/load/backup-owner differentiation; avoid duplicating handover checklists."},
+    {"slot":"22:10","note":["note_thesis_weekly_review"],"BOOTH":["research_interview_coding_os"],"goal":"Use the thesis/research cluster as the second provisional amplification path if stronger quota candidates are already handled."},
+    {"slot":"23:10","note":["note_ai_jobhunt_answer_audit"],"BOOTH":["sponsor_deliverables_tracker"],"goal":"Late catch-up with distinct high-intent adjacent products; sponsor tracker must focus on post-contract fulfillment."},
+    {"slot":"00:10","note":["any_highest_priority_unverified_candidate"],"BOOTH":["volunteer_shift_comms_os"],"goal":"Final PC-dependent recovery window before 01:00; verify formally or carry exact residual debt forward without clearing it."}
   ],
   "productionRunPolicy": {
     "normalCompletion": "At least one newly verified public artifact per PC-available production run when debt or quota remains, with multiple publications encouraged when safe qualified candidates are ready.",
@@ -40,20 +51,29 @@
     "nonCompletionEvidence": ["queue insertion", "PUBLISH_SUCCESS alone", "editor/admin URL", "commit", "HTTP/title-only evidence when commerce checks are required"]
   },
   "priorityOrder": {
-    "note": ["note_20260820_05", "note_ai_small_org_workflow", "note_event_sponsor_followup", "note_creator_pricing", "note_student_org_role_design", "note_event_risk_handoff", "note_thesis_weekly_review", "note_ai_jobhunt_answer_audit"],
-    "BOOTH": ["009_handover_os_20260820", "event_sponsor_bundle", "jobhunt_interview_bundle", "small_org_role_os", "event_risk_register_os", "creator_profit_pricing_os", "sponsor_deliverables_tracker", "volunteer_shift_comms_os", "research_interview_coding_os"],
+    "note": ["note_20260820_05", "note_event_sponsor_followup", "note_ai_small_org_workflow", "note_creator_pricing", "note_student_org_role_design", "note_thesis_weekly_review", "note_ai_jobhunt_answer_audit"],
+    "BOOTH": ["009_handover_os_20260820", "event_sponsor_bundle", "jobhunt_interview_bundle", "event_risk_register_os", "small_org_role_os", "research_interview_coding_os", "sponsor_deliverables_tracker", "volunteer_shift_comms_os", "creator_profit_pricing_os"],
     "MicrosoftStore": ["ms_csv_cleaner_deduper", "ms_invoice_filename_organizer", "ms_local_qr_batch_generator", "ms_image_batch_optimizer"]
   },
   "marketEvidence": {
-    "checkedAt": "2026-08-21T05:42:00+09:00",
-    "note": [
-      "note official analysis of about 300k paid articles reports paid-article sales +26.8% YoY and creator count +42.0% YoY; AI utilization +268.6%, SNS/content operations +258.7%, side jobs/remote work +179.0%.",
-      "note recommendation-engine testing reported category impressions 4.3x YoY, PV 2.2x and internal circulation 1.5x in January 2026, supporting high-specificity topical content rather than generic duplication.",
-      "PTA operational guidance updated June 2026 explicitly identifies role allocation and standardized handover as recurring organizational problems, supporting adjacent small-organization workflow products."
+    "checkedAt": "2026-08-21T09:28:00+09:00",
+    "observedPerformance": {
+      "BOOTH_sales": null,
+      "note_sales": null,
+      "note_pv": null,
+      "MicrosoftStore_acquisitions": null,
+      "MicrosoftStore_installs": null,
+      "MicrosoftStore_conversion": null
+    },
+    "crossChannelAssetSignals": [
+      "Event+sponsor cluster: verified BOOTH event operations OS and sponsor CRM; verified paid note sponsor-pipeline and event-manual articles; free event-checklist, event-reception-calc, sponsor-plan-calc and sponsor-email-maker tools.",
+      "Thesis cluster: verified BOOTH thesis progress OS; verified paid note thesis progress article; four free thesis planning/diagnosis tools.",
+      "Small-organization cluster: free handover, role-assignment, meeting-action and agenda-timebox tools; paid handover BOOTH/note assets remain unverified and cannot yet support a winner claim."
     ],
-    "MicrosoftStore": [
+    "external": [
+      "note official analysis of about 300k paid articles reports paid-article sales +26.8% YoY and creator count +42.0% YoY; AI utilization +268.6%, SNS/content operations +258.7%, side jobs/remote work +179.0%.",
       "Microsoft states the Store serves over 250 million monthly active users and allows non-game apps to use their own commerce and retain 100% of revenue.",
-      "Current Store search surfaced many direct image-resizer/compressor and file-renamer competitors, while the CSV search surfaced fewer direct Japanese CSV-cleanup-style results; therefore CSV cleanup/deduplication is ranked above generic image resizing and generic rename utilities for the next experiment."
+      "Current Store search surfaced many generic image-resizer/compressor and file-renamer competitors, while CSV cleanup appeared less directly crowded in Japanese search results."
     ]
   },
   "profitRules": [
@@ -64,12 +84,13 @@
     "Do not infer public URLs; independently verify them before marking completed or linking funnels.",
     "Use actual sales/message evidence when available; do not invent demand metrics.",
     "Avoid low-value near duplicates; switch to a distinct qualified fallback when needed.",
+    "Do not call a provisional cluster a winner until observed performance evidence exists.",
     "Do not reactivate KDP or LINE without explicit user instruction."
   ],
   "currentPipeline": {
     "note": {"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":6,"active":"note_20260820_05"},
     "BOOTH": {"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":9,"active":"009_handover_os_20260820"},
     "MicrosoftStore": {"status":"initial app publication route proven; next research priority is a local-first CSV cleanup/deduplication utility; no repository performance metrics available yet"},
-    "GitHubPages": {"pendingStrictVerification":"meeting-action"}
+    "GitHubPages": {"latestIndexIncludes":"meeting-agenda-timebox","performanceMetricsAvailable":false}
   }
 }
