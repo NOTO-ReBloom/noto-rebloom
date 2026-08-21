@@ -1,64 +1,86 @@
 {
-  "version": 5,
-  "updatedAt": "2026-08-21T17:47:59+09:00",
-  "purpose": "Keep more qualified publishable paid candidates than the remaining hard quota, service carried debt first, and prevent stale blocked items from consuming remaining PC windows.",
+  "version": 6,
+  "updatedAt": "2026-08-21T21:31:00+09:00",
+  "purpose": "Evidence-gated product backlog: service publication debt while preventing unobserved themes from being mislabeled as winners.",
   "publicationDebtFirst": true,
-  "pcAssumption": "Windows publisher is normally unavailable after 01:00 JST; remaining paid recovery windows are 19:10, 22:10, 23:10 and 00:10.",
-  "evidenceLimit": "No observed BOOTH sales, note sales/PV/likes, or Microsoft Store funnel metrics are currently recorded. Rankings are provisional and must not be described as proven winners.",
+  "evidenceLimit": "No observed BOOTH sales, note sales/PV/likes, Microsoft Store funnel metrics, or GitHub Pages conversion metrics are recorded as of this run. No product is a proven winner yet.",
+  "amplificationDecision": {
+    "status": "NO_PROVEN_WINNER_YET",
+    "reason": "All recorded product-level performance fields are null/unavailable. Public verification is evidence of publishability, not demand.",
+    "rule": "Do not launch derivative families solely from publication success. Preserve only low-cost cross-sell hypotheses and activate them after observed performance evidence arrives.",
+    "activationSignals": ["observed sale/order", "relative page-view or acquisition outperformance", "conversion outperformance", "repeat use/first-launch evidence", "multiple independent qualitative demand signals"]
+  },
+  "amplificationCandidates": [
+    {
+      "source":"BOOTH: 003_event_ops_html_20260819 + 005_sponsor_crm_20260819",
+      "winnerEvidence":"NOT a winner claim: both are buyer-visible and complementary; no sales are observed.",
+      "derivative":"event_sponsor_bundle",
+      "additionalExpectedProfit":"not quantified until sales/conversion data exists",
+      "cannibalization":"medium; bundle can substitute for either single product, so preserve singles and price bundle above each single while offering a real combined-use benefit",
+      "buildCost":"low because both source deliverables already exist",
+      "priority":"conditional_high_after_any_event_or_sponsor_sales_signal"
+    },
+    {
+      "source":"BOOTH: 002_consistency_os_20260819 + interview-job-hunt asset family",
+      "winnerEvidence":"NOT a winner claim: coherent job-hunt buyer journey; no sales are observed and interview product public verification is incomplete in current metrics.",
+      "derivative":"jobhunt_interview_bundle",
+      "additionalExpectedProfit":"not quantified until sales/conversion data exists",
+      "cannibalization":"medium",
+      "buildCost":"low_to_medium; validate all included deliverables before sale",
+      "priority":"conditional_after_verified_source_and_demand_signal"
+    },
+    {
+      "source":"note sponsor-management article + BOOTH sponsor CRM",
+      "winnerEvidence":"NOT a winner claim: cross-channel semantic fit only; no note PV/sales or BOOTH sales observed.",
+      "derivative":"sponsor fulfillment tracker / post-contract checklist series",
+      "additionalExpectedProfit":"not quantified",
+      "cannibalization":"low if post-contract fulfillment is kept distinct from pre-contract CRM",
+      "buildCost":"medium",
+      "priority":"conditional_after_sponsor_theme_signal"
+    },
+    {
+      "source":"note thesis workflow + BOOTH thesis progress OS",
+      "winnerEvidence":"NOT a winner claim: cross-channel semantic fit only; no performance metrics observed.",
+      "derivative":"weekly recovery + qualitative interview coding companion",
+      "additionalExpectedProfit":"not quantified",
+      "cannibalization":"low if analysis/coding and weekly recovery jobs are distinct from progress tracking",
+      "buildCost":"medium",
+      "priority":"conditional_after_thesis_theme_signal"
+    },
+    {
+      "source":"GitHub Pages CSV Cleaner & Duplicate Remover + Microsoft Store CSV Cleaner candidate",
+      "winnerEvidence":"NOT a winner claim: public Web tool exists, but no traffic/conversion or Store funnel metrics are observed and Store submission is not complete.",
+      "derivative":"Do not create CSV derivative apps yet. First complete Store identity/submission and collect page views, acquisitions, installs and first launches.",
+      "additionalExpectedProfit":"not quantifiable before funnel data",
+      "cannibalization":"high if near-duplicate utilities are launched without differentiated jobs",
+      "buildCost":"defer",
+      "priority":"measurement_first"
+    }
+  ],
   "note": {
     "carriedDebt": 1,
     "todayTarget": 5,
-    "requiredBeforeDaySatisfied": 6,
-    "blockedLegacy": {"id":"note_20260820_05","priceJPY":980,"state":"brief_retry_only_then_defer","reason":"Repeated strict-publication failure; preserve debt but do not let this item consume a full remaining run."},
-    "publishNow": [
-      {"id":"note_ai_small_org_workflow","concept":"AIで学生団体・小規模チームの定例業務を整理する実践ワークフロー","targetPriceJPY":1280,"priority":1,"slot":"19:10","reason":"AI-utilization demand signal plus coherent small-organization funnel; distinct from handover checklist."},
-      {"id":"note_event_sponsor_followup","concept":"協賛営業の面談後フォローと進捗管理","targetPriceJPY":980,"priority":2,"slot":"19:10","reason":"Strong cross-sell fit with verified sponsor CRM/article and low concept risk."},
-      {"id":"note_creator_pricing","concept":"デジタル商品の価格設計と利益計算","targetPriceJPY":1280,"priority":3,"slot":"19:10","reason":"Connects to existing free digital-seller-profit acquisition tool; practical paid intent."},
-      {"id":"note_student_org_role_design","concept":"学生団体の役割分担・属人化防止","targetPriceJPY":980,"priority":4,"slot":"22:10","reason":"RACI/workload/backup ownership is functionally distinct from handover."},
-      {"id":"note_thesis_weekly_review","concept":"卒論の週次レビューと遅延回復","targetPriceJPY":980,"priority":5,"slot":"22:10","reason":"Extends verified thesis workflow while solving a distinct weekly recovery job."},
-      {"id":"note_ai_jobhunt_answer_audit","concept":"AIでES・自己PR・面接回答の矛盾を監査する就活実践法","targetPriceJPY":1280,"priority":6,"slot":"22:10","reason":"AI plus high-intent job-search workflow; cross-sell fit with existing BOOTH job-hunt products."},
-      {"id":"note_event_risk_brief","concept":"小規模イベントで事故を減らすリスク洗い出しと担当決めの実践テンプレ","targetPriceJPY":980,"priority":7,"slot":"23:10_reserve","reason":"Reserve distinct candidate if any primary item blocks."},
-      {"id":"note_sponsor_delivery_check","concept":"協賛決定後の入金・ロゴ・返礼・報告漏れを防ぐ履行チェック","targetPriceJPY":980,"priority":8,"slot":"23:10_reserve","reason":"Reserve post-contract sponsor workflow distinct from sales follow-up."}
-    ]
+    "blockedLegacy": {"id":"note_20260820_05","state":"brief_retry_only_then_defer"},
+    "publishNow": ["note_ai_small_org_workflow","note_event_sponsor_followup","note_creator_pricing","note_student_org_role_design","note_thesis_weekly_review","note_ai_jobhunt_answer_audit"]
   },
   "BOOTH": {
     "carriedDebt": 4,
     "todayTarget": 5,
-    "requiredBeforeDaySatisfied": 9,
-    "blockedLegacy": {"id":"009_handover_os_20260820","priceJPY":980,"state":"brief_retry_only_then_defer","reason":"Repeated buyer-visible verification failure; preserve debt but do not let it consume a full remaining run."},
-    "publishNow": [
-      {"id":"event_sponsor_bundle","concept":"イベント運営OS＋協賛営業CRMの補完バンドル","targetPriceJPY":2480,"priority":1,"slot":"19:10","reason":"Two source products already buyer-visible; lowest incremental build risk and higher-AOV coherent buyer journey."},
-      {"id":"jobhunt_interview_bundle","concept":"AI就活一貫性チェックOS＋面接改善OSの補完バンドル","targetPriceJPY":1980,"priority":2,"slot":"19:10","reason":"Low incremental production cost if both deliverables validate; coherent job-hunt bundle."},
-      {"id":"event_risk_register_os","concept":"小規模イベントのリスク・対応・担当管理OS","targetPriceJPY":1480,"priority":3,"slot":"19:10","reason":"Distinct deeper risk workflow adjacent to verified event operations OS."},
-      {"id":"small_org_role_os","concept":"学生団体・小規模NPOの役割分担OS","targetPriceJPY":1280,"priority":4,"slot":"22:10","reason":"RACI/load/backup owner focus separates it from handover."},
-      {"id":"sponsor_deliverables_tracker","concept":"スポンサー契約後の入金・ロゴ掲載・返礼・報告物の履行管理OS","targetPriceJPY":1480,"priority":5,"slot":"22:10","reason":"Complements sponsor CRM by owning post-contract fulfillment."},
-      {"id":"research_interview_coding_os","concept":"卒論・質的研究のインタビュー記録・コード・引用候補整理OS","targetPriceJPY":1680,"priority":6,"slot":"22:10","reason":"Distinct qualitative-analysis stage adjacent to thesis progress assets."},
-      {"id":"volunteer_shift_comms_os","concept":"学生イベント・地域活動のボランティア配置・連絡・欠員対応OS","targetPriceJPY":1480,"priority":7,"slot":"23:10","reason":"Distinct event-operations pain point with clear field-use value."},
-      {"id":"creator_profit_pricing_os","concept":"デジタル商品利益・価格設計OS","targetPriceJPY":1480,"priority":8,"slot":"23:10","reason":"Connects to existing digital-seller-profit acquisition path."},
-      {"id":"event_budget_actual_os","concept":"小規模イベントの予算・発注・実績差異管理OS","targetPriceJPY":1480,"priority":9,"slot":"23:10_reserve","reason":"Reserve candidate with distinct financial-control job."},
-      {"id":"sponsor_proposal_compare_os","concept":"協賛プラン別の提案内容・金額・返礼比較OS","targetPriceJPY":1480,"priority":10,"slot":"00:10_reserve","reason":"Reserve candidate distinct from CRM and fulfillment tracker."}
-    ]
+    "blockedLegacy": {"id":"009_handover_os_20260820","state":"brief_retry_only_then_defer"},
+    "publishNow": ["event_sponsor_bundle","jobhunt_interview_bundle","event_risk_register_os","small_org_role_os","sponsor_deliverables_tracker","research_interview_coding_os","volunteer_shift_comms_os","creator_profit_pricing_os"]
   },
   "MicrosoftStore": {
-    "quota": null,
-    "priorityConcepts": [
-      {"id":"ms_csv_cleaner_deduper","concept":"CSV Cleaner & Duplicate Remover：重複削除・空白正規化・列名整理・文字コード確認をローカル完結","priority":1,"monetization":"free acquisition first; evaluate paid Pro/batch automation only after usage signal","measurementPlan":["Store page views","install attempts","acquisitions","successful installs","first launches","conversion by source/campaign"],"evidence":"Partner Center supports this funnel measurement; product-level demand metrics are not yet observed."},
-      {"id":"ms_invoice_filename_organizer","concept":"請求書・領収書ファイルを日付・取引先・金額ルールで一括リネームするローカル整理ツール","priority":2,"monetization":"free core; advanced naming presets only after demand signal"},
-      {"id":"ms_local_qr_batch_generator","concept":"CSVからQRコードを一括生成・命名・ZIP出力するローカルツール","priority":3,"monetization":"free core; batch templates/export presets as possible Pro"},
-      {"id":"ms_image_batch_optimizer","concept":"EC・SNS向けプリセット付き画像一括リサイズ・圧縮・WebP変換","priority":4,"monetization":"pursue only with niche differentiation"}
-    ],
-    "executionRule":"During remaining PC windows, hard paid publication debt outranks starting another app build. Cloud-side Store research/build prep may continue without displacing paid recovery."
+    "priorityConcepts": ["ms_csv_cleaner_deduper","ms_invoice_filename_organizer","ms_local_qr_batch_generator","ms_image_batch_optimizer"],
+    "amplificationRule":"No derivative expansion until observed Store funnel metrics support a theme. Complete identity/submission and measurement first."
   },
   "GitHubPages": {
-    "rule":"Do not prioritize a new free tool while note/BOOTH hard publication floors remain unsatisfied unless every paid candidate is globally blocked. Existing pending meeting-action may be verified without consuming paid build capacity."
+    "amplificationRule":"Do not treat publication as demand. Capture traffic/source/conversion evidence before cloning a tool theme."
   },
   "rules": [
-    "Previous-day debt is serviced before current-day quota is considered satisfied.",
-    "Maintain more qualified candidates than remaining hard minimum.",
-    "At each remaining PC window, stale legacy items receive only a brief strict retry before failover.",
-    "Queue insertion, local success, admin/editor URLs and commits do not count as publication.",
-    "Do not publish near-duplicate low-value products merely to satisfy count; use distinct qualified reserves.",
-    "Do not require Windows execution after 01:00 JST; residual shortfall becomes debt and is never zero-cleared.",
-    "Do not label a product or cluster a winner without observed performance evidence."
+    "Do not label a product or cluster a winner without observed performance evidence.",
+    "Public verification proves availability, not demand.",
+    "When a real winner appears, prefer differentiated adjacent jobs, bundles and upper-tier products over cosmetic clones.",
+    "Do not publish near-duplicate low-value products merely to satisfy count.",
+    "Do not infer sales, PV, acquisitions, conversions or public URLs."
   ]
 }
