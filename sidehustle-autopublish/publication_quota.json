@@ -1,7 +1,7 @@
 {
-  "version": 5,
+  "version": 6,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-21T23:10:00+09:00",
+  "updatedAt": "2026-08-22T00:05:15+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
@@ -12,32 +12,32 @@
       "perCatchUpCycleSoftBatch": 5,
       "productionCap": null,
       "operationalState": {
-        "date": "2026-08-21",
-        "previousDate": "2026-08-20",
-        "previousDayStrictVerifiedPublicationsCount": 4,
-        "carriedPublicationDebt": 1,
+        "date": "2026-08-22",
+        "previousDate": "2026-08-21",
+        "previousDayStrictVerifiedPublicationsCount": 0,
+        "carriedPublicationDebt": 6,
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
-        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 6,
+        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 11,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-21T23:10:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:10:00+09:00",
         "activePublicationCandidate": {
           "queueId": "note_20260821_06_ai_small_org_workflow",
           "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
           "expectedPriceJPY": 980,
           "createdAt": "2026-08-21T20:26:15+09:00",
-          "retryGeneration": 20,
-          "forceRetryNonce": "paid-catchup-06-20260821T231000+0900",
+          "retryGeneration": 21,
+          "forceRetryNonce": "paid-catchup-06-20260822T001000+0900",
           "requiredChecks": ["readerVisibleUrl", "title", "price", "paidBoundary", "dedicatedCover"],
-          "status": "enabled_force_retry_paid_catchup_23_10"
+          "status": "enabled_force_retry_paid_catchup_00_10"
         },
         "additionalReadyCandidates": [
           "note_20260821_07_event_sponsor_followup",
-          "note_20260821_08_creator_pricing",
-          "note_20260821_09_student_org_role_design",
           "note_20260821_10_thesis_weekly_review",
-          "note_20260821_11_ai_jobhunt_answer_audit"
+          "note_20260821_11_ai_jobhunt_answer_audit",
+          "note_20260821_08_creator_pricing",
+          "note_20260821_09_student_org_role_design"
         ],
         "deferredLegacyCandidate": "note_20260820_05",
         "fallbackPolicy": "Do not return to the blocked legacy item before trying the qualified paid fallbacks. In a PC-available catch-up cycle, continue across distinct candidates until at least one reader-visible publication is strictly verified or all prepared candidates encounter distinct non-recoverable blockers.",
@@ -52,26 +52,26 @@
       "perCatchUpCycleSoftBatch": 5,
       "productionCap": null,
       "operationalState": {
-        "date": "2026-08-21",
-        "previousDate": "2026-08-20",
-        "previousDayStrictVerifiedPublicationsCount": 1,
-        "carriedPublicationDebt": 4,
+        "date": "2026-08-22",
+        "previousDate": "2026-08-21",
+        "previousDayStrictVerifiedPublicationsCount": 0,
+        "carriedPublicationDebt": 9,
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
-        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 9,
+        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 14,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-21T23:10:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:10:00+09:00",
         "activePublicationCandidate": {
           "queueId": "001_interview_os",
           "title": "【28卒・29卒】面接改善OS｜面接ログ×弱点可視化×AIプロンプト12種｜Excel就活テンプレ",
           "expectedPriceJPY": 980,
           "expectedJoinedSha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
           "createdAt": "2026-08-18T20:00:00+09:00",
-          "retryGeneration": 27,
-          "forceRetryNonce": "paid-catchup-20260821T231000+0900",
+          "retryGeneration": 28,
+          "forceRetryNonce": "paid-catchup-20260822T001000+0900",
           "requiredChecks": ["buyerVisibleUrl", "title", "price", "downloadableProductState", "purchasePath"],
-          "status": "enabled_force_retry_sha_reconciled_23_10"
+          "status": "enabled_force_retry_sha_reconciled_00_10"
         },
         "deferredLegacyCandidate": "009_handover_os_20260820",
         "strictReverificationCandidate": {
@@ -80,14 +80,14 @@
           "status": "verified_public_on_2026-08-20_and_counted_once_for_previous_day"
         },
         "fallbackBuildCandidates": [
-          "event_sponsor_bundle",
-          "jobhunt_interview_bundle",
           "event_risk_register_os",
           "small_org_role_os",
           "sponsor_deliverables_tracker",
           "research_interview_coding_os",
           "volunteer_shift_comms_os",
-          "creator_profit_pricing_os"
+          "creator_profit_pricing_os",
+          "event_sponsor_bundle",
+          "jobhunt_interview_bundle"
         ],
         "fallbackPolicy": "Do not let 001 or deferred 009 block the whole catch-up cycle. If 001 cannot reach strict buyer-visible verification quickly, materialize and publish another qualified distinct BOOTH candidate in the same PC-available run.",
         "debtRule": "Only explicit verification of all required buyer checks decrements debt. Generic publisher success, local logs, draft creation, or HTTP/title-only verification does not.",
