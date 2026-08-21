@@ -1,0 +1,36 @@
+name: Sync BOOTH generation to quota
+on:
+  push:
+    paths:
+      - '.github/workflows/sync-booth-generation-to-quota.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p=Path('sidehustle-autopublish/publication_quota.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          b=d['channels']['BOOTH']['operationalState']
+          b['queueRetryGeneration']=30
+          b['latestMaterializedAt']='2026-08-22T02:10:19+09:00'
+          b['categoryCompatibility']={'parent':'ソフトウェア・ハードウェア','child':'ソフトウェア','verifiedReferenceItemId':'8736698'}
+          d['version']=max(int(d.get('version',0))+1,10)
+          d['updatedAt']=datetime.now(timezone(timedelta(hours=9))).replace(microsecond=0).isoformat()
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sidehustle-autopublish/publication_quota.json
+          git commit -m 'Sync BOOTH generation 30 into publication quota' || exit 0
+          git push
