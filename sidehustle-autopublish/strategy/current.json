@@ -1,70 +1,42 @@
 {
-  "version": 10,
-  "updatedAt": "2026-08-21T17:47:59+09:00",
-  "objective": "maximize cumulative user profit while enforcing verified-publication hard minimums and minimizing user intervention",
+  "version": 11,
+  "updatedAt": "2026-08-21T21:31:00+09:00",
+  "objective": "maximize cumulative user profit while enforcing verified-publication floors, minimizing intervention, and amplifying only evidence-backed winners",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
+  "winnerAmplification": {
+    "currentState":"NO_PROVEN_WINNER_YET",
+    "evidence":"Current metrics record no BOOTH sales, no note sales/PV/likes, no Microsoft Store funnel metrics and no GitHub Pages conversion metrics.",
+    "decision":"Do not spend production capacity on speculative derivative families merely because source products are public. Keep low-build-cost coherent bundle hypotheses in backlog, but activate only when observed demand appears.",
+    "activationRule":"A theme becomes amplification-eligible after a clear relative quantitative signal (sale, conversion, acquisition, install/use outperformance) or multiple independent qualitative demand signals. Publication alone is insufficient.",
+    "firstCandidates":[
+      {"theme":"event+sponsor operations","candidate":"event_sponsor_bundle","why":"lowest incremental build cost and coherent complementary jobs; activate after any credible event/sponsor demand signal"},
+      {"theme":"job hunt consistency+interview","candidate":"jobhunt_interview_bundle","why":"coherent journey, but source verification and demand evidence must exist first"},
+      {"theme":"sponsor lifecycle","candidate":"post-contract fulfillment series","why":"distinct adjacent job with low cannibalization if pre/post contract scope stays separate"},
+      {"theme":"thesis workflow","candidate":"weekly recovery / interview coding companions","why":"distinct adjacent jobs; wait for thesis-theme signal"}
+    ]
+  },
   "hardPublicationPolicy": {
-    "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
-    "noteDailyMinimum": 5,
-    "boothDailyMinimum": 5,
-    "debtFirst": true,
-    "currentRequiredBefore2026_08_21Satisfied": {"note": 6, "BOOTH": 9},
-    "currentDebt": {"note": 1, "BOOTH": 4},
-    "todayRemaining": {"note": 5, "BOOTH": 5},
-    "rule": "Expected-profit optimization may choose WHICH qualified products to publish, but may not reduce the verified-publication floor or erase carried debt."
+    "sourceOfTruth":"sidehustle-autopublish/publication_quota.json",
+    "debtFirst":true,
+    "rule":"Publication debt remains a separate operational constraint. Winner-amplification logic must not erase debt or invent performance evidence."
   },
-  "evidenceState": {
-    "observedSalesOrFunnelMetricsAvailable": false,
-    "rule": "Do not invent product-level demand, sales, PV, conversion or acquisition numbers. Until observed metrics arrive, rank by publication debt, publishability, coherent buyer journey, external market evidence and incremental build cost.",
-    "microsoftMeasurement": "Partner Center Acquisition reports can measure page views, install attempts, acquisitions, installs, first launches and source/campaign conversion; collect these before app derivative expansion.",
-    "noteMarketSignal": "Paid content demand exists, but product-level sales/PV for this account are still unavailable; use pricing/category signals only as provisional evidence."
+  "measurementPriority": {
+    "MicrosoftStore":"Complete CSV Cleaner identity/submission first, then collect Store page views, install attempts, acquisitions, successful installs, first launches and source/campaign conversion before derivatives.",
+    "note":"Capture account-level article PV, likes and paid sales when available; compare themes on matched exposure windows.",
+    "BOOTH":"Capture orders/sales and, if available, product-page traffic/favorites; do not infer demand from buyer-visible status.",
+    "GitHubPages":"Capture tool traffic and outbound conversion/source evidence before treating a Web tool as a winner."
   },
-  "pcAvailabilityPolicy": {
-    "assumption": "User normally closes Windows PC after 01:00 JST.",
-    "after0100": "Do not require Windows publisher execution. Continue cloud research, build preparation, queue/state/ledger repair and fallback preparation.",
-    "productionWindows": ["19:10", "22:10", "23:10", "00:10"],
-    "lateDayRecoveryWindows": ["23:10", "00:10"],
-    "nextPreferredRecoveryWindow": "2026-08-21T19:10:00+09:00",
-    "frontLoadRule": "Paid debt and current-day publication minimums must be pushed toward verified public state before 01:00; do not depend on post-01:00 local execution."
-  },
-  "currentRecoveryFinding": {
-    "checkedAt": "2026-08-21T17:47:59+09:00",
-    "note": "Source-of-truth quota still requires 6 verified note publications before the day is satisfied (1 carried debt + 5 current-day); repository metrics contain no newer strict-publication evidence.",
-    "BOOTH": "Source-of-truth quota still requires 9 verified BOOTH publications before the day is satisfied (4 carried debt + 5 current-day); repository metrics contain no newer strict-publication evidence.",
-    "decision": "Do not spend another full run on stale note_20260820_05 or BOOTH 009. At each remaining PC window give the stale item only a brief strict attempt, then batch distinct prepared fallbacks. Paid publication recovery outranks another free Web tool until the hard floor is satisfied."
-  },
-  "runPlan": [
-    {"slot":"19:10","note":["note_ai_small_org_workflow","note_event_sponsor_followup","note_creator_pricing"],"BOOTH":["event_sponsor_bundle","jobhunt_interview_bundle","event_risk_register_os"],"goal":"Batch paid recovery. Brief legacy retry only; then publish and strict-verify multiple fallbacks if ready."},
-    {"slot":"22:10","note":["note_student_org_role_design","note_thesis_weekly_review","note_ai_jobhunt_answer_audit"],"BOOTH":["small_org_role_os","sponsor_deliverables_tracker","research_interview_coding_os"],"goal":"Continue hard-floor recovery using already prepared or low-build-risk distinct candidates."},
-    {"slot":"23:10","note":["any_highest_priority_ready_note","additional_distinct_note_if_needed"],"BOOTH":["volunteer_shift_comms_os","creator_profit_pricing_os","additional_distinct_booth_if_needed"],"goal":"Mandatory catch-up; batch as many strict verified publications as qualified candidates permit."},
-    {"slot":"00:10","note":["any_highest_priority_unverified_candidate"],"BOOTH":["any_highest_priority_unverified_candidate"],"goal":"Final PC-dependent recovery before 01:00. Verify formally; residual exact shortfall becomes debt, never zero-cleared."}
+  "productionPriority": [
+    "Recover paid publication debt with qualified distinct products during PC windows.",
+    "Complete Microsoft Store CSV Cleaner submission prerequisites and measurement plumbing.",
+    "Preserve conditional low-cost bundle candidates without calling them winners.",
+    "When observed performance arrives, move the strongest differentiated derivative to the front of product_backlog immediately."
   ],
-  "priorityOrder": {
-    "note": ["note_ai_small_org_workflow","note_event_sponsor_followup","note_creator_pricing","note_student_org_role_design","note_thesis_weekly_review","note_ai_jobhunt_answer_audit","note_20260820_05"],
-    "BOOTH": ["event_sponsor_bundle","jobhunt_interview_bundle","event_risk_register_os","small_org_role_os","sponsor_deliverables_tracker","research_interview_coding_os","volunteer_shift_comms_os","creator_profit_pricing_os","009_handover_os_20260820"],
-    "MicrosoftStore": ["ms_csv_cleaner_deduper","ms_invoice_filename_organizer","ms_local_qr_batch_generator","ms_image_batch_optimizer"]
-  },
-  "currentPipeline": {
-    "note": {"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":6,"active":"note_ai_small_org_workflow","blockedLegacy":"note_20260820_05","nextAction":"19:10 batch publish prepared fallbacks; legacy gets brief retry only"},
-    "BOOTH": {"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":9,"active":"event_sponsor_bundle","blockedLegacy":"009_handover_os_20260820","nextAction":"19:10 batch publish prepared low-incremental-cost fallbacks; legacy gets brief retry only"},
-    "MicrosoftStore": {"status":"initial publication route proven; keep CSV Cleaner & Duplicate Remover as first build priority, but paid quota recovery has precedence during remaining PC windows; collect Partner Center funnel metrics before derivative expansion"},
-    "GitHubPages": {"performanceMetricsAvailable":false,"priority":"defer new free-tool creation while paid hard floor is unsatisfied unless paid pipelines become globally blocked"}
-  },
-  "productionRunPolicy": {
-    "normalCompletion": "At least one newly verified public paid artifact per PC-available production run while debt or quota remains; batch multiple when debt exists.",
-    "blockedCandidate": "After a brief strict-publication attempt, defer and switch to another qualified candidate rather than ending the run.",
-    "strictNoteChecks": ["readerVisibleUrl","exactTitle","price","paidBoundary","dedicatedCover"],
-    "strictBoothChecks": ["buyerVisibleUrl","exactTitle","price","downloadableProductState","purchasePath"],
-    "nonCompletionEvidence": ["queue insertion","PUBLISH_SUCCESS alone","editor/admin URL","commit","HTTP/title-only evidence when commerce checks are required"]
-  },
-  "profitRules": [
-    "Debt and today's verified-publication floor are first priority.",
-    "Within that floor, prefer stronger purchase intent, coherent cross-sell fit, lower incremental build cost and higher expected net profit.",
-    "Bundles of already verified complementary assets are preferred recovery candidates because they can raise AOV with low incremental production cost, but only if deliverables and buyer-visible purchase path are valid.",
-    "Do not create app derivatives until observed Microsoft Store funnel metrics support the theme; first collect page views, install attempts, acquisitions, installs, first launches and source/campaign conversion.",
-    "Do not publish plaintext paid assets to GitHub.",
-    "Do not infer public URLs or performance metrics.",
-    "Do not reactivate KDP or LINE without explicit user instruction."
+  "antiSpamRules": [
+    "No cosmetic app clones or name-only variants.",
+    "Every derivative must solve a meaningfully different job, audience, format or advanced workflow.",
+    "Do not cannibalize a winning single product with a cheaper bundle; bundles must add value and maintain sensible price architecture.",
+    "Do not infer sales, PV, conversion, acquisitions, installs or retention."
   ]
 }
