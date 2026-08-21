@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-22T01:12:00+09:00",
+  "objective": "maximize note revenue by combining free acquisition/demand-validation articles with paid conversion articles while preserving the existing paid publication floor",
+  "internalEvidence": {
+    "observedSales": null,
+    "observedPV": null,
+    "observedLikes": null,
+    "observedFreeToPaidConversion": null,
+    "interpretation": "There is not yet enough first-party evidence to claim that paid-only publishing is optimal or to identify a proven winning theme. Therefore use a measured acquisition/conversion funnel and update the mix when first-party results appear."
+  },
+  "externalEvidence": {
+    "sourceType": "note official/editorial guidance",
+    "findings": [
+      "note editorial guidance recommends using reactions to free articles and social posts as signals for paid-content demand.",
+      "note editorial guidance recommends cross-linking related free and paid articles to increase circulation and purchase opportunities.",
+      "note editorial analysis of 100 frequently purchased Business/IT paid articles found three common free-area elements: empathy/question framing, a change or before/after story, and a clear statement of reader benefit.",
+      "note guidance recommends making the free portion useful on its own rather than placing nearly all value behind the paywall.",
+      "2026 note changes include improved discovery/category surfaces, AI-readable creator pages via llms.txt, and easier membership onboarding; these increase the value of building a reusable free-content surface rather than relying only on isolated paid posts."
+    ]
+  },
+  "operatingModel": {
+    "paid": {
+      "existingDailyStrictPublicationFloor": 5,
+      "rule": "Do not reduce or replace this floor with free articles. Reader-visible URL, exact title, expected price, paid boundary and dedicated cover are still required before a paid publication counts."
+    },
+    "free": {
+      "role": ["search/discovery acquisition", "trust building", "demand validation", "paid-article prequalification", "topic testing"],
+      "initialExperiment": {
+        "durationDays": 14,
+        "publicationTargetPerDay": 2,
+        "note": "2/day is an experimental starting cadence, not a proven optimum. Manuscripts may be produced in larger batches and scheduled gradually to avoid quality dilution or feed flooding."
+      },
+      "contentRules": [
+        "Every free article must provide standalone practical value.",
+        "Do not publish thin teaser-only posts.",
+        "Use at most one context-matched paid CTA per free article.",
+        "Only insert a paid URL after that URL has been independently reader-visible verified; never guess URLs.",
+        "Prefer problem diagnosis, checklists, mistakes, quick wins, frameworks and small worked examples for free articles; reserve deeper implementation systems, templates, full workflows and reusable assets for paid articles."
+      ]
+    },
+    "batchProduction": {
+      "rule": "Article creation itself is mandatory work, not optional analysis. Production may be batched. A production run may create multiple complete manuscripts at once rather than one manuscript per run.",
+      "preferredBatchSize": "4-10 complete manuscripts when quality can be maintained",
+      "minimumArtifactRule": "A note-focused production run must end with at least one newly completed article manuscript; strategy analysis, backlog edits or retry instructions alone do not count as article creation.",
+      "backlogRule": "Maintain multiple ready free and paid manuscripts so one stuck article never blocks the pipeline."
+    }
+  },
+  "funnelArchitecture": {
+    "freeToPaidPairing": true,
+    "freeArticleRoles": [
+      "problem-awareness article -> paid implementation article",
+      "quick checklist -> paid full workflow",
+      "common mistakes -> paid template/system",
+      "mini example -> paid reusable toolkit"
+    ],
+    "ctaRule": "One related CTA after the useful free core. No unrelated multi-product CTA stack.",
+    "reverseLinkRule": "Paid articles should also link to useful free companion articles when doing so helps readers understand context or discover the series."
+  },
+  "measurement": {
+    "captureWhenAvailable": ["article type free/paid", "theme cluster", "publishedAt", "PV", "likes", "follows", "paid outbound clicks", "paid purchases", "revenue", "time since publication"],
+    "decisionWindows": ["24h", "72h", "7d"],
+    "rules": [
+      "Do not compare raw lifetime PV between articles of different ages; use comparable post-publication windows.",
+      "Free articles with above-median engagement or meaningful paid-outbound evidence become candidates for paid deep dives.",
+      "Paid articles with observed sales should receive supporting free satellite articles around adjacent search intent.",
+      "If a free theme attracts traffic but produces no paid movement after sufficient exposure, test CTA/value proposition before producing more paid derivatives.",
+      "If neither traffic nor engagement appears, deprioritize that theme rather than mass-cloning it."
+    ]
+  },
+  "currentFreeBatch": {
+    "path": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
+    "articleCount": 6,
+    "pairedPaidIds": [
+      "note_20260821_06_ai_small_org_workflow",
+      "note_20260821_07_event_sponsor_followup",
+      "note_20260821_08_creator_pricing",
+      "note_20260821_09_student_org_role_design",
+      "note_20260821_10_thesis_weekly_review",
+      "note_20260821_11_ai_jobhunt_answer_audit"
+    ]
+  }
+}
