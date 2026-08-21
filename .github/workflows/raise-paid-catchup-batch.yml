@@ -1,0 +1,41 @@
+name: Raise paid catch-up batch
+
+on:
+  push:
+    paths:
+      - '.github/workflows/raise-paid-catchup-batch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-quota:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set catch-up batch to entire current strict remainder
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p=Path('sidehustle-autopublish/publication_quota.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          d['channels']['note']['perCatchUpCycleSoftBatch']=11
+          d['channels']['BOOTH']['perCatchUpCycleSoftBatch']=14
+          d['channels']['note']['operationalState']['batchClearInstruction']='Process up to all 11 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 11 were attempted.'
+          d['channels']['BOOTH']['operationalState']['batchClearInstruction']='Process up to all 14 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 14 were attempted.'
+          d['updatedAt']=datetime.now(timezone(timedelta(hours=9))).replace(microsecond=0).isoformat()
+          d['version']=max(int(d.get('version',0))+1,9)
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Commit quota batch override
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sidehustle-autopublish/publication_quota.json
+          git commit -m 'Set catch-up batch to full note and BOOTH remainder' || exit 0
+          git push
