@@ -1,39 +1,47 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-21T05:42:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-21T23:30:00+09:00",
   "forecastPolicy": "Do not invent numeric revenue when observed sales, PV, conversion, acquisition or install data are absent. Use ranked opportunity bands until measurable signals exist.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
     "note_sales": null,
     "note_pv": null,
+    "note_likes": null,
+    "MicrosoftStore_pageViews": null,
     "MicrosoftStore_acquisitions": null,
     "MicrosoftStore_installs": null,
-    "MicrosoftStore_conversion": null
+    "MicrosoftStore_conversion": null,
+    "GitHubPages_outboundConversion": null,
+    "gmailImportantEventsToday": 0
   },
   "hardConstraints": {
-    "noteRequiredVerifiedPublicationsTodayIncludingDebt": 6,
-    "boothRequiredVerifiedPublicationsTodayIncludingDebt": 9,
-    "debtFirst": true,
-    "doNotReduceQuotaForForecastOptimization": true
+    "publicationDebtFirst": true,
+    "doNotEraseExistingDebt": true,
+    "doNotTradeVerifiedPublicationForSpeculativeOptimization": true
   },
   "rankedOpportunities": [
-    {"rank":1,"channel":"BOOTH","id":"event_sponsor_bundle","opportunityBand":"high-relative","basis":"Two complementary existing public assets reduce production risk and support higher average order value; no sales data yet, so no yen forecast."},
-    {"rank":2,"channel":"BOOTH","id":"jobhunt_interview_bundle","opportunityBand":"high-relative","basis":"Existing related products create a coherent buyer journey and low incremental production cost; no sales data yet."},
-    {"rank":3,"channel":"note","id":"note_ai_small_org_workflow","opportunityBand":"high-relative","basis":"note official 2026 analysis reports AI-utilization paid content growth of 268.6% YoY; candidate also uses existing small-organization domain assets."},
-    {"rank":4,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","opportunityBand":"medium-high-experiment","basis":"Microsoft Store exceeds 250M monthly active users; current web search showed less obvious direct CSV-cleanup competition than generic image/resizer and rename categories. Actual Store acquisition data are not yet available."},
-    {"rank":5,"channel":"note","id":"note_event_sponsor_followup","opportunityBand":"medium-high-relative","basis":"Strong cross-sell fit with public sponsor CRM and concrete operational pain point; no sales/PV data yet."},
-    {"rank":6,"channel":"BOOTH","id":"small_org_role_os","opportunityBand":"medium-relative","basis":"2026 organizational guidance identifies role allocation and handover as recurring problems; must remain distinct from handover OS."}
+    {"rank":1,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","opportunityBand":"high-measurement-option","basis":"The app has a verified public PWA and prepared listing, but Store identity/submission is incomplete. Completing the live Store funnel unlocks page-view, acquisition, install, campaign and product-page experiment data, which has the highest information value for later scaling."},
+    {"rank":2,"channel":"note","id":"future_practical_1480_1980_test","opportunityBand":"high-relative-test","basis":"note official analysis of approximately 300,000 paid articles reports 1,842 JPY average price among top-20%-selling practical know-how articles. Existing account products are mostly below this, but repricing current products is deferred until PV/sales evidence exists."},
+    {"rank":3,"channel":"BOOTH","id":"event_sponsor_bundle","opportunityBand":"conditional-high","basis":"Complementary public source assets make incremental build cost low and can increase order value, but no demand signal exists yet; prepare only, do not treat as proven."},
+    {"rank":4,"channel":"BOOTH","id":"jobhunt_interview_bundle","opportunityBand":"conditional-high","basis":"A coherent buyer journey exists and the free interview STAR tool already points to the verified consistency product, but sales evidence is absent."},
+    {"rank":5,"channel":"GitHubPages","id":"source_specific_store_campaign_links","opportunityBand":"measurement-enabling","basis":"Microsoft supports custom campaign IDs and conversion reporting. Add source-specific links only after the live CSV Cleaner Store URL exists."}
   ],
   "marketEvidence": {
-    "notePaidMarket":"Official note analysis of roughly 300,000 paid articles reports paid-article sales +26.8% YoY and creators with paid revenue +42.0% YoY; AI utilization +268.6%, SNS/content operations +258.7%, side jobs/remote work +179.0%.",
-    "noteDiscovery":"note reported recommendation-engine test results of category impressions 4.3x YoY, PV 2.2x, and internal circulation 1.5x in January 2026.",
-    "MicrosoftStore":"Microsoft states the Store serves over 250 million monthly active users and non-game apps may use their own commerce and retain 100% of revenue.",
-    "competitionSnapshot":"Current Store web search surfaced numerous image compressor/resizer and file-renamer products, so generic versions are deprioritized; CSV cleanup remains an experiment pending real acquisition data."
+    "notePaidMarket":"note official 2026-01-07 analysis reports practical know-how average price of 1,842 JPY among the top 20% by sales and AI-utilization category sales growth of 268.6% YoY.",
+    "MicrosoftStore":"Microsoft Learn documents product-page experiments for icons/screenshots and acquisition reporting with page views, installs/acquisitions and custom campaign IDs.",
+    "measurementPrinciple":"Do not change several listing or pricing variables before a baseline exists, because that destroys attribution."
+  },
+  "nightlyDecision": {
+    "livePriceChanges": "none",
+    "liveListingExperiments": "none",
+    "reason":"No product-level performance baseline exists yet. Measurement and submission completion have higher expected value than speculative customer-facing changes.",
+    "tomorrowFirstProfitAction":"Complete CSV Cleaner Store identity/submission prerequisites, then persist the live Store URL and instrument source-specific campaign attribution."
   },
   "nextDataNeeded": [
     "BOOTH sales by product and date",
     "note sales, PV and likes by article",
-    "Microsoft Store page views, acquisitions, installs and health metrics",
-    "conversion from GitHub Pages tools into paid or Store destinations"
+    "Microsoft Store page views, acquisitions, installs, conversion and health metrics",
+    "campaign-attributed conversions from GitHub Pages to Microsoft Store",
+    "outbound click data from free tools"
   ]
 }
