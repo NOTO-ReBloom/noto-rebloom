@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>面接STAR回答メーカー｜ガクチカ・自己PRを1分で話せる形に整理</title>
+<meta name="description" content="就活面接のガクチカ・自己PRをSituation・Task・Action・Resultで整理し、30秒版・1分版の回答、深掘り質問、改善ポイントまで作れる無料ツール。入力内容はブラウザ内に保存されます。">
+<meta name="robots" content="index,follow">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;color:#172033;background:#f6f8fb;--line:#dfe5ee;--ink:#172033;--sub:#657084;--accent:#1f4fd7}
+*{box-sizing:border-box}body{margin:0}.wrap{max-width:1060px;margin:auto;padding:30px 16px 72px}h1{font-size:clamp(28px,5vw,45px);line-height:1.18;margin:0 0 10px}.lead{color:var(--sub);line-height:1.8;margin:0 0 22px}.grid{display:grid;grid-template-columns:1.06fr .94fr;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 8px 28px rgba(28,40,70,.05)}h2{font-size:20px;margin:0 0 14px}label{display:block;font-weight:700;font-size:14px;margin:13px 0 6px}.hint{display:block;color:var(--sub);font-weight:400;font-size:12px;margin-top:3px}textarea,input,select{width:100%;border:1px solid #cfd7e4;border-radius:11px;padding:11px 12px;font:inherit;background:#fff}textarea{min-height:92px;resize:vertical;line-height:1.65}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}button,a.btn{border:1px solid #cad2df;background:#fff;border-radius:10px;padding:10px 14px;font-weight:750;cursor:pointer;text-decoration:none;color:var(--ink)}button.primary{background:var(--accent);border-color:var(--accent);color:#fff}.out{white-space:pre-wrap;line-height:1.75;background:#f8fafc;border:1px solid #e4e8ef;border-radius:12px;padding:14px;min-height:130px}.meter{height:10px;background:#edf1f7;border-radius:999px;overflow:hidden;margin:8px 0}.meter>div{height:100%;background:var(--accent);width:0}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.kpi{background:#f7f9fc;border-radius:11px;padding:11px}.kpi b{font-size:21px;display:block}.kpi span{font-size:11px;color:var(--sub)}.tips{margin:8px 0 0;padding-left:20px;line-height:1.7}.warn{color:#9a3412}.ok{color:#166534}.small{color:var(--sub);font-size:12px;line-height:1.7}.cta{margin-top:18px;background:#111827;color:#fff;border:none}.cta p{color:#d6dbea}.cta a{color:#fff;font-weight:800}.faq{margin-top:18px}.faq details{border-top:1px solid var(--line);padding:12px 0}.faq summary{font-weight:750;cursor:pointer}@media(max-width:820px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<header><h1>面接STAR回答メーカー</h1><p class="lead">ガクチカ・自己PRのエピソードを <b>S（状況）→T（課題）→A（行動）→R（結果）</b> に分け、面接で話せる長さへ整えます。文章を自動で捏造するのではなく、あなた自身の事実を整理するためのツールです。</p></header>
+<div class="grid">
+<section class="card">
+<h2>1. エピソードを分解</h2>
+<div class="row"><div><label>用途</label><select id="purpose"><option>ガクチカ</option><option>自己PR</option><option>困難を乗り越えた経験</option><option>リーダーシップ経験</option><option>チームで成果を出した経験</option></select></div><div><label>伝えたい強み</label><input id="strength" placeholder="例：周囲を巻き込む調整力"></div></div>
+<label>S：Situation<span class="hint">いつ・どこで・誰と・どんな状況だったか。説明しすぎない。</span></label><textarea id="s" placeholder="例：学園祭実行委員で、開催1か月前に出店団体の提出遅れが相次いでいた。"></textarea>
+<label>T：Task<span class="hint">自分の役割と、解く必要があった課題。</span></label><textarea id="t" placeholder="例：全団体の締切遵守率を上げ、運営側の確認遅延を解消する必要があった。"></textarea>
+<label>A：Action<span class="hint">最重要。自分が考えて実際にしたことを2〜3点、具体的に。</span></label><textarea id="a" placeholder="例：未提出理由を分類し、締切3日前の自動リマインドと個別確認の担当制を導入した。"></textarea>
+<label>R：Result<span class="hint">数字・比較・第三者評価があれば入れる。誇張しない。</span></label><textarea id="r" placeholder="例：期限内提出率が約70%から95%に上がり、確認作業も前倒しできた。"></textarea>
+<label>学び・再現性<span class="hint">自己PRでは特に重要。次の環境でもどう活かすか。</span></label><textarea id="learn" placeholder="例：相手の遅れを責めるより、遅れる理由を分解して仕組みに直す方が再現性のある改善になると学んだ。"></textarea>
+<div class="actions"><button class="primary" id="build">回答を作る</button><button id="sample">例を入れる</button><button id="clear">クリア</button></div>
+<p class="small">入力内容はこの端末のブラウザ内（localStorage）にだけ保存します。外部送信はしません。</p>
+</section>
+<section>
+<div class="card">
+<h2>2. 面接用の回答</h2>
+<div class="kpis"><div class="kpi"><b id="chars">0</b><span>文字</span></div><div class="kpi"><b id="secs">0秒</b><span>推定発話時間</span></div><div class="kpi"><b id="actionPct">0%</b><span>Action比率</span></div></div>
+<div class="meter"><div id="meter"></div></div>
+<div id="status" class="small">左側を入力すると、回答の長さと構成を確認できます。</div>
+<label>1分版</label><div class="out" id="one"></div><div class="actions"><button id="copy1">1分版をコピー</button></div>
+<label>30秒版</label><div class="out" id="short"></div><div class="actions"><button id="copy30">30秒版をコピー</button></div>
+</div>
+<div class="card" style="margin-top:18px"><h2>3. 面接官の深掘りに備える</h2><ul class="tips" id="questions"><li>入力後に想定深掘り質問を表示します。</li></ul><h2 style="margin-top:20px">改善チェック</h2><ul class="tips" id="checks"><li>入力後に改善ポイントを表示します。</li></ul></div>
+</section>
+</div>
+<section class="card cta"><h2>回答同士の矛盾まで確認したい人へ</h2><p>ES・自己PR・志望動機・面接回答を横断して一貫性を確認する有料テンプレートもあります。無料ツールでエピソードを整理した後の最終チェック向けです。</p><a href="https://booth.pm/ja/items/8736698" rel="noopener">AI就活 一貫性チェックOSを見る →</a></section>
+<section class="card faq"><h2>使い方とFAQ</h2><details><summary>STAR法とは？</summary><p>Situation（状況）、Task（課題・役割）、Action（行動）、Result（結果）の順に経験を整理する方法です。面接では特に「自分がどう考えて行動したか」が伝わるようにします。</p></details><details><summary>何秒くらいにすればいい？</summary><p>質問や面接形式で変わります。このツールでは日本語の発話を1秒あたり約4文字として概算し、30秒版と1分版の両方を作ります。実際には声に出して計測してください。</p></details><details><summary>数字がない成果でも大丈夫？</summary><p>大丈夫です。件数や比率がなければ、以前との比較、相手からの評価、何が改善したかを具体化してください。架空の数字を足す必要はありません。</p></details></section>
+</main>
+<script>
+const ids=['purpose','strength','s','t','a','r','learn']; const $=id=>document.getElementById(id);
+function val(id){return $(id).value.trim()} function save(){ids.forEach(id=>localStorage.setItem('star-'+id,$(id).value))}
+function sentence(x){if(!x)return '';return /[。！？]$/.test(x)?x:x+'。'}
+function clip(s,n){s=s.trim(); if(s.length<=n)return s; return s.slice(0,n-1).replace(/[、, ]+$/,'')+'…'}
+function build(){save(); const S=val('s'),T=val('t'),A=val('a'),R=val('r'),L=val('learn'),strength=val('strength'),purpose=val('purpose');
+ let parts=[]; if(strength && purpose==='自己PR')parts.push(`私の強みは${strength}です。`); if(S)parts.push(sentence(S)); if(T)parts.push(sentence(T)); if(A)parts.push(sentence(A)); if(R)parts.push(sentence(R)); if(L)parts.push(sentence(L));
+ const one=parts.join(''); $('one').textContent=one||'入力内容からここに回答を生成します。';
+ let shortParts=[]; if(strength&&purpose==='自己PR')shortParts.push(`私の強みは${strength}です。`); if(S)shortParts.push(sentence(clip(S,42))); if(T)shortParts.push(sentence(clip(T,36))); if(A)shortParts.push(sentence(clip(A,78))); if(R)shortParts.push(sentence(clip(R,50))); $('short').textContent=shortParts.join('')||'入力内容からここに30秒版を生成します。';
+ const n=Array.from(one).length,sec=Math.round(n/4),actionN=Array.from(A).length,pct=n?Math.round(actionN/n*100):0;$('chars').textContent=n;$('secs').textContent=sec+'秒';$('actionPct').textContent=pct+'%';$('meter').style.width=Math.min(100,sec/60*100)+'%';
+ let status=''; if(!n)status='左側を入力してください。'; else if(sec<35)status='やや短めです。具体的な行動や結果をもう少し足せます。'; else if(sec<=70)status='1分回答として扱いやすい長さです。'; else status='1分では長めです。状況説明を削り、ActionとResultを残しましょう。'; $('status').textContent=status;
+ const qs=[]; if(T)qs.push('その課題の中で、あなた自身が担った責任範囲はどこまででしたか？'); if(A)qs.push('なぜその行動を選びましたか？ 他の選択肢は検討しましたか？'); if(A)qs.push('周囲から反対や協力不足があった場合、どう対応しましたか？'); if(R)qs.push('その成果のうち、あなたの行動が影響した部分をどう説明しますか？'); if(L)qs.push('その学びを、入社後のどんな場面で再現できますか？'); if(!qs.length)qs.push('STARを入力すると深掘り質問を表示します。'); $('questions').innerHTML=qs.map(x=>`<li>${x}</li>`).join('');
+ const c=[]; if(!S)c.push('S（状況）が未入力です。'); if(!T)c.push('T（課題・役割）が未入力です。'); if(!A)c.push('A（行動）が未入力です。面接評価では行動の具体性が重要です。'); if(!R)c.push('R（結果）が未入力です。数字がなければ前後比較や第三者評価でも構いません。'); if(A && pct<20)c.push('Actionの比率が低めです。状況説明より「自分がしたこと」を具体化しましょう。'); if(S.length>A.length && A)c.push('SituationがActionより長くなっています。背景説明を圧縮できないか確認してください。'); if(R && !/[0-9０-９%％]|改善|増|減|短縮|達成|評価|選/.test(R))c.push('Resultが抽象的かもしれません。可能なら変化・比較・第三者評価を具体化してください。'); if(L===''&&purpose==='自己PR')c.push('自己PRなら「入社後にも再現できる強み」までつなげると伝わりやすくなります。'); if(!c.length)c.push('主要項目は埋まっています。最後に声に出し、事実と一致しているか確認してください。'); $('checks').innerHTML=c.map(x=>`<li>${x}</li>`).join(''); }
+ids.forEach(id=>{$(id).value=localStorage.getItem('star-'+id)||'';$(id).addEventListener('input',build)});$('build').onclick=build;
+$('sample').onclick=()=>{ $('purpose').value='ガクチカ';$('strength').value='仕組みで周囲を動かす改善力';$('s').value='学園祭実行委員で、開催1か月前に出店団体の提出遅れが相次いでいました';$('t').value='私は出店団体との連絡担当として、締切遅れによる確認作業の停滞を解消する役割を担いました';$('a').value='まず未提出の理由を分類し、忘れ・不明点・担当者不在の3種類に分けました。その上で締切3日前の一斉リマインドに加え、不明点がある団体だけ個別確認する運用へ変更しました';$('r').value='期限内提出率が約70%から95%に上がり、運営側の確認作業も予定より前倒しできました';$('learn').value='相手を催促するだけでなく、遅れる理由を分けて仕組みに直すことで、周囲を動かしやすくなると学びました';build()};
+$('clear').onclick=()=>{if(confirm('入力内容を消しますか？')){ids.forEach(id=>{$(id).value='';localStorage.removeItem('star-'+id)});build()}};
+async function cp(id,btn){await navigator.clipboard.writeText($(id).textContent);const old=btn.textContent;btn.textContent='コピーしました';setTimeout(()=>btn.textContent=old,1100)}$('copy1').onclick=e=>cp('one',e.currentTarget);$('copy30').onclick=e=>cp('short',e.currentTarget);build();
+</script>
+</body></html>
