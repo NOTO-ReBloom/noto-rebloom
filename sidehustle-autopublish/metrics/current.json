@@ -1,7 +1,7 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-21T00:20:16+09:00",
-  "objective": "maximize total sales by improving acquisition, conversion, average order value, repeat demand, and the number of high-quality products without arbitrary production caps",
+  "version": 3,
+  "updatedAt": "2026-08-21T18:54:02+09:00",
+  "objective": "maximize total sales while enforcing verified-publication hard minimums and minimizing user intervention",
   "channels": {
     "BOOTH": {
       "status": "active",
@@ -26,69 +26,74 @@
     },
     "GitHubPages": {
       "status": "active",
-      "tools": ["charfit","booth-price-calc","event-checklist","event-reception-calc","digital-store-compare","digital-seller-profit","thesis-deadline-planner","thesis-progress-check","thesis-weekly-plan","thesis-question-builder","sponsor-plan-calc","sponsor-email-maker","handover-checklist","role-assignment","meeting-action"],
-      "latestVerifiedPublication": {"slug":"role-assignment","title":"学生団体・小規模NPO 役割分担メーカー","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/role-assignment/","publicUrlVerified":true,"verifiedAt":"2026-08-20T20:20:56+09:00"},
-      "pendingVerification": {"slug":"meeting-action","title":"会議アクション・宿題管理メーカー","expectedPath":"auto-tools/meeting-action/","commitCreated":true,"publicUrlVerified":false,"note":"Repository publication commit and index registration completed; formal GitHub Pages URL is not marked verified until an actual public page can be independently fetched."}
+      "latestVerifiedPublication": {"slug":"csv-cleaner-deduper","title":"CSV Cleaner & Duplicate Remover","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/","publicUrlVerified":true,"verifiedAt":"2026-08-21T15:16:57+09:00"},
+      "latestIndexUpdate": "2026-08-21T16:11:45+09:00"
     },
-    "futureChannels": {
-      "PayhipPartner": {"status":"gated_by_one_time_enrollment_and_traffic_fit"},
-      "KoFiOrPayhipSeller": {"status":"gated_until_proven_product_localization"},
-      "StripePaymentLinks": {"status":"gated_until_secure_fulfillment_or_license_use_case"},
-      "noteMembership": {"status":"gated_until_repeat_demand_signal"}
+    "MicrosoftStore": {
+      "status":"code_and_listing_ready_package_identity_pending",
+      "appId":"ms_csv_cleaner_deduper",
+      "productNameCandidate":"CSV Cleaner & Duplicate Remover",
+      "publicPwaVerified":true,
+      "partnerCenterProductIdentityReserved":false,
+      "requiredPngScreenshotGenerated":false,
+      "submittedForCertification":false,
+      "publicStoreUrlVerified":false,
+      "userActionRequiredNow":true,
+      "minimumUserAction":"Reserve the final product name/identity in Partner Center so the actual Package ID, Publisher display name and Publisher ID can be used for final package generation."
     },
-    "AmazonKDP": {"status":"disabled"},
-    "LINECreatorsMarket": {"status":"disabled"}
+    "AmazonKDP":{"status":"disabled"},
+    "LINECreatorsMarket":{"status":"disabled"}
   },
   "pipelineMonitor": {
-    "checkedAt": "2026-08-21T00:20:16+09:00",
-    "gmailImportantEventsFound": 0,
-    "publicUrlsNewlyVerified": 0,
-    "latestPublicEvent": {"service":"GitHubPages","slug":"role-assignment","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/role-assignment/","verified":true},
+    "checkedAt":"2026-08-21T18:54:02+09:00",
+    "gmailImportantEventsFound":0,
+    "publicUrlsNewlyVerified":0,
     "BOOTH": {
-      "level": "pipeline_critical",
-      "rawEnabledQueueCount": 1,
-      "verifiedPublishedInQueue": 0,
-      "effectiveUnpublishedQueueCount": 1,
-      "oldestId": "009_handover_os_20260820",
-      "oldestTitle": "学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
-      "oldestCreatedAt": "2026-08-20T17:40:00+09:00",
-      "oldestAgeMinutes": 400,
-      "consecutiveUnresolvedChecks": 5,
-      "retryGeneration": 15,
-      "lastRecoveryAction": "forceRetry generation advanced to 15 at 00:20 JST; stale local success invalidation, SHA-256 validation and strict anonymous buyer-visible commerce verification retained",
-      "userActionRequiredNow": false,
-      "note": "Exact-title public search still did not establish a buyer-visible official page. Search-index delay alone is not treated as failure; queue remains active and recoverable."
+      "level":"pipeline_critical",
+      "effectiveUnpublishedQueueCount":1,
+      "oldestId":"009_handover_os_20260820",
+      "oldestTitle":"学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
+      "oldestCreatedAt":"2026-08-20T17:40:00+09:00",
+      "oldestAgeMinutes":1514,
+      "consecutiveUnresolvedChecks":6,
+      "retryGeneration":22,
+      "nextPreferredConsumerWindow":"2026-08-21T19:10:00+09:00",
+      "fallbackMaterializationRequired":true,
+      "userActionRequiredNow":false,
+      "note":"Exact-title public search still established no buyer-visible official page. One brief strict retry is allowed at 19:10, then production must defer 009 and materialize/publish a distinct paid fallback; free Web publication does not discharge BOOTH debt."
     },
     "note": {
-      "level": "pipeline_critical",
-      "enabledQueueCount": 1,
-      "oldestId": "note_20260820_05",
-      "oldestCreatedAt": "2026-08-20T18:08:00+09:00",
-      "oldestAgeMinutes": 372,
-      "consecutiveUnresolvedChecks": 5,
-      "retryGeneration": 10,
-      "qualityLevel": "awaiting_verification",
-      "qualityWarningCount": 0,
-      "lastRecoveryAction": "forceRetry generation advanced to 10 at 00:20 JST; stale local success invalidation and reader-visible URL/title/price/paid-boundary/dedicated-cover requirements retained",
-      "userActionRequiredNow": false,
-      "note": "Exact-title public search still did not establish a reader-visible official page. The item remains queued and is not counted as completed."
+      "level":"pipeline_critical",
+      "enabledQueueCount":1,
+      "oldestId":"note_20260820_05",
+      "oldestCreatedAt":"2026-08-20T18:08:00+09:00",
+      "oldestAgeMinutes":1486,
+      "consecutiveUnresolvedChecks":6,
+      "retryGeneration":17,
+      "nextPreferredConsumerWindow":"2026-08-21T19:10:00+09:00",
+      "qualityLevel":"awaiting_verification",
+      "qualityWarningCount":0,
+      "fallbackMaterializationRequired":true,
+      "userActionRequiredNow":false,
+      "note":"Exact-title public search still established no reader-visible official page. One brief strict retry is allowed at 19:10, then production must defer the legacy item and materialize/publish a distinct paid fallback; free Web publication does not discharge note debt."
     },
-    "MicrosoftStore": {"status":"no_repository_state_found","gmailImportantEventsFound":0,"userActionRequiredNow":false,"note":"No Microsoft Store/Partner Center event was found in the connected Gmail window, and no repository state artifact was established in this run. No status or metrics inferred."},
-    "GitHubPages": {"pendingSlug":"meeting-action","repositoryCommitCreated":true,"publicUrlVerified":false,"userActionRequiredNow":false}
+    "publicationQuota": {
+      "note":{"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeDaySatisfied":6},
+      "BOOTH":{"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeDaySatisfied":9}
+    },
+    "MicrosoftStore":{"userActionRequiredNow":true,"reason":"Partner Center product identity has not been reserved; final Store package/certification cannot be completed without the actual identity values."}
   },
   "latestMarketLearning": {
-    "publicationReconciliation": "At 00:20 JST, exact-title public search still found no official buyer/reader-visible page for BOOTH 009 or note 05. Both pipelines remain critical after five unresolved checks, but no human-only authentication blocker is evidenced; retry generations were advanced to 15 and 10 respectively.",
-    "meetingActionFunnelBuild": "A new GitHub Pages free-tool artifact and index entry were committed for meeting-action to keep acquisition production moving while paid publication pipelines remain blocked. It is intentionally not counted as a formal publication until the public page itself is independently verified.",
-    "sourceCheckedAt": "2026-08-21T00:20:16+09:00"
+    "publicationReconciliation":"At 18:54 JST, neither BOOTH 009 nor note 05 has a verified public page. Both remain critical and must fail over to distinct paid candidates during the remaining PC windows.",
+    "salesObservation":"No new BOOTH/note/Microsoft Store sales, order, payout, review, warning or buyer-support email was found in the connected Gmail window.",
+    "microsoftStore":"CSV Cleaner & Duplicate Remover has a verified public PWA and prepared listing, but final Store packaging is blocked on Partner Center identity reservation and required Store screenshots.",
+    "sourceCheckedAt":"2026-08-21T18:54:02+09:00"
   },
   "optimizationRules": [
-    "Do not infer a public URL until independently verified.",
-    "Do not reduce price merely to increase item count; account for fixed per-order fees.",
-    "Prefer complementary bundles when they increase expected average order value and solve a coherent buyer problem.",
-    "Use actual sales and message data when available; otherwise state that evidence is still sparse.",
-    "Use sales thresholds as signals, not hard gates; strong external demand evidence can justify earlier bundle, license, localization, or funnel work.",
-    "Do not reactivate KDP or LINE without explicit user instruction.",
-    "Do not impose arbitrary weekly, daily, or per-run production caps. Increase output when quality, demand, originality, and policy compliance are maintained.",
-    "If a new-product idea is weak or publication is blocked, switch to a stronger or publishable candidate rather than ending without a concrete verified deliverable."
+    "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
+    "Do not reduce the daily verified-publication floor or erase carried debt.",
+    "If a blocked paid candidate fails a brief strict attempt, switch to a distinct qualified paid fallback in the same PC-available production run.",
+    "Free Web publication does not discharge note or BOOTH publication debt.",
+    "Do not reactivate KDP or LINE without explicit user instruction."
   ]
 }
