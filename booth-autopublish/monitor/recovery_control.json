@@ -1,27 +1,26 @@
 {
-  "version": 8,
-  "updatedAt": "2026-08-22T00:10:18+09:00",
-  "activeRecovery": {
-    "queueId": "001_interview_os",
-    "priority": "immediate_next_windows_consumer_cycle",
-    "reason": "Paid publication debt is outstanding. 009 is deferred after repeated strict failures. 001 is the active distinct paid fallback with reconciled joined SHA and must be attempted before any free-Web work.",
-    "expectedPriceJPY": 980,
-    "expectedJoinedSha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
-    "requireBuyerVisibleVerification": true,
+  "version": 9,
+  "updatedAt": "2026-08-22T00:18:30+09:00",
+  "activeRecovery": null,
+  "nextPaidMaterialization": {
+    "queueId": "event_risk_register_os",
+    "priority": "immediate",
+    "reason": "001 was removed from new-publication debt recovery because historical Windows state already recorded buyer-visible publication on 2026-08-19. 009 remains deferred after repeated strict failures. A genuinely new paid BOOTH candidate is now required.",
+    "requiredBuild": ["complete downloadable product","product description","preview images","price","encrypted payload","queue integrity SHA"],
     "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-    "requestedAt": "2026-08-22T00:10:18+09:00",
-    "forceRetry": true,
-    "forceRetryNonce": "paid-catchup-20260822T001000+0900",
-    "retryGeneration": 28,
-    "reconcileLocalSuccessState": true,
-    "clearOnlyAfterStrictVerification": true,
-    "doNotSelfDisable": true,
-    "fallbackPolicy": "If 001 cannot reach strict buyer-visible verification in this PC consumer cycle, defer it and activate a distinct newly materialized paid BOOTH candidate rather than returning to 009 or ending on monitoring/free-Web work."
+    "doNotFallbackToFreeWeb": true,
+    "doNotCountPreparationAsPublication": true
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
     "publicUrl": "https://booth.pm/ja/items/8739122",
     "reason": "Already counted once for 2026-08-20; never double-count quota."
+  },
+  "heldAlreadyPublishedNotNewDebt": {
+    "queueId": "001_interview_os",
+    "historicalPublicUrl": "https://booth.pm/ja/items/8736751",
+    "historicalVerifiedAt": "2026-08-19T09:15:39.271Z",
+    "reason": "Historical Windows state recorded buyer-visible publication. Reverification/ledger reconciliation is allowed later, but it cannot be counted as a new publication for current debt."
   },
   "heldBlocked": {
     "queueId": "009_handover_os_20260820",
