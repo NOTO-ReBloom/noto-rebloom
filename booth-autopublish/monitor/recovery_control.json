@@ -1,33 +1,29 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-21T05:10:27+09:00",
+  "version": 5,
+  "updatedAt": "2026-08-21T20:27:00+09:00",
   "activeRecovery": {
-    "queueId": "009_handover_os_20260820",
-    "priority": "next_pc_available_cycle",
-    "reason": "Publication debt remains outstanding. Queue index is currently retryGeneration=15 with forceRetryNonce=monitor-r15-20260821T002016+0900 and the reconciled joined encrypted-payload SHA-256. recovery_control had stale generation=10/nonce, so it is synchronized here to prevent the next Windows consumer cycle from following obsolete recovery state.",
+    "queueId": "001_interview_os",
+    "priority": "immediate_next_windows_consumer_cycle",
+    "reason": "009 has consumed repeated recovery cycles without buyer-visible completion. Switch to an older fully materialized encrypted paid item so the current paid publication debt can be discharged instead of repeating the same blocked item.",
     "expectedPriceJPY": 980,
-    "expectedJoinedSha256": "19c158e93d8104eb101ac0ed1f86cc2e83b6480277ca9e9b984fea8764eabd27",
     "requireBuyerVisibleVerification": true,
-    "requiredBuyerChecks": [
-      "buyerVisibleUrl",
-      "title",
-      "price",
-      "downloadableProductState",
-      "purchasePath"
-    ],
-    "requestedAt": "2026-08-21T05:10:27+09:00",
+    "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
+    "requestedAt": "2026-08-21T20:27:00+09:00",
     "forceRetry": true,
-    "forceRetryNonce": "monitor-r15-20260821T002016+0900",
-    "retryGeneration": 15,
+    "forceRetryNonce": "paid-catchup-001-20260821T202700+0900",
+    "retryGeneration": 23,
     "reconcileLocalSuccessState": true,
     "clearOnlyAfterStrictVerification": true,
     "doNotSelfDisable": true,
-    "pcAvailabilityPolicy": "User normally closes the Windows PC after 01:00 JST. Do not require publisher activity before the next PC-available production window; preserve debt and consume this recovery state when Windows is next available.",
-    "fallbackPolicy": "If 009 cannot reach strict buyer-visible commerce verification quickly in the next PC-available cycle, defer it and service another qualified BOOTH candidate instead of ending the production run without a verified publication."
+    "fallbackPolicy": "If 001 cannot reach strict buyer-visible commerce verification quickly, defer it and activate another qualified BOOTH candidate rather than returning to repeated 009-only recovery or ending without a verified paid publication."
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
     "publicUrl": "https://booth.pm/ja/items/8739122",
     "reason": "Already counted once for 2026-08-20 after buyer-visible publication verification. Preserve for any later strict commerce re-verification without double-counting quota."
+  },
+  "heldBlocked": {
+    "queueId": "009_handover_os_20260820",
+    "reason": "Repeated strict publication failures; preserved but no longer allowed to monopolize paid recovery cycles."
   }
 }
