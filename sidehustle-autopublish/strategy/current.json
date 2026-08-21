@@ -1,42 +1,48 @@
 {
-  "version": 11,
-  "updatedAt": "2026-08-21T21:31:00+09:00",
+  "version": 12,
+  "updatedAt": "2026-08-21T23:30:00+09:00",
   "objective": "maximize cumulative user profit while enforcing verified-publication floors, minimizing intervention, and amplifying only evidence-backed winners",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "winnerAmplification": {
     "currentState":"NO_PROVEN_WINNER_YET",
-    "evidence":"Current metrics record no BOOTH sales, no note sales/PV/likes, no Microsoft Store funnel metrics and no GitHub Pages conversion metrics.",
-    "decision":"Do not spend production capacity on speculative derivative families merely because source products are public. Keep low-build-cost coherent bundle hypotheses in backlog, but activate only when observed demand appears.",
-    "activationRule":"A theme becomes amplification-eligible after a clear relative quantitative signal (sale, conversion, acquisition, install/use outperformance) or multiple independent qualitative demand signals. Publication alone is insufficient.",
-    "firstCandidates":[
-      {"theme":"event+sponsor operations","candidate":"event_sponsor_bundle","why":"lowest incremental build cost and coherent complementary jobs; activate after any credible event/sponsor demand signal"},
-      {"theme":"job hunt consistency+interview","candidate":"jobhunt_interview_bundle","why":"coherent journey, but source verification and demand evidence must exist first"},
-      {"theme":"sponsor lifecycle","candidate":"post-contract fulfillment series","why":"distinct adjacent job with low cannibalization if pre/post contract scope stays separate"},
-      {"theme":"thesis workflow","candidate":"weekly recovery / interview coding companions","why":"distinct adjacent jobs; wait for thesis-theme signal"}
-    ]
+    "evidence":"Current repository metrics still contain no BOOTH sales, no note sales/PV/likes, no Microsoft Store funnel metrics and no GitHub Pages conversion metrics.",
+    "decision":"Do not spend production capacity on speculative derivative families merely because source products are public. Preserve coherent low-build-cost bundle hypotheses, but activate only after observed demand appears.",
+    "activationRule":"A theme becomes amplification-eligible after a clear relative quantitative signal or multiple independent qualitative demand signals. Publication alone is insufficient."
   },
-  "hardPublicationPolicy": {
-    "sourceOfTruth":"sidehustle-autopublish/publication_quota.json",
-    "debtFirst":true,
-    "rule":"Publication debt remains a separate operational constraint. Winner-amplification logic must not erase debt or invent performance evidence."
+  "cvLtvPolicy": {
+    "stateFile":"sidehustle-autopublish/optimization/cv_ltv_state.json",
+    "livePriceChangesTonight":"none",
+    "reason":"No product-level conversion or sales baseline exists; speculative repricing would reduce learning quality.",
+    "notePricingNextTest":"Use future high-intent practical know-how articles to test roughly 1,480-1,980 JPY when the promised outcome and reusable value justify it; retain lower-priced entry products and do not bulk-reprice existing articles yet.",
+    "boothAovNextTest":"Prepare coherent bundles only after a credible demand signal; keep standalone products unchanged and independently purchasable.",
+    "storeNextTest":"No product-page experiment before the CSV Cleaner listing is live and baseline traffic exists. After publication, preserve the initial certified listing as control and add source-specific campaign IDs to external links."
   },
   "measurementPriority": {
-    "MicrosoftStore":"Complete CSV Cleaner identity/submission first, then collect Store page views, install attempts, acquisitions, successful installs, first launches and source/campaign conversion before derivatives.",
-    "note":"Capture account-level article PV, likes and paid sales when available; compare themes on matched exposure windows.",
-    "BOOTH":"Capture orders/sales and, if available, product-page traffic/favorites; do not infer demand from buyer-visible status.",
-    "GitHubPages":"Capture tool traffic and outbound conversion/source evidence before treating a Web tool as a winner."
+    "MicrosoftStore":"Complete CSV Cleaner identity/submission first, persist the verified Store URL, then collect page views, acquisitions, installs, conversion, campaign/source data and health metrics before visual experiments or derivatives.",
+    "note":"Capture article PV, paid sales and likes on comparable exposure windows; use revenue per view rather than raw sale count alone when pricing evidence becomes available.",
+    "BOOTH":"Capture product-level orders/sales and any available traffic/favorite data; do not infer demand from buyer-visible status.",
+    "GitHubPages":"Capture tool traffic and outbound clicks; use a distinct Microsoft campaign ID per external source once a Store destination exists."
+  },
+  "crossSellPolicy": {
+    "verifiedExamples":[
+      "thesis-weekly-plan -> verified BOOTH thesis progress OS",
+      "interview-star-builder -> verified BOOTH AI job-hunt consistency OS"
+    ],
+    "rule":"One context-matched CTA after the free core workflow is preferred. Do not add unrelated or multiple competing CTAs without click/conversion evidence."
   },
   "productionPriority": [
-    "Recover paid publication debt with qualified distinct products during PC windows.",
-    "Complete Microsoft Store CSV Cleaner submission prerequisites and measurement plumbing.",
-    "Preserve conditional low-cost bundle candidates without calling them winners.",
-    "When observed performance arrives, move the strongest differentiated derivative to the front of product_backlog immediately."
+    "Recover paid publication debt with qualified distinct products during available PC windows.",
+    "Complete Microsoft Store CSV Cleaner identity/submission prerequisites and measurement plumbing.",
+    "For future high-intent note practical articles, test a higher price band without altering existing prices until exposure/sales data exist.",
+    "Preserve conditional low-cost BOOTH bundle candidates; activate only after observed demand.",
+    "When observed performance arrives, move the strongest differentiated derivative or monetization change to the front of product_backlog immediately."
   ],
   "antiSpamRules": [
     "No cosmetic app clones or name-only variants.",
     "Every derivative must solve a meaningfully different job, audience, format or advanced workflow.",
     "Do not cannibalize a winning single product with a cheaper bundle; bundles must add value and maintain sensible price architecture.",
-    "Do not infer sales, PV, conversion, acquisitions, installs or retention."
+    "Do not infer sales, PV, conversion, acquisitions, installs or retention.",
+    "Do not change multiple customer-facing variables before a measurable baseline exists."
   ]
 }
