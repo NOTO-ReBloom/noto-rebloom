@@ -1,6 +1,6 @@
 {
   "version": 7,
-  "updatedAt": "2026-08-21T23:05:00+09:00",
+  "updatedAt": "2026-08-21T23:10:00+09:00",
   "activeRecovery": {
     "queueId": "001_interview_os",
     "priority": "immediate_next_windows_consumer_cycle",
@@ -9,14 +9,14 @@
     "expectedJoinedSha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
     "requireBuyerVisibleVerification": true,
     "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-    "requestedAt": "2026-08-21T23:05:00+09:00",
+    "requestedAt": "2026-08-21T23:10:00+09:00",
     "forceRetry": true,
-    "forceRetryNonce": "paid-catchup-20260821T230500+0900",
-    "retryGeneration": 26,
+    "forceRetryNonce": "paid-catchup-20260821T231000+0900",
+    "retryGeneration": 27,
     "reconcileLocalSuccessState": true,
     "clearOnlyAfterStrictVerification": true,
     "doNotSelfDisable": true,
-    "fallbackPolicy": "If 001 cannot reach strict buyer-visible verification in the next PC consumer cycle, defer it and activate a distinct newly materialized paid BOOTH candidate rather than returning to 009 or ending on monitoring/free-Web work."
+    "fallbackPolicy": "If 001 cannot reach strict buyer-visible verification in this PC consumer cycle, defer it and activate a distinct newly materialized paid BOOTH candidate rather than returning to 009 or ending on monitoring/free-Web work."
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
