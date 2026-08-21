@@ -1,0 +1,97 @@
+name: Verify free NOTE publications
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7,37 * * * *'
+  push:
+    paths:
+      - 'sidehustle-autopublish/note/free_queue/index.json'
+      - '.github/workflows/note-free-public-verifier.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: note-free-public-verifier
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Discover and strictly verify reader-visible free articles
+        run: |
+          cat > /tmp/verify-free-note.mjs <<'NODE'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+          const queuePath='sidehustle-autopublish/note/free_queue/index.json';
+          const ledgerPath='sidehustle-autopublish/note/free_publication_ledger.json';
+          const q=JSON.parse(fs.readFileSync(queuePath,'utf8'));
+          const ledger=fs.existsSync(ledgerPath)?JSON.parse(fs.readFileSync(ledgerPath,'utf8')):{version:1,purpose:'Canonical independent ledger for reader-visible FREE note.com publications. Free entries never decrement paid publication debt.',entries:[]};
+          const norm=s=>String(s||'').replace(/\s+/g,' ').trim();
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1280,height:900}});
+          const candidates=new Map();
+          for(let pn=1;pn<=5;pn++){
+            const u=pn===1?'https://note.com/royal_lion645':`https://note.com/royal_lion645?page=${pn}`;
+            try{
+              const r=await page.goto(u,{waitUntil:'domcontentloaded',timeout:30000});
+              if(!r||r.status()!==200) continue;
+              await page.waitForTimeout(1600);
+              const links=await page.locator('a[href*="/n/"]').evaluateAll(as=>as.map(a=>({href:a.href,text:(a.textContent||'').replace(/\s+/g,' ').trim(),context:(a.closest('article,li,section,div')?.textContent||'').replace(/\s+/g,' ').trim()})));
+              for(const x of links){if(/^https:\/\/note\.com\/royal_lion645\/n\/n[a-zA-Z0-9]+/.test(x.href)) candidates.set(x.href.split('?')[0],x);}
+            }catch{}
+          }
+          const existing=new Map((ledger.entries||[]).map(x=>[x.id,x]));
+          let newly=0;
+          for(const item of q.entries||[]){
+            if(item.kind!=='free'||Number(item.price)!==0) continue;
+            if(existing.get(item.id)?.publicUrlVerified===true) continue;
+            const nt=norm(item.title);
+            let found=[...candidates.entries()].find(([u,x])=>norm(x.text).includes(nt)||norm(x.context).includes(nt));
+            if(!found) continue;
+            const url=found[0];
+            try{
+              const r=await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000}); await page.waitForTimeout(1600);
+              const status=r?.status()||0; const body=norm(await page.locator('body').innerText());
+              const titleOk=body.includes(nt);
+              const paidSignals=/購入して続きをみる|購入手続き|有料記事|この記事を購入|¥\s*[0-9]|￥\s*[0-9]/.test(body);
+              const coverCount=await page.locator('img').evaluateAll(xs=>xs.filter(x=>x.naturalWidth>=500&&x.naturalHeight>=200).length).catch(()=>0);
+              const freeState=!paidSignals;
+              const ok=status===200&&titleOk&&freeState&&coverCount>0;
+              if(!ok){console.log('FREE_NOTE_VERIFY_REJECT',item.id,{status,titleOk,freeState,coverCount,url});continue;}
+              const rec={id:item.id,title:item.title,publicUrl:url,publicUrlVerified:true,freeStateVerified:true,coverImageVerified:true,verifiedAt:new Date().toISOString(),verification:{status,titleOk,freeState,largeImageCount:coverCount}};
+              existing.set(item.id,rec); newly++;
+              item.publicUrlVerified=true; item.publicUrl=url; item.enabled=false; item.verificationState='reader_visible_free_verified';
+              console.log('FREE_NOTE_VERIFY_SUCCESS',item.id,url);
+            }catch(e){console.log('FREE_NOTE_VERIFY_ERROR',item.id,String(e));}
+          }
+          await browser.close();
+          ledger.version=1; ledger.updatedAt=new Date().toISOString(); ledger.entries=[...existing.values()];
+          fs.writeFileSync(ledgerPath,JSON.stringify(ledger,null,2)+'\n');
+          q.updatedAt=new Date().toISOString(); fs.writeFileSync(queuePath,JSON.stringify(q,null,2)+'\n');
+          console.log('FREE_NOTE_VERIFY_DONE newly='+newly+' total='+ledger.entries.length);
+          NODE
+          node /tmp/verify-free-note.mjs
+      - name: Commit independent verification results
+        run: |
+          git config user.name 'note-free-verifier'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/free_queue/index.json sidehustle-autopublish/note/free_publication_ledger.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Record reader-visible free NOTE publications'
+          git pull --rebase origin main
+          git push origin HEAD:main
