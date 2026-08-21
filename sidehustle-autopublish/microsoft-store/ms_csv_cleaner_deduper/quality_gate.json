@@ -1,8 +1,8 @@
 {
-  "version": 1,
-  "checkedAt": "2026-08-21T14:14:00+09:00",
+  "version": 2,
+  "checkedAt": "2026-08-21T15:16:57+09:00",
   "appId": "ms_csv_cleaner_deduper",
-  "status": "submission_ready_except_partner_identity_and_required_screenshot_upload",
+  "status": "public_pwa_verified_waiting_store_assets_and_partner_identity",
   "checks": {
     "coreUseCaseClear": true,
     "localOnlyDataProcessing": true,
@@ -22,21 +22,33 @@
     "serviceWorkerPresent": true,
     "offlineShellCache": true,
     "httpsTarget": true,
+    "publicAppHttp200": true,
+    "publicAppTitleVerified": true,
+    "publicAppMajorUiVerified": true,
+    "publicAppPrimaryFunctionVerified": true,
     "listingDescriptionPrepared": true,
     "listingFeaturesPrepared": true,
     "listingKeywordsPrepared": true,
     "appIconSourcePresent": true,
+    "requiredPngScreenshotGenerated": false,
     "requiredPngScreenshotUploadedToPartnerCenter": false,
     "partnerCenterProductIdentityReserved": false,
     "finalPwaBuilderPackageGeneratedWithPartnerIdentity": false,
     "submittedForCertification": false,
     "publicStoreUrlVerified": false
   },
+  "publicVerification": {
+    "publicUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
+    "verifiedAt": "2026-08-21T15:16:57+09:00",
+    "httpStatus": 200,
+    "functionalTest": "3-row sample CSV with one normalized duplicate produced 2 output rows and duplicate count 1"
+  },
   "qaNotes": [
     "CSV parsing is implemented without external libraries so imported file contents remain local.",
     "Deduplication defaults to full-row equality and supports selected-column keys.",
     "Export uses UTF-8 BOM to improve compatibility with Japanese Excel workflows.",
     "No network API is used for CSV contents.",
+    "General-user PWA URL has passed HTTP, title, UI and browser interaction verification.",
     "Final Microsoft package generation must use the actual Partner Center Package ID, Publisher display name and Publisher ID."
   ],
   "sourceRequirements": {
