@@ -1,7 +1,7 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-21T05:42:00+09:00",
-  "purpose": "Maintain more qualified publishable candidates than the remaining hard quota so blocked items never consume an entire PC-available production cycle.",
+  "version": 3,
+  "updatedAt": "2026-08-21T09:28:00+09:00",
+  "purpose": "Maintain more qualified publishable candidates than the remaining hard quota so blocked items never consume an entire PC-available production cycle, while separating confirmed winners from provisional amplification candidates.",
   "publicationDebtFirst": true,
   "pcAssumption": "Windows publisher is normally unavailable after 01:00 JST; prepare assets and queues in cloud time, publish during PC-available windows ending with 23:10 and 00:10 catch-up.",
   "note": {
@@ -48,12 +48,91 @@
       {"id":"ms_image_batch_optimizer","concept":"EC・SNS向けプリセット付き画像一括リサイズ・圧縮・WebP変換","priority":4,"monetization":"only pursue with strong niche differentiation","evidence":"Current Store search shows many direct image compressor/resizer competitors, so generic implementation is deprioritized."}
     ]
   },
+  "amplificationAnalysis": {
+    "checkedAt": "2026-08-21T09:28:00+09:00",
+    "confirmedWinners": [],
+    "winnerStatus": "No confirmed winner can be declared yet because observed BOOTH sales, note sales/PV and Microsoft Store acquisition/install/CVR metrics are still absent. Do not convert asset density into a fabricated demand signal.",
+    "provisionalCandidates": [
+      {
+        "clusterId": "event_sponsor_operations",
+        "originalWinner": null,
+        "status": "provisional_multi-signal_cluster_not_sales_winner",
+        "evidence": [
+          "Two complementary BOOTH assets are already buyer-visible: event operations OS and sponsor CRM.",
+          "Two paid note articles are reader-visible in the same operational funnel: sponsor pipeline management and event-day manual design.",
+          "Four free acquisition tools already cover event checklist/reception and sponsor plan/email workflows.",
+          "The existing event_sponsor_bundle requires low incremental production work because both paid source assets are already published."
+        ],
+        "derivatives": [
+          "event_sponsor_bundle",
+          "sponsor_deliverables_tracker",
+          "event_risk_register_os",
+          "note_event_sponsor_followup"
+        ],
+        "additionalExpectedProfit": null,
+        "opportunityBand": "highest-provisional",
+        "cannibalizationConcern": "Low for bundle and post-contract tracker if each solves a distinct stage; moderate if event-risk content duplicates the event operations OS without deeper risk workflow.",
+        "productionCost": "low for bundle; medium for distinct new tracker/OS",
+        "priority": 1,
+        "guardrail": "Proceed with the low-cost coherent bundle as a quota-qualified candidate, but do not launch a large series until actual sales/CVR signals appear."
+      },
+      {
+        "clusterId": "thesis_research_workflow",
+        "originalWinner": null,
+        "status": "provisional_asset-density_cluster_not_sales_winner",
+        "evidence": [
+          "One buyer-visible BOOTH thesis/research progress OS exists.",
+          "One reader-visible paid note article on seven-box thesis progress management exists.",
+          "Four free tools already cover thesis deadline planning, progress diagnosis, weekly planning and research-question design.",
+          "The assets map to distinct stages of one research workflow, reducing cross-sell friction."
+        ],
+        "derivatives": [
+          "research_interview_coding_os",
+          "note_thesis_weekly_review"
+        ],
+        "additionalExpectedProfit": null,
+        "opportunityBand": "medium-provisional",
+        "cannibalizationConcern": "Low if interview coding focuses on qualitative analysis rather than general progress management.",
+        "productionCost": "medium",
+        "priority": 2,
+        "guardrail": "Keep as second cluster until sales/PV or free-tool referral data confirm demand."
+      },
+      {
+        "clusterId": "small_org_handover_roles_meetings",
+        "originalWinner": null,
+        "status": "provisional_acquisition-cluster_not_sales_winner",
+        "evidence": [
+          "Free tools now cover handover, role assignment, meeting actions and agenda timeboxing.",
+          "A handover BOOTH OS and handover paid note article are in the publication pipeline but are not yet strict-publication verified.",
+          "The cluster solves linked operational problems with clear functional separation, but paid demand has not yet been observed."
+        ],
+        "derivatives": [
+          "small_org_role_os",
+          "note_student_org_role_design",
+          "note_ai_small_org_workflow"
+        ],
+        "additionalExpectedProfit": null,
+        "opportunityBand": "medium-provisional",
+        "cannibalizationConcern": "Moderate if role/handover products repeat the same checklists; require clear RACI/load/backup-owner differentiation.",
+        "productionCost": "medium",
+        "priority": 3,
+        "guardrail": "First verify the existing handover paid assets; only then use paid performance to decide whether to expand the series."
+      }
+    ],
+    "measurementPriority": [
+      "Capture BOOTH sales by product/date before declaring a paid winner.",
+      "Capture note sales/PV/likes by article before amplifying a note series.",
+      "Capture Microsoft Store page views/acquisitions/installs/CVR before creating app derivatives.",
+      "Add measurable campaign/referral identifiers from free tools to paid/Store destinations when a verified destination exists."
+    ]
+  },
   "rules": [
     "At the next PC-available production run, service carried debt before treating today's quota as satisfied.",
     "If the active candidate cannot reach strict buyer/reader-visible verification quickly, defer it and switch to a fallback candidate.",
     "Maintain more qualified candidates than the remaining hard minimum so a blocked item does not stall the day.",
     "Queue insertion, local success, admin/editor URLs and commits do not count as publication.",
     "Do not publish near-duplicate low-value products merely to satisfy count; use a distinct qualified fallback instead.",
-    "Do not require Windows execution after 01:00 JST; cloud preparation continues and debt remains intact."
+    "Do not require Windows execution after 01:00 JST; cloud preparation continues and debt remains intact.",
+    "Do not label a product or cluster a winner without observed performance evidence; provisional clusters may be prioritized only for low-cost, coherent experiments."
   ]
 }
