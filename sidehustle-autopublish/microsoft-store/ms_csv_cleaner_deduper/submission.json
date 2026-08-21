@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-21T14:13:00+09:00",
+  "id": "ms_csv_cleaner_deduper",
+  "productNameCandidate": "CSV Cleaner & Duplicate Remover",
+  "channel": "Microsoft Store",
+  "appType": "PWA",
+  "pricing": "Free",
+  "primaryLanguage": "ja-JP",
+  "category": "Productivity",
+  "publicAppUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
+  "sourcePath": "auto-tools/csv-cleaner-deduper/",
+  "listing": {
+    "description": "CSV Cleaner & Duplicate Removerは、CSVファイルの重複行、不要な空白、空行、列名の揺れをすばやく整理するローカル処理ツールです。UTF-8とShift-JISの読み込みに対応し、重複判定に使う列を選んでデータを整理できます。処理したCSVはUTF-8 CSVとして保存できます。\n\nファイル内容は外部サーバーへ送信せず、ブラウザ内で処理します。顧客リスト、アンケート結果、商品マスタ、イベント参加者一覧など、CSVを日常的に扱う作業の前処理を短時間で行えます。",
+    "features": [
+      "重複行を全列または選択列で削除",
+      "セル前後の空白を一括削除",
+      "連続する半角・全角空白を正規化",
+      "完全な空行を削除",
+      "列名の空白を整理",
+      "UTF-8 / Shift-JIS CSVの読み込み",
+      "最大100行の結果プレビュー",
+      "UTF-8 CSVとしてローカル保存",
+      "ファイル内容を外部送信しないローカル処理",
+      "PWAとしてインストール・オフライン利用可能"
+    ],
+    "keywords": ["CSV","重複削除","CSVクリーナー","データ整理","Shift-JIS","表計算","ローカル処理"],
+    "shortDescription": "CSVの重複・空白・空行を端末内だけで整理。UTF-8 / Shift-JIS対応の無料CSVクリーナー。",
+    "privacyStatement": "The app processes imported CSV data locally in the user's browser and does not transmit CSV contents to an external server."
+  },
+  "submissionRequirements": {
+    "https": true,
+    "webAppManifest": true,
+    "serviceWorker": true,
+    "descriptionPrepared": true,
+    "featuresPrepared": true,
+    "privacyTextPrepared": true,
+    "screenshotRequired": true,
+    "recommendedScreenshotCount": 4,
+    "desktopScreenshotMinimum": "1366x768 PNG",
+    "partnerCenterNameReservationRequired": true,
+    "pwabuilderPackageRequiredAfterReservation": true
+  },
+  "state": "code_and_listing_ready_package_identity_pending",
+  "blockingUserOnlySteps": [
+    "Reserve the final product name in Partner Center if no existing reserved identity is available.",
+    "Use Partner Center package identity values when generating the final PWABuilder Windows package.",
+    "Submit for certification after required Store screenshots/package fields are uploaded."
+  ]
+}
