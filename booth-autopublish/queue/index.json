@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-22T00:05:15+09:00",
+  "updatedAt": "2026-08-22T00:18:00+09:00",
   "retryGeneration": 28,
   "entries": [
     {
@@ -35,15 +35,13 @@
       "chunks": ["booth-autopublish/queue/001_interview_os.enc.part01.txt","booth-autopublish/queue/001_interview_os.enc.part02.txt","booth-autopublish/queue/001_interview_os.enc.part03.txt","booth-autopublish/queue/001_interview_os.enc.part04.txt","booth-autopublish/queue/001_interview_os.enc.part05.txt","booth-autopublish/queue/001_interview_os.enc.part06.txt"],
       "sha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
       "createdAt": "2026-08-18T20:00:00+09:00",
-      "enabled": true,
-      "forceRetry": true,
-      "forceRetryNonce": "paid-catchup-20260822T001000+0900",
+      "enabled": false,
+      "forceRetry": false,
       "canonicalQueueId": "001_interview_os",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-      "invalidateLocalSuccessWithoutVerifiedLedger": true,
-      "recoveryMode": "recover same-title draft first; if not buyer-visible, clean rebuild; then anonymously verify exact title, 980 JPY price, downloadable-product state and purchase/cart path"
+      "holdReason": "Removed from new-publication debt recovery after historical Windows state proved buyer-visible publication at https://booth.pm/ja/items/8736751 on 2026-08-19. Preserve for later strict commerce re-verification and canonical ledger reconciliation, but never count a re-verification as a new publication."
     }
   ]
 }
