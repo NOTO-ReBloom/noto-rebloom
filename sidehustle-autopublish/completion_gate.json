@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-22T01:39:00+09:00",
+  "purpose": "Suppress intermediate reporting and treat the current production cycle as complete only after every required channel condition is actually satisfied or a verified human-only blocker stops all remaining publication paths.",
+  "reportingPolicy": {
+    "intermediateProgressReports": false,
+    "diagnosticOnlyReports": false,
+    "queueOrCommitOnlyReports": false,
+    "reportOnlyWhen": [
+      "all completion conditions below are satisfied",
+      "or a verified human-only blocker prevents all remaining required publication work and exactly one minimal user action is needed"
+    ]
+  },
+  "completionConditions": {
+    "notePaid": {
+      "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
+      "requireCarriedDebtZero": true,
+      "requireCurrentDailyTargetSatisfied": true,
+      "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
+    },
+    "noteFree": {
+      "currentBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
+      "currentBatchCount": 6,
+      "requireNoteCrossPostOfCurrentBatch": true,
+      "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
+      "rule": "GitHub Pages publication of the six insight pages is useful acquisition inventory but does not substitute for the requested note free-article cross-post when the Windows note publisher becomes available."
+    },
+    "BOOTH": {
+      "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
+      "requireCarriedDebtZero": true,
+      "requireCurrentDailyTargetSatisfied": true,
+      "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
+    },
+    "GitHubPages": {
+      "requireCurrentFreeInsightBatchVerified": true,
+      "verifiedLedger": "insights/publication_ledger.json",
+      "currentVerifiedCount": 6
+    },
+    "MicrosoftStore": {
+      "requireAtLeastOneHighestQualitySubmissionReadyPerDay": true,
+      "requireStorePublicPageVerificationWhenCertificationHasCompleted": true,
+      "doNotRushQualityGate": true
+    }
+  },
+  "executionPolicy": {
+    "singleRunMayPublishMany": true,
+    "switchCandidatesAfterBriefRecoverableFailure": true,
+    "doNotStopAfterFirstSuccessWhileDebtRemains": true,
+    "after0100DoNotAssumeWindowsOnline": true,
+    "after0100CloudWork": ["article production", "product production", "encryption", "queue repair", "ledger reconciliation", "publisher patch preparation", "Store submission preparation"],
+    "nextWindowsPriority": ["oldest note paid debt", "oldest BOOTH debt", "remaining current-day paid quota", "note free cross-post batch"]
+  },
+  "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],
+  "antiFalseCompletion": [
+    "Do not report a commit as publication.",
+    "Do not report PUBLISH_SUCCESS without public verification.",
+    "Do not report an editor/admin URL as publication.",
+    "Do not reduce debt based on free content.",
+    "Do not invent public URLs.",
+    "Do not send intermediate status to the user."
+  ]
+}
