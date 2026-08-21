@@ -1,7 +1,7 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-21T00:20:16+09:00",
-  "lastCheckedAt": "2026-08-21T00:20:16+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-21T21:58:22+09:00",
+  "lastCheckedAt": "2026-08-21T21:58:22+09:00",
   "notifiedEvents": [
     {
       "eventId": "githubpages:role-assignment:verified:2026-08-20T20:20:56+09:00",
@@ -10,13 +10,29 @@
       "title": "学生団体・小規模NPO 役割分担メーカー",
       "publicUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/role-assignment/",
       "notifiedAt": "2026-08-20T20:22:00+09:00"
+    },
+    {
+      "eventId": "githubpages:event-weather-loss:verified:2026-08-21T21:32:22+09:00",
+      "type": "formal_publication",
+      "service": "GitHubPages",
+      "title": "イベント雨天・中止損失計算機",
+      "publicUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/event-weather-loss/",
+      "notifiedAt": "2026-08-21T21:58:22+09:00"
+    },
+    {
+      "eventId": "microsoftstore:ms_csv_cleaner_deduper:partner_identity_required:2026-08-21",
+      "type": "user_action_required",
+      "service": "MicrosoftStore",
+      "title": "CSV Cleaner & Duplicate Remover",
+      "reason": "Partner Center product identity has not been reserved, so the final Store package cannot be generated with the real Package ID / Publisher values.",
+      "notifiedAt": "2026-08-21T21:58:22+09:00"
     }
   ],
   "gmailEventIds": [],
   "pipelineState": {
-    "BOOTH": {"level":"pipeline_critical","oldestId":"009_handover_os_20260820","consecutiveUnresolvedChecks":5,"userActionRequired":false,"retryGeneration":15},
-    "note": {"level":"pipeline_critical","oldestId":"note_20260820_05","consecutiveUnresolvedChecks":5,"userActionRequired":false,"retryGeneration":10},
-    "MicrosoftStore": {"level":"unknown_no_repository_state","userActionRequired":false},
-    "GitHubPages": {"pendingVerificationSlug":"meeting-action","pendingTitle":"会議アクション・宿題管理メーカー","commitCreated":true,"formalPublicUrlVerified":false}
+    "BOOTH": {"level":"pipeline_critical","oldestId":"001_interview_os","consecutiveUnresolvedChecks":1,"userActionRequired":false,"retryGeneration":25,"verifiedNewPublicationsThisCheck":0},
+    "note": {"level":"pipeline_critical","oldestId":"note_20260821_06_ai_small_org_workflow","enabledCandidateCount":6,"consecutiveUnresolvedChecks":1,"userActionRequired":false,"retryGeneration":18,"verifiedNewPublicationsThisCheck":0},
+    "MicrosoftStore": {"level":"blocked_user_identity_reservation","appId":"ms_csv_cleaner_deduper","userActionRequired":true,"submittedForCertification":false,"publicStoreUrlVerified":false},
+    "GitHubPages": {"latestVerifiedSlug":"event-weather-loss","latestVerifiedTitle":"イベント雨天・中止損失計算機","formalPublicUrlVerified":true,"publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/event-weather-loss/"}
   }
 }
