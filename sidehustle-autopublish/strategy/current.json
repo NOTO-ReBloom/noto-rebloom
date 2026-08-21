@@ -1,110 +1,141 @@
 {
-  "version": 13,
-  "updatedAt": "2026-08-21T23:45:00+09:00",
-  "objective": "maximize cumulative user profit while enforcing verified-publication floors, minimizing intervention, and amplifying only evidence-backed winners",
+  "version": 14,
+  "updatedAt": "2026-08-22T05:42:00+09:00",
+  "objective": "maximize cumulative user profit while preserving paid publication floors/debt, building a measurable free-to-paid note funnel, and minimizing user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
+  "priorityOrder": [
+    "previous-day paid publication debt",
+    "current-day paid publication quota",
+    "free-to-paid note funnel acquisition and measurement",
+    "Microsoft Store submission",
+    "other profit optimization"
+  ],
   "hardPublicationFloors": {
-    "policy": "publication_quota.json is a hard floor; expected-profit optimization may not reduce it",
-    "asOf": "2026-08-21T23:45:00+09:00",
+    "policy": "publication_quota.json remains the hard paid floor and debt ledger; free note articles never decrement it",
+    "asOf": "2026-08-22T05:42:00+09:00",
     "note": {
-      "carriedDebtIntoAug21": 1,
-      "aug21Target": 5,
-      "aug21StrictVerified": 0,
-      "aug21Unmet": 5,
-      "projectedDebtAtRolloverIfNoNewStrictVerificationBeforeMidnight": 6,
-      "aug22DailyTarget": 5,
-      "projectedTotalStrictPublicationsRequiredOnAug22BeforeDaySatisfied": 11
+      "carriedDebt": 6,
+      "dailyTarget": 5,
+      "todayStrictVerified": 0,
+      "totalStrictVerifiedRequiredBeforeDaySatisfied": 11,
+      "readyPaidCandidates": 11,
+      "decision": "Use the complete eleven-item ready paid batch at the first Windows-available session; continue across recoverable per-item failures rather than stopping after one success."
     },
     "BOOTH": {
-      "carriedDebtIntoAug21": 4,
-      "aug21Target": 5,
-      "aug21StrictVerified": 0,
-      "aug21Unmet": 5,
-      "projectedDebtAtRolloverIfNoNewStrictVerificationBeforeMidnight": 9,
-      "aug22DailyTarget": 5,
-      "projectedTotalStrictPublicationsRequiredOnAug22BeforeDaySatisfied": 14
+      "carriedDebt": 9,
+      "dailyTarget": 5,
+      "todayStrictVerified": 0,
+      "totalStrictVerifiedRequiredBeforeDaySatisfied": 14,
+      "readyPaidCandidates": 14,
+      "decision": "Use the complete 010-023 genuine-new paid batch at the first Windows-available session; do not return to deferred 009 until the batch has been attempted."
     },
-    "rolloverRule": "Do not zero-clear missed publications. Any strict verification completed before midnight must reduce the projected rollover debt one-for-one; otherwise carry the full projected debt forward.",
-    "pcConstraint": "Do not depend on Windows execution after 01:00 JST. Use 00:10 only when the PC is available, then front-load recovery during the next day."
+    "pcConstraint": "After 01:00 JST do not assume Windows is online. Cloud production and planning continue; publication debt remains until strict reader/buyer-visible verification."
   },
-  "winnerAmplification": {
-    "currentState": "NO_PROVEN_WINNER_YET",
-    "evidence": "Repository metrics still contain no observed BOOTH sales, note sales/PV/likes, Microsoft Store funnel metrics, or GitHub Pages conversion metrics.",
-    "decision": "Do not consume debt-recovery production capacity on speculative derivatives merely because source products are public. Preserve low-cost hypotheses but activate only after demand evidence.",
-    "activationRule": "A theme becomes amplification-eligible after a clear relative quantitative signal or multiple independent qualitative demand signals. Publication alone is insufficient."
+  "noteFunnel": {
+    "source": "sidehustle-autopublish/note/funnel_strategy.json",
+    "mode": "measured_free_acquisition_plus_paid_conversion",
+    "firstPartyMetricsState": "No note sales, PV, likes, follows, related-paid clicks or related-paid purchases are currently recorded, so no winning theme is claimed and the initial free cadence is unchanged.",
+    "freeExperiment": {
+      "startDate": "2026-08-22",
+      "durationDays": 14,
+      "initialTargetPerDay": 2,
+      "status": "maintain_initial_cadence_until_comparable_24h_72h_7d_metrics_exist",
+      "measurementWindows": ["24h", "72h", "7d"],
+      "metrics": ["PV", "likes", "follows", "related paid clicks", "related paid purchases", "revenue"],
+      "rule": "Never compare raw lifetime metrics across different article ages and never fabricate unavailable metrics."
+    },
+    "readyFreeInventory": {
+      "draftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
+      "freeQueue": "sidehustle-autopublish/note/free_queue/index.json",
+      "count": 6,
+      "platformVerifiedCount": 0
+    },
+    "nextProductionFactoryNoteSet": {
+      "phaseA_paidDebtPublication": [
+        "note_20260821_06_ai_small_org_workflow",
+        "note_20260821_07_event_sponsor_followup",
+        "note_20260821_10_thesis_weekly_review",
+        "note_20260821_11_ai_jobhunt_answer_audit",
+        "note_20260821_08_creator_pricing",
+        "note_20260821_09_student_org_role_design",
+        "note_20260822_12_event_cancel_decision",
+        "note_20260822_13_meeting_decision_log",
+        "note_20260822_14_sponsor_menu_design",
+        "note_20260822_15_research_interview_coding",
+        "note_20260822_16_jobhunt_company_research"
+      ],
+      "phaseB_freePublicationInitialTwo": [
+        {
+          "freeId": "free_note_20260822_02_sponsor_followup_timing",
+          "pairedPaidId": "note_20260821_07_event_sponsor_followup",
+          "reason": "Current public note results show recent active sponsor-sales content and a strong practical search intent around sponsorship execution; publish as a useful timing guide, adding one paid CTA only after the paid URL is independently verified."
+        },
+        {
+          "freeId": "free_note_20260822_05_thesis_weekly_review",
+          "pairedPaidId": "note_20260821_10_thesis_weekly_review",
+          "reason": "Graduation-thesis workflow content has persistent search utility and the existing free tool cluster already supports thesis planning; use this as the second initial acquisition test."
+        }
+      ],
+      "phaseC_freeFallbackOrder": [
+        "free_note_20260822_06_es_interview_consistency",
+        "free_note_20260822_01_student_org_bus_factor",
+        "free_note_20260822_04_role_design_three_owners",
+        "free_note_20260822_03_digital_product_pricing_myths"
+      ],
+      "phaseD_nextCloudManuscriptBatchIfCapacityRemains": [
+        {
+          "kind": "free",
+          "workingTitle": "協賛金額を決める前に整理したい5つのこと｜企業が社内説明しやすい提案の土台",
+          "pairedPaidId": "note_20260822_14_sponsor_menu_design",
+          "role": "problem diagnosis and checklist -> paid full sponsor-menu design workflow"
+        },
+        {
+          "kind": "free",
+          "workingTitle": "イベントを中止するか迷ったとき最初に見る4条件｜雨・警報・交通・会場を分けて考える",
+          "pairedPaidId": "note_20260822_12_event_cancel_decision",
+          "role": "quick decision framework -> paid complete cancellation decision table"
+        },
+        {
+          "kind": "free",
+          "workingTitle": "卒論インタビューの発言をまとめる前に｜コード化で迷いやすい4つのポイント",
+          "pairedPaidId": "note_20260822_15_research_interview_coding",
+          "role": "common mistakes -> paid coding workflow"
+        },
+        {
+          "kind": "free",
+          "workingTitle": "企業研究で集めるだけになっていない？｜ESにつながる情報と不要な情報の分け方",
+          "pairedPaidId": "note_20260822_16_jobhunt_company_research",
+          "role": "problem awareness -> paid five-column company research workflow"
+        }
+      ],
+      "productionRule": "Do not create more near-duplicate manuscripts merely because cloud capacity exists. The ready 11 paid + 6 free manuscripts already cover the immediate pipeline. Create Phase D only after publication/retry work is prepared or when the next factory run has spare cloud-only capacity."
+    }
   },
   "marketSignalsChecked": {
-    "checkedAt": "2026-08-21T23:45:00+09:00",
-    "note": "Recent public note listings show active AI-practical paid content commonly offered around 980-1,980 JPY, supporting later higher-price testing for differentiated practical outcomes, but no internal conversion baseline exists yet.",
-    "BOOTH": "Current BOOTH search shows a large Excel-template supply with many low-priced generic products, so new BOOTH debt-recovery candidates should be sharply job-specific rather than generic spreadsheet utilities.",
-    "MicrosoftStore": "No internal Store funnel evidence yet; finish CSV Cleaner identity/submission and measurement before derivative expansion.",
-    "rule": "External market signals may rank qualified candidates but may not override hard publication floors or substitute for internal observed sales/conversion data."
+    "checkedAt": "2026-08-22T05:42:00+09:00",
+    "noteSponsor": "Fresh public note search returned multiple 2026 sponsor/sponsorship-sales articles, including a May 2026 practical sponsor-sales article and August 2026 sponsorship commentary, supporting sponsorship execution as a live content theme but not proving purchase conversion for this account.",
+    "noteThesis": "Public note search continues to surface thesis workflow/management content; use it as a durable search-intent test, not as evidence of paid conversion.",
+    "rule": "External public evidence may choose between qualified hypotheses but never substitutes for first-party PV, click, purchase or revenue data."
   },
-  "productionWindowsAug22": [
-    {
-      "time": "00:10",
-      "priority": "emergency catch-up while PC may still be available",
-      "noteOrder": ["note_20260821_06_ai_small_org_workflow", "note_20260821_07_event_sponsor_followup", "note_20260821_10_thesis_weekly_review", "note_20260821_11_ai_jobhunt_answer_audit", "note_20260821_08_creator_pricing", "note_20260821_09_student_org_role_design"],
-      "boothOrder": ["001_interview_os", "event_sponsor_bundle", "event_risk_register_os", "small_org_role_os", "sponsor_deliverables_tracker"],
-      "rule": "If the first candidate fails brief strict publication verification, switch immediately to the next distinct qualified candidate in the same window."
-    },
-    {
-      "time": "07:10",
-      "priority": "oldest debt first; ensure multiple publishable candidates are ready before attempting publication",
-      "noteOrder": ["note_20260821_06_ai_small_org_workflow", "note_20260821_07_event_sponsor_followup", "note_20260821_10_thesis_weekly_review"],
-      "boothOrder": ["001_interview_os", "event_sponsor_bundle", "event_risk_register_os"]
-    },
-    {
-      "time": "10:10",
-      "priority": "continue debt recovery and materialize replacements for any blocked candidates",
-      "noteOrder": ["note_20260821_11_ai_jobhunt_answer_audit", "note_20260821_08_creator_pricing", "note_20260821_09_student_org_role_design"],
-      "boothOrder": ["small_org_role_os", "sponsor_deliverables_tracker", "research_interview_coding_os"]
-    },
-    {
-      "time": "13:10",
-      "priority": "debt recovery before current-day quota",
-      "boothOrder": ["volunteer_shift_comms_os", "creator_profit_pricing_os", "jobhunt_interview_bundle"]
-    },
-    {
-      "time": "16:10",
-      "priority": "current-day quota only after prior debt has been serviced; otherwise keep debt candidates ahead"
-    },
-    {
-      "time": "19:10",
-      "priority": "front-load remaining Windows-dependent publications before late evening"
-    },
-    {
-      "time": "22:10",
-      "priority": "normal late catch-up; no analysis-only completion"
-    },
-    {
-      "time": "23:10",
-      "priority": "critical same-day recovery; keep switching candidates until strict publication succeeds or all prepared candidates have distinct non-recoverable blockers"
-    },
-    {
-      "time": "00:10",
-      "priority": "final PC-available recovery window before 01:00 assumption; then preserve remaining debt for next PC session"
-    }
-  ],
-  "crossSellPolicy": {
-    "verifiedExamples": [
-      "thesis-weekly-plan -> verified BOOTH thesis progress OS",
-      "interview-star-builder -> verified BOOTH AI job-hunt consistency OS"
-    ],
-    "rule": "One context-matched CTA after the free core workflow is preferred. Do not add unrelated or multiple competing CTAs without click/conversion evidence."
+  "MicrosoftStore": {
+    "currentPriority": "CSV Cleaner & Duplicate Remover remains the first Store submission candidate, but it is behind paid debt/quota and the initial note funnel publication priority.",
+    "state": "public PWA verified; repository metrics still report Partner Center identity reservation/package identity and required Store screenshot/submission work incomplete",
+    "humanOnlyBlocker": "If product identity still truly requires Partner Center manual reservation, request only that minimum action when the production factory reaches the Store step; do not let it block note/BOOTH debt recovery.",
+    "amplificationRule": "Do not create Store derivatives until page-view/acquisition/install evidence exists."
   },
-  "secondaryProfitPriorityAfterFloors": [
-    "Complete Microsoft Store CSV Cleaner identity/submission prerequisites and measurement plumbing.",
-    "For future high-intent note practical articles, test a higher price band only after the publication floor is protected and without bulk-repricing existing articles.",
-    "Preserve conditional BOOTH bundle candidates but prioritize distinct job-specific debt-recovery products before speculative bundles.",
-    "When observed performance arrives, move the strongest differentiated derivative or monetization change to the front of product_backlog immediately."
-  ],
-  "antiSpamRules": [
-    "No cosmetic app clones or name-only variants.",
-    "Every derivative must solve a meaningfully different job, audience, format or advanced workflow.",
-    "Do not cannibalize a winning single product with a cheaper bundle; bundles must add value and maintain sensible price architecture.",
-    "Do not infer sales, PV, conversion, acquisitions, installs or retention.",
-    "Do not reduce daily verified-publication floors for quality or expected-profit reasons; switch to another qualified candidate instead."
+  "GitHubPages": {
+    "currentState": "A broad utility cluster is already public, including thesis, sponsor, event, student-org and CSV tools.",
+    "priority": "Use existing tools as measurable acquisition/support surfaces before adding name-only variants. Add context-matched links only to independently verified destinations."
+  },
+  "decisionRules": [
+    "Free note publications never replace paid publication debt or the paid 5/day strict floor.",
+    "Paid debt does not stop free manuscript production or the 2/day initial free experiment.",
+    "At 24h/72h/7d, compare free articles only on equal post-publication windows when data exists.",
+    "Above-median free engagement or meaningful related-paid click/purchase evidence promotes a theme to paid deep-dive priority.",
+    "Any paid theme with observed sales receives adjacent free search-intent satellites.",
+    "If free traffic exists but paid movement does not, test CTA/value proposition before producing more paid derivatives.",
+    "If neither traffic nor engagement appears, deprioritize instead of cloning the theme.",
+    "No cosmetic Store clones, no name-only article clones, and no invented sales/PV/conversion data."
   ]
 }
