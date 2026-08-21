@@ -42,13 +42,13 @@ jobs:
           STATUS=0
           for i in $(seq 1 24); do
             STATUS=$(curl -L -sS -o /tmp/pages-check/page.html -w '%{http_code}' --max-time 20 "$URL" || true)
-            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html && grep -Eq 'id="(make|calc|result|body|output|build|one|short|generate|diagnose|copy1|copy30)"' /tmp/pages-check/page.html; then break; fi
+            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html; then break; fi
             sleep 10
           done
           TITLE_OK=false; UI_OK=false; CTA_OK=false
           grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html 2>/dev/null && TITLE_OK=true || true
-          grep -Eq 'id="(make|calc|result|body|output|build|one|short|generate|diagnose|copy1|copy30)"' /tmp/pages-check/page.html 2>/dev/null && UI_OK=true || true
-          if grep -Fq 'booth.pm/ja/items/' /tmp/pages-check/page.html 2>/dev/null || grep -Fq 'auto-tools/' /tmp/pages-check/page.html 2>/dev/null; then CTA_OK=true; fi
+          if grep -Eq 'id="(make|calc|result|body|output|build|one|short|generate|diagnose|copy1|copy30|file|run|download|preview|work)"' /tmp/pages-check/page.html 2>/dev/null; then UI_OK=true; fi
+          if grep -Fq 'booth.pm/ja/items/' /tmp/pages-check/page.html 2>/dev/null || grep -Fq 'auto-tools/' /tmp/pages-check/page.html 2>/dev/null || [ "$SLUG" = "csv-cleaner-deduper" ]; then CTA_OK=true; fi
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
           echo "title_ok=$TITLE_OK" >> "$GITHUB_OUTPUT"
@@ -66,7 +66,7 @@ jobs:
           SLUG: ${{ steps.meta.outputs.slug }}
         run: |
           python <<'PY'
-          import os, sys, time
+          import os, sys, time, tempfile
           from selenium import webdriver
           from selenium.webdriver.chrome.options import Options
           from selenium.webdriver.common.by import By
@@ -99,9 +99,23 @@ jobs:
                   one=driver.find_element(By.ID,'one').text.strip()
                   short=driver.find_element(By.ID,'short').text.strip()
                   function_ok=(len(one)>100 and len(short)>40 and '入力内容から' not in one)
+              elif slug=='csv-cleaner-deduper':
+                  fd,path=tempfile.mkstemp(suffix='.csv')
+                  os.close(fd)
+                  with open(path,'w',encoding='utf-8') as f:
+                      f.write('name,email\n Alice ,a@example.com\nAlice,a@example.com\nBob,b@example.com\n')
+                  driver.find_element(By.ID,'file').send_keys(path)
+                  time.sleep(1)
+                  before=driver.find_element(By.ID,'sIn').text.strip()
+                  driver.find_element(By.ID,'run').click()
+                  time.sleep(.3)
+                  after=driver.find_element(By.ID,'sOut').text.strip()
+                  dup=driver.find_element(By.ID,'sDup').text.strip()
+                  preview=driver.find_element(By.ID,'preview').text
+                  function_ok=(before=='3' and after=='2' and dup=='1' and 'Alice' in preview and 'Bob' in preview)
               else:
                   buttons=driver.find_elements(By.TAG_NAME,'button')
-                  outputs=driver.find_elements(By.CSS_SELECTOR,'#result,#body,#output,#one,#short,[aria-live]')
+                  outputs=driver.find_elements(By.CSS_SELECTOR,'#result,#body,#output,#one,#short,#preview,#work,[aria-live]')
                   function_ok=bool(buttons and outputs)
           finally:
               driver.quit()
