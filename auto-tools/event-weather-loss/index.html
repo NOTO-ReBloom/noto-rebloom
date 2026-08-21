@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>イベント雨天・中止損失計算機</title>
+<meta name="description" content="屋外イベントの中止・縮小時に発生する損失、回収可能額、必要な予備費を無料で概算。会場費・印刷費・備品・キャンセル料・協賛・保険補填を整理できます。">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#182230;background:#f5f7fb}*{box-sizing:border-box}body{margin:0}main{max-width:980px;margin:auto;padding:32px 18px 64px}h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:0 0 10px}.lead{color:#536071;max-width:760px;line-height:1.8}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}.card{background:#fff;border:1px solid #dde3ec;border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(29,47,76,.06)}label{display:block;font-weight:700;margin:12px 0 6px}input,select{width:100%;padding:11px 12px;border:1px solid #cbd4e1;border-radius:10px;font-size:16px}button{margin-top:16px;width:100%;padding:13px;border:0;border-radius:12px;background:#172554;color:white;font-weight:800;font-size:16px;cursor:pointer}.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{background:#f8fafc;border-radius:14px;padding:14px}.metric strong{display:block;font-size:24px;margin-top:6px}.warn{margin-top:14px;padding:14px;border-radius:12px;background:#fff7ed;line-height:1.65}.ok{background:#ecfdf5}.small{font-size:13px;color:#657287;line-height:1.65}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{text-align:left;padding:9px 6px;border-bottom:1px solid #e5eaf0}th:last-child,td:last-child{text-align:right}@media(max-width:720px){.grid,.results{grid-template-columns:1fr}}
+</style>
+</head><body><main>
+<h1>イベント雨天・中止損失計算機</h1>
+<p class="lead">屋外イベントで「中止したらいくら失うか」「何円の予備費を持つべきか」を事前に見える化します。確定支出とキャンセル時に戻るお金を分けることで、資金ショートのリスクを早めに確認できます。</p>
+<div class="grid">
+<section class="card"><h2>1. 支出を入力</h2>
+<label>会場・土地・設営費（円）<input id="venue" type="number" min="0" value="50000"></label>
+<label>印刷・制作・広報費（円）<input id="print" type="number" min="0" value="20000"></label>
+<label>備品・レンタル費（円）<input id="gear" type="number" min="0" value="40000"></label>
+<label>交通・人件・外注費（円）<input id="staff" type="number" min="0" value="30000"></label>
+<label>その他確定支出（円）<input id="other" type="number" min="0" value="10000"></label>
+<label>中止時に戻る割合（%）<input id="refund" type="number" min="0" max="100" value="20"></label>
+</section>
+<section class="card"><h2>2. 補填・リスクを入力</h2>
+<label>協賛・補助金など返還不要の確定収入（円）<input id="support" type="number" min="0" value="50000"></label>
+<label>保険・キャンセル補償の受取見込（円）<input id="insurance" type="number" min="0" value="0"></label>
+<label>中止確率の想定（%）<input id="prob" type="number" min="0" max="100" value="20"></label>
+<label>縮小開催なら残る支出割合（%）<input id="reduced" type="number" min="0" max="100" value="65"></label>
+<button id="calc">損失リスクを計算する</button>
+<p class="small">※概算用です。契約上のキャンセル料・返還条件・保険約款を優先してください。</p>
+</section>
+</div>
+<section class="card" style="margin-top:16px"><h2>計算結果</h2><div class="results">
+<div class="metric">総予定支出<strong id="total">—</strong></div>
+<div class="metric">完全中止時の実質損失<strong id="loss">—</strong></div>
+<div class="metric">縮小開催時の必要原資<strong id="reducedCost">—</strong></div>
+<div class="metric">確率加重した中止リスク額<strong id="risk">—</strong></div>
+</div><div id="message" class="warn"></div>
+<table><thead><tr><th>項目</th><th>金額</th></tr></thead><tbody id="breakdown"></tbody></table>
+</section>
+<section class="card" style="margin-top:16px"><h2>使い方</h2><p class="small">①すでに契約・発注予定の支出を入力 → ②中止時に返金される割合を入力 → ③確定協賛や補償を入力 → ④「完全中止時の実質損失」を最低限の資金耐久ラインとして確認します。中止確率を入れると、リスク込み予算を考える際の目安も出ます。</p></section>
+<script>
+const yen=n=>Math.round(n).toLocaleString('ja-JP')+'円';
+const num=id=>Math.max(0,Number(document.getElementById(id).value)||0);
+function calc(){
+ const venue=num('venue'),print=num('print'),gear=num('gear'),staff=num('staff'),other=num('other');
+ const total=venue+print+gear+staff+other,refund=Math.min(100,num('refund'))/100;
+ const support=num('support'),insurance=num('insurance'),prob=Math.min(100,num('prob'))/100,reduced=Math.min(100,num('reduced'))/100;
+ const refunded=total*refund, grossLoss=Math.max(0,total-refunded), loss=Math.max(0,grossLoss-support-insurance);
+ const reducedNeed=Math.max(0,total*reduced-support); const risk=loss*prob;
+ document.getElementById('total').textContent=yen(total);document.getElementById('loss').textContent=yen(loss);document.getElementById('reducedCost').textContent=yen(reducedNeed);document.getElementById('risk').textContent=yen(risk);
+ document.getElementById('breakdown').innerHTML=`<tr><td>中止時の返金見込</td><td>${yen(refunded)}</td></tr><tr><td>返還不要の確定収入</td><td>${yen(support)}</td></tr><tr><td>保険・補償見込</td><td>${yen(insurance)}</td></tr><tr><td>自己資金で耐える必要がある損失</td><td>${yen(loss)}</td></tr>`;
+ const m=document.getElementById('message');
+ if(loss===0){m.className='warn ok';m.textContent='確定収入・返金・補償の範囲で完全中止時の支出を吸収できる試算です。ただし入金時期と返還条件は別途確認してください。'}
+ else if(loss<=total*.25){m.className='warn ok';m.textContent='中止時損失は総予定支出の25%以内です。少なくとも '+yen(loss)+' を中止対応用の資金として確保できると安全度が上がります。'}
+ else{m.className='warn';m.textContent='中止時の自己負担が大きい試算です。発注時期の後ろ倒し、返金条件の交渉、協賛・補助の確定、中止保険の検討などで '+yen(loss)+' の露出を減らせないか確認してください。'}
+}
+document.getElementById('calc').addEventListener('click',calc);document.querySelectorAll('input').forEach(x=>x.addEventListener('input',calc));calc();
+</script></main></body></html>
