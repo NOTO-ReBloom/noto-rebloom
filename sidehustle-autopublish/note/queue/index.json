@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-21T07:56:34+09:00",
-  "retryGeneration": 12,
+  "updatedAt": "2026-08-21T10:58:27+09:00",
+  "retryGeneration": 13,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted legacy payload lacks coverImageBase64/coverImageMime, Windows V8 must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the legacy payload predates cover support.",
   "entries": [
@@ -17,13 +17,13 @@
       "createdAt": "2026-08-20T18:08:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "monitor-r12-20260821T075634+0900",
+      "forceRetryNonce": "monitor-r13-20260821T105827+0900",
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": ["readerVisibleUrl","title","price","paidBoundary","dedicatedCover"],
-      "nextPreferredConsumerWindow": "2026-08-21T10:10:00+09:00",
-      "recoveryMode": "publish-and-anonymously-verify; invalidate stale local success for this generation; 07:10 recovery produced no reader-visible page, so if this item fails again defer it immediately and continue to another qualified note candidate rather than ending the catch-up cycle"
+      "nextPreferredConsumerWindow": "2026-08-21T13:10:00+09:00",
+      "recoveryMode": "publish-and-anonymously-verify; invalidate stale local success for this generation; 07:10 and 10:10 recovery windows produced no reader-visible page, so if this item fails again defer it immediately and continue to another qualified note candidate rather than ending the catch-up cycle"
     }
   ]
 }
