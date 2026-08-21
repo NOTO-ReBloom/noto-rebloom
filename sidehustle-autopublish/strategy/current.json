@@ -1,41 +1,103 @@
 {
-  "version": 12,
-  "updatedAt": "2026-08-21T23:30:00+09:00",
+  "version": 13,
+  "updatedAt": "2026-08-21T23:45:00+09:00",
   "objective": "maximize cumulative user profit while enforcing verified-publication floors, minimizing intervention, and amplifying only evidence-backed winners",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
+  "hardPublicationFloors": {
+    "policy": "publication_quota.json is a hard floor; expected-profit optimization may not reduce it",
+    "asOf": "2026-08-21T23:45:00+09:00",
+    "note": {
+      "carriedDebtIntoAug21": 1,
+      "aug21Target": 5,
+      "aug21StrictVerified": 0,
+      "aug21Unmet": 5,
+      "projectedDebtAtRolloverIfNoNewStrictVerificationBeforeMidnight": 6,
+      "aug22DailyTarget": 5,
+      "projectedTotalStrictPublicationsRequiredOnAug22BeforeDaySatisfied": 11
+    },
+    "BOOTH": {
+      "carriedDebtIntoAug21": 4,
+      "aug21Target": 5,
+      "aug21StrictVerified": 0,
+      "aug21Unmet": 5,
+      "projectedDebtAtRolloverIfNoNewStrictVerificationBeforeMidnight": 9,
+      "aug22DailyTarget": 5,
+      "projectedTotalStrictPublicationsRequiredOnAug22BeforeDaySatisfied": 14
+    },
+    "rolloverRule": "Do not zero-clear missed publications. Any strict verification completed before midnight must reduce the projected rollover debt one-for-one; otherwise carry the full projected debt forward.",
+    "pcConstraint": "Do not depend on Windows execution after 01:00 JST. Use 00:10 only when the PC is available, then front-load recovery during the next day."
+  },
   "winnerAmplification": {
-    "currentState":"NO_PROVEN_WINNER_YET",
-    "evidence":"Current repository metrics still contain no BOOTH sales, no note sales/PV/likes, no Microsoft Store funnel metrics and no GitHub Pages conversion metrics.",
-    "decision":"Do not spend production capacity on speculative derivative families merely because source products are public. Preserve coherent low-build-cost bundle hypotheses, but activate only after observed demand appears.",
-    "activationRule":"A theme becomes amplification-eligible after a clear relative quantitative signal or multiple independent qualitative demand signals. Publication alone is insufficient."
+    "currentState": "NO_PROVEN_WINNER_YET",
+    "evidence": "Repository metrics still contain no observed BOOTH sales, note sales/PV/likes, Microsoft Store funnel metrics, or GitHub Pages conversion metrics.",
+    "decision": "Do not consume debt-recovery production capacity on speculative derivatives merely because source products are public. Preserve low-cost hypotheses but activate only after demand evidence.",
+    "activationRule": "A theme becomes amplification-eligible after a clear relative quantitative signal or multiple independent qualitative demand signals. Publication alone is insufficient."
   },
-  "cvLtvPolicy": {
-    "stateFile":"sidehustle-autopublish/optimization/cv_ltv_state.json",
-    "livePriceChangesTonight":"none",
-    "reason":"No product-level conversion or sales baseline exists; speculative repricing would reduce learning quality.",
-    "notePricingNextTest":"Use future high-intent practical know-how articles to test roughly 1,480-1,980 JPY when the promised outcome and reusable value justify it; retain lower-priced entry products and do not bulk-reprice existing articles yet.",
-    "boothAovNextTest":"Prepare coherent bundles only after a credible demand signal; keep standalone products unchanged and independently purchasable.",
-    "storeNextTest":"No product-page experiment before the CSV Cleaner listing is live and baseline traffic exists. After publication, preserve the initial certified listing as control and add source-specific campaign IDs to external links."
+  "marketSignalsChecked": {
+    "checkedAt": "2026-08-21T23:45:00+09:00",
+    "note": "Recent public note listings show active AI-practical paid content commonly offered around 980-1,980 JPY, supporting later higher-price testing for differentiated practical outcomes, but no internal conversion baseline exists yet.",
+    "BOOTH": "Current BOOTH search shows a large Excel-template supply with many low-priced generic products, so new BOOTH debt-recovery candidates should be sharply job-specific rather than generic spreadsheet utilities.",
+    "MicrosoftStore": "No internal Store funnel evidence yet; finish CSV Cleaner identity/submission and measurement before derivative expansion.",
+    "rule": "External market signals may rank qualified candidates but may not override hard publication floors or substitute for internal observed sales/conversion data."
   },
-  "measurementPriority": {
-    "MicrosoftStore":"Complete CSV Cleaner identity/submission first, persist the verified Store URL, then collect page views, acquisitions, installs, conversion, campaign/source data and health metrics before visual experiments or derivatives.",
-    "note":"Capture article PV, paid sales and likes on comparable exposure windows; use revenue per view rather than raw sale count alone when pricing evidence becomes available.",
-    "BOOTH":"Capture product-level orders/sales and any available traffic/favorite data; do not infer demand from buyer-visible status.",
-    "GitHubPages":"Capture tool traffic and outbound clicks; use a distinct Microsoft campaign ID per external source once a Store destination exists."
-  },
+  "productionWindowsAug22": [
+    {
+      "time": "00:10",
+      "priority": "emergency catch-up while PC may still be available",
+      "noteOrder": ["note_20260821_06_ai_small_org_workflow", "note_20260821_07_event_sponsor_followup", "note_20260821_10_thesis_weekly_review", "note_20260821_11_ai_jobhunt_answer_audit", "note_20260821_08_creator_pricing", "note_20260821_09_student_org_role_design"],
+      "boothOrder": ["001_interview_os", "event_sponsor_bundle", "event_risk_register_os", "small_org_role_os", "sponsor_deliverables_tracker"],
+      "rule": "If the first candidate fails brief strict publication verification, switch immediately to the next distinct qualified candidate in the same window."
+    },
+    {
+      "time": "07:10",
+      "priority": "oldest debt first; ensure multiple publishable candidates are ready before attempting publication",
+      "noteOrder": ["note_20260821_06_ai_small_org_workflow", "note_20260821_07_event_sponsor_followup", "note_20260821_10_thesis_weekly_review"],
+      "boothOrder": ["001_interview_os", "event_sponsor_bundle", "event_risk_register_os"]
+    },
+    {
+      "time": "10:10",
+      "priority": "continue debt recovery and materialize replacements for any blocked candidates",
+      "noteOrder": ["note_20260821_11_ai_jobhunt_answer_audit", "note_20260821_08_creator_pricing", "note_20260821_09_student_org_role_design"],
+      "boothOrder": ["small_org_role_os", "sponsor_deliverables_tracker", "research_interview_coding_os"]
+    },
+    {
+      "time": "13:10",
+      "priority": "debt recovery before current-day quota",
+      "boothOrder": ["volunteer_shift_comms_os", "creator_profit_pricing_os", "jobhunt_interview_bundle"]
+    },
+    {
+      "time": "16:10",
+      "priority": "current-day quota only after prior debt has been serviced; otherwise keep debt candidates ahead"
+    },
+    {
+      "time": "19:10",
+      "priority": "front-load remaining Windows-dependent publications before late evening"
+    },
+    {
+      "time": "22:10",
+      "priority": "normal late catch-up; no analysis-only completion"
+    },
+    {
+      "time": "23:10",
+      "priority": "critical same-day recovery; keep switching candidates until strict publication succeeds or all prepared candidates have distinct non-recoverable blockers"
+    },
+    {
+      "time": "00:10",
+      "priority": "final PC-available recovery window before 01:00 assumption; then preserve remaining debt for next PC session"
+    }
+  ],
   "crossSellPolicy": {
-    "verifiedExamples":[
+    "verifiedExamples": [
       "thesis-weekly-plan -> verified BOOTH thesis progress OS",
       "interview-star-builder -> verified BOOTH AI job-hunt consistency OS"
     ],
-    "rule":"One context-matched CTA after the free core workflow is preferred. Do not add unrelated or multiple competing CTAs without click/conversion evidence."
+    "rule": "One context-matched CTA after the free core workflow is preferred. Do not add unrelated or multiple competing CTAs without click/conversion evidence."
   },
-  "productionPriority": [
-    "Recover paid publication debt with qualified distinct products during available PC windows.",
+  "secondaryProfitPriorityAfterFloors": [
     "Complete Microsoft Store CSV Cleaner identity/submission prerequisites and measurement plumbing.",
-    "For future high-intent note practical articles, test a higher price band without altering existing prices until exposure/sales data exist.",
-    "Preserve conditional low-cost BOOTH bundle candidates; activate only after observed demand.",
+    "For future high-intent note practical articles, test a higher price band only after the publication floor is protected and without bulk-repricing existing articles.",
+    "Preserve conditional BOOTH bundle candidates but prioritize distinct job-specific debt-recovery products before speculative bundles.",
     "When observed performance arrives, move the strongest differentiated derivative or monetization change to the front of product_backlog immediately."
   ],
   "antiSpamRules": [
@@ -43,6 +105,6 @@
     "Every derivative must solve a meaningfully different job, audience, format or advanced workflow.",
     "Do not cannibalize a winning single product with a cheaper bundle; bundles must add value and maintain sensible price architecture.",
     "Do not infer sales, PV, conversion, acquisitions, installs or retention.",
-    "Do not change multiple customer-facing variables before a measurable baseline exists."
+    "Do not reduce daily verified-publication floors for quality or expected-profit reasons; switch to another qualified candidate instead."
   ]
 }
