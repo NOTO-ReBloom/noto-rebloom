@@ -1,7 +1,7 @@
 {
-  "version": 8,
+  "version": 9,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T02:05:00+09:00",
+  "updatedAt": "2026-08-22T02:06:37+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -9,7 +9,7 @@
       "completionDefinition": "reader-visible official paid note page verified with title, price, paid boundary and dedicated cover image",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "catchUpPriority": "oldest verified-unpublished qualified paid fallback first",
-      "perCatchUpCycleSoftBatch": 5,
+      "perCatchUpCycleSoftBatch": 11,
       "productionCap": null,
       "operationalState": {
         "date": "2026-08-22",
@@ -44,12 +44,19 @@
           "createdAt": "2026-08-21T20:26:15+09:00",
           "retryGeneration": 24,
           "forceRetryNonce": "paid-catchup-06-20260822T004500+0900",
-          "requiredChecks": ["readerVisibleUrl","title","price","paidBoundary","dedicatedCover"],
+          "requiredChecks": [
+            "readerVisibleUrl",
+            "title",
+            "price",
+            "paidBoundary",
+            "dedicatedCover"
+          ],
           "status": "complete_encrypted_ready_next_windows_session"
         },
         "deferredLegacyCandidate": "note_20260820_05",
         "fallbackPolicy": "Continue across the complete eleven-item paid batch. A brief recoverable failure on one item must not block later items. Do not stop after the first strict publication while debt remains.",
-        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target."
+        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target.",
+        "batchClearInstruction": "Process up to all 11 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 11 were attempted."
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
@@ -65,10 +72,26 @@
         "freePublisherQa": "sidehustle-autopublish/note/free_publisher/qa_status.json",
         "freePublisherCloudQaPassed": true,
         "freePublisherPlatformPublicationVerified": false,
-        "role": ["search/discovery acquisition","trust building","demand validation","paid prequalification"],
+        "role": [
+          "search/discovery acquisition",
+          "trust building",
+          "demand validation",
+          "paid prequalification"
+        ],
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
-        "measurementWindows": ["24h","72h","7d"],
-        "measureWhenAvailable": ["PV","likes","follows","related paid clicks","related paid purchases","revenue"],
+        "measurementWindows": [
+          "24h",
+          "72h",
+          "7d"
+        ],
+        "measureWhenAvailable": [
+          "PV",
+          "likes",
+          "follows",
+          "related paid clicks",
+          "related paid purchases",
+          "revenue"
+        ],
         "adaptationRule": "2/day is only an initial test cadence. Increase, maintain or reduce based on comparable post-publication traffic, engagement and paid-conversion evidence; never invent missing metrics.",
         "ctaRule": "At most one context-matched paid CTA; use only independently reader-visible verified paid URLs. If the paid URL is not verified, publish the free article without a guessed CTA and add it later.",
         "separationRule": "Free publications never decrement paid publication debt and never replace the paid 5/day strict floor."
@@ -79,7 +102,7 @@
       "completionDefinition": "buyer-visible official BOOTH product page verified with title, price, downloadable-product state and purchase path",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "catchUpPriority": "complete new paid recovery batch before deferred legacy blockers",
-      "perCatchUpCycleSoftBatch": 5,
+      "perCatchUpCycleSoftBatch": 14,
       "productionCap": null,
       "operationalState": {
         "date": "2026-08-22",
@@ -117,7 +140,13 @@
           "title": "イベントリスク登録簿OS｜発生確率×影響度×対策×担当を1画面管理｜オフラインHTML",
           "expectedPriceJPY": 1280,
           "status": "complete_encrypted_qa_passed_ready_next_windows_session",
-          "requiredChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"]
+          "requiredChecks": [
+            "buyerVisibleUrl",
+            "title",
+            "price",
+            "downloadableProductState",
+            "purchasePath"
+          ]
         },
         "alreadyPublishedNotNewDebtCandidate": {
           "queueId": "001_interview_os",
@@ -133,7 +162,8 @@
         },
         "fallbackPolicy": "Process 010 through 023 as the genuine-new paid debt batch. After each strict success move immediately to the next ledger-absent item. Do not return to 009 until the batch has been attempted.",
         "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements debt. Generic publisher success, local logs, draft creation, commits, old-item reverification, or HTTP/title-only verification does not.",
-        "cloudAutomationState": "enabled; recoverable failures must never self-disable"
+        "cloudAutomationState": "enabled; recoverable failures must never self-disable",
+        "batchClearInstruction": "Process up to all 14 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 14 were attempted."
       }
     }
   },
