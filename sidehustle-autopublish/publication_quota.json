@@ -1,7 +1,7 @@
 {
   "version": 6,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T00:19:00+09:00",
+  "updatedAt": "2026-08-22T00:29:00+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
@@ -21,16 +21,16 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 11,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:10:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:30:00+09:00",
         "activePublicationCandidate": {
           "queueId": "note_20260821_06_ai_small_org_workflow",
           "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
           "expectedPriceJPY": 980,
           "createdAt": "2026-08-21T20:26:15+09:00",
-          "retryGeneration": 21,
-          "forceRetryNonce": "paid-catchup-06-20260822T001000+0900",
+          "retryGeneration": 22,
+          "forceRetryNonce": "paid-catchup-06-20260822T002900+0900",
           "requiredChecks": ["readerVisibleUrl","title","price","paidBoundary","dedicatedCover"],
-          "status": "enabled_force_retry_paid_catchup_00_10"
+          "status": "enabled_force_retry_paid_catchup_00_30"
         },
         "additionalReadyCandidates": ["note_20260821_07_event_sponsor_followup","note_20260821_10_thesis_weekly_review","note_20260821_11_ai_jobhunt_answer_audit","note_20260821_08_creator_pricing","note_20260821_09_student_org_role_design"],
         "deferredLegacyCandidate": "note_20260820_05",
@@ -55,7 +55,7 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 14,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:10:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:30:00+09:00",
         "activePublicationCandidate": null,
         "nextPaidMaterializationCandidate": "event_risk_register_os",
         "alreadyPublishedNotNewDebtCandidate": {
