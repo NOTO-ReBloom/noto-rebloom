@@ -1,7 +1,7 @@
 {
   "version": 6,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T00:40:00+09:00",
+  "updatedAt": "2026-08-22T00:46:00+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
@@ -21,18 +21,19 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 11,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:40:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:50:00+09:00",
         "activePublicationCandidate": {
           "queueId": "note_20260821_06_ai_small_org_workflow",
           "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
           "expectedPriceJPY": 980,
           "createdAt": "2026-08-21T20:26:15+09:00",
-          "retryGeneration": 23,
-          "forceRetryNonce": "paid-catchup-06-20260822T002900+0900",
+          "retryGeneration": 24,
+          "forceRetryNonce": "paid-catchup-06-20260822T004500+0900",
           "requiredChecks": ["readerVisibleUrl","title","price","paidBoundary","dedicatedCover"],
-          "status": "enabled_force_retry_paid_catchup_before_01_00"
+          "status": "enabled_force_retry_complete_eleven_item_catchup_before_01_00"
         },
-        "additionalReadyCandidates": ["note_20260821_07_event_sponsor_followup","note_20260821_10_thesis_weekly_review","note_20260821_11_ai_jobhunt_answer_audit","note_20260821_08_creator_pricing","note_20260821_09_student_org_role_design","note_20260822_12_event_cancel_decision","note_20260822_13_meeting_decision_log"],
+        "additionalReadyCandidates": ["note_20260821_07_event_sponsor_followup","note_20260821_08_creator_pricing","note_20260821_09_student_org_role_design","note_20260821_10_thesis_weekly_review","note_20260821_11_ai_jobhunt_answer_audit","note_20260822_12_event_cancel_decision","note_20260822_13_meeting_decision_log","note_20260822_14_sponsor_menu_design","note_20260822_15_research_interview_coding","note_20260822_16_jobhunt_company_research"],
+        "readyCandidateCount": 11,
         "deferredLegacyCandidate": "note_20260820_05",
         "fallbackPolicy": "Do not return to the blocked legacy item before trying the qualified paid fallbacks. In a PC-available catch-up cycle, continue across distinct candidates until at least one reader-visible publication is strictly verified or all prepared candidates encounter distinct non-recoverable blockers.",
         "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements debt or counts toward the daily target."
@@ -55,21 +56,12 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 14,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:40:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:50:00+09:00",
         "activePublicationCandidate": null,
         "nextPaidMaterializationCandidate": "event_risk_register_os",
-        "alreadyPublishedNotNewDebtCandidate": {
-          "queueId": "001_interview_os",
-          "historicalPublicUrl": "https://booth.pm/ja/items/8736751",
-          "historicalVerifiedAt": "2026-08-19T09:15:39.271Z",
-          "status": "removed_from_new_publication_debt_recovery; preserve for strict commerce reverification/ledger reconciliation only"
-        },
+        "alreadyPublishedNotNewDebtCandidate": {"queueId":"001_interview_os","historicalPublicUrl":"https://booth.pm/ja/items/8736751","historicalVerifiedAt":"2026-08-19T09:15:39.271Z","status":"removed_from_new_publication_debt_recovery; preserve for strict commerce reverification/ledger reconciliation only"},
         "deferredLegacyCandidate": "009_handover_os_20260820",
-        "strictReverificationCandidate": {
-          "queueId": "007_thesis_progress_os_20260820",
-          "publicUrlCandidate": "https://booth.pm/ja/items/8739122",
-          "status": "verified_public_on_2026-08-20_and_counted_once_for_previous_day"
-        },
+        "strictReverificationCandidate": {"queueId":"007_thesis_progress_os_20260820","publicUrlCandidate":"https://booth.pm/ja/items/8739122","status":"verified_public_on_2026-08-20_and_counted_once_for_previous_day"},
         "fallbackBuildCandidates": ["event_risk_register_os","small_org_role_os","sponsor_deliverables_tracker","research_interview_coding_os","volunteer_shift_comms_os","creator_profit_pricing_os","event_sponsor_bundle","jobhunt_interview_bundle"],
         "fallbackPolicy": "001 must not be republished to discharge current debt because historical Windows state already verified it public. Materialize a genuinely new qualified BOOTH candidate; do not return to 009 until distinct fallbacks have been attempted.",
         "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements debt. Generic publisher success, local logs, draft creation, commits, old-item reverification, or HTTP/title-only verification does not.",
