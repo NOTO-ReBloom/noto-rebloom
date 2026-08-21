@@ -1,14 +1,14 @@
 {
-  "version": 6,
+  "version": 7,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T00:46:00+09:00",
-  "policy": "daily_publication_quota_with_rollover_debt",
+  "updatedAt": "2026-08-22T01:15:00+09:00",
+  "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
       "dailyPublicTarget": 5,
-      "completionDefinition": "reader-visible official note page verified with title, price, paid boundary and dedicated cover image",
+      "completionDefinition": "reader-visible official paid note page verified with title, price, paid boundary and dedicated cover image",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
-      "catchUpPriority": "oldest verified-unpublished qualified fallback first",
+      "catchUpPriority": "oldest verified-unpublished qualified paid fallback first",
       "perCatchUpCycleSoftBatch": 5,
       "productionCap": null,
       "operationalState": {
@@ -21,7 +21,7 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 11,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:50:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "next PC-available session",
         "activePublicationCandidate": {
           "queueId": "note_20260821_06_ai_small_org_workflow",
           "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
@@ -30,13 +30,31 @@
           "retryGeneration": 24,
           "forceRetryNonce": "paid-catchup-06-20260822T004500+0900",
           "requiredChecks": ["readerVisibleUrl","title","price","paidBoundary","dedicatedCover"],
-          "status": "enabled_force_retry_complete_eleven_item_catchup_before_01_00"
+          "status": "enabled_force_retry_complete_eleven_item_catchup_on_next_windows_session"
         },
         "additionalReadyCandidates": ["note_20260821_07_event_sponsor_followup","note_20260821_08_creator_pricing","note_20260821_09_student_org_role_design","note_20260821_10_thesis_weekly_review","note_20260821_11_ai_jobhunt_answer_audit","note_20260822_12_event_cancel_decision","note_20260822_13_meeting_decision_log","note_20260822_14_sponsor_menu_design","note_20260822_15_research_interview_coding","note_20260822_16_jobhunt_company_research"],
         "readyCandidateCount": 11,
         "deferredLegacyCandidate": "note_20260820_05",
-        "fallbackPolicy": "Do not return to the blocked legacy item before trying the qualified paid fallbacks. In a PC-available catch-up cycle, continue across distinct candidates until at least one reader-visible publication is strictly verified or all prepared candidates encounter distinct non-recoverable blockers.",
-        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements debt or counts toward the daily target."
+        "fallbackPolicy": "Do not return to the blocked legacy item before trying the qualified paid fallbacks. In a PC-available catch-up cycle, continue across distinct candidates until at least one reader-visible paid publication is strictly verified or all prepared candidates encounter distinct non-recoverable blockers.",
+        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target."
+      },
+      "freeAcquisitionExperiment": {
+        "enabled": true,
+        "startDate": "2026-08-22",
+        "durationDays": 14,
+        "initialPublicationTargetPerDay": 2,
+        "hardQuota": false,
+        "manuscriptBatchingAllowed": true,
+        "preferredManuscriptBatchSize": "4-10",
+        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
+        "currentCompletedDraftCount": 6,
+        "role": ["search/discovery acquisition","trust building","demand validation","paid prequalification"],
+        "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
+        "measurementWindows": ["24h","72h","7d"],
+        "measureWhenAvailable": ["PV","likes","follows","related paid clicks","related paid purchases","revenue"],
+        "adaptationRule": "2/day is only an initial test cadence. Increase, maintain or reduce based on comparable post-publication traffic, engagement and paid-conversion evidence; never invent missing metrics.",
+        "ctaRule": "At most one context-matched paid CTA; use only independently reader-visible verified paid URLs. If the paid URL is not verified, publish the free article without a guessed CTA and add it later.",
+        "separationRule": "Free publications never decrement paid publication debt and never replace the paid 5/day strict floor."
       }
     },
     "BOOTH": {
@@ -56,7 +74,7 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 14,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-22T00:50:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "next PC-available session",
         "activePublicationCandidate": null,
         "nextPaidMaterializationCandidate": "event_risk_register_os",
         "alreadyPublishedNotNewDebtCandidate": {"queueId":"001_interview_os","historicalPublicUrl":"https://booth.pm/ja/items/8736751","historicalVerifiedAt":"2026-08-19T09:15:39.271Z","status":"removed_from_new_publication_debt_recovery; preserve for strict commerce reverification/ledger reconciliation only"},
@@ -70,16 +88,16 @@
     }
   },
   "rules": [
-    "Daily targets are hard minimums and must not be silently reduced for expected-profit optimization.",
-    "A scheduled slot that cannot reach verified publication is not discarded; it becomes publication debt.",
-    "Publication debt survives date changes and PC power-off periods until buyer/reader-visible publication is verified.",
-    "Previous-day debt must be serviced before treating the current day's quota as satisfied.",
-    "One run may complete multiple publications when debt exists; five per catchUp cycle is a pacing preference, not a lifetime or daily production cap.",
-    "Do not count queue insertion, local publisher success logs, editor/admin URLs, drafts, commits, old-item reverification, or unverified pages as completed publications.",
-    "Cloud-side planning, build preparation, queue production and repair continue after 01:00 JST even when the Windows PC is expected to be off.",
-    "Windows-dependent note/BOOTH publication should be front-loaded before 01:00 JST; 23:10 and 00:10 are catch-up windows when the PC is available.",
-    "If the PC is powered off for an entire calendar day, missed quota is retained as debt and caught up automatically at the next PC-available session.",
+    "Paid daily targets are hard minimums and must not be silently reduced for expected-profit optimization.",
+    "A paid scheduled slot that cannot reach verified publication is not discarded; it becomes paid publication debt.",
+    "Paid publication debt survives date changes and PC power-off periods until buyer/reader-visible publication is verified.",
+    "Previous-day paid debt must be serviced before treating the current day's paid quota as satisfied.",
+    "One run may complete multiple publications when debt exists; five per catch-up cycle is a pacing preference, not a production cap.",
+    "Do not count queue insertion, local publisher success logs, editor/admin URLs, drafts, commits, old-item reverification, or unverified pages as completed paid publications.",
+    "Free note articles are an additional acquisition and validation layer, not a substitute for paid publication floors.",
+    "Free manuscript production may be batched aggressively when quality remains high.",
+    "Cloud-side planning, article production, build preparation, queue production and repair continue after 01:00 JST even when the Windows PC is expected to be off.",
     "Do not disable BOOTH/note cloud automation because of a recoverable publication or verification delay.",
-    "If one candidate remains blocked, defer it and switch to another qualified candidate rather than ending a production run without a verified publication."
+    "If one paid candidate remains blocked, defer it and switch to another qualified candidate rather than ending a production run without progress."
   ]
 }
