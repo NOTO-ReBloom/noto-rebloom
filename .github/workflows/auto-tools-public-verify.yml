@@ -1,0 +1,97 @@
+name: Verify auto-tools on GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'auto-tools/**'
+      - '.github/workflows/auto-tools-public-verify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-tools-public-verify
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify newest unverified tool on public GitHub Pages
+        shell: python
+        run: |
+          import json, pathlib, time, urllib.request, urllib.error, re, datetime
+          idx = json.loads(pathlib.Path('auto-tools/index.json').read_text(encoding='utf-8-sig'))
+          ledger_path = pathlib.Path('auto-tools/publication_ledger.json')
+          if ledger_path.exists():
+              ledger = json.loads(ledger_path.read_text(encoding='utf-8-sig'))
+          else:
+              ledger = {'version':1,'updatedAt':None,'entries':[]}
+          verified = {e.get('slug') for e in ledger.get('entries',[]) if e.get('publicUrlVerified')}
+          candidates = [t for t in idx.get('tools',[]) if t.get('slug') not in verified]
+          if not candidates:
+              print('NO_UNVERIFIED_TOOLS')
+              raise SystemExit(0)
+          tool = candidates[-1]
+          slug = tool['slug']
+          url = f'https://noto-rebloom.github.io/noto-rebloom/auto-tools/{slug}/'
+          title_expected = tool['title']
+          markers = {
+              'interview-star-builder':['面接STAR回答メーカー','1分版','30秒版','深掘り'],
+              'meeting-agenda-timebox':['会議アジェンダ時間配分メーカー'],
+          }.get(slug,[title_expected])
+          last = None
+          html = ''
+          status = None
+          for attempt in range(12):
+              try:
+                  req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0 GitHubActionsVerifier/1.0','Cache-Control':'no-cache'})
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      status = r.status
+                      html = r.read().decode('utf-8','replace')
+                  if status == 200 and all(m in html for m in markers):
+                      break
+                  last = f'status={status} markers={[m for m in markers if m not in html]}'
+              except Exception as e:
+                  last = repr(e)
+              print(f'attempt={attempt+1} not ready: {last}')
+              time.sleep(20)
+          ok = status == 200 and all(m in html for m in markers)
+          if not ok:
+              raise SystemExit(f'PUBLIC_VERIFY_FAILED {url} {last}')
+          title_match = re.search(r'<title>(.*?)</title>', html, re.I|re.S)
+          page_title = re.sub(r'\s+',' ',title_match.group(1)).strip() if title_match else ''
+          now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
+          ledger.setdefault('entries',[]).append({
+              'slug':slug,
+              'title':title_expected,
+              'publicUrl':url,
+              'publicUrlVerified':True,
+              'verifiedAt':now,
+              'httpStatus':status,
+              'pageTitle':page_title,
+              'verifiedMarkers':markers,
+              'verificationMode':'GitHub Actions public HTTPS fetch'
+          })
+          ledger['updatedAt']=now
+          ledger_path.write_text(json.dumps(ledger,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('PUBLIC_VERIFY_SUCCESS',url,page_title)
+
+      - name: Commit public verification ledger
+        run: |
+          if git diff --quiet -- auto-tools/publication_ledger.json; then
+            echo 'No ledger change.'
+            exit 0
+          fi
+          git config user.name 'auto-tools-public-verifier'
+          git config user.email 'actions@users.noreply.github.com'
+          git add auto-tools/publication_ledger.json
+          git commit -m 'Verify auto-tool buyer-visible GitHub Pages URL'
+          git push origin HEAD:main
