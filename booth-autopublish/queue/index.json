@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-21T10:58:27+09:00",
-  "retryGeneration": 18,
+  "updatedAt": "2026-08-21T12:06:33+09:00",
+  "retryGeneration": 19,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -24,13 +24,13 @@
       "createdAt": "2026-08-20T17:40:00+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "monitor-r18-20260821T105827+0900",
+      "forceRetryNonce": "monitor-r19-20260821T120633+0900",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
       "nextPreferredConsumerWindow": "2026-08-21T13:10:00+09:00",
       "recoveryMode": "publish-new-item-and-anonymously-verify-all-commerce-checks",
-      "recoveryEscalation": "07:10 and 10:10 recovery windows produced no buyer-visible page. On this generation invalidate stale local success, validate combined SHA-256 before decrypting, publish as a new downloadable product at 980 JPY, then anonymously verify exact title, price, downloadable-product state and functioning purchase/cart path. Admin-page success is insufficient. If 009 still cannot publish quickly, defer it immediately and service another qualified BOOTH candidate rather than ending without a verified publication."
+      "recoveryEscalation": "07:10 and 10:10 recovery windows produced no buyer-visible page. At 13:10 make only a brief strict retry: invalidate stale local success, validate combined SHA-256 before decrypting, publish as a new downloadable product at 980 JPY, then anonymously verify exact title, price, downloadable-product state and functioning purchase/cart path. Admin-page success is insufficient. If 009 still cannot publish quickly, defer it immediately and switch in the same run to event_sponsor_bundle, then jobhunt_interview_bundle, rather than ending without a verified publication."
     }
   ]
 }
