@@ -1,7 +1,7 @@
 {
-  "version": 9,
+  "version": 10,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T02:06:37+09:00",
+  "updatedAt": "2026-08-22T02:11:24+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -117,7 +117,7 @@
         "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-22",
         "paidProductionInventoryComplete": true,
         "readyCandidateCount": 14,
-        "queueRetryGeneration": 29,
+        "queueRetryGeneration": 30,
         "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
         "readyCandidateIds": [
           "010_event_risk_register_os_20260822",
@@ -163,7 +163,13 @@
         "fallbackPolicy": "Process 010 through 023 as the genuine-new paid debt batch. After each strict success move immediately to the next ledger-absent item. Do not return to 009 until the batch has been attempted.",
         "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements debt. Generic publisher success, local logs, draft creation, commits, old-item reverification, or HTTP/title-only verification does not.",
         "cloudAutomationState": "enabled; recoverable failures must never self-disable",
-        "batchClearInstruction": "Process up to all 14 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 14 were attempted."
+        "batchClearInstruction": "Process up to all 14 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 14 were attempted.",
+        "latestMaterializedAt": "2026-08-22T02:10:19+09:00",
+        "categoryCompatibility": {
+          "parent": "ソフトウェア・ハードウェア",
+          "child": "ソフトウェア",
+          "verifiedReferenceItemId": "8736698"
+        }
       }
     }
   },
