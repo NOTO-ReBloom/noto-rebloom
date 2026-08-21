@@ -1,14 +1,14 @@
 {
-  "version": 4,
+  "version": 5,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-21T01:04:37+09:00",
+  "updatedAt": "2026-08-21T21:58:22+09:00",
   "policy": "daily_publication_quota_with_rollover_debt",
   "channels": {
     "note": {
       "dailyPublicTarget": 5,
       "completionDefinition": "reader-visible official note page verified with title, price, paid boundary and dedicated cover image",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
-      "catchUpPriority": "oldest_verified-unpublished first",
+      "catchUpPriority": "oldest verified-unpublished qualified fallback first",
       "perCatchUpCycleSoftBatch": 5,
       "productionCap": null,
       "operationalState": {
@@ -21,16 +21,24 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 6,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-21T07:10:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-21T23:10:00+09:00",
         "activePublicationCandidate": {
-          "queueId": "note_20260820_05",
-          "title": "引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト",
+          "queueId": "note_20260821_06_ai_small_org_workflow",
+          "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
           "expectedPriceJPY": 980,
-          "createdAt": "2026-08-20T18:08:00+09:00",
+          "createdAt": "2026-08-21T20:26:15+09:00",
           "requiredChecks": ["readerVisibleUrl", "title", "price", "paidBoundary", "dedicatedCover"],
-          "status": "carried_debt_awaiting_next_pc_available_consumer_cycle"
+          "status": "enabled_force_retry_paid_catchup"
         },
-        "fallbackPolicy": "If the active item does not publish quickly in the next PC-available cycle, defer it and publish another qualified note candidate rather than ending the cycle without a verified publication.",
+        "additionalReadyCandidates": [
+          "note_20260821_07_event_sponsor_followup",
+          "note_20260821_08_creator_pricing",
+          "note_20260821_09_student_org_role_design",
+          "note_20260821_10_thesis_weekly_review",
+          "note_20260821_11_ai_jobhunt_answer_audit"
+        ],
+        "deferredLegacyCandidate": "note_20260820_05",
+        "fallbackPolicy": "Do not return to the blocked legacy item before trying the qualified paid fallbacks. In a PC-available catch-up cycle, continue across distinct candidates until at least one reader-visible publication is strictly verified or all prepared candidates encounter distinct non-recoverable blockers.",
         "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements debt or counts toward the daily target."
       }
     },
@@ -38,7 +46,7 @@
       "dailyPublicTarget": 5,
       "completionDefinition": "buyer-visible official BOOTH product page verified with title, price, downloadable-product state and purchase path",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
-      "catchUpPriority": "oldest_verified-unpublished first",
+      "catchUpPriority": "qualified fallback before deferred legacy blocker",
       "perCatchUpCycleSoftBatch": 5,
       "productionCap": null,
       "operationalState": {
@@ -51,16 +59,17 @@
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 9,
         "pcAssumption": "User normally closes the Windows PC after 01:00 JST; do not require Windows publisher execution after 01:00. Keep cloud preparation active and preserve debt until the next PC-available recovery window.",
-        "nextPreferredWindowsRecoveryWindow": "2026-08-21T07:10:00+09:00",
+        "nextPreferredWindowsRecoveryWindow": "2026-08-21T23:10:00+09:00",
         "activePublicationCandidate": {
-          "queueId": "009_handover_os_20260820",
-          "title": "学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
+          "queueId": "001_interview_os",
+          "title": "【28卒・29卒】面接改善OS｜面接ログ×弱点可視化×AIプロンプト12種｜Excel就活テンプレ",
           "expectedPriceJPY": 980,
-          "expectedJoinedSha256": "19c158e93d8104eb101ac0ed1f86cc2e83b6480277ca9e9b984fea8764eabd27",
-          "createdAt": "2026-08-20T17:40:00+09:00",
+          "expectedJoinedSha256": "68a22bd5738d62a5c9e3d8719ecd1becf14492d7f8b41c97f873cefbc766f4d3",
+          "createdAt": "2026-08-18T20:00:00+09:00",
           "requiredChecks": ["buyerVisibleUrl", "title", "price", "downloadableProductState", "purchasePath"],
-          "status": "carried_debt_awaiting_next_pc_available_consumer_cycle"
+          "status": "enabled_force_retry_sha_reconciled"
         },
+        "deferredLegacyCandidate": "009_handover_os_20260820",
         "strictReverificationCandidate": {
           "queueId": "007_thesis_progress_os_20260820",
           "publicUrlCandidate": "https://booth.pm/ja/items/8739122",
@@ -69,11 +78,15 @@
         "fallbackBuildCandidates": [
           "event_sponsor_bundle",
           "jobhunt_interview_bundle",
-          "creator_profit_pricing_os",
-          "small_org_role_os"
+          "event_risk_register_os",
+          "small_org_role_os",
+          "sponsor_deliverables_tracker",
+          "research_interview_coding_os",
+          "volunteer_shift_comms_os",
+          "creator_profit_pricing_os"
         ],
-        "fallbackPolicy": "Do not let 009 block the whole cycle. If it cannot publish quickly, defer it and build/publish another qualified BOOTH candidate so each PC-available production run can add at least one buyer-visible publication.",
-        "debtRule": "Only explicit verification of all required buyer checks decrements debt. Generic publisher success or HTTP/title verification does not.",
+        "fallbackPolicy": "Do not let 001 or deferred 009 block the whole catch-up cycle. If 001 cannot reach strict buyer-visible verification quickly, materialize and publish another qualified distinct BOOTH candidate in the same PC-available run.",
+        "debtRule": "Only explicit verification of all required buyer checks decrements debt. Generic publisher success, local logs, draft creation, or HTTP/title-only verification does not.",
         "cloudAutomationState": "enabled; recoverable failures must never self-disable"
       }
     }
