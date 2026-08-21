@@ -1,162 +1,65 @@
 {
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-08-21T12:30:52+09:00",
   "objective": "maximize net profit from already-published assets by improving conversion, average order value, repeat purchase and measurable cross-channel funnels without inventing missing performance data",
   "observedBaseline": {
-    "BOOTH": {
-      "salesByProduct": null,
-      "conversion": null,
-      "note": "No observed product-level sales or conversion data are present in metrics/current.json, so no live price change is authorized in this run."
-    },
-    "note": {
-      "salesByArticle": null,
-      "pvByArticle": null,
-      "likesByArticle": null,
-      "note": "No observed sales/PV/likes are present, so product-specific price elasticity cannot yet be estimated."
-    },
-    "MicrosoftStore": {
-      "pageViews": null,
-      "installAttempts": null,
-      "acquisitions": null,
-      "successfulInstalls": null,
-      "firstLaunches": null,
-      "conversion": null,
-      "health": null,
-      "note": "Initial Store publication route is proven, but no repository artifact currently exposes Partner Center funnel metrics or the verified Store product URL."
-    },
-    "GitHubPages": {
-      "traffic": null,
-      "outboundClicks": null,
-      "note": "Published tools exist, but first-party traffic and outbound click measurement are not currently available in repository state."
-    }
+    "BOOTH": {"salesByProduct":null,"conversion":null,"note":"No observed product-level sales or conversion data are present in metrics/current.json, so no live price change is authorized in this run."},
+    "note": {"salesByArticle":null,"pvByArticle":null,"likesByArticle":null,"note":"No observed sales/PV/likes are present, so product-specific price elasticity cannot yet be estimated."},
+    "MicrosoftStore": {"pageViews":null,"installAttempts":null,"acquisitions":null,"successfulInstalls":null,"firstLaunches":null,"conversion":null,"health":null,"note":"Initial Store publication route is proven, but no repository artifact currently exposes Partner Center funnel metrics or the verified Store product URL."},
+    "GitHubPages": {"traffic":null,"outboundClicks":null,"note":"Published tools exist, but first-party traffic and outbound click measurement are not currently available in repository state."}
   },
   "verifiedMarketEvidence": {
     "note": {
-      "sourceCheckedAt": "2026-08-21T12:30:52+09:00",
-      "source": "note株式会社 2026-01-07 paid-content analysis",
-      "findings": {
-        "paidArticleSalesYoY": "+26.8%",
-        "membershipSalesYoY": "+81.3%",
-        "aiUtilizationCategoryGrowthYoY": "+268.6%",
-        "practicalKnowHowAveragePriceAmongTop20PctJPY": 1842,
-        "readingAveragePriceAmongTop20PctJPY": 983,
-        "practicalPaidAreaLengthSalesCorrelation": -0.023,
-        "freeAreaFinding": "Practical know-how articles tended to explain concrete value before the paid boundary rather than relying on paid-area length."
-      },
-      "decision": "Treat 1,480-1,980 JPY as a test band for sufficiently strong practical know-how articles, but do not reprice existing articles until product-level sales/PV data exist. New practical articles may enter this band when their promised outcome and evidence support it."
+      "sourceCheckedAt":"2026-08-21T12:30:52+09:00",
+      "source":"note株式会社 2026-01-07 paid-content analysis",
+      "findings":{"paidArticleSalesYoY":"+26.8%","membershipSalesYoY":"+81.3%","aiUtilizationCategoryGrowthYoY":"+268.6%","practicalKnowHowAveragePriceAmongTop20PctJPY":1842,"readingAveragePriceAmongTop20PctJPY":983,"practicalPaidAreaLengthSalesCorrelation":-0.023,"freeAreaFinding":"Practical know-how articles tended to explain concrete value before the paid boundary rather than relying on paid-area length."},
+      "decision":"Treat 1,480-1,980 JPY as a test band for sufficiently strong practical know-how articles, but do not reprice existing articles until product-level sales/PV data exist. New practical articles may enter this band when their promised outcome and evidence support it."
     },
     "BOOTH": {
-      "sourceCheckedAt": "2026-08-21T12:30:52+09:00",
-      "source": "BOOTH official service-fee announcement effective 2025-10-28",
-      "downloadFeeFormula": "ceil(priceJPY * 0.056 + 45)",
-      "netExamples": [
-        {"priceJPY":980,"feeJPY":100,"netJPY":880,"effectiveFeeRate":0.1020},
-        {"priceJPY":1280,"feeJPY":117,"netJPY":1163,"effectiveFeeRate":0.0914},
-        {"priceJPY":1480,"feeJPY":128,"netJPY":1352,"effectiveFeeRate":0.0865},
-        {"priceJPY":1680,"feeJPY":140,"netJPY":1540,"effectiveFeeRate":0.0833},
-        {"priceJPY":1980,"feeJPY":156,"netJPY":1824,"effectiveFeeRate":0.0788},
-        {"priceJPY":2480,"feeJPY":184,"netJPY":2296,"effectiveFeeRate":0.0742}
-      ],
-      "decision": "Do not discount low-ticket products merely to chase volume. Coherent bundles are attractive because the fixed 45 JPY component makes effective fee rate lower at higher order values, while the bundle must still provide genuine complementary value."
+      "sourceCheckedAt":"2026-08-21T12:30:52+09:00",
+      "source":"BOOTH official service-fee announcement effective 2025-10-28",
+      "downloadFeeFormula":"ceil(priceJPY * 0.056 + 45)",
+      "netExamples":[{"priceJPY":980,"feeJPY":100,"netJPY":880,"effectiveFeeRate":0.1020},{"priceJPY":1280,"feeJPY":117,"netJPY":1163,"effectiveFeeRate":0.0914},{"priceJPY":1480,"feeJPY":128,"netJPY":1352,"effectiveFeeRate":0.0865},{"priceJPY":1680,"feeJPY":140,"netJPY":1540,"effectiveFeeRate":0.0833},{"priceJPY":1980,"feeJPY":156,"netJPY":1824,"effectiveFeeRate":0.0788},{"priceJPY":2480,"feeJPY":184,"netJPY":2296,"effectiveFeeRate":0.0742}],
+      "decision":"Do not discount low-ticket products merely to chase volume. Coherent bundles are attractive because the fixed 45 JPY component makes effective fee rate lower at higher order values, while the bundle must still provide genuine complementary value."
     },
     "MicrosoftStore": {
-      "sourceCheckedAt": "2026-08-21T12:30:52+09:00",
-      "source": "Microsoft Learn Windows app performance and product page experiment documentation",
-      "findings": [
-        "Acquisitions report exposes page views, install attempts, acquisitions, successful installs, first launches and conversion by source/campaign.",
-        "Custom campaign IDs can be used to attribute Store page views and conversions from external links.",
-        "Product page experiments support A/B testing of visual assets; Microsoft notes icons and screenshots can occupy up to roughly half of the product-page surface area.",
-        "Health reporting covers crashes and unresponsive events."
-      ],
-      "decision": "Before derivative Store apps or aggressive listing changes, capture the live funnel baseline. Do not start an A/B test until enough page views accumulate to avoid reacting to noise."
+      "sourceCheckedAt":"2026-08-21T12:30:52+09:00",
+      "source":"Microsoft Learn Windows app performance and product page experiment documentation",
+      "findings":["Acquisitions report exposes page views, install attempts, acquisitions, successful installs, first launches and conversion by source/campaign.","Custom campaign IDs can be used to attribute Store page views and conversions from external links.","Product page experiments support A/B testing of visual assets; Microsoft notes icons and screenshots can occupy up to roughly half of the product-page surface area.","Health reporting covers crashes and unresponsive events."],
+      "decision":"Before derivative Store apps or aggressive listing changes, capture the live funnel baseline. Do not start an A/B test until enough page views accumulate to avoid reacting to noise."
     }
   },
   "existingCrossSellAudit": {
-    "verified": [
-      {
-        "source":"GitHubPages/event-checklist",
-        "destination":"BOOTH/003_event_ops_html_20260819",
-        "destinationUrl":"https://booth.pm/ja/items/8736143",
-        "status":"cta_present",
-        "action":"retain; do not redesign without click or conversion evidence"
-      },
-      {
-        "source":"GitHubPages/sponsor-plan-calc",
-        "destination":"BOOTH/005_sponsor_crm_20260819",
-        "destinationUrl":"https://booth.pm/ja/items/8736208",
-        "status":"cta_present",
-        "action":"retain; this is a coherent free-tool to paid-workflow transition"
-      }
+    "verifiedExisting":[
+      {"source":"GitHubPages/event-checklist","destination":"BOOTH/003_event_ops_html_20260819","destinationUrl":"https://booth.pm/ja/items/8736143","status":"cta_present","action":"retain; do not redesign without click or conversion evidence"},
+      {"source":"GitHubPages/sponsor-plan-calc","destination":"BOOTH/005_sponsor_crm_20260819","destinationUrl":"https://booth.pm/ja/items/8736208","status":"cta_present","action":"retain; coherent free-tool to paid-workflow transition"}
     ],
-    "priorityAuditsNext": [
-      "Add or verify a natural CTA from thesis tools to verified BOOTH thesis progress OS (https://booth.pm/ja/items/8739122) only after checking each page for duplication and layout safety.",
-      "Add or verify a natural CTA from job-hunt tools to verified BOOTH AI consistency OS (https://booth.pm/ja/items/8736698) only after checking each page for duplication and layout safety.",
-      "Do not point handover tools to BOOTH 009 or note 05 until those paid destinations are independently public-verified."
-    ]
+    "implementedThisRun":[
+      {"source":"GitHubPages/thesis-weekly-plan","destination":"BOOTH/007_thesis_progress_os_20260820","destinationUrl":"https://booth.pm/ja/items/8739122","status":"repository_committed_awaiting_public_page_recheck","design":"single context-matched CTA after free core workflow; free functionality unchanged"},
+      {"source":"GitHubPages/thesis-question-builder","destination":"BOOTH/007_thesis_progress_os_20260820","destinationUrl":"https://booth.pm/ja/items/8739122","status":"repository_committed_awaiting_public_page_recheck","design":"single context-matched CTA after free core workflow; free functionality unchanged"},
+      {"source":"GitHubPages/thesis-progress-check","destination":"BOOTH/007_thesis_progress_os_20260820","destinationUrl":"https://booth.pm/ja/items/8739122","status":"repository_committed_awaiting_public_page_recheck","design":"single context-matched CTA after diagnostic explanation; free functionality unchanged"}
+    ],
+    "priorityAuditsNext":["Add or verify a natural CTA from job-hunt tools to verified BOOTH AI consistency OS (https://booth.pm/ja/items/8736698) only after checking each page for duplication and layout safety.","Do not point handover tools to BOOTH 009 or note 05 until those paid destinations are independently public-verified."]
   },
   "experiments": [
-    {
-      "id":"exp_note_practical_price_band",
-      "channel":"note",
-      "target":"future practical know-how articles first; existing articles only after baseline data",
-      "currentProblem":"Several practical articles are priced below the 1,842 JPY average observed among note's top-20%-selling practical know-how sample, but there is no product-level conversion evidence yet.",
-      "change":"For new high-value practical articles, test 1,480-1,980 JPY when the free section clearly states a concrete outcome and the paid section delivers reusable templates/workflows. Existing prices remain unchanged in this run.",
-      "expectedCVRDelta":null,
-      "expectedAOVDelta":"positive if conversion remains acceptable; numeric estimate withheld until sales/PV exist",
-      "expectedLTVDelta":"potentially positive through clearer entry/standard/premium role separation",
-      "requiredSample":"Observed sales and PV by article across comparable themes; avoid interpreting zero/one sale as elasticity evidence.",
-      "risk":"Higher price can reduce conversion if promised value is weak or audience trust is insufficient.",
-      "rollback":"Return new-test articles to the prior comparable price band if conversion materially underperforms comparable articles after sufficient traffic."
-    },
-    {
-      "id":"exp_booth_event_sponsor_bundle",
-      "channel":"BOOTH",
-      "target":"event_sponsor_bundle",
-      "currentProblem":"Event Operations OS and Sponsor CRM are sold separately, leaving a coherent buyer journey without a higher-AOV bundle.",
-      "change":"Prepare a genuine complementary bundle around 2,480 JPY only if both source deliverables can be legally and technically packaged together without reducing standalone value.",
-      "expectedCVRDelta":null,
-      "expectedAOVDelta":"positive by construction if bundle purchases are incremental rather than cannibalizing both standalone purchases",
-      "expectedLTVDelta":"positive if bundle becomes the preferred full-workflow option",
-      "requiredSample":"Track bundle sales versus standalone sales after launch; no numeric forecast before observations.",
-      "risk":"Cannibalization or perceived discounting of standalone products.",
-      "rollback":"Keep standalone products unchanged; withdraw or reprice bundle if it shifts buyers from two-product purchases without increasing net revenue."
-    },
-    {
-      "id":"exp_store_funnel_baseline",
-      "channel":"MicrosoftStore",
-      "target":"Digital Seller Profit Toolkit",
-      "currentProblem":"No repository-visible page-view/install/acquisition/launch baseline exists, so listing changes cannot be evaluated.",
-      "change":"Capture Partner Center page views, install attempts, acquisitions, successful installs, first launches, conversion by source/campaign, and health metrics before changing price or running visual experiments. Once the verified Store URL is in state, use distinct custom campaign IDs for each external source link.",
-      "expectedCVRDelta":null,
-      "expectedAOVDelta":null,
-      "expectedLTVDelta":"measurement-enabling",
-      "requiredSample":"Enough page views per variant to avoid noise; no fixed threshold invented without variance/base-rate data.",
-      "risk":"Premature A/B interpretation or campaign attribution gaps.",
-      "rollback":"No live listing change in this run; measurement-only baseline has no customer-facing rollback requirement."
-    },
-    {
-      "id":"exp_free_to_paid_cta_audit",
-      "channel":"GitHubPages",
-      "target":"verified free-tool clusters",
-      "currentProblem":"Some free tools already have coherent paid CTAs, while other clusters may lack one; outbound click metrics are unavailable.",
-      "change":"Prefer one context-matched CTA per tool, only to independently verified destinations. Avoid multiple competing CTAs. Add measurable Store campaign IDs once a verified Store URL is available.",
-      "expectedCVRDelta":null,
-      "expectedAOVDelta":null,
-      "expectedLTVDelta":"potentially positive through cross-channel progression",
-      "requiredSample":"Outbound click and downstream conversion data once measurement exists.",
-      "risk":"Over-commercializing free tools can reduce trust and utility.",
-      "rollback":"Remove any CTA that harms usability or receives meaningful negative feedback; preserve the free tool's full core value."
-    }
+    {"id":"exp_note_practical_price_band","channel":"note","target":"future practical know-how articles first; existing articles only after baseline data","currentProblem":"Several practical articles are priced below the 1,842 JPY average observed among note's top-20%-selling practical know-how sample, but there is no product-level conversion evidence yet.","change":"For new high-value practical articles, test 1,480-1,980 JPY when the free section clearly states a concrete outcome and the paid section delivers reusable templates/workflows. Existing prices remain unchanged in this run.","expectedCVRDelta":null,"expectedAOVDelta":"positive if conversion remains acceptable; numeric estimate withheld until sales/PV exist","expectedLTVDelta":"potentially positive through clearer entry/standard/premium role separation","requiredSample":"Observed sales and PV by article across comparable themes; avoid interpreting zero/one sale as elasticity evidence.","risk":"Higher price can reduce conversion if promised value is weak or audience trust is insufficient.","rollback":"Return new-test articles to the prior comparable price band if conversion materially underperforms comparable articles after sufficient traffic."},
+    {"id":"exp_booth_event_sponsor_bundle","channel":"BOOTH","target":"event_sponsor_bundle","currentProblem":"Event Operations OS and Sponsor CRM are sold separately, leaving a coherent buyer journey without a higher-AOV bundle.","change":"Prepare a genuine complementary bundle around 2,480 JPY only if both source deliverables can be legally and technically packaged together without reducing standalone value.","expectedCVRDelta":null,"expectedAOVDelta":"positive by construction if bundle purchases are incremental rather than cannibalizing both standalone purchases","expectedLTVDelta":"positive if bundle becomes the preferred full-workflow option","requiredSample":"Track bundle sales versus standalone sales after launch; no numeric forecast before observations.","risk":"Cannibalization or perceived discounting of standalone products.","rollback":"Keep standalone products unchanged; withdraw or reprice bundle if it shifts buyers from two-product purchases without increasing net revenue."},
+    {"id":"exp_store_funnel_baseline","channel":"MicrosoftStore","target":"Digital Seller Profit Toolkit","currentProblem":"No repository-visible page-view/install/acquisition/launch baseline exists, so listing changes cannot be evaluated.","change":"Capture Partner Center page views, install attempts, acquisitions, successful installs, first launches, conversion by source/campaign, and health metrics before changing price or running visual experiments. Once the verified Store URL is in state, use distinct custom campaign IDs for each external source link.","expectedCVRDelta":null,"expectedAOVDelta":null,"expectedLTVDelta":"measurement-enabling","requiredSample":"Enough page views per variant to avoid noise; no fixed threshold invented without variance/base-rate data.","risk":"Premature A/B interpretation or campaign attribution gaps.","rollback":"No live listing change in this run; measurement-only baseline has no customer-facing rollback requirement."},
+    {"id":"exp_free_to_paid_cta_audit","channel":"GitHubPages","target":"verified free-tool clusters","currentProblem":"Some free tools already had coherent paid CTAs while the thesis cluster lacked them.","change":"Implemented one context-matched CTA on three thesis tools to the independently verified BOOTH thesis OS. No multiple competing CTA and no reduction of free-tool core value.","expectedCVRDelta":null,"expectedAOVDelta":null,"expectedLTVDelta":"potentially positive through cross-channel progression","requiredSample":"Outbound click and downstream conversion data once measurement exists.","risk":"Over-commercializing free tools can reduce trust and utility.","rollback":"Remove or soften the CTA if it harms usability or receives meaningful negative feedback; preserve free core value."}
   ],
   "changesAppliedThisRun": [
     "Established a durable CV/LTV baseline and experiment ledger so later runs can compare changes instead of repeatedly re-deciding from scratch.",
     "Locked existing prices against unsupported repricing because product-level sales/PV/conversion evidence is still absent.",
     "Recorded current BOOTH fee economics and bundle-AOV rationale using the current official fee formula.",
     "Recorded Microsoft Store funnel and experiment measurement requirements before any listing A/B change.",
-    "Confirmed existing event-checklist and sponsor-plan-calc CTAs already point to verified BOOTH destinations; no redundant CTA change was made."
+    "Confirmed existing event-checklist and sponsor-plan-calc CTAs already point to verified BOOTH destinations; no redundant CTA change was made.",
+    "Added a single non-intrusive cross-sell CTA from thesis-weekly-plan to the verified BOOTH thesis progress OS.",
+    "Added a single non-intrusive cross-sell CTA from thesis-question-builder to the verified BOOTH thesis progress OS.",
+    "Added a single non-intrusive cross-sell CTA from thesis-progress-check to the verified BOOTH thesis progress OS."
   ],
   "nextSafeActions": [
-    "Audit thesis and job-hunt free-tool pages for one non-duplicative CTA to their already-verified BOOTH products.",
+    "Recheck GitHub Pages deployment of the three thesis CTA commits before labeling the customer-facing changes live.",
+    "Audit job-hunt free-tool pages for one non-duplicative CTA to the already-verified BOOTH AI consistency product.",
     "Ingest actual BOOTH sales by product/date and note sales/PV/likes as soon as available; these are the highest-value missing inputs for repricing.",
     "Persist the verified Microsoft Store product URL and Partner Center funnel metrics when obtainable, then create source-specific custom campaign links.",
     "Do not activate note Membership until repeat-demand evidence exists; note's strong market growth is not sufficient evidence that this account already has repeat demand."
