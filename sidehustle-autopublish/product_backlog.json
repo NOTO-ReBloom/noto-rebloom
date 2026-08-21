@@ -1,76 +1,64 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-21T11:46:55+09:00",
-  "purpose": "Maintain more qualified publishable candidates than the remaining hard quota so blocked items never consume an entire PC-available production cycle, while separating confirmed winners from provisional amplification candidates.",
+  "version": 5,
+  "updatedAt": "2026-08-21T17:47:59+09:00",
+  "purpose": "Keep more qualified publishable paid candidates than the remaining hard quota, service carried debt first, and prevent stale blocked items from consuming remaining PC windows.",
   "publicationDebtFirst": true,
-  "pcAssumption": "Windows publisher is normally unavailable after 01:00 JST; prepare assets and queues in cloud time, publish during PC-available windows ending with 23:10 and 00:10 catch-up.",
+  "pcAssumption": "Windows publisher is normally unavailable after 01:00 JST; remaining paid recovery windows are 19:10, 22:10, 23:10 and 00:10.",
+  "evidenceLimit": "No observed BOOTH sales, note sales/PV/likes, or Microsoft Store funnel metrics are currently recorded. Rankings are provisional and must not be described as proven winners.",
   "note": {
     "carriedDebt": 1,
     "todayTarget": 5,
     "requiredBeforeDaySatisfied": 6,
-    "active": [
-      {"id":"note_20260820_05","title":"引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト","priceJPY":980,"priority":1,"state":"queued_retry_after_two_failed_windows","reason":"oldest carried debt; 07:10 and 10:10 did not establish strict reader-visible publication; brief 13:10 retry only, then defer and fail over"}
-    ],
-    "fallbackConcepts": [
-      {"id":"note_ai_small_org_workflow","concept":"AIで学生団体・小規模チームの定例業務を整理する実践ワークフロー","targetPriceJPY":1280,"priority":2,"readiness":"prepare_now_for_13_10_failover","reason":"Strong external category growth signal plus coherent fit with existing small-organization assets; functionally distinct from handover checklist."},
-      {"id":"note_event_sponsor_followup","concept":"協賛営業の面談後フォローと進捗管理","targetPriceJPY":980,"priority":3,"readiness":"prepare_now_for_13_10_failover","reason":"Low incremental concept risk and strong cross-sell fit with already verified sponsor CRM and sponsor-pipeline article."},
-      {"id":"note_creator_pricing","concept":"デジタル商品の価格設計と利益計算","targetPriceJPY":1280,"priority":4,"readiness":"16_10_candidate","reason":"Connects to existing digital-seller-profit acquisition tool and side-business demand."},
-      {"id":"note_student_org_role_design","concept":"学生団体の役割分担・属人化防止","targetPriceJPY":980,"priority":5,"readiness":"16_10_candidate","reason":"Clear separation from handover by focusing on RACI, workload and backup ownership."},
-      {"id":"note_thesis_weekly_review","concept":"卒論の週次レビューと遅延回復","targetPriceJPY":980,"priority":6,"readiness":"19_10_candidate","reason":"Extends verified thesis workflow without duplicating the general progress OS."},
-      {"id":"note_ai_jobhunt_answer_audit","concept":"AIでES・自己PR・面接回答の矛盾を監査する就活実践法","targetPriceJPY":1280,"priority":7,"readiness":"22_10_candidate","reason":"AI utilization plus high-intent job-search workflow; can cross-sell existing BOOTH job-hunt products."}
+    "blockedLegacy": {"id":"note_20260820_05","priceJPY":980,"state":"brief_retry_only_then_defer","reason":"Repeated strict-publication failure; preserve debt but do not let this item consume a full remaining run."},
+    "publishNow": [
+      {"id":"note_ai_small_org_workflow","concept":"AIで学生団体・小規模チームの定例業務を整理する実践ワークフロー","targetPriceJPY":1280,"priority":1,"slot":"19:10","reason":"AI-utilization demand signal plus coherent small-organization funnel; distinct from handover checklist."},
+      {"id":"note_event_sponsor_followup","concept":"協賛営業の面談後フォローと進捗管理","targetPriceJPY":980,"priority":2,"slot":"19:10","reason":"Strong cross-sell fit with verified sponsor CRM/article and low concept risk."},
+      {"id":"note_creator_pricing","concept":"デジタル商品の価格設計と利益計算","targetPriceJPY":1280,"priority":3,"slot":"19:10","reason":"Connects to existing free digital-seller-profit acquisition tool; practical paid intent."},
+      {"id":"note_student_org_role_design","concept":"学生団体の役割分担・属人化防止","targetPriceJPY":980,"priority":4,"slot":"22:10","reason":"RACI/workload/backup ownership is functionally distinct from handover."},
+      {"id":"note_thesis_weekly_review","concept":"卒論の週次レビューと遅延回復","targetPriceJPY":980,"priority":5,"slot":"22:10","reason":"Extends verified thesis workflow while solving a distinct weekly recovery job."},
+      {"id":"note_ai_jobhunt_answer_audit","concept":"AIでES・自己PR・面接回答の矛盾を監査する就活実践法","targetPriceJPY":1280,"priority":6,"slot":"22:10","reason":"AI plus high-intent job-search workflow; cross-sell fit with existing BOOTH job-hunt products."},
+      {"id":"note_event_risk_brief","concept":"小規模イベントで事故を減らすリスク洗い出しと担当決めの実践テンプレ","targetPriceJPY":980,"priority":7,"slot":"23:10_reserve","reason":"Reserve distinct candidate if any primary item blocks."},
+      {"id":"note_sponsor_delivery_check","concept":"協賛決定後の入金・ロゴ・返礼・報告漏れを防ぐ履行チェック","targetPriceJPY":980,"priority":8,"slot":"23:10_reserve","reason":"Reserve post-contract sponsor workflow distinct from sales follow-up."}
     ]
   },
   "BOOTH": {
     "carriedDebt": 4,
     "todayTarget": 5,
     "requiredBeforeDaySatisfied": 9,
-    "active": [
-      {"id":"009_handover_os_20260820","title":"学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML","priceJPY":980,"priority":1,"state":"queued_retry_after_two_failed_windows","reason":"oldest carried debt; 07:10 and 10:10 did not establish strict buyer-visible publication; brief 13:10 retry only, then defer and fail over"}
-    ],
-    "fallbackConcepts": [
-      {"id":"event_sponsor_bundle","concept":"イベント運営OS＋協賛営業CRMの補完バンドル","targetPriceJPY":2480,"priority":2,"readiness":"prepare_now_for_13_10_failover","reason":"Both source products are already buyer-visible; lowest incremental build risk, coherent buyer journey and higher AOV potential."},
-      {"id":"jobhunt_interview_bundle","concept":"AI就活一貫性チェックOS＋面接改善OSの補完バンドル","targetPriceJPY":1980,"priority":3,"readiness":"prepare_now_for_13_10_failover","reason":"Existing job-hunt assets can be bundled with low incremental production cost; must verify that source deliverables are valid before publication."},
-      {"id":"event_risk_register_os","concept":"小規模イベントのリスク・対応・担当管理OS","targetPriceJPY":1480,"priority":4,"readiness":"16_10_candidate","reason":"Distinct deeper risk workflow adjacent to the verified event operations OS."},
-      {"id":"small_org_role_os","concept":"学生団体・小規模NPOの役割分担OS","targetPriceJPY":1280,"priority":5,"readiness":"16_10_candidate","reason":"RACI, load, backup owner and recurring responsibility focus separates it from handover."},
-      {"id":"sponsor_deliverables_tracker","concept":"スポンサー契約後の入金・ロゴ掲載・返礼・報告物の履行管理OS","targetPriceJPY":1480,"priority":6,"readiness":"19_10_candidate","reason":"Complements sponsor CRM by owning the post-contract fulfillment stage."},
-      {"id":"research_interview_coding_os","concept":"卒論・質的研究のインタビュー記録・コード・引用候補整理OS","targetPriceJPY":1680,"priority":7,"readiness":"19_10_candidate","reason":"Distinct qualitative-analysis stage adjacent to verified thesis progress assets."},
-      {"id":"volunteer_shift_comms_os","concept":"学生イベント・地域活動のボランティア配置・連絡・欠員対応OS","targetPriceJPY":1480,"priority":8,"readiness":"22_10_candidate","reason":"Solves a different event-operations pain point with clear field-use value."},
-      {"id":"creator_profit_pricing_os","concept":"デジタル商品利益・価格設計OS","targetPriceJPY":1480,"priority":9,"readiness":"22_10_candidate","reason":"Connects to the existing digital-seller-profit free acquisition path."}
+    "blockedLegacy": {"id":"009_handover_os_20260820","priceJPY":980,"state":"brief_retry_only_then_defer","reason":"Repeated buyer-visible verification failure; preserve debt but do not let it consume a full remaining run."},
+    "publishNow": [
+      {"id":"event_sponsor_bundle","concept":"イベント運営OS＋協賛営業CRMの補完バンドル","targetPriceJPY":2480,"priority":1,"slot":"19:10","reason":"Two source products already buyer-visible; lowest incremental build risk and higher-AOV coherent buyer journey."},
+      {"id":"jobhunt_interview_bundle","concept":"AI就活一貫性チェックOS＋面接改善OSの補完バンドル","targetPriceJPY":1980,"priority":2,"slot":"19:10","reason":"Low incremental production cost if both deliverables validate; coherent job-hunt bundle."},
+      {"id":"event_risk_register_os","concept":"小規模イベントのリスク・対応・担当管理OS","targetPriceJPY":1480,"priority":3,"slot":"19:10","reason":"Distinct deeper risk workflow adjacent to verified event operations OS."},
+      {"id":"small_org_role_os","concept":"学生団体・小規模NPOの役割分担OS","targetPriceJPY":1280,"priority":4,"slot":"22:10","reason":"RACI/load/backup owner focus separates it from handover."},
+      {"id":"sponsor_deliverables_tracker","concept":"スポンサー契約後の入金・ロゴ掲載・返礼・報告物の履行管理OS","targetPriceJPY":1480,"priority":5,"slot":"22:10","reason":"Complements sponsor CRM by owning post-contract fulfillment."},
+      {"id":"research_interview_coding_os","concept":"卒論・質的研究のインタビュー記録・コード・引用候補整理OS","targetPriceJPY":1680,"priority":6,"slot":"22:10","reason":"Distinct qualitative-analysis stage adjacent to thesis progress assets."},
+      {"id":"volunteer_shift_comms_os","concept":"学生イベント・地域活動のボランティア配置・連絡・欠員対応OS","targetPriceJPY":1480,"priority":7,"slot":"23:10","reason":"Distinct event-operations pain point with clear field-use value."},
+      {"id":"creator_profit_pricing_os","concept":"デジタル商品利益・価格設計OS","targetPriceJPY":1480,"priority":8,"slot":"23:10","reason":"Connects to existing digital-seller-profit acquisition path."},
+      {"id":"event_budget_actual_os","concept":"小規模イベントの予算・発注・実績差異管理OS","targetPriceJPY":1480,"priority":9,"slot":"23:10_reserve","reason":"Reserve candidate with distinct financial-control job."},
+      {"id":"sponsor_proposal_compare_os","concept":"協賛プラン別の提案内容・金額・返礼比較OS","targetPriceJPY":1480,"priority":10,"slot":"00:10_reserve","reason":"Reserve candidate distinct from CRM and fulfillment tracker."}
     ]
   },
   "MicrosoftStore": {
     "quota": null,
     "priorityConcepts": [
-      {"id":"ms_csv_cleaner_deduper","concept":"CSV Cleaner & Duplicate Remover：重複削除・空白正規化・列名整理・文字コード確認をローカル完結","priority":1,"monetization":"free acquisition first; evaluate paid Pro/batch automation only after usage signal","measurementPlan":["Store page views","install attempts","acquisitions","successful installs","first launches","conversion by source/campaign"],"evidence":"Current Store research still supports a more differentiated Japanese CSV-cleanup workflow than generic image compression; direct product-level demand metrics are not yet available."},
-      {"id":"ms_invoice_filename_organizer","concept":"請求書・領収書ファイルを日付・取引先・金額ルールで一括リネームするローカル整理ツール","priority":2,"monetization":"free core; paid advanced naming presets only after demand signal","evidence":"Workflow-specific positioning is required because generic renamers are crowded."},
-      {"id":"ms_local_qr_batch_generator","concept":"CSVからQRコードを一括生成・命名・ZIP出力するローカルツール","priority":3,"monetization":"free core; batch templates/export presets as possible Pro","evidence":"Clear business/event use case; direct Store demand metrics not yet observed."},
-      {"id":"ms_image_batch_optimizer","concept":"EC・SNS向けプリセット付き画像一括リサイズ・圧縮・WebP変換","priority":4,"monetization":"only pursue with strong niche differentiation","evidence":"Generic image compressor/resizer competition remains dense."}
-    ]
-  },
-  "amplificationAnalysis": {
-    "checkedAt": "2026-08-21T11:46:55+09:00",
-    "confirmedWinners": [],
-    "winnerStatus": "No confirmed winner can be declared because observed BOOTH sales, note sales/PV and Microsoft Store page-view/install/acquisition/conversion metrics remain unavailable.",
-    "provisionalCandidates": [
-      {"clusterId":"event_sponsor_operations","status":"highest_provisional","priority":1,"bestLowCostExperiment":"event_sponsor_bundle","reason":"Two verified BOOTH assets, two verified paid note articles and multiple free acquisition tools already cover one buyer journey; bundle has the lowest incremental build cost."},
-      {"clusterId":"thesis_research_workflow","status":"medium_provisional","priority":2,"bestLowCostExperiment":"note_thesis_weekly_review","reason":"Verified paid and free assets span planning and progress; next expansion must remain functionally distinct."},
-      {"clusterId":"small_org_handover_roles_meetings","status":"medium_provisional","priority":3,"bestLowCostExperiment":"note_ai_small_org_workflow","reason":"Strong free-tool cluster exists, but paid handover assets are still unverified, so expansion should remain limited and differentiated."}
+      {"id":"ms_csv_cleaner_deduper","concept":"CSV Cleaner & Duplicate Remover：重複削除・空白正規化・列名整理・文字コード確認をローカル完結","priority":1,"monetization":"free acquisition first; evaluate paid Pro/batch automation only after usage signal","measurementPlan":["Store page views","install attempts","acquisitions","successful installs","first launches","conversion by source/campaign"],"evidence":"Partner Center supports this funnel measurement; product-level demand metrics are not yet observed."},
+      {"id":"ms_invoice_filename_organizer","concept":"請求書・領収書ファイルを日付・取引先・金額ルールで一括リネームするローカル整理ツール","priority":2,"monetization":"free core; advanced naming presets only after demand signal"},
+      {"id":"ms_local_qr_batch_generator","concept":"CSVからQRコードを一括生成・命名・ZIP出力するローカルツール","priority":3,"monetization":"free core; batch templates/export presets as possible Pro"},
+      {"id":"ms_image_batch_optimizer","concept":"EC・SNS向けプリセット付き画像一括リサイズ・圧縮・WebP変換","priority":4,"monetization":"pursue only with niche differentiation"}
     ],
-    "measurementPriority": [
-      "Capture BOOTH sales by product/date before declaring a paid winner.",
-      "Capture note sales/PV/likes by article before amplifying a note series.",
-      "Capture Microsoft Store page views, install attempts, acquisitions, installs, first launches and conversion by source/campaign before creating app derivatives.",
-      "Add measurable campaign/referral identifiers from free tools to verified paid/Store destinations when possible."
-    ]
+    "executionRule":"During remaining PC windows, hard paid publication debt outranks starting another app build. Cloud-side Store research/build prep may continue without displacing paid recovery."
+  },
+  "GitHubPages": {
+    "rule":"Do not prioritize a new free tool while note/BOOTH hard publication floors remain unsatisfied unless every paid candidate is globally blocked. Existing pending meeting-action may be verified without consuming paid build capacity."
   },
   "rules": [
-    "At 13:10, service carried debt first but do not spend another full cycle on the same blocked item after the 07:10 and 10:10 failures.",
-    "Prepare at least two publishable fallbacks per channel before the local publication attempt begins.",
-    "If the active candidate cannot reach strict buyer/reader-visible verification quickly, defer it and switch in the same run.",
-    "Maintain more qualified candidates than the remaining hard minimum so one blocked item never stalls the day.",
+    "Previous-day debt is serviced before current-day quota is considered satisfied.",
+    "Maintain more qualified candidates than remaining hard minimum.",
+    "At each remaining PC window, stale legacy items receive only a brief strict retry before failover.",
     "Queue insertion, local success, admin/editor URLs and commits do not count as publication.",
-    "Do not publish near-duplicate low-value products merely to satisfy count; use a distinct qualified fallback.",
-    "Do not require Windows execution after 01:00 JST; cloud preparation continues and debt remains intact.",
+    "Do not publish near-duplicate low-value products merely to satisfy count; use distinct qualified reserves.",
+    "Do not require Windows execution after 01:00 JST; residual shortfall becomes debt and is never zero-cleared.",
     "Do not label a product or cluster a winner without observed performance evidence."
   ]
 }
