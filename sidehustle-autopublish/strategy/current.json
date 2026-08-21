@@ -1,6 +1,6 @@
 {
-  "version": 9,
-  "updatedAt": "2026-08-21T15:10:55+09:00",
+  "version": 10,
+  "updatedAt": "2026-08-21T17:47:59+09:00",
   "objective": "maximize cumulative user profit while enforcing verified-publication hard minimums and minimizing user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -14,54 +14,57 @@
     "todayRemaining": {"note": 5, "BOOTH": 5},
     "rule": "Expected-profit optimization may choose WHICH qualified products to publish, but may not reduce the verified-publication floor or erase carried debt."
   },
+  "evidenceState": {
+    "observedSalesOrFunnelMetricsAvailable": false,
+    "rule": "Do not invent product-level demand, sales, PV, conversion or acquisition numbers. Until observed metrics arrive, rank by publication debt, publishability, coherent buyer journey, external market evidence and incremental build cost.",
+    "microsoftMeasurement": "Partner Center Acquisition reports can measure page views, install attempts, acquisitions, installs, first launches and source/campaign conversion; collect these before app derivative expansion.",
+    "noteMarketSignal": "Paid content demand exists, but product-level sales/PV for this account are still unavailable; use pricing/category signals only as provisional evidence."
+  },
   "pcAvailabilityPolicy": {
     "assumption": "User normally closes Windows PC after 01:00 JST.",
     "after0100": "Do not require Windows publisher execution. Continue cloud research, build preparation, queue/state/ledger repair and fallback preparation.",
-    "productionWindows": ["07:10", "10:10", "13:10", "14:10", "15:10", "16:10", "19:10", "22:10", "23:10", "00:10"],
+    "productionWindows": ["19:10", "22:10", "23:10", "00:10"],
     "lateDayRecoveryWindows": ["23:10", "00:10"],
-    "nextPreferredRecoveryWindow": "2026-08-21T15:10:00+09:00",
-    "frontLoadRule": "Debt and current-day publication minimums must be pushed toward verified public state before 01:00; do not depend on post-01:00 local execution."
+    "nextPreferredRecoveryWindow": "2026-08-21T19:10:00+09:00",
+    "frontLoadRule": "Paid debt and current-day publication minimums must be pushed toward verified public state before 01:00; do not depend on post-01:00 local execution."
   },
   "currentRecoveryFinding": {
-    "checkedAt": "2026-08-21T15:10:55+09:00",
-    "note": "note_20260820_05 still has no independently established reader-visible official page after repeated Windows recovery windows through 14:10; queue state remains enabled and stale retry-only handling is no longer sufficient.",
-    "BOOTH": "009_handover_os_20260820 still has no independently established buyer-visible official page after repeated Windows recovery windows through 14:10; publication ledger contains no 009 entry.",
-    "decision": "At 15:10 do not spend the run retrying only the two stale carried-debt items. Defer them after one brief strict attempt and immediately materialize/publish distinct prepared fallbacks. Paid publication debt has priority over creating another free Web tool."
+    "checkedAt": "2026-08-21T17:47:59+09:00",
+    "note": "Source-of-truth quota still requires 6 verified note publications before the day is satisfied (1 carried debt + 5 current-day); repository metrics contain no newer strict-publication evidence.",
+    "BOOTH": "Source-of-truth quota still requires 9 verified BOOTH publications before the day is satisfied (4 carried debt + 5 current-day); repository metrics contain no newer strict-publication evidence.",
+    "decision": "Do not spend another full run on stale note_20260820_05 or BOOTH 009. At each remaining PC window give the stale item only a brief strict attempt, then batch distinct prepared fallbacks. Paid publication recovery outranks another free Web tool until the hard floor is satisfied."
   },
   "runPlan": [
-    {"slot":"15:10","note":["note_ai_small_org_workflow","note_event_sponsor_followup"],"BOOTH":["event_sponsor_bundle","jobhunt_interview_bundle"],"goal":"Immediate failover: create queue-ready paid fallbacks and publish/strictly verify at least one paid item; stale note05/BOOTH009 get only a brief retry."},
-    {"slot":"16:10","note":["note_creator_pricing","note_student_org_role_design"],"BOOTH":["event_risk_register_os","small_org_role_os"],"goal":"Continue paid quota recovery with distinct qualified products; batch multiple publications if ready."},
-    {"slot":"19:10","note":["note_event_sponsor_followup","note_thesis_weekly_review"],"BOOTH":["sponsor_deliverables_tracker","research_interview_coding_os"],"goal":"Continue quota recovery while preserving coherent cross-channel buyer journeys."},
-    {"slot":"22:10","note":["note_ai_jobhunt_answer_audit","any_highest_priority_ready_note"],"BOOTH":["volunteer_shift_comms_os","creator_profit_pricing_os"],"goal":"Late-day quota recovery; prefer already-built and queue-ready candidates over new complex builds."},
-    {"slot":"23:10","note":["any_highest_priority_unverified_candidate"],"BOOTH":["any_highest_priority_unverified_candidate"],"goal":"Mandatory catch-up window. Batch multiple verified publications when qualified candidates are ready."},
-    {"slot":"00:10","note":["any_highest_priority_unverified_candidate"],"BOOTH":["any_highest_priority_unverified_candidate"],"goal":"Final PC-dependent recovery window before 01:00; verify formally or carry exact residual debt forward without clearing it."}
+    {"slot":"19:10","note":["note_ai_small_org_workflow","note_event_sponsor_followup","note_creator_pricing"],"BOOTH":["event_sponsor_bundle","jobhunt_interview_bundle","event_risk_register_os"],"goal":"Batch paid recovery. Brief legacy retry only; then publish and strict-verify multiple fallbacks if ready."},
+    {"slot":"22:10","note":["note_student_org_role_design","note_thesis_weekly_review","note_ai_jobhunt_answer_audit"],"BOOTH":["small_org_role_os","sponsor_deliverables_tracker","research_interview_coding_os"],"goal":"Continue hard-floor recovery using already prepared or low-build-risk distinct candidates."},
+    {"slot":"23:10","note":["any_highest_priority_ready_note","additional_distinct_note_if_needed"],"BOOTH":["volunteer_shift_comms_os","creator_profit_pricing_os","additional_distinct_booth_if_needed"],"goal":"Mandatory catch-up; batch as many strict verified publications as qualified candidates permit."},
+    {"slot":"00:10","note":["any_highest_priority_unverified_candidate"],"BOOTH":["any_highest_priority_unverified_candidate"],"goal":"Final PC-dependent recovery before 01:00. Verify formally; residual exact shortfall becomes debt, never zero-cleared."}
   ],
-  "productionRunPolicy": {
-    "normalCompletion": "At least one newly verified public artifact per PC-available production run while debt or quota remains; paid debt takes priority over another free artifact when paid candidates are available.",
-    "blockedCandidate": "After a brief strict-publication attempt, defer and switch to another qualified candidate rather than ending the run.",
-    "strictNoteChecks": ["readerVisibleUrl", "exactTitle", "price", "paidBoundary", "dedicatedCover"],
-    "strictBoothChecks": ["buyerVisibleUrl", "exactTitle", "price", "downloadableProductState", "purchasePath"],
-    "nonCompletionEvidence": ["queue insertion", "PUBLISH_SUCCESS alone", "editor/admin URL", "commit", "HTTP/title-only evidence when commerce checks are required"]
-  },
   "priorityOrder": {
-    "note": ["note_ai_small_org_workflow", "note_event_sponsor_followup", "note_20260820_05", "note_creator_pricing", "note_student_org_role_design", "note_thesis_weekly_review", "note_ai_jobhunt_answer_audit"],
-    "BOOTH": ["event_sponsor_bundle", "jobhunt_interview_bundle", "009_handover_os_20260820", "event_risk_register_os", "small_org_role_os", "sponsor_deliverables_tracker", "research_interview_coding_os", "volunteer_shift_comms_os", "creator_profit_pricing_os"],
-    "MicrosoftStore": ["ms_csv_cleaner_deduper", "ms_invoice_filename_organizer", "ms_local_qr_batch_generator", "ms_image_batch_optimizer"]
+    "note": ["note_ai_small_org_workflow","note_event_sponsor_followup","note_creator_pricing","note_student_org_role_design","note_thesis_weekly_review","note_ai_jobhunt_answer_audit","note_20260820_05"],
+    "BOOTH": ["event_sponsor_bundle","jobhunt_interview_bundle","event_risk_register_os","small_org_role_os","sponsor_deliverables_tracker","research_interview_coding_os","volunteer_shift_comms_os","creator_profit_pricing_os","009_handover_os_20260820"],
+    "MicrosoftStore": ["ms_csv_cleaner_deduper","ms_invoice_filename_organizer","ms_local_qr_batch_generator","ms_image_batch_optimizer"]
   },
   "currentPipeline": {
-    "note": {"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":6,"active":"note_ai_small_org_workflow","blockedLegacy":"note_20260820_05","nextAction":"materialize fallback now; publish and strict-verify; retry legacy only briefly"},
-    "BOOTH": {"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":9,"active":"event_sponsor_bundle","blockedLegacy":"009_handover_os_20260820","nextAction":"materialize fallback now; publish and strict-verify; retry legacy only briefly"},
-    "MicrosoftStore": {"status":"initial publication route proven; next build priority remains local-first CSV cleaner/deduper; collect observed funnel metrics when available"},
-    "GitHubPages": {"performanceMetricsAvailable":false}
+    "note": {"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":6,"active":"note_ai_small_org_workflow","blockedLegacy":"note_20260820_05","nextAction":"19:10 batch publish prepared fallbacks; legacy gets brief retry only"},
+    "BOOTH": {"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeSatisfied":9,"active":"event_sponsor_bundle","blockedLegacy":"009_handover_os_20260820","nextAction":"19:10 batch publish prepared low-incremental-cost fallbacks; legacy gets brief retry only"},
+    "MicrosoftStore": {"status":"initial publication route proven; keep CSV Cleaner & Duplicate Remover as first build priority, but paid quota recovery has precedence during remaining PC windows; collect Partner Center funnel metrics before derivative expansion"},
+    "GitHubPages": {"performanceMetricsAvailable":false,"priority":"defer new free-tool creation while paid hard floor is unsatisfied unless paid pipelines become globally blocked"}
+  },
+  "productionRunPolicy": {
+    "normalCompletion": "At least one newly verified public paid artifact per PC-available production run while debt or quota remains; batch multiple when debt exists.",
+    "blockedCandidate": "After a brief strict-publication attempt, defer and switch to another qualified candidate rather than ending the run.",
+    "strictNoteChecks": ["readerVisibleUrl","exactTitle","price","paidBoundary","dedicatedCover"],
+    "strictBoothChecks": ["buyerVisibleUrl","exactTitle","price","downloadableProductState","purchasePath"],
+    "nonCompletionEvidence": ["queue insertion","PUBLISH_SUCCESS alone","editor/admin URL","commit","HTTP/title-only evidence when commerce checks are required"]
   },
   "profitRules": [
     "Debt and today's verified-publication floor are first priority.",
-    "Within that floor, prefer stronger purchase intent, differentiation, conversion fit and expected net profit.",
-    "After repeated failed local windows, a blocked carried-debt item may not consume another full production run; switch to a qualified fallback.",
-    "Maintain more ready candidates than remaining quota.",
+    "Within that floor, prefer stronger purchase intent, coherent cross-sell fit, lower incremental build cost and higher expected net profit.",
+    "Bundles of already verified complementary assets are preferred recovery candidates because they can raise AOV with low incremental production cost, but only if deliverables and buyer-visible purchase path are valid.",
+    "Do not create app derivatives until observed Microsoft Store funnel metrics support the theme; first collect page views, install attempts, acquisitions, installs, first launches and source/campaign conversion.",
     "Do not publish plaintext paid assets to GitHub.",
-    "Do not infer public URLs; independently verify before marking completed.",
-    "Do not infer demand metrics when unavailable.",
+    "Do not infer public URLs or performance metrics.",
     "Do not reactivate KDP or LINE without explicit user instruction."
   ]
 }
