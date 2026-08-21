@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "checkedAt": "2026-08-21T14:14:00+09:00",
+  "appId": "ms_csv_cleaner_deduper",
+  "status": "submission_ready_except_partner_identity_and_required_screenshot_upload",
+  "checks": {
+    "coreUseCaseClear": true,
+    "localOnlyDataProcessing": true,
+    "csvParserHandlesQuotedFields": true,
+    "utf8Read": true,
+    "shiftJisRead": true,
+    "selectableDedupColumns": true,
+    "trimWhitespace": true,
+    "collapseWhitespace": true,
+    "removeBlankRows": true,
+    "normalizeHeaders": true,
+    "previewBeforeDownload": true,
+    "utf8BomExport": true,
+    "responsiveUi": true,
+    "privacyCopyVisible": true,
+    "webAppManifestPresent": true,
+    "serviceWorkerPresent": true,
+    "offlineShellCache": true,
+    "httpsTarget": true,
+    "listingDescriptionPrepared": true,
+    "listingFeaturesPrepared": true,
+    "listingKeywordsPrepared": true,
+    "appIconSourcePresent": true,
+    "requiredPngScreenshotUploadedToPartnerCenter": false,
+    "partnerCenterProductIdentityReserved": false,
+    "finalPwaBuilderPackageGeneratedWithPartnerIdentity": false,
+    "submittedForCertification": false,
+    "publicStoreUrlVerified": false
+  },
+  "qaNotes": [
+    "CSV parsing is implemented without external libraries so imported file contents remain local.",
+    "Deduplication defaults to full-row equality and supports selected-column keys.",
+    "Export uses UTF-8 BOM to improve compatibility with Japanese Excel workflows.",
+    "No network API is used for CSV contents.",
+    "Final Microsoft package generation must use the actual Partner Center Package ID, Publisher display name and Publisher ID."
+  ],
+  "sourceRequirements": {
+    "microsoftStoreListingMinimum": "Description plus at least one screenshot.",
+    "screenshotDesktop": "PNG, 1366x768 or larger, maximum 50 MB.",
+    "pwaCore": "HTTPS, Web App Manifest, Service Worker, no mixed content."
+  }
+}
