@@ -1,4 +1,4 @@
-name: Raise paid catch-up batch
+name: Force paid catch-up recovery
 
 on:
   push:
@@ -9,33 +9,89 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: force-paid-catchup-recovery
+  cancel-in-progress: false
+
 jobs:
-  patch-quota:
+  refresh-queues:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
-      - name: Set catch-up batch to entire current strict remainder
+      - name: Refresh paid note and BOOTH retry generations
+        shell: python
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          from datetime import datetime, timezone, timedelta
-          p=Path('sidehustle-autopublish/publication_quota.json')
-          d=json.loads(p.read_text(encoding='utf-8'))
-          d['channels']['note']['perCatchUpCycleSoftBatch']=11
-          d['channels']['BOOTH']['perCatchUpCycleSoftBatch']=14
-          d['channels']['note']['operationalState']['batchClearInstruction']='Process up to all 11 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 11 were attempted.'
-          d['channels']['BOOTH']['operationalState']['batchClearInstruction']='Process up to all 14 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 14 were attempted.'
-          d['updatedAt']=datetime.now(timezone(timedelta(hours=9))).replace(microsecond=0).isoformat()
-          d['version']=max(int(d.get('version',0))+1,9)
-          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          PY
-      - name: Commit quota batch override
+          import json, pathlib, datetime
+          JST=datetime.timezone(datetime.timedelta(hours=9))
+          now=datetime.datetime.now(JST).replace(microsecond=0)
+          stamp=now.isoformat(); compact=now.strftime('%Y%m%dT%H%M%S+0900')
+
+          note_path=pathlib.Path('sidehustle-autopublish/note/queue/index.json')
+          note=json.loads(note_path.read_text(encoding='utf-8-sig'))
+          note['retryGeneration']=int(note.get('retryGeneration',0))+1
+          note['updatedAt']=stamp
+          paid_ids={
+            'note_20260821_06_ai_small_org_workflow','note_20260821_07_event_sponsor_followup',
+            'note_20260821_08_creator_pricing','note_20260821_09_student_org_role_design',
+            'note_20260821_10_thesis_weekly_review','note_20260821_11_ai_jobhunt_answer_audit',
+            'note_20260822_12_event_cancel_decision','note_20260822_13_meeting_decision_log',
+            'note_20260822_14_sponsor_menu_design','note_20260822_15_research_interview_coding',
+            'note_20260822_16_jobhunt_company_research'}
+          for e in note.get('entries',[]):
+              if e.get('id') in paid_ids and not e.get('publicUrlVerified'):
+                  e['enabled']=True; e['forceRetry']=True
+                  e['forceRetryNonce']=f'morning-paid-recovery-{e["id"]}-{compact}'
+                  e['invalidateLocalSuccessWithoutReaderVerification']=True
+          note_path.write_text(json.dumps(note,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          booth_path=pathlib.Path('booth-autopublish/queue/index.json')
+          booth=json.loads(booth_path.read_text(encoding='utf-8-sig'))
+          booth['retryGeneration']=int(booth.get('retryGeneration',0))+1
+          booth['updatedAt']=stamp
+          booth_ids={f'{n:03d}_'+s for n,s in [
+            (10,'event_risk_register_os_20260822'),(11,'small_org_role_os_20260822'),
+            (12,'sponsor_deliverables_tracker_20260822'),(13,'research_interview_coding_os_20260822'),
+            (14,'volunteer_shift_comms_os_20260822'),(15,'creator_profit_pricing_os_20260822'),
+            (16,'event_sponsor_bundle_os_20260822'),(17,'jobhunt_interview_bundle_os_20260822'),
+            (18,'grant_application_tracker_os_20260822'),(19,'event_incident_log_os_20260822'),
+            (20,'meeting_decision_action_os_20260822'),(21,'small_npo_donor_crm_os_20260822'),
+            (22,'research_literature_matrix_os_20260822'),(23,'campus_project_budget_os_20260822')]}
+          for e in booth.get('entries',[]):
+              if e.get('id') in booth_ids:
+                  e['enabled']=True; e['forceRetry']=True
+                  e['forceRetryNonce']=f'morning-paid-recovery-{e["id"]}-{compact}'
+                  e['invalidateLocalSuccessWithoutVerifiedLedger']=True
+          booth_path.write_text(json.dumps(booth,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          quota_path=pathlib.Path('sidehustle-autopublish/publication_quota.json')
+          quota=json.loads(quota_path.read_text(encoding='utf-8-sig'))
+          quota['version']=int(quota.get('version',0))+1; quota['updatedAt']=stamp
+          quota['channels']['note']['perCatchUpCycleSoftBatch']=11
+          quota['channels']['BOOTH']['perCatchUpCycleSoftBatch']=14
+          ns=quota['channels']['note']['operationalState']; bs=quota['channels']['BOOTH']['operationalState']
+          ns['lastForcedRecoveryAt']=stamp; ns['queueRetryGeneration']=note['retryGeneration']
+          ns['batchClearInstruction']='Immediately process every ledger-absent paid item in the eleven-item batch while Windows is available. Continue after per-item recoverable failure; do not stop after first success.'
+          bs['lastForcedRecoveryAt']=stamp; bs['queueRetryGeneration']=booth['retryGeneration']
+          bs['batchClearInstruction']='Immediately process every ledger-absent paid item in the fourteen-item batch while Windows is available. Continue after per-item recoverable failure; do not stop after first success.'
+          quota_path.write_text(json.dumps(quota,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          rec_path=pathlib.Path('booth-autopublish/monitor/recovery_control.json')
+          if rec_path.exists():
+              rec=json.loads(rec_path.read_text(encoding='utf-8-sig'))
+              rec['version']=int(rec.get('version',0))+1; rec['updatedAt']=stamp
+              batch=rec.setdefault('readyPaidRecoveryBatch',{})
+              batch['queueRetryGeneration']=booth['retryGeneration']
+              batch['forcedRecoveryAt']=stamp
+              batch['consumerInstruction']='Process all enabled ledger-absent 010-023 items now; strict verify each buyer-visible page; continue after recoverable failures and after each success until all current debt is cleared or every item was attempted.'
+              rec_path.write_text(json.dumps(rec,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('note generation',note['retryGeneration'],'BOOTH generation',booth['retryGeneration'],stamp)
+      - name: Commit fresh recovery generations
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add sidehustle-autopublish/publication_quota.json
-          git commit -m 'Set catch-up batch to full note and BOOTH remainder' || exit 0
-          git push
+          git add sidehustle-autopublish/note/queue/index.json booth-autopublish/queue/index.json sidehustle-autopublish/publication_quota.json booth-autopublish/monitor/recovery_control.json
+          git commit -m 'Force fresh morning note and BOOTH publication recovery'
+          git push origin HEAD:main
