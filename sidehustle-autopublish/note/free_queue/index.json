@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-22T10:22:44.737Z",
+  "updatedAt": "2026-08-22T11:21:11.655Z",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
   "requiredFreeChecks": [
@@ -489,10 +489,13 @@
       "coverLabel": "研究・インタビュー",
       "coverCopy": "24時間以内の 3整理",
       "accent": "#0e7490",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "evening-scale-20260822T1800+0900",
-      "publicUrlVerified": false
+      "publicUrlVerified": false,
+      "deferredAfterEveningMarathon": true,
+      "holdReason": "Evening marathon deferred after two identical failures: free_note_20260822_20_interview_24h|submit-clicked-but-not-public|V9_PUBLICATION_FAILED_submit-clicked-but-not-public",
+      "deferredAt": "2026-08-22T11:21:11.655Z"
     },
     {
       "id": "free_note_20260822_21_hypothesis_priority",
