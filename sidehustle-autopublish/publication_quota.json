@@ -1,7 +1,7 @@
 {
-  "version": 12,
+  "version": 13,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T09:10:54+09:00",
+  "updatedAt": "2026-08-22T11:27:28+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -16,10 +16,10 @@
         "previousDate": "2026-08-21",
         "previousDayStrictVerifiedPublicationsCount": 0,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 0,
+        "todayStrictVerifiedPublicationsCount": 4,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
-        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
+        "todayRemainingToTarget": 1,
+        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 1,
         "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. Preserve publication debt and keep the complete paid queue ready for the first Windows-available session.",
         "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-22",
         "paidProductionInventoryComplete": true,
@@ -59,14 +59,12 @@
         "batchClearInstruction": "Immediately process every ledger-absent paid item in the eleven-item batch while Windows is available. Continue after per-item recoverable failure; do not stop after first success.",
         "lastForcedRecoveryAt": "2026-08-22T09:06:43+09:00",
         "queueRetryGeneration": 25,
-        "lastStrictVerificationAt": "2026-08-22T09:10:54+09:00",
+        "lastStrictVerificationAt": "2026-08-22T11:27:28+09:00",
         "lastStrictVerifiedIds": [
-          "note_20260821_06_ai_small_org_workflow",
-          "note_20260821_07_event_sponsor_followup",
-          "note_20260821_08_creator_pricing",
-          "note_20260821_09_student_org_role_design",
-          "note_20260821_10_thesis_weekly_review",
-          "note_20260821_11_ai_jobhunt_answer_audit"
+          "note_20260822_12_event_cancel_decision",
+          "note_20260822_14_sponsor_menu_design",
+          "note_20260822_15_research_interview_coding",
+          "note_20260822_16_jobhunt_company_research"
         ]
       },
       "freeAcquisitionExperiment": {
