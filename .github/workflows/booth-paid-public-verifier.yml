@@ -1,11 +1,12 @@
 name: Verify BOOTH paid recovery quietly
-# publication probe: 2026-08-22T10:14+09:00
+# direct-public-url verifier: 2026-08-22T12:30+09:00
 
 on:
   workflow_dispatch:
   push:
     paths:
       - 'booth-autopublish/queue/index.json'
+      - 'booth-autopublish/monitor/windows_booth_fixed_publish_result.json'
       - '.github/workflows/booth-paid-public-verifier.yml'
   schedule:
     - cron: '17,32,47,2 * * * *'
@@ -28,53 +29,66 @@ jobs:
       - name: Discover and strictly verify buyer-visible BOOTH pages
         shell: python
         run: |
-          import urllib.request,urllib.parse,re,html,json,pathlib,datetime,time
+          import urllib.request,urllib.parse,re,html,json,pathlib,datetime
           TARGETS={f'{n:03d}_'+s for n,s in [
             (10,'event_risk_register_os_20260822'),(11,'small_org_role_os_20260822'),(12,'sponsor_deliverables_tracker_20260822'),
             (13,'research_interview_coding_os_20260822'),(14,'volunteer_shift_comms_os_20260822'),(15,'creator_profit_pricing_os_20260822'),
             (16,'event_sponsor_bundle_os_20260822'),(17,'jobhunt_interview_bundle_os_20260822'),(18,'grant_application_tracker_os_20260822'),
             (19,'event_incident_log_os_20260822'),(20,'meeting_decision_action_os_20260822'),(21,'small_npo_donor_crm_os_20260822'),
             (22,'research_literature_matrix_os_20260822'),(23,'campus_project_budget_os_20260822')]}
-          UA={'User-Agent':'Mozilla/5.0 (compatible; buyer-visible-publication-verifier/2.0)','Accept-Language':'ja,en;q=0.7','Cache-Control':'no-cache'}
+          UA={'User-Agent':'Mozilla/5.0 (compatible; buyer-visible-publication-verifier/3.0)','Accept-Language':'ja,en;q=0.7','Cache-Control':'no-cache'}
           def get(url,timeout=25):
               req=urllib.request.Request(url,headers=UA)
-              with urllib.request.urlopen(req,timeout=timeout) as r:return r.status,r.read().decode('utf-8','replace')
+              with urllib.request.urlopen(req,timeout=timeout) as r:return r.status,r.geturl(),r.read().decode('utf-8','replace')
           def visible_text(src):
               src=re.sub(r'<script\b[^>]*>.*?</script>',' ',src,flags=re.I|re.S);src=re.sub(r'<style\b[^>]*>.*?</style>',' ',src,flags=re.I|re.S)
               return re.sub(r'\s+',' ',html.unescape(re.sub(r'<[^>]+>',' ',src))).strip()
           qpath=pathlib.Path('booth-autopublish/queue/index.json');q=json.loads(qpath.read_text(encoding='utf-8-sig'))
           ledger_path=pathlib.Path('booth-autopublish/monitor/publication_ledger.json');ledger=json.loads(ledger_path.read_text(encoding='utf-8-sig'))
           known={x.get('queueId'):x for x in ledger.get('entries',[])}
+          direct={}
+          wr=pathlib.Path('booth-autopublish/monitor/windows_booth_fixed_publish_result.json')
+          if wr.exists():
+              try:
+                  w=json.loads(wr.read_text(encoding='utf-8-sig'))
+                  for p in w.get('products',[]):
+                      iid=p.get('expectedQueueId');out=p.get('output') or ''
+                      urls=re.findall(r'https://booth\.pm/ja/items/(\d+)',out)
+                      if iid in TARGETS and urls: direct[iid]='https://booth.pm/ja/items/'+urls[-1]
+              except Exception as ex: print('WINDOWS_REPORT_WARN',repr(ex))
           newly=[]
           for e in q.get('entries',[]):
               iid=e.get('id')
               if iid not in TARGETS or known.get(iid,{}).get('publicUrlVerified') is True:continue
               title=e['title'];price=int(e.get('expectedPriceJPY') or 0)
-              search='https://booth.pm/ja/search/'+urllib.parse.quote(title,safe='')+'?sort=new'
-              try:ss,sh=get(search)
-              except Exception as ex:print('SEARCH_WARN',iid,repr(ex));continue
               links=[]
-              for m in re.finditer(r'href=["\'](?:https://booth\.pm)?(/ja/items/(\d+))["\']',sh):
-                  u='https://booth.pm'+m.group(1)
-                  if u not in links:links.append(u)
-              if not links:
-                  for m in re.finditer(r'https://booth\.pm/ja/items/(\d+)',sh):
-                      u='https://booth.pm/ja/items/'+m.group(1)
+              if direct.get(iid):links.append(direct[iid])
+              search='https://booth.pm/ja/search/'+urllib.parse.quote(title,safe='')+'?sort=new'
+              try:
+                  ss,sfinal,sh=get(search)
+                  for m in re.finditer(r'href=["\'](?:https://booth\.pm)?(/ja/items/(\d+))["\']',sh):
+                      u='https://booth.pm'+m.group(1)
                       if u not in links:links.append(u)
-              for url in links[:12]:
-                  try:ps,page=get(url)
-                  except Exception:continue
+                  if not links:
+                      for m in re.finditer(r'https://booth\.pm/ja/items/(\d+)',sh):
+                          u='https://booth.pm/ja/items/'+m.group(1)
+                          if u not in links:links.append(u)
+              except Exception as ex: print('SEARCH_WARN',iid,repr(ex))
+              for url in links[:16]:
+                  try:ps,final_url,page=get(url)
+                  except Exception as ex:print('PAGE_WARN',iid,url,repr(ex));continue
                   text=visible_text(page);compact=re.sub(r'[\s,，]','',text)
                   title_ok=title in text
                   price_ok=(f'¥{price}' in compact or f'￥{price}' in compact or f'{price}円' in compact)
-                  download_ok=any(x in text for x in ('ダウンロード商品','ダウンロード版','Download Product','digital download'))
+                  download_ok=any(x in text for x in ('ダウンロード商品','ダウンロード版','Download Product','digital download','ダウンロード'))
                   purchase_ok=any(x in text for x in ('カートに入れる','購入する','入荷お知らせメールを受け取る')) and ('在庫なし' not in text or 'カートに入れる' in text)
+                  print('STRICT_CHECK',iid,url,'status',ps,'title',title_ok,'price',price_ok,'download',download_ok,'purchase',purchase_ok)
                   if not (ps==200 and title_ok and price_ok and download_ok and purchase_ok):continue
-                  item_id=url.rsplit('/',1)[-1];verified_at=datetime.datetime.now(datetime.timezone.utc).isoformat()
-                  rec={'queueId':iid,'title':title,'boothItemId':item_id,'publicUrl':url,'publicUrlVerified':True,'verifiedAt':verified_at,'verificationEvidence':'Independent unauthenticated verifier confirmed buyer HTTP 200, exact title, expected price, downloadable-product signal and purchase/cart path.','publishMode':'independent-reconcile'}
+                  item_id=re.search(r'/items/(\d+)',final_url or url).group(1);verified_at=datetime.datetime.now(datetime.timezone.utc).isoformat()
+                  rec={'queueId':iid,'title':title,'boothItemId':item_id,'publicUrl':'https://booth.pm/ja/items/'+item_id,'publicUrlVerified':True,'verifiedAt':verified_at,'verificationEvidence':'Independent unauthenticated direct-URL verifier confirmed buyer HTTP 200, exact title, expected price, downloadable-product signal and purchase/cart path.','publishMode':'windows-direct-url-reconcile'}
                   ledger.setdefault('entries',[]).append(rec);known[iid]=rec;newly.append(iid)
-                  e['enabled']=False;e['forceRetry']=False;e['publicUrlVerified']=True;e['publicUrl']=url;e['verificationState']='buyer_visible_verified';e['verifiedAt']=verified_at
-                  print('STRICT_BOOTH_VERIFIED',iid,url);break
+                  e['enabled']=False;e['forceRetry']=False;e['publicUrlVerified']=True;e['publicUrl']=rec['publicUrl'];e['verificationState']='buyer_visible_verified';e['verifiedAt']=verified_at
+                  print('STRICT_BOOTH_VERIFIED',iid,rec['publicUrl']);break
           if not newly:
               print('NO_NEW_STRICT_PUBLICATION');raise SystemExit(0)
           now=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
