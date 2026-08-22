@@ -1,47 +1,87 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-21T23:30:00+09:00",
-  "forecastPolicy": "Do not invent numeric revenue when observed sales, PV, conversion, acquisition or install data are absent. Use ranked opportunity bands until measurable signals exist.",
+  "version": 3,
+  "updatedAt": "2026-08-22T23:31:45+09:00",
+  "forecastPolicy": "Do not invent numeric revenue or conversion uplift when observed sales, PV, clicks, purchases, acquisitions or install data are absent. Use ranked opportunities and explicit measurement gates until measurable signals exist.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
     "note_sales": null,
     "note_pv": null,
     "note_likes": null,
+    "note_follows": null,
+    "note_relatedPaidClicks": null,
+    "note_relatedPaidPurchases": null,
     "MicrosoftStore_pageViews": null,
     "MicrosoftStore_acquisitions": null,
     "MicrosoftStore_installs": null,
     "MicrosoftStore_conversion": null,
-    "GitHubPages_outboundConversion": null,
-    "gmailImportantEventsToday": 0
+    "GitHubPages_outboundConversion": null
   },
-  "hardConstraints": {
-    "publicationDebtFirst": true,
-    "doNotEraseExistingDebt": true,
-    "doNotTradeVerifiedPublicationForSpeculativeOptimization": true
+  "verifiedAvailabilitySignals": {
+    "notePaidStrictVerifiedToday": 5,
+    "noteInitialFreeBatchStrictVerified": 6,
+    "BOOTHStrictVerifiedToday": 5,
+    "GitHubPagesRequiredInsightBatchVerified": 6,
+    "MicrosoftStorePublicPwaVerified": true,
+    "MicrosoftStorePublicListingVerified": false
   },
   "rankedOpportunities": [
-    {"rank":1,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","opportunityBand":"high-measurement-option","basis":"The app has a verified public PWA and prepared listing, but Store identity/submission is incomplete. Completing the live Store funnel unlocks page-view, acquisition, install, campaign and product-page experiment data, which has the highest information value for later scaling."},
-    {"rank":2,"channel":"note","id":"future_practical_1480_1980_test","opportunityBand":"high-relative-test","basis":"note official analysis of approximately 300,000 paid articles reports 1,842 JPY average price among top-20%-selling practical know-how articles. Existing account products are mostly below this, but repricing current products is deferred until PV/sales evidence exists."},
-    {"rank":3,"channel":"BOOTH","id":"event_sponsor_bundle","opportunityBand":"conditional-high","basis":"Complementary public source assets make incremental build cost low and can increase order value, but no demand signal exists yet; prepare only, do not treat as proven."},
-    {"rank":4,"channel":"BOOTH","id":"jobhunt_interview_bundle","opportunityBand":"conditional-high","basis":"A coherent buyer journey exists and the free interview STAR tool already points to the verified consistency product, but sales evidence is absent."},
-    {"rank":5,"channel":"GitHubPages","id":"source_specific_store_campaign_links","opportunityBand":"measurement-enabling","basis":"Microsoft supports custom campaign IDs and conversion reporting. Add source-specific links only after the live CSV Cleaner Store URL exists."}
+    {
+      "rank": 1,
+      "channel": "MicrosoftStore",
+      "id": "ms_csv_cleaner_deduper",
+      "opportunityBand": "high-measurement-option",
+      "basis": "The app is prepared to a high quality level but lacks Partner Center product identity/submission. Completing the live Store funnel is the prerequisite for acquisition, install, conversion and later listing experiment data."
+    },
+    {
+      "rank": 2,
+      "channel": "note",
+      "id": "free_to_paid_equal_age_measurement",
+      "opportunityBand": "high-information-value",
+      "basis": "The initial six free articles are now reader-visible verified, but first-party PV/engagement/click/purchase data are still unavailable and the first 24h equal-age window has not matured. The next valuable step is measurement, not speculative CTA or price churn."
+    },
+    {
+      "rank": 3,
+      "channel": "note",
+      "id": "paid_free_area_quality_gate",
+      "opportunityBand": "low-risk-conversion-readiness",
+      "basis": "Future paid articles can improve purchase qualification without price changes by ensuring the free area contains empathy/question framing, a concrete change or example, and a clear reader benefit before the paywall."
+    },
+    {
+      "rank": 4,
+      "channel": "BOOTH",
+      "id": "evidence_gated_bundle_design",
+      "opportunityBand": "conditional",
+      "basis": "Bundle and upsell structures may raise order value, but current product-level sales evidence is unavailable. Prepare only strongly coherent bundles and defer live pricing changes until demand is observed."
+    },
+    {
+      "rank": 5,
+      "channel": "GitHubPages",
+      "id": "measurable_context_cta",
+      "opportunityBand": "measurement-enabling",
+      "basis": "Existing public pages can become attribution surfaces once a verified measurable destination exists. Do not add unverified or unrelated CTA stacks."
+    }
   ],
-  "marketEvidence": {
-    "notePaidMarket":"note official 2026-01-07 analysis reports practical know-how average price of 1,842 JPY among the top 20% by sales and AI-utilization category sales growth of 268.6% YoY.",
-    "MicrosoftStore":"Microsoft Learn documents product-page experiments for icons/screenshots and acquisition reporting with page views, installs/acquisitions and custom campaign IDs.",
-    "measurementPrinciple":"Do not change several listing or pricing variables before a baseline exists, because that destroys attribution."
-  },
   "nightlyDecision": {
     "livePriceChanges": "none",
     "liveListingExperiments": "none",
-    "reason":"No product-level performance baseline exists yet. Measurement and submission completion have higher expected value than speculative customer-facing changes.",
-    "tomorrowFirstProfitAction":"Complete CSV Cleaner Store identity/submission prerequisites, then persist the live Store URL and instrument source-specific campaign attribution."
+    "noteFreeCtaMassRewrite": "none",
+    "reason": "Availability is verified, but article-level and product-level demand/conversion baselines are still missing. The earliest current free-note publications have not yet completed a 24h comparable window.",
+    "nextProfitActions": [
+      "complete non-human prerequisites for the CSV Cleaner Microsoft Store submission",
+      "capture note 24h/72h/7d free-to-paid metrics when available and compare only equal-age windows",
+      "apply the three-element free-area quality gate to future paid note manuscripts",
+      "avoid additional free-note volume until the first measured window can inform allocation"
+    ]
   },
   "nextDataNeeded": [
+    "note free article PV at 24h/72h/7d",
+    "note free article likes and follows at 24h/72h/7d",
+    "related paid CTA clicks by free article",
+    "related paid purchases by free article",
+    "paid article sales and revenue by article",
     "BOOTH sales by product and date",
-    "note sales, PV and likes by article",
-    "Microsoft Store page views, acquisitions, installs, conversion and health metrics",
-    "campaign-attributed conversions from GitHub Pages to Microsoft Store",
-    "outbound click data from free tools"
-  ]
+    "Microsoft Store page views, acquisitions, installs, conversion and health metrics after listing goes live",
+    "GitHub Pages outbound click/conversion data for verified destinations"
+  ],
+  "rollbackPrinciple": "Any future customer-facing CV or price change must define a baseline, one primary changed variable, a sample window and a rollback condition before implementation."
 }
