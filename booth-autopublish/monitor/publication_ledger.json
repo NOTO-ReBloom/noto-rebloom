@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T17:04:25+09:00",
+  "updatedAt": "2026-08-22T12:29:47+09:00",
   "purpose": "Canonical GitHub-side ledger for BOOTH items whose buyer-visible public URL has been independently verified. Queue enabled=true alone is never treated as publication.",
   "entries": [
     {
@@ -43,6 +43,16 @@
       "verifiedAt": "2026-08-20T17:04:25+09:00",
       "verificationEvidence": "Windows BOOTH catch-up performed anonymous-browser verification with HTTP 200, titleOk=true and PUBLIC_RECOVERY_SUCCESS; the same buyer-visible item was repeatedly reverified in subsequent runs.",
       "publishMode": "queue-truth-reconcile"
+    },
+    {
+      "queueId": "010_event_risk_register_os_20260822",
+      "title": "イベントリスク登録簿OS｜発生確率×影響度×対策×担当を1画面管理｜オフラインHTML",
+      "boothItemId": "8746990",
+      "publicUrl": "https://booth.pm/ja/items/8746990",
+      "publicUrlVerified": true,
+      "verifiedAt": "2026-08-22T03:29:23.655383+00:00",
+      "verificationEvidence": "Independent unauthenticated direct-URL verifier confirmed buyer HTTP 200, exact title, expected price, downloadable-product signal and purchase/cart path.",
+      "publishMode": "windows-direct-url-reconcile"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "version": 14,
+  "version": 15,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T11:28:16.226+09:00",
+  "updatedAt": "2026-08-22T12:29:47+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -118,11 +118,11 @@
         "date": "2026-08-22",
         "previousDate": "2026-08-21",
         "previousDayStrictVerifiedPublicationsCount": 0,
-        "carriedPublicationDebt": 9,
+        "carriedPublicationDebt": 8,
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
-        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 14,
+        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 13,
         "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. Preserve publication debt and keep the complete encrypted recovery batch ready for the first Windows-available session.",
         "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-22",
         "paidProductionInventoryComplete": true,
@@ -180,7 +180,11 @@
           "child": "ソフトウェア",
           "verifiedReferenceItemId": "8736698"
         },
-        "lastForcedRecoveryAt": "2026-08-22T09:06:43+09:00"
+        "lastForcedRecoveryAt": "2026-08-22T09:06:43+09:00",
+        "lastStrictVerificationAt": "2026-08-22T12:29:47+09:00",
+        "lastStrictVerifiedIds": [
+          "010_event_risk_register_os_20260822"
+        ]
       }
     }
   },
