@@ -1,0 +1,202 @@
+{
+    "generatedAt":  "2026-08-22T10:42:59.4091711+09:00",
+    "note":  {
+                 "nodeExists":  true,
+                 "remotePublisherExists":  true,
+                 "attempts":  [
+                                  {
+                                      "timedOut":  false,
+                                      "exitCode":  null,
+                                      "stdout":  "REMOTE_QUEUE_NEXT note_20260822_12_event_cancel_decision イベント中止判断を「勘」にしない｜雨・警報・交通・会場条件を1枚で決める判断表 forceRetry=true nonce=finish-paid-12-20260822T092200+0900\n",
+                                      "stderr":  "PUBLISH_FAILED note_20260822_12_event_cancel_decision: Private key not found.\nPUBLISH_DEFERRED note_20260822_12_event_cancel_decision until=2026-08-22T01:47:04.076Z so the catch-up batch can continue with another queued article.\n",
+                                      "attempt":  1
+                                  },
+                                  {
+                                      "timedOut":  false,
+                                      "exitCode":  null,
+                                      "stdout":  "REMOTE_QUEUE_NEXT note_20260822_13_meeting_decision_log 学生団体の会議が長いのに何も決まらない理由｜決定・保留・宿題を分ける議事録テンプレ forceRetry=true nonce=finish-paid-13-20260822T092200+0900\n",
+                                      "stderr":  "PUBLISH_FAILED note_20260822_13_meeting_decision_log: Private key not found.\nPUBLISH_DEFERRED note_20260822_13_meeting_decision_log until=2026-08-22T01:47:07.765Z so the catch-up batch can continue with another queued article.\n",
+                                      "attempt":  2
+                                  },
+                                  {
+                                      "timedOut":  false,
+                                      "exitCode":  null,
+                                      "stdout":  "REMOTE_QUEUE_NEXT note_20260822_14_sponsor_menu_design 協賛メニューを金額から作ると失敗する｜企業が社内説明しやすいスポンサー提案の設計法 forceRetry=true nonce=finish-paid-14-20260822T092200+0900\n",
+                                      "stderr":  "PUBLISH_FAILED note_20260822_14_sponsor_menu_design: Private key not found.\nPUBLISH_DEFERRED note_20260822_14_sponsor_menu_design until=2026-08-22T01:47:11.444Z so the catch-up batch can continue with another queued article.\n",
+                                      "attempt":  3
+                                  },
+                                  {
+                                      "timedOut":  false,
+                                      "exitCode":  null,
+                                      "stdout":  "REMOTE_QUEUE_NEXT note_20260822_15_research_interview_coding 卒論インタビューが「いい話」で終わる前に｜発言をコード化して分析へつなぐ最小手順 forceRetry=true nonce=finish-paid-15-20260822T092200+0900\n",
+                                      "stderr":  "PUBLISH_FAILED note_20260822_15_research_interview_coding: SHA-256 mismatch for note_20260822_15_research_interview_coding: 0f36395aeea64f29b0fd73f292cfa52769073504a9a89aa77302ac27b078666e != fb0de2404c816b5fb183c157ea80f4efa357588fd5fb81c52ddda200d9a9c8f5\nPUBLISH_DEFERRED note_20260822_15_research_interview_coding until=2026-08-22T01:47:15.078Z so the catch-up batch can continue with another queued article.\n",
+                                      "attempt":  4
+                                  },
+                                  {
+                                      "timedOut":  false,
+                                      "exitCode":  null,
+                                      "stdout":  "REMOTE_QUEUE_NEXT note_20260822_16_jobhunt_company_research 企業研究を「情報収集」で終わらせない｜ES・面接回答につながる5列の比較シート forceRetry=true nonce=finish-paid-16-20260822T092200+0900\n",
+                                      "stderr":  "PUBLISH_FAILED note_20260822_16_jobhunt_company_research: Private key not found.\nPUBLISH_DEFERRED note_20260822_16_jobhunt_company_research until=2026-08-22T01:47:18.747Z so the catch-up batch can continue with another queued article.\n",
+                                      "attempt":  5
+                                  }
+                              ],
+                 "syntax":  {
+                                "timedOut":  false,
+                                "exitCode":  null,
+                                "stdout":  "REMOTE_QUEUE_NEXT note_20260822_12_event_cancel_decision イベント中止判断を「勘」にしない｜雨・警報・交通・会場条件を1枚で決める判断表 forceRetry=true nonce=finish-paid-12-20260822T092200+0900\n",
+                                "stderr":  ""
+                            },
+                 "taskRepaired":  true,
+                 "finalTaskTriggered":  true,
+                 "taskAfter":  {
+                                   "state":  "Running",
+                                   "lastRun":  "08/22/2026 10:43:21",
+                                   "lastResult":  0,
+                                   "nextRun":  "08/22/2026 11:05:00",
+                                   "actions":  [
+                                                   {
+                                                       "execute":  "cmd.exe",
+                                                       "arguments":  "/d /c \"C:\\note-business\\publisher_guardian_v5\\run_note_remote_fixed.cmd\""
+                                                   }
+                                               ]
+                               }
+             },
+    "booth":  {
+                  "runBoothV8":  "@echo off\r\ncd /d C:\\note-business\\publisher_guardian_v5\r\nnode pipeline-guardian.mjs booth\r\nexit /b %ERRORLEVEL%\r\n",
+                  "guardianPathLines":  [
+                                            "if(![\u0027note\u0027,\u0027booth\u0027].includes(service)){",
+                                            "  console.error(\u0027Usage: node pipeline-guardian.mjs note|booth\u0027);",
+                                            "const boothDir=path.join(home,\u0027Downloads\u0027,\u0027BOOTH_AUTO_PUBLISHER_v3_ASCII\u0027);",
+                                            "const cwd=service===\u0027note\u0027?noteDir:boothDir;",
+                                            "const command=service===\u0027note\u0027?\u0027note-remote-publisher.mjs\u0027:\u0027booth-bot.mjs\u0027;",
+                                            "const logPath=path.join(cwd,service===\u0027note\u0027?\u0027remote_auto_publish.log\u0027:\u0027auto_publish_remote.log\u0027);",
+                                            "const healthPath=path.join(cwd,`pipeline-health-${service}.json`);",
+                                            "const serviceLock=path.join(cwd,`.pipeline-${service}.lock`);",
+                                            "    const key=service===\u0027note\u0027?\u0027note\u0027:\u0027BOOTH\u0027;",
+                                            "      child=spawn(process.execPath,[command,\u0027publish-next\u0027],{cwd,windowsHide:true,env:process.env});",
+                                            "if(!fs.existsSync(cwd)){console.error(`GUARDIAN_FATAL missing folder: ${cwd}`);process.exit(3);}",
+                                            "if(!fs.existsSync(path.join(cwd,command))){console.error(`GUARDIAN_FATAL missing publisher: ${path.join(cwd,command)}`);process.exit(3);}",
+                                            "    try{fs.writeFileSync(path.join(cwd,\u0027PUBLISH_PIPELINE_ATTENTION_REQUIRED.txt\u0027),`${now()}\\r\\n${service.toUpperCase()} consecutive failures=${state.consecutiveFailures}\\r\\nCheck ${logPath}\\r\\n`,\u0027utf8\u0027);}catch{}"
+                                        ],
+                  "boothBotHits":  [
+
+                                   ],
+                  "recoveredCodeCandidates":  [
+
+                                              ],
+                  "privateKeyCandidates":  [
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-28\\ai-20\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  272
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-28\\ai-20\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js.map",
+                                                   "size":  458
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-28\\ai-20\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\cjs\\_class_private_field_loose_key.cjs",
+                                                   "size":  167
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-28\\ai-20\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\esm\\_class_private_field_loose_key.js",
+                                                   "size":  156
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-28\\ai-20\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\src\\_class_private_field_loose_key.mjs",
+                                                   "size":  73
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-28\\ai-20\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  207
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-28\\ai-20\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\esm\\classPrivateFieldLooseKey.js",
+                                                   "size":  134
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-29\\new-chat\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  272
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-29\\new-chat\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js.map",
+                                                   "size":  458
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-29\\new-chat\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\cjs\\_class_private_field_loose_key.cjs",
+                                                   "size":  167
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-29\\new-chat\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\esm\\_class_private_field_loose_key.js",
+                                                   "size":  156
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-29\\new-chat\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\src\\_class_private_field_loose_key.mjs",
+                                                   "size":  73
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-29\\new-chat\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  207
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-29\\new-chat\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\esm\\classPrivateFieldLooseKey.js",
+                                                   "size":  134
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-30\\5-1000\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  272
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-30\\5-1000\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js.map",
+                                                   "size":  458
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-30\\5-1000\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\cjs\\_class_private_field_loose_key.cjs",
+                                                   "size":  167
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-30\\5-1000\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\esm\\_class_private_field_loose_key.js",
+                                                   "size":  156
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-30\\5-1000\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\src\\_class_private_field_loose_key.mjs",
+                                                   "size":  73
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-30\\5-1000\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  207
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-07-30\\5-1000\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\esm\\classPrivateFieldLooseKey.js",
+                                                   "size":  134
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-08-03\\kon\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  272
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-08-03\\kon\\node_modules\\.pnpm\\@babel+helpers@7.29.7\\node_modules\\@babel\\helpers\\lib\\helpers\\classPrivateFieldLooseKey.js.map",
+                                                   "size":  458
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-08-03\\kon\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\cjs\\_class_private_field_loose_key.cjs",
+                                                   "size":  167
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-08-03\\kon\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\esm\\_class_private_field_loose_key.js",
+                                                   "size":  156
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-08-03\\kon\\node_modules\\.pnpm\\@swc+helpers@0.5.15\\node_modules\\@swc\\helpers\\src\\_class_private_field_loose_key.mjs",
+                                                   "size":  73
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-08-03\\kon\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\classPrivateFieldLooseKey.js",
+                                                   "size":  207
+                                               },
+                                               {
+                                                   "path":  "C:\\Users\\ryoya\\Documents\\Codex\\2026-08-03\\kon\\node_modules\\.pnpm\\next@16.2.6_@babel+core@7.2_254017c60be10ba7f4b780f8f1e06ef4\\node_modules\\next\\dist\\compiled\\@babel\\runtime\\helpers\\esm\\classPrivateFieldLooseKey.js",
+                                                   "size":  134
+                                               }
+                                           ]
+              }
+}
