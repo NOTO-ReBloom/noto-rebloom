@@ -1,0 +1,66 @@
+name: Repair corrupted NOTE 13 payload once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/note13-repair-one-shot.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - run: python -m pip install --quiet cryptography
+      - name: Re-encrypt NOTE 13 with original device public key
+        shell: python
+        run: |
+          import os, json, base64, hashlib, pathlib, datetime
+          from cryptography.hazmat.primitives import serialization, hashes
+          from cryptography.hazmat.primitives.asymmetric import padding
+          from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+
+          root=pathlib.Path('.')
+          pub=serialization.load_pem_public_key((root/'booth-autopublish/public/device_public_key.pem').read_bytes())
+          qpath=root/'sidehustle-autopublish/note/queue/index.json'
+          q=json.loads(qpath.read_text(encoding='utf-8-sig'))
+          iid='note_20260822_13_meeting_decision_log'
+          entry=next(e for e in q['entries'] if e['id']==iid)
+          obj={
+            'title':'学生団体の会議が長いのに何も決まらない理由｜決定・保留・宿題を分ける議事録テンプレ',
+            'freeBody':'会議が長いのに前へ進まない原因は、話す量ではなく「会議後に何が残るか」が曖昧なことです。議論、共有、アイデア、決定、宿題が同じ文章に混ざると、翌週また同じ話をします。\n\nそこで議事録を文章ではなく、**決定・保留・宿題**の3種類に分けます。',
+            'paidBody':'## 1. 会議中に3分類する\n\n### 決定\n今この場で確定したこと。誰が見ても同じ行動になる粒度で書きます。\n\n### 保留\n判断材料が足りず、まだ決めないこと。「何が揃えば決められるか」も書きます。\n\n### 宿題\n会議後に誰かが行う行動。担当・期限・完了条件を必須にします。\n\n## 2. そのまま使えるテンプレ\n\n|分類|内容|担当|期限|完了条件・再判断条件|\n|---|---|---|---|---|\n|決定|9/20は13:00開始|運営全員|-|告知物を同時刻へ統一|\n|保留|雨天時の縮小案|安全担当|9/10|会場排水条件を確認後に再判断|\n|宿題|学校配布先を確認|広報担当|8/30|配布可能校と部数を一覧化|\n\n## 3. 「担当」を名前だけで終わらせない\n\n宿題は「担当：Aさん」だけでは弱いです。期限と完了条件まで入れます。\n\n悪い例：協賛企業に連絡する。\n良い例：A社へ協賛資料を送付し、返信がなければ3営業日後に再連絡する。期限8/28。\n\n## 4. 会議の進行を短くする順番\n\n1. 前回宿題の完了確認\n2. 今日決める項目を宣言\n3. 必要な事実だけ共有\n4. 選択肢を比較\n5. 決定・保留・宿題へ分類\n6. 最後3分で読み上げ確認\n\n「今日決めなくてよい話」を保留へ逃がせるため、議論が横に広がりにくくなります。\n\n## 5. 保留に期限をつける\n\n保留は放置すると消えます。「次回会議」ではなく、必要情報・取得担当・再判断日をセットにします。\n\n## 6. AIを使う場合のプロンプト\n\n「以下の会議メモを、①決定、②保留、③宿題に分類してください。宿題には担当・期限・完了条件の不足を指摘し、勝手に補完せず“不明”としてください。」\n\nこの形式なら、議事録を読むための記録ではなく、次の行動を生む運営台帳として使えます。',
+            'tags':['学生団体','会議','議事録','タスク管理','チーム運営'],
+            'price':780,
+            'coverCopy':'会議は「決定・保留・宿題」に分ける',
+            'coverAlt':'会議の決定事項を整理する見出し画像'
+          }
+          raw=json.dumps(obj,ensure_ascii=False,separators=(',',':')).encode('utf-8')
+          key=os.urandom(32); iv=os.urandom(12)
+          sealed=AESGCM(key).encrypt(iv,raw,None); ciphertext,tag=sealed[:-16],sealed[-16:]
+          wrapped=pub.encrypt(key,padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()),algorithm=hashes.SHA256(),label=None))
+          env={'version':1,'alg':'AES-256-GCM+RSA-OAEP-SHA256','wrappedKey':base64.b64encode(wrapped).decode(),'iv':base64.b64encode(iv).decode(),'tag':base64.b64encode(tag).decode(),'ciphertext':base64.b64encode(ciphertext).decode()}
+          text=json.dumps(env,separators=(',',':'))
+          (root/entry['path']).write_text(text,encoding='utf-8')
+          entry['sha256']=hashlib.sha256(text.encode()).hexdigest()
+          entry['enabled']=True
+          entry['forceRetry']=True
+          entry['forceRetryNonce']='repair-note13-'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+          entry['invalidateLocalSuccessWithoutReaderVerification']=True
+          q['retryGeneration']=int(q.get('retryGeneration',0))+1
+          q['updatedAt']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
+          qpath.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+      - name: Commit repaired payload
+        run: |
+          git config user.name 'note13-repair'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/queue/index.json sidehustle-autopublish/note/queue/note_20260822_13_meeting_decision_log.enc.json
+          git commit -m 'Repair corrupted NOTE 13 encrypted payload'
+          git pull --rebase origin main
+          git push origin HEAD:main
