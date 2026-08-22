@@ -1,10 +1,13 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-22T21:25:22+09:00",
+  "version": 5,
+  "updatedAt": "2026-08-23T06:25:47+09:00",
   "objective": "maximize total sales while enforcing verified-publication hard minimums and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
+    "notePaidReceipts": "sidehustle-autopublish/note/publication_receipts/",
+    "noteFreeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
+    "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
     "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
     "insightLedger": "insights/publication_ledger.json",
     "microsoftStoreQualityGate": "sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/quality_gate.json"
@@ -13,11 +16,14 @@
     "note": {
       "status": "active",
       "paid": {
-        "date": "2026-08-22",
+        "date": "2026-08-23",
         "dailyTarget": 5,
-        "strictVerifiedToday": 5,
+        "strictVerifiedToday": 0,
         "carriedDebt": 0,
-        "remainingToTarget": 0,
+        "remainingToTarget": 5,
+        "evidence": "No 2026-08-23 paid NOTE publication receipt or queue publication verification was found in the current GitHub state; 2026-08-22 closed with five strict publications and zero debt.",
+        "preparedCloudInventory": "sidehustle-autopublish/note/paid_drafts/2026-08-23_batch01.md",
+        "preparedCloudInventoryCount": 5,
         "completionChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
       },
       "free": {
@@ -30,11 +36,12 @@
     },
     "BOOTH": {
       "status": "active",
-      "date": "2026-08-22",
+      "date": "2026-08-23",
       "dailyTarget": 5,
-      "strictVerifiedToday": 5,
+      "strictVerifiedToday": 0,
       "carriedDebt": 0,
-      "remainingToTarget": 0,
+      "remainingToTarget": 5,
+      "evidence": "Canonical BOOTH ledger contains strict buyer-visible publications through 2026-08-22 and no 2026-08-23 publication entry as of this check.",
       "completionChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
     "GitHubPages": {
@@ -63,16 +70,18 @@
     "LINECreatorsMarket": {"status": "disabled"}
   },
   "monitor": {
-    "checkedAt": "2026-08-22T21:25:22+09:00",
+    "checkedAt": "2026-08-23T06:25:47+09:00",
     "recoverableInconsistenciesReconciled": [
-      "Removed stale note/BOOTH debt snapshot that predated strict 2026-08-22 publications.",
-      "Updated Microsoft Store screenshot state from generated=false to generated=true based on the current quality gate."
+      "Rolled metrics/current.json from the completed 2026-08-22 paid-floor snapshot to the 2026-08-23 strict-ledger state.",
+      "Preserved previous-day note and BOOTH debt at zero because 2026-08-22 strict targets were satisfied.",
+      "Kept the six required free NOTE cross-posts and six GitHub Pages insight publications as separately verified acquisition assets without counting either against paid floors."
     ],
+    "staleSourceWarning": "publication_quota.json still carries a 2026-08-22 operationalState snapshot; do not treat that stale date as 2026-08-23 completion. Current-day completion must be reconciled only from strict ledgers/receipts.",
     "gmail": {
-      "queryWindow": "2026-08-22",
+      "queryWindow": "newer_than:1d",
       "newRelevantSalesReviewCertificationPayoutMessagesFound": 0
     },
-    "salesObservation": "No new sales, order, payout, review, certification, warning or support email was found in the connected Gmail search for 2026-08-22. Missing platform-native sales metrics remain unknown and are not zero-filled."
+    "salesObservation": "No new relevant sales, order, payout, review, certification, warning or support email was found in the connected Gmail search. Missing platform-native sales metrics remain unknown and are not zero-filled."
   },
   "rules": [
     "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
