@@ -17,74 +17,71 @@ concurrency:
 
 jobs:
   screenshots:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Install Playwright
+      - name: Install Selenium
+        run: python -m pip install --quiet selenium pillow
+      - name: Capture actual buyer-visible app screenshots and functional QA
+        shell: python
         run: |
-          npm init -y >/dev/null 2>&1
-          npm install playwright@1.55.0
-          npx playwright install --with-deps chromium
-      - name: Capture actual app screenshots
-        run: |
-          mkdir -p sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/store-assets
-          cat > /tmp/capture.mjs <<'EOF'
-          import { chromium } from 'playwright';
-          import fs from 'node:fs';
-          const url='https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/';
-          const out='sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/store-assets';
-          const browser=await chromium.launch({headless:true});
-          const page=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:1});
-          let ok=false,last='';
-          for(let i=0;i<12;i++){
-            try{const r=await page.goto(url,{waitUntil:'networkidle',timeout:30000}); if(r?.status()===200 && await page.getByRole('heading',{name:'CSV Cleaner & Duplicate Remover'}).count()){ok=true;break;} last='status='+r?.status();}catch(e){last=String(e)}
-            await page.waitForTimeout(15000);
-          }
-          if(!ok) throw new Error('public PWA not ready: '+last);
-          await page.screenshot({path:`${out}/screenshot-01-home.png`,fullPage:false});
-          fs.writeFileSync('/tmp/sample.csv','name,email,company\n 山田 太郎 ,taro@example.com, A社\n山田  太郎,taro@example.com,A社\n佐藤 花子,hanako@example.com,B社\n,,\n');
-          await page.locator('#file').setInputFiles('/tmp/sample.csv');
-          await page.waitForSelector('#work:not(.hidden)');
-          await page.screenshot({path:`${out}/screenshot-02-loaded.png`,fullPage:false});
-          await page.locator('#dedupe').selectOption(['1']);
-          await page.locator('#run').click();
-          await page.waitForFunction(()=>document.querySelector('#sDup')?.textContent==='1');
-          await page.screenshot({path:`${out}/screenshot-03-cleaned.png`,fullPage:false});
-          await browser.close();
-          EOF
-          node /tmp/capture.mjs
-      - name: Record Store asset state and update quality gate
-        run: |
-          python - <<'PY'
-          import json,pathlib,datetime
+          import pathlib,time,os,tempfile,json,datetime
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.ui import WebDriverWait,Select
+          from selenium.webdriver.support import expected_conditions as EC
+          from PIL import Image
           base=pathlib.Path('sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper')
+          out=base/'store-assets'; out.mkdir(parents=True,exist_ok=True)
+          url='https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/'
+          opts=Options(); opts.add_argument('--headless=new'); opts.add_argument('--no-sandbox'); opts.add_argument('--disable-dev-shm-usage'); opts.add_argument('--window-size=1440,900')
+          d=webdriver.Chrome(options=opts); wait=WebDriverWait(d,30)
+          try:
+              d.get(url); wait.until(EC.presence_of_element_located((By.TAG_NAME,'h1')))
+              assert 'CSV Cleaner & Duplicate Remover' in d.find_element(By.TAG_NAME,'h1').text
+              d.save_screenshot(str(out/'screenshot-01-home.png'))
+              fd,path=tempfile.mkstemp(suffix='.csv'); os.close(fd)
+              pathlib.Path(path).write_text('name,email,company\n 山田 太郎 ,taro@example.com, A社\n山田  太郎,taro@example.com,A社\n佐藤 花子,hanako@example.com,B社\n,,\n',encoding='utf-8')
+              d.find_element(By.ID,'file').send_keys(path)
+              wait.until(lambda x:'hidden' not in x.find_element(By.ID,'work').get_attribute('class').split())
+              assert d.find_element(By.ID,'sIn').text=='4'
+              d.save_screenshot(str(out/'screenshot-02-loaded.png'))
+              dedupe=Select(d.find_element(By.ID,'dedupe')); dedupe.select_by_value('1')
+              d.find_element(By.ID,'run').click()
+              wait.until(lambda x:x.find_element(By.ID,'sDup').text=='1')
+              assert d.find_element(By.ID,'sOut').text=='2'
+              assert d.find_element(By.ID,'sBlank').text=='1'
+              d.save_screenshot(str(out/'screenshot-03-cleaned.png'))
+              d.execute_script("document.getElementById('work').scrollIntoView({block:'end'});")
+              time.sleep(.3); d.save_screenshot(str(out/'screenshot-04-result-detail.png'))
+          finally:
+              d.quit()
+          shots=[]
+          for fn,scenario in [('screenshot-01-home.png','home and privacy-first value proposition'),('screenshot-02-loaded.png','CSV loaded preview and cleaning options'),('screenshot-03-cleaned.png','cleaned result with duplicate and blank-row counts'),('screenshot-04-result-detail.png','result detail and download workflow')]:
+              p=out/fn; assert p.exists() and p.stat().st_size>5000
+              with Image.open(p) as im: assert im.width>=1366 and im.height>=768
+              shots.append({'path':'store-assets/'+fn,'size':'1440x900','scenario':scenario})
           now=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
-          shots=[
-            {'path':'store-assets/screenshot-01-home.png','size':'1440x900','scenario':'home'},
-            {'path':'store-assets/screenshot-02-loaded.png','size':'1440x900','scenario':'csv loaded preview'},
-            {'path':'store-assets/screenshot-03-cleaned.png','size':'1440x900','scenario':'cleaned result'}]
-          for s in shots:
-            p=base/s['path']; assert p.exists() and p.stat().st_size>10000, p
-          state={'version':2,'updatedAt':now,'status':'screenshots_ready','screenshots':shots,'captureMode':'Playwright screenshot of buyer-visible GitHub Pages PWA','publicUrl':'https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/','functionalScenarioVerified':'3-row sample with one normalized duplicate => duplicate count 1'}
+          state={'version':3,'updatedAt':now,'status':'screenshots_ready','screenshots':shots,'captureMode':'Selenium screenshot of buyer-visible GitHub Pages PWA','publicUrl':url,'functionalScenarioVerified':'4 data rows including one blank; normalization produced 2 output rows, duplicate count 1, blank count 1'}
           (base/'store_asset_state.json').write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           q=json.loads((base/'quality_gate.json').read_text(encoding='utf-8'))
           q['checkedAt']=now; q['checks']['requiredPngScreenshotGenerated']=True
           q['status']='highest_quality_submission_ready_except_partner_center_identity_and_human_submission'
-          q.setdefault('qaNotes',[]).append('Three 1440x900 PNG screenshots were generated by Playwright from the buyer-visible PWA after a functional CSV cleaning scenario passed.')
+          notes=[x for x in q.get('qaNotes',[]) if 'screenshot' not in x.lower()]
+          notes.append('Four 1440x900 PNG screenshots were captured from the buyer-visible PWA after an end-to-end CSV cleaning browser test passed.')
+          q['qaNotes']=notes
           (base/'quality_gate.json').write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          PY
       - name: Commit generated assets
         run: |
           git config user.name 'ms-store-asset-builder'
           git config user.email 'actions@users.noreply.github.com'
           git add sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/store-assets sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/store_asset_state.json sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/quality_gate.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Generate CSV Cleaner Microsoft Store screenshots'
+          git commit -m 'Generate verified CSV Cleaner Microsoft Store screenshots'
           git pull --rebase origin main
           git push origin HEAD:main
