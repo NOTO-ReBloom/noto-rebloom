@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-22T11:28:57.381Z",
+  "updatedAt": "2026-08-22T11:33:29.643Z",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
   "requiredFreeChecks": [
@@ -537,10 +537,13 @@
       "coverLabel": "卒論・構成",
       "coverCopy": "章立ては仮置きで進める",
       "accent": "#1e40af",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "evening-scale-20260822T1800+0900",
-      "publicUrlVerified": false
+      "publicUrlVerified": false,
+      "deferredAfterEveningMarathon": true,
+      "holdReason": "Evening marathon deferred after two identical failures: free_note_20260822_22_chapter_structure|submit-clicked-but-not-public|V9_PUBLICATION_FAILED_submit-clicked-but-not-public",
+      "deferredAt": "2026-08-22T11:33:29.643Z"
     },
     {
       "id": "free_note_20260822_23_graph_three_sentences",
