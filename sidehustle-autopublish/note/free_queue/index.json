@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-22T11:21:11.655Z",
+  "updatedAt": "2026-08-22T11:28:57.381Z",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
   "requiredFreeChecks": [
@@ -513,10 +513,13 @@
       "coverLabel": "卒論・仮説",
       "coverCopy": "仮説を絞る 4つの問い",
       "accent": "#4338ca",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "evening-scale-20260822T1800+0900",
-      "publicUrlVerified": false
+      "publicUrlVerified": false,
+      "deferredAfterEveningMarathon": true,
+      "holdReason": "Evening marathon deferred after two identical failures: free_note_20260822_21_hypothesis_priority|submit-clicked-but-not-public|V9_PUBLICATION_FAILED_submit-clicked-but-not-public",
+      "deferredAt": "2026-08-22T11:28:57.381Z"
     },
     {
       "id": "free_note_20260822_22_chapter_structure",
