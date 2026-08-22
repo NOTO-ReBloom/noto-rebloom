@@ -1,0 +1,46 @@
+name: Fix NOTE 15 SHA once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-note15-sha-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Repair NOTE 15 SHA and retry generation
+        shell: python
+        run: |
+          import json, pathlib, datetime
+          p=pathlib.Path('sidehustle-autopublish/note/queue/index.json')
+          q=json.loads(p.read_text(encoding='utf-8-sig'))
+          target='note_20260822_15_research_interview_coding'
+          for e in q.get('entries',[]):
+              if e.get('id')==target:
+                  e['sha256']='0f36395aeea64f29b0fd73f292cfa52769073504a9a89aa77302ac27b078666e'
+                  e['forceRetry']=True
+                  e['forceRetryNonce']='sha-fixed-15-20260822T1048+0900'
+                  e['enabled']=True
+                  break
+          else:
+              raise SystemExit('target missing')
+          q['retryGeneration']=max(int(q.get('retryGeneration',0))+1,27)
+          q['updatedAt']='2026-08-22T10:48:00+09:00'
+          p.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+      - name: Commit repair
+        run: |
+          git config user.name 'note-sha-repair'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/queue/index.json
+          git commit -m 'Repair NOTE 15 payload SHA for Windows publisher'
+          git pull --rebase origin main
+          git push origin HEAD:main
