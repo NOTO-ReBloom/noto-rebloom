@@ -108,7 +108,7 @@ jobs:
           st['totalVerifiedPublicationsRequiredBeforeDaySatisfied']=st['carriedPublicationDebt']+st['todayRemainingToTarget']
           st['lastStrictVerificationAt']=q['updatedAt'];st['lastStrictVerifiedIds']=newly
           quota['updatedAt']=q['updatedAt'];quota['version']=int(quota.get('version',0))+1
-          quota_path.write_text(json.dumps(quota,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          quota_path.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print('NEW_STRICT_PUBLICATIONS',newly)
       - name: Commit only newly verified paid publications
         run: |
@@ -119,4 +119,4 @@ jobs:
           git commit -m 'Record strict paid NOTE publications'
           git pull --rebase origin main
           git push origin HEAD:main
-# manual-probe 2026-08-22T10:14+09:00
+# manual-probe 2026-08-22T10:44+09:00
