@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-22T11:27:28+09:00",
+  "updatedAt": "2026-08-22T11:28:09.160+09:00",
   "retryGeneration": 30,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
@@ -270,8 +270,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nc56fc2b91dae",
       "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:27:26.263888+00:00"
+      "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-08-22T02:28:09.160Z"
     },
     {
       "id": "note_20260822_13_meeting_decision_log",
@@ -279,8 +279,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260822_13_meeting_decision_log.enc.json",
       "sha256": "855b8b23df3df23e52ee045fdcac544890c76be32faf01e4339b4d776f928d13",
       "createdAt": "2026-08-22T00:38:00+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "local-repair-note13-1787365634970",
       "expectedPriceJPY": 780,
       "requireReaderVisibleVerification": true,
@@ -292,7 +292,12 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated 1280x670 local cover from coverCopy, publish, strict reader-visible verify"
+      "recoveryMode": "decrypt, generate dedicated 1280x670 local cover from coverCopy, publish, strict reader-visible verify",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n82fef8621581",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-08-22T02:28:09.160Z"
     },
     {
       "id": "note_20260822_14_sponsor_menu_design",
@@ -317,8 +322,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n602d00911623",
       "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:27:27.004995+00:00"
+      "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-08-22T02:28:09.160Z"
     },
     {
       "id": "note_20260822_15_research_interview_coding",
@@ -343,8 +348,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nd4a4205bc4bd",
       "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:27:27.716712+00:00"
+      "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-08-22T02:28:09.160Z"
     },
     {
       "id": "note_20260822_16_jobhunt_company_research",
@@ -369,8 +374,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n0e5e9c35c649",
       "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:27:28.510653+00:00"
+      "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-08-22T02:28:09.160Z"
     }
   ]
 }
