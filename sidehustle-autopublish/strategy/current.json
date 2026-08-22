@@ -1,124 +1,90 @@
 {
-  "version": 17,
-  "updatedAt": "2026-08-22T17:46:40+09:00",
-  "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
+  "version": 18,
+  "updatedAt": "2026-08-22T23:31:45+09:00",
+  "objective": "maximize cumulative profit while preserving verified publication quality and building measurable free-to-paid funnels",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
-  "authoritativePublicationSnapshot": {
-    "source": "sidehustle-autopublish/publication_quota.json",
-    "sourceUpdatedAt": "2026-08-22T04:09:12.990507+00:00",
-    "note": {"carriedDebt": 0, "dailyTarget": 5, "todayStrictVerified": 5, "remaining": 0},
-    "BOOTH": {"carriedDebt": 0, "dailyTarget": 5, "todayStrictVerified": 5, "remaining": 0},
-    "rule": "Free note articles never decrement paid publication debt or replace the paid floor."
+  "authoritativeState": {
+    "metricsSource": "sidehustle-autopublish/metrics/current.json",
+    "metricsUpdatedAt": "2026-08-22T21:25:22+09:00",
+    "notePaidTodayStrictVerified": 5,
+    "notePaidDebt": 0,
+    "noteInitialFreeBatchStrictVerified": 6,
+    "boothTodayStrictVerified": 5,
+    "boothDebt": 0,
+    "githubPagesRequiredInsightBatchVerified": 6,
+    "microsoftStoreCurrentApp": "ms_csv_cleaner_deduper",
+    "microsoftStoreLiveStoreListing": false,
+    "rule": "Missing platform-native PV, likes, clicks, purchases, acquisitions, installs and conversion values remain unknown and are never zero-filled."
   },
   "priorityOrder": [
-    "publish the two initial free note acquisition experiments because both paid floors are already strictly satisfied",
-    "prepare tomorrow's paid note buffer as a complete manuscript batch without treating free output as paid quota",
-    "complete Microsoft Store CSV Cleaner submission prerequisites after the note funnel publication pair",
-    "instrument measurable acquisition links on existing GitHub Pages surfaces after verified destinations exist",
-    "defer price/CVR changes until first-party evidence exists"
+    "do not publish more free note articles merely to increase volume before the first equal-age funnel windows mature",
+    "capture and compare note free-article PV/likes/follows/related-paid-clicks/related-paid-purchases at 24h, 72h and 7d whenever platform data becomes available",
+    "preserve exactly one context-matched verified paid CTA per free article and do not add unrelated CTA stacks",
+    "keep paid article free areas strong enough to show empathy/question framing, concrete change/example and explicit reader benefit before the paywall",
+    "complete Microsoft Store CSV Cleaner Partner Center identity and submission prerequisites before ASO or price experiments",
+    "defer BOOTH price/bundle changes and GitHub Pages CTA experiments until first-party traffic or sales evidence exists"
   ],
   "noteFunnel": {
     "source": "sidehustle-autopublish/note/funnel_strategy.json",
-    "firstPartyMetricsState": "No current PV, likes, follows, related-paid clicks, related-paid purchases or revenue are recorded. Missing values remain unknown; no winning theme is claimed.",
-    "freeExperiment": {
-      "startDate": "2026-08-22",
-      "durationDays": 14,
-      "initialTargetPerDay": 2,
-      "measurementWindows": ["24h", "72h", "7d"],
-      "status": "publish exactly the initial pair first, then compare only equal-age windows before changing cadence"
+    "currentStatus": "The initial six free acquisition articles are reader-visible verified, and additional free articles are already present in the verified queue. The earliest verified timestamps are still inside the first 24-hour window, so no equal-age 24h comparison is yet mature at this run.",
+    "firstPartyMetricsState": {
+      "PV": null,
+      "likes": null,
+      "follows": null,
+      "relatedPaidClicks": null,
+      "relatedPaidPurchases": null,
+      "revenue": null,
+      "interpretation": "No funnel winner or loser may be declared yet."
     },
-    "nextProductionFactoryNoteSet": {
-      "publishNowFreePair": [
-        {
-          "freeId": "free_note_20260822_02_sponsor_followup_timing",
-          "title": "協賛提案を送った後、いつ連絡する？｜48時間・7日・14日のフォローアップ目安",
-          "pairedPaidId": "note_20260821_07_event_sponsor_followup",
-          "paidUrl": "https://note.com/royal_lion645/n/n6219f5ba167f",
-          "role": "search/discovery query -> complete paid sponsor follow-up workflow"
-        },
-        {
-          "freeId": "free_note_20260822_05_thesis_weekly_review",
-          "title": "卒論が進まない週に確認したい5つの質問｜30分で次の一手を決める週次レビュー",
-          "pairedPaidId": "note_20260821_10_thesis_weekly_review",
-          "paidUrl": "https://note.com/royal_lion645/n/n35b37f148b63",
-          "role": "search/discovery checklist -> complete paid weekly thesis workflow"
-        }
-      ],
-      "completePaidManuscriptsForTomorrowBuffer": [
-        {
-          "workingId": "note_20260823_17_sponsor_deliverables",
-          "workingTitle": "協賛は契約後に事故る｜ロゴ掲載・SNS・報告・送付物を漏らさない履行管理の実務設計",
-          "deepValue": "full deliverables workflow, status fields, evidence log, handoff rules",
-          "crossChannelAsset": "BOOTH 012_sponsor_deliverables_tracker_20260822"
-        },
-        {
-          "workingId": "note_20260823_18_event_incident_response",
-          "workingTitle": "イベントのヒヤリハットを『反省』で終わらせない｜初動・記録・再発防止を残す事故対応フロー",
-          "deepValue": "incident logging workflow, severity, owner, corrective action, review cadence",
-          "crossChannelAsset": "BOOTH 019_event_incident_log_os_20260822"
-        },
-        {
-          "workingId": "note_20260823_19_grant_tracker",
-          "workingTitle": "助成金申請は締切だけ見ても管理できない｜書類・証憑・報告期限まで一気通貫で追う方法",
-          "deepValue": "application-to-report workflow, document matrix, evidence checklist, deadlines",
-          "crossChannelAsset": "BOOTH 018_grant_application_tracker_20260822"
-        },
-        {
-          "workingId": "note_20260823_20_meeting_decision_log",
-          "workingTitle": "会議が終わるたび仕事が曖昧になる｜決定・保留・担当・期限をその場で固定する運営ルール",
-          "deepValue": "decision/action workflow, ownership, due dates, unresolved items, next-review loop",
-          "crossChannelAsset": "BOOTH 020_meeting_decision_action_os_20260822"
-        },
-        {
-          "workingId": "note_20260823_21_literature_matrix",
-          "workingTitle": "先行研究を読んでも卒論につながらない人へ｜目的・方法・結果・限界を横断比較する文献整理法",
-          "deepValue": "literature comparison matrix, coding dimensions, gap extraction, citation-ready notes",
-          "crossChannelAsset": "BOOTH 022_research_literature_matrix_os_20260822"
-        }
-      ],
-      "freeManuscriptHoldAfterInitialPair": [
-        {
-          "workingTitle": "協賛で約束した対価を忘れないために｜契約直後に確認したい5項目",
-          "futurePaidId": "note_20260823_17_sponsor_deliverables"
-        },
-        {
-          "workingTitle": "助成金の締切管理で抜けやすい4つの期限｜申請後まで見落とさないチェック",
-          "futurePaidId": "note_20260823_19_grant_tracker"
-        }
-      ],
-      "rule": "Free manuscripts may be batched, but publication cadence remains the 2/day experiment until comparable evidence exists. Paid manuscripts are a separate inventory and remain available for future paid floors."
-    },
-    "decisionRules": [
-      "Compare free articles only at equal 24h/72h/7d post-publication windows.",
-      "If free PV is strong but paid movement is weak, test CTA position, theme match and incremental paid value before changing paid price.",
-      "If free PV itself is weak, fix title/search intent/theme before producing name-only variants.",
-      "Above-median engagement or meaningful related-paid click/purchase evidence promotes a theme to paid deep-dive priority.",
-      "Any paid theme with observed sales gets adjacent free search-intent satellites.",
-      "No traffic and no engagement means deprioritize, not clone."
-    ],
+    "measurementWindows": ["24h", "72h", "7d"],
     "ctaPolicy": {
       "maxPaidCtaPerFreeArticle": 1,
       "placement": "after the standalone useful free core",
-      "urlRule": "only independently reader-visible verified paid URLs; never guess",
-      "relevanceRule": "CTA must match the exact free-article intent"
-    }
+      "urlRule": "only reader-visible verified paid URLs; never guess",
+      "relevanceRule": "CTA must match the free article's exact intent",
+      "noMultiProductStack": true
+    },
+    "diagnosticOrder": {
+      "strongPVWeakPaidConversion": [
+        "CTA position",
+        "free-to-paid theme match",
+        "specific incremental value available only in the paid article",
+        "paid price"
+      ],
+      "weakPV": [
+        "title",
+        "search intent",
+        "theme selection"
+      ],
+      "paidThemeWithObservedSale": "add adjacent-search-intent free satellite articles after the sale is actually observed"
+    },
+    "paidFreeAreaQualityGate": [
+      "empathy or question framing",
+      "concrete change, before/after or worked example",
+      "clear statement of what the buyer gains"
+    ],
+    "nextAction": "Hold speculative pricing and CTA rewrites until comparable first-party evidence exists; use the next production capacity for paid-buffer quality and Microsoft Store submission completion rather than more unmeasured funnel volume."
   },
-  "MicrosoftStore": {
-    "currentPriority": "CSV Cleaner & Duplicate Remover submission completion after the initial free note pair",
-    "knownState": "latest repository metrics still report Partner Center product identity reservation and Store screenshots/submission incomplete",
-    "rule": "Do not spend production capacity on cosmetic derivatives or ASO experiments before a live Store listing and acquisition/install evidence exist."
+  "microsoftStore": {
+    "currentPriority": "CSV Cleaner & Duplicate Remover submission completion",
+    "knownState": "public PWA and screenshot are prepared, but Partner Center product identity is not reserved and certification has not been submitted",
+    "optimizationRule": "Do not run listing A/B tests, acquisition optimization or pricing experiments before a live Store listing establishes a baseline."
   },
-  "GitHubPages": {
-    "priority": "Use existing sponsor, thesis, job-hunt and CSV tools as measurable acquisition surfaces; add only verified context-matched destinations and avoid near-duplicate tool production."
+  "booth": {
+    "salesEvidence": null,
+    "optimizationRule": "No live price or bundle change without product-level sales evidence. Prepare coherent bundles only when theme adjacency is strong and do not claim uplift before measurement."
   },
-  "nextFactorySequence": [
-    "publish free_note_20260822_02_sponsor_followup_timing with its verified paid CTA",
-    "publish free_note_20260822_05_thesis_weekly_review with its verified paid CTA",
-    "batch-complete the five paid note manuscripts for tomorrow's paid buffer",
-    "complete Microsoft Store CSV Cleaner submission prerequisites that are not human-only",
-    "hold extra free publications until comparable 24h evidence exists",
-    "instrument acquisition links only after verified destinations exist"
+  "githubPages": {
+    "outboundConversionEvidence": null,
+    "optimizationRule": "Keep pages useful on their own. Add context-matched destination CTAs only when the destination is verified; instrument source-specific attribution only when a live Store URL or other measurable destination exists."
+  },
+  "nextFactoryInstructions": [
+    "prioritize paid-note manuscript quality over additional free-note volume until the first 24h funnel window matures",
+    "for every new paid note manuscript, verify the free area passes the three-element value gate before packaging",
+    "complete all non-human Microsoft Store submission prerequisites for ms_csv_cleaner_deduper",
+    "do not change current paid prices tonight because no first-party article-level sales/PV baseline exists",
+    "when note 24h data becomes available, compare only equal-age articles and write the results into the funnel metrics state before making conversion changes"
   ],
-  "dataIntegrity": "publication_quota.json is newer and authoritative for today's publication floor/debt. metrics/current.json is older and must not override the cleared 2026-08-22 paid floors. Missing first-party funnel metrics remain unknown, never zero-filled."
+  "dataIntegrity": "No optimization effect is asserted without observed data. Public verification proves availability, not demand or conversion."
 }
