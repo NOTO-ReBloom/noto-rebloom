@@ -1,141 +1,42 @@
 {
-  "version": 14,
-  "updatedAt": "2026-08-22T05:42:00+09:00",
-  "objective": "maximize cumulative user profit while preserving paid publication floors/debt, building a measurable free-to-paid note funnel, and minimizing user intervention",
+  "version": 15,
+  "updatedAt": "2026-08-22T11:46:00+09:00",
+  "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "priorityOrder": [
-    "previous-day paid publication debt",
-    "current-day paid publication quota",
-    "free-to-paid note funnel acquisition and measurement",
-    "Microsoft Store submission",
+    "BOOTH previous-day paid debt and current-day paid quota",
+    "note free-to-paid funnel initial publication and measurement because today's paid note floor is already satisfied",
+    "Microsoft Store submission completion",
     "other profit optimization"
   ],
   "hardPublicationFloors": {
-    "policy": "publication_quota.json remains the hard paid floor and debt ledger; free note articles never decrement it",
-    "asOf": "2026-08-22T05:42:00+09:00",
-    "note": {
-      "carriedDebt": 6,
-      "dailyTarget": 5,
-      "todayStrictVerified": 0,
-      "totalStrictVerifiedRequiredBeforeDaySatisfied": 11,
-      "readyPaidCandidates": 11,
-      "decision": "Use the complete eleven-item ready paid batch at the first Windows-available session; continue across recoverable per-item failures rather than stopping after one success."
-    },
-    "BOOTH": {
-      "carriedDebt": 9,
-      "dailyTarget": 5,
-      "todayStrictVerified": 0,
-      "totalStrictVerifiedRequiredBeforeDaySatisfied": 14,
-      "readyPaidCandidates": 14,
-      "decision": "Use the complete 010-023 genuine-new paid batch at the first Windows-available session; do not return to deferred 009 until the batch has been attempted."
-    },
-    "pcConstraint": "After 01:00 JST do not assume Windows is online. Cloud production and planning continue; publication debt remains until strict reader/buyer-visible verification."
+    "source": "sidehustle-autopublish/publication_quota.json",
+    "note": {"carriedDebt":0,"dailyTarget":5,"todayStrictVerified":5,"remaining":0,"decision":"Do not create artificial paid debt. Keep the remaining ready paid inventory as future paid buffer while today's strict floor is satisfied."},
+    "BOOTH": {"carriedDebt":9,"dailyTarget":5,"todayStrictVerified":0,"remaining":14,"readyPaidCandidates":14,"decision":"Highest priority: attempt genuine-new batch 010-023 at the first Windows-available session with buyer-visible URL/title/price/downloadable-state/purchase-path verification."},
+    "rule": "Free note articles never decrement paid publication debt or replace the paid floor."
   },
   "noteFunnel": {
     "source": "sidehustle-autopublish/note/funnel_strategy.json",
-    "mode": "measured_free_acquisition_plus_paid_conversion",
-    "firstPartyMetricsState": "No note sales, PV, likes, follows, related-paid clicks or related-paid purchases are currently recorded, so no winning theme is claimed and the initial free cadence is unchanged.",
-    "freeExperiment": {
-      "startDate": "2026-08-22",
-      "durationDays": 14,
-      "initialTargetPerDay": 2,
-      "status": "maintain_initial_cadence_until_comparable_24h_72h_7d_metrics_exist",
-      "measurementWindows": ["24h", "72h", "7d"],
-      "metrics": ["PV", "likes", "follows", "related paid clicks", "related paid purchases", "revenue"],
-      "rule": "Never compare raw lifetime metrics across different article ages and never fabricate unavailable metrics."
-    },
-    "readyFreeInventory": {
-      "draftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
-      "freeQueue": "sidehustle-autopublish/note/free_queue/index.json",
-      "count": 6,
-      "platformVerifiedCount": 0
-    },
+    "firstPartyMetricsState": "No current PV, likes, follows, related-paid clicks, related-paid purchases or revenue are recorded. Do not claim a winning theme.",
+    "freeExperiment": {"startDate":"2026-08-22","durationDays":14,"initialTargetPerDay":2,"measurementWindows":["24h","72h","7d"],"status":"publish_initial_pair_then_hold cadence until comparable-window evidence exists"},
     "nextProductionFactoryNoteSet": {
-      "phaseA_paidDebtPublication": [
-        "note_20260821_06_ai_small_org_workflow",
-        "note_20260821_07_event_sponsor_followup",
-        "note_20260821_10_thesis_weekly_review",
-        "note_20260821_11_ai_jobhunt_answer_audit",
-        "note_20260821_08_creator_pricing",
-        "note_20260821_09_student_org_role_design",
-        "note_20260822_12_event_cancel_decision",
-        "note_20260822_13_meeting_decision_log",
-        "note_20260822_14_sponsor_menu_design",
-        "note_20260822_15_research_interview_coding",
-        "note_20260822_16_jobhunt_company_research"
+      "freeInitialPair": [
+        {"freeId":"free_note_20260822_02_sponsor_followup_timing","pairedPaidId":"note_20260821_07_event_sponsor_followup","role":"narrow sponsor follow-up timing query -> complete paid follow-up workflow"},
+        {"freeId":"free_note_20260822_05_thesis_weekly_review","pairedPaidId":"note_20260821_10_thesis_weekly_review","role":"weekly thesis recovery checklist -> paid thesis workflow"}
       ],
-      "phaseB_freePublicationInitialTwo": [
-        {
-          "freeId": "free_note_20260822_02_sponsor_followup_timing",
-          "pairedPaidId": "note_20260821_07_event_sponsor_followup",
-          "reason": "Current public note results show recent active sponsor-sales content and a strong practical search intent around sponsorship execution; publish as a useful timing guide, adding one paid CTA only after the paid URL is independently verified."
-        },
-        {
-          "freeId": "free_note_20260822_05_thesis_weekly_review",
-          "pairedPaidId": "note_20260821_10_thesis_weekly_review",
-          "reason": "Graduation-thesis workflow content has persistent search utility and the existing free tool cluster already supports thesis planning; use this as the second initial acquisition test."
-        }
-      ],
-      "phaseC_freeFallbackOrder": [
-        "free_note_20260822_06_es_interview_consistency",
-        "free_note_20260822_01_student_org_bus_factor",
-        "free_note_20260822_04_role_design_three_owners",
-        "free_note_20260822_03_digital_product_pricing_myths"
-      ],
-      "phaseD_nextCloudManuscriptBatchIfCapacityRemains": [
-        {
-          "kind": "free",
-          "workingTitle": "協賛金額を決める前に整理したい5つのこと｜企業が社内説明しやすい提案の土台",
-          "pairedPaidId": "note_20260822_14_sponsor_menu_design",
-          "role": "problem diagnosis and checklist -> paid full sponsor-menu design workflow"
-        },
-        {
-          "kind": "free",
-          "workingTitle": "イベントを中止するか迷ったとき最初に見る4条件｜雨・警報・交通・会場を分けて考える",
-          "pairedPaidId": "note_20260822_12_event_cancel_decision",
-          "role": "quick decision framework -> paid complete cancellation decision table"
-        },
-        {
-          "kind": "free",
-          "workingTitle": "卒論インタビューの発言をまとめる前に｜コード化で迷いやすい4つのポイント",
-          "pairedPaidId": "note_20260822_15_research_interview_coding",
-          "role": "common mistakes -> paid coding workflow"
-        },
-        {
-          "kind": "free",
-          "workingTitle": "企業研究で集めるだけになっていない？｜ESにつながる情報と不要な情報の分け方",
-          "pairedPaidId": "note_20260822_16_jobhunt_company_research",
-          "role": "problem awareness -> paid five-column company research workflow"
-        }
-      ],
-      "productionRule": "Do not create more near-duplicate manuscripts merely because cloud capacity exists. The ready 11 paid + 6 free manuscripts already cover the immediate pipeline. Create Phase D only after publication/retry work is prepared or when the next factory run has spare cloud-only capacity."
-    }
+      "freeFallbackHold": ["free_note_20260822_06_es_interview_consistency","free_note_20260822_01_student_org_bus_factor","free_note_20260822_04_role_design_three_owners","free_note_20260822_03_digital_product_pricing_myths"],
+      "nextCompleteManuscriptBatchIfCapacityRemains": [
+        {"kind":"free","workingTitle":"協賛金額を決める前に整理したい5つのこと｜企業が社内説明しやすい提案の土台","pairedPaidId":"note_20260822_14_sponsor_menu_design"},
+        {"kind":"free","workingTitle":"イベントを中止するか迷ったとき最初に見る4条件｜雨・警報・交通・会場を分けて考える","pairedPaidId":"note_20260822_12_event_cancel_decision"},
+        {"kind":"free","workingTitle":"卒論インタビューの発言をまとめる前に｜コード化で迷いやすい4つのポイント","pairedPaidId":"note_20260822_15_research_interview_coding"},
+        {"kind":"free","workingTitle":"企業研究で集めるだけになっていない？｜ESにつながる情報と不要な情報の分け方","pairedPaidId":"note_20260822_16_jobhunt_company_research"}
+      ]
+    },
+    "decisionRules": ["Compare free articles only at equal 24h/72h/7d post-publication windows.","Above-median engagement or meaningful related-paid click/purchase evidence promotes a theme to paid deep-dive priority.","Any paid theme with observed sales gets adjacent free search-intent satellites.","Traffic without paid movement triggers CTA/value-proposition testing before more paid derivatives.","No traffic and no engagement means deprioritize, not clone."]
   },
-  "marketSignalsChecked": {
-    "checkedAt": "2026-08-22T05:42:00+09:00",
-    "noteSponsor": "Fresh public note search returned multiple 2026 sponsor/sponsorship-sales articles, including a May 2026 practical sponsor-sales article and August 2026 sponsorship commentary, supporting sponsorship execution as a live content theme but not proving purchase conversion for this account.",
-    "noteThesis": "Public note search continues to surface thesis workflow/management content; use it as a durable search-intent test, not as evidence of paid conversion.",
-    "rule": "External public evidence may choose between qualified hypotheses but never substitutes for first-party PV, click, purchase or revenue data."
-  },
-  "MicrosoftStore": {
-    "currentPriority": "CSV Cleaner & Duplicate Remover remains the first Store submission candidate, but it is behind paid debt/quota and the initial note funnel publication priority.",
-    "state": "public PWA verified; repository metrics still report Partner Center identity reservation/package identity and required Store screenshot/submission work incomplete",
-    "humanOnlyBlocker": "If product identity still truly requires Partner Center manual reservation, request only that minimum action when the production factory reaches the Store step; do not let it block note/BOOTH debt recovery.",
-    "amplificationRule": "Do not create Store derivatives until page-view/acquisition/install evidence exists."
-  },
-  "GitHubPages": {
-    "currentState": "A broad utility cluster is already public, including thesis, sponsor, event, student-org and CSV tools.",
-    "priority": "Use existing tools as measurable acquisition/support surfaces before adding name-only variants. Add context-matched links only to independently verified destinations."
-  },
-  "decisionRules": [
-    "Free note publications never replace paid publication debt or the paid 5/day strict floor.",
-    "Paid debt does not stop free manuscript production or the 2/day initial free experiment.",
-    "At 24h/72h/7d, compare free articles only on equal post-publication windows when data exists.",
-    "Above-median free engagement or meaningful related-paid click/purchase evidence promotes a theme to paid deep-dive priority.",
-    "Any paid theme with observed sales receives adjacent free search-intent satellites.",
-    "If free traffic exists but paid movement does not, test CTA/value proposition before producing more paid derivatives.",
-    "If neither traffic nor engagement appears, deprioritize instead of cloning the theme.",
-    "No cosmetic Store clones, no name-only article clones, and no invented sales/PV/conversion data."
-  ]
+  "MicrosoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion after BOOTH debt and initial note funnel pair","state":"repository metrics still report Partner Center identity reservation/package identity and Store screenshots/submission incomplete","rule":"Do not create cosmetic derivatives before acquisition/install evidence exists."},
+  "GitHubPages": {"priority":"Use existing sponsor/thesis/job-hunt/CSV tools as measurable acquisition surfaces; prefer instrumentation and verified context-matched links over near-duplicate new tools."},
+  "nextFactorySequence": ["BOOTH 010-023 strict paid recovery batch","publish free note sponsor-followup article","publish free note thesis-weekly-review article","complete Microsoft Store CSV Cleaner submission prerequisites","only then create additional cloud manuscript batch if capacity remains"],
+  "dataIntegrity": "publication_quota.json at 11:28 JST supersedes older metrics/current.json and the 05:42 strategy snapshot for publication counts. Missing first-party conversion metrics remain unknown, never zero-filled."
 }
