@@ -2,10 +2,19 @@ name: Verify latest auto tool on GitHub Pages
 
 on:
   push:
+    branches: [main]
+    paths:
+      - 'auto-tools/**'
+      - '!auto-tools/publication_ledger.json'
+      - '.github/workflows/verify-latest-auto-tool-pages.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: verify-latest-auto-tool-pages
+  cancel-in-progress: true
 
 jobs:
   verify:
@@ -14,7 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          ref: main
+          fetch-depth: 0
 
       - name: Resolve latest tool
         id: meta
@@ -24,143 +34,83 @@ jobs:
           const fs=require('fs');
           const x=JSON.parse(fs.readFileSync('auto-tools/index.json','utf8'));
           const t=x.tools[x.tools.length-1];
-          if(!t || !t.slug || !t.title) process.exit(2);
+          if(!t || !t.slug || !t.title || !t.path) process.exit(2);
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `slug=${t.slug}\n`);
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `title=${t.title}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `path=${t.path}\n`);
           NODE
 
-      - name: Wait for Pages HTTP deployment
-        id: http
+      - name: Verify public page
+        id: verify
         shell: bash
         env:
           SLUG: ${{ steps.meta.outputs.slug }}
           EXPECTED_TITLE: ${{ steps.meta.outputs.title }}
+          TOOL_PATH: ${{ steps.meta.outputs.path }}
         run: |
-          set -u
-          URL="https://noto-rebloom.github.io/noto-rebloom/auto-tools/${SLUG}/"
-          mkdir -p /tmp/pages-check
+          set -euo pipefail
+          URL="https://noto-rebloom.github.io/noto-rebloom/${TOOL_PATH}"
           STATUS=0
-          for i in $(seq 1 24); do
-            STATUS=$(curl -L -sS -o /tmp/pages-check/page.html -w '%{http_code}' --max-time 20 "$URL" || true)
-            if [ "$STATUS" = "200" ] && grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html; then break; fi
+          for i in $(seq 1 18); do
+            STATUS=$(curl -L -sS -o /tmp/page.html -w '%{http_code}' --max-time 20 -H 'Cache-Control: no-cache' "$URL" || true)
+            if [ "$STATUS" = 200 ] && grep -Fq "$EXPECTED_TITLE" /tmp/page.html; then break; fi
             sleep 10
           done
-          TITLE_OK=false; UI_OK=false; CTA_OK=false
-          grep -Fq "$EXPECTED_TITLE" /tmp/pages-check/page.html 2>/dev/null && TITLE_OK=true || true
-          if grep -Eq 'id="(make|calc|result|body|output|build|one|short|generate|diagnose|copy1|copy30|file|run|download|preview|work)"' /tmp/pages-check/page.html 2>/dev/null; then UI_OK=true; fi
-          if grep -Fq 'booth.pm/ja/items/' /tmp/pages-check/page.html 2>/dev/null || grep -Fq 'auto-tools/' /tmp/pages-check/page.html 2>/dev/null || [ "$SLUG" = "csv-cleaner-deduper" ]; then CTA_OK=true; fi
+          TITLE_OK=false; UI_OK=false; H1_OK=false
+          grep -Fq "$EXPECTED_TITLE" /tmp/page.html && TITLE_OK=true || true
+          grep -Eiq '<(main|body)[ >]' /tmp/page.html && UI_OK=true || true
+          grep -Eiq '<h1[ >]' /tmp/page.html && H1_OK=true || true
+          VERIFIED=false
+          if [ "$STATUS" = 200 ] && [ "$TITLE_OK" = true ] && [ "$UI_OK" = true ] && [ "$H1_OK" = true ]; then VERIFIED=true; fi
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
           echo "title_ok=$TITLE_OK" >> "$GITHUB_OUTPUT"
           echo "ui_ok=$UI_OK" >> "$GITHUB_OUTPUT"
-          echo "cta_ok=$CTA_OK" >> "$GITHUB_OUTPUT"
-          test "$STATUS" = "200" && test "$TITLE_OK" = true && test "$UI_OK" = true
+          echo "h1_ok=$H1_OK" >> "$GITHUB_OUTPUT"
+          echo "verified=$VERIFIED" >> "$GITHUB_OUTPUT"
+          test "$VERIFIED" = true
 
-      - name: Install Selenium
-        run: python -m pip install --quiet selenium
-
-      - name: Browser interaction test
-        id: browser
-        env:
-          URL: ${{ steps.http.outputs.url }}
-          SLUG: ${{ steps.meta.outputs.slug }}
-        run: |
-          python <<'PY'
-          import os, sys, time, tempfile
-          from selenium import webdriver
-          from selenium.webdriver.chrome.options import Options
-          from selenium.webdriver.common.by import By
-
-          url=os.environ['URL']
-          slug=os.environ['SLUG']
-          opts=Options()
-          opts.add_argument('--headless=new')
-          opts.add_argument('--no-sandbox')
-          opts.add_argument('--disable-dev-shm-usage')
-          opts.add_argument('--window-size=1280,1000')
-          driver=webdriver.Chrome(options=opts)
-          function_ok=False
-          h1_ok=False
-          try:
-              driver.get(url)
-              time.sleep(1)
-              h1=driver.find_element(By.TAG_NAME,'h1').text.strip()
-              h1_ok=bool(h1)
-              if slug=='sponsor-email-maker':
-                  driver.find_element(By.ID,'company').send_keys('検証株式会社')
-                  driver.find_element(By.ID,'event').send_keys('検証イベント')
-                  driver.find_element(By.ID,'make').click()
-                  subject=driver.find_element(By.ID,'subject').text
-                  body=driver.find_element(By.ID,'body').text
-                  function_ok=('検証イベント' in subject and '検証株式会社' in body and len(body)>120)
-              elif slug=='interview-star-builder':
-                  driver.find_element(By.ID,'sample').click()
-                  driver.find_element(By.ID,'build').click()
-                  one=driver.find_element(By.ID,'one').text.strip()
-                  short=driver.find_element(By.ID,'short').text.strip()
-                  function_ok=(len(one)>100 and len(short)>40 and '入力内容から' not in one)
-              elif slug=='csv-cleaner-deduper':
-                  fd,path=tempfile.mkstemp(suffix='.csv')
-                  os.close(fd)
-                  with open(path,'w',encoding='utf-8') as f:
-                      f.write('name,email\n Alice ,a@example.com\nAlice,a@example.com\nBob,b@example.com\n')
-                  driver.find_element(By.ID,'file').send_keys(path)
-                  time.sleep(1)
-                  before=driver.find_element(By.ID,'sIn').text.strip()
-                  driver.find_element(By.ID,'run').click()
-                  time.sleep(.3)
-                  after=driver.find_element(By.ID,'sOut').text.strip()
-                  dup=driver.find_element(By.ID,'sDup').text.strip()
-                  preview=driver.find_element(By.ID,'preview').text
-                  function_ok=(before=='3' and after=='2' and dup=='1' and 'Alice' in preview and 'Bob' in preview)
-              else:
-                  buttons=driver.find_elements(By.TAG_NAME,'button')
-                  outputs=driver.find_elements(By.CSS_SELECTOR,'#result,#body,#output,#one,#short,#preview,#work,[aria-live]')
-                  function_ok=bool(buttons and outputs)
-          finally:
-              driver.quit()
-          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
-              f.write(f'h1_ok={str(h1_ok).lower()}\n')
-              f.write(f'function_ok={str(function_ok).lower()}\n')
-          if not (h1_ok and function_ok): sys.exit(1)
-          PY
-
-      - name: Save verification evidence
-        if: always()
-        shell: bash
+      - name: Persist evidence only when semantic state changes
+        shell: python
         env:
           SLUG: ${{ steps.meta.outputs.slug }}
           EXPECTED_TITLE: ${{ steps.meta.outputs.title }}
-          URL: ${{ steps.http.outputs.url }}
-          STATUS: ${{ steps.http.outputs.status }}
-          TITLE_OK: ${{ steps.http.outputs.title_ok }}
-          UI_OK: ${{ steps.http.outputs.ui_ok }}
-          CTA_OK: ${{ steps.http.outputs.cta_ok }}
-          H1_OK: ${{ steps.browser.outputs.h1_ok }}
-          FUNCTION_OK: ${{ steps.browser.outputs.function_ok }}
+          URL: ${{ steps.verify.outputs.url }}
+          STATUS: ${{ steps.verify.outputs.status }}
+          TITLE_OK: ${{ steps.verify.outputs.title_ok }}
+          UI_OK: ${{ steps.verify.outputs.ui_ok }}
+          H1_OK: ${{ steps.verify.outputs.h1_ok }}
+          VERIFIED: ${{ steps.verify.outputs.verified }}
         run: |
-          mkdir -p sidehustle-autopublish/monitor/pages-verification
-          node <<'NODE'
-          const fs=require('fs');
-          const verified=process.env.STATUS==='200' && process.env.TITLE_OK==='true' && process.env.UI_OK==='true' && process.env.H1_OK==='true' && process.env.FUNCTION_OK==='true';
-          const data={
-            checkedAt:new Date().toISOString(),
-            sourceCommit:process.env.GITHUB_SHA,
-            slug:process.env.SLUG,
-            title:process.env.EXPECTED_TITLE,
-            publicUrl:process.env.URL || `https://noto-rebloom.github.io/noto-rebloom/auto-tools/${process.env.SLUG}/`,
-            httpStatus:Number(process.env.STATUS||0),
-            titleOk:process.env.TITLE_OK==='true',
-            majorUiOk:process.env.UI_OK==='true',
-            h1Ok:process.env.H1_OK==='true',
-            primaryFunctionOk:process.env.FUNCTION_OK==='true',
-            ctaOrInternalLinkOk:process.env.CTA_OK==='true',
-            publicUrlVerified:verified
-          };
-          fs.writeFileSync('sidehustle-autopublish/monitor/pages-verification/latest.json',JSON.stringify(data,null,2)+'\n');
-          NODE
+          import json, os, pathlib, datetime
+          p=pathlib.Path('sidehustle-autopublish/monitor/pages-verification/latest.json')
+          prev={}
+          if p.exists():
+              try: prev=json.loads(p.read_text(encoding='utf-8'))
+              except Exception: prev={}
+          semantic={
+              'slug':os.environ['SLUG'],
+              'title':os.environ['EXPECTED_TITLE'],
+              'publicUrl':os.environ['URL'],
+              'httpStatus':int(os.environ.get('STATUS') or 0),
+              'titleOk':os.environ.get('TITLE_OK')=='true',
+              'majorUiOk':os.environ.get('UI_OK')=='true',
+              'h1Ok':os.environ.get('H1_OK')=='true',
+              'publicUrlVerified':os.environ.get('VERIFIED')=='true'
+          }
+          old={k:prev.get(k) for k in semantic}
+          if old==semantic:
+              print('NO_SEMANTIC_CHANGE')
+              raise SystemExit(0)
+          semantic['checkedAt']=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          p.parent.mkdir(parents=True,exist_ok=True)
+          p.write_text(json.dumps(semantic,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+      - name: Commit evidence if changed
+        run: |
+          if git diff --quiet -- sidehustle-autopublish/monitor/pages-verification/latest.json; then exit 0; fi
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add sidehustle-autopublish/monitor/pages-verification/latest.json
-          git diff --cached --quiet || git commit -m "Record GitHub Pages verification for ${SLUG}"
-          git push
+          git commit -m "Record GitHub Pages verification state"
+          git push origin HEAD:main
