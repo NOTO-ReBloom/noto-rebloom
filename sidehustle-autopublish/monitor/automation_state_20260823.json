@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "checkedAt": "2026-08-23T04:25:22+09:00",
+  "completionGateSatisfied": false,
+  "reportingSuppressed": true,
+  "observed": {
+    "publicationQuotaSourceDate": "2026-08-22",
+    "previousDayNotePaidStrictVerified": 5,
+    "previousDayNotePaidCarriedDebt": 0,
+    "previousDayBoothStrictVerified": 5,
+    "previousDayBoothCarriedDebt": 0,
+    "currentLocalDate": "2026-08-23",
+    "currentDayNotePaidStrictVerifiedFromAvailableLedger": 0,
+    "currentDayBoothStrictVerifiedFromAvailableLedger": 0,
+    "currentDayPaidTargets": {
+      "note": 5,
+      "BOOTH": 5
+    },
+    "noteFreeInitialBatch": {
+      "required": 6,
+      "readerVisibleStrictVerified": true
+    },
+    "githubPagesInitialInsightBatch": {
+      "required": 6,
+      "state": "previously verified; no evidence in this run of regression"
+    },
+    "microsoftStore": {
+      "appId": "ms_csv_cleaner_deduper",
+      "qualityGateState": "highest_quality_submission_ready_except_partner_center_identity_and_human_submission",
+      "publicPwaVerified": true,
+      "partnerCenterProductIdentityReserved": false,
+      "submittedForCertification": false,
+      "publicStoreUrlVerified": false
+    }
+  },
+  "cloudRecoveryWork": {
+    "paidNoteDraftBatch": "sidehustle-autopublish/note/paid_drafts/2026-08-23_batch01.md",
+    "paidNoteDraftCount": 5,
+    "freeNoteReserveBatch": "sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md",
+    "freeNoteReserveCount": 2,
+    "windowsAssumption": "PC not assumed online after 01:00 JST"
+  },
+  "nextPriority": [
+    "On next Windows-available session, package/queue and publish 2026-08-23 paid NOTE batch with strict reader-visible verification until 5/5 is satisfied.",
+    "Prepare and publish five genuinely new BOOTH products for 2026-08-23; only strict buyer-visible verification may count.",
+    "Keep free NOTE publication secondary to paid floors; reserve manuscripts are prepared but do not discharge debt.",
+    "Continue Microsoft Store non-human submission preparation without inventing Partner Center identity."
+  ],
+  "humanOnlyBlocker": null,
+  "notificationDecision": "none: completion conditions are not all satisfied and no allowed human-only blocker stops every remaining publication path"
+}
