@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-08-22T03:41:18.287Z",
+  "attempts": [
+    {
+      "queueId": "012_sponsor_deliverables_tracker_20260822",
+      "retry": 1,
+      "status": 1,
+      "segment": "処理開始 012_sponsor_deliverables_tracker_20260822 source=remote\n[2026-08-22T03:41:20.338Z] Chromeを直接起動: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n[2026-08-22T03:41:24.465Z] OK 商品名\n[2026-08-22T03:41:25.556Z] OK 商品画像 1枚\n[2026-08-22T03:41:26.511Z] 停止 親カテゴリ「ソフトウェア・ハードウェア」が見つかりません\n親カテゴリ「ソフトウェア・ハードウェア」が見つかりません",
+      "retryReason": "category transient"
+    },
+    {
+      "queueId": "012_sponsor_deliverables_tracker_20260822",
+      "retry": 2,
+      "status": 1,
+      "segment": "処理開始 012_sponsor_deliverables_tracker_20260822 source=remote\n[2026-08-22T03:41:34.250Z] Chromeを直接起動: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n[2026-08-22T03:41:38.634Z] OK 商品名\n[2026-08-22T03:41:39.742Z] OK 商品画像 1枚\n[2026-08-22T03:41:40.864Z] 停止 親カテゴリ「ソフトウェア・ハードウェア」が見つかりません\n親カテゴリ「ソフトウェア・ハードウェア」が見つかりません",
+      "retryReason": "category transient"
+    },
+    {
+      "queueId": "012_sponsor_deliverables_tracker_20260822",
+      "retry": 3,
+      "status": 1,
+      "segment": "処理開始 012_sponsor_deliverables_tracker_20260822 source=remote\n[2026-08-22T03:41:50.199Z] Chromeを直接起動: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n[2026-08-22T03:41:54.563Z] OK 商品名\n[2026-08-22T03:41:55.683Z] OK 商品画像 1枚\n[2026-08-22T03:41:56.884Z] 停止 親カテゴリ「ソフトウェア・ハードウェア」が見つかりません\n親カテゴリ「ソフトウェア・ハードウェア」が見つかりません",
+      "retryReason": "category transient"
+    },
+    {
+      "queueId": "012_sponsor_deliverables_tracker_20260822",
+      "retry": 4,
+      "status": 1,
+      "segment": "処理開始 012_sponsor_deliverables_tracker_20260822 source=remote\n[2026-08-22T03:42:07.723Z] Chromeを直接起動: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n[2026-08-22T03:42:12.435Z] OK 商品名\n[2026-08-22T03:42:13.585Z] OK 商品画像 1枚\n[2026-08-22T03:42:14.706Z] 停止 親カテゴリ「ソフトウェア・ハードウェア」が見つかりません\n親カテゴリ「ソフトウェア・ハードウェア」が見つかりません",
+      "retryReason": "category transient"
+    }
+  ],
+  "final": {
+    "blocker": {
+      "queueId": "012_sponsor_deliverables_tracker_20260822",
+      "reason": "category transient"
+    },
+    "strictVerifiedCount": 2,
+    "targetCount": 14,
+    "complete": false,
+    "entries": [
+      {
+        "queueId": "010_event_risk_register_os_20260822",
+        "title": "イベントリスク登録簿OS｜発生確率×影響度×対策×担当を1画面管理｜オフラインHTML",
+        "boothItemId": "8746990",
+        "publicUrl": "https://booth.pm/ja/items/8746990",
+        "publicUrlVerified": true,
+        "verifiedAt": "2026-08-22T03:29:23.655383+00:00",
+        "verificationEvidence": "Independent unauthenticated direct-URL verifier confirmed buyer HTTP 200, exact title, expected price, downloadable-product signal and purchase/cart path.",
+        "publishMode": "windows-direct-url-reconcile"
+      },
+      {
+        "queueId": "011_small_org_role_os_20260822",
+        "title": "小規模チーム役割設計OS｜実行・最終判断・相談先・代替担当を整理｜オフラインHTML",
+        "boothItemId": "8747013",
+        "publicUrl": "https://booth.pm/ja/items/8747013",
+        "publicUrlVerified": true,
+        "verifiedAt": "2026-08-22T03:35:43.618Z",
+        "verificationEvidence": "Independent unauthenticated Node HTTPS verifier confirmed buyer HTTP 200, exact title, expected price, downloadable-product signal and purchase/cart path.",
+        "publishMode": "windows-direct-node-strict"
+      }
+    ],
+    "finishedAt": "2026-08-22T03:42:26.684Z"
+  }
+}
