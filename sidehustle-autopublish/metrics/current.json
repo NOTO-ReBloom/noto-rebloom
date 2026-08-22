@@ -1,99 +1,83 @@
 {
-  "version": 3,
-  "updatedAt": "2026-08-21T18:54:02+09:00",
+  "version": 4,
+  "updatedAt": "2026-08-22T21:25:22+09:00",
   "objective": "maximize total sales while enforcing verified-publication hard minimums and minimizing user intervention",
+  "authoritativeSources": {
+    "completionGate": "sidehustle-autopublish/completion_gate.json",
+    "publicationQuota": "sidehustle-autopublish/publication_quota.json",
+    "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
+    "insightLedger": "insights/publication_ledger.json",
+    "microsoftStoreQualityGate": "sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/quality_gate.json"
+  },
   "channels": {
-    "BOOTH": {
-      "status": "active",
-      "products": [
-        {"id":"001_interview_os","title":"【28卒・29卒】面接改善OS｜面接ログ×弱点可視化×AIプロンプト12種｜Excel就活テンプレ","priceJPY":980,"publishFlow":"completed","publicUrlVerified":false,"salesObserved":null},
-        {"id":"002_consistency_os_20260819","title":"【28卒・29卒】AI就活 一貫性チェックOS｜ES・自己PR・志望動機・面接回答の矛盾を防ぐExcel＋AIプロンプト6種","priceJPY":1280,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://booth.pm/ja/items/8736698","boothItemId":"8736698","salesObserved":null},
-        {"id":"003_event_ops_html_20260819","title":"イベント運営OS｜TODO・参加者・スタッフ・当日進行・備品・リスク・予算を1つで管理｜オフラインHTML","priceJPY":1280,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://booth.pm/ja/items/8736143","boothItemId":"8736143","salesObserved":null},
-        {"id":"005_sponsor_crm_20260819","title":"協賛・スポンサー営業CRM OS｜候補企業→面談→提案→契約→入金→対価履行を一括管理｜Excel","priceJPY":1680,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://booth.pm/ja/items/8736208","boothItemId":"8736208","salesObserved":null},
-        {"id":"007_thesis_progress_os_20260820","title":"卒論・研究進行OS｜先行研究・仮説・分析・図表・締切を一括管理｜オフラインHTML","priceJPY":1480,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://booth.pm/ja/items/8739122","boothItemId":"8739122","salesObserved":null},
-        {"id":"009_handover_os_20260820","title":"学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML","priceJPY":980,"publishFlow":"queued","publicUrlVerified":false,"salesObserved":null}
-      ]
-    },
     "note": {
       "status": "active",
-      "products": [
-        {"id":"note_20260818_01","title":"大学生のタスクが多すぎる問題を15分で整理する｜授業・就活・バイトをAIで1枚にまとめる実践テンプレ","priceJPY":480,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://note.com/royal_lion645/n/nf625206fc610","coverImageVerified":true,"qualityStatus":"verified","salesObserved":null,"pvObserved":null,"likesObserved":null},
-        {"id":"note_20260819_02","title":"協賛営業を「送ったら終わり」にしない｜スポンサー獲得を前に進める7段階の管理テンプレ","priceJPY":680,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://note.com/royal_lion645/n/n0c48dab1b56e","coverImageVerified":true,"qualityStatus":"verified","salesObserved":null,"pvObserved":null,"likesObserved":null},
-        {"id":"note_20260819_03","title":"イベント当日マニュアルは「時系列」だけでは足りない｜事故と混乱を減らす5層設計テンプレ","priceJPY":680,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://note.com/royal_lion645/n/ne7c86017bfd3","coverImageVerified":true,"qualityStatus":"verified","salesObserved":null,"pvObserved":null,"likesObserved":null},
-        {"id":"note_20260819_04","title":"卒論が進まない人へ｜「書く」前に研究を7つの箱で管理する進行OS","priceJPY":1280,"publishFlow":"completed","publicUrlVerified":true,"publicUrl":"https://note.com/royal_lion645/n/na1f8adc2bfa8","coverImageVerified":true,"qualityStatus":"verified","salesObserved":null,"pvObserved":null,"likesObserved":null},
-        {"id":"note_20260820_05","title":"引継ぎは「資料を渡す」だけでは失敗する｜学生団体・サークルの運営を止めない8項目チェックリスト","priceJPY":980,"publishFlow":"queued","publicUrlVerified":false,"coverImageVerified":false,"qualityStatus":"awaiting_reader_verification","salesObserved":null,"pvObserved":null,"likesObserved":null}
-      ]
+      "paid": {
+        "date": "2026-08-22",
+        "dailyTarget": 5,
+        "strictVerifiedToday": 5,
+        "carriedDebt": 0,
+        "remainingToTarget": 0,
+        "completionChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
+      },
+      "free": {
+        "requiredBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
+        "requiredBatchCount": 6,
+        "requiredBatchStrictVerifiedCount": 6,
+        "completionChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
+        "rule": "Free note publications do not decrement paid debt."
+      }
+    },
+    "BOOTH": {
+      "status": "active",
+      "date": "2026-08-22",
+      "dailyTarget": 5,
+      "strictVerifiedToday": 5,
+      "carriedDebt": 0,
+      "remainingToTarget": 0,
+      "completionChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
     "GitHubPages": {
       "status": "active",
-      "latestVerifiedPublication": {"slug":"csv-cleaner-deduper","title":"CSV Cleaner & Duplicate Remover","publicUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/","publicUrlVerified":true,"verifiedAt":"2026-08-21T15:16:57+09:00"},
-      "latestIndexUpdate": "2026-08-21T16:11:45+09:00"
+      "requiredInsightBatchVerifiedCount": 6,
+      "requiredInsightBatchTarget": 6,
+      "verifiedLedger": "insights/publication_ledger.json"
     },
     "MicrosoftStore": {
-      "status":"code_and_listing_ready_package_identity_pending",
-      "appId":"ms_csv_cleaner_deduper",
-      "productNameCandidate":"CSV Cleaner & Duplicate Remover",
-      "publicPwaVerified":true,
-      "partnerCenterProductIdentityReserved":false,
-      "requiredPngScreenshotGenerated":false,
-      "submittedForCertification":false,
-      "publicStoreUrlVerified":false,
-      "userActionRequiredNow":true,
-      "minimumUserAction":"Reserve the final product name/identity in Partner Center so the actual Package ID, Publisher display name and Publisher ID can be used for final package generation."
+      "status": "highest_quality_submission_ready_except_partner_center_identity_and_human_submission",
+      "appId": "ms_csv_cleaner_deduper",
+      "productNameCandidate": "CSV Cleaner & Duplicate Remover",
+      "publicPwaVerified": true,
+      "requiredPngScreenshotGenerated": true,
+      "partnerCenterProductIdentityReserved": false,
+      "submittedForCertification": false,
+      "publicStoreUrlVerified": false,
+      "certificationCompleted": false,
+      "remainingExternalSteps": [
+        "Partner Center product-name/identity reservation",
+        "final package generation using actual Partner Center identity",
+        "screenshot/package upload and certification submission"
+      ]
     },
-    "AmazonKDP":{"status":"disabled"},
-    "LINECreatorsMarket":{"status":"disabled"}
+    "AmazonKDP": {"status": "disabled"},
+    "LINECreatorsMarket": {"status": "disabled"}
   },
-  "pipelineMonitor": {
-    "checkedAt":"2026-08-21T18:54:02+09:00",
-    "gmailImportantEventsFound":0,
-    "publicUrlsNewlyVerified":0,
-    "BOOTH": {
-      "level":"pipeline_critical",
-      "effectiveUnpublishedQueueCount":1,
-      "oldestId":"009_handover_os_20260820",
-      "oldestTitle":"学生団体・小規模NPO 引継ぎ漏れ防止OS｜担当・資料・権限・定期業務を1画面管理｜オフラインHTML",
-      "oldestCreatedAt":"2026-08-20T17:40:00+09:00",
-      "oldestAgeMinutes":1514,
-      "consecutiveUnresolvedChecks":6,
-      "retryGeneration":22,
-      "nextPreferredConsumerWindow":"2026-08-21T19:10:00+09:00",
-      "fallbackMaterializationRequired":true,
-      "userActionRequiredNow":false,
-      "note":"Exact-title public search still established no buyer-visible official page. One brief strict retry is allowed at 19:10, then production must defer 009 and materialize/publish a distinct paid fallback; free Web publication does not discharge BOOTH debt."
+  "monitor": {
+    "checkedAt": "2026-08-22T21:25:22+09:00",
+    "recoverableInconsistenciesReconciled": [
+      "Removed stale note/BOOTH debt snapshot that predated strict 2026-08-22 publications.",
+      "Updated Microsoft Store screenshot state from generated=false to generated=true based on the current quality gate."
+    ],
+    "gmail": {
+      "queryWindow": "2026-08-22",
+      "newRelevantSalesReviewCertificationPayoutMessagesFound": 0
     },
-    "note": {
-      "level":"pipeline_critical",
-      "enabledQueueCount":1,
-      "oldestId":"note_20260820_05",
-      "oldestCreatedAt":"2026-08-20T18:08:00+09:00",
-      "oldestAgeMinutes":1486,
-      "consecutiveUnresolvedChecks":6,
-      "retryGeneration":17,
-      "nextPreferredConsumerWindow":"2026-08-21T19:10:00+09:00",
-      "qualityLevel":"awaiting_verification",
-      "qualityWarningCount":0,
-      "fallbackMaterializationRequired":true,
-      "userActionRequiredNow":false,
-      "note":"Exact-title public search still established no reader-visible official page. One brief strict retry is allowed at 19:10, then production must defer the legacy item and materialize/publish a distinct paid fallback; free Web publication does not discharge note debt."
-    },
-    "publicationQuota": {
-      "note":{"carriedDebt":1,"todayVerified":0,"todayTarget":5,"requiredBeforeDaySatisfied":6},
-      "BOOTH":{"carriedDebt":4,"todayVerified":0,"todayTarget":5,"requiredBeforeDaySatisfied":9}
-    },
-    "MicrosoftStore":{"userActionRequiredNow":true,"reason":"Partner Center product identity has not been reserved; final Store package/certification cannot be completed without the actual identity values."}
+    "salesObservation": "No new sales, order, payout, review, certification, warning or support email was found in the connected Gmail search for 2026-08-22. Missing platform-native sales metrics remain unknown and are not zero-filled."
   },
-  "latestMarketLearning": {
-    "publicationReconciliation":"At 18:54 JST, neither BOOTH 009 nor note 05 has a verified public page. Both remain critical and must fail over to distinct paid candidates during the remaining PC windows.",
-    "salesObservation":"No new BOOTH/note/Microsoft Store sales, order, payout, review, warning or buyer-support email was found in the connected Gmail window.",
-    "microsoftStore":"CSV Cleaner & Duplicate Remover has a verified public PWA and prepared listing, but final Store packaging is blocked on Partner Center identity reservation and required Store screenshots.",
-    "sourceCheckedAt":"2026-08-21T18:54:02+09:00"
-  },
-  "optimizationRules": [
+  "rules": [
     "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
-    "Do not reduce the daily verified-publication floor or erase carried debt.",
-    "If a blocked paid candidate fails a brief strict attempt, switch to a distinct qualified paid fallback in the same PC-available production run.",
-    "Free Web publication does not discharge note or BOOTH publication debt.",
+    "Do not reduce paid publication floors or erase debt without strict public verification.",
+    "Free content never discharges paid publication debt.",
     "Do not reactivate KDP or LINE without explicit user instruction."
   ]
 }
