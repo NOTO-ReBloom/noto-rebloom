@@ -1,181 +1,26 @@
 {
-  "version": 8,
-  "updatedAt": "2026-08-22T05:42:00+09:00",
-  "purpose": "Debt-first paid publication backlog plus evidence-gated free-to-paid note funnel and later Store submission.",
-  "publicationDebtFirst": true,
-  "evidenceLimit": "No observed note sales/PV/likes/follows/paid clicks, BOOTH sales, Microsoft Store funnel metrics or GitHub Pages conversion metrics are recorded. No theme is a proven winner yet.",
+  "version": 9,
+  "updatedAt": "2026-08-22T11:46:00+09:00",
+  "purpose": "Debt-first execution backlog plus evidence-gated note funnel and Store submission.",
+  "evidenceLimit": "No current first-party note funnel conversion or sales metrics are recorded; no theme is a proven winner.",
   "hardFloorSnapshot": {
-    "note": {
-      "carriedDebt": 6,
-      "todayTarget": 5,
-      "todayStrictVerified": 0,
-      "totalStrictRequired": 11,
-      "readyPaidCandidateCount": 11
-    },
-    "BOOTH": {
-      "carriedDebt": 9,
-      "todayTarget": 5,
-      "todayStrictVerified": 0,
-      "totalStrictRequired": 14,
-      "readyPaidCandidateCount": 14
-    },
-    "rule": "Only new strict reader/buyer-visible paid publication verification decrements debt or satisfies today's paid target. Free note articles never count toward this floor."
+    "note": {"carriedDebt":0,"todayTarget":5,"todayStrictVerified":5,"remaining":0},
+    "BOOTH": {"carriedDebt":9,"todayTarget":5,"todayStrictVerified":0,"remaining":14,"readyPaidCandidateCount":14},
+    "source":"publication_quota.json updated 2026-08-22T11:28:16.226+09:00"
   },
   "executionBacklog": [
-    {
-      "rank": 1,
-      "channel": "note",
-      "type": "paid_debt_batch",
-      "ids": [
-        "note_20260821_06_ai_small_org_workflow",
-        "note_20260821_07_event_sponsor_followup",
-        "note_20260821_10_thesis_weekly_review",
-        "note_20260821_11_ai_jobhunt_answer_audit",
-        "note_20260821_08_creator_pricing",
-        "note_20260821_09_student_org_role_design",
-        "note_20260822_12_event_cancel_decision",
-        "note_20260822_13_meeting_decision_log",
-        "note_20260822_14_sponsor_menu_design",
-        "note_20260822_15_research_interview_coding",
-        "note_20260822_16_jobhunt_company_research"
-      ],
-      "reason": "Exactly matches 6 carried debt + 5 current-day paid target; all are already encrypted/ready according to publication_quota.json and note queue.",
-      "nextAction": "At the first Windows-available session attempt the complete batch with strict URL/title/price/paid-boundary/dedicated-cover checks. Continue after recoverable per-item failure."
-    },
-    {
-      "rank": 2,
-      "channel": "BOOTH",
-      "type": "paid_debt_batch",
-      "ids": [
-        "010_event_risk_register_os_20260822",
-        "011_small_org_role_os_20260822",
-        "012_sponsor_deliverables_tracker_20260822",
-        "013_research_interview_coding_os_20260822",
-        "014_volunteer_shift_comms_os_20260822",
-        "015_creator_profit_pricing_os_20260822",
-        "016_event_sponsor_bundle_os_20260822",
-        "017_jobhunt_interview_bundle_os_20260822",
-        "018_grant_application_tracker_os_20260822",
-        "019_event_incident_log_os_20260822",
-        "020_meeting_decision_action_os_20260822",
-        "021_small_npo_donor_crm_os_20260822",
-        "022_research_literature_matrix_os_20260822",
-        "023_campus_project_budget_os_20260822"
-      ],
-      "reason": "Exactly matches 9 carried debt + 5 current-day BOOTH target; cloud QA/materialization is complete and deferred 009 should not block the batch.",
-      "nextAction": "Attempt 010-023 as genuine-new paid items; buyer-visible URL, exact title, price, downloadable state and purchase path are required."
-    },
-    {
-      "rank": 3,
-      "channel": "note",
-      "type": "free_acquisition_initial_pair",
-      "items": [
-        {
-          "id": "free_note_20260822_02_sponsor_followup_timing",
-          "title": "協賛提案を送った後、いつ連絡する？｜48時間・7日・14日のフォローアップ目安",
-          "pairedPaidId": "note_20260821_07_event_sponsor_followup",
-          "state": "complete_manuscript_queued_unverified",
-          "reason": "Fresh public note evidence shows active 2026 sponsor-sales content; this free article addresses a narrow high-intent operational question and can prequalify the paid follow-up workflow."
-        },
-        {
-          "id": "free_note_20260822_05_thesis_weekly_review",
-          "title": "卒論が進まない週に確認したい5つの質問｜30分で次の一手を決める週次レビュー",
-          "pairedPaidId": "note_20260821_10_thesis_weekly_review",
-          "state": "complete_manuscript_queued_unverified",
-          "reason": "Durable thesis search intent plus multiple already-public thesis tools make this a measurable acquisition test without requiring a new asset build."
-        }
-      ],
-      "nextAction": "Publish as the initial 2/day experiment only after paid publication work is prepared. Add at most one paired paid CTA after the paid destination URL is independently verified; otherwise publish without a guessed CTA."
-    },
-    {
-      "rank": 4,
-      "channel": "note",
-      "type": "free_acquisition_ready_fallbacks",
-      "ids": [
-        "free_note_20260822_06_es_interview_consistency",
-        "free_note_20260822_01_student_org_bus_factor",
-        "free_note_20260822_04_role_design_three_owners",
-        "free_note_20260822_03_digital_product_pricing_myths"
-      ],
-      "reason": "Complete manuscripts already exist. Hold as publication/experiment buffer rather than publishing all six before 24h evidence exists."
-    },
-    {
-      "rank": 5,
-      "channel": "note",
-      "type": "next_cloud_free_manuscript_batch",
-      "status": "create_only_if_spare_cloud_capacity_after_current_ready_inventory_is_prepared",
-      "items": [
-        {
-          "workingTitle": "協賛金額を決める前に整理したい5つのこと｜企業が社内説明しやすい提案の土台",
-          "pairedPaidId": "note_20260822_14_sponsor_menu_design",
-          "role": "free problem diagnosis -> paid complete sponsor-menu design"
-        },
-        {
-          "workingTitle": "イベントを中止するか迷ったとき最初に見る4条件｜雨・警報・交通・会場を分けて考える",
-          "pairedPaidId": "note_20260822_12_event_cancel_decision",
-          "role": "free quick framework -> paid complete decision table"
-        },
-        {
-          "workingTitle": "卒論インタビューの発言をまとめる前に｜コード化で迷いやすい4つのポイント",
-          "pairedPaidId": "note_20260822_15_research_interview_coding",
-          "role": "free common mistakes -> paid coding workflow"
-        },
-        {
-          "workingTitle": "企業研究で集めるだけになっていない？｜ESにつながる情報と不要な情報の分け方",
-          "pairedPaidId": "note_20260822_16_jobhunt_company_research",
-          "role": "free problem awareness -> paid five-column company research workflow"
-        }
-      ]
-    },
-    {
-      "rank": 6,
-      "channel": "MicrosoftStore",
-      "id": "ms_csv_cleaner_deduper",
-      "type": "submission_completion",
-      "reason": "The public PWA and listing exist, but current repository state still reports product identity/package identity, Store screenshots and certification submission incomplete. Store funnel data cannot start until submission/publication is completed.",
-      "nextAction": "After paid floor work and the initial free funnel pair are prepared, resolve the minimum Partner Center identity step if still required, generate final package/screenshots, submit, then persist live Store URL and acquisition instrumentation."
-    },
-    {
-      "rank": 7,
-      "channel": "GitHubPages",
-      "type": "measurement_support",
-      "reason": "A broad tool inventory already exists. New tool production has lower information value than instrumenting existing sponsor/thesis/job-hunt/CSV surfaces and linking only to verified destinations.",
-      "nextAction": "Prefer measurement and context-matched links over near-duplicate new tools."
-    }
+    {"rank":1,"channel":"BOOTH","type":"paid_debt_batch","ids":["010_event_risk_register_os_20260822","011_small_org_role_os_20260822","012_sponsor_deliverables_tracker_20260822","013_research_interview_coding_os_20260822","014_volunteer_shift_comms_os_20260822","015_creator_profit_pricing_os_20260822","016_event_sponsor_bundle_os_20260822","017_jobhunt_interview_bundle_os_20260822","018_grant_application_tracker_os_20260822","019_event_incident_log_os_20260822","020_meeting_decision_action_os_20260822","021_small_npo_donor_crm_os_20260822","022_research_literature_matrix_os_20260822","023_campus_project_budget_os_20260822"],"nextAction":"At first Windows-available session process every ledger-absent item, continuing after recoverable per-item failures. Count only buyer-visible URL + exact title + price + downloadable-product state + purchase path."},
+    {"rank":2,"channel":"note","type":"free_acquisition_initial_pair","items":[{"id":"free_note_20260822_02_sponsor_followup_timing","pairedPaidId":"note_20260821_07_event_sponsor_followup","state":"complete_manuscript_queued_unverified"},{"id":"free_note_20260822_05_thesis_weekly_review","pairedPaidId":"note_20260821_10_thesis_weekly_review","state":"complete_manuscript_queued_unverified"}],"nextAction":"Publish the initial two free acquisition tests. Add at most one context-matched paid CTA only after the paired paid URL is independently reader-visible verified; otherwise publish without guessed CTA."},
+    {"rank":3,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"Resolve only the minimum Partner Center identity step if still required, generate final package/screenshots and submit; persist live Store URL and acquisition instrumentation after publication."},
+    {"rank":4,"channel":"note","type":"free_acquisition_hold","ids":["free_note_20260822_06_es_interview_consistency","free_note_20260822_01_student_org_bus_factor","free_note_20260822_04_role_design_three_owners","free_note_20260822_03_digital_product_pricing_myths"],"nextAction":"Hold as experiment buffer until initial pair has comparable 24h evidence; do not flood all six at once."},
+    {"rank":5,"channel":"GitHubPages","type":"measurement_support","nextAction":"Instrument existing sponsor/thesis/job-hunt/CSV surfaces and add only verified context-matched destinations; do not create name-only variants."}
   ],
-  "noteFunnelMeasurementPlan": {
-    "decisionWindows": ["24h", "72h", "7d"],
-    "captureWhenAvailable": ["PV", "likes", "follows", "related paid clicks", "related paid purchases", "revenue"],
-    "promotionRule": "A free theme becomes a paid-deep-dive candidate only after above-median comparable-window engagement or meaningful paid-click/purchase evidence.",
-    "reverseRule": "Any paid article with observed sales gets adjacent free search-intent satellites.",
-    "lowSignalRule": "Traffic without paid movement -> test CTA/value proposition first. No traffic and no engagement -> deprioritize rather than clone."
-  },
-  "deferredBlocked": [
-    {
-      "channel": "note",
-      "id": "note_20260820_05",
-      "state": "deferred_after_repeated_strict_failure",
-      "rule": "Do not let the legacy item block the 11-item paid batch."
-    },
-    {
-      "channel": "BOOTH",
-      "id": "009_handover_os_20260820",
-      "state": "deferred_after_repeated_strict_failure",
-      "rule": "Do not let the legacy item block the 010-023 batch."
-    }
+  "noteFactoryBatchAfterImmediateQueue": [
+    {"kind":"free","workingTitle":"協賛金額を決める前に整理したい5つのこと｜企業が社内説明しやすい提案の土台","pairedPaidId":"note_20260822_14_sponsor_menu_design"},
+    {"kind":"free","workingTitle":"イベントを中止するか迷ったとき最初に見る4条件｜雨・警報・交通・会場を分けて考える","pairedPaidId":"note_20260822_12_event_cancel_decision"},
+    {"kind":"free","workingTitle":"卒論インタビューの発言をまとめる前に｜コード化で迷いやすい4つのポイント","pairedPaidId":"note_20260822_15_research_interview_coding"},
+    {"kind":"free","workingTitle":"企業研究で集めるだけになっていない？｜ESにつながる情報と不要な情報の分け方","pairedPaidId":"note_20260822_16_jobhunt_company_research"}
   ],
-  "marketEvidence": {
-    "checkedAt": "2026-08-22T05:42:00+09:00",
-    "noteSponsor": "Fresh public search surfaced active 2026 sponsor-sales/sponsorship articles, including a practical May 2026 sponsor-sales article and August 2026 sponsor commentary. This supports testing sponsorship execution as a discovery theme, not claiming sales.",
-    "noteThesis": "Public search continues to surface thesis workflow/management content. Treat it as durable discovery intent, not conversion proof.",
-    "useRule": "External evidence ranks hypotheses only; first-party metrics decide winners."
-  },
-  "rules": [
-    "Previous-day paid debt is serviced before current-day paid quota is considered satisfied.",
-    "Free note production and publication continue as an additional funnel layer but never discharge paid debt.",
-    "Initial free cadence is 2/day for 14 days and remains experimental until comparable-window metrics exist.",
-    "Do not publish all ready free articles at once merely because they are available; preserve experimental attribution and quality.",
-    "Do not infer sales, PV, likes, follows, clicks, purchases, acquisitions, installs or retention.",
-    "Do not mass-clone a low-signal theme or create cosmetic Microsoft Store derivatives."
-  ]
+  "noteMeasurementPlan": {"windows":["24h","72h","7d"],"metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"rule":"Compare only equal post-publication windows. Missing values stay unknown. Paid sales trigger adjacent free satellites; free traffic without paid movement triggers CTA/value testing before more paid derivatives; no traffic/engagement triggers deprioritization."},
+  "rules": ["Free note publications never replace paid debt/floor.","Paid debt does not stop free manuscript production.","Do not invent conversion data.","Do not clone low-signal themes or cosmetic Store variants."]
 }
