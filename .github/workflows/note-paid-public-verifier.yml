@@ -1,0 +1,121 @@
+name: Verify paid NOTE recovery quietly
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sidehustle-autopublish/note/queue/index.json'
+      - '.github/workflows/note-paid-public-verifier.yml'
+  schedule:
+    - cron: '12,27,42,57 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: note-paid-public-verifier
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Discover and strictly verify paid NOTE pages
+        shell: python
+        run: |
+          import urllib.request, json, re, html, pathlib, datetime, time
+          USER='royal_lion645'
+          TARGETS={
+            'note_20260821_06_ai_small_org_workflow', 'note_20260821_07_event_sponsor_followup',
+            'note_20260821_08_creator_pricing','note_20260821_09_student_org_role_design',
+            'note_20260821_10_thesis_weekly_review','note_20260821_11_ai_jobhunt_answer_audit',
+            'note_20260822_12_event_cancel_decision','note_20260822_13_meeting_decision_log',
+            'note_20260822_14_sponsor_menu_design','note_20260822_15_research_interview_coding',
+            'note_20260822_16_jobhunt_company_research'}
+          UA={'User-Agent':'Mozilla/5.0 (compatible; strict-publication-verifier/2.0)','Cache-Control':'no-cache'}
+          def get(url,timeout=20):
+              req=urllib.request.Request(url,headers=UA)
+              with urllib.request.urlopen(req,timeout=timeout) as r:return r.status,r.read().decode('utf-8','replace')
+          def jget(url):
+              s,t=get(url);return s,json.loads(t)
+          def walk(x):
+              if isinstance(x,dict):
+                  for k,v in x.items():yield k,v;yield from walk(v)
+              elif isinstance(x,list):
+                  for v in x:yield from walk(v)
+          def has_price(obj,price):
+              return price in [int(v) for k,v in walk(obj) if str(k).lower() in ('price','price_yen','amount') and isinstance(v,(int,float))]
+          def cover(obj):
+              for k,v in walk(obj):
+                  kl=str(k).lower()
+                  if ('eyecatch' in kl or 'thumbnail' in kl or kl in ('coverimage','cover_image')) and isinstance(v,str) and v.startswith('http'):return v
+              return None
+          qp=pathlib.Path('sidehustle-autopublish/note/queue/index.json')
+          q=json.loads(qp.read_text(encoding='utf-8-sig'))
+          targets={e['id']:e for e in q.get('entries',[]) if e.get('id') in TARGETS}
+          public={}
+          for pn in range(1,8):
+              try:
+                  _,o=jget(f'https://note.com/api/v2/creators/{USER}/contents?kind=note&disabled_pinned=true&page={pn}')
+              except Exception as ex:
+                  print('LIST_API_WARN',pn,repr(ex));continue
+              data=o.get('data') or {}; contents=data.get('contents') or []
+              for it in contents:
+                  if isinstance(it,dict) and it.get('name') in {x['title'] for x in targets.values()}:public[it.get('name')]=it
+              if data.get('isLastPage'):break
+          newly=[]
+          for iid,e in targets.items():
+              if e.get('publicUrlVerified') is True:continue
+              it=public.get(e['title'])
+              if not it:continue
+              key=it.get('key'); url=it.get('noteUrl') or it.get('note_url') or it.get('url')
+              if not key and isinstance(url,str):
+                  m=re.search(r'/n/(n[0-9A-Za-z]+)',url);key=m.group(1) if m else None
+              if key and not url:url=f'https://note.com/{USER}/n/{key}'
+              if not key or not url:continue
+              try:
+                  ds,detail=jget(f'https://note.com/api/v3/notes/{key}'); ps,page=get(url)
+              except Exception as ex:
+                  print('DETAIL_WARN',iid,repr(ex));continue
+              dobj=detail.get('data',detail) if isinstance(detail,dict) else detail
+              price=int(e.get('expectedPriceJPY') or 0); text=html.unescape(page); compact=re.sub(r'[\s,，]','',text)
+              title_ok=e['title'] in text
+              price_api=has_price(it,price) or has_price(dobj,price)
+              price_page=(str(price)+'円' in compact or '¥'+str(price) in compact or '￥'+str(price) in compact)
+              cov=cover(it) or cover(dobj)
+              paid_boundary=any(w in text for w in ('購入して続きをみる','購入手続き','この記事を購入','この続きをみる','有料記事'))
+              ok=ps==200 and ds==200 and title_ok and price_api and price_page and bool(cov) and paid_boundary
+              print('CHECK',iid,ps,ds,title_ok,price_api,price_page,bool(cov),paid_boundary,url)
+              if not ok:continue
+              e.update({'enabled':False,'forceRetry':False,'publicUrlVerified':True,'publicUrl':url,'verificationState':'reader_visible_verified','verificationEvidence':'Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.','verifiedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+              rp=pathlib.Path('sidehustle-autopublish/note/publication_receipts')/(iid+'.json');rp.parent.mkdir(parents=True,exist_ok=True)
+              rp.write_text(json.dumps({'id':iid,'title':e['title'],'publicUrl':url,'priceJPY':price,'readerHttpStatus':ps,'detailHttpStatus':ds,'titleVerified':True,'priceVerified':True,'paidBoundaryVerified':True,'coverVerified':True,'coverUrl':cov,'verifiedAt':e['verifiedAt']},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+              newly.append(iid)
+          if not newly:
+              print('NO_NEW_STRICT_PUBLICATION');raise SystemExit(0)
+          q['updatedAt']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
+          qp.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          quota_path=pathlib.Path('sidehustle-autopublish/publication_quota.json');quota=json.loads(quota_path.read_text(encoding='utf-8-sig'))
+          verified=sum(1 for e in q.get('entries',[]) if e.get('id') in TARGETS and e.get('publicUrlVerified') is True)
+          st=quota['channels']['note']['operationalState']
+          st['carriedPublicationDebt']=max(0,6-verified)
+          st['todayStrictVerifiedPublicationsCount']=max(0,min(5,verified-6))
+          st['todayRemainingToTarget']=max(0,5-st['todayStrictVerifiedPublicationsCount'])
+          st['totalVerifiedPublicationsRequiredBeforeDaySatisfied']=st['carriedPublicationDebt']+st['todayRemainingToTarget']
+          st['lastStrictVerificationAt']=q['updatedAt'];st['lastStrictVerifiedIds']=newly
+          quota['updatedAt']=q['updatedAt'];quota['version']=int(quota.get('version',0))+1
+          quota_path.write_text(json.dumps(quota,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('NEW_STRICT_PUBLICATIONS',newly)
+      - name: Commit only newly verified paid publications
+        run: |
+          if git diff --quiet -- sidehustle-autopublish/note/queue/index.json sidehustle-autopublish/publication_quota.json sidehustle-autopublish/note/publication_receipts; then exit 0; fi
+          git config user.name 'note-paid-public-verifier'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/queue/index.json sidehustle-autopublish/publication_quota.json sidehustle-autopublish/note/publication_receipts
+          git commit -m 'Record strict paid NOTE publications'
+          git pull --rebase origin main
+          git push origin HEAD:main
