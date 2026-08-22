@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'auto-tools/**'
+      - '!auto-tools/publication_ledger.json'
       - '.github/workflows/auto-tools-publication-verify.yml'
   workflow_dispatch:
 
@@ -17,6 +18,7 @@ concurrency:
 
 jobs:
   verify:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,65 +26,61 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Verify published auto tools
+      - name: Verify published auto tools without timestamp churn
         shell: python
         run: |
-          import json, pathlib, urllib.request, urllib.error, re, datetime, time
+          import json, pathlib, urllib.request, re, datetime, time
           idx = json.loads(pathlib.Path('auto-tools/index.json').read_text(encoding='utf-8-sig'))
           ledger_path = pathlib.Path('auto-tools/publication_ledger.json')
           if ledger_path.exists():
               ledger = json.loads(ledger_path.read_text(encoding='utf-8-sig'))
           else:
               ledger = {'version':1,'updatedAt':None,'entries':[]}
-          by_slug = {e.get('slug'):e for e in ledger.get('entries',[])}
+          previous = {e.get('slug'):e for e in ledger.get('entries',[])}
           base = 'https://noto-rebloom.github.io/noto-rebloom/'
+          current = {}
           changed = False
           now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
           for tool in idx.get('tools', []):
-              slug = tool['slug']
-              url = base + tool['path']
-              ok = False; status = None; title_ok = False; ui_ok = False; err = None
-              html = ''
-              for attempt in range(6):
+              slug = tool['slug']; url = base + tool['path']
+              ok=False; status=None; title_ok=False; ui_ok=False; err=None; html=''
+              for _ in range(6):
                   try:
-                      req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0 publication-verifier'})
-                      with urllib.request.urlopen(req, timeout=20) as r:
-                          status = r.status
-                          html = r.read().decode('utf-8','replace')
-                      title_ok = tool['title'] in html
-                      ui_ok = ('<main' in html.lower() or '<body' in html.lower()) and len(re.sub(r'<[^>]+>','',html).strip()) > 80
-                      ok = status == 200 and title_ok and ui_ok
+                      req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 publication-verifier','Cache-Control':'no-cache'})
+                      with urllib.request.urlopen(req,timeout=20) as r:
+                          status=r.status; html=r.read().decode('utf-8','replace')
+                      title_ok=tool['title'] in html
+                      ui_ok=('<main' in html.lower() or '<body' in html.lower()) and len(re.sub(r'<[^>]+>','',html).strip())>80
+                      ok=status==200 and title_ok and ui_ok
                       if ok: break
-                  except Exception as e:
-                      err = repr(e)
-                  time.sleep(15)
-              prev = by_slug.get(slug, {})
-              entry = {
-                  'slug':slug,
-                  'title':tool['title'],
-                  'publicUrl':url,
-                  'publicUrlVerified':bool(ok),
-                  'httpStatus':status,
-                  'titleVerified':bool(title_ok),
-                  'majorUiVerified':bool(ui_ok),
-                  'verifiedAt':now if ok else prev.get('verifiedAt'),
-                  'lastCheckedAt':now,
+                  except Exception as e: err=repr(e)
+                  time.sleep(10)
+              semantic={
+                  'slug':slug,'title':tool['title'],'publicUrl':url,'publicUrlVerified':bool(ok),
+                  'httpStatus':status,'titleVerified':bool(title_ok),'majorUiVerified':bool(ui_ok),
                   'error':None if ok else err
               }
-              if prev != entry:
-                  by_slug[slug] = entry; changed = True
-          ledger['entries'] = [by_slug[t['slug']] for t in idx.get('tools',[]) if t['slug'] in by_slug]
-          ledger['updatedAt'] = now
-          ledger_path.write_text(json.dumps(ledger,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+              prev=previous.get(slug,{})
+              prev_sem={k:prev.get(k) for k in semantic}
+              if prev_sem != semantic:
+                  changed=True
+                  semantic['verifiedAt']=now if ok else prev.get('verifiedAt')
+                  semantic['lastChangedAt']=now
+              else:
+                  semantic['verifiedAt']=prev.get('verifiedAt')
+                  semantic['lastChangedAt']=prev.get('lastChangedAt')
+              current[slug]=semantic
+          if not changed and len(previous)==len(current):
+              print('NO_SEMANTIC_CHANGE')
+              raise SystemExit(0)
+          out={'version':max(int(ledger.get('version',1)),1),'updatedAt':now,'entries':[current[t['slug']] for t in idx.get('tools',[]) if t['slug'] in current]}
+          ledger_path.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
-      - name: Commit verification ledger
+      - name: Commit verification ledger only when changed
         run: |
-          if git diff --quiet -- auto-tools/publication_ledger.json; then
-            echo 'No publication verification changes.'
-            exit 0
-          fi
+          if git diff --quiet -- auto-tools/publication_ledger.json; then exit 0; fi
           git config user.name 'auto-tools-publication-verifier'
           git config user.email 'actions@users.noreply.github.com'
           git add auto-tools/publication_ledger.json
-          git commit -m 'Verify GitHub Pages auto tools publication'
+          git commit -m 'Update GitHub Pages auto-tool verification state'
           git push origin HEAD:main
