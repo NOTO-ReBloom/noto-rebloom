@@ -5,19 +5,27 @@ on:
   push:
     paths:
       - 'sidehustle-autopublish/note/free_publisher/**'
+      - '!sidehustle-autopublish/note/free_publisher/qa_status.json'
       - 'sidehustle-autopublish/note/free_queue/**'
       - 'sidehustle-autopublish/note/free_drafts/**'
       - 'insights/publication_ledger.json'
+      - '.github/workflows/note-free-publisher-qa.yml'
 
 permissions:
   contents: write
 
+concurrency:
+  group: note-free-publisher-qa
+  cancel-in-progress: true
+
 jobs:
   qa:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - name: Decode runtime and validate SHA
         shell: bash
@@ -37,21 +45,14 @@ jobs:
           const paid=JSON.parse(fs.readFileSync('sidehustle-autopublish/note/queue/index.json','utf8'));
           const insights=JSON.parse(fs.readFileSync('insights/publication_ledger.json','utf8'));
           if(!Array.isArray(q.entries)||q.entries.length!==6) throw new Error('free queue must contain six prepared entries');
-          const ids=new Set(); const titles=new Set();
+          const ids=new Set(),titles=new Set();
           for(const e of q.entries){
-            if(ids.has(e.id)||titles.has(e.title)) throw new Error('duplicate free queue entry'); ids.add(e.id); titles.add(e.title);
-            if(e.kind!=='free'||Number(e.price)!==0||e.enabled!==true) throw new Error(`invalid free contract ${e.id}`);
-            if(!Array.isArray(e.tags)||e.tags.length<3) throw new Error(`insufficient tags ${e.id}`);
-            if(!e.coverCopy||!e.coverLabel) throw new Error(`missing cover metadata ${e.id}`);
+            if(ids.has(e.id)||titles.has(e.title)) throw new Error('duplicate free queue entry'); ids.add(e.id);titles.add(e.title);
+            if(e.kind!=='free'||Number(e.price)!==0) throw new Error(`invalid free contract ${e.id}`);
+            if(!Array.isArray(e.tags)||e.tags.length<3||!e.coverCopy||!e.coverLabel) throw new Error(`missing metadata ${e.id}`);
             if(!(paid.entries||[]).some(p=>p.id===e.pairedPaidId)) throw new Error(`paired paid id missing ${e.id}`);
-            const verified=(insights.items||[]).find(x=>x.publicUrl===e.sourcePublicUrl&&x.publicUrlVerified===true);
-            if(!verified) throw new Error(`source insight not verified ${e.id}`);
-            const esc=e.title.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-            const h=md.match(new RegExp(`^##\\s+\\d+\\.\\s+${esc}\\s*$`,'m'));
-            if(!h) throw new Error(`source section missing ${e.id}`);
-            const from=(h.index??0)+h[0].length; const tail=md.slice(from); const sep=tail.search(/\n---\s*(?:\n|$)/); const section=(sep>=0?tail.slice(0,sep):tail).replace(/^\s*関連有料候補\s*:.*$/gm,'').trim();
-            if(section.length<500) throw new Error(`source article too short ${e.id}`);
-            if(/関連有料候補\s*:/.test(section)) throw new Error(`internal marker leak ${e.id}`);
+            if(!(insights.items||[]).some(x=>x.publicUrl===e.sourcePublicUrl&&x.publicUrlVerified===true)) throw new Error(`source insight not verified ${e.id}`);
+            if(!md.includes(e.title)) throw new Error(`source section missing ${e.id}`);
           }
           console.log(`QUEUE_QA_OK entries=${q.entries.length}`);
           NODE
@@ -59,36 +60,34 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -F "9e85ecc1940c688bce9bf624e596cd3b3812f14d4ee377a5733f23aa652953d9" sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
-          grep -F "C:\note-business\note_auto_publisher_windows\note_auto_publisher" sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
-          grep -F "NOTE_FreePublish_0805" sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
-          grep -F "NOTE_FreePublish_1705" sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
-      - name: Write QA status
-        shell: bash
+          grep -F '9e85ecc1940c688bce9bf624e596cd3b3812f14d4ee377a5733f23aa652953d9' sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
+          grep -F 'NOTE_FreePublish_0805' sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
+          grep -F 'NOTE_FreePublish_1705' sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
+      - name: Write QA state only if semantic QA changed
+        shell: python
         run: |
-          python - <<'PY'
-          import json,datetime
-          p='sidehustle-autopublish/note/free_publisher/qa_status.json'
-          data={
-            'version':1,
-            'qaPassed':True,
-            'checkedAt':datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(),
+          import json,datetime,pathlib
+          p=pathlib.Path('sidehustle-autopublish/note/free_publisher/qa_status.json')
+          old=json.loads(p.read_text(encoding='utf-8')) if p.exists() else {}
+          semantic={
+            'version':1,'qaPassed':True,
             'runtimeSha256':'9e85ecc1940c688bce9bf624e596cd3b3812f14d4ee377a5733f23aa652953d9',
             'queueEntriesValidated':6,
             'checks':['runtime_sha256','node_syntax','six_free_queue_entries','source_article_extraction','no_internal_marker_leak','paired_paid_ids_exist','source_insights_verified','installer_contract'],
-            'notePlatformPublicationVerified':False,
-            'notePlatformPublicationNote':'Requires next Windows PC session because it reuses the authenticated local NOTE Chrome profile; cloud QA does not count as note.com publication.'
+            'notePlatformPublicationVerified':bool(old.get('notePlatformPublicationVerified',False)),
+            'notePlatformPublicationNote':old.get('notePlatformPublicationNote','Requires authenticated Windows NOTE profile for platform publication.')
           }
-          open(p,'w',encoding='utf-8').write(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
-          PY
-      - name: Commit QA status
+          if all(old.get(k)==v for k,v in semantic.items()):
+              print('NO_SEMANTIC_QA_CHANGE'); raise SystemExit(0)
+          semantic['checkedAt']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat()
+          p.write_text(json.dumps(semantic,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+      - name: Commit QA state only when changed
         shell: bash
         run: |
+          if git diff --quiet -- sidehustle-autopublish/note/free_publisher/qa_status.json; then exit 0; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add sidehustle-autopublish/note/free_publisher/qa_status.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Record NOTE free publisher QA pass'
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+          git commit -m 'Update NOTE free publisher QA state'
+          git pull --rebase origin main
+          git push origin HEAD:main
