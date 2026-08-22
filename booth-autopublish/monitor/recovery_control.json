@@ -1,6 +1,6 @@
 {
-  "version": 11,
-  "updatedAt": "2026-08-22T02:11:00+09:00",
+  "version": 12,
+  "updatedAt": "2026-08-22T09:06:43+09:00",
   "activeRecovery": null,
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-22T02:10:19+09:00",
@@ -22,13 +22,24 @@
       "023_campus_project_budget_os_20260822"
     ],
     "priority": "oldest_in_batch_first_then_continue_without_stopping_after_first_success",
-    "queueRetryGeneration": 30,
+    "queueRetryGeneration": 31,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
-    "categoryCompatibility": {"parent":"ソフトウェア・ハードウェア","child":"ソフトウェア","source":"previous successful clean rebuild of item 8736698"},
-    "requiredBuyerChecks": ["buyerVisibleUrl","title","price","downloadableProductState","purchasePath"],
-    "consumerInstruction": "At the next Windows-available consumer session, process the enabled batch continuously. After each strict buyer-visible success, move immediately to the next ledger-absent queueId. A recoverable failure on one item must not block later items. Never count preparation or old-item reverification as current debt recovery.",
+    "categoryCompatibility": {
+      "parent": "ソフトウェア・ハードウェア",
+      "child": "ソフトウェア",
+      "source": "previous successful clean rebuild of item 8736698"
+    },
+    "requiredBuyerChecks": [
+      "buyerVisibleUrl",
+      "title",
+      "price",
+      "downloadableProductState",
+      "purchasePath"
+    ],
+    "consumerInstruction": "Process all enabled ledger-absent 010-023 items now; strict verify each buyer-visible page; continue after recoverable failures and after each success until all current debt is cleared or every item was attempted.",
     "doNotFallbackToFreeWeb": true,
-    "doNotStopAfterFirstSuccess": true
+    "doNotStopAfterFirstSuccess": true,
+    "forcedRecoveryAt": "2026-08-22T09:06:43+09:00"
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",

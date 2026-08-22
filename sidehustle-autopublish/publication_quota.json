@@ -1,7 +1,7 @@
 {
-  "version": 10,
+  "version": 11,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T02:11:24+09:00",
+  "updatedAt": "2026-08-22T09:06:43+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -56,7 +56,9 @@
         "deferredLegacyCandidate": "note_20260820_05",
         "fallbackPolicy": "Continue across the complete eleven-item paid batch. A brief recoverable failure on one item must not block later items. Do not stop after the first strict publication while debt remains.",
         "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target.",
-        "batchClearInstruction": "Process up to all 11 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 11 were attempted."
+        "batchClearInstruction": "Immediately process every ledger-absent paid item in the eleven-item batch while Windows is available. Continue after per-item recoverable failure; do not stop after first success.",
+        "lastForcedRecoveryAt": "2026-08-22T09:06:43+09:00",
+        "queueRetryGeneration": 25
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
@@ -117,7 +119,7 @@
         "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-22",
         "paidProductionInventoryComplete": true,
         "readyCandidateCount": 14,
-        "queueRetryGeneration": 30,
+        "queueRetryGeneration": 31,
         "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
         "readyCandidateIds": [
           "010_event_risk_register_os_20260822",
@@ -163,13 +165,14 @@
         "fallbackPolicy": "Process 010 through 023 as the genuine-new paid debt batch. After each strict success move immediately to the next ledger-absent item. Do not return to 009 until the batch has been attempted.",
         "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements debt. Generic publisher success, local logs, draft creation, commits, old-item reverification, or HTTP/title-only verification does not.",
         "cloudAutomationState": "enabled; recoverable failures must never self-disable",
-        "batchClearInstruction": "Process up to all 14 ready paid candidates in one Windows catch-up invocation; continue after recoverable per-item failure and stop only when strict remainder is zero or all 14 were attempted.",
+        "batchClearInstruction": "Immediately process every ledger-absent paid item in the fourteen-item batch while Windows is available. Continue after per-item recoverable failure; do not stop after first success.",
         "latestMaterializedAt": "2026-08-22T02:10:19+09:00",
         "categoryCompatibility": {
           "parent": "ソフトウェア・ハードウェア",
           "child": "ソフトウェア",
           "verifiedReferenceItemId": "8736698"
-        }
+        },
+        "lastForcedRecoveryAt": "2026-08-22T09:06:43+09:00"
       }
     }
   },
