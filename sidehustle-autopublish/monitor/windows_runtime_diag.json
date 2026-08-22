@@ -1,0 +1,74 @@
+{
+    "generatedAt":  "2026-08-22T10:32:45.7129271+09:00",
+    "computer":  "LAPTOP-8TI27P33",
+    "user":  "ryoya",
+    "node":  {
+                 "path":  "C:\\Program Files\\nodejs\\node.exe",
+                 "exists":  true,
+                 "version":  "v26.7.0"
+             },
+    "tasks":  {
+                  "note":  {
+                               "exists":  true,
+                               "state":  "Disabled",
+                               "lastRun":  "08/22/2026 10:05:01",
+                               "lastResult":  1,
+                               "nextRun":  "08/22/2026 10:35:00",
+                               "actions":  [
+                                               {
+                                                   "execute":  "wscript.exe",
+                                                   "arguments":  "//B //NoLogo C:\\note-business\\publisher_guardian_v5\\run_note_v8_hidden.vbs",
+                                                   "workingDirectory":  null
+                                               }
+                                           ]
+                           },
+                  "booth":  {
+                                "exists":  true,
+                                "state":  "Ready",
+                                "lastRun":  "08/22/2026 10:20:01",
+                                "lastResult":  3,
+                                "nextRun":  "08/22/2026 10:50:00",
+                                "actions":  [
+                                                {
+                                                    "execute":  "wscript.exe",
+                                                    "arguments":  "//B //NoLogo C:\\note-business\\publisher_guardian_v5\\run_booth_v8_hidden.vbs",
+                                                    "workingDirectory":  null
+                                                }
+                                            ]
+                            }
+              },
+    "paths":  {
+                  "guardian":  "C:\\note-business\\publisher_guardian_v5",
+                  "guardianExists":  true,
+                  "guardianScriptExists":  true,
+                  "noteDir":  "C:\\note-business\\note_auto_publisher_windows\\note_auto_publisher",
+                  "noteDirExists":  true,
+                  "noteBotExists":  true,
+                  "noteRemoteExists":  true
+              },
+    "noteDirectRun":  {
+                          "timedOut":  false,
+                          "exitCode":  -998,
+                          "stdout":  "",
+                          "stderr":  "Cannot validate argument on parameter \u0027ArgumentList\u0027. The argument is null, empty, or an element of the argument collection contains a null value. Supply a collection that does not contain any null values and then try the command again."
+                      },
+    "boothBotHits":  [
+
+                     ],
+    "boothZipCandidates":  [
+
+                           ],
+    "boothDirectRun":  {
+                           "skipped":  true,
+                           "reason":  "booth_bot_not_found"
+                       },
+    "logTails":  {
+                     "C:\\note-business\\note_auto_publisher_windows\\note_auto_publisher\\logs\\auto_publish.log":  "START \nSTART \n\n\u003e note-auto-publisher@1.0.0 publish\n\u003e node note-bot.mjs publish-next\n\nå‡¦ç†: #3 ã¾ã å†…è¦‹å¾Œãƒ•ã‚©ãƒ­ãƒ¼ã‚’æ¯Žå›žæ‰‹ã§è€ƒãˆã¦ã‚‹ï¼Ÿå®Ÿå‹™ã§ä½¿ãˆã‚‹AIãƒ—ãƒ­ãƒ³ãƒ—ãƒˆ\neditorç¢ºèª: textarea=1 / contenteditable=1 / title=true / body=true\næœ‰æ–™ãƒ©ã‚¤ãƒ³è¨­å®š: OK\nå…¬é–‹å®Œäº†: https://editor.note.com/notes/n32446c47f1ea/publish/\nEND \nSTART \n\n\u003e note-auto-publisher@1.0.0 publish\n\u003e node note-bot.mjs publish-next\n\nå‡¦ç†: #4 ã€ã‚³ãƒ”ãƒšOKã€‘ä¼‘çœ é¡§å®¢ã®å†æŽ¥è§¦ã‚’AIã§ã‚¼ãƒ­ã‹ã‚‰è€ƒãˆãªã„ï½œä¸å‹•ç”£å–¶æ¥­å‘ã‘å®Ÿå‹™ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆ\neditorç¢ºèª: textarea=1 / contenteditable=1 / title=true / body=true\næœ‰æ–™ãƒ©ã‚¤ãƒ³è¨­å®š: OK\nå…¬é–‹å®Œäº†: https://editor.note.com/notes/n0356fc03a455/publish/\nEND \nSTART \n\n\u003e note-auto-publisher@1.0.0 publish\n\u003e node note-bot.mjs publish-next\n\nå‡¦ç†: #5 ã‚ªãƒ¼ãƒŠãƒ¼å‘ã‘ç©ºå®¤å ±å‘Šã§æ¯Žå›žæ‚©ã¾ãªã„ï½œãã®ã¾ã¾ä½¿ãˆã‚‹AIãƒ—ãƒ­ãƒ³ãƒ—ãƒˆï¼‹ç¢ºèªãƒã‚§ãƒƒã‚¯\neditorç¢ºèª: textarea=1 / contenteditable=1 / title=true / body=true\næœ‰æ–™ãƒ©ã‚¤ãƒ³è¨­å®š: OK\nå…¬é–‹å®Œäº†: https://editor.note.com/notes/n74dddf8d0232/publish/\nSTART \n\n\u003e note-auto-publisher@1.0.0 publish\n\u003e node note-bot.mjs publish-next\n\nå‡¦ç†: #6 ã€ä¸å‹•ç”£å–¶æ¥­å‘ã‘ã€‘ã‚¯ãƒ¬ãƒ¼ãƒ åˆå‹•è¿”ä¿¡ã®åˆç¨¿ã‚’æ•°åˆ†ã§çµ„ã¿ç«‹ã¦ã‚‹AIãƒ—ãƒ­ãƒ³ãƒ—ãƒˆ\neditorç¢ºèª: textarea=1 / contenteditable=1 / title=true / body=true\næœ‰æ–™ãƒ©ã‚¤ãƒ³è¨­å®š: OK\nå…¬é–‹å®Œäº†: https://editor.note.com/notes/n645a22eeba3d/publish/\nEND \nSTART \n\n\u003e note-auto-publisher@1.0.0 publish\n\u003e node note-bot.mjs publish-next\n\nå‡¦ç†: #7 ã€ã‚³ãƒ”ãƒšOKã€‘å£²å´æŸ»å®šå¾Œãƒ•ã‚©ãƒ­ãƒ¼ã‚’AIã§ã‚¼ãƒ­ã‹ã‚‰è€ƒãˆãªã„ï½œä¸å‹•ç”£å–¶æ¥­å‘ã‘å®Ÿå‹™ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆ\neditorç¢ºèª: textarea=1 / contenteditable=1 / title=true / body=true\næœ‰æ–™ãƒ©ã‚¤ãƒ³è¨­å®š: OK\nå…¬é–‹å®Œäº†: https://editor.note.com/notes/ncd3fb385267b/publish/\nEND "
+                 },
+    "upload":  {
+                   "attempted":  true,
+                   "authAvailable":  true,
+                   "authSource":  "git-credential",
+                   "target":  "NOTO-ReBloom/noto-rebloom/sidehustle-autopublish/monitor/windows_runtime_diag.json"
+               }
+}
