@@ -16,6 +16,24 @@
           "deleteStatus": 0
         }
       ]
+    },
+    {
+      "futureTasks": [
+        {
+          "name": "NOTE_FreePublish_0805",
+          "time": "08:05",
+          "status": 0,
+          "stdout": "SUCCESS: The scheduled task \"NOTE_FreePublish_0805\" has successfully been created.\r\n",
+          "stderr": ""
+        },
+        {
+          "name": "NOTE_FreePublish_1705",
+          "time": "17:05",
+          "status": 0,
+          "stdout": "SUCCESS: The scheduled task \"NOTE_FreePublish_1705\" has successfully been created.\r\n",
+          "stderr": ""
+        }
+      ]
     }
   ],
   "items": [
@@ -38,7 +56,54 @@
         "elements": []
       },
       "finishedAt": "2026-08-22T08:22:53.223Z"
+    },
+    {
+      "id": "free_note_20260822_02_sponsor_followup_timing",
+      "title": "協賛提案を送った後、いつ連絡する？｜48時間・7日・14日のフォローアップ目安",
+      "startedAt": "2026-08-22T08:22:55.190Z",
+      "bodyChars": 767,
+      "coverPath": "C:\\note-business\\note_auto_publisher_windows\\note_auto_publisher\\free-covers-current\\free_note_20260822_02_sponsor_followup_timing.png",
+      "open": {
+        "reusedDraft": false,
+        "url": "https://editor.note.com/new"
+      },
+      "result": "failed",
+      "error": "NOTE_EDITOR_NOT_FOUND",
+      "stage": "editor",
+      "evidence": {
+        "url": "https://editor.note.com/new",
+        "body": "",
+        "elements": []
+      },
+      "finishedAt": "2026-08-22T08:23:04.942Z"
     }
   ],
-  "final": {}
+  "final": {
+    "complete": false,
+    "reason": "same systemic UI blocker repeated twice; stopped automatically",
+    "blocker": {
+      "id": "free_note_20260822_02_sponsor_followup_timing",
+      "title": "協賛提案を送った後、いつ連絡する？｜48時間・7日・14日のフォローアップ目安",
+      "startedAt": "2026-08-22T08:22:55.190Z",
+      "bodyChars": 767,
+      "coverPath": "C:\\note-business\\note_auto_publisher_windows\\note_auto_publisher\\free-covers-current\\free_note_20260822_02_sponsor_followup_timing.png",
+      "open": {
+        "reusedDraft": false,
+        "url": "https://editor.note.com/new"
+      },
+      "result": "failed",
+      "error": "NOTE_EDITOR_NOT_FOUND",
+      "stage": "editor",
+      "evidence": {
+        "url": "https://editor.note.com/new",
+        "body": "",
+        "elements": []
+      },
+      "finishedAt": "2026-08-22T08:23:04.942Z"
+    },
+    "strictVerifiedTotal": 0,
+    "remaining": 6,
+    "publicUrls": [],
+    "finishedAt": "2026-08-22T08:23:06.121Z"
+  }
 }
