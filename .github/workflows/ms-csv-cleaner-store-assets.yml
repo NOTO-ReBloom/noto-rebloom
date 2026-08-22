@@ -39,8 +39,10 @@ jobs:
           base=pathlib.Path('sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper')
           out=base/'store-assets'; out.mkdir(parents=True,exist_ok=True)
           url='https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/'
-          opts=Options(); opts.add_argument('--headless=new'); opts.add_argument('--no-sandbox'); opts.add_argument('--disable-dev-shm-usage'); opts.add_argument('--window-size=1440,900')
-          d=webdriver.Chrome(options=opts); wait=WebDriverWait(d,30)
+          opts=Options(); opts.add_argument('--headless=new'); opts.add_argument('--no-sandbox'); opts.add_argument('--disable-dev-shm-usage')
+          d=webdriver.Chrome(options=opts)
+          d.execute_cdp_cmd('Emulation.setDeviceMetricsOverride',{'width':1440,'height':900,'deviceScaleFactor':1,'mobile':False})
+          wait=WebDriverWait(d,30)
           try:
               d.get(url); wait.until(EC.presence_of_element_located((By.TAG_NAME,'h1')))
               assert 'CSV Cleaner & Duplicate Remover' in d.find_element(By.TAG_NAME,'h1').text
@@ -57,14 +59,14 @@ jobs:
               assert d.find_element(By.ID,'sOut').text=='2'
               assert d.find_element(By.ID,'sBlank').text=='1'
               d.save_screenshot(str(out/'screenshot-03-cleaned.png'))
-              d.execute_script("document.getElementById('work').scrollIntoView({block:'end'});")
+              d.execute_script("document.getElementById('preview').scrollIntoView({block:'center'});")
               time.sleep(.3); d.save_screenshot(str(out/'screenshot-04-result-detail.png'))
           finally:
               d.quit()
           shots=[]
           for fn,scenario in [('screenshot-01-home.png','home and privacy-first value proposition'),('screenshot-02-loaded.png','CSV loaded preview and cleaning options'),('screenshot-03-cleaned.png','cleaned result with duplicate and blank-row counts'),('screenshot-04-result-detail.png','result detail and download workflow')]:
               p=out/fn; assert p.exists() and p.stat().st_size>5000
-              with Image.open(p) as im: assert im.width>=1366 and im.height>=768
+              with Image.open(p) as im: assert im.width==1440 and im.height==900,(fn,im.size)
               shots.append({'path':'store-assets/'+fn,'size':'1440x900','scenario':scenario})
           now=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
           state={'version':3,'updatedAt':now,'status':'screenshots_ready','screenshots':shots,'captureMode':'Selenium screenshot of buyer-visible GitHub Pages PWA','publicUrl':url,'functionalScenarioVerified':'4 data rows including one blank; normalization produced 2 output rows, duplicate count 1, blank count 1'}
@@ -73,7 +75,7 @@ jobs:
           q['checkedAt']=now; q['checks']['requiredPngScreenshotGenerated']=True
           q['status']='highest_quality_submission_ready_except_partner_center_identity_and_human_submission'
           notes=[x for x in q.get('qaNotes',[]) if 'screenshot' not in x.lower()]
-          notes.append('Four 1440x900 PNG screenshots were captured from the buyer-visible PWA after an end-to-end CSV cleaning browser test passed.')
+          notes.append('Four exact 1440x900 PNG screenshots were captured from the buyer-visible PWA after an end-to-end CSV cleaning browser test passed.')
           q['qaNotes']=notes
           (base/'quality_gate.json').write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
       - name: Commit generated assets
