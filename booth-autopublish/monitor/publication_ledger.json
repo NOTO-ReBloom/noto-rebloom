@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-22T12:29:47+09:00",
+  "updatedAt": "2026-08-22T03:35:43.618Z",
   "purpose": "Canonical GitHub-side ledger for BOOTH items whose buyer-visible public URL has been independently verified. Queue enabled=true alone is never treated as publication.",
   "entries": [
     {
@@ -53,6 +53,16 @@
       "verifiedAt": "2026-08-22T03:29:23.655383+00:00",
       "verificationEvidence": "Independent unauthenticated direct-URL verifier confirmed buyer HTTP 200, exact title, expected price, downloadable-product signal and purchase/cart path.",
       "publishMode": "windows-direct-url-reconcile"
+    },
+    {
+      "queueId": "011_small_org_role_os_20260822",
+      "title": "小規模チーム役割設計OS｜実行・最終判断・相談先・代替担当を整理｜オフラインHTML",
+      "boothItemId": "8747013",
+      "publicUrl": "https://booth.pm/ja/items/8747013",
+      "publicUrlVerified": true,
+      "verifiedAt": "2026-08-22T03:35:43.618Z",
+      "verificationEvidence": "Independent unauthenticated Node HTTPS verifier confirmed buyer HTTP 200, exact title, expected price, downloadable-product signal and purchase/cart path.",
+      "publishMode": "windows-direct-node-strict"
     }
   ]
 }
