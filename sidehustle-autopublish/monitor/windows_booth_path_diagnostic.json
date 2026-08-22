@@ -1,0 +1,755 @@
+{
+  "generatedAt": "2026-08-22T03:18:28.459Z",
+  "botExists": true,
+  "sourceSnippets": [
+    {
+      "line": 11,
+      "text": "const __dirname = path.dirname(fileURLToPath(import.meta.url));",
+      "context": [
+        "8: import { fileURLToPath } from 'url';",
+        "9: import { spawn } from 'child_process';",
+        "10: ",
+        "11: const __dirname = path.dirname(fileURLToPath(import.meta.url));",
+        "12: const readJsonFile = fp => JSON.parse(",
+        "13:   fs.readFileSync(fp,'utf8').replace(/^\\uFEFF/,'')",
+        "14: );"
+      ]
+    },
+    {
+      "line": 15,
+      "text": "const cfgPath = path.join(__dirname, 'config.json');",
+      "context": [
+        "12: const readJsonFile = fp => JSON.parse(",
+        "13:   fs.readFileSync(fp,'utf8').replace(/^\\uFEFF/,'')",
+        "14: );",
+        "15: const cfgPath = path.join(__dirname, 'config.json');",
+        "16: const cfg = readJsonFile(cfgPath);",
+        "17: const statePath = path.join(__dirname, 'state.json');",
+        "18: const state = fs.existsSync(statePath)"
+      ]
+    },
+    {
+      "line": 17,
+      "text": "const statePath = path.join(__dirname, 'state.json');",
+      "context": [
+        "14: );",
+        "15: const cfgPath = path.join(__dirname, 'config.json');",
+        "16: const cfg = readJsonFile(cfgPath);",
+        "17: const statePath = path.join(__dirname, 'state.json');",
+        "18: const state = fs.existsSync(statePath)",
+        "19:   ? readJsonFile(statePath)",
+        "20:   : {published:[], failures:{}, lastRun:null};"
+      ]
+    },
+    {
+      "line": 23,
+      "text": "const abs = p => path.resolve(__dirname,p);",
+      "context": [
+        "20:   : {published:[], failures:{}, lastRun:null};",
+        "21: ",
+        "22: const command = process.argv[2] || 'help';",
+        "23: const abs = p => path.resolve(__dirname,p);",
+        "24: const sleep = ms => new Promise(r=>setTimeout(r,ms));",
+        "25: const ask = q => new Promise(resolve=>{",
+        "26:   const rl=readline.createInterface({input:process.stdin,output:process.stdout});"
+      ]
+    },
+    {
+      "line": 37,
+      "text": "  fs.appendFileSync(path.join(abs(cfg.logsDir),'auto_publish.log'),line+'\\n');",
+      "context": [
+        "34:   const line=`[${new Date().toISOString()}] ${x.join(' ')}`;",
+        "35:   console.log(line);",
+        "36:   fs.mkdirSync(abs(cfg.logsDir),{recursive:true});",
+        "37:   fs.appendFileSync(path.join(abs(cfg.logsDir),'auto_publish.log'),line+'\\n');",
+        "38: };",
+        "39: ",
+        "40: function findChromeExecutable(){"
+      ]
+    },
+    {
+      "line": 43,
+      "text": "    process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Google','Chrome','Application','chrome.exe'),",
+      "context": [
+        "40: function findChromeExecutable(){",
+        "41:   const cands = [",
+        "42:     cfg.chromeExecutable,",
+        "43:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Google','Chrome','Application','chrome.exe'),",
+        "44:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Google','Chrome','Application','chrome.exe'),",
+        "45:     process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA,'Google','Chrome','Application','chrome.exe'),",
+        "46:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Microsoft','Edge','Application','msedge.exe'),"
+      ]
+    },
+    {
+      "line": 44,
+      "text": "    process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Google','Chrome','Application','chrome.exe'),",
+      "context": [
+        "41:   const cands = [",
+        "42:     cfg.chromeExecutable,",
+        "43:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Google','Chrome','Application','chrome.exe'),",
+        "44:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Google','Chrome','Application','chrome.exe'),",
+        "45:     process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA,'Google','Chrome','Application','chrome.exe'),",
+        "46:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Microsoft','Edge','Application','msedge.exe'),",
+        "47:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Microsoft','Edge','Application','msedge.exe')"
+      ]
+    },
+    {
+      "line": 45,
+      "text": "    process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA,'Google','Chrome','Application','chrome.exe'),",
+      "context": [
+        "42:     cfg.chromeExecutable,",
+        "43:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Google','Chrome','Application','chrome.exe'),",
+        "44:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Google','Chrome','Application','chrome.exe'),",
+        "45:     process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA,'Google','Chrome','Application','chrome.exe'),",
+        "46:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Microsoft','Edge','Application','msedge.exe'),",
+        "47:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Microsoft','Edge','Application','msedge.exe')",
+        "48:   ].filter(Boolean);"
+      ]
+    },
+    {
+      "line": 46,
+      "text": "    process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Microsoft','Edge','Application','msedge.exe'),",
+      "context": [
+        "43:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Google','Chrome','Application','chrome.exe'),",
+        "44:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Google','Chrome','Application','chrome.exe'),",
+        "45:     process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA,'Google','Chrome','Application','chrome.exe'),",
+        "46:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Microsoft','Edge','Application','msedge.exe'),",
+        "47:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Microsoft','Edge','Application','msedge.exe')",
+        "48:   ].filter(Boolean);",
+        "49:   const hit=cands.find(x=>fs.existsSync(x));"
+      ]
+    },
+    {
+      "line": 47,
+      "text": "    process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Microsoft','Edge','Application','msedge.exe')",
+      "context": [
+        "44:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Google','Chrome','Application','chrome.exe'),",
+        "45:     process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA,'Google','Chrome','Application','chrome.exe'),",
+        "46:     process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES,'Microsoft','Edge','Application','msedge.exe'),",
+        "47:     process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'],'Microsoft','Edge','Application','msedge.exe')",
+        "48:   ].filter(Boolean);",
+        "49:   const hit=cands.find(x=>fs.existsSync(x));",
+        "50:   if(!hit) throw new Error('Google Chrome / Microsoft Edge が見つかりません。');"
+      ]
+    },
+    {
+      "line": 112,
+      "text": "  const fp=path.join(abs(cfg.logsDir),`${stamp}_${label}.png`);",
+      "context": [
+        "109: async function screenshot(page,label){",
+        "110:   fs.mkdirSync(abs(cfg.logsDir),{recursive:true});",
+        "111:   const stamp=new Date().toISOString().replace(/[:.]/g,'-');",
+        "112:   const fp=path.join(abs(cfg.logsDir),`${stamp}_${label}.png`);",
+        "113:   try{await page.screenshot({path:fp,fullPage:true});}catch{}",
+        "114:   try{fs.writeFileSync(fp.replace(/\\.png$/,'.html'),await page.content(),'utf8');}catch{}",
+        "115: }"
+      ]
+    },
+    {
+      "line": 185,
+      "text": "async function uploadImages(page,files){",
+      "context": [
+        "182:   await page.waitForTimeout(1300);",
+        "183: }",
+        "184: ",
+        "185: async function uploadImages(page,files){",
+        "186:   const fileInputs=page.locator('input[type=\"file\"]');",
+        "187:   const n=await fileInputs.count();",
+        "188:   for(let i=0;i<n;i++){"
+      ]
+    },
+    {
+      "line": 406,
+      "text": "        log('OK 代理購入サービス: refused');",
+      "context": [
+        "403:       const options=await s.locator('option').evaluateAll(os=>os.map(o=>({v:o.value,t:o.textContent})));",
+        "404:       if(options.some(o=>o.v==='refused')){",
+        "405:         await s.selectOption('refused');",
+        "406:         log('OK 代理購入サービス: refused');",
+        "407:         return;",
+        "408:       }",
+        "409:     }catch{}"
+      ]
+    },
+    {
+      "line": 411,
+      "text": "  throw new Error('代理購入サービスのrefused選択肢が見つかりません');",
+      "context": [
+        "408:       }",
+        "409:     }catch{}",
+        "410:   }",
+        "411:   throw new Error('代理購入サービスのrefused選択肢が見つかりません');",
+        "412: }",
+        "413: ",
+        "414: async function dumpFileManagerDebug(page,label='file_manager_debug'){"
+      ]
+    },
+    {
+      "line": 454,
+      "text": "      path.join(abs(cfg.logsDir),`${label}.json`),",
+      "context": [
+        "451:     }",
+        "452:     fs.mkdirSync(abs(cfg.logsDir),{recursive:true});",
+        "453:     fs.writeFileSync(",
+        "454:       path.join(abs(cfg.logsDir),`${label}.json`),",
+        "455:       JSON.stringify(frames,null,2),",
+        "456:       'utf8'",
+        "457:     );"
+      ]
+    },
+    {
+      "line": 504,
+      "text": "        (/作品|ダウンロード|ファイル|upload/i.test(meta.ctx) ? 20 : 0) +",
+      "context": [
+        "501:       const isImage=meta.accept.includes('image');",
+        "502:       const score=",
+        "503:         (isImage ? -100 : 0) +",
+        "504:         (/作品|ダウンロード|ファイル|upload/i.test(meta.ctx) ? 20 : 0) +",
+        "505:         (meta.accept==='' ? 8 : 0);",
+        "506: ",
+        "507:       candidates.push({inp,score,meta});"
+      ]
+    },
+    {
+      "line": 547,
+      "text": "          log(`商品ファイル確認操作: ${rx}`);",
+      "context": [
+        "544:         try{",
+        "545:           await el.click({force:true});",
+        "546:           await page.waitForTimeout(700);",
+        "547:           log(`商品ファイル確認操作: ${rx}`);",
+        "548:           return true;",
+        "549:         }catch{}",
+        "550:       }"
+      ]
+    },
+    {
+      "line": 577,
+      "text": "  // BOOTH keeps the file manager modal open after upload.",
+      "context": [
+        "574: }",
+        "575: ",
+        "576: async function closeFileManagerModal(page){",
+        "577:   // BOOTH keeps the file manager modal open after upload.",
+        "578:   // It must be closed before clicking \"公開で保存する\".",
+        "579:   const dialogLike=page.locator(",
+        "580:     '[role=\"dialog\"],[aria-modal=\"true\"],div.fixed'"
+      ]
+    },
+    {
+      "line": 617,
+      "text": "        log('OK 商品ファイル管理モーダルを閉じました');",
+      "context": [
+        "614:       if(await c.isVisible({timeout:180})){",
+        "615:         await c.click({force:true});",
+        "616:         await page.waitForTimeout(500);",
+        "617:         log('OK 商品ファイル管理モーダルを閉じました');",
+        "618:         return true;",
+        "619:       }",
+        "620:     }"
+      ]
+    },
+    {
+      "line": 634,
+      "text": "        log('OK 商品ファイル管理モーダルのcloseボタンをクリック');",
+      "context": [
+        "631:       if(await x.isVisible({timeout:180})){",
+        "632:         await x.click({force:true});",
+        "633:         await page.waitForTimeout(450);",
+        "634:         log('OK 商品ファイル管理モーダルのcloseボタンをクリック');",
+        "635:         return true;",
+        "636:       }",
+        "637:     }"
+      ]
+    },
+    {
+      "line": 667,
+      "text": "  log('OK 商品ファイル管理モーダルをEscapeで閉じました');",
+      "context": [
+        "664:     }",
+        "665:   }",
+        "666: ",
+        "667:   log('OK 商品ファイル管理モーダルをEscapeで閉じました');",
+        "668:   return true;",
+        "669: }",
+        "670: "
+      ]
+    },
+    {
+      "line": 671,
+      "text": "async function uploadProductFile(page,file){",
+      "context": [
+        "668:   return true;",
+        "669: }",
+        "670: ",
+        "671: async function uploadProductFile(page,file){",
+        "672:   const fileName=path.basename(file);",
+        "673:   log(`商品ZIPアップロード開始: ${fileName}`);",
+        "674: "
+      ]
+    },
+    {
+      "line": 672,
+      "text": "  const fileName=path.basename(file);",
+      "context": [
+        "669: }",
+        "670: ",
+        "671: async function uploadProductFile(page,file){",
+        "672:   const fileName=path.basename(file);",
+        "673:   log(`商品ZIPアップロード開始: ${fileName}`);",
+        "674: ",
+        "675:   // 1) Open BOOTH's official file manager."
+      ]
+    },
+    {
+      "line": 819,
+      "text": "  await uploadImages(page,p.previewImages.map(x=>path.join(dir,x)));",
+      "context": [
+        "816:     page.getByRole('textbox',{name:/商品名/})",
+        "817:   ],p.title,'商品名');",
+        "818: ",
+        "819:   await uploadImages(page,p.previewImages.map(x=>path.join(dir,x)));",
+        "820:   await chooseCategory(page);",
+        "821: ",
+        "822:   await fillFirst(page,["
+      ]
+    },
+    {
+      "line": 835,
+      "text": "  await uploadProductFile(page,path.join(dir,p.downloadFile));",
+      "context": [
+        "832:   ],p.price,'価格');",
+        "833: ",
+        "834:   await setProxyRefused(page);",
+        "835:   await uploadProductFile(page,path.join(dir,p.downloadFile));",
+        "836: ",
+        "837:   // Safety validation based on BOOTH's real current errors.",
+        "838:   const body=await page.locator('body').innerText();"
+      ]
+    },
+    {
+      "line": 842,
+      "text": "    '公開するには「代理購入サービスの使用許可」を選択してください'",
+      "context": [
+        "839:   const blockers=[",
+        "840:     '作品ファイルの無いダウンロード販売商品があります',",
+        "841:     '公開するには「カテゴリ」を選択してください',",
+        "842:     '公開するには「代理購入サービスの使用許可」を選択してください'",
+        "843:   ].filter(x=>body.includes(x));",
+        "844:   if(blockers.length) throw new Error('公開前チェックNG: '+blockers.join(' / '));",
+        "845: }"
+      ]
+    },
+    {
+      "line": 878,
+      "text": "    fs.writeFileSync(path.join(abs(cfg.logsDir),`${stamp}_${label}.json`),JSON.stringify(data,null,2),'utf8');",
+      "context": [
+        "875:     });",
+        "876:     fs.mkdirSync(abs(cfg.logsDir),{recursive:true});",
+        "877:     const stamp=new Date().toISOString().replace(/[:.]/g,'-');",
+        "878:     fs.writeFileSync(path.join(abs(cfg.logsDir),`${stamp}_${label}.json`),JSON.stringify(data,null,2),'utf8');",
+        "879:     log(`${label}_SUMMARY buttons=${data.buttons.filter(x=>x.visible).map(x=>x.text).slice(0,8).join(' | ')} alerts=${data.alerts.slice(0,5).join(' | ')} body=${data.body.slice(0,5).join(' | ')}`);",
+        "880:     return data;",
+        "881:   }catch(e){"
+      ]
+    },
+    {
+      "line": 1197,
+      "text": "  const cacheDir=path.join(abs(cfg.cacheDir),entry.id);",
+      "context": [
+        "1194:     if(h!==entry.sha256) throw new Error('暗号化商品データのSHA256が一致しません');",
+        "1195:   }",
+        "1196:   const zipbuf=decryptPayload(txt);",
+        "1197:   const cacheDir=path.join(abs(cfg.cacheDir),entry.id);",
+        "1198:   fs.rmSync(cacheDir,{recursive:true,force:true});",
+        "1199:   fs.mkdirSync(cacheDir,{recursive:true});",
+        "1200:   const z=new AdmZip(zipbuf);"
+      ]
+    },
+    {
+      "line": 1210,
+      "text": "    .map(d=>({id:d.name,local:true,dir:path.join(root,d.name)}));",
+      "context": [
+        "1207:   if(!fs.existsSync(root)) return [];",
+        "1208:   return fs.readdirSync(root,{withFileTypes:true})",
+        "1209:     .filter(d=>d.isDirectory())",
+        "1210:     .map(d=>({id:d.name,local:true,dir:path.join(root,d.name)}));",
+        "1211: }",
+        "1212: ",
+        "1213: function boothItemIdFromUrl(url=''){"
+      ]
+    },
+    {
+      "line": 1291,
+      "text": "      await verifyPage.screenshot({path:path.join(abs(cfg.logsDir),`${new Date().toISOString().replace(/[:.]/g,'-')}_PUBLIC_VERIFY_FAILED_${itemId}.png`),fullPage:true});",
+      "context": [
+        "1288:       }",
+        "1289:     }",
+        "1290:     try{",
+        "1291:       await verifyPage.screenshot({path:path.join(abs(cfg.logsDir),`${new Date().toISOString().replace(/[:.]/g,'-')}_PUBLIC_VERIFY_FAILED_${itemId}.png`),fullPage:true});",
+        "1292:       fs.writeFileSync(",
+        "1293:         path.join(abs(cfg.logsDir),`${new Date().toISOString().replace(/[:.]/g,'-')}_PUBLIC_VERIFY_FAILED_${itemId}.html`),",
+        "1294:         await verifyPage.content(),'utf8'"
+      ]
+    },
+    {
+      "line": 1293,
+      "text": "        path.join(abs(cfg.logsDir),`${new Date().toISOString().replace(/[:.]/g,'-')}_PUBLIC_VERIFY_FAILED_${itemId}.html`),",
+      "context": [
+        "1290:     try{",
+        "1291:       await verifyPage.screenshot({path:path.join(abs(cfg.logsDir),`${new Date().toISOString().replace(/[:.]/g,'-')}_PUBLIC_VERIFY_FAILED_${itemId}.png`),fullPage:true});",
+        "1292:       fs.writeFileSync(",
+        "1293:         path.join(abs(cfg.logsDir),`${new Date().toISOString().replace(/[:.]/g,'-')}_PUBLIC_VERIFY_FAILED_${itemId}.html`),",
+        "1294:         await verifyPage.content(),'utf8'",
+        "1295:       );",
+        "1296:     }catch{}"
+      ]
+    },
+    {
+      "line": 1314,
+      "text": "      const productPath=path.join(dir,'product.json');",
+      "context": [
+        "1311:       const rec=(state.published||[]).find(x=>String(x.id)===String(e.id));",
+        "1312:       if(!rec)continue;",
+        "1313:       const dir=await prepareRemote(e);",
+        "1314:       const productPath=path.join(dir,'product.json');",
+        "1315:       const p=readJsonFile(productPath);",
+        "1316:       // V14: local state is never trusted as publication truth. Verify every existing queue record",
+        "1317:       // in an anonymous browser. This also repairs legacy records that were marked done too early."
+      ]
+    },
+    {
+      "line": 1431,
+      "text": "  const productPath=path.join(item.dir,'product.json');",
+      "context": [
+        "1428:     saveState();",
+        "1429:     return {none:true};",
+        "1430:   }",
+        "1431:   const productPath=path.join(item.dir,'product.json');",
+        "1432:   const p=readJsonFile(productPath);",
+        "1433:   log(`処理開始 ${item.id} source=${item.source}`);",
+        "1434: "
+      ]
+    },
+    {
+      "line": 1550,
+      "text": "    log('停止',e.message);",
+      "context": [
+        "1547:     state.failures[item.id]=(state.failures[item.id]||0)+1;",
+        "1548:     saveState();",
+        "1549:     await screenshot(page,'ERROR');",
+        "1550:     log('停止',e.message);",
+        "1551:     throw e;",
+        "1552:   }finally{",
+        "1553:     await sleep(600);"
+      ]
+    },
+    {
+      "line": 1565,
+      "text": "  const p=readJsonFile(path.join(item.dir,'product.json'));",
+      "context": [
+        "1562:     log('プレフライト対象の商品がありません。');",
+        "1563:     return;",
+        "1564:   }",
+        "1565:   const p=readJsonFile(path.join(item.dir,'product.json'));",
+        "1566:   const ctx=await launch();",
+        "1567:   const page=ctx.pages()[0]||await ctx.newPage();",
+        "1568:   try{"
+      ]
+    },
+    {
+      "line": 1577,
+      "text": "    log('プレフライト失敗',e.message);",
+      "context": [
+        "1574:     // 保存・公開はせず終了する。",
+        "1575:   }catch(e){",
+        "1576:     await screenshot(page,'PREFLIGHT_ERROR');",
+        "1577:     log('プレフライト失敗',e.message);",
+        "1578:     throw e;",
+        "1579:   }finally{",
+        "1580:     await sleep(500);"
+      ]
+    },
+    {
+      "line": 1595,
+      "text": "    fs.writeFileSync(path.join(abs(cfg.logsDir),'inspect.json'),JSON.stringify(data,null,2));",
+      "context": [
+        "1592:       i,tag:e.tagName,type:e.getAttribute('type'),name:e.getAttribute('name'),",
+        "1593:       value:e.value,accept:e.getAttribute('accept'),text:(e.innerText||e.textContent||'').trim().slice(0,160)",
+        "1594:     })).filter(x=>x.text||x.name||x.type));",
+        "1595:     fs.writeFileSync(path.join(abs(cfg.logsDir),'inspect.json'),JSON.stringify(data,null,2));",
+        "1596:     await screenshot(page,'inspect');",
+        "1597:     console.log(data.slice(0,150));",
+        "1598:   }finally{"
+      ]
+    }
+  ],
+  "productMetadata": [
+    {
+      "productJsonPath": "C:\\Users\\ryoya\\Downloads\\BOOTH_AUTO_PUBLISHER_v3_ASCII\\cache\\002_consistency_os_20260819\\product.json",
+      "keys": [
+        "title",
+        "description",
+        "price",
+        "tags",
+        "previewImages",
+        "downloadFile"
+      ],
+      "pathLikeFields": {
+        "previewImages": [],
+        "downloadFile": "AI就活_一貫性チェックOS_商品本体.zip"
+      },
+      "siblingFiles": [
+        {
+          "name": "AI就活_一貫性チェックOS_商品本体.zip",
+          "size": 23744
+        },
+        {
+          "name": "product.json",
+          "size": 2098
+        }
+      ]
+    },
+    {
+      "productJsonPath": "C:\\Users\\ryoya\\Downloads\\BOOTH_AUTO_PUBLISHER_v3_ASCII\\cache\\003_event_ops_html_20260819\\product.json",
+      "keys": [
+        "title",
+        "description",
+        "price",
+        "tags",
+        "previewImages",
+        "downloadFile"
+      ],
+      "pathLikeFields": {
+        "previewImages": [
+          "preview_event_ops_cover_small.jpg"
+        ],
+        "downloadFile": "イベント運営OS_オフライン版_商品本体.zip"
+      },
+      "siblingFiles": [
+        {
+          "name": "preview_event_ops_cover_small.jpg",
+          "size": 10871
+        },
+        {
+          "name": "product.json",
+          "size": 2009
+        },
+        {
+          "name": "イベント運営OS_オフライン版_商品本体.zip",
+          "size": 9053
+        }
+      ]
+    },
+    {
+      "productJsonPath": "C:\\Users\\ryoya\\Downloads\\BOOTH_AUTO_PUBLISHER_v3_ASCII\\cache\\005_sponsor_crm_20260819\\product.json",
+      "keys": [
+        "title",
+        "description",
+        "price",
+        "tags",
+        "previewImages",
+        "downloadFile"
+      ],
+      "pathLikeFields": {
+        "previewImages": [
+          "preview_sponsor_main.jpg"
+        ],
+        "downloadFile": "協賛スポンサー営業CRM_OS_商品本体.zip"
+      },
+      "siblingFiles": [
+        {
+          "name": "preview_sponsor_main.jpg",
+          "size": 24910
+        },
+        {
+          "name": "product.json",
+          "size": 2405
+        },
+        {
+          "name": "協賛スポンサー営業CRM_OS_商品本体.zip",
+          "size": 26316
+        }
+      ]
+    },
+    {
+      "productJsonPath": "C:\\Users\\ryoya\\Downloads\\BOOTH_AUTO_PUBLISHER_v3_ASCII\\cache\\007_thesis_progress_os_20260820\\product.json",
+      "keys": [
+        "title",
+        "description",
+        "tags",
+        "price",
+        "previewImages",
+        "downloadFile"
+      ],
+      "pathLikeFields": {
+        "previewImages": [
+          "preview_dashboard.jpg"
+        ],
+        "downloadFile": "卒論_研究進行OS_商品本体.zip"
+      },
+      "siblingFiles": [
+        {
+          "name": "preview_dashboard.jpg",
+          "size": 11205
+        },
+        {
+          "name": "product.json",
+          "size": 1766
+        },
+        {
+          "name": "卒論_研究進行OS_商品本体.zip",
+          "size": 5191
+        }
+      ]
+    },
+    {
+      "productJsonPath": "C:\\Users\\ryoya\\Downloads\\BOOTH_AUTO_PUBLISHER_v3_ASCII\\cache\\010_event_risk_register_os_20260822\\product.json",
+      "keys": [
+        "schemaVersion",
+        "id",
+        "title",
+        "name",
+        "description",
+        "price",
+        "priceJPY",
+        "tags",
+        "category",
+        "categoryParent",
+        "categoryChild",
+        "categoryValue",
+        "subcategory",
+        "digital",
+        "productType",
+        "productFiles",
+        "downloadFiles",
+        "files",
+        "previewImages",
+        "coverImage",
+        "coverImages"
+      ],
+      "pathLikeFields": {
+        "productFiles": [
+          "product.zip"
+        ],
+        "downloadFiles": [
+          "product.zip"
+        ],
+        "files": [
+          "product.zip"
+        ],
+        "previewImages": [
+          "preview01.jpg"
+        ],
+        "coverImage": "preview01.jpg",
+        "coverImages": [
+          "preview01.jpg"
+        ]
+      },
+      "siblingFiles": [
+        {
+          "name": "preview01.jpg",
+          "size": 23022
+        },
+        {
+          "name": "product.json",
+          "size": 1750
+        },
+        {
+          "name": "product.zip",
+          "size": 4138
+        }
+      ]
+    },
+    {
+      "productJsonPath": "C:\\Users\\ryoya\\Downloads\\BOOTH_AUTO_PUBLISHER_v3_ASCII\\fallback_queue\\001_interview_os\\product.json",
+      "keys": [
+        "id",
+        "title",
+        "description",
+        "price",
+        "category",
+        "age",
+        "proxyPurchase",
+        "tags",
+        "previewImages",
+        "downloadFile"
+      ],
+      "pathLikeFields": {
+        "previewImages": [
+          "preview_01_dashboard.png",
+          "preview_02_interview_log.png",
+          "preview_03_ai_prompts.png"
+        ],
+        "downloadFile": "product.zip"
+      },
+      "siblingFiles": [
+        {
+          "name": "preview_01_dashboard.png",
+          "size": 179248
+        },
+        {
+          "name": "preview_02_interview_log.png",
+          "size": 126261
+        },
+        {
+          "name": "preview_03_ai_prompts.png",
+          "size": 248782
+        },
+        {
+          "name": "product.json",
+          "size": 2539
+        },
+        {
+          "name": "product.zip",
+          "size": 41293
+        },
+        {
+          "name": "面接改善OS_商品本体.zip",
+          "size": 41293
+        }
+      ]
+    }
+  ],
+  "debugRun": {
+    "status": 1,
+    "output": "[2026-08-22T03:18:41.313Z] Chromeを直接起動: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n[2026-08-22T03:18:42.031Z] プレフライト開始 010_event_risk_register_os_20260822\n[2026-08-22T03:18:45.840Z] OK 商品名\n[2026-08-22T03:18:47.038Z] OK 商品画像 1枚\n[2026-08-22T03:18:47.807Z] OK 親カテゴリを展開: ソフトウェア・ハードウェア\n[2026-08-22T03:18:48.948Z] OK 子カテゴリを選択: ソフトウェア\n[2026-08-22T03:18:49.584Z] OK 表示中のカテゴリ閉じるボタンをクリック\n[2026-08-22T03:18:49.599Z] OK カテゴリ: ソフトウェア\n[2026-08-22T03:18:49.692Z] OK 商品説明\n[2026-08-22T03:18:50.527Z] OK タグ\n[2026-08-22T03:18:50.564Z] OK 価格\n[2026-08-22T03:18:50.658Z] OK 代理購入サービス: refused\n[2026-08-22T03:18:51.189Z] プレフライト失敗 TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string. Received undefined\n    at Object.join (node:path:513:7)\n    at fillProduct (file:///C:/Users/ryoya/Downloads/BOOTH_AUTO_PUBLISHER_v3_ASCII/booth-bot-debug-path.mjs:835:37)\n    at async preflight (file:///C:/Users/ryoya/Downloads/BOOTH_AUTO_PUBLISHER_v3_ASCII/booth-bot-debug-path.mjs:1571:5)\nTypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string. Received undefined\n    at Object.join (node:path:513:7)\n    at fillProduct (file:///C:/Users/ryoya/Downloads/BOOTH_AUTO_PUBLISHER_v3_ASCII/booth-bot-debug-path.mjs:835:37)\n    at async preflight (file:///C:/Users/ryoya/Downloads/BOOTH_AUTO_PUBLISHER_v3_ASCII/booth-bot-debug-path.mjs:1571:5)"
+  },
+  "stackSourceContext": {
+    "line": 835,
+    "column": 37,
+    "context": [
+      "820:   await chooseCategory(page);",
+      "821: ",
+      "822:   await fillFirst(page,[",
+      "823:     'textarea[name*=\"description\"]','textarea[name*=\"detail\"]',",
+      "824:     page.locator('textarea').first()",
+      "825:   ],p.description,'商品説明');",
+      "826: ",
+      "827:   await addTags(page,p.tags||[]);",
+      "828: ",
+      "829:   await fillFirst(page,[",
+      "830:     'input[name*=\"price\"]','input[inputmode=\"numeric\"]',",
+      "831:     page.getByRole('spinbutton',{name:/価格/})",
+      "832:   ],p.price,'価格');",
+      "833: ",
+      "834:   await setProxyRefused(page);",
+      "835:   await uploadProductFile(page,path.join(dir,p.downloadFile));",
+      "836: ",
+      "837:   // Safety validation based on BOOTH's real current errors.",
+      "838:   const body=await page.locator('body').innerText();",
+      "839:   const blockers=[",
+      "840:     '作品ファイルの無いダウンロード販売商品があります',",
+      "841:     '公開するには「カテゴリ」を選択してください',",
+      "842:     '公開するには「代理購入サービスの使用許可」を選択してください'",
+      "843:   ].filter(x=>body.includes(x));",
+      "844:   if(blockers.length) throw new Error('公開前チェックNG: '+blockers.join(' / '));",
+      "845: }",
+      "846: ",
+      "847: async function saveDraft(page){",
+      "848:   const btn=page.getByRole('button',{name:/下書きで保存する/});",
+      "849:   if(!(await isVisible(btn,900))) throw new Error('「下書きで保存する」が見つかりません');",
+      "850:   await btn.click();"
+    ]
+  }
+}
