@@ -1,0 +1,65 @@
+{
+  "runAt": "2026-08-22T23:31:45+09:00",
+  "scope": ["Microsoft Store", "note", "BOOTH", "GitHub Pages"],
+  "excluded": ["Amazon KDP", "LINE Creators Market"],
+  "evidence": {
+    "notePaidStrictVerifiedToday": 5,
+    "noteInitialFreeBatchStrictVerified": 6,
+    "noteFirstPartyFunnelMetricsAvailable": false,
+    "boothStrictVerifiedToday": 5,
+    "boothProductSalesMetricsAvailable": false,
+    "githubPagesInsightBatchVerified": 6,
+    "githubPagesOutboundConversionAvailable": false,
+    "microsoftStorePublicPwaVerified": true,
+    "microsoftStorePublicListingVerified": false,
+    "microsoftStoreAcquisitionMetricsAvailable": false
+  },
+  "decisions": [
+    {
+      "asset": "note free-to-paid funnel",
+      "problem": "Free articles are live, but equal-age 24h/72h/7d PV, engagement, CTA-click and purchase metrics are not yet available.",
+      "change": "Do not mass-rewrite CTA or change prices tonight. Hold additional speculative free-volume expansion until the first comparable 24h window is available.",
+      "expectedMetric": "cleaner attribution for free->paid conversion once measurements arrive",
+      "requiredSample": "at minimum equal-age 24h observations, then 72h and 7d",
+      "risk": "premature optimization would destroy attribution and could lower conversion",
+      "rollback": "not applicable because no customer-facing change was made"
+    },
+    {
+      "asset": "future paid note articles",
+      "problem": "Purchase qualification depends on the usefulness and clarity of the free area before the paywall.",
+      "change": "Require empathy/question framing, a concrete change/example, and a clear statement of buyer value in the free area before packaging.",
+      "expectedMetric": "paid-boundary conversion once article-level PV and purchases become measurable",
+      "requiredSample": "compare future articles only after comparable exposure windows",
+      "risk": "over-expanding free content could reduce paid differentiation; preserve clear incremental paid value",
+      "rollback": "shorten only the parts that duplicate paid value while retaining the three qualification elements"
+    },
+    {
+      "asset": "Microsoft Store CSV Cleaner & Duplicate Remover",
+      "problem": "No live Store listing exists yet, so there is no Store-page baseline for ASO, CVR or acquisition optimization.",
+      "change": "Prioritize Partner Center identity/submission prerequisites. Defer listing experiments and pricing tests until the first live baseline exists.",
+      "expectedMetric": "Store page views, acquisitions, installs and conversion after publication",
+      "requiredSample": "first live baseline before any A/B or price experiment",
+      "risk": "optimizing before publication provides no attributable revenue evidence",
+      "rollback": "not applicable because no listing experiment was launched"
+    },
+    {
+      "asset": "BOOTH and GitHub Pages",
+      "problem": "Product-level sales and outbound conversion data are unavailable.",
+      "change": "Keep current public offers stable; prepare only coherent context-matched bundle/CTA candidates and wait for measurable demand before live pricing or multi-CTA changes.",
+      "expectedMetric": "order value, conversion or attributed outbound conversion after instrumentation exists",
+      "requiredSample": "observed product-level sales or click/conversion data",
+      "risk": "speculative bundling or extra CTA can dilute intent",
+      "rollback": "remove the experimental bundle/CTA if measured conversion deteriorates against baseline"
+    }
+  ],
+  "nextMeasurementOrder": [
+    "note 24h equal-age free-article metrics",
+    "note 72h metrics",
+    "note 7d metrics",
+    "related paid clicks and purchases",
+    "Microsoft Store live-listing baseline",
+    "BOOTH product-level sales",
+    "GitHub Pages attributed outbound conversion"
+  ],
+  "noClaims": "No uplift, winner, loser or optimal price is claimed without first-party measurement."
+}
