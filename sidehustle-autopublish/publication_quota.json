@@ -1,7 +1,7 @@
 {
-  "version": 29,
+  "version": 30,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-22T04:09:12.990507+00:00",
+  "updatedAt": "2026-08-23T08:33:18+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -12,61 +12,30 @@
       "perCatchUpCycleSoftBatch": 11,
       "productionCap": null,
       "operationalState": {
-        "date": "2026-08-22",
-        "previousDate": "2026-08-21",
-        "previousDayStrictVerifiedPublicationsCount": 0,
+        "date": "2026-08-23",
+        "previousDate": "2026-08-22",
+        "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 5,
+        "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 0,
-        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 0,
-        "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. Preserve publication debt and keep the complete paid queue ready for the first Windows-available session.",
-        "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-22",
+        "todayRemainingToTarget": 5,
+        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
+        "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. Preserve publication debt and keep paid inventory ready for the first Windows-available session.",
+        "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-23",
         "paidProductionInventoryComplete": true,
-        "readyCandidateCount": 11,
-        "readyCandidateIds": [
-          "note_20260821_06_ai_small_org_workflow",
-          "note_20260821_07_event_sponsor_followup",
-          "note_20260821_08_creator_pricing",
-          "note_20260821_09_student_org_role_design",
-          "note_20260821_10_thesis_weekly_review",
-          "note_20260821_11_ai_jobhunt_answer_audit",
-          "note_20260822_12_event_cancel_decision",
-          "note_20260822_13_meeting_decision_log",
-          "note_20260822_14_sponsor_menu_design",
-          "note_20260822_15_research_interview_coding",
-          "note_20260822_16_jobhunt_company_research"
+        "preparedCloudInventory": "sidehustle-autopublish/note/paid_drafts/2026-08-23_batch01.md",
+        "preparedCloudInventoryCount": 5,
+        "preparedIds": [
+          "note_20260823_17_sponsor_deliverables",
+          "note_20260823_18_event_incident_response",
+          "note_20260823_19_grant_tracker",
+          "note_20260823_20_meeting_decision_log",
+          "note_20260823_21_literature_matrix"
         ],
-        "activePublicationCandidate": {
-          "queueId": "note_20260821_06_ai_small_org_workflow",
-          "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
-          "expectedPriceJPY": 980,
-          "createdAt": "2026-08-21T20:26:15+09:00",
-          "retryGeneration": 24,
-          "forceRetryNonce": "paid-catchup-06-20260822T004500+0900",
-          "requiredChecks": [
-            "readerVisibleUrl",
-            "title",
-            "price",
-            "paidBoundary",
-            "dedicatedCover"
-          ],
-          "status": "complete_encrypted_ready_next_windows_session"
-        },
+        "queueMaterializationState": "complete_manuscripts_present; encrypted Windows queue materialization still required before publication",
         "deferredLegacyCandidate": "note_20260820_05",
-        "fallbackPolicy": "Continue across the complete eleven-item paid batch. A brief recoverable failure on one item must not block later items. Do not stop after the first strict publication while debt remains.",
-        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target.",
-        "batchClearInstruction": "Immediately process every ledger-absent paid item in the eleven-item batch while Windows is available. Continue after per-item recoverable failure; do not stop after first success.",
-        "lastForcedRecoveryAt": "2026-08-22T09:06:43+09:00",
-        "queueRetryGeneration": 25,
-        "lastStrictVerificationAt": "2026-08-22T11:28:16.226+09:00",
-        "lastStrictVerifiedIds": [
-          "note_20260822_12_event_cancel_decision",
-          "note_20260822_13_meeting_decision_log",
-          "note_20260822_14_sponsor_menu_design",
-          "note_20260822_15_research_interview_coding",
-          "note_20260822_16_jobhunt_company_research"
-        ]
+        "fallbackPolicy": "Continue across the complete five-item paid batch. A brief recoverable failure on one item must not block later items. Do not stop after the first strict publication while quota remains.",
+        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target."
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
@@ -78,32 +47,13 @@
         "preferredManuscriptBatchSize": "4-10",
         "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
         "currentCompletedDraftCount": 6,
+        "currentRequiredBatchStrictVerifiedCount": 6,
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
-        "freePublisherQa": "sidehustle-autopublish/note/free_publisher/qa_status.json",
-        "freePublisherCloudQaPassed": true,
-        "freePublisherPlatformPublicationVerified": false,
-        "role": [
-          "search/discovery acquisition",
-          "trust building",
-          "demand validation",
-          "paid prequalification"
-        ],
+        "role": ["search/discovery acquisition", "trust building", "demand validation", "paid prequalification"],
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
-        "measurementWindows": [
-          "24h",
-          "72h",
-          "7d"
-        ],
-        "measureWhenAvailable": [
-          "PV",
-          "likes",
-          "follows",
-          "related paid clicks",
-          "related paid purchases",
-          "revenue"
-        ],
+        "measurementWindows": ["24h", "72h", "7d"],
+        "measureWhenAvailable": ["PV", "likes", "follows", "related paid clicks", "related paid purchases", "revenue"],
         "adaptationRule": "2/day is only an initial test cadence. Increase, maintain or reduce based on comparable post-publication traffic, engagement and paid-conversion evidence; never invent missing metrics.",
-        "ctaRule": "At most one context-matched paid CTA; use only independently reader-visible verified paid URLs. If the paid URL is not verified, publish the free article without a guessed CTA and add it later.",
         "separationRule": "Free publications never decrement paid publication debt and never replace the paid 5/day strict floor."
       }
     },
@@ -111,80 +61,34 @@
       "dailyPublicTarget": 5,
       "completionDefinition": "buyer-visible official BOOTH product page verified with title, price, downloadable-product state and purchase path",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
-      "catchUpPriority": "complete new paid recovery batch before deferred legacy blockers",
-      "perCatchUpCycleSoftBatch": 14,
+      "catchUpPriority": "complete current-day genuine-new paid batch before deferred legacy blockers",
+      "perCatchUpCycleSoftBatch": 10,
       "productionCap": null,
       "operationalState": {
-        "date": "2026-08-22",
-        "previousDate": "2026-08-21",
-        "previousDayStrictVerifiedPublicationsCount": 0,
+        "date": "2026-08-23",
+        "previousDate": "2026-08-22",
+        "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 5,
+        "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 0,
-        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 0,
-        "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. Preserve publication debt and keep the complete encrypted recovery batch ready for the first Windows-available session.",
-        "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-22",
-        "paidProductionInventoryComplete": true,
-        "readyCandidateCount": 14,
-        "queueRetryGeneration": 31,
-        "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
-        "readyCandidateIds": [
-          "010_event_risk_register_os_20260822",
-          "011_small_org_role_os_20260822",
-          "012_sponsor_deliverables_tracker_20260822",
-          "013_research_interview_coding_os_20260822",
-          "014_volunteer_shift_comms_os_20260822",
-          "015_creator_profit_pricing_os_20260822",
-          "016_event_sponsor_bundle_os_20260822",
-          "017_jobhunt_interview_bundle_os_20260822",
-          "018_grant_application_tracker_os_20260822",
-          "019_event_incident_log_os_20260822",
-          "020_meeting_decision_action_os_20260822",
-          "021_small_npo_donor_crm_os_20260822",
-          "022_research_literature_matrix_os_20260822",
-          "023_campus_project_budget_os_20260822"
+        "todayRemainingToTarget": 5,
+        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
+        "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. Preserve publication debt and build encrypted paid inventory in the cloud for the first Windows-available session.",
+        "nextPreferredWindowsRecoveryWindow": "first PC-available session on 2026-08-23",
+        "paidProductionInventoryComplete": false,
+        "plannedCloudBatchBuilder": "sidehustle-autopublish/builders/materialize_booth_20260823_batch01.py",
+        "plannedCandidateIds": [
+          "024_grant_evidence_expense_os_20260823",
+          "025_event_decision_authority_os_20260823",
+          "026_research_claim_evidence_os_20260823",
+          "027_sponsor_contact_history_os_20260823",
+          "028_team_backup_coverage_os_20260823"
         ],
-        "activePublicationCandidate": {
-          "queueId": "010_event_risk_register_os_20260822",
-          "title": "イベントリスク登録簿OS｜発生確率×影響度×対策×担当を1画面管理｜オフラインHTML",
-          "expectedPriceJPY": 1280,
-          "status": "complete_encrypted_qa_passed_ready_next_windows_session",
-          "requiredChecks": [
-            "buyerVisibleUrl",
-            "title",
-            "price",
-            "downloadableProductState",
-            "purchasePath"
-          ]
-        },
-        "alreadyPublishedNotNewDebtCandidate": {
-          "queueId": "001_interview_os",
-          "historicalPublicUrl": "https://booth.pm/ja/items/8736751",
-          "historicalVerifiedAt": "2026-08-19T09:15:39.271Z",
-          "status": "removed_from_new_publication_debt_recovery; preserve for strict commerce reverification/ledger reconciliation only"
-        },
+        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+        "materializationState": "workflow_requested; do not count until encrypted queue files exist and buyer-visible strict publication is verified",
         "deferredLegacyCandidate": "009_handover_os_20260820",
-        "strictReverificationCandidate": {
-          "queueId": "007_thesis_progress_os_20260820",
-          "publicUrlCandidate": "https://booth.pm/ja/items/8739122",
-          "status": "verified_public_on_2026-08-20_and_counted_once_for_previous_day"
-        },
-        "fallbackPolicy": "Process 010 through 023 as the genuine-new paid debt batch. After each strict success move immediately to the next ledger-absent item. Do not return to 009 until the batch has been attempted.",
-        "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements debt. Generic publisher success, local logs, draft creation, commits, old-item reverification, or HTTP/title-only verification does not.",
-        "cloudAutomationState": "enabled; recoverable failures must never self-disable",
-        "batchClearInstruction": "Immediately process every ledger-absent paid item in the fourteen-item batch while Windows is available. Continue after per-item recoverable failure; do not stop after first success.",
-        "latestMaterializedAt": "2026-08-22T02:10:19+09:00",
-        "categoryCompatibility": {
-          "parent": "ソフトウェア・ハードウェア",
-          "child": "ソフトウェア",
-          "verifiedReferenceItemId": "8736698"
-        },
-        "lastForcedRecoveryAt": "2026-08-22T09:06:43+09:00",
-        "lastStrictVerificationAt": "2026-08-22T04:08:13.561Z",
-        "lastStrictVerifiedIds": [
-          "023_campus_project_budget_os_20260822"
-        ]
+        "fallbackPolicy": "Process the genuine-new current-day batch. After each strict success move immediately to the next ledger-absent item. Do not return to deferred legacy blockers while current-day quota remains.",
+        "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements debt. Generic publisher success, local logs, drafts, commits, old-item reverification, or HTTP/title-only verification does not."
       }
     }
   },
@@ -193,10 +97,9 @@
     "A paid scheduled slot that cannot reach verified publication is not discarded; it becomes paid publication debt.",
     "Paid publication debt survives date changes and PC power-off periods until buyer/reader-visible publication is verified.",
     "Previous-day paid debt must be serviced before treating the current day's paid quota as satisfied.",
-    "One run may complete multiple publications when debt exists; five per catch-up cycle is a pacing preference, not a production cap.",
+    "One run may complete multiple publications when debt exists; pacing preferences are not production caps.",
     "Do not count queue insertion, local publisher success logs, editor/admin URLs, drafts, commits, old-item reverification, or unverified pages as completed paid publications.",
     "Free note articles are an additional acquisition and validation layer, not a substitute for paid publication floors.",
-    "Free manuscript production may be batched aggressively when quality remains high.",
     "Cloud-side planning, article production, product production, encryption, build preparation, queue production and repair continue after 01:00 JST even when the Windows PC is expected to be off.",
     "Do not disable BOOTH/note cloud automation because of a recoverable publication or verification delay.",
     "If one paid candidate remains blocked, defer it and switch to another qualified candidate rather than ending a production run without progress."
