@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "updatedAt": "2026-08-22T09:13:49+09:00",
+  "status": "screenshots_ready",
+  "screenshots": [
+    {
+      "path": "store-assets/screenshot-01-home.png",
+      "size": "1440x900",
+      "scenario": "home and privacy-first value proposition"
+    },
+    {
+      "path": "store-assets/screenshot-02-loaded.png",
+      "size": "1440x900",
+      "scenario": "CSV loaded preview and cleaning options"
+    },
+    {
+      "path": "store-assets/screenshot-03-cleaned.png",
+      "size": "1440x900",
+      "scenario": "cleaned result with duplicate and blank-row counts"
+    },
+    {
+      "path": "store-assets/screenshot-04-result-detail.png",
+      "size": "1440x900",
+      "scenario": "result detail and download workflow"
+    }
+  ],
+  "captureMode": "Selenium screenshot of buyer-visible GitHub Pages PWA",
+  "publicUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
+  "functionalScenarioVerified": "4 data rows including one blank; normalization produced 2 output rows, duplicate count 1, blank count 1"
+}
