@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-08-22T03:24:10.216Z",
+  "patch": {
+    "applied": true,
+    "backup": "C:\\Users\\ryoya\\Downloads\\BOOTH_AUTO_PUBLISHER_v3_ASCII\\booth-bot.mjs.before_download_schema_fix.bak",
+    "syntax": {
+      "status": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "preflight": {
+    "status": 0,
+    "output": "[2026-08-22T03:24:11.589Z] Chromeを直接起動: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n[2026-08-22T03:24:12.329Z] プレフライト開始 010_event_risk_register_os_20260822\n[2026-08-22T03:24:15.721Z] OK 商品名\n[2026-08-22T03:24:16.809Z] OK 商品画像 1枚\n[2026-08-22T03:24:17.573Z] OK 親カテゴリを展開: ソフトウェア・ハードウェア\n[2026-08-22T03:24:18.703Z] OK 子カテゴリを選択: ソフトウェア\n[2026-08-22T03:24:19.332Z] OK 表示中のカテゴリ閉じるボタンをクリック\n[2026-08-22T03:24:19.350Z] OK カテゴリ: ソフトウェア\n[2026-08-22T03:24:19.435Z] OK 商品説明\n[2026-08-22T03:24:20.215Z] OK タグ\n[2026-08-22T03:24:20.248Z] OK 価格\n[2026-08-22T03:24:20.326Z] OK 代理購入サービス: refused\n[2026-08-22T03:24:20.329Z] 商品ZIPアップロード開始: product.zip\n[2026-08-22T03:24:22.097Z] OK file chooserへ商品ZIP設定: product.zip\n[2026-08-22T03:24:23.890Z] OK 商品ZIP: product.zip\n[2026-08-22T03:24:24.474Z] OK 商品ファイル管理モーダルを閉じました\n[2026-08-22T03:24:24.975Z] プレフライト成功：商品名・画像・カテゴリ・説明・タグ・価格・代理購入設定・商品ZIPを確認しました。"
+  },
+  "products": [
+    {
+      "expectedQueueId": "010_event_risk_register_os_20260822",
+      "status": 0,
+      "output": "[2026-08-22T03:24:26.996Z] 処理開始 010_event_risk_register_os_20260822 source=remote\n[2026-08-22T03:24:26.998Z] Chromeを直接起動: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n[2026-08-22T03:24:31.087Z] OK 商品名\n[2026-08-22T03:24:32.176Z] OK 商品画像 1枚\n[2026-08-22T03:24:32.922Z] OK 親カテゴリを展開: ソフトウェア・ハードウェア\n[2026-08-22T03:24:34.054Z] OK 子カテゴリを選択: ソフトウェア\n[2026-08-22T03:24:34.683Z] OK 表示中のカテゴリ閉じるボタンをクリック\n[2026-08-22T03:24:34.696Z] OK カテゴリ: ソフトウェア\n[2026-08-22T03:24:34.781Z] OK 商品説明\n[2026-08-22T03:24:35.556Z] OK タグ\n[2026-08-22T03:24:35.589Z] OK 価格\n[2026-08-22T03:24:35.672Z] OK 代理購入サービス: refused\n[2026-08-22T03:24:35.674Z] 商品ZIPアップロード開始: product.zip\n[2026-08-22T03:24:37.479Z] OK file chooserへ商品ZIP設定: product.zip\n[2026-08-22T03:24:39.315Z] OK 商品ZIP: product.zip\n[2026-08-22T03:24:39.896Z] OK 商品ファイル管理モーダルを閉じました\n[2026-08-22T03:24:40.393Z] PUBLISH_BEFORE_CLICK_SUMMARY buttons=カテゴリを変更 | ソフトウェア用の推奨項目* を入力する | 段落 | 埋め込みコンテンツ | 研究計画 | 先行研究 | 文献管理 | 卒論 alerts= body=（例：センシティブな内容のもの、ダウンロード販売商品、限定販売数が設定されている、シークレット公開である）\n[2026-08-22T03:24:40.449Z] PUBLISH_CONTROL_CANDIDATE index=0 text=\"公開で保存する\" disabled=false meta={\"tag\":\"BUTTON\",\"type\":null,\"name\":null,\"value\":null,\"formAction\":null,\"formMethod\":null}\n[2026-08-22T03:24:40.719Z] PUBLISH_HTTP method=PATCH status=200 url=https://manage.booth.pm/items/8746990\n[2026-08-22T03:24:40.793Z] PUBLISH_HTTP method=POST status=200 url=https://manage.booth.pm/items/8746990/variations\n[2026-08-22T03:24:46.289Z] PUBLISH_AFTER_CLICK_SUMMARY buttons=カテゴリを変更 | ソフトウェア用の推奨項目* を入力する | 段落 | 埋め込みコンテンツ | オフラインHTML | 学生団体 | リスク管理 | 安全管理 alerts= body=（例：センシティブな内容のもの、ダウンロード販売商品、限定販売数が設定されている、シークレット公開である）\n[2026-08-22T03:24:46.291Z] PUBLISH_CLICK_COMPLETED nativeDialogAccepted=false responses=[{\"method\":\"PATCH\",\"status\":200,\"url\":\"https://manage.booth.pm/items/8746990\"},{\"method\":\"POST\",\"status\":200,\"url\":\"https://manage.booth.pm/items/8746990/variations\"}] url=https://manage.booth.pm/items/8746990/edit\n[2026-08-22T03:24:46.293Z] BOOTH_SAVE_COMPLETED_AWAITING_PUBLIC_VERIFY https://manage.booth.pm/items/8746990/edit\n[2026-08-22T03:24:48.007Z] SHOP_PUBLIC_SETTING_INPUTS [{\"type\":\"checkbox\",\"name\":\"shop[open]\",\"value\":\"1\",\"checked\":true,\"disabled\":false,\"label\":\"公開する\"},{\"type\":\"checkbox\",\"name\":\"shop[pixiv_integration]\",\"value\":\"1\",\"checked\":true,\"disabled\":false,\"label\":\"pixiv関連サービスと連携する\"},{\"type\":\"checkbox\",\"name\":\"force_immediately_payment_method\",\"value\":\"0\",\"checked\":false,\"disabled\":false,\"label\":\"注文後すぐに支払済みになるお支払い方法のみを許可する\"}]\n[2026-08-22T03:24:48.037Z] SHOP_PUBLIC_SETTING currentPublic=true\n[2026-08-22T03:24:53.517Z] PUBLIC_VERIFY_BROWSER item=8746990 attempt=1 status=200 titleOk=true booth=true final=https://booth.pm/ja/items/8746990\n[2026-08-22T03:24:54.663Z] 公開完了 https://booth.pm/ja/items/8746990",
+      "verifiedBefore": 0,
+      "verifiedAfter": 0,
+      "strictVerificationTimedOut": true
+    }
+  ],
+  "final": {
+    "strictVerifiedCount": 0,
+    "targetCount": 14,
+    "complete": false,
+    "entries": [],
+    "finishedAt": "2026-08-22T03:27:32.625Z"
+  }
+}
