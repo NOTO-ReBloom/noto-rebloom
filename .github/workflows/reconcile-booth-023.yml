@@ -1,0 +1,70 @@
+name: Reconcile BOOTH 023 strict publication
+on:
+  push:
+    paths:
+      - '.github/workflows/reconcile-booth-023.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Reconcile verified 023 evidence into canonical state
+        shell: python
+        run: |
+          import json, pathlib, datetime
+          qpath=pathlib.Path('booth-autopublish/queue/index.json')
+          lpath=pathlib.Path('booth-autopublish/monitor/publication_ledger.json')
+          quota_path=pathlib.Path('sidehustle-autopublish/publication_quota.json')
+          q=json.loads(qpath.read_text(encoding='utf-8-sig'))
+          l=json.loads(lpath.read_text(encoding='utf-8-sig'))
+          quota=json.loads(quota_path.read_text(encoding='utf-8-sig'))
+          iid='023_campus_project_budget_os_20260822'
+          title='学生プロジェクト予算OS｜予算・実績・協賛・補助・予備費を一括管理｜オフラインHTML'
+          url='https://booth.pm/ja/items/8747120'
+          verified_at='2026-08-22T04:08:13.561Z'
+          if not any(x.get('queueId')==iid and x.get('publicUrlVerified') is True for x in l.get('entries',[])):
+              l.setdefault('entries',[]).append({
+                  'queueId':iid,'title':title,'boothItemId':'8747120','publicUrl':url,'publicUrlVerified':True,
+                  'verifiedAt':verified_at,
+                  'verificationEvidence':'Independent unauthenticated Node HTTPS verifier confirmed HTTP 200, exact title, expected price, downloadable-product state and purchase/cart path.',
+                  'publishMode':'windows-overlay-cleanup-v4'
+              })
+          for e in q.get('entries',[]):
+              if e.get('id')==iid:
+                  e['enabled']=False;e['forceRetry']=False;e['publicUrlVerified']=True;e['publicUrl']=url
+                  e['verificationState']='buyer_visible_verified';e['verifiedAt']=verified_at
+          now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          q['updatedAt']=now;l['updatedAt']=now
+          target_ids={f'{n:03d}_'+s for n,s in [
+            (10,'event_risk_register_os_20260822'),(11,'small_org_role_os_20260822'),(12,'sponsor_deliverables_tracker_20260822'),
+            (13,'research_interview_coding_os_20260822'),(14,'volunteer_shift_comms_os_20260822'),(15,'creator_profit_pricing_os_20260822'),
+            (16,'event_sponsor_bundle_os_20260822'),(17,'jobhunt_interview_bundle_os_20260822'),(18,'grant_application_tracker_os_20260822'),
+            (19,'event_incident_log_os_20260822'),(20,'meeting_decision_action_os_20260822'),(21,'small_npo_donor_crm_os_20260822'),
+            (22,'research_literature_matrix_os_20260822'),(23,'campus_project_budget_os_20260822')]}
+          verified=sum(1 for x in l.get('entries',[]) if x.get('queueId') in target_ids and x.get('publicUrlVerified') is True)
+          st=quota['channels']['BOOTH']['operationalState']
+          st['carriedPublicationDebt']=max(0,9-verified)
+          st['todayStrictVerifiedPublicationsCount']=max(0,min(5,verified-9))
+          st['todayRemainingToTarget']=max(0,5-st['todayStrictVerifiedPublicationsCount'])
+          st['totalVerifiedPublicationsRequiredBeforeDaySatisfied']=st['carriedPublicationDebt']+st['todayRemainingToTarget']
+          st['lastStrictVerificationAt']=verified_at
+          st['lastStrictVerifiedIds']=[iid]
+          quota['updatedAt']=now;quota['version']=int(quota.get('version',0))+1
+          qpath.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          lpath.write_text(json.dumps(l,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          quota_path.write_text(json.dumps(quota,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+      - name: Commit canonical reconciliation
+        run: |
+          if git diff --quiet -- booth-autopublish/queue/index.json booth-autopublish/monitor/publication_ledger.json sidehustle-autopublish/publication_quota.json; then exit 0; fi
+          git config user.name 'booth-reconcile-023'
+          git config user.email 'actions@users.noreply.github.com'
+          git add booth-autopublish/queue/index.json booth-autopublish/monitor/publication_ledger.json sidehustle-autopublish/publication_quota.json
+          git commit -m 'Reconcile strict BOOTH 023 publication'
+          git pull --rebase origin main
+          git push origin HEAD:main
