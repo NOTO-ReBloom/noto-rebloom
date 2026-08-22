@@ -50,7 +50,7 @@ jobs:
             try{
               const r=await page.goto(u,{waitUntil:'domcontentloaded',timeout:30000});
               if(!r||r.status()!==200) continue;
-              await page.waitForTimeout(1600);
+              await page.waitForTimeout(1200);
               const links=await page.locator('a[href*="/n/"]').evaluateAll(as=>as.map(a=>({href:a.href,text:(a.textContent||'').replace(/\s+/g,' ').trim(),context:(a.closest('article,li,section,div')?.textContent||'').replace(/\s+/g,' ').trim()})));
               for(const x of links){if(/^https:\/\/note\.com\/royal_lion645\/n\/n[a-zA-Z0-9]+/.test(x.href)) candidates.set(x.href.split('?')[0],x);}
             }catch{}
@@ -65,7 +65,7 @@ jobs:
             if(!found) continue;
             const url=found[0];
             try{
-              const r=await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000}); await page.waitForTimeout(1600);
+              const r=await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000}); await page.waitForTimeout(1200);
               const status=r?.status()||0; const body=norm(await page.locator('body').innerText());
               const titleOk=body.includes(nt);
               const paidSignals=/購入して続きをみる|購入手続き|有料記事|この記事を購入|¥\s*[0-9]|￥\s*[0-9]/.test(body);
@@ -80,18 +80,21 @@ jobs:
             }catch(e){console.log('FREE_NOTE_VERIFY_ERROR',item.id,String(e));}
           }
           await browser.close();
-          ledger.version=1; ledger.updatedAt=new Date().toISOString(); ledger.entries=[...existing.values()];
-          fs.writeFileSync(ledgerPath,JSON.stringify(ledger,null,2)+'\n');
-          q.updatedAt=new Date().toISOString(); fs.writeFileSync(queuePath,JSON.stringify(q,null,2)+'\n');
-          console.log('FREE_NOTE_VERIFY_DONE newly='+newly+' total='+ledger.entries.length);
+          if(newly>0){
+            const now=new Date().toISOString();
+            ledger.version=1; ledger.updatedAt=now; ledger.entries=[...existing.values()];
+            fs.writeFileSync(ledgerPath,JSON.stringify(ledger,null,2)+'\n');
+            q.updatedAt=now; fs.writeFileSync(queuePath,JSON.stringify(q,null,2)+'\n');
+          }
+          console.log('FREE_NOTE_VERIFY_DONE newly='+newly+' total='+existing.size);
           NODE
           node /tmp/verify-free-note.mjs
-      - name: Commit independent verification results
+      - name: Commit only newly verified publications
         run: |
           git config user.name 'note-free-verifier'
           git config user.email 'actions@users.noreply.github.com'
-          git add sidehustle-autopublish/note/free_queue/index.json sidehustle-autopublish/note/free_publication_ledger.json
-          if git diff --cached --quiet; then exit 0; fi
+          git add sidehustle-autopublish/note/free_queue/index.json sidehustle-autopublish/note/free_publication_ledger.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo 'No newly verified free NOTE publication; no commit.'; exit 0; fi
           git commit -m 'Record reader-visible free NOTE publications'
           git pull --rebase origin main
           git push origin HEAD:main
