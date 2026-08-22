@@ -1,66 +1,46 @@
 {
-  "version": 5,
-  "checkedAt": "2026-08-22T01:32:00+09:00",
-  "status": "cloud_preparation_required",
-  "reason": "The current BOOTH queue has no enabled new-publication candidate. 001_interview_os is held because historical Windows state already proved it buyer-visible; 007 was already counted once; 009 is deferred after repeated strict failures. Current paid debt therefore requires materializing a genuinely new qualified candidate rather than retrying an old item.",
+  "version": 6,
+  "checkedAt": "2026-08-22T09:15:00+09:00",
+  "status": "windows_publication_recovery_active",
+  "reason": "Fourteen genuinely new BOOTH products 010-023 are fully materialized, encrypted, QA-passed, enabled and force-retry refreshed. The stale no-enabled-candidate state is retired.",
   "quota": {
     "dailyPublicTarget": 5,
-    "previousDayStrictVerifiedPublicationsCount": 0,
     "carriedPublicationDebt": 9,
     "todayStrictVerifiedPublicationsCount": 0,
     "todayRemainingToTarget": 5,
     "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 14,
-    "debtRule": "Only a newly published buyer-visible BOOTH page verified for URL, exact title, expected price, downloadable-product state and purchase path decrements debt."
+    "debtRule": "Only newly buyer-visible verified BOOTH pages with exact title, expected price, downloadable-product state and purchase/cart path decrement debt."
   },
   "queue": {
-    "rawEnabledCount": 0,
-    "effectiveNewPublicationCount": 0,
-    "retryGeneration": 28,
+    "rawEnabledCount": 14,
+    "effectiveNewPublicationCount": 14,
+    "retryGeneration": 31,
+    "firstReady": "010_event_risk_register_os_20260822",
+    "lastReady": "023_campus_project_budget_os_20260822",
     "heldAlreadyPublished": "001_interview_os",
     "heldAlreadyCounted": "007_thesis_progress_os_20260820",
     "deferredLegacy": "009_handover_os_20260820"
   },
+  "production": {
+    "materializedManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
+    "completeProducts": 14,
+    "encryptedPayloads": true,
+    "queueIntegrityShaRecorded": true,
+    "previewImagesPresent": true,
+    "downloadZipPresent": true
+  },
   "publicationLedger": {
     "canonicalPath": "booth-autopublish/monitor/publication_ledger.json",
+    "newBatchStrictVerifiedCount": 0,
     "historicalReverificationDoesNotReduceCurrentDebt": true
   },
   "recovery": {
-    "activeQueueId": null,
-    "nextPaidMaterializationCandidate": "event_risk_register_os",
-    "requiredBuild": [
-      "complete downloadable product",
-      "product description",
-      "preview images",
-      "price",
-      "encrypted payload",
-      "queue integrity SHA"
-    ],
-    "requiredBuyerChecks": [
-      "buyerVisibleUrl",
-      "exact title",
-      "price",
-      "downloadable product state",
-      "purchase/cart path"
-    ],
-    "fallbackCandidates": [
-      "event_risk_register_os",
-      "small_org_role_os",
-      "sponsor_deliverables_tracker",
-      "research_interview_coding_os",
-      "volunteer_shift_comms_os",
-      "creator_profit_pricing_os",
-      "event_sponsor_bundle",
-      "jobhunt_interview_bundle"
-    ],
+    "mode": "process_all_enabled_new_items",
+    "requiredBuyerChecks": ["buyerVisibleUrl","exact title","expected price","downloadable product state","purchase/cart path"],
+    "switchAfterRecoverableFailure": true,
+    "doNotStopAfterFirstSuccess": true,
     "userActionRequired": false,
     "userOnlyBlockerEvidence": null
   },
-  "pcAssumption": "After 01:00 JST do not assume the Windows publisher is available. Preserve debt and continue cloud-side preparation until the next PC-available recovery window.",
-  "actionsCompletedThisRun": [
-    "reconciled stale pipeline health with publication_quota.json, queue/index.json and recovery_control.json",
-    "removed obsolete claim that 009 is the sole enabled queue item",
-    "preserved all paid publication debt",
-    "confirmed no evidence of re-login, 2FA, CAPTCHA, identity verification, legal declaration, payment/tax setup or OS-permission blocker"
-  ],
-  "nextPriority": "Materialize event_risk_register_os as a genuinely new qualified BOOTH product; if it cannot be prepared, move to the next distinct fallback instead of returning immediately to 009."
+  "nextPriority": "Windows consumer must process 010-023 continuously and strict verifier must reconcile any buyer-visible pages. Do not rematerialize or return to legacy 009 unless the complete new batch has been attempted."
 }
