@@ -1,26 +1,116 @@
 {
-  "version": 9,
-  "updatedAt": "2026-08-22T11:46:00+09:00",
-  "purpose": "Debt-first execution backlog plus evidence-gated note funnel and Store submission.",
-  "evidenceLimit": "No current first-party note funnel conversion or sales metrics are recorded; no theme is a proven winner.",
+  "version": 10,
+  "updatedAt": "2026-08-22T17:46:40+09:00",
+  "purpose": "Evidence-gated execution backlog after today's paid publication floors were strictly satisfied.",
+  "evidenceLimit": "No current first-party note funnel PV, likes, follows, related-paid clicks, related-paid purchases or revenue are recorded; no theme is a proven winner.",
   "hardFloorSnapshot": {
-    "note": {"carriedDebt":0,"todayTarget":5,"todayStrictVerified":5,"remaining":0},
-    "BOOTH": {"carriedDebt":9,"todayTarget":5,"todayStrictVerified":0,"remaining":14,"readyPaidCandidateCount":14},
-    "source":"publication_quota.json updated 2026-08-22T11:28:16.226+09:00"
+    "source": "sidehustle-autopublish/publication_quota.json updated 2026-08-22T04:09:12.990507+00:00",
+    "note": {"carriedDebt": 0, "todayTarget": 5, "todayStrictVerified": 5, "remaining": 0},
+    "BOOTH": {"carriedDebt": 0, "todayTarget": 5, "todayStrictVerified": 5, "remaining": 0},
+    "rule": "Do not manufacture debt after strict verification; free note output never substitutes for paid floors."
   },
   "executionBacklog": [
-    {"rank":1,"channel":"BOOTH","type":"paid_debt_batch","ids":["010_event_risk_register_os_20260822","011_small_org_role_os_20260822","012_sponsor_deliverables_tracker_20260822","013_research_interview_coding_os_20260822","014_volunteer_shift_comms_os_20260822","015_creator_profit_pricing_os_20260822","016_event_sponsor_bundle_os_20260822","017_jobhunt_interview_bundle_os_20260822","018_grant_application_tracker_os_20260822","019_event_incident_log_os_20260822","020_meeting_decision_action_os_20260822","021_small_npo_donor_crm_os_20260822","022_research_literature_matrix_os_20260822","023_campus_project_budget_os_20260822"],"nextAction":"At first Windows-available session process every ledger-absent item, continuing after recoverable per-item failures. Count only buyer-visible URL + exact title + price + downloadable-product state + purchase path."},
-    {"rank":2,"channel":"note","type":"free_acquisition_initial_pair","items":[{"id":"free_note_20260822_02_sponsor_followup_timing","pairedPaidId":"note_20260821_07_event_sponsor_followup","state":"complete_manuscript_queued_unverified"},{"id":"free_note_20260822_05_thesis_weekly_review","pairedPaidId":"note_20260821_10_thesis_weekly_review","state":"complete_manuscript_queued_unverified"}],"nextAction":"Publish the initial two free acquisition tests. Add at most one context-matched paid CTA only after the paired paid URL is independently reader-visible verified; otherwise publish without guessed CTA."},
-    {"rank":3,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"Resolve only the minimum Partner Center identity step if still required, generate final package/screenshots and submit; persist live Store URL and acquisition instrumentation after publication."},
-    {"rank":4,"channel":"note","type":"free_acquisition_hold","ids":["free_note_20260822_06_es_interview_consistency","free_note_20260822_01_student_org_bus_factor","free_note_20260822_04_role_design_three_owners","free_note_20260822_03_digital_product_pricing_myths"],"nextAction":"Hold as experiment buffer until initial pair has comparable 24h evidence; do not flood all six at once."},
-    {"rank":5,"channel":"GitHubPages","type":"measurement_support","nextAction":"Instrument existing sponsor/thesis/job-hunt/CSV surfaces and add only verified context-matched destinations; do not create name-only variants."}
+    {
+      "rank": 1,
+      "channel": "note",
+      "type": "free_acquisition_initial_pair_publication",
+      "items": [
+        {
+          "id": "free_note_20260822_02_sponsor_followup_timing",
+          "title": "協賛提案を送った後、いつ連絡する？｜48時間・7日・14日のフォローアップ目安",
+          "pairedPaidId": "note_20260821_07_event_sponsor_followup",
+          "verifiedPaidUrl": "https://note.com/royal_lion645/n/n6219f5ba167f"
+        },
+        {
+          "id": "free_note_20260822_05_thesis_weekly_review",
+          "title": "卒論が進まない週に確認したい5つの質問｜30分で次の一手を決める週次レビュー",
+          "pairedPaidId": "note_20260821_10_thesis_weekly_review",
+          "verifiedPaidUrl": "https://note.com/royal_lion645/n/n35b37f148b63"
+        }
+      ],
+      "nextAction": "Publish both as the day-1 acquisition cohort. Each must remain standalone useful and may include only its one verified context-matched paid CTA. Strictly verify reader-visible URL, exact title, free state and dedicated cover."
+    },
+    {
+      "rank": 2,
+      "channel": "note",
+      "type": "paid_manuscript_buffer_for_next_floor",
+      "items": [
+        {
+          "id": "note_20260823_17_sponsor_deliverables",
+          "workingTitle": "協賛は契約後に事故る｜ロゴ掲載・SNS・報告・送付物を漏らさない履行管理の実務設計",
+          "pairedBoothId": "012_sponsor_deliverables_tracker_20260822"
+        },
+        {
+          "id": "note_20260823_18_event_incident_response",
+          "workingTitle": "イベントのヒヤリハットを『反省』で終わらせない｜初動・記録・再発防止を残す事故対応フロー",
+          "pairedBoothId": "019_event_incident_log_os_20260822"
+        },
+        {
+          "id": "note_20260823_19_grant_tracker",
+          "workingTitle": "助成金申請は締切だけ見ても管理できない｜書類・証憑・報告期限まで一気通貫で追う方法",
+          "pairedBoothId": "018_grant_application_tracker_20260822"
+        },
+        {
+          "id": "note_20260823_20_meeting_decision_log",
+          "workingTitle": "会議が終わるたび仕事が曖昧になる｜決定・保留・担当・期限をその場で固定する運営ルール",
+          "pairedBoothId": "020_meeting_decision_action_os_20260822"
+        },
+        {
+          "id": "note_20260823_21_literature_matrix",
+          "workingTitle": "先行研究を読んでも卒論につながらない人へ｜目的・方法・結果・限界を横断比較する文献整理法",
+          "pairedBoothId": "022_research_literature_matrix_os_20260822"
+        }
+      ],
+      "nextAction": "Cloud-batch complete all five paid manuscripts as a separate paid inventory for the next daily floor. Include deep implementation, reusable workflow value and dedicated cover specs. Do not publish them merely to increase volume if a future paid floor is already satisfied."
+    },
+    {
+      "rank": 3,
+      "channel": "MicrosoftStore",
+      "id": "ms_csv_cleaner_deduper",
+      "type": "submission_completion",
+      "nextAction": "Complete every non-human submission prerequisite. Latest repository metrics still show Partner Center identity reservation, required Store screenshots and certification submission incomplete; avoid derivative app work until the live listing exists."
+    },
+    {
+      "rank": 4,
+      "channel": "note",
+      "type": "free_manuscript_buffer_hold",
+      "items": [
+        {
+          "workingTitle": "協賛で約束した対価を忘れないために｜契約直後に確認したい5項目",
+          "futurePaidId": "note_20260823_17_sponsor_deliverables"
+        },
+        {
+          "workingTitle": "助成金の締切管理で抜けやすい4つの期限｜申請後まで見落とさないチェック",
+          "futurePaidId": "note_20260823_19_grant_tracker"
+        }
+      ],
+      "nextAction": "Complete manuscripts if cloud capacity remains, but hold publication until the initial two free articles have comparable 24h evidence. The 2/day free cadence is an experiment, not a hard quota."
+    },
+    {
+      "rank": 5,
+      "channel": "GitHubPages",
+      "type": "measurement_support",
+      "nextAction": "Prefer instrumentation and verified context-matched links on existing sponsor, thesis, job-hunt and CSV surfaces. Do not create name-only variants without evidence."
+    }
   ],
-  "noteFactoryBatchAfterImmediateQueue": [
-    {"kind":"free","workingTitle":"協賛金額を決める前に整理したい5つのこと｜企業が社内説明しやすい提案の土台","pairedPaidId":"note_20260822_14_sponsor_menu_design"},
-    {"kind":"free","workingTitle":"イベントを中止するか迷ったとき最初に見る4条件｜雨・警報・交通・会場を分けて考える","pairedPaidId":"note_20260822_12_event_cancel_decision"},
-    {"kind":"free","workingTitle":"卒論インタビューの発言をまとめる前に｜コード化で迷いやすい4つのポイント","pairedPaidId":"note_20260822_15_research_interview_coding"},
-    {"kind":"free","workingTitle":"企業研究で集めるだけになっていない？｜ESにつながる情報と不要な情報の分け方","pairedPaidId":"note_20260822_16_jobhunt_company_research"}
+  "freeQueueHold": [
+    "free_note_20260822_06_es_interview_consistency",
+    "free_note_20260822_01_student_org_bus_factor",
+    "free_note_20260822_04_role_design_three_owners",
+    "free_note_20260822_03_digital_product_pricing_myths"
   ],
-  "noteMeasurementPlan": {"windows":["24h","72h","7d"],"metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"rule":"Compare only equal post-publication windows. Missing values stay unknown. Paid sales trigger adjacent free satellites; free traffic without paid movement triggers CTA/value testing before more paid derivatives; no traffic/engagement triggers deprioritization."},
-  "rules": ["Free note publications never replace paid debt/floor.","Paid debt does not stop free manuscript production.","Do not invent conversion data.","Do not clone low-signal themes or cosmetic Store variants."]
+  "noteMeasurementPlan": {
+    "windows": ["24h", "72h", "7d"],
+    "metrics": ["PV", "likes", "follows", "related paid clicks", "related paid purchases", "revenue"],
+    "rule": "Compare only equal post-publication windows. Missing values stay unknown. Paid sales trigger adjacent free satellites; free traffic without paid movement triggers CTA/value testing before more paid derivatives; no traffic/engagement triggers deprioritization."
+  },
+  "rules": [
+    "Previous-day paid debt outranks every discretionary task when debt exists.",
+    "Current paid quota outranks free funnel work when the paid floor is not yet satisfied.",
+    "Free note publications never replace paid debt/floor.",
+    "Paid debt does not stop free manuscript production.",
+    "Do not invent conversion data.",
+    "Do not clone low-signal themes or cosmetic Store variants.",
+    "When today's paid floors are already satisfied, prioritize measurable funnel creation and tomorrow's paid manuscript buffer over unnecessary extra publication."
+  ]
 }
