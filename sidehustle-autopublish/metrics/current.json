@@ -1,92 +1,91 @@
 {
-  "version": 5,
-  "updatedAt": "2026-08-23T06:25:47+09:00",
+  "version": 6,
+  "updatedAt": "2026-08-23T10:07:00+09:00",
   "objective": "maximize total sales while enforcing verified-publication hard minimums and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
     "notePaidReceipts": "sidehustle-autopublish/note/publication_receipts/",
-    "noteFreeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
+    "noteMaterialization": "sidehustle-autopublish/note/staging/materialization_20260823_batch01.json",
     "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
-    "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
-    "insightLedger": "insights/publication_ledger.json",
+    "boothMaterialization": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json",
     "microsoftStoreQualityGate": "sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/quality_gate.json"
   },
   "channels": {
     "note": {
-      "status": "active",
+      "status": "active_paid_floor_first",
       "paid": {
         "date": "2026-08-23",
         "dailyTarget": 5,
         "strictVerifiedToday": 0,
         "carriedDebt": 0,
         "remainingToTarget": 5,
-        "evidence": "No 2026-08-23 paid NOTE publication receipt or queue publication verification was found in the current GitHub state; 2026-08-22 closed with five strict publications and zero debt.",
-        "preparedCloudInventory": "sidehustle-autopublish/note/paid_drafts/2026-08-23_batch01.md",
-        "preparedCloudInventoryCount": 5,
+        "materializedToday": 5,
+        "queueMaterialized": true,
+        "dedicatedCoversReady": 5,
+        "requiredIds": [
+          "note_20260823_17_sponsor_deliverables",
+          "note_20260823_18_event_incident_response",
+          "note_20260823_19_grant_tracker",
+          "note_20260823_20_meeting_decision_log",
+          "note_20260823_21_literature_matrix"
+        ],
+        "evidence": "No 2026-08-23 paid NOTE publication receipt exists yet. All five encrypted payloads and dedicated 1280x670 covers are materialized and queue-enabled.",
         "completionChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
       },
       "free": {
-        "requiredBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
-        "requiredBatchCount": 6,
-        "requiredBatchStrictVerifiedCount": 6,
-        "completionChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
-        "rule": "Free note publications do not decrement paid debt."
+        "status": "deferred_until_paid_5_plus_5_complete",
+        "rule": "Free note publications do not decrement paid debt and are not a normal production priority before both paid floors are 5/5."
       }
     },
     "BOOTH": {
-      "status": "active",
+      "status": "active_paid_floor_first",
       "date": "2026-08-23",
       "dailyTarget": 5,
       "strictVerifiedToday": 0,
       "carriedDebt": 0,
       "remainingToTarget": 5,
-      "evidence": "Canonical BOOTH ledger contains strict buyer-visible publications through 2026-08-22 and no 2026-08-23 publication entry as of this check.",
+      "materializedToday": 5,
+      "queueMaterialized": true,
+      "requiredIds": [
+        "024_grant_evidence_expense_os_20260823",
+        "025_event_decision_authority_os_20260823",
+        "026_research_claim_evidence_os_20260823",
+        "027_sponsor_contact_history_os_20260823",
+        "028_team_backup_coverage_os_20260823"
+      ],
+      "evidence": "Canonical BOOTH ledger contains no 2026-08-23 strict publication. Cloud materialization confirms five encrypted payload ZIPs passed QA and are queued. Recovery control now excludes legacy 009 until the current-day floor is cleared.",
       "completionChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
     "GitHubPages": {
-      "status": "active",
-      "requiredInsightBatchVerifiedCount": 6,
-      "requiredInsightBatchTarget": 6,
-      "verifiedLedger": "insights/publication_ledger.json"
+      "status": "new_work_deferred_until_paid_5_plus_5_complete"
     },
     "MicrosoftStore": {
-      "status": "highest_quality_submission_ready_except_partner_center_identity_and_human_submission",
+      "status": "quality_gate_submission_ready_maintenance_only",
       "appId": "ms_csv_cleaner_deduper",
-      "productNameCandidate": "CSV Cleaner & Duplicate Remover",
-      "publicPwaVerified": true,
-      "requiredPngScreenshotGenerated": true,
-      "partnerCenterProductIdentityReserved": false,
-      "submittedForCertification": false,
-      "publicStoreUrlVerified": false,
-      "certificationCompleted": false,
-      "remainingExternalSteps": [
-        "Partner Center product-name/identity reservation",
-        "final package generation using actual Partner Center identity",
-        "screenshot/package upload and certification submission"
-      ]
+      "doNotConsumePaidRecoveryCapacity": true
     },
     "AmazonKDP": {"status": "disabled"},
     "LINECreatorsMarket": {"status": "disabled"}
   },
   "monitor": {
-    "checkedAt": "2026-08-23T06:25:47+09:00",
-    "recoverableInconsistenciesReconciled": [
-      "Rolled metrics/current.json from the completed 2026-08-22 paid-floor snapshot to the 2026-08-23 strict-ledger state.",
-      "Preserved previous-day note and BOOTH debt at zero because 2026-08-22 strict targets were satisfied.",
-      "Kept the six required free NOTE cross-posts and six GitHub Pages insight publications as separately verified acquisition assets without counting either against paid floors."
-    ],
-    "staleSourceWarning": "publication_quota.json still carries a 2026-08-22 operationalState snapshot; do not treat that stale date as 2026-08-23 completion. Current-day completion must be reconciled only from strict ledgers/receipts.",
-    "gmail": {
-      "queryWindow": "newer_than:1d",
-      "newRelevantSalesReviewCertificationPayoutMessagesFound": 0
+    "checkedAt": "2026-08-23T10:07:00+09:00",
+    "currentDayPaidFloor": {
+      "note": "0/5 strict verified; 5/5 materialized",
+      "BOOTH": "0/5 strict verified; 5/5 materialized"
     },
-    "salesObservation": "No new relevant sales, order, payout, review, certification, warning or support email was found in the connected Gmail search. Missing platform-native sales metrics remain unknown and are not zero-filled."
+    "cloudRepairsApplied": [
+      "Reconciled publication_quota.json to the actual completed NOTE and BOOTH materialization state.",
+      "Replaced stale BOOTH recovery_control batch with the five genuine-new 2026-08-23 items and queue retry generation 33.",
+      "Updated completion_gate.json so current-day paid 5+5 is explicitly ahead of free work, new paid candidates and legacy blockers."
+    ],
+    "humanOnlyBlocker": null
   },
   "rules": [
     "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
     "Do not reduce paid publication floors or erase debt without strict public verification.",
-    "Free content never discharges paid publication debt.",
-    "Do not reactivate KDP or LINE without explicit user instruction."
+    "Do not count queue insertion, commit, local publisher success, editor/admin URL, or old-item reverification as current-day publication.",
+    "Do not create normal-priority free or new paid inventory while either 2026-08-23 paid floor remains below 5/5."
   ]
 }
