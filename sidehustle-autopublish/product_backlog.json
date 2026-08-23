@@ -1,175 +1,37 @@
 {
-  "version": 17,
-  "updatedAt": "2026-08-23T23:45:00+09:00",
-  "purpose": "Evidence-gated execution backlog preserving paid floors/debt while building measurable free-to-paid funnels.",
-  "evidenceLimit": "The earliest free-note cohort has passed the comparable 24h age gate, but platform-native note PV/likes/follows/related-paid-click/purchase/revenue metrics are still unavailable in authoritative state. No theme is a proven revenue winner or loser. Missing values remain unknown and are not inferred from publication visibility.",
+  "version": 18,
+  "updatedAt": "2026-08-24T05:45:00+09:00",
+  "purpose": "Execution backlog preserving paid floors/debt while building measurable free-to-paid funnels.",
+  "evidenceLimit": "Platform-native note PV/likes/follows/related-paid-click/purchase/revenue metrics remain unavailable in authoritative state. No theme is a proven revenue winner or loser; missing values remain unknown.",
   "hardFloorSnapshot": {
-    "previousDay": {
-      "note": {"target": 5, "strictVerified": 5, "debt": 0},
-      "BOOTH": {"target": 5, "strictVerified": 5, "debt": 0}
-    },
-    "today": {
-      "date": "2026-08-23",
-      "noteTarget": 5,
-      "noteStrictVerified": 5,
-      "noteRemaining": 0,
-      "BOOTHTarget": 5,
-      "BOOTHStrictVerified": 0,
-      "BOOTHRemaining": 5,
-      "freeNoteExperimentalTarget": 2,
-      "freeNoteStrictVerified": 0
-    },
-    "rollover": "Any 2026-08-23 BOOTH miss remains paid publication debt on 2026-08-24 until strict buyer-visible verification.",
+    "date": "2026-08-24",
+    "note": {"carriedDebt":0,"todayPaidFloor":5,"strictVerifiedToday":0,"totalRemaining":5},
+    "BOOTH": {"carriedDebtFrom20260823":5,"todayPaidFloor":5,"strictVerifiedToday":0,"totalRemaining":10},
+    "freeNote": {"experimentalTarget":2,"hardQuota":false,"paidQuotaContribution":0},
     "rule": "Free note output never substitutes for paid publication floors or debt."
   },
-  "winnerAmplificationSnapshot": {
-    "checkedAt": "2026-08-23T23:45:00+09:00",
-    "noteFunnel": {
-      "sourceStrategy": "sidehustle-autopublish/note/funnel_strategy.json",
-      "pairEvaluationUnit": "free article + related paid article",
-      "PV24h72h7d": null,
-      "likes24h72h7d": null,
-      "follows24h72h7d": null,
-      "paidOutboundClicks24h72h7d": null,
-      "relatedPaidPurchases24h72h7d": null,
-      "revenue24h72h7d": null,
-      "decision": "Do not label any note theme a revenue winner/loser, change price or CTA, or clone derivatives until comparable first-party values exist."
-    },
-    "MicrosoftStore": {
-      "candidate": "ms_csv_cleaner_deduper",
-      "liveListingVerified": false,
-      "acquisitions": null,
-      "storePageViews": null,
-      "CVR": null,
-      "retention": null,
-      "decision": "Complete submission prerequisites after paid-floor-critical work; do not create cosmetic derivatives before live evidence."
-    },
-    "BOOTH": {
-      "sales": null,
-      "conversion": null,
-      "decision": "Today's five-item paid floor remains 0/5 strict verified and outranks speculative bundle/winner expansion."
-    },
-    "GitHubPages": {
-      "pageViews": null,
-      "outboundClicks": null,
-      "conversion": null,
-      "decision": "No measured page-level winner is available."
-    }
-  },
   "executionBacklog": [
-    {
-      "rank": 1,
-      "channel": "BOOTH",
-      "type": "paid_floor_recovery_and_rollover_debt",
-      "items": [
-        "024_grant_evidence_expense_os_20260823",
-        "025_event_decision_authority_os_20260823",
-        "026_research_claim_evidence_os_20260823",
-        "027_sponsor_contact_history_os_20260823",
-        "028_team_backup_coverage_os_20260823"
-      ],
-      "nextAction": "Strict-verify all five buyer-visible pages. On recoverable failure, hold that item briefly, switch to another current-day item, then return. If date rollover occurs first, preserve every miss as paid debt and service it before discretionary work."
-    },
-    {
-      "rank": 2,
-      "channel": "note",
-      "type": "2026-08-24_paid_floor_batch_production",
-      "items": [
-        "note_20260824_22_ai_ops_audit",
-        "note_20260824_23_sponsor_report_kpi",
-        "note_20260824_24_event_emergency_comms",
-        "note_20260824_25_research_claim_audit",
-        "note_20260824_26_digital_product_offer_design"
-      ],
-      "nextAction": "Create complete paid manuscripts, dedicated covers, QA, encryption and queue-ready payloads. These are a balanced exploration batch across distinct practical clusters because no first-party note winner is yet proven. Do not turn them into cosmetic variants of recent titles."
-    },
-    {
-      "rank": 3,
-      "channel": "note",
-      "type": "free_acquisition_publish_and_verify_after_paid_critical_recovery",
-      "items": [
-        {
-          "id": "free_note_20260823_01_sponsor_after_yes",
-          "pairedPaidId": "note_20260823_17_sponsor_deliverables",
-          "title": "協賛が決まった直後に確認したい6項目｜入金だけで終わらせない最初のチェック"
-        },
-        {
-          "id": "free_note_20260823_02_grant_deadline_reverse_plan",
-          "pairedPaidId": "note_20260823_19_grant_tracker",
-          "title": "助成金の締切から逆算すると何日前に何をする？｜申請直前に詰まらない5段階チェック"
-        }
-      ],
-      "nextAction": "Both manuscripts already exist. Publish and strict-verify after paid-floor-critical BOOTH recovery is safe. Free publication remains separate from paid debt."
-    },
-    {
-      "rank": 4,
-      "channel": "note",
-      "type": "future_free_draft_batch_for_cloud_efficiency",
-      "items": [
-        {
-          "title": "AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック",
-          "pairedPaidId": "note_20260824_22_ai_ops_audit"
-        },
-        {
-          "title": "協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること",
-          "pairedPaidId": "note_20260824_23_sponsor_report_kpi"
-        }
-      ],
-      "nextAction": "Drafting may be batched cloud-side after the existing two free articles are safe, but do not raise publication cadence or count these toward paid quota. Preserve one verified exact-intent paid CTA maximum per free article."
-    },
-    {
-      "rank": 5,
-      "channel": "note",
-      "type": "matured_24h_equal_age_funnel_measurement_waiting_for_first_party_values",
-      "metrics": ["PV", "likes", "follows", "related paid clicks", "related paid purchases", "revenue"],
-      "nextAction": "Capture actual first-party article-level values when accessible. Compare only equal-age 24h/72h/7d windows. Missing values remain null."
-    },
-    {
-      "rank": 6,
-      "channel": "MicrosoftStore",
-      "id": "ms_csv_cleaner_deduper",
-      "type": "submission_completion",
-      "nextAction": "After paid-floor-critical BOOTH recovery and next paid note batch preparation are safe, complete every non-human submission prerequisite possible without inventing Partner Center identity."
-    },
-    {
-      "rank": 7,
-      "channel": "GitHubPages",
-      "type": "measurement_support",
-      "nextAction": "Improve attribution and verified context-matched outbound links on already-useful surfaces; do not create thin SEO pages merely to raise publication count."
-    }
+    {"rank":1,"channel":"BOOTH","type":"carried_paid_debt","items":["024_grant_evidence_expense_os_20260823","025_event_decision_authority_os_20260823","026_research_claim_evidence_os_20260823","027_sponsor_contact_history_os_20260823","028_team_backup_coverage_os_20260823"],"nextAction":"Strict-verify all five buyer-visible pages. Switch past brief recoverable failures and return later; every unverified item remains debt."},
+    {"rank":2,"channel":"note","type":"2026-08-24_paid_floor_complete_batch","items":["note_20260824_22_ai_ops_audit","note_20260824_23_sponsor_report_kpi","note_20260824_24_event_emergency_comms","note_20260824_25_research_claim_audit","note_20260824_26_digital_product_offer_design"],"nextAction":"Create five complete paid manuscripts with dedicated covers, QA, encryption and queue-ready payloads, then strict-publish/verify. This is the exact next note factory set."},
+    {"rank":3,"channel":"BOOTH","type":"2026-08-24_current_paid_floor","items":[],"nextAction":"Materialize five genuine-new current-day paid products after carried debt recovery path is safe; do not substitute legacy blockers or old reverification."},
+    {"rank":4,"channel":"note","type":"free_acquisition_publish_set","items":[{"id":"free_note_20260823_01_sponsor_after_yes","pairedPaidId":"note_20260823_17_sponsor_deliverables"},{"id":"free_note_20260823_02_grant_deadline_reverse_plan","pairedPaidId":"note_20260823_19_grant_tracker"}],"nextAction":"Publish and strict-verify after paid-critical recovery is safe. These are standalone-useful acquisition assets and contribute zero to paid quota."},
+    {"rank":5,"channel":"note","type":"cloud_batch_future_free_companions","items":[{"title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit"},{"title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi"}],"nextAction":"May be drafted in the same cloud batch for efficiency, but do not increase free publication cadence or count them toward paid floor/debt."},
+    {"rank":6,"channel":"note","type":"equal_age_funnel_measurement","metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"windows":["24h","72h","7d"],"nextAction":"Capture actual first-party values when accessible and compare only equal-age windows; keep nulls null."},
+    {"rank":7,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"After paid-critical work is safe, complete every non-human submission prerequisite possible without inventing Partner Center identity or demand."},
+    {"rank":8,"channel":"GitHubPages","type":"measurement_support","nextAction":"Improve attribution and verified context-matched outbound links on useful existing surfaces; no thin SEO pages."}
   ],
-  "winnerCandidates": [],
-  "amplificationDecision": {
-    "createdDerivativeThisRun": false,
-    "reason": "No channel has sufficient first-party performance evidence to justify winner amplification without speculation.",
-    "riskAvoided": "Prevents low-quality copy proliferation, false winner declarations, CTA/price churn without evidence, and Store-policy-risk cosmetic duplicates."
-  },
   "nextNoteFactoryConcreteSet": {
-    "paid": [
-      "note_20260824_22_ai_ops_audit",
-      "note_20260824_23_sponsor_report_kpi",
-      "note_20260824_24_event_emergency_comms",
-      "note_20260824_25_research_claim_audit",
-      "note_20260824_26_digital_product_offer_design"
-    ],
-    "freePublishFirst": [
-      "free_note_20260823_01_sponsor_after_yes",
-      "free_note_20260823_02_grant_deadline_reverse_plan"
-    ],
-    "freeDraftLater": [
-      "AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック",
-      "協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること"
-    ],
-    "instruction": "Next note-focused factory pass should produce the complete five-item 2026-08-24 paid batch, while preserving the already-complete two-item free publication set. Any new free drafting is secondary and never substitutes for paid floor/debt."
+    "paidCompleteNow": ["note_20260824_22_ai_ops_audit","note_20260824_23_sponsor_report_kpi","note_20260824_24_event_emergency_comms","note_20260824_25_research_claim_audit","note_20260824_26_digital_product_offer_design"],
+    "freePublishAfterPaidCritical": ["free_note_20260823_01_sponsor_after_yes","free_note_20260823_02_grant_deadline_reverse_plan"],
+    "freeDraftIfBatchCapacityRemains": ["AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること"],
+    "instruction": "Paid and free drafts may be cloud-batched for efficiency, but execution priority and accounting remain separate: carried paid debt first, current paid floor second, free funnel third."
   },
+  "winnerCandidates": [],
   "rules": [
-    "Previous-day paid debt outranks all discretionary work when debt exists.",
-    "Current-day paid quota outranks free funnel publishing and Microsoft Store discretionary work.",
-    "Free manuscript production or publication never replaces paid debt/floor.",
-    "Evaluate note demand using free+paid pairs and compare funnel performance only at equal 24h/72h/7d post-publication age.",
-    "A strong free signal alone is a demand signal, not proof of revenue-winning status.",
-    "Strong free response with weak paid conversion requires CTA/value-gap/price/theme-match optimization before derivative production.",
-    "Weak free and paid response means do not amplify that theme.",
+    "Previous-day paid debt outranks all discretionary work.",
+    "Current-day paid quota outranks free funnel publishing and Microsoft Store work.",
+    "Free production/publication never replaces paid debt/floor.",
+    "Compare note free+paid pairs only at equal 24h/72h/7d post-publication ages.",
     "Do not invent PV, likes, follows, clicks, purchases, revenue, acquisitions, installs, retention or CVR.",
     "Do not mass-clone low-signal themes or cosmetic Store variants."
   ]
