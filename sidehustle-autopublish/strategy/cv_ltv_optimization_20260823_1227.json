@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-23T12:27:00+09:00",
+  "objective": "maximize conversion, average order value and LTV without speculative customer-facing churn",
+  "dataAvailability": {
+    "notePV": null,
+    "noteLikes": null,
+    "noteFollows": null,
+    "noteRelatedPaidClicks": null,
+    "noteRelatedPaidPurchases": null,
+    "noteRevenue": null,
+    "boothProductSales": null,
+    "microsoftStoreLiveListing": false,
+    "microsoftStorePageViews": null,
+    "microsoftStoreAcquisitions": null,
+    "githubPagesOutboundConversion": null
+  },
+  "note": {
+    "currentDecision": "measurement_before_live_funnel_changes",
+    "reason": "The initial free-note cohort has not yet completed the first comparable 24h window and platform-native funnel metrics are not available.",
+    "earliestComparable24hGate": "approximately 2026-08-23T17:51:00+09:00",
+    "improvementsApplied": [
+      "Expanded funnel_strategy.json with article-level 24h/72h/7d measurement fields.",
+      "Added a diagnosis order for strong-PV/weak-conversion and weak-PV cases.",
+      "Added paid free-area qualification rules: empathy/question, concrete change/example, clear incremental value.",
+      "Added one-variable experiment and rollback guardrails."
+    ],
+    "liveChangesDeferred": [
+      "CTA rewrites",
+      "large price changes",
+      "free publication cadence increase",
+      "theme winner/loser declarations"
+    ],
+    "nextDecisionRules": {
+      "strongPVWeakPaid": "test CTA placement, intent match, incremental paid value, then price in that order",
+      "weakPV": "fix title/search intent/topic before CTA or price",
+      "paidThemeWithSales": "add adjacent-intent standalone-useful free satellite articles",
+      "strongClicksWeakPurchases": "inspect paid free-area qualification and value proof before price"
+    }
+  },
+  "microsoftStore": {
+    "appId": "ms_csv_cleaner_deduper",
+    "currentDecision": "prelaunch_listing_quality_improvement_only",
+    "changesApplied": [
+      "Rewrote the opening description to lead with the verified value proposition and local-only processing.",
+      "Made common CSV use cases explicit.",
+      "Clarified UTF-8 BOM export wording.",
+      "Replaced generic search terms with seven intent-specific Japanese terms.",
+      "Added a post-launch A/B test plan and screenshot expansion target."
+    ],
+    "primaryPostLaunchMetric": "Store page to acquisition conversion rate",
+    "requiredBeforeExperiment": "live Store listing plus sufficient comparable baseline traffic",
+    "rollbackCondition": "variant underperforms baseline after sufficient exposure or becomes misleading",
+    "nextAssetOpportunity": "prepare two additional distinct truthful screenshots when production capacity is available: column-select dedupe setup and before/after cleaned result"
+  },
+  "booth": {
+    "currentDecision": "no live price or bundle change without product-level sales evidence",
+    "nextMeasurement": "sales by product/date and coherent cross-sell pairs",
+    "rollbackPrinciple": "baseline and one primary variable before customer-facing pricing changes"
+  },
+  "githubPages": {
+    "currentDecision": "keep pages independently useful; only add context-matched verified destinations",
+    "nextMeasurement": "outbound clicks/conversions by verified destination when instrumentation exists"
+  },
+  "factoryInstructions": [
+    "Do not infer conversion uplift from availability or public visibility.",
+    "At or after the first 24h note gate, capture actual article-level PV/likes/follows/paid clicks/purchases if available and compare equal-age windows only.",
+    "Apply the paid-note free-area qualification gate to new paid manuscripts before publication.",
+    "Do not perform Microsoft Store listing experiments before the listing is live; preserve the improved prelaunch copy as baseline candidate.",
+    "Avoid BOOTH price/bundle churn until product-level sales evidence identifies coherent winning combinations."
+  ]
+}
