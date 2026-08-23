@@ -1,46 +1,68 @@
 {
-  "version": 6,
-  "checkedAt": "2026-08-22T09:15:00+09:00",
-  "status": "windows_publication_recovery_active",
-  "reason": "Fourteen genuinely new BOOTH products 010-023 are fully materialized, encrypted, QA-passed, enabled and force-retry refreshed. The stale no-enabled-candidate state is retired.",
+  "version": 7,
+  "checkedAt": "2026-08-23T13:11:31+09:00",
+  "status": "current_day_paid_batch_ready_for_windows_strict_publication",
+  "reason": "The previous pipeline_health snapshot still described the 2026-08-22 catch-up batch and stale carried debt. Canonical 2026-08-23 quota has carried debt 0 and requires five genuine-new current-day BOOTH publications. All five current-day encrypted payload ZIPs are cloud-QA complete and queue-enabled.",
   "quota": {
+    "date": "2026-08-23",
     "dailyPublicTarget": 5,
-    "carriedPublicationDebt": 9,
+    "carriedPublicationDebt": 0,
     "todayStrictVerifiedPublicationsCount": 0,
     "todayRemainingToTarget": 5,
-    "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 14,
-    "debtRule": "Only newly buyer-visible verified BOOTH pages with exact title, expected price, downloadable-product state and purchase/cart path decrement debt."
+    "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
+    "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
+    "debtRule": "Only buyer-visible 2026-08-23 products passing exact title, expected price, downloadable-product state and purchase/cart path count toward today's floor."
   },
   "queue": {
-    "rawEnabledCount": 14,
-    "effectiveNewPublicationCount": 14,
-    "retryGeneration": 31,
-    "firstReady": "010_event_risk_register_os_20260822",
-    "lastReady": "023_campus_project_budget_os_20260822",
-    "heldAlreadyPublished": "001_interview_os",
-    "heldAlreadyCounted": "007_thesis_progress_os_20260820",
-    "deferredLegacy": "009_handover_os_20260820"
+    "retryGeneration": 35,
+    "requiredCurrentDayIds": [
+      "024_grant_evidence_expense_os_20260823",
+      "025_event_decision_authority_os_20260823",
+      "026_research_claim_evidence_os_20260823",
+      "027_sponsor_contact_history_os_20260823",
+      "028_team_backup_coverage_os_20260823"
+    ],
+    "allFiveMaterialized": true,
+    "allFiveQueueEnabled": true,
+    "allFiveForceRetryReady": true,
+    "deferredLegacy": "009_handover_os_20260820",
+    "doNotReturnToLegacyUntilCurrentDayFloorComplete": true
   },
   "production": {
-    "materializedManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
-    "completeProducts": 14,
-    "encryptedPayloads": true,
+    "materializedManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "completeProducts": 5,
+    "encryptedPayloadZips": true,
+    "productJsonPresent": true,
+    "downloadZipPresent": true,
+    "preview01JpgPresent": true,
     "queueIntegrityShaRecorded": true,
-    "previewImagesPresent": true,
-    "downloadZipPresent": true
+    "cloudQaPassed": true
   },
   "publicationLedger": {
     "canonicalPath": "booth-autopublish/monitor/publication_ledger.json",
-    "newBatchStrictVerifiedCount": 0,
-    "historicalReverificationDoesNotReduceCurrentDebt": true
+    "currentDayStrictVerifiedCount": 0,
+    "currentDayEntriesPresent": false,
+    "historicalReverificationDoesNotCountTowardCurrentDayFloor": true
   },
   "recovery": {
-    "mode": "process_all_enabled_new_items",
-    "requiredBuyerChecks": ["buyerVisibleUrl","exact title","expected price","downloadable product state","purchase/cart path"],
+    "control": "booth-autopublish/monitor/recovery_control.json",
+    "mode": "force_current_day_all_now",
+    "requiredBuyerChecks": [
+      "buyerVisibleUrl",
+      "exactTitle",
+      "expectedPrice",
+      "downloadableProductState",
+      "purchaseOrCartPath"
+    ],
+    "categoryCompatibility": {
+      "parent": "ソフトウェア・ハードウェア",
+      "child": "ソフトウェア",
+      "source": "previous successful clean rebuild path"
+    },
     "switchAfterRecoverableFailure": true,
     "doNotStopAfterFirstSuccess": true,
     "userActionRequired": false,
-    "userOnlyBlockerEvidence": null
+    "humanOnlyBlockerEvidence": null
   },
-  "nextPriority": "Windows consumer must process 010-023 continuously and strict verifier must reconcile any buyer-visible pages. Do not rematerialize or return to legacy 009 unless the complete new batch has been attempted."
+  "nextPriority": "At the next Windows publisher availability, process 024-028 continuously until all five are buyer-visible strict verified. Preserve briefly failed current-day items as retryable, switch to another current-day item, then return. Do not route to legacy 009 and do not create free/new inventory while either paid floor remains below 5/5."
 }
