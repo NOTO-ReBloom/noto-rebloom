@@ -1,11 +1,14 @@
 {
-  "version": 16,
-  "updatedAt": "2026-08-23T14:10:57+09:00",
+  "version": 17,
+  "updatedAt": "2026-08-23T15:09:00+09:00",
   "activeRecovery": {
     "date": "2026-08-23",
     "mode": "force_current_day_all_now",
     "requiredStrictNewPublications": 5,
-    "remaining": 5
+    "remaining": 5,
+    "paidNoteDependencySatisfied": true,
+    "paidNoteStrictVerified": "5/5",
+    "soleRemainingPaidPriority": "BOOTH current-day 024-028"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-23T09:12:25+09:00",
@@ -40,12 +43,59 @@
       "downloadableProductState",
       "purchaseOrCartPath"
     ],
-    "consumerInstruction": "Process all five current-day items. One strict success is not a stopping condition. After a brief recoverable failure, preserve that item as retryable, move to the next current-day item, and return later. Count only buyer-visible pages passing every required check. Do not infer public URLs from admin/editor state.",
+    "consumerInstruction": "Process all five current-day items in one Windows-available recovery session. One strict success is never a stopping condition. After a brief recoverable failure, preserve that item as retryable, immediately move to the next current-day item, then return to held current-day items after the first pass. Count only buyer-visible pages passing every required check. Do not infer public URLs from admin/editor state.",
     "doNotFallbackToFreeWeb": true,
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forcedRecoveryAt": "2026-08-23T14:10:57+09:00",
-    "forceRetryNonce": "force-all-20260823-20260823T141057+0900"
+    "forcedRecoveryAt": "2026-08-23T15:09:00+09:00",
+    "forceRetryNonce": "force-all-20260823-20260823T150900+0900"
+  },
+  "windowsResumeContract": {
+    "sourceQueue": "booth-autopublish/queue/index.json",
+    "sourceLedger": "booth-autopublish/monitor/publication_ledger.json",
+    "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "requiredIds": [
+      "024_grant_evidence_expense_os_20260823",
+      "025_event_decision_authority_os_20260823",
+      "026_research_claim_evidence_os_20260823",
+      "027_sponsor_contact_history_os_20260823",
+      "028_team_backup_coverage_os_20260823"
+    ],
+    "firstPassOrder": [
+      "026_research_claim_evidence_os_20260823",
+      "027_sponsor_contact_history_os_20260823",
+      "024_grant_evidence_expense_os_20260823",
+      "028_team_backup_coverage_os_20260823",
+      "025_event_decision_authority_os_20260823"
+    ],
+    "afterRecoverableFailure": "mark candidate retryable, preserve payload/SHA, move to next current-day candidate without ending run",
+    "afterFirstPass": "return to any current-day held candidates until ledger contains all five required IDs",
+    "strictSuccessOnly": true,
+    "strictSuccessChecks": [
+      "buyerVisibleUrl",
+      "exactTitle",
+      "expectedPrice",
+      "downloadableProductState",
+      "purchaseOrCartPath"
+    ],
+    "completionPredicate": "all five required IDs exist in canonical publication ledger with publicUrlVerified=true and all strict buyer checks confirmed",
+    "forbiddenCompletionSignals": [
+      "queue insertion",
+      "commit",
+      "PUBLISH_SUCCESS without strict verification",
+      "admin/editor URL",
+      "historical re-verification",
+      "legacy 009 publication"
+    ],
+    "onlyStopForHumanBlocker": [
+      "re-login",
+      "2FA",
+      "CAPTCHA",
+      "identity verification",
+      "legal declaration",
+      "tax/payment setup",
+      "OS permission"
+    ]
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
