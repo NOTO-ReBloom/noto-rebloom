@@ -1,7 +1,7 @@
 {
-  "version": 20,
-  "updatedAt": "2026-08-23T05:45:00+09:00",
-  "objective": "maximize cumulative profit while preserving paid publication floors/debt and building measurable free-to-paid funnels",
+  "version": 21,
+  "updatedAt": "2026-08-23T11:45:00+09:00",
+  "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "authoritativeState": {
@@ -12,62 +12,84 @@
     "boothPreviousDayPaidDebt": 0,
     "today": "2026-08-23",
     "noteTodayPaidFloor": 5,
+    "noteTodayStrictVerified": 0,
+    "noteTodayMaterialized": 5,
     "boothTodayPaidFloor": 5,
-    "todayStrictVerifiedAtPlanningTime": "unknown until new-day ledgers are reconciled; do not assume zero or success",
-    "rule": "Only strict reader/buyer-visible verification changes paid quota/debt. Missing platform-native PV, likes, follows, clicks, purchases, sales, acquisitions, installs and conversion values remain unknown."
+    "boothTodayStrictVerified": 0,
+    "boothTodayMaterialized": 5,
+    "rule": "Only strict reader/buyer-visible verification changes paid quota/debt. Queue insertion, materialization, local success logs, admin/editor URLs and old-item reverification do not count. Missing platform-native PV, likes, follows, clicks, purchases, sales, acquisitions, installs and conversion values remain unknown."
   },
   "priorityOrder": [
-    "reconcile any previous-day paid debt first; current evidence says 2026-08-22 note and BOOTH debt are zero",
-    "satisfy 2026-08-23 paid note and BOOTH floors with strict public verification",
-    "continue free-note manuscript production without using it to discharge paid debt or quota",
-    "measure equal-age free-to-paid funnel windows once mature",
-    "complete Microsoft Store submission prerequisites after paid-floor-critical work",
-    "other profit optimization only when first-party evidence supports it"
+    "service previous-day paid debt first when it exists; current verified debt for 2026-08-22 is zero on both note and BOOTH",
+    "clear 2026-08-23 paid floors: five NOTE and five BOOTH items are already fully materialized but remain 0/5 strict verified on both channels",
+    "continue cloud-side free-note manuscript creation as a separate funnel asset while paid publication recovery waits on Windows; free output never substitutes for paid quota/debt",
+    "measure free-to-paid note pairs only at equal-age 24h/72h/7d windows when platform-native metrics are actually available",
+    "advance Microsoft Store CSV Cleaner submission only after paid-floor-critical work is safe",
+    "other profit work only when first-party evidence supports it"
   ],
   "noteFunnel": {
     "source": "sidehustle-autopublish/note/funnel_strategy.json",
-    "status": "production_continue_measurement_not_yet_mature_at_05_45",
-    "firstPartyMetrics": {"PV": null, "likes": null, "follows": null, "relatedPaidClicks": null, "relatedPaidPurchases": null, "revenue": null},
+    "status": "production_continue_measurement_not_yet_mature_at_11_45",
+    "firstPartyMetrics": {
+      "PV": null,
+      "likes": null,
+      "follows": null,
+      "relatedPaidClicks": null,
+      "relatedPaidPurchases": null,
+      "revenue": null
+    },
     "measurementWindows": ["24h", "72h", "7d"],
-    "earliest24hGate": "approximately 2026-08-23 17:51 JST for the earliest strictly verified free article",
-    "decisionRule": "Do not name winners or losers before equal-age evidence. Paid purchase evidence overrides free engagement alone. Strong traffic with weak paid movement triggers CTA/value-gap diagnosis before derivatives.",
-    "freeCadence": "2/day remains a 14-day experimental starting value; manuscript batching may continue, publication volume must not be increased before evidence.",
-    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; verified reader-visible paid URL only."
+    "earliest24hGate": "approximately 2026-08-23T17:51:00+09:00 for the earliest strictly verified free article",
+    "decisionRule": "Do not name note winners or losers before equal-age first-party evidence. A related paid purchase is a strong winner signal. Strong free response with weak paid movement triggers CTA/value-gap/price/theme-match diagnosis before derivatives. Weak free and paid response triggers deprioritization rather than name-variant cloning.",
+    "freeCadence": "2/day remains a 14-day experimental starting value, not a hard quota. Complete manuscripts may be batched in the cloud, but do not raise publication cadence before comparable evidence exists.",
+    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use a paid URL after independent reader-visible verification."
   },
   "nextNoteFactoryBatch": {
     "date": "2026-08-23",
-    "executionOrder": "paid five first, free reserve manuscripts in same cloud batch when capacity permits",
-    "paidCompleteManuscripts": [
-      {"id":"note_20260823_17_sponsor_deliverables","title":"協賛が決まった後に何を渡す？｜ロゴ・SNS・当日掲示・報告まで抜け漏れを防ぐ協賛履行管理","pairedBoothId":"012_sponsor_deliverables_tracker_20260822"},
-      {"id":"note_20260823_18_event_incident_response","title":"イベント当日にトラブルが起きたら｜事故・体調不良・苦情を記録して再発防止までつなぐ対応フロー","pairedBoothId":"019_event_incident_log_os_20260822"},
-      {"id":"note_20260823_19_grant_tracker","title":"助成金申請を締切直前の作業にしない｜要件・添付・担当・提出後対応を一元管理する実務フロー","pairedBoothId":"018_grant_application_tracker_os_20260822"},
-      {"id":"note_20260823_20_meeting_decision_log","title":"会議で決めたことが実行されないを防ぐ｜決定・担当・期限・次回確認まで残す運用設計","pairedBoothId":"020_meeting_decision_action_os_20260822"},
-      {"id":"note_20260823_21_literature_matrix","title":"先行研究を読んでも論文が書けないを防ぐ｜主張・方法・限界・自分の研究との関係を整理する文献マトリクス","pairedBoothId":"022_research_literature_matrix_os_20260822"}
-    ],
+    "mode": "paid publication recovery plus free manuscript reserve production",
+    "paidSet": {
+      "state": "complete manuscripts, encrypted payloads and dedicated covers already materialized; do not rewrite or duplicate",
+      "executionOrder": [
+        {"id": "note_20260823_17_sponsor_deliverables", "title": "協賛が決まった後に何を渡す？｜ロゴ・SNS・当日掲示・報告まで抜け漏れを防ぐ協賛履行管理", "pairedBoothId": "012_sponsor_deliverables_tracker_20260822"},
+        {"id": "note_20260823_18_event_incident_response", "title": "イベント当日にトラブルが起きたら｜事故・体調不良・苦情を記録して再発防止までつなぐ対応フロー", "pairedBoothId": "019_event_incident_log_os_20260822"},
+        {"id": "note_20260823_19_grant_tracker", "title": "助成金申請を締切直前の作業にしない｜要件・添付・担当・提出後対応を一元管理する実務フロー", "pairedBoothId": "018_grant_application_tracker_os_20260822"},
+        {"id": "note_20260823_20_meeting_decision_log", "title": "会議で決めたことが実行されないを防ぐ｜決定・担当・期限・次回確認まで残す運用設計", "pairedBoothId": "020_meeting_decision_action_os_20260822"},
+        {"id": "note_20260823_21_literature_matrix", "title": "先行研究を読んでも論文が書けないを防ぐ｜主張・方法・限界・自分の研究との関係を整理する文献マトリクス", "pairedBoothId": "022_research_literature_matrix_os_20260822"}
+      ],
+      "nextAction": "Use the current-day queue in order, briefly hold a recoverable failure and try the next current-day item, then return. Continue until all five are strict reader-visible verified; one success is not a stopping condition."
+    },
+    "freeSet": {
+      "state": "complete-manuscript production reserve; publication remains evidence-gated and separate from paid quota",
+      "items": [
+        {"id": "free_note_20260823_01_sponsor_after_yes", "title": "協賛が決まった直後に確認したい6項目｜入金だけで終わらせない最初のチェック", "pairedPaidId": "note_20260823_17_sponsor_deliverables", "role": "search/discovery + trust + prequalification"},
+        {"id": "free_note_20260823_02_grant_deadline_reverse_plan", "title": "助成金の締切から逆算すると何日前に何をする？｜申請直前に詰まらない5段階チェック", "pairedPaidId": "note_20260823_19_grant_tracker", "role": "adjacent search intent + demand validation + prequalification"}
+      ],
+      "nextAction": "Complete both manuscripts cloud-side when production capacity exists, even if Windows publication is waiting. Do not publish them as substitutes for the paid 5/day floor. Re-check the first comparable 24h evidence gate around 17:51 JST before changing free publication cadence or replacing these slots with stronger evidenced themes."
+    },
     "paidQualityGate": ["standalone useful free area", "empathy/question framing", "concrete change or worked example", "clear buyer gain", "deep implementation beyond free area", "reusable workflow/template value", "no unsupported factual claims"],
-    "freeCompleteManuscriptReserve": [
-      {"id":"free_note_20260823_01_sponsor_after_yes","title":"協賛が決まった直後に確認したい6項目｜入金だけで終わらせない最初のチェック","pairedPaidId":"note_20260823_17_sponsor_deliverables"},
-      {"id":"free_note_20260823_02_grant_deadline_reverse_plan","title":"助成金の締切から逆算すると何日前に何をする？｜申請直前に詰まらない5段階チェック","pairedPaidId":"note_20260823_19_grant_tracker"}
-    ],
-    "freePublicationRule": "Prepare both complete manuscripts, but keep publication evidence-gated. At a mature 24h gate, replace a reserve slot with an adjacent-search-intent satellite if a stronger evidenced theme appears."
+    "freeQualityGate": ["standalone practical value", "no thin teaser", "one problem/quick-win/search intent", "at most one exact-intent verified paid CTA", "no unsupported factual claims"]
   },
   "booth": {
     "todayPaidFloor": 5,
+    "strictVerifiedToday": 0,
+    "materializedToday": 5,
     "previousDayDebt": 0,
-    "instruction": "Reconcile the new-day ledger, then publish qualified paid inventory until five strict buyer-visible 2026-08-23 publications are verified. Preserve any miss as debt. Do not change prices or bundles without product-level evidence."
+    "instruction": "Do not create replacement inventory yet. Process the five genuine-new 2026-08-23 materialized items first and strict-verify buyer-visible title, expected price, downloadable state and purchase/cart path. Preserve every miss as debt."
   },
   "microsoftStore": {
     "currentPriority": "CSV Cleaner & Duplicate Remover submission completion",
-    "knownState": "Public PWA and PNG screenshot prepared; Partner Center identity not reserved and certification not submitted.",
-    "nextAction": "After paid-floor-critical work, complete all non-human prerequisites without inventing Partner Center identity. Do not run listing experiments before a live baseline exists."
+    "knownState": "Highest-quality submission-ready except Partner Center identity and human submission. Public PWA, functional test, listing copy, icon source and four 1440x900 PNG screenshots are prepared. Partner Center product identity is not reserved, final identity-bound package is not generated, certification is not submitted and no public Store listing exists.",
+    "nextAction": "After current paid floors are safe, complete every non-human prerequisite possible. Do not invent Partner Center identity and do not run ASO/listing experiments before a live baseline exists."
   },
-  "githubPages": {"instruction":"Keep existing pages independently useful; add only verified context-matched measurable outbound links. No thin SEO mass production."},
+  "githubPages": {
+    "instruction": "Keep existing pages independently useful and measurable; add only verified context-matched outbound links. No thin SEO mass production while paid floors remain unresolved."
+  },
   "nextFactoryInstructions": [
-    "Reconcile 2026-08-23 note and BOOTH ledgers before counting today's quota; never infer zero or completion.",
-    "Create the five specified paid note manuscripts as one complete high-quality batch and queue them in paid-floor order.",
-    "Create the two specified free manuscripts in the same cloud batch when quality permits; they never substitute for paid quota/debt.",
-    "Do not increase free publication cadence before the first comparable 24h data matures around 17:51 JST.",
-    "After the paid-floor-critical batch is safe, advance the Microsoft Store CSV Cleaner submission prerequisites."
+    "Do not spend cloud production time recreating the five paid note manuscripts or five BOOTH products: both current-day paid batches are already fully materialized.",
+    "The publication/recovery path must now convert those materialized batches into five strict NOTE and five strict BOOTH public verifications.",
+    "In parallel, cloud-side note manuscript work may complete the two specified free reserve manuscripts because this does not consume Windows recovery capacity; keep their publication evidence-gated and separate from paid quota/debt.",
+    "Do not increase free publication cadence or declare theme winners before the first equal-age 24h gate around 17:51 JST and only if actual platform-native metrics are available.",
+    "After paid-floor-critical work is safe, advance Microsoft Store CSV Cleaner non-human submission prerequisites."
   ],
   "dataIntegrity": "Public availability is not demand. No winner, loser, conversion uplift or revenue claim is made without observed first-party evidence."
 }
