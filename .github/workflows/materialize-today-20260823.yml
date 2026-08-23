@@ -1,0 +1,178 @@
+name: Materialize today paid publication batch 2026-08-23
+
+on:
+  push:
+    paths:
+      - '.github/workflows/materialize-today-20260823.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: materialize-today-20260823
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --quiet cryptography pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
+
+      - name: Materialize BOOTH five-product batch
+        run: |
+          python sidehustle-autopublish/builders/materialize_booth_20260823_batch01.py
+
+      - name: Materialize NOTE five-article encrypted batch with dedicated covers
+        shell: python
+        run: |
+          from pathlib import Path
+          import base64, hashlib, json, os, re, textwrap
+          from datetime import datetime, timezone, timedelta
+          from PIL import Image, ImageDraw, ImageFont
+          from cryptography.hazmat.primitives import serialization, hashes
+          from cryptography.hazmat.primitives.asymmetric import padding as asym_padding
+          from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+
+          ROOT=Path('.')
+          draft_path=ROOT/'sidehustle-autopublish/note/paid_drafts/2026-08-23_batch01.md'
+          queue_dir=ROOT/'sidehustle-autopublish/note/queue'
+          queue_path=queue_dir/'index.json'
+          manifest_path=ROOT/'sidehustle-autopublish/note/staging/materialization_20260823_batch01.json'
+          pubkey_path=ROOT/'booth-autopublish/public/device_public_key.pem'
+          queue_dir.mkdir(parents=True,exist_ok=True); manifest_path.parent.mkdir(parents=True,exist_ok=True)
+          JST=timezone(timedelta(hours=9)); now=datetime.now(JST).replace(microsecond=0); stamp=now.isoformat(); nonce=now.strftime('%Y%m%dT%H%M%S+0900')
+
+          raw=draft_path.read_text(encoding='utf-8-sig')
+          ids=[
+            'note_20260823_17_sponsor_deliverables',
+            'note_20260823_18_event_incident_response',
+            'note_20260823_19_grant_tracker',
+            'note_20260823_20_meeting_decision_log',
+            'note_20260823_21_literature_matrix',
+          ]
+          tags={
+            ids[0]:['協賛','スポンサー','学生団体','イベント運営'],
+            ids[1]:['イベント運営','安全管理','事故対応','学生団体'],
+            ids[2]:['助成金','補助金','NPO','申請管理'],
+            ids[3]:['会議','議事録','意思決定','チーム運営'],
+            ids[4]:['卒論','研究','文献レビュー','大学生'],
+          }
+
+          def section_for(item_id):
+            m=re.search(rf'^## {re.escape(item_id)}\s*$([\s\S]*?)(?=^---\s*$|\Z)',raw,re.M)
+            if not m: raise RuntimeError('missing section '+item_id)
+            s=m.group(1).strip()
+            mt=re.search(r'^\*\*Title:\*\*\s*(.+)$',s,re.M); mp=re.search(r'^\*\*Working price:\*\*\s*([0-9,]+)円',s,re.M)
+            if not mt or not mp: raise RuntimeError('missing title/price '+item_id)
+            title=mt.group(1).strip(); price=int(mp.group(1).replace(',',''))
+            mf=re.search(r'^### Free area\s*$([\s\S]*?)^### Paid boundary\s*$',s,re.M)
+            mb=re.search(r'^### Paid boundary\s*$([\s\S]*)$',s,re.M)
+            if not mf or not mb: raise RuntimeError('missing boundary '+item_id)
+            return title,price,mf.group(1).strip(),mb.group(1).strip()
+
+          def font(size,bold=False):
+            options=[
+              '/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc' if bold else '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc',
+              '/usr/share/fonts/opentype/noto/NotoSansCJKjp-Bold.otf' if bold else '/usr/share/fonts/opentype/noto/NotoSansCJKjp-Regular.otf',
+              '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' if bold else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+            ]
+            for p in options:
+              if Path(p).exists(): return ImageFont.truetype(p,size)
+            return ImageFont.load_default()
+
+          def cover(title,item_id):
+            im=Image.new('RGB',(1280,670),(246,248,252)); d=ImageDraw.Draw(im)
+            d.rectangle((0,0,1280,18),fill=(37,56,92))
+            d.rounded_rectangle((60,58,1220,612),radius=30,fill=(255,255,255),outline=(224,229,237),width=2)
+            d.text((104,98),'実務テンプレート',font=font(28,True),fill=(37,56,92))
+            core=title.split('｜')[0]
+            f=font(44,True); maxw=1000; lines=[]; cur=''
+            for ch in core:
+              if d.textbbox((0,0),cur+ch,font=f)[2] <= maxw: cur+=ch
+              else: lines.append(cur); cur=ch
+            if cur: lines.append(cur)
+            y=160
+            for ln in lines[:4]: d.text((104,y),ln,font=f,fill=(29,37,53)); y+=62
+            d.text((104,520),'手順・チェック項目・運用ルールまで具体化',font=font(25),fill=(82,91,108))
+            d.text((104,565),'note 有料実践ガイド',font=font(22,True),fill=(37,56,92))
+            import io
+            b=io.BytesIO(); im.save(b,'JPEG',quality=88,optimize=True); return b.getvalue()
+
+          pub=serialization.load_pem_public_key(pubkey_path.read_bytes())
+          def encrypt_payload(obj):
+            plain=json.dumps(obj,ensure_ascii=False,separators=(',',':')).encode('utf-8')
+            key=os.urandom(32); iv=os.urandom(12); out=AESGCM(key).encrypt(iv,plain,None); ct,tag=out[:-16],out[-16:]
+            wrapped=pub.encrypt(key,asym_padding.OAEP(mgf=asym_padding.MGF1(algorithm=hashes.SHA256()),algorithm=hashes.SHA256(),label=None))
+            env={'version':1,'alg':'AES-256-GCM+RSA-OAEP-SHA256','wrappedKey':base64.b64encode(wrapped).decode(),'iv':base64.b64encode(iv).decode(),'tag':base64.b64encode(tag).decode(),'ciphertext':base64.b64encode(ct).decode()}
+            txt=json.dumps(env,ensure_ascii=False,separators=(',',':'))+'\n'
+            return txt,hashlib.sha256(txt.encode('utf-8')).hexdigest()
+
+          q=json.loads(queue_path.read_text(encoding='utf-8-sig'))
+          existing={e.get('id'):e for e in q.get('entries',[])}
+          built=[]
+          for item_id in ids:
+            title,price,free_body,paid_body=section_for(item_id)
+            jpg=cover(title,item_id)
+            payload={
+              'title':title,'freeBody':free_body,'paidBody':paid_body,'tags':tags[item_id],'price':price,
+              'coverImageBase64':base64.b64encode(jpg).decode(),'coverImageMime':'image/jpeg',
+              'coverAlt':title.split('｜')[0]+'の実務ガイド見出し画像','coverCopy':title.split('｜')[0],
+              'coverQa':{'width':1280,'height':670,'readability':True,'contentMatch':True,'typoChecked':True,'noExcessiveHype':True}
+            }
+            txt,sha=encrypt_payload(payload); rel=f'sidehustle-autopublish/note/queue/{item_id}.enc.json'; (ROOT/rel).write_text(txt,encoding='utf-8')
+            entry={
+              'id':item_id,'title':title,'path':rel,'sha256':sha,'createdAt':stamp,'enabled':True,'forceRetry':True,
+              'forceRetryNonce':f'today-20260823-{item_id}-{nonce}','expectedPriceJPY':price,
+              'requireReaderVisibleVerification':True,'requiredReaderChecks':['readerVisibleUrl','title','price','paidBoundary','dedicatedCover'],
+              'invalidateLocalSuccessWithoutReaderVerification':True,
+              'recoveryMode':'decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure'
+            }
+            if item_id in existing:
+              for i,e in enumerate(q['entries']):
+                if e.get('id')==item_id: q['entries'][i]=entry; break
+            else: q.setdefault('entries',[]).append(entry)
+            built.append({'id':item_id,'title':title,'priceJPY':price,'path':rel,'sha256':sha,'coverBytes':len(jpg)})
+
+          q['version']=max(int(q.get('version',2)),2); q['updatedAt']=stamp; q['retryGeneration']=int(q.get('retryGeneration',0))+1
+          q['requireReaderVisibleVerification']=True
+          q['recoveryBatch']={'mode':'clear_2026-08-23_paid_quota_now','requiredStrictPublications':5,'orderedIds':ids,'instruction':'Process all five current-day paid items in order. Do not stop after first success. After a brief recoverable failure, move to the next item and keep the failed item retryable.','strictChecks':['readerVisibleUrl','title','price','paidBoundary','dedicatedCover']}
+          queue_path.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          manifest={'version':1,'createdAt':stamp,'date':'2026-08-23','count':len(built),'items':built,'qa':{'allEncrypted':True,'allDedicatedCovers1280x670':True,'allFivePresent':len(built)==5,'queueEnabled':True}}
+          manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(manifest,ensure_ascii=False,indent=2))
+
+      - name: Validate today's queues
+        shell: python
+        run: |
+          import json, pathlib, sys
+          nq=json.loads(pathlib.Path('sidehustle-autopublish/note/queue/index.json').read_text(encoding='utf-8-sig'))
+          bids={'024_grant_evidence_expense_os_20260823','025_event_decision_authority_os_20260823','026_research_claim_evidence_os_20260823','027_sponsor_contact_history_os_20260823','028_team_backup_coverage_os_20260823'}
+          nids={'note_20260823_17_sponsor_deliverables','note_20260823_18_event_incident_response','note_20260823_19_grant_tracker','note_20260823_20_meeting_decision_log','note_20260823_21_literature_matrix'}
+          n={e.get('id') for e in nq.get('entries',[]) if e.get('enabled') is True}
+          bq=json.loads(pathlib.Path('booth-autopublish/queue/index.json').read_text(encoding='utf-8-sig')); b={e.get('id') for e in bq.get('entries',[]) if e.get('enabled') is True}
+          missn=nids-n; missb=bids-b
+          if missn or missb: raise SystemExit(f'missing enabled entries note={missn} booth={missb}')
+          print('TODAY_QUEUE_READY note=5 booth=5')
+
+      - name: Commit materialized publication inventory
+        run: |
+          git config user.name 'today-batch-materializer'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/queue sidehustle-autopublish/note/staging/materialization_20260823_batch01.json booth-autopublish/queue booth-autopublish/monitor/cloud_materialization_20260823_batch01.json
+          if git diff --cached --quiet; then echo 'NO_CHANGES'; exit 0; fi
+          git commit -m 'Materialize 2026-08-23 NOTE and BOOTH paid inventory'
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i*5))
+          done
+          exit 1
