@@ -1,8 +1,8 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-22T11:33:29.643Z",
+  "updatedAt": "2026-08-23T09:14:56+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -963,6 +963,48 @@
       "enabled": true,
       "forceRetry": false,
       "forceRetryNonce": "evening-scale-20260822T1800+0900",
+      "publicUrlVerified": false
+    },
+    {
+      "id": "free_note_20260823_01_sponsor_after_yes",
+      "kind": "free",
+      "price": 0,
+      "title": "協賛が決まった直後に確認したい6項目｜入金だけで終わらせない最初のチェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md",
+      "pairedPaidId": "note_20260823_17_sponsor_deliverables",
+      "tags": [
+        "協賛",
+        "スポンサー",
+        "学生団体",
+        "イベント運営"
+      ],
+      "coverLabel": "協賛・スポンサー",
+      "coverCopy": "決定直後に見る 6項目",
+      "accent": "#0f766e",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-20260823-01",
+      "publicUrlVerified": false
+    },
+    {
+      "id": "free_note_20260823_02_grant_deadline_reverse_plan",
+      "kind": "free",
+      "price": 0,
+      "title": "助成金の締切から逆算すると何日前に何をする？｜申請直前に詰まらない5段階チェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md",
+      "pairedPaidId": "note_20260823_19_grant_tracker",
+      "tags": [
+        "助成金",
+        "補助金",
+        "申請",
+        "NPO"
+      ],
+      "coverLabel": "助成金・申請",
+      "coverCopy": "締切から逆算する 5段階",
+      "accent": "#2563eb",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-20260823-02",
       "publicUrlVerified": false
     }
   ],
