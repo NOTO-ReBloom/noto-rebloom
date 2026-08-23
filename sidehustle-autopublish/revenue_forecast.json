@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "updatedAt": "2026-08-22T23:31:45+09:00",
+  "version": 4,
+  "updatedAt": "2026-08-23T23:45:00+09:00",
   "forecastPolicy": "Do not invent numeric revenue or conversion uplift when observed sales, PV, clicks, purchases, acquisitions or install data are absent. Use ranked opportunities and explicit measurement gates until measurable signals exist.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
@@ -18,59 +18,62 @@
   },
   "verifiedAvailabilitySignals": {
     "notePaidStrictVerifiedToday": 5,
-    "noteInitialFreeBatchStrictVerified": 6,
-    "BOOTHStrictVerifiedToday": 5,
-    "GitHubPagesRequiredInsightBatchVerified": 6,
-    "MicrosoftStorePublicPwaVerified": true,
-    "MicrosoftStorePublicListingVerified": false
+    "noteFreeStrictVerifiedToday": 0,
+    "BOOTHStrictVerifiedToday": 0,
+    "BOOTHPreparedToday": 5,
+    "MicrosoftStorePublicListingVerified": false,
+    "noteComparable24hAgeGatePassed": true,
+    "noteFirstPartyFunnelValuesAvailable": false
   },
   "rankedOpportunities": [
     {
       "rank": 1,
-      "channel": "MicrosoftStore",
-      "id": "ms_csv_cleaner_deduper",
-      "opportunityBand": "high-measurement-option",
-      "basis": "The app is prepared to a high quality level but lacks Partner Center product identity/submission. Completing the live Store funnel is the prerequisite for acquisition, install, conversion and later listing experiment data."
+      "channel": "BOOTH",
+      "id": "20260823_paid_floor_recovery",
+      "opportunityBand": "hard-floor-critical",
+      "basis": "Five current-day paid products are materialized but remain 0/5 strict buyer-visible verified. Any miss must carry forward as paid debt; this outranks discretionary growth work."
     },
     {
       "rank": 2,
       "channel": "note",
-      "id": "free_to_paid_equal_age_measurement",
-      "opportunityBand": "high-information-value",
-      "basis": "The initial six free articles are now reader-visible verified, but first-party PV/engagement/click/purchase data are still unavailable and the first 24h equal-age window has not matured. The next valuable step is measurement, not speculative CTA or price churn."
+      "id": "20260824_paid_batch",
+      "opportunityBand": "hard-floor-preparation",
+      "basis": "The next paid floor requires five fresh complete manuscripts. A balanced exploration set is defined because first-party winner evidence is still unavailable."
     },
     {
       "rank": 3,
       "channel": "note",
-      "id": "paid_free_area_quality_gate",
-      "opportunityBand": "low-risk-conversion-readiness",
-      "basis": "Future paid articles can improve purchase qualification without price changes by ensuring the free area contains empathy/question framing, a concrete change or example, and a clear reader benefit before the paywall."
+      "id": "free_to_paid_equal_age_measurement",
+      "opportunityBand": "high-information-value",
+      "basis": "The first comparable 24h age gate has passed, but platform-native article-level PV/likes/follows/click/purchase/revenue values remain absent. Measurement now has higher value than speculative CTA, price or cadence changes."
     },
     {
       "rank": 4,
-      "channel": "BOOTH",
-      "id": "evidence_gated_bundle_design",
-      "opportunityBand": "conditional",
-      "basis": "Bundle and upsell structures may raise order value, but current product-level sales evidence is unavailable. Prepare only strongly coherent bundles and defer live pricing changes until demand is observed."
+      "channel": "MicrosoftStore",
+      "id": "ms_csv_cleaner_deduper",
+      "opportunityBand": "high-measurement-option-after-hard-floors",
+      "basis": "Completing submission prerequisites is required before Store acquisition, install, conversion and health evidence can exist."
     },
     {
       "rank": 5,
       "channel": "GitHubPages",
       "id": "measurable_context_cta",
       "opportunityBand": "measurement-enabling",
-      "basis": "Existing public pages can become attribution surfaces once a verified measurable destination exists. Do not add unverified or unrelated CTA stacks."
+      "basis": "Existing useful pages can support attributable outbound traffic once verified destinations and measurement exist; thin SEO expansion is not justified."
     }
   ],
   "nightlyDecision": {
     "livePriceChanges": "none",
     "liveListingExperiments": "none",
     "noteFreeCtaMassRewrite": "none",
-    "reason": "Availability is verified, but article-level and product-level demand/conversion baselines are still missing. The earliest current free-note publications have not yet completed a 24h comparable window.",
+    "freePublicationCadenceIncrease": "none",
+    "reason": "Paid-floor recovery is incomplete on BOOTH and comparable first-party note funnel values remain unavailable. Public visibility is not demand evidence.",
     "nextProfitActions": [
-      "complete non-human prerequisites for the CSV Cleaner Microsoft Store submission",
-      "capture note 24h/72h/7d free-to-paid metrics when available and compare only equal-age windows",
-      "apply the three-element free-area quality gate to future paid note manuscripts",
-      "avoid additional free-note volume until the first measured window can inform allocation"
+      "strict-verify all five prepared 2026-08-23 BOOTH items or carry every miss as paid debt",
+      "produce and materialize the specified five-item 2026-08-24 paid note batch",
+      "publish and strict-verify the existing two-item free-note set only after paid-floor-critical BOOTH work is safe",
+      "capture note 24h/72h/7d free-to-paid metrics when accessible and compare only equal-age windows",
+      "complete non-human prerequisites for the CSV Cleaner Microsoft Store submission after hard-floor work is safe"
     ]
   },
   "nextDataNeeded": [
