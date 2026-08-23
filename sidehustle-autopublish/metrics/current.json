@@ -1,95 +1,66 @@
 {
-  "version": 7,
-  "updatedAt": "2026-08-23T13:11:31+09:00",
-  "objective": "maximize total sales while enforcing verified-publication hard minimums and minimizing user intervention",
+  "version": 8,
+  "updatedAt": "2026-08-23T13:20:41+09:00",
+  "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 publications and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
+    "notePaidQueue": "sidehustle-autopublish/note/queue/index.json",
     "notePaidReceipts": "sidehustle-autopublish/note/publication_receipts/",
     "noteMaterialization": "sidehustle-autopublish/note/staging/materialization_20260823_batch01.json",
+    "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
+    "noteFreeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
+    "boothQueue": "booth-autopublish/queue/index.json",
     "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
     "boothMaterialization": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
-    "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json",
-    "boothPipelineHealth": "booth-autopublish/monitor/pipeline_health.json",
-    "microsoftStoreQualityGate": "sidehustle-autopublish/microsoft-store/ms_csv_cleaner_deduper/quality_gate.json"
+    "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
-  "channels": {
-    "note": {
-      "status": "active_paid_floor_first",
-      "paid": {
-        "date": "2026-08-23",
-        "dailyTarget": 5,
-        "strictVerifiedToday": 0,
-        "carriedDebt": 0,
-        "remainingToTarget": 5,
-        "materializedToday": 5,
-        "queueMaterialized": true,
-        "dedicatedCoversReady": 5,
-        "requiredIds": [
-          "note_20260823_17_sponsor_deliverables",
-          "note_20260823_18_event_incident_response",
-          "note_20260823_19_grant_tracker",
-          "note_20260823_20_meeting_decision_log",
-          "note_20260823_21_literature_matrix"
-        ],
-        "evidence": "No 2026-08-23 paid NOTE publication receipt exists yet. The materialization manifest confirms all five encrypted payloads, SHA values, prices and dedicated 1280x670 covers are present; queue recoveryBatch is force_all_2026-08-23_paid_now with all five current-day IDs.",
-        "completionChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
-      },
-      "free": {
-        "status": "deferred_until_paid_5_plus_5_complete",
-        "rule": "Free note publications do not decrement paid debt and are not a normal production priority before both paid floors are 5/5."
-      }
+  "currentDayTargets": {
+    "date": "2026-08-23",
+    "paidNote": {
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "requiredChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
     },
     "BOOTH": {
-      "status": "active_paid_floor_first",
-      "date": "2026-08-23",
-      "dailyTarget": 5,
-      "strictVerifiedToday": 0,
-      "carriedDebt": 0,
-      "remainingToTarget": 5,
-      "materializedToday": 5,
-      "queueMaterialized": true,
-      "requiredIds": [
-        "024_grant_evidence_expense_os_20260823",
-        "025_event_decision_authority_os_20260823",
-        "026_research_claim_evidence_os_20260823",
-        "027_sponsor_contact_history_os_20260823",
-        "028_team_backup_coverage_os_20260823"
-      ],
-      "evidence": "Canonical BOOTH ledger still contains no 2026-08-23 strict publication. Cloud materialization confirms all five encrypted payload ZIPs passed QA. Recovery control is current-day-only at retry generation 35, with category compatibility pinned to ソフトウェア・ハードウェア > ソフトウェア and legacy 009 explicitly deferred.",
-      "completionChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "requiredChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
-    "GitHubPages": {
-      "status": "new_work_deferred_until_paid_5_plus_5_complete"
+    "freeNote": {
+      "target": 2,
+      "strictVerified": 0,
+      "remaining": 2,
+      "queueEnabled": 2,
+      "paidQuotaContribution": 0,
+      "requiredChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"]
     },
-    "MicrosoftStore": {
-      "status": "quality_gate_submission_ready_maintenance_only",
-      "appId": "ms_csv_cleaner_deduper",
-      "doNotConsumePaidRecoveryCapacity": true
-    },
-    "AmazonKDP": {"status": "disabled"},
-    "LINECreatorsMarket": {"status": "disabled"}
+    "all12StrictVerified": false
+  },
+  "evidence": {
+    "paidNote": "All five 2026-08-23 paid NOTE entries remain enabled and force-retry ready; no current-day strict public URL is recorded in the queue/receipt sources checked.",
+    "BOOTH": "Canonical BOOTH publication ledger contains no 2026-08-23 required IDs; all five current-day products remain materialized and retry-ready.",
+    "freeNote": "Both designated 2026-08-23 free NOTE entries remain enabled with publicUrlVerified=false; the free publication ledger contains no confirmed current-day pair.",
+    "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-23T13:11:31+09:00",
-    "currentDayPaidFloor": {
-      "note": "0/5 strict verified; 5/5 materialized and force-retry ready",
-      "BOOTH": "0/5 strict verified; 5/5 materialized and force-retry ready"
-    },
-    "cloudRepairsApplied": [
-      "Reconfirmed completion_gate.json and publication_quota.json: carried debt is 0 and the 2026-08-23 absolute floor is NOTE 5 plus BOOTH 5 strict verified publications.",
-      "Reconfirmed NOTE materialization: all five encrypted payloads, SHA values, prices and dedicated 1280x670 covers are complete and queue-enabled.",
-      "Reconfirmed BOOTH materialization and recovery control: all five encrypted payload ZIPs passed cloud QA and current-day IDs are ahead of legacy 009.",
-      "Repaired stale booth-autopublish/monitor/pipeline_health.json, which still described the 2026-08-22 fourteen-item/debt-9 state; it now reflects the 2026-08-23 five-item batch, carried debt 0, retry generation 35 and current strict checks."
-    ],
+    "checkedAt": "2026-08-23T13:20:41+09:00",
     "windowsPublisherReachableFromThisRun": false,
-    "humanOnlyBlocker": null
+    "cloudRepairsApplied": [
+      "Aligned completion_gate.json with the explicit all-12 completion requirement, adding the two free NOTE entries as required strict publications without counting them toward paid quota.",
+      "Reconciled metrics/current.json to report 0/5 paid NOTE, 0/5 BOOTH and 0/2 free NOTE strict verified for 2026-08-23.",
+      "Preserved current-day queues and legacy deferral; no public URL was inferred and no paid debt was reduced."
+    ]
   },
   "rules": [
     "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
     "Do not reduce paid publication floors or erase debt without strict public verification.",
     "Do not count queue insertion, commit, local publisher success, editor/admin URL, or old-item reverification as current-day publication.",
-    "Do not create normal-priority free or new paid inventory while either 2026-08-23 paid floor remains below 5/5.",
-    "At the next Windows-available execution, process all five NOTE items and all five BOOTH items; a recoverable failure on one item must not stop later current-day items."
+    "Do not notify on intermediate success; notify only after all 12 are strict verified or a human-only blocker is proven to stop every remaining route.",
+    "Do not route to legacy blockers or unrelated new production while any designated 2026-08-23 target remains incomplete."
   ]
 }
