@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-22T11:28:09.160+09:00",
-  "retryGeneration": 30,
+  "updatedAt": "2026-08-23T09:12:26+09:00",
+  "retryGeneration": 31,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "clear_current_day_paid_quota_now",
+    "mode": "clear_2026-08-23_paid_quota_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260822_12_event_cancel_decision",
-      "note_20260822_13_meeting_decision_log",
-      "note_20260822_14_sponsor_menu_design",
-      "note_20260822_15_research_interview_coding",
-      "note_20260822_16_jobhunt_company_research"
+      "note_20260823_17_sponsor_deliverables",
+      "note_20260823_18_event_incident_response",
+      "note_20260823_19_grant_tracker",
+      "note_20260823_20_meeting_decision_log",
+      "note_20260823_21_literature_matrix"
     ],
-    "instruction": "While Windows is available, continue through all five remaining enabled paid entries. Do not stop after first success. If a recoverable failure occurs on one entry, move to the next and leave the failed entry retryable.",
+    "instruction": "Process all five current-day paid items in order. Do not stop after first success. After a brief recoverable failure, move to the next item and keep the failed item retryable.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -376,6 +376,111 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
       "verifiedAt": "2026-08-22T02:28:09.160Z"
+    },
+    {
+      "id": "note_20260823_17_sponsor_deliverables",
+      "title": "協賛が決まった後に何を渡す？｜ロゴ・SNS・当日掲示・報告まで抜け漏れを防ぐ協賛履行管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260823_17_sponsor_deliverables.enc.json",
+      "sha256": "cd2b2421d0ca9e18313c8705da0fe5b67ee7bfe6dcd93898203d08c8a062de3a",
+      "createdAt": "2026-08-23T09:12:26+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "today-20260823-note_20260823_17_sponsor_deliverables-20260823T091226+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+    },
+    {
+      "id": "note_20260823_18_event_incident_response",
+      "title": "イベント当日にトラブルが起きたら｜事故・体調不良・苦情を記録して再発防止までつなぐ対応フロー",
+      "path": "sidehustle-autopublish/note/queue/note_20260823_18_event_incident_response.enc.json",
+      "sha256": "9120dc2a9517603a2bd59f4322284fd5fbbda3e6c3d734c1838f8b0cd225b477",
+      "createdAt": "2026-08-23T09:12:26+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "today-20260823-note_20260823_18_event_incident_response-20260823T091226+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+    },
+    {
+      "id": "note_20260823_19_grant_tracker",
+      "title": "助成金申請を締切直前の作業にしない｜要件・添付・担当・提出後対応を一元管理する実務フロー",
+      "path": "sidehustle-autopublish/note/queue/note_20260823_19_grant_tracker.enc.json",
+      "sha256": "813fb4b8a17964a8b839c20b8406d6797eb411d1150d7d4e746cfc3b62123aa6",
+      "createdAt": "2026-08-23T09:12:26+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "today-20260823-note_20260823_19_grant_tracker-20260823T091226+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+    },
+    {
+      "id": "note_20260823_20_meeting_decision_log",
+      "title": "会議で決めたことが実行されないを防ぐ｜決定・担当・期限・次回確認まで残す運用設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260823_20_meeting_decision_log.enc.json",
+      "sha256": "4a48b991ffc1ccd47d899c53a5c71b27c6aaca5f1a9c1f74c0256bde619f468e",
+      "createdAt": "2026-08-23T09:12:26+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "today-20260823-note_20260823_20_meeting_decision_log-20260823T091226+0900",
+      "expectedPriceJPY": 780,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+    },
+    {
+      "id": "note_20260823_21_literature_matrix",
+      "title": "先行研究を読んでも論文が書けないを防ぐ｜主張・方法・限界・自分の研究との関係を整理する文献マトリクス",
+      "path": "sidehustle-autopublish/note/queue/note_20260823_21_literature_matrix.enc.json",
+      "sha256": "f2c2486602f54397661e19128618541fac0183d56f09d097fa1ad03c76b28e3a",
+      "createdAt": "2026-08-23T09:12:26+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "today-20260823-note_20260823_21_literature_matrix-20260823T091226+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
     }
   ]
 }
