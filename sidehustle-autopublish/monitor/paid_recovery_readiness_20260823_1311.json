@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "checkedAt": "2026-08-23T13:11:31+09:00",
+  "date": "2026-08-23",
+  "completionGate": "sidehustle-autopublish/completion_gate.json",
+  "publicationQuota": "sidehustle-autopublish/publication_quota.json",
+  "hardFloor": {
+    "notePaid": 5,
+    "boothPaid": 5,
+    "carriedDebtNote": 0,
+    "carriedDebtBooth": 0,
+    "strictVerifiedNote": 0,
+    "strictVerifiedBooth": 0
+  },
+  "note": {
+    "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260823_batch01.json",
+    "queue": "sidehustle-autopublish/note/queue/index.json",
+    "receiptDirectory": "sidehustle-autopublish/note/publication_receipts/",
+    "requiredIds": [
+      "note_20260823_17_sponsor_deliverables",
+      "note_20260823_18_event_incident_response",
+      "note_20260823_19_grant_tracker",
+      "note_20260823_20_meeting_decision_log",
+      "note_20260823_21_literature_matrix"
+    ],
+    "cloudReady": true,
+    "materializedCount": 5,
+    "encryptedPayloads": true,
+    "shaRecorded": true,
+    "pricesRecorded": true,
+    "dedicatedCovers1280x670": true,
+    "queueRecoveryMode": "force_all_2026-08-23_paid_now",
+    "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"],
+    "nextWindowsInstruction": "Process all five current-day entries. Do not stop after one success. Preserve a briefly failed item as retryable, switch to another current-day item, then return. Do not count editor/admin URLs or inferred public URLs."
+  },
+  "booth": {
+    "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "queue": "booth-autopublish/queue/index.json",
+    "ledger": "booth-autopublish/monitor/publication_ledger.json",
+    "recoveryControl": "booth-autopublish/monitor/recovery_control.json",
+    "pipelineHealth": "booth-autopublish/monitor/pipeline_health.json",
+    "requiredIds": [
+      "024_grant_evidence_expense_os_20260823",
+      "025_event_decision_authority_os_20260823",
+      "026_research_claim_evidence_os_20260823",
+      "027_sponsor_contact_history_os_20260823",
+      "028_team_backup_coverage_os_20260823"
+    ],
+    "cloudReady": true,
+    "materializedCount": 5,
+    "encryptedPayloadZips": true,
+    "productJsonPresent": true,
+    "productZipPresent": true,
+    "preview01JpgPresent": true,
+    "shaRecorded": true,
+    "queueRetryGeneration": 35,
+    "categoryCompatibility": "ソフトウェア・ハードウェア > ソフトウェア",
+    "legacy009Deferred": true,
+    "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"],
+    "nextWindowsInstruction": "Process 024-028 continuously. Do not stop after one success. Skip briefly recoverable failures, continue through the other current-day items, then return. Never route to legacy 009 while the current-day floor remains."
+  },
+  "deferredUntilBothFloorsComplete": [
+    "free note normal production",
+    "new GitHub Pages tools",
+    "new paid candidates",
+    "additional derivative products"
+  ],
+  "cloudRepairThisRun": [
+    "Repaired stale BOOTH pipeline_health from the 2026-08-22 debt-9 batch to the correct 2026-08-23 debt-0 five-item state.",
+    "Refreshed sidehustle-autopublish/metrics/current.json to reference the corrected BOOTH pipeline health and current 5+5 readiness.",
+    "Reconfirmed NOTE and BOOTH materialization manifests, queue recovery controls and strict-verification requirements."
+  ],
+  "humanOnlyBlocker": null,
+  "completion": false
+}
