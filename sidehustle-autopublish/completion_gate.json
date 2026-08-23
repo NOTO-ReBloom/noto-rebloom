@@ -1,62 +1,74 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-22T01:39:00+09:00",
-  "purpose": "Suppress intermediate reporting and treat the current production cycle as complete only after every required channel condition is actually satisfied or a verified human-only blocker stops all remaining publication paths.",
+  "version": 2,
+  "updatedAt": "2026-08-23T10:07:00+09:00",
+  "purpose": "Treat the current production cycle as complete only after the required paid publication floors are strict verified or a verified human-only blocker stops every remaining current-day publication path.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
     "diagnosticOnlyReports": false,
     "queueOrCommitOnlyReports": false,
     "reportOnlyWhen": [
-      "all completion conditions below are satisfied",
-      "or a verified human-only blocker prevents all remaining required publication work and exactly one minimal user action is needed"
+      "both 2026-08-23 paid channel floors below are strict verified",
+      "or a verified human-only blocker prevents all remaining required current-day publication work and exactly one minimal user action is needed"
     ]
   },
   "completionConditions": {
     "notePaid": {
       "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
+      "date": "2026-08-23",
       "requireCarriedDebtZero": true,
-      "requireCurrentDailyTargetSatisfied": true,
+      "dailyStrictTarget": 5,
+      "requiredIds": [
+        "note_20260823_17_sponsor_deliverables",
+        "note_20260823_18_event_incident_response",
+        "note_20260823_19_grant_tracker",
+        "note_20260823_20_meeting_decision_log",
+        "note_20260823_21_literature_matrix"
+      ],
       "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
-    },
-    "noteFree": {
-      "currentBatch": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
-      "currentBatchCount": 6,
-      "requireNoteCrossPostOfCurrentBatch": true,
-      "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
-      "rule": "GitHub Pages publication of the six insight pages is useful acquisition inventory but does not substitute for the requested note free-article cross-post when the Windows note publisher becomes available."
     },
     "BOOTH": {
       "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
+      "date": "2026-08-23",
       "requireCarriedDebtZero": true,
-      "requireCurrentDailyTargetSatisfied": true,
+      "dailyStrictTarget": 5,
+      "requiredIds": [
+        "024_grant_evidence_expense_os_20260823",
+        "025_event_decision_authority_os_20260823",
+        "026_research_claim_evidence_os_20260823",
+        "027_sponsor_contact_history_os_20260823",
+        "028_team_backup_coverage_os_20260823"
+      ],
       "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
-    "GitHubPages": {
-      "requireCurrentFreeInsightBatchVerified": true,
-      "verifiedLedger": "insights/publication_ledger.json",
-      "currentVerifiedCount": 6
-    },
-    "MicrosoftStore": {
-      "requireAtLeastOneHighestQualitySubmissionReadyPerDay": true,
-      "requireStorePublicPageVerificationWhenCertificationHasCompleted": true,
-      "doNotRushQualityGate": true
+    "deferredUntilPaidFloorsComplete": {
+      "noteFree": true,
+      "GitHubPagesNewWork": true,
+      "newPaidCandidates": true,
+      "additionalDerivativeProducts": true,
+      "MicrosoftStore": "quality-gate/submission-ready maintenance only"
     }
   },
   "executionPolicy": {
     "singleRunMayPublishMany": true,
     "switchCandidatesAfterBriefRecoverableFailure": true,
-    "doNotStopAfterFirstSuccessWhileDebtRemains": true,
-    "after0100DoNotAssumeWindowsOnline": true,
-    "after0100CloudWork": ["article production", "product production", "encryption", "queue repair", "ledger reconciliation", "publisher patch preparation", "Store submission preparation"],
-    "nextWindowsPriority": ["oldest note paid debt", "oldest BOOTH debt", "remaining current-day paid quota", "note free cross-post batch"]
+    "doNotStopAfterFirstSuccessWhileCurrentDayFloorRemains": true,
+    "currentDayBeforeLegacyBlockers": true,
+    "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
+    "whenWindowsUnavailable": ["queue/ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
+    "nextWindowsPriority": [
+      "2026-08-23 NOTE paid batch until 5/5 strict verified",
+      "2026-08-23 BOOTH paid batch until 5/5 strict verified",
+      "return to any briefly held current-day item before legacy blockers"
+    ]
   },
   "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],
   "antiFalseCompletion": [
     "Do not report a commit as publication.",
     "Do not report PUBLISH_SUCCESS without public verification.",
     "Do not report an editor/admin URL as publication.",
-    "Do not reduce debt based on free content.",
+    "Do not reduce paid debt based on free content.",
     "Do not invent public URLs.",
+    "Do not count legacy reverification as a new current-day publication.",
     "Do not send intermediate status to the user."
   ]
 }
