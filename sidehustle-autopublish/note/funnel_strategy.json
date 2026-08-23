@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-23T12:27:00+09:00",
+  "version": 3,
+  "updatedAt": "2026-08-23T23:30:00+09:00",
   "objective": "maximize note revenue by combining useful free acquisition articles with paid conversion articles, while measuring the free-to-paid funnel without speculative optimization",
   "internalEvidence": {
     "observedSales": null,
@@ -10,7 +10,7 @@
     "observedRelatedPaidClicks": null,
     "observedRelatedPaidPurchases": null,
     "observedFreeToPaidConversion": null,
-    "interpretation": "First-party article-level funnel metrics are not yet available. Do not claim a winning theme, CTA uplift or optimal price until equal-age 24h/72h/7d evidence exists."
+    "interpretation": "The earliest comparable 24h gate has passed, but first-party article-level funnel metrics are still not present in the authoritative repository state. Do not claim a winning theme, CTA uplift, weak conversion, or optimal price until platform-native 24h/72h/7d observations are actually captured."
   },
   "externalEvidence": {
     "sourceType": "note official/editorial guidance",
@@ -148,10 +148,11 @@
     "ctaChangeRule": "Only use a reader-visible verified destination and never add more than one paid CTA to a free article by default."
   },
   "currentState": {
-    "asOf": "2026-08-23T12:27:00+09:00",
+    "asOf": "2026-08-23T23:30:00+09:00",
     "firstPartyFunnelMetricsAvailable": false,
     "earliestComparable24hGate": "approximately 2026-08-23T17:51:00+09:00",
-    "actionNow": "Do not churn CTA, price or publication cadence before the first comparable 24h evidence becomes available. Prepare measurement and keep future paid free areas compliant with the three-element qualification gate."
+    "gateStatus": "passed_but_metrics_unavailable",
+    "actionNow": "Do not change CTA, paid price, or free publication cadence based on assumed performance. Preserve the current one-CTA architecture and three-element paid free-area qualification gate. Next optimization action is to capture actual platform-native PV, likes, follows, related paid clicks, related paid purchases and revenue when accessible; then compare equal-age 24h observations before any customer-facing change."
   },
   "currentFreeBatch": {
     "path": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
