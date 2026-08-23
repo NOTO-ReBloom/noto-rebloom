@@ -1,25 +1,24 @@
 {
-  "version": 13,
-  "updatedAt": "2026-08-23T10:07:00+09:00",
+  "version": 14,
+  "updatedAt": "2026-08-23T10:42:25+09:00",
   "activeRecovery": {
     "date": "2026-08-23",
-    "mode": "clear_current_day_paid_floor_before_legacy",
+    "mode": "force_current_day_all_now",
     "requiredStrictNewPublications": 5,
-    "strictVerifiedAtControlUpdate": 0,
     "remaining": 5
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-23T09:12:25+09:00",
     "requiredStrictNewPublications": 5,
     "queueIds": [
-      "024_grant_evidence_expense_os_20260823",
-      "025_event_decision_authority_os_20260823",
-      "026_research_claim_evidence_os_20260823",
+      "028_team_backup_coverage_os_20260823",
       "027_sponsor_contact_history_os_20260823",
-      "028_team_backup_coverage_os_20260823"
+      "026_research_claim_evidence_os_20260823",
+      "025_event_decision_authority_os_20260823",
+      "024_grant_evidence_expense_os_20260823"
     ],
     "priority": "current_day_batch_in_order_then_return_to_recoverable_failures; never route to legacy 009 while current-day quota remains",
-    "queueRetryGeneration": 33,
+    "queueRetryGeneration": 34,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
     "cloudQa": {
       "allFiveMaterialized": true,
@@ -45,7 +44,8 @@
     "doNotFallbackToFreeWeb": true,
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forcedRecoveryAt": "2026-08-23T10:07:00+09:00"
+    "forcedRecoveryAt": "2026-08-23T10:42:25+09:00",
+    "forceRetryNonce": "force-all-20260823-20260823T104225+0900"
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",

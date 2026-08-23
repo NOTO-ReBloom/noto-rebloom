@@ -1,27 +1,29 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-23T09:12:26+09:00",
-  "retryGeneration": 31,
+  "updatedAt": "2026-08-23T10:42:25+09:00",
+  "retryGeneration": 32,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "clear_2026-08-23_paid_quota_now",
+    "mode": "force_all_2026-08-23_paid_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
+      "note_20260823_19_grant_tracker",
+      "note_20260823_21_literature_matrix",
       "note_20260823_17_sponsor_deliverables",
       "note_20260823_18_event_incident_response",
-      "note_20260823_19_grant_tracker",
-      "note_20260823_20_meeting_decision_log",
-      "note_20260823_21_literature_matrix"
+      "note_20260823_20_meeting_decision_log"
     ],
-    "instruction": "Process all five current-day paid items in order. Do not stop after first success. After a brief recoverable failure, move to the next item and keep the failed item retryable.",
+    "instruction": "Process all five 2026-08-23 paid NOTE entries; do not stop after first success; skip briefly blocked entries and continue.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
       "price",
       "paidBoundary",
       "dedicatedCover"
-    ]
+    ],
+    "forcedAt": "2026-08-23T10:42:25+09:00",
+    "nonce": "force-all-20260823-20260823T104225+0900"
   },
   "entries": [
     {
@@ -385,7 +387,7 @@
       "createdAt": "2026-08-23T09:12:26+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "today-20260823-note_20260823_17_sponsor_deliverables-20260823T091226+0900",
+      "forceRetryNonce": "force-all-20260823-20260823T104225+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -396,7 +398,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
     },
     {
       "id": "note_20260823_18_event_incident_response",
@@ -406,7 +408,7 @@
       "createdAt": "2026-08-23T09:12:26+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "today-20260823-note_20260823_18_event_incident_response-20260823T091226+0900",
+      "forceRetryNonce": "force-all-20260823-20260823T104225+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -417,7 +419,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
     },
     {
       "id": "note_20260823_19_grant_tracker",
@@ -427,7 +429,7 @@
       "createdAt": "2026-08-23T09:12:26+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "today-20260823-note_20260823_19_grant_tracker-20260823T091226+0900",
+      "forceRetryNonce": "force-all-20260823-20260823T104225+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -438,7 +440,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
     },
     {
       "id": "note_20260823_20_meeting_decision_log",
@@ -448,7 +450,7 @@
       "createdAt": "2026-08-23T09:12:26+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "today-20260823-note_20260823_20_meeting_decision_log-20260823T091226+0900",
+      "forceRetryNonce": "force-all-20260823-20260823T104225+0900",
       "expectedPriceJPY": 780,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -459,7 +461,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
     },
     {
       "id": "note_20260823_21_literature_matrix",
@@ -469,7 +471,7 @@
       "createdAt": "2026-08-23T09:12:26+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "today-20260823-note_20260823_21_literature_matrix-20260823T091226+0900",
+      "forceRetryNonce": "force-all-20260823-20260823T104225+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -480,7 +482,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish with dedicated cover, then strict reader-visible verification; continue to next item after brief recoverable failure"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
     }
   ]
 }
