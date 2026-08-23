@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-21T14:13:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-23T12:27:00+09:00",
   "id": "ms_csv_cleaner_deduper",
   "productNameCandidate": "CSV Cleaner & Duplicate Remover",
   "channel": "Microsoft Store",
@@ -11,7 +11,7 @@
   "publicAppUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
   "sourcePath": "auto-tools/csv-cleaner-deduper/",
   "listing": {
-    "description": "CSV Cleaner & Duplicate Removerは、CSVファイルの重複行、不要な空白、空行、列名の揺れをすばやく整理するローカル処理ツールです。UTF-8とShift-JISの読み込みに対応し、重複判定に使う列を選んでデータを整理できます。処理したCSVはUTF-8 CSVとして保存できます。\n\nファイル内容は外部サーバーへ送信せず、ブラウザ内で処理します。顧客リスト、アンケート結果、商品マスタ、イベント参加者一覧など、CSVを日常的に扱う作業の前処理を短時間で行えます。",
+    "description": "CSVの重複、余分な空白、空行、列名の揺れを、外部サーバーへファイル内容を送らずにまとめて整理できます。UTF-8とShift-JISの読み込みに対応し、重複判定に使う列を選んで、整理結果を保存前にプレビューできます。\n\n顧客リスト、アンケート結果、商品マスタ、イベント参加者一覧など、CSVをそのままExcelや業務システムへ入れる前の前処理に向いています。\n\n主な機能\n・重複行を全列または選択列で削除\n・セル前後の空白を一括削除\n・連続する半角・全角空白を正規化\n・完全な空行を削除\n・列名の空白を整理\n・UTF-8 / Shift-JIS CSVを読み込み\n・最大100行の結果プレビュー\n・UTF-8 BOM付きCSVとしてローカル保存\n\nCSVの内容はブラウザ内で処理され、外部サーバーへ送信しません。インストール後はPWAとして利用でき、対応環境ではオフラインでも基本機能を使えます。",
     "features": [
       "重複行を全列または選択列で削除",
       "セル前後の空白を一括削除",
@@ -20,13 +20,46 @@
       "列名の空白を整理",
       "UTF-8 / Shift-JIS CSVの読み込み",
       "最大100行の結果プレビュー",
-      "UTF-8 CSVとしてローカル保存",
+      "UTF-8 BOM付きCSVとしてローカル保存",
       "ファイル内容を外部送信しないローカル処理",
-      "PWAとしてインストール・オフライン利用可能"
+      "PWAとしてインストール・対応環境でオフライン利用可能"
     ],
-    "keywords": ["CSV","重複削除","CSVクリーナー","データ整理","Shift-JIS","表計算","ローカル処理"],
-    "shortDescription": "CSVの重複・空白・空行を端末内だけで整理。UTF-8 / Shift-JIS対応の無料CSVクリーナー。",
+    "keywords": [
+      "CSV 重複削除",
+      "CSV クリーナー",
+      "CSV 整形",
+      "データ 重複削除",
+      "Shift-JIS CSV",
+      "CSV 空白削除",
+      "CSV データ整理"
+    ],
+    "shortDescription": "CSVの重複・空白・空行を外部送信なしで一括整理。UTF-8 / Shift-JIS、列指定の重複削除、保存前プレビューに対応。",
     "privacyStatement": "The app processes imported CSV data locally in the user's browser and does not transmit CSV contents to an external server."
+  },
+  "listingOptimization": {
+    "basis": "Microsoft Store guidance recommends a clear value proposition in the first sentences, scannable benefit-led copy, relevant search terms, localized metadata and 5-8 high-quality screenshots when possible.",
+    "preLaunchChangesApplied": [
+      "Moved the local-only privacy/value proposition into the first sentence.",
+      "Made common real-world use cases explicit.",
+      "Clarified that output is UTF-8 BOM CSV for Japanese Excel compatibility.",
+      "Changed generic search terms into more intent-specific Japanese phrases.",
+      "Kept claims limited to functions already verified by the quality gate."
+    ],
+    "postLaunchExperimentPlan": {
+      "baselineRequired": true,
+      "primaryMetric": "Store page to acquisition conversion rate",
+      "firstExperiment": "icon or screenshot set, not simultaneous price/copy changes",
+      "minimumRule": "Do not launch A/B experiments until a live listing and sufficient baseline traffic exist.",
+      "rollbackCondition": "Variant underperforms baseline after sufficient comparable exposure or introduces misleading representation."
+    },
+    "screenshotPlan": {
+      "currentPreparedCount": 4,
+      "recommendedFutureCount": "5-8 when additional truthful, distinct workflow screenshots can be produced",
+      "nextDistinctScenes": [
+        "column-select deduplication setup",
+        "before/after cleaned CSV result"
+      ]
+    }
   },
   "submissionRequirements": {
     "https": true,
@@ -36,7 +69,7 @@
     "featuresPrepared": true,
     "privacyTextPrepared": true,
     "screenshotRequired": true,
-    "recommendedScreenshotCount": 4,
+    "recommendedScreenshotCount": "5-8",
     "desktopScreenshotMinimum": "1366x768 PNG",
     "partnerCenterNameReservationRequired": true,
     "pwabuilderPackageRequiredAfterReservation": true
