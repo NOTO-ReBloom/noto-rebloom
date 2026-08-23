@@ -1,6 +1,6 @@
 {
-  "version": 10,
-  "updatedAt": "2026-08-23T14:33:20+09:00",
+  "version": 11,
+  "updatedAt": "2026-08-23T15:09:00+09:00",
   "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 publications and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -43,18 +43,19 @@
   },
   "evidence": {
     "paidNote": "Windows publisher produced strict anonymous verification for all five designated 2026-08-23 paid NOTE entries; canonical publication receipts were created for IDs 17-21 with reader-visible URLs and all five required checks true.",
-    "BOOTH": "Canonical BOOTH publication ledger contains no 2026-08-23 required IDs. The five current-day encrypted payload ZIPs remain cloud-QA complete and recovery-ready.",
-    "freeNote": "Both designated 2026-08-23 free NOTE entries remain enabled but absent from the strict free publication ledger; latest Windows attempt stopped on recoverable cover-modal UI detection failure.",
+    "BOOTH": "Canonical BOOTH publication ledger contains none of the five required 2026-08-23 IDs. All five current-day encrypted payload ZIPs are cloud-QA complete, queue-enabled and retained as the sole unfinished paid priority.",
+    "freeNote": "Both designated 2026-08-23 free NOTE entries remain enabled but absent from the strict free publication ledger; they remain secondary until BOOTH 5/5 is complete.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-23T14:33:20+09:00",
+    "checkedAt": "2026-08-23T15:09:00+09:00",
     "windowsPublisherReachableFromThisRun": false,
     "cloudRepairsApplied": [
-      "Created canonical strict publication receipts for all five paid NOTE entries from Windows publisher logs that explicitly passed title, price, paid-boundary, dedicated-cover and anonymous reader-visible verification.",
-      "Reconciled paid NOTE metrics from 0/5 to 5/5; no free NOTE or BOOTH publication was inferred.",
-      "Confirmed both free NOTE targets remain unpublished in the strict ledger and retain current-day priority.",
-      "Confirmed BOOTH recovery_control.json still forces all five current-day products and blocks legacy 009 fallback while the BOOTH floor remains incomplete."
+      "Reconfirmed paid NOTE 5/5 strict verified and carried debt 0.",
+      "Reconfirmed BOOTH 0/5 strict verified with all five required current-day payload ZIPs cloud-QA complete.",
+      "Upgraded booth-autopublish/monitor/recovery_control.json to version 17 with a Windows resume contract that processes all five current-day IDs, skips briefly recoverable failures without stopping, returns to held current-day items after the first pass, and forbids legacy 009 fallback.",
+      "Refreshed booth-autopublish/monitor/pipeline_health.json to version 8 and recorded that no human-only blocker is currently evidenced.",
+      "No unrelated new production, GitHub Pages work, legacy blocker recovery, or Microsoft Store expansion was prioritized while BOOTH remains below 5/5."
     ]
   },
   "rules": [
