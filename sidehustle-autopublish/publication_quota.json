@@ -1,7 +1,7 @@
 {
-  "version": 32,
+  "version": 33,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-23T14:33:20+09:00",
+  "updatedAt": "2026-08-24T00:07:41+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -21,7 +21,7 @@
         "todayRemainingToTarget": 0,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
         "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. When it is available, remaining current-day publication recovery is the first priority.",
-        "nextPreferredWindowsRecoveryWindow": "current PC-available session on 2026-08-23",
+        "nextPreferredWindowsRecoveryWindow": "next PC-available session",
         "paidProductionInventoryComplete": true,
         "preparedCloudInventory": "sidehustle-autopublish/note/paid_drafts/2026-08-23_batch01.md",
         "preparedCloudInventoryCount": 5,
@@ -30,7 +30,7 @@
         "queueMaterializationState": "complete",
         "strictPublicationState": "5/5 reader-visible verified; canonical publication receipts exist for all five required IDs",
         "deferredLegacyCandidate": "note_20260820_05",
-        "fallbackPolicy": "Paid NOTE floor is satisfied. Continue current-day BOOTH and designated free NOTE recovery before legacy blockers or unrelated new production.",
+        "fallbackPolicy": "Paid NOTE floor is satisfied. Continue carried 2026-08-23 BOOTH and designated free NOTE recovery before legacy blockers or unrelated new production.",
         "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target."
       },
       "freeAcquisitionExperiment": {
@@ -49,7 +49,7 @@
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "measurementWindows": ["24h","72h","7d"],
         "measureWhenAvailable": ["PV","likes","follows","related paid clicks","related paid purchases","revenue"],
-        "adaptationRule": "The two designated 2026-08-23 free NOTE entries remain required by completion_gate and should publish after paid NOTE, without replacing BOOTH debt.",
+        "adaptationRule": "The two designated 2026-08-23 free NOTE entries remain required by completion_gate and should publish after paid BOOTH, without replacing paid debt.",
         "separationRule": "Free publications never decrement paid publication debt and never replace the paid 5/day strict floor."
       }
     },
@@ -57,20 +57,22 @@
       "dailyPublicTarget": 5,
       "completionDefinition": "buyer-visible official BOOTH product page verified with title, price, downloadable-product state and purchase path",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
-      "catchUpPriority": "complete current-day genuine-new paid batch before deferred legacy blockers",
+      "catchUpPriority": "complete 2026-08-23 genuine-new paid batch before deferred legacy blockers or newer production",
       "perCatchUpCycleSoftBatch": 10,
       "productionCap": null,
       "operationalState": {
         "date": "2026-08-23",
+        "carriedIntoDate": "2026-08-24",
         "previousDate": "2026-08-22",
         "previousDayStrictVerifiedPublicationsCount": 5,
-        "carriedPublicationDebt": 0,
+        "carriedPublicationDebt": 5,
+        "carriedDebtSourceDate": "2026-08-23",
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
-        "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. When it is available, current-day BOOTH recovery is now the highest paid priority.",
-        "nextPreferredWindowsRecoveryWindow": "current PC-available session on 2026-08-23",
+        "pcAssumption": "Windows publisher is not reachable from this run. At the next PC-available session, the carried 2026-08-23 BOOTH batch is the highest paid priority before any newer production.",
+        "nextPreferredWindowsRecoveryWindow": "next PC-available session",
         "paidProductionInventoryComplete": true,
         "plannedCloudBatchBuilder": "sidehustle-autopublish/builders/materialize_booth_20260823_batch01.py",
         "preparedIds": ["024_grant_evidence_expense_os_20260823","025_event_decision_authority_os_20260823","026_research_claim_evidence_os_20260823","027_sponsor_contact_history_os_20260823","028_team_backup_coverage_os_20260823"],
@@ -79,21 +81,22 @@
         "queueRetryGeneration": 35,
         "recoveryControl": "booth-autopublish/monitor/recovery_control.json",
         "deferredLegacyCandidate": "009_handover_os_20260820",
-        "fallbackPolicy": "Process all five genuine-new current-day items. One strict success is not a stopping condition. After a brief recoverable failure, preserve the item as retryable, switch to another current-day item, then return later. Do not route to 009 while current-day quota remains.",
-        "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements debt."
+        "fallbackPolicy": "Process all five genuine-new 2026-08-23 items as carried paid debt. One strict success is not a stopping condition. After a brief recoverable failure, preserve the item as retryable, switch to another required item, then return later. Do not route to 009 or unrelated 2026-08-24 production while this debt remains.",
+        "debtRule": "Only explicit verification of all required buyer checks on a newly published item decrements the five-item carried debt."
       }
     }
   },
   "rules": [
     "Paid daily targets are hard minimums and must not be silently reduced for expected-profit optimization.",
     "For 2026-08-23, paid NOTE is strict verified 5/5; BOOTH 5/5 and the designated free NOTE 2/2 remain required before completion.",
+    "The unfinished 2026-08-23 BOOTH five-item requirement carries into 2026-08-24 as paid publication debt and midnight never clears it.",
     "A paid scheduled slot that cannot reach verified publication is not discarded; it becomes paid publication debt.",
     "Paid publication debt survives date changes and PC power-off periods until buyer/reader-visible publication is verified.",
-    "One run may complete multiple publications when debt exists or today's floor remains; pacing preferences are not production caps.",
+    "One run may complete multiple publications when debt exists or a paid floor remains; pacing preferences are not production caps.",
     "Do not count queue insertion, local publisher success logs without strict verification, editor/admin URLs, drafts, commits, old-item reverification, or unverified pages as completed paid publications.",
-    "Free note articles and new unrelated production are secondary to unfinished current-day BOOTH strict publication.",
+    "Free note articles and new unrelated production are secondary to unfinished carried BOOTH strict publication.",
     "Cloud-side planning, queue production and publisher repair continue when Windows is unavailable.",
     "Do not disable BOOTH/note automation because of a recoverable publication or verification delay.",
-    "If one current-day BOOTH candidate remains blocked, defer it briefly and switch to another current-day qualified candidate rather than ending the run or falling back to a legacy blocker."
+    "If one required BOOTH candidate remains blocked, defer it briefly and switch to another required 2026-08-23 candidate rather than ending the run or falling back to a legacy blocker."
   ]
 }
