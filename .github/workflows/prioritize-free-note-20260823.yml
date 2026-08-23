@@ -1,0 +1,63 @@
+name: Prioritize 2026-08-23 free NOTE
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prioritize-free-note-20260823.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prioritize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Hold older unpublished free NOTE and enable only today's two
+        shell: python
+        run: |
+          import json, pathlib, datetime
+          p=pathlib.Path('sidehustle-autopublish/note/free_queue/index.json')
+          d=json.loads(p.read_text(encoding='utf-8-sig'))
+          today={
+            'free_note_20260823_01_sponsor_after_yes',
+            'free_note_20260823_02_grant_deadline_reverse_plan'
+          }
+          JST=datetime.timezone(datetime.timedelta(hours=9))
+          stamp=datetime.datetime.now(JST).isoformat(timespec='seconds')
+          found=set(); held=0
+          for e in d.get('entries',[]):
+            eid=e.get('id')
+            if eid in today:
+              found.add(eid)
+              if not e.get('publicUrlVerified',False):
+                e['enabled']=True
+                e['forceRetry']=False
+                e.pop('holdReason',None)
+            elif not e.get('publicUrlVerified',False) and e.get('enabled'):
+              e['enabled']=False
+              e['forceRetry']=False
+              e['holdReason']='Held temporarily so 2026-08-23 requested free NOTE items publish first; preserve for later recovery.'
+              held+=1
+          missing=today-found
+          if missing: raise SystemExit('Missing today free NOTE IDs: '+','.join(sorted(missing)))
+          d['updatedAt']=stamp
+          d['activePriorityBatch']={
+            'date':'2026-08-23','ids':sorted(today),
+            'rule':'Only these two unpublished free NOTE entries are enabled until both are strict reader-visible verified.',
+            'olderEntriesHeld':held
+          }
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+      - name: Commit priority state
+        run: |
+          git config user.name 'note-free-priority'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/free_queue/index.json
+          git commit -m 'Prioritize two 2026-08-23 free NOTE publications'
+          git pull --rebase origin main
+          git push origin HEAD:main
