@@ -1,0 +1,60 @@
+name: Queue 2026-08-23 free NOTE reserve
+
+on:
+  push:
+    paths:
+      - '.github/workflows/queue-free-note-20260823.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  queue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Append today's two free NOTE articles
+        shell: python
+        run: |
+          import json, pathlib, datetime
+          p=pathlib.Path('sidehustle-autopublish/note/free_queue/index.json')
+          q=json.loads(p.read_text(encoding='utf-8-sig'))
+          now=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).replace(microsecond=0).isoformat()
+          src='sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md'
+          items=[
+            {
+              'id':'free_note_20260823_01_sponsor_after_yes','kind':'free','price':0,
+              'title':'協賛が決まった直後に確認したい6項目｜入金だけで終わらせない最初のチェック',
+              'sourceBatchPath':src,'pairedPaidId':'note_20260823_17_sponsor_deliverables',
+              'tags':['協賛','スポンサー','学生団体','イベント運営'],
+              'coverLabel':'協賛・スポンサー','coverCopy':'決定直後に見る 6項目','accent':'#0f766e',
+              'enabled':True,'forceRetry':False,'forceRetryNonce':'free-20260823-01','publicUrlVerified':False
+            },
+            {
+              'id':'free_note_20260823_02_grant_deadline_reverse_plan','kind':'free','price':0,
+              'title':'助成金の締切から逆算すると何日前に何をする？｜申請直前に詰まらない5段階チェック',
+              'sourceBatchPath':src,'pairedPaidId':'note_20260823_19_grant_tracker',
+              'tags':['助成金','補助金','申請','NPO'],
+              'coverLabel':'助成金・申請','coverCopy':'締切から逆算する 5段階','accent':'#2563eb',
+              'enabled':True,'forceRetry':False,'forceRetryNonce':'free-20260823-02','publicUrlVerified':False
+            }
+          ]
+          by={e.get('id'):i for i,e in enumerate(q.get('entries',[]))}
+          for it in items:
+            if it['id'] in by: q['entries'][by[it['id']]]=it
+            else: q.setdefault('entries',[]).append(it)
+          q['version']=max(3,int(q.get('version',3))); q['updatedAt']=now; q['sourceBatchPath']=src
+          p.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('QUEUED_FREE_NOTE_20260823_COUNT=2')
+      - name: Commit queue
+        run: |
+          git config user.name 'free-note-queue'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/free_queue/index.json
+          git commit -m 'Queue two 2026-08-23 free NOTE articles'
+          git pull --rebase origin main
+          git push origin HEAD:main
