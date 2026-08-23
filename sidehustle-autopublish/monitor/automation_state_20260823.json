@@ -1,51 +1,43 @@
 {
-  "version": 1,
-  "checkedAt": "2026-08-23T04:25:22+09:00",
+  "version": 2,
+  "checkedAt": "2026-08-23T10:07:00+09:00",
   "completionGateSatisfied": false,
   "reportingSuppressed": true,
   "observed": {
-    "publicationQuotaSourceDate": "2026-08-22",
+    "currentLocalDate": "2026-08-23",
     "previousDayNotePaidStrictVerified": 5,
     "previousDayNotePaidCarriedDebt": 0,
     "previousDayBoothStrictVerified": 5,
     "previousDayBoothCarriedDebt": 0,
-    "currentLocalDate": "2026-08-23",
-    "currentDayNotePaidStrictVerifiedFromAvailableLedger": 0,
-    "currentDayBoothStrictVerifiedFromAvailableLedger": 0,
-    "currentDayPaidTargets": {
-      "note": 5,
-      "BOOTH": 5
+    "currentDayNotePaidStrictVerified": 0,
+    "currentDayBoothStrictVerified": 0,
+    "currentDayPaidTargets": {"note": 5, "BOOTH": 5},
+    "noteMaterialization": {
+      "count": 5,
+      "state": "complete",
+      "manifest": "sidehustle-autopublish/note/staging/materialization_20260823_batch01.json"
     },
-    "noteFreeInitialBatch": {
-      "required": 6,
-      "readerVisibleStrictVerified": true
+    "boothMaterialization": {
+      "count": 5,
+      "state": "complete",
+      "manifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json"
     },
-    "githubPagesInitialInsightBatch": {
-      "required": 6,
-      "state": "previously verified; no evidence in this run of regression"
-    },
-    "microsoftStore": {
-      "appId": "ms_csv_cleaner_deduper",
-      "qualityGateState": "highest_quality_submission_ready_except_partner_center_identity_and_human_submission",
-      "publicPwaVerified": true,
-      "partnerCenterProductIdentityReserved": false,
-      "submittedForCertification": false,
-      "publicStoreUrlVerified": false
-    }
+    "currentDayStrictEvidenceAbsent": true
   },
   "cloudRecoveryWork": {
-    "paidNoteDraftBatch": "sidehustle-autopublish/note/paid_drafts/2026-08-23_batch01.md",
-    "paidNoteDraftCount": 5,
-    "freeNoteReserveBatch": "sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md",
-    "freeNoteReserveCount": 2,
-    "windowsAssumption": "PC not assumed online after 01:00 JST"
+    "publicationQuotaReconciled": true,
+    "completionGateReprioritized": true,
+    "boothRecoveryControlUpdated": true,
+    "noteQueueRecoveryBatchAlreadyCurrent": true,
+    "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
+    "windowsAssumption": "No direct Windows execution channel is available in this run; keep both current-day batches immediately consumable for the next Windows publisher session."
   },
   "nextPriority": [
-    "On next Windows-available session, package/queue and publish 2026-08-23 paid NOTE batch with strict reader-visible verification until 5/5 is satisfied.",
-    "Prepare and publish five genuinely new BOOTH products for 2026-08-23; only strict buyer-visible verification may count.",
-    "Keep free NOTE publication secondary to paid floors; reserve manuscripts are prepared but do not discharge debt.",
-    "Continue Microsoft Store non-human submission preparation without inventing Partner Center identity."
+    "Publish the five 2026-08-23 paid NOTE items with strict reader-visible verification until 5/5.",
+    "Publish the five 2026-08-23 BOOTH items with strict buyer-visible verification until 5/5.",
+    "On recoverable single-item failure, switch to another current-day item and return later; never stop after one success.",
+    "Do not route to legacy blockers, free-note expansion, GitHub Pages new work or new paid candidates while either current-day paid floor remains incomplete."
   ],
   "humanOnlyBlocker": null,
-  "notificationDecision": "none: completion conditions are not all satisfied and no allowed human-only blocker stops every remaining publication path"
+  "notificationDecision": "none: strict paid floors remain 0/5 and 0/5, and no human-only blocker is verified"
 }
