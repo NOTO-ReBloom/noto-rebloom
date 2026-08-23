@@ -1,59 +1,64 @@
 {
-  "version": 12,
-  "updatedAt": "2026-08-22T09:06:43+09:00",
-  "activeRecovery": null,
+  "version": 13,
+  "updatedAt": "2026-08-23T10:07:00+09:00",
+  "activeRecovery": {
+    "date": "2026-08-23",
+    "mode": "clear_current_day_paid_floor_before_legacy",
+    "requiredStrictNewPublications": 5,
+    "strictVerifiedAtControlUpdate": 0,
+    "remaining": 5
+  },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-22T02:10:19+09:00",
-    "requiredStrictNewPublications": 14,
+    "generatedAt": "2026-08-23T09:12:25+09:00",
+    "requiredStrictNewPublications": 5,
     "queueIds": [
-      "010_event_risk_register_os_20260822",
-      "011_small_org_role_os_20260822",
-      "012_sponsor_deliverables_tracker_20260822",
-      "013_research_interview_coding_os_20260822",
-      "014_volunteer_shift_comms_os_20260822",
-      "015_creator_profit_pricing_os_20260822",
-      "016_event_sponsor_bundle_os_20260822",
-      "017_jobhunt_interview_bundle_os_20260822",
-      "018_grant_application_tracker_os_20260822",
-      "019_event_incident_log_os_20260822",
-      "020_meeting_decision_action_os_20260822",
-      "021_small_npo_donor_crm_os_20260822",
-      "022_research_literature_matrix_os_20260822",
-      "023_campus_project_budget_os_20260822"
+      "024_grant_evidence_expense_os_20260823",
+      "025_event_decision_authority_os_20260823",
+      "026_research_claim_evidence_os_20260823",
+      "027_sponsor_contact_history_os_20260823",
+      "028_team_backup_coverage_os_20260823"
     ],
-    "priority": "oldest_in_batch_first_then_continue_without_stopping_after_first_success",
-    "queueRetryGeneration": 31,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260822.json",
+    "priority": "current_day_batch_in_order_then_return_to_recoverable_failures; never route to legacy 009 while current-day quota remains",
+    "queueRetryGeneration": 33,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "cloudQa": {
+      "allFiveMaterialized": true,
+      "encryptedPayloadZip": true,
+      "productJson": true,
+      "productZip": true,
+      "preview01Jpg": true,
+      "shaRecordedInQueue": true
+    },
     "categoryCompatibility": {
       "parent": "ソフトウェア・ハードウェア",
       "child": "ソフトウェア",
-      "source": "previous successful clean rebuild of item 8736698"
+      "source": "previous successful clean rebuild path"
     },
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
-      "title",
-      "price",
+      "exactTitle",
+      "expectedPrice",
       "downloadableProductState",
-      "purchasePath"
+      "purchaseOrCartPath"
     ],
-    "consumerInstruction": "Process all enabled ledger-absent 010-023 items now; strict verify each buyer-visible page; continue after recoverable failures and after each success until all current debt is cleared or every item was attempted.",
+    "consumerInstruction": "Process all five current-day items. One strict success is not a stopping condition. After a brief recoverable failure, preserve that item as retryable, move to the next current-day item, and return later. Count only buyer-visible pages passing every required check. Do not infer public URLs from admin/editor state.",
     "doNotFallbackToFreeWeb": true,
     "doNotStopAfterFirstSuccess": true,
-    "forcedRecoveryAt": "2026-08-22T09:06:43+09:00"
+    "doNotReturnToLegacy009": true,
+    "forcedRecoveryAt": "2026-08-23T10:07:00+09:00"
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
     "publicUrl": "https://booth.pm/ja/items/8739122",
-    "reason": "Already counted once for 2026-08-20; never double-count quota."
+    "reason": "Already counted historically; never double-count current quota."
   },
   "heldAlreadyPublishedNotNewDebt": {
     "queueId": "001_interview_os",
     "historicalPublicUrl": "https://booth.pm/ja/items/8736751",
-    "historicalVerifiedAt": "2026-08-19T09:15:39.271Z",
-    "reason": "Historical Windows state recorded buyer-visible publication. Reverification/ledger reconciliation is allowed later, but it cannot be counted as a new publication for current debt."
+    "reason": "Historical publication cannot count as a new 2026-08-23 publication."
   },
   "heldBlocked": {
     "queueId": "009_handover_os_20260820",
-    "reason": "Repeated strict publication failures; preserved but not allowed to monopolize paid recovery cycles."
+    "reason": "Legacy blocker deferred until the five genuine-new 2026-08-23 products are strict verified."
   }
 }
