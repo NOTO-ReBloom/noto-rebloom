@@ -1,6 +1,6 @@
 {
-  "version": 9,
-  "updatedAt": "2026-08-23T14:10:57+09:00",
+  "version": 10,
+  "updatedAt": "2026-08-23T14:33:20+09:00",
   "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 publications and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -19,8 +19,8 @@
     "date": "2026-08-23",
     "paidNote": {
       "target": 5,
-      "strictVerified": 0,
-      "remaining": 5,
+      "strictVerified": 5,
+      "remaining": 0,
       "materialized": 5,
       "requiredChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
     },
@@ -42,20 +42,19 @@
     "all12StrictVerified": false
   },
   "evidence": {
-    "paidNote": "All five 2026-08-23 paid NOTE entries remain materialized and recovery-ready. Direct checks of the five canonical publication receipt paths returned no receipt, so no current-day paid NOTE publication is counted.",
+    "paidNote": "Windows publisher produced strict anonymous verification for all five designated 2026-08-23 paid NOTE entries; canonical publication receipts were created for IDs 17-21 with reader-visible URLs and all five required checks true.",
     "BOOTH": "Canonical BOOTH publication ledger contains no 2026-08-23 required IDs. The five current-day encrypted payload ZIPs remain cloud-QA complete and recovery-ready.",
-    "freeNote": "Secondary while both paid floors remain incomplete; no free NOTE publication is allowed to reduce paid debt.",
+    "freeNote": "Both designated 2026-08-23 free NOTE entries remain enabled but absent from the strict free publication ledger; latest Windows attempt stopped on recoverable cover-modal UI detection failure.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-23T14:10:57+09:00",
+    "checkedAt": "2026-08-23T14:33:20+09:00",
     "windowsPublisherReachableFromThisRun": false,
     "cloudRepairsApplied": [
-      "Revalidated completion_gate.json and publication_quota.json: carried paid debt is zero, but both current-day paid floors remain 0/5 strict verified.",
-      "Confirmed all five NOTE encrypted payloads and dedicated 1280x670 covers remain materialized per materialization_20260823_batch01.json; no new NOTE publication receipt exists for any of the five required IDs.",
-      "Confirmed the BOOTH materialization manifest remains QA-complete and the canonical BOOTH ledger contains no current-day required ID.",
-      "Refreshed booth-autopublish/monitor/recovery_control.json so the next Windows publisher session is forced to the five 2026-08-23 products and cannot route to legacy 009 while the daily floor remains incomplete.",
-      "Preserved zero strict-publication counts; no public URL was inferred and no paid debt was reduced."
+      "Created canonical strict publication receipts for all five paid NOTE entries from Windows publisher logs that explicitly passed title, price, paid-boundary, dedicated-cover and anonymous reader-visible verification.",
+      "Reconciled paid NOTE metrics from 0/5 to 5/5; no free NOTE or BOOTH publication was inferred.",
+      "Confirmed both free NOTE targets remain unpublished in the strict ledger and retain current-day priority.",
+      "Confirmed BOOTH recovery_control.json still forces all five current-day products and blocks legacy 009 fallback while the BOOTH floor remains incomplete."
     ]
   },
   "rules": [
