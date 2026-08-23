@@ -1,8 +1,8 @@
 {
-  "version": 8,
-  "checkedAt": "2026-08-23T15:09:00+09:00",
+  "version": 9,
+  "checkedAt": "2026-08-23T16:10:32+09:00",
   "status": "current_day_paid_batch_ready_for_windows_strict_publication",
-  "reason": "Paid NOTE is already strict verified 5/5. BOOTH is the sole unfinished paid floor for 2026-08-23. All five current-day encrypted payload ZIPs are cloud-QA complete, queue-enabled and protected from legacy fallback; no human-only blocker is evidenced. Windows publisher is not reachable from this cloud run, so recovery controls were hardened for the next Windows-available session.",
+  "reason": "Paid NOTE is strict verified 5/5. BOOTH remains the sole unfinished paid floor for 2026-08-23. All five current-day encrypted payload ZIPs are cloud-QA complete, queue-enabled and protected from legacy fallback. No human-only blocker is evidenced. Windows publisher is not reachable from this cloud run, so recovery control version 18 was refreshed for the next Windows-available session.",
   "quota": {
     "date": "2026-08-23",
     "dailyPublicTarget": 5,
@@ -52,7 +52,7 @@
   },
   "recovery": {
     "control": "booth-autopublish/monitor/recovery_control.json",
-    "controlVersion": 17,
+    "controlVersion": 18,
     "mode": "force_current_day_all_now",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
@@ -82,10 +82,10 @@
   "currentRun": {
     "windowsPublisherReachable": false,
     "cloudRepairsApplied": [
-      "Confirmed paid NOTE floor is already 5/5 strict verified.",
-      "Confirmed BOOTH ledger has zero of the five required 2026-08-23 IDs.",
-      "Confirmed all five BOOTH payload ZIPs remain cloud-QA complete with product.json, product.zip, preview01.jpg and SHA recorded.",
-      "Upgraded recovery_control.json to version 17 with an explicit Windows resume contract, all-five completion predicate, recoverable-failure switching, and legacy-009 exclusion."
+      "Reconfirmed paid NOTE floor is 5/5 strict verified with carried debt 0.",
+      "Reconfirmed BOOTH canonical ledger contains zero of the five required 2026-08-23 IDs.",
+      "Reconfirmed all five BOOTH payload ZIPs remain cloud-QA complete with product.json, product.zip, preview01.jpg and SHA recorded.",
+      "Refreshed recovery_control.json to version 18 with a fresh all-five Windows resume nonce and explicit no-human-blocker cloud preflight."
     ]
   },
   "nextPriority": "At the next Windows publisher availability, process 024-028 continuously until all five are buyer-visible strict verified. Preserve briefly failed current-day items as retryable, switch to another current-day item, then return. Do not route to legacy 009 and do not create unrelated new inventory while the BOOTH paid floor remains below 5/5."
