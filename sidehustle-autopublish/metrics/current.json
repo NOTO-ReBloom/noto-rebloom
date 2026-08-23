@@ -1,6 +1,6 @@
 {
-  "version": 14,
-  "updatedAt": "2026-08-23T22:12:41+09:00",
+  "version": 15,
+  "updatedAt": "2026-08-23T23:12:21+09:00",
   "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 publications and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -48,13 +48,14 @@
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-23T22:12:41+09:00",
+    "checkedAt": "2026-08-23T23:12:21+09:00",
     "windowsPublisherReachableFromThisRun": false,
     "cloudRepairsApplied": [
-      "Reconfirmed paid NOTE 5/5 strict verified and carried debt 0 from publication_quota and current-day materialization evidence.",
+      "Reconfirmed paid NOTE 5/5 strict verified and carried debt 0 from publication_quota, note queue recovery state and current-day materialization manifest.",
       "Reconfirmed BOOTH 0/5 strict verified because canonical BOOTH publication ledger contains none of IDs 024-028.",
       "Reconfirmed BOOTH current-day materialization QA 5/5 complete with encrypted payload ZIP, product.json, product.zip, preview01.jpg and SHA recorded in queue.",
-      "Refreshed booth-autopublish/monitor/recovery_control.json to version 20 with a fresh all-five resume nonce, recoverable-failure switching, return pass for held current-day items, and legacy 009 exclusion.",
+      "Refreshed booth-autopublish/monitor/recovery_control.json to version 21 with a fresh all-five resume nonce at 23:12 JST, recoverable-failure switching, return pass for held current-day items, and legacy 009 exclusion.",
+      "Preserved current-day first-pass order 026, 027, 024, 028, 025 to avoid repeatedly hammering one recoverable candidate.",
       "No human-only blocker is evidenced in canonical state.",
       "No unrelated new production, GitHub Pages work, legacy blocker recovery, designated free NOTE publishing, or Microsoft Store expansion was prioritized while BOOTH remains below 5/5."
     ]
