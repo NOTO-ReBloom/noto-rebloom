@@ -1,12 +1,54 @@
 {
-  "version": 13,
-  "updatedAt": "2026-08-23T05:45:00+09:00",
+  "version": 14,
+  "updatedAt": "2026-08-23T09:29:00+09:00",
   "purpose": "Evidence-gated execution backlog preserving paid floors while building measurable free-to-paid funnels.",
   "evidenceLimit": "No platform-native note PV/likes/follows/related-paid-click/purchase/revenue metrics are available yet. No theme is a proven winner or loser. The earliest comparable 24h free-note window matures later today.",
   "hardFloorSnapshot": {
     "previousDay": {"note":{"target":5,"strictVerified":5,"debt":0},"BOOTH":{"target":5,"strictVerified":5,"debt":0}},
     "today": {"date":"2026-08-23","noteTarget":5,"BOOTHTarget":5,"strictVerified":"reconcile from new-day ledgers before counting"},
     "rule": "Free note output never substitutes for paid publication floors or debt."
+  },
+  "winnerAmplificationSnapshot": {
+    "checkedAt": "2026-08-23T09:29:00+09:00",
+    "noteFunnel": {
+      "sourceStrategy": "sidehustle-autopublish/note/funnel_strategy.json",
+      "sourceMetrics": "sidehustle-autopublish/metrics/current.json",
+      "pairEvaluationUnit": "free article + related paid article",
+      "availableEvidence": {
+        "freeReaderVisiblePublications": "confirmed in sidehustle-autopublish/note/free_publication_ledger.json",
+        "paidStrictPublicationHistory": "confirmed through 2026-08-22 in metrics/current.json",
+        "PV24h72h7d": null,
+        "likes24h72h7d": null,
+        "follows24h72h7d": null,
+        "paidOutboundClicks24h72h7d": null,
+        "relatedPaidPurchases24h72h7d": null,
+        "revenue24h72h7d": null
+      },
+      "decision": "Do not label any note theme a revenue winner or loser yet. The earliest equal-age 24h free cohort has not matured, and platform-native funnel metrics are unavailable in the current state. Do not create winner derivatives from publication count alone.",
+      "nextEvidenceGate": "Capture the earliest comparable 24h cohort at or after approximately 2026-08-23T17:51:00+09:00, then repeat at 72h and 7d. A paid purchase is a strong winner signal; strong free response with weak paid conversion triggers CTA/value-gap/price/theme-match diagnosis before derivatives; weak free and paid response triggers deprioritization."
+    },
+    "MicrosoftStore": {
+      "candidate": "ms_csv_cleaner_deduper",
+      "state": "submission-ready except Partner Center identity/human submission; no public Store listing yet",
+      "acquisitions": null,
+      "storePageViews": null,
+      "CVR": null,
+      "retention": null,
+      "decision": "No derivative or Pro/variant amplification before a live Store listing and observed acquisition/usage evidence. Cosmetic or near-duplicate variants are prohibited."
+    },
+    "BOOTH": {
+      "sales": null,
+      "conversion": null,
+      "decision": "No product is promoted to winner status from publication history alone. Wait for observed purchase or comparable buyer-visible performance evidence before creating bundles/derivatives solely on winner logic."
+    },
+    "GitHubPages": {
+      "pageViews": null,
+      "outboundClicks": null,
+      "conversion": null,
+      "decision": "Keep useful published surfaces and improve attribution; do not create thin adjacent pages until measurable demand supports expansion."
+    },
+    "amplificationCardsAddedThisRun": 0,
+    "reason": "No observed purchase, comparable free-to-paid conversion, Store acquisition, BOOTH sale, or GitHub Pages conversion evidence is available yet."
   },
   "executionBacklog": [
     {"rank":1,"channel":"note+BOOTH","type":"new_day_paid_floor_reconciliation","nextAction":"Read new-day publication ledgers. If any carried debt appears, service it first. Otherwise publish qualified paid inventory until five strict note and five strict BOOTH 2026-08-23 publications are verified. Preserve every miss as debt."},
@@ -21,16 +63,19 @@
       {"id":"free_note_20260823_01_sponsor_after_yes","pairedPaidId":"note_20260823_17_sponsor_deliverables","title":"協賛が決まった直後に確認したい6項目｜入金だけで終わらせない最初のチェック"},
       {"id":"free_note_20260823_02_grant_deadline_reverse_plan","pairedPaidId":"note_20260823_19_grant_tracker","title":"助成金の締切から逆算すると何日前に何をする？｜申請直前に詰まらない5段階チェック"}
     ],"nextAction":"Create both as complete standalone-useful manuscripts in the same cloud production batch when capacity permits. Publication remains at the evidence-gated experimental cadence; free output never discharges paid debt."},
-    {"rank":4,"channel":"note","type":"24h_equal_age_funnel_measurement","notBefore":"2026-08-23T17:51:00+09:00 approximately for earliest cohort","metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"nextAction":"At each mature equal-age gate capture accessible metrics. Missing values remain unknown. A paid purchase triggers adjacent-search-intent free satellites; traffic without paid movement triggers CTA/value-gap diagnosis; weak traffic and engagement triggers deprioritization rather than cloning."},
+    {"rank":4,"channel":"note","type":"24h_equal_age_funnel_measurement","notBefore":"2026-08-23T17:51:00+09:00 approximately for earliest cohort","metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"nextAction":"At each mature equal-age gate capture accessible metrics. Missing values remain unknown. Evaluate free+paid pairs: paid purchase => strong winner candidate and adjacent-search-intent satellites; strong free response but weak paid movement => fix CTA/value difference/price/theme match before derivatives; weak free and paid => deprioritize rather than clone."},
     {"rank":5,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"After paid-floor-critical work, complete every non-human submission prerequisite possible without inventing Partner Center identity; live listing is required before ASO experiments or derivatives."},
-    {"rank":6,"channel":"cross_channel","type":"winner_triggered_expansion","nextAction":"Only after observed purchase or sufficiently strong comparable evidence, add an expansion card with adjacent free search intent, complementary BOOTH asset, genuinely distinct Store tool, production cost and cannibalization risk."},
+    {"rank":6,"channel":"cross_channel","type":"winner_triggered_expansion","nextAction":"Only after observed purchase or sufficiently strong comparable evidence, add an expansion card with original winner, evidence, adjacent free search intent, complementary BOOTH asset, genuinely distinct Store tool, additional expected profit, production cost, priority and cannibalization risk."},
     {"rank":7,"channel":"GitHubPages","type":"measurement_support","nextAction":"Improve attribution and verified context-matched outbound links on already-useful surfaces; do not create thin SEO pages merely to raise publication count."}
   ],
   "rules": [
     "Previous-day paid debt outranks all discretionary work when debt exists.",
     "Current-day paid quota outranks free funnel publishing and Microsoft Store discretionary work.",
     "Free manuscript production may continue while paid work has priority, but free publication never replaces paid debt/floor.",
-    "Compare note funnel performance only at equal 24h/72h/7d post-publication age.",
+    "Evaluate note demand using free+paid pairs and compare funnel performance only at equal 24h/72h/7d post-publication age.",
+    "A strong free signal alone is a demand signal, not proof of revenue-winning status.",
+    "Strong free response with weak paid conversion requires CTA/value-gap/price/theme-match optimization before derivative production.",
+    "Weak free and paid response means do not amplify that theme.",
     "Do not invent PV, likes, follows, clicks, purchases, revenue, acquisitions, installs, retention or CVR.",
     "Do not mass-clone low-signal themes or cosmetic Store variants."
   ]
