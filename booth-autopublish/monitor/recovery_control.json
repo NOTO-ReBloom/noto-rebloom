@@ -1,6 +1,6 @@
 {
-  "version": 17,
-  "updatedAt": "2026-08-23T15:09:00+09:00",
+  "version": 18,
+  "updatedAt": "2026-08-23T16:10:32+09:00",
   "activeRecovery": {
     "date": "2026-08-23",
     "mode": "force_current_day_all_now",
@@ -47,8 +47,8 @@
     "doNotFallbackToFreeWeb": true,
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forcedRecoveryAt": "2026-08-23T15:09:00+09:00",
-    "forceRetryNonce": "force-all-20260823-20260823T150900+0900"
+    "forcedRecoveryAt": "2026-08-23T16:10:32+09:00",
+    "forceRetryNonce": "force-all-20260823-20260823T161032+0900"
   },
   "windowsResumeContract": {
     "sourceQueue": "booth-autopublish/queue/index.json",
@@ -96,6 +96,16 @@
       "tax/payment setup",
       "OS permission"
     ]
+  },
+  "cloudPreflight": {
+    "checkedAt": "2026-08-23T16:10:32+09:00",
+    "windowsPublisherReachable": false,
+    "notePaidFloor": "5/5 strict verified",
+    "boothStrictFloor": "0/5",
+    "materializationQa": "5/5 complete",
+    "ledgerCurrentDayEntries": 0,
+    "humanOnlyBlockerEvidence": null,
+    "nextAction": "On Windows availability, immediately consume the five current-day queue IDs, switch past briefly recoverable failures, then return to held current-day IDs until 5/5 strict ledger completion."
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
