@@ -1,7 +1,7 @@
 {
-  "version": 15,
-  "updatedAt": "2026-08-23T23:12:21+09:00",
-  "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 publications and minimizing user intervention",
+  "version": 16,
+  "updatedAt": "2026-08-24T00:07:41+09:00",
+  "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 paid publications before unrelated work and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -14,6 +14,11 @@
     "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
     "boothMaterialization": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
+  },
+  "currentRecovery": {
+    "sourceDate": "2026-08-23",
+    "observedAt": "2026-08-24T00:07:41+09:00",
+    "midnightPolicy": "unfinished strict publication quota carries forward; date rollover never clears paid debt"
   },
   "currentDayTargets": {
     "date": "2026-08-23",
@@ -28,6 +33,7 @@
       "target": 5,
       "strictVerified": 0,
       "remaining": 5,
+      "carriedDebtInto20260824": 5,
       "materialized": 5,
       "requiredChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
@@ -37,34 +43,38 @@
       "remaining": 2,
       "queueEnabled": 2,
       "paidQuotaContribution": 0,
+      "deferredUntilPaidBoothComplete": true,
       "requiredChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"]
     },
+    "paid10StrictVerified": false,
     "all12StrictVerified": false
   },
   "evidence": {
-    "paidNote": "publication_quota confirms the designated 2026-08-23 paid NOTE batch is 5/5 strict verified with carried debt zero; materialization manifest contains all five encrypted payloads and dedicated 1280x670 covers.",
-    "BOOTH": "Canonical BOOTH publication ledger still contains none of required current-day IDs 024-028. Cloud materialization manifest confirms all five encrypted payload ZIPs passed QA with product.json, product.zip, preview01.jpg and SHA recorded in queue.",
-    "freeNote": "Both designated 2026-08-23 free NOTE entries remain secondary and must not displace unfinished BOOTH paid recovery.",
+    "paidNote": "All five required 2026-08-23 paid NOTE publication receipts exist and each records reader-visible URL, exact title, expected price, paid boundary, dedicated cover and anonymous verification as true.",
+    "BOOTH": "Canonical BOOTH publication ledger contains none of required current-day IDs 024-028 as of this check. Queue contains all five enabled forceRetry entries with expected prices and SHA; cloud materialization manifest confirms encrypted payload ZIP, product.json, product.zip and preview01.jpg QA for all five.",
+    "freeNote": "Designated free NOTE work remains secondary to unfinished paid BOOTH recovery and contributes zero to paid quota.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-23T23:12:21+09:00",
+    "checkedAt": "2026-08-24T00:07:41+09:00",
     "windowsPublisherReachableFromThisRun": false,
     "cloudRepairsApplied": [
-      "Reconfirmed paid NOTE 5/5 strict verified and carried debt 0 from publication_quota, note queue recovery state and current-day materialization manifest.",
-      "Reconfirmed BOOTH 0/5 strict verified because canonical BOOTH publication ledger contains none of IDs 024-028.",
-      "Reconfirmed BOOTH current-day materialization QA 5/5 complete with encrypted payload ZIP, product.json, product.zip, preview01.jpg and SHA recorded in queue.",
-      "Refreshed booth-autopublish/monitor/recovery_control.json to version 21 with a fresh all-five resume nonce at 23:12 JST, recoverable-failure switching, return pass for held current-day items, and legacy 009 exclusion.",
-      "Preserved current-day first-pass order 026, 027, 024, 028, 025 to avoid repeatedly hammering one recoverable candidate.",
+      "Reconfirmed 2026-08-23 paid NOTE 5/5 strict verified from publication quota and five canonical current-day publication receipts.",
+      "Reconfirmed BOOTH 0/5 strict verified because canonical BOOTH publication ledger still contains none of IDs 024-028.",
+      "Reconfirmed BOOTH current-day queue readiness: all five IDs enabled=true, forceRetry=true, expected prices present, required buyer checks present and SHA recorded.",
+      "Reconfirmed BOOTH cloud materialization QA 5/5: encrypted payload ZIPs contain product.json, product.zip and preview01.jpg and were reopened before encryption.",
+      "Advanced booth-autopublish/monitor/recovery_control.json to version 22 with a midnight carry-forward nonce, explicit expected prices, current-day-only first pass, recoverable-failure switching, held-item return pass and legacy 009 exclusion.",
+      "Preserved first-pass order 026, 027, 024, 028, 025 to avoid repeatedly hammering one recoverable candidate.",
       "No human-only blocker is evidenced in canonical state.",
-      "No unrelated new production, GitHub Pages work, legacy blocker recovery, designated free NOTE publishing, or Microsoft Store expansion was prioritized while BOOTH remains below 5/5."
-    ]
+      "No free NOTE, GitHub Pages, new paid candidates, legacy blocker recovery or Microsoft Store expansion is prioritized before BOOTH paid 5/5."
+    ],
+    "nextWindowsAction": "Publish BOOTH IDs 026,027,024,028,025 in one session, switch past brief recoverable failures, then return to held current-day IDs until canonical BOOTH ledger contains all five with strict buyer checks."
   },
   "rules": [
     "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
     "Do not reduce paid publication floors or erase debt without strict public verification.",
     "Do not count queue insertion, commit, local publisher success, editor/admin URL or old-item reverification as current-day publication.",
-    "Do not notify on intermediate success; notify only after all 12 are strict verified or a human-only blocker is proven to stop every remaining route.",
-    "Do not route to legacy blockers or unrelated new production while any designated 2026-08-23 target remains incomplete."
+    "Do not notify on intermediate success; notify only after required completion or a human-only blocker is proven to stop every remaining route.",
+    "Do not route to legacy blockers or unrelated new production while any designated 2026-08-23 paid target remains incomplete."
   ]
 }
