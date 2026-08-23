@@ -1,6 +1,6 @@
 {
-  "version": 11,
-  "updatedAt": "2026-08-23T15:09:00+09:00",
+  "version": 12,
+  "updatedAt": "2026-08-23T16:10:32+09:00",
   "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 publications and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -42,26 +42,26 @@
     "all12StrictVerified": false
   },
   "evidence": {
-    "paidNote": "Windows publisher produced strict anonymous verification for all five designated 2026-08-23 paid NOTE entries; canonical publication receipts were created for IDs 17-21 with reader-visible URLs and all five required checks true.",
+    "paidNote": "Windows publisher produced strict anonymous verification for all five designated 2026-08-23 paid NOTE entries; canonical publication receipts exist for IDs 17-21 with reader-visible URLs and all five required checks true.",
     "BOOTH": "Canonical BOOTH publication ledger contains none of the five required 2026-08-23 IDs. All five current-day encrypted payload ZIPs are cloud-QA complete, queue-enabled and retained as the sole unfinished paid priority.",
     "freeNote": "Both designated 2026-08-23 free NOTE entries remain enabled but absent from the strict free publication ledger; they remain secondary until BOOTH 5/5 is complete.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-23T15:09:00+09:00",
+    "checkedAt": "2026-08-23T16:10:32+09:00",
     "windowsPublisherReachableFromThisRun": false,
     "cloudRepairsApplied": [
       "Reconfirmed paid NOTE 5/5 strict verified and carried debt 0.",
       "Reconfirmed BOOTH 0/5 strict verified with all five required current-day payload ZIPs cloud-QA complete.",
-      "Upgraded booth-autopublish/monitor/recovery_control.json to version 17 with a Windows resume contract that processes all five current-day IDs, skips briefly recoverable failures without stopping, returns to held current-day items after the first pass, and forbids legacy 009 fallback.",
-      "Refreshed booth-autopublish/monitor/pipeline_health.json to version 8 and recorded that no human-only blocker is currently evidenced.",
-      "No unrelated new production, GitHub Pages work, legacy blocker recovery, or Microsoft Store expansion was prioritized while BOOTH remains below 5/5."
+      "Refreshed booth-autopublish/monitor/recovery_control.json to version 18 with a fresh all-five Windows resume nonce, recoverable-failure switching, held-current-day return pass and legacy-009 exclusion.",
+      "Refreshed booth-autopublish/monitor/pipeline_health.json to version 9 and recorded that no human-only blocker is currently evidenced.",
+      "No unrelated new production, GitHub Pages work, legacy blocker recovery or Microsoft Store expansion was prioritized while BOOTH remains below 5/5."
     ]
   },
   "rules": [
     "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
     "Do not reduce paid publication floors or erase debt without strict public verification.",
-    "Do not count queue insertion, commit, local publisher success, editor/admin URL, or old-item reverification as current-day publication.",
+    "Do not count queue insertion, commit, local publisher success, editor/admin URL or old-item reverification as current-day publication.",
     "Do not notify on intermediate success; notify only after all 12 are strict verified or a human-only blocker is proven to stop every remaining route.",
     "Do not route to legacy blockers or unrelated new production while any designated 2026-08-23 target remains incomplete."
   ]
