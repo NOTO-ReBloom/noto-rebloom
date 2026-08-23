@@ -1,6 +1,6 @@
 {
-  "version": 22,
-  "updatedAt": "2026-08-23T17:43:00+09:00",
+  "version": 23,
+  "updatedAt": "2026-08-23T23:30:00+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -26,13 +26,13 @@
     "clear 2026-08-23 BOOTH paid floor: five current-day products are materialized and queue-ready but remain 0/5 strict buyer-visible verified",
     "paid note floor is already 5/5 strict verified for 2026-08-23; do not recreate those manuscripts",
     "continue the two designated free-note articles only as a separate funnel asset after paid-floor-critical BOOTH work; they never discharge BOOTH or note paid debt",
-    "at or after the first equal-age 24h gate, capture actual note PV/likes/follows/related-paid-clicks/related-paid-purchases/revenue only if platform-native values are available",
+    "the earliest equal-age 24h funnel gate has passed, but no platform-native note funnel metrics are present in authoritative state; capture them when accessible before changing CTA, cadence or price",
     "advance Microsoft Store CSV Cleaner non-human submission prerequisites after current paid-floor-critical BOOTH work is safe",
     "other profit work only when first-party evidence supports it"
   ],
   "noteFunnel": {
     "source": "sidehustle-autopublish/note/funnel_strategy.json",
-    "status": "measurement_gate_not_yet_mature_at_17_43",
+    "status": "24h_gate_passed_metrics_unavailable",
     "firstPartyMetrics": {
       "PV": null,
       "likes": null,
@@ -45,7 +45,8 @@
     "earliest24hGate": "approximately 2026-08-23T17:51:00+09:00 for the earliest strictly verified free article",
     "decisionRule": "Do not name note winners or losers before equal-age first-party evidence. A related paid purchase is a strong winner signal. Strong free response with weak paid movement triggers CTA/value-gap/price/theme-match diagnosis before derivatives. Weak free and paid response triggers deprioritization rather than name-variant cloning.",
     "freeCadence": "2/day remains a 14-day experimental starting value, not a hard quota. Complete manuscripts may be batched cloud-side, but do not raise publication cadence before comparable evidence exists.",
-    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use a paid URL after independent reader-visible verification."
+    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use a paid URL after independent reader-visible verification.",
+    "nightlyCvInstruction": "No customer-facing CTA, price or cadence change is justified tonight because actual PV/likes/follows/paid-click/purchase/revenue values are unavailable. Preserve current funnel architecture and measurement baseline."
   },
   "nextNoteFactoryBatch": {
     "date": "2026-08-23",
@@ -76,7 +77,7 @@
           "role": "adjacent search intent + demand validation + prequalification"
         }
       ],
-      "nextAction": "Do not create name-variant replacements. After BOOTH paid-floor recovery is safe, publish and strict-verify these two designated free articles. At/after 17:51 JST, capture the earliest comparable 24h first-party metrics if accessible before changing cadence or choosing the next free/paid deep-dive set."
+      "nextAction": "Do not create name-variant replacements. After BOOTH paid-floor recovery is safe, publish and strict-verify these two designated free articles. When platform-native funnel metrics become accessible, capture actual 24h observations before changing cadence or choosing the next free/paid deep-dive set."
     }
   },
   "booth": {
@@ -106,7 +107,7 @@
     "Use the next production/recovery capacity on the five already-materialized BOOTH current-day items until 5/5 strict buyer-visible verification is achieved.",
     "Do not let a recoverable BOOTH failure stop the run; switch among the five current-day items and return to held items later.",
     "Keep the two designated free note manuscripts intact. Publish/verify them after paid-floor-critical BOOTH recovery is safe; free output never replaces paid debt.",
-    "At or after approximately 17:51 JST, capture actual equal-age 24h note funnel metrics if available; missing values stay null and no winner/loser is declared without evidence.",
+    "Because the first 24h gate has passed but first-party funnel metrics are still unavailable, preserve CTA/price/cadence baselines and capture actual platform-native funnel metrics at the next accessible opportunity.",
     "After BOOTH paid-floor-critical work is safe, advance Microsoft Store CSV Cleaner non-human submission prerequisites."
   ],
   "dataIntegrity": "Public availability is not demand. No winner, loser, conversion uplift or revenue claim is made without observed first-party evidence."
