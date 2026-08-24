@@ -1,32 +1,31 @@
 {
-  "version": 25,
-  "updatedAt": "2026-08-24T11:09:30+09:00",
+  "version": 26,
+  "updatedAt": "2026-08-24T11:35:00+09:00",
   "activeRecovery": {
-    "date": "2026-08-23",
-    "carriedIntoDate": "2026-08-24",
+    "date": "2026-08-24",
+    "carriedIntoDate": null,
     "mode": "force_current_day_all_now",
     "requiredStrictNewPublications": 5,
-    "remaining": 0,
-    "paidNoteDependencySatisfied": true,
-    "paidNoteStrictVerified": "5/5",
-    "soleRemainingPaidPriority": null,
-    "state": "resolved",
-    "resolvedAt": "2026-08-24T11:08:30+09:00",
-    "resolutionEvidence": "All five required IDs 024-028 are present on buyer-visible BOOTH pages and pass exact-title, expected-price, downloadable-product and cart-path verification. Canonical ledger reconciled."
+    "remaining": 5,
+    "paidNotePreviousDayDependencySatisfied": true,
+    "paidNoteTodayStrictVerified": "4/5",
+    "allowBoothParallelWhileFinalNoteRetries": true,
+    "state": "active",
+    "soleRemainingPaidPriority": "BOOTH 2026-08-24 genuine-new batch 029-033 until strict 5/5"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-23T09:12:25+09:00",
+    "generatedAt": "2026-08-24T10:58:35+09:00",
     "requiredStrictNewPublications": 5,
     "queueIds": [
-      "026_research_claim_evidence_os_20260823",
-      "027_sponsor_contact_history_os_20260823",
-      "024_grant_evidence_expense_os_20260823",
-      "028_team_backup_coverage_os_20260823",
-      "025_event_decision_authority_os_20260823"
+      "029_ai_workflow_audit_os_20260824",
+      "030_sponsor_outcome_report_os_20260824",
+      "031_event_emergency_comms_os_20260824",
+      "032_survey_aggregation_audit_os_20260824",
+      "033_digital_offer_validation_os_20260824"
     ],
-    "priority": "2026-08-23 batch first; after a brief recoverable failure switch to the next required item, then return to held current-day items; never route to legacy 009 or unrelated production while debt remains",
-    "queueRetryGeneration": 35,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "priority": "2026-08-24 genuine-new batch only; after a brief recoverable failure switch to the next required item, then return to held IDs; never route to legacy 009",
+    "queueRetryGeneration": 36,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260824_batch01.json",
     "cloudQa": {
       "allFiveMaterialized": true,
       "encryptedPayloadZip": true,
@@ -38,7 +37,7 @@
     "categoryCompatibility": {
       "parent": "ソフトウェア・ハードウェア",
       "child": "ソフトウェア",
-      "source": "previous successful clean rebuild path"
+      "source": "previous successful strict publication path"
     },
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
@@ -48,39 +47,39 @@
       "purchaseOrCartPath"
     ],
     "expectedPricesJPY": {
-      "024_grant_evidence_expense_os_20260823": 1380,
-      "025_event_decision_authority_os_20260823": 1280,
-      "026_research_claim_evidence_os_20260823": 1480,
-      "027_sponsor_contact_history_os_20260823": 1380,
-      "028_team_backup_coverage_os_20260823": 1180
+      "029_ai_workflow_audit_os_20260824": 1480,
+      "030_sponsor_outcome_report_os_20260824": 1380,
+      "031_event_emergency_comms_os_20260824": 1280,
+      "032_survey_aggregation_audit_os_20260824": 1480,
+      "033_digital_offer_validation_os_20260824": 1380
     },
-    "consumerInstruction": "Process all five carried 2026-08-23 BOOTH items in one Windows-available recovery session. One strict success is never a stopping condition. Preserve payload/SHA on recoverable failures, move to the next current-day item, then return to held IDs until all five are in the canonical BOOTH ledger. Count only buyer-visible pages passing every strict buyer check. Do not infer public URLs from admin/editor state. Midnight does not clear this debt.",
-    "doNotFallbackToFreeWeb": false,
-    "doNotStopAfterFirstSuccess": false,
+    "consumerInstruction": "Process all five 2026-08-24 BOOTH items in one Windows-available recovery session. One strict success is never a stopping condition. Preserve payload/SHA on recoverable failures, move to the next required item, then return to held IDs until all five are in the canonical BOOTH ledger. Count only buyer-visible pages passing every strict buyer check.",
+    "doNotFallbackToFreeWeb": true,
+    "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forcedRecoveryAt": "2026-08-24T10:12:40+09:00",
-    "forceRetryNonce": "carry-20260823-booth-20260824T101240+0900"
+    "forcedRecoveryAt": "2026-08-24T11:35:00+09:00",
+    "forceRetryNonce": "force-20260824-booth-20260824T113500+0900"
   },
   "windowsResumeContract": {
     "sourceQueue": "booth-autopublish/queue/index.json",
     "sourceLedger": "booth-autopublish/monitor/publication_ledger.json",
-    "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260824_batch01.json",
     "requiredIds": [
-      "024_grant_evidence_expense_os_20260823",
-      "025_event_decision_authority_os_20260823",
-      "026_research_claim_evidence_os_20260823",
-      "027_sponsor_contact_history_os_20260823",
-      "028_team_backup_coverage_os_20260823"
+      "029_ai_workflow_audit_os_20260824",
+      "030_sponsor_outcome_report_os_20260824",
+      "031_event_emergency_comms_os_20260824",
+      "032_survey_aggregation_audit_os_20260824",
+      "033_digital_offer_validation_os_20260824"
     ],
     "firstPassOrder": [
-      "026_research_claim_evidence_os_20260823",
-      "027_sponsor_contact_history_os_20260823",
-      "024_grant_evidence_expense_os_20260823",
-      "028_team_backup_coverage_os_20260823",
-      "025_event_decision_authority_os_20260823"
+      "029_ai_workflow_audit_os_20260824",
+      "030_sponsor_outcome_report_os_20260824",
+      "031_event_emergency_comms_os_20260824",
+      "032_survey_aggregation_audit_os_20260824",
+      "033_digital_offer_validation_os_20260824"
     ],
-    "afterRecoverableFailure": "mark candidate retryable, preserve payload/SHA, move to the next required 2026-08-23 candidate without ending run",
-    "afterFirstPass": "return to held 2026-08-23 candidates until ledger contains all five required IDs",
+    "afterRecoverableFailure": "mark candidate retryable, preserve payload/SHA, move to the next required candidate without ending run",
+    "afterFirstPass": "return to held 2026-08-24 candidates until ledger contains all five required IDs",
     "strictSuccessOnly": true,
     "strictSuccessChecks": [
       "buyerVisibleUrl",
@@ -109,27 +108,28 @@
     ]
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-24T10:12:40+09:00",
+    "checkedAt": "2026-08-24T11:35:00+09:00",
     "windowsPublisherReachable": true,
-    "notePaidFloor": "2026-08-23 5/5 strict verified",
-    "boothStrictFloor": "2026-08-23 5/5 strict verified; carried paid publication debt is 0",
+    "notePaidFloor": "2026-08-24 4/5 strict verified; one remaining",
+    "boothStrictFloor": "2026-08-24 0/5; five genuine-new items remain",
+    "carriedBoothDebt": "2026-08-23 5/5 strict verified and reconciled; zero remaining",
     "materializationQa": "5/5 complete",
-    "ledgerCurrentDayEntries": 5,
+    "ledgerCurrentDayEntries": 0,
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "Consume the completed 2026-08-24 paid note batch and BOOTH 029-033 batch, then the two designated free note entries; require strict public verification for each."
+    "nextAction": "Immediately consume 029-033; switch past brief recoverable failures; return to held IDs until all five are present in the canonical BOOTH ledger."
   },
-  "heldForLaterStrictReverification": {
-    "queueId": "007_thesis_progress_os_20260820",
-    "publicUrl": "https://booth.pm/ja/items/8739122",
-    "reason": "Already counted historically; never double-count current quota."
-  },
-  "heldAlreadyPublishedNotNewDebt": {
-    "queueId": "001_interview_os",
-    "historicalPublicUrl": "https://booth.pm/ja/items/8736751",
-    "reason": "Historical publication cannot count as a new 2026-08-23 publication."
+  "heldAlreadyResolved": {
+    "queueIds": [
+      "024_grant_evidence_expense_os_20260823",
+      "025_event_decision_authority_os_20260823",
+      "026_research_claim_evidence_os_20260823",
+      "027_sponsor_contact_history_os_20260823",
+      "028_team_backup_coverage_os_20260823"
+    ],
+    "reason": "Strict buyer-visible verified 5/5 and present in canonical ledger; never republish or count toward the 2026-08-24 floor."
   },
   "heldBlocked": {
     "queueId": "009_handover_os_20260820",
-    "reason": "Legacy blocker deferred until the five genuine-new 2026-08-23 products are strict verified."
+    "reason": "Legacy blocker deferred until the five genuine-new 2026-08-24 products are strict verified."
   }
 }
