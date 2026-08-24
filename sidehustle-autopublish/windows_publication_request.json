@@ -1,25 +1,59 @@
 {
-  "version": 1,
-  "requestedAt": "2026-08-23T10:42:57+09:00",
-  "nonce": "force-all-20260823-20260823T104257+0900",
-  "mode": "publish_all_current_day_now",
-  "paidNoteIds": [
-    "note_20260823_21_literature_matrix",
-    "note_20260823_20_meeting_decision_log",
-    "note_20260823_17_sponsor_deliverables",
-    "note_20260823_19_grant_tracker",
-    "note_20260823_18_event_incident_response"
+  "version": 2,
+  "requestedAt": "2026-08-24T10:58:35+09:00",
+  "nonce": "publish-all-remaining-20260824T105835+0900",
+  "mode": "publish_all_remaining_aug24_cycle_now",
+  "priority": [
+    "carriedBoothIds",
+    "paidNoteIds",
+    "currentDayBoothIds",
+    "freeNoteIds"
   ],
-  "boothIds": [
+  "carriedBoothIds": [
     "026_research_claim_evidence_os_20260823",
     "027_sponsor_contact_history_os_20260823",
     "024_grant_evidence_expense_os_20260823",
     "028_team_backup_coverage_os_20260823",
     "025_event_decision_authority_os_20260823"
   ],
+  "paidNoteIds": [
+    "note_20260824_22_ai_ops_audit",
+    "note_20260824_23_sponsor_report_kpi",
+    "note_20260824_24_event_emergency_comms",
+    "note_20260824_25_research_claim_audit",
+    "note_20260824_26_digital_product_offer_design"
+  ],
+  "currentDayBoothIds": [
+    "029_ai_workflow_audit_os_20260824",
+    "030_sponsor_outcome_report_os_20260824",
+    "031_event_emergency_comms_os_20260824",
+    "032_survey_aggregation_audit_os_20260824",
+    "033_digital_offer_validation_os_20260824"
+  ],
   "freeNoteIds": [
     "free_note_20260823_02_grant_deadline_reverse_plan",
     "free_note_20260823_01_sponsor_after_yes"
   ],
-  "completion": "strict public verification only"
+  "failurePolicy": "On a brief recoverable failure preserve the payload and retry state, switch to the next required item, then return after the first pass. Do not stop after one success.",
+  "completion": "strict reader/buyer-visible public verification only",
+  "requiredPaidNoteChecks": [
+    "readerVisibleUrl",
+    "exactTitle",
+    "expectedPrice",
+    "paidBoundary",
+    "dedicatedCover"
+  ],
+  "requiredBoothChecks": [
+    "buyerVisibleUrl",
+    "exactTitle",
+    "expectedPrice",
+    "downloadableProductState",
+    "purchaseOrCartPath"
+  ],
+  "requiredFreeNoteChecks": [
+    "readerVisibleUrl",
+    "exactTitle",
+    "freeState",
+    "dedicatedCover"
+  ]
 }

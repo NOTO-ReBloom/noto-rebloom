@@ -1,6 +1,6 @@
 {
-  "version": 25,
-  "updatedAt": "2026-08-24T05:45:00+09:00",
+  "version": 26,
+  "updatedAt": "2026-08-24T10:58:35+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -52,14 +52,16 @@
       {"title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"problem diagnosis + search/discovery"},
       {"title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"quick checklist + paid prequalification"}
     ],
-    "factoryInstruction": "Complete the five paid manuscripts first as a single cloud batch with dedicated covers, QA, encrypted queue payloads and strict publication path. Preserve the two existing free manuscripts for publication after paid-critical BOOTH recovery; optionally draft the two future free companions in the same cloud session without counting them toward paid quota."
+    "materializationState": "5/5 complete: full free and paid bodies, dedicated 1280x670 covers, QA, encrypted payloads, SHA records and enabled queue entries are present; publication remains 0/5 until reader-visible verification.",
+    "factoryInstruction": "Consume the completed five-item encrypted queue after carried BOOTH recovery and strict-verify every reader-visible page. Preserve the two existing free manuscripts for publication afterward."
   },
   "booth": {
     "carriedDebt": 5,
     "carriedIds": ["024_grant_evidence_expense_os_20260823","025_event_decision_authority_os_20260823","026_research_claim_evidence_os_20260823","027_sponsor_contact_history_os_20260823","028_team_backup_coverage_os_20260823"],
     "todayPaidFloor": 5,
-    "todayNewBatchState": "not yet materialized in authoritative state",
-    "instruction": "First strict-verify all five carried IDs. In parallel, prepare five genuine-new 2026-08-24 products so current-day floor can be serviced immediately after debt. Do not clear debt from queue insertion or local success logs."
+    "todayNewBatchState": "5/5 materialized, encrypted, cloud-QA passed and queue-enabled; publication remains 0/5 until buyer-visible verification",
+    "todayNewIds": ["029_ai_workflow_audit_os_20260824","030_sponsor_outcome_report_os_20260824","031_event_emergency_comms_os_20260824","032_survey_aggregation_audit_os_20260824","033_digital_offer_validation_os_20260824"],
+    "instruction": "First strict-verify all five carried IDs, then consume and strict-verify the five completed 2026-08-24 products. Do not clear debt or floor from queue insertion or local success logs."
   },
   "microsoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion","nextAction":"After paid debt/floor-critical work is safe, complete every non-human submission prerequisite possible; do not invent live Store demand metrics."},
   "githubPages": {"instruction":"Keep existing pages independently useful and measurable; no thin SEO mass production while paid debt/floors remain unresolved."},

@@ -1,20 +1,20 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-23T10:42:57+09:00",
-  "retryGeneration": 33,
+  "version": 3,
+  "updatedAt": "2026-08-24T10:57:40+09:00",
+  "retryGeneration": 36,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "force_all_2026-08-23_paid_now",
+    "mode": "publish_all_2026-08-24_paid_after_carried_booth",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260823_21_literature_matrix",
-      "note_20260823_20_meeting_decision_log",
-      "note_20260823_17_sponsor_deliverables",
-      "note_20260823_19_grant_tracker",
-      "note_20260823_18_event_incident_response"
+      "note_20260824_22_ai_ops_audit",
+      "note_20260824_23_sponsor_report_kpi",
+      "note_20260824_24_event_emergency_comms",
+      "note_20260824_25_research_claim_audit",
+      "note_20260824_26_digital_product_offer_design"
     ],
-    "instruction": "Process all five 2026-08-23 paid NOTE entries; do not stop after first success; skip briefly blocked entries and continue.",
+    "instruction": "Process all five 2026-08-24 paid NOTE entries after carried BOOTH recovery; do not stop after first success; skip briefly blocked entries and return.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -22,8 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-08-23T10:42:57+09:00",
-    "nonce": "force-all-20260823-20260823T104257+0900"
+    "forcedAt": "2026-08-24T10:57:40+09:00",
+    "nonce": "paid-note-20260824-20260824T105740+0900"
   },
   "entries": [
     {
@@ -483,6 +483,111 @@
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
+    },
+    {
+      "id": "note_20260824_22_ai_ops_audit",
+      "title": "AIで作業を自動化したのに逆に管理が増えた人へ｜小規模チームのAI業務を棚卸しする実践監査",
+      "path": "sidehustle-autopublish/note/queue/note_20260824_22_ai_ops_audit.enc.json",
+      "sha256": "d0a58bcfc2ad7d560e35d027e85fc683227d7f1b7526818eed561cba692caee0",
+      "createdAt": "2026-08-24T10:57:40+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "materialize-note_20260824_22_ai_ops_audit-20260824T105740+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+    },
+    {
+      "id": "note_20260824_23_sponsor_report_kpi",
+      "title": "協賛後の報告で信頼を落とさない｜スポンサー成果を数字と証拠でまとめる実践レポート設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260824_23_sponsor_report_kpi.enc.json",
+      "sha256": "f0c1cb4b9a8f40d626c30c1c4680966384b0e76d0de5ea86c51c81cda1f4673f",
+      "createdAt": "2026-08-24T10:57:40+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "materialize-note_20260824_23_sponsor_report_kpi-20260824T105740+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+    },
+    {
+      "id": "note_20260824_24_event_emergency_comms",
+      "title": "イベント当日の緊急連絡が遅れる原因｜事故・欠席・天候変更を5分で共有する連絡設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260824_24_event_emergency_comms.enc.json",
+      "sha256": "18b3423327e0e3dc4ebdd6233f1b07ef4ffbefc7ab482e0471a89b305e2c93a1",
+      "createdAt": "2026-08-24T10:57:40+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "materialize-note_20260824_24_event_emergency_comms-20260824T105740+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+    },
+    {
+      "id": "note_20260824_25_research_claim_audit",
+      "title": "卒論の主張に根拠が足りないと言われる前に｜文章・引用・データを対応させる主張監査のやり方",
+      "path": "sidehustle-autopublish/note/queue/note_20260824_25_research_claim_audit.enc.json",
+      "sha256": "2113bede062a7ac349f0dc4103059855a1742af313a8a0e671901c8de9439a52",
+      "createdAt": "2026-08-24T10:57:40+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "materialize-note_20260824_25_research_claim_audit-20260824T105740+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+    },
+    {
+      "id": "note_20260824_26_digital_product_offer_design",
+      "title": "デジタル商品が売れない原因を価格だけにしない｜誰に何を約束するかを決める商品設計ワーク",
+      "path": "sidehustle-autopublish/note/queue/note_20260824_26_digital_product_offer_design.enc.json",
+      "sha256": "f6acd88af55fd7c9db19f44225251e4d06757fb877976cdd45efbf3efbb3c159",
+      "createdAt": "2026-08-24T10:57:40+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "materialize-note_20260824_26_digital_product_offer_design-20260824T105740+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
     }
   ]
 }

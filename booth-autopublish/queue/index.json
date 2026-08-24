@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-23T10:42:57+09:00",
-  "retryGeneration": 35,
+  "updatedAt": "2026-08-24T10:58:35+09:00",
+  "retryGeneration": 36,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -793,6 +793,186 @@
       "forceRetry": true,
       "forceRetryNonce": "force-all-20260823-20260823T104257+0900",
       "expectedPriceJPY": 1180,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "029_ai_workflow_audit_os_20260824",
+      "title": "AI業務監査OS｜自動化後の確認・例外対応・手戻り・総作業時間を棚卸し｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/029_ai_workflow_audit_os_20260824.part01.txt"
+      ],
+      "sha256": "e1f78f2f47bde23ae6ed2a4ffde2c8eb7c805aeec5765a7592b82574efa72d28",
+      "createdAt": "2026-08-24T10:58:35+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-029_ai_workflow_audit_os_20260824-20260824T105835+0900",
+      "expectedPriceJPY": 1480,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "030_sponsor_outcome_report_os_20260824",
+      "title": "協賛成果報告OS｜約束・KPI・写真証拠・送付期限を企業別に一括管理｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/030_sponsor_outcome_report_os_20260824.part01.txt"
+      ],
+      "sha256": "995326dc76075340c051e3bbbfb86c1b62011804a3078f4beff191e4854e9e8c",
+      "createdAt": "2026-08-24T10:58:35+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-030_sponsor_outcome_report_os_20260824-20260824T105835+0900",
+      "expectedPriceJPY": 1380,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "031_event_emergency_comms_os_20260824",
+      "title": "イベント緊急連絡OS｜事故・欠席・天候変更を5分で共有する役割別連絡設計｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/031_event_emergency_comms_os_20260824.part01.txt"
+      ],
+      "sha256": "aec6cd34f6b2f6252543fc4f0756ecdab16416c58d9476cbfaf95e4767984c02",
+      "createdAt": "2026-08-24T10:58:35+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-031_event_emergency_comms_os_20260824-20260824T105835+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "032_survey_aggregation_audit_os_20260824",
+      "title": "アンケート集計監査OS｜分母・欠損・重複・除外条件・図表対応を記録｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/032_survey_aggregation_audit_os_20260824.part01.txt"
+      ],
+      "sha256": "7f88f3298d331d20ac09923454d40dbd25d83bf7d87a685782f24028a3184133",
+      "createdAt": "2026-08-24T10:58:35+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-032_survey_aggregation_audit_os_20260824-20260824T105835+0900",
+      "expectedPriceJPY": 1480,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "033_digital_offer_validation_os_20260824",
+      "title": "デジタル商品オファー検証OS｜対象・約束・納品物・代替・価格仮説を一括設計｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/033_digital_offer_validation_os_20260824.part01.txt"
+      ],
+      "sha256": "7504d32e88d45d1c68ec58c3bc8d5c1d39c750d9e2d3577702d20b974596d49f",
+      "createdAt": "2026-08-24T10:58:35+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-033_digital_offer_validation_os_20260824-20260824T105835+0900",
+      "expectedPriceJPY": 1380,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
         "buyerVisibleUrl",
