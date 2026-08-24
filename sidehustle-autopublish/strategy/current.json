@@ -1,6 +1,6 @@
 {
-  "version": 27,
-  "updatedAt": "2026-08-24T11:09:30+09:00",
+  "version": 28,
+  "updatedAt": "2026-08-24T11:20:30+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -15,13 +15,13 @@
     "boothTodayStrictVerified": 0,
     "boothTotalPaidRequired": 5,
     "freeNoteExperimentalTarget": 2,
-    "freeNoteStrictVerified": 0,
+    "freeNoteStrictVerified": 2,
     "rule": "Only strict reader/buyer-visible verification changes paid quota/debt. Free note output never substitutes for paid quota/debt. Missing platform-native funnel metrics remain unknown."
   },
   "allocationDecision": {
     "rank1": "Satisfy the 2026-08-24 paid floors: five fresh paid note publications and five fresh BOOTH publications. The 2026-08-23 BOOTH carry is already strict verified 5/5 and reconciled.",
     "rank2": "Publish and strict-verify the completed paid note and BOOTH batches continuously; cloud materialization is complete but does not itself satisfy the floor.",
-    "rank3": "Publish and strict-verify the two already-complete free note acquisition articles after paid-critical recovery is safe; they never discharge paid debt.",
+    "rank3": "The two designated free note acquisition articles are already strict verified 2/2; preserve their public URLs and collect matched-age metrics when available.",
     "rank4": "Batch-draft the next free-to-paid note pairs only for cloud efficiency; keep publication cadence at the 2/day 14-day experiment until comparable first-party data exists.",
     "rank5": "Advance Microsoft Store CSV Cleaner submission prerequisites after paid-floor work is safe.",
     "rank6": "GitHub Pages work is limited to useful, measurable surfaces and verified context-matched outbound links; no thin SEO mass production."
@@ -53,7 +53,7 @@
       {"title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"quick checklist + paid prequalification"}
     ],
     "materializationState": "5/5 complete: full free and paid bodies, dedicated 1280x670 covers, QA, encrypted payloads, SHA records and enabled queue entries are present; publication remains 0/5 until reader-visible verification.",
-    "factoryInstruction": "Consume the completed five-item encrypted queue now and strict-verify every reader-visible page. Preserve the two existing free manuscripts for publication afterward."
+    "factoryInstruction": "Consume the completed five-item encrypted paid queue now and strict-verify every reader-visible page. The two existing free manuscripts are already public and must not be republished."
   },
   "booth": {
     "carriedDebt": 0,

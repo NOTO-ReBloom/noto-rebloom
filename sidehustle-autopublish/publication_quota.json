@@ -1,7 +1,7 @@
 {
-  "version": 34,
+  "version": 35,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-24T11:09:30+09:00",
+  "updatedAt": "2026-08-24T11:20:30+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -43,13 +43,13 @@
         "preferredManuscriptBatchSize": "4-10",
         "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md",
         "currentCompletedDraftCount": 2,
-        "currentRequiredBatchStrictVerifiedCount": 0,
+        "currentRequiredBatchStrictVerifiedCount": 2,
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
         "role": ["search/discovery acquisition","trust building","demand validation","paid prequalification"],
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "measurementWindows": ["24h","72h","7d"],
         "measureWhenAvailable": ["PV","likes","follows","related paid clicks","related paid purchases","revenue"],
-        "adaptationRule": "The two designated 2026-08-23 free NOTE entries remain required by completion_gate and should publish after paid BOOTH, without replacing paid debt.",
+        "adaptationRule": "The two designated 2026-08-23 free NOTE entries are strict verified 2/2 and reconciled to the canonical free-note ledger; do not republish them.",
         "separationRule": "Free publications never decrement paid publication debt and never replace the paid 5/day strict floor."
       }
     },
