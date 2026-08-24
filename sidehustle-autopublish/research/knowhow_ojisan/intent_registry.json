@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
+  "purpose": "Prevent semantic duplication across published paid notes, free notes, queued notes and research opportunities.",
+  "inventory": {
+    "publishedPaidReceipts": {"path": "sidehustle-autopublish/note/publication_receipts/*.json", "countAtSnapshot": 21},
+    "paidQueue": {"path": "sidehustle-autopublish/note/queue/index.json", "entriesAtSnapshot": 26},
+    "freeQueue": {"path": "sidehustle-autopublish/note/free_queue/index.json", "entriesAtSnapshot": 46},
+    "publishedFreeReceipts": {"path": "sidehustle-autopublish/note/free_receipts/*.json", "note": "Scan when present; Aug 24 public free URLs are also stored in strategy/current.json."},
+    "researchOpportunities": {"path": "sidehustle-autopublish/research/knowhow_ojisan/opportunity_map.json", "countAtSnapshot": 40}
+  },
+  "fingerprint": {
+    "requiredFields": ["cluster", "reader", "moment", "failure", "artifact"],
+    "normalization": [
+      "Convert full-width and half-width forms consistently.",
+      "Remove decorative brackets, counts, dates and platform suffixes before title comparison.",
+      "Normalize close operational synonyms such as 引継ぎ/引き継ぎ, 証拠/根拠/証憑, 検品/確認/受入, 差戻し/手戻り, 版/バージョン.",
+      "Compare semantic axes, not only token overlap."
+    ],
+    "hardDuplicate": "Same cluster + reader + moment + failure + artifact, even when title wording or number of steps differs.",
+    "adjacentAllowed": "At least one material axis differs and the reader completes a different artifact or decision.",
+    "manualReview": "Same failure and artifact with a broader or narrower reader; keep only if the workflow, evidence and exclusions materially differ."
+  },
+  "publishedIntentCount": 21,
+  "publishedIntents": [
+    {"id": "note_20260821_06_ai_small_org_workflow", "cluster": "小規模組織", "reader": "学生団体", "moment": "日常業務の標準化前", "failure": "仕事が属人化する", "artifact": "AI業務ワークフロー"},
+    {"id": "note_20260821_07_event_sponsor_followup", "cluster": "協賛", "reader": "スポンサー営業担当", "moment": "提案後", "failure": "商談が止まる", "artifact": "フォローアップ設計"},
+    {"id": "note_20260821_08_creator_pricing", "cluster": "デジタル商品", "reader": "デジタル商品販売者", "moment": "値付け時", "failure": "価格根拠がない", "artifact": "原価・手数料・購入意図による価格表"},
+    {"id": "note_20260821_09_student_org_role_design", "cluster": "小規模組織", "reader": "学生団体", "moment": "役割分担時", "failure": "責任と相談先が混ざる", "artifact": "役割分担表"},
+    {"id": "note_20260821_10_thesis_weekly_review", "cluster": "研究", "reader": "卒論学生", "moment": "週次進行", "failure": "研究が止まる", "artifact": "30分週次レビュー"},
+    {"id": "note_20260821_11_ai_jobhunt_answer_audit", "cluster": "就活", "reader": "就活学生", "moment": "ESと面接回答の作成時", "failure": "回答が矛盾する", "artifact": "AI回答監査"},
+    {"id": "note_20260822_12_event_cancel_decision", "cluster": "イベント", "reader": "イベント主催者", "moment": "開催可否判断時", "failure": "雨・警報・交通・会場条件を勘で決める", "artifact": "開催判断表"},
+    {"id": "note_20260822_13_meeting_decision_log", "cluster": "小規模組織", "reader": "学生団体", "moment": "会議中", "failure": "決定・保留・宿題が混ざる", "artifact": "議事録テンプレート"},
+    {"id": "note_20260822_14_sponsor_menu_design", "cluster": "協賛", "reader": "協賛提案担当", "moment": "協賛メニュー設計時", "failure": "金額から提案を作る", "artifact": "社内説明可能な協賛メニュー"},
+    {"id": "note_20260822_15_research_interview_coding", "cluster": "研究", "reader": "インタビュー研究の学生", "moment": "発言分析時", "failure": "発言がいい話で終わる", "artifact": "最小コーディング手順"},
+    {"id": "note_20260822_16_jobhunt_company_research", "cluster": "就活", "reader": "就活学生", "moment": "企業研究時", "failure": "情報収集で終わる", "artifact": "5列比較シート"},
+    {"id": "note_20260823_17_sponsor_deliverables", "cluster": "協賛", "reader": "協賛履行担当", "moment": "協賛決定後", "failure": "ロゴ・SNS・掲示・報告が抜ける", "artifact": "協賛履行管理"},
+    {"id": "note_20260823_18_event_incident_response", "cluster": "イベント", "reader": "イベント運営者", "moment": "当日事故・体調不良・苦情発生時", "failure": "記録と再発防止がつながらない", "artifact": "インシデント対応フロー"},
+    {"id": "note_20260823_19_grant_tracker", "cluster": "助成金", "reader": "助成金申請担当", "moment": "申請前から提出後", "failure": "要件・添付・担当・期限が散る", "artifact": "申請トラッカー"},
+    {"id": "note_20260823_20_meeting_decision_log", "cluster": "小規模組織", "reader": "会議運営者", "moment": "会議後", "failure": "決定が実行されない", "artifact": "決定・担当・期限・次回確認ログ"},
+    {"id": "note_20260823_21_literature_matrix", "cluster": "研究", "reader": "卒論学生", "moment": "先行研究整理時", "failure": "論文同士と自分の研究の関係が見えない", "artifact": "文献マトリクス"},
+    {"id": "note_20260824_22_ai_ops_audit", "cluster": "AI導入後", "reader": "小規模チーム", "moment": "AI自動化後", "failure": "管理と見えない作業が増える", "artifact": "AI業務棚卸し監査"},
+    {"id": "note_20260824_23_sponsor_report_kpi", "cluster": "協賛", "reader": "スポンサー報告担当", "moment": "協賛後の報告時", "failure": "成果の数字と証拠が弱い", "artifact": "成果レポート設計"},
+    {"id": "note_20260824_24_event_emergency_comms", "cluster": "イベント", "reader": "イベント運営者", "moment": "事故・欠席・天候変更の初動", "failure": "緊急連絡が遅れる", "artifact": "5分連絡設計"},
+    {"id": "note_20260824_25_research_claim_audit", "cluster": "研究", "reader": "卒論学生", "moment": "主張を提出する前", "failure": "文章・引用・データが対応しない", "artifact": "主張監査"},
+    {"id": "note_20260824_26_digital_product_offer_design", "cluster": "デジタル商品", "reader": "デジタル商品販売者", "moment": "商品設計時", "failure": "売れない原因を価格だけにする", "artifact": "対象・約束・成果物のオファー設計"}
+  ],
+  "knownAdjacentPairs": [
+    {"existing": "note_20260824_22_ai_ops_audit", "candidate": "ko_ai_01_acceptance_criteria", "allowedDifference": "棚卸し監査ではなく、個々の成果物の受入条件と差戻し"},
+    {"existing": "note_20260824_23_sponsor_report_kpi", "candidate": "ko_sponsor_01_evidence_pack", "allowedDifference": "報告書作成ではなく、開催前からの写真・数値・掲載実績回収"},
+    {"existing": "note_20260824_24_event_emergency_comms", "candidate": "ko_event_01_authority_transfer", "allowedDifference": "連絡内容ではなく、責任者不在時の代理権限と上限"},
+    {"existing": "note_20260823_19_grant_tracker", "candidate": "ko_grant_02_daily_evidence_match", "allowedDifference": "申請管理ではなく、採択後の発注・納品・検収・支払・成果の照合"},
+    {"existing": "note_20260824_26_digital_product_offer_design", "candidate": "ko_creator_01_release_qa", "allowedDifference": "販売前の約束設計ではなく、購入者視点の取得・開封・初回成功テスト"}
+  ],
+  "preDraftCommandLogic": [
+    "Load every title from publication receipts and both queue indexes.",
+    "Load freeTitle, paidTitle and boothTitle from opportunity_map.json.",
+    "Build the five-axis fingerprint for the candidate.",
+    "Reject hard duplicates; send adjacent matches to manual semantic review.",
+    "Store the accepted fingerprint and duplicateNote before drafting."
+  ],
+  "rule": "Changing a count, adjective, target platform or article archetype does not create a new intent."
+}

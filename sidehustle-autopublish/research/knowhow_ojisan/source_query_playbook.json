@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
+  "purpose": "Repeatable research procedure for every article so production speed does not come from lowering evidence quality.",
+  "claimLabels": {
+    "verified_fact": "Directly supported by a current primary or platform-official source.",
+    "reasoned_inference": "A limited conclusion derived from named sources; label it as an inference.",
+    "working_hypothesis": "A testable topic, competition or seasonality idea awaiting first-party evidence.",
+    "example_only": "Synthetic illustration that must not be presented as an actual customer, result or experience."
+  },
+  "captureFields": ["sourceId", "publisher", "title", "url", "publishedAt", "accessedAt", "claim", "scope", "freshnessNote", "useFor"],
+  "freshnessWindows": [
+    {"type": "fee, price, platform workflow or current campaign", "maximumAge": "publication day", "action": "open official page again immediately before publishing"},
+    {"type": "law, regulation, grant requirement, deadline or recruiting date", "maximumAge": "publication day", "action": "open the exact current program or authority page; do not rely on a roundup"},
+    {"type": "security, privacy, AI or safety guidance", "maximumAge": "30 days or publication day when high impact", "action": "check current official guidance and escalation boundaries"},
+    {"type": "official survey or aggregate", "maximumAge": "latest available edition", "action": "record survey year and population; do not generalize to this account"},
+    {"type": "direct competition", "maximumAge": "7 days", "action": "rerun exact-intent note and BOOTH searches"},
+    {"type": "evergreen definition", "maximumAge": "90 days", "action": "confirm the page is still current before quoting"}
+  ],
+  "clusterQueries": [
+    {
+      "cluster": "AI導入後の運用",
+      "officialQueries": ["site:ipa.go.jp AI 利用 説明 信頼性 ガイド", "site:ipa.go.jp 中小企業 情報セキュリティ ガイドライン", "site:meti.go.jp AI事業者ガイドライン 利用者"],
+      "competitionQueries": ["site:note.com AI 受入条件 差戻し", "site:note.com AI 例外台帳 手戻り", "site:booth.pm/ja/items AI 停止 復旧 テンプレート"],
+      "minimumEvidence": ["one current official operational or security source", "one dated competition observation"],
+      "escalateWhen": ["personal data", "security incident", "legal or regulated decision", "customer-facing automated decision"]
+    },
+    {
+      "cluster": "イベントの例外運営",
+      "officialQueries": ["site:jma.go.jp [weather risk] 最新", "site:ppc.go.jp 行事 写真 同意 利用目的", "site:fdma.go.jp イベント 安全 ガイド"],
+      "competitionQueries": ["site:note.com イベント 代理責任者 権限", "site:note.com イベント 初報 更新 訂正", "site:booth.pm/ja/items イベント 緊急連絡 テンプレート"],
+      "minimumEvidence": ["current authority or venue source for any safety statement", "current privacy source for photo handling"],
+      "escalateWhen": ["evacuation", "medical response", "child participants", "public safety", "legal consent conclusion"]
+    },
+    {
+      "cluster": "協賛・助成金の証拠",
+      "officialQueries": ["site:[program-domain] 交付決定 実績報告 手引き PDF", "site:[program-domain] 発注 納品 検収 支払 証憑", "site:[program-domain] 計画変更 事前承認"],
+      "competitionQueries": ["site:note.com 補助金 採択後 証憑 照合", "site:note.com 協賛 写真 証拠 パック", "site:booth.pm/ja/items 助成金 実績報告 テンプレート"],
+      "minimumEvidence": ["the exact current program guide", "official form or evidence list", "dated competition observation"],
+      "escalateWhen": ["eligibility", "allowable cost", "tax treatment", "contract interpretation", "submission decision"]
+    },
+    {
+      "cluster": "小規模組織の世代交代",
+      "officialQueries": ["site:ipa.go.jp アカウント 権限 多要素認証 バックアップ", "site:npo-homepage.go.jp 世代交代 継続性", "site:[service-domain] 管理者 移管 復旧"],
+      "competitionQueries": ["site:note.com 学生団体 アカウント 引き継ぎ 2FA", "site:note.com NPO 後任 試運転 引き継ぎ", "site:booth.pm/ja/items 団体 アカウント 移管 テンプレート"],
+      "minimumEvidence": ["current service-specific ownership and recovery help", "organizational context source"],
+      "escalateWhen": ["credential sharing", "payment account ownership", "personal data export", "former member access"]
+    },
+    {
+      "cluster": "卒論・研究の再現性",
+      "officialQueries": ["site:mext.go.jp 研究倫理 生成AI 学生", "site:jsps.go.jp 研究倫理 データ 管理", "site:[university-domain] 生成AI レポート 卒論 規程"],
+      "competitionQueries": ["site:note.com 卒論 除外ログ 欠損 重複", "site:note.com 研究 AI利用ログ", "site:booth.pm/ja/items 卒論 変更履歴 テンプレート"],
+      "minimumEvidence": ["the student's current institution or course rule", "one current national or research-integrity source where relevant"],
+      "escalateWhen": ["academic-integrity decision", "research participant data", "statistical exclusion chosen to improve results", "citation authorship"]
+    },
+    {
+      "cluster": "デジタル商品の公開後半",
+      "officialQueries": ["site:booth.pixiv.help ダウンロード ファイル 差し替え", "site:booth.pixiv.help 再ダウンロード 削除", "site:booth.pixiv.help 手数料 ダウンロード商品"],
+      "competitionQueries": ["site:note.com デジタル商品 公開前 QA", "site:note.com デジタル商品 版管理 移行", "site:booth.pm/ja/items デジタル商品 サポート 管理 テンプレート"],
+      "minimumEvidence": ["current platform help for every behavior or fee", "actual file-open test for every claimed format"],
+      "escalateWhen": ["license interpretation", "refund or consumer-law conclusion", "tax treatment", "unsupported device claim"]
+    },
+    {
+      "cluster": "就活の証拠管理",
+      "officialQueries": ["site:[employer-domain] 新卒 採用 応募 締切", "site:mhlw.go.jp 新卒 採用 ルール", "site:jasso.go.jp 就職 学生 調査"],
+      "competitionQueries": ["site:note.com ES 面接 回答 版管理", "site:note.com 自己PR 数字 根拠", "site:note.com 就活 締切 提出 証拠"],
+      "minimumEvidence": ["employer's current official page for every deadline", "dated public guidance for general framing"],
+      "escalateWhen": ["fabricated achievement", "discrimination or employment-law judgment", "personal data disclosure", "guaranteed hiring outcome"]
+    },
+    {
+      "cluster": "ノウハウ発信の制作運用",
+      "officialQueries": ["site:note.com/notemag 有料記事 分析 タイトル 無料エリア", "site:help.note.com タイトル ハッシュタグ 見出し画像", "site:note.jp レコメンド LLM"],
+      "competitionQueries": ["site:note.com [reader] [moment] [failure] [artifact]", "site:booth.pm/ja/items [moment] [artifact] テンプレート"],
+      "minimumEvidence": ["current official note guidance", "repository intent scan", "dated direct-competition observation"],
+      "escalateWhen": ["performance claim without first-party metrics", "expired campaign hashtag", "invented biography or experience"]
+    }
+  ],
+  "researchStopConditions": [
+    "No current primary source exists for a material factual promise.",
+    "The topic requires professional judgment to produce the promised outcome.",
+    "The exact reader + moment + failure + artifact intent already exists in published or queued inventory.",
+    "The only differentiation is article length, number of prompts, cosmetic formatting or a stronger adjective.",
+    "A current official source contradicts the planned workflow.",
+    "The title depends on unobserved demand, sales, search volume or personal results."
+  ],
+  "outputContract": "Every approved brief must store sourceIds, accessed dates, claim labels, reader, moment, failure, artifact, free completion, paid increment, exclusions and duplicate-check result."
+}

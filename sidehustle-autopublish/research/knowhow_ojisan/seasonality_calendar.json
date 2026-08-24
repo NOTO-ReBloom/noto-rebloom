@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
+  "purpose": "Planning prompts for when operational problems are likely to become salient. This calendar does not prove demand and does not authorize use of expired campaign hashtags.",
+  "rules": [
+    "Treat note monthly campaigns as historical editorial signals only.",
+    "Treat fiscal, recruiting, grant, academic and weather timing as a recheck trigger, not a universal deadline.",
+    "Open the current official program, school, employer, venue or platform page before customer-facing publication.",
+    "Evergreen queue items remain valid outside the suggested window if first-party evidence supports them."
+  ],
+  "months": [
+    {
+      "month": 1,
+      "planningHook": "年初の見直しと小さな導入",
+      "candidateAngles": ["AIへ渡さない仕事の5分判定", "年間定例の開始日を逆算", "デジタル商品の旧版整理"],
+      "clusters": ["AI導入後の運用", "小規模組織の世代交代", "デジタル商品の公開後半"],
+      "signalType": "historical_note_campaign_plus_operational_hypothesis",
+      "sourceIds": ["note_campaign_jan_2025", "ipa_dx_trend_2025_small"],
+      "publishDayRecheck": ["current note campaigns", "current platform specifications"]
+    },
+    {
+      "month": 2,
+      "planningHook": "年度交代前の所有・権限・未完了約束",
+      "candidateAngles": ["団体アカウント所有者の棚卸し", "後任の試運転", "協力者との未完了約束カード"],
+      "clusters": ["小規模組織の世代交代"],
+      "signalType": "operational_hypothesis",
+      "sourceIds": ["npo_succession_2019", "ipa_sme_security_guide_current"],
+      "publishDayRecheck": ["service-specific recovery and MFA settings", "organization rules"]
+    },
+    {
+      "month": 3,
+      "planningHook": "就活・年度末・報告前の証拠確認",
+      "candidateAngles": ["自己PR数字の期間・母数・役割", "経費証憑の月末照合", "年度末の未完了案件一覧"],
+      "clusters": ["就活の証拠管理", "協賛・助成金の証拠"],
+      "signalType": "historical_note_campaign_plus_program_specific_recheck",
+      "sourceIds": ["note_campaign_mar_2025", "smrj_grant_postaward_2026"],
+      "publishDayRecheck": ["current recruiting schedules", "program-specific reporting deadlines"]
+    },
+    {
+      "month": 4,
+      "planningHook": "新担当の初回成功と権限の片付け",
+      "candidateAngles": ["新担当が15分で終える最初の1仕事", "前任者権限の削除確認", "会議の決定・保留・宿題の分離"],
+      "clusters": ["小規模組織の世代交代", "AI導入後の運用"],
+      "signalType": "operational_hypothesis",
+      "sourceIds": ["ipa_sme_security_guide_current", "npo_survey_2023"],
+      "publishDayRecheck": ["organization calendar", "current account settings"]
+    },
+    {
+      "month": 5,
+      "planningHook": "採択後・新企画開始後の実行設計",
+      "candidateAngles": ["発注前に作る証憑対応表", "計画変更の相談ログ", "AI試行の停止条件"],
+      "clusters": ["協賛・助成金の証拠", "AI導入後の運用"],
+      "signalType": "program_specific_recheck",
+      "sourceIds": ["smrj_grant_postaward_2026", "reconstruction_grant_evidence_2026", "ipa_ai_explanation_2026"],
+      "publishDayRecheck": ["current award notices", "current AI and security guidance"]
+    },
+    {
+      "month": 6,
+      "planningHook": "大会・イベント前の例外と研究設計",
+      "candidateAngles": ["責任者不在時の権限上限", "写真用途と同意の管理", "アンケート除外条件を集計前に固定"],
+      "clusters": ["イベントの例外運営", "卒論・研究の再現性"],
+      "signalType": "historical_note_campaign_plus_operational_hypothesis",
+      "sourceIds": ["note_campaign_jun_2025", "ppc_event_photo_current"],
+      "publishDayRecheck": ["current event requirements", "current privacy guidance", "school research rules"]
+    },
+    {
+      "month": 7,
+      "planningHook": "実践仕事術と夏イベントの事前検品",
+      "candidateAngles": ["イベント初報・更新・訂正の版管理", "協賛証拠を開催前に割り当てる", "AI成果物の受入条件"],
+      "clusters": ["イベントの例外運営", "協賛・助成金の証拠", "AI導入後の運用"],
+      "signalType": "historical_note_campaign_plus_operational_hypothesis",
+      "sourceIds": ["note_work_tech_campaign_2025", "env_shift_photo_evidence"],
+      "publishDayRecheck": ["current note campaigns", "venue and weather sources"]
+    },
+    {
+      "month": 8,
+      "planningHook": "移動・屋外・欠席が絡む例外運営",
+      "candidateAngles": ["天候・交通・会場情報の判断証拠", "スタッフ欠席の代替配置制約", "緊急連絡の次回更新時刻"],
+      "clusters": ["イベントの例外運営"],
+      "signalType": "historical_note_campaign_plus_weather_recheck",
+      "sourceIds": ["note_campaign_aug_2025"],
+      "publishDayRecheck": ["JMA and local authority information", "venue policy", "current transport information"]
+    },
+    {
+      "month": 9,
+      "planningHook": "研究・受験の本格化前に再現性を作る",
+      "candidateAngles": ["欠損・重複・除外ログ", "AI利用・確認・修正ログ", "図表と本文の数字監査"],
+      "clusters": ["卒論・研究の再現性"],
+      "signalType": "historical_note_campaign_plus_academic_rules_recheck",
+      "sourceIds": ["note_campaign_sep_2025", "jasso_student_survey_index_2026"],
+      "publishDayRecheck": ["school rules", "course deadlines", "current AI-use policy"]
+    },
+    {
+      "month": 10,
+      "planningHook": "就活・転職回答の事実と版を揃える",
+      "candidateAngles": ["企業別差分と共通事実", "ES提出版と面接回答の整合", "締切・提出画面・確認日の証拠"],
+      "clusters": ["就活の証拠管理"],
+      "signalType": "historical_note_campaign",
+      "sourceIds": ["note_campaign_oct_2025", "jasso_student_life_2022"],
+      "publishDayRecheck": ["employer official pages", "current recruiting rules and dates"]
+    },
+    {
+      "month": 11,
+      "planningHook": "年末前の仕事量・問い合わせ・未完了の整理",
+      "candidateAngles": ["見えないAI作業の総工数", "デジタル商品のサポート境界", "団体の未完了約束一覧"],
+      "clusters": ["AI導入後の運用", "デジタル商品の公開後半", "小規模組織の世代交代"],
+      "signalType": "historical_note_campaign_plus_operational_hypothesis",
+      "sourceIds": ["note_campaign_nov_2025", "booth_file_replace_current"],
+      "publishDayRecheck": ["current note campaigns", "current platform help"]
+    },
+    {
+      "month": 12,
+      "planningHook": "変更履歴・アーカイブ・翌年への切戻し可能な整理",
+      "candidateAngles": ["商品版の変更履歴と購入者通知", "年間運用の失敗モード振り返り", "次年度開始日の逆算"],
+      "clusters": ["デジタル商品の公開後半", "小規模組織の世代交代", "AI導入後の運用"],
+      "signalType": "operational_hypothesis",
+      "sourceIds": ["booth_file_replace_current", "booth_redownload_current", "ipa_sme_security_guide_current"],
+      "publishDayRecheck": ["current platform behavior", "organization calendar", "data-retention requirements"]
+    }
+  ],
+  "useRule": "Seasonality may reorder already-admissible topics. It may not bypass source, duplication, truth, safety or first-party evidence gates."
+}

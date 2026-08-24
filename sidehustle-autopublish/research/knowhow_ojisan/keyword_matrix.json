@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
+  "purpose": "Generate search phrases and article briefs from real operational language. Raw combinations are research prompts, not evidence of demand and not automatically publishable topics.",
+  "formula": "reader × moment × failure × artifact",
+  "clusterCount": 8,
+  "rawCombinationCount": 1536,
+  "calculation": "Each cluster has 3 readers × 4 moments × 4 failures × 4 artifacts = 192; 8 clusters = 1,536 raw combinations before rejection gates.",
+  "queryPatterns": [
+    "[reader] [moment] [failure] [artifact]",
+    "[moment] できない 原因 [artifact]",
+    "[artifact] 作り方 [reader]",
+    "site:note.com [moment] [failure] [artifact]",
+    "site:booth.pm/ja/items [moment] [artifact] テンプレート",
+    "site:[officialDomain] [moment] ガイドライン PDF"
+  ],
+  "clusters": [
+    {
+      "id": "kw_ai_ops",
+      "cluster": "AI導入後の運用",
+      "readers": ["1〜10人チームのAI担当", "専任IT担当がいない小規模事業者", "AIの出力を承認する責任者"],
+      "moments": ["AIへ仕事を渡した後", "出力を顧客へ出す前", "サービス障害や仕様変更時", "担当者交代時"],
+      "failures": ["確認範囲が人で違う", "例外のたびに手作業へ戻る", "止める基準がない", "根拠と修正履歴が残らない"],
+      "artifacts": ["受入条件表", "例外台帳", "停止・復旧カード", "主張・出典ログ"],
+      "officialDomains": ["ipa.go.jp", "meti.go.jp", "soumu.go.jp"],
+      "sourceIds": ["ipa_dx_trend_2025_small", "ipa_ai_explanation_2026", "ipa_sme_security_guide_current"]
+    },
+    {
+      "id": "kw_event_ops",
+      "cluster": "イベントの例外運営",
+      "readers": ["小規模イベント主催者", "当日責任者", "学生イベントの運営担当"],
+      "moments": ["開催判断前", "責任者不在時", "事故や欠席の初報時", "写真を外部公開する前"],
+      "failures": ["代理人の権限がない", "情報の版が食い違う", "判断根拠が残らない", "写真の用途と同意が追えない"],
+      "artifacts": ["権限移譲表", "初報・更新テンプレート", "判断証拠ログ", "写真用途台帳"],
+      "officialDomains": ["jma.go.jp", "ppc.go.jp", "fdma.go.jp", "mhlw.go.jp"],
+      "sourceIds": ["ppc_event_photo_current", "note_search_gap_20260824", "booth_comp_event_ops"]
+    },
+    {
+      "id": "kw_sponsor_grant",
+      "cluster": "協賛・助成金の証拠",
+      "readers": ["採択後の事業担当", "協賛履行の担当者", "小規模NPOの会計・報告担当"],
+      "moments": ["発注前", "納品・検収時", "イベント開催前", "実績報告前"],
+      "failures": ["証憑が1経費につながらない", "必要写真を後から探す", "数字の定義が担当で違う", "変更相談の履歴がない"],
+      "artifacts": ["証憑照合表", "証拠パック", "KPI定義辞書", "相談・承認ログ"],
+      "officialDomains": ["smrj.go.jp", "chusho.meti.go.jp", "go.jp"],
+      "sourceIds": ["smrj_grant_postaward_2026", "reconstruction_grant_evidence_2026", "env_shift_photo_evidence"]
+    },
+    {
+      "id": "kw_small_org_handoff",
+      "cluster": "小規模組織の世代交代",
+      "readers": ["学生団体の代表", "小規模NPOの事務局", "後任を迎える担当者"],
+      "moments": ["役員交代の1か月前", "アカウント移管時", "関係者を紹介する時", "後任の初回実務時"],
+      "failures": ["所有者と復旧先が前任者のまま", "未完了の約束が抜ける", "説明だけで実行確認がない", "年間業務の開始日が不明"],
+      "artifacts": ["アカウント移管表", "関係文脈カード", "引き継ぎ受入テスト", "年間逆算表"],
+      "officialDomains": ["ipa.go.jp", "npo-homepage.go.jp"],
+      "sourceIds": ["ipa_sme_security_guide_current", "npo_succession_2019", "npo_survey_2023"]
+    },
+    {
+      "id": "kw_research_reproducibility",
+      "cluster": "卒論・研究の再現性",
+      "readers": ["卒論でアンケートを扱う学生", "インタビュー研究をする学生", "図表と本文を直している学生"],
+      "moments": ["データを除外する前", "AIを研究作業に使う時", "図表を差し替えた後", "指導コメントを受けた後"],
+      "failures": ["除外理由が再現できない", "AI利用箇所を説明できない", "本文と図表の数字がずれる", "修正の影響先を見落とす"],
+      "artifacts": ["除外ログ", "AI利用・確認ログ", "図表整合性表", "変更影響マップ"],
+      "officialDomains": ["mext.go.jp", "jasso.go.jp", "jsps.go.jp", "所属大学ドメイン"],
+      "sourceIds": ["jasso_student_survey_index_2026", "note_search_gap_20260824"]
+    },
+    {
+      "id": "kw_digital_product_ops",
+      "cluster": "デジタル商品の公開後半",
+      "readers": ["初めてダウンロード商品を売る人", "既存商品を更新する販売者", "問い合わせ対応を一人で行う販売者"],
+      "moments": ["公開直前", "ファイル差し替え前", "購入者へ更新を伝える時", "問い合わせが増えた時"],
+      "failures": ["購入者端末で開けない", "旧版を消して再取得不能にする", "更新差分が伝わらない", "サポート境界がない"],
+      "artifacts": ["購入者視点QA", "版移行表", "変更履歴・通知文", "FAQ・対応範囲表"],
+      "officialDomains": ["booth.pixiv.help", "help.note.com"],
+      "sourceIds": ["booth_file_replace_current", "booth_redownload_current", "booth_fee_current"]
+    },
+    {
+      "id": "kw_jobhunt_evidence",
+      "cluster": "就活の証拠管理",
+      "readers": ["複数社へ応募する学生", "自己PRの数字を使う学生", "ESと面接回答を更新する学生"],
+      "moments": ["企業別回答を作る前", "実績数字を書く前", "提出版を更新した後", "締切を確認した時"],
+      "failures": ["企業別に事実まで変わる", "数字の期間・母数・役割が曖昧", "提出版と面接回答がずれる", "締切変更と完了証拠を追えない"],
+      "artifacts": ["共通事実・差分表", "実績根拠カード", "回答版管理表", "締切・提出証拠ログ"],
+      "officialDomains": ["mhlw.go.jp", "jasso.go.jp", "各社採用公式ドメイン"],
+      "sourceIds": ["jasso_student_life_2022", "note_campaign_mar_2025", "note_campaign_oct_2025"]
+    },
+    {
+      "id": "kw_content_operations",
+      "cluster": "ノウハウ発信の制作運用",
+      "readers": ["実務ノウハウを発信する人", "複数記事を制作する編集担当", "無料・有料・商品を接続する運営者"],
+      "moments": ["企画選定前", "タイトル作成時", "有料記事の無料部分を書く時", "公開後に次作を決める時"],
+      "failures": ["似た記事を量産する", "誰向けか分からない", "無料部分が薄い", "指標なしで勝ち企画を決める"],
+      "artifacts": ["意図指紋", "タイトル合格表", "無料・有料差分表", "同齢実験台帳"],
+      "officialDomains": ["note.com", "note.jp", "help.note.com"],
+      "sourceIds": ["note_title_500_2025", "note_freearea_100_2025", "note_llm_recommendation_2026"]
+    }
+  ],
+  "admissionSteps": [
+    "Generate a plain search phrase; never use the raw phrase as a final title.",
+    "Check an official source for the problem or rule and record its publication/access date.",
+    "Search note and BOOTH for the exact reader + moment + failure + artifact combination.",
+    "Compare against publication receipts, paid queue, free queue and opportunity map.",
+    "Reject if only the wording differs from an existing intent.",
+    "Choose one article archetype and define a standalone free completion.",
+    "Only then write a natural Japanese title."
+  ],
+  "rejectPatterns": [
+    "AI おすすめ プロンプト 100選",
+    "誰でも使える タスク管理",
+    "絶対に受かる 就活",
+    "必ず採択される 補助金",
+    "売れる デジタル商品 完全攻略",
+    "学生団体 引き継ぎ まとめ"
+  ],
+  "truthRule": "Search result count, autocomplete, ranking and marketplace listings are observations only. Do not convert them into search volume, demand, sales or blue-ocean certainty."
+}

@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
+  "purpose": "A production line for making more articles without lowering truth, uniqueness, usefulness or public verification standards.",
+  "inputs": {
+    "generationContract": "sidehustle-autopublish/research/knowhow_ojisan/generation_contract.json",
+    "opportunityMap": "sidehustle-autopublish/research/knowhow_ojisan/opportunity_map.json",
+    "rankedQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
+    "keywordMatrix": "sidehustle-autopublish/research/knowhow_ojisan/keyword_matrix.json",
+    "articleArchetypes": "sidehustle-autopublish/research/knowhow_ojisan/article_archetypes.json",
+    "seasonalityCalendar": "sidehustle-autopublish/research/knowhow_ojisan/seasonality_calendar.json",
+    "sourcePlaybook": "sidehustle-autopublish/research/knowhow_ojisan/source_query_playbook.json",
+    "intentRegistry": "sidehustle-autopublish/research/knowhow_ojisan/intent_registry.json"
+  },
+  "capacityRule": "Maintain draft inventory, but do not raise publication cadence or create a BOOTH SKU for every article without matched-age first-party evidence and reusable-product value.",
+  "stages": [
+    {
+      "order": 1,
+      "id": "select_intent",
+      "action": "Select one existing opportunity or generate a raw combination from the keyword matrix.",
+      "requiredOutput": ["cluster", "reader", "moment", "failure", "artifact"],
+      "passWhen": "All five fields are concrete and describe one observable job.",
+      "failWhen": "The topic applies to almost everyone or is only a broad theme."
+    },
+    {
+      "order": 2,
+      "id": "duplicate_gate",
+      "action": "Compare the five-axis fingerprint against published receipts, paid queue, free queue and all research titles.",
+      "requiredOutput": ["duplicateStatus", "nearestExistingId", "materialDifference", "checkedAt"],
+      "passWhen": "No hard duplicate exists and any adjacent item has a different artifact or decision.",
+      "failWhen": "Only wording, count, adjective or platform differs."
+    },
+    {
+      "order": 3,
+      "id": "evidence_gate",
+      "action": "Run the source playbook and open the current official sources.",
+      "requiredOutput": ["sourceIds", "claimLabels", "accessedAt", "freshnessNotes", "exclusions"],
+      "passWhen": "Every material factual frame has a current source and professional boundaries are explicit.",
+      "failWhen": "A promised outcome depends on an unsupported fact, outdated rule or professional judgment."
+    },
+    {
+      "order": 4,
+      "id": "competition_gate",
+      "action": "Search the exact reader + moment + failure + artifact on note and BOOTH.",
+      "requiredOutput": ["queries", "observedDirectMatches", "observedAt", "qualitativeGap", "gapCaveat"],
+      "passWhen": "The angle is either relatively distinct or materially better for the target reader.",
+      "failWhen": "The only difference is more prompts, more pages or cosmetic packaging."
+    },
+    {
+      "order": 5,
+      "id": "value_split",
+      "action": "Define what the free article completes and what implementation depth a paid layer adds.",
+      "requiredOutput": ["freeCompletion", "paidIncrement", "boothRepeatUseDecision"],
+      "passWhen": "Free content is independently useful and paid content adds workflow, editable assets, exceptions or acceptance criteria.",
+      "failWhen": "The free content is a thin teaser or paid content is merely longer."
+    },
+    {
+      "order": 6,
+      "id": "archetype_select",
+      "action": "Choose one primary article archetype.",
+      "requiredOutput": ["archetypeId", "requiredInputs", "sectionPlan", "guardrail"],
+      "passWhen": "The archetype naturally delivers the selected artifact.",
+      "failWhen": "The archetype forces an invented story, metric or customer example."
+    },
+    {
+      "order": 7,
+      "id": "draft",
+      "action": "Draft in the ノウハウ共有おじさん voice with one reader, one situation and one outcome.",
+      "requiredOutput": ["title", "lead", "body", "oneMinuteAction", "sources", "ctaCandidate"],
+      "passWhen": "A first-time reader can complete one small action without buying.",
+      "failWhen": "The draft relies on jargon, vague motivation, unsupported biography or scattered topics."
+    },
+    {
+      "order": 8,
+      "id": "editorial_qa",
+      "action": "Run title, claim, structure, link, image and paid-value checks.",
+      "requiredOutput": ["titleLint", "claimAudit", "sourceAudit", "duplicateRecheck", "coverBrief", "ctaVerification"],
+      "passWhen": "All material claims are sourced, title is specific and natural, cover is prepared and CTA is zero or one verified exact-intent destination.",
+      "failWhen": "Any unsupported number, fake urgency, expired campaign tag, guessed URL or unrelated CTA remains."
+    },
+    {
+      "order": 9,
+      "id": "publish_and_verify",
+      "action": "Publish only through the authorized queue and verify the reader-visible result strictly.",
+      "requiredOutput": ["publicUrl", "exactTitle", "expectedAccessState", "coverVisible", "verifiedAt", "receipt"],
+      "passWhen": "Logged-out or reader-visible verification confirms the expected state.",
+      "failWhen": "A click occurred but the reader-visible result was not confirmed."
+    },
+    {
+      "order": 10,
+      "id": "measure_and_route",
+      "action": "Capture 24h, 72h and 7d first-party metrics at equal ages and choose promote, revise, hold or retire.",
+      "requiredOutput": ["measurementWindow", "PV", "likes", "relatedPaidClicks", "relatedPaidPurchases", "revenue", "decision", "reason"],
+      "passWhen": "The decision states what is known and keeps article evidence separate from cluster conclusions.",
+      "failWhen": "Missing metrics are treated as zero or one result declares a cluster winner."
+    }
+  ],
+  "batching": {
+    "safeParallelWork": ["source collection for different clusters", "duplicate scans", "cover briefs", "format linting"],
+    "mustRemainSequential": ["intent admission before drafting", "draft before title/fact QA", "publish before public verification", "verification before completion receipt"],
+    "inventoryStates": ["raw_research", "source_ready", "ready_for_draft", "drafted", "qa_blocked", "publish_authorized", "public_verified", "measured", "retired"]
+  },
+  "qualityScore": {
+    "maximum": 100,
+    "components": [
+      {"name": "reader_moment_failure_artifact specificity", "points": 20},
+      {"name": "primary and current evidence", "points": 20},
+      {"name": "standalone free completion", "points": 15},
+      {"name": "paid implementation increment", "points": 15},
+      {"name": "semantic uniqueness", "points": 15},
+      {"name": "truth, safety and persona compliance", "points": 15}
+    ],
+    "draftThreshold": 80,
+    "publishThreshold": 90,
+    "hardStopsOverrideScore": true
+  },
+  "hardStops": [
+    "hard semantic duplicate",
+    "missing current source for a material claim",
+    "invented biography, case study, demand, metric or result",
+    "professional decision disguised as a template",
+    "thin free teaser",
+    "guessed or unverified CTA URL",
+    "publication not authorized",
+    "strict public verification failed"
+  ],
+  "publicationBoundary": "This workflow expands research and draft capacity. It does not re-enable disabled loops, republish completed Aug 24 items or authorize publication above the current experiment cadence."
+}

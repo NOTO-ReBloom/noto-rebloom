@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
+  "purpose": "Reusable article structures for producing distinct, evidence-backed know-how articles without cloning titles or inventing experience.",
+  "sourceIds": [
+    "note_title_500_2025",
+    "note_freearea_100_2025",
+    "note_title_help_current",
+    "note_discovery_help_current",
+    "note_llm_recommendation_2026"
+  ],
+  "selectionRule": "Choose one archetype only after selecting a reader, moment, observable failure and take-home artifact. The archetype never creates a topic by itself.",
+  "archetypeCount": 18,
+  "archetypes": [
+    {
+      "id": "ar_01_one_minute_diagnosis",
+      "name": "1分診断",
+      "bestFor": ["free note", "discovery"],
+      "promise": "読者が自分の詰まりを1種類に分類する",
+      "requiredInputs": ["one narrow failure", "3 to 5 observable signs", "one next action"],
+      "sections": ["困る場面", "当てはまるサイン", "判定", "今すぐ1つ直す", "対象外"],
+      "paidIncrement": "診断結果別の実装手順、記録欄、例外対応",
+      "guardrail": "診断名を医学・法律・人事評価の結論にしない。"
+    },
+    {
+      "id": "ar_02_acceptance_criteria",
+      "name": "受入条件",
+      "bestFor": ["free note", "paid note", "BOOTH"],
+      "promise": "作業をどこまで確認すれば完了か決める",
+      "requiredInputs": ["deliverable", "risk level", "reviewer", "evidence"],
+      "sections": ["完了が曖昧な理由", "最低条件", "リスク別追加条件", "差戻し例", "完成確認"],
+      "paidIncrement": "編集可能な受入表、担当マトリクス、差戻しコード",
+      "guardrail": "品質や適法性を保証せず、高リスク判断は責任者へ戻す。"
+    },
+    {
+      "id": "ar_03_stop_condition_card",
+      "name": "停止条件カード",
+      "bestFor": ["free note", "paid note"],
+      "promise": "続行・縮小・停止を迷わず分ける",
+      "requiredInputs": ["failure signal", "decision owner", "manual alternative", "restart check"],
+      "sections": ["止められない理由", "停止信号", "判断者", "代替手順", "再開条件"],
+      "paidIncrement": "停止・復旧ランブックと模擬訓練シート",
+      "guardrail": "安全・医療・災害判断は公式情報と現場責任者を優先する。"
+    },
+    {
+      "id": "ar_04_exception_register",
+      "name": "例外台帳",
+      "bestFor": ["paid note", "BOOTH"],
+      "promise": "同じ例外を毎回ゼロから処理しない",
+      "requiredInputs": ["normal path", "exception trigger", "human decision", "return path"],
+      "sections": ["通常処理", "例外の発生点", "人へ戻す条件", "記録項目", "再発レビュー"],
+      "paidIncrement": "分類済み台帳、再発判定、通常処理への戻し方",
+      "guardrail": "架空の発生率や改善率を置かない。"
+    },
+    {
+      "id": "ar_05_evidence_chain",
+      "name": "証拠の鎖",
+      "bestFor": ["free note", "paid note", "BOOTH"],
+      "promise": "作業・成果・根拠を同じIDでつなぐ",
+      "requiredInputs": ["event or transaction ID", "required evidence", "owner", "deadline"],
+      "sections": ["証拠が散る理由", "共通ID", "必要証拠", "不足の見つけ方", "保管と確認"],
+      "paidIncrement": "照合台帳、不足警告、記入例、提出前監査",
+      "guardrail": "制度固有の必要書類は原典を再確認する。"
+    },
+    {
+      "id": "ar_06_handoff_rehearsal",
+      "name": "引き継ぎ試運転",
+      "bestFor": ["free note", "paid note", "BOOTH"],
+      "promise": "説明ではなく後任の実行で不足を見つける",
+      "requiredInputs": ["success task", "access needed", "observer", "failure notes"],
+      "sections": ["資料だけでは失敗する理由", "1つの試運転", "観察項目", "不足修正", "受入確認"],
+      "paidIncrement": "試運転シナリオ、アクセス表、合否基準",
+      "guardrail": "共有してはいけない資格情報を本文や見本へ入れない。"
+    },
+    {
+      "id": "ar_07_version_diff",
+      "name": "版差分",
+      "bestFor": ["paid note", "BOOTH"],
+      "promise": "更新で何が変わり誰に影響するか残す",
+      "requiredInputs": ["old version", "new version", "affected users", "rollback"],
+      "sections": ["差し替え事故", "変更点", "互換性", "移行", "通知と切戻し"],
+      "paidIncrement": "変更履歴、移行表、購入者通知文、切戻しチェック",
+      "guardrail": "プラットフォーム仕様は公開直前に公式ヘルプで再確認する。"
+    },
+    {
+      "id": "ar_08_decision_table",
+      "name": "判断表",
+      "bestFor": ["free note", "paid note"],
+      "promise": "条件ごとの行動を先に決める",
+      "requiredInputs": ["decision options", "observable conditions", "owner", "record"],
+      "sections": ["判断がぶれる場面", "確認する条件", "分岐", "誰が決めるか", "根拠を残す"],
+      "paidIncrement": "条件表、例外、権限上限、事後レビュー",
+      "guardrail": "専門判断を自動化せず、相談先への分岐を含める。"
+    },
+    {
+      "id": "ar_09_hidden_work_inventory",
+      "name": "見えない作業棚卸し",
+      "bestFor": ["free note", "demand validation"],
+      "promise": "短縮前後から漏れている準備・確認・修正を数える",
+      "requiredInputs": ["before process", "after process", "hidden tasks", "measurement window"],
+      "sections": ["見かけの時短", "前後工程", "手戻り", "測る単位", "次回比較"],
+      "paidIncrement": "総工数計測表、同齢比較、停止基準",
+      "guardrail": "実測がなければ効果量を書かない。"
+    },
+    {
+      "id": "ar_10_official_doc_to_action",
+      "name": "公式資料を行動へ翻訳",
+      "bestFor": ["free note", "search"],
+      "promise": "長い公式資料から今日確認する箇所を抜き出す",
+      "requiredInputs": ["current primary source", "publication date", "scope", "action items"],
+      "sections": ["対象者", "公式資料の位置づけ", "確認項目", "今日やること", "更新確認先"],
+      "paidIncrement": "根拠URL付き実行表、変更追跡、相談ログ",
+      "guardrail": "要約を制度判断に置き換えず、原文URLと確認日を残す。"
+    },
+    {
+      "id": "ar_11_failure_postmortem",
+      "name": "失敗の事後レビュー",
+      "bestFor": ["free note", "paid note"],
+      "promise": "責任追及ではなく仕組みの再発防止へ変える",
+      "requiredInputs": ["verified timeline", "expected path", "actual path", "next control"],
+      "sections": ["起きた事実", "期待との差", "検知できなかった理由", "次の管理点", "確認日"],
+      "paidIncrement": "タイムライン、原因分類、再発防止担当、完了判定",
+      "guardrail": "未確認の原因、人物評価、架空の事件を事実として書かない。"
+    },
+    {
+      "id": "ar_12_field_dictionary",
+      "name": "項目定義辞書",
+      "bestFor": ["free note", "BOOTH"],
+      "promise": "同じ数字や状態を担当者ごとに別の意味で数えない",
+      "requiredInputs": ["field name", "definition", "inclusion", "exclusion", "evidence"],
+      "sections": ["数字が合わない理由", "名称", "含めるもの", "除外するもの", "確認例"],
+      "paidIncrement": "定義辞書、母数、集計式、変更履歴",
+      "guardrail": "例示データはexample_onlyと明記する。"
+    },
+    {
+      "id": "ar_13_faq_to_boundary",
+      "name": "質問から境界を作る",
+      "bestFor": ["free note", "paid note", "BOOTH"],
+      "promise": "繰り返す問い合わせを対応範囲と自己解決導線へ変える",
+      "requiredInputs": ["real question log or official FAQ", "included support", "excluded support", "escalation"],
+      "sections": ["繰り返す質問", "自分で確認できること", "対応範囲", "対象外", "相談先"],
+      "paidIncrement": "FAQ台帳、定型返信、工数、改訂優先度",
+      "guardrail": "存在しない顧客質問を『よくある』と表現しない。"
+    },
+    {
+      "id": "ar_14_buyer_path_qa",
+      "name": "購入者視点QA",
+      "bestFor": ["free note", "paid note", "BOOTH"],
+      "promise": "購入後の開封から最初の成功までを検品する",
+      "requiredInputs": ["buyer device", "download path", "file inventory", "first success"],
+      "sections": ["販売者には見えない詰まり", "取得", "開封", "使い始め", "問い合わせ先"],
+      "paidIncrement": "端末別テスト、ファイル一覧、README受入条件、修正履歴",
+      "guardrail": "実際に試していない端末や互換性を保証しない。"
+    },
+    {
+      "id": "ar_15_constraint_map",
+      "name": "制約マップ",
+      "bestFor": ["paid note", "BOOTH"],
+      "promise": "使えるお金・時間・権限・素材の違いを可視化する",
+      "requiredInputs": ["resource", "allowed use", "prohibited use", "approval", "expiry"],
+      "sections": ["同じに見える資源", "制約", "承認", "期限", "証拠"],
+      "paidIncrement": "制約台帳、期限警告、承認ログ、例外分岐",
+      "guardrail": "法務・会計・税務の個別結論を出さない。"
+    },
+    {
+      "id": "ar_16_change_impact_map",
+      "name": "変更影響マップ",
+      "bestFor": ["paid note", "BOOTH"],
+      "promise": "1か所の修正で連動して直す箇所を見失わない",
+      "requiredInputs": ["changed claim or field", "dependent outputs", "review owner", "verification"],
+      "sections": ["変更点", "影響先", "修正順", "再確認", "完了証拠"],
+      "paidIncrement": "依存関係表、再確認チェック、差分記録",
+      "guardrail": "依存関係を実物確認せず断定しない。"
+    },
+    {
+      "id": "ar_17_what_not_to_automate",
+      "name": "自動化しない仕事",
+      "bestFor": ["free note", "trust"],
+      "promise": "人が判断する範囲とAI・ツールへ渡す範囲を分ける",
+      "requiredInputs": ["task", "risk", "input sensitivity", "review need"],
+      "sections": ["自動化候補", "外す条件", "人が持つ判断", "試す範囲", "停止条件"],
+      "paidIncrement": "業務分解表、承認マトリクス、試験計画",
+      "guardrail": "高リスク業務を安易に自動化対象へ入れない。"
+    },
+    {
+      "id": "ar_18_equal_age_experiment",
+      "name": "同齢比較実験",
+      "bestFor": ["internal research", "paid note when first-party data exists"],
+      "promise": "公開後の変更を1変数・同じ経過時間で比べる",
+      "requiredInputs": ["baseline", "one change", "primary metric", "observation window", "rollback"],
+      "sections": ["仮説", "基準値", "変更1つ", "同齢結果", "続行・撤回"],
+      "paidIncrement": "実験台帳、測定窓、判定履歴",
+      "guardrail": "指標が未取得なら成功・失敗・勝者を決めない。"
+    }
+  ]
+}

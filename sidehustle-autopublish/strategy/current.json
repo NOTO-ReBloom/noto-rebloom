@@ -1,6 +1,6 @@
 {
-  "version": 33,
-  "updatedAt": "2026-08-24T20:05:00+09:00",
+  "version": 34,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -12,7 +12,9 @@
     "blueOceanRule": "Treat relative competition gaps as dated hypotheses until matched-age first-party PV, click, purchase and revenue evidence exists.",
     "researchBase": "sidehustle-autopublish/research/knowhow_ojisan/README.md",
     "generationContract": "sidehustle-autopublish/research/knowhow_ojisan/generation_contract.json",
-    "topicQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json"
+    "topicQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
+    "articleFactory": "sidehustle-autopublish/research/knowhow_ojisan/mass_production_workflow.json",
+    "intentRegistry": "sidehustle-autopublish/research/knowhow_ojisan/intent_registry.json"
   },
   "authoritativeState": {
     "date": "2026-08-24",
@@ -78,8 +80,13 @@
     "sourceRegistry": "sidehustle-autopublish/research/knowhow_ojisan/source_registry.json",
     "opportunityMap": "sidehustle-autopublish/research/knowhow_ojisan/opportunity_map.json",
     "productionQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
-    "counts": {"sources": 34, "opportunities": 40, "rankedNext": 24},
-    "instruction": "Research inventory does not authorize extra publication or prove demand. Recheck time-sensitive sources and direct competition before every build."
+    "articleArchetypes": "sidehustle-autopublish/research/knowhow_ojisan/article_archetypes.json",
+    "keywordMatrix": "sidehustle-autopublish/research/knowhow_ojisan/keyword_matrix.json",
+    "seasonalityCalendar": "sidehustle-autopublish/research/knowhow_ojisan/seasonality_calendar.json",
+    "sourceQueryPlaybook": "sidehustle-autopublish/research/knowhow_ojisan/source_query_playbook.json",
+    "productionSeedRoutes": "sidehustle-autopublish/research/knowhow_ojisan/production_seed_routes.json",
+    "counts": {"sources": 50, "opportunities": 40, "rankedNext": 24, "articleArchetypes": 18, "rawKeywordCombinations": 1536, "articleRoutes": 80, "publishedIntentsRegistered": 21},
+    "instruction": "Research inventory increases source-ready and draft capacity only. It does not authorize extra publication or prove demand. Run semantic duplication, source freshness and direct-competition gates before every build."
   },
   "dataIntegrity": "No winner, loser, conversion uplift or revenue claim is made without observed first-party evidence."
 }

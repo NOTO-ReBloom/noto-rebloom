@@ -1,6 +1,6 @@
 {
-  "version": 5,
-  "updatedAt": "2026-08-24T20:05:00+09:00",
+  "version": 6,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
   "objective": "maximize note revenue and LTV through a measurable useful-free -> qualified-paid -> repeat/subscription funnel without speculative optimization",
   "brandPositioning": {
     "accountName": "ノウハウ共有おじさん",
@@ -8,7 +8,9 @@
     "contentMoat": "Prefer specific last-mile operations: acceptance criteria, exceptions, stop conditions, evidence, handoff, change history and recovery.",
     "personaTruthRule": "Do not infer or invent age, career, qualifications, experience years, sales, adoption results or personal case studies from the account name.",
     "researchQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
-    "blueOceanRule": "A relative gap found in public search is a hypothesis, not proof of search demand or purchase intent."
+    "blueOceanRule": "A relative gap found in public search is a hypothesis, not proof of search demand or purchase intent.",
+    "articleFactory": "sidehustle-autopublish/research/knowhow_ojisan/mass_production_workflow.json",
+    "duplicateGate": "sidehustle-autopublish/research/knowhow_ojisan/intent_registry.json"
   },
   "internalEvidence": {
     "observedSales": null,
@@ -54,7 +56,8 @@
         "Use at most one context-matched paid CTA per free article.",
         "Only insert a paid URL after that URL has been independently reader-visible verified; never guess URLs.",
         "Prefer problem diagnosis, checklists, mistakes, quick wins, frameworks and small worked examples for free articles; reserve deeper implementation systems, templates, full workflows and reusable assets for paid articles."
-      ]
+      ],
+      "factoryRule": "Maintain source-ready and drafted inventory using the 80 researched routes, but do not publish above the 2/day experiment until equal-age first-party evidence supports a cadence change."
     },
     "ltv": {
       "currentAction":"measure before adding subscription complexity",

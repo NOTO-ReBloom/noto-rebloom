@@ -21,19 +21,32 @@
 
 ## ファイル
 
-- `source_registry.json`: 公式資料、プラットフォーム資料、直接競合の観測記録。
+- `source_registry.json`: 50件の公式資料、プラットフォーム資料、直接競合の観測記録。
 - `opportunity_map.json`: 40件の企画候補と無料・有料・商品への展開案。
 - `next_topic_queue.json`: 次回制作に回せる上位24件。既存公開物・既存無料キューとの重複を避けた順序。
 - `generation_contract.json`: タイトル、本文、CTA、根拠、人格、商品化の必須ルール。
+- `article_archetypes.json`: 18種類の再利用可能な記事構成。記事型だけを変えた重複制作は禁止。
+- `keyword_matrix.json`: 8クラスタ、1,536通りの生検索組合せを作る読者×場面×失敗×成果物の軸。組合せ数は需要の証明ではない。
+- `seasonality_calendar.json`: 12か月の制作順参考。過去キャンペーンと業務仮説を区別し、公開日の再確認先を保持。
+- `source_query_playbook.json`: クラスタ別の公式検索、競合検索、鮮度、停止条件。
+- `intent_registry.json`: 公開済み有料note 21件と各キューを意味で照合する重複防止台帳。
+- `production_seed_routes.json`: 40企画を無料・有料の80制作ルートへ接続する表。
+- `mass_production_workflow.json`: 選定から厳格公開確認、24時間・72時間・7日計測までの10段階工程。
+- `validate_research_factory.mjs`: ID、件数、参照関係、1,536組合せを外部依存なしで検証するスクリプト。
 - `research_snapshot_20260824.md`: 調査結果の圧縮メモと判断理由。
+- `research_snapshot_article_scale_20260824.md`: 記事量産向け追加調査の判断と利用方法。
 
 ## 次回制作の読み順
 
 1. `generation_contract.json` の禁止事項と合格条件を読む。
-2. `next_topic_queue.json` から `status=ready_for_draft` を優先する。
-3. 対応する `opportunityId` を `opportunity_map.json` で開き、対象読者、無料価値、有料差分、証拠IDを引き継ぐ。
-4. `source_registry.json` の原典を公開直前に再確認する。制度・手数料・日付は必ず最新化する。
-5. 公開後は同じ経過時間の一次指標で比較し、ブルーオーシャン仮説を昇格・維持・廃止する。
+2. `next_topic_queue.json` から `status=ready_for_draft` を優先する。新規探索が必要なときだけ `keyword_matrix.json` を使う。
+3. `intent_registry.json` で読者・場面・失敗・成果物の重複を先に落とす。
+4. 対応する `opportunityId` を `opportunity_map.json` と `production_seed_routes.json` で開き、無料価値、有料差分、記事型、証拠IDを引き継ぐ。
+5. `source_query_playbook.json` に従って `source_registry.json` の原典を再確認する。制度・手数料・日付は公開日に最新化する。
+6. `mass_production_workflow.json` の10段階を通す。公開のクリックではなく、読者に見える状態の厳格確認まで終えて完了とする。
+7. 公開後は同じ経過時間の一次指標で比較し、ブルーオーシャン仮説を昇格・維持・廃止する。
+
+JSONを更新したら、このディレクトリで `node validate_research_factory.mjs` を実行し、`ok: true` を確認する。
 
 ## 制作上の優先順位
 

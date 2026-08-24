@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updatedAt": "2026-08-24T20:05:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-08-24T22:30:00+09:00",
   "brand": {
     "accountName": "ノウハウ共有おじさん",
     "promise": "複雑な実務ノウハウを、初めての人が今日ひとつ動かせる形まで分解する",
@@ -155,5 +155,20 @@
       "keep article observations separate from cluster conclusions",
       "promote, revise or retire the blue-ocean hypothesis using first-party evidence"
     ]
+  },
+  "massProductionRules": {
+    "requiredFiles": [
+      "intent_registry.json",
+      "source_query_playbook.json",
+      "article_archetypes.json",
+      "production_seed_routes.json",
+      "mass_production_workflow.json"
+    ],
+    "fingerprint": "Every article requires cluster + reader + moment + failure + artifact before drafting.",
+    "duplicateRule": "Changing wording, step count, adjective, platform or archetype does not create a new article intent.",
+    "archetypeRule": "Use one primary archetype to deliver the selected artifact; never choose a topic because a template slot is empty.",
+    "researchRule": "Raw keyword combinations and seasonal signals are research prompts only; current sources and direct competition must be checked before drafting.",
+    "inventoryRule": "Increase source-ready and drafted inventory first. Do not increase publication cadence until equal-age first-party metrics justify it.",
+    "completionRule": "A publication is complete only after reader-visible strict verification and a local receipt."
   }
 }
