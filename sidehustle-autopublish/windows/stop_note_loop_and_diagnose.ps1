@@ -79,16 +79,21 @@ $searchRoots = @(
   (Join-Path $env:USERPROFILE 'Downloads'),
   (Join-Path $env:USERPROFILE 'Desktop'),
   (Join-Path $env:USERPROFILE 'Documents'),
-  (Join-Path $env:USERPROFILE 'OneDrive\Downloads'),
-  'C:\note-business'
+  (Join-Path $env:USERPROFILE 'OneDrive\Downloads')
 ) | Select-Object -Unique
 $boothHits = New-Object System.Collections.Generic.List[string]
 foreach ($root in $searchRoots) {
   if (-not (Test-Path -LiteralPath $root)) { continue }
+  $known = Join-Path $root 'BOOTH_AUTO_PUBLISHER_v3_ASCII\booth-bot.mjs'
+  if (Test-Path -LiteralPath $known) { $boothHits.Add($known) }
   try {
-    Get-ChildItem -LiteralPath $root -Filter 'booth-bot.mjs' -File -Recurse -ErrorAction SilentlyContinue |
+    Get-ChildItem -LiteralPath $root -Directory -ErrorAction SilentlyContinue |
+      Where-Object { $_.Name -match '(?i)booth.*publisher|publisher.*booth' } |
       ForEach-Object {
-        if (-not $boothHits.Contains($_.FullName)) { $boothHits.Add($_.FullName) }
+        $candidate = Join-Path $_.FullName 'booth-bot.mjs'
+        if ((Test-Path -LiteralPath $candidate) -and -not $boothHits.Contains($candidate)) {
+          $boothHits.Add($candidate)
+        }
       }
   } catch {}
 }
