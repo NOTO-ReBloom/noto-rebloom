@@ -1,6 +1,6 @@
 {
-  "version": 16,
-  "updatedAt": "2026-08-24T00:07:41+09:00",
+  "version": 17,
+  "updatedAt": "2026-08-24T10:12:40+09:00",
   "objective": "maximize total sales while enforcing strict verification for all designated 2026-08-23 paid publications before unrelated work and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -17,7 +17,7 @@
   },
   "currentRecovery": {
     "sourceDate": "2026-08-23",
-    "observedAt": "2026-08-24T00:07:41+09:00",
+    "observedAt": "2026-08-24T10:12:40+09:00",
     "midnightPolicy": "unfinished strict publication quota carries forward; date rollover never clears paid debt"
   },
   "currentDayTargets": {
@@ -41,7 +41,6 @@
       "target": 2,
       "strictVerified": 0,
       "remaining": 2,
-      "queueEnabled": 2,
       "paidQuotaContribution": 0,
       "deferredUntilPaidBoothComplete": true,
       "requiredChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"]
@@ -50,25 +49,22 @@
     "all12StrictVerified": false
   },
   "evidence": {
-    "paidNote": "All five required 2026-08-23 paid NOTE publication receipts exist and each records reader-visible URL, exact title, expected price, paid boundary, dedicated cover and anonymous verification as true.",
-    "BOOTH": "Canonical BOOTH publication ledger contains none of required current-day IDs 024-028 as of this check. Queue contains all five enabled forceRetry entries with expected prices and SHA; cloud materialization manifest confirms encrypted payload ZIP, product.json, product.zip and preview01.jpg QA for all five.",
-    "freeNote": "Designated free NOTE work remains secondary to unfinished paid BOOTH recovery and contributes zero to paid quota.",
+    "paidNote": "The publication quota records all five required 2026-08-23 paid NOTE items as 5/5 strict verified; the materialization manifest contains the same five IDs with encrypted payloads, dedicated 1280x670 covers, SHA and expected prices.",
+    "BOOTH": "The canonical BOOTH publication ledger contains none of required IDs 024-028. The cloud materialization manifest confirms all five encrypted payload ZIPs passed QA with product.json, product.zip, preview01.jpg and queue SHA records.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-24T00:07:41+09:00",
+    "checkedAt": "2026-08-24T10:12:40+09:00",
     "windowsPublisherReachableFromThisRun": false,
     "cloudRepairsApplied": [
-      "Reconfirmed 2026-08-23 paid NOTE 5/5 strict verified from publication quota and five canonical current-day publication receipts.",
-      "Reconfirmed BOOTH 0/5 strict verified because canonical BOOTH publication ledger still contains none of IDs 024-028.",
-      "Reconfirmed BOOTH current-day queue readiness: all five IDs enabled=true, forceRetry=true, expected prices present, required buyer checks present and SHA recorded.",
-      "Reconfirmed BOOTH cloud materialization QA 5/5: encrypted payload ZIPs contain product.json, product.zip and preview01.jpg and were reopened before encryption.",
-      "Advanced booth-autopublish/monitor/recovery_control.json to version 22 with a midnight carry-forward nonce, explicit expected prices, current-day-only first pass, recoverable-failure switching, held-item return pass and legacy 009 exclusion.",
-      "Preserved first-pass order 026, 027, 024, 028, 025 to avoid repeatedly hammering one recoverable candidate.",
-      "No human-only blocker is evidenced in canonical state.",
-      "No free NOTE, GitHub Pages, new paid candidates, legacy blocker recovery or Microsoft Store expansion is prioritized before BOOTH paid 5/5."
+      "Reconfirmed paid NOTE 2026-08-23 target at 5/5 strict verified and carried debt zero.",
+      "Reconfirmed BOOTH 2026-08-23 target at 0/5 strict verified; all five remain carried paid publication debt.",
+      "Reconfirmed BOOTH materialization QA 5/5 and no human-only blocker evidence.",
+      "Refreshed booth-autopublish/monitor/recovery_control.json to version 24 with current-day-only first pass 026,027,024,028,025, explicit expected prices, recoverable-failure switching, return-to-held pass, strict buyer checks, and legacy 009 exclusion.",
+      "Preserved payload/SHA semantics and prohibited counting queue insertion, commit, PUBLISH_SUCCESS, admin/editor URLs, historical reverification or legacy 009 as current-day success.",
+      "Deferred free NOTE, GitHub Pages, new paid candidates, legacy recovery and Microsoft Store expansion until BOOTH paid 5/5."
     ],
-    "nextWindowsAction": "Publish BOOTH IDs 026,027,024,028,025 in one session, switch past brief recoverable failures, then return to held current-day IDs until canonical BOOTH ledger contains all five with strict buyer checks."
+    "nextWindowsAction": "Publish BOOTH IDs 026,027,024,028,025 in one session, switch past brief recoverable failures, then return to held current-day IDs until canonical BOOTH ledger contains all five with every strict buyer check."
   },
   "rules": [
     "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
