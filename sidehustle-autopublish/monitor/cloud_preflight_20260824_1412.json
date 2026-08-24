@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "checkedAt": "2026-08-24T14:12:31+09:00",
+  "date": "2026-08-24",
+  "purpose": "Fresh cloud-side recovery handoff for the remaining strict paid publication floor. No queue/commit/admin signal is counted as publication.",
+  "authoritativeSources": {
+    "completionGate": "sidehustle-autopublish/completion_gate.json",
+    "publicationQuota": "sidehustle-autopublish/publication_quota.json",
+    "metrics": "sidehustle-autopublish/metrics/current.json",
+    "noteQueue": "sidehustle-autopublish/note/queue/index.json",
+    "noteMaterialization": "sidehustle-autopublish/note/staging/materialization_20260824_batch01.json",
+    "boothQueue": "booth-autopublish/queue/index.json",
+    "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
+    "boothMaterialization": "booth-autopublish/monitor/cloud_materialization_20260824_batch01.json",
+    "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
+  },
+  "strictState": {
+    "carriedPaidDebt": 0,
+    "notePaid": {
+      "target": 5,
+      "strictVerified": 4,
+      "remaining": 1,
+      "remainingIds": ["note_20260824_26_digital_product_offer_design"],
+      "expectedPriceJPY": {"note_20260824_26_digital_product_offer_design": 1280},
+      "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
+    },
+    "BOOTH": {
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "remainingIds": [
+        "029_ai_workflow_audit_os_20260824",
+        "030_sponsor_outcome_report_os_20260824",
+        "031_event_emergency_comms_os_20260824",
+        "032_survey_aggregation_audit_os_20260824",
+        "033_digital_offer_validation_os_20260824"
+      ],
+      "expectedPricesJPY": {
+        "029_ai_workflow_audit_os_20260824": 1480,
+        "030_sponsor_outcome_report_os_20260824": 1380,
+        "031_event_emergency_comms_os_20260824": 1280,
+        "032_survey_aggregation_audit_os_20260824": 1480,
+        "033_digital_offer_validation_os_20260824": 1380
+      },
+      "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
+    },
+    "freeNote20260823": {"strictVerified": 2, "target": 2, "remaining": 0, "paidQuotaContribution": 0}
+  },
+  "cloudCompatibility": {
+    "note": {
+      "materializedFive": true,
+      "allEncrypted": true,
+      "allDedicatedCovers1280x670": true,
+      "allPaidBodiesOver900Chars": true,
+      "queueShaMatchesManifestForRemainingId": true,
+      "remainingPayloadSha256": "f6acd88af55fd7c9db19f44225251e4d06757fb877976cdd45efbf3efbb3c159"
+    },
+    "BOOTH": {
+      "materializedFive": true,
+      "encryptedPayloadZip": true,
+      "productJson": true,
+      "productZip": true,
+      "preview01Jpg": true,
+      "shaRecordedInQueue": true,
+      "queueEntriesEnabledAndForceRetry": true,
+      "categoryCompatibility": {"parent": "ソフトウェア・ハードウェア", "child": "ソフトウェア"}
+    }
+  },
+  "runtimeObservation": {
+    "windowsPublisherReachableFromThisRun": false,
+    "humanOnlyBlockerEvidence": null,
+    "publicUrlsInferred": false
+  },
+  "nextWindowsContract": {
+    "priority": [
+      "Finish note_20260824_26_digital_product_offer_design and strict-verify NOTE 5/5",
+      "In parallel or immediately after, process BOOTH 029-033 until strict 5/5",
+      "On a brief recoverable BOOTH failure preserve payload/SHA, switch to another required 2026-08-24 ID, then return to held current-day IDs"
+    ],
+    "doNotStopAfterFirstSuccess": true,
+    "doNotRouteToLegacy": ["note_20260820_05", "009_handover_os_20260820"],
+    "doNotPrioritize": ["GitHub Pages new work", "new paid candidates", "additional derivative products"],
+    "onlyHumanStopConditions": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],
+    "completionPredicate": "NOTE 5/5 and BOOTH 5/5 current-day required IDs are present in canonical strict receipts/ledger and pass every required reader/buyer check"
+  }
+}
