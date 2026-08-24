@@ -1,6 +1,6 @@
 {
-  "version": 23,
-  "updatedAt": "2026-08-24T11:32:00+09:00",
+  "version": 24,
+  "updatedAt": "2026-08-24T11:42:36+09:00",
   "purpose": "Execution backlog preserving paid floors/debt while building measurable free-to-paid funnels.",
   "evidenceLimit": "Platform-native note PV/likes/follows/related-paid-click/purchase/revenue metrics remain unavailable in authoritative state. No theme is a proven revenue winner or loser; missing values remain unknown.",
   "hardFloorSnapshot": {
@@ -11,30 +11,27 @@
     "rule": "Free note output never substitutes for paid publication floors or debt."
   },
   "executionBacklog": [
-    {"rank":0,"channel":"BOOTH","type":"carried_paid_debt_resolved","items":["024_grant_evidence_expense_os_20260823","025_event_decision_authority_os_20260823","026_research_claim_evidence_os_20260823","027_sponsor_contact_history_os_20260823","028_team_backup_coverage_os_20260823"],"status":"5/5 strict verified and reconciled to canonical ledger","nextAction":"No further publication action. Preserve the verified public URLs and do not republish these IDs."},
-    {"rank":2,"channel":"note","type":"2026-08-24_paid_floor_publish","items":["note_20260824_26_digital_product_offer_design"],"strictVerified":4,"remaining":1,"materialization":"5/5 complete; four strict receipts present","nextAction":"Publish and strict-verify only the remaining digital-product offer-design article."},
-    {"rank":3,"channel":"BOOTH","type":"2026-08-24_current_paid_floor_publish","items":["029_ai_workflow_audit_os_20260824","030_sponsor_outcome_report_os_20260824","031_event_emergency_comms_os_20260824","032_survey_aggregation_audit_os_20260824","033_digital_offer_validation_os_20260824"],"materialization":"5/5 complete with offline HTML, README, quick start, product ZIP, preview, encryption, SHA and queue QA","nextAction":"Publish and strict-verify all five buyer-visible products now; do not substitute legacy blockers or old reverification."},
-    {"rank":4,"channel":"note","type":"free_acquisition_publish_set_resolved","items":[{"id":"free_note_20260823_01_sponsor_after_yes","pairedPaidId":"note_20260823_17_sponsor_deliverables"},{"id":"free_note_20260823_02_grant_deadline_reverse_plan","pairedPaidId":"note_20260823_19_grant_tracker"}],"status":"2/2 strict reader-visible verified","nextAction":"Do not republish. Capture actual matched-age funnel metrics when available."},
-    {"rank":5,"channel":"note","type":"cloud_batch_future_free_companions","items":[{"title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit"},{"title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi"}],"nextAction":"May be drafted in the same cloud batch for efficiency, but do not increase free publication cadence or count them toward paid floor/debt."},
-    {"rank":6,"channel":"note","type":"equal_age_funnel_measurement","metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"windows":["24h","72h","7d"],"nextAction":"Capture actual first-party values when accessible and compare only equal-age windows; keep nulls null."},
-    {"rank":7,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"After paid-critical work is safe, complete every non-human submission prerequisite possible without inventing Partner Center identity or demand."},
-    {"rank":8,"channel":"GitHubPages","type":"measurement_support","nextAction":"Improve attribution and verified context-matched outbound links on useful existing surfaces; no thin SEO pages."}
+    {"rank":1,"channel":"note","type":"2026-08-24_paid_floor_publish","items":["note_20260824_26_digital_product_offer_design"],"remaining":1,"nextAction":"Publish and strict-verify exact title, expected price, paid boundary, dedicated cover and reader-visible canonical URL."},
+    {"rank":2,"channel":"BOOTH","type":"2026-08-24_current_paid_floor_publish","items":["029_ai_workflow_audit_os_20260824","030_sponsor_outcome_report_os_20260824","031_event_emergency_comms_os_20260824","032_survey_aggregation_audit_os_20260824","033_digital_offer_validation_os_20260824"],"remaining":5,"nextAction":"Publish and strict-verify all five buyer-visible products; do not substitute queue/materialization evidence."},
+    {"rank":3,"channel":"note","type":"free_funnel_cloud_batch","items":[{"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit"},{"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi"}],"nextAction":"Complete standalone-useful manuscripts in the next cloud factory batch. Do not publish above the 2/day 14-day experiment cadence and never count toward paid debt/floor."},
+    {"rank":4,"channel":"note","type":"paid_funnel_deepening_cloud_batch","items":[{"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","value":"QA checklist, handoff matrix, acceptance criteria, reusable review sheet"},{"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","value":"evidence taxonomy, collection workflow, folder convention, reusable sponsor evidence pack"}],"nextAction":"Draft complete paid manuscripts after current paid floor is safe; keep them as future paid inventory, not replacements for today's already-defined floor."},
+    {"rank":5,"channel":"note","type":"equal_age_funnel_measurement","metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"windows":["24h","72h","7d"],"nextAction":"Capture actual first-party values when accessible and compare only equal-age windows; keep unavailable values null."},
+    {"rank":6,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"After paid-critical work is safe, complete every non-human submission prerequisite possible without inventing Partner Center identity or demand."},
+    {"rank":7,"channel":"GitHubPages","type":"measurement_support","nextAction":"Improve attribution and verified context-matched outbound links on useful existing surfaces; no thin SEO pages."}
   ],
-  "nextNoteFactoryConcreteSet": {
-    "paidCompleteNow": ["note_20260824_22_ai_ops_audit","note_20260824_23_sponsor_report_kpi","note_20260824_24_event_emergency_comms","note_20260824_25_research_claim_audit","note_20260824_26_digital_product_offer_design"],
-    "freePublishAfterPaidCritical": ["free_note_20260823_01_sponsor_after_yes","free_note_20260823_02_grant_deadline_reverse_plan"],
-    "freeDraftIfBatchCapacityRemains": ["AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること"],
-    "instruction": "Paid and free drafts may be cloud-batched for efficiency, but execution priority and accounting remain separate: current paid floors first, free funnel second. The carried BOOTH debt is already resolved."
+  "noteFactoryConcreteSet": {
+    "publishNowPaid": ["note_20260824_26_digital_product_offer_design"],
+    "draftFreeNext": ["free_next_ai_delegation_check","free_next_sponsor_report_numbers"],
+    "draftPaidNext": ["paid_next_ai_handoff_qa","paid_next_sponsor_evidence_pack"],
+    "instruction":"Cloud-batch free and paid manuscript creation for efficiency, but keep publication/accounting roles separate. Current paid floor first; free acquisition second; future paid inventory third."
   },
   "winnerCandidates": [],
-  "amplificationReview": {
-    "reviewedAt":"2026-08-24T09:27:00+09:00",
-    "decision":"no_evidence_backed_amplification_yet",
-    "note":"funnel_strategy reports observedSales/PV/likes/follows/relatedPaidClicks/relatedPaidPurchases/freeToPaidConversion as null. The 24h comparison gate has passed, but platform-native article-level metrics are still absent. Free-note publishing is also not yet strict-verified in metrics/current.json. Therefore no free+paid pair can be classified as a demand winner, conversion problem, or revenue winner without fabrication.",
-    "microsoftStore":"No acquisition, install, retention, CVR or revenue measurements are present in the authoritative files inspected in this review; do not clone or create variants based only on publication status.",
-    "booth":"No current-day buyer-visible verified products or sales measurements are present in metrics/current.json; carried publication debt is not evidence of demand.",
-    "githubPages":"No measured PV/CVR/revenue evidence was present in the authoritative metrics inspected; keep work limited to measurement support rather than theme amplification.",
-    "nextEvidenceGate":"Once any free note has strict publication plus matched-age 24h PV/likes/follows and attributable paid clicks/purchases/revenue, compare its paired paid article. Strong free signal + weak paid conversion triggers CTA/value-difference/price/theme-match diagnosis before derivatives; verified paid purchases elevate the theme to a strong winner candidate."
+  "evidenceReview": {
+    "reviewedAt":"2026-08-24T11:42:36+09:00",
+    "decision":"no_first_party_winner_yet",
+    "note":"The authoritative funnel file still has null PV, likes, follows, related paid clicks, related paid purchases and revenue. Therefore no current theme can be promoted as a proven winner or demoted as a loser.",
+    "externalContext":"Current note official/IR material supports the architecture rather than a specific theme: more than 70% of note posts are free and note describes free content as supporting discovery and paid-content revenue; official monetization options include paid articles, paid magazines and memberships. This justifies maintaining a useful free acquisition layer, not increasing cadence without first-party evidence.",
+    "nextEvidenceGate":"At the first available matched-age 24h observation, record free and paired-paid PV/likes/follows/clicks/purchases/revenue. A verified paid purchase promotes the cluster for adjacent free search-intent satellites and deeper paid assets; weak free+paid response after sufficient exposure triggers deprioritization rather than title cloning."
   },
   "rules": [
     "Previous-day paid debt outranks all discretionary work.",
