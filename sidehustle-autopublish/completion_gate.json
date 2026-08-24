@@ -1,42 +1,42 @@
 {
-  "version": 3,
-  "updatedAt": "2026-08-23T13:20:41+09:00",
-  "purpose": "Treat the 2026-08-23 production cycle as complete only after all 12 designated current-day publications are strict verified, or a verified human-only blocker stops every remaining current-day publication path.",
+  "version": 4,
+  "updatedAt": "2026-08-24T11:09:30+09:00",
+  "purpose": "Treat the 2026-08-24 work cycle as complete only after all 12 designated publications are strict verified, or a verified human-only blocker stops every remaining publication path.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
     "diagnosticOnlyReports": false,
     "queueOrCommitOnlyReports": false,
     "reportOnlyWhen": [
-      "all 12 designated 2026-08-23 publications are strict verified",
+      "all 12 designated 2026-08-24 work-cycle publications are strict verified",
       "or a verified human-only blocker prevents all remaining required current-day publication work and exactly one minimal user action is needed"
     ]
   },
   "completionConditions": {
     "notePaid": {
       "sourceOfTruth": "sidehustle-autopublish/publication_quota.json plus paid note queue/publication receipts",
-      "date": "2026-08-23",
+      "date": "2026-08-24",
       "requireCarriedDebtZero": true,
       "dailyStrictTarget": 5,
       "requiredIds": [
-        "note_20260823_17_sponsor_deliverables",
-        "note_20260823_18_event_incident_response",
-        "note_20260823_19_grant_tracker",
-        "note_20260823_20_meeting_decision_log",
-        "note_20260823_21_literature_matrix"
+        "note_20260824_22_ai_ops_audit",
+        "note_20260824_23_sponsor_report_kpi",
+        "note_20260824_24_event_emergency_comms",
+        "note_20260824_25_research_claim_audit",
+        "note_20260824_26_digital_product_offer_design"
       ],
       "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
     },
     "BOOTH": {
       "sourceOfTruth": "booth-autopublish/queue/index.json plus booth-autopublish/monitor/publication_ledger.json",
-      "date": "2026-08-23",
+      "date": "2026-08-24",
       "requireCarriedDebtZero": true,
       "dailyStrictTarget": 5,
       "requiredIds": [
-        "024_grant_evidence_expense_os_20260823",
-        "025_event_decision_authority_os_20260823",
-        "026_research_claim_evidence_os_20260823",
-        "027_sponsor_contact_history_os_20260823",
-        "028_team_backup_coverage_os_20260823"
+        "029_ai_workflow_audit_os_20260824",
+        "030_sponsor_outcome_report_os_20260824",
+        "031_event_emergency_comms_os_20260824",
+        "032_survey_aggregation_audit_os_20260824",
+        "033_digital_offer_validation_os_20260824"
       ],
       "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
@@ -67,8 +67,8 @@
     "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
     "whenWindowsUnavailable": ["queue/ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
     "nextWindowsPriority": [
-      "2026-08-23 NOTE paid batch until 5/5 strict verified",
-      "2026-08-23 BOOTH paid batch until 5/5 strict verified",
+      "2026-08-24 NOTE paid batch until 5/5 strict verified",
+      "2026-08-24 BOOTH paid batch until 5/5 strict verified",
       "2026-08-23 free NOTE pair until 2/2 strict verified",
       "return to any briefly held current-day item before legacy blockers"
     ]

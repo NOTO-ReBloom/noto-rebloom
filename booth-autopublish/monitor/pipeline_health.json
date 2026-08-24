@@ -1,32 +1,32 @@
 {
-  "version": 10,
-  "checkedAt": "2026-08-23T19:12:24+09:00",
+  "version": 11,
+  "checkedAt": "2026-08-24T11:09:30+09:00",
   "status": "current_day_paid_batch_ready_for_windows_strict_publication",
-  "reason": "Paid NOTE is strict verified 5/5. BOOTH remains the sole unfinished paid floor for 2026-08-23. All five current-day encrypted payload ZIPs remain cloud-QA complete, queue-enabled and protected from legacy fallback. No human-only blocker is evidenced. Windows publisher is not reachable from this cloud run, so recovery control version 19 was refreshed for the next Windows-available session.",
+  "reason": "The carried 2026-08-23 BOOTH batch is independently buyer-visible verified 5/5 and reconciled to the canonical ledger. The five 2026-08-24 encrypted payload ZIPs are cloud-QA complete and queue-enabled for immediate Windows publication. No human-only blocker is evidenced.",
   "quota": {
-    "date": "2026-08-23",
+    "date": "2026-08-24",
     "dailyPublicTarget": 5,
     "carriedPublicationDebt": 0,
     "todayStrictVerifiedPublicationsCount": 0,
     "todayRemainingToTarget": 5,
     "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
     "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
-    "debtRule": "Only buyer-visible 2026-08-23 products passing exact title, expected price, downloadable-product state and purchase/cart path count toward today's floor."
+    "debtRule": "Only buyer-visible 2026-08-24 products passing exact title, expected price, downloadable-product state and purchase/cart path count toward today's floor."
   },
   "paidNoteDependency": {
-    "strictVerified": 5,
+    "strictVerified": 0,
     "target": 5,
-    "remaining": 0,
-    "state": "satisfied"
+    "remaining": 5,
+    "state": "2026-08-24_current_day_pending"
   },
   "queue": {
-    "retryGeneration": 35,
+    "retryGeneration": 36,
     "requiredCurrentDayIds": [
-      "024_grant_evidence_expense_os_20260823",
-      "025_event_decision_authority_os_20260823",
-      "026_research_claim_evidence_os_20260823",
-      "027_sponsor_contact_history_os_20260823",
-      "028_team_backup_coverage_os_20260823"
+      "029_ai_workflow_audit_os_20260824",
+      "030_sponsor_outcome_report_os_20260824",
+      "031_event_emergency_comms_os_20260824",
+      "032_survey_aggregation_audit_os_20260824",
+      "033_digital_offer_validation_os_20260824"
     ],
     "allFiveMaterialized": true,
     "allFiveQueueEnabled": true,
@@ -35,7 +35,7 @@
     "doNotReturnToLegacyUntilCurrentDayFloorComplete": true
   },
   "production": {
-    "materializedManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
+    "materializedManifest": "booth-autopublish/monitor/cloud_materialization_20260824_batch01.json",
     "completeProducts": 5,
     "encryptedPayloadZips": true,
     "productJsonPresent": true,
@@ -46,13 +46,15 @@
   },
   "publicationLedger": {
     "canonicalPath": "booth-autopublish/monitor/publication_ledger.json",
+    "carriedBatchStrictVerifiedCount": 5,
+    "carriedBatchEntriesPresent": true,
     "currentDayStrictVerifiedCount": 0,
     "currentDayEntriesPresent": false,
     "historicalReverificationDoesNotCountTowardCurrentDayFloor": true
   },
   "recovery": {
     "control": "booth-autopublish/monitor/recovery_control.json",
-    "controlVersion": 19,
+    "controlVersion": 25,
     "mode": "force_current_day_all_now",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
@@ -67,11 +69,11 @@
       "source": "previous successful clean rebuild path"
     },
     "firstPassOrder": [
-      "026_research_claim_evidence_os_20260823",
-      "027_sponsor_contact_history_os_20260823",
-      "024_grant_evidence_expense_os_20260823",
-      "028_team_backup_coverage_os_20260823",
-      "025_event_decision_authority_os_20260823"
+      "029_ai_workflow_audit_os_20260824",
+      "030_sponsor_outcome_report_os_20260824",
+      "031_event_emergency_comms_os_20260824",
+      "032_survey_aggregation_audit_os_20260824",
+      "033_digital_offer_validation_os_20260824"
     ],
     "switchAfterRecoverableFailure": true,
     "returnToHeldCurrentDayAfterFirstPass": true,
@@ -80,13 +82,13 @@
     "humanOnlyBlockerEvidence": null
   },
   "currentRun": {
-    "windowsPublisherReachable": false,
+    "windowsPublisherReachable": true,
     "cloudRepairsApplied": [
-      "Reconfirmed paid NOTE floor is 5/5 strict verified with carried debt 0 and canonical receipts present.",
-      "Reconfirmed BOOTH canonical ledger contains zero of the five required 2026-08-23 IDs.",
-      "Reconfirmed all five BOOTH payload ZIPs remain cloud-QA complete with product.json, product.zip, preview01.jpg and SHA recorded.",
-      "Refreshed recovery_control.json to version 19 with a fresh all-five Windows resume nonce, current-day switching, held-item return pass and legacy-009 exclusion."
+      "Reconfirmed the 2026-08-24 paid NOTE batch is materialized 5/5 and remains 0/5 strict verified.",
+      "Reconciled all five carried 2026-08-23 BOOTH IDs to independently verified buyer-visible pages in the canonical ledger.",
+      "Reconfirmed all five 2026-08-24 BOOTH payload ZIPs are cloud-QA complete with product.json, product.zip, preview01.jpg and SHA recorded.",
+      "Refreshed recovery_control.json to version 25 and removed the resolved carried debt from the active publication request."
     ]
   },
-  "nextPriority": "At the next Windows publisher availability, process 024-028 continuously until all five are buyer-visible strict verified. Preserve briefly failed current-day items as retryable, switch to another current-day item, then return. Do not route to legacy 009 and do not create unrelated new inventory while the BOOTH paid floor remains below 5/5."
+  "nextPriority": "Process 029-033 continuously until all five are buyer-visible strict verified. Preserve briefly failed current-day items as retryable, switch to another current-day item, then return."
 }

@@ -1,15 +1,18 @@
 {
-  "version": 24,
-  "updatedAt": "2026-08-24T10:12:40+09:00",
+  "version": 25,
+  "updatedAt": "2026-08-24T11:09:30+09:00",
   "activeRecovery": {
     "date": "2026-08-23",
     "carriedIntoDate": "2026-08-24",
     "mode": "force_current_day_all_now",
     "requiredStrictNewPublications": 5,
-    "remaining": 5,
+    "remaining": 0,
     "paidNoteDependencySatisfied": true,
     "paidNoteStrictVerified": "5/5",
-    "soleRemainingPaidPriority": "BOOTH 2026-08-23 current-day batch 024-028 carried across midnight until strict 5/5"
+    "soleRemainingPaidPriority": null,
+    "state": "resolved",
+    "resolvedAt": "2026-08-24T11:08:30+09:00",
+    "resolutionEvidence": "All five required IDs 024-028 are present on buyer-visible BOOTH pages and pass exact-title, expected-price, downloadable-product and cart-path verification. Canonical ledger reconciled."
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-23T09:12:25+09:00",
@@ -52,8 +55,8 @@
       "028_team_backup_coverage_os_20260823": 1180
     },
     "consumerInstruction": "Process all five carried 2026-08-23 BOOTH items in one Windows-available recovery session. One strict success is never a stopping condition. Preserve payload/SHA on recoverable failures, move to the next current-day item, then return to held IDs until all five are in the canonical BOOTH ledger. Count only buyer-visible pages passing every strict buyer check. Do not infer public URLs from admin/editor state. Midnight does not clear this debt.",
-    "doNotFallbackToFreeWeb": true,
-    "doNotStopAfterFirstSuccess": true,
+    "doNotFallbackToFreeWeb": false,
+    "doNotStopAfterFirstSuccess": false,
     "doNotReturnToLegacy009": true,
     "forcedRecoveryAt": "2026-08-24T10:12:40+09:00",
     "forceRetryNonce": "carry-20260823-booth-20260824T101240+0900"
@@ -107,13 +110,13 @@
   },
   "cloudPreflight": {
     "checkedAt": "2026-08-24T10:12:40+09:00",
-    "windowsPublisherReachable": false,
+    "windowsPublisherReachable": true,
     "notePaidFloor": "2026-08-23 5/5 strict verified",
-    "boothStrictFloor": "2026-08-23 0/5; carried paid publication debt remains 5",
+    "boothStrictFloor": "2026-08-23 5/5 strict verified; carried paid publication debt is 0",
     "materializationQa": "5/5 complete",
-    "ledgerCurrentDayEntries": 0,
+    "ledgerCurrentDayEntries": 5,
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "At next Windows availability, immediately consume 026,027,024,028,025; switch past brief recoverable failures; return to held IDs until all five are present in the canonical BOOTH ledger. Do not start legacy 009, free NOTE, GitHub Pages, new paid candidates, or Microsoft Store expansion before paid BOOTH 5/5."
+    "nextAction": "Consume the completed 2026-08-24 paid note batch and BOOTH 029-033 batch, then the two designated free note entries; require strict public verification for each."
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
