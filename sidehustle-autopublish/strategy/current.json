@@ -1,6 +1,6 @@
 {
-  "version": 29,
-  "updatedAt": "2026-08-24T11:32:00+09:00",
+  "version": 30,
+  "updatedAt": "2026-08-24T11:42:36+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -19,12 +19,12 @@
     "rule": "Only strict reader/buyer-visible verification changes paid quota/debt. Free note output never substitutes for paid quota/debt. Missing platform-native funnel metrics remain unknown."
   },
   "allocationDecision": {
-    "rank1": "Satisfy the 2026-08-24 paid floors: five fresh paid note publications and five fresh BOOTH publications. The 2026-08-23 BOOTH carry is already strict verified 5/5 and reconciled.",
-    "rank2": "Publish and strict-verify the completed paid note and BOOTH batches continuously; cloud materialization is complete but does not itself satisfy the floor.",
-    "rank3": "The two designated free note acquisition articles are already strict verified 2/2; preserve their public URLs and collect matched-age metrics when available.",
-    "rank4": "Batch-draft the next free-to-paid note pairs only for cloud efficiency; keep publication cadence at the 2/day 14-day experiment until comparable first-party data exists.",
-    "rank5": "Advance Microsoft Store CSV Cleaner submission prerequisites after paid-floor work is safe.",
-    "rank6": "GitHub Pages work is limited to useful, measurable surfaces and verified context-matched outbound links; no thin SEO mass production."
+    "rank1": "Finish and strict-verify the one remaining 2026-08-24 paid note: note_20260824_26_digital_product_offer_design.",
+    "rank2": "Publish and strict-verify all five completed 2026-08-24 BOOTH products 029-033; queue/materialization success is not publication.",
+    "rank3": "Keep the free-note acquisition experiment at 2/day until matched-age first-party 24h/72h/7d metrics exist; the current designated free pair is already strict verified 2/2 and must not be republished.",
+    "rank4": "Cloud-batch the next note free+paid funnel set so the factory can produce complete manuscripts efficiently without mixing accounting roles.",
+    "rank5": "Advance Microsoft Store CSV Cleaner & Duplicate Remover submission prerequisites after paid-floor-critical work is safe.",
+    "rank6": "GitHub Pages work remains measurement/attribution support and independently useful tools; no thin SEO mass production."
   },
   "noteFunnel": {
     "source": "sidehustle-autopublish/note/funnel_strategy.json",
@@ -33,38 +33,36 @@
     "measurementWindows": ["24h", "72h", "7d"],
     "decisionRule": "Compare free+paid pairs only at equal post-publication ages. Do not infer winners, CTA uplift, price effects or conversions from visibility. A related paid purchase is a strong winner signal; weak free+paid response after sufficient exposure is a deprioritization signal.",
     "freeCadence": "2/day remains an experimental starting value for 14 days, not a hard quota.",
-    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use independently reader-visible verified paid URLs."
+    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use independently reader-visible verified paid URLs.",
+    "externalEvidenceChecked20260824": [
+      "note IR states more than 70% of posted articles are free and describes free content as an acquisition/advertising engine that supports paid-content revenue.",
+      "note officially supports paid articles, paid magazines, memberships and subscription magazines; memberships provide recurring revenue potential.",
+      "note reported generative-AI referral traffic materially above search-traffic expectations in a prior joint study, supporting useful searchable free content as a discovery asset, but this is not evidence that any current user theme is a winner."
+    ]
   },
   "nextNoteFactoryBatch": {
     "date": "2026-08-24",
-    "paidSet": [
-      {"id":"note_20260824_22_ai_ops_audit","title":"AIで作業を自動化したのに逆に管理が増えた人へ｜小規模チームのAI業務を棚卸しする実践監査","paidValue":"full audit workflow, task inventory, risk checks, reusable audit sheet"},
-      {"id":"note_20260824_23_sponsor_report_kpi","title":"協賛後の報告で信頼を落とさない｜スポンサー成果を数字と証拠でまとめる実践レポート設計","paidValue":"KPI framework, evidence checklist, reporting template, follow-up workflow"},
-      {"id":"note_20260824_24_event_emergency_comms","title":"イベント当日の緊急連絡が遅れる原因｜事故・欠席・天候変更を5分で共有する連絡設計","paidValue":"contact tree, trigger rules, message templates, escalation workflow"},
-      {"id":"note_20260824_25_research_claim_audit","title":"卒論の主張に根拠が足りないと言われる前に｜文章・引用・データを対応させる主張監査のやり方","paidValue":"claim-evidence matrix, audit workflow, revision checklist, reusable worksheet"},
-      {"id":"note_20260824_26_digital_product_offer_design","title":"デジタル商品が売れない原因を価格だけにしない｜誰に何を約束するかを決める商品設計ワーク","paidValue":"offer canvas, buyer-intent mapping, differentiation checks, reusable product brief"}
-    ],
-    "freePublishSet": [
-      {"id":"free_note_20260823_01_sponsor_after_yes","title":"協賛が決まった直後に確認したい6項目｜入金だけで終わらせない最初のチェック","pairedPaidId":"note_20260823_17_sponsor_deliverables"},
-      {"id":"free_note_20260823_02_grant_deadline_reverse_plan","title":"助成金の締切から逆算すると何日前に何をする？｜申請直前に詰まらない5段階チェック","pairedPaidId":"note_20260823_19_grant_tracker"}
+    "paidPublishNow": [
+      {"id":"note_20260824_26_digital_product_offer_design","title":"デジタル商品が売れない原因を価格だけにしない｜誰に何を約束するかを決める商品設計ワーク","role":"paid implementation + reusable offer canvas","status":"materialized; strict publication pending"}
     ],
     "freeDraftNext": [
-      {"title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"problem diagnosis + search/discovery"},
-      {"title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"quick checklist + paid prequalification"}
+      {"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"free problem diagnosis + search/discovery","publicationInstruction":"draft now in cloud batch; publish only within current 2/day experiment cadence"},
+      {"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"free quick checklist + paid prequalification","publicationInstruction":"draft now in cloud batch; publish only within current 2/day experiment cadence"}
     ],
-    "materializationState": "5/5 complete; 4/5 are strict reader-visible verified with canonical receipts. Only note_20260824_26_digital_product_offer_design remains.",
-    "factoryInstruction": "Publish and strict-verify only the remaining note_20260824_26_digital_product_offer_design. The four verified paid notes and two verified free notes must not be republished."
+    "paidDraftNextAfterFloor": [
+      {"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","role":"paid deep implementation + reusable QA/handoff asset","pairedFreeIntent":"AI delegation boundary / post-AI quality control"},
+      {"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","role":"paid full workflow + reusable evidence pack","pairedFreeIntent":"minimum sponsor-report metrics / evidence collection"}
+    ],
+    "batchInstruction": "Factory should complete manuscripts in one cloud batch in this order: remaining paid floor publication asset check -> two free companion manuscripts -> two deeper paid manuscripts. Free manuscripts never count toward paid quota/debt and should not be published above the 2/day experiment without evidence."
   },
   "booth": {
     "carriedDebt": 0,
-    "carriedIds": ["024_grant_evidence_expense_os_20260823","025_event_decision_authority_os_20260823","026_research_claim_evidence_os_20260823","027_sponsor_contact_history_os_20260823","028_team_backup_coverage_os_20260823"],
     "todayPaidFloor": 5,
-    "todayNewBatchState": "5/5 materialized, encrypted, cloud-QA passed and queue-enabled; publication remains 0/5 until buyer-visible verification",
+    "todayStrictVerified": 0,
     "todayNewIds": ["029_ai_workflow_audit_os_20260824","030_sponsor_outcome_report_os_20260824","031_event_emergency_comms_os_20260824","032_survey_aggregation_audit_os_20260824","033_digital_offer_validation_os_20260824"],
-    "carriedResolution": "024-028 are independently buyer-visible verified 5/5 and present in the canonical ledger.",
-    "instruction": "Consume and strict-verify the five completed 2026-08-24 products 029-033. Do not clear the current-day floor from queue insertion or local success logs."
+    "instruction": "Consume and strict-verify all five completed 2026-08-24 products. Do not clear the floor from queue insertion or local success logs."
   },
-  "microsoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion","nextAction":"After paid debt/floor-critical work is safe, complete every non-human submission prerequisite possible; do not invent live Store demand metrics."},
-  "githubPages": {"instruction":"Keep existing pages independently useful and measurable; no thin SEO mass production while paid debt/floors remain unresolved."},
+  "microsoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion","nextAction":"After paid floor-critical work is safe, complete every non-human submission prerequisite possible; do not invent live Store demand metrics."},
+  "githubPages": {"instruction":"Keep existing pages independently useful and measurable; prioritize attribution and context-matched outbound links; no thin SEO mass production while paid floors remain unresolved."},
   "dataIntegrity": "No winner, loser, conversion uplift or revenue claim is made without observed first-party evidence."
 }
