@@ -1,6 +1,6 @@
 {
-  "version": 27,
-  "updatedAt": "2026-08-24T15:12:18+09:00",
+  "version": 28,
+  "updatedAt": "2026-08-24T19:11:20+09:00",
   "activeRecovery": {
     "date": "2026-08-24",
     "carriedIntoDate": null,
@@ -57,8 +57,8 @@
     "doNotFallbackToFreeWeb": true,
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forcedRecoveryAt": "2026-08-24T11:35:00+09:00",
-    "forceRetryNonce": "force-20260824-booth-20260824T113500+0900"
+    "forcedRecoveryAt": "2026-08-24T19:11:20+09:00",
+    "forceRetryNonce": "force-20260824-booth-20260824T191120+0900"
   },
   "windowsResumeContract": {
     "sourceQueue": "booth-autopublish/queue/index.json",
@@ -108,12 +108,13 @@
     ]
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-24T15:12:18+09:00",
+    "checkedAt": "2026-08-24T19:11:20+09:00",
     "windowsPublisherReachable": false,
-    "notePaidFloor": "2026-08-24 4/5 strict verified; only note_20260824_26_digital_product_offer_design remains",
+    "notePaidFloor": "2026-08-24 4/5 strict verified; only note_20260824_26_digital_product_offer_design remains; canonical publication receipt is still absent",
     "boothStrictFloor": "2026-08-24 0/5; five genuine-new items 029-033 remain",
-    "carriedBoothDebt": "2026-08-23 5/5 strict verified and reconciled; zero remaining",
-    "materializationQa": "NOTE 5/5 encrypted payloads with dedicated covers/SHA/prices complete; BOOTH 5/5 encrypted payload ZIPs with product.json/product.zip/preview01.jpg/SHA complete",
+    "previousDayPaidState": "2026-08-23 NOTE 5/5 and BOOTH 5/5 strict verified; carried paid debt is zero; do not republish previous-day items",
+    "previousDayFreeState": "2026-08-23 designated free NOTE pair 2/2 strict verified; do not republish and do not count toward paid floor",
+    "materializationQa": "NOTE 5/5 encrypted payloads with dedicated 1280x670 covers/SHA/prices complete; BOOTH 5/5 encrypted payload ZIPs with product.json/product.zip/preview01.jpg/SHA complete",
     "ledgerCurrentDayEntries": 0,
     "humanOnlyBlockerEvidence": null,
     "nextAction": "At the next Windows-reachable run, first strict-publish note_20260824_26_digital_product_offer_design to NOTE 5/5 and consume BOOTH 029-033 in the same recovery session where possible; switch past brief recoverable failures and return to held current-day IDs until BOOTH reaches 5/5. Do not stop after one success, do not use legacy 009, and do not count admin/editor URLs."
