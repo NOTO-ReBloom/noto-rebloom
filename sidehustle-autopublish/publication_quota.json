@@ -1,7 +1,7 @@
 {
-  "version": 35,
+  "version": 36,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-24T11:20:30+09:00",
+  "updatedAt": "2026-08-24T11:32:00+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -16,9 +16,9 @@
         "previousDate": "2026-08-23",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 0,
+        "todayStrictVerifiedPublicationsCount": 4,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 1,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
         "pcAssumption": "After 01:00 JST do not assume the Windows publisher is online. When it is available, remaining current-day publication recovery is the first priority.",
         "nextPreferredWindowsRecoveryWindow": "next PC-available session",
@@ -28,7 +28,7 @@
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260824_batch01.json",
         "preparedIds": ["note_20260824_22_ai_ops_audit","note_20260824_23_sponsor_report_kpi","note_20260824_24_event_emergency_comms","note_20260824_25_research_claim_audit","note_20260824_26_digital_product_offer_design"],
         "queueMaterializationState": "complete",
-        "strictPublicationState": "0/5 reader-visible verified; five complete encrypted queue items are ready for Windows publication",
+        "strictPublicationState": "4/5 reader-visible verified; only note_20260824_26_digital_product_offer_design remains",
         "deferredLegacyCandidate": "note_20260820_05",
         "fallbackPolicy": "Publish and strict-verify the five completed 2026-08-24 paid NOTE items before legacy blockers or unrelated new production.",
         "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target."
