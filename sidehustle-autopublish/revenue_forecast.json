@@ -1,7 +1,7 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-23T23:45:00+09:00",
-  "forecastPolicy": "Do not invent numeric revenue or conversion uplift when observed sales, PV, clicks, purchases, acquisitions or install data are absent. Use ranked opportunities and explicit measurement gates until measurable signals exist.",
+  "version": 5,
+  "updatedAt": "2026-08-25T05:46:00+09:00",
+  "forecastPolicy": "Do not invent numeric revenue or conversion uplift when observed sales, PV, clicks, purchases, acquisitions or install data are absent. Rank opportunities and define measurement gates instead.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
     "note_sales": null,
@@ -17,74 +17,23 @@
     "GitHubPages_outboundConversion": null
   },
   "verifiedAvailabilitySignals": {
-    "notePaidStrictVerifiedToday": 5,
-    "noteFreeStrictVerifiedToday": 0,
-    "BOOTHStrictVerifiedToday": 0,
-    "BOOTHPreparedToday": 5,
-    "MicrosoftStorePublicListingVerified": false,
-    "noteComparable24hAgeGatePassed": true,
+    "previousDayPaidNoteStrictVerified": 5,
+    "previousDayBOOTHStrictVerified": 5,
+    "previousDayFreeNoteStrictVerified": 2,
+    "carriedPaidDebt": 0,
+    "todayNewPaidNoteStrictVerified": 0,
+    "todayNewBOOTHStrictVerified": 0,
     "noteFirstPartyFunnelValuesAvailable": false
   },
   "rankedOpportunities": [
-    {
-      "rank": 1,
-      "channel": "BOOTH",
-      "id": "20260823_paid_floor_recovery",
-      "opportunityBand": "hard-floor-critical",
-      "basis": "Five current-day paid products are materialized but remain 0/5 strict buyer-visible verified. Any miss must carry forward as paid debt; this outranks discretionary growth work."
-    },
-    {
-      "rank": 2,
-      "channel": "note",
-      "id": "20260824_paid_batch",
-      "opportunityBand": "hard-floor-preparation",
-      "basis": "The next paid floor requires five fresh complete manuscripts. A balanced exploration set is defined because first-party winner evidence is still unavailable."
-    },
-    {
-      "rank": 3,
-      "channel": "note",
-      "id": "free_to_paid_equal_age_measurement",
-      "opportunityBand": "high-information-value",
-      "basis": "The first comparable 24h age gate has passed, but platform-native article-level PV/likes/follows/click/purchase/revenue values remain absent. Measurement now has higher value than speculative CTA, price or cadence changes."
-    },
-    {
-      "rank": 4,
-      "channel": "MicrosoftStore",
-      "id": "ms_csv_cleaner_deduper",
-      "opportunityBand": "high-measurement-option-after-hard-floors",
-      "basis": "Completing submission prerequisites is required before Store acquisition, install, conversion and health evidence can exist."
-    },
-    {
-      "rank": 5,
-      "channel": "GitHubPages",
-      "id": "measurable_context_cta",
-      "opportunityBand": "measurement-enabling",
-      "basis": "Existing useful pages can support attributable outbound traffic once verified destinations and measurement exist; thin SEO expansion is not justified."
-    }
+    {"rank":1,"channel":"note","id":"20260825_paid_floor","opportunityBand":"hard-floor-critical","basis":"Aug 24 closed without debt; Aug 25 requires a fresh five-item paid batch before discretionary work."},
+    {"rank":2,"channel":"BOOTH","id":"20260825_paid_floor","opportunityBand":"hard-floor-critical","basis":"Aug 25 requires five fresh buyer-visible products; use research-ready operational assets rather than cosmetic clones."},
+    {"rank":3,"channel":"note","id":"free_to_paid_equal_age_measurement","opportunityBand":"high-information-value","basis":"First-party funnel values remain absent, so measurement is more valuable than speculative CTA/price/cadence changes."},
+    {"rank":4,"channel":"cross-channel","id":"ko_grant_02_daily_evidence_match","opportunityBand":"research-ready-hypothesis","basis":"Distinct post-award evidence-matching workflow supports a useful free diagnosis, deeper paid implementation and reusable BOOTH ledger; not yet a proven winner."},
+    {"rank":5,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","opportunityBand":"measurement-option-after-hard-floors","basis":"Submission completion is necessary before acquisition/install/health evidence can exist."},
+    {"rank":6,"channel":"GitHubPages","id":"measurable_context_cta","opportunityBand":"measurement-enabling","basis":"Existing useful pages can support attributable traffic once verified destinations and measurement exist; thin SEO expansion is unjustified."}
   ],
-  "nightlyDecision": {
-    "livePriceChanges": "none",
-    "liveListingExperiments": "none",
-    "noteFreeCtaMassRewrite": "none",
-    "freePublicationCadenceIncrease": "none",
-    "reason": "Paid-floor recovery is incomplete on BOOTH and comparable first-party note funnel values remain unavailable. Public visibility is not demand evidence.",
-    "nextProfitActions": [
-      "strict-verify all five prepared 2026-08-23 BOOTH items or carry every miss as paid debt",
-      "produce and materialize the specified five-item 2026-08-24 paid note batch",
-      "publish and strict-verify the existing two-item free-note set only after paid-floor-critical BOOTH work is safe",
-      "capture note 24h/72h/7d free-to-paid metrics when accessible and compare only equal-age windows",
-      "complete non-human prerequisites for the CSV Cleaner Microsoft Store submission after hard-floor work is safe"
-    ]
-  },
-  "nextDataNeeded": [
-    "note free article PV at 24h/72h/7d",
-    "note free article likes and follows at 24h/72h/7d",
-    "related paid CTA clicks by free article",
-    "related paid purchases by free article",
-    "paid article sales and revenue by article",
-    "BOOTH sales by product and date",
-    "Microsoft Store page views, acquisitions, installs, conversion and health metrics after listing goes live",
-    "GitHub Pages outbound click/conversion data for verified destinations"
-  ],
-  "rollbackPrinciple": "Any future customer-facing CV or price change must define a baseline, one primary changed variable, a sample window and a rollback condition before implementation."
+  "customerFacingChangesNow": {"livePriceChanges":"none","massCtaRewrite":"none","freeCadenceIncrease":"none","winnerDerivedVariants":"none","reason":"No first-party sales/funnel evidence supports these changes yet."},
+  "nextDataNeeded": ["note free and paid PV at matched 24h/72h/7d","note likes/follows at matched ages","related paid CTA clicks","related paid purchases and article revenue","BOOTH sales by product/date","Microsoft Store page views/acquisitions/installs/conversion/health","GitHub Pages attributable outbound clicks/conversion"],
+  "rollbackPrinciple": "Future customer-facing CV or price changes require a baseline, one primary changed variable where possible, a sample window and rollback condition."
 }
