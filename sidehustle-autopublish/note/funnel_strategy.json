@@ -1,7 +1,7 @@
 {
-  "version": 3,
-  "updatedAt": "2026-08-23T23:30:00+09:00",
-  "objective": "maximize note revenue by combining useful free acquisition articles with paid conversion articles, while measuring the free-to-paid funnel without speculative optimization",
+  "version": 4,
+  "updatedAt": "2026-08-24T12:33:00+09:00",
+  "objective": "maximize note revenue and LTV through a measurable useful-free -> qualified-paid -> repeat/subscription funnel without speculative optimization",
   "internalEvidence": {
     "observedSales": null,
     "observedPV": null,
@@ -10,35 +10,27 @@
     "observedRelatedPaidClicks": null,
     "observedRelatedPaidPurchases": null,
     "observedFreeToPaidConversion": null,
-    "interpretation": "The earliest comparable 24h gate has passed, but first-party article-level funnel metrics are still not present in the authoritative repository state. Do not claim a winning theme, CTA uplift, weak conversion, or optimal price until platform-native 24h/72h/7d observations are actually captured."
+    "interpretation": "First-party article-level funnel metrics are still absent from authoritative repository state. Do not claim a winning theme, CTA uplift, weak conversion, optimal price, or LTV uplift until matched-age platform-native observations are captured."
   },
   "externalEvidence": {
-    "sourceType": "note official/editorial guidance",
+    "checkedAt": "2026-08-24T12:33:00+09:00",
+    "sourceType": "note official current product/monetization guidance",
     "findings": [
-      "Use reactions to free articles as demand signals rather than assuming paid-only publishing is optimal.",
-      "Cross-link closely related free and paid articles to increase qualified circulation and purchase opportunities.",
-      "Strong paid-article free areas commonly contain empathy or question framing, a concrete change/example, and a clear statement of reader benefit.",
-      "Free portions and free articles should remain useful on their own rather than acting as thin teasers."
+      "note currently supports single paid articles, memberships, paid magazines and subscription magazines as monetization surfaces.",
+      "Membership can coexist with single paid-article purchase and can include previously sold paid articles as benefits, creating a future repeat-revenue option once repeat demand is evidenced.",
+      "For memberships opened under the current August 2026 model, new members can generally be billed on their join-date monthly cycle; this reduces the old month-end timing friction, but is not evidence that this account should launch a membership now.",
+      "Membership has no fixed opening/monthly platform fee and charges fees when revenue occurs; current official guidance recommends pricing from 500 yen for many membership uses and gives 1,000 yen+ as a business/investment information reference point.",
+      "Do not buy paid external acquisition or add subscription complexity before first-party conversion/repeat-demand evidence exists."
     ]
   },
   "operatingModel": {
     "paid": {
       "existingDailyStrictPublicationFloor": 5,
-      "rule": "Do not reduce or replace this floor with free articles. Reader-visible URL, exact title, expected price, paid boundary and dedicated cover are still required before a paid publication counts."
+      "rule": "Do not reduce or replace the existing paid floor with free articles. Reader-visible URL, exact title, expected price, paid boundary and dedicated cover remain required before a paid publication counts."
     },
     "free": {
-      "role": [
-        "search/discovery acquisition",
-        "trust building",
-        "demand validation",
-        "paid-article prequalification",
-        "topic testing"
-      ],
-      "initialExperiment": {
-        "durationDays": 14,
-        "publicationTargetPerDay": 2,
-        "note": "2/day is an experimental starting cadence, not a proven optimum. Do not raise cadence before comparable funnel evidence exists."
-      },
+      "role": ["search/discovery acquisition","trust building","demand validation","paid-article prequalification","topic testing"],
+      "initialExperiment": {"durationDays":14,"publicationTargetPerDay":2,"note":"2/day remains an experimental cadence, not a proven optimum; do not raise it before comparable funnel evidence exists."},
       "contentRules": [
         "Every free article must provide standalone practical value.",
         "Do not publish thin teaser-only posts.",
@@ -46,18 +38,22 @@
         "Only insert a paid URL after that URL has been independently reader-visible verified; never guess URLs.",
         "Prefer problem diagnosis, checklists, mistakes, quick wins, frameworks and small worked examples for free articles; reserve deeper implementation systems, templates, full workflows and reusable assets for paid articles."
       ]
+    },
+    "ltv": {
+      "currentAction":"measure before adding subscription complexity",
+      "futureSurfaces":["paid article series","paid magazine/bundle","membership"],
+      "membershipGate":[
+        "multiple paid purchases or repeat demand are observed in a coherent theme cluster",
+        "a recurring member benefit can be delivered without lowering single-article quality",
+        "expected recurring gross contribution exceeds added support/maintenance cost",
+        "membership does not cannibalize a stronger single-sale path without compensating LTV"
+      ],
+      "rule":"Do not launch or price a membership from platform-wide guidance alone. Treat it as an evidence-gated LTV experiment."
     }
   },
   "funnelArchitecture": {
     "freeToPaidPairing": true,
-    "freeArticleRoles": [
-      "problem-awareness article -> paid implementation article",
-      "quick checklist -> paid full workflow",
-      "common mistakes -> paid template/system",
-      "mini example -> paid reusable toolkit"
-    ],
     "ctaRule": "Place one related paid CTA after the useful free core. No unrelated multi-product CTA stack.",
-    "reverseLinkRule": "Paid articles may link back to useful free companion articles when this improves context or series discovery.",
     "paidFreeAreaRule": [
       "Open with empathy, a practical question or a recognizable problem.",
       "Show a concrete change, worked example or before/after so the buyer can evaluate relevance.",
@@ -66,104 +62,35 @@
     ]
   },
   "measurement": {
-    "captureWhenAvailable": [
-      "articleId",
-      "articleType free/paid",
-      "themeCluster",
-      "pairedArticleId",
-      "publishedAt",
-      "PV",
-      "likes",
-      "follows",
-      "relatedPaidClicks",
-      "relatedPaidPurchases",
-      "revenue",
-      "timeSincePublication"
-    ],
-    "decisionWindows": ["24h", "72h", "7d"],
+    "captureWhenAvailable": ["articleId","articleType free/paid","themeCluster","pairedArticleId","publishedAt","PV","likes","follows","relatedPaidClicks","relatedPaidPurchases","revenue","repeatBuyerSignal","timeSincePublication"],
+    "decisionWindows": ["24h","72h","7d"],
     "comparisonRules": [
-      "Do not compare raw lifetime PV between articles of different ages; compare matched post-publication windows.",
-      "Keep article-level observations separate from theme-level conclusions until multiple articles support the same pattern.",
-      "Do not infer clicks or purchases from public availability, likes or PV.",
-      "Use medians within the same age window when enough articles exist; avoid declaring winners from a single noisy observation."
+      "Compare matched post-publication ages; never raw lifetime PV across different ages.",
+      "Keep article-level observations separate from theme-level conclusions until multiple articles support the pattern.",
+      "Do not infer clicks, purchases, repeat demand or LTV from public availability, likes or PV.",
+      "Use medians within the same age window when enough articles exist; avoid declaring winners from one noisy observation."
     ],
-    "derivedMetricsWhenInputsExist": [
-      "likeRate = likes / PV",
-      "followRate = follows / PV",
-      "paidClickRate = relatedPaidClicks / PV",
-      "paidPurchaseRatePerPV = relatedPaidPurchases / PV",
-      "paidPurchaseRatePerClick = relatedPaidPurchases / relatedPaidClicks",
-      "revenuePerFreePV = attributedRevenue / freePV"
-    ]
+    "derivedMetricsWhenInputsExist": ["likeRate = likes/PV","followRate = follows/PV","paidClickRate = relatedPaidClicks/PV","paidPurchaseRatePerPV = relatedPaidPurchases/PV","paidPurchaseRatePerClick = relatedPaidPurchases/relatedPaidClicks","revenuePerFreePV = attributedRevenue/freePV","repeatPurchaseRate when buyer-level aggregate is available"]
   },
   "diagnosisMatrix": [
-    {
-      "condition": "PV strong, paid conversion weak",
-      "testOrder": [
-        "CTA placement and visibility",
-        "free article to paid article theme/intention match",
-        "specific incremental value added by the paid article",
-        "paid price"
-      ],
-      "rule": "Change one major variable at a time where possible and preserve a rollback baseline."
-    },
-    {
-      "condition": "PV weak",
-      "testOrder": [
-        "title clarity and search intent",
-        "topic selection",
-        "opening usefulness",
-        "distribution/discovery surface"
-      ],
-      "rule": "Do not blame CTA or price before acquisition is sufficient to evaluate them."
-    },
-    {
-      "condition": "paid article records sales",
-      "action": "Create adjacent-intent free satellite articles that independently solve nearby problems and point to the verified paid article with one relevant CTA."
-    },
-    {
-      "condition": "free article strong and paid click-through strong but purchase weak",
-      "testOrder": [
-        "paid free-area qualification",
-        "incremental value specificity",
-        "proof/examples",
-        "price"
-      ]
-    },
-    {
-      "condition": "free and paid response both weak after sufficient exposure",
-      "action": "Deprioritize the theme rather than cloning title variants."
-    }
+    {"condition":"PV strong, paid conversion weak","testOrder":["CTA placement and visibility","free-to-paid theme/intention match","specific incremental paid value","paid price"],"rule":"Change one major variable at a time where possible and preserve a rollback baseline."},
+    {"condition":"PV weak","testOrder":["title clarity and search intent","topic selection","opening usefulness","distribution/discovery surface"],"rule":"Do not blame CTA or price before acquisition is sufficient to evaluate them."},
+    {"condition":"paid article records sales","action":"Create adjacent-intent free satellite articles that independently solve nearby problems and point to the verified paid article with one relevant CTA."},
+    {"condition":"free article strong and paid click-through strong but purchase weak","testOrder":["paid free-area qualification","incremental value specificity","proof/examples","price"]},
+    {"condition":"repeat paid demand appears within one coherent cluster","action":"Evaluate a paid magazine/bundle first and membership second using expected LTV net of support cost; do not auto-launch."},
+    {"condition":"free and paid response both weak after sufficient exposure","action":"Deprioritize the theme rather than cloning title variants."}
   ],
   "experimentGuardrails": {
     "singlePrimaryVariablePreferred": true,
-    "requiredBeforeCustomerFacingChange": [
-      "baseline window",
-      "primary metric",
-      "one primary change",
-      "minimum observation window",
-      "rollback condition"
-    ],
-    "priceChangeRule": "Do not make a large price change without observed demand/conversion evidence or a strong market-based reason.",
-    "ctaChangeRule": "Only use a reader-visible verified destination and never add more than one paid CTA to a free article by default."
+    "requiredBeforeCustomerFacingChange":["baseline window","primary metric","one primary change","minimum observation window","rollback condition"],
+    "priceChangeRule":"Do not make a large price change without observed demand/conversion evidence or a strong market-based reason.",
+    "ctaChangeRule":"Only use a reader-visible verified destination and never add more than one paid CTA to a free article by default.",
+    "ltvChangeRule":"Do not add membership, paid acquisition, or complex bundles solely because the platform supports them; require first-party repeat-demand evidence."
   },
   "currentState": {
-    "asOf": "2026-08-23T23:30:00+09:00",
-    "firstPartyFunnelMetricsAvailable": false,
-    "earliestComparable24hGate": "approximately 2026-08-23T17:51:00+09:00",
-    "gateStatus": "passed_but_metrics_unavailable",
-    "actionNow": "Do not change CTA, paid price, or free publication cadence based on assumed performance. Preserve the current one-CTA architecture and three-element paid free-area qualification gate. Next optimization action is to capture actual platform-native PV, likes, follows, related paid clicks, related paid purchases and revenue when accessible; then compare equal-age 24h observations before any customer-facing change."
-  },
-  "currentFreeBatch": {
-    "path": "sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md",
-    "articleCount": 6,
-    "pairedPaidIds": [
-      "note_20260821_06_ai_small_org_workflow",
-      "note_20260821_07_event_sponsor_followup",
-      "note_20260821_08_creator_pricing",
-      "note_20260821_09_student_org_role_design",
-      "note_20260821_10_thesis_weekly_review",
-      "note_20260821_11_ai_jobhunt_answer_audit"
-    ]
+    "asOf":"2026-08-24T12:33:00+09:00",
+    "firstPartyFunnelMetricsAvailable":false,
+    "gateStatus":"24h_passed_metrics_unavailable",
+    "actionNow":"Preserve current one-CTA architecture, current paid prices, 2/day free experiment cadence and paid free-area qualification gate. No customer-facing CV or price change is justified yet. Highest-value next optimization is capture of platform-native PV/likes/follows/related-paid-clicks/related-paid-purchases/revenue at matched 24h/72h/7d windows; then diagnose acquisition before CTA before offer before price."
   }
 }
