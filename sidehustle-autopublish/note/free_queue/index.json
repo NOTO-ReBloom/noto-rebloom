@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-24T16:20:00+09:00",
+  "version": 5,
+  "updatedAt": "2026-08-24T19:28:49+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-24_batch01.md",
   "requiredFreeChecks": [
@@ -1050,10 +1050,13 @@
       "coverLabel": "AI業務・自動化",
       "coverCopy": "見えない作業を 5つ数える",
       "accent": "#0f766e",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "free-20260824-01-r1",
-      "publicUrlVerified": false
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/ne0e2bcb5fb20",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-24T19:28:20+09:00"
     },
     {
       "id": "free_note_20260824_02_emergency_three_lines",
@@ -1072,10 +1075,13 @@
       "coverLabel": "イベント・緊急連絡",
       "coverCopy": "第一報は 3行で共有",
       "accent": "#b91c1c",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "free-20260824-02-r1",
-      "publicUrlVerified": false
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n120c386ddd42",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-24T19:28:48+09:00"
     }
   ],
   "eveningMarathon": {
@@ -1085,11 +1091,12 @@
   },
   "activePriorityBatch": {
     "date": "2026-08-24",
-    "ids": [
+    "ids": [],
+    "resolvedIds": [
       "free_note_20260824_01_ai_hidden_work",
       "free_note_20260824_02_emergency_three_lines"
     ],
-    "rule": "Only these two newly produced 2026-08-24 free NOTE entries are enabled. The verified 2026-08-23 pair is disabled to prevent duplicate publication.",
+    "rule": "Both designated 2026-08-24 free NOTE entries are strict reader verified and disabled. Do not republish them.",
     "olderEntriesHeld": 23
   }
 }

@@ -1,27 +1,19 @@
 {
-  "version": 5,
-  "requestedAt": "2026-08-24T11:32:00+09:00",
-  "nonce": "publish-all-remaining-20260824T113200+0900",
-  "mode": "publish_all_remaining_aug24_cycle_now",
-  "priority": [
-    "paidNoteIds",
-    "currentDayBoothIds"
-  ],
+  "version": 7,
+  "requestedAt": "2026-08-24T19:28:49+09:00",
+  "nonce": "aug24-all-12-complete-20260824T192849+0900",
+  "mode": "completed_no_publication_action",
+  "priority": [],
   "carriedBoothIds": [],
   "carriedBoothResolution": "5/5 independently buyer-visible verified and reconciled to canonical BOOTH ledger at 2026-08-24T11:08:30+09:00",
-  "paidNoteIds": ["note_20260824_26_digital_product_offer_design"],
-  "paidNoteProgress": "4/5 independently reader-visible verified; only note_20260824_26_digital_product_offer_design remains",
-  "currentDayBoothIds": [
-    "029_ai_workflow_audit_os_20260824",
-    "030_sponsor_outcome_report_os_20260824",
-    "031_event_emergency_comms_os_20260824",
-    "032_survey_aggregation_audit_os_20260824",
-    "033_digital_offer_validation_os_20260824"
-  ],
+  "paidNoteIds": [],
+  "paidNoteProgress": "5/5 independently reader-visible verified; zero remaining",
+  "currentDayBoothIds": [],
+  "currentDayBoothProgress": "5/5 independently buyer-visible verified; zero remaining",
   "freeNoteIds": [],
-  "freeNoteResolution": "2/2 independently reader-visible verified and reconciled to the canonical free-note ledger at 2026-08-24T11:20:30+09:00",
+  "freeNoteResolution": "2/2 strict reader verified: https://note.com/royal_lion645/n/ne0e2bcb5fb20 and https://note.com/royal_lion645/n/n120c386ddd42; both queue entries are disabled",
   "failurePolicy": "On a brief recoverable failure preserve the payload and retry state, switch to the next required item, then return after the first pass. Do not stop after one success.",
-  "completion": "strict reader/buyer-visible public verification only",
+  "completion": "all 12 designated Aug 24 publications complete: paid NOTE 5/5, BOOTH 5/5 and free NOTE 2/2 strict verified",
   "requiredPaidNoteChecks": [
     "readerVisibleUrl",
     "exactTitle",

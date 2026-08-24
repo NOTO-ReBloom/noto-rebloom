@@ -1,6 +1,9 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-24T11:09:30+09:00",
+  "version": 6,
+  "updatedAt": "2026-08-24T19:28:49+09:00",
+  "status": "all_12_strict_verified_complete",
+  "completedAt": "2026-08-24T19:28:49+09:00",
+  "completionEvidence": "sidehustle-autopublish/monitor/paid_channels_completion_20260824.json",
   "purpose": "Treat the 2026-08-24 work cycle as complete only after all 12 designated publications are strict verified, or a verified human-only blocker stops every remaining publication path.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
@@ -42,11 +45,11 @@
     },
     "noteFree": {
       "sourceOfTruth": "sidehustle-autopublish/note/free_queue/index.json plus sidehustle-autopublish/note/free_publication_ledger.json",
-      "date": "2026-08-23",
+      "date": "2026-08-24",
       "dailyStrictTarget": 2,
       "requiredIds": [
-        "free_note_20260823_01_sponsor_after_yes",
-        "free_note_20260823_02_grant_deadline_reverse_plan"
+        "free_note_20260824_01_ai_hidden_work",
+        "free_note_20260824_02_emergency_three_lines"
       ],
       "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
       "paidQuotaContribution": 0
@@ -67,10 +70,9 @@
     "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
     "whenWindowsUnavailable": ["queue/ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
     "nextWindowsPriority": [
-      "2026-08-24 NOTE paid batch until 5/5 strict verified",
-      "2026-08-24 BOOTH paid batch until 5/5 strict verified",
-      "2026-08-23 free NOTE pair until 2/2 strict verified",
-      "return to any briefly held current-day item before legacy blockers"
+      "No Aug 24 publication recovery remains",
+      "Keep all completed paid NOTE, free NOTE and BOOTH entries disabled",
+      "Keep looping schedulers disabled until a separately reviewed automation repair is ready"
     ]
   },
   "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],

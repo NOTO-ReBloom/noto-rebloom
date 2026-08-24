@@ -1,23 +1,23 @@
 {
-  "version": 11,
-  "checkedAt": "2026-08-24T11:09:30+09:00",
-  "status": "current_day_paid_batch_ready_for_windows_strict_publication",
-  "reason": "The carried 2026-08-23 BOOTH batch is independently buyer-visible verified 5/5 and reconciled to the canonical ledger. The five 2026-08-24 encrypted payload ZIPs are cloud-QA complete and queue-enabled for immediate Windows publication. No human-only blocker is evidenced.",
+  "version": 12,
+  "checkedAt": "2026-08-24T16:54:26+09:00",
+  "status": "current_day_paid_batch_complete",
+  "reason": "All five 2026-08-24 BOOTH products are independently buyer-visible verified and reconciled to the canonical ledger. Completed queue entries are disabled to prevent duplicate publication and repeated browser openings.",
   "quota": {
     "date": "2026-08-24",
     "dailyPublicTarget": 5,
     "carriedPublicationDebt": 0,
-    "todayStrictVerifiedPublicationsCount": 0,
-    "todayRemainingToTarget": 5,
-    "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
+    "todayStrictVerifiedPublicationsCount": 5,
+    "todayRemainingToTarget": 0,
+    "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 0,
     "sourceOfTruth": "sidehustle-autopublish/publication_quota.json",
     "debtRule": "Only buyer-visible 2026-08-24 products passing exact title, expected price, downloadable-product state and purchase/cart path count toward today's floor."
   },
   "paidNoteDependency": {
-    "strictVerified": 0,
+    "strictVerified": 5,
     "target": 5,
-    "remaining": 5,
-    "state": "2026-08-24_current_day_pending"
+    "remaining": 0,
+    "state": "2026-08-24_current_day_complete"
   },
   "queue": {
     "retryGeneration": 36,
@@ -29,8 +29,8 @@
       "033_digital_offer_validation_os_20260824"
     ],
     "allFiveMaterialized": true,
-    "allFiveQueueEnabled": true,
-    "allFiveForceRetryReady": true,
+    "allFiveQueueEnabled": false,
+    "allFiveForceRetryReady": false,
     "deferredLegacy": "009_handover_os_20260820",
     "doNotReturnToLegacyUntilCurrentDayFloorComplete": true
   },
@@ -48,14 +48,14 @@
     "canonicalPath": "booth-autopublish/monitor/publication_ledger.json",
     "carriedBatchStrictVerifiedCount": 5,
     "carriedBatchEntriesPresent": true,
-    "currentDayStrictVerifiedCount": 0,
-    "currentDayEntriesPresent": false,
+    "currentDayStrictVerifiedCount": 5,
+    "currentDayEntriesPresent": true,
     "historicalReverificationDoesNotCountTowardCurrentDayFloor": true
   },
   "recovery": {
     "control": "booth-autopublish/monitor/recovery_control.json",
-    "controlVersion": 25,
-    "mode": "force_current_day_all_now",
+    "controlVersion": 28,
+    "mode": "completed_no_republish",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -90,5 +90,5 @@
       "Refreshed recovery_control.json to version 25 and removed the resolved carried debt from the active publication request."
     ]
   },
-  "nextPriority": "Process 029-033 continuously until all five are buyer-visible strict verified. Preserve briefly failed current-day items as retryable, switch to another current-day item, then return."
+  "nextPriority": "No Aug 24 BOOTH recovery remains. Keep 024-033 disabled; activate only a new next-cycle queue intentionally."
 }

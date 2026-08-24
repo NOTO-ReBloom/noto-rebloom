@@ -1,22 +1,23 @@
 {
-  "version": 28,
-  "updatedAt": "2026-08-24T19:11:20+09:00",
+  "version": 29,
+  "updatedAt": "2026-08-24T19:28:49+09:00",
   "activeRecovery": {
     "date": "2026-08-24",
     "carriedIntoDate": null,
-    "mode": "force_current_day_all_now",
-    "requiredStrictNewPublications": 5,
-    "remaining": 5,
+    "mode": "completed_no_republish",
+    "requiredStrictNewPublications": 0,
+    "remaining": 0,
     "paidNotePreviousDayDependencySatisfied": true,
-    "paidNoteTodayStrictVerified": "4/5",
+    "paidNoteTodayStrictVerified": "5/5",
     "allowBoothParallelWhileFinalNoteRetries": true,
-    "state": "active",
-    "soleRemainingPaidPriority": "Current-day paid floors remain incomplete: NOTE note_20260824_26_digital_product_offer_design to 5/5 and BOOTH genuine-new batch 029-033 to 5/5; do not route to free/new/legacy work first."
+    "state": "complete",
+    "soleRemainingPaidPriority": null
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-24T10:58:35+09:00",
-    "requiredStrictNewPublications": 5,
-    "queueIds": [
+    "requiredStrictNewPublications": 0,
+    "queueIds": [],
+    "completedIds": [
       "029_ai_workflow_audit_os_20260824",
       "030_sponsor_outcome_report_os_20260824",
       "031_event_emergency_comms_os_20260824",
@@ -53,12 +54,12 @@
       "032_survey_aggregation_audit_os_20260824": 1480,
       "033_digital_offer_validation_os_20260824": 1380
     },
-    "consumerInstruction": "Process all five 2026-08-24 BOOTH items in one Windows-available recovery session. One strict success is never a stopping condition. Preserve payload/SHA on recoverable failures, move to the next required item, then return to held IDs until all five are in the canonical BOOTH ledger. Count only buyer-visible pages passing every strict buyer check.",
+    "consumerInstruction": "All five 2026-08-24 BOOTH items are in the canonical ledger and strict verified. Do not republish them; keep their queue entries disabled.",
     "doNotFallbackToFreeWeb": true,
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forcedRecoveryAt": "2026-08-24T19:11:20+09:00",
-    "forceRetryNonce": "force-20260824-booth-20260824T191120+0900"
+    "forcedRecoveryAt": null,
+    "forceRetryNonce": null
   },
   "windowsResumeContract": {
     "sourceQueue": "booth-autopublish/queue/index.json",
@@ -108,16 +109,17 @@
     ]
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-24T19:11:20+09:00",
-    "windowsPublisherReachable": false,
-    "notePaidFloor": "2026-08-24 4/5 strict verified; only note_20260824_26_digital_product_offer_design remains; canonical publication receipt is still absent",
-    "boothStrictFloor": "2026-08-24 0/5; five genuine-new items 029-033 remain",
+    "checkedAt": "2026-08-24T19:28:49+09:00",
+    "windowsPublisherReachable": true,
+    "notePaidFloor": "2026-08-24 5/5 strict verified; zero remaining",
+    "boothStrictFloor": "2026-08-24 5/5 strict verified; zero remaining",
+    "carriedBoothDebt": "2026-08-23 5/5 strict verified and reconciled; zero remaining",
+    "materializationQa": "NOTE 5/5 encrypted payloads with dedicated covers/SHA/prices complete; BOOTH 5/5 encrypted payload ZIPs with product.json/product.zip/preview01.jpg/SHA complete",
+    "ledgerCurrentDayEntries": 5,
     "previousDayPaidState": "2026-08-23 NOTE 5/5 and BOOTH 5/5 strict verified; carried paid debt is zero; do not republish previous-day items",
     "previousDayFreeState": "2026-08-23 designated free NOTE pair 2/2 strict verified; do not republish and do not count toward paid floor",
-    "materializationQa": "NOTE 5/5 encrypted payloads with dedicated 1280x670 covers/SHA/prices complete; BOOTH 5/5 encrypted payload ZIPs with product.json/product.zip/preview01.jpg/SHA complete",
-    "ledgerCurrentDayEntries": 0,
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "At the next Windows-reachable run, first strict-publish note_20260824_26_digital_product_offer_design to NOTE 5/5 and consume BOOTH 029-033 in the same recovery session where possible; switch past brief recoverable failures and return to held current-day IDs until BOOTH reaches 5/5. Do not stop after one success, do not use legacy 009, and do not count admin/editor URLs."
+    "nextAction": "No Aug 24 recovery action. Keep the completed queues and looping schedulers disabled until a new next-cycle queue is intentionally activated."
   },
   "heldAlreadyResolved": {
     "queueIds": [
@@ -131,6 +133,6 @@
   },
   "heldBlocked": {
     "queueId": "009_handover_os_20260820",
-    "reason": "Legacy blocker deferred until the five genuine-new 2026-08-24 products are strict verified."
+    "reason": "Legacy blocker remains deferred; completion of the Aug 24 work cycle does not activate or republish it."
   }
 }

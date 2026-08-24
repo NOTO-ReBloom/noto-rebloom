@@ -1,6 +1,6 @@
 {
-  "version": 31,
-  "updatedAt": "2026-08-24T17:47:10+09:00",
+  "version": 32,
+  "updatedAt": "2026-08-24T19:28:49+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -8,21 +8,21 @@
     "date": "2026-08-24",
     "notePreviousDayPaidDebt": 0,
     "noteTodayPaidFloor": 5,
-    "noteTodayStrictVerified": 4,
-    "noteTodayPaidRemaining": 1,
+    "noteTodayStrictVerified": 5,
+    "noteTodayPaidRemaining": 0,
     "boothCarriedPaidDebtFrom20260823": 0,
     "boothTodayPaidFloor": 5,
-    "boothTodayStrictVerified": 0,
-    "boothTotalPaidRequired": 5,
+    "boothTodayStrictVerified": 5,
+    "boothTotalPaidRequired": 0,
     "freeNoteExperimentalTarget": 2,
-    "freeNoteCurrentBatchStrictVerified": 0,
-    "freeNotePriorDesignatedPairStrictVerified": 2,
+    "freeNoteDate": "2026-08-24",
+    "freeNoteStrictVerified": 2,
     "rule": "Only strict reader/buyer-visible verification changes paid quota/debt. Free note output never substitutes for paid quota/debt. Missing platform-native funnel metrics remain unknown."
   },
   "allocationDecision": {
-    "rank1": "Finish and strict-verify the one remaining 2026-08-24 paid note: note_20260824_26_digital_product_offer_design.",
-    "rank2": "Publish and strict-verify all five completed 2026-08-24 BOOTH products 029-033; queue/materialization success is not publication.",
-    "rank3": "Continue the designated 2026-08-24 free-note acquisition pair only within the 2/day 14-day experiment; current batch is publication-pending and free output never offsets paid debt.",
+    "rank1": "Do not republish any of the 12 designated 2026-08-24 items; paid NOTE 5/5, BOOTH 5/5 and free NOTE 2/2 are strict verified.",
+    "rank2": "Capture first-party note and BOOTH sales/funnel metrics at equal-age windows before changing themes, pricing or cadence.",
+    "rank3": "Keep the free-note acquisition experiment at 2/day until matched-age first-party 24h/72h/7d metrics exist; the current designated free pair is already strict verified 2/2 and must not be republished.",
     "rank4": "Cloud-batch the next note free+paid funnel set so the factory can produce complete manuscripts efficiently without mixing accounting roles.",
     "rank5": "Advance Microsoft Store CSV Cleaner & Duplicate Remover submission prerequisites after paid-floor-critical work is safe.",
     "rank6": "GitHub Pages work remains measurement/attribution support and independently useful tools; no thin SEO mass production."
@@ -37,10 +37,14 @@
     "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use independently reader-visible verified paid URLs."
   },
   "nextNoteFactoryBatch": {
-    "paidPublishNow": [
-      {"id":"note_20260824_26_digital_product_offer_design","title":"デジタル商品が売れない原因を価格だけにしない｜誰に何を約束するかを決める商品設計ワーク","role":"paid implementation + reusable offer canvas","status":"materialized; strict publication pending"}
+    "date": "2026-08-24",
+    "paidPublishNow": [],
+    "freePublishNow": [],
+    "publishedFreePair": [
+      {"id":"free_note_20260824_01_ai_hidden_work","title":"AIで自動化したのに仕事が減らない｜導入後に数える5つの「見えない作業」","publicUrl":"https://note.com/royal_lion645/n/ne0e2bcb5fb20"},
+      {"id":"free_note_20260824_02_emergency_three_lines","title":"イベントの緊急連絡が遅れる理由｜事故・欠席・天候変更を3行で共有する型","publicUrl":"https://note.com/royal_lion645/n/n120c386ddd42"}
     ],
-    "freePublishCurrentExperiment": "Use only the designated 2026-08-24 AI-workflow and emergency-communication acquisition pair already present in the free queue; strict reader verification is still pending according to publication_quota.json v37.",
+    "freePublishCurrentExperiment": "Complete 2/2 and disabled; do not republish either Aug 24 free NOTE item.",
     "freeDraftNext": [
       {"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"free problem diagnosis + search/discovery","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"},
       {"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"free quick checklist + paid prequalification","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"}
@@ -49,16 +53,16 @@
       {"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","role":"paid deep implementation + reusable QA/handoff asset","pairedFreeIntent":"AI delegation boundary / post-AI quality control"},
       {"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","role":"paid full workflow + reusable evidence pack","pairedFreeIntent":"minimum sponsor-report metrics / evidence collection"}
     ],
-    "batchInstruction": "Factory order: remaining paid floor publication asset -> current designated free pair publication recovery within experiment cadence -> two future free companion manuscripts -> two deeper paid manuscripts. Free manuscripts never count toward paid quota/debt."
+    "batchInstruction": "The Aug 24 paid floor is complete. Build the next free and paid manuscript inventory without re-enabling completed Aug 24 queue entries; free manuscripts never count toward paid quota/debt."
   },
   "booth": {
     "carriedDebt": 0,
     "todayPaidFloor": 5,
-    "todayStrictVerified": 0,
+    "todayStrictVerified": 5,
     "todayNewIds": ["029_ai_workflow_audit_os_20260824","030_sponsor_outcome_report_os_20260824","031_event_emergency_comms_os_20260824","032_survey_aggregation_audit_os_20260824","033_digital_offer_validation_os_20260824"],
-    "instruction": "Consume and strict-verify all five completed 2026-08-24 products. Do not clear the floor from queue insertion or local success logs."
+    "instruction": "All five 2026-08-24 products are strict buyer-visible verified. Keep 029-033 disabled and do not republish them."
   },
   "microsoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion","nextAction":"After paid floor-critical work is safe, complete every non-human submission prerequisite possible; do not invent live Store demand metrics."},
-  "githubPages": {"instruction":"Keep existing pages independently useful and measurable; prioritize attribution and context-matched outbound links; no thin SEO mass production while paid floors remain unresolved."},
+  "githubPages": {"instruction":"Keep existing pages independently useful and measurable; prioritize attribution and context-matched outbound links; no thin SEO mass production."},
   "dataIntegrity": "No winner, loser, conversion uplift or revenue claim is made without observed first-party evidence."
 }
