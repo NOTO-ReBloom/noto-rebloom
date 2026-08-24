@@ -1,6 +1,6 @@
 {
-  "version": 18,
-  "updatedAt": "2026-08-24T13:10:54+09:00",
+  "version": 19,
+  "updatedAt": "2026-08-24T16:22:50+09:00",
   "objective": "maximize total sales while enforcing the current 2026-08-24 strict paid publication floors before unrelated production and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -17,7 +17,7 @@
   },
   "currentRecovery": {
     "date": "2026-08-24",
-    "observedAt": "2026-08-24T13:10:54+09:00",
+    "observedAt": "2026-08-24T16:22:50+09:00",
     "previousDate": "2026-08-23",
     "previousDayPaidNoteStrictVerified": "5/5",
     "previousDayBoothStrictVerified": "5/5",
@@ -32,16 +32,36 @@
       "strictVerified": 4,
       "remaining": 1,
       "materialized": 5,
-      "remainingIds": ["note_20260824_26_digital_product_offer_design"],
-      "requiredChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
+      "remainingIds": [
+        "note_20260824_26_digital_product_offer_design"
+      ],
+      "requiredChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "paidBoundary",
+        "dedicatedCover"
+      ]
     },
     "BOOTH": {
       "target": 5,
       "strictVerified": 0,
       "remaining": 5,
       "materialized": 5,
-      "remainingIds": ["029_ai_workflow_audit_os_20260824", "030_sponsor_outcome_report_os_20260824", "031_event_emergency_comms_os_20260824", "032_survey_aggregation_audit_os_20260824", "033_digital_offer_validation_os_20260824"],
-      "requiredChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
+      "remainingIds": [
+        "029_ai_workflow_audit_os_20260824",
+        "030_sponsor_outcome_report_os_20260824",
+        "031_event_emergency_comms_os_20260824",
+        "032_survey_aggregation_audit_os_20260824",
+        "033_digital_offer_validation_os_20260824"
+      ],
+      "requiredChecks": [
+        "buyerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "downloadableProductState",
+        "purchaseOrCartPath"
+      ]
     },
     "freeNote": {
       "sourceDate": "2026-08-23",
@@ -54,22 +74,22 @@
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "Canonical publication quota and receipt directory show four of five 2026-08-24 paid NOTE items strict verified; note_20260824_26_digital_product_offer_design has no canonical receipt yet. The 2026-08-24 materialization manifest confirms all five encrypted payloads, dedicated 1280x670 covers, SHA records and expected prices are prepared.",
-    "BOOTH": "Canonical BOOTH ledger contains no 2026-08-24 IDs 029-033. The 2026-08-24 cloud materialization manifest confirms all five encrypted payload ZIPs passed QA with product.json, product.zip, preview01.jpg and queue SHA records.",
+    "paidNote": "Canonical publication quota shows 4/5 strict verified for 2026-08-24. Direct receipt lookup for note_20260824_26_digital_product_offer_design returned 404 at 2026-08-24T16:22:50+09:00, so it remains uncounted. The materialization manifest confirms all five encrypted payloads, dedicated 1280x670 covers, SHA records and expected prices are prepared.",
+    "BOOTH": "Canonical BOOTH ledger still contains no 2026-08-24 IDs 029-033 as of the latest recovery control. The 2026-08-24 cloud materialization manifest confirms all five encrypted payload ZIPs passed QA with product.json, product.zip, preview01.jpg and queue SHA records.",
     "previousDay": "The 2026-08-23 paid NOTE and BOOTH batches are strict verified 5/5 each; the designated 2026-08-23 free NOTE pair is strict verified 2/2. Do not republish them or count them toward 2026-08-24.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-24T13:10:54+09:00",
+    "checkedAt": "2026-08-24T16:22:50+09:00",
     "windowsPublisherReachableFromThisRun": false,
     "cloudRepairsApplied": [
-      "Reconciled stale metrics/current.json from the completed 2026-08-23 recovery to the authoritative 2026-08-24 completion gate and publication quota.",
-      "Reconfirmed NOTE 2026-08-24 at 4/5 strict verified; only note_20260824_26_digital_product_offer_design remains.",
+      "Reconciled the requested 2026-08-23 priority against the canonical quota: paid NOTE 5/5, paid BOOTH 5/5 and free NOTE 2/2 are already strict verified with zero carried paid debt, so those items must not be republished.",
+      "Reconfirmed NOTE 2026-08-24 at 4/5 strict verified; direct canonical receipt lookup confirms note_20260824_26_digital_product_offer_design still has no receipt and remains the sole NOTE paid gap.",
       "Reconfirmed BOOTH 2026-08-24 at 0/5 strict verified; IDs 029-033 remain the required genuine-new paid batch.",
       "Reconfirmed NOTE materialization 5/5 complete with encrypted payloads, dedicated covers, SHA and prices.",
       "Reconfirmed BOOTH materialization 5/5 complete with encrypted payload ZIP, product.json, product.zip, preview01.jpg and queue SHA QA.",
-      "Preserved current-day-before-legacy ordering, recoverable-failure switching, strict public verification requirements and legacy 009/note_20260820_05 deferral.",
-      "No human-only blocker evidence was found."
+      "Reconfirmed recovery_control.json keeps current-day-before-legacy ordering, allows BOOTH parallel recovery while the final NOTE retries, and requires switch-on-recoverable-failure plus return-to-held behavior.",
+      "No human-only blocker evidence was found; no user action is justified from this cloud-only run."
     ],
     "nextWindowsAction": "First finish note_20260824_26_digital_product_offer_design to NOTE 5/5, while BOOTH 029-033 may be processed in parallel; continue all BOOTH current-day candidates with switch-on-recoverable-failure and return-to-held behavior until BOOTH reaches 5/5. Do not stop after the first success and do not route to legacy blockers."
   },
