@@ -1,6 +1,6 @@
 {
-  "version": 18,
-  "updatedAt": "2026-08-24T05:45:00+09:00",
+  "version": 19,
+  "updatedAt": "2026-08-24T09:27:00+09:00",
   "purpose": "Execution backlog preserving paid floors/debt while building measurable free-to-paid funnels.",
   "evidenceLimit": "Platform-native note PV/likes/follows/related-paid-click/purchase/revenue metrics remain unavailable in authoritative state. No theme is a proven revenue winner or loser; missing values remain unknown.",
   "hardFloorSnapshot": {
@@ -27,6 +27,15 @@
     "instruction": "Paid and free drafts may be cloud-batched for efficiency, but execution priority and accounting remain separate: carried paid debt first, current paid floor second, free funnel third."
   },
   "winnerCandidates": [],
+  "amplificationReview": {
+    "reviewedAt":"2026-08-24T09:27:00+09:00",
+    "decision":"no_evidence_backed_amplification_yet",
+    "note":"funnel_strategy reports observedSales/PV/likes/follows/relatedPaidClicks/relatedPaidPurchases/freeToPaidConversion as null. The 24h comparison gate has passed, but platform-native article-level metrics are still absent. Free-note publishing is also not yet strict-verified in metrics/current.json. Therefore no free+paid pair can be classified as a demand winner, conversion problem, or revenue winner without fabrication.",
+    "microsoftStore":"No acquisition, install, retention, CVR or revenue measurements are present in the authoritative files inspected in this review; do not clone or create variants based only on publication status.",
+    "booth":"No current-day buyer-visible verified products or sales measurements are present in metrics/current.json; carried publication debt is not evidence of demand.",
+    "githubPages":"No measured PV/CVR/revenue evidence was present in the authoritative metrics inspected; keep work limited to measurement support rather than theme amplification.",
+    "nextEvidenceGate":"Once any free note has strict publication plus matched-age 24h PV/likes/follows and attributable paid clicks/purchases/revenue, compare its paired paid article. Strong free signal + weak paid conversion triggers CTA/value-difference/price/theme-match diagnosis before derivatives; verified paid purchases elevate the theme to a strong winner candidate."
+  },
   "rules": [
     "Previous-day paid debt outranks all discretionary work.",
     "Current-day paid quota outranks free funnel publishing and Microsoft Store work.",
