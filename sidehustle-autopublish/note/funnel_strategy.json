@@ -1,7 +1,15 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-24T12:33:00+09:00",
+  "version": 5,
+  "updatedAt": "2026-08-24T20:05:00+09:00",
   "objective": "maximize note revenue and LTV through a measurable useful-free -> qualified-paid -> repeat/subscription funnel without speculative optimization",
+  "brandPositioning": {
+    "accountName": "ノウハウ共有おじさん",
+    "promise": "複雑な実務ノウハウを、初めての人が今日ひとつ動かせる形まで分解する",
+    "contentMoat": "Prefer specific last-mile operations: acceptance criteria, exceptions, stop conditions, evidence, handoff, change history and recovery.",
+    "personaTruthRule": "Do not infer or invent age, career, qualifications, experience years, sales, adoption results or personal case studies from the account name.",
+    "researchQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
+    "blueOceanRule": "A relative gap found in public search is a hypothesis, not proof of search demand or purchase intent."
+  },
   "internalEvidence": {
     "observedSales": null,
     "observedPV": null,
@@ -16,11 +24,20 @@
     "checkedAt": "2026-08-24T12:33:00+09:00",
     "sourceType": "note official current product/monetization guidance",
     "findings": [
+      "note's January 2026 analysis of roughly 300,000 paid articles reported paid-article sales up 26.8% year over year and earning creators up 42.0% for November 2025; this is platform context, not evidence for this account.",
+      "In that analysis, fast-growing paid categories included technology/AI use (+268.6%), SNS/content operations (+258.7%) and side jobs/remote work (+179.0%).",
+      "Among the analyzed top-selling classifications, practical know-how averaged JPY 1,842 versus JPY 983 for reading-oriented content, while paid-area word count had near-zero sales correlation. Use this to prioritize explicit buyer value over length, not to force a price.",
+      "note refreshed its recommendation system in February 2026 to use an LLM for article understanding and classification. Prefer one reader, one situation and one concrete outcome over vague hooks or unrelated tag stacks; no placement is guaranteed.",
+      "note added llms.txt support to creator pages in July 2026. Keep the creator description and article clusters factually consistent, but do not claim that AI discovery or work inquiries will result.",
       "note currently supports single paid articles, memberships, paid magazines and subscription magazines as monetization surfaces.",
       "Membership can coexist with single paid-article purchase and can include previously sold paid articles as benefits, creating a future repeat-revenue option once repeat demand is evidenced.",
       "For memberships opened under the current August 2026 model, new members can generally be billed on their join-date monthly cycle; this reduces the old month-end timing friction, but is not evidence that this account should launch a membership now.",
       "Membership has no fixed opening/monthly platform fee and charges fees when revenue occurs; current official guidance recommends pricing from 500 yen for many membership uses and gives 1,000 yen+ as a business/investment information reference point.",
       "Do not buy paid external acquisition or add subscription complexity before first-party conversion/repeat-demand evidence exists."
+    ],
+    "researchSources": [
+      "sidehustle-autopublish/research/knowhow_ojisan/source_registry.json",
+      "sidehustle-autopublish/research/knowhow_ojisan/opportunity_map.json"
     ]
   },
   "operatingModel": {

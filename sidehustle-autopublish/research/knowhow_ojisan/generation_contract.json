@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-24T20:05:00+09:00",
+  "brand": {
+    "accountName": "ノウハウ共有おじさん",
+    "promise": "複雑な実務ノウハウを、初めての人が今日ひとつ動かせる形まで分解する",
+    "voice": [
+      "やさしい標準語",
+      "結論を先に置く",
+      "難語は短い日本語へ言い換える",
+      "読者を責めず、仕組みの不足として説明する",
+      "1記事1問題、1つの小さな完了を作る"
+    ],
+    "personaBoundary": "『おじさん』は親しみやすい編集人格であり、年齢、職歴、専門資格、経験年数、導入実績を表さない。未確認の一人称経験を作らない。"
+  },
+  "positioning": {
+    "keepExistingClusters": [
+      "AI業務改善",
+      "学生団体・小規模組織",
+      "イベント運営",
+      "協賛・スポンサー",
+      "NPO・助成金",
+      "卒論・研究",
+      "就活",
+      "デジタル商品販売"
+    ],
+    "defaultDifferentiation": "広いテーマを説明するのではなく、現場後半の例外・検品・停止条件・証拠・引き継ぎ・復旧へ絞る",
+    "blueOceanStatus": "hypothesis_until_first_party_metrics",
+    "forbiddenMarketClaims": [
+      "競合ゼロ",
+      "確実に売れる",
+      "検索需要が高い",
+      "穴場確定",
+      "売上No.1",
+      "この方法だけで稼げる"
+    ]
+  },
+  "truthRules": {
+    "neverInvent": [
+      "本人の年齢・職歴・資格・経験年数",
+      "売上・購入数・PV・CVR・改善率",
+      "顧客事例・導入社数・読者の声",
+      "検索ボリューム・市場規模",
+      "存在を検証していないURL・制度・期限",
+      "本人が経験したかのような失敗談や成功談"
+    ],
+    "claimLabels": ["verified_fact", "reasoned_inference", "working_hypothesis", "example_only"],
+    "sourcePreference": ["primary_official", "platform_official", "marketplace_direct", "secondary"],
+    "freshnessRule": "制度、料金、手数料、募集期間、プラットフォーム仕様は公開当日に原典を再確認する。",
+    "citationRule": "数字、制度要件、成長率、期限には本文または末尾に一次情報の発行主体・資料名・URL・確認日を残す。"
+  },
+  "topicAdmissionGate": {
+    "allRequired": [
+      "targetReader is one recognizable role or situation",
+      "problem is observable and narrow",
+      "the free article completes one useful action",
+      "the paid layer adds implementation depth rather than withholding the answer",
+      "at least one evidenceSourceId exists for factual framing",
+      "competition assessment is qualitative and dated",
+      "existing publication and free queue were checked for duplication",
+      "professional or safety decisions are explicitly excluded where relevant"
+    ],
+    "rejectWhen": [
+      "title can apply to almost everyone",
+      "content is only a prompt list without verification or workflow",
+      "paid value is merely more words",
+      "the main promise depends on unobserved revenue or performance",
+      "topic duplicates an existing public title or queued intent",
+      "the asset would make a legal, medical, tax, employment, academic-integrity or safety decision for the user"
+    ]
+  },
+  "noteFree": {
+    "role": ["discovery", "trust", "demand validation", "paid prequalification"],
+    "requiredShape": [
+      "title identifies the reader or moment and the concrete problem",
+      "opening names the stuck point in 3 to 5 lines",
+      "give a 3 to 7 step action or a small worked example",
+      "state what this method does not decide",
+      "close with a one-minute action",
+      "use zero or one context-matched CTA"
+    ],
+    "ctaRule": "Only use one independently reader-visible verified paid URL after the standalone useful core. No unrelated product stack.",
+    "never": ["thin teaser", "fake scarcity", "unverified paid URL", "free post counted as paid quota"]
+  },
+  "notePaid": {
+    "requiredFreeArea": [
+      "who it is for",
+      "what changes after reading",
+      "one concrete example or diagnostic",
+      "what the paid area contains",
+      "what it does not guarantee"
+    ],
+    "paidValue": [
+      "full workflow",
+      "editable template",
+      "decision log",
+      "exception handling",
+      "acceptance criteria",
+      "worked example",
+      "implementation checklist"
+    ],
+    "pricingRule": "Do not price from word count. Use verified first-party purchase data, exact buyer value and current market recheck. External platform averages are context, not an instruction.",
+    "strictCompletion": ["reader-visible URL", "exact title", "expected price", "paid boundary", "dedicated cover", "logged-out verification"]
+  },
+  "booth": {
+    "minimumAsset": [
+      "editable or interactive core file",
+      "README with 10-minute start",
+      "filled sample",
+      "blank template",
+      "field definitions",
+      "failure and exception notes",
+      "license",
+      "preview image",
+      "version number"
+    ],
+    "productRule": "Do not turn every note into a SKU. Build only when the topic benefits materially from repeated use, editing, calculation, tracking or handoff.",
+    "feeRule": "Recheck BOOTH's official fee page before any price or margin calculation.",
+    "strictCompletion": ["buyer-visible URL", "exact title", "exact price", "downloadable state", "purchase path", "buyer-visible preview"]
+  },
+  "titleSystem": {
+    "preferredPatterns": [
+      "[場面]で[失敗]を防ぐ｜[具体的な仕組み]",
+      "[作業]が終わらない理由｜[数]つの見えない仕事を分ける",
+      "[成果物]を作る前に決めること｜[条件・証拠・担当]",
+      "[一般的な方法]だけでは足りない｜[見落とされる後半工程]",
+      "[読者]向け｜[時間]で終える[小さな実務]"
+    ],
+    "avoid": ["完全攻略", "絶対", "誰でも稼げる", "秘密", "最強", "永久保存版", "競合ゼロ"],
+    "specificityTest": "タイトルだけで、誰が、いつ、何につまずき、何を持ち帰るかのうち3つ以上が分かる。"
+  },
+  "discoveryRules": {
+    "semanticClarity": "note's current recommendation system uses an LLM to understand and classify article content. Keep one article centered on one reader, one situation and one outcome; do not hide the topic behind a clever but vague title.",
+    "profileConsistency": "Keep the account description, article clusters and factual claims consistent so platform and AI discovery surfaces can understand the creator without invented biography.",
+    "tagRule": "Use only directly relevant current tags. Do not stuff unrelated tags or claim that a tag guarantees exposure.",
+    "campaignRule": "Check the current official campaign on the publication day. Never reuse an expired campaign hashtag as if it were active."
+  },
+  "productionChecks": {
+    "beforeDraft": [
+      "read the opportunity and every evidenceSourceId",
+      "search repository titles and IDs for semantic duplication",
+      "recheck current direct competition",
+      "decide free completion and paid increment separately"
+    ],
+    "beforePublish": [
+      "recheck time-sensitive sources",
+      "remove unsupported numbers and personal claims",
+      "test every file and link",
+      "verify professional-decision disclaimer",
+      "verify cover and public/buyer state strictly"
+    ],
+    "afterPublish": [
+      "capture publishedAt and public URL",
+      "measure only at equal 24h, 72h and 7d ages",
+      "keep article observations separate from cluster conclusions",
+      "promote, revise or retire the blue-ocean hypothesis using first-party evidence"
+    ]
+  }
+}

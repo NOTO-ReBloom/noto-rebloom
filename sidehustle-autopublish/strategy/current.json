@@ -1,9 +1,19 @@
 {
-  "version": 32,
-  "updatedAt": "2026-08-24T19:28:49+09:00",
+  "version": 33,
+  "updatedAt": "2026-08-24T20:05:00+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
+  "brandPositioning": {
+    "accountName": "ノウハウ共有おじさん",
+    "promise": "複雑な実務ノウハウを、初めての人が今日ひとつ動かせる形まで分解する",
+    "differentiation": "Keep the current practical clusters, but prefer the neglected last 20 percent of work: verification, exceptions, stop conditions, evidence, handoff, change history and recovery.",
+    "personaBoundary": "The account name is a friendly editorial persona only. Never invent age, career, qualifications, years of experience, customer results or first-person case histories.",
+    "blueOceanRule": "Treat relative competition gaps as dated hypotheses until matched-age first-party PV, click, purchase and revenue evidence exists.",
+    "researchBase": "sidehustle-autopublish/research/knowhow_ojisan/README.md",
+    "generationContract": "sidehustle-autopublish/research/knowhow_ojisan/generation_contract.json",
+    "topicQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json"
+  },
   "authoritativeState": {
     "date": "2026-08-24",
     "notePreviousDayPaidDebt": 0,
@@ -23,7 +33,7 @@
     "rank1": "Do not republish any of the 12 designated 2026-08-24 items; paid NOTE 5/5, BOOTH 5/5 and free NOTE 2/2 are strict verified.",
     "rank2": "Capture first-party note and BOOTH sales/funnel metrics at equal-age windows before changing themes, pricing or cadence.",
     "rank3": "Keep the free-note acquisition experiment at 2/day until matched-age first-party 24h/72h/7d metrics exist; the current designated free pair is already strict verified 2/2 and must not be republished.",
-    "rank4": "Cloud-batch the next note free+paid funnel set so the factory can produce complete manuscripts efficiently without mixing accounting roles.",
+    "rank4": "Cloud-batch the next note free+paid funnel set from the ノウハウ共有おじさん research queue so the factory can produce complete manuscripts efficiently without mixing accounting roles.",
     "rank5": "Advance Microsoft Store CSV Cleaner & Duplicate Remover submission prerequisites after paid-floor-critical work is safe.",
     "rank6": "GitHub Pages work remains measurement/attribution support and independently useful tools; no thin SEO mass production."
   },
@@ -46,12 +56,12 @@
     ],
     "freePublishCurrentExperiment": "Complete 2/2 and disabled; do not republish either Aug 24 free NOTE item.",
     "freeDraftNext": [
-      {"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"free problem diagnosis + search/discovery","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"},
-      {"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"free quick checklist + paid prequalification","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"}
+      {"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"free problem diagnosis + search/discovery","researchBriefId":"ko_ai_01_acceptance_criteria","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"},
+      {"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"free quick checklist + paid prequalification","researchBriefId":"ko_sponsor_01_evidence_pack","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"}
     ],
     "paidDraftNextAfterFloor": [
-      {"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","role":"paid deep implementation + reusable QA/handoff asset","pairedFreeIntent":"AI delegation boundary / post-AI quality control"},
-      {"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","role":"paid full workflow + reusable evidence pack","pairedFreeIntent":"minimum sponsor-report metrics / evidence collection"}
+      {"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","role":"paid deep implementation + reusable QA/handoff asset","researchBriefId":"ko_ai_01_acceptance_criteria","pairedFreeIntent":"AI delegation boundary / post-AI quality control"},
+      {"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","role":"paid full workflow + reusable evidence pack","researchBriefId":"ko_sponsor_01_evidence_pack","pairedFreeIntent":"minimum sponsor-report metrics / evidence collection"}
     ],
     "batchInstruction": "The Aug 24 paid floor is complete. Build the next free and paid manuscript inventory without re-enabling completed Aug 24 queue entries; free manuscripts never count toward paid quota/debt."
   },
@@ -64,5 +74,12 @@
   },
   "microsoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion","nextAction":"After paid floor-critical work is safe, complete every non-human submission prerequisite possible; do not invent live Store demand metrics."},
   "githubPages": {"instruction":"Keep existing pages independently useful and measurable; prioritize attribution and context-matched outbound links; no thin SEO mass production."},
+  "researchBacklog": {
+    "sourceRegistry": "sidehustle-autopublish/research/knowhow_ojisan/source_registry.json",
+    "opportunityMap": "sidehustle-autopublish/research/knowhow_ojisan/opportunity_map.json",
+    "productionQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
+    "counts": {"sources": 34, "opportunities": 40, "rankedNext": 24},
+    "instruction": "Research inventory does not authorize extra publication or prove demand. Recheck time-sensitive sources and direct competition before every build."
+  },
   "dataIntegrity": "No winner, loser, conversion uplift or revenue claim is made without observed first-party evidence."
 }
