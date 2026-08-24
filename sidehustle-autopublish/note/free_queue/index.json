@@ -1,8 +1,8 @@
 {
-  "version": 3,
-  "updatedAt": "2026-08-23T10:45:30+09:00",
+  "version": 4,
+  "updatedAt": "2026-08-24T16:20:00+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-23_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-24_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1001,10 +1001,13 @@
       "coverLabel": "協賛・スポンサー",
       "coverCopy": "決定直後に見る 6項目",
       "accent": "#0f766e",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "free-20260823-01",
-      "publicUrlVerified": false
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n291b92bbb0ec",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-24T11:20:30+09:00"
     },
     {
       "id": "free_note_20260823_02_grant_deadline_reverse_plan",
@@ -1022,9 +1025,56 @@
       "coverLabel": "助成金・申請",
       "coverCopy": "締切から逆算する 5段階",
       "accent": "#2563eb",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "free-20260823-02",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nbda96be21678",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-24T11:20:30+09:00"
+    },
+    {
+      "id": "free_note_20260824_01_ai_hidden_work",
+      "kind": "free",
+      "price": 0,
+      "title": "AIで自動化したのに仕事が減らない｜導入後に数える5つの「見えない作業」",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-24_batch01.md",
+      "pairedPaidId": "note_20260824_22_ai_ops_audit",
+      "pairedPaidPublicUrl": "https://note.com/royal_lion645/n/nfae28236ccb9",
+      "tags": [
+        "AI",
+        "自動化",
+        "業務改善",
+        "チーム運営"
+      ],
+      "coverLabel": "AI業務・自動化",
+      "coverCopy": "見えない作業を 5つ数える",
+      "accent": "#0f766e",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-20260824-01-r1",
+      "publicUrlVerified": false
+    },
+    {
+      "id": "free_note_20260824_02_emergency_three_lines",
+      "kind": "free",
+      "price": 0,
+      "title": "イベントの緊急連絡が遅れる理由｜事故・欠席・天候変更を3行で共有する型",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-24_batch01.md",
+      "pairedPaidId": "note_20260824_24_event_emergency_comms",
+      "pairedPaidPublicUrl": "https://note.com/royal_lion645/n/n62461944f424",
+      "tags": [
+        "イベント運営",
+        "緊急連絡",
+        "安全管理",
+        "学生団体"
+      ],
+      "coverLabel": "イベント・緊急連絡",
+      "coverCopy": "第一報は 3行で共有",
+      "accent": "#b91c1c",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-20260824-02-r1",
       "publicUrlVerified": false
     }
   ],
@@ -1034,12 +1084,12 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-08-23",
+    "date": "2026-08-24",
     "ids": [
-      "free_note_20260823_01_sponsor_after_yes",
-      "free_note_20260823_02_grant_deadline_reverse_plan"
+      "free_note_20260824_01_ai_hidden_work",
+      "free_note_20260824_02_emergency_three_lines"
     ],
-    "rule": "Only these two unpublished free NOTE entries are enabled until both are strict reader-visible verified.",
-    "olderEntriesHeld": 0
+    "rule": "Only these two newly produced 2026-08-24 free NOTE entries are enabled. The verified 2026-08-23 pair is disabled to prevent duplicate publication.",
+    "olderEntriesHeld": 23
   }
 }

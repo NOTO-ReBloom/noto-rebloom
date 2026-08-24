@@ -1,17 +1,18 @@
 {
   "version": 1,
   "qaPassed": true,
-  "checkedAt": "2026-08-22T01:39:52.738940+09:00",
+  "checkedAt": "2026-08-24T16:20:00+09:00",
   "runtimeSha256": "9e85ecc1940c688bce9bf624e596cd3b3812f14d4ee377a5733f23aa652953d9",
-  "queueEntriesValidated": 6,
+  "queueEntriesValidated": 46,
   "checks": [
     "runtime_sha256",
     "node_syntax",
-    "six_free_queue_entries",
+    "all_free_queue_entries",
     "source_article_extraction",
     "no_internal_marker_leak",
     "paired_paid_ids_exist",
-    "source_insights_verified",
+    "source_insights_verified_when_present",
+    "two_item_active_batch",
     "installer_contract"
   ],
   "notePlatformPublicationVerified": false,

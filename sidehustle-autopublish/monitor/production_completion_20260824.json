@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "date": "2026-08-24",
+  "completedAt": "2026-08-24T16:25:00+09:00",
+  "dailyProductionTarget": {
+    "paidNote": 5,
+    "BOOTH": 5,
+    "freeNoteAcquisition": 2,
+    "total": 12
+  },
+  "productionResult": {
+    "paidNote": {
+      "complete": true,
+      "count": 5,
+      "manifest": "sidehustle-autopublish/note/staging/materialization_20260824_batch01.json",
+      "ids": [
+        "note_20260824_22_ai_ops_audit",
+        "note_20260824_23_sponsor_report_kpi",
+        "note_20260824_24_event_emergency_comms",
+        "note_20260824_25_research_claim_audit",
+        "note_20260824_26_digital_product_offer_design"
+      ],
+      "assetState": "Full free/paid body, dedicated 1280x670 cover, encrypted payload, SHA and queue QA complete."
+    },
+    "BOOTH": {
+      "complete": true,
+      "count": 5,
+      "manifest": "booth-autopublish/monitor/cloud_materialization_20260824_batch01.json",
+      "ids": [
+        "029_ai_workflow_audit_os_20260824",
+        "030_sponsor_outcome_report_os_20260824",
+        "031_event_emergency_comms_os_20260824",
+        "032_survey_aggregation_audit_os_20260824",
+        "033_digital_offer_validation_os_20260824"
+      ],
+      "assetState": "Offline HTML app, README, quick start, product ZIP, preview, product.json, encrypted payload and SHA QA complete."
+    },
+    "freeNoteAcquisition": {
+      "complete": true,
+      "count": 2,
+      "manifest": "sidehustle-autopublish/note/free_drafts/materialization_20260824_batch01.json",
+      "source": "sidehustle-autopublish/note/free_drafts/2026-08-24_batch01.md",
+      "ids": [
+        "free_note_20260824_01_ai_hidden_work",
+        "free_note_20260824_02_emergency_three_lines"
+      ],
+      "assetState": "Standalone manuscript, verified paid-content bridge, tags, dedicated 1280x670 cover-generation metadata and active free queue contract complete."
+    },
+    "totalProduced": 12,
+    "totalTarget": 12,
+    "complete": true
+  },
+  "qa": {
+    "jsonValid": true,
+    "idsUniqueWithinEachChannel": true,
+    "freeQueueDuplicatePreventionReconciled": true,
+    "freePublisherRuntimeShaVerified": true,
+    "freePublisherSyntaxVerified": true,
+    "freeSourceExtractionVerified": true,
+    "pairedPaidIdsVerified": true,
+    "publicationNotConflatedWithProduction": true
+  },
+  "publicationStateAtCompletion": {
+    "paidNoteStrictVerified": 4,
+    "paidNoteTarget": 5,
+    "BOOTHStrictVerified": 0,
+    "BOOTHTarget": 5,
+    "newFreeNoteStrictVerified": 0,
+    "newFreeNoteTarget": 2,
+    "note": "Production is 12/12 complete. Publication remains a separate reader/buyer-visible gate."
+  }
+}

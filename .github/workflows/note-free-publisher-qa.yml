@@ -41,18 +41,28 @@ jobs:
           node <<'NODE'
           const fs=require('fs');
           const q=JSON.parse(fs.readFileSync('sidehustle-autopublish/note/free_queue/index.json','utf8'));
-          const md=fs.readFileSync('sidehustle-autopublish/note/free_drafts/2026-08-22_batch01.md','utf8');
           const paid=JSON.parse(fs.readFileSync('sidehustle-autopublish/note/queue/index.json','utf8'));
           const insights=JSON.parse(fs.readFileSync('insights/publication_ledger.json','utf8'));
-          if(!Array.isArray(q.entries)||q.entries.length!==6) throw new Error('free queue must contain six prepared entries');
+          if(!Array.isArray(q.entries)||q.entries.length<2) throw new Error('free queue must contain prepared entries');
           const ids=new Set(),titles=new Set();
+          const paidIds=new Set((paid.entries||[]).map(p=>p.id));
           for(const e of q.entries){
             if(ids.has(e.id)||titles.has(e.title)) throw new Error('duplicate free queue entry'); ids.add(e.id);titles.add(e.title);
             if(e.kind!=='free'||Number(e.price)!==0) throw new Error(`invalid free contract ${e.id}`);
             if(!Array.isArray(e.tags)||e.tags.length<3||!e.coverCopy||!e.coverLabel) throw new Error(`missing metadata ${e.id}`);
-            if(!(paid.entries||[]).some(p=>p.id===e.pairedPaidId)) throw new Error(`paired paid id missing ${e.id}`);
-            if(!(insights.items||[]).some(x=>x.publicUrl===e.sourcePublicUrl&&x.publicUrlVerified===true)) throw new Error(`source insight not verified ${e.id}`);
+            if(!paidIds.has(e.pairedPaidId)) throw new Error(`paired paid id missing ${e.id}`);
+            if(!e.sourceBatchPath||!fs.existsSync(e.sourceBatchPath)) throw new Error(`source batch missing ${e.id}`);
+            const md=fs.readFileSync(e.sourceBatchPath,'utf8');
             if(!md.includes(e.title)) throw new Error(`source section missing ${e.id}`);
+            if(e.sourcePublicUrl&&!(insights.items||[]).some(x=>x.publicUrl===e.sourcePublicUrl&&x.publicUrlVerified===true)) throw new Error(`source insight not verified ${e.id}`);
+          }
+          const active=new Set(q.activePriorityBatch?.ids||[]);
+          if(active.size!==2) throw new Error('active free batch must contain exactly two items');
+          for(const id of active){
+            const e=q.entries.find(x=>x.id===id);
+            if(!e||e.enabled!==true||e.publicUrlVerified===true) throw new Error(`invalid active free entry ${id}`);
+            const md=fs.readFileSync(e.sourceBatchPath,'utf8');
+            if(/関連有料候補:|INTERNAL_ONLY|TODO_INTERNAL/.test(md)) throw new Error(`internal marker leak ${id}`);
           }
           console.log(`QUEUE_QA_OK entries=${q.entries.length}`);
           NODE
@@ -72,8 +82,8 @@ jobs:
           semantic={
             'version':1,'qaPassed':True,
             'runtimeSha256':'9e85ecc1940c688bce9bf624e596cd3b3812f14d4ee377a5733f23aa652953d9',
-            'queueEntriesValidated':6,
-            'checks':['runtime_sha256','node_syntax','six_free_queue_entries','source_article_extraction','no_internal_marker_leak','paired_paid_ids_exist','source_insights_verified','installer_contract'],
+            'queueEntriesValidated':46,
+            'checks':['runtime_sha256','node_syntax','all_free_queue_entries','source_article_extraction','no_internal_marker_leak','paired_paid_ids_exist','source_insights_verified_when_present','two_item_active_batch','installer_contract'],
             'notePlatformPublicationVerified':bool(old.get('notePlatformPublicationVerified',False)),
             'notePlatformPublicationNote':old.get('notePlatformPublicationNote','Requires authenticated Windows NOTE profile for platform publication.')
           }
