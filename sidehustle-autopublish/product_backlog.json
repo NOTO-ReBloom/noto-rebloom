@@ -1,7 +1,7 @@
 {
-  "version": 26,
-  "updatedAt": "2026-08-24T19:28:49+09:00",
-  "purpose": "Execution backlog preserving paid floors/debt while building measurable free-to-paid funnels.",
+  "version": 27,
+  "updatedAt": "2026-08-24T21:35:30+09:00",
+  "purpose": "Execution backlog preserving paid floors/debt while building measurable free-to-paid funnels and evidence-gated winner amplification.",
   "evidenceLimit": "Platform-native note PV/likes/follows/related-paid-click/purchase/revenue metrics remain unavailable in authoritative state. No theme is a proven revenue winner or loser; missing values remain unknown.",
   "hardFloorSnapshot": {
     "date": "2026-08-24",
@@ -13,30 +13,51 @@
   "executionBacklog": [
     {"rank":1,"channel":"note","type":"2026-08-24_paid_floor_complete","items":[],"remaining":0,"nextAction":"Do not republish the five strict-verified Aug 24 paid notes."},
     {"rank":2,"channel":"BOOTH","type":"2026-08-24_current_paid_floor_complete","items":[],"remaining":0,"nextAction":"Do not republish BOOTH 029-033; all five buyer-visible products are strict verified."},
-    {"rank":3,"channel":"note","type":"2026-08-24_free_pair_complete","items":[{"id":"free_note_20260824_01_ai_hidden_work","title":"AIで自動化したのに仕事が減らない｜導入後に数える5つの「見えない作業」","pairedPaidId":"note_20260824_22_ai_ops_audit","publicUrl":"https://note.com/royal_lion645/n/ne0e2bcb5fb20"},{"id":"free_note_20260824_02_emergency_three_lines","title":"イベントの緊急連絡が遅れる理由｜事故・欠席・天候変更を3行で共有する型","pairedPaidId":"note_20260824_24_event_emergency_comms","publicUrl":"https://note.com/royal_lion645/n/n120c386ddd42"}],"remaining":0,"nextAction":"Do not republish either strict-verified Aug 24 free note; measure the pair at equal-age 24h, 72h and 7d windows when first-party data is available."},
-    {"rank":4,"channel":"note","type":"paid_funnel_deepening_cloud_batch","items":[{"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","value":"QA checklist, handoff matrix, acceptance criteria, reusable review sheet"},{"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","value":"evidence taxonomy, collection workflow, folder convention, reusable sponsor evidence pack"}],"nextAction":"Draft complete paid manuscripts after current paid floor is safe; keep them as future paid inventory, not replacements for today's already-defined floor."},
+    {"rank":3,"channel":"note","type":"2026-08-24_free_pair_complete","items":[{"id":"free_note_20260824_01_ai_hidden_work","title":"AIで自動化したのに仕事が減らない｜導入後に数える5つの「見えない作業」","pairedPaidId":"note_20260824_22_ai_ops_audit","publicUrl":"https://note.com/royal_lion645/n/ne0e2bcb5fb20"},{"id":"free_note_20260824_02_emergency_three_lines","title":"イベントの緊急連絡が遅れる理由｜事故・欠席・天候変更を3行で共有する型","pairedPaidId":"note_20260824_24_event_emergency_comms","publicUrl":"https://note.com/royal_lion645/n/n120c386ddd42"}],"remaining":0,"nextAction":"Do not republish either strict-verified Aug 24 free note; measure each free+paid pair at equal-age 24h, 72h and 7d windows when first-party data is available."},
+    {"rank":4,"channel":"note","type":"paid_funnel_deepening_cloud_batch","items":[{"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","value":"QA checklist, handoff matrix, acceptance criteria, reusable review sheet"},{"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","value":"evidence taxonomy, collection workflow, folder convention, reusable sponsor evidence pack"}],"nextAction":"Keep as future paid inventory. Do not promote either as winner-derived expansion until the parent cluster shows purchase or matched-age funnel evidence."},
     {"rank":5,"channel":"note","type":"equal_age_funnel_measurement","metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"windows":["24h","72h","7d"],"nextAction":"Capture actual first-party values when accessible and compare only equal-age windows; keep unavailable values null."},
-    {"rank":6,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"After paid-critical work is safe, complete every non-human submission prerequisite possible without inventing Partner Center identity or demand."},
-    {"rank":7,"channel":"GitHubPages","type":"measurement_support","nextAction":"Improve attribution and verified context-matched outbound links on useful existing surfaces; no thin SEO pages."}
+    {"rank":6,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"Continue submission completion only; no winner-derived variants until actual acquisition/install/usage evidence exists."},
+    {"rank":7,"channel":"GitHubPages","type":"measurement_support","nextAction":"Improve attribution and verified context-matched outbound links on useful existing surfaces; no thin SEO pages or winner claims without measured traffic/conversion."}
   ],
-  "noteFactoryConcreteSet": {
-    "publishNowPaid": [],
-    "draftFreeNext": ["free_next_ai_delegation_check","free_next_sponsor_report_numbers"],
-    "draftPaidNext": ["paid_next_ai_handoff_qa","paid_next_sponsor_evidence_pack"],
-    "instruction":"The Aug 24 cycle is complete. Keep all 12 verified entries disabled; next work must use a new explicitly dated batch and preserve free-versus-paid accounting separation."
-  },
+  "notePairAmplificationCandidates": [
+    {
+      "cluster":"AI operations / hidden work",
+      "freeId":"free_note_20260824_01_ai_hidden_work",
+      "paidId":"note_20260824_22_ai_ops_audit",
+      "winnerStatus":"unproven",
+      "observed": {"PV":null,"likes":null,"follows":null,"relatedPaidClicks":null,"relatedPaidPurchases":null,"revenue":null},
+      "amplificationIfGatePasses":["adjacent free search-intent satellites about AI delegation/checking/rework","paid implementation asset such as AI handoff QA template","possible Microsoft Store utility only if a concrete repeatable workflow can be productized without duplicative Store spam"],
+      "gate":"A verified paid purchase is a strong promotion signal. If free PV/engagement is strong but paid conversion is weak, optimize CTA/theme-match/value-gap/price before creating more derivatives.",
+      "cannibalizationRisk":"medium if adjacent paid articles overlap the same audit/checklist promise",
+      "productionCost":"medium",
+      "priority":"measurement-first"
+    },
+    {
+      "cluster":"event emergency communications",
+      "freeId":"free_note_20260824_02_emergency_three_lines",
+      "paidId":"note_20260824_24_event_emergency_comms",
+      "winnerStatus":"unproven",
+      "observed": {"PV":null,"likes":null,"follows":null,"relatedPaidClicks":null,"relatedPaidPurchases":null,"revenue":null},
+      "amplificationIfGatePasses":["adjacent free search-intent satellites for absence/weather/incident communication","BOOTH emergency communication template pack","possible lightweight Store utility only if real repeated usage demand is measured"],
+      "gate":"A verified paid purchase is a strong promotion signal. If free and paid are both weak after sufficient exposure, deprioritize instead of cloning title variants.",
+      "cannibalizationRisk":"low-to-medium if BOOTH pack clearly adds reusable assets beyond the article",
+      "productionCost":"low-to-medium",
+      "priority":"measurement-first"
+    }
+  ],
   "winnerCandidates": [],
   "evidenceReview": {
-    "reviewedAt":"2026-08-24T19:28:49+09:00",
+    "reviewedAt":"2026-08-24T21:35:30+09:00",
     "decision":"no_first_party_winner_yet",
-    "note":"Authoritative funnel metrics remain null, so no theme can be promoted as a proven winner or demoted as a loser. The Aug 24 designated free batch is strict verified 2/2 and must not be republished.",
-    "nextEvidenceGate":"At the first available matched-age 24h observation, record free and paired-paid PV/likes/follows/clicks/purchases/revenue. A verified paid purchase promotes the cluster for adjacent free search-intent satellites and deeper paid assets; weak free+paid response after sufficient exposure triggers deprioritization rather than title cloning."
+    "note":"The two Aug 24 free->paid pairs are now explicitly tracked as amplification candidates, but all platform-native funnel fields remain null. Neither cluster can be called a revenue winner, and no derivative should be promoted solely from publication status.",
+    "nextEvidenceGate":"At the first available matched-age 24h observation, record free and paired-paid PV/likes/follows/clicks/purchases/revenue. A verified paid purchase promotes the cluster for adjacent free search-intent satellites and deeper paid/BOOTH assets. Strong free response with weak paid conversion triggers CTA/value-gap/theme-match/price diagnosis before expansion. Weak free+paid response after sufficient exposure triggers deprioritization rather than cloning."
   },
   "rules": [
     "Previous-day paid debt outranks all discretionary work.",
     "Current-day paid quota outranks free funnel publishing and Microsoft Store work.",
     "Free production/publication never replaces paid debt/floor.",
     "Compare note free+paid pairs only at equal 24h/72h/7d post-publication ages.",
+    "Free-article response is a demand signal, not proof of revenue success.",
     "Do not invent PV, likes, follows, clicks, purchases, revenue, acquisitions, installs, retention or CVR.",
     "Do not mass-clone low-signal themes or cosmetic Store variants."
   ]
