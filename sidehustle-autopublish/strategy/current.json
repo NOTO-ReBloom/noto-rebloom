@@ -1,92 +1,61 @@
 {
-  "version": 34,
-  "updatedAt": "2026-08-24T22:30:00+09:00",
-  "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
+  "version": 35,
+  "updatedAt": "2026-08-25T05:46:00+09:00",
+  "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving paid publication debt/floors",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
-  "brandPositioning": {
-    "accountName": "ノウハウ共有おじさん",
-    "promise": "複雑な実務ノウハウを、初めての人が今日ひとつ動かせる形まで分解する",
-    "differentiation": "Keep the current practical clusters, but prefer the neglected last 20 percent of work: verification, exceptions, stop conditions, evidence, handoff, change history and recovery.",
-    "personaBoundary": "The account name is a friendly editorial persona only. Never invent age, career, qualifications, years of experience, customer results or first-person case histories.",
-    "blueOceanRule": "Treat relative competition gaps as dated hypotheses until matched-age first-party PV, click, purchase and revenue evidence exists.",
-    "researchBase": "sidehustle-autopublish/research/knowhow_ojisan/README.md",
-    "generationContract": "sidehustle-autopublish/research/knowhow_ojisan/generation_contract.json",
-    "topicQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
-    "articleFactory": "sidehustle-autopublish/research/knowhow_ojisan/mass_production_workflow.json",
-    "intentRegistry": "sidehustle-autopublish/research/knowhow_ojisan/intent_registry.json"
-  },
   "authoritativeState": {
-    "date": "2026-08-24",
-    "notePreviousDayPaidDebt": 0,
-    "noteTodayPaidFloor": 5,
-    "noteTodayStrictVerified": 5,
-    "noteTodayPaidRemaining": 0,
-    "boothCarriedPaidDebtFrom20260823": 0,
-    "boothTodayPaidFloor": 5,
-    "boothTodayStrictVerified": 5,
-    "boothTotalPaidRequired": 0,
-    "freeNoteExperimentalTarget": 2,
-    "freeNoteDate": "2026-08-24",
-    "freeNoteStrictVerified": 2,
-    "rule": "Only strict reader/buyer-visible verification changes paid quota/debt. Free note output never substitutes for paid quota/debt. Missing platform-native funnel metrics remain unknown."
+    "date": "2026-08-25",
+    "carriedPaidNoteDebt": 0,
+    "carriedBoothDebt": 0,
+    "todayPaidNoteFloor": 5,
+    "todayBoothFloor": 5,
+    "todayPaidNoteStrictVerified": 0,
+    "todayBoothStrictVerified": 0,
+    "todayFreeNoteStrictVerified": 0,
+    "rule": "Aug 24 closed strict verified at paid NOTE 5/5, BOOTH 5/5 and free NOTE 2/2. No Aug 25 item counts until new dated inventory is reader/buyer-visible verified. Missing sales/PV/CVR data remains unknown."
   },
   "allocationDecision": {
-    "rank1": "Do not republish any of the 12 designated 2026-08-24 items; paid NOTE 5/5, BOOTH 5/5 and free NOTE 2/2 are strict verified.",
-    "rank2": "Capture first-party note and BOOTH sales/funnel metrics at equal-age windows before changing themes, pricing or cadence.",
-    "rank3": "Keep the free-note acquisition experiment at 2/day until matched-age first-party 24h/72h/7d metrics exist; the current designated free pair is already strict verified 2/2 and must not be republished.",
-    "rank4": "Cloud-batch the next note free+paid funnel set from the ノウハウ共有おじさん research queue so the factory can produce complete manuscripts efficiently without mixing accounting roles.",
-    "rank5": "Advance Microsoft Store CSV Cleaner & Duplicate Remover submission prerequisites after paid-floor-critical work is safe.",
-    "rank6": "GitHub Pages work remains measurement/attribution support and independently useful tools; no thin SEO mass production."
+    "rank1": "Materialize a fresh Aug 25 paid NOTE batch of five and a fresh Aug 25 BOOTH batch of five from researched non-duplicate intents; strict public verification remains the completion gate.",
+    "rank2": "Use ko_grant_02_daily_evidence_match as the first cross-channel production cluster because it is research-ready, operationally distinct from the prior grant application tracker, and supports paid NOTE plus reusable BOOTH artifact. This is an opportunity hypothesis, not a proven winner.",
+    "rank3": "Prepare the next two free NOTE manuscripts as acquisition experiments, but keep publication at the existing 2/day experimental cadence and never let free output substitute for paid quota.",
+    "rank4": "Capture matched-age first-party note funnel and BOOTH sales metrics when accessible. Do not change prices, CTA architecture, or call any theme a winner while these values are unavailable.",
+    "rank5": "Continue CSV Cleaner & Duplicate Remover Microsoft Store submission prerequisites after paid-floor-critical inventory is safe; do not create cosmetic variants without acquisition/install evidence.",
+    "rank6": "Keep GitHub Pages work limited to independently useful tools and measurable attribution; no thin SEO mass production."
+  },
+  "aug25ProductionSeed": {
+    "primaryCluster": {
+      "opportunityId": "ko_grant_02_daily_evidence_match",
+      "freeTitle": "補助金の領収書を箱に入れるだけでは足りない｜1経費につなぐ5つの証拠",
+      "paidTitle": "採択後の証憑不足を月末まで持ち越さない｜発注から支払までの照合フロー",
+      "boothTitle": "補助金 証憑照合OS｜発注・納品・検収・支払・成果を1行管理",
+      "artifact": "1経費1行の証憑対応表と不足警告",
+      "status": "approved_for_materialization_after_duplicate_and_source_freshness_gate"
+    },
+    "nextPaidNoteCandidates": ["ko_event_01_authority_transfer", "ko_org_01_access_handover", "ko_research_01_exclusion_log", "ko_creator_01_release_qa"],
+    "nextBoothCandidates": ["ko_event_01_authority_transfer", "ko_org_01_access_handover", "ko_research_01_exclusion_log", "ko_creator_01_release_qa"],
+    "freeExperimentCandidates": ["ko_grant_02_daily_evidence_match", "ko_ai_01_acceptance_criteria"],
+    "guardrail": "Queue rank is not demand proof. Recheck direct competition, semantic duplication, source freshness and current platform requirements before build."
   },
   "noteFunnel": {
-    "source": "sidehustle-autopublish/note/funnel_strategy.json",
-    "status": "24h_gate_passed_metrics_unavailable",
+    "status": "measurement_first_no_first_party_values",
     "firstPartyMetrics": {"PV": null, "likes": null, "follows": null, "relatedPaidClicks": null, "relatedPaidPurchases": null, "revenue": null},
     "measurementWindows": ["24h", "72h", "7d"],
-    "decisionRule": "Compare free+paid pairs only at equal post-publication ages. Do not infer winners, CTA uplift, price effects or conversions from visibility. A related paid purchase is a strong winner signal; weak free+paid response after sufficient exposure is a deprioritization signal.",
-    "freeCadence": "2/day remains an experimental starting value for 14 days, not a hard quota.",
-    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use independently reader-visible verified paid URLs."
+    "freeCadence": "2/day experimental starting value; not a hard quota and not authorized to increase without comparable evidence",
+    "ctaRule": "one exact-intent paid CTA after standalone useful free content; only verified reader-visible paid URLs",
+    "priceDecision": "hold current prices until observed purchase/conversion evidence or a strong current market reason supports a controlled test"
   },
-  "nextNoteFactoryBatch": {
-    "date": "2026-08-24",
-    "paidPublishNow": [],
-    "freePublishNow": [],
-    "publishedFreePair": [
-      {"id":"free_note_20260824_01_ai_hidden_work","title":"AIで自動化したのに仕事が減らない｜導入後に数える5つの「見えない作業」","publicUrl":"https://note.com/royal_lion645/n/ne0e2bcb5fb20"},
-      {"id":"free_note_20260824_02_emergency_three_lines","title":"イベントの緊急連絡が遅れる理由｜事故・欠席・天候変更を3行で共有する型","publicUrl":"https://note.com/royal_lion645/n/n120c386ddd42"}
-    ],
-    "freePublishCurrentExperiment": "Complete 2/2 and disabled; do not republish either Aug 24 free NOTE item.",
-    "freeDraftNext": [
-      {"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"free problem diagnosis + search/discovery","researchBriefId":"ko_ai_01_acceptance_criteria","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"},
-      {"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"free quick checklist + paid prequalification","researchBriefId":"ko_sponsor_01_evidence_pack","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"}
-    ],
-    "paidDraftNextAfterFloor": [
-      {"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","role":"paid deep implementation + reusable QA/handoff asset","researchBriefId":"ko_ai_01_acceptance_criteria","pairedFreeIntent":"AI delegation boundary / post-AI quality control"},
-      {"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","role":"paid full workflow + reusable evidence pack","researchBriefId":"ko_sponsor_01_evidence_pack","pairedFreeIntent":"minimum sponsor-report metrics / evidence collection"}
-    ],
-    "batchInstruction": "The Aug 24 paid floor is complete. Build the next free and paid manuscript inventory without re-enabling completed Aug 24 queue entries; free manuscripts never count toward paid quota/debt."
+  "winnerAmplification": {
+    "winnerCandidates": [],
+    "rule": "A verified paid purchase is a strong promotion signal. Strong free response with weak paid conversion triggers CTA/theme-match/value-gap/price diagnosis before derivatives. Weak free+paid response after sufficient exposure triggers deprioritization."
   },
-  "booth": {
-    "carriedDebt": 0,
-    "todayPaidFloor": 5,
-    "todayStrictVerified": 5,
-    "todayNewIds": ["029_ai_workflow_audit_os_20260824","030_sponsor_outcome_report_os_20260824","031_event_emergency_comms_os_20260824","032_survey_aggregation_audit_os_20260824","033_digital_offer_validation_os_20260824"],
-    "instruction": "All five 2026-08-24 products are strict buyer-visible verified. Keep 029-033 disabled and do not republish them."
+  "microsoftStore": {
+    "currentPriority": "CSV Cleaner & Duplicate Remover submission completion",
+    "nextAction": "Complete every non-human submission prerequisite possible after paid-floor-critical work is safe; preserve highest-quality UI, stability, privacy, Store assets and testing gates; do not invent Store demand metrics."
   },
-  "microsoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion","nextAction":"After paid floor-critical work is safe, complete every non-human submission prerequisite possible; do not invent live Store demand metrics."},
-  "githubPages": {"instruction":"Keep existing pages independently useful and measurable; prioritize attribution and context-matched outbound links; no thin SEO mass production."},
-  "researchBacklog": {
-    "sourceRegistry": "sidehustle-autopublish/research/knowhow_ojisan/source_registry.json",
-    "opportunityMap": "sidehustle-autopublish/research/knowhow_ojisan/opportunity_map.json",
-    "productionQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
-    "articleArchetypes": "sidehustle-autopublish/research/knowhow_ojisan/article_archetypes.json",
-    "keywordMatrix": "sidehustle-autopublish/research/knowhow_ojisan/keyword_matrix.json",
-    "seasonalityCalendar": "sidehustle-autopublish/research/knowhow_ojisan/seasonality_calendar.json",
-    "sourceQueryPlaybook": "sidehustle-autopublish/research/knowhow_ojisan/source_query_playbook.json",
-    "productionSeedRoutes": "sidehustle-autopublish/research/knowhow_ojisan/production_seed_routes.json",
-    "counts": {"sources": 50, "opportunities": 40, "rankedNext": 24, "articleArchetypes": 18, "rawKeywordCombinations": 1536, "articleRoutes": 80, "publishedIntentsRegistered": 21},
-    "instruction": "Research inventory increases source-ready and draft capacity only. It does not authorize extra publication or prove demand. Run semantic duplication, source freshness and direct-competition gates before every build."
+  "githubPages": {
+    "instruction": "Use existing useful surfaces for attribution and context-matched verified outbound links. Build a new tool only when it has standalone utility and a measurable route into a relevant paid asset."
   },
-  "dataIntegrity": "No winner, loser, conversion uplift or revenue claim is made without observed first-party evidence."
+  "dataIntegrity": "No winner, loser, conversion uplift, revenue, acquisition, install or retention claim without observed first-party evidence.",
+  "notificationPolicy": "No user notification for this morning cycle unless every profitable route is blocked by a proven human-only action. Daily consolidated report only at the designated nightly reporting cycle."
 }
