@@ -1,6 +1,6 @@
 {
-  "version": 23,
-  "updatedAt": "2026-08-24T07:07:08+09:00",
+  "version": 24,
+  "updatedAt": "2026-08-24T10:12:40+09:00",
   "activeRecovery": {
     "date": "2026-08-23",
     "carriedIntoDate": "2026-08-24",
@@ -21,7 +21,7 @@
       "028_team_backup_coverage_os_20260823",
       "025_event_decision_authority_os_20260823"
     ],
-    "priority": "2026-08-23 batch in order, then return to recoverable failures; never route to legacy 009 or unrelated new production while this carried paid debt remains",
+    "priority": "2026-08-23 batch first; after a brief recoverable failure switch to the next required item, then return to held current-day items; never route to legacy 009 or unrelated production while debt remains",
     "queueRetryGeneration": 35,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260823_batch01.json",
     "cloudQa": {
@@ -44,12 +44,19 @@
       "downloadableProductState",
       "purchaseOrCartPath"
     ],
-    "consumerInstruction": "Process all five carried 2026-08-23 BOOTH items in one Windows-available recovery session. One strict success is never a stopping condition. After a brief recoverable failure, preserve the same payload/SHA and move immediately to the next current-day item; after the first pass return to held current-day items. Count only buyer-visible pages passing every required check. Do not infer public URLs from admin/editor state. Midnight does not clear this debt.",
+    "expectedPricesJPY": {
+      "024_grant_evidence_expense_os_20260823": 1380,
+      "025_event_decision_authority_os_20260823": 1280,
+      "026_research_claim_evidence_os_20260823": 1480,
+      "027_sponsor_contact_history_os_20260823": 1380,
+      "028_team_backup_coverage_os_20260823": 1180
+    },
+    "consumerInstruction": "Process all five carried 2026-08-23 BOOTH items in one Windows-available recovery session. One strict success is never a stopping condition. Preserve payload/SHA on recoverable failures, move to the next current-day item, then return to held IDs until all five are in the canonical BOOTH ledger. Count only buyer-visible pages passing every strict buyer check. Do not infer public URLs from admin/editor state. Midnight does not clear this debt.",
     "doNotFallbackToFreeWeb": true,
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forcedRecoveryAt": "2026-08-24T07:07:08+09:00",
-    "forceRetryNonce": "carry-20260823-booth-20260824T070708+0900"
+    "forcedRecoveryAt": "2026-08-24T10:12:40+09:00",
+    "forceRetryNonce": "carry-20260823-booth-20260824T101240+0900"
   },
   "windowsResumeContract": {
     "sourceQueue": "booth-autopublish/queue/index.json",
@@ -69,15 +76,8 @@
       "028_team_backup_coverage_os_20260823",
       "025_event_decision_authority_os_20260823"
     ],
-    "expectedPricesJPY": {
-      "024_grant_evidence_expense_os_20260823": 1380,
-      "025_event_decision_authority_os_20260823": 1280,
-      "026_research_claim_evidence_os_20260823": 1480,
-      "027_sponsor_contact_history_os_20260823": 1380,
-      "028_team_backup_coverage_os_20260823": 1180
-    },
-    "afterRecoverableFailure": "mark candidate retryable, preserve payload/SHA, move to next required 2026-08-23 candidate without ending run",
-    "afterFirstPass": "return to any held 2026-08-23 candidates until ledger contains all five required IDs",
+    "afterRecoverableFailure": "mark candidate retryable, preserve payload/SHA, move to the next required 2026-08-23 candidate without ending run",
+    "afterFirstPass": "return to held 2026-08-23 candidates until ledger contains all five required IDs",
     "strictSuccessOnly": true,
     "strictSuccessChecks": [
       "buyerVisibleUrl",
@@ -106,14 +106,14 @@
     ]
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-24T07:07:08+09:00",
+    "checkedAt": "2026-08-24T10:12:40+09:00",
     "windowsPublisherReachable": false,
     "notePaidFloor": "2026-08-23 5/5 strict verified",
-    "boothStrictFloor": "2026-08-23 0/5; carried unpaid publication debt remains 5 across midnight",
+    "boothStrictFloor": "2026-08-23 0/5; carried paid publication debt remains 5",
     "materializationQa": "5/5 complete",
     "ledgerCurrentDayEntries": 0,
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "At next Windows availability, immediately consume 026,027,024,028,025; switch past brief recoverable failures; return to held IDs until all five are present in canonical BOOTH ledger. Do not start legacy 009, free NOTE, GitHub Pages, new paid candidates, or Microsoft Store expansion before paid BOOTH 5/5."
+    "nextAction": "At next Windows availability, immediately consume 026,027,024,028,025; switch past brief recoverable failures; return to held IDs until all five are present in the canonical BOOTH ledger. Do not start legacy 009, free NOTE, GitHub Pages, new paid candidates, or Microsoft Store expansion before paid BOOTH 5/5."
   },
   "heldForLaterStrictReverification": {
     "queueId": "007_thesis_progress_os_20260820",
