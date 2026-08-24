@@ -1,6 +1,6 @@
 {
-  "version": 30,
-  "updatedAt": "2026-08-24T11:42:36+09:00",
+  "version": 31,
+  "updatedAt": "2026-08-24T17:47:10+09:00",
   "objective": "maximize cumulative profit while preserving paid publication floors/debt and building a measurable free-to-paid note funnel",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -15,13 +15,14 @@
     "boothTodayStrictVerified": 0,
     "boothTotalPaidRequired": 5,
     "freeNoteExperimentalTarget": 2,
-    "freeNoteStrictVerified": 2,
+    "freeNoteCurrentBatchStrictVerified": 0,
+    "freeNotePriorDesignatedPairStrictVerified": 2,
     "rule": "Only strict reader/buyer-visible verification changes paid quota/debt. Free note output never substitutes for paid quota/debt. Missing platform-native funnel metrics remain unknown."
   },
   "allocationDecision": {
     "rank1": "Finish and strict-verify the one remaining 2026-08-24 paid note: note_20260824_26_digital_product_offer_design.",
     "rank2": "Publish and strict-verify all five completed 2026-08-24 BOOTH products 029-033; queue/materialization success is not publication.",
-    "rank3": "Keep the free-note acquisition experiment at 2/day until matched-age first-party 24h/72h/7d metrics exist; the current designated free pair is already strict verified 2/2 and must not be republished.",
+    "rank3": "Continue the designated 2026-08-24 free-note acquisition pair only within the 2/day 14-day experiment; current batch is publication-pending and free output never offsets paid debt.",
     "rank4": "Cloud-batch the next note free+paid funnel set so the factory can produce complete manuscripts efficiently without mixing accounting roles.",
     "rank5": "Advance Microsoft Store CSV Cleaner & Duplicate Remover submission prerequisites after paid-floor-critical work is safe.",
     "rank6": "GitHub Pages work remains measurement/attribution support and independently useful tools; no thin SEO mass production."
@@ -33,27 +34,22 @@
     "measurementWindows": ["24h", "72h", "7d"],
     "decisionRule": "Compare free+paid pairs only at equal post-publication ages. Do not infer winners, CTA uplift, price effects or conversions from visibility. A related paid purchase is a strong winner signal; weak free+paid response after sufficient exposure is a deprioritization signal.",
     "freeCadence": "2/day remains an experimental starting value for 14 days, not a hard quota.",
-    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use independently reader-visible verified paid URLs.",
-    "externalEvidenceChecked20260824": [
-      "note IR states more than 70% of posted articles are free and describes free content as an acquisition/advertising engine that supports paid-content revenue.",
-      "note officially supports paid articles, paid magazines, memberships and subscription magazines; memberships provide recurring revenue potential.",
-      "note reported generative-AI referral traffic materially above search-traffic expectations in a prior joint study, supporting useful searchable free content as a discovery asset, but this is not evidence that any current user theme is a winner."
-    ]
+    "ctaRule": "At most one exact-intent paid CTA after standalone useful free content; only use independently reader-visible verified paid URLs."
   },
   "nextNoteFactoryBatch": {
-    "date": "2026-08-24",
     "paidPublishNow": [
       {"id":"note_20260824_26_digital_product_offer_design","title":"デジタル商品が売れない原因を価格だけにしない｜誰に何を約束するかを決める商品設計ワーク","role":"paid implementation + reusable offer canvas","status":"materialized; strict publication pending"}
     ],
+    "freePublishCurrentExperiment": "Use only the designated 2026-08-24 AI-workflow and emergency-communication acquisition pair already present in the free queue; strict reader verification is still pending according to publication_quota.json v37.",
     "freeDraftNext": [
-      {"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"free problem diagnosis + search/discovery","publicationInstruction":"draft now in cloud batch; publish only within current 2/day experiment cadence"},
-      {"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"free quick checklist + paid prequalification","publicationInstruction":"draft now in cloud batch; publish only within current 2/day experiment cadence"}
+      {"id":"free_next_ai_delegation_check","title":"AIに任せる仕事・任せない仕事をどう分ける？｜小規模チーム向け5分チェック","pairedPaidId":"note_20260824_22_ai_ops_audit","role":"free problem diagnosis + search/discovery","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"},
+      {"id":"free_next_sponsor_report_numbers","title":"協賛企業への活動報告で最低限入れたい5つの数字｜豪華な報告書より先に決めること","pairedPaidId":"note_20260824_23_sponsor_report_kpi","role":"free quick checklist + paid prequalification","publicationInstruction":"draft in cloud batch; do not publish above current experiment cadence"}
     ],
     "paidDraftNextAfterFloor": [
       {"id":"paid_next_ai_handoff_qa","title":"AIに仕事を渡した後の確認漏れをなくす｜小規模チームのAI引き継ぎ・検品テンプレート","role":"paid deep implementation + reusable QA/handoff asset","pairedFreeIntent":"AI delegation boundary / post-AI quality control"},
       {"id":"paid_next_sponsor_evidence_pack","title":"協賛報告の証拠が散らばる問題をなくす｜写真・数値・掲載実績を1回でまとめる証拠パック設計","role":"paid full workflow + reusable evidence pack","pairedFreeIntent":"minimum sponsor-report metrics / evidence collection"}
     ],
-    "batchInstruction": "Factory should complete manuscripts in one cloud batch in this order: remaining paid floor publication asset check -> two free companion manuscripts -> two deeper paid manuscripts. Free manuscripts never count toward paid quota/debt and should not be published above the 2/day experiment without evidence."
+    "batchInstruction": "Factory order: remaining paid floor publication asset -> current designated free pair publication recovery within experiment cadence -> two future free companion manuscripts -> two deeper paid manuscripts. Free manuscripts never count toward paid quota/debt."
   },
   "booth": {
     "carriedDebt": 0,
