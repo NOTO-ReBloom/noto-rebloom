@@ -1,81 +1,83 @@
 {
-  "version": 36,
-  "updatedAt": "2026-08-25T17:42:50+09:00",
-  "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving paid publication debt/floors",
+  "version": 37,
+  "updatedAt": "2026-08-26T00:16:59+09:00",
+  "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving strict paid publication floors and minimizing user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "authoritativeState": {
-    "date": "2026-08-25",
+    "date": "2026-08-26",
     "carriedPaidNoteDebt": 0,
     "carriedBoothDebt": 0,
     "todayPaidNoteFloor": 5,
     "todayBoothFloor": 5,
+    "todayFreeNoteTarget": 2,
     "todayPaidNoteStrictVerified": 0,
     "todayBoothStrictVerified": 0,
     "todayFreeNoteStrictVerified": 0,
-    "paidNoteMaterialized": 5,
-    "boothMaterialized": 5,
-    "freeNoteMaterialized": 2,
     "humanOnlyBlocker": null,
-    "rule": "Aug 25 inventory is fully materialized in cloud state, but no current-day item counts until reader/buyer-visible strict verification. Missing sales/PV/CVR/acquisition/install values remain unknown."
+    "planningManifest": "sidehustle-autopublish/planning/2026-08-26_batch01.json",
+    "rule": "No Aug 26 item counts until its full reader/buyer-visible strict checks pass. Queue state, commit state, local publisher exit 0, editor/admin URLs and inferred metrics do not count."
   },
   "allocationDecision": {
-    "rank1": "Consume and strict-verify the five enabled Aug 25 paid NOTE entries; do not count queue state or local publisher success.",
-    "rank2": "Consume and strict-verify the five enabled Aug 25 BOOTH entries; preserve buyer-visible title, price, downloadable-product and purchase-path checks.",
-    "rank3": "After paid-floor-critical items are moving, publish and strict-verify the two prepared free NOTE acquisition experiments; free output never substitutes for paid quota.",
-    "rank4": "Capture matched-age first-party note funnel, BOOTH sales and Microsoft Store acquisition/install metrics when accessible. Keep unavailable values null and do not infer winners.",
-    "rank5": "Continue CSV Cleaner & Duplicate Remover Microsoft Store submission prerequisites only after the Aug 25 paid publication floor is no longer at risk.",
-    "rank6": "Keep GitHub Pages limited to independently useful, attributable tools and links; no thin SEO mass production."
+    "rank1": "Materialize the five Aug 26 paid NOTE items, five BOOTH kits and two free NOTE acquisition items from the current-day planning manifest, with non-duplication QA, dedicated covers/previews, encryption, SHA and queue integrity.",
+    "rank2": "When Windows is available, consume current-day queue through C:\\SIDEHUSTLE_AUTO and strict-verify all public pages; switch candidates after brief recoverable failures rather than ending the run.",
+    "rank3": "If public URL discovery fails after a publish action, reconcile editor key/API/profile/title before any retry so an already-public item is not duplicated.",
+    "rank4": "After the strict daily publication gate is complete, capture first-party note/BOOTH/Microsoft Store metrics where actually accessible and improve funnel/CVR/price only from observed evidence.",
+    "rank5": "Continue Microsoft Store CSV Cleaner & Duplicate Remover submission prerequisites after paid-floor-critical work is safe; no quality shortcuts.",
+    "rank6": "Keep GitHub Pages limited to independently useful, attributable tools and verified outbound funnels; no thin SEO mass production."
   },
-  "aug25ProductionState": {
-    "paidNoteManifest": "sidehustle-autopublish/note/staging/materialization_20260825_batch01.json",
-    "boothManifest": "booth-autopublish/monitor/cloud_materialization_20260825_batch01.json",
+  "aug26ProductionState": {
+    "planningManifest": "sidehustle-autopublish/planning/2026-08-26_batch01.json",
     "paidNoteIds": [
-      "note_20260825_27_grant_evidence_match",
-      "note_20260825_28_event_authority_transfer",
-      "note_20260825_29_access_handover",
-      "note_20260825_30_research_exclusion_log",
-      "note_20260825_31_creator_release_qa"
+      "note_20260826_32_event_cancellation_decision_log",
+      "note_20260826_33_sponsor_benefit_inventory",
+      "note_20260826_34_volunteer_shift_handover",
+      "note_20260826_35_research_consent_version_control",
+      "note_20260826_36_digital_support_triage"
     ],
     "boothIds": [
-      "034_grant_evidence_match_os_20260825",
-      "035_event_authority_transfer_os_20260825",
-      "036_access_handover_os_20260825",
-      "037_research_exclusion_log_os_20260825",
-      "038_creator_release_qa_os_20260825"
+      "039_event_cancellation_decision_log_os_20260826",
+      "040_sponsor_benefit_inventory_os_20260826",
+      "041_volunteer_shift_handover_os_20260826",
+      "042_research_consent_version_control_os_20260826",
+      "043_digital_support_triage_os_20260826"
     ],
     "freeNoteIds": [
-      "free_note_20260825_01_grant_evidence_match",
-      "free_note_20260825_02_ai_acceptance_criteria"
+      "free_note_20260826_01_event_cancel_signals",
+      "free_note_20260826_02_support_faq_boundary"
     ],
-    "status": "materialized_waiting_for_authenticated_windows_publication_and_strict_public_verification"
+    "status": "planned_materialization_pending",
+    "publicationCounted": 0
   },
   "noteFunnel": {
-    "status": "measurement_first_no_first_party_values",
-    "firstPartyMetrics": {
-      "PV": null,
-      "likes": null,
-      "follows": null,
-      "relatedPaidClicks": null,
-      "relatedPaidPurchases": null,
-      "revenue": null
-    },
-    "measurementWindows": ["24h", "72h", "7d"],
-    "freeCadence": "2/day experimental starting value; not a hard quota and not authorized to increase without comparable evidence",
+    "status": "measurement_first_no_invented_values",
+    "firstPartyMetrics": {"PV":null,"likes":null,"follows":null,"relatedPaidClicks":null,"relatedPaidPurchases":null,"revenue":null},
+    "measurementWindows": ["24h","72h","7d"],
+    "freeCadence": "2/day current experimental target; free never substitutes for paid publication floor",
     "ctaRule": "one exact-intent paid CTA after standalone useful free content; only verified reader-visible paid URLs",
-    "priceDecision": "hold current prices until observed purchase/conversion evidence or a strong current market reason supports a controlled test"
+    "priceDecision": "Use expected prices from the current planning batch until observed purchase/conversion evidence supports a controlled change."
   },
   "winnerAmplification": {
     "winnerCandidates": [],
-    "rule": "A verified paid purchase is a strong promotion signal. Strong free response with weak paid conversion triggers CTA/theme-match/value-gap/price diagnosis before derivatives. Weak free+paid response after sufficient exposure triggers deprioritization."
+    "rule": "No winner claim without observed first-party evidence. A verified paid purchase is a strong promotion signal; weak conversion after sufficient exposure triggers diagnosis before derivatives."
   },
   "microsoftStore": {
     "currentPriority": "CSV Cleaner & Duplicate Remover submission completion",
-    "nextAction": "Complete every non-human submission prerequisite possible after paid-floor-critical work is safe; preserve highest-quality UI, stability, privacy, Store assets and testing gates; do not invent Store demand metrics."
+    "nextAction": "Complete every non-human submission prerequisite possible after current-day strict publication floor risk is controlled; preserve highest-quality UI, stability, privacy, Store assets and testing gates; do not invent Store demand metrics."
   },
-  "githubPages": {
-    "instruction": "Use existing useful surfaces for attribution and context-matched verified outbound links. Build a new tool only when it has standalone utility and a measurable route into a relevant paid asset."
+  "windowsPublisher": {
+    "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
+    "policy": "Do not proliferate date-specific ZIP/CMD runners or treat Downloads/temporary folders as authoritative. Repair or replace the canonical runner in place and centralize logs under C:\\SIDEHUSTLE_AUTO\\logs.",
+    "repairOrder": [
+      "queue/ledger/SHA/retryGeneration/nonce/payload schema/state consistency",
+      "dependencies/Playwright/Node/browser profile/private-key references",
+      "note selectors/cover upload/public URL discovery/anonymous verification",
+      "free NOTE raw cache-busting",
+      "BOOTH publisher candidate preflight rather than first-folder selection",
+      "safe rollback to last strict-publication-known-good publisher when only newest build fails",
+      "remove only current-target defer/lock that blocks a successful retry"
+    ]
   },
   "dataIntegrity": "No winner, loser, conversion uplift, revenue, acquisition, install or retention claim without observed first-party evidence.",
-  "notificationPolicy": "No user notification for this non-nightly cycle unless every profitable route is blocked by a proven human-only action. Daily consolidated report only at the designated nightly reporting cycle."
+  "notificationPolicy": "No user notification during ordinary cycles. Consolidated nightly report only at the designated nightly cycle, except a proven human-only blocker requiring exactly one minimal action."
 }
