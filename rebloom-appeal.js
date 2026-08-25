@@ -8,10 +8,10 @@
      their copy, arrows, spacing and the rest of the page remain unchanged. */
   if(body.classList.contains('nr-new-home')){
     const photos=[
-      ['field-overview.webp','能登の農地のイメージ'],
-      ['event-tug.webp','泥ん子運動会で綱引きを楽しむイメージ'],
-      ['team-reboost.webp','学生や関係者が集まるイメージ'],
-      ['home-step4-next.webp','活動を次につなげるイメージ']
+      ['home-step1-generated.webp','農地を見ながら現地で話すイメージ'],
+      ['home-step2-generated.webp','泥ん子運動会で競技を楽しむイメージ'],
+      ['home-step3-generated.webp','子ども・大人・学生・地域の人が集まるイメージ'],
+      ['home-step4-generated.webp','活動を次につなげるイメージ']
     ];
 
     const applyPhotos=()=>{
@@ -21,7 +21,7 @@
         const pane=card.querySelector('.rb-glance-ill');
         if(!pane)return;
         const [src,alt]=photos[i];
-        pane.innerHTML=`<img src="${src}?v=20260825cards1" alt="${alt}" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit">`;
+        pane.innerHTML=`<img src="${src}?v=20260825generated2" alt="${alt}" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit">`;
         pane.classList.add('rb-glance-ill--photo');
       });
       return true;
