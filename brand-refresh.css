@@ -157,10 +157,269 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
   padding-top:16px;
 }
 
+/* =========================================================
+   2026-08-25 PHOTO-FIRST SITE REFRESH
+   Flyer direction: strong documentary photos, restrained shapes,
+   bold readable type, white/cream paper and one purple accent.
+   ========================================================= */
+:root{
+  --photo-paper:#fbfaf6;
+  --photo-paper-2:#f3f0e9;
+  --photo-ink:#171717;
+  --photo-muted:#5e5e59;
+  --photo-line:#dedbd3;
+  --photo-purple:#8f42c9;
+  --photo-purple-dark:#6d2ea4;
+  --photo-shadow:0 16px 42px rgba(25,25,20,.10);
+}
+
+/* Remove decorative blobs/doodles that compete with the photographs. */
+body::before,
+.page-hero::after,
+.hero::after,
+.page-hero-grid::after,
+.motif::before,
+.motif::after,
+.motif>.container>.section-heading::after,
+.hero-media::before,
+.hero-media::after,
+body.rb-unified .nr-sponsor-feature--spotlight::after{display:none!important}
+
+body{
+  background:var(--photo-paper)!important;
+  color:var(--photo-ink)!important;
+}
+body p{color:var(--photo-muted)}
+
+/* Header: clean, compact, non-floating-looking. */
+.site-header{
+  top:10px!important;
+  border:1px solid rgba(24,24,20,.10)!important;
+  border-radius:18px!important;
+  background:rgba(255,255,252,.96)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.08)!important;
+}
+.site-nav a[aria-current="page"]{background:var(--photo-ink)!important;color:#fff!important}
+.btn--green,.nr-btn--purple{background:var(--photo-purple)!important;color:#fff!important}
+.btn--green:hover,.nr-btn--purple:hover{background:var(--photo-purple-dark)!important}
+.headline-marker{color:var(--photo-purple)!important}
+.eyebrow{color:var(--photo-ink)!important;letter-spacing:.12em!important}
+.eyebrow::before{background:var(--photo-purple)!important}
+
+/* Photographs are now the primary visual language. */
+.photo-frame{
+  padding:0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(20,20,18,.10)!important;
+  border-radius:20px!important;
+  background:#fff!important;
+  box-shadow:var(--photo-shadow)!important;
+  transform:none!important;
+}
+.photo-frame img{
+  width:100%!important;
+  aspect-ratio:4/3;
+  object-fit:cover!important;
+  border-radius:0!important;
+}
+.photo-frame figcaption{
+  position:static!important;
+  display:block!important;
+  padding:12px 15px 14px!important;
+  background:#fff!important;
+  color:#333!important;
+  font-size:12px!important;
+}
+
+/* Home: flyer-like hierarchy, large venue photo, no sticker art. */
+.nr-home-hero{
+  padding-top:140px!important;
+  background:linear-gradient(180deg,#fff 0%,var(--photo-paper) 100%)!important;
+}
+.nr-home-hero .hero-grid{grid-template-columns:minmax(0,.85fr) minmax(460px,1.15fr)!important;gap:clamp(34px,5vw,70px)!important}
+.nr-home-hero h1{
+  color:var(--photo-ink)!important;
+  font-family:"Noto Sans JP",sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.055em!important;
+  line-height:1.13!important;
+}
+.nr-home-hero .hero-lead{font-weight:650!important;line-height:1.85!important}
+.nr-home-hero .photo-frame img{aspect-ratio:16/11!important;min-height:430px!important}
+.nr-hero-brand-badge{
+  top:18px!important;left:18px!important;
+  width:74px!important;min-height:90px!important;
+  padding:8px!important;border-radius:14px!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.10)!important;
+  transform:none!important;
+}
+.nr-hero-brand-badge img{max-width:54px!important;max-height:70px!important}
+.status-chips span{background:#fff!important;border:1px solid var(--photo-line)!important;color:#242424!important}
+
+/* Photo mosaics: behave like an editorial photo spread. */
+.visual-mosaic-section{background:#fff!important;padding:84px 0!important}
+.visual-mosaic-wrap{width:min(1180px,calc(100% - 48px))!important;margin-inline:auto!important}
+.visual-mosaic-head{margin-bottom:28px!important}
+.visual-mosaic{
+  display:grid!important;
+  grid-template-columns:1.35fr .85fr .85fr!important;
+  gap:16px!important;
+}
+.visual-tile{
+  position:relative!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:18px!important;
+  background:#111!important;
+  box-shadow:none!important;
+}
+.visual-tile img{width:100%!important;height:100%!important;min-height:310px!important;object-fit:cover!important;filter:none!important}
+.visual-tile:first-child img{min-height:420px!important}
+.visual-label{
+  position:absolute!important;top:14px!important;left:14px!important;z-index:3!important;
+  padding:7px 9px!important;border-radius:8px!important;background:rgba(0,0,0,.72)!important;
+  color:#fff!important;font-size:10px!important;letter-spacing:.14em!important;
+}
+.visual-tile figcaption{
+  position:absolute!important;left:0!important;right:0!important;bottom:0!important;z-index:2!important;
+  padding:42px 16px 15px!important;
+  background:linear-gradient(transparent,rgba(0,0,0,.76))!important;
+  color:#fff!important;font-size:12px!important;line-height:1.55!important;
+}
+
+/* Event page: stronger poster hierarchy and confirmed competition cards. */
+.nr-new-event .page-hero--event{
+  background:#fff!important;
+  padding-top:138px!important;
+  padding-bottom:72px!important;
+}
+.nr-new-event .page-hero-grid{grid-template-columns:minmax(0,.82fr) minmax(470px,1.18fr)!important;gap:clamp(30px,5vw,68px)!important}
+.nr-new-event .page-hero h1{
+  font-family:"Noto Sans JP",sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.06em!important;
+  line-height:1.02!important;
+  font-size:clamp(58px,7vw,96px)!important;
+  color:#151515!important;
+}
+.nr-new-event .page-hero .photo-frame img{aspect-ratio:16/10!important;min-height:440px!important}
+.nr-new-event .hero-sticker-note{
+  display:inline-block!important;margin-top:24px!important;padding:10px 14px!important;
+  border-radius:8px!important;background:#f2d449!important;color:#151515!important;
+  font-weight:900!important;box-shadow:none!important;transform:none!important;
+}
+.event-summary{background:var(--photo-paper-2)!important;padding:20px 0!important}
+.summary-grid{border-radius:14px!important;border-color:var(--photo-line)!important;background:var(--photo-line)!important;box-shadow:none!important}
+.summary-grid div{background:#fff!important;padding:16px!important}
+.summary-grid span{color:#777!important}.summary-grid b{color:#171717!important}
+
+.nr-new-event .game-grid--confirmed{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+.nr-new-event .game-grid--confirmed article{
+  min-height:280px!important;
+  display:flex!important;flex-direction:column!important;justify-content:flex-end!important;
+  position:relative!important;overflow:hidden!important;
+  padding:22px!important;border:0!important;border-radius:18px!important;
+  box-shadow:none!important;background:#1d1d1b!important;color:#fff!important;
+}
+.nr-new-event .game-grid--confirmed article::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:center/cover no-repeat url("field-detail.webp");
+  filter:saturate(.85) contrast(1.04);
+}
+.nr-new-event .game-grid--confirmed article:nth-child(2)::before{background-image:url("field-overview.webp")}
+.nr-new-event .game-grid--confirmed article:nth-child(3)::before{background-image:url("team-reboost.webp")}
+.nr-new-event .game-grid--confirmed article:nth-child(4)::before{background-image:url("field-detail.webp")}
+.nr-new-event .game-grid--confirmed article:nth-child(5)::before{background-image:url("team-presentation.webp")}
+.nr-new-event .game-grid--confirmed article::after{
+  content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.05) 28%,rgba(0,0,0,.82) 100%);
+}
+.nr-new-event .game-grid--confirmed article>*{position:relative;z-index:2}
+.nr-new-event .game-grid--confirmed span{font-size:16px!important;color:#fff!important;opacity:.8}
+.nr-new-event .game-grid--confirmed h3{margin-top:7px!important;color:#fff!important;font-family:"Noto Sans JP",sans-serif!important;font-weight:900!important}
+.nr-new-event .game-grid--confirmed p{margin-top:7px!important;color:rgba(255,255,255,.84)!important;font-size:13px!important;line-height:1.65!important}
+.nr-new-event .callout{border-left:0!important;border-radius:14px!important;background:#f2d449!important;box-shadow:none!important}
+
+/* Replace the old illustration-heavy renge presentation with a clean text treatment. */
+.nr-new-event .section--mint .split-story{grid-template-columns:1fr!important;max-width:900px!important;margin-inline:auto!important}
+.nr-new-event .section--mint .photo-frame{display:none!important}
+.nr-new-event #event-visual .visual-tile:nth-child(3){display:none!important}
+.nr-new-event #event-visual .visual-mosaic{grid-template-columns:1.2fr .8fr!important}
+
+/* Safety/FAQ: practical information, no decorative symbols. */
+.check-list>div,.faq-card,.definition-card,.cause-grid article,.event-values article,.nr-value-grid article{
+  border:1px solid var(--photo-line)!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+.check-list span,.event-values span,.cause-grid span{
+  border-radius:8px!important;background:var(--photo-purple)!important;color:#fff!important;
+}
+.section--paper{background:var(--photo-paper-2)!important}
+.section--mint{background:#f7f5fb!important}
+.section--soil{background:#242220!important}
+
+/* Learn page: documentary land story, not an infographic. */
+.page-learn .page-hero--learn{background:#fff!important}
+.page-learn .page-hero h1{font-family:"Noto Sans JP",sans-serif!important;font-weight:900!important;letter-spacing:-.05em!important}
+.page-learn .definition-grid,.page-learn .cause-grid,.page-learn .event-values{gap:12px!important}
+.page-learn .definition-card span{background:#eee9f5!important;color:#5d356f!important}
+.page-learn .data-grid article{border:0!important;border-top:4px solid var(--photo-purple)!important;border-radius:0!important;background:transparent!important}
+.page-learn .data-grid strong{color:var(--photo-ink)!important;font-family:"Noto Sans JP",sans-serif!important;font-weight:900!important}
+.page-learn .section--soil .photo-frame img{aspect-ratio:16/10!important}
+
+/* Partner page: put people and official logos first; remove ad-like decoration. */
+.nr-new-partner .page-hero--partner{background:#fff!important}
+.nr-new-partner .page-hero h1{font-family:"Noto Sans JP",sans-serif!important;font-weight:900!important;letter-spacing:-.05em!important}
+.nr-new-partner .nr-main-sponsor,
+.nr-new-partner .industry-partner-card{
+  border:1px solid var(--photo-line)!important;border-radius:16px!important;background:#fff!important;box-shadow:none!important;
+}
+.nr-new-partner .nr-sponsor-logo,.nr-new-partner .industry-partner-logo{background:#fff!important;border:1px solid #ece9e2!important;border-radius:12px!important}
+.nr-new-partner .nr-value-prop{background:var(--photo-paper-2)!important}
+.nr-new-partner .nr-value-grid article span{color:var(--photo-purple)!important}
+
+/* Diagnosis stays playful in function, but visually uses the same clean system. */
+.page-diagnosis .page-hero,.nr-new-diagnosis .page-hero{background:#fff!important}
+.diagnosis-intro,.diagnosis-start-card,.diagnosis-panel,.diagnosis-result,.result-card{
+  border-color:var(--photo-line)!important;border-radius:16px!important;box-shadow:none!important;
+}
+.diagnosis-start-card{background:#f6f1fb!important}
+.diagnosis-answer,.quiz-choice{border-color:var(--photo-line)!important;border-radius:12px!important;box-shadow:none!important}
+
+/* Global typography and spacing. */
+.section-heading h2,.split-story h2,.field-copy h2,.team-story h2,.partner-why h2,.transparent-grid h2,.honest-grid h2,.prep-grid h2,.play-card h2{
+  font-family:"Noto Sans JP",sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.045em!important;
+  color:var(--photo-ink)!important;
+}
+.section--soil h2,.section--soil p{color:#fff!important}
+.btn{border-radius:10px!important;box-shadow:none!important}
+.btn:hover{transform:translateY(-1px)!important}
+.nr-choice,.action-card,.way-card,.plan-card{
+  border-radius:16px!important;box-shadow:none!important;border-color:var(--photo-line)!important;
+}
+.site-footer{background:#1f1e1c!important}
+
+@media(max-width:1050px){
+  .nr-home-hero .hero-grid,.nr-new-event .page-hero-grid{grid-template-columns:1fr!important}
+  .nr-home-hero .hero-media,.nr-new-event .page-hero .photo-frame{max-width:850px!important;width:100%!important;margin-inline:auto!important}
+  .nr-new-event .game-grid--confirmed{grid-template-columns:repeat(3,1fr)!important}
+  .visual-mosaic{grid-template-columns:1fr 1fr!important}
+  .visual-tile:first-child{grid-column:1/-1!important}
+}
+
 @media(max-width:820px){
-  .nr-hero-brand-badge{top:14px;left:14px;width:82px;min-height:96px;border-radius:18px}
-  .nr-hero-brand-badge img{max-width:62px;max-height:78px}
+  .nr-hero-brand-badge{top:14px;left:14px;width:68px!important;min-height:82px!important;border-radius:12px!important}
+  .nr-hero-brand-badge img{max-width:48px!important;max-height:62px!important}
   .ishimo-collaboration-mark{min-height:300px!important}
+  .visual-mosaic-wrap{width:min(100% - 28px,1180px)!important}
+  .nr-new-event .game-grid--confirmed{grid-template-columns:repeat(2,1fr)!important}
 }
 
 @media(max-width:700px){
@@ -168,18 +427,27 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
 }
 
 @media(max-width:600px){
-  .nr-hero-brand-badge{top:10px;left:10px;width:68px;min-height:80px;padding:7px 6px;border-radius:15px}
-  .nr-hero-brand-badge img{max-width:50px;max-height:64px}
+  .site-header{top:7px!important;border-radius:14px!important}
+  .nr-home-hero,.nr-new-event .page-hero--event{padding-top:116px!important}
+  .nr-home-hero h1,.nr-new-event .page-hero h1{font-size:clamp(42px,13vw,58px)!important}
+  .nr-home-hero .photo-frame img,.nr-new-event .page-hero .photo-frame img{min-height:300px!important;aspect-ratio:4/3!important}
+  .nr-hero-brand-badge{top:9px!important;left:9px!important;width:58px!important;min-height:70px!important;padding:6px!important}
+  .nr-hero-brand-badge img{max-width:42px!important;max-height:54px!important}
   .ishimo-collaboration-mark{min-height:270px!important;padding:22px!important}
   .ishimo-collaboration-logo--ishimo{max-width:260px!important;max-height:96px!important}
   .ishimo-collaboration-logo--rebloom{max-width:94px!important;max-height:112px!important}
-  body.rb-unified .nr-sponsor-feature--spotlight::after{top:24px;right:8px;width:84px;height:98px;opacity:.055}
   body.rb-unified .nr-sponsor-logo--gyakuten{min-height:112px!important;padding:22px 18px!important}
   body.rb-unified .nr-sponsor-logo--gyakuten .gyakuten-official-logo{width:min(100%,210px)!important;max-width:210px!important;max-height:60px!important}
   .industry-partner-logo--hamonz img{max-width:220px!important;max-height:68px!important}
   .industry-partner-logo--zukan img{width:170px!important;transform:scale(1.55)}
   .industry-partner-logo--kanazawa-port img{max-width:250px!important;max-height:80px!important}
   .industry-partner-logo{height:112px;min-height:112px;flex-basis:112px}
+  .visual-mosaic{grid-template-columns:1fr!important}
+  .visual-tile:first-child{grid-column:auto!important}
+  .visual-tile img,.visual-tile:first-child img{min-height:280px!important}
+  .nr-new-event #event-visual .visual-mosaic{grid-template-columns:1fr!important}
+  .nr-new-event .game-grid--confirmed{grid-template-columns:1fr!important}
+  .nr-new-event .game-grid--confirmed article{min-height:250px!important}
 }
 
 @media(max-width:360px){
