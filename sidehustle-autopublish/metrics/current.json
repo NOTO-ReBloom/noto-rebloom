@@ -1,23 +1,23 @@
 {
-  "version": 22,
-  "updatedAt": "2026-08-25T16:01:39+09:00",
-  "objective": "maximize total sales while enforcing the current 2026-08-24 strict paid publication floors before unrelated production and minimizing user intervention",
+  "version": 23,
+  "updatedAt": "2026-08-25T16:05:00+09:00",
+  "objective": "maximize total sales while enforcing the 2026-08-25 paid NOTE 5 and BOOTH 5 strict publication floors, plus the designated free NOTE pair, before unrelated production",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
     "notePaidQueue": "sidehustle-autopublish/note/queue/index.json",
     "notePaidReceipts": "sidehustle-autopublish/note/publication_receipts/",
-    "noteMaterialization": "sidehustle-autopublish/note/staging/materialization_20260824_batch01.json",
+    "noteMaterialization": "sidehustle-autopublish/note/staging/materialization_20260825_batch01.json",
     "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
     "noteFreeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
     "boothQueue": "booth-autopublish/queue/index.json",
     "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
-    "boothMaterialization": "booth-autopublish/monitor/cloud_materialization_20260824_batch01.json",
+    "boothMaterialization": "booth-autopublish/monitor/cloud_materialization_20260825_batch01.json",
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
     "date": "2026-08-25",
-    "observedAt": "2026-08-25T16:01:39+09:00",
+    "observedAt": "2026-08-25T16:05:00+09:00",
     "previousDate": "2026-08-24",
     "previousDayPaidNoteStrictVerified": "5/5",
     "previousDayBoothStrictVerified": "5/5",
@@ -31,65 +31,43 @@
       "strictVerified": 0,
       "remaining": 5,
       "materialized": 5,
-      "remainingIds": [
-        "note_20260825_27_grant_evidence_match",
-        "note_20260825_28_event_authority_transfer",
-        "note_20260825_29_access_handover",
-        "note_20260825_30_research_exclusion_log",
-        "note_20260825_31_creator_release_qa"
-      ]
+      "remainingIds": ["note_20260825_27_grant_evidence_match", "note_20260825_28_event_authority_transfer", "note_20260825_29_access_handover", "note_20260825_30_research_exclusion_log", "note_20260825_31_creator_release_qa"]
     },
     "BOOTH": {
       "target": 5,
       "strictVerified": 0,
       "remaining": 5,
       "materialized": 5,
-      "remainingIds": [
-        "034_grant_evidence_match_os_20260825",
-        "035_event_authority_transfer_os_20260825",
-        "036_access_handover_os_20260825",
-        "037_research_exclusion_log_os_20260825",
-        "038_creator_release_qa_os_20260825"
-      ]
+      "remainingIds": ["034_grant_evidence_match_os_20260825", "035_event_authority_transfer_os_20260825", "036_access_handover_os_20260825", "037_research_exclusion_log_os_20260825", "038_creator_release_qa_os_20260825"]
     },
     "freeNote": {
       "target": 2,
       "strictVerified": 0,
       "remaining": 2,
-      "remainingIds": [
-        "free_note_20260825_01_grant_evidence_match",
-        "free_note_20260825_02_ai_acceptance_criteria"
-      ],
+      "materialized": 2,
+      "remainingIds": ["free_note_20260825_01_grant_evidence_match", "free_note_20260825_02_ai_acceptance_criteria"],
       "paidQuotaContribution": 0
     },
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
-    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
-    "freeNote": "2 manuscripts queued; no public count yet",
+    "paidNote": "Five Aug 25 encrypted payloads passed cloud materialization QA; none count until strict reader-visible publication verification.",
+    "BOOTH": "Five Aug 25 encrypted product ZIP payloads passed cloud QA; none count until strict buyer-visible verification.",
+    "freeNote": "Two Aug 25 manuscripts are prepared and queued; none count until strict reader-visible free verification.",
+    "previousDay": "2026-08-24 closed 5/5 paid NOTE, 5/5 BOOTH and 2/2 free NOTE with zero paid debt carried into Aug 25.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-24T19:28:49+09:00",
-    "windowsPublisherReachableFromThisRun": true,
-    "cloudRepairsApplied": [
-      "Reconciled stale metrics/current.json from the completed 2026-08-23 recovery to the authoritative 2026-08-24 completion gate and publication quota.",
-      "Reconciled NOTE 2026-08-24 at 5/5 strict verified and disabled all completed Aug 24 paid note queue entries.",
-      "Reconciled BOOTH 2026-08-24 at 5/5 strict verified and disabled verified queue entries 024-033 to prevent repeated browser openings.",
-      "Reconfirmed NOTE materialization 5/5 complete with encrypted payloads, dedicated covers, SHA and prices.",
-      "Reconfirmed BOOTH materialization 5/5 complete with encrypted payload ZIP, product.json, product.zip, preview01.jpg and queue SHA QA.",
-      "Reconciled both designated Aug 24 free NOTE publications from strict Windows reader verification and disabled their queue entries to prevent duplicate publication.",
-      "Preserved current-day-before-legacy ordering, recoverable-failure switching, strict public verification requirements and legacy 009/note_20260820_05 deferral.",
-      "No human-only blocker evidence was found."
-    ],
-    "nextWindowsAction": "None for the Aug 24 work cycle. Keep completed NOTE/BOOTH queue entries and looping schedulers disabled; do not republish any of the 12 verified items."
+    "checkedAt": "2026-08-25T16:05:00+09:00",
+    "cloudMaterializationComplete": true,
+    "windowsAuthenticatedPublisherRequiredForPublicPosting": true,
+    "nextWindowsAction": "Consume all enabled Aug 25 paid NOTE, BOOTH and free NOTE entries now; continue until all 12 are strict public verified or a genuine human-only blocker occurs."
   },
   "rules": [
-    "Do not infer public URLs, sales, PV, likes, acquisitions or conversions.",
-    "Do not reduce paid publication floors or erase debt without strict public verification.",
-    "Do not count queue insertion, commit, local publisher success, editor/admin URL or old-item reverification as current-day publication.",
-    "Do not notify on intermediate success; notify only after required completion or a human-only blocker is proven to stop every remaining route.",
-    "Do not route to legacy blockers, GitHub Pages, new paid candidates or unrelated production while any designated 2026-08-24 paid target remains incomplete."
+    "Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.",
+    "Do not reduce paid publication floors without strict public verification.",
+    "Do not stop after the first success while any designated Aug 25 item remains.",
+    "Keep legacy note_20260820_05 and BOOTH 009 deferred until the Aug 25 work cycle is complete.",
+    "Do not invent public URLs, sales, PV, likes, acquisitions or conversions."
   ]
 }
