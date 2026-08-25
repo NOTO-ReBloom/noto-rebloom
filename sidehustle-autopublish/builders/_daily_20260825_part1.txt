@@ -1,0 +1,48 @@
+from pathlib import Path
+import base64, hashlib, io, json, os, zipfile
+from datetime import datetime, timezone, timedelta
+from PIL import Image, ImageDraw, ImageFont
+from cryptography.hazmat.primitives import serialization, hashes
+from cryptography.hazmat.primitives.asymmetric import padding as asym_padding
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+
+ROOT=Path(__file__).resolve().parents[2]
+PLAN=json.loads((Path(__file__).parent/"daily_plan_20260825.json").read_text("utf-8"))
+DATE=PLAN["date"]; DID=PLAN["dateId"]; PAID=PLAN["paid"]; FREE=PLAN["free"]; BOOTH=PLAN["booth"]
+JST=timezone(timedelta(hours=9)); now=datetime.now(JST).replace(microsecond=0); stamp=now.isoformat(); nonce=now.strftime("%Y%m%dT%H%M%S+0900")
+NQ=ROOT/"sidehustle-autopublish/note/queue"; NS=ROOT/"sidehustle-autopublish/note/staging"; FQ=ROOT/"sidehustle-autopublish/note/free_queue"; FD=ROOT/"sidehustle-autopublish/note/free_drafts"; BQ=ROOT/"booth-autopublish/queue"; BM=ROOT/"booth-autopublish/monitor"
+for p in [NQ,NS,FQ,FD,BQ,BM]: p.mkdir(parents=True,exist_ok=True)
+pub=serialization.load_pem_public_key((ROOT/"booth-autopublish/public/device_public_key.pem").read_bytes())
+
+def enc_json(obj):
+    plain=json.dumps(obj,ensure_ascii=False,separators=(",",":")).encode(); key=os.urandom(32); iv=os.urandom(12)
+    sealed=AESGCM(key).encrypt(iv,plain,None); ct,tag=sealed[:-16],sealed[-16:]
+    wrapped=pub.encrypt(key,asym_padding.OAEP(mgf=asym_padding.MGF1(hashes.SHA256()),algorithm=hashes.SHA256(),label=None))
+    env={"version":1,"alg":"AES-256-GCM+RSA-OAEP-SHA256","wrappedKey":base64.b64encode(wrapped).decode(),"iv":base64.b64encode(iv).decode(),"tag":base64.b64encode(tag).decode(),"ciphertext":base64.b64encode(ct).decode()}
+    return json.dumps(env,separators=(",",":")).encode()
+
+def font(size,bold=False):
+    for p in ["/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc" if bold else "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc","/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"]:
+        if Path(p).exists(): return ImageFont.truetype(p,size)
+    return ImageFont.load_default()
+
+def preview(p):
+    im=Image.new("RGB",(1200,675),(247,249,252)); d=ImageDraw.Draw(im); accent=(31,58,96)
+    d.rectangle((0,0,1200,14),fill=accent); d.rounded_rectangle((55,55,1145,620),radius=25,fill="white",outline=(222,226,234),width=2)
+    d.text((100,92),"OFFLINE WORKFLOW TOOL",font=font(24,True),fill=accent); y=145; line=""; f=font(38,True)
+    for ch in p["title"].split("｜")[0]:
+        if d.textbbox((0,0),line+ch,font=f)[2]<930: line+=ch
+        else: d.text((100,y),line,font=f,fill=(28,35,48)); y+=50; line=ch
+    if line:d.text((100,y),line,font=f,fill=(28,35,48)); y+=75
+    for b in ["検索・編集・状態フィルタ・CSV・JSONバックアップ","ブラウザ内保存／外部送信なし",p["help"]]:
+        d.ellipse((103,y+8,116,y+21),fill=accent); cur=""; yy=y; bf=font(22)
+        for ch in b:
+            if d.textbbox((0,0),cur+ch,font=bf)[2]<860:cur+=ch
+            else:d.text((135,yy),cur,font=bf,fill=(65,72,86));yy+=30;cur=ch
+        if cur:d.text((135,yy),cur,font=bf,fill=(65,72,86));yy+=30
+        y=yy+10
+    o=io.BytesIO(); im.save(o,"JPEG",quality=72,optimize=True,progressive=True); return o.getvalue()
+
+def app(p):
+    cfg=json.dumps({"id":p["id"],"fields":[{"key":k,"label":l,"type":t} for k,l,t in p["fields"]]},ensure_ascii=False)
+    return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{p["title"]}</title><style>*{{box-sizing:border-box}}body{{margin:0;background:#f5f7fa;color:#1f2937;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}}header{{background:#fff;border-bottom:1px solid #e5e7eb;padding:22px}}.wrap{{max-width:1180px;margin:auto}}h1{{font-size:24px;margin:0 0 8px}}.lead{{color:#667085;line-height:1.75}}main{{padding:22px}}.summary{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}}.metric,.card{{background:white;border:1px solid #e4e7ec;border-radius:14px;padding:16px}}.metric b{{font-size:28px;display:block}}.grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}}label{{font-size:13px;font-weight:700}}input,select,textarea{{width:100%;padding:9px;border:1px solid #d0d5dd;border-radius:8px;margin-top:5px;font:inherit}}textarea{{min-height:72px}}button,.file{{padding:9px 12px;border-radius:8px;border:1px solid #d0d5dd;background:#fff;font-weight:650;cursor:pointer}}button.primary{{background:#25385f;color:white}}.tools{{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}}table{{width:100%;border-collapse:collapse;min-width:1000px}}th,td{{padding:9px;border-bottom:1px solid #eaecf0;font-size:13px;text-align:left;vertical-align:top}}.scroll{{overflow:auto}}@media(max-width:800px){{.grid,.summary{{grid-template-columns:1fr}}}}</style></head><body><header><div class="wrap"><h1>{p["title"]}</h1><div class="lead">{p["help"]}<br>データはこのブラウザ内に保存され、外部へ送信しません。秘密情報そのものは入力せず、保管先や所有者を記録してください。</div></div></header><main class="wrap"><div class="summary"><div class="metric">記録数<b id="count">0</b></div><div class="metric">未完・要確認<b id="open">0</b></div><div class="metric">最終更新<b id="updated" style="font-size:16px">-</b></div></div><section class="card"><div id="form" class="grid"></div><div class="tools"><button class="primary" id="save">保存</button><button id="clear">入力クリア</button></div></section><section class="card"><div class="grid"><label>検索<input id="search" placeholder="全文検索"></label><label>状態絞り込み<select i
