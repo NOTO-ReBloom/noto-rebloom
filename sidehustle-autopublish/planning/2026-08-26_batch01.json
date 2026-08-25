@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "createdAt": "2026-08-26T00:16:59+09:00",
+  "date": "2026-08-26",
+  "status": "planned_for_zero_touch_materialization",
+  "selectionPolicy": "Avoid substantive duplication with prior published inventory; prioritize reusable operational pain points with clear paid utility and free-to-paid funnel fit.",
+  "paidNote": [
+    {
+      "id": "note_20260826_32_event_cancellation_decision_log",
+      "title": "中止判断を『なんとなく』で残さない｜イベントの延期・中止を説明できる意思決定ログ",
+      "expectedPriceJPY": 1180,
+      "pairedBoothId": "039_event_cancellation_decision_log_os_20260826",
+      "priorityReason": "Event organizers need defensible weather/safety/cost decision records; useful as both know-how and reusable template."
+    },
+    {
+      "id": "note_20260826_33_sponsor_benefit_inventory",
+      "title": "協賛メニューが毎回ゼロからになる人へ｜スポンサー特典を棚卸しして再利用する設計",
+      "expectedPriceJPY": 1180,
+      "pairedBoothId": "040_sponsor_benefit_inventory_os_20260826",
+      "priorityReason": "Moves sponsor operations from one-off proposals to reusable inventory; strong template fit."
+    },
+    {
+      "id": "note_20260826_34_volunteer_shift_handover",
+      "title": "ボランティア交代のたびに説明し直さない｜現場シフトを止めない引継ぎカードの作り方",
+      "expectedPriceJPY": 980,
+      "pairedBoothId": "041_volunteer_shift_handover_os_20260826",
+      "priorityReason": "Distinct from generic organizational handover: focuses on same-day shift continuity and safety-critical field operations."
+    },
+    {
+      "id": "note_20260826_35_research_consent_version_control",
+      "title": "調査同意書を更新したのに旧版が混ざる事故を防ぐ｜研究書類の版管理ルール",
+      "expectedPriceJPY": 1180,
+      "pairedBoothId": "042_research_consent_version_control_os_20260826",
+      "priorityReason": "Specific research operations problem with compliance and reproducibility value; distinct from literature-selection content."
+    },
+    {
+      "id": "note_20260826_36_digital_support_triage",
+      "title": "デジタル商品を売った後の問い合わせで消耗しない｜購入者サポートを3段階で仕分ける運用",
+      "expectedPriceJPY": 1180,
+      "pairedBoothId": "043_digital_support_triage_os_20260826",
+      "priorityReason": "Extends creator workflow beyond release QA into post-purchase satisfaction and support cost reduction."
+    }
+  ],
+  "booth": [
+    {"id":"039_event_cancellation_decision_log_os_20260826","expectedPriceJPY":980,"productType":"downloadable operational template kit"},
+    {"id":"040_sponsor_benefit_inventory_os_20260826","expectedPriceJPY":1280,"productType":"downloadable sponsor-benefit inventory workbook"},
+    {"id":"041_volunteer_shift_handover_os_20260826","expectedPriceJPY":780,"productType":"downloadable shift handover card kit"},
+    {"id":"042_research_consent_version_control_os_20260826","expectedPriceJPY":980,"productType":"downloadable research document version-control kit"},
+    {"id":"043_digital_support_triage_os_20260826","expectedPriceJPY":980,"productType":"downloadable buyer-support triage kit"}
+  ],
+  "freeNote": [
+    {
+      "id": "free_note_20260826_01_event_cancel_signals",
+      "title": "イベント中止を考え始める前に決めたい5つの判断材料",
+      "pairedPaidId": "note_20260826_32_event_cancellation_decision_log"
+    },
+    {
+      "id": "free_note_20260826_02_support_faq_boundary",
+      "title": "購入者から同じ質問が3回来たら見直したい｜FAQに入れる内容・入れない内容",
+      "pairedPaidId": "note_20260826_36_digital_support_triage"
+    }
+  ],
+  "requiredQaBeforeQueue": [
+    "substantive non-duplication check against prior ledger",
+    "standalone buyer usefulness",
+    "paid NOTE free/paid boundary",
+    "dedicated cover or preview plan",
+    "price-value consistency",
+    "encrypted payload integrity and SHA before queue enablement"
+  ],
+  "nextAction": "Materialize article bodies, product files, dedicated covers/previews, encrypted payloads and queue entries; do not count this planning artifact as publication."
+}
