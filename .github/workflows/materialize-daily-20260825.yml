@@ -1,0 +1,51 @@
+name: Materialize daily paid/free inventory 2026-08-25
+
+on:
+  push:
+    paths:
+      - 'sidehustle-autopublish/builders/materialize_daily_20260825.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-cjk
+          python -m pip install --upgrade pip
+          pip install cryptography pillow
+      - name: Materialize Aug 25 inventory
+        run: python sidehustle-autopublish/builders/materialize_daily_20260825.py
+      - name: Commit generated encrypted inventory and state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            sidehustle-autopublish/note/queue \
+            sidehustle-autopublish/note/staging/materialization_20260825_batch01.json \
+            sidehustle-autopublish/note/free_queue/index.json \
+            sidehustle-autopublish/note/free_drafts/2026-08-25_batch01.md \
+            booth-autopublish/queue \
+            booth-autopublish/monitor/cloud_materialization_20260825_batch01.json \
+            booth-autopublish/monitor/recovery_control.json \
+            sidehustle-autopublish/completion_gate.json \
+            sidehustle-autopublish/publication_quota.json \
+            sidehustle-autopublish/metrics/current.json \
+            sidehustle-autopublish/windows_publication_request.json
+          if git diff --cached --quiet; then
+            echo 'No generated changes'
+          else
+            git commit -m 'Materialize 2026-08-25 daily publication inventory'
+            git push
+          fi
