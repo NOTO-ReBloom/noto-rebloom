@@ -1,17 +1,17 @@
 {
-  "version": 7,
-  "updatedAt": "2026-08-25T16:01:39+09:00",
+  "version": 8,
+  "updatedAt": "2026-08-25T16:04:00+09:00",
   "status": "in_progress_0_of_12",
   "completedAt": null,
   "completionEvidence": null,
-  "purpose": "2026-08-25: complete only after all 12 designated publications are strict verified.",
+  "purpose": "2026-08-25 work cycle is complete only after all 12 designated publications are strict public verified.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
     "diagnosticOnlyReports": false,
     "queueOrCommitOnlyReports": false,
     "reportOnlyWhen": [
-      "all 12 designated 2026-08-24 work-cycle publications are strict verified",
-      "or a verified human-only blocker prevents all remaining required current-day publication work and exactly one minimal user action is needed"
+      "all 12 designated 2026-08-25 publications are strict verified",
+      "or a verified human-only blocker prevents all remaining current-day publication paths and exactly one minimal user action is needed"
     ]
   },
   "completionConditions": {
@@ -25,13 +25,7 @@
         "note_20260825_30_research_exclusion_log",
         "note_20260825_31_creator_release_qa"
       ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "paidBoundary",
-        "dedicatedCover"
-      ]
+      "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
     },
     "BOOTH": {
       "date": "2026-08-25",
@@ -43,13 +37,7 @@
         "037_research_exclusion_log_os_20260825",
         "038_creator_release_qa_os_20260825"
       ],
-      "strictChecks": [
-        "buyerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "downloadableProductState",
-        "purchaseOrCartPath"
-      ]
+      "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
     "noteFree": {
       "date": "2026-08-25",
@@ -58,12 +46,7 @@
         "free_note_20260825_01_grant_evidence_match",
         "free_note_20260825_02_ai_acceptance_criteria"
       ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "freeState",
-        "dedicatedCover"
-      ],
+      "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
       "paidQuotaContribution": 0
     }
   },
@@ -72,38 +55,22 @@
     "switchCandidatesAfterBriefRecoverableFailure": true,
     "doNotStopAfterFirstSuccessWhileCurrentDayTargetsRemain": true,
     "currentDayBeforeLegacyBlockers": true,
-    "legacyBlockersDeferred": [
-      "note_20260820_05",
-      "009_handover_os_20260820"
-    ],
-    "whenWindowsUnavailable": [
-      "queue/ledger reconciliation",
-      "SHA verification",
-      "publisher compatibility repair",
-      "strict recovery control repair"
-    ],
+    "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
+    "whenWindowsUnavailable": ["queue and ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
     "nextWindowsPriority": [
-      "No Aug 24 publication recovery remains",
-      "Keep all completed paid NOTE, free NOTE and BOOTH entries disabled",
-      "Keep looping schedulers disabled until a separately reviewed automation repair is ready"
+      "Publish all five 2026-08-25 paid NOTE entries and strict verify each public page",
+      "Publish all five 2026-08-25 BOOTH entries and strict verify buyer-visible pages",
+      "Publish both 2026-08-25 free NOTE entries and strict verify reader-visible free pages",
+      "Do not stop after the first success while any of the 12 remain"
     ]
   },
-  "humanOnlyBlockers": [
-    "re-login",
-    "2FA",
-    "CAPTCHA",
-    "identity verification",
-    "legal declaration",
-    "tax/payment setup",
-    "OS permission"
-  ],
+  "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],
   "antiFalseCompletion": [
     "Do not report a commit as publication.",
-    "Do not report PUBLISH_SUCCESS without public verification.",
-    "Do not report an editor/admin URL as publication.",
+    "Do not report local publisher success without public verification.",
+    "Do not report an editor or admin URL as publication.",
     "Do not reduce paid debt based on free content.",
     "Do not invent public URLs.",
-    "Do not count legacy reverification as a new current-day publication.",
-    "Do not send intermediate status to the user."
+    "Do not count historical reverification as a new current-day publication."
   ]
 }
