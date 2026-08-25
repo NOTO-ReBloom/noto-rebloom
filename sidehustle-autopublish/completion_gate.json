@@ -1,9 +1,9 @@
 {
-  "version": 8,
-  "updatedAt": "2026-08-25T16:04:00+09:00",
-  "status": "in_progress_0_of_12",
-  "completedAt": null,
-  "completionEvidence": null,
+  "version": 9,
+  "updatedAt": "2026-08-25T17:49:08+09:00",
+  "status": "completed_12_of_12",
+  "completedAt": "2026-08-25T17:49:08+09:00",
+  "completionEvidence": "sidehustle-autopublish/receipts/2026-08-25_publication_complete.json",
   "purpose": "2026-08-25 work cycle is complete only after all 12 designated publications are strict public verified.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
@@ -50,6 +50,20 @@
       "paidQuotaContribution": 0
     }
   },
+  "completionCounts": {
+    "notePaid": 5,
+    "BOOTH": 5,
+    "noteFree": 2,
+    "total": 12
+  },
+  "duplicateControl": {
+    "free_note_20260825_02_ai_acceptance_criteria": {
+      "canonicalPublicUrl": "https://note.com/royal_lion645/n/n8b606f20f944",
+      "duplicateVerifiedPublicUrl": "https://note.com/royal_lion645/n/ne2fadd15115d",
+      "countOnce": true,
+      "instruction": "Do not republish this target. Duplicate cleanup is separate and must not create a third copy."
+    }
+  },
   "executionPolicy": {
     "singleRunMayPublishMany": true,
     "switchCandidatesAfterBriefRecoverableFailure": true,
@@ -58,10 +72,8 @@
     "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
     "whenWindowsUnavailable": ["queue and ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
     "nextWindowsPriority": [
-      "Publish all five 2026-08-25 paid NOTE entries and strict verify each public page",
-      "Publish all five 2026-08-25 BOOTH entries and strict verify buyer-visible pages",
-      "Publish both 2026-08-25 free NOTE entries and strict verify reader-visible free pages",
-      "Do not stop after the first success while any of the 12 remain"
+      "Do not republish any 2026-08-25 target already listed in the completion receipt",
+      "Start the next production batch only after reading the current completion gate and daily receipt"
     ]
   },
   "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],
