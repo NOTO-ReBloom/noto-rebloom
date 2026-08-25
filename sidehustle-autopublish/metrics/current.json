@@ -1,6 +1,6 @@
 {
-  "version": 21,
-  "updatedAt": "2026-08-24T19:28:49+09:00",
+  "version": 22,
+  "updatedAt": "2026-08-25T16:01:39+09:00",
   "objective": "maximize total sales while enforcing the current 2026-08-24 strict paid publication floors before unrelated production and minimizing user intervention",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -16,53 +16,58 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "date": "2026-08-24",
-    "observedAt": "2026-08-24T19:28:49+09:00",
-    "previousDate": "2026-08-23",
+    "date": "2026-08-25",
+    "observedAt": "2026-08-25T16:01:39+09:00",
+    "previousDate": "2026-08-24",
     "previousDayPaidNoteStrictVerified": "5/5",
     "previousDayBoothStrictVerified": "5/5",
     "previousDayFreeNoteStrictVerified": "2/2",
-    "carriedPaidDebt": 0,
-    "midnightPolicy": "unfinished strict publication quota carries forward; date rollover never clears paid debt"
+    "carriedPaidDebt": 0
   },
   "currentDayTargets": {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "paidNote": {
       "target": 5,
-      "strictVerified": 5,
-      "remaining": 0,
+      "strictVerified": 0,
+      "remaining": 5,
       "materialized": 5,
-      "remainingIds": [],
-      "requiredChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
+      "remainingIds": [
+        "note_20260825_27_grant_evidence_match",
+        "note_20260825_28_event_authority_transfer",
+        "note_20260825_29_access_handover",
+        "note_20260825_30_research_exclusion_log",
+        "note_20260825_31_creator_release_qa"
+      ]
     },
     "BOOTH": {
       "target": 5,
-      "strictVerified": 5,
-      "remaining": 0,
+      "strictVerified": 0,
+      "remaining": 5,
       "materialized": 5,
-      "remainingIds": [],
-      "requiredChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
+      "remainingIds": [
+        "034_grant_evidence_match_os_20260825",
+        "035_event_authority_transfer_os_20260825",
+        "036_access_handover_os_20260825",
+        "037_research_exclusion_log_os_20260825",
+        "038_creator_release_qa_os_20260825"
+      ]
     },
     "freeNote": {
-      "sourceDate": "2026-08-24",
       "target": 2,
-      "strictVerified": 2,
-      "remaining": 0,
-      "remainingIds": [],
-      "publicUrls": [
-        "https://note.com/royal_lion645/n/ne0e2bcb5fb20",
-        "https://note.com/royal_lion645/n/n120c386ddd42"
+      "strictVerified": 0,
+      "remaining": 2,
+      "remainingIds": [
+        "free_note_20260825_01_grant_evidence_match",
+        "free_note_20260825_02_ai_acceptance_criteria"
       ],
       "paidQuotaContribution": 0
     },
-    "paid10StrictVerified": true,
-    "allDesignatedStrictVerified": true
+    "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "Canonical receipts and a fresh anonymous reader verification show all five 2026-08-24 paid NOTE items strict verified; the final item is https://note.com/royal_lion645/n/n12a44fe73370.",
-    "BOOTH": "Canonical BOOTH ledger contains strict buyer-visible evidence for all five 2026-08-24 IDs 029-033, including exact title, price, downloadable-product state and purchase/cart path.",
-    "freeNote": "The two designated 2026-08-24 free notes are strict reader verified at https://note.com/royal_lion645/n/ne0e2bcb5fb20 and https://note.com/royal_lion645/n/n120c386ddd42, including exact title, free state and dedicated cover image.",
-    "previousDay": "The 2026-08-23 paid NOTE and BOOTH batches are strict verified 5/5 each; the designated 2026-08-23 free NOTE pair is strict verified 2/2. Do not republish them or count them toward 2026-08-24.",
+    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
+    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
+    "freeNote": "2 manuscripts queued; no public count yet",
     "humanOnlyBlocker": null
   },
   "monitor": {

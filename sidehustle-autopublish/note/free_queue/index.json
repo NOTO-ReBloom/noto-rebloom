@@ -1,8 +1,8 @@
 {
-  "version": 5,
-  "updatedAt": "2026-08-24T19:28:49+09:00",
+  "version": 6,
+  "updatedAt": "2026-08-25T16:01:39+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-24_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-25_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1082,6 +1082,46 @@
       "publicUrl": "https://note.com/royal_lion645/n/n120c386ddd42",
       "verificationState": "reader_visible_free_verified",
       "verifiedAt": "2026-08-24T19:28:48+09:00"
+    },
+    {
+      "id": "free_note_20260825_01_grant_evidence_match",
+      "kind": "free",
+      "price": 0,
+      "title": "補助金の領収書を箱に入れるだけでは足りない｜1経費につなぐ5つの証拠",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-25_batch01.md",
+      "pairedPaidId": "note_20260825_27_grant_evidence_match",
+      "tags": [
+        "補助金",
+        "助成金",
+        "証憑",
+        "経費管理"
+      ],
+      "coverLabel": "補助金・証憑管理",
+      "coverCopy": "1経費につなぐ 5つの証拠",
+      "accent": "#0f766e",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260825-20260825T160139+0900"
+    },
+    {
+      "id": "free_note_20260825_02_ai_acceptance_criteria",
+      "kind": "free",
+      "price": 0,
+      "title": "AIに任せた作業を「できた」で終わらせない｜受入基準を先に決める5項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-25_batch01.md",
+      "pairedPaidId": "note_20260824_22_ai_ops_audit",
+      "tags": [
+        "AI",
+        "業務改善",
+        "品質管理",
+        "自動化"
+      ],
+      "coverLabel": "AI・業務改善",
+      "coverCopy": "AI成果物の受入基準 5項目",
+      "accent": "#4338ca",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260825-20260825T160139+0900"
     }
   ],
   "eveningMarathon": {
@@ -1090,13 +1130,11 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-08-24",
-    "ids": [],
-    "resolvedIds": [
-      "free_note_20260824_01_ai_hidden_work",
-      "free_note_20260824_02_emergency_three_lines"
+    "date": "2026-08-25",
+    "ids": [
+      "free_note_20260825_01_grant_evidence_match",
+      "free_note_20260825_02_ai_acceptance_criteria"
     ],
-    "rule": "Both designated 2026-08-24 free NOTE entries are strict reader verified and disabled. Do not republish them.",
-    "olderEntriesHeld": 23
+    "requiredStrictPublications": 2
   }
 }

@@ -1,37 +1,35 @@
 {
-  "version": 7,
-  "requestedAt": "2026-08-24T19:28:49+09:00",
-  "nonce": "aug24-all-12-complete-20260824T192849+0900",
-  "mode": "completed_no_publication_action",
-  "priority": [],
-  "carriedBoothIds": [],
-  "carriedBoothResolution": "5/5 independently buyer-visible verified and reconciled to canonical BOOTH ledger at 2026-08-24T11:08:30+09:00",
-  "paidNoteIds": [],
-  "paidNoteProgress": "5/5 independently reader-visible verified; zero remaining",
-  "currentDayBoothIds": [],
-  "currentDayBoothProgress": "5/5 independently buyer-visible verified; zero remaining",
-  "freeNoteIds": [],
-  "freeNoteResolution": "2/2 strict reader verified: https://note.com/royal_lion645/n/ne0e2bcb5fb20 and https://note.com/royal_lion645/n/n120c386ddd42; both queue entries are disabled",
-  "failurePolicy": "On a brief recoverable failure preserve the payload and retry state, switch to the next required item, then return after the first pass. Do not stop after one success.",
-  "completion": "all 12 designated Aug 24 publications complete: paid NOTE 5/5, BOOTH 5/5 and free NOTE 2/2 strict verified",
-  "requiredPaidNoteChecks": [
-    "readerVisibleUrl",
-    "exactTitle",
-    "expectedPrice",
-    "paidBoundary",
-    "dedicatedCover"
-  ],
-  "requiredBoothChecks": [
-    "buyerVisibleUrl",
-    "exactTitle",
-    "expectedPrice",
-    "downloadableProductState",
-    "purchaseOrCartPath"
-  ],
-  "requiredFreeNoteChecks": [
-    "readerVisibleUrl",
-    "exactTitle",
-    "freeState",
-    "dedicatedCover"
-  ]
+  "version": 1,
+  "updatedAt": "2026-08-25T16:01:39+09:00",
+  "date": "2026-08-25",
+  "mode": "publish_all_current_day_now",
+  "paidNote": {
+    "ids": [
+      "note_20260825_27_grant_evidence_match",
+      "note_20260825_28_event_authority_transfer",
+      "note_20260825_29_access_handover",
+      "note_20260825_30_research_exclusion_log",
+      "note_20260825_31_creator_release_qa"
+    ],
+    "target": 5
+  },
+  "freeNote": {
+    "ids": [
+      "free_note_20260825_01_grant_evidence_match",
+      "free_note_20260825_02_ai_acceptance_criteria"
+    ],
+    "target": 2
+  },
+  "BOOTH": {
+    "ids": [
+      "034_grant_evidence_match_os_20260825",
+      "035_event_authority_transfer_os_20260825",
+      "036_access_handover_os_20260825",
+      "037_research_exclusion_log_os_20260825",
+      "038_creator_release_qa_os_20260825"
+    ],
+    "target": 5
+  },
+  "strictVerificationRequired": true,
+  "doNotStopAfterFirstSuccess": true
 }

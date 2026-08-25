@@ -1,10 +1,10 @@
 {
-  "version": 6,
-  "updatedAt": "2026-08-24T19:28:49+09:00",
-  "status": "all_12_strict_verified_complete",
-  "completedAt": "2026-08-24T19:28:49+09:00",
-  "completionEvidence": "sidehustle-autopublish/monitor/paid_channels_completion_20260824.json",
-  "purpose": "Treat the 2026-08-24 work cycle as complete only after all 12 designated publications are strict verified, or a verified human-only blocker stops every remaining publication path.",
+  "version": 7,
+  "updatedAt": "2026-08-25T16:01:39+09:00",
+  "status": "in_progress_0_of_12",
+  "completedAt": null,
+  "completionEvidence": null,
+  "purpose": "2026-08-25: complete only after all 12 designated publications are strict verified.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
     "diagnosticOnlyReports": false,
@@ -16,50 +16,55 @@
   },
   "completionConditions": {
     "notePaid": {
-      "sourceOfTruth": "sidehustle-autopublish/publication_quota.json plus paid note queue/publication receipts",
-      "date": "2026-08-24",
-      "requireCarriedDebtZero": true,
+      "date": "2026-08-25",
       "dailyStrictTarget": 5,
       "requiredIds": [
-        "note_20260824_22_ai_ops_audit",
-        "note_20260824_23_sponsor_report_kpi",
-        "note_20260824_24_event_emergency_comms",
-        "note_20260824_25_research_claim_audit",
-        "note_20260824_26_digital_product_offer_design"
+        "note_20260825_27_grant_evidence_match",
+        "note_20260825_28_event_authority_transfer",
+        "note_20260825_29_access_handover",
+        "note_20260825_30_research_exclusion_log",
+        "note_20260825_31_creator_release_qa"
       ],
-      "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "paidBoundary",
+        "dedicatedCover"
+      ]
     },
     "BOOTH": {
-      "sourceOfTruth": "booth-autopublish/queue/index.json plus booth-autopublish/monitor/publication_ledger.json",
-      "date": "2026-08-24",
-      "requireCarriedDebtZero": true,
+      "date": "2026-08-25",
       "dailyStrictTarget": 5,
       "requiredIds": [
-        "029_ai_workflow_audit_os_20260824",
-        "030_sponsor_outcome_report_os_20260824",
-        "031_event_emergency_comms_os_20260824",
-        "032_survey_aggregation_audit_os_20260824",
-        "033_digital_offer_validation_os_20260824"
+        "034_grant_evidence_match_os_20260825",
+        "035_event_authority_transfer_os_20260825",
+        "036_access_handover_os_20260825",
+        "037_research_exclusion_log_os_20260825",
+        "038_creator_release_qa_os_20260825"
       ],
-      "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
+      "strictChecks": [
+        "buyerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "downloadableProductState",
+        "purchaseOrCartPath"
+      ]
     },
     "noteFree": {
-      "sourceOfTruth": "sidehustle-autopublish/note/free_queue/index.json plus sidehustle-autopublish/note/free_publication_ledger.json",
-      "date": "2026-08-24",
+      "date": "2026-08-25",
       "dailyStrictTarget": 2,
       "requiredIds": [
-        "free_note_20260824_01_ai_hidden_work",
-        "free_note_20260824_02_emergency_three_lines"
+        "free_note_20260825_01_grant_evidence_match",
+        "free_note_20260825_02_ai_acceptance_criteria"
       ],
-      "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "freeState",
+        "dedicatedCover"
+      ],
       "paidQuotaContribution": 0
-    },
-    "deferredWhileCurrentDayTargetsRemain": {
-      "GitHubPagesNewWork": true,
-      "newPaidCandidates": true,
-      "additionalDerivativeProducts": true,
-      "legacyBlockers": true,
-      "MicrosoftStore": "quality-gate/submission-ready maintenance only"
     }
   },
   "executionPolicy": {
@@ -67,15 +72,31 @@
     "switchCandidatesAfterBriefRecoverableFailure": true,
     "doNotStopAfterFirstSuccessWhileCurrentDayTargetsRemain": true,
     "currentDayBeforeLegacyBlockers": true,
-    "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
-    "whenWindowsUnavailable": ["queue/ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
+    "legacyBlockersDeferred": [
+      "note_20260820_05",
+      "009_handover_os_20260820"
+    ],
+    "whenWindowsUnavailable": [
+      "queue/ledger reconciliation",
+      "SHA verification",
+      "publisher compatibility repair",
+      "strict recovery control repair"
+    ],
     "nextWindowsPriority": [
       "No Aug 24 publication recovery remains",
       "Keep all completed paid NOTE, free NOTE and BOOTH entries disabled",
       "Keep looping schedulers disabled until a separately reviewed automation repair is ready"
     ]
   },
-  "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],
+  "humanOnlyBlockers": [
+    "re-login",
+    "2FA",
+    "CAPTCHA",
+    "identity verification",
+    "legal declaration",
+    "tax/payment setup",
+    "OS permission"
+  ],
   "antiFalseCompletion": [
     "Do not report a commit as publication.",
     "Do not report PUBLISH_SUCCESS without public verification.",

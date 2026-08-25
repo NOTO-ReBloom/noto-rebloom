@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-24T16:54:26+09:00",
-  "retryGeneration": 36,
+  "updatedAt": "2026-08-25T16:01:39+09:00",
+  "retryGeneration": 37,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -1031,6 +1031,196 @@
         "htmlCoreFunctions": [
           "localStorage",
           "search",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "034_grant_evidence_match_os_20260825",
+      "title": "補助金 証憑照合OS｜発注・納品・検収・支払・成果を1行管理｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/034_grant_evidence_match_os_20260825.part01.txt"
+      ],
+      "sha256": "ddba07c7a78608501f026e75188855095db3f80d4ad560ec0c1195375077231e",
+      "createdAt": "2026-08-25T16:01:39+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-034_grant_evidence_match_os_20260825-20260825T160139+0900",
+      "expectedPriceJPY": 1480,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "035_event_authority_transfer_os_20260825",
+      "title": "イベント 権限引継ぎOS｜責任者交代・緊急判断・承認範囲・代替担当を整理｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/035_event_authority_transfer_os_20260825.part01.txt"
+      ],
+      "sha256": "bfb96e396e2f13ce065dba98c23c9a0d4bdfdb61b9e8cbf0dbab3dbb4cc97e00",
+      "createdAt": "2026-08-25T16:01:39+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-035_event_authority_transfer_os_20260825-20260825T160139+0900",
+      "expectedPriceJPY": 1380,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "036_access_handover_os_20260825",
+      "title": "アカウント・権限移管OS｜管理者・2FA・復旧経路・承認者を安全に引継ぎ｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/036_access_handover_os_20260825.part01.txt"
+      ],
+      "sha256": "f0a792ecbefb37c0ee4833ea4278eea5f8b61a63958ca4887a2c689389929409",
+      "createdAt": "2026-08-25T16:01:39+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-036_access_handover_os_20260825-20260825T160139+0900",
+      "expectedPriceJPY": 1480,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "037_research_exclusion_log_os_20260825",
+      "title": "卒論 文献除外ログOS｜採用・除外理由・重複・対象外条件を記録｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/037_research_exclusion_log_os_20260825.part01.txt"
+      ],
+      "sha256": "62cfca525d8ff768b32f617b7f62796cb38606c10c12c371744a14b580fa0c7a",
+      "createdAt": "2026-08-25T16:01:39+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-037_research_exclusion_log_os_20260825-20260825T160139+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "038_creator_release_qa_os_20260825",
+      "title": "デジタル商品 公開前QA OS｜ファイル・説明・価格・導線・更新版を発売前確認｜オフラインHTML",
+      "chunks": [
+        "booth-autopublish/queue/038_creator_release_qa_os_20260825.part01.txt"
+      ],
+      "sha256": "b22248c1ec2cffa79bd8b5776326c177c0a317bbc5eb3197f9e983818125d379",
+      "createdAt": "2026-08-25T16:01:39+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-038_creator_release_qa_os_20260825-20260825T160139+0900",
+      "expectedPriceJPY": 1380,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
           "CSV",
           "JSON backup/import",
           "print"
