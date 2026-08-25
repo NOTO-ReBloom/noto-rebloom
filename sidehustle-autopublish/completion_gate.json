@@ -1,68 +1,59 @@
 {
-  "version": 9,
-  "updatedAt": "2026-08-25T17:49:08+09:00",
-  "status": "completed_12_of_12",
-  "completedAt": "2026-08-25T17:49:08+09:00",
-  "completionEvidence": "sidehustle-autopublish/receipts/2026-08-25_publication_complete.json",
-  "purpose": "2026-08-25 work cycle is complete only after all 12 designated publications are strict public verified.",
+  "version": 10,
+  "updatedAt": "2026-08-26T00:16:59+09:00",
+  "status": "in_progress_0_of_12",
+  "completedAt": null,
+  "completionEvidence": null,
+  "purpose": "2026-08-26 work cycle is complete only after all 12 designated publications are strict public verified.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
     "diagnosticOnlyReports": false,
     "queueOrCommitOnlyReports": false,
     "reportOnlyWhen": [
-      "all 12 designated 2026-08-25 publications are strict verified",
+      "all designated 2026-08-26 publications are strict verified at the consolidated nightly report",
       "or a verified human-only blocker prevents all remaining current-day publication paths and exactly one minimal user action is needed"
     ]
   },
   "completionConditions": {
     "notePaid": {
-      "date": "2026-08-25",
+      "date": "2026-08-26",
       "dailyStrictTarget": 5,
       "requiredIds": [
-        "note_20260825_27_grant_evidence_match",
-        "note_20260825_28_event_authority_transfer",
-        "note_20260825_29_access_handover",
-        "note_20260825_30_research_exclusion_log",
-        "note_20260825_31_creator_release_qa"
+        "note_20260826_32_event_cancellation_decision_log",
+        "note_20260826_33_sponsor_benefit_inventory",
+        "note_20260826_34_volunteer_shift_handover",
+        "note_20260826_35_research_consent_version_control",
+        "note_20260826_36_digital_support_triage"
       ],
       "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
     },
     "BOOTH": {
-      "date": "2026-08-25",
+      "date": "2026-08-26",
       "dailyStrictTarget": 5,
       "requiredIds": [
-        "034_grant_evidence_match_os_20260825",
-        "035_event_authority_transfer_os_20260825",
-        "036_access_handover_os_20260825",
-        "037_research_exclusion_log_os_20260825",
-        "038_creator_release_qa_os_20260825"
+        "039_event_cancellation_decision_log_os_20260826",
+        "040_sponsor_benefit_inventory_os_20260826",
+        "041_volunteer_shift_handover_os_20260826",
+        "042_research_consent_version_control_os_20260826",
+        "043_digital_support_triage_os_20260826"
       ],
       "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
     },
     "noteFree": {
-      "date": "2026-08-25",
+      "date": "2026-08-26",
       "dailyStrictTarget": 2,
       "requiredIds": [
-        "free_note_20260825_01_grant_evidence_match",
-        "free_note_20260825_02_ai_acceptance_criteria"
+        "free_note_20260826_01_event_cancel_signals",
+        "free_note_20260826_02_support_faq_boundary"
       ],
       "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
       "paidQuotaContribution": 0
     }
   },
-  "completionCounts": {
-    "notePaid": 5,
-    "BOOTH": 5,
-    "noteFree": 2,
-    "total": 12
-  },
+  "completionCounts": {"notePaid":0,"BOOTH":0,"noteFree":0,"total":0},
+  "planningManifest": "sidehustle-autopublish/planning/2026-08-26_batch01.json",
   "duplicateControl": {
-    "free_note_20260825_02_ai_acceptance_criteria": {
-      "canonicalPublicUrl": "https://note.com/royal_lion645/n/n8b606f20f944",
-      "duplicateVerifiedPublicUrl": "https://note.com/royal_lion645/n/ne2fadd15115d",
-      "countOnce": true,
-      "instruction": "Do not republish this target. Duplicate cleanup is separate and must not create a third copy."
-    }
+    "policy": "Before any retry, discover existing public pages by editor key/API/profile/title and reconcile strict-matching canonical URLs. Never create another copy merely because public URL discovery failed."
   },
   "executionPolicy": {
     "singleRunMayPublishMany": true,
@@ -70,15 +61,18 @@
     "doNotStopAfterFirstSuccessWhileCurrentDayTargetsRemain": true,
     "currentDayBeforeLegacyBlockers": true,
     "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
-    "whenWindowsUnavailable": ["queue and ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
+    "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
+    "whenWindowsUnavailable": ["materialize cloud inventory", "queue and ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
     "nextWindowsPriority": [
-      "Do not republish any 2026-08-25 target already listed in the completion receipt",
-      "Start the next production batch only after reading the current completion gate and daily receipt"
+      "Read this completion gate before consuming any queue",
+      "Do not republish any prior-day target already strict verified",
+      "Consume current-day enabled items and strict-verify public pages"
     ]
   },
-  "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission"],
+  "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission", "account lock"],
   "antiFalseCompletion": [
     "Do not report a commit as publication.",
+    "Do not report queue insertion as publication.",
     "Do not report local publisher success without public verification.",
     "Do not report an editor or admin URL as publication.",
     "Do not reduce paid debt based on free content.",
