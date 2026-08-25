@@ -80,5 +80,5 @@
   ensureScript('rebloom-purpose.js','rebloom-purpose.js?v=20260817q');
   ensureScript('rebloom-purpose-complete.js','rebloom-purpose-complete.js?v=20260817q');
   ensureScript('rebloom-experience.js','rebloom-experience.js?v=20260817ad');
-  ensureScript('rebloom-appeal.js','rebloom-appeal.js?v=20260825photo1');
+  ensureScript('rebloom-appeal.js','rebloom-appeal.js?v=20260825cards1');
 })();
