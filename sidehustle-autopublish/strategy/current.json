@@ -1,6 +1,6 @@
 {
-  "version": 35,
-  "updatedAt": "2026-08-25T05:46:00+09:00",
+  "version": 36,
+  "updatedAt": "2026-08-25T17:42:50+09:00",
   "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving paid publication debt/floors",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
@@ -13,33 +13,53 @@
     "todayPaidNoteStrictVerified": 0,
     "todayBoothStrictVerified": 0,
     "todayFreeNoteStrictVerified": 0,
-    "rule": "Aug 24 closed strict verified at paid NOTE 5/5, BOOTH 5/5 and free NOTE 2/2. No Aug 25 item counts until new dated inventory is reader/buyer-visible verified. Missing sales/PV/CVR data remains unknown."
+    "paidNoteMaterialized": 5,
+    "boothMaterialized": 5,
+    "freeNoteMaterialized": 2,
+    "humanOnlyBlocker": null,
+    "rule": "Aug 25 inventory is fully materialized in cloud state, but no current-day item counts until reader/buyer-visible strict verification. Missing sales/PV/CVR/acquisition/install values remain unknown."
   },
   "allocationDecision": {
-    "rank1": "Materialize a fresh Aug 25 paid NOTE batch of five and a fresh Aug 25 BOOTH batch of five from researched non-duplicate intents; strict public verification remains the completion gate.",
-    "rank2": "Use ko_grant_02_daily_evidence_match as the first cross-channel production cluster because it is research-ready, operationally distinct from the prior grant application tracker, and supports paid NOTE plus reusable BOOTH artifact. This is an opportunity hypothesis, not a proven winner.",
-    "rank3": "Prepare the next two free NOTE manuscripts as acquisition experiments, but keep publication at the existing 2/day experimental cadence and never let free output substitute for paid quota.",
-    "rank4": "Capture matched-age first-party note funnel and BOOTH sales metrics when accessible. Do not change prices, CTA architecture, or call any theme a winner while these values are unavailable.",
-    "rank5": "Continue CSV Cleaner & Duplicate Remover Microsoft Store submission prerequisites after paid-floor-critical inventory is safe; do not create cosmetic variants without acquisition/install evidence.",
-    "rank6": "Keep GitHub Pages work limited to independently useful tools and measurable attribution; no thin SEO mass production."
+    "rank1": "Consume and strict-verify the five enabled Aug 25 paid NOTE entries; do not count queue state or local publisher success.",
+    "rank2": "Consume and strict-verify the five enabled Aug 25 BOOTH entries; preserve buyer-visible title, price, downloadable-product and purchase-path checks.",
+    "rank3": "After paid-floor-critical items are moving, publish and strict-verify the two prepared free NOTE acquisition experiments; free output never substitutes for paid quota.",
+    "rank4": "Capture matched-age first-party note funnel, BOOTH sales and Microsoft Store acquisition/install metrics when accessible. Keep unavailable values null and do not infer winners.",
+    "rank5": "Continue CSV Cleaner & Duplicate Remover Microsoft Store submission prerequisites only after the Aug 25 paid publication floor is no longer at risk.",
+    "rank6": "Keep GitHub Pages limited to independently useful, attributable tools and links; no thin SEO mass production."
   },
-  "aug25ProductionSeed": {
-    "primaryCluster": {
-      "opportunityId": "ko_grant_02_daily_evidence_match",
-      "freeTitle": "補助金の領収書を箱に入れるだけでは足りない｜1経費につなぐ5つの証拠",
-      "paidTitle": "採択後の証憑不足を月末まで持ち越さない｜発注から支払までの照合フロー",
-      "boothTitle": "補助金 証憑照合OS｜発注・納品・検収・支払・成果を1行管理",
-      "artifact": "1経費1行の証憑対応表と不足警告",
-      "status": "approved_for_materialization_after_duplicate_and_source_freshness_gate"
-    },
-    "nextPaidNoteCandidates": ["ko_event_01_authority_transfer", "ko_org_01_access_handover", "ko_research_01_exclusion_log", "ko_creator_01_release_qa"],
-    "nextBoothCandidates": ["ko_event_01_authority_transfer", "ko_org_01_access_handover", "ko_research_01_exclusion_log", "ko_creator_01_release_qa"],
-    "freeExperimentCandidates": ["ko_grant_02_daily_evidence_match", "ko_ai_01_acceptance_criteria"],
-    "guardrail": "Queue rank is not demand proof. Recheck direct competition, semantic duplication, source freshness and current platform requirements before build."
+  "aug25ProductionState": {
+    "paidNoteManifest": "sidehustle-autopublish/note/staging/materialization_20260825_batch01.json",
+    "boothManifest": "booth-autopublish/monitor/cloud_materialization_20260825_batch01.json",
+    "paidNoteIds": [
+      "note_20260825_27_grant_evidence_match",
+      "note_20260825_28_event_authority_transfer",
+      "note_20260825_29_access_handover",
+      "note_20260825_30_research_exclusion_log",
+      "note_20260825_31_creator_release_qa"
+    ],
+    "boothIds": [
+      "034_grant_evidence_match_os_20260825",
+      "035_event_authority_transfer_os_20260825",
+      "036_access_handover_os_20260825",
+      "037_research_exclusion_log_os_20260825",
+      "038_creator_release_qa_os_20260825"
+    ],
+    "freeNoteIds": [
+      "free_note_20260825_01_grant_evidence_match",
+      "free_note_20260825_02_ai_acceptance_criteria"
+    ],
+    "status": "materialized_waiting_for_authenticated_windows_publication_and_strict_public_verification"
   },
   "noteFunnel": {
     "status": "measurement_first_no_first_party_values",
-    "firstPartyMetrics": {"PV": null, "likes": null, "follows": null, "relatedPaidClicks": null, "relatedPaidPurchases": null, "revenue": null},
+    "firstPartyMetrics": {
+      "PV": null,
+      "likes": null,
+      "follows": null,
+      "relatedPaidClicks": null,
+      "relatedPaidPurchases": null,
+      "revenue": null
+    },
     "measurementWindows": ["24h", "72h", "7d"],
     "freeCadence": "2/day experimental starting value; not a hard quota and not authorized to increase without comparable evidence",
     "ctaRule": "one exact-intent paid CTA after standalone useful free content; only verified reader-visible paid URLs",
@@ -57,5 +77,5 @@
     "instruction": "Use existing useful surfaces for attribution and context-matched verified outbound links. Build a new tool only when it has standalone utility and a measurable route into a relevant paid asset."
   },
   "dataIntegrity": "No winner, loser, conversion uplift, revenue, acquisition, install or retention claim without observed first-party evidence.",
-  "notificationPolicy": "No user notification for this morning cycle unless every profitable route is blocked by a proven human-only action. Daily consolidated report only at the designated nightly reporting cycle."
+  "notificationPolicy": "No user notification for this non-nightly cycle unless every profitable route is blocked by a proven human-only action. Daily consolidated report only at the designated nightly reporting cycle."
 }
