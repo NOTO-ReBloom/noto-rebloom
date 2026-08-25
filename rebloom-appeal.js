@@ -3,6 +3,27 @@
   const body=document.body;
   if(!body||body.dataset.rbAppealReady==='1')return;
   body.dataset.rbAppealReady='1';
+
+  /* The four PROJECT AT A GLANCE cards are injected at runtime by rebloom-experience.js.
+     Replace only their illustration panes with the generated photographs; keep all copy,
+     card layout and surrounding site design unchanged. */
+  if(body.classList.contains('nr-new-home')){
+    const photos=[
+      ['home-step1-land.webp','農地を地域の方と確認するイメージ'],
+      ['home-step2-event.webp','泥ん子運動会を楽しむイメージ'],
+      ['home-step3-community.webp','地域の方や子ども、学生が集まるイメージ'],
+      ['home-step4-next.webp','活動を次につなげるイメージ']
+    ];
+    const cards=[...document.querySelectorAll('.rb-project-glance .rb-glance-flow article')];
+    cards.slice(0,4).forEach((card,i)=>{
+      const pane=card.querySelector('.rb-glance-ill');
+      if(!pane)return;
+      const [src,alt]=photos[i];
+      pane.innerHTML=`<img src="${src}" alt="${alt}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit">`;
+      pane.classList.add('rb-glance-ill--photo');
+    });
+  }
+
   if(body.classList.contains('nr-new-event')){
     const summary=document.querySelector('.event-summary');
     if(summary&&!document.querySelector('.rb-mud-energy')){
