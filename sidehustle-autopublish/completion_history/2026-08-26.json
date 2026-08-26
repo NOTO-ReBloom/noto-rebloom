@@ -1,0 +1,18 @@
+{
+  "version": 12,
+  "updatedAt": "2026-08-26T15:09:55.642Z",
+  "status": "in_progress_5_of_12",
+  "completedAt": null,
+  "completionEvidence": {
+    "notePaid": {"strictVerified": 5, "required": 5, "receiptDirectory": "sidehustle-autopublish/note/publication_receipts", "verifiedAt": "2026-08-26T15:09:55.642Z"},
+    "remaining": {"noteFree": 2, "BOOTH": 5, "total": 7}
+  },
+  "completionConditions": {
+    "notePaid": {"date": "2026-08-26", "dailyStrictTarget": 5, "requiredIds": ["note_20260826_32_event_cancellation_decision_log","note_20260826_33_sponsor_benefit_inventory","note_20260826_34_volunteer_shift_handover","note_20260826_35_research_consent_version_control","note_20260826_36_digital_support_triage"], "strictChecks": ["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]},
+    "BOOTH": {"date": "2026-08-26", "dailyStrictTarget": 5, "requiredIds": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"], "strictChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]},
+    "noteFree": {"date": "2026-08-26", "dailyStrictTarget": 2, "requiredIds": ["free_note_20260826_01_event_cancel_signals","free_note_20260826_02_support_faq_boundary"], "strictChecks": ["readerVisibleUrl","exactTitle","freeState","dedicatedCover"]}
+  },
+  "completionCounts": {"notePaid": 5, "BOOTH": 0, "noteFree": 0, "total": 5},
+  "archivedAt": "2026-08-27T00:12:21+09:00",
+  "archiveReason": "Asia/Tokyo day rollover; seven strict-verification obligations carried into 2026-08-27 before new-day targets."
+}
