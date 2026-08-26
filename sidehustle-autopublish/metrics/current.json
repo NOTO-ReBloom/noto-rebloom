@@ -1,6 +1,6 @@
 {
-  "version": 24,
-  "updatedAt": "2026-08-26T09:20:40+09:00",
+  "version": 25,
+  "updatedAt": "2026-08-26T15:09:55.642Z",
   "objective": "maximize total sales while enforcing the 2026-08-25 paid NOTE 5 and BOOTH 5 strict publication floors, plus the designated free NOTE pair, before unrelated production",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -28,16 +28,10 @@
     "date": "2026-08-26",
     "paidNote": {
       "target": 5,
-      "strictVerified": 0,
-      "remaining": 5,
+      "strictVerified": 5,
+      "remaining": 0,
       "materialized": 5,
-      "remainingIds": [
-        "note_20260826_32_event_cancellation_decision_log",
-        "note_20260826_33_sponsor_benefit_inventory",
-        "note_20260826_34_volunteer_shift_handover",
-        "note_20260826_35_research_consent_version_control",
-        "note_20260826_36_digital_support_triage"
-      ]
+      "remainingIds": []
     },
     "BOOTH": {
       "target": 5,
@@ -65,9 +59,9 @@
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
-    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
-    "freeNote": "2 manuscripts queued; no public count yet",
+    "paidNote": "5 current-day paid NOTE pages strict verified with canonical reader-visible URLs.",
+    "BOOTH": "5 current-day products remain unpublished.",
+    "freeNote": "2 current-day free NOTE manuscripts remain unpublished.",
     "humanOnlyBlocker": null
   },
   "monitor": {
