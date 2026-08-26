@@ -1,8 +1,8 @@
 {
-  "version": 6,
-  "updatedAt": "2026-08-25T16:01:39+09:00",
+  "version": 7,
+  "updatedAt": "2026-08-26T09:20:40+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-25_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1122,6 +1122,44 @@
       "enabled": true,
       "forceRetry": false,
       "forceRetryNonce": "free-note-20260825-20260825T160139+0900"
+    },
+    {
+      "id": "free_note_20260826_01_event_cancel_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "イベント中止を考え始める前に決めたい5つの判断材料",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
+      "pairedPaidId": "note_20260826_32_event_cancellation_decision_log",
+      "tags": [
+        "イベント運営",
+        "安全管理",
+        "リスク管理"
+      ],
+      "coverLabel": "イベント運営・安全",
+      "coverCopy": "中止判断の前に決める 5つの材料",
+      "accent": "#b45309",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260826-20260826T092040+0900"
+    },
+    {
+      "id": "free_note_20260826_02_support_faq_boundary",
+      "kind": "free",
+      "price": 0,
+      "title": "購入者から同じ質問が3回来たら見直したい｜FAQに入れる内容・入れない内容",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
+      "pairedPaidId": "note_20260826_36_digital_support_triage",
+      "tags": [
+        "デジタル商品",
+        "FAQ",
+        "カスタマーサポート"
+      ],
+      "coverLabel": "デジタル商品・サポート",
+      "coverCopy": "FAQに入れる・入れない 境界線",
+      "accent": "#2563eb",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260826-20260826T092040+0900"
     }
   ],
   "eveningMarathon": {
@@ -1130,10 +1168,10 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-08-25",
+    "date": "2026-08-26",
     "ids": [
-      "free_note_20260825_01_grant_evidence_match",
-      "free_note_20260825_02_ai_acceptance_criteria"
+      "free_note_20260826_01_event_cancel_signals",
+      "free_note_20260826_02_support_faq_boundary"
     ],
     "requiredStrictPublications": 2
   }

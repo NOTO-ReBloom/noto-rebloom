@@ -1,10 +1,10 @@
 {
-  "version": 10,
-  "updatedAt": "2026-08-26T00:16:59+09:00",
+  "version": 11,
+  "updatedAt": "2026-08-26T09:20:40+09:00",
   "status": "in_progress_0_of_12",
   "completedAt": null,
   "completionEvidence": null,
-  "purpose": "2026-08-26 work cycle is complete only after all 12 designated publications are strict public verified.",
+  "purpose": "2026-08-26: complete only after all 12 designated publications are strict verified.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
     "diagnosticOnlyReports": false,
@@ -25,7 +25,13 @@
         "note_20260826_35_research_consent_version_control",
         "note_20260826_36_digital_support_triage"
       ],
-      "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover"]
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "paidBoundary",
+        "dedicatedCover"
+      ]
     },
     "BOOTH": {
       "date": "2026-08-26",
@@ -37,7 +43,13 @@
         "042_research_consent_version_control_os_20260826",
         "043_digital_support_triage_os_20260826"
       ],
-      "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]
+      "strictChecks": [
+        "buyerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "downloadableProductState",
+        "purchaseOrCartPath"
+      ]
     },
     "noteFree": {
       "date": "2026-08-26",
@@ -46,11 +58,21 @@
         "free_note_20260826_01_event_cancel_signals",
         "free_note_20260826_02_support_faq_boundary"
       ],
-      "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "freeState",
+        "dedicatedCover"
+      ],
       "paidQuotaContribution": 0
     }
   },
-  "completionCounts": {"notePaid":0,"BOOTH":0,"noteFree":0,"total":0},
+  "completionCounts": {
+    "notePaid": 0,
+    "BOOTH": 0,
+    "noteFree": 0,
+    "total": 0
+  },
   "planningManifest": "sidehustle-autopublish/planning/2026-08-26_batch01.json",
   "duplicateControl": {
     "policy": "Before any retry, discover existing public pages by editor key/API/profile/title and reconcile strict-matching canonical URLs. Never create another copy merely because public URL discovery failed."
@@ -60,16 +82,34 @@
     "switchCandidatesAfterBriefRecoverableFailure": true,
     "doNotStopAfterFirstSuccessWhileCurrentDayTargetsRemain": true,
     "currentDayBeforeLegacyBlockers": true,
-    "legacyBlockersDeferred": ["note_20260820_05", "009_handover_os_20260820"],
+    "legacyBlockersDeferred": [
+      "note_20260820_05",
+      "009_handover_os_20260820"
+    ],
     "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-    "whenWindowsUnavailable": ["materialize cloud inventory", "queue and ledger reconciliation", "SHA verification", "publisher compatibility repair", "strict recovery control repair"],
+    "whenWindowsUnavailable": [
+      "materialize cloud inventory",
+      "queue and ledger reconciliation",
+      "SHA verification",
+      "publisher compatibility repair",
+      "strict recovery control repair"
+    ],
     "nextWindowsPriority": [
       "Read this completion gate before consuming any queue",
       "Do not republish any prior-day target already strict verified",
       "Consume current-day enabled items and strict-verify public pages"
     ]
   },
-  "humanOnlyBlockers": ["re-login", "2FA", "CAPTCHA", "identity verification", "legal declaration", "tax/payment setup", "OS permission", "account lock"],
+  "humanOnlyBlockers": [
+    "re-login",
+    "2FA",
+    "CAPTCHA",
+    "identity verification",
+    "legal declaration",
+    "tax/payment setup",
+    "OS permission",
+    "account lock"
+  ],
   "antiFalseCompletion": [
     "Do not report a commit as publication.",
     "Do not report queue insertion as publication.",

@@ -1,7 +1,7 @@
 {
-  "version": 40,
+  "version": 41,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-25T16:01:39+09:00",
+  "updatedAt": "2026-08-26T09:20:40+09:00",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -12,8 +12,8 @@
       "perCatchUpCycleSoftBatch": 11,
       "productionCap": null,
       "operationalState": {
-        "date": "2026-08-25",
-        "previousDate": "2026-08-24",
+        "date": "2026-08-26",
+        "previousDate": "2026-08-25",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
         "todayStrictVerifiedPublicationsCount": 0,
@@ -25,13 +25,13 @@
         "paidProductionInventoryComplete": true,
         "preparedCloudInventory": "sidehustle-autopublish/note/staging/materialization_20260824_batch01.json",
         "preparedCloudInventoryCount": 5,
-        "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260825_batch01.json",
+        "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260826_batch01.json",
         "preparedIds": [
-          "note_20260825_27_grant_evidence_match",
-          "note_20260825_28_event_authority_transfer",
-          "note_20260825_29_access_handover",
-          "note_20260825_30_research_exclusion_log",
-          "note_20260825_31_creator_release_qa"
+          "note_20260826_32_event_cancellation_decision_log",
+          "note_20260826_33_sponsor_benefit_inventory",
+          "note_20260826_34_volunteer_shift_handover",
+          "note_20260826_35_research_consent_version_control",
+          "note_20260826_36_digital_support_triage"
         ],
         "queueMaterializationState": "complete",
         "strictPublicationState": "5/5 reader-visible verified; 2026-08-24 paid NOTE floor complete",
@@ -47,7 +47,7 @@
         "hardQuota": false,
         "manuscriptBatchingAllowed": true,
         "preferredManuscriptBatchSize": "4-10",
-        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-25_batch01.md",
+        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
         "currentCompletedDraftCount": 2,
         "currentRequiredBatchStrictVerifiedCount": 0,
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
@@ -83,9 +83,9 @@
       "perCatchUpCycleSoftBatch": 10,
       "productionCap": null,
       "operationalState": {
-        "date": "2026-08-25",
+        "date": "2026-08-26",
         "carriedIntoDate": null,
-        "previousDate": "2026-08-24",
+        "previousDate": "2026-08-25",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
         "carriedDebtSourceDate": "2026-08-23",
@@ -98,15 +98,15 @@
         "paidProductionInventoryComplete": true,
         "plannedCloudBatchBuilder": "booth-autopublish/monitor/cloud_materialization_20260824_batch01.json",
         "preparedIds": [
-          "034_grant_evidence_match_os_20260825",
-          "035_event_authority_transfer_os_20260825",
-          "036_access_handover_os_20260825",
-          "037_research_exclusion_log_os_20260825",
-          "038_creator_release_qa_os_20260825"
+          "039_event_cancellation_decision_log_os_20260826",
+          "040_sponsor_benefit_inventory_os_20260826",
+          "041_volunteer_shift_handover_os_20260826",
+          "042_research_consent_version_control_os_20260826",
+          "043_digital_support_triage_os_20260826"
         ],
-        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260825_batch01.json",
+        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
         "materializationState": "complete: five encrypted payload ZIPs passed cloud QA with product.json, product.zip, preview01.jpg and SHA recorded in queue index",
-        "queueRetryGeneration": 37,
+        "queueRetryGeneration": 38,
         "recoveryControl": "booth-autopublish/monitor/recovery_control.json",
         "deferredLegacyCandidate": "009_handover_os_20260820",
         "fallbackPolicy": "All five genuine-new 2026-08-24 items are strict verified. Keep their queue entries disabled and do not republish them.",

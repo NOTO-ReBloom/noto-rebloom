@@ -1,6 +1,6 @@
 {
-  "version": 23,
-  "updatedAt": "2026-08-25T16:05:00+09:00",
+  "version": 24,
+  "updatedAt": "2026-08-26T09:20:40+09:00",
   "objective": "maximize total sales while enforcing the 2026-08-25 paid NOTE 5 and BOOTH 5 strict publication floors, plus the designated free NOTE pair, before unrelated production",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -16,45 +16,58 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "date": "2026-08-25",
-    "observedAt": "2026-08-25T16:05:00+09:00",
-    "previousDate": "2026-08-24",
+    "date": "2026-08-26",
+    "observedAt": "2026-08-26T09:20:40+09:00",
+    "previousDate": "2026-08-25",
     "previousDayPaidNoteStrictVerified": "5/5",
     "previousDayBoothStrictVerified": "5/5",
     "previousDayFreeNoteStrictVerified": "2/2",
     "carriedPaidDebt": 0
   },
   "currentDayTargets": {
-    "date": "2026-08-25",
+    "date": "2026-08-26",
     "paidNote": {
       "target": 5,
       "strictVerified": 0,
       "remaining": 5,
       "materialized": 5,
-      "remainingIds": ["note_20260825_27_grant_evidence_match", "note_20260825_28_event_authority_transfer", "note_20260825_29_access_handover", "note_20260825_30_research_exclusion_log", "note_20260825_31_creator_release_qa"]
+      "remainingIds": [
+        "note_20260826_32_event_cancellation_decision_log",
+        "note_20260826_33_sponsor_benefit_inventory",
+        "note_20260826_34_volunteer_shift_handover",
+        "note_20260826_35_research_consent_version_control",
+        "note_20260826_36_digital_support_triage"
+      ]
     },
     "BOOTH": {
       "target": 5,
       "strictVerified": 0,
       "remaining": 5,
       "materialized": 5,
-      "remainingIds": ["034_grant_evidence_match_os_20260825", "035_event_authority_transfer_os_20260825", "036_access_handover_os_20260825", "037_research_exclusion_log_os_20260825", "038_creator_release_qa_os_20260825"]
+      "remainingIds": [
+        "039_event_cancellation_decision_log_os_20260826",
+        "040_sponsor_benefit_inventory_os_20260826",
+        "041_volunteer_shift_handover_os_20260826",
+        "042_research_consent_version_control_os_20260826",
+        "043_digital_support_triage_os_20260826"
+      ]
     },
     "freeNote": {
       "target": 2,
       "strictVerified": 0,
       "remaining": 2,
-      "materialized": 2,
-      "remainingIds": ["free_note_20260825_01_grant_evidence_match", "free_note_20260825_02_ai_acceptance_criteria"],
+      "remainingIds": [
+        "free_note_20260826_01_event_cancel_signals",
+        "free_note_20260826_02_support_faq_boundary"
+      ],
       "paidQuotaContribution": 0
     },
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "Five Aug 25 encrypted payloads passed cloud materialization QA; none count until strict reader-visible publication verification.",
-    "BOOTH": "Five Aug 25 encrypted product ZIP payloads passed cloud QA; none count until strict buyer-visible verification.",
-    "freeNote": "Two Aug 25 manuscripts are prepared and queued; none count until strict reader-visible free verification.",
-    "previousDay": "2026-08-24 closed 5/5 paid NOTE, 5/5 BOOTH and 2/2 free NOTE with zero paid debt carried into Aug 25.",
+    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
+    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
+    "freeNote": "2 manuscripts queued; no public count yet",
     "humanOnlyBlocker": null
   },
   "monitor": {

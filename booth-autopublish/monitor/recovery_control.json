@@ -1,26 +1,26 @@
 {
-  "version": 30,
-  "updatedAt": "2026-08-25T16:01:39+09:00",
+  "version": 31,
+  "updatedAt": "2026-08-26T09:20:40+09:00",
   "activeRecovery": {
-    "date": "2026-08-25",
+    "date": "2026-08-26",
     "mode": "current_day_paid_floor",
     "requiredStrictNewPublications": 5,
     "remaining": 5,
     "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-25T16:01:39+09:00",
+    "generatedAt": "2026-08-26T09:20:40+09:00",
     "requiredStrictNewPublications": 5,
     "queueIds": [
-      "034_grant_evidence_match_os_20260825",
-      "035_event_authority_transfer_os_20260825",
-      "036_access_handover_os_20260825",
-      "037_research_exclusion_log_os_20260825",
-      "038_creator_release_qa_os_20260825"
+      "039_event_cancellation_decision_log_os_20260826",
+      "040_sponsor_benefit_inventory_os_20260826",
+      "041_volunteer_shift_handover_os_20260826",
+      "042_research_consent_version_control_os_20260826",
+      "043_digital_support_triage_os_20260826"
     ],
     "completedIds": [],
-    "queueRetryGeneration": 37,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260825_batch01.json",
+    "queueRetryGeneration": 38,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -29,30 +29,30 @@
       "purchaseOrCartPath"
     ],
     "expectedPricesJPY": {
-      "034_grant_evidence_match_os_20260825": 1480,
-      "035_event_authority_transfer_os_20260825": 1380,
-      "036_access_handover_os_20260825": 1480,
-      "037_research_exclusion_log_os_20260825": 1280,
-      "038_creator_release_qa_os_20260825": 1380
+      "039_event_cancellation_decision_log_os_20260826": 980,
+      "040_sponsor_benefit_inventory_os_20260826": 1280,
+      "041_volunteer_shift_handover_os_20260826": 780,
+      "042_research_consent_version_control_os_20260826": 980,
+      "043_digital_support_triage_os_20260826": 980
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260825-20260825T160139+0900"
+    "forceRetryNonce": "booth-20260826-20260826T092040+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
-      "034_grant_evidence_match_os_20260825",
-      "035_event_authority_transfer_os_20260825",
-      "036_access_handover_os_20260825",
-      "037_research_exclusion_log_os_20260825",
-      "038_creator_release_qa_os_20260825"
+      "039_event_cancellation_decision_log_os_20260826",
+      "040_sponsor_benefit_inventory_os_20260826",
+      "041_volunteer_shift_handover_os_20260826",
+      "042_research_consent_version_control_os_20260826",
+      "043_digital_support_triage_os_20260826"
     ],
     "firstPassOrder": [
-      "034_grant_evidence_match_os_20260825",
-      "035_event_authority_transfer_os_20260825",
-      "036_access_handover_os_20260825",
-      "037_research_exclusion_log_os_20260825",
-      "038_creator_release_qa_os_20260825"
+      "039_event_cancellation_decision_log_os_20260826",
+      "040_sponsor_benefit_inventory_os_20260826",
+      "041_volunteer_shift_handover_os_20260826",
+      "042_research_consent_version_control_os_20260826",
+      "043_digital_support_triage_os_20260826"
     ],
     "strictSuccessOnly": true,
     "completionPredicate": "all five current-day IDs buyer-visible strict verified"
