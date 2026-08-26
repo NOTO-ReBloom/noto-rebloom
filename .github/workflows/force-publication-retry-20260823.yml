@@ -1,5 +1,5 @@
-# retrigger 2026-08-23 10:39 JST
-name: Force 2026-08-23 publication retry
+# retargeted 2026-08-26 current-day-only recovery
+name: Force 2026-08-26 publication retry
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: force-publication-retry-20260823
+  group: force-publication-retry-20260826
   cancel-in-progress: false
 
 jobs:
@@ -24,33 +24,33 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Refresh only today's publication queues
+      - name: Force only today's 12 publications
         shell: python
         run: |
           import json, pathlib, datetime
           JST=datetime.timezone(datetime.timedelta(hours=9))
           now=datetime.datetime.now(JST)
           stamp=now.isoformat(timespec='seconds')
-          nonce='force-all-20260823-'+now.strftime('%Y%m%dT%H%M%S%z')
+          nonce='force-only-20260826-'+now.strftime('%Y%m%dT%H%M%S%z')
 
-          paid_note_ids={
-            'note_20260823_17_sponsor_deliverables',
-            'note_20260823_18_event_incident_response',
-            'note_20260823_19_grant_tracker',
-            'note_20260823_20_meeting_decision_log',
-            'note_20260823_21_literature_matrix'
-          }
-          booth_ids={
-            '024_grant_evidence_expense_os_20260823',
-            '025_event_decision_authority_os_20260823',
-            '026_research_claim_evidence_os_20260823',
-            '027_sponsor_contact_history_os_20260823',
-            '028_team_backup_coverage_os_20260823'
-          }
-          free_ids={
-            'free_note_20260823_01_sponsor_after_yes',
-            'free_note_20260823_02_grant_deadline_reverse_plan'
-          }
+          paid_ids=[
+            'note_20260826_32_event_cancellation_decision_log',
+            'note_20260826_33_sponsor_benefit_inventory',
+            'note_20260826_34_volunteer_shift_handover',
+            'note_20260826_35_research_consent_version_control',
+            'note_20260826_36_digital_support_triage'
+          ]
+          free_ids=[
+            'free_note_20260826_01_event_cancel_signals',
+            'free_note_20260826_02_support_faq_boundary'
+          ]
+          booth_ids=[
+            '039_event_cancellation_decision_log_os_20260826',
+            '040_sponsor_benefit_inventory_os_20260826',
+            '041_volunteer_shift_handover_os_20260826',
+            '042_research_consent_version_control_os_20260826',
+            '043_digital_support_triage_os_20260826'
+          ]
 
           def load(path):
             p=pathlib.Path(path)
@@ -58,80 +58,146 @@ jobs:
           def save(p,d):
             p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
-          np, nq = load('sidehustle-autopublish/note/queue/index.json')
+          def force_only(path,wanted,kind):
+            p,q=load(path)
+            q['retryGeneration']=int(q.get('retryGeneration',0))+1
+            q['updatedAt']=stamp
+            q['activePublicationDate']='2026-08-26'
+            q['forceRetryNonce']=nonce
+            seen=set()
+            for e in q.get('entries',[]):
+              eid=e.get('id') or e.get('queueId')
+              if eid in wanted:
+                seen.add(eid)
+                if not e.get('publicUrlVerified',False):
+                  e['enabled']=True
+                  e['forceRetry']=True
+                  e['forceRetryNonce']=nonce
+                  e['recoveryMode']='publish current-day item now and strict-verify public page'
+                  if kind=='paid':
+                    e['invalidateLocalSuccessWithoutReaderVerification']=True
+                  if kind=='booth':
+                    e['invalidateLocalSuccessWithoutVerifiedLedger']=True
+              elif e.get('enabled') and not e.get('publicUrlVerified',False):
+                e['enabled']=False
+                e['forceRetry']=False
+                e['deferredByCurrentDayPriorityAt']=stamp
+            missing=set(wanted)-seen
+            if missing:
+              raise SystemExit(f'{kind} missing ids: {sorted(missing)}')
+            save(p,q)
+            return q
+
+          np,nq=load('sidehustle-autopublish/note/queue/index.json')
           nq['retryGeneration']=int(nq.get('retryGeneration',0))+1
           nq['updatedAt']=stamp
+          nq['activePublicationDate']='2026-08-26'
           nq['recoveryBatch']={
-            'mode':'force_all_2026-08-23_paid_now',
+            'mode':'publish_only_2026-08-26_paid_note_now',
             'requiredStrictPublications':5,
-            'orderedIds':list(paid_note_ids),
-            'instruction':'Process all five 2026-08-23 paid NOTE entries; do not stop after first success; skip briefly blocked entries and continue.',
+            'orderedIds':paid_ids,
+            'instruction':'Ignore all prior-day unpublished entries. Process all five 2026-08-26 paid NOTE entries now; continue after recoverable failures; strict reader-visible verification only.',
             'strictChecks':['readerVisibleUrl','title','price','paidBoundary','dedicatedCover'],
             'forcedAt':stamp,
             'nonce':nonce
           }
-          seen=[]
+          seen=set()
           for e in nq.get('entries',[]):
-            if e.get('id') in paid_note_ids:
-              seen.append(e.get('id'))
+            eid=e.get('id')
+            if eid in paid_ids:
+              seen.add(eid)
               if not e.get('publicUrlVerified',False):
                 e['enabled']=True
                 e['forceRetry']=True
                 e['forceRetryNonce']=nonce
                 e['invalidateLocalSuccessWithoutReaderVerification']=True
-                e['recoveryMode']='decrypt, publish, strict reader-visible verify; current-day forced recovery'
-          missing=paid_note_ids-set(seen)
-          if missing: raise SystemExit('Missing paid NOTE ids: '+','.join(sorted(missing)))
+                e['recoveryMode']='decrypt, publish, strict reader-visible verify; 2026-08-26 forced recovery'
+            elif e.get('enabled') and not e.get('publicUrlVerified',False):
+              e['enabled']=False
+              e['forceRetry']=False
+              e['deferredByCurrentDayPriorityAt']=stamp
+          if set(paid_ids)-seen:
+            raise SystemExit('Missing paid NOTE ids: '+','.join(sorted(set(paid_ids)-seen)))
           save(np,nq)
 
-          bp,bq = load('booth-autopublish/queue/index.json')
+          fp,fq=load('sidehustle-autopublish/note/free_queue/index.json')
+          fq['retryGeneration']=int(fq.get('retryGeneration',0))+1
+          fq['updatedAt']=stamp
+          fq['activePublicationDate']='2026-08-26'
+          seen=set()
+          for e in fq.get('entries',[]):
+            eid=e.get('id')
+            if eid in free_ids:
+              seen.add(eid)
+              if not e.get('publicUrlVerified',False):
+                e['enabled']=True
+                e['forceRetry']=True
+                e['forceRetryNonce']=nonce
+            elif e.get('enabled') and not e.get('publicUrlVerified',False):
+              e['enabled']=False
+              e['forceRetry']=False
+              e['deferredByCurrentDayPriorityAt']=stamp
+          if set(free_ids)-seen:
+            raise SystemExit('Missing free NOTE ids: '+','.join(sorted(set(free_ids)-seen)))
+          save(fp,fq)
+
+          bp,bq=load('booth-autopublish/queue/index.json')
           bq['retryGeneration']=int(bq.get('retryGeneration',0))+1
           bq['updatedAt']=stamp
-          seen=[]
+          bq['activePublicationDate']='2026-08-26'
+          seen=set()
           for e in bq.get('entries',[]):
-            if e.get('id') in booth_ids:
-              seen.append(e.get('id'))
+            eid=e.get('id') or e.get('queueId')
+            if eid in booth_ids:
+              seen.add(eid)
               if not e.get('publicUrlVerified',False):
                 e['enabled']=True
                 e['forceRetry']=True
                 e['forceRetryNonce']=nonce
                 e['invalidateLocalSuccessWithoutVerifiedLedger']=True
-          missing=booth_ids-set(seen)
-          if missing: raise SystemExit('Missing BOOTH ids: '+','.join(sorted(missing)))
+            elif e.get('enabled') and not e.get('publicUrlVerified',False):
+              e['enabled']=False
+              e['forceRetry']=False
+              e['deferredByCurrentDayPriorityAt']=stamp
+          if set(booth_ids)-seen:
+            raise SystemExit('Missing BOOTH ids: '+','.join(sorted(set(booth_ids)-seen)))
           save(bp,bq)
-
-          fp,fq = load('sidehustle-autopublish/note/free_queue/index.json')
-          fq['updatedAt']=stamp
-          seen=[]
-          for e in fq.get('entries',[]):
-            if e.get('id') in free_ids:
-              seen.append(e.get('id'))
-              if not e.get('publicUrlVerified',False):
-                e['enabled']=True
-                e['forceRetry']=False
-          missing=free_ids-set(seen)
-          if missing: raise SystemExit('Missing free NOTE ids: '+','.join(sorted(missing)))
-          save(fp,fq)
 
           cp=pathlib.Path('booth-autopublish/monitor/recovery_control.json')
           c=json.loads(cp.read_text(encoding='utf-8-sig'))
           c['version']=int(c.get('version',0))+1
           c['updatedAt']=stamp
-          c['activeRecovery']={'date':'2026-08-23','mode':'force_current_day_all_now','requiredStrictNewPublications':5,'remaining':5}
+          c['activeRecovery']={'date':'2026-08-26','mode':'force_current_day_only_now','requiredStrictNewPublications':5,'remaining':5,'nonce':nonce}
           c['readyPaidRecoveryBatch']=c.get('readyPaidRecoveryBatch',{})
-          c['readyPaidRecoveryBatch']['queueIds']=list(booth_ids)
+          c['readyPaidRecoveryBatch']['queueIds']=booth_ids
           c['readyPaidRecoveryBatch']['queueRetryGeneration']=bq['retryGeneration']
           c['readyPaidRecoveryBatch']['forcedRecoveryAt']=stamp
           c['readyPaidRecoveryBatch']['forceRetryNonce']=nonce
+          c['readyPaidRecoveryBatch']['instruction']='Publish only BOOTH 039-043. Do not consume any prior-day item.'
           save(cp,c)
 
-          req=pathlib.Path('sidehustle-autopublish/windows_publication_request.json')
-          req.write_text(json.dumps({
-            'version':1,'requestedAt':stamp,'nonce':nonce,
-            'mode':'publish_all_current_day_now',
-            'paidNoteIds':list(paid_note_ids),'boothIds':list(booth_ids),'freeNoteIds':list(free_ids),
-            'completion':'strict public verification only'
-          },ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          rp=pathlib.Path('sidehustle-autopublish/windows_publication_request.json')
+          r=json.loads(rp.read_text(encoding='utf-8-sig'))
+          r['version']=int(r.get('version',0))+1
+          r['updatedAt']=stamp
+          r['requestedAt']=stamp
+          r['nonce']=nonce
+          r['date']='2026-08-26'
+          r['mode']='publish_all_current_day_now'
+          r['paidNote']={'ids':paid_ids,'target':5}
+          r['freeNote']={'ids':free_ids,'target':2}
+          r['BOOTH']={'ids':booth_ids,'target':5}
+          r['strictVerificationRequired']=True
+          r['doNotStopAfterFirstSuccess']=True
+          r['ignorePriorDayUnverified']=True
+          save(rp,r)
+
+          gp=pathlib.Path('sidehustle-autopublish/completion_gate.json')
+          g=json.loads(gp.read_text(encoding='utf-8-sig'))
+          g['updatedAt']=stamp
+          g['executionRequestedAt']=stamp
+          g['executionNonce']=nonce
+          save(gp,g)
 
       - name: Commit forced retry state
         run: |
@@ -141,7 +207,8 @@ jobs:
                   sidehustle-autopublish/note/free_queue/index.json \
                   booth-autopublish/queue/index.json \
                   booth-autopublish/monitor/recovery_control.json \
-                  sidehustle-autopublish/windows_publication_request.json
-          git commit -m 'Force all 2026-08-23 publications now'
+                  sidehustle-autopublish/windows_publication_request.json \
+                  sidehustle-autopublish/completion_gate.json
+          git commit -m 'Force only 2026-08-26 publications now'
           git pull --rebase origin main
           git push origin HEAD:main
