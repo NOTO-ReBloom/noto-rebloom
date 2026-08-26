@@ -28,156 +28,20 @@
 .rb-event-readiness .section-heading{margin-bottom:26px}
 .rb-event-readiness .rb-guide-panel{box-shadow:none}
 
-/* Event programme — horizontal heading, then five compact name-only rows. */
-.nr-new-event .section:has(.game-grid--confirmed) .container{
-  display:block!important;
-}
-.nr-new-event .section:has(.game-grid--confirmed) .section-heading{
-  display:block!important;
+/* Current renge-cup artwork: preserve the full illustration instead of cropping it. */
+.nr-new-event .renge-making .photo-frame img{
   width:100%!important;
-  max-width:900px!important;
-  min-width:0!important;
-  margin:0 0 16px!important;
-  padding:0!important;
-}
-.nr-new-event .section:has(.game-grid--confirmed) .section-heading .eyebrow{
-  width:auto!important;
-  max-width:none!important;
-  writing-mode:horizontal-tb!important;
-}
-.nr-new-event .section:has(.game-grid--confirmed) .section-heading h2{
-  display:block!important;
-  width:100%!important;
-  max-width:none!important;
-  min-width:0!important;
-  margin:10px 0 0!important;
-  padding:0!important;
-  font-size:0!important;
-  line-height:1.16!important;
-  writing-mode:horizontal-tb!important;
-  text-orientation:mixed!important;
-  white-space:normal!important;
-  word-break:keep-all!important;
-  overflow-wrap:normal!important;
-}
-.nr-new-event .section:has(.game-grid--confirmed) .section-heading h2::after{
-  content:"5つの競技を行います。";
-  display:block!important;
-  width:100%!important;
-  max-width:none!important;
-  font-size:clamp(32px,3.4vw,46px)!important;
-  line-height:1.14!important;
-  letter-spacing:-.04em!important;
-  writing-mode:horizontal-tb!important;
-  white-space:normal!important;
-  word-break:keep-all!important;
-}
-.nr-new-event .section:has(.game-grid--confirmed) .section-heading>p:last-child{
-  display:none!important;
-}
-.nr-new-event .game-grid--confirmed{
-  display:flex!important;
-  flex-direction:column!important;
-  grid-template-columns:none!important;
-  gap:7px!important;
-  align-items:stretch!important;
-  width:min(100%,560px)!important;
-  max-width:560px!important;
-  margin:0!important;
-  counter-reset:event-game;
-}
-.nr-new-event .game-grid--confirmed .game-card{
-  counter-increment:event-game;
-  display:flex!important;
-  flex-direction:row!important;
-  align-items:center!important;
-  gap:10px!important;
-  width:100%!important;
-  min-width:0!important;
-  min-height:44px!important;
-  height:44px!important;
-  padding:6px 12px!important;
-  overflow:visible!important;
-  border:1px solid rgba(24,75,61,.13)!important;
-  border-radius:12px!important;
-  background:#fff!important;
-  box-shadow:0 3px 9px rgba(24,75,61,.045)!important;
-  box-sizing:border-box!important;
-}
-.nr-new-event .game-grid--confirmed .game-card::before{
-  content:counter(event-game,decimal-leading-zero)!important;
-  display:grid!important;
-  place-items:center!important;
-  flex:0 0 28px!important;
-  width:28px!important;
-  height:28px!important;
-  margin:0!important;
-  border-radius:999px!important;
-  background:#e7f3e8!important;
-  color:#184b3d!important;
-  font-size:9px!important;
-  font-weight:900!important;
-  letter-spacing:.01em!important;
-}
-.nr-new-event .game-grid--confirmed .game-card__photo,
-.nr-new-event .game-grid--confirmed .game-card>p{
-  display:none!important;
-}
-.nr-new-event .game-grid--confirmed .game-card>h3{
-  display:block!important;
-  width:auto!important;
-  margin:0!important;
-  padding:0!important;
-  font-size:17px!important;
-  line-height:1.2!important;
-  color:#173e34!important;
-  writing-mode:horizontal-tb!important;
-  white-space:nowrap!important;
-  word-break:keep-all!important;
-}
-.nr-new-event #event-faq .faq-card:nth-child(15) p{
-  font-size:0!important;
-}
-.nr-new-event #event-faq .faq-card:nth-child(15) p::after{
-  content:"綱引き、リレー、台風の目、バケツリレー、玉入れの5種目で実施します。田んぼや天候の状態によって、安全のため進行方法を変更する場合があります。";
-  font-size:14px;
-  line-height:1.8;
-  color:inherit;
-}
-
-/* Use the 2026 renge-cup artwork consistently. */
-.nr-new-event img[src="renge-cup-illustration.png"]{
-  content:url("renge-cup-2026.webp?v=20260826e");
-}
-.nr-new-event .renge-making .photo-frame img,
-.nr-new-event .section--mint .photo-frame img{
+  height:100%!important;
   object-fit:contain!important;
+  object-position:center!important;
   background:#fffaf2;
 }
-
-/* Homepage: use the third visual tile for the take-home renge-cup experience. */
-.nr-new-home #visual-day .visual-tile:nth-child(3) img{
-  content:url("renge-cup-2026.webp?v=20260826e");
+.nr-new-home #visual-day .visual-tile:nth-child(3)>img{
+  width:100%!important;
+  height:100%!important;
   object-fit:contain!important;
+  object-position:center!important;
   background:#fffaf2;
-}
-.nr-new-home #visual-day .visual-tile:nth-child(3) .visual-label{
-  font-size:0!important;
-}
-.nr-new-home #visual-day .visual-tile:nth-child(3) .visual-label::after{
-  content:"TAKE HOME";
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:.12em;
-}
-.nr-new-home #visual-day .visual-tile:nth-child(3) figcaption{
-  font-size:0!important;
-}
-.nr-new-home #visual-day .visual-tile:nth-child(3) figcaption::after{
-  content:"競技のあとにRe:Bloomレンゲカップを作り、イベントの思い出と一緒に持ち帰ります。";
-  font-size:13px;
-  line-height:1.65;
-  color:inherit;
 }
 
 @media(max-width:900px){
@@ -190,10 +54,4 @@
   .rb-guide-grid{grid-template-columns:1fr}
   .rb-guide-item{padding:15px 16px}
   .rb-guide-actions .btn{width:100%;text-align:center}
-  .nr-new-event .section:has(.game-grid--confirmed) .section-heading{margin-bottom:16px!important}
-  .nr-new-event .section:has(.game-grid--confirmed) .section-heading h2::after{font-size:clamp(30px,9vw,40px)!important}
-  .nr-new-event .game-grid--confirmed{width:100%!important;max-width:none!important;gap:8px!important}
-  .nr-new-event .game-grid--confirmed .game-card{min-height:50px!important;height:50px!important;padding:8px 12px!important}
-  .nr-new-event .game-grid--confirmed .game-card::before{flex-basis:30px!important;width:30px!important;height:30px!important}
-  .nr-new-event .game-grid--confirmed .game-card>h3{font-size:18px!important}
 }
