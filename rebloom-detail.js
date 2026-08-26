@@ -82,5 +82,5 @@
   ensureScript('rebloom-experience.js','rebloom-experience.js?v=20260817ad');
   ensureScript('rebloom-appeal.js','rebloom-appeal.js?v=20260825generated2');
   ensureScript('participant-final.js','participant-final.js?v=20260826final2');
-  ensureScript('final-event-fixes.js','final-event-fixes.js?v=20260826final2');
+  ensureScript('final-event-fixes.js','final-event-fixes.js?v=20260826photoFaq3');
 })();
