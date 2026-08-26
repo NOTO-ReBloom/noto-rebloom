@@ -1,0 +1,33 @@
+{
+  "date": "2026-08-27",
+  "timezone": "Asia/Tokyo",
+  "createdAt": "2026-08-27T00:12:21+09:00",
+  "priorityRule": "Strict-verify all seven carried 2026-08-26 obligations before consuming new 2026-08-27 targets.",
+  "carriedFirst": {
+    "noteFree": ["free_note_20260826_01_event_cancel_signals","free_note_20260826_02_support_faq_boundary"],
+    "BOOTH": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"]
+  },
+  "newDayTargets": {
+    "notePaid": [
+      {"id":"note_20260827_37_budget_variance_control","title":"学生団体の予算が途中で崩れる前に｜予算差異を月1回15分で確認する実務ルール","expectedPriceJPY":1280,"value":"予算超過の早期発見と意思決定ログを一体化する実務手順"},
+      {"id":"note_20260827_38_near_miss_reporting","title":"イベント事故を未然に防ぐ｜ヒヤリハットを責任追及なしで集める運営テンプレート","expectedPriceJPY":1280,"value":"事故前の弱い兆候を回収し、改善へ接続する安全運営フロー"},
+      {"id":"note_20260827_39_sponsor_post_event_report","title":"協賛はイベント後が勝負｜次回提案につなげるスポンサー報告書の作り方","expectedPriceJPY":1480,"value":"協賛継続率を高める報告項目、証拠、次回提案導線を標準化"},
+      {"id":"note_20260827_40_interview_anonymization","title":"卒論インタビューの匿名化で迷わない｜録音・文字起こし・引用を分けて管理する方法","expectedPriceJPY":1280,"value":"研究データの識別情報を分離し、引用時の再識別リスクを下げる管理設計"},
+      {"id":"note_20260827_41_digital_refund_support_policy","title":"デジタル商品の返金・サポートで消耗しない｜販売前に決める対応範囲の線引き","expectedPriceJPY":1280,"value":"購入前説明、返金判断、サポート範囲、例外処理を事前定義する運用設計"}
+    ],
+    "noteFree": [
+      {"id":"free_note_20260827_01_budget_warning_signs","title":"予算オーバーの前に出る4つのサイン｜学生団体の会計で月1回見る場所","pairedPaidId":"note_20260827_37_budget_variance_control"},
+      {"id":"free_note_20260827_02_near_miss_questions","title":"事故が起きる前に聞きたい5つの質問｜イベント運営のヒヤリハット簡易チェック","pairedPaidId":"note_20260827_38_near_miss_reporting"}
+    ],
+    "BOOTH": [
+      {"id":"044_budget_variance_control_os_20260827","title":"学生団体向け 予算差異チェック＆意思決定ログ実務キット","expectedPriceJPY":1280,"pairedPaidId":"note_20260827_37_budget_variance_control"},
+      {"id":"045_near_miss_reporting_os_20260827","title":"イベント運営 ヒヤリハット報告・再発防止テンプレートセット","expectedPriceJPY":1280,"pairedPaidId":"note_20260827_38_near_miss_reporting"},
+      {"id":"046_sponsor_post_event_report_os_20260827","title":"協賛企業向け イベント実施報告書・継続提案テンプレート","expectedPriceJPY":1480,"pairedPaidId":"note_20260827_39_sponsor_post_event_report"},
+      {"id":"047_interview_anonymization_os_20260827","title":"卒論インタビュー 匿名化・引用管理シート実務セット","expectedPriceJPY":1280,"pairedPaidId":"note_20260827_40_interview_anonymization"},
+      {"id":"048_digital_refund_support_policy_os_20260827","title":"デジタル商品 返金・サポート方針設計テンプレート","expectedPriceJPY":1280,"pairedPaidId":"note_20260827_41_digital_refund_support_policy"}
+    ]
+  },
+  "qualityGate": ["non-duplicate practical value","exact-title QA","dedicated cover/preview","price-value fit","clear buyer outcome","strict public verification before counting"],
+  "materializationState": "planned_not_yet_materialized",
+  "consumerRule": "Do not attempt new 2026-08-27 IDs until corresponding queue entries and payload QA are present; carried 2026-08-26 obligations remain first priority."
+}
