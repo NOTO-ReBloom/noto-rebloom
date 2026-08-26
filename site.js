@@ -13,6 +13,14 @@
     document.head.appendChild(link);
   };
 
+  const ensureFinishingStyles=()=>{
+    if(document.querySelector('link[href*="site-finishing.css"]')) return;
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='site-finishing.css?v=20260827a';
+    document.head.appendChild(link);
+  };
+
   const normalizeLegacyLink=(a)=>{
     if(!(a instanceof HTMLAnchorElement)) return;
     if(!(a.getAttribute('href')||'').includes(OLD_FORM_TOKEN)) return;
@@ -114,16 +122,39 @@
     }
   };
 
-  const ensureHomepageNarrative=()=>{
+  const refineHomepage=()=>{
     if(!document.body.classList.contains('nr-new-home')) return;
-    const choices=document.querySelector('.nr-choice-grid');
-    if(!choices) return;
-    if(!document.getElementById('origin')){
-      const origin=document.createElement('section');
-      origin.id='origin';
-      origin.className='section section--paper motif motif--sprout';
-      origin.innerHTML=`<div class="container split-story"><div><p class="eyebrow"><span>この企画を始めたきっかけ</span><small>OUR START</small></p><h2>能登に来る理由を、<br>ひとつでも増やしたい。</h2><p>きっかけは「NOTO-REBOOST U-23」で能登を訪れ、使われなくなった農地を見たことでした。土地をきれいにするだけではなく、まずここに人が来て、地域の方と話して、能登のことを知る時間をつくれないだろうか。そこからこの企画を考え始めました。</p><p>一度のイベントで農地の問題が解決するわけではありません。それでも、泥だらけになって遊んだ一日が「また来たい」「今度は別の形でも関わりたい」と思うきっかけになれば、その一歩には意味があると思っています。まずは自分たちにできる形から始めます。</p><div class="button-row"><a class="btn btn--outline" href="learn.html">土地のことと企画の理由を見る</a></div></div><figure class="photo-frame"><img src="team-reboost.webp" alt="NOTO-REBOOST U-23で活動するNOTO Re:Bloomメンバー"><figcaption>NOTO-REBOOST U-23で能登と向き合ったことが、この企画の出発点です。</figcaption></figure></div>`;
-      choices.after(origin);
+
+    /* The home page should lead with the event experience; collaboration is supporting trust content. */
+    const ishimo=document.getElementById('ishimo-collaboration');
+    const story=document.getElementById('project-story');
+    const people=document.getElementById('people-behind-project');
+    if(ishimo){
+      if(story) story.after(ishimo);
+      else if(people) people.before(ishimo);
+    }
+
+    /* The hero already explains date/time/price. Use the second row to explain what is fun. */
+    const facts=document.querySelector('#visual-day .join-facts');
+    if(facts && !facts.dataset.experienceFacts){
+      facts.dataset.experienceFacts='true';
+      facts.innerHTML=`<div class="join-fact"><small>GAMES</small><strong>5種目</strong><span>綱引き・リレーなど</span></div><div class="join-fact"><small>TAKE HOME</small><strong>レンゲ</strong><span>カップを作って持ち帰る</span></div><div class="join-fact"><small>DRINK</small><strong>水分補給</strong><span>アクエリアスをご用意</span></div><div class="join-fact"><small>FIELD</small><strong>約1,000㎡</strong><span>洲巻の田んぼが会場</span></div>`;
+      const action=facts.nextElementSibling;
+      const b=action?.querySelector('b');
+      const span=action?.querySelector('span');
+      if(b) b.textContent='5つの競技と、持ち帰れるレンゲカップ。';
+      if(span) span.textContent='泥だらけで思いきり遊んだあとまで、楽しみが続く一日にします。';
+    }
+
+    /* Keep the journey as trust proof, but remove steps that duplicate other sections. */
+    const steps=[...document.querySelectorAll('#project-story .story-step')];
+    if(steps.length>=8){
+      const h3=steps[1]?.querySelector('h3');
+      const p=steps[1]?.querySelector('p');
+      if(h3) h3.textContent='現地へ行き、会場を探す';
+      if(p) p.textContent='土地を見て地域の方と話し、開催できる場所を一つずつ探しました。';
+      steps[2]?.remove();
+      steps[5]?.remove();
     }
   };
 
@@ -143,28 +174,47 @@
     container.appendChild(chart);
   };
 
-  const enrichHomeTimeline=()=>{
-    if(!document.body.classList.contains('nr-new-home')||document.getElementById('project-story')) return;
-    const purpose=document.getElementById('purpose');
-    if(!purpose) return;
-    const section=document.createElement('section');
-    section.id='project-story';
-    section.className='section story-timeline-section';
-    section.innerHTML=`<div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>ここまでの歩み</span><small>OUR JOURNEY</small></p><h2>考えるだけではなく、一つずつ形にしてきました。</h2><p>最初から全部が決まっていたわけではありません。現地へ行き、人と話し、やり方を変えながら9月20日に向けて準備しています。</p></div><div class="story-timeline"><article class="story-step"><span class="story-dot">01</span><small>きっかけ</small><h3>NOTO-REBOOST U-23</h3><p>能登の課題と向き合い、この企画を考え始めました。</p></article><article class="story-step"><span class="story-dot">02</span><small>現地へ</small><h3>農地を見て、話を聞く</h3><p>実際に土地を見ながら、何ができるかを考えました。</p></article><article class="story-step"><span class="story-dot">03</span><small>2026年8月</small><h3>洲巻地区の会場が決定</h3><p>約1,000㎡の田んぼをお借りできることになりました。</p></article><article class="story-step"><span class="story-dot">04</span><small>準備中</small><h3>支援を集め、開催準備</h3><p>READYFORや協賛を通して、必要な準備を進めています。</p></article><article class="story-step"><span class="story-dot">05</span><small>2026.9.19</small><h3>香林坊で報告会</h3><p>ここまで考えてきたことをまとめてお話しします。</p></article><article class="story-step"><span class="story-dot">06</span><small>2026.9.20</small><h3>泥ん子運動会</h3><p>洲巻の田んぼで、まず一回やってみます。</p></article></div></div>`;
-    purpose.after(section);
-  };
+  const refineEventPage=()=>{
+    if(!document.body.classList.contains('nr-new-event')) return;
 
-  const enrichEventReport=()=>{
-    if(!document.body.classList.contains('nr-new-event')||document.getElementById('after-event-report')) return;
-    const main=document.querySelector('main');
-    if(!main) return;
-    const sections=[...main.querySelectorAll(':scope > section')];
-    const join=sections.find(section=>section.querySelector('.eyebrow span')?.textContent.trim()==='参加する');
-    const report=document.createElement('section');
-    report.id='after-event-report';
-    report.className='section after-report';
-    report.innerHTML=`<div class="container"><div class="after-report-board after-report-board--compact"><div class="after-report-head"><div><p class="eyebrow"><span>開催後の報告</span><small>EVENT REPORT</small></p><h2>開催後は、結果と次の改善点を公開します。</h2><p>参加人数やアンケート、運営で分かった課題を整理し、次の活動につなげます。</p></div><span class="after-report-status">開催後に更新</span></div></div></div>`;
-    if(join) main.insertBefore(report,join); else main.appendChild(report);
+    /* Put the experience before organiser-side attendance targets. */
+    const heroH1=document.querySelector('.page-hero--event h1');
+    const heroLead=heroH1?.nextElementSibling;
+    if(heroLead?.tagName==='P') heroLead.textContent='使われなくなった土地を、みんなが集まり、笑い合える場所へ。珠洲市若山町洲巻の約1,000㎡の田んぼで、綱引きやリレーなど5つの競技を楽しみ、最後はRe:Bloomレンゲカップを作って持ち帰ります。';
+
+    /* Turn the 9/19 event into a small supporting note and move it below the FAQ. */
+    const reboost=document.getElementById('reboost-studio');
+    const faq=document.getElementById('event-faq');
+    if(reboost){
+      reboost.className='rb-reboost-section rb-reboost-section--compact';
+      reboost.innerHTML=`<div class="event-reboost-note"><div class="event-reboost-note__copy"><small>9.19 SAT / KANAZAWA</small><strong>前日は香林坊で、NOTO Re:Bloomの活動を発表します。</strong><p>これまでの活動と、翌9月20日に珠洲で開催する泥ん子運動会について紹介します。</p></div><div class="event-reboost-note__date">9/19<br>15:00–17:00</div></div>`;
+      if(faq) faq.after(reboost);
+    }
+
+    /* Eighteen FAQs are useful; grouping makes them feel prepared rather than overwhelming. */
+    const grid=document.querySelector('#event-faq .faq-grid');
+    if(grid && !grid.querySelector('.faq-category')){
+      const cards=[...grid.querySelectorAll(':scope > .faq-card')];
+      const groups=[
+        ['参加について',cards.slice(0,3)],
+        ['服装・持ち物',cards.slice(3,8)],
+        ['アクセス・設備',cards.slice(8,13)],
+        ['安全・当日の運営',cards.slice(13)]
+      ];
+      groups.forEach(([title,items])=>{
+        if(!items.length) return;
+        const group=document.createElement('section');
+        group.className='faq-category';
+        const heading=document.createElement('h3');
+        heading.className='faq-category__title';
+        heading.textContent=title;
+        const wrap=document.createElement('div');
+        wrap.className='faq-category__cards';
+        items.forEach(card=>wrap.appendChild(card));
+        group.append(heading,wrap);
+        grid.appendChild(group);
+      });
+    }
   };
 
   const setupDiagnosisExperience=()=>{
@@ -215,16 +265,28 @@
     });
   };
 
+  const injectPartnerStrip=()=>{
+    if(document.querySelector('.site-partner-strip')) return;
+    const footer=document.querySelector('.site-footer');
+    if(!footer) return;
+    const strip=document.createElement('section');
+    strip.className='site-partner-strip';
+    strip.setAttribute('aria-label','NOTO Re:Bloomの協賛・協力パートナー');
+    strip.innerHTML=`<div class="site-partner-strip__inner"><p class="site-partner-strip__label">NOTO Re:Bloom / 協賛・協力パートナー</p><div class="site-partner-strip__logos"><a class="site-partner-strip__logo site-partner-strip__logo--rebloom" href="index.html" aria-label="NOTO Re:Bloom"><img src="noto-rebloom-logo.png" alt="NOTO Re:Bloom" loading="lazy" decoding="async"></a><a class="site-partner-strip__logo" href="https://bukatsunavi.com/" target="_blank" rel="sponsored noopener" aria-label="部活ナビ"><img src="bukatsu-navi-logo.svg" alt="部活ナビ" loading="lazy" decoding="async"></a><a class="site-partner-strip__logo" href="https://gyakuten-coaching.com/" target="_blank" rel="sponsored noopener" aria-label="逆転コーチング"><img src="gyakuten-coaching-official-logo.png" alt="逆転コーチング" loading="lazy" decoding="async"></a><a class="site-partner-strip__logo" href="https://www.ishimo-ishikawa.jp/" target="_blank" rel="noopener" aria-label="ishimo"><img src="ishimo-logo.svg" alt="ishimo" loading="lazy" decoding="async"></a><a class="site-partner-strip__logo" href="https://hamonz.co.jp/" target="_blank" rel="noopener" aria-label="HAMONZ"><img src="hamonz-logo.svg" alt="HAMONZ" loading="lazy" decoding="async"></a><a class="site-partner-strip__logo" href="https://coworkingsquarekanazawa.com/zukan/" target="_blank" rel="noopener" aria-label="イシカワズカン"><img src="ishikawa-zukan-logo.png" alt="イシカワズカン" loading="lazy" decoding="async"></a><a class="site-partner-strip__logo" href="https://www.kanazawa-port.jp/" target="_blank" rel="noopener" aria-label="金沢ポート"><img src="kanazawa-port-logo.png" alt="金沢ポート" loading="lazy" decoding="async"></a></div><a class="site-partner-strip__more" href="partner.html">協賛・協力について詳しく見る →</a></div>`;
+    footer.before(strip);
+  };
+
   ensureLatestStyles();
+  ensureFinishingStyles();
   setupNav();
-  setupRevealAndScroll();
   updateLegacyVenueText();
   removeDedicatedRecruitment();
-  ensureHomepageNarrative();
+  refineHomepage();
   enrichLearnPage();
-  enrichHomeTimeline();
-  enrichEventReport();
+  refineEventPage();
   setupDiagnosisExperience();
+  injectPartnerStrip();
+  setupRevealAndScroll();
 
   let cleaning=false;
   const observer=new MutationObserver(mutations=>{
