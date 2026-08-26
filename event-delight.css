@@ -72,6 +72,17 @@
   .nr-new-event .program-clean::before{display:none}
   .nr-new-event .program-clean .callout::after{position:static;display:inline-flex;margin-top:9px}
   .nr-new-event .renge-making .photo-frame{transform:none}
+
+  /* FAQ becomes compact only on mobile; desktop keeps every answer visible. */
+  .nr-new-event #event-faq .faq-grid{gap:8px}
+  .nr-new-event #event-faq .faq-card{padding:0!important}
+  .nr-new-event #event-faq .faq-card .q{display:flex;align-items:center;min-height:54px;padding:14px 46px 14px 47px!important;cursor:pointer;outline:none}
+  .nr-new-event #event-faq .faq-card .q::before{left:14px;top:50%;transform:translateY(-50%)}
+  .nr-new-event #event-faq .faq-card .q::after{content:"＋";position:absolute;right:15px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#f5f1e8;color:var(--ed-green);font-size:16px;font-weight:900;line-height:1;transition:transform .18s ease,background .18s ease}
+  .nr-new-event #event-faq .faq-card .q:focus-visible{box-shadow:inset 0 0 0 2px rgba(24,75,61,.28)}
+  .nr-new-event #event-faq .faq-card>p{display:none;margin:0;padding:0 16px 16px 47px;font-size:14px;line-height:1.78}
+  .nr-new-event #event-faq .faq-card.is-open>p{display:block}
+  .nr-new-event #event-faq .faq-card.is-open .q::after{content:"−";background:var(--ed-mint)}
 }
 
 /* Subtle reveal motion. */
