@@ -1,7 +1,27 @@
 /* NOTO Re:Bloom / Mud Sports Event Delight Layer
-   Additive visual polish only: preserves the existing layout and brand. */
+   Event-specific layout and polish. Shared site structure remains in the common stylesheets. */
 
 .nr-new-event{--ed-green:#184b3d;--ed-green-2:#2b6a57;--ed-mint:#e7f3e8;--ed-paper:#fffaf2;--ed-yellow:#ffd85c;--ed-purple:#efe7f6;--ed-line:rgba(24,75,61,.14)}
+
+/* Event-only structural rules formerly embedded in event.html. */
+.nr-new-event .renge-making{background:#fffaf0}
+.nr-new-event .renge-making .cup-layout{align-items:center}
+.nr-new-event .renge-making .photo-frame{max-width:520px;margin-inline:auto}
+.nr-new-event .renge-making .photo-frame img{width:100%;height:100%;object-fit:contain;object-position:center;background:#fffaf2}
+.nr-new-event .renge-making .cup-steps{margin-top:28px}
+.nr-new-event .renge-making .cup-steps li{align-items:center}
+.nr-new-event .renge-making .cup-steps span{flex:none}
+.nr-new-event .event-faq-source{max-width:900px;margin:22px auto 0;padding:14px 16px;border-left:3px solid #184b3d;background:rgba(24,75,61,.05);font-size:13px;line-height:1.75;color:#4e5f57}
+.nr-new-event .event-faq-source a{font-weight:800;color:#184b3d;text-decoration:underline;text-underline-offset:3px}
+.nr-new-event .program-clean{padding-top:72px;padding-bottom:72px}
+.nr-new-event .program-clean .section-heading{display:block;width:100%;max-width:900px;margin:0 0 22px;padding:0}
+.nr-new-event .program-clean .section-heading .eyebrow{writing-mode:horizontal-tb!important;width:auto!important;max-width:none!important}
+.nr-new-event .program-clean .section-heading h2{margin:14px 0 0;font-size:clamp(34px,4vw,52px);line-height:1.16;letter-spacing:-.04em;writing-mode:horizontal-tb!important;word-break:keep-all}
+.nr-new-event .program-clean-list{display:flex;flex-direction:column;gap:7px;width:min(100%,560px);margin:0;padding:0}
+.nr-new-event .program-clean-row{display:flex;align-items:center;gap:12px;width:100%;height:44px;padding:6px 12px;border:1px solid rgba(24,75,61,.14);border-radius:12px;background:#fff;box-shadow:0 3px 10px rgba(24,75,61,.045);box-sizing:border-box}
+.nr-new-event .program-clean-num{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:999px;background:#e7f3e8;color:#184b3d;font-size:10px;font-weight:900;line-height:1}
+.nr-new-event .program-clean-name{display:block;margin:0;color:#173e34;font-size:17px;font-weight:900;line-height:1.2;white-space:nowrap;writing-mode:horizontal-tb!important}
+.nr-new-event .program-clean .callout{width:min(100%,760px);margin-top:22px}
 
 /* Hero: a small, lively status strip without changing the core layout. */
 .event-delight-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:15px}
@@ -116,6 +136,12 @@
   .nr-new-event .aquarius-inline img{height:215px}
 }
 @media(max-width:620px){
+  .nr-new-event .program-clean{padding-top:54px;padding-bottom:54px}
+  .nr-new-event .program-clean .section-heading{margin-bottom:18px}
+  .nr-new-event .program-clean .section-heading h2{font-size:clamp(30px,9vw,40px)}
+  .nr-new-event .program-clean-list{width:100%;gap:8px}
+  .nr-new-event .program-clean-row{height:46px;padding:7px 12px}
+  .nr-new-event .program-clean-name{font-size:17px}
   .nr-new-event .program-split{gap:18px;max-width:none}
   .nr-new-event .aquarius-inline{max-width:none;padding:14px;border-radius:20px}
   .nr-new-event .aquarius-inline figure{min-height:190px}
