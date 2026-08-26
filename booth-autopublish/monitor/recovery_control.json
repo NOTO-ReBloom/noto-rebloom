@@ -1,33 +1,21 @@
 {
-  "version": 33,
-  "updatedAt": "2026-08-26T23:36:09+09:00",
+  "version": 34,
+  "updatedAt": "2026-08-27T00:12:21+09:00",
   "activeRecovery": {
-    "date": "2026-08-26",
-    "mode": "force_current_day_only_now",
+    "date": "2026-08-27",
+    "mode": "carryover_aug26_booth_first",
     "requiredStrictNewPublications": 5,
     "remaining": 5,
-    "nonce": "force-only-20260826-20260826T233609+0900"
+    "nonce": "carryover-20260826-into-20260827"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-26T23:25:00+09:00",
+    "sourceDate": "2026-08-26",
     "requiredStrictNewPublications": 5,
-    "queueIds": [
-      "039_event_cancellation_decision_log_os_20260826",
-      "040_sponsor_benefit_inventory_os_20260826",
-      "041_volunteer_shift_handover_os_20260826",
-      "042_research_consent_version_control_os_20260826",
-      "043_digital_support_triage_os_20260826"
-    ],
+    "queueIds": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"],
     "completedIds": [],
     "queueRetryGeneration": 39,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
-    "requiredBuyerChecks": [
-      "buyerVisibleUrl",
-      "exactTitle",
-      "expectedPrice",
-      "downloadableProductState",
-      "purchaseOrCartPath"
-    ],
+    "requiredBuyerChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"],
     "expectedPricesJPY": {
       "039_event_cancellation_decision_log_os_20260826": 980,
       "040_sponsor_benefit_inventory_os_20260826": 1280,
@@ -37,54 +25,31 @@
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "ignorePriorDayEnabledEntriesForThisRecovery": true,
-    "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-    "forcedRecoveryAt": "2026-08-26T23:36:09+09:00",
-    "instruction": "Publish only BOOTH 039-043 for 2026-08-26; do not consume prior-day entries."
+    "ignoreAlreadyResolvedPriorDayEntries": true,
+    "forceRetryNonce": "carryover-20260826-into-20260827",
+    "instruction": "First strict-verify BOOTH 039-043 carried from Aug 26. Before any ambiguous retry, reconcile existing buyer-visible exact-title pages. Do not consume Aug 27 BOOTH 044-048 until completion_gate says materialized=true and queue/payload QA is present."
   },
   "windowsResumeContract": {
-    "requiredIds": [
-      "039_event_cancellation_decision_log_os_20260826",
-      "040_sponsor_benefit_inventory_os_20260826",
-      "041_volunteer_shift_handover_os_20260826",
-      "042_research_consent_version_control_os_20260826",
-      "043_digital_support_triage_os_20260826"
-    ],
-    "firstPassOrder": [
-      "039_event_cancellation_decision_log_os_20260826",
-      "040_sponsor_benefit_inventory_os_20260826",
-      "041_volunteer_shift_handover_os_20260826",
-      "042_research_consent_version_control_os_20260826",
-      "043_digital_support_triage_os_20260826"
-    ],
+    "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
+    "requiredIds": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"],
+    "firstPassOrder": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five current-day IDs buyer-visible strict verified",
-    "duplicateSafety": "Before creating a new BOOTH item after any ambiguous publisher result, reconcile by exact title and buyer-visible page first."
+    "completionPredicate": "all five carried Aug 26 IDs buyer-visible strict verified",
+    "duplicateSafety": "Before creating a new BOOTH item after any ambiguous publisher result, reconcile by exact title and buyer-visible page first.",
+    "noScatteredRootFallback": true,
+    "noDailyZipCmdProliferation": true
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-26T23:25:00+09:00",
+    "checkedAt": "2026-08-27T00:12:21+09:00",
     "windowsPublisherReachable": null,
-    "notePaidFloor": "2026-08-26 0/5 strict verified at last canonical check",
-    "boothStrictFloor": "2026-08-26 0/5 strict verified at last canonical check",
-    "currentDayMaterializationQa": "NOTE 5/5 encrypted payloads complete; BOOTH 5/5 encrypted payload ZIPs complete; free NOTE 2/2 drafted and queued",
-    "ledgerCurrentDayEntries": 0,
-    "previousDayPaidState": "2026-08-25 NOTE 5/5 and BOOTH 5/5 strict verified; do not count or republish as Aug 26",
-    "previousDayFreeState": "2026-08-25 designated free NOTE pair 2/2 strict verified; do not republish",
+    "carryOverBOOTH": "2026-08-26 0/5 strict verified at last canonical check",
+    "aug27NewBOOTH": "planned but not materialized; do not consume yet",
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "On next Windows consumer pass, process only the five Aug 26 BOOTH required IDs first, strict-verify buyer-visible pages, then reconcile ledger/quota/completion gate. Do not fall back to prior-day enabled entries."
+    "nextAction": "On next Windows consumer pass, process carried BOOTH 039-043 only, strict-verify buyer-visible pages and reconcile ledger/quota/completion gate."
   },
   "heldAlreadyResolved": {
-    "queueIds": [
-      "034_grant_evidence_match_os_20260825",
-      "035_event_authority_transfer_os_20260825",
-      "036_access_handover_os_20260825",
-      "037_research_exclusion_log_os_20260825",
-      "038_creator_release_qa_os_20260825"
-    ],
-    "reason": "2026-08-25 batch already strict verified 5/5; ignore any stale enabled flags and never republish or count toward Aug 26."
+    "queueIds": ["034_grant_evidence_match_os_20260825","035_event_authority_transfer_os_20260825","036_access_handover_os_20260825","037_research_exclusion_log_os_20260825","038_creator_release_qa_os_20260825"],
+    "reason": "Already strict verified; never republish."
   },
-  "heldBlocked": {
-    "queueId": "009_handover_os_20260820",
-    "reason": "Legacy blocker remains deferred; never preempt the Aug 26 current-day floor."
-  }
+  "heldBlocked": {"queueId":"009_handover_os_20260820","reason":"Legacy blocker remains deferred behind current carryover and current-day floor."}
 }
