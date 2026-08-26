@@ -1,15 +1,15 @@
 {
-  "version": 31,
-  "updatedAt": "2026-08-26T09:20:40+09:00",
+  "version": 32,
+  "updatedAt": "2026-08-26T23:25:00+09:00",
   "activeRecovery": {
     "date": "2026-08-26",
-    "mode": "current_day_paid_floor",
+    "mode": "current_day_paid_floor_reasserted",
     "requiredStrictNewPublications": 5,
     "remaining": 5,
-    "state": "ready"
+    "state": "ready_reasserted"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-26T09:20:40+09:00",
+    "generatedAt": "2026-08-26T23:25:00+09:00",
     "requiredStrictNewPublications": 5,
     "queueIds": [
       "039_event_cancellation_decision_log_os_20260826",
@@ -37,7 +37,8 @@
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260826-20260826T092040+0900"
+    "ignorePriorDayEnabledEntriesForThisRecovery": true,
+    "forceRetryNonce": "booth-20260826-reassert-20260826T232500+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -55,33 +56,33 @@
       "043_digital_support_triage_os_20260826"
     ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
+    "completionPredicate": "all five current-day IDs buyer-visible strict verified",
+    "duplicateSafety": "Before creating a new BOOTH item after any ambiguous publisher result, reconcile by exact title and buyer-visible page first."
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-24T19:28:49+09:00",
-    "windowsPublisherReachable": true,
-    "notePaidFloor": "2026-08-24 5/5 strict verified; zero remaining",
-    "boothStrictFloor": "2026-08-24 5/5 strict verified; zero remaining",
-    "carriedBoothDebt": "2026-08-23 5/5 strict verified and reconciled; zero remaining",
-    "materializationQa": "NOTE 5/5 encrypted payloads with dedicated covers/SHA/prices complete; BOOTH 5/5 encrypted payload ZIPs with product.json/product.zip/preview01.jpg/SHA complete",
-    "ledgerCurrentDayEntries": 5,
-    "previousDayPaidState": "2026-08-23 NOTE 5/5 and BOOTH 5/5 strict verified; carried paid debt is zero; do not republish previous-day items",
-    "previousDayFreeState": "2026-08-23 designated free NOTE pair 2/2 strict verified; do not republish and do not count toward paid floor",
+    "checkedAt": "2026-08-26T23:25:00+09:00",
+    "windowsPublisherReachable": null,
+    "notePaidFloor": "2026-08-26 0/5 strict verified at last canonical check",
+    "boothStrictFloor": "2026-08-26 0/5 strict verified at last canonical check",
+    "currentDayMaterializationQa": "NOTE 5/5 encrypted payloads complete; BOOTH 5/5 encrypted payload ZIPs complete; free NOTE 2/2 drafted and queued",
+    "ledgerCurrentDayEntries": 0,
+    "previousDayPaidState": "2026-08-25 NOTE 5/5 and BOOTH 5/5 strict verified; do not count or republish as Aug 26",
+    "previousDayFreeState": "2026-08-25 designated free NOTE pair 2/2 strict verified; do not republish",
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "No Aug 24 recovery action. Keep the completed queues and looping schedulers disabled until a new next-cycle queue is intentionally activated."
+    "nextAction": "On next Windows consumer pass, process only the five Aug 26 BOOTH required IDs first, strict-verify buyer-visible pages, then reconcile ledger/quota/completion gate. Do not fall back to prior-day enabled entries."
   },
   "heldAlreadyResolved": {
     "queueIds": [
-      "024_grant_evidence_expense_os_20260823",
-      "025_event_decision_authority_os_20260823",
-      "026_research_claim_evidence_os_20260823",
-      "027_sponsor_contact_history_os_20260823",
-      "028_team_backup_coverage_os_20260823"
+      "034_grant_evidence_match_os_20260825",
+      "035_event_authority_transfer_os_20260825",
+      "036_access_handover_os_20260825",
+      "037_research_exclusion_log_os_20260825",
+      "038_creator_release_qa_os_20260825"
     ],
-    "reason": "Strict buyer-visible verified 5/5 and present in canonical ledger; never republish or count toward the 2026-08-24 floor."
+    "reason": "2026-08-25 batch already strict verified 5/5; ignore any stale enabled flags and never republish or count toward Aug 26."
   },
   "heldBlocked": {
     "queueId": "009_handover_os_20260820",
-    "reason": "Legacy blocker remains deferred; completion of the Aug 24 work cycle does not activate or republish it."
+    "reason": "Legacy blocker remains deferred; never preempt the Aug 26 current-day floor."
   }
 }
