@@ -23,10 +23,19 @@
   <link rel="stylesheet" href="brand-refresh.css?v=20260820c">
   <link rel="stylesheet" href="participant-guide.css?v=20260826a">
   <style>
-    .game-grid--confirmed{grid-template-columns:repeat(5,minmax(0,1fr))}
-    .game-grid--confirmed article{min-height:230px}
-    @media(max-width:1050px){.game-grid--confirmed{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.game-grid--confirmed{grid-template-columns:1fr}}
+    .game-grid--confirmed{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;align-items:stretch}
+    .game-grid--confirmed .game-card{min-width:0;min-height:0;overflow:hidden;padding:0 0 20px;border-radius:22px;display:flex;flex-direction:column}
+    .game-card__photo{position:relative;margin:0 0 18px;aspect-ratio:4/3;overflow:hidden;border-radius:18px 18px 10px 10px;background:#e8e1d5}
+    .game-card__photo img{width:100%;height:100%;display:block;object-fit:cover}
+    .game-card__number{position:absolute;top:10px;left:10px;z-index:2;display:grid;place-items:center;min-width:38px;height:38px;padding:0 10px;border-radius:999px;background:#fffaf2;color:#184b3d;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 6px 16px rgba(24,75,61,.18)}
+    .game-grid--confirmed .game-card>h3,.game-grid--confirmed .game-card>p{margin-left:20px;margin-right:20px}
+    .game-grid--confirmed .game-card>h3{margin-top:0;margin-bottom:8px}
+    .game-grid--confirmed .game-card>p{margin-bottom:0}
+    .event-faq-source{max-width:900px;margin:22px auto 0;padding:14px 16px;border-left:3px solid #184b3d;background:rgba(24,75,61,.05);font-size:13px;line-height:1.75;color:#4e5f57}
+    .event-faq-source a{font-weight:800;color:#184b3d;text-decoration:underline;text-underline-offset:3px}
+    @media(max-width:1100px){.game-grid--confirmed{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:760px){.game-grid--confirmed{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:520px){.game-grid--confirmed{grid-template-columns:1fr}.game-card__photo{aspect-ratio:16/10}}
   </style>
 </head>
 <body class="nr-new-event">
@@ -61,37 +70,6 @@
     </div>
   </section>
 
-  <section class="rb-event-readiness" id="participant-readiness">
-    <div class="container">
-      <div class="section-heading"><p class="eyebrow"><span>服装・着替え・アクセス</span><small>PRACTICAL GUIDE</small></p><h2>参加前に確認しておきたいこと。</h2><p>すでに決まっている内容と、現在最終調整している内容を分けて掲載します。</p></div>
-      <div class="rb-participant-guide__groups">
-        <section class="rb-guide-panel" aria-labelledby="event-confirmed-title">
-          <div class="rb-guide-panel__label" id="event-confirmed-title">✓ 現時点で決まっていること</div>
-          <div class="rb-guide-grid">
-            <div class="rb-guide-item"><small>FEET</small><strong>競技は裸足です</strong><p>田んぼの中では裸足で参加します。長靴は基本的に必要ありません。持参しても構いませんが、競技中は裸足を予定しています。</p></div>
-            <div class="rb-guide-item"><small>CLOTHES</small><strong>汚れてよい服装で</strong><p>水着の上にTシャツなどを着て参加するのがおすすめです。水着は必須ではありません。</p></div>
-            <div class="rb-guide-item"><small>CHANGE</small><strong>更衣スペースを設けます</strong><p>競技後に着替えられるスペースを用意します。着替え一式とタオルをご持参ください。</p></div>
-            <div class="rb-guide-item"><small>RINSE</small><strong>水で泥を落とせます</strong><p>シャワー設備ではありませんが、水で体についた泥を落とす程度の洗い流しは可能です。</p></div>
-            <div class="rb-guide-item"><small>PARKING</small><strong>田んぼ周辺に駐車可能</strong><p>会場周辺に車を停められる場所を用意する予定です。具体的な駐車位置と台数は最終確認後に案内します。</p></div>
-            <div class="rb-guide-item"><small>DRINK</small><strong>飲み物も持参してください</strong><p>参加者向けにアクエリアスを用意する予定ですが、暑さ対策のため各自でも飲み物をご準備ください。</p></div>
-          </div>
-        </section>
-        <section class="rb-guide-panel rb-guide-panel--pending" aria-labelledby="event-pending-title">
-          <div class="rb-guide-panel__label" id="event-pending-title">調整中 / 確定後に更新</div>
-          <div class="rb-guide-grid">
-            <div class="rb-guide-item"><small>EXTRA PARKING</small><strong>旧上黒丸小学校の利用</strong><p>追加の駐車候補として確認中です。利用可否が確定するまでは駐車場として案内しません。</p></div>
-            <div class="rb-guide-item"><small>TOILET</small><strong>トイレ</strong><p>現段階では確保方法を調整中です。利用場所が決まり次第、このページでお知らせします。</p></div>
-            <div class="rb-guide-item"><small>PUBLIC TRANSPORT</small><strong>公共交通での来場</strong><p>上黒丸方面の「若山飯田ルート」は土日運休のため、9月20日（日）は利用できません。車以外での来場方法は引き続き検討します。</p></div>
-            <div class="rb-guide-item"><small>MEETING POINT</small><strong>最終的な集合・進入案内</strong><p>駐車位置、受付への入り方などの最終案内は、確定後にサイトと参加者向け案内でお知らせします。</p></div>
-          </div>
-          <p class="rb-guide-note">※2026年8月26日時点。特にトイレ・追加駐車・公共交通については、確定前の情報を断定せず更新していきます。</p>
-        </section>
-      </div>
-      <div class="rb-guide-source">公共交通については、珠洲市が掲載している現在の「若山飯田ルート」時刻表で土・日運休を確認しています。<a href="https://www.city.suzu.lg.jp/soshiki/2/12602.html" target="_blank" rel="noopener">珠洲市の市営路線バス案内を見る ↗</a></div>
-      <div class="rb-guide-actions"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">無料で参加申込する</a></div>
-    </div>
-  </section>
-
   <section class="visual-mosaic-section" id="event-visual">
     <div class="visual-mosaic-wrap">
       <div class="visual-mosaic-head"><div><p class="eyebrow"><span>会場と準備</span><small>PLACE & PREPARATION</small></p><h2>洲巻の田んぼで、<br>泥だらけの一日を。</h2></div><p>会場になる田んぼを事前に確認し、危険物や足元、水の状態などを確認したうえで当日を迎えます。</p></div>
@@ -114,13 +92,13 @@
 
   <section class="section">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow"><span>競技内容</span><small>PROGRAM</small></p><h2>競技内容を一部公開。</h2><p>泥の中で、子どもから大人まで一緒に楽しめる競技を行います。以下の競技を予定しており、当日の田んぼの状態や天候などにより内容を変更する場合があります。</p></div>
+      <div class="section-heading"><p class="eyebrow"><span>競技内容</span><small>PROGRAM</small></p><h2>5つの競技を予定しています。</h2><p>泥の中で、子どもから大人まで一緒に楽しめる競技です。当日の田んぼの状態や天候などにより、内容を変更する場合があります。</p></div>
       <div class="game-grid game-grid--confirmed">
-        <article><span>01</span><h3>綱引き</h3><p>泥の中で踏ん張りながら、チームで力を合わせる定番競技です。</p></article>
-        <article><span>02</span><h3>リレー</h3><p>泥の中を走って次の人へつなぐ、運動会らしいチーム競技です。</p></article>
-        <article><span>03</span><h3>台風の目</h3><p>棒を持ってチームで進み、息を合わせながらコースを回ります。</p></article>
-        <article><span>04</span><h3>バケツリレー</h3><p>バケツを使って、チームで協力しながらつないでいきます。</p></article>
-        <article><span>05</span><h3>玉入れ</h3><p>泥の中でも参加しやすく、年齢を問わず楽しめる競技です。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_rural_tug_of_war_celebration.jpg" alt="泥の田んぼで綱引きを楽しむ参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">01</small></figure><h3>綱引き</h3><p>泥の中で踏ん張りながら、チームで力を合わせる定番競技です。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_relay_race_in_the_countryside.jpg" alt="泥の田んぼでリレーをする参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">02</small></figure><h3>リレー</h3><p>泥の中を走って次の人へつなぐ、運動会らしいチーム競技です。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bamboo_pole_team_race.jpg" alt="棒を持って台風の目をする参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">03</small></figure><h3>台風の目</h3><p>棒を持ってチームで進み、息を合わせながらコースを回ります。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bucket_relay_celebration.jpg" alt="泥の田んぼでバケツリレーをする参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">04</small></figure><h3>バケツリレー</h3><p>バケツを使って、チームで協力しながらつないでいきます。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_red_ball_festival_game.jpg" alt="泥の田んぼで玉入れを楽しむ参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">05</small></figure><h3>玉入れ</h3><p>泥の中でも参加しやすく、年齢を問わず楽しめる競技です。</p></article>
       </div>
       <div class="callout"><b>参加者にアクエリアスをプレゼント</b><p>運動のあとはしっかり水分補給。参加者向けにアクエリアスを用意する予定です。</p></div>
     </div>
@@ -153,21 +131,26 @@
   <section class="section section--soil"><div class="container"><div><p class="eyebrow eyebrow--light"><span>お問い合わせ</span><small>CONTACT</small></p><h2>気になることがあれば、ご連絡ください。</h2><p>泥ん子運動会の参加についてのご質問は infonotorebloom@gmail.com までお願いします。</p></div></div></section>
 
   <section class="faq-visual" id="event-faq">
-    <div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加前によく確認したいこと</span><small>FAQ</small></p><h2>参加前のよくある質問</h2><p>参加を決める前に気になる情報を、短くまとめました。</p></div><div class="faq-grid">
-      <article class="faq-card"><div class="q">参加費はいくらですか？</div><p><strong>無料です。</strong> 全年齢を対象にしています。参加フォームからお申し込みください。</p></article>
-      <article class="faq-card"><div class="q">どんな競技をしますか？</div><p>綱引き、リレー、台風の目、バケツリレー、玉入れなどを予定しています。田んぼや天候の状態によって変更する場合があります。</p></article>
+    <div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加前によく確認したいこと</span><small>FAQ</small></p><h2>参加前のよくある質問</h2><p>服装やアクセスなど、参加前に気になる情報をここにまとめています。未確定の内容は「現在調整中」と明記しています。</p></div><div class="faq-grid">
+      <article class="faq-card"><div class="q">参加費はいくらですか？</div><p><strong>無料です。</strong> 参加フォームからお申し込みください。</p></article>
+      <article class="faq-card"><div class="q">何歳から参加できますか？</div><p><strong>全年齢対象です。</strong> 幼稚園以下のお子さんは、保護者の方と一緒にご参加ください。</p></article>
+      <article class="faq-card"><div class="q">子どもだけで参加できますか？</div><p>小学生は、保護者による申込みと当日受付の後、子どものみで競技に参加できます。幼稚園以下は保護者同伴でご参加ください。</p></article>
+      <article class="faq-card"><div class="q">どんな服装で参加しますか？</div><p>泥で汚れてもよいTシャツなどでご参加ください。<strong>着替え、タオル、汚れ物を入れる袋</strong>をご持参いただくと安心です。</p></article>
+      <article class="faq-card"><div class="q">靴や長靴は必要ですか？</div><p>競技は<strong>裸足</strong>で行います。靴や長靴は基本的に必要ありません。</p></article>
+      <article class="faq-card"><div class="q">水着は必要ですか？</div><p><strong>必須ではありません。</strong> 可能であれば服の下に水着を着て、その上にTシャツなどを着て来ると着替えやすくおすすめです。</p></article>
+      <article class="faq-card"><div class="q">着替え場所はありますか？</div><p><strong>更衣スペースを設けます。</strong> 競技後に着替えられるよう準備します。</p></article>
+      <article class="faq-card"><div class="q">泥は落とせますか？</div><p>シャワー設備ではありませんが、<strong>水で体についた泥を落とす程度</strong>の洗い流しは可能です。</p></article>
+      <article class="faq-card"><div class="q">駐車場はありますか？</div><p><strong>現在調整中です。</strong> 田んぼ近くに停められる可能性があり、旧上黒丸小学校周辺も候補です。具体的な駐車位置と台数は確定後に案内します。</p></article>
+      <article class="faq-card"><div class="q">公共交通で行けますか？</div><p>9月20日は日曜日で、上黒丸方面の<strong>若山飯田ルートは土日運休</strong>のため利用できません。現時点では車での来場をおすすめしており、車以外の来場方法は<strong>現在調整中です。</strong></p></article>
+      <article class="faq-card"><div class="q">雨天時はどうなりますか？</div><p><strong>現在調整中です。</strong> 小雨時を含む最終的な開催基準を詰めています。雷・大雨など安全確保が難しい場合は、競技の変更や中止を判断します。</p></article>
+      <article class="faq-card"><div class="q">トイレはありますか？</div><p><strong>現在調整中です。</strong> 確保方法と利用場所が決まり次第、このサイトでお知らせします。</p></article>
+      <article class="faq-card"><div class="q">途中参加・途中退出はできますか？</div><p><strong>現在調整中です。</strong> 受付方法や安全確認の手順とあわせて、確定後に案内します。</p></article>
+      <article class="faq-card"><div class="q">けがをした場合はどうなりますか？</div><p>体調不良やけががあった場合は競技を止めて対応し、必要に応じて119番通報や保護者への連絡を行います。イベント保険も準備を進めています。</p></article>
+      <article class="faq-card"><div class="q">どんな競技をしますか？</div><p><strong>綱引き、リレー、台風の目、バケツリレー、玉入れ</strong>の5種目を予定しています。田んぼや天候の状態によって変更する場合があります。</p></article>
       <article class="faq-card"><div class="q">何人くらい参加しますか？</div><p>競技参加者は<strong>50名を目標</strong>にしています。運営スタッフ約10名、保護者や見学の方も含め、全体で約70名が関わる想定です。</p></article>
-      <article class="faq-card"><div class="q">小さな子どもも参加できますか？</div><p>幼稚園以下は保護者の方と一緒にご参加ください。中学生未満は保護者による申込みと当日受付をお願いします。</p></article>
-      <article class="faq-card"><div class="q">どんな服装で参加しますか？</div><p>汚れてよい服装でご参加ください。<strong>水着の上にTシャツなど</strong>を着ると着替えやすいですが、水着は必須ではありません。</p></article>
-      <article class="faq-card"><div class="q">靴や長靴は必要ですか？</div><p>競技は<strong>裸足</strong>で行う予定です。長靴は基本的に必要ありません。</p></article>
-      <article class="faq-card"><div class="q">着替えや泥落としはできますか？</div><p>更衣スペースを設けます。また、シャワーではありませんが、水で泥を落とす程度の洗い流しは可能です。</p></article>
-      <article class="faq-card"><div class="q">車は停められますか？</div><p>田んぼ周辺に駐車できる場所を用意する予定です。位置・台数は最終確認中で、旧上黒丸小学校も追加候補として確認しています。</p></article>
-      <article class="faq-card"><div class="q">公共交通で行けますか？</div><p>9月20日は日曜日で、上黒丸方面の若山飯田ルートは土日運休です。現時点では車での来場をおすすめしています。</p></article>
-      <article class="faq-card"><div class="q">トイレはありますか？</div><p><strong>現在調整中です。</strong> 利用場所を確保でき次第、このサイトで更新します。</p></article>
-      <article class="faq-card"><div class="q">安全面はどうしますか？</div><p>会場の事前確認、スタッフ配置、暑さ・天候への対応、救護・緊急時対応を準備します。</p></article>
       <article class="faq-card"><div class="q">何時から何時までですか？</div><p>12:30受付、13:00開始、16:30頃閉会、17:00頃解散予定です。</p></article>
       <article class="faq-card"><div class="q">飲み物はありますか？</div><p>参加者向けにアクエリアスの提供を予定しています。暑さ対策のため、ご自身でも飲み物をご準備ください。</p></article>
-    </div></div>
+    </div><p class="event-faq-source">公共交通情報は2026年8月26日時点です。珠洲市が掲載している「若山飯田ルート」時刻表で土・日運休を確認しています。<a href="https://www.city.suzu.lg.jp/soshiki/2/12602.html" target="_blank" rel="noopener">珠洲市の市営路線バス案内を見る ↗</a></p></div>
   </section>
 
   <section class="section section--paper"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加する</span><small>JOIN</small></p><h2>9月20日、若山町洲巻の田んぼでお待ちしています。</h2><p>参加費は無料です。子どもから大人まで、泥の中で思いっきり体を動かして楽しみましょう。参加フォームからお申し込みください。</p><div class="button-row button-row--center"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加フォームを開く</a></div></div></div></section>
