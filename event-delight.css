@@ -1,0 +1,82 @@
+/* NOTO Re:Bloom / Mud Sports Event Delight Layer
+   Additive visual polish only: preserves the existing layout and brand. */
+
+.nr-new-event{--ed-green:#184b3d;--ed-green-2:#2b6a57;--ed-mint:#e7f3e8;--ed-paper:#fffaf2;--ed-yellow:#ffd85c;--ed-purple:#efe7f6;--ed-line:rgba(24,75,61,.14)}
+
+/* Hero: a small, lively status strip without changing the core layout. */
+.event-delight-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:15px}
+.event-countdown,.event-fun-chip{display:inline-flex;align-items:center;min-height:34px;border-radius:999px;border:1px solid var(--ed-line);background:rgba(255,255,255,.82);box-shadow:0 4px 12px rgba(24,75,61,.05);font-size:12px;font-weight:900;color:var(--ed-green);white-space:nowrap}
+.event-countdown{gap:7px;padding:6px 11px 6px 7px;background:#fff4bf;border-color:rgba(196,151,0,.2)}
+.event-countdown::before{content:"";width:21px;height:21px;border-radius:50%;background:radial-gradient(circle at 36% 34%,#fff 0 12%,transparent 13%),var(--ed-yellow);box-shadow:inset 0 0 0 2px rgba(24,75,61,.12)}
+.event-countdown strong{font-size:13px;letter-spacing:.01em}
+.event-fun-chip{padding:6px 11px}
+.event-fun-chip::before{content:"";width:6px;height:6px;margin-right:7px;border-radius:50%;background:var(--ed-green-2)}
+.event-fun-chip:nth-of-type(3)::before{background:#9a6a33}.event-fun-chip:nth-of-type(4)::before{background:#8f6aae}
+
+/* Summary: give each fact its own little visual rhythm. */
+.nr-new-event .event-summary .summary-grid>div{position:relative;transition:transform .18s ease,background .18s ease}
+.nr-new-event .event-summary .summary-grid>div::after{content:"";position:absolute;left:18px;right:18px;bottom:8px;height:3px;border-radius:99px;opacity:.65;background:var(--ed-mint)}
+.nr-new-event .event-summary .summary-grid>div:nth-child(2)::after{background:#fff0af}.nr-new-event .event-summary .summary-grid>div:nth-child(3)::after{background:#dfeee7}.nr-new-event .event-summary .summary-grid>div:nth-child(4)::after{background:#f2e6b7}.nr-new-event .event-summary .summary-grid>div:nth-child(5)::after{background:#ece3f4}
+@media (hover:hover){.nr-new-event .event-summary .summary-grid>div:hover{transform:translateY(-2px);background:#fffdf7}}
+
+/* Day flow: more sense of movement and celebration. */
+.nr-new-event .event-flow article{overflow:hidden;transition:transform .2s ease,box-shadow .2s ease}
+.nr-new-event .event-flow article::after{content:"";position:absolute;right:-18px;bottom:-22px;width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(24,75,61,.10) 0 8%,transparent 9% 100%),radial-gradient(circle at 70% 58%,rgba(255,216,92,.32) 0 13%,transparent 14% 100%);pointer-events:none}
+.nr-new-event .event-flow article:nth-child(2)::after{background:radial-gradient(circle at 30% 30%,rgba(24,75,61,.12) 0 8%,transparent 9% 100%),radial-gradient(circle at 70% 58%,rgba(134,182,140,.28) 0 14%,transparent 15% 100%)}
+.nr-new-event .event-flow article:nth-child(3)::after{background:radial-gradient(circle at 30% 30%,rgba(116,75,140,.10) 0 8%,transparent 9% 100%),radial-gradient(circle at 70% 58%,rgba(191,157,211,.30) 0 14%,transparent 15% 100%)}
+@media (hover:hover){.nr-new-event .event-flow article:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(23,58,49,.10)!important}}
+
+/* Programme: keep the compact rows, add personality without extra copy. */
+.nr-new-event .program-clean{position:relative;overflow:hidden}
+.nr-new-event .program-clean::before{content:"";position:absolute;right:7%;top:70px;width:120px;height:80px;opacity:.13;pointer-events:none;background:radial-gradient(circle at 20% 20%,var(--ed-green) 0 8px,transparent 9px),radial-gradient(circle at 58% 36%,var(--ed-green) 0 5px,transparent 6px),radial-gradient(circle at 78% 70%,var(--ed-green) 0 11px,transparent 12px),radial-gradient(circle at 34% 78%,var(--ed-green) 0 6px,transparent 7px)}
+.nr-new-event .program-clean-list{position:relative;z-index:1}
+.nr-new-event .program-clean-row{position:relative;overflow:hidden;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+.nr-new-event .program-clean-row::after{content:"";position:absolute;right:12px;width:38px;height:22px;opacity:.13;background:radial-gradient(circle at 16% 50%,var(--ed-green) 0 3px,transparent 4px),radial-gradient(circle at 52% 25%,var(--ed-green) 0 2px,transparent 3px),radial-gradient(circle at 78% 68%,var(--ed-green) 0 4px,transparent 5px)}
+.nr-new-event .program-clean-row:nth-child(2) .program-clean-num{background:#fff0ba}.nr-new-event .program-clean-row:nth-child(3) .program-clean-num{background:#e8eef7}.nr-new-event .program-clean-row:nth-child(4) .program-clean-num{background:#efe6f5}.nr-new-event .program-clean-row:nth-child(5) .program-clean-num{background:#f6e8dc}
+@media (hover:hover){.nr-new-event .program-clean-row:hover{transform:translateX(5px);border-color:rgba(24,75,61,.28);box-shadow:0 7px 18px rgba(24,75,61,.08)}}
+.nr-new-event .program-clean .callout{position:relative;overflow:hidden;border:1px solid rgba(24,75,61,.15)!important;background:linear-gradient(110deg,#f4f8ed 0,#fffdf6 58%,#fff4bd 100%)!important}
+.nr-new-event .program-clean .callout::after{content:"水分補給";position:absolute;right:13px;top:12px;padding:4px 8px;border-radius:999px;background:#fff;color:var(--ed-green);font-size:10px;font-weight:900;letter-spacing:.08em;box-shadow:0 3px 10px rgba(24,75,61,.06)}
+
+/* Safety cards: compact visual anchors make scanning easier. */
+.nr-new-event .check-list>div{transition:transform .18s ease,box-shadow .18s ease}
+.nr-new-event .check-list>div:nth-child(2n) span{background:#fff0b8}.nr-new-event .check-list>div:nth-child(3) span{background:#e9eef7}.nr-new-event .check-list>div:nth-child(4) span{background:#efe6f5}
+@media (hover:hover){.nr-new-event .check-list>div:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(24,75,61,.07)}}
+
+/* Renge cup: turn it into a clear take-home reward. */
+.nr-new-event .renge-making{position:relative;overflow:hidden;background:linear-gradient(135deg,#fffaf0 0,#f4f8ed 55%,#fff7d9 100%)!important}
+.nr-new-event .renge-making::before{content:"";position:absolute;left:-40px;bottom:-45px;width:180px;height:180px;border-radius:50%;opacity:.18;background:radial-gradient(circle at 48% 42%,#9ac78f 0 9%,transparent 10%),radial-gradient(circle at 62% 58%,#b892c8 0 7%,transparent 8%),radial-gradient(circle at 34% 67%,#9ac78f 0 6%,transparent 7%)}
+.renge-takehome-badge{display:inline-flex;align-items:center;gap:7px;margin:0 0 12px;padding:7px 11px;border-radius:999px;background:#fff;color:var(--ed-green);border:1px solid rgba(24,75,61,.13);font-size:11px;font-weight:900;letter-spacing:.06em;box-shadow:0 5px 14px rgba(24,75,61,.06)}
+.renge-takehome-badge::before{content:"✿";font-size:14px;color:#9b67ad}
+.nr-new-event .renge-making .photo-frame{position:relative;background:#fff;border:1px solid rgba(24,75,61,.12);box-shadow:0 18px 36px rgba(24,75,61,.09)!important;transform:rotate(-1deg)}
+.nr-new-event .renge-making .photo-frame::after{content:"おうちで育てよう";position:absolute;right:14px;top:14px;padding:6px 9px;border-radius:999px;background:#fff4b9;color:var(--ed-green);font-size:10px;font-weight:900;box-shadow:0 4px 12px rgba(24,75,61,.08)}
+.nr-new-event .renge-making .cup-steps{position:relative}
+.nr-new-event .renge-making .cup-steps li{position:relative;transition:transform .18s ease,box-shadow .18s ease}
+.nr-new-event .renge-making .cup-steps li:nth-child(2) span{background:#dfeee3}.nr-new-event .renge-making .cup-steps li:nth-child(3) span{background:#e9e3f2}.nr-new-event .renge-making .cup-steps li:nth-child(4) span{background:#f5e3d2}
+@media (hover:hover){.nr-new-event .renge-making .cup-steps li:hover{transform:translateX(4px);box-shadow:0 8px 20px rgba(24,75,61,.07)}}
+
+/* FAQ: friendly Q markers and calmer scan rhythm. */
+.nr-new-event .faq-card{position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.nr-new-event .faq-card .q{position:relative;padding-left:31px!important}
+.nr-new-event .faq-card .q::before{content:"Q";position:absolute;left:0;top:.05em;display:grid;place-items:center;width:23px;height:23px;border-radius:8px;background:var(--ed-mint);color:var(--ed-green);font-size:11px;font-weight:900}
+.nr-new-event .faq-card:nth-child(3n+2) .q::before{background:#fff0ba}.nr-new-event .faq-card:nth-child(3n) .q::before{background:#eee5f5}
+@media (hover:hover){.nr-new-event .faq-card:hover{transform:translateY(-3px);border-color:rgba(24,75,61,.23)!important;box-shadow:0 12px 26px rgba(24,75,61,.07)!important}}
+
+/* Mobile conversion: visible but unobtrusive join bar. */
+.event-sticky-join{display:none}
+@media(max-width:760px){
+  body.nr-new-event{padding-bottom:72px}
+  .event-sticky-join{position:fixed;z-index:80;left:10px;right:10px;bottom:10px;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px;padding:8px 8px 8px 13px;border-radius:18px;background:rgba(255,250,242,.94);border:1px solid rgba(24,75,61,.18);box-shadow:0 12px 34px rgba(23,58,49,.20);backdrop-filter:blur(12px)}
+  .event-sticky-join small{display:block;color:#69766f;font-size:9px;font-weight:800;letter-spacing:.08em}.event-sticky-join strong{display:block;color:var(--ed-green);font-size:13px;line-height:1.25}
+  .event-sticky-join a{display:grid;place-items:center;min-height:44px;padding:0 16px;border-radius:13px;background:var(--ed-green);color:#fff;text-decoration:none;font-size:13px;font-weight:900;box-shadow:0 5px 14px rgba(24,75,61,.18)}
+  .event-delight-meta{gap:6px}.event-countdown,.event-fun-chip{min-height:31px;font-size:11px}.event-fun-chip{padding:5px 9px}
+  .nr-new-event .program-clean::before{display:none}
+  .nr-new-event .program-clean .callout::after{position:static;display:inline-flex;margin-top:9px}
+  .nr-new-event .renge-making .photo-frame{transform:none}
+}
+
+/* Subtle reveal motion. */
+@media(prefers-reduced-motion:no-preference){
+  .event-reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.75,.25,1)}
+  .event-reveal.is-visible{opacity:1;transform:none}
+  .program-clean-row.event-reveal:nth-child(2){transition-delay:.04s}.program-clean-row.event-reveal:nth-child(3){transition-delay:.08s}.program-clean-row.event-reveal:nth-child(4){transition-delay:.12s}.program-clean-row.event-reveal:nth-child(5){transition-delay:.16s}
+}
