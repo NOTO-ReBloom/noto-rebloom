@@ -157,27 +157,6 @@ body.rb-unified .industry-grid--partners .industry-partner-card>p:not(.industry-
   padding-top:16px;
 }
 
-/* The 2026-09-20 sponsorship deadline has passed; keep the page current. */
-.nr-new-partner .section--soil .container.split-story>div:first-child h2{
-  font-size:0!important;
-}
-.nr-new-partner .section--soil .container.split-story>div:first-child h2::after{
-  content:"9月20日開催分の協賛募集は終了しました。";
-  display:block;
-  font-size:clamp(30px,4vw,48px);
-  line-height:1.25;
-  letter-spacing:-.035em;
-}
-.nr-new-partner .section--soil .container.split-story>div:first-child>p:last-child{
-  font-size:0!important;
-}
-.nr-new-partner .section--soil .container.split-story>div:first-child>p:last-child::after{
-  content:"ご協力や今後の連携についてのご相談は、引き続きお問い合わせください。";
-  display:block;
-  font-size:15px;
-  line-height:1.85;
-}
-
 @media(max-width:820px){
   .nr-hero-brand-badge{top:14px;left:14px;width:82px;min-height:96px;border-radius:18px}
   .nr-hero-brand-badge img{max-width:62px;max-height:78px}
