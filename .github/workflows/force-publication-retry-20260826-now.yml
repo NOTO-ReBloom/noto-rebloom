@@ -1,0 +1,171 @@
+name: Force only 2026-08-26 publications now
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/force-publication-retry-20260826-now.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: force-publication-retry-20260826-now
+  cancel-in-progress: false
+
+jobs:
+  force:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Make 2026-08-26 the only active publication batch
+        shell: python
+        run: |
+          import json, pathlib, datetime
+
+          JST = datetime.timezone(datetime.timedelta(hours=9))
+          now = datetime.datetime.now(JST)
+          stamp = now.isoformat(timespec='seconds')
+          nonce = 'force-only-20260826-' + now.strftime('%Y%m%dT%H%M%S%z')
+
+          paid_ids = [
+            'note_20260826_32_event_cancellation_decision_log',
+            'note_20260826_33_sponsor_benefit_inventory',
+            'note_20260826_34_volunteer_shift_handover',
+            'note_20260826_35_research_consent_version_control',
+            'note_20260826_36_digital_support_triage',
+          ]
+          free_ids = [
+            'free_note_20260826_01_event_cancel_signals',
+            'free_note_20260826_02_support_faq_boundary',
+          ]
+          booth_ids = [
+            '039_event_cancellation_decision_log_os_20260826',
+            '040_sponsor_benefit_inventory_os_20260826',
+            '041_volunteer_shift_handover_os_20260826',
+            '042_research_consent_version_control_os_20260826',
+            '043_digital_support_triage_os_20260826',
+          ]
+
+          def load(path):
+            p = pathlib.Path(path)
+            return p, json.loads(p.read_text(encoding='utf-8-sig'))
+
+          def save(p, obj):
+            p.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          def force_only(path, wanted, kind):
+            p, q = load(path)
+            q['updatedAt'] = stamp
+            q['retryGeneration'] = int(q.get('retryGeneration', 0)) + 1
+            q['activePublicationDate'] = '2026-08-26'
+            q['forceAllCurrentDayNow'] = True
+            q['forceRetryNonce'] = nonce
+
+            found = set()
+            for e in q.get('entries', []):
+              eid = e.get('id') or e.get('queueId')
+              if eid in wanted:
+                found.add(eid)
+                if not e.get('publicUrlVerified', False):
+                  e['enabled'] = True
+                  e['forceRetry'] = True
+                  e['forceRetryNonce'] = nonce
+                  e['recoveryMode'] = 'publish current-day item now and strict-verify public page'
+                  if kind == 'paid-note':
+                    e['invalidateLocalSuccessWithoutReaderVerification'] = True
+                  elif kind == 'booth':
+                    e['invalidateLocalSuccessWithoutVerifiedLedger'] = True
+              else:
+                # Do not let legacy enabled entries consume the current-day run.
+                if e.get('enabled') and not e.get('publicUrlVerified', False):
+                  e['enabled'] = False
+                  e['forceRetry'] = False
+                  e['deferredByCurrentDayPriorityAt'] = stamp
+
+            missing = set(wanted) - found
+            if missing:
+              raise SystemExit(f'{kind}: missing current-day ids: {sorted(missing)}')
+            save(p, q)
+            return q
+
+          paid = force_only('sidehustle-autopublish/note/queue/index.json', set(paid_ids), 'paid-note')
+          free = force_only('sidehustle-autopublish/note/free_queue/index.json', set(free_ids), 'free-note')
+          booth = force_only('booth-autopublish/queue/index.json', set(booth_ids), 'booth')
+
+          # Keep explicit ordered current-day batch metadata for Windows consumers.
+          paid['recoveryBatch'] = {
+            'mode': 'publish_only_2026-08-26_paid_note_now',
+            'requiredStrictPublications': 5,
+            'orderedIds': paid_ids,
+            'instruction': 'Ignore all prior-day unpublished entries. Process all five 2026-08-26 paid NOTE entries now; continue after recoverable item failure; count only strict reader-visible verification.',
+            'strictChecks': ['readerVisibleUrl','title','price','paidBoundary','dedicatedCover'],
+            'forcedAt': stamp,
+            'nonce': nonce,
+          }
+          save(pathlib.Path('sidehustle-autopublish/note/queue/index.json'), paid)
+
+          # BOOTH recovery control is advisory to the Windows publisher and must point only at 039-043.
+          cp, control = load('booth-autopublish/monitor/recovery_control.json')
+          control['version'] = int(control.get('version', 0)) + 1
+          control['updatedAt'] = stamp
+          control['activeRecovery'] = {
+            'date': '2026-08-26',
+            'mode': 'force_current_day_only_now',
+            'requiredStrictNewPublications': 5,
+            'remaining': 5,
+            'nonce': nonce,
+          }
+          control['readyPaidRecoveryBatch'] = control.get('readyPaidRecoveryBatch', {})
+          control['readyPaidRecoveryBatch']['queueIds'] = booth_ids
+          control['readyPaidRecoveryBatch']['queueRetryGeneration'] = booth.get('retryGeneration')
+          control['readyPaidRecoveryBatch']['forcedRecoveryAt'] = stamp
+          control['readyPaidRecoveryBatch']['forceRetryNonce'] = nonce
+          control['readyPaidRecoveryBatch']['instruction'] = 'Publish only BOOTH 039-043 for 2026-08-26; do not consume prior-day entries.'
+          save(cp, control)
+
+          # Fresh remote execution request for the authenticated Windows publisher.
+          rp, req = load('sidehustle-autopublish/windows_publication_request.json')
+          req['version'] = int(req.get('version', 0)) + 1
+          req['updatedAt'] = stamp
+          req['requestedAt'] = stamp
+          req['nonce'] = nonce
+          req['date'] = '2026-08-26'
+          req['mode'] = 'publish_all_current_day_now'
+          req['paidNote'] = {'ids': paid_ids, 'target': 5}
+          req['freeNote'] = {'ids': free_ids, 'target': 2}
+          req['BOOTH'] = {'ids': booth_ids, 'target': 5}
+          req['strictVerificationRequired'] = True
+          req['doNotStopAfterFirstSuccess'] = True
+          req['ignorePriorDayUnverified'] = True
+          save(rp, req)
+
+          gp, gate = load('sidehustle-autopublish/completion_gate.json')
+          gate['updatedAt'] = stamp
+          gate['executionRequestedAt'] = stamp
+          gate['executionNonce'] = nonce
+          gate['status'] = gate.get('status', 'in_progress_0_of_12')
+          save(gp, gate)
+
+      - name: Commit current-day-only retry request
+        run: |
+          git config user.name 'publication-recovery'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/queue/index.json \
+                  sidehustle-autopublish/note/free_queue/index.json \
+                  booth-autopublish/queue/index.json \
+                  booth-autopublish/monitor/recovery_control.json \
+                  sidehustle-autopublish/windows_publication_request.json \
+                  sidehustle-autopublish/completion_gate.json
+          if git diff --cached --quiet; then
+            echo 'No queue changes needed.'
+            exit 0
+          fi
+          git commit -m 'Force only 2026-08-26 publication batch now'
+          git pull --rebase origin main
+          git push origin HEAD:main
