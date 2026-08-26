@@ -56,7 +56,7 @@
     if(atlas){const decorate=()=>atlas.querySelectorAll('.flower-atlas-card').forEach(el=>el.classList.add('rb-detail-card'));decorate();new MutationObserver(decorate).observe(atlas,{childList:true,subtree:true})}
   }
 
-  /* Final loading order: refinement -> density -> structural cleanup -> hierarchy -> complete purpose pass -> experience layer -> appeal layer -> participant guide. */
+  /* Final loading order: refinement -> density -> structural cleanup -> hierarchy -> complete purpose pass -> experience layer -> appeal layer -> participant guide -> final event fixes. */
   const ensureStyle=(name,href)=>{
     let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
     if(!link){link=document.createElement('link');link.rel='stylesheet'}link.href=href;document.head.appendChild(link);
@@ -82,4 +82,5 @@
   ensureScript('rebloom-experience.js','rebloom-experience.js?v=20260817ad');
   ensureScript('rebloom-appeal.js','rebloom-appeal.js?v=20260825generated2');
   ensureScript('participant-final.js','participant-final.js?v=20260826final2');
+  ensureScript('final-event-fixes.js','final-event-fixes.js?v=20260826final1');
 })();
