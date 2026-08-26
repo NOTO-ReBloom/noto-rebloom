@@ -63,6 +63,15 @@
     program.insertAdjacentElement('afterend', support);
   }
 
+  /* The support is confirmed, so remove the old tentative wording in FAQ. */
+  document.querySelectorAll('.faq-card').forEach((card) => {
+    const q = card.querySelector('.q');
+    if (q && q.textContent.includes('飲み物はありますか')) {
+      const p = card.querySelector('p');
+      if (p) p.innerHTML = '<strong>あります。</strong> 参加者向けにアクエリアスをご用意します。暑さ対策のため、ご自身でも飲み物をご準備ください。';
+    }
+  });
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce && 'IntersectionObserver' in window) {
     const targets = document.querySelectorAll('.event-flow article,.program-clean-row,.check-list>div,.cup-steps li,.faq-card,.aquarius-support__visual,.aquarius-support__copy');
