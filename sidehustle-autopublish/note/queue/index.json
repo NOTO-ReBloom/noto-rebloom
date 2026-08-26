@@ -1,11 +1,11 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-26T09:20:40+09:00",
-  "retryGeneration": 38,
+  "updatedAt": "2026-08-26T23:36:09+09:00",
+  "retryGeneration": 39,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_2026-08-26_paid_note_batch_now",
+    "mode": "publish_only_2026-08-26_paid_note_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
       "note_20260826_32_event_cancellation_decision_log",
@@ -14,7 +14,7 @@
       "note_20260826_35_research_consent_version_control",
       "note_20260826_36_digital_support_triage"
     ],
-    "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
+    "instruction": "Ignore all prior-day unpublished entries. Process all five 2026-08-26 paid NOTE entries now; continue after recoverable item failure; count only strict reader-visible verification.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -22,8 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-08-26T09:20:40+09:00",
-    "nonce": "paid-note-20260826-20260826T092040+0900"
+    "forcedAt": "2026-08-26T23:36:09+09:00",
+    "nonce": "force-only-20260826-20260826T233609+0900"
   },
   "entries": [
     {
@@ -406,8 +406,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260823_18_event_incident_response.enc.json",
       "sha256": "9120dc2a9517603a2bd59f4322284fd5fbbda3e6c3d734c1838f8b0cd225b477",
       "createdAt": "2026-08-23T09:12:26+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-all-20260823-20260823T104257+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -419,7 +419,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260823_19_grant_tracker",
@@ -427,8 +428,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260823_19_grant_tracker.enc.json",
       "sha256": "813fb4b8a17964a8b839c20b8406d6797eb411d1150d7d4e746cfc3b62123aa6",
       "createdAt": "2026-08-23T09:12:26+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-all-20260823-20260823T104257+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -440,7 +441,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260823_20_meeting_decision_log",
@@ -448,8 +450,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260823_20_meeting_decision_log.enc.json",
       "sha256": "4a48b991ffc1ccd47d899c53a5c71b27c6aaca5f1a9c1f74c0256bde619f468e",
       "createdAt": "2026-08-23T09:12:26+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-all-20260823-20260823T104257+0900",
       "expectedPriceJPY": 780,
       "requireReaderVisibleVerification": true,
@@ -461,7 +463,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260823_21_literature_matrix",
@@ -469,8 +472,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260823_21_literature_matrix.enc.json",
       "sha256": "f2c2486602f54397661e19128618541fac0183d56f09d097fa1ad03c76b28e3a",
       "createdAt": "2026-08-23T09:12:26+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-all-20260823-20260823T104257+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -482,7 +485,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260824_22_ai_ops_audit",
@@ -615,8 +619,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260825_27_grant_evidence_match.enc.json",
       "sha256": "64b9abf48d18fca6ff344753ad4d6a023125e254aaa589b9d6991dc9251459bb",
       "createdAt": "2026-08-25T16:01:39+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260825-20260825T160139+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -627,7 +631,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260825_28_event_authority_transfer",
@@ -635,8 +640,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260825_28_event_authority_transfer.enc.json",
       "sha256": "4c5b1fbb4ad4bce3a2cc0e601def72c4b3a8ff6c3d5f9ea7d3648879bf8635e3",
       "createdAt": "2026-08-25T16:01:39+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260825-20260825T160139+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -647,7 +652,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260825_29_access_handover",
@@ -655,8 +661,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260825_29_access_handover.enc.json",
       "sha256": "5595797890eb89288ce70110ef93a60c662c9f24b491aabe684eaea3964d222f",
       "createdAt": "2026-08-25T16:01:39+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260825-20260825T160139+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -667,7 +673,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260825_30_research_exclusion_log",
@@ -675,8 +682,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260825_30_research_exclusion_log.enc.json",
       "sha256": "cf7519a3389ee66dfa1f24c055773e403d7fb458a20ab8182be53dd1e8342790",
       "createdAt": "2026-08-25T16:01:39+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260825-20260825T160139+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -687,7 +694,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260825_31_creator_release_qa",
@@ -695,8 +703,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260825_31_creator_release_qa.enc.json",
       "sha256": "82af22b2f2c6be9dd5ccdcab06c3a9b9c1c00b45b97630db33c82be4da647a6a",
       "createdAt": "2026-08-25T16:01:39+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260825-20260825T160139+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -707,7 +715,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "note_20260826_32_event_cancellation_decision_log",
@@ -717,7 +726,7 @@
       "createdAt": "2026-08-26T09:20:40+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260826-20260826T092040+0900",
+      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -727,7 +736,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "publish current-day item now and strict-verify public page"
     },
     {
       "id": "note_20260826_33_sponsor_benefit_inventory",
@@ -737,7 +747,7 @@
       "createdAt": "2026-08-26T09:20:40+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260826-20260826T092040+0900",
+      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -747,7 +757,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "publish current-day item now and strict-verify public page"
     },
     {
       "id": "note_20260826_34_volunteer_shift_handover",
@@ -757,7 +768,7 @@
       "createdAt": "2026-08-26T09:20:40+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260826-20260826T092040+0900",
+      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -767,7 +778,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "publish current-day item now and strict-verify public page"
     },
     {
       "id": "note_20260826_35_research_consent_version_control",
@@ -777,7 +789,7 @@
       "createdAt": "2026-08-26T09:20:40+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260826-20260826T092040+0900",
+      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -787,7 +799,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "publish current-day item now and strict-verify public page"
     },
     {
       "id": "note_20260826_36_digital_support_triage",
@@ -797,7 +810,7 @@
       "createdAt": "2026-08-26T09:20:40+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260826-20260826T092040+0900",
+      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -807,7 +820,11 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "recoveryMode": "publish current-day item now and strict-verify public page"
     }
-  ]
+  ],
+  "activePublicationDate": "2026-08-26",
+  "forceAllCurrentDayNow": true,
+  "forceRetryNonce": "force-only-20260826-20260826T233609+0900"
 }

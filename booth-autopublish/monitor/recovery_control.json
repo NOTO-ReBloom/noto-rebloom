@@ -1,12 +1,12 @@
 {
-  "version": 32,
-  "updatedAt": "2026-08-26T23:25:00+09:00",
+  "version": 33,
+  "updatedAt": "2026-08-26T23:36:09+09:00",
   "activeRecovery": {
     "date": "2026-08-26",
-    "mode": "current_day_paid_floor_reasserted",
+    "mode": "force_current_day_only_now",
     "requiredStrictNewPublications": 5,
     "remaining": 5,
-    "state": "ready_reasserted"
+    "nonce": "force-only-20260826-20260826T233609+0900"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-26T23:25:00+09:00",
@@ -19,7 +19,7 @@
       "043_digital_support_triage_os_20260826"
     ],
     "completedIds": [],
-    "queueRetryGeneration": 38,
+    "queueRetryGeneration": 39,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
@@ -38,7 +38,9 @@
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
     "ignorePriorDayEnabledEntriesForThisRecovery": true,
-    "forceRetryNonce": "booth-20260826-reassert-20260826T232500+0900"
+    "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
+    "forcedRecoveryAt": "2026-08-26T23:36:09+09:00",
+    "instruction": "Publish only BOOTH 039-043 for 2026-08-26; do not consume prior-day entries."
   },
   "windowsResumeContract": {
     "requiredIds": [

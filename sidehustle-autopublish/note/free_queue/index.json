@@ -1,6 +1,6 @@
 {
   "version": 7,
-  "updatedAt": "2026-08-26T09:20:40+09:00",
+  "updatedAt": "2026-08-26T23:36:09+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
   "requiredFreeChecks": [
@@ -1099,9 +1099,10 @@
       "coverLabel": "補助金・証憑管理",
       "coverCopy": "1経費につなぐ 5つの証拠",
       "accent": "#0f766e",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260825-20260825T160139+0900"
+      "forceRetryNonce": "free-note-20260825-20260825T160139+0900",
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "free_note_20260825_02_ai_acceptance_criteria",
@@ -1119,9 +1120,10 @@
       "coverLabel": "AI・業務改善",
       "coverCopy": "AI成果物の受入基準 5項目",
       "accent": "#4338ca",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260825-20260825T160139+0900"
+      "forceRetryNonce": "free-note-20260825-20260825T160139+0900",
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
       "id": "free_note_20260826_01_event_cancel_signals",
@@ -1139,8 +1141,9 @@
       "coverCopy": "中止判断の前に決める 5つの材料",
       "accent": "#b45309",
       "enabled": true,
-      "forceRetry": false,
-      "forceRetryNonce": "free-note-20260826-20260826T092040+0900"
+      "forceRetry": true,
+      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
+      "recoveryMode": "publish current-day item now and strict-verify public page"
     },
     {
       "id": "free_note_20260826_02_support_faq_boundary",
@@ -1158,8 +1161,9 @@
       "coverCopy": "FAQに入れる・入れない 境界線",
       "accent": "#2563eb",
       "enabled": true,
-      "forceRetry": false,
-      "forceRetryNonce": "free-note-20260826-20260826T092040+0900"
+      "forceRetry": true,
+      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
+      "recoveryMode": "publish current-day item now and strict-verify public page"
     }
   ],
   "eveningMarathon": {
@@ -1174,5 +1178,9 @@
       "free_note_20260826_02_support_faq_boundary"
     ],
     "requiredStrictPublications": 2
-  }
+  },
+  "retryGeneration": 1,
+  "activePublicationDate": "2026-08-26",
+  "forceAllCurrentDayNow": true,
+  "forceRetryNonce": "force-only-20260826-20260826T233609+0900"
 }
