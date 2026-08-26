@@ -21,21 +21,8 @@
   <link rel="stylesheet" href="rebloom-purpose-complete.css?v=20260817v">
   <link rel="stylesheet" href="reboost-studio.css?v=20260817ac">
   <link rel="stylesheet" href="brand-refresh.css?v=20260820c">
-  <link rel="stylesheet" href="participant-guide.css?v=20260826a">
+  <link rel="stylesheet" href="participant-guide.css?v=20260826f">
   <style>
-    .game-grid--confirmed{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;align-items:stretch}
-    .game-grid--confirmed .game-card{min-width:0;min-height:0;overflow:hidden;padding:0 0 20px;border-radius:22px;display:flex;flex-direction:column}
-    .game-card__photo{position:relative;margin:0 0 18px;aspect-ratio:4/3;overflow:hidden;border-radius:18px 18px 10px 10px;background:#e8e1d5;background-position:center;background-size:cover;background-repeat:no-repeat}
-    .game-card__photo img{width:100%;height:100%;display:block;object-fit:cover;opacity:1!important;visibility:visible!important}
-    .game-card:nth-child(1) .game-card__photo{background-image:url("event-images/muddy_rural_tug_of_war_celebration.jpg?v=20260826c")}
-    .game-card:nth-child(2) .game-card__photo{background-image:url("event-images/muddy_relay_race_in_the_countryside.jpg?v=20260826c")}
-    .game-card:nth-child(3) .game-card__photo{background-image:url("event-images/muddy_bamboo_pole_team_race.jpg?v=20260826c")}
-    .game-card:nth-child(4) .game-card__photo{background-image:url("event-images/muddy_bucket_relay_celebration.jpg?v=20260826c")}
-    .game-card:nth-child(5) .game-card__photo{background-image:url("event-images/muddy_red_ball_festival_game.jpg?v=20260826c")}
-    .game-card__number{position:absolute;top:10px;left:10px;z-index:2;display:grid;place-items:center;min-width:38px;height:38px;padding:0 10px;border-radius:999px;background:#fffaf2;color:#184b3d;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 6px 16px rgba(24,75,61,.18)}
-    .game-grid--confirmed .game-card>h3,.game-grid--confirmed .game-card>p{margin-left:20px;margin-right:20px}
-    .game-grid--confirmed .game-card>h3{margin-top:0;margin-bottom:8px}
-    .game-grid--confirmed .game-card>p{margin-bottom:0}
     .renge-making{background:#fffaf0}
     .renge-making .cup-layout{align-items:center}
     .renge-making .photo-frame{max-width:520px;margin-inline:auto}
@@ -44,9 +31,25 @@
     .renge-making .cup-steps span{flex:none}
     .event-faq-source{max-width:900px;margin:22px auto 0;padding:14px 16px;border-left:3px solid #184b3d;background:rgba(24,75,61,.05);font-size:13px;line-height:1.75;color:#4e5f57}
     .event-faq-source a{font-weight:800;color:#184b3d;text-decoration:underline;text-underline-offset:3px}
-    @media(max-width:1100px){.game-grid--confirmed{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(max-width:760px){.game-grid--confirmed{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:520px){.game-grid--confirmed{grid-template-columns:1fr}.game-card__photo{aspect-ratio:16/10}}
+
+    /* Competition section rebuilt from scratch: no legacy game-card markup. */
+    .program-clean{padding-top:72px;padding-bottom:72px}
+    .program-clean .section-heading{display:block;width:100%;max-width:900px;margin:0 0 22px;padding:0}
+    .program-clean .section-heading .eyebrow{writing-mode:horizontal-tb!important;width:auto!important;max-width:none!important}
+    .program-clean .section-heading h2{margin:14px 0 0;font-size:clamp(34px,4vw,52px);line-height:1.16;letter-spacing:-.04em;writing-mode:horizontal-tb!important;word-break:keep-all}
+    .program-clean-list{display:flex;flex-direction:column;gap:7px;width:min(100%,560px);margin:0;padding:0}
+    .program-clean-row{display:flex;align-items:center;gap:12px;width:100%;height:44px;padding:6px 12px;border:1px solid rgba(24,75,61,.14);border-radius:12px;background:#fff;box-shadow:0 3px 10px rgba(24,75,61,.045);box-sizing:border-box}
+    .program-clean-num{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:999px;background:#e7f3e8;color:#184b3d;font-size:10px;font-weight:900;line-height:1}
+    .program-clean-name{display:block;margin:0;color:#173e34;font-size:17px;font-weight:900;line-height:1.2;white-space:nowrap;writing-mode:horizontal-tb!important}
+    .program-clean .callout{width:min(100%,760px);margin-top:22px}
+    @media(max-width:620px){
+      .program-clean{padding-top:54px;padding-bottom:54px}
+      .program-clean .section-heading{margin-bottom:18px}
+      .program-clean .section-heading h2{font-size:clamp(30px,9vw,40px)}
+      .program-clean-list{width:100%;gap:8px}
+      .program-clean-row{height:46px;padding:7px 12px}
+      .program-clean-name{font-size:17px}
+    }
   </style>
 </head>
 <body class="nr-new-event">
@@ -101,15 +104,18 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section program-clean" id="program">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow"><span>競技内容</span><small>PROGRAM</small></p><h2>5つの競技を予定しています。</h2><p>泥の中で、子どもから大人まで一緒に楽しめる競技です。当日の田んぼの状態や天候などにより、内容を変更する場合があります。</p></div>
-      <div class="game-grid game-grid--confirmed">
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_rural_tug_of_war_celebration.jpg?v=20260826c" alt="泥の田んぼで綱引きを楽しむ参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">01</small></figure><h3>綱引き</h3><p>泥の中で踏ん張りながら、チームで力を合わせる定番競技です。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_relay_race_in_the_countryside.jpg?v=20260826c" alt="泥の田んぼでリレーをする参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">02</small></figure><h3>リレー</h3><p>泥の中を走って次の人へつなぐ、運動会らしいチーム競技です。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bamboo_pole_team_race.jpg?v=20260826c" alt="棒を持って台風の目をする参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">03</small></figure><h3>台風の目</h3><p>棒を持ってチームで進み、息を合わせながらコースを回ります。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bucket_relay_celebration.jpg?v=20260826c" alt="泥の田んぼでバケツリレーをする参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">04</small></figure><h3>バケツリレー</h3><p>バケツを使って、チームで協力しながらつないでいきます。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_red_ball_festival_game.jpg?v=20260826c" alt="泥の田んぼで玉入れを楽しむ参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">05</small></figure><h3>玉入れ</h3><p>泥の中でも参加しやすく、年齢を問わず楽しめる競技です。</p></article>
+      <div class="section-heading">
+        <p class="eyebrow"><span>競技内容</span><small>PROGRAM</small></p>
+        <h2>5つの競技を行います。</h2>
+      </div>
+      <div class="program-clean-list" aria-label="競技一覧">
+        <div class="program-clean-row"><span class="program-clean-num">01</span><span class="program-clean-name">綱引き</span></div>
+        <div class="program-clean-row"><span class="program-clean-num">02</span><span class="program-clean-name">リレー</span></div>
+        <div class="program-clean-row"><span class="program-clean-num">03</span><span class="program-clean-name">台風の目</span></div>
+        <div class="program-clean-row"><span class="program-clean-num">04</span><span class="program-clean-name">バケツリレー</span></div>
+        <div class="program-clean-row"><span class="program-clean-num">05</span><span class="program-clean-name">玉入れ</span></div>
       </div>
       <div class="callout"><b>参加者にアクエリアスをプレゼント</b><p>運動のあとはしっかり水分補給。参加者向けにアクエリアスを用意する予定です。</p></div>
     </div>
@@ -177,7 +183,7 @@
       <article class="faq-card"><div class="q">トイレはありますか？</div><p><strong>現在調整中です。</strong> 確保方法と利用場所が決まり次第、このサイトでお知らせします。</p></article>
       <article class="faq-card"><div class="q">途中参加・途中退出はできますか？</div><p><strong>現在調整中です。</strong> 受付方法や安全確認の手順とあわせて、確定後に案内します。</p></article>
       <article class="faq-card"><div class="q">けがをした場合はどうなりますか？</div><p>体調不良やけががあった場合は競技を止めて対応し、必要に応じて119番通報や保護者への連絡を行います。イベント保険も準備を進めています。</p></article>
-      <article class="faq-card"><div class="q">どんな競技をしますか？</div><p><strong>綱引き、リレー、台風の目、バケツリレー、玉入れ</strong>の5種目を予定しています。田んぼや天候の状態によって変更する場合があります。</p></article>
+      <article class="faq-card"><div class="q">どんな競技をしますか？</div><p><strong>綱引き、リレー、台風の目、バケツリレー、玉入れ</strong>の5種目を行います。田んぼや天候の状態によって、安全のため進行方法を変更する場合があります。</p></article>
       <article class="faq-card"><div class="q">何人くらい参加しますか？</div><p>競技参加者は<strong>50名を目標</strong>にしています。運営スタッフ約10名、保護者や見学の方も含め、全体で約70名が関わる想定です。</p></article>
       <article class="faq-card"><div class="q">何時から何時までですか？</div><p>12:30受付、13:00開始、16:30頃閉会、17:00頃解散予定です。</p></article>
       <article class="faq-card"><div class="q">飲み物はありますか？</div><p>参加者向けにアクエリアスの提供を予定しています。暑さ対策のため、ご自身でも飲み物をご準備ください。</p></article>
