@@ -11,53 +11,43 @@
   style.id='rb-participant-final-style';
   style.textContent=`
     .rb-participant-guide{padding:72px 24px;background:#fffdf8}
-    .rb-participant-guide .rb-pg-inner{max-width:1180px;margin:0 auto}
-    .rb-pg-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:32px;align-items:end;margin-bottom:28px}
-    .rb-pg-head h2{margin:8px 0 0;font-size:clamp(30px,4vw,52px);line-height:1.12;letter-spacing:-.03em}
-    .rb-pg-head>p{margin:0;line-height:1.9;color:#50605b}
+    .rb-participant-guide>.container,.rb-participant-guide .rb-pg-inner{max-width:1180px;margin:0 auto}
+    .rb-pg-head,.rb-participant-guide__head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:32px;align-items:end;margin-bottom:28px}
+    .rb-pg-head h2,.rb-participant-guide__head h2{margin:8px 0 0;font-size:clamp(30px,4vw,52px);line-height:1.12;letter-spacing:-.03em}
+    .rb-pg-head>p,.rb-participant-guide__head>p{margin:0;line-height:1.9;color:#50605b}
     .rb-pg-label{margin:0;font-size:12px;font-weight:900;letter-spacing:.12em;color:#6f4b8d}
-    .rb-pg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .rb-pg-card{border:1px solid rgba(24,75,61,.14);border-radius:18px;padding:20px;background:#fff;min-height:170px}
-    .rb-pg-card small{display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.08em;background:#eaf4ed;color:#245441}
-    .rb-pg-card h3{margin:0 0 8px;font-size:20px;line-height:1.35}
-    .rb-pg-card p{margin:0;line-height:1.75;color:#50605b;font-size:14px}
+    .rb-pg-grid,.rb-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .rb-pg-card,.rb-guide-item{border:1px solid rgba(24,75,61,.14);border-radius:18px;padding:20px;background:#fff;min-height:165px}
+    .rb-pg-card small,.rb-guide-item small{display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.08em;background:#eaf4ed;color:#245441}
+    .rb-pg-card h3,.rb-guide-item strong{display:block;margin:0 0 8px;font-size:20px;line-height:1.35;color:#1f332c}
+    .rb-pg-card p,.rb-guide-item p{margin:0;line-height:1.75;color:#50605b;font-size:14px}
     .rb-pg-card--pending{background:#fbf8ff;border-color:rgba(111,75,141,.2)}
     .rb-pg-card--pending small{background:#eee7f5;color:#6f4b8d}
     .rb-pg-access{margin-top:18px;padding:22px;border-radius:18px;background:#eef6f1;border:1px solid rgba(24,75,61,.14)}
-    .rb-pg-access h3{margin:0 0 8px;font-size:21px}
-    .rb-pg-access p{margin:7px 0;line-height:1.75;color:#40534c}
-    .rb-pg-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .rb-pg-access h3{margin:0 0 8px;font-size:21px}.rb-pg-access p{margin:7px 0;line-height:1.75;color:#40534c}
+    .rb-pg-actions,.rb-guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
     .rb-pg-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:999px;text-decoration:none;font-weight:800}
-    .rb-pg-actions .rb-pg-primary{background:#184b3d;color:#fff}
-    .rb-pg-actions .rb-pg-secondary{background:#fff;color:#184b3d;border:1px solid rgba(24,75,61,.22)}
-    .rb-pg-note{margin-top:18px;padding:16px 18px;border-left:4px solid #6f4b8d;background:#fbf8ff;border-radius:0 12px 12px 0;line-height:1.75;color:#4d4554}
+    .rb-pg-actions .rb-pg-primary{background:#184b3d;color:#fff}.rb-pg-actions .rb-pg-secondary{background:#fff;color:#184b3d;border:1px solid rgba(24,75,61,.22)}
+    .rb-pg-note,.rb-guide-note{margin-top:18px;padding:16px 18px;border-left:4px solid #6f4b8d;background:#fbf8ff;border-radius:0 12px 12px 0;line-height:1.75;color:#4d4554}
     .rb-pg-note strong{color:#6f4b8d}
-    .rb-home-quick{padding:46px 24px;background:#f6faf7}
-    .rb-home-quick .rb-pg-inner{max-width:1180px;margin:0 auto}
-    .rb-home-quick .rb-pg-head{margin-bottom:20px}
-    .rb-home-quick .rb-pg-head h2{font-size:clamp(28px,3.2vw,42px)}
-    .rb-home-quick .rb-pg-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .rb-home-quick .rb-pg-card{min-height:145px}
-    .rb-home-quick .rb-pg-card h3{font-size:18px}
-    @media(max-width:900px){
-      .rb-pg-head{grid-template-columns:1fr;gap:12px}
-      .rb-pg-grid,.rb-home-quick .rb-pg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    }
-    @media(max-width:620px){
-      .rb-participant-guide{padding:52px 18px}.rb-home-quick{padding:38px 18px}
-      .rb-pg-grid,.rb-home-quick .rb-pg-grid{grid-template-columns:1fr}
-      .rb-pg-card{min-height:0;padding:18px}
-    }
+    .rb-participant-guide__groups{display:grid;gap:18px}
+    .rb-guide-panel{padding:22px;border:1px solid rgba(24,75,61,.14);border-radius:20px;background:#fff}
+    .rb-guide-panel--pending{background:#fbf8ff;border-color:rgba(111,75,141,.2)}
+    .rb-guide-panel__label{display:inline-flex;margin-bottom:14px;padding:6px 10px;border-radius:999px;background:#eaf4ed;color:#245441;font-size:12px;font-weight:900;letter-spacing:.04em}
+    .rb-guide-panel--pending .rb-guide-panel__label{background:#eee7f5;color:#6f4b8d}
+    .rb-guide-panel .rb-guide-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    @media(max-width:900px){.rb-pg-head,.rb-participant-guide__head{grid-template-columns:1fr;gap:12px}.rb-pg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rb-guide-panel .rb-guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.rb-participant-guide{padding:52px 18px}.rb-pg-grid,.rb-guide-panel .rb-guide-grid{grid-template-columns:1fr}.rb-pg-card,.rb-guide-item{min-height:0;padding:18px}.rb-guide-panel{padding:16px}}
   `;
   document.head.appendChild(style);
 
   const eventSection=()=>{
-    if(!document.body.classList.contains('nr-new-event')||document.querySelector('#participant-guide')) return;
+    if(!document.body.classList.contains('nr-new-event')||document.querySelector('#participant-readiness')) return;
     const summary=document.querySelector('.event-summary');
     if(!summary) return;
     const section=document.createElement('section');
     section.className='rb-participant-guide';
-    section.id='participant-guide';
+    section.id='participant-readiness';
     section.innerHTML=`
       <div class="rb-pg-inner">
         <div class="rb-pg-head">
@@ -95,27 +85,6 @@
     }
   };
 
-  const homeSection=()=>{
-    if(!document.body.classList.contains('nr-new-home')||document.querySelector('#home-participant-guide')) return;
-    const visual=document.querySelector('#visual-day');
-    if(!visual) return;
-    const section=document.createElement('section');
-    section.className='rb-home-quick';
-    section.id='home-participant-guide';
-    section.innerHTML=`
-      <div class="rb-pg-inner">
-        <div class="rb-pg-head"><div><p class="rb-pg-label">9/20 PARTICIPANT GUIDE</p><h2>参加前に知っておきたいこと。</h2></div><p>親子でも、学生ひとりでも参加できます。服装やアクセスなど、当日に必要な情報を先にまとめました。</p></div>
-        <div class="rb-pg-grid">
-          <article class="rb-pg-card"><small>服装</small><h3>裸足で泥の中へ</h3><p>水着＋Tシャツがおすすめ。水着は必須ではありません。</p></article>
-          <article class="rb-pg-card"><small>着替え</small><h3>更衣スペースあり</h3><p>着替え・タオル・汚れ物用の袋をご持参ください。</p></article>
-          <article class="rb-pg-card"><small>泥落とし</small><h3>水で流せます</h3><p>会場で簡易的に泥を水で落とせるよう準備します。</p></article>
-          <article class="rb-pg-card rb-pg-card--pending"><small>アクセス</small><h3>車での来場がおすすめ</h3><p>日曜は上黒丸方面のすずバスが運休。駐車場所の詳細とトイレは最終調整中です。</p></article>
-        </div>
-        <div class="rb-pg-actions"><a class="rb-pg-primary" href="${JOIN_URL}" target="_blank" rel="noopener">9/20 無料で参加する</a><a class="rb-pg-secondary" href="event.html#participant-guide">服装・アクセスを詳しく見る</a></div>
-      </div>`;
-    visual.insertAdjacentElement('afterend',section);
-  };
-
-  const run=()=>{eventSection();homeSection()};
+  const run=()=>eventSection();
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run,{once:true}); else run();
 })();
