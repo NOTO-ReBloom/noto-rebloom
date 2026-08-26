@@ -1,9 +1,21 @@
 {
-  "version": 11,
-  "updatedAt": "2026-08-26T23:36:09+09:00",
-  "status": "in_progress_0_of_12",
+  "version": 12,
+  "updatedAt": "2026-08-26T15:09:55.642Z",
+  "status": "in_progress_5_of_12",
   "completedAt": null,
-  "completionEvidence": null,
+  "completionEvidence": {
+    "notePaid": {
+      "strictVerified": 5,
+      "required": 5,
+      "receiptDirectory": "sidehustle-autopublish/note/publication_receipts",
+      "verifiedAt": "2026-08-26T15:09:55.642Z"
+    },
+    "remaining": {
+      "noteFree": 2,
+      "BOOTH": 5,
+      "total": 7
+    }
+  },
   "purpose": "2026-08-26: complete only after all 12 designated publications are strict verified.",
   "reportingPolicy": {
     "intermediateProgressReports": false,
@@ -68,10 +80,10 @@
     }
   },
   "completionCounts": {
-    "notePaid": 0,
+    "notePaid": 5,
     "BOOTH": 0,
     "noteFree": 0,
-    "total": 0
+    "total": 5
   },
   "planningManifest": "sidehustle-autopublish/planning/2026-08-26_batch01.json",
   "duplicateControl": {
@@ -119,6 +131,6 @@
     "Do not invent public URLs.",
     "Do not count historical reverification as a new current-day publication."
   ],
-  "executionRequestedAt": "2026-08-26T23:36:09+09:00",
-  "executionNonce": "force-only-20260826-20260826T233609+0900"
+  "executionRequestedAt": "2026-08-26T15:09:55.642Z",
+  "executionNonce": "remaining-free2-booth5-20260826150955Z"
 }
