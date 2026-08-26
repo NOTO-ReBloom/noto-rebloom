@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="reboost-studio.css?v=20260817ac">
   <link rel="stylesheet" href="brand-refresh.css?v=20260820c">
   <link rel="stylesheet" href="participant-guide.css?v=20260826f">
+  <link rel="stylesheet" href="event-delight.css?v=20260826a">
   <style>
     .renge-making{background:#fffaf0}
     .renge-making .cup-layout{align-items:center}
@@ -31,8 +32,6 @@
     .renge-making .cup-steps span{flex:none}
     .event-faq-source{max-width:900px;margin:22px auto 0;padding:14px 16px;border-left:3px solid #184b3d;background:rgba(24,75,61,.05);font-size:13px;line-height:1.75;color:#4e5f57}
     .event-faq-source a{font-weight:800;color:#184b3d;text-decoration:underline;text-underline-offset:3px}
-
-    /* Competition section rebuilt from scratch: no legacy game-card markup. */
     .program-clean{padding-top:72px;padding-bottom:72px}
     .program-clean .section-heading{display:block;width:100%;max-width:900px;margin:0 0 22px;padding:0}
     .program-clean .section-heading .eyebrow{writing-mode:horizontal-tb!important;width:auto!important;max-width:none!important}
@@ -68,6 +67,7 @@
         <h1>泥ん子運動会<br><span class="headline-marker">2026</span></h1>
         <p>使われなくなった土地を、みんなが集まり、笑い合える場所へ。珠洲市若山町洲巻の約1,000㎡の田んぼで、子どもから大人まで泥の中で思いっきり体を動かします。競技参加者50名を目標に開催します。</p>
         <div class="hero-sticker-note">参加費無料・全年齢対象。受付12:30、13:00開始、17:00頃終了予定です。</div>
+        <div class="event-delight-meta" aria-label="イベントのポイント"><span class="event-countdown"><strong id="eventCountdown">9月20日開催</strong></span><span class="event-fun-chip">参加無料</span><span class="event-fun-chip">5つの競技</span><span class="event-fun-chip">レンゲカップ</span></div>
         <div class="button-row"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加フォームを開く</a></div>
       </div>
       <figure class="photo-frame"><img src="field-overview.webp" alt="泥ん子運動会を開催する珠洲市若山町洲巻の農地"><figcaption>約20m×50mの田んぼをお借りします。</figcaption></figure>
@@ -90,7 +90,7 @@
       <div class="visual-mosaic">
         <figure class="visual-tile"><span class="visual-label">FIELD</span><img src="field-detail.webp" alt="泥ん子運動会の会場の田んぼ"><figcaption>実際にお借りする若山町洲巻の田んぼです。</figcaption></figure>
         <figure class="visual-tile"><span class="visual-label">TEAM</span><img src="team-reboost.webp" alt="能登で活動する学生メンバー"><figcaption>NOTO Re:Bloomの学生3名と学生ボランティアを中心に運営します。</figcaption></figure>
-        <figure class="visual-tile"><span class="visual-label">TAKE HOME</span><img src="renge-cup-illustration.png" alt="Re:Bloomレンゲカップのイメージ"><figcaption>イベントのあともつながる体験として、Re:Bloomレンゲカップを作ります。</figcaption></figure>
+        <figure class="visual-tile"><span class="visual-label">TAKE HOME</span><img src="renge-cup-2026.webp" alt="Re:Bloomレンゲカップのイメージ"><figcaption>イベントのあともつながる体験として、Re:Bloomレンゲカップを作ります。</figcaption></figure>
       </div>
     </div>
   </section>
@@ -111,11 +111,11 @@
         <h2>5つの競技を行います。</h2>
       </div>
       <div class="program-clean-list" aria-label="競技一覧">
-        <div class="program-clean-row"><span class="program-clean-num">01</span><span class="program-clean-name">綱引き</span></div>
-        <div class="program-clean-row"><span class="program-clean-num">02</span><span class="program-clean-name">リレー</span></div>
-        <div class="program-clean-row"><span class="program-clean-num">03</span><span class="program-clean-name">台風の目</span></div>
-        <div class="program-clean-row"><span class="program-clean-num">04</span><span class="program-clean-name">バケツリレー</span></div>
-        <div class="program-clean-row"><span class="program-clean-num">05</span><span class="program-clean-name">玉入れ</span></div>
+        <div class="program-clean-row" data-game="tug"><span class="program-clean-num">01</span><span class="program-clean-name">綱引き</span></div>
+        <div class="program-clean-row" data-game="relay"><span class="program-clean-num">02</span><span class="program-clean-name">リレー</span></div>
+        <div class="program-clean-row" data-game="typhoon"><span class="program-clean-num">03</span><span class="program-clean-name">台風の目</span></div>
+        <div class="program-clean-row" data-game="bucket"><span class="program-clean-num">04</span><span class="program-clean-name">バケツリレー</span></div>
+        <div class="program-clean-row" data-game="ball"><span class="program-clean-num">05</span><span class="program-clean-name">玉入れ</span></div>
       </div>
       <div class="callout"><b>参加者にアクエリアスをプレゼント</b><p>運動のあとはしっかり水分補給。参加者向けにアクエリアスを用意する予定です。</p></div>
     </div>
@@ -137,11 +137,12 @@
   <section class="section renge-making" id="renge-making">
     <div class="container cup-layout">
       <figure class="photo-frame">
-        <img src="renge-cup-illustration.png" alt="Re:Bloomレンゲカップを作るイメージ">
+        <img src="renge-cup-2026.webp" alt="Re:Bloomレンゲカップを作るイメージ">
         <figcaption>会場で作って、そのまま持ち帰れる小さなレンゲカップです。</figcaption>
       </figure>
       <div>
         <p class="eyebrow"><span>当日にみんなで作ります</span><small>MAKE A RENGE CUP</small></p>
+        <div class="renge-takehome-badge">競技のあとのおみやげ体験</div>
         <h2>泥ん子運動会の思い出を、<br>小さなレンゲカップに。</h2>
         <p>競技のあと、会場の泥と培養土、レンゲの種を使って「Re:Bloomレンゲカップ」を作ります。難しい作業はなく、子どもから大人まで一緒に参加できます。</p>
         <ol class="cup-steps">
@@ -157,7 +158,7 @@
   <section class="section section--mint">
     <div class="container split-story">
       <div><p class="eyebrow"><span>イベントのあともつながる体験</span><small>TAKE IT HOME</small></p><h2>Re:Bloomレンゲカップを作って持ち帰ります。</h2><p>泥と培養土にレンゲの種をまいて、小さなカップとして持ち帰ります。自宅で育てながら、イベントのあとも能登とのつながりが続く体験にします。</p></div>
-      <figure class="photo-frame"><img src="renge-cup-illustration.png" alt="Re:Bloomレンゲカップを持ち帰って育てるイメージ"></figure>
+      <figure class="photo-frame"><img src="renge-cup-2026.webp" alt="Re:Bloomレンゲカップを持ち帰って育てるイメージ"></figure>
     </div>
   </section>
 
@@ -192,8 +193,10 @@
 
   <section class="section section--paper"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加する</span><small>JOIN</small></p><h2>9月20日、若山町洲巻の田んぼでお待ちしています。</h2><p>参加費は無料です。子どもから大人まで、泥の中で思いっきり体を動かして楽しみましょう。参加フォームからお申し込みください。</p><div class="button-row button-row--center"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加フォームを開く</a></div></div></div></section>
 </main>
+<div class="event-sticky-join" role="region" aria-label="参加申込"><div><small>9.20 / SUZU</small><strong>参加無料・全年齢</strong></div><a href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加申込</a></div>
 <footer class="site-footer"><div class="container footer-bottom"><span>NOTO Re:Bloom</span><small>infonotorebloom@gmail.com</small><a href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">2026年クラウドファンディング結果</a></div></footer>
 <script src="site.js?v=20260817q"></script>
 <script defer src="rebloom-unified.js?v=20260820brand2"></script>
+<script defer src="event-delight.js?v=20260826a"></script>
 </body>
 </html>
