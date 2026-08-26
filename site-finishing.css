@@ -1,0 +1,53 @@
+/* NOTO Re:Bloom / final content hierarchy + shared partner strip */
+
+/* Home: the second summary row is about the experience, not repeated logistics. */
+.nr-new-home #visual-day .join-facts .join-fact strong{font-size:clamp(24px,3vw,36px)}
+.nr-new-home #visual-day .join-facts .join-fact span{line-height:1.45}
+
+/* Event FAQ: organise many questions into clear groups without reducing information. */
+.nr-new-event #event-faq .faq-grid{display:block!important}
+.nr-new-event #event-faq .faq-category{margin-top:24px}
+.nr-new-event #event-faq .faq-category:first-child{margin-top:0}
+.nr-new-event #event-faq .faq-category__title{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:#184b3d;font-size:17px;font-weight:900;line-height:1.4}
+.nr-new-event #event-faq .faq-category__title::before{content:"";width:9px;height:9px;border-radius:50%;background:#8fba8c;box-shadow:0 0 0 5px rgba(143,186,140,.15)}
+.nr-new-event #event-faq .faq-category:nth-child(2) .faq-category__title::before{background:#d8b552;box-shadow:0 0 0 5px rgba(216,181,82,.14)}
+.nr-new-event #event-faq .faq-category:nth-child(3) .faq-category__title::before{background:#7fa8c8;box-shadow:0 0 0 5px rgba(127,168,200,.14)}
+.nr-new-event #event-faq .faq-category:nth-child(4) .faq-category__title::before{background:#a988b7;box-shadow:0 0 0 5px rgba(169,136,183,.14)}
+.nr-new-event #event-faq .faq-category__cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+
+/* Event: the 9/19 notice is supporting information, not a competing main section. */
+.nr-new-event .rb-reboost-section--compact{padding:18px 20px 34px;background:#fffaf2}
+.nr-new-event .event-reboost-note{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 22px;border:1px solid rgba(24,75,61,.13);border-radius:18px;background:#fff;box-shadow:0 7px 20px rgba(24,75,61,.05)}
+.nr-new-event .event-reboost-note__copy{min-width:0}
+.nr-new-event .event-reboost-note small{display:block;margin-bottom:4px;color:#7c6a92;font-size:10px;font-weight:900;letter-spacing:.1em}
+.nr-new-event .event-reboost-note strong{display:block;color:#173e34;font-size:17px;line-height:1.45}
+.nr-new-event .event-reboost-note p{margin:5px 0 0;color:#627069;font-size:13px;line-height:1.7}
+.nr-new-event .event-reboost-note__date{flex:none;display:grid;place-items:center;min-width:82px;min-height:64px;padding:8px 12px;border-radius:14px;background:#f2eaf6;color:#633f76;text-align:center;font-size:12px;font-weight:900;line-height:1.35}
+
+/* Shared acknowledgement strip shown directly above every page footer. */
+.site-partner-strip{padding:30px 20px 26px;background:#fffaf2;border-top:1px solid rgba(24,75,61,.11)}
+.site-partner-strip__inner{width:min(1180px,100%);margin:0 auto;text-align:center}
+.site-partner-strip__label{margin:0 0 15px;color:#78837e;font-size:10px;font-weight:900;letter-spacing:.12em}
+.site-partner-strip__logos{display:flex;align-items:stretch;justify-content:center;gap:10px;flex-wrap:nowrap}
+.site-partner-strip__logo{display:grid;place-items:center;flex:1 1 0;min-width:0;height:64px;padding:9px 10px;border:1px solid rgba(24,75,61,.11);border-radius:14px;background:#fff;text-decoration:none;box-sizing:border-box;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.site-partner-strip__logo img{display:block;max-width:100%;max-height:42px;width:auto;height:auto;object-fit:contain}
+.site-partner-strip__logo--rebloom img{max-height:48px}
+.site-partner-strip__more{display:inline-block;margin-top:13px;color:#184b3d;font-size:11px;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(24,75,61,.25)}
+@media(hover:hover){.site-partner-strip__logo:hover{transform:translateY(-2px);border-color:rgba(24,75,61,.24);box-shadow:0 7px 18px rgba(24,75,61,.07)}}
+
+@media(max-width:900px){
+  .site-partner-strip__logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+  .site-partner-strip__logo{height:60px}
+  .nr-new-event #event-faq .faq-category__cards{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .site-partner-strip{padding:24px 14px 22px}
+  .site-partner-strip__logos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .site-partner-strip__logo{height:58px;padding:8px 10px}
+  .site-partner-strip__logo img{max-height:38px}
+  .site-partner-strip__logo--rebloom img{max-height:42px}
+  .nr-new-event .event-reboost-note{align-items:flex-start;padding:15px 16px;gap:12px}
+  .nr-new-event .event-reboost-note__date{min-width:68px;min-height:56px;font-size:11px}
+  .nr-new-event #event-faq .faq-category{margin-top:20px}
+  .nr-new-event #event-faq .faq-category__title{font-size:15px;margin-bottom:9px}
+}
