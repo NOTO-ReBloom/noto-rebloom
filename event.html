@@ -25,12 +25,23 @@
   <style>
     .game-grid--confirmed{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;align-items:stretch}
     .game-grid--confirmed .game-card{min-width:0;min-height:0;overflow:hidden;padding:0 0 20px;border-radius:22px;display:flex;flex-direction:column}
-    .game-card__photo{position:relative;margin:0 0 18px;aspect-ratio:4/3;overflow:hidden;border-radius:18px 18px 10px 10px;background:#e8e1d5}
-    .game-card__photo img{width:100%;height:100%;display:block;object-fit:cover}
+    .game-card__photo{position:relative;margin:0 0 18px;aspect-ratio:4/3;overflow:hidden;border-radius:18px 18px 10px 10px;background:#e8e1d5;background-position:center;background-size:cover;background-repeat:no-repeat}
+    .game-card__photo img{width:100%;height:100%;display:block;object-fit:cover;opacity:1!important;visibility:visible!important}
+    .game-card:nth-child(1) .game-card__photo{background-image:url("event-images/muddy_rural_tug_of_war_celebration.jpg?v=20260826c")}
+    .game-card:nth-child(2) .game-card__photo{background-image:url("event-images/muddy_relay_race_in_the_countryside.jpg?v=20260826c")}
+    .game-card:nth-child(3) .game-card__photo{background-image:url("event-images/muddy_bamboo_pole_team_race.jpg?v=20260826c")}
+    .game-card:nth-child(4) .game-card__photo{background-image:url("event-images/muddy_bucket_relay_celebration.jpg?v=20260826c")}
+    .game-card:nth-child(5) .game-card__photo{background-image:url("event-images/muddy_red_ball_festival_game.jpg?v=20260826c")}
     .game-card__number{position:absolute;top:10px;left:10px;z-index:2;display:grid;place-items:center;min-width:38px;height:38px;padding:0 10px;border-radius:999px;background:#fffaf2;color:#184b3d;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 6px 16px rgba(24,75,61,.18)}
     .game-grid--confirmed .game-card>h3,.game-grid--confirmed .game-card>p{margin-left:20px;margin-right:20px}
     .game-grid--confirmed .game-card>h3{margin-top:0;margin-bottom:8px}
     .game-grid--confirmed .game-card>p{margin-bottom:0}
+    .renge-making{background:#fffaf0}
+    .renge-making .cup-layout{align-items:center}
+    .renge-making .photo-frame{max-width:520px;margin-inline:auto}
+    .renge-making .cup-steps{margin-top:28px}
+    .renge-making .cup-steps li{align-items:center}
+    .renge-making .cup-steps span{flex:none}
     .event-faq-source{max-width:900px;margin:22px auto 0;padding:14px 16px;border-left:3px solid #184b3d;background:rgba(24,75,61,.05);font-size:13px;line-height:1.75;color:#4e5f57}
     .event-faq-source a{font-weight:800;color:#184b3d;text-decoration:underline;text-underline-offset:3px}
     @media(max-width:1100px){.game-grid--confirmed{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -94,11 +105,11 @@
     <div class="container">
       <div class="section-heading"><p class="eyebrow"><span>競技内容</span><small>PROGRAM</small></p><h2>5つの競技を予定しています。</h2><p>泥の中で、子どもから大人まで一緒に楽しめる競技です。当日の田んぼの状態や天候などにより、内容を変更する場合があります。</p></div>
       <div class="game-grid game-grid--confirmed">
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_rural_tug_of_war_celebration.jpg" alt="泥の田んぼで綱引きを楽しむ参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">01</small></figure><h3>綱引き</h3><p>泥の中で踏ん張りながら、チームで力を合わせる定番競技です。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_relay_race_in_the_countryside.jpg" alt="泥の田んぼでリレーをする参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">02</small></figure><h3>リレー</h3><p>泥の中を走って次の人へつなぐ、運動会らしいチーム競技です。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bamboo_pole_team_race.jpg" alt="棒を持って台風の目をする参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">03</small></figure><h3>台風の目</h3><p>棒を持ってチームで進み、息を合わせながらコースを回ります。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bucket_relay_celebration.jpg" alt="泥の田んぼでバケツリレーをする参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">04</small></figure><h3>バケツリレー</h3><p>バケツを使って、チームで協力しながらつないでいきます。</p></article>
-        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_red_ball_festival_game.jpg" alt="泥の田んぼで玉入れを楽しむ参加者のイメージ" width="240" height="180" loading="lazy"><small class="game-card__number">05</small></figure><h3>玉入れ</h3><p>泥の中でも参加しやすく、年齢を問わず楽しめる競技です。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_rural_tug_of_war_celebration.jpg?v=20260826c" alt="泥の田んぼで綱引きを楽しむ参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">01</small></figure><h3>綱引き</h3><p>泥の中で踏ん張りながら、チームで力を合わせる定番競技です。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_relay_race_in_the_countryside.jpg?v=20260826c" alt="泥の田んぼでリレーをする参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">02</small></figure><h3>リレー</h3><p>泥の中を走って次の人へつなぐ、運動会らしいチーム競技です。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bamboo_pole_team_race.jpg?v=20260826c" alt="棒を持って台風の目をする参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">03</small></figure><h3>台風の目</h3><p>棒を持ってチームで進み、息を合わせながらコースを回ります。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_bucket_relay_celebration.jpg?v=20260826c" alt="泥の田んぼでバケツリレーをする参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">04</small></figure><h3>バケツリレー</h3><p>バケツを使って、チームで協力しながらつないでいきます。</p></article>
+        <article class="game-card"><figure class="game-card__photo"><img src="event-images/muddy_red_ball_festival_game.jpg?v=20260826c" alt="泥の田んぼで玉入れを楽しむ参加者のイメージ" width="240" height="180" loading="eager"><small class="game-card__number">05</small></figure><h3>玉入れ</h3><p>泥の中でも参加しやすく、年齢を問わず楽しめる競技です。</p></article>
       </div>
       <div class="callout"><b>参加者にアクエリアスをプレゼント</b><p>運動のあとはしっかり水分補給。参加者向けにアクエリアスを用意する予定です。</p></div>
     </div>
@@ -113,6 +124,26 @@
         <div><span>場</span><b>会場の事前確認</b><p>石・ガラス・金属などの危険物、深い泥や段差、水の状態などを事前に確認します。</p></div>
         <div><span>暑</span><b>暑さ・天候</b><p>休憩と水分補給を行い、暑さや雷・大雨などの状況に応じて競技の変更・中止を判断します。</p></div>
         <div><span>救</span><b>救護・緊急時</b><p>体調不良やけががあった場合は競技を止めて対応し、必要に応じて119番通報や保護者への連絡を行います。イベント保険も準備を進めています。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section renge-making" id="renge-making">
+    <div class="container cup-layout">
+      <figure class="photo-frame">
+        <img src="renge-cup-illustration.png" alt="Re:Bloomレンゲカップを作るイメージ">
+        <figcaption>会場で作って、そのまま持ち帰れる小さなレンゲカップです。</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow"><span>当日にみんなで作ります</span><small>MAKE A RENGE CUP</small></p>
+        <h2>泥ん子運動会の思い出を、<br>小さなレンゲカップに。</h2>
+        <p>競技のあと、会場の泥と培養土、レンゲの種を使って「Re:Bloomレンゲカップ」を作ります。難しい作業はなく、子どもから大人まで一緒に参加できます。</p>
+        <ol class="cup-steps">
+          <li><span>1</span><div><b>カップに土を入れる</b><p>会場の泥と培養土を小さなカップに入れ、レンゲが育つ土台を作ります。</p></div></li>
+          <li><span>2</span><div><b>レンゲの種をまく</b><p>土の上にレンゲの種をまき、軽く土をかぶせます。</p></div></li>
+          <li><span>3</span><div><b>水をあげる</b><p>最初の水やりをして、自宅で育て始められる状態にします。</p></div></li>
+          <li><span>4</span><div><b>育て方カードと一緒に持ち帰る</b><p>育て方が分かるカードと一緒に持ち帰り、イベントのあともレンゲの成長を楽しめます。</p></div></li>
+        </ol>
       </div>
     </div>
   </section>
