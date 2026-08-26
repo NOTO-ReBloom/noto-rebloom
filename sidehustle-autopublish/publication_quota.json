@@ -1,7 +1,7 @@
 {
-  "version": 42,
+  "version": 43,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-26T23:25:00+09:00",
+  "updatedAt": "2026-08-26T15:09:55.642Z",
   "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
   "channels": {
     "note": {
@@ -16,9 +16,9 @@
         "previousDate": "2026-08-25",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 0,
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
         "pcAssumption": "Do not assume Windows is online. When available, current-day Aug 26 strict publication recovery is first priority.",
         "paidProductionInventoryComplete": true,
@@ -32,7 +32,7 @@
           "note_20260826_35_research_consent_version_control",
           "note_20260826_36_digital_support_triage"
         ],
-        "queueMaterializationState": "complete",
+        "queueMaterializationState": "strict_verified_complete",
         "strictPublicationState": "2026-08-26 0/5 strict verified at last canonical check",
         "deferredLegacyCandidate": "note_20260820_05",
         "fallbackPolicy": "Process all five Aug 26 required IDs first. Do not republish any Aug 25 item even if stale local flags exist.",
@@ -50,10 +50,26 @@
         "currentCompletedDraftCount": 2,
         "currentRequiredBatchStrictVerifiedCount": 0,
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
-        "role": ["search/discovery acquisition", "trust building", "demand validation", "paid prequalification"],
+        "role": [
+          "search/discovery acquisition",
+          "trust building",
+          "demand validation",
+          "paid prequalification"
+        ],
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
-        "measurementWindows": ["24h", "72h", "7d"],
-        "measureWhenAvailable": ["PV", "likes", "follows", "related paid clicks", "related paid purchases", "revenue"],
+        "measurementWindows": [
+          "24h",
+          "72h",
+          "7d"
+        ],
+        "measureWhenAvailable": [
+          "PV",
+          "likes",
+          "follows",
+          "related paid clicks",
+          "related paid purchases",
+          "revenue"
+        ],
         "adaptationRule": "Publish and strict-verify only the designated Aug 26 free pair. Never republish an existing strict-verified exact-title page merely because URL discovery is delayed.",
         "separationRule": "Free publications never decrement paid publication debt and never replace the paid 5/day strict floor."
       }
