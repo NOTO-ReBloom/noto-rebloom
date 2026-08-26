@@ -32,8 +32,8 @@
 .site-partner-strip__logo{display:grid;place-items:center;flex:1 1 0;min-width:0;height:64px;padding:9px 10px;border:1px solid rgba(24,75,61,.11);border-radius:14px;background:#fff;text-decoration:none;box-sizing:border-box;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
 .site-partner-strip__logo img{display:block;max-width:100%;max-height:42px;width:auto;height:auto;object-fit:contain}
 .site-partner-strip__logo--rebloom img{max-height:48px}
-/* Ishikawa Zukan: use a tightly cropped transparent asset so the black logo itself fills the card. */
-.site-partner-strip__logo[aria-label="イシカワズカン"]{padding:8px 10px;background-color:#fff;background-image:url('ishikawa-zukan-logo-cropped.svg?v=20260827b');background-repeat:no-repeat;background-position:center;background-size:88% auto}
+/* Ishikawa Zukan: the source PNG had a huge white canvas. Hide that old image and draw the black mark from a clean pure-vector SVG instead. */
+.site-partner-strip__logo[aria-label="イシカワズカン"]{padding:7px 8px;background-color:#fff;background-image:url('ishikawa-zukan-logo-vector.svg?v=20260827d');background-repeat:no-repeat;background-position:center;background-size:92% auto}
 .site-partner-strip__logo[aria-label="イシカワズカン"] img{display:none!important}
 .site-partner-strip__more{display:inline-block;margin-top:13px;color:#184b3d;font-size:11px;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(24,75,61,.25)}
 @media(hover:hover){.site-partner-strip__logo:hover{transform:translateY(-2px);border-color:rgba(24,75,61,.24);box-shadow:0 7px 18px rgba(24,75,61,.07)}}
@@ -49,7 +49,7 @@
   .site-partner-strip__logo{height:58px;padding:8px 10px}
   .site-partner-strip__logo img{max-height:38px}
   .site-partner-strip__logo--rebloom img{max-height:42px}
-  .site-partner-strip__logo[aria-label="イシカワズカン"]{padding:7px 9px;background-size:86% auto}
+  .site-partner-strip__logo[aria-label="イシカワズカン"]{padding:6px 8px;background-size:90% auto}
   .nr-new-event .event-reboost-note{align-items:flex-start;padding:15px 16px;gap:12px}
   .nr-new-event .event-reboost-note__date{min-width:68px;min-height:56px;font-size:11px}
   .nr-new-event #event-faq .faq-category{margin-top:20px}
