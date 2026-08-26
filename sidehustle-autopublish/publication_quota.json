@@ -1,42 +1,29 @@
 {
-  "version": 43,
+  "version": 44,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-26T15:09:55.642Z",
-  "policy": "paid_publication_quota_with_rollover_debt_plus_free_acquisition_experiment",
+  "updatedAt": "2026-08-27T00:12:21+09:00",
+  "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
       "dailyPublicTarget": 5,
-      "completionDefinition": "reader-visible official paid note page verified with title, price, paid boundary and dedicated cover image",
+      "completionDefinition": "reader-visible official paid note page verified with exact title, expected price, paid boundary and dedicated cover",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
-      "catchUpPriority": "current-day five-item materialized batch before legacy blockers",
-      "perCatchUpCycleSoftBatch": 11,
-      "productionCap": null,
       "operationalState": {
-        "date": "2026-08-26",
-        "previousDate": "2026-08-25",
+        "date": "2026-08-27",
+        "previousDate": "2026-08-26",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 5,
+        "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 0,
+        "todayRemainingToTarget": 5,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
-        "pcAssumption": "Do not assume Windows is online. When available, current-day Aug 26 strict publication recovery is first priority.",
-        "paidProductionInventoryComplete": true,
-        "preparedCloudInventory": "sidehustle-autopublish/note/staging/materialization_20260826_batch01.json",
-        "preparedCloudInventoryCount": 5,
-        "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260826_batch01.json",
-        "preparedIds": [
-          "note_20260826_32_event_cancellation_decision_log",
-          "note_20260826_33_sponsor_benefit_inventory",
-          "note_20260826_34_volunteer_shift_handover",
-          "note_20260826_35_research_consent_version_control",
-          "note_20260826_36_digital_support_triage"
-        ],
-        "queueMaterializationState": "strict_verified_complete",
-        "strictPublicationState": "2026-08-26 0/5 strict verified at last canonical check",
-        "deferredLegacyCandidate": "note_20260820_05",
-        "fallbackPolicy": "Process all five Aug 26 required IDs first. Do not republish any Aug 25 item even if stale local flags exist.",
-        "debtRule": "Only reader-visible verification of URL, exact title, expected price, paid boundary and dedicated cover decrements paid debt or counts toward the paid daily target."
+        "paidProductionInventoryComplete": false,
+        "planningManifest": "sidehustle-autopublish/planning/2026-08-27_batch01.json",
+        "preparedIds": ["note_20260827_37_budget_variance_control","note_20260827_38_near_miss_reporting","note_20260827_39_sponsor_post_event_report","note_20260827_40_interview_anonymization","note_20260827_41_digital_refund_support_policy"],
+        "queueMaterializationState": "planned_not_yet_materialized",
+        "strictPublicationState": "2026-08-27 0/5 strict verified",
+        "fallbackPolicy": "Do not republish Aug 26 paid NOTE 32-36; they are already strict verified. Finish carried Aug 26 free NOTE pair first, then consume Aug 27 paid items only after queue/payload QA is materialized.",
+        "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target."
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
@@ -44,83 +31,57 @@
         "durationDays": 14,
         "initialPublicationTargetPerDay": 2,
         "hardQuota": false,
-        "manuscriptBatchingAllowed": true,
-        "preferredManuscriptBatchSize": "4-10",
-        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
-        "currentCompletedDraftCount": 2,
+        "carriedPreviousDayRequiredIds": ["free_note_20260826_01_event_cancel_signals","free_note_20260826_02_support_faq_boundary"],
+        "carriedPreviousDayStrictVerifiedCount": 0,
+        "currentRequiredIds": ["free_note_20260827_01_budget_warning_signs","free_note_20260827_02_near_miss_questions"],
         "currentRequiredBatchStrictVerifiedCount": 0,
+        "currentMaterializationState": "planned_not_yet_materialized",
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
-        "role": [
-          "search/discovery acquisition",
-          "trust building",
-          "demand validation",
-          "paid prequalification"
-        ],
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
-        "measurementWindows": [
-          "24h",
-          "72h",
-          "7d"
-        ],
-        "measureWhenAvailable": [
-          "PV",
-          "likes",
-          "follows",
-          "related paid clicks",
-          "related paid purchases",
-          "revenue"
-        ],
-        "adaptationRule": "Publish and strict-verify only the designated Aug 26 free pair. Never republish an existing strict-verified exact-title page merely because URL discovery is delayed.",
-        "separationRule": "Free publications never decrement paid publication debt and never replace the paid 5/day strict floor."
+        "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
+        "duplicateRule": "Discover and reconcile an existing exact-title public page before any retry that could create a duplicate."
       }
     },
     "BOOTH": {
       "dailyPublicTarget": 5,
-      "completionDefinition": "buyer-visible official BOOTH product page verified with title, price, downloadable-product state and purchase path",
+      "completionDefinition": "buyer-visible official BOOTH product page verified with exact title, expected price, downloadable-product state and purchase/cart path",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
-      "catchUpPriority": "current-day Aug 26 genuine-new paid batch before deferred legacy blockers or prior-day stale-enabled entries",
-      "perCatchUpCycleSoftBatch": 10,
-      "productionCap": null,
       "operationalState": {
-        "date": "2026-08-26",
-        "previousDate": "2026-08-25",
-        "previousDayStrictVerifiedPublicationsCount": 5,
-        "carriedPublicationDebt": 0,
+        "date": "2026-08-27",
+        "previousDate": "2026-08-26",
+        "previousDayStrictVerifiedPublicationsCount": 0,
+        "carriedPublicationDebt": 5,
+        "carriedRequiredIds": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"],
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
-        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
-        "pcAssumption": "Do not assume Windows is online. On the next consumer pass, process only the five Aug 26 required IDs first.",
-        "paidProductionInventoryComplete": true,
-        "plannedCloudBatchBuilder": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
-        "preparedIds": [
-          "039_event_cancellation_decision_log_os_20260826",
-          "040_sponsor_benefit_inventory_os_20260826",
-          "041_volunteer_shift_handover_os_20260826",
-          "042_research_consent_version_control_os_20260826",
-          "043_digital_support_triage_os_20260826"
-        ],
-        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
-        "materializationState": "complete: five encrypted payload ZIPs passed cloud QA with product.json, product.zip, preview01.jpg and SHA recorded in queue index",
-        "queueRetryGeneration": 38,
+        "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 10,
+        "paidProductionInventoryComplete": false,
+        "planningManifest": "sidehustle-autopublish/planning/2026-08-27_batch01.json",
+        "preparedIds": ["044_budget_variance_control_os_20260827","045_near_miss_reporting_os_20260827","046_sponsor_post_event_report_os_20260827","047_interview_anonymization_os_20260827","048_digital_refund_support_policy_os_20260827"],
+        "materializationState": "planned_not_yet_materialized",
         "recoveryControl": "booth-autopublish/monitor/recovery_control.json",
-        "strictPublicationState": "2026-08-26 0/5 strict verified at last canonical check",
-        "deferredLegacyCandidate": "009_handover_os_20260820",
-        "fallbackPolicy": "Ignore Aug 25 stale enabled flags; those five items were already strict verified and must never be republished. Process Aug 26 IDs 039-043 only.",
-        "debtRule": "Only explicit verification of all required buyer checks on a newly published Aug 26 item counts toward the five-item daily floor."
+        "strictPublicationState": "carryover Aug 26 0/5; Aug 27 0/5",
+        "fallbackPolicy": "Strict-verify carried BOOTH 039-043 first. Do not consume Aug 27 044-048 until queue/payload QA exists. Never republish already verified Aug 25 items.",
+        "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor."
       }
     }
   },
+  "currentDay": {
+    "date": "2026-08-27",
+    "standardNewTarget": {"paidNOTE":5,"freeNOTE":2,"BOOTH":5,"total":12},
+    "carryOverFrom20260826": {"paidNOTE":0,"freeNOTE":2,"BOOTH":5,"total":7},
+    "strictVerifiedAtRollover": 0,
+    "totalStrictObligationsBeforeDaySatisfied": 19,
+    "priority": "carryover first, then materialized current-day targets"
+  },
   "rules": [
-    "Paid daily targets are hard minimums and must not be silently reduced for expected-profit optimization.",
-    "For 2026-08-25, paid NOTE 5/5, BOOTH 5/5 and designated free NOTE 2/2 are strict verified; never republish them for Aug 26.",
-    "For 2026-08-26, the paid NOTE 5, BOOTH 5 and free NOTE 2 inventories are fully materialized but remain uncounted until strict public verification.",
-    "A paid scheduled slot that cannot reach verified publication is not discarded; it becomes paid publication debt.",
-    "Paid publication debt survives date changes and PC power-off periods until buyer/reader-visible publication is verified.",
-    "One run may complete multiple publications when a paid floor remains; do not stop after the first success.",
-    "Do not count queue insertion, local publisher success logs without strict verification, editor/admin URLs, drafts, commits, old-item reverification, or unverified pages as completed paid publications.",
-    "Cloud-side planning, queue production, duplicate reconciliation and publisher repair continue when Windows is unavailable.",
-    "For free NOTE, discover/reconcile an existing exact-title public page before any retry that could create a duplicate.",
-    "Current-day required IDs always outrank legacy blockers and stale prior-day enabled entries."
+    "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",
+    "Carryover survives date changes and PC power-off until strict public verification.",
+    "Do not count queue insertion, commits, local exit 0, editor/admin URLs, or invented URLs as publication.",
+    "Free NOTE never replaces or decrements the paid NOTE floor.",
+    "Before retrying an ambiguous publication, reconcile existing exact-title public pages to prevent duplicates.",
+    "Do not consume planned current-day IDs until their queue/payload materialization and QA are complete.",
+    "Canonical Windows root is C:\\SIDEHUSTLE_AUTO; do not create daily scattered ZIP/CMD runners."
   ]
 }
