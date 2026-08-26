@@ -17,7 +17,7 @@
     if(document.querySelector('link[href*="site-finishing.css"]')) return;
     const link=document.createElement('link');
     link.rel='stylesheet';
-    link.href='site-finishing.css?v=20260827a';
+    link.href='site-finishing.css?v=20260827b';
     document.head.appendChild(link);
   };
 
