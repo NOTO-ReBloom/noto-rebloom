@@ -1,0 +1,46 @@
+name: Apply Diagnosis Unity
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-diagnosis-unity.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch diagnosis HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('diagnosis.html')
+          s=p.read_text(encoding='utf-8')
+          # Remove older injected versions if a rerun happens.
+          import re
+          s=re.sub(r'<link rel="stylesheet" href="diagnosis-fixes\.css\?v=[^"]+">\s*','',s)
+          s=re.sub(r'<script src="diagnosis-group-colors\.js\?v=[^"]+" defer></script>\s*','',s)
+          anchor='<link rel="stylesheet" href="diagnosis-v2.css?v=20260827b">'
+          addition='''<link rel="stylesheet" href="diagnosis-v2.css?v=20260827b">\n<link rel="stylesheet" href="diagnosis-fixes.css?v=20260827e">\n<script src="diagnosis-group-colors.js?v=20260827e" defer></script>'''
+          if anchor not in s:
+              raise SystemExit('diagnosis-v2.css anchor not found')
+          s=s.replace(anchor,addition,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Syntax check
+        run: |
+          node --check diagnosis-group-colors.js
+          node --check diagnosis-visual-v2.js
+          node --check diagnosis.js
+      - name: Commit
+        run: |
+          git config user.name 'NOTO-ReBloom Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add diagnosis.html diagnosis-fixes.css diagnosis-group-colors.js
+          git commit -m 'Unify diagnosis typography and group colors'
+          git push
