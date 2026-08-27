@@ -1,5 +1,52 @@
-/* Diagnosis page final fixes — header contrast, navigation, image robustness */
-.page-diagnosis.rb-unified .site-header{
+/* Diagnosis page final unity layer — typography, navigation, group colors, image robustness */
+
+/* --------------------------------------------------------------------------
+   1. TYPOGRAPHY — use the same font system as the rest of NOTO Re:Bloom
+   site.css defines --sans and --serif. On this site --serif is intentionally
+   a rounded-gothic display stack, not a Mincho face.
+   -------------------------------------------------------------------------- */
+.page-diagnosis,
+.page-diagnosis button,
+.page-diagnosis input,
+.page-diagnosis select,
+.page-diagnosis textarea{
+  font-family:var(--sans)!important;
+}
+.page-diagnosis h1,
+.page-diagnosis h2,
+.page-diagnosis h3,
+.page-diagnosis h4,
+.page-diagnosis .page-hero--diagnosis h1,
+.page-diagnosis .diagnosis-intro h2,
+.page-diagnosis .diagnosis-start-card h3,
+.page-diagnosis .section-heading--center h2,
+.page-diagnosis .flower-atlas-heading h2,
+.page-diagnosis .flower-group-card h3,
+.page-diagnosis .flower-atlas-card b,
+.page-diagnosis .atlas-dialog-grid h2,
+.page-diagnosis .diagnosis-question,
+.page-diagnosis .result-copy h2,
+.page-diagnosis .result-card h3{
+  font-family:var(--serif)!important;
+  font-style:normal!important;
+}
+.page-diagnosis .page-hero--diagnosis h1,
+.page-diagnosis .section-heading--center h2,
+.page-diagnosis .flower-atlas-heading h2,
+.page-diagnosis .diagnosis-intro h2,
+.page-diagnosis .result-copy h2{
+  letter-spacing:-.045em!important;
+}
+.page-diagnosis .page-hero--diagnosis .photo-frame:before{
+  font-family:var(--serif)!important;
+  font-weight:900!important;
+}
+
+/* --------------------------------------------------------------------------
+   2. HEADER — keep the same readable header treatment as the other pages
+   -------------------------------------------------------------------------- */
+.page-diagnosis.rb-unified .site-header,
+.page-diagnosis .site-header{
   background:rgba(255,250,241,.96)!important;
   border:1px solid rgba(23,75,59,.14)!important;
   box-shadow:0 8px 28px rgba(23,58,49,.08)!important;
@@ -23,13 +70,120 @@
 }
 .page-diagnosis .menu-button span{background:#174b3b!important}
 .page-diagnosis .menu-button em{color:#174b3b!important}
+
+/* --------------------------------------------------------------------------
+   3. FOUR FLOWER GROUPS — one color language used everywhere
+   Sun      : warm yellow
+   Wind     : sky blue
+   Satoyama : young green
+   Water    : blue-lavender
+   -------------------------------------------------------------------------- */
+.page-diagnosis{
+  --group-sun:#d9a916;
+  --group-sun-soft:#fff1b8;
+  --group-sun-pale:#fff9df;
+  --group-wind:#4f91aa;
+  --group-wind-soft:#dff2f8;
+  --group-wind-pale:#f2fafc;
+  --group-satoyama:#5f8b56;
+  --group-satoyama-soft:#dfeddc;
+  --group-satoyama-pale:#f2f8ef;
+  --group-water:#6878ae;
+  --group-water-soft:#e5e6f7;
+  --group-water-pale:#f5f4fb;
+}
+
+/* 4 introduction cards */
+.page-diagnosis .flower-group-card{
+  position:relative!important;
+  overflow:hidden!important;
+  border-width:1px!important;
+  border-style:solid!important;
+}
+.page-diagnosis .flower-group-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:6px;
+}
+.page-diagnosis .flower-group-card--sun{
+  background:linear-gradient(180deg,var(--group-sun-pale),rgba(255,255,255,.92))!important;
+  border-color:rgba(217,169,22,.28)!important;
+}
+.page-diagnosis .flower-group-card--sun::before{background:var(--group-sun)}
+.page-diagnosis .flower-group-card--sun>span{background:var(--group-sun-soft)!important;color:#775800!important}
+.page-diagnosis .flower-group-card--sun h3{color:#6f5300!important}
+
+.page-diagnosis .flower-group-card--wind{
+  background:linear-gradient(180deg,var(--group-wind-pale),rgba(255,255,255,.92))!important;
+  border-color:rgba(79,145,170,.28)!important;
+}
+.page-diagnosis .flower-group-card--wind::before{background:var(--group-wind)}
+.page-diagnosis .flower-group-card--wind>span{background:var(--group-wind-soft)!important;color:#2e687e!important}
+.page-diagnosis .flower-group-card--wind h3{color:#315f71!important}
+
+.page-diagnosis .flower-group-card--satoyama{
+  background:linear-gradient(180deg,var(--group-satoyama-pale),rgba(255,255,255,.92))!important;
+  border-color:rgba(95,139,86,.28)!important;
+}
+.page-diagnosis .flower-group-card--satoyama::before{background:var(--group-satoyama)}
+.page-diagnosis .flower-group-card--satoyama>span{background:var(--group-satoyama-soft)!important;color:#446d3d!important}
+.page-diagnosis .flower-group-card--satoyama h3{color:#456b3f!important}
+
+.page-diagnosis .flower-group-card--water{
+  background:linear-gradient(180deg,var(--group-water-pale),rgba(255,255,255,.92))!important;
+  border-color:rgba(104,120,174,.28)!important;
+}
+.page-diagnosis .flower-group-card--water::before{background:var(--group-water)}
+.page-diagnosis .flower-group-card--water>span{background:var(--group-water-soft)!important;color:#536295!important}
+.page-diagnosis .flower-group-card--water h3{color:#536295!important}
+
+/* Filter chips */
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="太陽の花"]{
+  background:var(--group-sun-pale)!important;border-color:rgba(217,169,22,.38)!important;color:#725700!important;
+}
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="風の花"]{
+  background:var(--group-wind-pale)!important;border-color:rgba(79,145,170,.38)!important;color:#31677b!important;
+}
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="里山の花"]{
+  background:var(--group-satoyama-pale)!important;border-color:rgba(95,139,86,.38)!important;color:#466d40!important;
+}
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="水辺の花"]{
+  background:var(--group-water-pale)!important;border-color:rgba(104,120,174,.38)!important;color:#536295!important;
+}
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="太陽の花"].is-active{background:var(--group-sun)!important;border-color:var(--group-sun)!important;color:#fff!important}
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="風の花"].is-active{background:var(--group-wind)!important;border-color:var(--group-wind)!important;color:#fff!important}
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="里山の花"].is-active{background:var(--group-satoyama)!important;border-color:var(--group-satoyama)!important;color:#fff!important}
+.page-diagnosis .flower-atlas-filters button[data-atlas-filter="水辺の花"].is-active{background:var(--group-water)!important;border-color:var(--group-water)!important;color:#fff!important}
+
+/* The 32 atlas cards: group is visible before reading the label */
+.page-diagnosis .flower-atlas-card[data-flower-group="太陽の花"]{border-top:5px solid var(--group-sun)!important}
+.page-diagnosis .flower-atlas-card[data-flower-group="風の花"]{border-top:5px solid var(--group-wind)!important}
+.page-diagnosis .flower-atlas-card[data-flower-group="里山の花"]{border-top:5px solid var(--group-satoyama)!important}
+.page-diagnosis .flower-atlas-card[data-flower-group="水辺の花"]{border-top:5px solid var(--group-water)!important}
+.page-diagnosis .flower-atlas-card[data-flower-group="太陽の花"]>span{display:inline-flex!important;width:max-content!important;padding:5px 8px!important;border-radius:999px!important;background:var(--group-sun-soft)!important;color:#725700!important}
+.page-diagnosis .flower-atlas-card[data-flower-group="風の花"]>span{display:inline-flex!important;width:max-content!important;padding:5px 8px!important;border-radius:999px!important;background:var(--group-wind-soft)!important;color:#31677b!important}
+.page-diagnosis .flower-atlas-card[data-flower-group="里山の花"]>span{display:inline-flex!important;width:max-content!important;padding:5px 8px!important;border-radius:999px!important;background:var(--group-satoyama-soft)!important;color:#466d40!important}
+.page-diagnosis .flower-atlas-card[data-flower-group="水辺の花"]>span{display:inline-flex!important;width:max-content!important;padding:5px 8px!important;border-radius:999px!important;background:var(--group-water-soft)!important;color:#536295!important}
+
+/* Dialog / diagnosis result badges — data-group is supplied by diagnosis-group-colors.js */
+.page-diagnosis .result-group[data-group="太陽の花"]{background:var(--group-sun-soft)!important;color:#725700!important;border:1px solid rgba(217,169,22,.25)!important}
+.page-diagnosis .result-group[data-group="風の花"]{background:var(--group-wind-soft)!important;color:#31677b!important;border:1px solid rgba(79,145,170,.25)!important}
+.page-diagnosis .result-group[data-group="里山の花"]{background:var(--group-satoyama-soft)!important;color:#466d40!important;border:1px solid rgba(95,139,86,.25)!important}
+.page-diagnosis .result-group[data-group="水辺の花"]{background:var(--group-water-soft)!important;color:#536295!important;border:1px solid rgba(104,120,174,.25)!important}
+.page-diagnosis .result-hero[data-group="太陽の花"]{box-shadow:inset 6px 0 0 var(--group-sun),var(--fd-shadow)!important}
+.page-diagnosis .result-hero[data-group="風の花"]{box-shadow:inset 6px 0 0 var(--group-wind),var(--fd-shadow)!important}
+.page-diagnosis .result-hero[data-group="里山の花"]{box-shadow:inset 6px 0 0 var(--group-satoyama),var(--fd-shadow)!important}
+.page-diagnosis .result-hero[data-group="水辺の花"]{box-shadow:inset 6px 0 0 var(--group-water),var(--fd-shadow)!important}
+
+/* --------------------------------------------------------------------------
+   4. IMAGE ROBUSTNESS
+   -------------------------------------------------------------------------- */
 .page-diagnosis .flower-atlas-card img,
 .page-diagnosis .flower-group-visual img,
 .page-diagnosis .page-hero--diagnosis .photo-frame img,
 .page-diagnosis #atlasDialogImage,
-.page-diagnosis #resultImage{
-  display:block;
-}
+.page-diagnosis #resultImage{display:block}
 .page-diagnosis .flower-atlas-card.is-photo-missing img{visibility:hidden!important}
 .page-diagnosis .flower-atlas-card.is-photo-missing::after{
   content:"写真を準備中";
@@ -42,6 +196,7 @@
   color:#78877f;
   font-size:11px;font-weight:800;
 }
+
 @media(max-width:820px){
   .page-diagnosis .site-nav{
     background:#fffdf8!important;
@@ -49,4 +204,5 @@
   }
   .page-diagnosis .site-nav a{color:#174b3b!important}
   .page-diagnosis .site-nav a[aria-current="page"]{color:#fff!important}
+  .page-diagnosis .flower-group-card::before{height:5px}
 }
