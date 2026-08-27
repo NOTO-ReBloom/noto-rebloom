@@ -38,16 +38,32 @@
       logo:'bukatsu-navi-logo.svg',
       logoAlt:'部活ナビ',
       eyebrow:'BUKATSU NAVI',
-      title:'「やりたい部活」から、学校を探せる。',
-      lead:'部活ナビは、高校・中学・大学の部活動を検索できるポータルサイトです。部活動そのものを入口に学校を探せるほか、見学・体験会やイベント、各部活の最新情報にもアクセスできます。',
-      tags:['高校・中学・大学','部活検索','見学・体験会','イベント検索'],
-      facts:[
-        ['部活を検索','競技や地域などから、掲載されている部活動を探すことができます。'],
-        ['見学・体験会','各部活が掲載する見学・体験会の情報を検索できます。'],
-        ['イベント','部活動に関するイベント情報を検索できます。'],
-        ['部活ストーリー','部活動に関する動画コンテンツやストーリーが公開されています。']
+      title:'部活から、学校と活動のリアルを探せる。',
+      lead:'部活ナビは、高校・中学・大学の部活動を検索できる情報プラットフォームです。部活そのものを探すだけでなく、見学・体験会、イベント、ニュース、動画コンテンツ「部活ストーリー」まで、部活動に関する情報を横断して見ることができます。',
+      tags:['高校・中学・大学','部活検索','見学・体験会','イベント・ニュース'],
+      metrics:[
+        ['1,164件','全掲載部活数','部活ナビ公式トップページの2026年8月27日確認時点'],
+        ['高校・中学・大学','学校タイプ','学校タイプやエリアなどを条件に部活を検索可能'],
+        ['4メニュー','検索カテゴリ','部活・見学/体験会・イベント・ニュースを検索']
       ],
-      companyInfo:'運営企業の株式会社アーネストテクノロジーズは、システム開発・ITコンサルティングに加え、部活動支援SaaS「Bukatsu Page」など部活動に特化した自社サービスを開発しています。',
+      reasons:[
+        ['条件を指定して部活検索','部活、エリア、学校タイプ、学校区分、学校種別、フリーワードなどから掲載部活を探せます。'],
+        ['見学・体験会を探せる','各校・各部活が公開する見学会や体験会の情報を一覧から確認できます。'],
+        ['イベント情報を検索','演奏会や部活動関連イベントなど、開催情報を検索して確認できます。'],
+        ['最新ニュースを確認','活動報告、試合・大会結果、フォトギャラリー、入学希望者向け情報など複数のタグからニュースを探せます。'],
+        ['部活ストーリーを視聴','公式トップページでは、さまざまな部活動に密着した動画コンテンツ「部活ストーリー」が公開されています。']
+      ],
+      sourceNote:'※全掲載部活数1,164件は、部活ナビ公式トップページで2026年8月27日に確認した表示値です。掲載件数は今後変動する可能性があります。',
+      related:{
+        name:'Bukatsu Page',
+        url:'https://bukatsunavi.com/services/',
+        kicker:'アーネストテクノロジーズ公式でも紹介される部活動支援SaaS',
+        headline:'部活動の運営に必要な機能をまとめた、オールインワンシステム。',
+        lead:'アーネストテクノロジーズ公式サイトでは、部活動支援SaaS「Bukatsu Page」を自社サービスとして紹介。公式サービスページでは、部活動ホームページ作成からイベント管理、オンライン集金、寄付・クラウドファンディングなどの機能が案内されています。',
+        badges:['ホームページ制作','イベント管理','オンライン集金','寄付・クラウドファンディング']
+      },
+      companyLabel:'協賛企業について',
+      companyInfo:'株式会社アーネストテクノロジーズは、プロダクト企画からシステム設計・開発・運用までをワンストップで支援するIT企業です。公式サイトでは「Bukatsu Page & アプリ」など、部活動に特化したサービス開発も紹介しています。',
       thanks:'READYFORを通じてNOTO Re:Bloomをご支援いただきました。ありがとうございます。',
       cta:'部活ナビ公式サイトを見る'
     },
@@ -83,6 +99,7 @@
         lead:'公式チラシでは、合格体験記を無料で閲覧できる受験情報サービスとして案内されています。',
         badges:['すべて無料','時期別スケジュール','科目別の使用参考書ルート','似た境遇の逆転合格者']
       },
+      companyLabel:'運営企業について',
       companyInfo:'運営するTechsPlus株式会社は教育事業を展開し、逆転コーチングのほか、受験情報サービス「ウカルート」などを運営しています。',
       thanks:'NOTO Re:Bloomの活動にご協賛いただいています。ありがとうございます。',
       cta:'逆転コーチング公式サイトを見る'
@@ -91,14 +108,14 @@
 
   const makeFacts=(s)=>{
     if(s.reasons){
-      return `<div class="nr-sponsor-wide__reasons-title"><span>選ばれる理由</span><small>OFFICIAL FLYER</small></div><div class="nr-sponsor-wide__reasons">${s.reasons.map(([title,text],i)=>`<div><b>0${i+1}</b><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>${s.sourceNote?`<p class="nr-sponsor-wide__source-note">${s.sourceNote}</p>`:''}`;
+      return `<div class="nr-sponsor-wide__reasons-title"><span>サービスの主な特徴</span><small>OFFICIAL INFORMATION</small></div><div class="nr-sponsor-wide__reasons">${s.reasons.map(([title,text],i)=>`<div><b>0${i+1}</b><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>${s.sourceNote?`<p class="nr-sponsor-wide__source-note">${s.sourceNote}</p>`:''}`;
     }
     return `<div class="nr-sponsor-wide__facts">${s.facts.map(([title,text],i)=>`<div><small>0${i+1}</small><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>`;
   };
 
   const makeMetrics=(s)=>s.metrics?`<div class="nr-sponsor-wide__metrics">${s.metrics.map(([value,label,note])=>`<div><strong>${value}</strong><span>${label}</span><small>${note}</small></div>`).join('')}</div>`:'';
 
-  const makeRelated=(s)=>s.related?`<div class="nr-sponsor-wide__related"><div class="nr-sponsor-wide__related-brand"><span>${s.related.kicker}</span><strong>${s.related.name}</strong></div><div class="nr-sponsor-wide__related-copy"><h4>${s.related.headline}</h4><p>${s.related.lead}</p><div>${s.related.badges.map(b=>`<span>${b}</span>`).join('')}</div></div><a href="${s.related.url}" target="_blank" rel="noopener">ウカルートを見る <b>↗</b></a></div>`:'';
+  const makeRelated=(s)=>s.related?`<div class="nr-sponsor-wide__related"><div class="nr-sponsor-wide__related-brand"><span>${s.related.kicker}</span><strong>${s.related.name}</strong></div><div class="nr-sponsor-wide__related-copy"><h4>${s.related.headline}</h4><p>${s.related.lead}</p><div>${s.related.badges.map(b=>`<span>${b}</span>`).join('')}</div></div><a href="${s.related.url}" target="_blank" rel="noopener">${s.related.name}を見る <b>↗</b></a></div>`:'';
 
   const makeSponsor=(s,index)=>{
     const article=document.createElement('article');
@@ -129,7 +146,7 @@
         ${makeMetrics(s)}
         ${makeFacts(s)}
         ${makeRelated(s)}
-        <div class="nr-sponsor-wide__company"><span>運営企業について</span><p>${s.companyInfo}</p></div>
+        <div class="nr-sponsor-wide__company"><span>${s.companyLabel||'企業について'}</span><p>${s.companyInfo}</p></div>
         <div class="nr-sponsor-wide__action"><span>公式サイトで、さらに詳しく</span><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}<b>↗</b></a></div>
       </div>`;
     return article;
