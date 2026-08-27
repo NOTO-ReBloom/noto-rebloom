@@ -1,0 +1,97 @@
+name: Rebuild Flower Diagnosis
+
+on:
+  push:
+    paths:
+      - '.github/workflows/rebuild-flower-diagnosis.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image tools
+        run: python -m pip install --quiet pillow
+      - name: Download botanical photos and connect diagnosis v2
+        run: |
+          python - <<'PY'
+          import io, json, pathlib, urllib.parse, urllib.request
+          from PIL import Image, ImageOps
+
+          root=pathlib.Path('.')
+          pages={
+            'himawari':'Sunflower','gerbera':'Gerbera','salvia':'Salvia','dahlia':'Dahlia','tulip':'Tulip','marigold':'Tagetes','poppy':'Poppy','hibiscus':'Hibiscus',
+            'freesia':'Freesia','cosmos':'Cosmos_(plant)','anemone':'Anemone','clematis':'Clematis','iris':'Iris_(plant)','nemophila':'Nemophila','lupinus':'Lupinus','kasumisou':'Gypsophila',
+            'shirotsumekusa':'Trifolium_repens','renge':'Astragalus_sinicus','clover':'Clover','nadeshiko':'Dianthus_superbus','nanohana':'Brassica_rapa','mimosa':'Acacia_dealbata','rindou':'Gentiana_scabra','edelweiss':'Leontopodium_alpinum',
+            'ajisai':'Hydrangea','lavender':'Lavandula','suiren':'Nymphaea','kikyo':'Platycodon_grandiflorus','wasurenagusa':'Myosotis','sumire':'Viola_mandshurica','tanpopo':'Taraxacum','chamomile':'Chamomile'
+          }
+          headers={'User-Agent':'NOTO-ReBloom-website/1.0 (https://github.com/NOTO-ReBloom/noto-rebloom)'}
+          failures=[]
+          for slug,title in pages.items():
+              try:
+                  api='https://en.wikipedia.org/api/rest_v1/page/summary/'+urllib.parse.quote(title,safe='()_')
+                  req=urllib.request.Request(api,headers=headers)
+                  with urllib.request.urlopen(req,timeout=25) as r:
+                      data=json.load(r)
+                  image=(data.get('originalimage') or data.get('thumbnail') or {}).get('source')
+                  if not image:
+                      raise RuntimeError('no image in summary')
+                  req=urllib.request.Request(image,headers=headers)
+                  with urllib.request.urlopen(req,timeout=30) as r:
+                      raw=r.read()
+                  im=Image.open(io.BytesIO(raw)).convert('RGB')
+                  im=ImageOps.exif_transpose(im)
+                  im.thumbnail((1100,820),Image.Resampling.LANCZOS)
+                  canvas=Image.new('RGB',(900,675),(245,241,232))
+                  scale=max(900/im.width,675/im.height)
+                  nw,nh=max(1,round(im.width*scale)),max(1,round(im.height*scale))
+                  fitted=im.resize((nw,nh),Image.Resampling.LANCZOS)
+                  left=(nw-900)//2; top=(nh-675)//2
+                  canvas.paste(fitted.crop((left,top,left+900,top+675)),(0,0))
+                  canvas.save(root/f'flower-photo-{slug}.webp','WEBP',quality=82,method=6)
+                  print('saved',slug)
+              except Exception as exc:
+                  failures.append((slug,str(exc)))
+                  print('FAILED',slug,exc)
+
+          html_path=root/'diagnosis.html'
+          html=html_path.read_text(encoding='utf-8')
+          css='<link rel="stylesheet" href="diagnosis-v2.css?v=20260827b">'
+          visual='<script defer src="diagnosis-visual-v2.js?v=20260827b"></script>'
+          if 'diagnosis-v2.css' not in html:
+              html=html.replace('</head>',css+'\n</head>')
+          else:
+              import re
+              html=re.sub(r'<link[^>]+diagnosis-v2\.css[^>]*>',css,html)
+          if 'diagnosis-visual-v2.js' not in html:
+              html=html.replace('</body>',visual+'\n</body>')
+          else:
+              import re
+              html=re.sub(r'<script[^>]+diagnosis-visual-v2\.js[^>]*></script>',visual,html)
+          html=html.replace('30種類以上','32種類')
+          html=html.replace('花の絵、花言葉、開花時期、タイプの短い特徴を一覧にしました。','実際の花の写真、花言葉、開花時期、タイプの短い特徴を一覧にしました。')
+          html=html.replace('alt="レンゲの花を描いたイメージ"','alt="レンゲの花の写真"')
+          html_path.write_text(html,encoding='utf-8')
+          print('photo failures:',failures)
+          if len(failures)>5:
+              raise SystemExit('too many flower photo download failures')
+          PY
+      - name: Commit rebuilt diagnosis assets
+        run: |
+          git config user.name 'NOTO-ReBloom Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add diagnosis.html diagnosis-visual-v2.js flower-photo-*.webp
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+          else
+            git commit -m 'Rebuild flower diagnosis with botanical photography'
+            git push
+          fi
