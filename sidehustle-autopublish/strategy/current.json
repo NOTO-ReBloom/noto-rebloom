@@ -1,53 +1,32 @@
 {
-  "version": 37,
-  "updatedAt": "2026-08-26T00:16:59+09:00",
-  "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving strict paid publication floors and minimizing user intervention",
+  "version": 38,
+  "updatedAt": "2026-08-27T15:14:34+09:00",
+  "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving strict publication integrity and minimizing user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "authoritativeState": {
-    "date": "2026-08-26",
+    "date": "2026-08-27",
     "carriedPaidNoteDebt": 0,
     "carriedBoothDebt": 0,
     "todayPaidNoteFloor": 5,
     "todayBoothFloor": 5,
     "todayFreeNoteTarget": 2,
-    "todayPaidNoteStrictVerified": 0,
-    "todayBoothStrictVerified": 0,
-    "todayFreeNoteStrictVerified": 0,
+    "todayPaidNoteStrictVerified": 5,
+    "todayBoothStrictVerified": 5,
+    "todayFreeNoteStrictVerified": 2,
+    "todayTotalStrictVerified": 12,
+    "allDesignatedStrictVerified": true,
     "humanOnlyBlocker": null,
-    "planningManifest": "sidehustle-autopublish/planning/2026-08-26_batch01.json",
-    "rule": "No Aug 26 item counts until its full reader/buyer-visible strict checks pass. Queue state, commit state, local publisher exit 0, editor/admin URLs and inferred metrics do not count."
+    "planningManifest": "sidehustle-autopublish/planning/2026-08-27_batch01.json",
+    "rule": "The Aug 27 gate is complete. Do not republish any designated item. Preserve exact public URLs and strict evidence from completion_gate.json."
   },
   "allocationDecision": {
-    "rank1": "Materialize the five Aug 26 paid NOTE items, five BOOTH kits and two free NOTE acquisition items from the current-day planning manifest, with non-duplication QA, dedicated covers/previews, encryption, SHA and queue integrity.",
-    "rank2": "When Windows is available, consume current-day queue through C:\\SIDEHUSTLE_AUTO and strict-verify all public pages; switch candidates after brief recoverable failures rather than ending the run.",
-    "rank3": "If public URL discovery fails after a publish action, reconcile editor key/API/profile/title before any retry so an already-public item is not duplicated.",
-    "rank4": "After the strict daily publication gate is complete, capture first-party note/BOOTH/Microsoft Store metrics where actually accessible and improve funnel/CVR/price only from observed evidence.",
-    "rank5": "Continue Microsoft Store CSV Cleaner & Duplicate Remover submission prerequisites after paid-floor-critical work is safe; no quality shortcuts.",
-    "rank6": "Keep GitHub Pages limited to independently useful, attributable tools and verified outbound funnels; no thin SEO mass production."
-  },
-  "aug26ProductionState": {
-    "planningManifest": "sidehustle-autopublish/planning/2026-08-26_batch01.json",
-    "paidNoteIds": [
-      "note_20260826_32_event_cancellation_decision_log",
-      "note_20260826_33_sponsor_benefit_inventory",
-      "note_20260826_34_volunteer_shift_handover",
-      "note_20260826_35_research_consent_version_control",
-      "note_20260826_36_digital_support_triage"
-    ],
-    "boothIds": [
-      "039_event_cancellation_decision_log_os_20260826",
-      "040_sponsor_benefit_inventory_os_20260826",
-      "041_volunteer_shift_handover_os_20260826",
-      "042_research_consent_version_control_os_20260826",
-      "043_digital_support_triage_os_20260826"
-    ],
-    "freeNoteIds": [
-      "free_note_20260826_01_event_cancel_signals",
-      "free_note_20260826_02_support_faq_boundary"
-    ],
-    "status": "planned_materialization_pending",
-    "publicationCounted": 0
+    "rank1": "Shift discretionary capacity to Microsoft Store CSV Cleaner & Duplicate Remover because the daily publication gate is already complete; finish every non-human submission prerequisite possible without reducing app quality.",
+    "rank2": "Capture real first-party note/BOOTH/Microsoft Store/GitHub Pages metrics when accessible. Keep unavailable values null; no winner, CVR or revenue claims without observed evidence.",
+    "rank3": "Treat the two extra reader-visible URLs for free_note_20260827_02_near_miss_questions as cleanup candidates only. Keep the canonical URL from completion_gate.json and never count or republish duplicates.",
+    "rank4": "Prepare tomorrow's candidate research only after duplicate/source-freshness gates; avoid semantic clones of Aug 22-27 inventory and keep free NOTE paired to distinct paid intent where useful.",
+    "rank5": "Improve verified cross-channel CTAs only where the destination URL is already strict verified and the source remains independently useful; do not mass-rewrite without baseline metrics.",
+    "rank6": "Keep GitHub Pages focused on useful tools and attribution support; no thin SEO mass production."
   },
   "noteFunnel": {
     "status": "measurement_first_no_invented_values",
@@ -55,15 +34,27 @@
     "measurementWindows": ["24h","72h","7d"],
     "freeCadence": "2/day current experimental target; free never substitutes for paid publication floor",
     "ctaRule": "one exact-intent paid CTA after standalone useful free content; only verified reader-visible paid URLs",
-    "priceDecision": "Use expected prices from the current planning batch until observed purchase/conversion evidence supports a controlled change."
+    "priceDecision": "Keep current expected prices until observed purchase/conversion evidence supports a controlled change."
   },
   "winnerAmplification": {
     "winnerCandidates": [],
-    "rule": "No winner claim without observed first-party evidence. A verified paid purchase is a strong promotion signal; weak conversion after sufficient exposure triggers diagnosis before derivatives."
+    "rule": "No winner claim without observed first-party evidence. A verified purchase is a strong promotion signal; weak conversion after sufficient exposure triggers diagnosis before derivatives."
+  },
+  "duplicateCleanup": {
+    "canonicalId": "free_note_20260827_02_near_miss_questions",
+    "canonicalUrl": "https://note.com/royal_lion645/n/nc29774521b20",
+    "candidateUrls": [
+      "https://note.com/royal_lion645/n/na061ab23d0a3",
+      "https://note.com/royal_lion645/n/n503d65677851"
+    ],
+    "policy": "Do not count, promote or republish cleanup candidates. Remove only when a safe authenticated cleanup path is available and the canonical page remains intact."
   },
   "microsoftStore": {
     "currentPriority": "CSV Cleaner & Duplicate Remover submission completion",
-    "nextAction": "Complete every non-human submission prerequisite possible after current-day strict publication floor risk is controlled; preserve highest-quality UI, stability, privacy, Store assets and testing gates; do not invent Store demand metrics."
+    "currentState": "code_and_listing_ready_package_identity_pending",
+    "publicPwaUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
+    "qualityState": "highest_quality_submission_ready_except_partner_center_identity_and_human_submission",
+    "nextAction": "Complete every non-human prerequisite possible, preserve the prepared listing and screenshots, and do not generate the final package with invented Partner Center identity values. If product-name reservation/package identity/submission remains the only path after all non-human preparation is exhausted, classify it as a human-only Partner Center step rather than weakening the package."
   },
   "windowsPublisher": {
     "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
