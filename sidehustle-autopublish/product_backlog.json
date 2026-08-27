@@ -1,34 +1,67 @@
 {
-  "version": 28,
-  "updatedAt": "2026-08-25T05:46:00+09:00",
-  "purpose": "Aug 25 execution backlog: paid floors first, measurable funnel learning second, evidence-gated amplification thereafter.",
-  "evidenceLimit": "First-party sales, PV, click, purchase, Microsoft Store acquisition/install and GitHub outbound conversion values are not present in authoritative repository state. Do not infer winners.",
+  "version": 29,
+  "updatedAt": "2026-08-27T15:14:34+09:00",
+  "purpose": "Post-gate Aug 27 execution backlog: profit-maximizing non-human work first, evidence-gated amplification second, tomorrow preparation third.",
+  "evidenceLimit": "Authoritative repository state still does not contain first-party sales, PV, click, purchase, Microsoft Store acquisition/install or GitHub outbound conversion values. Do not infer winners.",
   "hardFloorSnapshot": {
-    "date": "2026-08-25",
-    "note": {"carriedDebt":0,"todayPaidFloor":5,"strictVerifiedToday":0,"totalRemaining":5},
-    "BOOTH": {"carriedDebt":0,"todayPaidFloor":5,"strictVerifiedToday":0,"totalRemaining":5},
-    "freeNote": {"experimentalTarget":2,"strictVerified":0,"hardQuota":false,"paidQuotaContribution":0}
+    "date": "2026-08-27",
+    "note": {"carriedDebt":0,"todayPaidFloor":5,"strictVerifiedToday":5,"totalRemaining":0},
+    "BOOTH": {"carriedDebt":0,"todayPaidFloor":5,"strictVerifiedToday":5,"totalRemaining":0},
+    "freeNote": {"experimentalTarget":2,"strictVerified":2,"hardQuota":false,"paidQuotaContribution":0},
+    "allDesignatedStrictVerified": true
   },
   "executionBacklog": [
-    {"rank":1,"channel":"note","type":"2026-08-25_paid_floor_materialization","remaining":5,"candidates":["ko_grant_02_daily_evidence_match","ko_event_01_authority_transfer","ko_org_01_access_handover","ko_research_01_exclusion_log","ko_creator_01_release_qa"],"nextAction":"Run duplicate/source-freshness gates, draft five complete paid manuscripts with reusable implementation assets, materialize encrypted queue payloads, then strict reader-verify after publication."},
-    {"rank":2,"channel":"BOOTH","type":"2026-08-25_paid_floor_materialization","remaining":5,"candidates":["ko_grant_02_daily_evidence_match","ko_event_01_authority_transfer","ko_org_01_access_handover","ko_research_01_exclusion_log","ko_creator_01_release_qa"],"nextAction":"Build five genuinely reusable OS/template products only where editing/tracking/handoff adds material value; run buyer-first QA before queue materialization and strict verification."},
-    {"rank":3,"channel":"note","type":"free_acquisition_experiment","remainingExperimental":2,"candidates":["ko_grant_02_daily_evidence_match","ko_ai_01_acceptance_criteria"],"nextAction":"Draft standalone-useful free articles paired to distinct paid intent; publish no more than the existing 2/day experiment and use only verified paid URLs for CTA."},
-    {"rank":4,"channel":"note","type":"equal_age_funnel_measurement","metrics":["PV","likes","follows","related paid clicks","related paid purchases","revenue"],"windows":["24h","72h","7d"],"nextAction":"Capture actual first-party values when accessible; keep unavailable values null and compare only matched ages."},
-    {"rank":5,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","nextAction":"Complete non-human submission prerequisites after paid-floor-critical inventory is safe. No variants until actual acquisition/install/usage evidence exists."},
-    {"rank":6,"channel":"GitHubPages","type":"measurement_support","nextAction":"Improve attributable context-matched outbound links on useful existing surfaces; no thin SEO pages."}
+    {
+      "rank":1,
+      "channel":"MicrosoftStore",
+      "id":"ms_csv_cleaner_deduper",
+      "type":"submission_completion",
+      "state":"code_and_listing_ready_package_identity_pending",
+      "nextAction":"Complete all remaining non-human submission prerequisites while preserving the existing highest-quality QA. Do not invent Partner Center identity values. Keep the final package blocked only on real reserved identity values and authenticated submission if those remain the only missing inputs."
+    },
+    {
+      "rank":2,
+      "channel":"cross-channel",
+      "type":"first_party_measurement",
+      "metrics":["note PV","note likes","note follows","related paid clicks","related paid purchases","note revenue","BOOTH sales","Microsoft Store page views","Microsoft Store acquisitions","Microsoft Store installs","Microsoft Store conversion","Microsoft Store health","GitHub outbound clicks/conversion"],
+      "windows":["24h","72h","7d"],
+      "nextAction":"Capture only values that are actually accessible; leave unavailable values null and compare only matched-age cohorts."
+    },
+    {
+      "rank":3,
+      "channel":"note",
+      "id":"free_note_20260827_02_near_miss_questions",
+      "type":"duplicate_cleanup",
+      "canonicalUrl":"https://note.com/royal_lion645/n/nc29774521b20",
+      "candidateUrls":["https://note.com/royal_lion645/n/na061ab23d0a3","https://note.com/royal_lion645/n/n503d65677851"],
+      "nextAction":"Do not republish. Keep only the canonical URL in funnels and metrics. Remove extras only through a safe authenticated cleanup path that cannot affect the canonical article."
+    },
+    {
+      "rank":4,
+      "channel":"planning",
+      "type":"2026-08-28_candidate_research",
+      "nextAction":"Research non-overlapping, purchase-intent themes for tomorrow; run semantic duplication and source-freshness gates against recent inventory before materialization. Prefer themes that support a useful paid NOTE plus a genuinely reusable BOOTH asset and, where justified, a standalone free acquisition article."
+    },
+    {
+      "rank":5,
+      "channel":"GitHubPages",
+      "type":"measurement_support",
+      "nextAction":"Improve attributable context-matched outbound links on useful existing surfaces only when destinations are strict verified; no thin SEO pages and no mass CTA rewrite without baseline data."
+    }
   ],
   "winnerCandidates": [],
   "amplificationGate": {
     "note":"Verified paid purchase strongly promotes a coherent cluster; strong free but weak paid conversion triggers CTA/theme/value/price diagnosis first; weak free+paid after sufficient exposure is deprioritized.",
     "MicrosoftStore":"Require observed acquisition/install/usage or other meaningful first-party evidence before derivatives.",
-    "BOOTH":"Require observed sales or coherent cross-channel evidence before winner-derived bundles beyond hard-floor products.",
-    "risk":"Avoid semantic clones, cosmetic variants and cannibalizing paid promises."
+    "BOOTH":"Require observed sales or coherent cross-channel evidence before winner-derived bundles beyond daily hard-floor products.",
+    "risk":"Avoid semantic clones, cosmetic variants, duplicate public pages and cannibalizing paid promises."
   },
   "rules": [
-    "Previous-day paid debt outranks all discretionary work.",
-    "Current-day paid quota outranks free funnel publishing and Microsoft Store work.",
+    "Previous-day debt outranks discretionary work, but Aug 27 debt is zero.",
+    "Completed Aug 27 IDs must never be republished.",
     "Free output never replaces paid debt/floor.",
     "Do not invent sales, PV, likes, clicks, purchases, revenue, acquisitions, installs, retention or CVR.",
-    "Strict public verification, not queue insertion or commit, completes publication."
+    "Strict public verification, not queue insertion or commit, completes publication.",
+    "Duplicate cleanup candidates never count as additional publication or acquisition assets."
   ]
 }
