@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "createdAt": "2026-08-27T18:14:31+09:00",
+  "targetDate": "2026-08-28",
+  "status": "researched_not_materialized",
+  "purpose": "Fresh, purchase-intent candidate research prepared after the Aug 27 strict publication gate completed. No queue IDs are created here; final materialization must still pass semantic-duplicate and source-freshness gates.",
+  "evidence": [
+    {
+      "source": "2026 White Paper on Small Enterprises in Japan, Part 1",
+      "publisher": "Small and Medium Enterprise Agency, Japan",
+      "published": "2026",
+      "url": "https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/PDF/shokibo/03sHakusho_part1_web.pdf",
+      "observed": "Among small businesses, expansion of orders/sales is the most frequently selected top management issue at 36.6%; securing human resources is also a major issue."
+    },
+    {
+      "source": "2026 White Paper on Small Enterprises in Japan, Part 2 Chapter 1",
+      "publisher": "Small and Medium Enterprise Agency, Japan",
+      "published": "2026",
+      "url": "https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/PDF/shokibo/04sHakusho_part2_chap1_web.pdf",
+      "observed": "For employee attendance management among surveyed small businesses, 49.8% use handwritten paper and 30.3% use spreadsheet software, indicating a large manual/spreadsheet workflow base."
+    },
+    {
+      "source": "DX動向2026調査のポイント",
+      "publisher": "IPA",
+      "published": "2026-07-16",
+      "url": "https://www.ipa.go.jp/pressrelease/2026/press20260716.html",
+      "observed": "AI adoption is expanding, but realized effects remain concentrated in operational efficiency and speed; progression to new value creation remains limited."
+    },
+    {
+      "source": "省力化ナビ",
+      "publisher": "SME Support, JAPAN",
+      "updated": "2026-08-26",
+      "url": "https://labour-saving.smrj.go.jp/",
+      "observed": "The official labor-saving support portal expanded to additional industries on 2026-08-26 and emphasizes industry-specific productivity and back-office improvement."
+    }
+  ],
+  "candidateClusters": [
+    {
+      "rank": 1,
+      "clusterId": "attendance_month_end_exception_control",
+      "paidNoteCandidate": "月末の勤怠締めで慌てない｜打刻漏れ・重複・長時間労働を締日前に潰す実務フロー",
+      "boothCandidate": "勤怠締め異常チェックOS｜打刻漏れ・重複・長時間労働の確認テンプレート",
+      "freeNoteCandidate": "勤怠集計で月末に起きやすい5つの異常｜締日前に見る場所だけ整理",
+      "demandRationale": "Official 2026 data shows roughly four in five small businesses still manage attendance with paper or spreadsheets, creating recurring month-end checking work.",
+      "paidPromise": "A repeatable close process, exception categories, escalation rules and a reusable spreadsheet/checklist rather than generic labor-law commentary.",
+      "boothAsset": "Excel/CSV-ready exception list, monthly close checklist, correction request log, escalation matrix and sample rows.",
+      "duplicateRisk": "low based on Aug 26-27 manifests; must still scan full recent inventory before materialization"
+    },
+    {
+      "rank": 2,
+      "clusterId": "estimate_to_order_followup_control",
+      "paidNoteCandidate": "見積を出した後に放置しない｜受注フォローを属人化させない案件管理ルール",
+      "boothCandidate": "見積→受注フォロー管理OS｜次回連絡日・失注理由・追客漏れ防止テンプレート",
+      "freeNoteCandidate": null,
+      "demandRationale": "Expansion of orders/sales is the top cited management issue for small businesses in the 2026 white paper; follow-up discipline is directly tied to conversion without requiring ad spend.",
+      "paidPromise": "Defines follow-up timing, next-action ownership, stale-deal detection and loss-reason capture for small teams.",
+      "boothAsset": "Pipeline sheet, follow-up queue, stale-opportunity flags, loss-reason taxonomy and weekly review sheet.",
+      "duplicateRisk": "medium; scan recent sales/CRM/lead-management inventory before materialization"
+    },
+    {
+      "rank": 3,
+      "clusterId": "applicant_response_sla_control",
+      "paidNoteCandidate": "応募者を待たせない｜採用の返信漏れ・面接調整漏れを防ぐ小規模チーム運用",
+      "boothCandidate": "採用応募対応OS｜返信期限・面接調整・選考停滞の見える化テンプレート",
+      "freeNoteCandidate": null,
+      "demandRationale": "Securing human resources remains a major management issue in the 2026 small-business survey; small teams benefit from a lightweight operational control rather than a full ATS.",
+      "paidPromise": "SLA-based applicant handling, ownership, stage aging and handoff rules without requiring a paid recruiting system.",
+      "boothAsset": "Applicant tracker, response-deadline flags, interview coordination sheet, stage-aging review and rejection/hold reason codes.",
+      "duplicateRisk": "medium; scan recent recruiting/onboarding/contact-management inventory"
+    },
+    {
+      "rank": 4,
+      "clusterId": "ai_efficiency_roi_measurement",
+      "paidNoteCandidate": "AI導入を『便利だった』で終わらせない｜業務時間・品質・再作業を測る効果検証設計",
+      "boothCandidate": "AI業務改善ROI測定OS｜導入前後の時間・品質・再作業・利用率を記録するテンプレート",
+      "freeNoteCandidate": "AI導入が『効率化止まり』になる3つのサイン｜効果検証で最初に決める数字",
+      "demandRationale": "IPA's July 2026 survey says AI adoption is spreading but effects remain concentrated in efficiency/speed, making measurement and operationalization a current business need.",
+      "paidPromise": "A pragmatic before/after measurement model with baselines, guardrails and review cadence; no unsupported ROI promises.",
+      "boothAsset": "Baseline sheet, weekly measurement log, quality/rework fields, adoption tracking, experiment decision log and summary dashboard inputs.",
+      "duplicateRisk": "low-to-medium; scan recent AI productivity/ROI inventory"
+    },
+    {
+      "rank": 5,
+      "clusterId": "backoffice_labor_saving_priority_matrix",
+      "paidNoteCandidate": "省力化は『ツール選び』から始めない｜小規模事業者のバックオフィス改善優先順位の付け方",
+      "boothCandidate": "バックオフィス省力化診断OS｜手間・頻度・ミス損失から改善順を決めるテンプレート",
+      "freeNoteCandidate": null,
+      "demandRationale": "SME Support Japan expanded its labor-saving portal on 2026-08-26, reinforcing current policy and business focus on practical productivity improvement across industries.",
+      "paidPromise": "Prioritize workflows by frequency, time cost, error impact, automation fit and implementation burden before buying tools.",
+      "boothAsset": "Workflow inventory, weighted priority matrix, quick-win map, before/after metric sheet and 30-day implementation board.",
+      "duplicateRisk": "medium; broad productivity themes require strict semantic duplicate checks before use"
+    }
+  ],
+  "selectionPolicy": {
+    "preferredPaidNoteCount": 5,
+    "preferredBoothCount": 5,
+    "preferredFreeNoteCount": 2,
+    "freePairing": [
+      "attendance_month_end_exception_control",
+      "ai_efficiency_roi_measurement"
+    ],
+    "rule": "Materialize only after comparing against recent published titles, promises and asset schemas. If a candidate is semantically close to an Aug 22-27 product, replace it rather than cosmetically renaming it."
+  },
+  "profitLogic": {
+    "priority": "recurring operational pain + purchase intent + reusable asset + low maintenance + cross-channel pairing",
+    "avoid": [
+      "generic AI tips",
+      "thin SEO variants",
+      "policy/legal advice that would require professional reliance",
+      "cosmetic clones of recent checklists",
+      "claims of demand or conversion without observed evidence"
+    ]
+  }
+}
