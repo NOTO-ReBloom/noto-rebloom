@@ -23,11 +23,11 @@
   if(head){
     const h2=head.querySelector('h2');
     const lead=head.querySelector('h2+p');
-    if(h2) h2.innerHTML='協賛パートナーの皆さま';
-    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている2社です。サービスの魅力が伝わるよう、公式情報と実際の動画をあわせてご紹介します。';
+    if(h2) h2.textContent='協賛パートナーの皆さま';
+    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている2社です。ご支援への感謝を込めて、それぞれのサービスをご紹介します。';
   }
 
-  section.querySelectorAll('.nr-main-sponsor').forEach(el=>el.remove());
+  section.querySelectorAll('.nr-main-sponsor,.nr-sponsor-row,.nr-sponsor-wide').forEach(el=>el.remove());
 
   const sponsors=[
     {
@@ -37,18 +37,15 @@
       logo:'bukatsu-navi-logo.svg',
       logoAlt:'部活ナビ',
       title:'「やりたい部活」から、学校を探せる。',
-      lead:'部活ナビは、高校・中学・大学の部活動を探せる部活特化型の情報メディアです。学校名だけでなく、部活そのものを入口に進学先を探せるのが大きな特徴です。',
-      tags:['部活を検索','見学・体験会','イベント情報','部活ストーリー'],
+      lead:'部活ナビは、高校・中学・大学の部活動を探せる部活特化型の情報メディアです。学校名だけでなく、競技や活動内容を入口に進学先を探せるのが大きな特徴です。',
+      tags:['部活から学校検索','見学・体験会','イベント情報','部活ストーリー'],
       points:[
-        ['部活から学校選びを始められる','競技や活動内容、地域などから気になる部活を探し、学校との新しい出会いにつなげられます。'],
-        ['入学前に「実際の活動」を知れる','見学・体験会、ニュース、イベント、動画などを通して、部活の雰囲気まで確認できます。'],
-        ['部活動の発信そのものを広げる','各校・各部活の取り組みやストーリーを届け、部活を応援する人との接点をつくっています。']
+        ['部活を軸に学校を探す','地域や競技、学校種別などから、自分が続けたい・始めたい部活動を探せます。'],
+        ['入学前の情報収集','見学・体験会やイベント情報を確認し、進学後の活動を具体的にイメージできます。'],
+        ['部活動の魅力を発信','各校・各部活のニュースやストーリーを通じて、日々の取り組みや魅力を届けています。']
       ],
-      video:'9OVDPksd_cM',
-      videoTitle:'部活ナビ掲載校の活動動画',
-      videoCaption:'部活ナビ掲載校の活動動画より。サイトではニュースや動画を通して、部活動の実際の姿も見ることができます。',
       thanks:'READYFORを通じてNOTO Re:Bloomをご支援いただきました。ありがとうございます。',
-      cta:'部活ナビを見る ↗'
+      cta:'部活ナビ公式サイトを見る ↗'
     },
     {
       company:'TechsPlus株式会社',
@@ -57,41 +54,40 @@
       logo:'gyakuten-coaching-official-logo.png',
       logoAlt:'逆転コーチング',
       title:'志望校から逆算し、毎日の勉強を具体化する。',
-      lead:'逆転コーチングは、志望校に特化したオンラインの学習管理塾です。合格までに必要な勉強を逆算し、「今日何をするか」まで具体的な計画に落とし込みます。',
-      tags:['志望校特化','1日単位の計画','映像授業','オンライン対応'],
+      lead:'逆転コーチングは、志望校に特化したオンラインの学習管理塾です。合格までに必要な学習を逆算し、「今日何をするか」まで具体的な計画に落とし込んで学習を支えます。',
+      tags:['志望校特化','1日単位の学習計画','進捗管理','オンライン対応'],
       points:[
-        ['志望校に合わせて伴走','志望校の入試傾向や必要な勉強量を踏まえ、合格までのルートを設計・管理します。'],
-        ['計画だけで終わらせない','1日単位の学習計画と継続的な進捗確認で、迷いや計画倒れを減らします。'],
-        ['学習環境までまとめて支える','コーチングに加え、映像授業やテストアプリ、提携自習室なども組み合わせて学習を支えています。']
+        ['志望校から逆算','必要な勉強量や優先順位を整理し、合格までの学習ルートを具体化します。'],
+        ['毎日の行動まで設計','長期計画だけでなく、1日単位まで落とし込むことで「何をすればいいか」を明確にします。'],
+        ['継続して進捗を確認','計画と実際の学習状況を確認しながら、受験まで継続的に学習を支えます。']
       ],
-      video:'-ffcJBvvfbY',
-      videoTitle:'逆転コーチング公式動画',
-      videoCaption:'逆転コーチングの公式動画です。サービスの考え方や学習支援の雰囲気を、実際の映像でご覧いただけます。',
       thanks:'NOTO Re:Bloomの活動にご協賛いただいています。ありがとうございます。',
-      cta:'逆転コーチングを見る ↗'
+      cta:'逆転コーチング公式サイトを見る ↗'
     }
   ];
 
   const makeSponsor=(s)=>{
     const article=document.createElement('article');
-    article.className='nr-sponsor-row rb-detail-card';
+    article.className='nr-sponsor-wide rb-detail-card';
     article.innerHTML=`
-      <div class="nr-sponsor-row__copy">
-        <div class="nr-sponsor-brandline">
-          <a class="nr-sponsor-logo-compact" href="${s.url}" target="_blank" rel="sponsored noopener" aria-label="${s.service}公式サイト">
-            <img src="${s.logo}" alt="${s.logoAlt}" loading="lazy" decoding="async">
-          </a>
-          <div class="nr-sponsor-brandmeta"><span>協賛パートナー</span><p>${s.company}</p></div>
-        </div>
-        <h3>${s.title}</h3>
-        <p class="nr-sponsor-row__lead">${s.lead}</p>
-        <div class="nr-sponsor-tags" aria-label="${s.service}の特徴">${s.tags.map(tag=>`<span>${tag}</span>`).join('')}</div>
-        <div class="nr-sponsor-points">${s.points.map(([title,text])=>`<div><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>
-        <div class="nr-sponsor-row__foot"><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}</a><small>${s.thanks}</small></div>
+      <div class="nr-sponsor-wide__brand">
+        <span class="nr-sponsor-wide__label">協賛パートナー</span>
+        <a class="nr-sponsor-wide__logo" href="${s.url}" target="_blank" rel="sponsored noopener" aria-label="${s.service}公式サイト">
+          <img src="${s.logo}" alt="${s.logoAlt}" loading="lazy" decoding="async">
+        </a>
+        <p>${s.company}</p>
+        <small>${s.thanks}</small>
       </div>
-      <div class="nr-sponsor-row__media">
-        <div class="nr-sponsor-video"><iframe src="https://www.youtube-nocookie.com/embed/${s.video}" title="${s.videoTitle}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-        <p>${s.videoCaption}</p>
+      <div class="nr-sponsor-wide__body">
+        <div class="nr-sponsor-wide__intro">
+          <div>
+            <h3>${s.title}</h3>
+            <p>${s.lead}</p>
+          </div>
+          <div class="nr-sponsor-wide__tags" aria-label="${s.service}の特徴">${s.tags.map(tag=>`<span>${tag}</span>`).join('')}</div>
+        </div>
+        <div class="nr-sponsor-wide__points">${s.points.map(([title,text])=>`<div><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>
+        <div class="nr-sponsor-wide__action"><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}</a></div>
       </div>`;
     return article;
   };
