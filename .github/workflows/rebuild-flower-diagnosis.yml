@@ -23,7 +23,7 @@ jobs:
       - name: Download botanical photos and connect diagnosis v2
         run: |
           python - <<'PY'
-          import io, json, pathlib, urllib.parse, urllib.request
+          import io, json, pathlib, time, urllib.error, urllib.parse, urllib.request
           from PIL import Image, ImageOps
 
           root=pathlib.Path('.')
@@ -34,30 +34,48 @@ jobs:
             'ajisai':'Hydrangea','lavender':'Lavandula','suiren':'Nymphaea','kikyo':'Platycodon_grandiflorus','wasurenagusa':'Myosotis','sumire':'Viola_mandshurica','tanpopo':'Taraxacum','chamomile':'Chamomile'
           }
           headers={'User-Agent':'NOTO-ReBloom-website/1.0 (https://github.com/NOTO-ReBloom/noto-rebloom)'}
+
+          params={
+            'action':'query','format':'json','formatversion':'2','prop':'pageimages','piprop':'thumbnail','pithumbsize':'1200',
+            'titles':'|'.join(pages.values())
+          }
+          api='https://en.wikipedia.org/w/api.php?'+urllib.parse.urlencode(params)
+          req=urllib.request.Request(api,headers=headers)
+          with urllib.request.urlopen(req,timeout=30) as r:
+              query=json.load(r)
+          by_title={p.get('title',''):p.get('thumbnail',{}).get('source') for p in query.get('query',{}).get('pages',[])}
+          reverse={title.replace('_',' '):slug for slug,title in pages.items()}
+          image_for={reverse[title]:src for title,src in by_title.items() if title in reverse and src}
+
+          def fetch_bytes(url):
+              last=None
+              for attempt,wait in enumerate((0,3,7,15,30),start=1):
+                  if wait: time.sleep(wait)
+                  try:
+                      req=urllib.request.Request(url,headers=headers)
+                      with urllib.request.urlopen(req,timeout=40) as r:
+                          return r.read()
+                  except urllib.error.HTTPError as exc:
+                      last=exc
+                      if exc.code!=429: raise
+                      print('rate limited; retry',attempt,url)
+              raise last or RuntimeError('download failed')
+
           failures=[]
-          for slug,title in pages.items():
+          for index,(slug,title) in enumerate(pages.items(),start=1):
               try:
-                  api='https://en.wikipedia.org/api/rest_v1/page/summary/'+urllib.parse.quote(title,safe='()_')
-                  req=urllib.request.Request(api,headers=headers)
-                  with urllib.request.urlopen(req,timeout=25) as r:
-                      data=json.load(r)
-                  image=(data.get('originalimage') or data.get('thumbnail') or {}).get('source')
-                  if not image:
-                      raise RuntimeError('no image in summary')
-                  req=urllib.request.Request(image,headers=headers)
-                  with urllib.request.urlopen(req,timeout=30) as r:
-                      raw=r.read()
-                  im=Image.open(io.BytesIO(raw)).convert('RGB')
-                  im=ImageOps.exif_transpose(im)
-                  im.thumbnail((1100,820),Image.Resampling.LANCZOS)
-                  canvas=Image.new('RGB',(900,675),(245,241,232))
+                  image=image_for.get(slug)
+                  if not image: raise RuntimeError(f'no thumbnail for {title}')
+                  raw=fetch_bytes(image)
+                  im=ImageOps.exif_transpose(Image.open(io.BytesIO(raw))).convert('RGB')
                   scale=max(900/im.width,675/im.height)
                   nw,nh=max(1,round(im.width*scale)),max(1,round(im.height*scale))
                   fitted=im.resize((nw,nh),Image.Resampling.LANCZOS)
                   left=(nw-900)//2; top=(nh-675)//2
-                  canvas.paste(fitted.crop((left,top,left+900,top+675)),(0,0))
+                  canvas=fitted.crop((left,top,left+900,top+675))
                   canvas.save(root/f'flower-photo-{slug}.webp','WEBP',quality=82,method=6)
-                  print('saved',slug)
+                  print(f'[{index:02d}/32] saved {slug}')
+                  time.sleep(.55)
               except Exception as exc:
                   failures.append((slug,str(exc)))
                   print('FAILED',slug,exc)
@@ -66,23 +84,23 @@ jobs:
           html=html_path.read_text(encoding='utf-8')
           css='<link rel="stylesheet" href="diagnosis-v2.css?v=20260827b">'
           visual='<script defer src="diagnosis-visual-v2.js?v=20260827b"></script>'
+          import re
           if 'diagnosis-v2.css' not in html:
               html=html.replace('</head>',css+'\n</head>')
           else:
-              import re
               html=re.sub(r'<link[^>]+diagnosis-v2\.css[^>]*>',css,html)
           if 'diagnosis-visual-v2.js' not in html:
               html=html.replace('</body>',visual+'\n</body>')
           else:
-              import re
               html=re.sub(r'<script[^>]+diagnosis-visual-v2\.js[^>]*></script>',visual,html)
           html=html.replace('30種類以上','32種類')
           html=html.replace('花の絵、花言葉、開花時期、タイプの短い特徴を一覧にしました。','実際の花の写真、花言葉、開花時期、タイプの短い特徴を一覧にしました。')
           html=html.replace('alt="レンゲの花を描いたイメージ"','alt="レンゲの花の写真"')
           html_path.write_text(html,encoding='utf-8')
+
           print('photo failures:',failures)
-          if len(failures)>5:
-              raise SystemExit('too many flower photo download failures')
+          if failures:
+              raise SystemExit(f'flower photo failures: {len(failures)}')
           PY
       - name: Commit rebuilt diagnosis assets
         run: |
