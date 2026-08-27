@@ -1,21 +1,20 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-26T15:09:07.765Z",
-  "retryGeneration": 39,
+  "updatedAt": "2026-08-27T13:26:56+09:00",
+  "retryGeneration": 42,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "2026-08-26_paid_note_reconciled_complete",
-    "requiredStrictPublications": 0,
-    "orderedIds": [],
-    "completedIds": [
-      "note_20260826_32_event_cancellation_decision_log",
-      "note_20260826_33_sponsor_benefit_inventory",
-      "note_20260826_34_volunteer_shift_handover",
-      "note_20260826_35_research_consent_version_control",
-      "note_20260826_36_digital_support_triage"
+    "mode": "publish_2026-08-27_paid_note_batch_now",
+    "requiredStrictPublications": 5,
+    "orderedIds": [
+      "note_20260827_37_budget_variance_control",
+      "note_20260827_38_near_miss_reporting",
+      "note_20260827_39_sponsor_post_event_report",
+      "note_20260827_40_interview_anonymization",
+      "note_20260827_41_digital_refund_support_policy"
     ],
-    "instruction": "All five 2026-08-26 paid NOTE entries are already strict verified. Do not republish them; continue only with the two free NOTE and five BOOTH items.",
+    "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -23,7 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "reconciledAt": "2026-08-26T15:09:07.765Z"
+    "forcedAt": "2026-08-27T13:26:56+09:00",
+    "nonce": "paid-note-20260827-20260827T132656+0900"
   },
   "entries": [
     {
@@ -847,6 +847,106 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verification confirmed exact title, expected price, paid purchase boundary, and dedicated cover image.",
       "verifiedAt": "2026-08-26T15:09:07.765Z"
+    },
+    {
+      "id": "note_20260827_37_budget_variance_control",
+      "title": "学生団体の予算が途中で崩れる前に｜予算差異を月1回15分で確認する実務ルール",
+      "path": "sidehustle-autopublish/note/queue/note_20260827_37_budget_variance_control.enc.json",
+      "sha256": "4a9f57841f153fda1a10e548cc3d73602c42ede15f3987d0545784fc4ee74311",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260827_38_near_miss_reporting",
+      "title": "イベント事故を未然に防ぐ｜ヒヤリハットを責任追及なしで集める運営テンプレート",
+      "path": "sidehustle-autopublish/note/queue/note_20260827_38_near_miss_reporting.enc.json",
+      "sha256": "1e3f211f037454467d4dc9fcf722d908dbd9776e0ca74e3a800b65b655f2a768",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260827_39_sponsor_post_event_report",
+      "title": "協賛はイベント後が勝負｜次回提案につなげるスポンサー報告書の作り方",
+      "path": "sidehustle-autopublish/note/queue/note_20260827_39_sponsor_post_event_report.enc.json",
+      "sha256": "babc99682c6720ade857ed8bd73a5298433426b56c3dc444bcce9b518f08934a",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260827_40_interview_anonymization",
+      "title": "卒論インタビューの匿名化で迷わない｜録音・文字起こし・引用を分けて管理する方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260827_40_interview_anonymization.enc.json",
+      "sha256": "2371b3993c90a35d33d039ce8c35bdc3a5f8bc7d499eb99ea2e08b5600f01f37",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260827_41_digital_refund_support_policy",
+      "title": "デジタル商品の返金・サポートで消耗しない｜販売前に決める対応範囲の線引き",
+      "path": "sidehustle-autopublish/note/queue/note_20260827_41_digital_refund_support_policy.enc.json",
+      "sha256": "10f61bfe3e392245230ad2ba47a8da827106545e6af25e78db5948a7c1c8fce6",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
   "activePublicationDate": "2026-08-26",

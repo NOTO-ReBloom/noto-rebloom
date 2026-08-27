@@ -2,7 +2,7 @@
   "date": "2026-08-27",
   "timezone": "Asia/Tokyo",
   "createdAt": "2026-08-27T00:12:21+09:00",
-  "priorityRule": "Strict-verify all seven carried 2026-08-26 obligations before consuming new 2026-08-27 targets.",
+  "priorityRule": "The seven carried 2026-08-26 obligations are strict-verified; consume only the new 2026-08-27 targets below.",
   "carriedFirst": {
     "noteFree": ["free_note_20260826_01_event_cancel_signals","free_note_20260826_02_support_faq_boundary"],
     "BOOTH": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"]
@@ -28,6 +28,6 @@
     ]
   },
   "qualityGate": ["non-duplicate practical value","exact-title QA","dedicated cover/preview","price-value fit","clear buyer outcome","strict public verification before counting"],
-  "materializationState": "planned_not_yet_materialized",
-  "consumerRule": "Do not attempt new 2026-08-27 IDs until corresponding queue entries and payload QA are present; carried 2026-08-26 obligations remain first priority."
+  "materializationState": "materialized_12_items_queued_strict_verification_pending",
+  "consumerRule": "Process only enabled 2026-08-27 entries; count completion only after strict reader/buyer-visible verification for all 12 items."
 }

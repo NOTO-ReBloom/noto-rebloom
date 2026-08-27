@@ -1,55 +1,82 @@
 {
-  "version": 34,
-  "updatedAt": "2026-08-27T00:12:21+09:00",
+  "version": 38,
+  "updatedAt": "2026-08-27T13:26:56+09:00",
   "activeRecovery": {
     "date": "2026-08-27",
-    "mode": "carryover_aug26_booth_first",
+    "mode": "current_day_paid_floor",
     "requiredStrictNewPublications": 5,
     "remaining": 5,
-    "nonce": "carryover-20260826-into-20260827"
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "sourceDate": "2026-08-26",
+    "generatedAt": "2026-08-27T13:26:56+09:00",
     "requiredStrictNewPublications": 5,
-    "queueIds": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"],
+    "queueIds": [
+      "044_budget_variance_control_os_20260827",
+      "045_near_miss_reporting_os_20260827",
+      "046_sponsor_post_event_report_os_20260827",
+      "047_interview_anonymization_os_20260827",
+      "048_digital_refund_support_policy_os_20260827"
+    ],
     "completedIds": [],
-    "queueRetryGeneration": 39,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
-    "requiredBuyerChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"],
+    "queueRetryGeneration": 42,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260827_batch01.json",
+    "requiredBuyerChecks": [
+      "buyerVisibleUrl",
+      "exactTitle",
+      "expectedPrice",
+      "downloadableProductState",
+      "purchaseOrCartPath"
+    ],
     "expectedPricesJPY": {
-      "039_event_cancellation_decision_log_os_20260826": 980,
-      "040_sponsor_benefit_inventory_os_20260826": 1280,
-      "041_volunteer_shift_handover_os_20260826": 780,
-      "042_research_consent_version_control_os_20260826": 980,
-      "043_digital_support_triage_os_20260826": 980
+      "044_budget_variance_control_os_20260827": 1280,
+      "045_near_miss_reporting_os_20260827": 1280,
+      "046_sponsor_post_event_report_os_20260827": 1480,
+      "047_interview_anonymization_os_20260827": 1280,
+      "048_digital_refund_support_policy_os_20260827": 1280
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "ignoreAlreadyResolvedPriorDayEntries": true,
-    "forceRetryNonce": "carryover-20260826-into-20260827",
-    "instruction": "First strict-verify BOOTH 039-043 carried from Aug 26. Before any ambiguous retry, reconcile existing buyer-visible exact-title pages. Do not consume Aug 27 BOOTH 044-048 until completion_gate says materialized=true and queue/payload QA is present."
+    "forceRetryNonce": "booth-20260827-20260827T132656+0900"
   },
   "windowsResumeContract": {
-    "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
-    "requiredIds": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"],
-    "firstPassOrder": ["039_event_cancellation_decision_log_os_20260826","040_sponsor_benefit_inventory_os_20260826","041_volunteer_shift_handover_os_20260826","042_research_consent_version_control_os_20260826","043_digital_support_triage_os_20260826"],
+    "requiredIds": [
+      "044_budget_variance_control_os_20260827",
+      "045_near_miss_reporting_os_20260827",
+      "046_sponsor_post_event_report_os_20260827",
+      "047_interview_anonymization_os_20260827",
+      "048_digital_refund_support_policy_os_20260827"
+    ],
+    "firstPassOrder": [
+      "044_budget_variance_control_os_20260827",
+      "045_near_miss_reporting_os_20260827",
+      "046_sponsor_post_event_report_os_20260827",
+      "047_interview_anonymization_os_20260827",
+      "048_digital_refund_support_policy_os_20260827"
+    ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five carried Aug 26 IDs buyer-visible strict verified",
-    "duplicateSafety": "Before creating a new BOOTH item after any ambiguous publisher result, reconcile by exact title and buyer-visible page first.",
-    "noScatteredRootFallback": true,
-    "noDailyZipCmdProliferation": true
+    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-27T00:12:21+09:00",
-    "windowsPublisherReachable": null,
-    "carryOverBOOTH": "2026-08-26 0/5 strict verified at last canonical check",
+    "checkedAt": "2026-08-27T11:40:22+09:00",
+    "windowsPublisherReachable": true,
+    "carryOverBOOTH": "2026-08-26 5/5 strict verified and canonical ledger reconciled",
     "aug27NewBOOTH": "planned but not materialized; do not consume yet",
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "On next Windows consumer pass, process carried BOOTH 039-043 only, strict-verify buyer-visible pages and reconcile ledger/quota/completion gate."
+    "nextAction": "Do not republish BOOTH 039-043. Consume Aug 27 BOOTH 044-048 only after completion_gate materialized=true and queue/payload QA exists."
   },
   "heldAlreadyResolved": {
-    "queueIds": ["034_grant_evidence_match_os_20260825","035_event_authority_transfer_os_20260825","036_access_handover_os_20260825","037_research_exclusion_log_os_20260825","038_creator_release_qa_os_20260825"],
+    "queueIds": [
+      "034_grant_evidence_match_os_20260825",
+      "035_event_authority_transfer_os_20260825",
+      "036_access_handover_os_20260825",
+      "037_research_exclusion_log_os_20260825",
+      "038_creator_release_qa_os_20260825"
+    ],
     "reason": "Already strict verified; never republish."
   },
-  "heldBlocked": {"queueId":"009_handover_os_20260820","reason":"Legacy blocker remains deferred behind current carryover and current-day floor."}
+  "heldBlocked": {
+    "queueId": "009_handover_os_20260820",
+    "reason": "Legacy blocker remains deferred behind current carryover and current-day floor."
+  }
 }

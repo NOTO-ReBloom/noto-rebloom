@@ -18,7 +18,10 @@ product.zip内にindex.html、README、QUICKSTARTを収録。
 実務整理支援用です。法務・会計・安全・研究倫理・情報セキュリティ等は所属組織の規程、各サービスの公式仕様、専門家確認を優先してください。"""
 
 # paid note
-ip=NQ/"index.json"; idx=json.loads(ip.read_text("utf-8-sig")); ids={x["id"] for x in PAID}; keep=[e for e in idx["entries"] if e.get("id") not in ids]; mani=[]
+ip=NQ/"index.json"; idx=json.loads(ip.read_text("utf-8-sig")); ids={x["id"] for x in PAID}; keep=[]; mani=[]
+for e in idx["entries"]:
+    if e.get("id") not in ids:
+        e=dict(e); e["enabled"]=False; e["forceRetry"]=False; keep.append(e)
 for p in PAID:
     raw=enc_json({"title":p["title"],"freeBody":p["free"],"paidBody":p["paid"],"priceJPY":p["price"],"tags":p["tags"]}); rel=f"sidehustle-autopublish/note/queue/{p['id']}.enc.json"; (ROOT/rel).write_bytes(raw); sha=hashlib.sha256(raw).hexdigest()
     keep.append({"id":p["id"],"title":p["title"],"path":rel,"sha256":sha,"createdAt":stamp,"enabled":True,"forceRetry":True,"forceRetryNonce":f"paid-note-{DID}-{nonce}","expectedPriceJPY":p["price"],"requireReaderVisibleVerification":True,"requiredRe

@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-26T23:36:09+09:00",
-  "retryGeneration": 39,
+  "updatedAt": "2026-08-27T13:26:56+09:00",
+  "retryGeneration": 42,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -25,7 +25,8 @@
         "price",
         "downloadableProductState",
         "purchasePath"
-      ]
+      ],
+      "forceRetry": false
     },
     {
       "id": "009_handover_os_20260820",
@@ -1240,8 +1241,8 @@
       ],
       "sha256": "6bb735b5d417744f72cdd3a4d320cbe216d8d8fdc9419a6dcbee757658f47c34",
       "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
@@ -1279,8 +1280,8 @@
       ],
       "sha256": "583427a724eee676dde05ab70b87ad8016eaf9d2ecf8b19756f1c258efa51f71",
       "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 1280,
       "requireBuyerVisibleVerification": true,
@@ -1318,8 +1319,8 @@
       ],
       "sha256": "4757569fd07a501b84270369ea2a3894ab1aa97ad04b30742638542ecf20d882",
       "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 780,
       "requireBuyerVisibleVerification": true,
@@ -1357,8 +1358,8 @@
       ],
       "sha256": "62366a7a0a845ff170ce2ddf0ace6b18b7a70f1404e756645822705e6cd3d9e7",
       "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
@@ -1396,8 +1397,8 @@
       ],
       "sha256": "69e0cd93cbf3a14379381edcd7c9fb69b924d296d82682b14a5541849ebbe813",
       "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
       "expectedPriceJPY": 980,
       "requireBuyerVisibleVerification": true,
@@ -1426,6 +1427,196 @@
         ]
       },
       "recoveryMode": "publish current-day item now and strict-verify public page"
+    },
+    {
+      "id": "044_budget_variance_control_os_20260827",
+      "title": "学生団体向け 予算差異チェック＆意思決定ログ実務キット",
+      "chunks": [
+        "booth-autopublish/queue/044_budget_variance_control_os_20260827.part01.txt"
+      ],
+      "sha256": "7f537ee204d385f764391fbd4af93764680182bec9639433deadcef671d66c45",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-044_budget_variance_control_os_20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "045_near_miss_reporting_os_20260827",
+      "title": "イベント運営 ヒヤリハット報告・再発防止テンプレートセット",
+      "chunks": [
+        "booth-autopublish/queue/045_near_miss_reporting_os_20260827.part01.txt"
+      ],
+      "sha256": "010bc9ad6ffb4960c0d294b79ae86be546dc7177e592fb7958fbb020f54a8566",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-045_near_miss_reporting_os_20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "046_sponsor_post_event_report_os_20260827",
+      "title": "協賛企業向け イベント実施報告書・継続提案テンプレート",
+      "chunks": [
+        "booth-autopublish/queue/046_sponsor_post_event_report_os_20260827.part01.txt"
+      ],
+      "sha256": "9230abbefe82790fdf95b1cb3493c8f554e95621ce27b87ad97293750c904161",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-046_sponsor_post_event_report_os_20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1480,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "047_interview_anonymization_os_20260827",
+      "title": "卒論インタビュー 匿名化・引用管理シート実務セット",
+      "chunks": [
+        "booth-autopublish/queue/047_interview_anonymization_os_20260827.part01.txt"
+      ],
+      "sha256": "b154338c70bceb6a46d1949cf46c5b72fc6cf27b9187e60d88a32a3725789a03",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-047_interview_anonymization_os_20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "048_digital_refund_support_policy_os_20260827",
+      "title": "デジタル商品 返金・サポート方針設計テンプレート",
+      "chunks": [
+        "booth-autopublish/queue/048_digital_refund_support_policy_os_20260827.part01.txt"
+      ],
+      "sha256": "35f8177aa6d5fa81f17b2e95d22ad145f08b43d8de95bd7d888b01e6ccb98060",
+      "createdAt": "2026-08-27T13:26:56+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-048_digital_refund_support_policy_os_20260827-20260827T132656+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
     }
   ],
   "activePublicationDate": "2026-08-26",

@@ -5,12 +5,18 @@ idx["updatedAt"]=stamp; idx["retryGeneration"]=int(idx.get("retryGeneration",0))
 
 # free note
 frel=f"sidehustle-autopublish/note/free_drafts/{DATE}_batch01.md"; (ROOT/frel).write_text(f"# {DATE} free NOTE manuscript batch 01\n\n---\n\n## 1. {FREE[0]['title']}\n\n{FREE[0]['body']}\n\n---\n\n## 2. {FREE[1]['title']}\n\n{FREE[1]['body']}\n","utf-8")
-fp=FQ/"index.json"; fi=json.loads(fp.read_text("utf-8-sig")); fids={x["id"] for x in FREE}; fent=[e for e in fi["entries"] if e.get("id") not in fids]
+fp=FQ/"index.json"; fi=json.loads(fp.read_text("utf-8-sig")); fids={x["id"] for x in FREE}; fent=[]
+for e in fi["entries"]:
+    if e.get("id") not in fids:
+        e=dict(e); e["enabled"]=False; e["forceRetry"]=False; fent.append(e)
 for x in FREE:fent.append({"id":x["id"],"kind":"free","price":0,"title":x["title"],"sourceBatchPath":frel,"pairedPaidId":x["paired"],"tags":x["tags"],"coverLabel":x["coverLabel"],"coverCopy":x["coverCopy"],"accent":x["accent"],"enabled":True,"forceRetry":False,"forceRetryNonce":f"free-note-{DID}-{nonce}"})
 fi["version"]=int(fi.get("version",1))+1; fi["updatedAt"]=stamp; fi["sourceBatchPath"]=frel; fi["activePriorityBatch"]={"date":DATE,"ids":[x["id"] for x in FREE],"requiredStrictPublications":2}; fi["entries"]=fent; fp.write_text(json.dumps(fi,ensure_ascii=False,indent=2),"utf-8")
 
 # booth
-bp=BQ/"index.json"; bi=json.loads(bp.read_text("utf-8-sig")); bids={x["id"] for x in BOOTH}; bent=[e for e in bi["entries"] if e.get("id") not in bids]; built=[]
+bp=BQ/"index.json"; bi=json.loads(bp.read_text("utf-8-sig")); bids={x["id"] for x in BOOTH}; bent=[]; built=[]
+for e in bi["entries"]:
+    if e.get("id") not in bids:
+        e=dict(e); e["enabled"]=False; e["forceRetry"]=False; bent.append(e)
 for p in BOOTH:
     html=app(p); inner=io.BytesIO()
     with zipfile.ZipFile(inner,"w",zipfile.ZIP_DEFLATED,compresslevel=9) as z:z.writestr("index.html",html);z.writestr("README.md",f"# {p['title'].split('｜')[0]}\n\nindex.htmlをChrome / Edgeで開きます。秘密情報そのものは入力せず保管先や所有者を記録してください。");z.writestr("QUICKSTART.md","1. index.htmlを開く\n2. サンプルを追加\n3. 実データへ置換\n4. 未完を状態フィルタで確認\n5. JSONバックアップ\n")
