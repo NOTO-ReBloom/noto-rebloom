@@ -1,0 +1,54 @@
+name: Round Diagnosis Font Once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/round-diagnosis-font-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Match diagnosis display font to shared site font
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          css_path = Path('diagnosis-fixes.css')
+          css = css_path.read_text(encoding='utf-8')
+          old = 'font-family:var(--serif)!important;'
+          new = 'font-family:"M PLUS Rounded 1c","Noto Sans JP","Hiragino Maru Gothic ProN",sans-serif!important;'
+          count = css.count(old)
+          if count < 1:
+              raise SystemExit('Expected diagnosis display-font override not found')
+          css = css.replace(old, new)
+          css_path.write_text(css, encoding='utf-8')
+
+          html_path = Path('diagnosis.html')
+          html = html_path.read_text(encoding='utf-8')
+          old_cache = 'diagnosis-fixes.css?v=20260827f'
+          new_cache = 'diagnosis-fixes.css?v=20260827g'
+          if old_cache not in html:
+              raise SystemExit('Expected diagnosis-fixes cache marker not found')
+          html = html.replace(old_cache, new_cache, 1)
+          html_path.write_text(html, encoding='utf-8')
+          PY
+      - name: Validate font-only change
+        run: |
+          grep -q 'M PLUS Rounded 1c' diagnosis-fixes.css
+          grep -q 'diagnosis-fixes.css?v=20260827g' diagnosis.html
+          grep -q 'family=M+PLUS+Rounded+1c' diagnosis.html
+      - name: Commit final font fix and remove one-shot workflow
+        run: |
+          git config user.name 'NOTO-ReBloom Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git rm .github/workflows/round-diagnosis-font-once.yml
+          git add diagnosis-fixes.css diagnosis.html
+          git commit -m 'Match diagnosis rounded font with site'
+          git push
