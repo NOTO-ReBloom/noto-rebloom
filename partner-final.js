@@ -9,7 +9,6 @@
 
   const socialMarkup=(placement)=>`<nav class="rb-social-links rb-social-links--${placement}" aria-label="公式SNS"><a href="${INSTAGRAM}" target="_blank" rel="noopener noreferrer" aria-label="泥ん子運動会 公式Instagram">${instagramIcon}</a><a href="${FACEBOOK}" target="_blank" rel="noopener noreferrer" aria-label="泥ん子運動会 公式Facebook">${facebookIcon}</a></nav>`;
 
-  /* Shared rendering rewrites the footer, so restore SNS after that final render. */
   document.querySelectorAll('.header-social,.footer-social,.rb-social-links').forEach(el=>el.remove());
   const header=document.querySelector('.site-header');
   const menu=header?.querySelector('.menu-button');
@@ -65,9 +64,9 @@
         ['計画だけで終わらせない','1日単位の学習計画と継続的な進捗確認で、迷いや計画倒れを減らします。'],
         ['学習環境までまとめて支える','コーチングに加え、映像授業やテストアプリ、提携自習室なども組み合わせて学習を支えています。']
       ],
-      video:'Tz6AOrg4ljM',
+      video:'-ffcJBvvfbY',
       videoTitle:'逆転コーチング公式動画',
-      videoCaption:'逆転コーチング公式サイトで公開されている2026年度の受験対策動画。実際にどのような情報発信を行っているかを見ることができます。',
+      videoCaption:'逆転コーチングの公式動画です。サービスの考え方や学習支援の雰囲気を、実際の映像でご覧いただけます。',
       thanks:'NOTO Re:Bloomの活動にご協賛いただいています。ありがとうございます。',
       cta:'逆転コーチングを見る ↗'
     }
