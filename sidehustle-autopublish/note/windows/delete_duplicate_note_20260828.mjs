@@ -79,58 +79,96 @@ async function findDeleteItem(page) {
   ], 450);
 }
 
-async function openDeleteMenu(page) {
-  const namedMenus = [
-    page.getByRole('button', { name: /その他|メニュー|記事メニュー|オプション/ }),
-    page.locator('button[aria-label*="その他"],button[aria-label*="メニュー"],button[title*="その他"],button[title*="メニュー"]'),
-    page.locator('[data-testid*="menu"] button,[data-testid*="more"] button'),
-  ];
+async function menuDiagnostic(page, label) {
+  const visibleText = await page.locator('[role="menu"],[role="listbox"],[data-radix-menu-content],body').evaluateAll(elements => elements.map(element => {
+    const rect = element.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0 ? String(element.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 900) : '';
+  }).filter(Boolean)).catch(() => []);
+  log(label, visibleText.slice(0, 8));
+}
 
-  for (const candidate of namedMenus) {
-    const count = Math.min(await candidate.count().catch(() => 0), 8);
+async function tryEditorDeleteMenu(page) {
+  const button = await firstVisible([
+    page.getByRole('button', { name: /^その他$/ }),
+    page.locator('button[aria-label="その他"],button[title="その他"]'),
+  ], 700);
+  if (!button) return null;
+  await button.click();
+  await page.waitForTimeout(500);
+  const item = await findDeleteItem(page);
+  if (item) return item;
+  await menuDiagnostic(page, 'EDITOR_MORE_MENU_NO_DELETE');
+  await page.keyboard.press('Escape').catch(() => {});
+  return null;
+}
+
+async function openArticleListDeleteMenu(page) {
+  const listUrls = ['https://note.com/notes', 'https://note.com/notes?status=published'];
+  let anchor = null;
+  for (const url of listUrls) {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(2500);
+    if (/login/.test(page.url())) throw new Error('NOTE_LOGIN_REQUIRED');
+    const candidate = page.locator(`a[href*="${DUPLICATE_KEY}"]`);
+    const count = await candidate.count().catch(() => 0);
     for (let index = 0; index < count; index++) {
-      const button = candidate.nth(index);
-      try {
-        if (!(await button.isVisible({ timeout: 350 }))) continue;
-        await button.click();
-        await page.waitForTimeout(450);
-        const item = await findDeleteItem(page);
-        if (item) return item;
-        await page.keyboard.press('Escape').catch(() => {});
-      } catch {}
+      if (await candidate.nth(index).isVisible({ timeout: 350 }).catch(() => false)) {
+        anchor = candidate.nth(index);
+        break;
+      }
     }
+    if (anchor) break;
+  }
+  if (!anchor) {
+    const matchingLinks = await page.locator('a').evaluateAll(links => links.map(link => ({
+      href: link.getAttribute('href') || '',
+      text: String(link.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 180),
+    })).filter(link => link.text.includes('卒論面談の前日に用意したい4つのメモ｜相談したのに進まないを防ぐ')).slice(0, 20)).catch(() => []);
+    log('ARTICLE_LIST_TARGET_LINK_NOT_FOUND', { key: DUPLICATE_KEY, matchingLinks });
+    return null;
   }
 
-  const topButtons = await page.locator('button').evaluateAll(buttons => buttons.map((button, index) => {
-    const rect = button.getBoundingClientRect();
-    return {
-      index,
-      visible: rect.width > 0 && rect.height > 0,
-      x: rect.x,
-      y: rect.y,
-      text: (button.textContent || '').trim(),
-      aria: button.getAttribute('aria-label') || '',
-      title: button.getAttribute('title') || '',
-    };
-  }).filter(button => button.visible && button.y < 180)
-    .sort((a, b) => b.x - a.x));
-  log('TOP_BUTTON_DIAGNOSTIC', topButtons.slice(0, 20));
-
-  for (const meta of topButtons) {
-    if (/公開|投稿|保存|閉じる|戻る|キャンセル/.test(`${meta.text} ${meta.aria} ${meta.title}`)) continue;
-    const button = page.locator('button').nth(meta.index);
-    try {
-      await button.click();
-      await page.waitForTimeout(450);
-      const item = await findDeleteItem(page);
-      if (item) return item;
-      await page.keyboard.press('Escape').catch(() => {});
-    } catch {}
+  await anchor.scrollIntoViewIfNeeded();
+  const href = await anchor.getAttribute('href');
+  log('ARTICLE_LIST_TARGET_LINK_CONFIRMED', { key: DUPLICATE_KEY, href });
+  let row = anchor;
+  for (let depth = 1; depth <= 12; depth++) {
+    row = row.locator('xpath=..');
+    const rowText = normalize(await row.innerText().catch(() => ''));
+    if (!rowText.includes(normalize(EXPECTED_TITLE))) continue;
+    const namedMenu = await firstVisible([
+      row.getByRole('button', { name: /その他|メニュー|記事メニュー|オプション/ }),
+      row.locator('button[aria-label*="その他"],button[aria-label*="メニュー"],button[title*="その他"],button[title*="メニュー"]'),
+    ], 250);
+    let menuButton = namedMenu;
+    if (!menuButton) {
+      const buttons = await row.locator('button').evaluateAll(elements => elements.map((button, index) => {
+        const rect = button.getBoundingClientRect();
+        return {
+          index,
+          visible: rect.width > 0 && rect.height > 0,
+          x: rect.x,
+          text: String(button.textContent || '').replace(/\s+/g, ' ').trim(),
+          aria: button.getAttribute('aria-label') || '',
+          title: button.getAttribute('title') || '',
+        };
+      }).filter(button => button.visible).sort((a, b) => b.x - a.x)).catch(() => []);
+      log('ARTICLE_LIST_ROW_BUTTONS', { depth, buttons: buttons.slice(0, 12) });
+      const selected = buttons.find(button => !/編集|表示|プレビュー|閉じる|キャンセル/.test(`${button.text} ${button.aria} ${button.title}`));
+      if (selected) menuButton = row.locator('button').nth(selected.index);
+    }
+    if (!menuButton) continue;
+    await menuButton.click();
+    await page.waitForTimeout(500);
+    const item = await findDeleteItem(page);
+    if (item) return { item, source: 'article-list' };
+    await menuDiagnostic(page, 'ARTICLE_LIST_MENU_NO_DELETE');
+    await page.keyboard.press('Escape').catch(() => {});
   }
   return null;
 }
 
-async function confirmDelete(page) {
+async function confirmDelete(page, source) {
   const dialog = await firstVisible([
     page.getByRole('dialog'),
     page.locator('[role="alertdialog"]'),
@@ -143,7 +181,12 @@ async function confirmDelete(page) {
     scope.getByText('削除', { exact: true }),
   ], 1200);
   if (!confirm) throw new Error('DELETE_CONFIRM_BUTTON_NOT_FOUND');
-  if (!page.url().includes(DUPLICATE_KEY)) throw new Error(`TARGET_URL_CHANGED_BEFORE_CONFIRM ${page.url()}`);
+  if (source === 'editor' && !page.url().includes(DUPLICATE_KEY)) throw new Error(`TARGET_URL_CHANGED_BEFORE_CONFIRM ${page.url()}`);
+  if (source === 'article-list') {
+    if (!/note\.com\/notes/.test(page.url())) throw new Error(`ARTICLE_LIST_CHANGED_BEFORE_CONFIRM ${page.url()}`);
+    const duplicateLinks = await page.locator(`a[href*="${DUPLICATE_KEY}"]`).count().catch(() => 0);
+    if (duplicateLinks < 1) throw new Error('TARGET_LINK_MISSING_BEFORE_CONFIRM');
+  }
   const label = normalize(await confirm.innerText().catch(() => ''));
   log('DELETE_CONFIRM_READY', { key: DUPLICATE_KEY, label });
   await confirm.click();
@@ -194,16 +237,19 @@ async function main() {
     }
     log('TARGET_IDENTITY_CONFIRMED', { key: DUPLICATE_KEY, title: EXPECTED_TITLE });
 
-    const deleteItem = await openDeleteMenu(page);
-    if (!deleteItem) {
+    let deleteTarget = null;
+    const editorDelete = await tryEditorDeleteMenu(page);
+    if (editorDelete) deleteTarget = { item: editorDelete, source: 'editor' };
+    if (!deleteTarget) deleteTarget = await openArticleListDeleteMenu(page);
+    if (!deleteTarget) {
       await page.screenshot({ path: path.join(LOG_DIR, 'delete_duplicate_menu_not_found.png'), fullPage: true }).catch(() => {});
       throw new Error('DELETE_MENU_ITEM_NOT_FOUND');
     }
-    const deleteLabel = normalize(await deleteItem.innerText().catch(() => ''));
-    log('DELETE_MENU_ITEM_FOUND', { key: DUPLICATE_KEY, label: deleteLabel });
-    await deleteItem.click();
+    const deleteLabel = normalize(await deleteTarget.item.innerText().catch(() => ''));
+    log('DELETE_MENU_ITEM_FOUND', { key: DUPLICATE_KEY, label: deleteLabel, source: deleteTarget.source });
+    await deleteTarget.item.click();
     await page.waitForTimeout(700);
-    await confirmDelete(page);
+    await confirmDelete(page, deleteTarget.source);
   } finally {
     await context.close().catch(() => {});
   }
