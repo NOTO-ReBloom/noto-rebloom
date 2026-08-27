@@ -57,7 +57,8 @@ jobs:
             if(e.sourcePublicUrl&&!(insights.items||[]).some(x=>x.publicUrl===e.sourcePublicUrl&&x.publicUrlVerified===true)) throw new Error(`source insight not verified ${e.id}`);
           }
           const active=new Set(q.activePriorityBatch?.ids||[]);
-          if(active.size!==2) throw new Error('active free batch must contain exactly two items');
+          const required=Number(q.activePriorityBatch?.requiredStrictPublications||0);
+          if(active.size<1||active.size!==required) throw new Error(`active free batch count mismatch active=${active.size} required=${required}`);
           for(const id of active){
             const e=q.entries.find(x=>x.id===id);
             if(!e||e.enabled!==true||e.publicUrlVerified===true) throw new Error(`invalid active free entry ${id}`);
@@ -82,8 +83,8 @@ jobs:
           semantic={
             'version':1,'qaPassed':True,
             'runtimeSha256':'9e85ecc1940c688bce9bf624e596cd3b3812f14d4ee377a5733f23aa652953d9',
-            'queueEntriesValidated':46,
-            'checks':['runtime_sha256','node_syntax','all_free_queue_entries','source_article_extraction','no_internal_marker_leak','paired_paid_ids_exist','source_insights_verified_when_present','two_item_active_batch','installer_contract'],
+            'queueEntriesValidated':len(json.loads(pathlib.Path('sidehustle-autopublish/note/free_queue/index.json').read_text(encoding='utf-8'))['entries']),
+            'checks':['runtime_sha256','node_syntax','all_free_queue_entries','source_article_extraction','no_internal_marker_leak','paired_paid_ids_exist','source_insights_verified_when_present','active_batch_count_contract','installer_contract'],
             'notePlatformPublicationVerified':bool(old.get('notePlatformPublicationVerified',False)),
             'notePlatformPublicationNote':old.get('notePlatformPublicationNote','Requires authenticated Windows NOTE profile for platform publication.')
           }

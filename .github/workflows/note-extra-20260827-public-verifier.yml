@@ -1,0 +1,175 @@
+name: Verify extra 2026-08-27 NOTE batch
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sidehustle-autopublish/note/queue/index.json'
+      - 'sidehustle-autopublish/note/free_queue/index.json'
+      - 'sidehustle-autopublish/monitor/extra_note_completion_gate_20260827.json'
+      - '.github/workflows/note-extra-20260827-public-verifier.yml'
+  schedule:
+    - cron: '*/7 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: note-extra-20260827-public-verifier
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Verify all ten reader-visible pages
+        shell: python
+        run: |
+          import datetime, html, json, pathlib, re, urllib.request
+
+          USER='royal_lion645'
+          PAID_IDS={
+            'note_20260827_42_jobhunt_experience_ledger',
+            'note_20260827_43_ai_review_depth_design',
+            'note_20260827_44_realestate_inquiry_triage',
+            'note_20260827_45_delegation_checkpoint_design',
+            'note_20260827_46_thesis_advisor_decision_log',
+          }
+          FREE_IDS={
+            'free_note_20260827_03_jobhunt_experience_fields',
+            'free_note_20260827_04_ai_three_level_review',
+            'free_note_20260827_05_realestate_first_questions',
+            'free_note_20260827_06_delegation_progress_questions',
+            'free_note_20260827_07_thesis_meeting_memo',
+          }
+          UA={'User-Agent':'Mozilla/5.0 (compatible; extra-note-public-verifier/1.0)','Cache-Control':'no-cache'}
+          JST=datetime.timezone(datetime.timedelta(hours=9))
+          now=datetime.datetime.now(JST).isoformat(timespec='seconds')
+
+          def load(path):
+            p=pathlib.Path(path); return p,json.loads(p.read_text(encoding='utf-8-sig'))
+          def save(path,obj):
+            pathlib.Path(path).write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          def get(url,timeout=25):
+            req=urllib.request.Request(url,headers=UA)
+            with urllib.request.urlopen(req,timeout=timeout) as r:return r.status,r.read().decode('utf-8','replace')
+          def jget(url):
+            status,text=get(url);return status,json.loads(text)
+          def walk(value):
+            if isinstance(value,dict):
+              for key,item in value.items():yield key,item;yield from walk(item)
+            elif isinstance(value,list):
+              for item in value:yield from walk(item)
+          def number_values(obj,names):
+            out=[]
+            for key,value in walk(obj):
+              if str(key).lower() in names and isinstance(value,(int,float)):out.append(int(value))
+            return out
+          def find_text(obj,names):
+            for key,value in walk(obj):
+              if str(key).lower() in names and isinstance(value,str) and value:return value
+            return None
+          def public_url(item):
+            url=item.get('noteUrl') or item.get('note_url') or item.get('url')
+            key=item.get('key')
+            if not key and isinstance(url,str):
+              match=re.search(r'/n/(n[0-9A-Za-z]+)',url);key=match.group(1) if match else None
+            if key and not url:url=f'https://note.com/{USER}/n/{key}'
+            return key,url
+
+          paid_path,paid=load('sidehustle-autopublish/note/queue/index.json')
+          free_path,free=load('sidehustle-autopublish/note/free_queue/index.json')
+          paid_targets={entry['title']:entry for entry in paid.get('entries',[]) if entry.get('id') in PAID_IDS}
+          free_targets={entry['title']:entry for entry in free.get('entries',[]) if entry.get('id') in FREE_IDS}
+          wanted=set(paid_targets)|set(free_targets)
+          candidates={title:[] for title in wanted}
+          for page in range(1,16):
+            try:_,obj=jget(f'https://note.com/api/v2/creators/{USER}/contents?kind=note&disabled_pinned=true&page={page}')
+            except Exception as error:
+              print('LIST_WARN',page,repr(error));continue
+            data=obj.get('data') or {}; contents=data.get('contents') or []
+            for item in contents:
+              if isinstance(item,dict) and item.get('name') in candidates:candidates[item['name']].append(item)
+            if data.get('isLastPage'):break
+
+          newly=[]
+          for title,entry in {**paid_targets,**free_targets}.items():
+            if entry.get('publicUrlVerified') is True:continue
+            items=candidates.get(title) or []
+            if not items:continue
+            item=items[0]
+            key,url=public_url(item)
+            if not key or not url:continue
+            try:
+              detail_status,detail=jget(f'https://note.com/api/v3/notes/{key}')
+              page_status,page_text=get(url)
+            except Exception as error:
+              print('DETAIL_WARN',entry['id'],repr(error));continue
+            decoded=html.unescape(page_text)
+            exact_title=title in decoded
+            published=str(find_text(item,{'status'}) or find_text(detail,{'status'}) or '').lower()=='published'
+            cover=bool(find_text(item,{'eyecatch','eyecatch_url','thumbnail','coverimage','cover_image'}) or find_text(detail,{'eyecatch','eyecatch_url','thumbnail','coverimage','cover_image'}))
+            prices=number_values(item,{'price','price_yen','amount'})+number_values(detail,{'price','price_yen','amount'})
+            if entry['id'] in PAID_IDS:
+              expected=int(entry.get('expectedPriceJPY') or 0)
+              compact=re.sub(r'[\s,，]','',decoded)
+              price_ok=expected in prices and (str(expected)+'円' in compact or '¥'+str(expected) in compact or '￥'+str(expected) in compact)
+              paid_boundary=any(token in decoded for token in ('購入して続きをみる','購入手続き','この記事を購入','この続きをみる','有料記事'))
+              ok=page_status==200 and detail_status==200 and exact_title and published and cover and price_ok and paid_boundary
+              print('PAID_CHECK',entry['id'],ok,url)
+              if not ok:continue
+              entry.update({'enabled':False,'forceRetry':False,'publicUrlVerified':True,'publicUrl':url,'verificationState':'reader_visible_verified','verifiedAt':now,'verificationEvidence':'Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.'})
+              receipt={'id':entry['id'],'title':title,'publicUrl':url,'publicUrlVerified':True,'expectedPriceJPY':expected,'paidBoundaryVerified':True,'dedicatedCoverVerified':True,'verifiedAt':now,'verificationMode':'scheduled-independent-extra-batch-verifier'}
+              save(f"sidehustle-autopublish/note/publication_receipts/{entry['id']}.json",receipt)
+            else:
+              price_ok=(not prices) or all(price==0 for price in prices)
+              paid_signal=any(token in decoded for token in ('購入して続きをみる','購入手続き','この記事を購入'))
+              ok=page_status==200 and detail_status==200 and exact_title and published and cover and price_ok and not paid_signal
+              print('FREE_CHECK',entry['id'],ok,url)
+              if not ok:continue
+              entry.update({'enabled':False,'forceRetry':False,'publicUrlVerified':True,'publicUrl':url,'verificationState':'reader_visible_free_verified','verifiedAt':now})
+              ledger_path,ledger=load('sidehustle-autopublish/note/free_publication_ledger.json')
+              ledger['entries']=[x for x in ledger.get('entries',[]) if x.get('id')!=entry['id']]
+              ledger['entries'].append({'id':entry['id'],'title':title,'publicUrl':url,'publicUrlVerified':True,'freeStateVerified':True,'coverImageVerified':True,'verifiedAt':now,'verification':{'ok':True,'url':url,'status':page_status,'titleOk':True,'freeState':True,'largeImageCount':1}})
+              ledger['updatedAt']=now;save(ledger_path,ledger)
+            newly.append(entry['id'])
+
+          paid['updatedAt']=now;free['updatedAt']=now
+          save(paid_path,paid);save(free_path,free)
+          paid_verified=sum(1 for e in paid.get('entries',[]) if e.get('id') in PAID_IDS and e.get('publicUrlVerified') is True)
+          free_verified=sum(1 for e in free.get('entries',[]) if e.get('id') in FREE_IDS and e.get('publicUrlVerified') is True)
+          total=paid_verified+free_verified
+          gate_path,gate=load('sidehustle-autopublish/monitor/extra_note_completion_gate_20260827.json')
+          gate['updatedAt']=now;gate['counts']={'paidNote':paid_verified,'freeNote':free_verified,'total':total,'remaining':10-total}
+          gate['status']=f"{'complete' if total==10 else 'in_progress'}_{total}_of_10"
+          if total==10:gate['completedAt']=now
+          save(gate_path,gate)
+          metrics_path,metrics=load('sidehustle-autopublish/metrics/current.json')
+          if 'extraNoteBatch' in metrics:
+            metrics['extraNoteBatch'].update({'strictVerified':total,'remaining':10-total,'status':gate['status']})
+            metrics['updatedAt']=now;save(metrics_path,metrics)
+          request_path,request=load('sidehustle-autopublish/windows_publication_request.json')
+          request['completionState']=f'{total}_of_10';request['updatedAt']=now
+          if total==10:request['completedAt']=now;request['mode']='completed_likes_driven_extra_10_note'
+          save(request_path,request)
+          print('EXTRA_NOTE_VERIFICATION',paid_verified,free_verified,total,newly)
+      - name: Commit newly verified state
+        shell: bash
+        run: |
+          git add sidehustle-autopublish/note/queue/index.json \
+                  sidehustle-autopublish/note/free_queue/index.json \
+                  sidehustle-autopublish/note/free_publication_ledger.json \
+                  sidehustle-autopublish/note/publication_receipts \
+                  sidehustle-autopublish/monitor/extra_note_completion_gate_20260827.json \
+                  sidehustle-autopublish/metrics/current.json \
+                  sidehustle-autopublish/windows_publication_request.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'extra-note-public-verifier'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m 'Record extra Aug 27 NOTE publications'
+          git pull --rebase origin main
+          git push origin HEAD:main

@@ -1,6 +1,6 @@
 {
-  "version": 30,
-  "updatedAt": "2026-08-27T14:29:21+09:00",
+  "version": 31,
+  "updatedAt": "2026-08-27T23:32:19+09:00",
   "objective": "maximize total sales while preserving strict public verification for the 2026-08-27 paid NOTE 5, free NOTE 2 and BOOTH 5 batch",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -67,5 +67,18 @@
     "Do not republish any of the twelve strict-verified 2026-08-27 designated items.",
     "Keep legacy note_20260820_05 and BOOTH 009 deferred until separately authorized.",
     "Do not invent public URLs, sales, PV, likes, acquisitions or conversions."
-  ]
+  ],
+  "extraNoteBatch": {
+    "date": "2026-08-27",
+    "reason": "likes_driven_expansion",
+    "target": {
+      "paid": 5,
+      "free": 5,
+      "total": 10
+    },
+    "strictVerified": 0,
+    "remaining": 10,
+    "gate": "sidehustle-autopublish/monitor/extra_note_completion_gate_20260827.json",
+    "analysis": "sidehustle-autopublish/monitor/note_likes_analysis_20260827.json"
+  }
 }
