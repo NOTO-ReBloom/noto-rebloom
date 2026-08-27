@@ -1,11 +1,11 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-27T13:33:25+09:00",
+  "updatedAt": "2026-08-27T14:29:21+09:00",
   "retryGeneration": 43,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_2026-08-27_paid_note_batch_now",
+    "mode": "completed_2026-08-27_paid_note_batch",
     "requiredStrictPublications": 5,
     "orderedIds": [
       "note_20260827_37_budget_variance_control",
@@ -14,7 +14,7 @@
       "note_20260827_40_interview_anonymization",
       "note_20260827_41_digital_refund_support_policy"
     ],
-    "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
+    "instruction": "All five are strict reader-visible verified. Do not republish.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -23,7 +23,15 @@
       "dedicatedCover"
     ],
     "forcedAt": "2026-08-27T13:33:25+09:00",
-    "nonce": "paid-note-20260827-20260827T133325+0900"
+    "nonce": "paid-note-20260827-20260827T133325+0900",
+    "completedIds": [
+      "note_20260827_37_budget_variance_control",
+      "note_20260827_38_near_miss_reporting",
+      "note_20260827_39_sponsor_post_event_report",
+      "note_20260827_40_interview_anonymization",
+      "note_20260827_41_digital_refund_support_policy"
+    ],
+    "completedAt": "2026-08-27T14:29:21+09:00"
   },
   "entries": [
     {
@@ -854,8 +862,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260827_37_budget_variance_control.enc.json",
       "sha256": "5360288da5af97822a93d162a1b3f36061ad568c2b7247eafca5acd985fcb8cc",
       "createdAt": "2026-08-27T13:33:25+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260827-20260827T133325+0900",
       "expectedPriceJPY": 1280,
       "requireReaderVisibleVerification": true,
@@ -866,7 +874,12 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nfd93b3630a10",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
+      "verifiedAt": "2026-08-27T14:29:21+09:00"
     },
     {
       "id": "note_20260827_38_near_miss_reporting",
@@ -874,8 +887,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260827_38_near_miss_reporting.enc.json",
       "sha256": "8669f02c584ca51acadcda933dcaee2413769d663cd75c1d6b4ad3f7980078a0",
       "createdAt": "2026-08-27T13:33:25+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260827-20260827T133325+0900",
       "expectedPriceJPY": 1280,
       "requireReaderVisibleVerification": true,
@@ -886,7 +899,12 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n54f5d36205fe",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
+      "verifiedAt": "2026-08-27T14:29:21+09:00"
     },
     {
       "id": "note_20260827_39_sponsor_post_event_report",
@@ -894,8 +912,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260827_39_sponsor_post_event_report.enc.json",
       "sha256": "a7135f14ef0382c718ce42afd13f01ed793aeeda10a181b2710184aebbabe00e",
       "createdAt": "2026-08-27T13:33:25+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260827-20260827T133325+0900",
       "expectedPriceJPY": 1480,
       "requireReaderVisibleVerification": true,
@@ -906,7 +924,12 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n77d259d4279e",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
+      "verifiedAt": "2026-08-27T14:29:21+09:00"
     },
     {
       "id": "note_20260827_40_interview_anonymization",
@@ -914,8 +937,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260827_40_interview_anonymization.enc.json",
       "sha256": "c87554871aa6bcf6f636a0d2803268bd041cac3bf0a59a00c7653535d7e3c991",
       "createdAt": "2026-08-27T13:33:25+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260827-20260827T133325+0900",
       "expectedPriceJPY": 1280,
       "requireReaderVisibleVerification": true,
@@ -926,7 +949,12 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n35025967ba79",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
+      "verifiedAt": "2026-08-27T14:29:21+09:00"
     },
     {
       "id": "note_20260827_41_digital_refund_support_policy",
@@ -934,8 +962,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260827_41_digital_refund_support_policy.enc.json",
       "sha256": "765fef1869736d77851218f3461617237132e04f706c185a7c47a1d4a6f452ba",
       "createdAt": "2026-08-27T13:33:25+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260827-20260827T133325+0900",
       "expectedPriceJPY": 1280,
       "requireReaderVisibleVerification": true,
@@ -946,10 +974,15 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n261d406ce918",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
+      "verifiedAt": "2026-08-27T14:29:21+09:00"
     }
   ],
-  "activePublicationDate": "2026-08-26",
-  "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-only-20260826-20260826T233609+0900"
+  "activePublicationDate": "2026-08-27",
+  "forceAllCurrentDayNow": false,
+  "forceRetryNonce": "completed-20260827-20260827T142921+0900"
 }

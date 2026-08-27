@@ -1,7 +1,7 @@
 {
-  "version": 49,
+  "version": 50,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-27T13:33:25+09:00",
+  "updatedAt": "2026-08-27T14:29:21+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -13,9 +13,9 @@
         "previousDate": "2026-08-26",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 0,
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
         "paidProductionInventoryComplete": true,
         "planningManifest": "sidehustle-autopublish/planning/2026-08-27_batch01.json",
@@ -27,8 +27,8 @@
           "note_20260827_41_digital_refund_support_policy"
         ],
         "queueMaterializationState": "complete",
-        "strictPublicationState": "2026-08-27 0/5 strict verified",
-        "fallbackPolicy": "Process only enabled 2026-08-27 paid NOTE IDs; do not republish previous-day verified items.",
+        "strictPublicationState": "2026-08-27 5/5 strict verified",
+        "fallbackPolicy": "All current-day paid NOTE IDs are strict verified and disabled. Do not republish.",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260827_batch01.json"
       },
@@ -47,14 +47,18 @@
           "free_note_20260827_01_budget_warning_signs",
           "free_note_20260827_02_near_miss_questions"
         ],
-        "currentRequiredBatchStrictVerifiedCount": 0,
-        "currentMaterializationState": "planned_not_yet_materialized",
+        "currentRequiredBatchStrictVerifiedCount": 2,
+        "currentMaterializationState": "published_2_of_2_strict_verified",
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
         "duplicateRule": "Discover and reconcile an existing exact-title public page before any retry that could create a duplicate.",
         "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-08-27_batch01.md",
-        "currentCompletedDraftCount": 2
+        "currentCompletedDraftCount": 2,
+        "duplicateCandidateUrls": [
+          "https://note.com/royal_lion645/n/na061ab23d0a3",
+          "https://note.com/royal_lion645/n/n503d65677851"
+        ]
       }
     },
     "BOOTH": {
@@ -67,9 +71,9 @@
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
         "carriedRequiredIds": [],
-        "todayStrictVerifiedPublicationsCount": 0,
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 5,
         "paidProductionInventoryComplete": true,
         "planningManifest": "sidehustle-autopublish/planning/2026-08-27_batch01.json",
@@ -82,8 +86,8 @@
         ],
         "materializationState": "complete",
         "recoveryControl": "booth-autopublish/monitor/recovery_control.json",
-        "strictPublicationState": "2026-08-27 0/5 strict verified",
-        "fallbackPolicy": "Process only enabled 2026-08-27 BOOTH IDs; do not republish previous-day verified items.",
+        "strictPublicationState": "2026-08-27 5/5 strict verified",
+        "fallbackPolicy": "All current-day BOOTH IDs are strict verified and disabled. Do not republish.",
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
         "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260827_batch01.json",
         "queueRetryGeneration": 43
@@ -105,10 +109,12 @@
       "total": 7
     },
     "strictVerifiedAtRollover": 0,
-    "strictVerifiedAfterRollover": 7,
+    "strictVerifiedAfterRollover": 19,
     "carryOverRemaining": 0,
     "totalStrictObligationsBeforeDaySatisfied": 19,
-    "priority": "carryover first, then materialized current-day targets"
+    "priority": "carryover first, then materialized current-day targets",
+    "currentDayStrictVerified": 12,
+    "completionState": "complete_19_of_19_including_carryover"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",

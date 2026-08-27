@@ -1,12 +1,13 @@
 {
-  "version": 39,
-  "updatedAt": "2026-08-27T13:33:25+09:00",
+  "version": 40,
+  "updatedAt": "2026-08-27T14:29:21+09:00",
   "activeRecovery": {
     "date": "2026-08-27",
     "mode": "current_day_paid_floor",
     "requiredStrictNewPublications": 5,
-    "remaining": 5,
-    "state": "ready"
+    "remaining": 0,
+    "state": "completed",
+    "completedAt": "2026-08-27T14:29:21+09:00"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-27T13:33:25+09:00",
@@ -18,7 +19,13 @@
       "047_interview_anonymization_os_20260827",
       "048_digital_refund_support_policy_os_20260827"
     ],
-    "completedIds": [],
+    "completedIds": [
+      "044_budget_variance_control_os_20260827",
+      "045_near_miss_reporting_os_20260827",
+      "046_sponsor_post_event_report_os_20260827",
+      "047_interview_anonymization_os_20260827",
+      "048_digital_refund_support_policy_os_20260827"
+    ],
     "queueRetryGeneration": 43,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260827_batch01.json",
     "requiredBuyerChecks": [
@@ -37,7 +44,10 @@
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260827-20260827T133325+0900"
+    "forceRetryNonce": "booth-20260827-20260827T133325+0900",
+    "remaining": 0,
+    "state": "strict_verified",
+    "completedAt": "2026-08-27T14:29:21+09:00"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -55,7 +65,9 @@
       "048_digital_refund_support_policy_os_20260827"
     ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
+    "completionPredicate": "all five current-day IDs buyer-visible strict verified",
+    "state": "satisfied",
+    "completedAt": "2026-08-27T14:29:21+09:00"
   },
   "cloudPreflight": {
     "checkedAt": "2026-08-27T11:40:22+09:00",

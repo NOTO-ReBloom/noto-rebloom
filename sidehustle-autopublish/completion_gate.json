@@ -1,8 +1,8 @@
 {
-  "version": 17,
-  "updatedAt": "2026-08-27T13:33:25+09:00",
-  "status": "in_progress_0_of_12",
-  "completedAt": null,
+  "version": 18,
+  "updatedAt": "2026-08-27T14:29:21+09:00",
+  "status": "complete_12_of_12",
+  "completedAt": "2026-08-27T14:29:21+09:00",
   "date": "2026-08-27",
   "timezone": "Asia/Tokyo",
   "purpose": "2026-08-27: complete only after all 12 designated publications are strict verified.",
@@ -94,10 +94,10 @@
   },
   "completionCounts": {
     "carryOverStrictVerified": 7,
-    "todayNotePaid": 0,
-    "todayNoteFree": 0,
-    "todayBOOTH": 0,
-    "todayTotal": 0,
+    "todayNotePaid": 5,
+    "todayNoteFree": 2,
+    "todayBOOTH": 5,
+    "todayTotal": 12,
     "requiredToday": 12,
     "requiredIncludingCarryOver": 19
   },
@@ -147,5 +147,76 @@
   ],
   "executionRequestedAt": "2026-08-27T00:12:21+09:00",
   "executionNonce": "rollover-20260827-carry7-plus-new12",
-  "completionEvidence": null
+  "completionEvidence": {
+    "strictVerifiedAt": "2026-08-27T14:29:21+09:00",
+    "notePaid": [
+      {
+        "id": "note_20260827_37_budget_variance_control",
+        "url": "https://note.com/royal_lion645/n/nfd93b3630a10",
+        "priceJPY": 1280
+      },
+      {
+        "id": "note_20260827_38_near_miss_reporting",
+        "url": "https://note.com/royal_lion645/n/n54f5d36205fe",
+        "priceJPY": 1280
+      },
+      {
+        "id": "note_20260827_39_sponsor_post_event_report",
+        "url": "https://note.com/royal_lion645/n/n77d259d4279e",
+        "priceJPY": 1480
+      },
+      {
+        "id": "note_20260827_40_interview_anonymization",
+        "url": "https://note.com/royal_lion645/n/n35025967ba79",
+        "priceJPY": 1280
+      },
+      {
+        "id": "note_20260827_41_digital_refund_support_policy",
+        "url": "https://note.com/royal_lion645/n/n261d406ce918",
+        "priceJPY": 1280
+      }
+    ],
+    "noteFree": [
+      {
+        "id": "free_note_20260827_01_budget_warning_signs",
+        "url": "https://note.com/royal_lion645/n/nad81402c1c0c",
+        "duplicateCandidateUrls": []
+      },
+      {
+        "id": "free_note_20260827_02_near_miss_questions",
+        "url": "https://note.com/royal_lion645/n/nc29774521b20",
+        "duplicateCandidateUrls": [
+          "https://note.com/royal_lion645/n/na061ab23d0a3",
+          "https://note.com/royal_lion645/n/n503d65677851"
+        ]
+      }
+    ],
+    "BOOTH": [
+      {
+        "id": "044_budget_variance_control_os_20260827",
+        "url": "https://booth.pm/ja/items/8768914",
+        "priceJPY": 1280
+      },
+      {
+        "id": "045_near_miss_reporting_os_20260827",
+        "url": "https://booth.pm/ja/items/8768917",
+        "priceJPY": 1280
+      },
+      {
+        "id": "046_sponsor_post_event_report_os_20260827",
+        "url": "https://booth.pm/ja/items/8768920",
+        "priceJPY": 1480
+      },
+      {
+        "id": "047_interview_anonymization_os_20260827",
+        "url": "https://booth.pm/ja/items/8768922",
+        "priceJPY": 1280
+      },
+      {
+        "id": "048_digital_refund_support_policy_os_20260827",
+        "url": "https://booth.pm/ja/items/8768930",
+        "priceJPY": 1280
+      }
+    ]
+  }
 }

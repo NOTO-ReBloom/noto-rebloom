@@ -1,6 +1,6 @@
 {
   "version": 11,
-  "updatedAt": "2026-08-27T13:33:25+09:00",
+  "updatedAt": "2026-08-27T14:29:21+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-27_batch01.md",
   "requiredFreeChecks": [
@@ -1191,9 +1191,14 @@
       "coverLabel": "学生団体・会計",
       "coverCopy": "予算超過の前に見る 4つのサイン",
       "accent": "#0f766e",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260827-20260827T133325+0900"
+      "forceRetryNonce": "free-note-20260827-20260827T133325+0900",
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nad81402c1c0c",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-27T14:07:13+09:00"
     },
     {
       "id": "free_note_20260827_02_near_miss_questions",
@@ -1210,9 +1215,18 @@
       "coverLabel": "イベント運営・安全",
       "coverCopy": "事故の前に聞く 5つの質問",
       "accent": "#c2410c",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260827-20260827T133325+0900"
+      "forceRetryNonce": "free-note-20260827-20260827T133325+0900",
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nc29774521b20",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-27T14:08:59+09:00",
+      "duplicateCandidateUrls": [
+        "https://note.com/royal_lion645/n/na061ab23d0a3",
+        "https://note.com/royal_lion645/n/n503d65677851"
+      ]
     }
   ],
   "eveningMarathon": {
@@ -1226,10 +1240,16 @@
       "free_note_20260827_01_budget_warning_signs",
       "free_note_20260827_02_near_miss_questions"
     ],
-    "requiredStrictPublications": 2
+    "requiredStrictPublications": 2,
+    "state": "strict_verified",
+    "completedIds": [
+      "free_note_20260827_01_budget_warning_signs",
+      "free_note_20260827_02_near_miss_questions"
+    ],
+    "completedAt": "2026-08-27T14:29:21+09:00"
   },
   "retryGeneration": 1,
-  "activePublicationDate": "2026-08-26",
-  "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-only-20260826-20260826T233609+0900"
+  "activePublicationDate": "2026-08-27",
+  "forceAllCurrentDayNow": false,
+  "forceRetryNonce": "completed-20260827-20260827T142921+0900"
 }
