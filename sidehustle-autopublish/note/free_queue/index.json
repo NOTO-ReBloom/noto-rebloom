@@ -1,8 +1,8 @@
 {
-  "version": 12,
-  "updatedAt": "2026-08-28T00:08:41+09:00",
+  "version": 13,
+  "updatedAt": "2026-08-28T00:18:24+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-27_likes_extra.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1126,57 +1126,6 @@
       "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
-      "id": "free_note_20260826_01_event_cancel_signals",
-      "kind": "free",
-      "price": 0,
-      "title": "イベント中止を考え始める前に決めたい5つの判断材料",
-      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
-      "pairedPaidId": "note_20260826_32_event_cancellation_decision_log",
-      "tags": [
-        "イベント運営",
-        "安全管理",
-        "リスク管理"
-      ],
-      "coverLabel": "イベント運営・安全",
-      "coverCopy": "中止判断の前に決める 5つの材料",
-      "accent": "#b45309",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "recoveryMode": "completed reader-visible strict verification",
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/n408fe4d63b04",
-      "verificationState": "reader_visible_free_verified",
-      "verifiedAt": "2026-08-27T01:15:22+09:00",
-      "duplicateCandidateUrls": [
-        "https://note.com/royal_lion645/n/n6a2018a786bb"
-      ]
-    },
-    {
-      "id": "free_note_20260826_02_support_faq_boundary",
-      "kind": "free",
-      "price": 0,
-      "title": "購入者から同じ質問が3回来たら見直したい｜FAQに入れる内容・入れない内容",
-      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
-      "pairedPaidId": "note_20260826_36_digital_support_triage",
-      "tags": [
-        "デジタル商品",
-        "FAQ",
-        "カスタマーサポート"
-      ],
-      "coverLabel": "デジタル商品・サポート",
-      "coverCopy": "FAQに入れる・入れない 境界線",
-      "accent": "#2563eb",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "recoveryMode": "completed reader-visible strict verification",
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/n4f87079ca586",
-      "verificationState": "reader_visible_free_verified",
-      "verifiedAt": "2026-08-27T01:15:56+09:00"
-    },
-    {
       "id": "free_note_20260827_01_budget_warning_signs",
       "kind": "free",
       "price": 0,
@@ -1352,6 +1301,44 @@
       "publicUrl": "https://note.com/royal_lion645/n/n279e2c77b7b1",
       "verificationState": "reader_visible_free_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00"
+    },
+    {
+      "id": "free_note_20260826_01_event_cancel_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "イベント中止を考え始める前に決めたい5つの判断材料",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
+      "pairedPaidId": "note_20260826_32_event_cancellation_decision_log",
+      "tags": [
+        "イベント運営",
+        "安全管理",
+        "リスク管理"
+      ],
+      "coverLabel": "イベント運営・安全",
+      "coverCopy": "中止判断の前に決める 5つの材料",
+      "accent": "#b45309",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260826-20260828T001824+0900"
+    },
+    {
+      "id": "free_note_20260826_02_support_faq_boundary",
+      "kind": "free",
+      "price": 0,
+      "title": "購入者から同じ質問が3回来たら見直したい｜FAQに入れる内容・入れない内容",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
+      "pairedPaidId": "note_20260826_36_digital_support_triage",
+      "tags": [
+        "デジタル商品",
+        "FAQ",
+        "カスタマーサポート"
+      ],
+      "coverLabel": "デジタル商品・サポート",
+      "coverCopy": "FAQに入れる・入れない 境界線",
+      "accent": "#2563eb",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260826-20260828T001824+0900"
     }
   ],
   "eveningMarathon": {
@@ -1360,17 +1347,12 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-08-27",
-    "mode": "likes_driven_extra_note_expansion",
+    "date": "2026-08-26",
     "ids": [
-      "free_note_20260827_03_jobhunt_experience_fields",
-      "free_note_20260827_04_ai_three_level_review",
-      "free_note_20260827_05_realestate_first_questions",
-      "free_note_20260827_06_delegation_progress_questions",
-      "free_note_20260827_07_thesis_meeting_memo"
+      "free_note_20260826_01_event_cancel_signals",
+      "free_note_20260826_02_support_faq_boundary"
     ],
-    "requiredStrictPublications": 5,
-    "instruction": "Publish all five extra free NOTE items once; stop retries for any exact-title page already strict verified."
+    "requiredStrictPublications": 2
   },
   "retryGeneration": 1,
   "activePublicationDate": "2026-08-27",

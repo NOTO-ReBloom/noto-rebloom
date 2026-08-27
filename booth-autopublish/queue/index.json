@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-27T14:29:21+09:00",
-  "retryGeneration": 43,
+  "updatedAt": "2026-08-28T00:18:24+09:00",
+  "retryGeneration": 44,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -1234,201 +1234,6 @@
       "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
-      "id": "039_event_cancellation_decision_log_os_20260826",
-      "title": "イベント中止・延期 意思決定ログ｜判断材料・再判定・連絡まで一元管理",
-      "chunks": [
-        "booth-autopublish/queue/039_event_cancellation_decision_log_os_20260826.part01.txt"
-      ],
-      "sha256": "6bb735b5d417744f72cdd3a4d320cbe216d8d8fdc9419a6dcbee757658f47c34",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 980,
-      "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": [
-        "buyerVisibleUrl",
-        "title",
-        "price",
-        "downloadableProductState",
-        "purchasePath"
-      ],
-      "invalidateLocalSuccessWithoutVerifiedLedger": true,
-      "payloadFormat": "zip:product.json",
-      "cloudQa": {
-        "zipReadable": true,
-        "productJson": true,
-        "downloadFilePresent": true,
-        "previewImagesPresent": true,
-        "htmlCoreFunctions": [
-          "localStorage",
-          "search",
-          "filter",
-          "summary",
-          "CSV",
-          "JSON backup/import",
-          "print"
-        ]
-      },
-      "recoveryMode": "publish current-day item now and strict-verify public page"
-    },
-    {
-      "id": "040_sponsor_benefit_inventory_os_20260826",
-      "title": "スポンサー特典インベントリ｜協賛メニューを再利用できる資産にする",
-      "chunks": [
-        "booth-autopublish/queue/040_sponsor_benefit_inventory_os_20260826.part01.txt"
-      ],
-      "sha256": "583427a724eee676dde05ab70b87ad8016eaf9d2ecf8b19756f1c258efa51f71",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 1280,
-      "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": [
-        "buyerVisibleUrl",
-        "title",
-        "price",
-        "downloadableProductState",
-        "purchasePath"
-      ],
-      "invalidateLocalSuccessWithoutVerifiedLedger": true,
-      "payloadFormat": "zip:product.json",
-      "cloudQa": {
-        "zipReadable": true,
-        "productJson": true,
-        "downloadFilePresent": true,
-        "previewImagesPresent": true,
-        "htmlCoreFunctions": [
-          "localStorage",
-          "search",
-          "filter",
-          "summary",
-          "CSV",
-          "JSON backup/import",
-          "print"
-        ]
-      },
-      "recoveryMode": "publish current-day item now and strict-verify public page"
-    },
-    {
-      "id": "041_volunteer_shift_handover_os_20260826",
-      "title": "ボランティア・シフト引継ぎカード｜3分で現場状態を渡す",
-      "chunks": [
-        "booth-autopublish/queue/041_volunteer_shift_handover_os_20260826.part01.txt"
-      ],
-      "sha256": "4757569fd07a501b84270369ea2a3894ab1aa97ad04b30742638542ecf20d882",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 780,
-      "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": [
-        "buyerVisibleUrl",
-        "title",
-        "price",
-        "downloadableProductState",
-        "purchasePath"
-      ],
-      "invalidateLocalSuccessWithoutVerifiedLedger": true,
-      "payloadFormat": "zip:product.json",
-      "cloudQa": {
-        "zipReadable": true,
-        "productJson": true,
-        "downloadFilePresent": true,
-        "previewImagesPresent": true,
-        "htmlCoreFunctions": [
-          "localStorage",
-          "search",
-          "filter",
-          "summary",
-          "CSV",
-          "JSON backup/import",
-          "print"
-        ]
-      },
-      "recoveryMode": "publish current-day item now and strict-verify public page"
-    },
-    {
-      "id": "042_research_consent_version_control_os_20260826",
-      "title": "研究同意書・説明文 版管理台帳｜旧版混在を防ぐ",
-      "chunks": [
-        "booth-autopublish/queue/042_research_consent_version_control_os_20260826.part01.txt"
-      ],
-      "sha256": "62366a7a0a845ff170ce2ddf0ace6b18b7a70f1404e756645822705e6cd3d9e7",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 980,
-      "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": [
-        "buyerVisibleUrl",
-        "title",
-        "price",
-        "downloadableProductState",
-        "purchasePath"
-      ],
-      "invalidateLocalSuccessWithoutVerifiedLedger": true,
-      "payloadFormat": "zip:product.json",
-      "cloudQa": {
-        "zipReadable": true,
-        "productJson": true,
-        "downloadFilePresent": true,
-        "previewImagesPresent": true,
-        "htmlCoreFunctions": [
-          "localStorage",
-          "search",
-          "filter",
-          "summary",
-          "CSV",
-          "JSON backup/import",
-          "print"
-        ]
-      },
-      "recoveryMode": "publish current-day item now and strict-verify public page"
-    },
-    {
-      "id": "043_digital_support_triage_os_20260826",
-      "title": "デジタル商品 購入者サポート仕分け台帳｜FAQ・個別確認・重大障害を分離",
-      "chunks": [
-        "booth-autopublish/queue/043_digital_support_triage_os_20260826.part01.txt"
-      ],
-      "sha256": "69e0cd93cbf3a14379381edcd7c9fb69b924d296d82682b14a5541849ebbe813",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 980,
-      "requireBuyerVisibleVerification": true,
-      "requiredBuyerChecks": [
-        "buyerVisibleUrl",
-        "title",
-        "price",
-        "downloadableProductState",
-        "purchasePath"
-      ],
-      "invalidateLocalSuccessWithoutVerifiedLedger": true,
-      "payloadFormat": "zip:product.json",
-      "cloudQa": {
-        "zipReadable": true,
-        "productJson": true,
-        "downloadFilePresent": true,
-        "previewImagesPresent": true,
-        "htmlCoreFunctions": [
-          "localStorage",
-          "search",
-          "filter",
-          "summary",
-          "CSV",
-          "JSON backup/import",
-          "print"
-        ]
-      },
-      "recoveryMode": "publish current-day item now and strict-verify public page"
-    },
-    {
       "id": "044_budget_variance_control_os_20260827",
       "title": "学生団体向け 予算差異チェック＆意思決定ログ実務キット",
       "chunks": [
@@ -1637,6 +1442,196 @@
       "publicUrl": "https://booth.pm/ja/items/8768930",
       "verificationState": "buyer_visible_verified",
       "verifiedAt": "2026-08-27T14:12:47+09:00"
+    },
+    {
+      "id": "039_event_cancellation_decision_log_os_20260826",
+      "title": "イベント中止・延期 意思決定ログ｜判断材料・再判定・連絡まで一元管理",
+      "chunks": [
+        "booth-autopublish/queue/039_event_cancellation_decision_log_os_20260826.part01.txt"
+      ],
+      "sha256": "b5930a7756e9ec894875de4cb803aac737b06968930eacc23c6889d60328f1af",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-039_event_cancellation_decision_log_os_20260826-20260828T001824+0900",
+      "expectedPriceJPY": 980,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "040_sponsor_benefit_inventory_os_20260826",
+      "title": "スポンサー特典インベントリ｜協賛メニューを再利用できる資産にする",
+      "chunks": [
+        "booth-autopublish/queue/040_sponsor_benefit_inventory_os_20260826.part01.txt"
+      ],
+      "sha256": "54bdf4f1d43e0ae2069765c50a12f95435755bf5ccda7a9c75d3430e358808fd",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-040_sponsor_benefit_inventory_os_20260826-20260828T001824+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "041_volunteer_shift_handover_os_20260826",
+      "title": "ボランティア・シフト引継ぎカード｜3分で現場状態を渡す",
+      "chunks": [
+        "booth-autopublish/queue/041_volunteer_shift_handover_os_20260826.part01.txt"
+      ],
+      "sha256": "3241b0e21000fa64a770d1cb66864af7545c4b289e94e9145c84ac47c8950b96",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-041_volunteer_shift_handover_os_20260826-20260828T001824+0900",
+      "expectedPriceJPY": 780,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "042_research_consent_version_control_os_20260826",
+      "title": "研究同意書・説明文 版管理台帳｜旧版混在を防ぐ",
+      "chunks": [
+        "booth-autopublish/queue/042_research_consent_version_control_os_20260826.part01.txt"
+      ],
+      "sha256": "fc09987b529eac3ea854003fa7a1d610d41cc22a44e0d6d5e3b60ac9fc5f9a7e",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-042_research_consent_version_control_os_20260826-20260828T001824+0900",
+      "expectedPriceJPY": 980,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "043_digital_support_triage_os_20260826",
+      "title": "デジタル商品 購入者サポート仕分け台帳｜FAQ・個別確認・重大障害を分離",
+      "chunks": [
+        "booth-autopublish/queue/043_digital_support_triage_os_20260826.part01.txt"
+      ],
+      "sha256": "320ac3bd9d19084d621a395b59c52dbe19d1895888251d1633c11c13755a5a59",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-043_digital_support_triage_os_20260826-20260828T001824+0900",
+      "expectedPriceJPY": 980,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
     }
   ],
   "activePublicationDate": "2026-08-27",

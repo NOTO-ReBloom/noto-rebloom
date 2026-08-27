@@ -1,20 +1,20 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-28T00:08:41+09:00",
-  "retryGeneration": 44,
+  "updatedAt": "2026-08-28T00:18:24+09:00",
+  "retryGeneration": 45,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_2026-08-27_likes_driven_extra_paid_note_batch_now",
+    "mode": "publish_2026-08-26_paid_note_batch_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260827_42_jobhunt_experience_ledger",
-      "note_20260827_43_ai_review_depth_design",
-      "note_20260827_44_realestate_inquiry_triage",
-      "note_20260827_45_delegation_checkpoint_design",
-      "note_20260827_46_thesis_advisor_decision_log"
+      "note_20260826_32_event_cancellation_decision_log",
+      "note_20260826_33_sponsor_benefit_inventory",
+      "note_20260826_34_volunteer_shift_handover",
+      "note_20260826_35_research_consent_version_control",
+      "note_20260826_36_digital_support_triage"
     ],
-    "instruction": "Publish all five extra paid NOTE items, then verify exact reader-visible title, price, paid boundary and dedicated cover. Do not republish earlier items.",
+    "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -22,8 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-08-27T23:32:19+09:00",
-    "nonce": "likes-extra-paid-20260827-20260827T233219+0900"
+    "forcedAt": "2026-08-28T00:18:24+09:00",
+    "nonce": "paid-note-20260826-20260828T001824+0900"
   },
   "entries": [
     {
@@ -719,136 +719,6 @@
       "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
     },
     {
-      "id": "note_20260826_32_event_cancellation_decision_log",
-      "title": "中止判断を『なんとなく』で残さない｜イベントの延期・中止を説明できる意思決定ログ",
-      "path": "sidehustle-autopublish/note/queue/note_20260826_32_event_cancellation_decision_log.enc.json",
-      "sha256": "03e3d52ee4f803d6153b88ed8242a2430d782dd58103f0acf0246fa1ad13bc43",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 1180,
-      "requireReaderVisibleVerification": true,
-      "requiredReaderChecks": [
-        "readerVisibleUrl",
-        "title",
-        "price",
-        "paidBoundary",
-        "dedicatedCover"
-      ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "publish current-day item now and strict-verify public page",
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/n5d21ac06a505",
-      "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verification confirmed exact title, expected price, paid purchase boundary, and dedicated cover image.",
-      "verifiedAt": "2026-08-26T15:09:07.765Z"
-    },
-    {
-      "id": "note_20260826_33_sponsor_benefit_inventory",
-      "title": "協賛メニューが毎回ゼロからになる人へ｜スポンサー特典を棚卸しして再利用する設計",
-      "path": "sidehustle-autopublish/note/queue/note_20260826_33_sponsor_benefit_inventory.enc.json",
-      "sha256": "cf5b779dc46b784d2283b3cac88868bfb27da8a305a6c350457089c67b2682c2",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 1180,
-      "requireReaderVisibleVerification": true,
-      "requiredReaderChecks": [
-        "readerVisibleUrl",
-        "title",
-        "price",
-        "paidBoundary",
-        "dedicatedCover"
-      ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "publish current-day item now and strict-verify public page",
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/nfba4cddc13a6",
-      "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verification confirmed exact title, expected price, paid purchase boundary, and dedicated cover image.",
-      "verifiedAt": "2026-08-26T15:09:07.765Z"
-    },
-    {
-      "id": "note_20260826_34_volunteer_shift_handover",
-      "title": "ボランティア交代のたびに説明し直さない｜現場シフトを止めない引継ぎカードの作り方",
-      "path": "sidehustle-autopublish/note/queue/note_20260826_34_volunteer_shift_handover.enc.json",
-      "sha256": "e55fb191c23664653643b063913af8697901a208a6cb3f0d753475ea1c2f745a",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 980,
-      "requireReaderVisibleVerification": true,
-      "requiredReaderChecks": [
-        "readerVisibleUrl",
-        "title",
-        "price",
-        "paidBoundary",
-        "dedicatedCover"
-      ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "publish current-day item now and strict-verify public page",
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/n6a9e22067833",
-      "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verification confirmed exact title, expected price, paid purchase boundary, and dedicated cover image.",
-      "verifiedAt": "2026-08-26T15:09:07.765Z"
-    },
-    {
-      "id": "note_20260826_35_research_consent_version_control",
-      "title": "調査同意書を更新したのに旧版が混ざる事故を防ぐ｜研究書類の版管理ルール",
-      "path": "sidehustle-autopublish/note/queue/note_20260826_35_research_consent_version_control.enc.json",
-      "sha256": "cbdd6e67adcce1d7a52457a50b6e62d9dc7865e1a68a918e8aeee5f301e37c0e",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 1180,
-      "requireReaderVisibleVerification": true,
-      "requiredReaderChecks": [
-        "readerVisibleUrl",
-        "title",
-        "price",
-        "paidBoundary",
-        "dedicatedCover"
-      ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "publish current-day item now and strict-verify public page",
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/n5d6ebd4301cf",
-      "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verification confirmed exact title, expected price, paid purchase boundary, and dedicated cover image.",
-      "verifiedAt": "2026-08-26T15:09:07.765Z"
-    },
-    {
-      "id": "note_20260826_36_digital_support_triage",
-      "title": "デジタル商品を売った後の問い合わせで消耗しない｜購入者サポートを3段階で仕分ける運用",
-      "path": "sidehustle-autopublish/note/queue/note_20260826_36_digital_support_triage.enc.json",
-      "sha256": "81d88840debd6183b528e3c8e6255ff763332b43662066daf840282ca37493fc",
-      "createdAt": "2026-08-26T09:20:40+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "force-only-20260826-20260826T233609+0900",
-      "expectedPriceJPY": 1180,
-      "requireReaderVisibleVerification": true,
-      "requiredReaderChecks": [
-        "readerVisibleUrl",
-        "title",
-        "price",
-        "paidBoundary",
-        "dedicatedCover"
-      ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "publish current-day item now and strict-verify public page",
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/n3bda6bf4531e",
-      "verificationState": "reader_visible_verified",
-      "verificationEvidence": "Independent unauthenticated verification confirmed exact title, expected price, paid purchase boundary, and dedicated cover image.",
-      "verifiedAt": "2026-08-26T15:09:07.765Z"
-    },
-    {
       "id": "note_20260827_37_budget_variance_control",
       "title": "学生団体の予算が途中で崩れる前に｜予算差異を月1回15分で確認する実務ルール",
       "path": "sidehustle-autopublish/note/queue/note_20260827_37_budget_variance_control.enc.json",
@@ -1102,6 +972,106 @@
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
       "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover."
+    },
+    {
+      "id": "note_20260826_32_event_cancellation_decision_log",
+      "title": "中止判断を『なんとなく』で残さない｜イベントの延期・中止を説明できる意思決定ログ",
+      "path": "sidehustle-autopublish/note/queue/note_20260826_32_event_cancellation_decision_log.enc.json",
+      "sha256": "14eb3cd9dd852cc063265bf927f8c1a8dd32942f081ee04e219eed57bfb73cc1",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260826_33_sponsor_benefit_inventory",
+      "title": "協賛メニューが毎回ゼロからになる人へ｜スポンサー特典を棚卸しして再利用する設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260826_33_sponsor_benefit_inventory.enc.json",
+      "sha256": "2324166db0ae1ab264fab8a5d666978cab65d5103ed6e9d8092db4e7029cad63",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260826_34_volunteer_shift_handover",
+      "title": "ボランティア交代のたびに説明し直さない｜現場シフトを止めない引継ぎカードの作り方",
+      "path": "sidehustle-autopublish/note/queue/note_20260826_34_volunteer_shift_handover.enc.json",
+      "sha256": "367e6365d5b4115b582e3467011e112767cde1a9cb02b6e062de2a1fbda2e594",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260826_35_research_consent_version_control",
+      "title": "調査同意書を更新したのに旧版が混ざる事故を防ぐ｜研究書類の版管理ルール",
+      "path": "sidehustle-autopublish/note/queue/note_20260826_35_research_consent_version_control.enc.json",
+      "sha256": "488e8f0d2d981be4c198c0d79b8ac98cf64d99de1ad4bf2fa2974126f50bf208",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260826_36_digital_support_triage",
+      "title": "デジタル商品を売った後の問い合わせで消耗しない｜購入者サポートを3段階で仕分ける運用",
+      "path": "sidehustle-autopublish/note/queue/note_20260826_36_digital_support_triage.enc.json",
+      "sha256": "1a54b71bd98d188184e66b886e55b41a679bc5c5310db8aa384867763e8fd557",
+      "createdAt": "2026-08-28T00:18:24+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
   "activePublicationDate": "2026-08-27",

@@ -1,33 +1,26 @@
 {
-  "version": 40,
-  "updatedAt": "2026-08-27T14:29:21+09:00",
+  "version": 41,
+  "updatedAt": "2026-08-28T00:18:24+09:00",
   "activeRecovery": {
-    "date": "2026-08-27",
+    "date": "2026-08-26",
     "mode": "current_day_paid_floor",
     "requiredStrictNewPublications": 5,
-    "remaining": 0,
-    "state": "completed",
-    "completedAt": "2026-08-27T14:29:21+09:00"
+    "remaining": 5,
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-27T13:33:25+09:00",
+    "generatedAt": "2026-08-28T00:18:24+09:00",
     "requiredStrictNewPublications": 5,
     "queueIds": [
-      "044_budget_variance_control_os_20260827",
-      "045_near_miss_reporting_os_20260827",
-      "046_sponsor_post_event_report_os_20260827",
-      "047_interview_anonymization_os_20260827",
-      "048_digital_refund_support_policy_os_20260827"
+      "039_event_cancellation_decision_log_os_20260826",
+      "040_sponsor_benefit_inventory_os_20260826",
+      "041_volunteer_shift_handover_os_20260826",
+      "042_research_consent_version_control_os_20260826",
+      "043_digital_support_triage_os_20260826"
     ],
-    "completedIds": [
-      "044_budget_variance_control_os_20260827",
-      "045_near_miss_reporting_os_20260827",
-      "046_sponsor_post_event_report_os_20260827",
-      "047_interview_anonymization_os_20260827",
-      "048_digital_refund_support_policy_os_20260827"
-    ],
-    "queueRetryGeneration": 43,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260827_batch01.json",
+    "completedIds": [],
+    "queueRetryGeneration": 44,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -36,38 +29,33 @@
       "purchaseOrCartPath"
     ],
     "expectedPricesJPY": {
-      "044_budget_variance_control_os_20260827": 1280,
-      "045_near_miss_reporting_os_20260827": 1280,
-      "046_sponsor_post_event_report_os_20260827": 1480,
-      "047_interview_anonymization_os_20260827": 1280,
-      "048_digital_refund_support_policy_os_20260827": 1280
+      "039_event_cancellation_decision_log_os_20260826": 980,
+      "040_sponsor_benefit_inventory_os_20260826": 1280,
+      "041_volunteer_shift_handover_os_20260826": 780,
+      "042_research_consent_version_control_os_20260826": 980,
+      "043_digital_support_triage_os_20260826": 980
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260827-20260827T133325+0900",
-    "remaining": 0,
-    "state": "strict_verified",
-    "completedAt": "2026-08-27T14:29:21+09:00"
+    "forceRetryNonce": "booth-20260826-20260828T001824+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
-      "044_budget_variance_control_os_20260827",
-      "045_near_miss_reporting_os_20260827",
-      "046_sponsor_post_event_report_os_20260827",
-      "047_interview_anonymization_os_20260827",
-      "048_digital_refund_support_policy_os_20260827"
+      "039_event_cancellation_decision_log_os_20260826",
+      "040_sponsor_benefit_inventory_os_20260826",
+      "041_volunteer_shift_handover_os_20260826",
+      "042_research_consent_version_control_os_20260826",
+      "043_digital_support_triage_os_20260826"
     ],
     "firstPassOrder": [
-      "044_budget_variance_control_os_20260827",
-      "045_near_miss_reporting_os_20260827",
-      "046_sponsor_post_event_report_os_20260827",
-      "047_interview_anonymization_os_20260827",
-      "048_digital_refund_support_policy_os_20260827"
+      "039_event_cancellation_decision_log_os_20260826",
+      "040_sponsor_benefit_inventory_os_20260826",
+      "041_volunteer_shift_handover_os_20260826",
+      "042_research_consent_version_control_os_20260826",
+      "043_digital_support_triage_os_20260826"
     ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five current-day IDs buyer-visible strict verified",
-    "state": "satisfied",
-    "completedAt": "2026-08-27T14:29:21+09:00"
+    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
     "checkedAt": "2026-08-27T11:40:22+09:00",
