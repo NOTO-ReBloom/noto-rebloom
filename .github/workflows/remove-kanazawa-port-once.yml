@@ -1,0 +1,91 @@
+name: Remove Kanazawa Port Once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-kanazawa-port-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove Kanazawa Port and rebalance partner layouts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          # 1) Shared strip shown above every footer.
+          p=Path('site.js')
+          s=p.read_text(encoding='utf-8')
+          anchor='<a class="site-partner-strip__logo" href="https://www.kanazawa-port.jp/" target="_blank" rel="noopener" aria-label="金沢ポート"><img src="kanazawa-port-logo.png" alt="金沢ポート" loading="lazy" decoding="async"></a>'
+          if anchor not in s:
+              raise SystemExit('Kanazawa Port shared-strip anchor not found')
+          s=s.replace(anchor,'',1)
+          s=s.replace('site-finishing.css?v=20260827b','site-finishing.css?v=20260827d')
+          p.write_text(s,encoding='utf-8')
+
+          # 2) Dedicated cooperation card on partner page.
+          p=Path('partner.html')
+          s=p.read_text(encoding='utf-8')
+          pattern=r'<article class="industry-partner-card industry-partner--kanazawa-port">.*?</article>'
+          s,n=re.subn(pattern,'',s,count=1,flags=re.S)
+          if n != 1:
+              raise SystemExit(f'Expected exactly one Kanazawa Port partner card, removed {n}')
+          p.write_text(s,encoding='utf-8')
+
+          # 3) Rebalance all references/caches on HTML pages.
+          for p in Path('.').glob('*.html'):
+              s=p.read_text(encoding='utf-8')
+              s=re.sub(r'site\.js\?v=[^"\']+','site.js?v=20260827d',s)
+              s=re.sub(r'site-finishing\.css\?v=[^"\']+','site-finishing.css?v=20260827d',s)
+              p.write_text(s,encoding='utf-8')
+
+          # 4) Layout after removing one logo/card.
+          p=Path('site-finishing.css')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('.site-partner-strip__logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}',
+                      '.site-partner-strip__logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}')
+          marker='/* Partner page: three cooperation partners after Kanazawa Port removal. */'
+          if marker not in s:
+              s += '''\n\n/* Partner page: three cooperation partners after Kanazawa Port removal. */\n.nr-new-partner .industry-grid--partners{grid-template-columns:repeat(3,minmax(0,1fr))!important;max-width:1080px;margin-inline:auto}\n@media(max-width:900px){.nr-new-partner .industry-grid--partners{grid-template-columns:repeat(2,minmax(0,1fr))!important}}\n@media(max-width:620px){.nr-new-partner .industry-grid--partners{grid-template-columns:1fr!important}}\n'''
+          p.write_text(s,encoding='utf-8')
+          PY
+
+          rm -f kanazawa-port-logo.png
+
+      - name: Validate complete removal
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          forbidden=('kanazawa-port','kanazawa-port.jp','金沢ポート','KANAZAWA PORT')
+          hits=[]
+          for p in Path('.').iterdir():
+              if p.is_file() and p.suffix.lower() in {'.html','.js','.css'}:
+                  text=p.read_text(encoding='utf-8',errors='ignore')
+                  for token in forbidden:
+                      if token.lower() in text.lower():
+                          hits.append(f'{p}: {token}')
+          if Path('kanazawa-port-logo.png').exists():
+              hits.append('kanazawa-port-logo.png still exists')
+          if hits:
+              raise SystemExit('Remaining Kanazawa Port references:\n'+'\n'.join(hits))
+          print('Kanazawa Port removed from all web-facing HTML/JS/CSS and asset deleted.')
+          PY
+          grep -q 'grid-template-columns:repeat(3,minmax(0,1fr))' site-finishing.css
+
+      - name: Commit clean final state
+        run: |
+          rm -f .github/workflows/remove-kanazawa-port-once.yml
+          git config user.name 'NOTO-ReBloom Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'Remove Kanazawa Port from sponsor and partner listings'
+          git push
