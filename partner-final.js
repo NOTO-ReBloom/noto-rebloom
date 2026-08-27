@@ -24,7 +24,7 @@
     const h2=head.querySelector('h2');
     const lead=head.querySelector('h2+p');
     if(h2) h2.textContent='協賛パートナーの皆さま';
-    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている2社です。各社の公式サイトで公開されている情報をもとに、サービスや取り組みをご紹介します。';
+    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている2社です。各社の公式サイト・ご提供資料で確認できる情報をもとに、サービスや取り組みをご紹介します。';
   }
 
   section.querySelectorAll('.nr-main-sponsor,.nr-sponsor-row,.nr-sponsor-wide').forEach(el=>el.remove());
@@ -49,8 +49,7 @@
       ],
       companyInfo:'運営企業の株式会社アーネストテクノロジーズは、システム開発・ITコンサルティングに加え、部活動支援SaaS「Bukatsu Page」など部活動に特化した自社サービスを開発しています。',
       thanks:'READYFORを通じてNOTO Re:Bloomをご支援いただきました。ありがとうございます。',
-      cta:'部活ナビ公式サイトを見る',
-      companyCta:'運営会社公式サイト'
+      cta:'部活ナビ公式サイトを見る'
     },
     {
       company:'TechsPlus株式会社',
@@ -60,25 +59,50 @@
       logo:'gyakuten-coaching-official-logo.png',
       logoAlt:'逆転コーチング',
       eyebrow:'GYAKUTEN COACHING',
-      title:'志望校に特化し、毎日の学習を徹底管理。',
-      lead:'逆転コーチングは、志望校に合格したコーチが専属で担当し、志望校合格から逆算した毎日の学習計画を作成・管理する大学受験オンライン塾です。参考書を用いた自学自習の質と効率を高めることに特化しています。',
-      tags:['志望校特化','専属コーチ','1日単位の学習計画','オンライン'],
-      facts:[
-        ['志望校合格者が担当','生徒の志望校に合格したコーチが担当し、長期的に伴走します。'],
-        ['毎日の学習を管理','1日単位の学習計画作成から日々の進捗管理までマンツーマンで支援します。'],
-        ['複数の対策コース','一般入試、総合型選抜、英検®対策、社会人プロ講師が指導するPROコースを案内しています。'],
-        ['専用システム・自習環境','専用の学習管理アプリで日々の状況を確認し、希望者には提携自習室や逆転コーチング自習室も案内しています。']
+      title:'逆転合格に特化した、学習管理塾。',
+      lead:'逆転コーチングは、志望校合格から逆算して学習を管理する大学受験オンライン塾です。ご提供いただいた公式チラシでは、難関大学への合格実績や、1日単位の学習管理、志望校特化の対策、継続的なサポート体制などが案内されています。',
+      tags:['志望校特化','1日単位の学習管理','オンライン','無料体験あり'],
+      metrics:[
+        ['1000名突破','合格者累計','早慶MARCHなどの難関大学を含む合格実績'],
+        ['全国120以上','自習室と連携','2026年6月時点のチラシ記載情報'],
+        ['無料体験','コーチング','1人1回。入会は必須ではない旨を案内']
       ],
-      companyInfo:'運営するTechsPlus株式会社は「次の世代の幸福を創出する」をビジョンに掲げ、教育事業を展開しています。逆転コーチングのほか、受験特化型メディア「ウカルート」や参考書特化型自習室も運営しています。',
+      reasons:[
+        ['1日単位の学習管理','毎週のコーチングで、志望校から逆算した「今日やるべき課題」「1週間単位の計画表」「年間ルート」を作成。'],
+        ['志望校特化の対策授業','志望校に特化した映像授業を用意し、過去問なども分析しながら対策。'],
+        ['報告制度で継続サポート','毎日の学習内容を報告し、フィードバックを受けながら学習を継続。'],
+        ['総合型・英検®もサポート','一般入試だけでなく、総合型選抜や英検®対策にも対応。'],
+        ['全国120以上の自習室と連携','全国120以上のエリアで自習室と連携し、参考書学習に特化した自習室も案内。']
+      ],
+      sourceNote:'※合格実績は複数大学・複数学部への合格を含む延べ合格数です。成果・合格を保証するものではありません。自習室数は2026年6月時点のチラシ記載情報です。',
+      related:{
+        name:'ウカルート',
+        url:'https://www.ukaroute.com/',
+        kicker:'TechsPlusの受験情報サービス',
+        headline:'早慶MARCH合格者500名以上の合格体験記を掲載。',
+        lead:'公式チラシでは、合格体験記を無料で閲覧できる受験情報サービスとして案内されています。',
+        badges:['すべて無料','時期別スケジュール','科目別の使用参考書ルート','似た境遇の逆転合格者']
+      },
+      companyInfo:'運営するTechsPlus株式会社は教育事業を展開し、逆転コーチングのほか、受験情報サービス「ウカルート」などを運営しています。',
       thanks:'NOTO Re:Bloomの活動にご協賛いただいています。ありがとうございます。',
-      cta:'逆転コーチング公式サイトを見る',
-      companyCta:'運営会社公式サイト'
+      cta:'逆転コーチング公式サイトを見る'
     }
   ];
 
+  const makeFacts=(s)=>{
+    if(s.reasons){
+      return `<div class="nr-sponsor-wide__reasons-title"><span>選ばれる理由</span><small>OFFICIAL FLYER</small></div><div class="nr-sponsor-wide__reasons">${s.reasons.map(([title,text],i)=>`<div><b>0${i+1}</b><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>${s.sourceNote?`<p class="nr-sponsor-wide__source-note">${s.sourceNote}</p>`:''}`;
+    }
+    return `<div class="nr-sponsor-wide__facts">${s.facts.map(([title,text],i)=>`<div><small>0${i+1}</small><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>`;
+  };
+
+  const makeMetrics=(s)=>s.metrics?`<div class="nr-sponsor-wide__metrics">${s.metrics.map(([value,label,note])=>`<div><strong>${value}</strong><span>${label}</span><small>${note}</small></div>`).join('')}</div>`:'';
+
+  const makeRelated=(s)=>s.related?`<div class="nr-sponsor-wide__related"><div class="nr-sponsor-wide__related-brand"><span>${s.related.kicker}</span><strong>${s.related.name}</strong></div><div class="nr-sponsor-wide__related-copy"><h4>${s.related.headline}</h4><p>${s.related.lead}</p><div>${s.related.badges.map(b=>`<span>${b}</span>`).join('')}</div></div><a href="${s.related.url}" target="_blank" rel="noopener">ウカルートを見る <b>↗</b></a></div>`:'';
+
   const makeSponsor=(s,index)=>{
     const article=document.createElement('article');
-    article.className='nr-sponsor-wide rb-detail-card';
+    article.className=`nr-sponsor-wide rb-detail-card${s.metrics?' nr-sponsor-wide--featured':''}`;
     article.innerHTML=`
       <span class="nr-sponsor-wide__ornament" aria-hidden="true"></span>
       <div class="nr-sponsor-wide__brand">
@@ -100,9 +124,11 @@
             <h3>${s.title}</h3>
             <p>${s.lead}</p>
           </div>
-          <div class="nr-sponsor-wide__tags" aria-label="${s.service}の公式サイト掲載情報">${s.tags.map(tag=>`<span>${tag}</span>`).join('')}</div>
+          <div class="nr-sponsor-wide__tags" aria-label="${s.service}の公式情報">${s.tags.map(tag=>`<span>${tag}</span>`).join('')}</div>
         </div>
-        <div class="nr-sponsor-wide__facts">${s.facts.map(([title,text],i)=>`<div><small>0${i+1}</small><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>
+        ${makeMetrics(s)}
+        ${makeFacts(s)}
+        ${makeRelated(s)}
         <div class="nr-sponsor-wide__company"><span>運営企業について</span><p>${s.companyInfo}</p></div>
         <div class="nr-sponsor-wide__action"><span>公式サイトで、さらに詳しく</span><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}<b>↗</b></a></div>
       </div>`;
