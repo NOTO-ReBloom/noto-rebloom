@@ -3,19 +3,30 @@
 const NAME_TO_SLUG={
 'ヒマワリ':'himawari','ガーベラ':'gerbera','サルビア':'salvia','ダリア':'dahlia','チューリップ':'tulip','マリーゴールド':'marigold','ポピー':'poppy','ハイビスカス':'hibiscus',
 'フリージア':'freesia','コスモス':'cosmos','アネモネ':'anemone','クレマチス':'clematis','アイリス':'iris','ネモフィラ':'nemophila','ルピナス':'lupinus','カスミソウ':'kasumisou',
-'シロツメクサ':'shirotsumekusa','レンゲ':'renge','クローバー':'clover','ナデシコ':'nadeshiko','ナノハナ':'nanohana','ミモザ':'mimosa','リンドウ':'rindou','エーデルワイス':'edelweiss',
+'シロツメクサ':'shirotsumekusa','レンゲ':'renge','ツバキ':'tsubaki','ナデシコ':'nadeshiko','ナノハナ':'nanohana','ミモザ':'mimosa','リンドウ':'rindou','エーデルワイス':'edelweiss',
 'アジサイ':'ajisai','ラベンダー':'lavender','スイレン':'suiren','キキョウ':'kikyo','ワスレナグサ':'wasurenagusa','スミレ':'sumire','タンポポ':'tanpopo','カモミール':'chamomile'
 };
-const VERSION='20260827b';
+const VERSION='20260827c';
 const photoUrl=slug=>`flower-photo-${slug}.webp?v=${VERSION}`;
 const legacyUrl=slug=>`${slug}.png?v=${VERSION}`;
+function ensureFixStyles(){
+  if(document.querySelector('link[href*="diagnosis-fixes.css"]'))return;
+  const link=document.createElement('link');link.rel='stylesheet';link.href=`diagnosis-fixes.css?v=${VERSION}`;document.head.appendChild(link);
+}
 function slugFromTitle(){return NAME_TO_SLUG[(document.getElementById('resultTitle')?.textContent||'').replace(/タイプ$/,'').trim()]||'renge';}
 function setPhoto(img,slug,name){
   if(!img)return;
-  img.onerror=()=>{img.onerror=null;img.src=legacyUrl(slug)};
+  const card=img.closest('.flower-atlas-card');
+  card?.classList.remove('is-photo-missing');
+  img.classList.remove('fd-photo-ready');
+  let fallbackTried=false;
+  img.onload=()=>{img.classList.add('fd-photo-ready');card?.classList.remove('is-photo-missing');};
+  img.onerror=()=>{
+    if(!fallbackTried){fallbackTried=true;img.src=legacyUrl(slug);return;}
+    img.onerror=null;img.onload=null;img.classList.remove('fd-photo-ready');card?.classList.add('is-photo-missing');
+  };
   img.src=photoUrl(slug);
   img.alt=`${name||slug}の花の写真`;
-  img.classList.add('fd-photo-ready');
 }
 function refreshAtlas(){
   document.querySelectorAll('.flower-atlas-card[data-flower-slug]').forEach(card=>{
@@ -39,6 +50,7 @@ function rewriteHero(){
 }
 function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=4){let line='',lines=[];for(const ch of [...text]){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;if(lines.length>=maxLines-1)break;}else line=test;}if(line&&lines.length<maxLines)lines.push(line);lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));}
 async function loadImage(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=src;});}
+async function loadFlowerImage(slug){try{return await loadImage(photoUrl(slug));}catch{return await loadImage(legacyUrl(slug));}}
 let cardToken=0;
 async function refreshResult(){
   const result=document.getElementById('diagnosisResult');if(!result?.classList.contains('is-active'))return;
@@ -46,7 +58,7 @@ async function refreshResult(){
   setPhoto(document.getElementById('resultImage'),slug,name);
   const token=++cardToken;
   try{
-    const photo=await loadImage(photoUrl(slug));if(token!==cardToken)return;
+    const photo=await loadFlowerImage(slug);if(token!==cardToken)return;
     const group=document.getElementById('resultGroup')?.textContent||'',lead=document.getElementById('resultLead')?.textContent||'';
     const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=675;const c=canvas.getContext('2d');
     c.fillStyle='#f8f2e8';c.fillRect(0,0,1200,675);c.fillStyle='#174b3b';c.fillRect(0,0,1200,74);
@@ -63,12 +75,12 @@ async function refreshResult(){
   }catch(e){}
 }
 function init(){
-  rewriteHero();refreshHero();refreshAtlas();setTimeout(refreshAtlas,120);
+  ensureFixStyles();rewriteHero();refreshHero();refreshAtlas();setTimeout(refreshAtlas,120);
   const atlas=document.getElementById('flowerAtlasGrid');if(atlas)new MutationObserver(()=>refreshAtlas()).observe(atlas,{childList:true,subtree:true});
   const dialog=document.getElementById('flowerAtlasDialog');if(dialog)new MutationObserver(()=>refreshDialog()).observe(dialog,{attributes:true,childList:true,subtree:true});
   const title=document.getElementById('resultTitle');if(title)new MutationObserver(()=>setTimeout(refreshResult,30)).observe(title,{childList:true,subtree:true,characterData:true});
   document.addEventListener('click',e=>{if(e.target.closest('.flower-atlas-card'))setTimeout(refreshDialog,40);});
-  ['renge','himawari','freesia','ajisai'].forEach(slug=>{const i=new Image();i.src=photoUrl(slug)});
+  ['renge','himawari','freesia','ajisai','tsubaki'].forEach(slug=>{const i=new Image();i.src=photoUrl(slug)});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
