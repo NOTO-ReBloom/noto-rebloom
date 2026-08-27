@@ -24,7 +24,7 @@
     const h2=head.querySelector('h2');
     const lead=head.querySelector('h2+p');
     if(h2) h2.textContent='協賛パートナーの皆さま';
-    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている2社です。ご支援への感謝を込めて、それぞれのサービスをご紹介します。';
+    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている2社です。各社の公式サイトで公開されている情報をもとに、サービスや取り組みをご紹介します。';
   }
 
   section.querySelectorAll('.nr-main-sponsor,.nr-sponsor-row,.nr-sponsor-wide').forEach(el=>el.remove());
@@ -34,63 +34,80 @@
       company:'株式会社アーネストテクノロジーズ',
       service:'部活ナビ',
       url:'https://bukatsunavi.com/',
+      companyUrl:'https://earnest-technologies.co.jp/',
       logo:'bukatsu-navi-logo.svg',
       logoAlt:'部活ナビ',
+      eyebrow:'BUKATSU NAVI',
       title:'「やりたい部活」から、学校を探せる。',
-      lead:'部活ナビは、高校・中学・大学の部活動を探せる部活特化型の情報メディアです。学校名だけでなく、競技や活動内容を入口に進学先を探せるのが大きな特徴です。',
-      tags:['部活から学校検索','見学・体験会','イベント情報','部活ストーリー'],
-      points:[
-        ['部活を軸に学校を探す','地域や競技、学校種別などから、自分が続けたい・始めたい部活動を探せます。'],
-        ['入学前の情報収集','見学・体験会やイベント情報を確認し、進学後の活動を具体的にイメージできます。'],
-        ['部活動の魅力を発信','各校・各部活のニュースやストーリーを通じて、日々の取り組みや魅力を届けています。']
+      lead:'部活ナビは、高校・中学・大学の部活動を検索できるポータルサイトです。部活動そのものを入口に学校を探せるほか、見学・体験会やイベント、各部活の最新情報にもアクセスできます。',
+      tags:['高校・中学・大学','部活検索','見学・体験会','イベント検索'],
+      facts:[
+        ['部活を検索','競技や地域などから、掲載されている部活動を探すことができます。'],
+        ['見学・体験会','各部活が掲載する見学・体験会の情報を検索できます。'],
+        ['イベント','部活動に関するイベント情報を検索できます。'],
+        ['部活ストーリー','部活動に関する動画コンテンツやストーリーが公開されています。']
       ],
+      companyInfo:'運営企業の株式会社アーネストテクノロジーズは、システム開発・ITコンサルティングに加え、部活動支援SaaS「Bukatsu Page」など部活動に特化した自社サービスを開発しています。',
       thanks:'READYFORを通じてNOTO Re:Bloomをご支援いただきました。ありがとうございます。',
-      cta:'部活ナビ公式サイトを見る ↗'
+      cta:'部活ナビ公式サイトを見る',
+      companyCta:'運営会社公式サイト'
     },
     {
       company:'TechsPlus株式会社',
       service:'逆転コーチング',
       url:'https://gyakuten-coaching.com/',
+      companyUrl:'https://techsplus.co.jp/',
       logo:'gyakuten-coaching-official-logo.png',
       logoAlt:'逆転コーチング',
-      title:'志望校から逆算し、毎日の勉強を具体化する。',
-      lead:'逆転コーチングは、志望校に特化したオンラインの学習管理塾です。合格までに必要な学習を逆算し、「今日何をするか」まで具体的な計画に落とし込んで学習を支えます。',
-      tags:['志望校特化','1日単位の学習計画','進捗管理','オンライン対応'],
-      points:[
-        ['志望校から逆算','必要な勉強量や優先順位を整理し、合格までの学習ルートを具体化します。'],
-        ['毎日の行動まで設計','長期計画だけでなく、1日単位まで落とし込むことで「何をすればいいか」を明確にします。'],
-        ['継続して進捗を確認','計画と実際の学習状況を確認しながら、受験まで継続的に学習を支えます。']
+      eyebrow:'GYAKUTEN COACHING',
+      title:'志望校に特化し、毎日の学習を徹底管理。',
+      lead:'逆転コーチングは、志望校に合格したコーチが専属で担当し、志望校合格から逆算した毎日の学習計画を作成・管理する大学受験オンライン塾です。参考書を用いた自学自習の質と効率を高めることに特化しています。',
+      tags:['志望校特化','専属コーチ','1日単位の学習計画','オンライン'],
+      facts:[
+        ['志望校合格者が担当','生徒の志望校に合格したコーチが担当し、長期的に伴走します。'],
+        ['毎日の学習を管理','1日単位の学習計画作成から日々の進捗管理までマンツーマンで支援します。'],
+        ['複数の対策コース','一般入試、総合型選抜、英検®対策、社会人プロ講師が指導するPROコースを案内しています。'],
+        ['専用システム・自習環境','専用の学習管理アプリで日々の状況を確認し、希望者には提携自習室や逆転コーチング自習室も案内しています。']
       ],
+      companyInfo:'運営するTechsPlus株式会社は「次の世代の幸福を創出する」をビジョンに掲げ、教育事業を展開しています。逆転コーチングのほか、受験特化型メディア「ウカルート」や参考書特化型自習室も運営しています。',
       thanks:'NOTO Re:Bloomの活動にご協賛いただいています。ありがとうございます。',
-      cta:'逆転コーチング公式サイトを見る ↗'
+      cta:'逆転コーチング公式サイトを見る',
+      companyCta:'運営会社公式サイト'
     }
   ];
 
-  const makeSponsor=(s)=>{
+  const makeSponsor=(s,index)=>{
     const article=document.createElement('article');
     article.className='nr-sponsor-wide rb-detail-card';
     article.innerHTML=`
+      <span class="nr-sponsor-wide__ornament" aria-hidden="true"></span>
       <div class="nr-sponsor-wide__brand">
-        <span class="nr-sponsor-wide__label">協賛パートナー</span>
+        <div class="nr-sponsor-wide__partnerline"><span>SPONSOR PARTNER</span><b>0${index+1}</b></div>
         <a class="nr-sponsor-wide__logo" href="${s.url}" target="_blank" rel="sponsored noopener" aria-label="${s.service}公式サイト">
           <img src="${s.logo}" alt="${s.logoAlt}" loading="lazy" decoding="async">
         </a>
         <p>${s.company}</p>
         <small>${s.thanks}</small>
+        <div class="nr-sponsor-wide__brandlinks">
+          <a href="${s.url}" target="_blank" rel="sponsored noopener">サービス公式 ↗</a>
+          <a href="${s.companyUrl}" target="_blank" rel="noopener">企業公式 ↗</a>
+        </div>
       </div>
       <div class="nr-sponsor-wide__body">
+        <div class="nr-sponsor-wide__titlebar"><span>${s.eyebrow}</span><small>OFFICIAL INFORMATION</small></div>
         <div class="nr-sponsor-wide__intro">
           <div>
             <h3>${s.title}</h3>
             <p>${s.lead}</p>
           </div>
-          <div class="nr-sponsor-wide__tags" aria-label="${s.service}の特徴">${s.tags.map(tag=>`<span>${tag}</span>`).join('')}</div>
+          <div class="nr-sponsor-wide__tags" aria-label="${s.service}の公式サイト掲載情報">${s.tags.map(tag=>`<span>${tag}</span>`).join('')}</div>
         </div>
-        <div class="nr-sponsor-wide__points">${s.points.map(([title,text])=>`<div><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>
-        <div class="nr-sponsor-wide__action"><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}</a></div>
+        <div class="nr-sponsor-wide__facts">${s.facts.map(([title,text],i)=>`<div><small>0${i+1}</small><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>
+        <div class="nr-sponsor-wide__company"><span>運営企業について</span><p>${s.companyInfo}</p></div>
+        <div class="nr-sponsor-wide__action"><span>公式サイトで、さらに詳しく</span><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}<b>↗</b></a></div>
       </div>`;
     return article;
   };
 
-  sponsors.forEach(s=>section.appendChild(makeSponsor(s)));
+  sponsors.forEach((s,index)=>section.appendChild(makeSponsor(s,index)));
 })();
