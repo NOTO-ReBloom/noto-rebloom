@@ -1,0 +1,49 @@
+name: Connect Diagnosis Unify
+
+on:
+  push:
+    paths:
+      - '.github/workflows/connect-diagnosis-unify.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Connect final diagnosis typography and group colors
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('diagnosis.html')
+          s=p.read_text(encoding='utf-8')
+          css='<link rel="stylesheet" href="diagnosis-unify.css?v=20260827a">'
+          js='<script defer src="diagnosis-unify.js?v=20260827a"></script>'
+          if css not in s:
+              needle='<link rel="stylesheet" href="diagnosis-v2.css?v=20260827b">'
+              if needle not in s: raise SystemExit('diagnosis-v2 stylesheet marker not found')
+              s=s.replace(needle,needle+'\n'+css,1)
+          if js not in s:
+              needle='<script defer src="diagnosis-visual-v2.js?v=20260827c"></script>'
+              if needle not in s: raise SystemExit('diagnosis visual script marker not found')
+              s=s.replace(needle,needle+js,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Validate diagnosis assets
+        run: |
+          node --check diagnosis-unify.js
+          node --check diagnosis-visual-v2.js
+          node --check diagnosis.js
+          grep -q 'diagnosis-unify.css?v=20260827a' diagnosis.html
+          grep -q 'diagnosis-unify.js?v=20260827a' diagnosis.html
+      - name: Commit connection
+        run: |
+          git config user.name 'NOTO-ReBloom Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add diagnosis.html
+          git commit -m 'Unify diagnosis typography and flower group colors'
+          git push
