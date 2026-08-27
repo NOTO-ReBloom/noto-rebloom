@@ -1,6 +1,6 @@
 {
-  "version": 5,
-  "updatedAt": "2026-08-25T05:46:00+09:00",
+  "version": 6,
+  "updatedAt": "2026-08-27T15:14:34+09:00",
   "forecastPolicy": "Do not invent numeric revenue or conversion uplift when observed sales, PV, clicks, purchases, acquisitions or install data are absent. Rank opportunities and define measurement gates instead.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
@@ -14,26 +14,72 @@
     "MicrosoftStore_acquisitions": null,
     "MicrosoftStore_installs": null,
     "MicrosoftStore_conversion": null,
+    "MicrosoftStore_health": null,
     "GitHubPages_outboundConversion": null
   },
   "verifiedAvailabilitySignals": {
-    "previousDayPaidNoteStrictVerified": 5,
-    "previousDayBOOTHStrictVerified": 5,
-    "previousDayFreeNoteStrictVerified": 2,
+    "date": "2026-08-27",
+    "todayPaidNoteStrictVerified": 5,
+    "todayBOOTHStrictVerified": 5,
+    "todayFreeNoteStrictVerified": 2,
+    "todayTotalStrictVerified": 12,
+    "currentDayGateComplete": true,
     "carriedPaidDebt": 0,
-    "todayNewPaidNoteStrictVerified": 0,
-    "todayNewBOOTHStrictVerified": 0,
-    "noteFirstPartyFunnelValuesAvailable": false
+    "noteFirstPartyFunnelValuesAvailable": false,
+    "duplicateCleanupCandidateCount": 2
   },
   "rankedOpportunities": [
-    {"rank":1,"channel":"note","id":"20260825_paid_floor","opportunityBand":"hard-floor-critical","basis":"Aug 24 closed without debt; Aug 25 requires a fresh five-item paid batch before discretionary work."},
-    {"rank":2,"channel":"BOOTH","id":"20260825_paid_floor","opportunityBand":"hard-floor-critical","basis":"Aug 25 requires five fresh buyer-visible products; use research-ready operational assets rather than cosmetic clones."},
-    {"rank":3,"channel":"note","id":"free_to_paid_equal_age_measurement","opportunityBand":"high-information-value","basis":"First-party funnel values remain absent, so measurement is more valuable than speculative CTA/price/cadence changes."},
-    {"rank":4,"channel":"cross-channel","id":"ko_grant_02_daily_evidence_match","opportunityBand":"research-ready-hypothesis","basis":"Distinct post-award evidence-matching workflow supports a useful free diagnosis, deeper paid implementation and reusable BOOTH ledger; not yet a proven winner."},
-    {"rank":5,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","opportunityBand":"measurement-option-after-hard-floors","basis":"Submission completion is necessary before acquisition/install/health evidence can exist."},
-    {"rank":6,"channel":"GitHubPages","id":"measurable_context_cta","opportunityBand":"measurement-enabling","basis":"Existing useful pages can support attributable traffic once verified destinations and measurement exist; thin SEO expansion is unjustified."}
+    {
+      "rank":1,
+      "channel":"MicrosoftStore",
+      "id":"ms_csv_cleaner_deduper",
+      "opportunityBand":"highest-current-option-value",
+      "basis":"The Aug 27 publication gate is complete. This app has passed public PWA, functional, listing and screenshot preparation gates; remaining value is unlocked by completing Partner Center identity/package/submission steps without compromising quality."
+    },
+    {
+      "rank":2,
+      "channel":"cross-channel",
+      "id":"matched_age_first_party_measurement",
+      "opportunityBand":"high-information-value",
+      "basis":"No trustworthy sales/PV/CVR/acquisition values are present. Capturing matched-age first-party data has higher expected decision value than speculative price, CTA or derivative changes."
+    },
+    {
+      "rank":3,
+      "channel":"note",
+      "id":"free_note_20260827_02_duplicate_cleanup",
+      "opportunityBand":"quality-and-attribution-protection",
+      "basis":"Two extra same-title reader-visible URLs were discovered. Keeping one canonical URL protects measurement integrity, avoids CTA dilution and reduces future duplicate-post risk."
+    },
+    {
+      "rank":4,
+      "channel":"planning",
+      "id":"20260828_nonduplicate_batch_research",
+      "opportunityBand":"tomorrow-revenue-readiness",
+      "basis":"With today's gate complete, next-day profit is improved by researching non-overlapping purchase-intent themes before materialization rather than generating thin inventory."
+    },
+    {
+      "rank":5,
+      "channel":"GitHubPages",
+      "id":"measurable_context_cta",
+      "opportunityBand":"measurement-enabling",
+      "basis":"Existing useful pages can support attributable traffic once verified destinations and measurement exist; thin SEO expansion remains unjustified."
+    }
   ],
-  "customerFacingChangesNow": {"livePriceChanges":"none","massCtaRewrite":"none","freeCadenceIncrease":"none","winnerDerivedVariants":"none","reason":"No first-party sales/funnel evidence supports these changes yet."},
-  "nextDataNeeded": ["note free and paid PV at matched 24h/72h/7d","note likes/follows at matched ages","related paid CTA clicks","related paid purchases and article revenue","BOOTH sales by product/date","Microsoft Store page views/acquisitions/installs/conversion/health","GitHub Pages attributable outbound clicks/conversion"],
+  "customerFacingChangesNow": {
+    "livePriceChanges":"none",
+    "massCtaRewrite":"none",
+    "freeCadenceIncrease":"none",
+    "winnerDerivedVariants":"none",
+    "reason":"No first-party sales/funnel evidence supports these changes yet."
+  },
+  "nextDataNeeded": [
+    "note free and paid PV at matched 24h/72h/7d",
+    "note likes/follows at matched ages",
+    "related paid CTA clicks",
+    "related paid purchases and article revenue",
+    "BOOTH sales by product/date",
+    "Microsoft Store page views/acquisitions/installs/conversion/health",
+    "GitHub Pages attributable outbound clicks/conversion"
+  ],
   "rollbackPrinciple": "Future customer-facing CV or price changes require a baseline, one primary changed variable where possible, a sample window and rollback condition."
 }
