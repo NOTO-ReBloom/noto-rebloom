@@ -213,7 +213,11 @@ async function auditRemainingDuplicates() {
 async function main() {
   const groups = Array.isArray(plan.groups) ? plan.groups : [];
   const targets = groups.flatMap(group => (group.delete || []).map(target => ({ group, target })));
-  if (plan.account !== ACCOUNT || groups.length !== 13 || targets.length !== 18) throw new Error(`CLEANUP_PLAN_CONTRACT_FAILED groups=${groups.length} targets=${targets.length}`);
+  const expectedGroups = Number(plan.duplicateTitleGroups);
+  const expectedTargets = Number(plan.duplicatePagesToDelete);
+  if (plan.account !== ACCOUNT || !Number.isInteger(expectedGroups) || !Number.isInteger(expectedTargets) || expectedGroups < 1 || expectedTargets < 1 || groups.length !== expectedGroups || targets.length !== expectedTargets) {
+    throw new Error(`CLEANUP_PLAN_CONTRACT_FAILED groups=${groups.length}/${expectedGroups} targets=${targets.length}/${expectedTargets}`);
+  }
   const deleteKeys = new Set();
   for (const { group, target } of targets) {
     for (const key of [group.keep?.key, target.key]) if (!/^n[0-9a-z]+$/i.test(key || '')) throw new Error(`CLEANUP_PLAN_KEY_FAILED ${key}`);
