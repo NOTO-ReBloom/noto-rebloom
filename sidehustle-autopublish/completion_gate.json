@@ -1,121 +1,25 @@
 {
-  "version": 20,
-  "updatedAt": "2026-08-28T00:18:24+09:00",
+  "version": 21,
+  "updatedAt": "2026-08-28T09:16:31+09:00",
   "status": "in_progress_0_of_12",
   "date": "2026-08-28",
   "timezone": "Asia/Tokyo",
-  "purpose": "2026-08-26: complete only after all 12 designated publications are strict verified.",
-  "carryOver": {
-    "sourceDate": "2026-08-27",
-    "requiredBeforeNewDayConsumption": false,
-    "remaining": {
-      "notePaid": [],
-      "noteFree": [],
-      "BOOTH": [],
-      "total": 0
-    }
-  },
+  "purpose": "Complete only after all 12 designated Aug 28 publications are strict verified.",
+  "carryOver": {"sourceDate":"2026-08-27","requiredBeforeNewDayConsumption":false,"remaining":{"notePaid":[],"noteFree":[],"BOOTH":[],"total":0}},
   "completionConditions": {
-    "notePaid": {
-      "date": "2026-08-26",
-      "dailyStrictTarget": 5,
-      "requiredIds": [
-        "note_20260826_32_event_cancellation_decision_log",
-        "note_20260826_33_sponsor_benefit_inventory",
-        "note_20260826_34_volunteer_shift_handover",
-        "note_20260826_35_research_consent_version_control",
-        "note_20260826_36_digital_support_triage"
-      ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "paidBoundary",
-        "dedicatedCover"
-      ]
-    },
-    "BOOTH": {
-      "date": "2026-08-26",
-      "dailyStrictTarget": 5,
-      "requiredIds": [
-        "039_event_cancellation_decision_log_os_20260826",
-        "040_sponsor_benefit_inventory_os_20260826",
-        "041_volunteer_shift_handover_os_20260826",
-        "042_research_consent_version_control_os_20260826",
-        "043_digital_support_triage_os_20260826"
-      ],
-      "strictChecks": [
-        "buyerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "downloadableProductState",
-        "purchaseOrCartPath"
-      ]
-    },
-    "noteFree": {
-      "date": "2026-08-26",
-      "dailyStrictTarget": 2,
-      "requiredIds": [
-        "free_note_20260826_01_event_cancel_signals",
-        "free_note_20260826_02_support_faq_boundary"
-      ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "freeState",
-        "dedicatedCover"
-      ],
-      "paidQuotaContribution": 0
-    }
+    "notePaid": {"date":"2026-08-28","dailyStrictTarget":5,"requiredIds":["note_20260828_42_attendance_month_end_exception_control","note_20260828_43_estimate_to_order_followup_control","note_20260828_44_applicant_response_sla_control","note_20260828_45_ai_efficiency_roi_measurement","note_20260828_46_backoffice_labor_saving_priority_matrix"],"strictChecks":["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]},
+    "BOOTH": {"date":"2026-08-28","dailyStrictTarget":5,"requiredIds":["049_attendance_month_end_exception_control_os_20260828","050_estimate_to_order_followup_control_os_20260828","051_applicant_response_sla_control_os_20260828","052_ai_efficiency_roi_measurement_os_20260828","053_backoffice_labor_saving_priority_matrix_os_20260828"],"strictChecks":["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]},
+    "noteFree": {"date":"2026-08-28","dailyStrictTarget":2,"requiredIds":["free_note_20260828_01_attendance_month_end_signals","free_note_20260828_02_ai_efficiency_measurement_signals"],"strictChecks":["readerVisibleUrl","exactTitle","freeState","dedicatedCover"],"paidQuotaContribution":0}
   },
-  "completionCounts": {
-    "todayNotePaid": 0,
-    "todayNoteFree": 0,
-    "todayBOOTH": 0,
-    "todayTotal": 0,
-    "requiredToday": 12
-  },
-  "planningManifest": "sidehustle-autopublish/planning/2026-08-28_batch01.json",
-  "duplicateControl": {
-    "policy": "Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."
-  },
-  "executionPolicy": {
-    "singleRunMayPublishMany": true,
-    "switchCandidatesAfterBriefRecoverableFailure": true,
-    "doNotStopAfterFirstSuccessWhileTargetsRemain": true,
-    "carryOverBeforeCurrentDay": true,
-    "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-    "doNotUseScatteredWindowsRoots": true,
-    "noDailyZipOrCmdProliferation": true,
-    "newDayQueueSafety": "Do not consume Aug 28 IDs until materialization flags are true and queue/payload QA exists."
-  },
-  "reportingPolicy": {
-    "intermediateProgressReports": false,
-    "diagnosticOnlyReports": false,
-    "queueOrCommitOnlyReports": false,
-    "nightlyAggregateOnly": true,
-    "humanOnlyBlockerException": true
-  },
-  "humanOnlyBlockers": [
-    "re-login",
-    "2FA",
-    "CAPTCHA",
-    "identity verification",
-    "legal declaration",
-    "tax/payment setup",
-    "OS permission",
-    "account lock"
-  ],
-  "antiFalseCompletion": [
-    "Do not report a commit as publication.",
-    "Do not report queue insertion as publication.",
-    "Do not report local publisher exit 0 without public verification.",
-    "Do not report editor/admin URLs as publication.",
-    "Do not invent public URLs.",
-    "Do not count historical reverification as a new current-day publication."
-  ],
-  "executionRequestedAt": "2026-08-28T00:17:00+09:00",
-  "executionNonce": "rollover-20260828-new12",
-  "completedAt": null,
-  "completionEvidence": null
+  "completionCounts": {"todayNotePaid":0,"todayNoteFree":0,"todayBOOTH":0,"todayTotal":0,"requiredToday":12},
+  "planningManifest":"sidehustle-autopublish/planning/2026-08-28_batch01.json",
+  "duplicateControl":{"policy":"Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."},
+  "executionPolicy":{"singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,"canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true,"newDayQueueSafety":"Do not consume Aug 28 IDs until materialization flags are true and queue/payload QA exists."},
+  "reportingPolicy":{"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
+  "humanOnlyBlockers":["re-login","2FA","CAPTCHA","identity verification","legal declaration","tax/payment setup","OS permission","account lock"],
+  "antiFalseCompletion":["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
+  "executionRequestedAt":"2026-08-28T09:16:31+09:00",
+  "executionNonce":"rollover-20260828-new12-gatefix1",
+  "completedAt":null,
+  "completionEvidence":null
 }
