@@ -38,10 +38,43 @@
 .site-partner-strip__more{display:inline-block;margin-top:13px;color:#184b3d;font-size:11px;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(24,75,61,.25)}
 @media(hover:hover){.site-partner-strip__logo:hover{transform:translateY(-2px);border-color:rgba(24,75,61,.24);box-shadow:0 7px 18px rgba(24,75,61,.07)}}
 
+/* Conversion-first home hierarchy: trust appears before project-history material. */
+.nr-new-home main{display:flex;flex-direction:column}
+.nr-new-home main>.nr-home-hero{order:10}
+.nr-new-home main>#visual-day{order:20}
+.nr-new-home main>#participant-guide{order:30}
+.nr-new-home main>#people-behind-project{order:40}
+.nr-new-home main>.nr-choice-grid{order:50}
+.nr-new-home main>#crowdfunding-result{order:60}
+.nr-new-home main>#project-story{order:70}
+.nr-new-home main>#ishimo-collaboration{order:80}
+.nr-new-home main>.conversion-band{order:90}
+
+/* Event readiness facts: factual, compact reassurance immediately after the summary. */
+.nr-new-event .event-readiness-strip{padding:14px 20px 6px;background:#fff}
+.nr-new-event .event-readiness-strip__inner{width:min(1160px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.nr-new-event .event-readiness-item{display:flex;align-items:center;gap:10px;min-height:60px;padding:11px 13px;border:1px solid rgba(24,75,61,.13);border-radius:15px;background:#f8fbf5}
+.nr-new-event .event-readiness-item>span{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:#e1efdd;color:#184b3d;font-size:14px;font-weight:900}
+.nr-new-event .event-readiness-item b{display:block;color:#173e34;font-size:12px;line-height:1.4}
+.nr-new-event .event-readiness-item small{display:block;margin-top:2px;color:#6b7771;font-size:10px;line-height:1.45}
+
+/* Share strip: make parent-to-parent and friend-to-friend forwarding frictionless. */
+.nr-new-event .event-share-strip{padding:10px 20px 22px;background:#fff}
+.nr-new-event .event-share-strip__inner{width:min(1160px,100%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;border:1px solid rgba(24,75,61,.13);border-radius:18px;background:linear-gradient(135deg,#fff8d9,#edf7ea)}
+.nr-new-event .event-share-strip__copy b{display:block;color:#173e34;font-size:14px;line-height:1.45}
+.nr-new-event .event-share-strip__copy span{display:block;margin-top:3px;color:#68756e;font-size:11px;line-height:1.5}
+.nr-new-event .event-share-actions{display:flex;flex:none;gap:8px}
+.nr-new-event .event-share-btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 13px;border:1px solid rgba(24,75,61,.2);border-radius:999px;background:#fff;color:#184b3d;font:inherit;font-size:11px;font-weight:900;text-decoration:none;cursor:pointer}
+.nr-new-event .event-share-btn--line{background:#06c755;color:#fff;border-color:#06b64d}
+.nr-new-event .event-share-status{min-width:72px;color:#42675b;font-size:10px;font-weight:800;text-align:center;align-self:center}
+
 @media(max-width:900px){
   .site-partner-strip__logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
   .site-partner-strip__logo{height:60px}
   .nr-new-event #event-faq .faq-category__cards{grid-template-columns:1fr}
+  .nr-new-event .event-readiness-strip__inner{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nr-new-event .event-share-strip__inner{align-items:flex-start;flex-direction:column}
+  .nr-new-event .event-share-actions{width:100%;flex-wrap:wrap}
 }
 @media(max-width:620px){
   .site-partner-strip{padding:24px 14px 22px}
@@ -54,4 +87,23 @@
   .nr-new-event .event-reboost-note__date{min-width:68px;min-height:56px;font-size:11px}
   .nr-new-event #event-faq .faq-category{margin-top:20px}
   .nr-new-event #event-faq .faq-category__title{font-size:15px;margin-bottom:9px}
+  .nr-new-event .event-readiness-strip{padding:10px 13px 4px}
+  .nr-new-event .event-readiness-strip__inner{grid-template-columns:1fr 1fr;gap:7px}
+  .nr-new-event .event-readiness-item{min-height:64px;padding:9px 10px;gap:8px}
+  .nr-new-event .event-readiness-item>span{width:26px;height:26px;font-size:12px}
+  .nr-new-event .event-readiness-item b{font-size:11px}.nr-new-event .event-readiness-item small{font-size:9px}
+  .nr-new-event .event-share-strip{padding:8px 13px 18px}
+  .nr-new-event .event-share-strip__inner{padding:14px;border-radius:16px;gap:12px}
+  .nr-new-event .event-share-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .nr-new-event .event-share-btn{width:100%;min-height:42px;padding:8px 10px}
+  .nr-new-event .event-share-status{grid-column:1/-1;width:100%}
+
+  /* Keep a high-visibility participation CTA available on mobile across core pages.
+     Event and diagnosis already have their own dedicated mobile bars. */
+  .nr-new-home .hero-copy .button-row>a[href*="6ZMrhrhtWmBCQViD8"],
+  .page-learn #learn-join-cta>a[href*="6ZMrhrhtWmBCQViD8"],
+  .nr-new-partner .header-actions>a[href*="6ZMrhrhtWmBCQViD8"]{
+    display:flex!important;position:fixed!important;z-index:930!important;left:12px!important;right:12px!important;bottom:9px!important;width:auto!important;min-height:52px!important;margin:0!important;padding:12px 18px!important;border:2px solid #fff!important;border-radius:18px!important;background:#174b3d!important;color:#fff!important;box-shadow:0 8px 28px rgba(14,52,43,.28)!important;font-size:13px!important;font-weight:900!important;line-height:1.35!important;text-align:center!important;transform:none!important
+  }
+  .nr-new-home,.page-learn,.nr-new-partner{padding-bottom:72px}
 }
