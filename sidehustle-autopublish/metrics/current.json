@@ -1,93 +1,73 @@
 {
-  "version": 35,
-  "updatedAt": "2026-08-29T00:40:45+09:00",
-  "objective": "maximize total sales while preserving strict public verification for the 2026-08-27 paid NOTE 5, free NOTE 2 and BOOTH 5 batch",
+  "version": 36,
+  "updatedAt": "2026-08-29T01:15:04.210+09:00",
+  "objective": "Preserve the strictly verified Aug 28-29 batch: paid NOTE 10, free NOTE 4 and BOOTH 10.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
     "notePaidQueue": "sidehustle-autopublish/note/queue/index.json",
     "notePaidReceipts": "sidehustle-autopublish/note/publication_receipts/",
-    "noteMaterialization": "sidehustle-autopublish/note/staging/materialization_20260827_batch01.json",
+    "noteMaterialization": [
+      "sidehustle-autopublish/note/staging/materialization_20260828_batch01.json",
+      "sidehustle-autopublish/note/staging/materialization_20260829_batch01.json"
+    ],
     "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
     "noteFreeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
     "boothQueue": "booth-autopublish/queue/index.json",
     "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
-    "boothMaterialization": "booth-autopublish/monitor/cloud_materialization_20260827_batch01.json",
+    "boothMaterialization": [
+      "booth-autopublish/monitor/cloud_materialization_20260828_batch01.json",
+      "booth-autopublish/monitor/cloud_materialization_20260829_batch01.json"
+    ],
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
     "date": "2026-08-29",
-    "observedAt": "2026-08-29T00:34:32+09:00",
+    "observedAt": "2026-08-29T01:15:04.210+09:00",
     "previousDate": "2026-08-28",
-    "previousDayPaidNoteStrictVerified": "0/5",
-    "previousDayBoothStrictVerified": "0/5",
-    "previousDayFreeNoteStrictVerified": "0/2",
-    "carriedTotalDebt": 12
+    "previousDayPaidNoteStrictVerified": "5/5",
+    "previousDayBoothStrictVerified": "5/5",
+    "previousDayFreeNoteStrictVerified": "2/2",
+    "carriedTotalDebt": 0
   },
   "currentDayTargets": {
     "date": "2026-08-29",
     "paidNote": {
       "target": 10,
-      "strictVerified": 0,
-      "remaining": 10,
+      "strictVerified": 10,
+      "remaining": 0,
       "materialized": 10,
-      "remainingIds": [
-        "note_20260828_42_attendance_month_end_exception_control",
-        "note_20260828_43_estimate_to_order_followup_control",
-        "note_20260828_44_applicant_response_sla_control",
-        "note_20260828_45_ai_efficiency_roi_measurement",
-        "note_20260828_46_backoffice_labor_saving_priority_matrix",
-        "note_20260829_47_contract_renewal_control",
-        "note_20260829_48_complaint_root_cause_control",
-        "note_20260829_49_onboarding_skill_matrix",
-        "note_20260829_50_cashflow_weekly_forecast",
-        "note_20260829_51_document_retention_disposition"
-      ]
+      "remainingIds": []
     },
     "BOOTH": {
       "target": 10,
-      "strictVerified": 0,
-      "remaining": 10,
+      "strictVerified": 10,
+      "remaining": 0,
       "materialized": 10,
-      "remainingIds": [
-        "049_attendance_month_end_exception_control_os_20260828",
-        "050_estimate_to_order_followup_control_os_20260828",
-        "051_applicant_response_sla_control_os_20260828",
-        "052_ai_efficiency_roi_measurement_os_20260828",
-        "053_backoffice_labor_saving_priority_matrix_os_20260828",
-        "054_contract_renewal_control_os_20260829",
-        "055_complaint_root_cause_control_os_20260829",
-        "056_onboarding_skill_matrix_os_20260829",
-        "057_cashflow_weekly_forecast_os_20260829",
-        "058_document_retention_disposition_os_20260829"
-      ]
+      "remainingIds": []
     },
     "freeNote": {
       "target": 4,
-      "strictVerified": 0,
-      "remaining": 4,
+      "strictVerified": 4,
+      "remaining": 0,
       "materialized": 4,
-      "remainingIds": [
-        "free_note_20260828_01_attendance_month_end_signals",
-        "free_note_20260828_02_ai_efficiency_measurement_signals",
-        "free_note_20260829_01_contract_renewal_signals",
-        "free_note_20260829_02_cashflow_warning_signals"
-      ],
+      "remainingIds": [],
       "paidQuotaContribution": 0
     },
-    "allDesignatedStrictVerified": false
+    "allDesignatedStrictVerified": true
   },
   "evidence": {
-    "paidNote": "10 encrypted payloads materialized; no public count yet",
-    "BOOTH": "10 encrypted product payloads materialized; no public count yet",
-    "freeNote": "4 manuscripts queued; no public count yet",
+    "paidNote": "10 PUBLISH_SUCCESS_VERIFIED receipts with title/price/boundary/cover/anonymous checks true",
+    "BOOTH": "10 buyer-visible HTTP 200 exact-title URLs with PUBLIC_RECOVERY_SUCCESS",
+    "freeNote": "4 FREE_PUBLISH_SUCCESS_VERIFIED reader-visible URLs",
+    "sourceLogSha256": "42f40d86e7fa2a24d30bdcd9fa539f4b387d088da7ecbd4e5a5f60ae56ccc83e",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-27T14:29:21+09:00",
+    "checkedAt": "2026-08-29T01:15:04.210+09:00",
     "cloudMaterializationComplete": true,
-    "windowsAuthenticatedPublisherRequiredForPublicPosting": true,
-    "nextWindowsAction": "None for 2026-08-27. All 12 designated items are strict verified and disabled."
+    "windowsAuthenticatedPublisherRequiredForPublicPosting": false,
+    "nextWindowsAction": "None for Aug 28-29. All 24 designated publications are strict verified and disabled."
   },
   "rules": [
     "Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.",

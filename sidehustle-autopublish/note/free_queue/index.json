@@ -1,6 +1,6 @@
 {
   "version": 16,
-  "updatedAt": "2026-08-29T00:40:45+09:00",
+  "updatedAt": "2026-08-29T01:15:04.210+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-29_batch01.md",
   "requiredFreeChecks": [
@@ -1367,9 +1367,14 @@
       "coverLabel": "勤怠管理・月次締め",
       "coverCopy": "締日前に見る 5つの異常",
       "accent": "#1d4ed8",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260828-20260829T003138+0900"
+      "forceRetryNonce": "free-note-20260828-20260829T003138+0900",
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n3ea6c0adc377",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-29T01:01:17.692+09:00"
     },
     {
       "id": "free_note_20260828_02_ai_efficiency_measurement_signals",
@@ -1386,9 +1391,14 @@
       "coverLabel": "生成AI・効果測定",
       "coverCopy": "便利で終わらせない 3つの数字",
       "accent": "#7c3aed",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260828-20260829T003138+0900"
+      "forceRetryNonce": "free-note-20260828-20260829T003138+0900",
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n4afba968fb75",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-29T01:03:40.218+09:00"
     },
     {
       "id": "free_note_20260829_01_contract_renewal_signals",
@@ -1405,9 +1415,14 @@
       "coverLabel": "契約管理・更新",
       "coverCopy": "更新日の前に見る 4項目",
       "accent": "#0f766e",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260829-20260829T003138+0900"
+      "forceRetryNonce": "free-note-20260829-20260829T003138+0900",
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n671b603a4d57",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-29T01:04:16.986+09:00"
     },
     {
       "id": "free_note_20260829_02_cashflow_warning_signals",
@@ -1424,9 +1439,14 @@
       "coverLabel": "資金繰り・経営管理",
       "coverCopy": "13週間で見る 3つのサイン",
       "accent": "#b45309",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260829-20260829T003138+0900"
+      "forceRetryNonce": "free-note-20260829-20260829T003138+0900",
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n75a3f3ef371c",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-29T01:04:54.659+09:00"
     }
   ],
   "eveningMarathon": {
@@ -1446,11 +1466,21 @@
       "free_note_20260829_02_cashflow_warning_signals"
     ],
     "requiredStrictPublications": 4,
-    "carryOverFirst": true
+    "carryOverFirst": true,
+    "completedIds": [
+      "free_note_20260828_01_attendance_month_end_signals",
+      "free_note_20260828_02_ai_efficiency_measurement_signals",
+      "free_note_20260829_01_contract_renewal_signals",
+      "free_note_20260829_02_cashflow_warning_signals"
+    ],
+    "completedStrictPublications": 4,
+    "remaining": 0,
+    "status": "complete",
+    "completedAt": "2026-08-29T01:15:04.210+09:00"
   },
   "retryGeneration": 1,
   "activePublicationDate": "2026-08-29",
-  "forceAllCurrentDayNow": true,
+  "forceAllCurrentDayNow": false,
   "forceRetryNonce": "likes-extra-note10-20260827T233219+0900",
   "sourceBatchPaths": [
     "sidehustle-autopublish/note/free_drafts/2026-08-28_batch01.md",

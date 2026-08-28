@@ -1,6 +1,6 @@
 {
-  "version": 44,
-  "updatedAt": "2026-08-29T00:34:32+09:00",
+  "version": 45,
+  "updatedAt": "2026-08-29T01:15:04.210+09:00",
   "activeRecovery": {
     "date": "2026-08-29",
     "sourceDates": [
@@ -9,8 +9,9 @@
     ],
     "mode": "carryover_then_current_day_paid_floor",
     "requiredStrictNewPublications": 10,
-    "remaining": 10,
-    "state": "ready"
+    "remaining": 0,
+    "state": "completed",
+    "completedAt": "2026-08-29T01:15:04.210+09:00"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-29T00:34:32+09:00",
@@ -27,7 +28,18 @@
       "057_cashflow_weekly_forecast_os_20260829",
       "058_document_retention_disposition_os_20260829"
     ],
-    "completedIds": [],
+    "completedIds": [
+      "049_attendance_month_end_exception_control_os_20260828",
+      "050_estimate_to_order_followup_control_os_20260828",
+      "051_applicant_response_sla_control_os_20260828",
+      "052_ai_efficiency_roi_measurement_os_20260828",
+      "053_backoffice_labor_saving_priority_matrix_os_20260828",
+      "054_contract_renewal_control_os_20260829",
+      "055_complaint_root_cause_control_os_20260829",
+      "056_onboarding_skill_matrix_os_20260829",
+      "057_cashflow_weekly_forecast_os_20260829",
+      "058_document_retention_disposition_os_20260829"
+    ],
     "queueRetryGeneration": 47,
     "qaManifests": [
       "booth-autopublish/monitor/cloud_materialization_20260828_batch01.json",
@@ -53,7 +65,10 @@
       "058_document_retention_disposition_os_20260829": 1480
     },
     "doNotStopAfterFirstSuccess": true,
-    "forceRetryNonce": "booth-20260828-20260829-20260829T003432+0900"
+    "forceRetryNonce": "booth-20260828-20260829-20260829T003432+0900",
+    "remaining": 0,
+    "status": "complete",
+    "completedAt": "2026-08-29T01:15:04.210+09:00"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -84,12 +99,13 @@
     "completionPredicate": "all ten Aug 28-29 IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-27T11:40:22+09:00",
+    "checkedAt": "2026-08-29T01:15:04.210+09:00",
     "windowsPublisherReachable": true,
-    "carryOverBOOTH": "2026-08-26 5/5 strict verified and canonical ledger reconciled",
+    "carryOverBOOTH": "2026-08-28 5/5 strict verified",
     "aug27NewBOOTH": "planned but not materialized; do not consume yet",
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "Do not republish BOOTH 039-043. Consume Aug 27 BOOTH 044-048 only after completion_gate materialized=true and queue/payload QA exists."
+    "nextAction": "None for Aug 28-29; preserve canonical ledger URLs and do not republish.",
+    "aug29NewBOOTH": "2026-08-29 5/5 strict verified"
   },
   "heldAlreadyResolved": {
     "queueIds": [

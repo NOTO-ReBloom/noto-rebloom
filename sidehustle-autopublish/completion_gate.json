@@ -1,7 +1,7 @@
 {
-  "version": 25,
-  "updatedAt": "2026-08-29T00:34:32+09:00",
-  "status": "in_progress_0_of_24",
+  "version": 26,
+  "updatedAt": "2026-08-29T01:15:04.210+09:00",
+  "status": "complete_24_of_24",
   "date": "2026-08-29",
   "timezone": "Asia/Tokyo",
   "purpose": "Complete only after all carried Aug 28 obligations and all designated Aug 29 publications are strict verified.",
@@ -9,25 +9,10 @@
     "sourceDate": "2026-08-28",
     "requiredBeforeNewDayConsumption": true,
     "remaining": {
-      "notePaid": [
-        "note_20260828_42_attendance_month_end_exception_control",
-        "note_20260828_43_estimate_to_order_followup_control",
-        "note_20260828_44_applicant_response_sla_control",
-        "note_20260828_45_ai_efficiency_roi_measurement",
-        "note_20260828_46_backoffice_labor_saving_priority_matrix"
-      ],
-      "noteFree": [
-        "free_note_20260828_01_attendance_month_end_signals",
-        "free_note_20260828_02_ai_efficiency_measurement_signals"
-      ],
-      "BOOTH": [
-        "049_attendance_month_end_exception_control_os_20260828",
-        "050_estimate_to_order_followup_control_os_20260828",
-        "051_applicant_response_sla_control_os_20260828",
-        "052_ai_efficiency_roi_measurement_os_20260828",
-        "053_backoffice_labor_saving_priority_matrix_os_20260828"
-      ],
-      "total": 12
+      "notePaid": [],
+      "noteFree": [],
+      "BOOTH": [],
+      "total": 0
     }
   },
   "completionConditions": {
@@ -84,16 +69,18 @@
     }
   },
   "completionCounts": {
-    "todayNotePaid": 0,
-    "todayNoteFree": 0,
-    "todayBOOTH": 0,
-    "todayTotal": 0,
-    "carryOverRemaining": 12,
+    "todayNotePaid": 5,
+    "todayNoteFree": 2,
+    "todayBOOTH": 5,
+    "todayTotal": 12,
+    "carryOverStrictVerified": 12,
+    "carryOverRemaining": 0,
     "requiredToday": 12,
-    "totalOutstanding": 24
+    "strictVerifiedTotal": 24,
+    "totalOutstanding": 0
   },
-  "planningManifest": null,
-  "materializationState": "both_days_complete_and_queue_qa_passed",
+  "planningManifest": "sidehustle-autopublish/planning/2026-08-29_batch01.json",
+  "materializationState": "complete_and_strict_publication_verified",
   "duplicateControl": {
     "policy": "Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."
   },
@@ -134,8 +121,51 @@
   ],
   "executionRequestedAt": "2026-08-29T00:34:32+09:00",
   "executionNonce": "publish-aug28-aug29-all24-20260829T003432+0900",
-  "completedAt": null,
-  "completionEvidence": null,
+  "completedAt": "2026-08-29T01:15:04.210+09:00",
+  "completionEvidence": {
+    "launcherVersion": "2026-08-29-AUG28-AUG29-ALL24-V2",
+    "executionWindow": {
+      "startedAt": "2026-08-29T00:52:26.090+09:00",
+      "endedAt": "2026-08-29T01:15:04.210+09:00"
+    },
+    "strictVerified": {
+      "paidNote": 10,
+      "freeNote": 4,
+      "BOOTH": 10,
+      "total": 24
+    },
+    "paidNoteUrls": {
+      "note_20260828_42_attendance_month_end_exception_control": "https://note.com/royal_lion645/n/nef1bc1b603c6",
+      "note_20260828_43_estimate_to_order_followup_control": "https://note.com/royal_lion645/n/n84107d7e44dd",
+      "note_20260828_44_applicant_response_sla_control": "https://note.com/royal_lion645/n/n78d69894342b",
+      "note_20260828_45_ai_efficiency_roi_measurement": "https://note.com/royal_lion645/n/n135f522069dd",
+      "note_20260828_46_backoffice_labor_saving_priority_matrix": "https://note.com/royal_lion645/n/n3ebb370af28e",
+      "note_20260829_47_contract_renewal_control": "https://note.com/royal_lion645/n/n4cc3d1d90b84",
+      "note_20260829_48_complaint_root_cause_control": "https://note.com/royal_lion645/n/n243cf12e4c99",
+      "note_20260829_49_onboarding_skill_matrix": "https://note.com/royal_lion645/n/n10f407e00e23",
+      "note_20260829_50_cashflow_weekly_forecast": "https://note.com/royal_lion645/n/n63062bd5c187",
+      "note_20260829_51_document_retention_disposition": "https://note.com/royal_lion645/n/n9f15e444433d"
+    },
+    "freeNoteUrls": {
+      "free_note_20260828_01_attendance_month_end_signals": "https://note.com/royal_lion645/n/n3ea6c0adc377",
+      "free_note_20260828_02_ai_efficiency_measurement_signals": "https://note.com/royal_lion645/n/n4afba968fb75",
+      "free_note_20260829_01_contract_renewal_signals": "https://note.com/royal_lion645/n/n671b603a4d57",
+      "free_note_20260829_02_cashflow_warning_signals": "https://note.com/royal_lion645/n/n75a3f3ef371c"
+    },
+    "boothUrls": {
+      "049_attendance_month_end_exception_control_os_20260828": "https://booth.pm/ja/items/8777152",
+      "050_estimate_to_order_followup_control_os_20260828": "https://booth.pm/ja/items/8777156",
+      "051_applicant_response_sla_control_os_20260828": "https://booth.pm/ja/items/8777162",
+      "052_ai_efficiency_roi_measurement_os_20260828": "https://booth.pm/ja/items/8777168",
+      "053_backoffice_labor_saving_priority_matrix_os_20260828": "https://booth.pm/ja/items/8777171",
+      "054_contract_renewal_control_os_20260829": "https://booth.pm/ja/items/8777176",
+      "055_complaint_root_cause_control_os_20260829": "https://booth.pm/ja/items/8777179",
+      "056_onboarding_skill_matrix_os_20260829": "https://booth.pm/ja/items/8777181",
+      "057_cashflow_weekly_forecast_os_20260829": "https://booth.pm/ja/items/8777184",
+      "058_document_retention_disposition_os_20260829": "https://booth.pm/ja/items/8777190"
+    },
+    "sourceLogSha256": "42f40d86e7fa2a24d30bdcd9fa539f4b387d088da7ecbd4e5a5f60ae56ccc83e"
+  },
   "planningManifests": [
     "sidehustle-autopublish/planning/2026-08-28_batch01.json",
     "sidehustle-autopublish/planning/2026-08-29_batch01.json"
