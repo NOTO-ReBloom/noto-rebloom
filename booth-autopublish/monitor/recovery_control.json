@@ -1,26 +1,38 @@
 {
-  "version": 41,
-  "updatedAt": "2026-08-28T00:18:24+09:00",
+  "version": 44,
+  "updatedAt": "2026-08-29T00:34:32+09:00",
   "activeRecovery": {
-    "date": "2026-08-26",
-    "mode": "current_day_paid_floor",
-    "requiredStrictNewPublications": 5,
-    "remaining": 5,
+    "date": "2026-08-29",
+    "sourceDates": [
+      "2026-08-28",
+      "2026-08-29"
+    ],
+    "mode": "carryover_then_current_day_paid_floor",
+    "requiredStrictNewPublications": 10,
+    "remaining": 10,
     "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-28T00:18:24+09:00",
-    "requiredStrictNewPublications": 5,
+    "generatedAt": "2026-08-29T00:34:32+09:00",
+    "requiredStrictNewPublications": 10,
     "queueIds": [
-      "039_event_cancellation_decision_log_os_20260826",
-      "040_sponsor_benefit_inventory_os_20260826",
-      "041_volunteer_shift_handover_os_20260826",
-      "042_research_consent_version_control_os_20260826",
-      "043_digital_support_triage_os_20260826"
+      "049_attendance_month_end_exception_control_os_20260828",
+      "050_estimate_to_order_followup_control_os_20260828",
+      "051_applicant_response_sla_control_os_20260828",
+      "052_ai_efficiency_roi_measurement_os_20260828",
+      "053_backoffice_labor_saving_priority_matrix_os_20260828",
+      "054_contract_renewal_control_os_20260829",
+      "055_complaint_root_cause_control_os_20260829",
+      "056_onboarding_skill_matrix_os_20260829",
+      "057_cashflow_weekly_forecast_os_20260829",
+      "058_document_retention_disposition_os_20260829"
     ],
     "completedIds": [],
-    "queueRetryGeneration": 44,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260826_batch01.json",
+    "queueRetryGeneration": 47,
+    "qaManifests": [
+      "booth-autopublish/monitor/cloud_materialization_20260828_batch01.json",
+      "booth-autopublish/monitor/cloud_materialization_20260829_batch01.json"
+    ],
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -29,33 +41,47 @@
       "purchaseOrCartPath"
     ],
     "expectedPricesJPY": {
-      "039_event_cancellation_decision_log_os_20260826": 980,
-      "040_sponsor_benefit_inventory_os_20260826": 1280,
-      "041_volunteer_shift_handover_os_20260826": 780,
-      "042_research_consent_version_control_os_20260826": 980,
-      "043_digital_support_triage_os_20260826": 980
+      "049_attendance_month_end_exception_control_os_20260828": 1480,
+      "050_estimate_to_order_followup_control_os_20260828": 1480,
+      "051_applicant_response_sla_control_os_20260828": 1480,
+      "052_ai_efficiency_roi_measurement_os_20260828": 1680,
+      "053_backoffice_labor_saving_priority_matrix_os_20260828": 1480,
+      "054_contract_renewal_control_os_20260829": 1480,
+      "055_complaint_root_cause_control_os_20260829": 1480,
+      "056_onboarding_skill_matrix_os_20260829": 1480,
+      "057_cashflow_weekly_forecast_os_20260829": 1680,
+      "058_document_retention_disposition_os_20260829": 1480
     },
     "doNotStopAfterFirstSuccess": true,
-    "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260826-20260828T001824+0900"
+    "forceRetryNonce": "booth-20260828-20260829-20260829T003432+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
-      "039_event_cancellation_decision_log_os_20260826",
-      "040_sponsor_benefit_inventory_os_20260826",
-      "041_volunteer_shift_handover_os_20260826",
-      "042_research_consent_version_control_os_20260826",
-      "043_digital_support_triage_os_20260826"
+      "049_attendance_month_end_exception_control_os_20260828",
+      "050_estimate_to_order_followup_control_os_20260828",
+      "051_applicant_response_sla_control_os_20260828",
+      "052_ai_efficiency_roi_measurement_os_20260828",
+      "053_backoffice_labor_saving_priority_matrix_os_20260828",
+      "054_contract_renewal_control_os_20260829",
+      "055_complaint_root_cause_control_os_20260829",
+      "056_onboarding_skill_matrix_os_20260829",
+      "057_cashflow_weekly_forecast_os_20260829",
+      "058_document_retention_disposition_os_20260829"
     ],
     "firstPassOrder": [
-      "039_event_cancellation_decision_log_os_20260826",
-      "040_sponsor_benefit_inventory_os_20260826",
-      "041_volunteer_shift_handover_os_20260826",
-      "042_research_consent_version_control_os_20260826",
-      "043_digital_support_triage_os_20260826"
+      "049_attendance_month_end_exception_control_os_20260828",
+      "050_estimate_to_order_followup_control_os_20260828",
+      "051_applicant_response_sla_control_os_20260828",
+      "052_ai_efficiency_roi_measurement_os_20260828",
+      "053_backoffice_labor_saving_priority_matrix_os_20260828",
+      "054_contract_renewal_control_os_20260829",
+      "055_complaint_root_cause_control_os_20260829",
+      "056_onboarding_skill_matrix_os_20260829",
+      "057_cashflow_weekly_forecast_os_20260829",
+      "058_document_retention_disposition_os_20260829"
     ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
+    "completionPredicate": "all ten Aug 28-29 IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
     "checkedAt": "2026-08-27T11:40:22+09:00",

@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "createdAt": "2026-08-29T00:34:32+09:00",
+  "date": "2026-08-29",
+  "dateId": "20260829",
+  "previousDate": "2026-08-28",
+  "status": "materialized_queued_pending_strict_publication",
+  "carryOver": {
+    "paidNOTE": 5,
+    "freeNOTE": 2,
+    "BOOTH": 5,
+    "total": 12
+  },
+  "paid": [
+    {
+      "id": "note_20260829_47_contract_renewal_control",
+      "title": "契約更新を直前に思い出さない｜解約期限・値上げ・利用状況を90日前から確認する台帳設計",
+      "price": 1480
+    },
+    {
+      "id": "note_20260829_48_complaint_root_cause_control",
+      "title": "同じクレームを個別対応で終わらせない｜事実・応急処置・再発条件を分ける改善フロー",
+      "price": 1480
+    },
+    {
+      "id": "note_20260829_49_onboarding_skill_matrix",
+      "title": "新人教育を『一度説明した』で終わらせない｜業務別スキル確認と独り立ち判定の作り方",
+      "price": 1480
+    },
+    {
+      "id": "note_20260829_50_cashflow_weekly_forecast",
+      "title": "黒字なのに支払いで詰まらないために｜13週間の資金繰りを毎週更新する実務設計",
+      "price": 1680
+    },
+    {
+      "id": "note_20260829_51_document_retention_disposition",
+      "title": "共有フォルダを増やし続けない｜保存期限・責任者・削除判断を決める文書管理ルール",
+      "price": 1480
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260829_01_contract_renewal_signals",
+      "title": "自動更新で損する前に見る4項目｜契約満了より先に確認する日付",
+      "pairedPaidId": "note_20260829_47_contract_renewal_control"
+    },
+    {
+      "id": "free_note_20260829_02_cashflow_warning_signals",
+      "title": "黒字でも危ない？｜13週間の資金繰りで先に見る3つのサイン",
+      "pairedPaidId": "note_20260829_50_cashflow_weekly_forecast"
+    }
+  ],
+  "booth": [
+    {
+      "id": "054_contract_renewal_control_os_20260829",
+      "title": "契約更新・解約期限管理OS｜90日前から価格・利用状況・通知を確認",
+      "price": 1480
+    },
+    {
+      "id": "055_complaint_root_cause_control_os_20260829",
+      "title": "クレーム再発防止OS｜一次対応・事実・原因・恒久対策を分離管理",
+      "price": 1480
+    },
+    {
+      "id": "056_onboarding_skill_matrix_os_20260829",
+      "title": "新人オンボーディング・スキルマトリクスOS｜独り立ち条件と教育進捗を管理",
+      "price": 1480
+    },
+    {
+      "id": "057_cashflow_weekly_forecast_os_20260829",
+      "title": "13週間資金繰り予測OS｜確度別入出金・最低残高・差異を週次管理",
+      "price": 1680
+    },
+    {
+      "id": "058_document_retention_disposition_os_20260829",
+      "title": "文書保存・廃棄管理OS｜正本・保存期限・権限・削除判断を一元管理",
+      "price": 1480
+    }
+  ],
+  "qualityPolicy": {
+    "noExactPublicTitleDuplicates": true,
+    "paidBodiesOver900Chars": true,
+    "boothReusableEditableAssets": true,
+    "dedicatedCoverRequired": true,
+    "publicStrictVerificationRequired": true
+  },
+  "materialization": {
+    "paid": true,
+    "free": true,
+    "booth": true,
+    "queueQA": true
+  }
+}

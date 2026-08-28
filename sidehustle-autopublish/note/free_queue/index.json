@@ -1,8 +1,8 @@
 {
-  "version": 13,
-  "updatedAt": "2026-08-29T00:01:01+09:00",
+  "version": 16,
+  "updatedAt": "2026-08-29T00:34:32+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-26_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-29_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1351,6 +1351,82 @@
       "verificationState": "reader_visible_free_verified_reconciled",
       "verifiedAt": "2026-08-28T23:48:30+09:00",
       "reconciledReason": "The earlier canonical URL no longer resolves; this surviving public URL replaces it."
+    },
+    {
+      "id": "free_note_20260828_01_attendance_month_end_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "勤怠集計で月末に起きやすい5つの異常｜締日前に見る場所だけ整理",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-28_batch01.md",
+      "pairedPaidId": "note_20260828_42_attendance_month_end_exception_control",
+      "tags": [
+        "勤怠管理",
+        "バックオフィス",
+        "業務改善"
+      ],
+      "coverLabel": "勤怠管理・月次締め",
+      "coverCopy": "締日前に見る 5つの異常",
+      "accent": "#1d4ed8",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260828-20260829T003138+0900"
+    },
+    {
+      "id": "free_note_20260828_02_ai_efficiency_measurement_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "AI導入が『効率化止まり』になる3つのサイン｜効果検証で最初に決める数字",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-28_batch01.md",
+      "pairedPaidId": "note_20260828_45_ai_efficiency_roi_measurement",
+      "tags": [
+        "生成AI",
+        "業務改善",
+        "効果測定"
+      ],
+      "coverLabel": "生成AI・効果測定",
+      "coverCopy": "便利で終わらせない 3つの数字",
+      "accent": "#7c3aed",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260828-20260829T003138+0900"
+    },
+    {
+      "id": "free_note_20260829_01_contract_renewal_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "自動更新で損する前に見る4項目｜契約満了より先に確認する日付",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-29_batch01.md",
+      "pairedPaidId": "note_20260829_47_contract_renewal_control",
+      "tags": [
+        "契約管理",
+        "サブスク",
+        "バックオフィス"
+      ],
+      "coverLabel": "契約管理・更新",
+      "coverCopy": "更新日の前に見る 4項目",
+      "accent": "#0f766e",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260829-20260829T003138+0900"
+    },
+    {
+      "id": "free_note_20260829_02_cashflow_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "黒字でも危ない？｜13週間の資金繰りで先に見る3つのサイン",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-29_batch01.md",
+      "pairedPaidId": "note_20260829_50_cashflow_weekly_forecast",
+      "tags": [
+        "資金繰り",
+        "キャッシュフロー",
+        "小規模事業者"
+      ],
+      "coverLabel": "資金繰り・経営管理",
+      "coverCopy": "13週間で見る 3つのサイン",
+      "accent": "#b45309",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260829-20260829T003138+0900"
     }
   ],
   "eveningMarathon": {
@@ -1359,15 +1435,25 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-08-26",
-    "ids": [
-      "free_note_20260826_01_event_cancel_signals",
-      "free_note_20260826_02_support_faq_boundary"
+    "dateRange": [
+      "2026-08-28",
+      "2026-08-29"
     ],
-    "requiredStrictPublications": 2
+    "ids": [
+      "free_note_20260828_01_attendance_month_end_signals",
+      "free_note_20260828_02_ai_efficiency_measurement_signals",
+      "free_note_20260829_01_contract_renewal_signals",
+      "free_note_20260829_02_cashflow_warning_signals"
+    ],
+    "requiredStrictPublications": 4,
+    "carryOverFirst": true
   },
   "retryGeneration": 1,
-  "activePublicationDate": "2026-08-27",
+  "activePublicationDate": "2026-08-29",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "likes-extra-note10-20260827T233219+0900"
+  "forceRetryNonce": "likes-extra-note10-20260827T233219+0900",
+  "sourceBatchPaths": [
+    "sidehustle-autopublish/note/free_drafts/2026-08-28_batch01.md",
+    "sidehustle-autopublish/note/free_drafts/2026-08-29_batch01.md"
+  ]
 }

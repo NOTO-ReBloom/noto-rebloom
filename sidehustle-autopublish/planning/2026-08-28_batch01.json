@@ -4,26 +4,91 @@
   "date": "2026-08-28",
   "dateId": "20260828",
   "previousDate": "2026-08-27",
-  "status": "planned_pending_materialization",
+  "status": "materialized_queued_pending_strict_publication",
   "sourceResearch": "sidehustle-autopublish/planning/2026-08-28_candidate_research.json",
-  "carryOver": {"paidNOTE":0,"freeNOTE":0,"BOOTH":0,"total":0},
+  "carryOver": {
+    "paidNOTE": 0,
+    "freeNOTE": 0,
+    "BOOTH": 0,
+    "total": 0
+  },
   "paid": [
-    {"id":"note_20260828_42_attendance_month_end_exception_control","title":"月末の勤怠締めで慌てない｜打刻漏れ・重複・長時間労働を締日前に潰す実務フロー","price":1480,"cluster":"attendance_month_end_exception_control"},
-    {"id":"note_20260828_43_estimate_to_order_followup_control","title":"見積を出した後に放置しない｜受注フォローを属人化させない案件管理ルール","price":1480,"cluster":"estimate_to_order_followup_control"},
-    {"id":"note_20260828_44_applicant_response_sla_control","title":"応募者を待たせない｜採用の返信漏れ・面接調整漏れを防ぐ小規模チーム運用","price":1480,"cluster":"applicant_response_sla_control"},
-    {"id":"note_20260828_45_ai_efficiency_roi_measurement","title":"AI導入を『便利だった』で終わらせない｜業務時間・品質・再作業を測る効果検証設計","price":1680,"cluster":"ai_efficiency_roi_measurement"},
-    {"id":"note_20260828_46_backoffice_labor_saving_priority_matrix","title":"省力化は『ツール選び』から始めない｜小規模事業者のバックオフィス改善優先順位の付け方","price":1480,"cluster":"backoffice_labor_saving_priority_matrix"}
+    {
+      "id": "note_20260828_42_attendance_month_end_exception_control",
+      "title": "月末の勤怠締めで慌てない｜打刻漏れ・重複・長時間労働を締日前に潰す実務フロー",
+      "price": 1480,
+      "cluster": "attendance_month_end_exception_control"
+    },
+    {
+      "id": "note_20260828_43_estimate_to_order_followup_control",
+      "title": "見積を出した後に放置しない｜受注フォローを属人化させない案件管理ルール",
+      "price": 1480,
+      "cluster": "estimate_to_order_followup_control"
+    },
+    {
+      "id": "note_20260828_44_applicant_response_sla_control",
+      "title": "応募者を待たせない｜採用の返信漏れ・面接調整漏れを防ぐ小規模チーム運用",
+      "price": 1480,
+      "cluster": "applicant_response_sla_control"
+    },
+    {
+      "id": "note_20260828_45_ai_efficiency_roi_measurement",
+      "title": "AI導入を『便利だった』で終わらせない｜業務時間・品質・再作業を測る効果検証設計",
+      "price": 1680,
+      "cluster": "ai_efficiency_roi_measurement"
+    },
+    {
+      "id": "note_20260828_46_backoffice_labor_saving_priority_matrix",
+      "title": "省力化は『ツール選び』から始めない｜小規模事業者のバックオフィス改善優先順位の付け方",
+      "price": 1480,
+      "cluster": "backoffice_labor_saving_priority_matrix"
+    }
   ],
   "free": [
-    {"id":"free_note_20260828_01_attendance_month_end_signals","title":"勤怠集計で月末に起きやすい5つの異常｜締日前に見る場所だけ整理","cluster":"attendance_month_end_exception_control","pairedPaidId":"note_20260828_42_attendance_month_end_exception_control"},
-    {"id":"free_note_20260828_02_ai_efficiency_measurement_signals","title":"AI導入が『効率化止まり』になる3つのサイン｜効果検証で最初に決める数字","cluster":"ai_efficiency_roi_measurement","pairedPaidId":"note_20260828_45_ai_efficiency_roi_measurement"}
+    {
+      "id": "free_note_20260828_01_attendance_month_end_signals",
+      "title": "勤怠集計で月末に起きやすい5つの異常｜締日前に見る場所だけ整理",
+      "cluster": "attendance_month_end_exception_control",
+      "pairedPaidId": "note_20260828_42_attendance_month_end_exception_control"
+    },
+    {
+      "id": "free_note_20260828_02_ai_efficiency_measurement_signals",
+      "title": "AI導入が『効率化止まり』になる3つのサイン｜効果検証で最初に決める数字",
+      "cluster": "ai_efficiency_roi_measurement",
+      "pairedPaidId": "note_20260828_45_ai_efficiency_roi_measurement"
+    }
   ],
   "booth": [
-    {"id":"049_attendance_month_end_exception_control_os_20260828","title":"勤怠締め異常チェックOS｜打刻漏れ・重複・長時間労働の確認テンプレート","price":1480,"cluster":"attendance_month_end_exception_control"},
-    {"id":"050_estimate_to_order_followup_control_os_20260828","title":"見積→受注フォロー管理OS｜次回連絡日・失注理由・追客漏れ防止テンプレート","price":1480,"cluster":"estimate_to_order_followup_control"},
-    {"id":"051_applicant_response_sla_control_os_20260828","title":"採用応募対応OS｜返信期限・面接調整・選考停滞の見える化テンプレート","price":1480,"cluster":"applicant_response_sla_control"},
-    {"id":"052_ai_efficiency_roi_measurement_os_20260828","title":"AI業務改善ROI測定OS｜導入前後の時間・品質・再作業・利用率を記録するテンプレート","price":1680,"cluster":"ai_efficiency_roi_measurement"},
-    {"id":"053_backoffice_labor_saving_priority_matrix_os_20260828","title":"バックオフィス省力化診断OS｜手間・頻度・ミス損失から改善順を決めるテンプレート","price":1480,"cluster":"backoffice_labor_saving_priority_matrix"}
+    {
+      "id": "049_attendance_month_end_exception_control_os_20260828",
+      "title": "勤怠締め異常チェックOS｜打刻漏れ・重複・長時間労働の確認テンプレート",
+      "price": 1480,
+      "cluster": "attendance_month_end_exception_control"
+    },
+    {
+      "id": "050_estimate_to_order_followup_control_os_20260828",
+      "title": "見積→受注フォロー管理OS｜次回連絡日・失注理由・追客漏れ防止テンプレート",
+      "price": 1480,
+      "cluster": "estimate_to_order_followup_control"
+    },
+    {
+      "id": "051_applicant_response_sla_control_os_20260828",
+      "title": "採用応募対応OS｜返信期限・面接調整・選考停滞の見える化テンプレート",
+      "price": 1480,
+      "cluster": "applicant_response_sla_control"
+    },
+    {
+      "id": "052_ai_efficiency_roi_measurement_os_20260828",
+      "title": "AI業務改善ROI測定OS｜導入前後の時間・品質・再作業・利用率を記録するテンプレート",
+      "price": 1680,
+      "cluster": "ai_efficiency_roi_measurement"
+    },
+    {
+      "id": "053_backoffice_labor_saving_priority_matrix_os_20260828",
+      "title": "バックオフィス省力化診断OS｜手間・頻度・ミス損失から改善順を決めるテンプレート",
+      "price": 1480,
+      "cluster": "backoffice_labor_saving_priority_matrix"
+    }
   ],
   "qualityPolicy": {
     "noCosmeticDuplicates": true,
@@ -33,6 +98,12 @@
     "dedicatedCoverRequired": true,
     "publicStrictVerificationRequired": true
   },
-  "materialization": {"paid":false,"free":false,"booth":false,"queueQA":false},
-  "notes": "Research evidence and demand rationale are in the sourceResearch file. IDs are reserved for Aug 28 only; they do not count as publications until strict public verification."
+  "materialization": {
+    "paid": true,
+    "free": true,
+    "booth": true,
+    "queueQA": true
+  },
+  "notes": "Research evidence and demand rationale are in the sourceResearch file. IDs are reserved for Aug 28 only; they do not count as publications until strict public verification.",
+  "materializedAt": "2026-08-29T00:34:32+09:00"
 }

@@ -1,20 +1,25 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-29T00:01:01+09:00",
-  "retryGeneration": 45,
+  "updatedAt": "2026-08-29T00:34:32+09:00",
+  "retryGeneration": 48,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_2026-08-26_paid_note_batch_now",
-    "requiredStrictPublications": 5,
+    "mode": "publish_aug28_carryover_then_aug29_paid_note_now",
+    "requiredStrictPublications": 10,
     "orderedIds": [
-      "note_20260826_32_event_cancellation_decision_log",
-      "note_20260826_33_sponsor_benefit_inventory",
-      "note_20260826_34_volunteer_shift_handover",
-      "note_20260826_35_research_consent_version_control",
-      "note_20260826_36_digital_support_triage"
+      "note_20260828_42_attendance_month_end_exception_control",
+      "note_20260828_43_estimate_to_order_followup_control",
+      "note_20260828_44_applicant_response_sla_control",
+      "note_20260828_45_ai_efficiency_roi_measurement",
+      "note_20260828_46_backoffice_labor_saving_priority_matrix",
+      "note_20260829_47_contract_renewal_control",
+      "note_20260829_48_complaint_root_cause_control",
+      "note_20260829_49_onboarding_skill_matrix",
+      "note_20260829_50_cashflow_weekly_forecast",
+      "note_20260829_51_document_retention_disposition"
     ],
-    "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
+    "instruction": "Publish all ten in order; discover exact-title public pages before retry; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -22,8 +27,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-08-28T00:18:24+09:00",
-    "nonce": "paid-note-20260826-20260828T001824+0900"
+    "forcedAt": "2026-08-29T00:34:32+09:00",
+    "nonce": "paid-note-20260828-20260829-20260829T003432+0900"
   },
   "entries": [
     {
@@ -979,8 +984,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260826_32_event_cancellation_decision_log.enc.json",
       "sha256": "14eb3cd9dd852cc063265bf927f8c1a8dd32942f081ee04e219eed57bfb73cc1",
       "createdAt": "2026-08-28T00:18:24+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -999,8 +1004,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260826_33_sponsor_benefit_inventory.enc.json",
       "sha256": "2324166db0ae1ab264fab8a5d666978cab65d5103ed6e9d8092db4e7029cad63",
       "createdAt": "2026-08-28T00:18:24+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -1019,8 +1024,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260826_34_volunteer_shift_handover.enc.json",
       "sha256": "367e6365d5b4115b582e3467011e112767cde1a9cb02b6e062de2a1fbda2e594",
       "createdAt": "2026-08-28T00:18:24+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -1039,8 +1044,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260826_35_research_consent_version_control.enc.json",
       "sha256": "488e8f0d2d981be4c198c0d79b8ac98cf64d99de1ad4bf2fa2974126f50bf208",
       "createdAt": "2026-08-28T00:18:24+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -1059,8 +1064,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260826_36_digital_support_triage.enc.json",
       "sha256": "1a54b71bd98d188184e66b886e55b41a679bc5c5310db8aa384867763e8fd557",
       "createdAt": "2026-08-28T00:18:24+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260826-20260828T001824+0900",
       "expectedPriceJPY": 1180,
       "requireReaderVisibleVerification": true,
@@ -1072,9 +1077,213 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260828_42_attendance_month_end_exception_control",
+      "title": "月末の勤怠締めで慌てない｜打刻漏れ・重複・長時間労働を締日前に潰す実務フロー",
+      "path": "sidehustle-autopublish/note/queue/note_20260828_42_attendance_month_end_exception_control.enc.json",
+      "sha256": "5620f0484b43e2c577cb9ad946e5005c368b83d6d1e6f0d11e9bcc1c59a6d3b1",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260828-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260828_43_estimate_to_order_followup_control",
+      "title": "見積を出した後に放置しない｜受注フォローを属人化させない案件管理ルール",
+      "path": "sidehustle-autopublish/note/queue/note_20260828_43_estimate_to_order_followup_control.enc.json",
+      "sha256": "d62a664fddcb22ce2f3c6681cd85bf4f24ba8c9fd8bef20c89be2d7d24352823",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260828-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260828_44_applicant_response_sla_control",
+      "title": "応募者を待たせない｜採用の返信漏れ・面接調整漏れを防ぐ小規模チーム運用",
+      "path": "sidehustle-autopublish/note/queue/note_20260828_44_applicant_response_sla_control.enc.json",
+      "sha256": "7a1aaccaf41b16b40996a5d7aebea64ef97f6a330519680d0b8946d024d1cccb",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260828-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260828_45_ai_efficiency_roi_measurement",
+      "title": "AI導入を『便利だった』で終わらせない｜業務時間・品質・再作業を測る効果検証設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260828_45_ai_efficiency_roi_measurement.enc.json",
+      "sha256": "bb9ef966799d79b3e84810a2bf9c29a12d176c704a0c58a69bc44a24888daf45",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260828-20260829T003138+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260828_46_backoffice_labor_saving_priority_matrix",
+      "title": "省力化は『ツール選び』から始めない｜小規模事業者のバックオフィス改善優先順位の付け方",
+      "path": "sidehustle-autopublish/note/queue/note_20260828_46_backoffice_labor_saving_priority_matrix.enc.json",
+      "sha256": "fe491139a5d1016736de0011a139cb75e38a6d4187197b85569287f066512b1d",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260828-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260829_47_contract_renewal_control",
+      "title": "契約更新を直前に思い出さない｜解約期限・値上げ・利用状況を90日前から確認する台帳設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260829_47_contract_renewal_control.enc.json",
+      "sha256": "6722bea795eef1b9a113e73507ad77eb4e03fa122a988e4ee3004df5d1de69ab",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260829-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260829_48_complaint_root_cause_control",
+      "title": "同じクレームを個別対応で終わらせない｜事実・応急処置・再発条件を分ける改善フロー",
+      "path": "sidehustle-autopublish/note/queue/note_20260829_48_complaint_root_cause_control.enc.json",
+      "sha256": "85e1e58871d317232cfb59c36b55272af568b3b11605af640666eb65c77e8d93",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260829-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260829_49_onboarding_skill_matrix",
+      "title": "新人教育を『一度説明した』で終わらせない｜業務別スキル確認と独り立ち判定の作り方",
+      "path": "sidehustle-autopublish/note/queue/note_20260829_49_onboarding_skill_matrix.enc.json",
+      "sha256": "6a7245ba23465ac5f8bae237bca4a16b4ecfb7327f7485e897f2f58bb495d13e",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260829-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260829_50_cashflow_weekly_forecast",
+      "title": "黒字なのに支払いで詰まらないために｜13週間の資金繰りを毎週更新する実務設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260829_50_cashflow_weekly_forecast.enc.json",
+      "sha256": "81d076d0c44162f6e47b64b49ed0624ab2b63f31b1b175187bf1dd58c97d1c30",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260829-20260829T003138+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260829_51_document_retention_disposition",
+      "title": "共有フォルダを増やし続けない｜保存期限・責任者・削除判断を決める文書管理ルール",
+      "path": "sidehustle-autopublish/note/queue/note_20260829_51_document_retention_disposition.enc.json",
+      "sha256": "087c2b6237bf25fb9d7158700a5cd78e986f3ffbc027a86cb9e2f522d13f22a0",
+      "createdAt": "2026-08-29T00:31:38+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260829-20260829T003138+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
-  "activePublicationDate": "2026-08-27",
+  "activePublicationDate": "2026-08-29",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "likes-extra-note10-20260827T233219+0900"
+  "forceRetryNonce": "likes-extra-note10-20260827T233219+0900",
+  "outstandingDates": [
+    "2026-08-28",
+    "2026-08-29"
+  ]
 }

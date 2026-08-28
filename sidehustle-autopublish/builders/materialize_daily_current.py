@@ -1,8 +1,9 @@
 from pathlib import Path
 import json
+import sys
 
 base = Path(__file__).parent
-plan_path = base / "daily_plan_current.json"
+plan_path = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else base / "daily_plan_current.json"
 if not plan_path.exists():
     raise FileNotFoundError(f"missing canonical current plan: {plan_path}")
 
@@ -20,7 +21,7 @@ if missing:
 code = "".join(p.read_text("utf-8") for p in parts)
 code = code.replace("requiredRe\naderChecks", "requiredReaderChecks")
 code = code.replace("ensure_\nascii", "ensure_ascii")
-code = code.replace("daily_plan_20260825.json", "daily_plan_current.json")
+code = code.replace("daily_plan_20260825.json", plan_path.name)
 code = code.replace('"previousDate":"2026-08-24"', '"previousDate":PLAN.get("previousDate")')
 compile(code, str(__file__) + "::assembled-current", "exec")
 exec(code, globals(), globals())
