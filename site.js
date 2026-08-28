@@ -3,6 +3,9 @@
 
   const OLD_FORM_TOKEN='jdSpe6Pb3pyFf7QU6';
   const PARTICIPANT_FORM='https://forms.gle/6ZMrhrhtWmBCQViD8';
+  const REBOOST_STUDIO_URL='https://coworkingsquarekanazawa.com/events/event/re%EF%BC%9Aboostreboost-studio-%EF%BD%9Ekanazawa-reboost-u23%EF%BD%9E%EF%BD%9C%E5%AD%A6%E7%94%9F%E3%81%AE%E6%8C%91%E6%88%A6%E3%82%92%E3%80%81%E5%9C%B0%E5%9F%9F%E3%81%AE%E7%86%B1%E7%8B%82%E3%81%AB/';
+  const INSTAGRAM_URL='https://www.instagram.com/doronkounndoukai2026?igsi=MTNmdjN6bWY0YnJjcQ%3D%3D&utm_source=qr';
+  const FACEBOOK_URL='https://www.facebook.com/share/1GqkbWfDAN/?mibextid=wwXIfr';
   const recruitmentText=/学生企画メンバー|学生募集|企画メンバー募集|共創メンバー|申込は8月8日まで|8月8日まで・学生募集/;
 
   const ensureLatestStyles=()=>{
@@ -19,6 +22,37 @@
     link.rel='stylesheet';
     link.href='site-finishing.css?v=20260827d';
     document.head.appendChild(link);
+  };
+
+  const ensureGlobalSocialStyles=()=>{
+    if(document.getElementById('rb-global-social-style')) return;
+    const style=document.createElement('style');
+    style.id='rb-global-social-style';
+    style.textContent=`
+      .rb-social-links{display:flex;align-items:center;gap:9px}
+      .rb-social-links a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;text-decoration:none;transition:transform .16s ease,background .16s ease,border-color .16s ease,color .16s ease}
+      .rb-social-links svg{display:block;width:18px;height:18px}
+      .rb-social-links--footer{box-sizing:border-box;width:min(1120px,calc(100% - 40px));margin:18px auto 0;padding:18px 0 2px;border-top:1px solid rgba(255,255,255,.13);justify-content:flex-start}
+      .rb-social-links--footer::before{content:"公式SNS";margin-right:5px;color:rgba(255,255,255,.62);font-size:10px;font-weight:900;letter-spacing:.1em}
+      .rb-social-links--footer a{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);color:#fff}
+      .story-step--linked{color:inherit;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+      .story-step--linked::after{content:"公式ページを見る ↗";display:block;margin-top:12px;color:#245f4c;font-size:10px;font-weight:900;letter-spacing:.02em}
+      @media(hover:hover){.rb-social-links--footer a:hover{transform:translateY(-2px);background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);color:#ffe88d}.story-step--linked:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(23,58,49,.11);border-color:rgba(23,75,62,.24)}}
+      @media(max-width:700px){.rb-social-links--footer{width:min(100% - 28px,1120px);padding-top:15px}.rb-social-links--footer a{width:34px;height:34px}.rb-social-links--footer svg{width:17px;height:17px}}
+    `;
+    document.head.appendChild(style);
+  };
+
+  const injectFooterSocial=()=>{
+    ensureGlobalSocialStyles();
+    const footer=document.querySelector('.site-footer');
+    if(!footer) return;
+    footer.querySelectorAll('.rb-social-links--footer').forEach(el=>el.remove());
+    const nav=document.createElement('nav');
+    nav.className='rb-social-links rb-social-links--footer';
+    nav.setAttribute('aria-label','NOTO Re:Bloom 公式SNS');
+    nav.innerHTML=`<a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="泥ん子運動会 公式Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a><a href="${FACEBOOK_URL}" target="_blank" rel="noopener noreferrer" aria-label="泥ん子運動会 公式Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.8 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v8h3.8Z"/></svg></a>`;
+    footer.appendChild(nav);
   };
 
   const normalizeLegacyLink=(a)=>{
@@ -125,7 +159,6 @@
   const refineHomepage=()=>{
     if(!document.body.classList.contains('nr-new-home')) return;
 
-    /* The home page should lead with the event experience; collaboration is supporting trust content. */
     const ishimo=document.getElementById('ishimo-collaboration');
     const story=document.getElementById('project-story');
     const people=document.getElementById('people-behind-project');
@@ -134,7 +167,6 @@
       else if(people) people.before(ishimo);
     }
 
-    /* The hero already explains date/time/price. Use the second row to explain what is fun. */
     const facts=document.querySelector('#visual-day .join-facts');
     if(facts && !facts.dataset.experienceFacts){
       facts.dataset.experienceFacts='true';
@@ -146,7 +178,6 @@
       if(span) span.textContent='泥だらけで思いきり遊んだあとまで、楽しみが続く一日にします。';
     }
 
-    /* Keep the journey as trust proof, but remove steps that duplicate other sections. */
     const steps=[...document.querySelectorAll('#project-story .story-step')];
     if(steps.length>=8){
       const h3=steps[1]?.querySelector('h3');
@@ -154,7 +185,18 @@
       if(h3) h3.textContent='現地へ行き、会場を探す';
       if(p) p.textContent='土地を見て地域の方と話し、開催できる場所を一つずつ探しました。';
       steps[2]?.remove();
-      steps[5]?.remove();
+    }
+
+    const reportStep=[...document.querySelectorAll('#project-story .story-step')].find(step=>(step.querySelector('.story-dot')?.textContent||'').trim()==='9.19');
+    if(reportStep && reportStep.tagName!=='A'){
+      const link=document.createElement('a');
+      link.className=`${reportStep.className} story-step--linked`;
+      link.href=REBOOST_STUDIO_URL;
+      link.target='_blank';
+      link.rel='noopener';
+      link.setAttribute('aria-label','9月19日 RE:BOOST STUDIO 公式イベントページを見る');
+      while(reportStep.firstChild) link.appendChild(reportStep.firstChild);
+      reportStep.replaceWith(link);
     }
   };
 
@@ -177,21 +219,18 @@
   const refineEventPage=()=>{
     if(!document.body.classList.contains('nr-new-event')) return;
 
-    /* Put the experience before organiser-side attendance targets. */
     const heroH1=document.querySelector('.page-hero--event h1');
     const heroLead=heroH1?.nextElementSibling;
     if(heroLead?.tagName==='P') heroLead.textContent='使われなくなった土地を、みんなが集まり、笑い合える場所へ。珠洲市若山町洲巻の約1,000㎡の田んぼで、綱引きやリレーなど5つの競技を楽しみ、最後はRe:Bloomレンゲカップを作って持ち帰ります。';
 
-    /* Turn the 9/19 event into a small supporting note and move it below the FAQ. */
     const reboost=document.getElementById('reboost-studio');
     const faq=document.getElementById('event-faq');
     if(reboost){
       reboost.className='rb-reboost-section rb-reboost-section--compact';
-      reboost.innerHTML=`<div class="event-reboost-note"><div class="event-reboost-note__copy"><small>9.19 SAT / KANAZAWA</small><strong>前日は香林坊で、NOTO Re:Bloomの活動を発表します。</strong><p>これまでの活動と、翌9月20日に珠洲で開催する泥ん子運動会について紹介します。</p></div><div class="event-reboost-note__date">9/19<br>15:00–17:00</div></div>`;
+      reboost.innerHTML=`<a class="event-reboost-note" href="${REBOOST_STUDIO_URL}" target="_blank" rel="noopener" aria-label="9月19日 RE:BOOST STUDIO 公式イベントページを見る"><div class="event-reboost-note__copy"><small>9.19 SAT / KANAZAWA</small><strong>前日は香林坊で、NOTO Re:Bloomの活動を発表します。</strong><p>これまでの活動と、翌9月20日に珠洲で開催する泥ん子運動会について紹介します。</p></div><div class="event-reboost-note__date">9/19<br>15:00–17:00</div></a>`;
       if(faq) faq.after(reboost);
     }
 
-    /* Eighteen FAQs are useful; grouping makes them feel prepared rather than overwhelming. */
     const grid=document.querySelector('#event-faq .faq-grid');
     if(grid && !grid.querySelector('.faq-category')){
       const cards=[...grid.querySelectorAll(':scope > .faq-card')];
@@ -286,6 +325,7 @@
   refineEventPage();
   setupDiagnosisExperience();
   injectPartnerStrip();
+  injectFooterSocial();
   setupRevealAndScroll();
 
   let cleaning=false;
