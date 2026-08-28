@@ -2,6 +2,14 @@
   const EVENT_URL = 'https://noto-rebloom.github.io/noto-rebloom/event.html';
   const SHARE_TEXT = '9月20日、珠洲市で開催される「泥ん子運動会2026」。参加費無料です。';
 
+  /* Event-specific cache bust: make the latest conversion/readiness styles win over older cached CSS. */
+  if (!document.querySelector('link[href*="site-finishing.css?v=20260828conversion1"]')) {
+    const latestStyles = document.createElement('link');
+    latestStyles.rel = 'stylesheet';
+    latestStyles.href = 'site-finishing.css?v=20260828conversion1';
+    document.head.appendChild(latestStyles);
+  }
+
   const target = new Date('2026-09-20T00:00:00+09:00');
   const el = document.getElementById('eventCountdown');
   if (el) {
