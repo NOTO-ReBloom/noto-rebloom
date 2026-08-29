@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "createdAt": "2026-08-30T05:17:18+09:00",
+  "date": "2026-08-30",
+  "dateId": "20260830",
+  "previousDate": "2026-08-29",
+  "status": "planned_not_materialized",
+  "carryOver": {"paidNOTE":0,"freeNOTE":0,"BOOTH":0,"total":0},
+  "paid": [
+    {"id":"note_20260830_52_receivables_collection_control","title":"入金遅れを月末まで放置しない｜請求日・支払期日・督促履歴を分ける売掛金回収管理","price":1680},
+    {"id":"note_20260830_53_access_rights_review","title":"退職者の権限を残さない｜アカウント棚卸し・承認者・削除期限を決めるアクセス権レビュー","price":1480},
+    {"id":"note_20260830_54_vendor_price_revision_impact","title":"仕入先の値上げ通知を見落とさない｜原価影響・適用日・代替策を一枚で追う価格改定管理","price":1680},
+    {"id":"note_20260830_55_meeting_decision_followthrough","title":"会議で決めたことを消さない｜決定事項・担当・期限・未完理由を残すフォロー管理","price":1480},
+    {"id":"note_20260830_56_equipment_inspection_exception","title":"点検表を埋めるだけで終わらせない｜設備異常・応急処置・再点検期限を追う例外管理","price":1480}
+  ],
+  "free": [
+    {"id":"free_note_20260830_01_receivables_warning_signals","title":"入金遅れが増える前に見る4つのサイン｜売掛金の督促を後手にしない確認項目","pairedPaidId":"note_20260830_52_receivables_collection_control"},
+    {"id":"free_note_20260830_02_access_rights_warning_signals","title":"辞めた人のアカウント、残っていませんか？｜権限棚卸しで先に見る4項目","pairedPaidId":"note_20260830_53_access_rights_review"}
+  ],
+  "booth": [
+    {"id":"059_receivables_collection_control_os_20260830","title":"売掛金・入金督促管理OS｜支払期日・滞留日数・督促履歴を一元管理","price":1680},
+    {"id":"060_access_rights_review_os_20260830","title":"アカウント・アクセス権棚卸しOS｜保有権限・承認者・削除期限を管理","price":1480},
+    {"id":"061_vendor_price_revision_impact_os_20260830","title":"仕入先価格改定・原価影響管理OS｜適用日・影響額・代替策を追跡","price":1680},
+    {"id":"062_meeting_decision_followthrough_os_20260830","title":"会議決定事項フォローOS｜担当・期限・進捗・未完理由を一元管理","price":1480},
+    {"id":"063_equipment_inspection_exception_os_20260830","title":"設備点検・異常対応OS｜異常内容・応急処置・再点検期限を管理","price":1480}
+  ],
+  "qualityPolicy":{"noExactPublicTitleDuplicates":true,"semanticDuplicateCheckRequired":true,"paidBodiesOver900Chars":true,"boothReusableEditableAssets":true,"dedicatedCoverRequired":true,"publicStrictVerificationRequired":true},
+  "materialization":{"paid":false,"free":false,"booth":false,"queueQA":false},
+  "strictVerified":{"paid":0,"free":0,"booth":0,"total":0}
+}
