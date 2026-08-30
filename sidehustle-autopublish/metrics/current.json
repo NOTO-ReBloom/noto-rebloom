@@ -1,6 +1,6 @@
 {
-  "version": 37,
-  "updatedAt": "2026-08-30T21:18:13+09:00",
+  "version": 40,
+  "updatedAt": "2026-08-31T00:29:14+09:00",
   "objective": "Preserve the strictly verified Aug 28-29 batch: paid NOTE 10, free NOTE 4 and BOOTH 10.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -22,58 +22,71 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "date": "2026-08-30",
-    "observedAt": "2026-08-30T09:16:55+09:00",
-    "previousDate": "2026-08-29",
-    "previousDayPaidNoteStrictVerified": "5/5",
-    "previousDayBoothStrictVerified": "5/5",
-    "previousDayFreeNoteStrictVerified": "2/2",
-    "carriedPaidDebt": 0
+    "date": "2026-08-31",
+    "observedAt": "2026-08-31T00:29:14+09:00",
+    "previousDate": "2026-08-30",
+    "previousDayPaidNoteStrictVerified": "0/5",
+    "previousDayBoothStrictVerified": "0/5",
+    "previousDayFreeNoteStrictVerified": "0/2",
+    "carriedTotalDebt": 12
   },
   "currentDayTargets": {
-    "date": "2026-08-30",
+    "date": "2026-08-31",
     "paidNote": {
-      "target": 5,
+      "target": 10,
       "strictVerified": 0,
-      "remaining": 5,
-      "materialized": 5,
+      "remaining": 10,
+      "materialized": 10,
       "remainingIds": [
         "note_20260830_52_receivables_collection_control",
         "note_20260830_53_access_rights_review",
         "note_20260830_54_vendor_price_revision_impact",
         "note_20260830_55_meeting_decision_followthrough",
-        "note_20260830_56_equipment_inspection_exception"
+        "note_20260830_56_equipment_inspection_exception",
+        "note_20260831_57_purchase_invoice_match_control",
+        "note_20260831_58_inventory_expiry_lot_rotation",
+        "note_20260831_59_project_scope_change_control",
+        "note_20260831_60_backup_restore_verification",
+        "note_20260831_61_procedure_revision_acknowledgement"
       ]
     },
     "BOOTH": {
-      "target": 5,
+      "target": 10,
       "strictVerified": 0,
-      "remaining": 5,
-      "materialized": 5,
+      "remaining": 10,
+      "materialized": 10,
       "remainingIds": [
         "059_receivables_collection_control_os_20260830",
         "060_access_rights_review_os_20260830",
         "061_vendor_price_revision_impact_os_20260830",
         "062_meeting_decision_followthrough_os_20260830",
-        "063_equipment_inspection_exception_os_20260830"
+        "063_equipment_inspection_exception_os_20260830",
+        "064_purchase_invoice_match_control_os_20260831",
+        "065_inventory_expiry_lot_rotation_os_20260831",
+        "066_project_scope_change_control_os_20260831",
+        "067_backup_restore_verification_os_20260831",
+        "068_procedure_revision_acknowledgement_os_20260831"
       ]
     },
     "freeNote": {
-      "target": 2,
+      "target": 4,
       "strictVerified": 0,
-      "remaining": 2,
+      "remaining": 4,
+      "materialized": 4,
       "remainingIds": [
         "free_note_20260830_01_receivables_warning_signals",
-        "free_note_20260830_02_access_rights_warning_signals"
+        "free_note_20260830_02_access_rights_warning_signals",
+        "free_note_20260831_01_invoice_difference_signals",
+        "free_note_20260831_02_backup_restore_warning_signals"
       ],
       "paidQuotaContribution": 0
     },
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
-    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
-    "freeNote": "2 manuscripts queued; no public count yet",
+    "paidNote": "10 encrypted payloads materialized; no public count yet",
+    "BOOTH": "10 encrypted product payloads materialized; no public count yet",
+    "freeNote": "4 manuscripts queued; no public count yet",
     "humanOnlyBlocker": null
   },
   "monitor": {

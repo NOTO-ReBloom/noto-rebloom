@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "createdAt": "2026-08-31T00:29:14+09:00",
+  "date": "2026-08-31",
+  "dateId": "20260831",
+  "previousDate": "2026-08-30",
+  "status": "materialized_queued_pending_strict_publication",
+  "carryOver": {
+    "paidNOTE": 5,
+    "freeNOTE": 2,
+    "BOOTH": 5,
+    "total": 12
+  },
+  "paid": [
+    {
+      "id": "note_20260831_57_purchase_invoice_match_control",
+      "title": "発注書と請求書の差額を放置しない｜単価・数量・税区分を照合する支払前検収フロー",
+      "price": 1680
+    },
+    {
+      "id": "note_20260831_58_inventory_expiry_lot_rotation",
+      "title": "期限切れ在庫を棚卸しで初めて知るのを防ぐ｜ロット・使用期限・先入れ先出しの運用設計",
+      "price": 1480
+    },
+    {
+      "id": "note_20260831_59_project_scope_change_control",
+      "title": "追加依頼で案件を赤字にしない｜スコープ変更・見積差額・承認を残す変更管理",
+      "price": 1680
+    },
+    {
+      "id": "note_20260831_60_backup_restore_verification",
+      "title": "バックアップを取っただけで安心しない｜復元テスト・保管先・担当を決める実務チェック",
+      "price": 1680
+    },
+    {
+      "id": "note_20260831_61_procedure_revision_acknowledgement",
+      "title": "古い手順書を使わせない｜版番号・施行日・周知確認を管理する改訂フロー",
+      "price": 1480
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260831_01_invoice_difference_signals",
+      "title": "請求書をそのまま払う前に見る4つの差異｜発注・受領・請求の確認ポイント",
+      "pairedPaidId": "note_20260831_57_purchase_invoice_match_control"
+    },
+    {
+      "id": "free_note_20260831_02_backup_restore_warning_signals",
+      "title": "バックアップが使えないかもしれない4つのサイン｜復元前に確認したい項目",
+      "pairedPaidId": "note_20260831_60_backup_restore_verification"
+    }
+  ],
+  "booth": [
+    {
+      "id": "064_purchase_invoice_match_control_os_20260831",
+      "title": "発注・受領・請求照合OS｜単価・数量・税区分の差異を支払前に管理",
+      "price": 1680
+    },
+    {
+      "id": "065_inventory_expiry_lot_rotation_os_20260831",
+      "title": "在庫期限・ロット回転管理OS｜期限警告・引当順・隔離在庫を一元管理",
+      "price": 1480
+    },
+    {
+      "id": "066_project_scope_change_control_os_20260831",
+      "title": "案件スコープ変更管理OS｜追加依頼・見積差額・承認・検収を追跡",
+      "price": 1680
+    },
+    {
+      "id": "067_backup_restore_verification_os_20260831",
+      "title": "バックアップ・復元検証OS｜対象・世代・保管先・復元テストを管理",
+      "price": 1680
+    },
+    {
+      "id": "068_procedure_revision_acknowledgement_os_20260831",
+      "title": "手順書改訂・周知管理OS｜版番号・施行日・旧版回収・確認状況を追跡",
+      "price": 1480
+    }
+  ],
+  "qualityPolicy": {
+    "noExactPublicTitleDuplicates": true,
+    "semanticDuplicateCheckRequired": true,
+    "paidBodiesOver900Chars": true,
+    "boothReusableEditableAssets": true,
+    "dedicatedCoverRequired": true,
+    "publicStrictVerificationRequired": true
+  },
+  "materialization": {
+    "paid": true,
+    "free": true,
+    "booth": true,
+    "queueQA": true,
+    "paidManifest": "sidehustle-autopublish/note/staging/materialization_20260831_batch01.json",
+    "boothManifest": "booth-autopublish/monitor/cloud_materialization_20260831_batch01.json",
+    "windowsRequest": "sidehustle-autopublish/windows_publication_request.json"
+  },
+  "strictVerified": {
+    "paid": 0,
+    "free": 0,
+    "booth": 0,
+    "total": 0
+  }
+}

@@ -1,29 +1,34 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-30T23:35:57+09:00",
-  "retryGeneration": 50,
+  "updatedAt": "2026-08-31T00:29:14+09:00",
+  "retryGeneration": 53,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_current_day_all_now",
-    "requiredStrictPublications": 5,
+    "mode": "publish_aug30_carryover_then_aug31_paid_note_now",
+    "requiredStrictPublications": 10,
     "orderedIds": [
       "note_20260830_52_receivables_collection_control",
       "note_20260830_53_access_rights_review",
       "note_20260830_54_vendor_price_revision_impact",
       "note_20260830_55_meeting_decision_followthrough",
-      "note_20260830_56_equipment_inspection_exception"
+      "note_20260830_56_equipment_inspection_exception",
+      "note_20260831_57_purchase_invoice_match_control",
+      "note_20260831_58_inventory_expiry_lot_rotation",
+      "note_20260831_59_project_scope_change_control",
+      "note_20260831_60_backup_restore_verification",
+      "note_20260831_61_procedure_revision_acknowledgement"
     ],
-    "instruction": "For every ID, first reconcile an existing exact-title public page. If absent, publish now. Continue after brief recoverable failure. Count only strict reader-visible verification.",
+    "instruction": "Publish all ten in order; discover exact-title public pages before retry; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
       "readerVisibleUrl",
-      "exactTitle",
-      "expectedPrice",
+      "title",
+      "price",
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-08-30T23:35:57+09:00",
-    "nonce": "force-current-day-20260830T233557+0900"
+    "forcedAt": "2026-08-31T00:29:14+09:00",
+    "nonce": "paid-note-20260830-20260831-20260831T002914+0900"
   },
   "entries": [
     {
@@ -1437,11 +1442,129 @@
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
       "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+    },
+    {
+      "id": "note_20260831_57_purchase_invoice_match_control",
+      "title": "発注書と請求書の差額を放置しない｜単価・数量・税区分を照合する支払前検収フロー",
+      "path": "sidehustle-autopublish/note/queue/note_20260831_57_purchase_invoice_match_control.enc.json",
+      "sha256": "ba912d8bf23b44259ccf249c46fc70aa5048f970fd38d1d6d29258a20bf497d0",
+      "createdAt": "2026-08-31T00:27:02+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+    },
+    {
+      "id": "note_20260831_58_inventory_expiry_lot_rotation",
+      "title": "期限切れ在庫を棚卸しで初めて知るのを防ぐ｜ロット・使用期限・先入れ先出しの運用設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260831_58_inventory_expiry_lot_rotation.enc.json",
+      "sha256": "2f63a0a42a00426599e26a3037a6c26fb70467c345c8b37a705bfcb669a84412",
+      "createdAt": "2026-08-31T00:27:02+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+    },
+    {
+      "id": "note_20260831_59_project_scope_change_control",
+      "title": "追加依頼で案件を赤字にしない｜スコープ変更・見積差額・承認を残す変更管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260831_59_project_scope_change_control.enc.json",
+      "sha256": "312e07be4697be1b2f4facba927411b698b8c6d9f7b0bf9e61f9ae0ec920c9b2",
+      "createdAt": "2026-08-31T00:27:02+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+    },
+    {
+      "id": "note_20260831_60_backup_restore_verification",
+      "title": "バックアップを取っただけで安心しない｜復元テスト・保管先・担当を決める実務チェック",
+      "path": "sidehustle-autopublish/note/queue/note_20260831_60_backup_restore_verification.enc.json",
+      "sha256": "814fc974b412c3c9549f08413926874c01ae3dd84287e2bdd0cac7d8d7feaefa",
+      "createdAt": "2026-08-31T00:27:02+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+    },
+    {
+      "id": "note_20260831_61_procedure_revision_acknowledgement",
+      "title": "古い手順書を使わせない｜版番号・施行日・周知確認を管理する改訂フロー",
+      "path": "sidehustle-autopublish/note/queue/note_20260831_61_procedure_revision_acknowledgement.enc.json",
+      "sha256": "009668b1bffbaae41cb9e7a5a71925c1503f770b574ccbda94f72d53d5463a3f",
+      "createdAt": "2026-08-31T00:27:02+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
     }
   ],
-  "activePublicationDate": "2026-08-30",
+  "activePublicationDate": "2026-08-31",
   "forceAllCurrentDayNow": true,
   "forceRetryNonce": "force-current-day-20260830T233557+0900",
-  "outstandingDates": [],
+  "outstandingDates": [
+    "2026-08-30",
+    "2026-08-31"
+  ],
   "reconcileExistingBeforePublish": true
 }

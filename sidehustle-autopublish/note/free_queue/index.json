@@ -1,8 +1,8 @@
 {
-  "version": 17,
-  "updatedAt": "2026-08-30T23:35:57+09:00",
+  "version": 20,
+  "updatedAt": "2026-08-31T00:29:14+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-31_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1493,6 +1493,52 @@
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
       "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+    },
+    {
+      "id": "free_note_20260831_01_invoice_difference_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "請求書をそのまま払う前に見る4つの差異｜発注・受領・請求の確認ポイント",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-31_batch01.md",
+      "pairedPaidId": "note_20260831_57_purchase_invoice_match_control",
+      "tags": [
+        "請求書",
+        "購買管理",
+        "支払管理",
+        "業務改善"
+      ],
+      "coverLabel": "無料チェックリスト",
+      "coverCopy": "支払前に見る\n4つの差異",
+      "accent": "#1D4ED8",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260831-20260831T002702+0900",
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+    },
+    {
+      "id": "free_note_20260831_02_backup_restore_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "バックアップが使えないかもしれない4つのサイン｜復元前に確認したい項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-31_batch01.md",
+      "pairedPaidId": "note_20260831_60_backup_restore_verification",
+      "tags": [
+        "バックアップ",
+        "復元テスト",
+        "情報管理",
+        "事業継続"
+      ],
+      "coverLabel": "無料チェックリスト",
+      "coverCopy": "復元できない前に\n見る4つのサイン",
+      "accent": "#7C3AED",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260831-20260831T002702+0900",
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
     }
   ],
   "eveningMarathon": {
@@ -1501,20 +1547,26 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-08-30",
+    "dateRange": [
+      "2026-08-30",
+      "2026-08-31"
+    ],
     "ids": [
       "free_note_20260830_01_receivables_warning_signals",
-      "free_note_20260830_02_access_rights_warning_signals"
+      "free_note_20260830_02_access_rights_warning_signals",
+      "free_note_20260831_01_invoice_difference_signals",
+      "free_note_20260831_02_backup_restore_warning_signals"
     ],
-    "requiredStrictPublications": 2
+    "requiredStrictPublications": 4,
+    "carryOverFirst": true
   },
   "retryGeneration": 2,
-  "activePublicationDate": "2026-08-30",
+  "activePublicationDate": "2026-08-31",
   "forceAllCurrentDayNow": true,
   "forceRetryNonce": "force-current-day-20260830T233557+0900",
   "sourceBatchPaths": [
-    "sidehustle-autopublish/note/free_drafts/2026-08-28_batch01.md",
-    "sidehustle-autopublish/note/free_drafts/2026-08-29_batch01.md"
+    "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
+    "sidehustle-autopublish/note/free_drafts/2026-08-31_batch01.md"
   ],
   "reconcileExistingBeforePublish": true
 }

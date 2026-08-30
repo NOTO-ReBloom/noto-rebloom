@@ -1,25 +1,35 @@
 {
-  "version": 3,
-  "updatedAt": "2026-08-31T00:12:18+09:00",
-  "date": "2026-08-30",
-  "effectiveRunDate": "2026-08-31",
-  "mode": "carryover_debt_first_reconcile_then_publish",
+  "version": 2,
+  "updatedAt": "2026-08-31T00:29:14+09:00",
+  "date": "2026-08-31",
+  "sourceDates": [
+    "2026-08-30",
+    "2026-08-31"
+  ],
+  "mode": "publish_all_outstanding_now",
   "paidNote": {
     "ids": [
       "note_20260830_52_receivables_collection_control",
       "note_20260830_53_access_rights_review",
       "note_20260830_54_vendor_price_revision_impact",
       "note_20260830_55_meeting_decision_followthrough",
-      "note_20260830_56_equipment_inspection_exception"
+      "note_20260830_56_equipment_inspection_exception",
+      "note_20260831_57_purchase_invoice_match_control",
+      "note_20260831_58_inventory_expiry_lot_rotation",
+      "note_20260831_59_project_scope_change_control",
+      "note_20260831_60_backup_restore_verification",
+      "note_20260831_61_procedure_revision_acknowledgement"
     ],
-    "target": 5
+    "target": 10
   },
   "freeNote": {
     "ids": [
       "free_note_20260830_01_receivables_warning_signals",
-      "free_note_20260830_02_access_rights_warning_signals"
+      "free_note_20260830_02_access_rights_warning_signals",
+      "free_note_20260831_01_invoice_difference_signals",
+      "free_note_20260831_02_backup_restore_warning_signals"
     ],
-    "target": 2
+    "target": 4
   },
   "BOOTH": {
     "ids": [
@@ -27,19 +37,18 @@
       "060_access_rights_review_os_20260830",
       "061_vendor_price_revision_impact_os_20260830",
       "062_meeting_decision_followthrough_os_20260830",
-      "063_equipment_inspection_exception_os_20260830"
+      "063_equipment_inspection_exception_os_20260830",
+      "064_purchase_invoice_match_control_os_20260831",
+      "065_inventory_expiry_lot_rotation_os_20260831",
+      "066_project_scope_change_control_os_20260831",
+      "067_backup_restore_verification_os_20260831",
+      "068_procedure_revision_acknowledgement_os_20260831"
     ],
-    "target": 5
+    "target": 10
   },
+  "totalTarget": 24,
   "strictVerificationRequired": true,
-  "doNotStopAfterFirstSuccess": true,
-  "completionState": "pending_strict_verification_0_of_12",
-  "requestedAt": "2026-08-31T00:12:18+09:00",
-  "nonce": "carryover-20260830-debt-20260831T001218+0900",
-  "reconcileExistingBeforePublish": true,
-  "ignorePriorDayUnverified": false,
-  "carryoverMustCompleteBeforeNewDayConsumption": true,
-  "preserveOriginalPublicationDateForQuota": true,
-  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-  "compatibilityNote": "Authenticated Windows publisher must process these Aug 30 required IDs even after local date rollover. Reconcile exact-title existing public pages first; publish only absent items; strict verify all channel-specific conditions before ledger completion."
+  "carryOverFirst": true,
+  "discoverExactTitleBeforeRetry": true,
+  "doNotStopAfterFirstSuccess": true
 }

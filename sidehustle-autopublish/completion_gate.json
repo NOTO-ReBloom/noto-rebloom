@@ -1,30 +1,45 @@
 {
-  "version": 29,
-  "updatedAt": "2026-08-30T23:35:57+09:00",
-  "status": "in_progress_0_of_12",
-  "date": "2026-08-30",
+  "version": 32,
+  "updatedAt": "2026-08-31T00:29:14+09:00",
+  "status": "in_progress_0_of_24",
+  "date": "2026-08-31",
   "timezone": "Asia/Tokyo",
-  "purpose": "2026-08-30: complete only after all 12 designated publications are strict verified.",
+  "purpose": "Complete only after all carried Aug 30 obligations and all designated Aug 31 publications are strict verified.",
   "carryOver": {
-    "sourceDate": "2026-08-29",
+    "sourceDate": "2026-08-30",
     "requiredBeforeNewDayConsumption": true,
     "remaining": {
-      "notePaid": [],
-      "noteFree": [],
-      "BOOTH": [],
-      "total": 0
-    }
-  },
-  "completionConditions": {
-    "notePaid": {
-      "date": "2026-08-30",
-      "dailyStrictTarget": 5,
-      "requiredIds": [
+      "notePaid": [
         "note_20260830_52_receivables_collection_control",
         "note_20260830_53_access_rights_review",
         "note_20260830_54_vendor_price_revision_impact",
         "note_20260830_55_meeting_decision_followthrough",
         "note_20260830_56_equipment_inspection_exception"
+      ],
+      "noteFree": [
+        "free_note_20260830_01_receivables_warning_signals",
+        "free_note_20260830_02_access_rights_warning_signals"
+      ],
+      "BOOTH": [
+        "059_receivables_collection_control_os_20260830",
+        "060_access_rights_review_os_20260830",
+        "061_vendor_price_revision_impact_os_20260830",
+        "062_meeting_decision_followthrough_os_20260830",
+        "063_equipment_inspection_exception_os_20260830"
+      ],
+      "total": 12
+    }
+  },
+  "completionConditions": {
+    "notePaid": {
+      "date": "2026-08-31",
+      "dailyStrictTarget": 5,
+      "requiredIds": [
+        "note_20260831_57_purchase_invoice_match_control",
+        "note_20260831_58_inventory_expiry_lot_rotation",
+        "note_20260831_59_project_scope_change_control",
+        "note_20260831_60_backup_restore_verification",
+        "note_20260831_61_procedure_revision_acknowledgement"
       ],
       "strictChecks": [
         "readerVisibleUrl",
@@ -35,14 +50,14 @@
       ]
     },
     "BOOTH": {
-      "date": "2026-08-30",
+      "date": "2026-08-31",
       "dailyStrictTarget": 5,
       "requiredIds": [
-        "059_receivables_collection_control_os_20260830",
-        "060_access_rights_review_os_20260830",
-        "061_vendor_price_revision_impact_os_20260830",
-        "062_meeting_decision_followthrough_os_20260830",
-        "063_equipment_inspection_exception_os_20260830"
+        "064_purchase_invoice_match_control_os_20260831",
+        "065_inventory_expiry_lot_rotation_os_20260831",
+        "066_project_scope_change_control_os_20260831",
+        "067_backup_restore_verification_os_20260831",
+        "068_procedure_revision_acknowledgement_os_20260831"
       ],
       "strictChecks": [
         "buyerVisibleUrl",
@@ -53,11 +68,11 @@
       ]
     },
     "noteFree": {
-      "date": "2026-08-30",
+      "date": "2026-08-31",
       "dailyStrictTarget": 2,
       "requiredIds": [
-        "free_note_20260830_01_receivables_warning_signals",
-        "free_note_20260830_02_access_rights_warning_signals"
+        "free_note_20260831_01_invoice_difference_signals",
+        "free_note_20260831_02_backup_restore_warning_signals"
       ],
       "strictChecks": [
         "readerVisibleUrl",
@@ -73,14 +88,12 @@
     "todayNoteFree": 0,
     "todayBOOTH": 0,
     "todayTotal": 0,
-    "carryOverStrictVerified": 0,
-    "carryOverRemaining": 0,
+    "carryOverRemaining": 12,
     "requiredToday": 12,
-    "strictVerifiedTotal": 0,
-    "totalOutstanding": 12
+    "totalOutstanding": 24
   },
   "planningManifest": "sidehustle-autopublish/planning/2026-08-30_batch01.json",
-  "materializationState": "complete_12_queued_pending_strict_verification",
+  "materializationState": "both_days_complete_and_queue_qa_passed",
   "materializationEvidence": {
     "paid": "sidehustle-autopublish/note/staging/materialization_20260830_batch01.json",
     "free": "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
@@ -133,10 +146,14 @@
     "carryOverResolved": 12,
     "outstanding": 0
   },
-  "executionRequestedAt": "2026-08-30T23:35:57+09:00",
-  "executionNonce": "force-current-day-20260830T233557+0900",
+  "executionRequestedAt": "2026-08-31T00:29:14+09:00",
+  "executionNonce": "publish-aug30-aug31-all24-20260831T002914+0900",
   "completedAt": null,
   "completionEvidence": null,
   "forceNowRequested": true,
-  "forceNowMode": "reconcile_existing_then_publish_absent_then_strict_verify"
+  "forceNowMode": "reconcile_existing_then_publish_absent_then_strict_verify",
+  "planningManifests": [
+    "sidehustle-autopublish/planning/2026-08-30_batch01.json",
+    "sidehustle-autopublish/planning/2026-08-31_batch01.json"
+  ]
 }

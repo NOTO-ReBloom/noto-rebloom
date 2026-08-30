@@ -1,26 +1,38 @@
 {
-  "version": 47,
-  "updatedAt": "2026-08-30T23:35:57+09:00",
+  "version": 50,
+  "updatedAt": "2026-08-31T00:29:14+09:00",
   "activeRecovery": {
-    "date": "2026-08-30",
-    "mode": "force_current_day_all_now_reconcile_first",
-    "requiredStrictNewPublications": 5,
-    "remaining": 5,
-    "nonce": "force-current-day-20260830T233557+0900"
+    "date": "2026-08-31",
+    "sourceDates": [
+      "2026-08-30",
+      "2026-08-31"
+    ],
+    "mode": "carryover_then_current_day_paid_floor",
+    "requiredStrictNewPublications": 10,
+    "remaining": 10,
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-30T09:16:55+09:00",
-    "requiredStrictNewPublications": 5,
+    "generatedAt": "2026-08-31T00:29:14+09:00",
+    "requiredStrictNewPublications": 10,
     "queueIds": [
       "059_receivables_collection_control_os_20260830",
       "060_access_rights_review_os_20260830",
       "061_vendor_price_revision_impact_os_20260830",
       "062_meeting_decision_followthrough_os_20260830",
-      "063_equipment_inspection_exception_os_20260830"
+      "063_equipment_inspection_exception_os_20260830",
+      "064_purchase_invoice_match_control_os_20260831",
+      "065_inventory_expiry_lot_rotation_os_20260831",
+      "066_project_scope_change_control_os_20260831",
+      "067_backup_restore_verification_os_20260831",
+      "068_procedure_revision_acknowledgement_os_20260831"
     ],
     "completedIds": [],
-    "queueRetryGeneration": 49,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260830_batch01.json",
+    "queueRetryGeneration": 52,
+    "qaManifests": [
+      "booth-autopublish/monitor/cloud_materialization_20260830_batch01.json",
+      "booth-autopublish/monitor/cloud_materialization_20260831_batch01.json"
+    ],
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -33,13 +45,15 @@
       "060_access_rights_review_os_20260830": 1480,
       "061_vendor_price_revision_impact_os_20260830": 1680,
       "062_meeting_decision_followthrough_os_20260830": 1480,
-      "063_equipment_inspection_exception_os_20260830": 1480
+      "063_equipment_inspection_exception_os_20260830": 1480,
+      "064_purchase_invoice_match_control_os_20260831": 1680,
+      "065_inventory_expiry_lot_rotation_os_20260831": 1480,
+      "066_project_scope_change_control_os_20260831": 1680,
+      "067_backup_restore_verification_os_20260831": 1680,
+      "068_procedure_revision_acknowledgement_os_20260831": 1480
     },
     "doNotStopAfterFirstSuccess": true,
-    "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "force-current-day-20260830T233557+0900",
-    "forcedRecoveryAt": "2026-08-30T23:35:57+09:00",
-    "instruction": "Reconcile exact-title public products before create; publish only absent current-day BOOTH targets; strict verify all required conditions."
+    "forceRetryNonce": "booth-20260830-20260831-20260831T002914+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -47,17 +61,27 @@
       "060_access_rights_review_os_20260830",
       "061_vendor_price_revision_impact_os_20260830",
       "062_meeting_decision_followthrough_os_20260830",
-      "063_equipment_inspection_exception_os_20260830"
+      "063_equipment_inspection_exception_os_20260830",
+      "064_purchase_invoice_match_control_os_20260831",
+      "065_inventory_expiry_lot_rotation_os_20260831",
+      "066_project_scope_change_control_os_20260831",
+      "067_backup_restore_verification_os_20260831",
+      "068_procedure_revision_acknowledgement_os_20260831"
     ],
     "firstPassOrder": [
       "059_receivables_collection_control_os_20260830",
       "060_access_rights_review_os_20260830",
       "061_vendor_price_revision_impact_os_20260830",
       "062_meeting_decision_followthrough_os_20260830",
-      "063_equipment_inspection_exception_os_20260830"
+      "063_equipment_inspection_exception_os_20260830",
+      "064_purchase_invoice_match_control_os_20260831",
+      "065_inventory_expiry_lot_rotation_os_20260831",
+      "066_project_scope_change_control_os_20260831",
+      "067_backup_restore_verification_os_20260831",
+      "068_procedure_revision_acknowledgement_os_20260831"
     ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
+    "completionPredicate": "all ten Aug 30-31 IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
     "checkedAt": "2026-08-29T01:15:04.210+09:00",
