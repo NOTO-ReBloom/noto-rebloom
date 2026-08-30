@@ -1,25 +1,20 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-30T08:13:35+09:00",
-  "retryGeneration": 48,
+  "updatedAt": "2026-08-30T09:16:55+09:00",
+  "retryGeneration": 49,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "completed_aug28_aug29_paid_note",
-    "requiredStrictPublications": 10,
+    "mode": "publish_2026-08-30_paid_note_batch_now",
+    "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260828_42_attendance_month_end_exception_control",
-      "note_20260828_43_estimate_to_order_followup_control",
-      "note_20260828_44_applicant_response_sla_control",
-      "note_20260828_45_ai_efficiency_roi_measurement",
-      "note_20260828_46_backoffice_labor_saving_priority_matrix",
-      "note_20260829_47_contract_renewal_control",
-      "note_20260829_48_complaint_root_cause_control",
-      "note_20260829_49_onboarding_skill_matrix",
-      "note_20260829_50_cashflow_weekly_forecast",
-      "note_20260829_51_document_retention_disposition"
+      "note_20260830_52_receivables_collection_control",
+      "note_20260830_53_access_rights_review",
+      "note_20260830_54_vendor_price_revision_impact",
+      "note_20260830_55_meeting_decision_followthrough",
+      "note_20260830_56_equipment_inspection_exception"
     ],
-    "instruction": "Publish all ten in order; discover exact-title public pages before retry; switch after brief recoverable failure; count only strict reader verification.",
+    "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
@@ -27,24 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-08-29T00:34:32+09:00",
-    "nonce": "paid-note-20260828-20260829-20260829T003432+0900",
-    "completedStrictPublications": 10,
-    "completedIds": [
-      "note_20260828_42_attendance_month_end_exception_control",
-      "note_20260828_43_estimate_to_order_followup_control",
-      "note_20260828_44_applicant_response_sla_control",
-      "note_20260828_45_ai_efficiency_roi_measurement",
-      "note_20260828_46_backoffice_labor_saving_priority_matrix",
-      "note_20260829_47_contract_renewal_control",
-      "note_20260829_48_complaint_root_cause_control",
-      "note_20260829_49_onboarding_skill_matrix",
-      "note_20260829_50_cashflow_weekly_forecast",
-      "note_20260829_51_document_retention_disposition"
-    ],
-    "remaining": 0,
-    "status": "complete",
-    "completedAt": "2026-08-29T01:15:04.210+09:00"
+    "forcedAt": "2026-08-30T09:16:55+09:00",
+    "nonce": "paid-note-20260830-20260830T091655+0900"
   },
   "entries": [
     {
@@ -1343,6 +1322,106 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+    },
+    {
+      "id": "note_20260830_52_receivables_collection_control",
+      "title": "入金遅れを月末まで放置しない｜請求日・支払期日・督促履歴を分ける売掛金回収管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260830_52_receivables_collection_control.enc.json",
+      "sha256": "23c3c2d099b0502b35500f94ddf692e78b31a42241a1e5a6bde6c999627bc2fe",
+      "createdAt": "2026-08-30T09:16:55+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260830-20260830T091655+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260830_53_access_rights_review",
+      "title": "退職者の権限を残さない｜アカウント棚卸し・承認者・削除期限を決めるアクセス権レビュー",
+      "path": "sidehustle-autopublish/note/queue/note_20260830_53_access_rights_review.enc.json",
+      "sha256": "63d6996017b57a8e45380ec55fe849042e44f876076634dbf585dbb97c45d0c7",
+      "createdAt": "2026-08-30T09:16:55+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260830-20260830T091655+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260830_54_vendor_price_revision_impact",
+      "title": "仕入先の値上げ通知を見落とさない｜原価影響・適用日・代替策を一枚で追う価格改定管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260830_54_vendor_price_revision_impact.enc.json",
+      "sha256": "fcc9c2d10110d2c7a29b32ae9bc0bf852d1f90cb7326f7792151420fb30659eb",
+      "createdAt": "2026-08-30T09:16:55+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260830-20260830T091655+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260830_55_meeting_decision_followthrough",
+      "title": "会議で決めたことを消さない｜決定事項・担当・期限・未完理由を残すフォロー管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260830_55_meeting_decision_followthrough.enc.json",
+      "sha256": "e2a4b1d9b8f2afe94dfe39a753b68c8f0403a58e2e41a17d1813863d90a40a5f",
+      "createdAt": "2026-08-30T09:16:55+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260830-20260830T091655+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260830_56_equipment_inspection_exception",
+      "title": "点検表を埋めるだけで終わらせない｜設備異常・応急処置・再点検期限を追う例外管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260830_56_equipment_inspection_exception.enc.json",
+      "sha256": "8c3e1ff652237fb5846f07e1e8c061cff2722f673b8ade4db26ef8fa1f75514a",
+      "createdAt": "2026-08-30T09:16:55+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260830-20260830T091655+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
   "activePublicationDate": "2026-08-29",

@@ -1,6 +1,6 @@
 {
-  "version": 36,
-  "updatedAt": "2026-08-30T08:13:35+09:00",
+  "version": 37,
+  "updatedAt": "2026-08-30T09:16:55+09:00",
   "objective": "Preserve the strictly verified Aug 28-29 batch: paid NOTE 10, free NOTE 4 and BOOTH 10.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -22,45 +22,58 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "date": "2026-08-29",
-    "observedAt": "2026-08-29T01:15:04.210+09:00",
-    "previousDate": "2026-08-28",
+    "date": "2026-08-30",
+    "observedAt": "2026-08-30T09:16:55+09:00",
+    "previousDate": "2026-08-29",
     "previousDayPaidNoteStrictVerified": "5/5",
     "previousDayBoothStrictVerified": "5/5",
     "previousDayFreeNoteStrictVerified": "2/2",
-    "carriedTotalDebt": 0
+    "carriedPaidDebt": 0
   },
   "currentDayTargets": {
-    "date": "2026-08-29",
+    "date": "2026-08-30",
     "paidNote": {
-      "target": 10,
-      "strictVerified": 10,
-      "remaining": 0,
-      "materialized": 10,
-      "remainingIds": []
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "remainingIds": [
+        "note_20260830_52_receivables_collection_control",
+        "note_20260830_53_access_rights_review",
+        "note_20260830_54_vendor_price_revision_impact",
+        "note_20260830_55_meeting_decision_followthrough",
+        "note_20260830_56_equipment_inspection_exception"
+      ]
     },
     "BOOTH": {
-      "target": 10,
-      "strictVerified": 10,
-      "remaining": 0,
-      "materialized": 10,
-      "remainingIds": []
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "remainingIds": [
+        "059_receivables_collection_control_os_20260830",
+        "060_access_rights_review_os_20260830",
+        "061_vendor_price_revision_impact_os_20260830",
+        "062_meeting_decision_followthrough_os_20260830",
+        "063_equipment_inspection_exception_os_20260830"
+      ]
     },
     "freeNote": {
-      "target": 4,
-      "strictVerified": 4,
-      "remaining": 0,
-      "materialized": 4,
-      "remainingIds": [],
+      "target": 2,
+      "strictVerified": 0,
+      "remaining": 2,
+      "remainingIds": [
+        "free_note_20260830_01_receivables_warning_signals",
+        "free_note_20260830_02_access_rights_warning_signals"
+      ],
       "paidQuotaContribution": 0
     },
-    "allDesignatedStrictVerified": true
+    "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "10 PUBLISH_SUCCESS_VERIFIED receipts with title/price/boundary/cover/anonymous checks true",
-    "BOOTH": "10 buyer-visible HTTP 200 exact-title URLs with PUBLIC_RECOVERY_SUCCESS",
-    "freeNote": "4 FREE_PUBLISH_SUCCESS_VERIFIED reader-visible URLs",
-    "sourceLogSha256": "42f40d86e7fa2a24d30bdcd9fa539f4b387d088da7ecbd4e5a5f60ae56ccc83e",
+    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
+    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
+    "freeNote": "2 manuscripts queued; no public count yet",
     "humanOnlyBlocker": null
   },
   "monitor": {

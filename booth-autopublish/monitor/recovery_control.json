@@ -1,50 +1,26 @@
 {
-  "version": 45,
-  "updatedAt": "2026-08-29T01:15:04.210+09:00",
+  "version": 46,
+  "updatedAt": "2026-08-30T09:16:55+09:00",
   "activeRecovery": {
-    "date": "2026-08-29",
-    "sourceDates": [
-      "2026-08-28",
-      "2026-08-29"
-    ],
-    "mode": "carryover_then_current_day_paid_floor",
-    "requiredStrictNewPublications": 10,
-    "remaining": 0,
-    "state": "completed",
-    "completedAt": "2026-08-29T01:15:04.210+09:00"
+    "date": "2026-08-30",
+    "mode": "current_day_paid_floor",
+    "requiredStrictNewPublications": 5,
+    "remaining": 5,
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-08-29T00:34:32+09:00",
-    "requiredStrictNewPublications": 10,
+    "generatedAt": "2026-08-30T09:16:55+09:00",
+    "requiredStrictNewPublications": 5,
     "queueIds": [
-      "049_attendance_month_end_exception_control_os_20260828",
-      "050_estimate_to_order_followup_control_os_20260828",
-      "051_applicant_response_sla_control_os_20260828",
-      "052_ai_efficiency_roi_measurement_os_20260828",
-      "053_backoffice_labor_saving_priority_matrix_os_20260828",
-      "054_contract_renewal_control_os_20260829",
-      "055_complaint_root_cause_control_os_20260829",
-      "056_onboarding_skill_matrix_os_20260829",
-      "057_cashflow_weekly_forecast_os_20260829",
-      "058_document_retention_disposition_os_20260829"
+      "059_receivables_collection_control_os_20260830",
+      "060_access_rights_review_os_20260830",
+      "061_vendor_price_revision_impact_os_20260830",
+      "062_meeting_decision_followthrough_os_20260830",
+      "063_equipment_inspection_exception_os_20260830"
     ],
-    "completedIds": [
-      "049_attendance_month_end_exception_control_os_20260828",
-      "050_estimate_to_order_followup_control_os_20260828",
-      "051_applicant_response_sla_control_os_20260828",
-      "052_ai_efficiency_roi_measurement_os_20260828",
-      "053_backoffice_labor_saving_priority_matrix_os_20260828",
-      "054_contract_renewal_control_os_20260829",
-      "055_complaint_root_cause_control_os_20260829",
-      "056_onboarding_skill_matrix_os_20260829",
-      "057_cashflow_weekly_forecast_os_20260829",
-      "058_document_retention_disposition_os_20260829"
-    ],
-    "queueRetryGeneration": 47,
-    "qaManifests": [
-      "booth-autopublish/monitor/cloud_materialization_20260828_batch01.json",
-      "booth-autopublish/monitor/cloud_materialization_20260829_batch01.json"
-    ],
+    "completedIds": [],
+    "queueRetryGeneration": 48,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260830_batch01.json",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -53,50 +29,33 @@
       "purchaseOrCartPath"
     ],
     "expectedPricesJPY": {
-      "049_attendance_month_end_exception_control_os_20260828": 1480,
-      "050_estimate_to_order_followup_control_os_20260828": 1480,
-      "051_applicant_response_sla_control_os_20260828": 1480,
-      "052_ai_efficiency_roi_measurement_os_20260828": 1680,
-      "053_backoffice_labor_saving_priority_matrix_os_20260828": 1480,
-      "054_contract_renewal_control_os_20260829": 1480,
-      "055_complaint_root_cause_control_os_20260829": 1480,
-      "056_onboarding_skill_matrix_os_20260829": 1480,
-      "057_cashflow_weekly_forecast_os_20260829": 1680,
-      "058_document_retention_disposition_os_20260829": 1480
+      "059_receivables_collection_control_os_20260830": 1680,
+      "060_access_rights_review_os_20260830": 1480,
+      "061_vendor_price_revision_impact_os_20260830": 1680,
+      "062_meeting_decision_followthrough_os_20260830": 1480,
+      "063_equipment_inspection_exception_os_20260830": 1480
     },
     "doNotStopAfterFirstSuccess": true,
-    "forceRetryNonce": "booth-20260828-20260829-20260829T003432+0900",
-    "remaining": 0,
-    "status": "complete",
-    "completedAt": "2026-08-29T01:15:04.210+09:00"
+    "doNotReturnToLegacy009": true,
+    "forceRetryNonce": "booth-20260830-20260830T091655+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
-      "049_attendance_month_end_exception_control_os_20260828",
-      "050_estimate_to_order_followup_control_os_20260828",
-      "051_applicant_response_sla_control_os_20260828",
-      "052_ai_efficiency_roi_measurement_os_20260828",
-      "053_backoffice_labor_saving_priority_matrix_os_20260828",
-      "054_contract_renewal_control_os_20260829",
-      "055_complaint_root_cause_control_os_20260829",
-      "056_onboarding_skill_matrix_os_20260829",
-      "057_cashflow_weekly_forecast_os_20260829",
-      "058_document_retention_disposition_os_20260829"
+      "059_receivables_collection_control_os_20260830",
+      "060_access_rights_review_os_20260830",
+      "061_vendor_price_revision_impact_os_20260830",
+      "062_meeting_decision_followthrough_os_20260830",
+      "063_equipment_inspection_exception_os_20260830"
     ],
     "firstPassOrder": [
-      "049_attendance_month_end_exception_control_os_20260828",
-      "050_estimate_to_order_followup_control_os_20260828",
-      "051_applicant_response_sla_control_os_20260828",
-      "052_ai_efficiency_roi_measurement_os_20260828",
-      "053_backoffice_labor_saving_priority_matrix_os_20260828",
-      "054_contract_renewal_control_os_20260829",
-      "055_complaint_root_cause_control_os_20260829",
-      "056_onboarding_skill_matrix_os_20260829",
-      "057_cashflow_weekly_forecast_os_20260829",
-      "058_document_retention_disposition_os_20260829"
+      "059_receivables_collection_control_os_20260830",
+      "060_access_rights_review_os_20260830",
+      "061_vendor_price_revision_impact_os_20260830",
+      "062_meeting_decision_followthrough_os_20260830",
+      "063_equipment_inspection_exception_os_20260830"
     ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all ten Aug 28-29 IDs buyer-visible strict verified"
+    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
     "checkedAt": "2026-08-29T01:15:04.210+09:00",

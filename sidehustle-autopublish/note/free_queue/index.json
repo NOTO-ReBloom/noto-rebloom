@@ -1,8 +1,8 @@
 {
-  "version": 16,
-  "updatedAt": "2026-08-30T08:13:35+09:00",
+  "version": 17,
+  "updatedAt": "2026-08-30T09:16:55+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-29_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1447,6 +1447,46 @@
       "publicUrl": "https://note.com/royal_lion645/n/n75a3f3ef371c",
       "verificationState": "reader_visible_free_verified",
       "verifiedAt": "2026-08-29T01:04:54.659+09:00"
+    },
+    {
+      "id": "free_note_20260830_01_receivables_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "入金遅れが増える前に見る4つのサイン｜売掛金の督促を後手にしない確認項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
+      "pairedPaidId": "note_20260830_52_receivables_collection_control",
+      "tags": [
+        "売掛金",
+        "請求管理",
+        "資金繰り",
+        "業務改善"
+      ],
+      "coverLabel": "無料チェックリスト",
+      "coverCopy": "督促が後手になる前に\n見る4つのサイン",
+      "accent": "#2457A7",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260830-20260830T091655+0900"
+    },
+    {
+      "id": "free_note_20260830_02_access_rights_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "辞めた人のアカウント、残っていませんか？｜権限棚卸しで先に見る4項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
+      "pairedPaidId": "note_20260830_53_access_rights_review",
+      "tags": [
+        "情報セキュリティ",
+        "アカウント管理",
+        "アクセス権",
+        "退職者対応"
+      ],
+      "coverLabel": "無料チェックリスト",
+      "coverCopy": "権限棚卸しで\n先に見る4項目",
+      "accent": "#6B3FA0",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260830-20260830T091655+0900"
     }
   ],
   "eveningMarathon": {
@@ -1455,28 +1495,12 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "dateRange": [
-      "2026-08-28",
-      "2026-08-29"
-    ],
+    "date": "2026-08-30",
     "ids": [
-      "free_note_20260828_01_attendance_month_end_signals",
-      "free_note_20260828_02_ai_efficiency_measurement_signals",
-      "free_note_20260829_01_contract_renewal_signals",
-      "free_note_20260829_02_cashflow_warning_signals"
+      "free_note_20260830_01_receivables_warning_signals",
+      "free_note_20260830_02_access_rights_warning_signals"
     ],
-    "requiredStrictPublications": 4,
-    "carryOverFirst": true,
-    "completedIds": [
-      "free_note_20260828_01_attendance_month_end_signals",
-      "free_note_20260828_02_ai_efficiency_measurement_signals",
-      "free_note_20260829_01_contract_renewal_signals",
-      "free_note_20260829_02_cashflow_warning_signals"
-    ],
-    "completedStrictPublications": 4,
-    "remaining": 0,
-    "status": "complete",
-    "completedAt": "2026-08-29T01:15:04.210+09:00"
+    "requiredStrictPublications": 2
   },
   "retryGeneration": 1,
   "activePublicationDate": "2026-08-29",
