@@ -1,0 +1,166 @@
+name: Force current-day strict publication now
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/force-current-day-publication-now.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: force-current-day-publication-now
+  cancel-in-progress: false
+
+jobs:
+  force:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Activate all current-day strict targets safely
+        shell: python
+        run: |
+          import json, pathlib, datetime
+
+          JST = datetime.timezone(datetime.timedelta(hours=9))
+          now = datetime.datetime.now(JST)
+          stamp = now.isoformat(timespec='seconds')
+          nonce = 'force-current-day-' + now.strftime('%Y%m%dT%H%M%S%z')
+
+          def load(path):
+            p = pathlib.Path(path)
+            return p, json.loads(p.read_text(encoding='utf-8-sig'))
+
+          def save(p, obj):
+            p.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          gp, gate = load('sidehustle-autopublish/completion_gate.json')
+          date = gate.get('date')
+          if not date:
+            raise SystemExit('completion_gate.json has no current date')
+
+          cc = gate.get('completionConditions', {})
+          paid_ids = list(cc.get('notePaid', {}).get('requiredIds', []))
+          free_ids = list(cc.get('noteFree', {}).get('requiredIds', []))
+          booth_ids = list(cc.get('BOOTH', {}).get('requiredIds', []))
+          if not paid_ids and not free_ids and not booth_ids:
+            raise SystemExit('No required current-day IDs in completion gate')
+
+          def activate(path, wanted, kind):
+            p, q = load(path)
+            q['updatedAt'] = stamp
+            q['retryGeneration'] = int(q.get('retryGeneration', 0)) + 1
+            q['activePublicationDate'] = date
+            q['forceAllCurrentDayNow'] = True
+            q['forceRetryNonce'] = nonce
+            q['reconcileExistingBeforePublish'] = True
+            found = set()
+            for e in q.get('entries', []):
+              eid = e.get('id') or e.get('queueId')
+              if eid in wanted:
+                found.add(eid)
+                if not e.get('publicUrlVerified', False):
+                  e['enabled'] = True
+                  # First reconcile existing public pages; do not use blind force-repost semantics.
+                  e['forceRetry'] = False
+                  e['forcePublicationNow'] = True
+                  e['forceRetryNonce'] = nonce
+                  e['prePublishReconcileRequired'] = True
+                  e['recoveryMode'] = 'reconcile existing exact-title public page first; if absent publish now; then strict-verify'
+                  if kind == 'paid-note':
+                    e['invalidateLocalSuccessWithoutReaderVerification'] = True
+                  elif kind == 'booth':
+                    e['invalidateLocalSuccessWithoutVerifiedLedger'] = True
+              elif e.get('enabled') and not e.get('publicUrlVerified', False):
+                e['enabled'] = False
+                e['forceRetry'] = False
+                e['deferredByCurrentDayPriorityAt'] = stamp
+            missing = set(wanted) - found
+            if missing:
+              raise SystemExit(f'{kind}: missing current-day ids: {sorted(missing)}')
+            save(p, q)
+            return q
+
+          paid = activate('sidehustle-autopublish/note/queue/index.json', set(paid_ids), 'paid-note')
+          free = activate('sidehustle-autopublish/note/free_queue/index.json', set(free_ids), 'free-note')
+          booth = activate('booth-autopublish/queue/index.json', set(booth_ids), 'booth')
+
+          paid['recoveryBatch'] = {
+            'mode': 'publish_current_day_all_now',
+            'requiredStrictPublications': len(paid_ids),
+            'orderedIds': paid_ids,
+            'instruction': 'For every ID, first reconcile an existing exact-title public page. If absent, publish now. Continue after brief recoverable failure. Count only strict reader-visible verification.',
+            'strictChecks': cc.get('notePaid', {}).get('strictChecks', []),
+            'forcedAt': stamp,
+            'nonce': nonce,
+          }
+          save(pathlib.Path('sidehustle-autopublish/note/queue/index.json'), paid)
+
+          cp, control = load('booth-autopublish/monitor/recovery_control.json')
+          control['version'] = int(control.get('version', 0)) + 1
+          control['updatedAt'] = stamp
+          control['activeRecovery'] = {
+            'date': date,
+            'mode': 'force_current_day_all_now_reconcile_first',
+            'requiredStrictNewPublications': len(booth_ids),
+            'remaining': len(booth_ids),
+            'nonce': nonce,
+          }
+          control['readyPaidRecoveryBatch'] = control.get('readyPaidRecoveryBatch', {})
+          control['readyPaidRecoveryBatch']['queueIds'] = booth_ids
+          control['readyPaidRecoveryBatch']['queueRetryGeneration'] = booth.get('retryGeneration')
+          control['readyPaidRecoveryBatch']['forcedRecoveryAt'] = stamp
+          control['readyPaidRecoveryBatch']['forceRetryNonce'] = nonce
+          control['readyPaidRecoveryBatch']['instruction'] = 'Reconcile exact-title public products before create; publish only absent current-day BOOTH targets; strict verify all required conditions.'
+          save(cp, control)
+
+          rp, req = load('sidehustle-autopublish/windows_publication_request.json')
+          req['version'] = int(req.get('version', 0)) + 1
+          req['updatedAt'] = stamp
+          req['requestedAt'] = stamp
+          req['nonce'] = nonce
+          req['date'] = date
+          req['mode'] = 'publish_all_current_day_now_reconcile_first'
+          req['completionState'] = 'pending_strict_verification'
+          req.pop('completedAt', None)
+          req['paidNote'] = {'ids': paid_ids, 'target': len(paid_ids)}
+          req['freeNote'] = {'ids': free_ids, 'target': len(free_ids)}
+          req['BOOTH'] = {'ids': booth_ids, 'target': len(booth_ids)}
+          req['strictVerificationRequired'] = True
+          req['reconcileExistingBeforePublish'] = True
+          req['doNotStopAfterFirstSuccess'] = True
+          req['ignorePriorDayUnverified'] = False
+          req['canonicalWindowsRoot'] = r'C:\SIDEHUSTLE_AUTO'
+          save(rp, req)
+
+          gate['updatedAt'] = stamp
+          gate['executionRequestedAt'] = stamp
+          gate['executionNonce'] = nonce
+          gate['status'] = gate.get('status') if str(gate.get('status','')).startswith('complete_') else f'in_progress_{gate.get("completionCounts",{}).get("strictVerifiedTotal",0)}_of_{gate.get("completionCounts",{}).get("requiredToday",len(paid_ids)+len(free_ids)+len(booth_ids))}'
+          gate['forceNowRequested'] = True
+          gate['forceNowMode'] = 'reconcile_existing_then_publish_absent_then_strict_verify'
+          save(gp, gate)
+
+      - name: Commit activation request
+        run: |
+          git config user.name 'current-day-publication-force'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/queue/index.json \
+                  sidehustle-autopublish/note/free_queue/index.json \
+                  booth-autopublish/queue/index.json \
+                  booth-autopublish/monitor/recovery_control.json \
+                  sidehustle-autopublish/windows_publication_request.json \
+                  sidehustle-autopublish/completion_gate.json
+          if git diff --cached --quiet; then
+            echo 'No activation changes needed.'
+            exit 0
+          fi
+          git commit -m 'Activate current-day strict publication now'
+          git pull --rebase origin main
+          git push origin HEAD:main
