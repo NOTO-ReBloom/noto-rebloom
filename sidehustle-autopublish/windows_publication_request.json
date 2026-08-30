@@ -1,8 +1,9 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-30T23:35:57+09:00",
+  "version": 3,
+  "updatedAt": "2026-08-31T00:12:18+09:00",
   "date": "2026-08-30",
-  "mode": "publish_all_current_day_now_reconcile_first",
+  "effectiveRunDate": "2026-08-31",
+  "mode": "carryover_debt_first_reconcile_then_publish",
   "paidNote": {
     "ids": [
       "note_20260830_52_receivables_collection_control",
@@ -32,10 +33,13 @@
   },
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "completionState": "pending_strict_verification",
-  "requestedAt": "2026-08-30T23:35:57+09:00",
-  "nonce": "force-current-day-20260830T233557+0900",
+  "completionState": "pending_strict_verification_0_of_12",
+  "requestedAt": "2026-08-31T00:12:18+09:00",
+  "nonce": "carryover-20260830-debt-20260831T001218+0900",
   "reconcileExistingBeforePublish": true,
   "ignorePriorDayUnverified": false,
-  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO"
+  "carryoverMustCompleteBeforeNewDayConsumption": true,
+  "preserveOriginalPublicationDateForQuota": true,
+  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
+  "compatibilityNote": "Authenticated Windows publisher must process these Aug 30 required IDs even after local date rollover. Reconcile exact-title existing public pages first; publish only absent items; strict verify all channel-specific conditions before ledger completion."
 }
