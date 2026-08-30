@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "createdAt": "2026-08-30T17:08:00+09:00",
+  "objective": "maximize long-run expected profit while keeping normal-day user work at zero",
+  "scoreModel": "expectedProfit * durability * automationRate * successProbability / userWorkBurden, adjusted down for upfrontCost and policyRisk",
+  "operatingModel": {
+    "research": "continuously identify small digital businesses that can be built, sold, measured and improved with near-zero user labor",
+    "build": "ship useful narrow utilities first instead of speculative large products",
+    "measure": "never call a winner without observed first-party evidence",
+    "promote": "free utility -> paid desktop/license -> subscription/SaaS -> API only when evidence supports the next layer",
+    "kill": "deprioritize low-usage or high-support products after sufficient exposure",
+    "userWork": "normal day 0 minutes; only proven human-only blockers such as 2FA, CAPTCHA, identity, legal/tax/payment setup may be escalated"
+  },
+  "priorityBusinessModels": [
+    {"rank":1,"model":"micro_saas","automationPotential":95,"recurringRevenue":true},
+    {"rank":2,"model":"agent_or_machine_api","automationPotential":99,"recurringRevenue":true},
+    {"rank":3,"model":"desktop_utility_license","automationPotential":98,"recurringRevenue":false},
+    {"rank":4,"model":"free_store_app_to_pro","automationPotential":95,"recurringRevenue":true},
+    {"rank":5,"model":"digital_product_with_updates","automationPotential":98,"recurringRevenue":true},
+    {"rank":6,"model":"programmatic_utility_site","automationPotential":93,"recurringRevenue":false}
+  ],
+  "avoidByDefault": [
+    "client consulting requiring recurring calls",
+    "physical fulfillment",
+    "dropshipping with support and returns",
+    "low-value mass AI content",
+    "faceless content farms dependent on platform monetization",
+    "manual sales outreach as a core operating requirement"
+  ],
+  "experiment001": {
+    "id": "csv_column_mapper",
+    "stage": "free_utility_live_candidate",
+    "path": "auto-tools/csv-column-mapper/",
+    "problem": "users moving CSV data between CRM, EC, accounting and internal systems repeatedly rename/reorder/drop/add columns",
+    "freeValue": ["rename output columns","reorder columns","drop unwanted columns","add fixed-value columns","local browser-only processing"],
+    "upgradeHypotheses": [
+      {"tier":"desktop_pro","features":["saved mapping profiles","multi-file batch mapping","drag-and-drop presets","local history"],"revenue":"one-time license"},
+      {"tier":"saas","features":["shared mapping templates","scheduled imports","team workspace","cloud history"],"revenue":"subscription"},
+      {"tier":"api","features":["schema mapping endpoint","machine-readable transformation presets"],"revenue":"usage-based"}
+    ],
+    "promotionGate": "do not build paid tiers until measurable usage, repeat demand or related conversion evidence exists",
+    "supportPolicy": "free version stays local-only and registration-free to minimize operating cost and user support"
+  },
+  "nextExperiments": [
+    {"idea":"invoice_filename_normalizer","reason":"repeatable back-office pain, local utility, obvious Pro batch upgrade","status":"research_before_build"},
+    {"idea":"csv_schema_validator","reason":"adjacent to mapper without duplicating cleaner, potential API upgrade","status":"research_before_build"},
+    {"idea":"webhook_payload_inspector","reason":"developer utility with API/desktop monetization potential","status":"research_before_build"},
+    {"idea":"bulk_text_rule_transformer","reason":"high automation, local privacy, reusable engine","status":"research_before_build"}
+  ],
+  "guardrails": [
+    "Do not interrupt current daily publication debt recovery.",
+    "Do not infer demand from build completion.",
+    "Do not add paid infrastructure before evidence justifies it.",
+    "Do not create semantic clones just to increase product count.",
+    "Do not require routine user operation to keep products alive."
+  ]
+}
