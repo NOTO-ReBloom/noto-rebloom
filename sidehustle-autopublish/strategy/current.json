@@ -1,39 +1,48 @@
 {
-  "version": 39,
-  "updatedAt": "2026-08-28T23:17:00+09:00",
+  "version": 40,
+  "updatedAt": "2026-08-31T05:13:29+09:00",
   "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving strict publication integrity and minimizing user intervention",
   "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "disabledChannels": ["Amazon KDP", "LINE Creators Market"],
   "authoritativeState": {
-    "date": "2026-08-28",
+    "date": "2026-08-31",
     "carriedPaidNoteDebt": 0,
     "carriedBoothDebt": 0,
+    "carriedFreeNoteDebt": 0,
     "todayPaidNoteFloor": 5,
     "todayBoothFloor": 5,
     "todayFreeNoteTarget": 2,
-    "todayPaidNoteStrictVerified": 0,
-    "todayBoothStrictVerified": 0,
-    "todayFreeNoteStrictVerified": 0,
-    "todayTotalStrictVerified": 0,
+    "todayPaidNoteStrictVerified": 5,
+    "todayBoothStrictVerified": 5,
+    "todayFreeNoteStrictVerified": 2,
+    "todayTotalStrictVerified": 12,
+    "carryOverStrictVerified": 12,
+    "aggregateStrictVerifiedThisRecovery": 24,
     "requiredToday": 12,
-    "allDesignatedStrictVerified": false,
+    "allDesignatedStrictVerified": true,
     "humanOnlyBlocker": null,
-    "planningManifest": "sidehustle-autopublish/planning/2026-08-28_batch01.json",
-    "rule": "Aug 28 completion_gate.json is authoritative. No Aug 28 item counts until its strict public checks pass."
+    "planningManifest": "sidehustle-autopublish/planning/2026-08-31_batch01.json",
+    "rule": "completion_gate.json is authoritative; all Aug 30 carry-over and Aug 31 designated publications are strict verified."
   },
   "allocationDecision": {
-    "rank1": "Materialize and strict-publish the 12 Aug 28 designated IDs. Current planning manifest is researched but materialization flags remain false.",
-    "rank2": "Repair stale publisher control state before consumption: the paid note queue still advertises an Aug 26 recovery batch and activePublicationDate Aug 27, so it must not be treated as authority for Aug 28 publication selection.",
-    "rank3": "Before any retry, reconcile exact-title public pages by editor key/API/profile/public search to prevent duplicate note or BOOTH listings.",
-    "rank4": "Keep public verification strict: queue insertion, commit, local exit 0 and editor/admin URLs never count.",
-    "rank5": "After the daily gate completes, shift discretionary capacity to Microsoft Store and measurable funnel/CVR work."
+    "rank1": "Preserve all 24 canonical Aug 30-31 public URLs and prevent any republish; no publication debt remains.",
+    "rank2": "Guardedly remove only the two extra free-note duplicate pages already isolated by completion evidence, keeping canonical pages untouched.",
+    "rank3": "Shift discretionary capacity to measurable first-party funnel instrumentation before speculative price, CTA or volume changes.",
+    "rank4": "Advance Microsoft Store CSV Cleaner & Duplicate Remover only through package identity/submission steps that can be proven; do not invent Partner Center values.",
+    "rank5": "Use GitHub Pages as a free acquisition layer only where outbound attribution to verified note/BOOTH destinations can be measured."
   },
-  "aug28Batch": {
-    "paidNoteIds": ["note_20260828_42_attendance_month_end_exception_control","note_20260828_43_estimate_to_order_followup_control","note_20260828_44_applicant_response_sla_control","note_20260828_45_ai_efficiency_roi_measurement","note_20260828_46_backoffice_labor_saving_priority_matrix"],
-    "freeNoteIds": ["free_note_20260828_01_attendance_month_end_signals","free_note_20260828_02_ai_efficiency_measurement_signals"],
-    "boothIds": ["049_attendance_month_end_exception_control_os_20260828","050_estimate_to_order_followup_control_os_20260828","051_applicant_response_sla_control_os_20260828","052_ai_efficiency_roi_measurement_os_20260828","053_backoffice_labor_saving_priority_matrix_os_20260828"],
-    "materializationState": "pending",
-    "publicSearchReconciliation": "Exact-title public web search during this run did not establish any of the designated Aug 28 note pages as already public; do not infer absence as proof and continue authenticated/API/profile reconciliation before reposting."
+  "currentBatch": {
+    "date": "2026-08-31",
+    "paidNoteIds": ["note_20260831_57_purchase_invoice_match_control","note_20260831_58_inventory_expiry_lot_rotation","note_20260831_59_project_scope_change_control","note_20260831_60_backup_restore_verification","note_20260831_61_procedure_revision_acknowledgement"],
+    "freeNoteIds": ["free_note_20260831_01_invoice_difference_signals","free_note_20260831_02_backup_restore_warning_signals"],
+    "boothIds": ["064_purchase_invoice_match_control_os_20260831","065_inventory_expiry_lot_rotation_os_20260831","066_project_scope_change_control_os_20260831","067_backup_restore_verification_os_20260831","068_procedure_revision_acknowledgement_os_20260831"],
+    "materializationState": "complete_and_strict_publication_verified",
+    "publicationDebt": 0
+  },
+  "duplicateCleanup": {
+    "status": "pending_guarded_exact_id_deletion",
+    "deleteOnlyUrls": ["https://note.com/royal_lion645/n/nbff6024f5dc2","https://note.com/royal_lion645/n/nfa368246e504"],
+    "rule": "Delete only exact isolated duplicate IDs after canonical-page precheck; never delete or republish canonical pages."
   },
   "noteFunnel": {
     "status": "measurement_first_no_invented_values",
@@ -44,15 +53,15 @@
   },
   "winnerAmplification": {"winnerCandidates":[],"rule":"No winner claim without observed first-party evidence."},
   "microsoftStore": {
-    "currentPriority": "CSV Cleaner & Duplicate Remover submission completion after Aug 28 publication debt is discharged",
-    "currentState": "code_and_listing_ready_package_identity_pending",
+    "currentPriority": "CSV Cleaner & Duplicate Remover submission completion after publication debt is zero",
+    "currentState": "public PWA and prepared Store assets exist; repository does not contain a verified Partner Center package identity state",
     "publicPwaUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
-    "nextAction": "Preserve prepared assets; never invent Partner Center package identity values."
+    "nextAction": "Preserve prepared assets and wait for verified package identity/submission evidence before any Store completion claim."
   },
   "windowsPublisher": {
     "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
     "policy": "Repair the canonical runner in place; no daily ZIP/CMD proliferation; centralize logs under C:\\SIDEHUSTLE_AUTO\\logs.",
-    "currentRisk": "Paid note queue control metadata is stale relative to the Aug 28 completion gate. Consumer must select from the current gate only after materialization/QA rather than replaying the old recovery batch."
+    "currentRisk": "No publication debt. Remaining maintenance item is guarded duplicate cleanup only."
   },
   "dataIntegrity": "No publication, winner, loser, conversion uplift, revenue, acquisition, install or retention claim without observed evidence.",
   "notificationPolicy": "No ordinary-cycle notification. Consolidated nightly report only at the designated nightly reporting cycle, except a proven human-only blocker requiring exactly one minimal action."
