@@ -1,6 +1,6 @@
 {
-  "version": 6,
-  "updatedAt": "2026-08-27T15:14:34+09:00",
+  "version": 7,
+  "updatedAt": "2026-08-31T05:13:29+09:00",
   "forecastPolicy": "Do not invent numeric revenue or conversion uplift when observed sales, PV, clicks, purchases, acquisitions or install data are absent. Rank opportunities and define measurement gates instead.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
@@ -18,59 +18,64 @@
     "GitHubPages_outboundConversion": null
   },
   "verifiedAvailabilitySignals": {
-    "date": "2026-08-27",
+    "date": "2026-08-31",
     "todayPaidNoteStrictVerified": 5,
     "todayBOOTHStrictVerified": 5,
     "todayFreeNoteStrictVerified": 2,
     "todayTotalStrictVerified": 12,
+    "carryOverStrictVerified": 12,
+    "aggregateStrictVerifiedInRecovery": 24,
     "currentDayGateComplete": true,
     "carriedPaidDebt": 0,
+    "carriedBoothDebt": 0,
+    "carriedFreeDebt": 0,
     "noteFirstPartyFunnelValuesAvailable": false,
-    "duplicateCleanupCandidateCount": 2
+    "duplicateCleanupCandidateCount": 2,
+    "humanOnlyBlocker": null
   },
   "rankedOpportunities": [
     {
-      "rank":1,
-      "channel":"MicrosoftStore",
-      "id":"ms_csv_cleaner_deduper",
-      "opportunityBand":"highest-current-option-value",
-      "basis":"The Aug 27 publication gate is complete. This app has passed public PWA, functional, listing and screenshot preparation gates; remaining value is unlocked by completing Partner Center identity/package/submission steps without compromising quality."
+      "rank": 1,
+      "channel": "cross-channel",
+      "id": "matched_age_first_party_measurement",
+      "opportunityBand": "highest-information-value",
+      "basis": "Publication debt is zero and 24 canonical Aug 30-31 publications are strict verified. No trustworthy sales/PV/CVR/acquisition values are present, so first-party measurement now has the highest expected decision value without adding user labor."
     },
     {
-      "rank":2,
-      "channel":"cross-channel",
-      "id":"matched_age_first_party_measurement",
-      "opportunityBand":"high-information-value",
-      "basis":"No trustworthy sales/PV/CVR/acquisition values are present. Capturing matched-age first-party data has higher expected decision value than speculative price, CTA or derivative changes."
+      "rank": 2,
+      "channel": "MicrosoftStore",
+      "id": "ms_csv_cleaner_deduper",
+      "opportunityBand": "high-option-value",
+      "basis": "Prepared public PWA and Store assets exist, but a verified Partner Center package identity/submission state is absent from the repository. Advance only when that state can be observed; do not fabricate package values."
     },
     {
-      "rank":3,
-      "channel":"note",
-      "id":"free_note_20260827_02_duplicate_cleanup",
-      "opportunityBand":"quality-and-attribution-protection",
-      "basis":"Two extra same-title reader-visible URLs were discovered. Keeping one canonical URL protects measurement integrity, avoids CTA dilution and reduces future duplicate-post risk."
+      "rank": 3,
+      "channel": "note",
+      "id": "guarded_duplicate_cleanup",
+      "opportunityBand": "quality-and-attribution-protection",
+      "basis": "Two extra free-note duplicate pages are isolated by strict completion evidence. Exact-ID guarded deletion protects buyer trust and attribution while preserving the canonical pages."
     },
     {
-      "rank":4,
-      "channel":"planning",
-      "id":"20260828_nonduplicate_batch_research",
-      "opportunityBand":"tomorrow-revenue-readiness",
-      "basis":"With today's gate complete, next-day profit is improved by researching non-overlapping purchase-intent themes before materialization rather than generating thin inventory."
+      "rank": 4,
+      "channel": "GitHubPages",
+      "id": "measurable_context_cta",
+      "opportunityBand": "measurement-enabling",
+      "basis": "Existing useful pages can support zero-cost attributable traffic to verified destinations once outbound measurement exists; thin SEO expansion remains unjustified."
     },
     {
-      "rank":5,
-      "channel":"GitHubPages",
-      "id":"measurable_context_cta",
-      "opportunityBand":"measurement-enabling",
-      "basis":"Existing useful pages can support attributable traffic once verified destinations and measurement exist; thin SEO expansion remains unjustified."
+      "rank": 5,
+      "channel": "planning",
+      "id": "next_nonduplicate_purchase_intent_batch",
+      "opportunityBand": "revenue-readiness",
+      "basis": "With publication debt zero, next inventory should be selected from non-overlapping purchase-intent problems and only materialized after duplicate and quality checks."
     }
   ],
   "customerFacingChangesNow": {
-    "livePriceChanges":"none",
-    "massCtaRewrite":"none",
-    "freeCadenceIncrease":"none",
-    "winnerDerivedVariants":"none",
-    "reason":"No first-party sales/funnel evidence supports these changes yet."
+    "livePriceChanges": "none",
+    "massCtaRewrite": "none",
+    "freeCadenceIncrease": "none",
+    "winnerDerivedVariants": "none",
+    "reason": "No first-party sales/funnel evidence supports these changes yet."
   },
   "nextDataNeeded": [
     "note free and paid PV at matched 24h/72h/7d",
