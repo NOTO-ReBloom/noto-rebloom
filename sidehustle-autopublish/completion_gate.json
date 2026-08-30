@@ -1,28 +1,142 @@
 {
   "version": 29,
-  "updatedAt": "2026-08-30T09:17:00+09:00",
+  "updatedAt": "2026-08-30T23:35:57+09:00",
   "status": "in_progress_0_of_12",
   "date": "2026-08-30",
   "timezone": "Asia/Tokyo",
   "purpose": "2026-08-30: complete only after all 12 designated publications are strict verified.",
-  "carryOver": {"sourceDate":"2026-08-29","requiredBeforeNewDayConsumption":true,"remaining":{"notePaid":[],"noteFree":[],"BOOTH":[],"total":0}},
-  "completionConditions": {
-    "notePaid": {"date":"2026-08-30","dailyStrictTarget":5,"requiredIds":["note_20260830_52_receivables_collection_control","note_20260830_53_access_rights_review","note_20260830_54_vendor_price_revision_impact","note_20260830_55_meeting_decision_followthrough","note_20260830_56_equipment_inspection_exception"],"strictChecks":["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]},
-    "BOOTH": {"date":"2026-08-30","dailyStrictTarget":5,"requiredIds":["059_receivables_collection_control_os_20260830","060_access_rights_review_os_20260830","061_vendor_price_revision_impact_os_20260830","062_meeting_decision_followthrough_os_20260830","063_equipment_inspection_exception_os_20260830"],"strictChecks":["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]},
-    "noteFree": {"date":"2026-08-30","dailyStrictTarget":2,"requiredIds":["free_note_20260830_01_receivables_warning_signals","free_note_20260830_02_access_rights_warning_signals"],"strictChecks":["readerVisibleUrl","exactTitle","freeState","dedicatedCover"],"paidQuotaContribution":0}
+  "carryOver": {
+    "sourceDate": "2026-08-29",
+    "requiredBeforeNewDayConsumption": true,
+    "remaining": {
+      "notePaid": [],
+      "noteFree": [],
+      "BOOTH": [],
+      "total": 0
+    }
   },
-  "completionCounts": {"todayNotePaid":0,"todayNoteFree":0,"todayBOOTH":0,"todayTotal":0,"carryOverStrictVerified":0,"carryOverRemaining":0,"requiredToday":12,"strictVerifiedTotal":0,"totalOutstanding":12},
+  "completionConditions": {
+    "notePaid": {
+      "date": "2026-08-30",
+      "dailyStrictTarget": 5,
+      "requiredIds": [
+        "note_20260830_52_receivables_collection_control",
+        "note_20260830_53_access_rights_review",
+        "note_20260830_54_vendor_price_revision_impact",
+        "note_20260830_55_meeting_decision_followthrough",
+        "note_20260830_56_equipment_inspection_exception"
+      ],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "paidBoundary",
+        "dedicatedCover"
+      ]
+    },
+    "BOOTH": {
+      "date": "2026-08-30",
+      "dailyStrictTarget": 5,
+      "requiredIds": [
+        "059_receivables_collection_control_os_20260830",
+        "060_access_rights_review_os_20260830",
+        "061_vendor_price_revision_impact_os_20260830",
+        "062_meeting_decision_followthrough_os_20260830",
+        "063_equipment_inspection_exception_os_20260830"
+      ],
+      "strictChecks": [
+        "buyerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "downloadableProductState",
+        "purchaseOrCartPath"
+      ]
+    },
+    "noteFree": {
+      "date": "2026-08-30",
+      "dailyStrictTarget": 2,
+      "requiredIds": [
+        "free_note_20260830_01_receivables_warning_signals",
+        "free_note_20260830_02_access_rights_warning_signals"
+      ],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "freeState",
+        "dedicatedCover"
+      ],
+      "paidQuotaContribution": 0
+    }
+  },
+  "completionCounts": {
+    "todayNotePaid": 0,
+    "todayNoteFree": 0,
+    "todayBOOTH": 0,
+    "todayTotal": 0,
+    "carryOverStrictVerified": 0,
+    "carryOverRemaining": 0,
+    "requiredToday": 12,
+    "strictVerifiedTotal": 0,
+    "totalOutstanding": 12
+  },
   "planningManifest": "sidehustle-autopublish/planning/2026-08-30_batch01.json",
   "materializationState": "complete_12_queued_pending_strict_verification",
-  "materializationEvidence": {"paid":"sidehustle-autopublish/note/staging/materialization_20260830_batch01.json","free":"sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md","booth":"booth-autopublish/monitor/cloud_materialization_20260830_batch01.json","windowsRequest":"sidehustle-autopublish/windows_publication_request.json","qaPassed":true},
-  "duplicateControl": {"policy":"Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."},
-  "executionPolicy": {"singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,"canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true,"newDayQueueSafety":"Aug 30 materialization QA complete; Windows consumer may consume only required Aug 30 IDs and must strict verify before counting."},
-  "reportingPolicy": {"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
-  "humanOnlyBlockers":["re-login","2FA","CAPTCHA","identity verification","legal declaration","tax/payment setup","OS permission","account lock"],
-  "antiFalseCompletion":["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
-  "previousDayReceipt":{"date":"2026-08-29","status":"complete_24_of_24","strictVerifiedToday":12,"carryOverResolved":12,"outstanding":0},
-  "executionRequestedAt":"2026-08-30T05:17:18+09:00",
-  "executionNonce":"publish-20260830-batch01-20260830T051718+0900",
-  "completedAt":null,
-  "completionEvidence":null
+  "materializationEvidence": {
+    "paid": "sidehustle-autopublish/note/staging/materialization_20260830_batch01.json",
+    "free": "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
+    "booth": "booth-autopublish/monitor/cloud_materialization_20260830_batch01.json",
+    "windowsRequest": "sidehustle-autopublish/windows_publication_request.json",
+    "qaPassed": true
+  },
+  "duplicateControl": {
+    "policy": "Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."
+  },
+  "executionPolicy": {
+    "singleRunMayPublishMany": true,
+    "switchCandidatesAfterBriefRecoverableFailure": true,
+    "doNotStopAfterFirstSuccessWhileTargetsRemain": true,
+    "carryOverBeforeCurrentDay": true,
+    "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
+    "doNotUseScatteredWindowsRoots": true,
+    "noDailyZipOrCmdProliferation": true,
+    "newDayQueueSafety": "Aug 30 materialization QA complete; Windows consumer may consume only required Aug 30 IDs and must strict verify before counting."
+  },
+  "reportingPolicy": {
+    "intermediateProgressReports": false,
+    "diagnosticOnlyReports": false,
+    "queueOrCommitOnlyReports": false,
+    "nightlyAggregateOnly": true,
+    "humanOnlyBlockerException": true
+  },
+  "humanOnlyBlockers": [
+    "re-login",
+    "2FA",
+    "CAPTCHA",
+    "identity verification",
+    "legal declaration",
+    "tax/payment setup",
+    "OS permission",
+    "account lock"
+  ],
+  "antiFalseCompletion": [
+    "Do not report a commit as publication.",
+    "Do not report queue insertion as publication.",
+    "Do not report local publisher exit 0 without public verification.",
+    "Do not report editor/admin URLs as publication.",
+    "Do not invent public URLs.",
+    "Do not count historical reverification as a new current-day publication."
+  ],
+  "previousDayReceipt": {
+    "date": "2026-08-29",
+    "status": "complete_24_of_24",
+    "strictVerifiedToday": 12,
+    "carryOverResolved": 12,
+    "outstanding": 0
+  },
+  "executionRequestedAt": "2026-08-30T23:35:57+09:00",
+  "executionNonce": "force-current-day-20260830T233557+0900",
+  "completedAt": null,
+  "completionEvidence": null,
+  "forceNowRequested": true,
+  "forceNowMode": "reconcile_existing_then_publish_absent_then_strict_verify"
 }

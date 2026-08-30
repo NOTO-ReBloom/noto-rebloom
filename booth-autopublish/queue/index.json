@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-30T09:16:55+09:00",
-  "retryGeneration": 48,
+  "updatedAt": "2026-08-30T23:35:57+09:00",
+  "retryGeneration": 49,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -2062,8 +2062,8 @@
       "sha256": "7ea831b425ccdb58074f922d574837530fcdbf898cc45027f7eb75d3c1d72a48",
       "createdAt": "2026-08-30T09:16:55+09:00",
       "enabled": true,
-      "forceRetry": true,
-      "forceRetryNonce": "cloud-materialize-059_receivables_collection_control_os_20260830-20260830T091655+0900",
+      "forceRetry": false,
+      "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1680,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2089,7 +2089,10 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
     },
     {
       "id": "060_access_rights_review_os_20260830",
@@ -2100,8 +2103,8 @@
       "sha256": "696e04d04af7908b8416eabe0c6122b82b8cd543e76f882329a6236aa68db364",
       "createdAt": "2026-08-30T09:16:55+09:00",
       "enabled": true,
-      "forceRetry": true,
-      "forceRetryNonce": "cloud-materialize-060_access_rights_review_os_20260830-20260830T091655+0900",
+      "forceRetry": false,
+      "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2127,7 +2130,10 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
     },
     {
       "id": "061_vendor_price_revision_impact_os_20260830",
@@ -2138,8 +2144,8 @@
       "sha256": "ef313bd7aab02a7d9b906a3f2f2653a5c07e117077a2b36e22f0eb7a30eb7b04",
       "createdAt": "2026-08-30T09:16:55+09:00",
       "enabled": true,
-      "forceRetry": true,
-      "forceRetryNonce": "cloud-materialize-061_vendor_price_revision_impact_os_20260830-20260830T091655+0900",
+      "forceRetry": false,
+      "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1680,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2165,7 +2171,10 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
     },
     {
       "id": "062_meeting_decision_followthrough_os_20260830",
@@ -2176,8 +2185,8 @@
       "sha256": "8b87efc9e4814395cec968fb07aefc42ef286443959ec469d28c1f773d15def9",
       "createdAt": "2026-08-30T09:16:55+09:00",
       "enabled": true,
-      "forceRetry": true,
-      "forceRetryNonce": "cloud-materialize-062_meeting_decision_followthrough_os_20260830-20260830T091655+0900",
+      "forceRetry": false,
+      "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2203,7 +2212,10 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
     },
     {
       "id": "063_equipment_inspection_exception_os_20260830",
@@ -2214,8 +2226,8 @@
       "sha256": "d60724050e12e59987c631df1f7711075d9d2ac1b801109e67857d068e477180",
       "createdAt": "2026-08-30T09:16:55+09:00",
       "enabled": true,
-      "forceRetry": true,
-      "forceRetryNonce": "cloud-materialize-063_equipment_inspection_exception_os_20260830-20260830T091655+0900",
+      "forceRetry": false,
+      "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2241,11 +2253,15 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
     }
   ],
-  "activePublicationDate": "2026-08-29",
-  "forceAllCurrentDayNow": false,
-  "forceRetryNonce": "completed-20260828-20260829-20260829T011504+0900",
-  "outstandingDates": []
+  "activePublicationDate": "2026-08-30",
+  "forceAllCurrentDayNow": true,
+  "forceRetryNonce": "force-current-day-20260830T233557+0900",
+  "outstandingDates": [],
+  "reconcileExistingBeforePublish": true
 }
