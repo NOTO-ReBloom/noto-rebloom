@@ -1,10 +1,11 @@
 {
-  "version": 1,
+  "version": 2,
   "createdAt": "2026-08-30T05:17:18+09:00",
+  "updatedAt": "2026-08-30T09:17:00+09:00",
   "date": "2026-08-30",
   "dateId": "20260830",
   "previousDate": "2026-08-29",
-  "status": "planned_not_materialized",
+  "status": "materialized_queued_pending_strict_verification",
   "carryOver": {"paidNOTE":0,"freeNOTE":0,"BOOTH":0,"total":0},
   "paid": [
     {"id":"note_20260830_52_receivables_collection_control","title":"入金遅れを月末まで放置しない｜請求日・支払期日・督促履歴を分ける売掛金回収管理","price":1680},
@@ -25,6 +26,6 @@
     {"id":"063_equipment_inspection_exception_os_20260830","title":"設備点検・異常対応OS｜異常内容・応急処置・再点検期限を管理","price":1480}
   ],
   "qualityPolicy":{"noExactPublicTitleDuplicates":true,"semanticDuplicateCheckRequired":true,"paidBodiesOver900Chars":true,"boothReusableEditableAssets":true,"dedicatedCoverRequired":true,"publicStrictVerificationRequired":true},
-  "materialization":{"paid":false,"free":false,"booth":false,"queueQA":false},
+  "materialization":{"paid":true,"free":true,"booth":true,"queueQA":true,"paidManifest":"sidehustle-autopublish/note/staging/materialization_20260830_batch01.json","boothManifest":"booth-autopublish/monitor/cloud_materialization_20260830_batch01.json","windowsRequest":"sidehustle-autopublish/windows_publication_request.json"},
   "strictVerified":{"paid":0,"free":0,"booth":0,"total":0}
 }
