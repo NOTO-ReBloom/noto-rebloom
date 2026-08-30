@@ -5,7 +5,7 @@
   "date": "2026-08-30",
   "dateId": "20260830",
   "previousDate": "2026-08-29",
-  "status": "materialized_queued_pending_strict_publication",
+  "status": "complete_strict_publication_verified",
   "carryOver": {
     "paidNOTE": 0,
     "freeNOTE": 0,
@@ -96,10 +96,11 @@
     "windowsRequest": "sidehustle-autopublish/windows_publication_request.json"
   },
   "strictVerified": {
-    "paid": 0,
-    "free": 0,
-    "booth": 0,
-    "total": 0
+    "paid": 5,
+    "free": 2,
+    "booth": 5,
+    "total": 12
   },
-  "materializedAt": "2026-08-31T00:29:14+09:00"
+  "materializedAt": "2026-08-31T00:29:14+09:00",
+  "completedAt": "2026-08-31T01:15:56.670+09:00"
 }

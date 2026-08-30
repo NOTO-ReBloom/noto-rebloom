@@ -1,6 +1,6 @@
 {
   "version": 20,
-  "updatedAt": "2026-08-31T00:32:11+09:00",
+  "updatedAt": "2026-08-31T01:15:56.670+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-31_batch01.md",
   "requiredFreeChecks": [
@@ -1464,12 +1464,16 @@
       "coverLabel": "無料チェックリスト",
       "coverCopy": "督促が後手になる前に\n見る4つのサイン",
       "accent": "#2457A7",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260830T233557+0900",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n9c8d6a504dae",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "free_note_20260830_02_access_rights_warning_signals",
@@ -1487,12 +1491,16 @@
       "coverLabel": "無料チェックリスト",
       "coverCopy": "権限棚卸しで\n先に見る4項目",
       "accent": "#6B3FA0",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260830T233557+0900",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n2c79247f68ba",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-31T01:00:14.847+09:00"
     },
     {
       "id": "free_note_20260831_01_invoice_difference_signals",
@@ -1510,12 +1518,16 @@
       "coverLabel": "無料チェックリスト",
       "coverCopy": "支払前に見る\n4つの差異",
       "accent": "#1D4ED8",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "free-note-20260831-20260831T002702+0900",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nf02c3017b370",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-31T01:02:40.928+09:00"
     },
     {
       "id": "free_note_20260831_02_backup_restore_warning_signals",
@@ -1533,12 +1545,16 @@
       "coverLabel": "無料チェックリスト",
       "coverCopy": "復元できない前に\n見る4つのサイン",
       "accent": "#7C3AED",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "free-note-20260831-20260831T002702+0900",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/ne89377550c62",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-08-31T01:04:19.320+09:00"
     }
   ],
   "eveningMarathon": {
@@ -1558,11 +1574,21 @@
       "free_note_20260831_02_backup_restore_warning_signals"
     ],
     "requiredStrictPublications": 4,
-    "carryOverFirst": true
+    "carryOverFirst": true,
+    "completedIds": [
+      "free_note_20260830_01_receivables_warning_signals",
+      "free_note_20260830_02_access_rights_warning_signals",
+      "free_note_20260831_01_invoice_difference_signals",
+      "free_note_20260831_02_backup_restore_warning_signals"
+    ],
+    "completedStrictPublications": 4,
+    "remaining": 0,
+    "status": "complete",
+    "completedAt": "2026-08-31T01:15:56.670+09:00"
   },
   "retryGeneration": 2,
   "activePublicationDate": "2026-08-31",
-  "forceAllCurrentDayNow": true,
+  "forceAllCurrentDayNow": false,
   "forceRetryNonce": "force-current-day-20260830T233557+0900",
   "sourceBatchPaths": [
     "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",

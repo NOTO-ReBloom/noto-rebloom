@@ -1,7 +1,7 @@
 {
-  "version": 62,
+  "version": 63,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-08-31T00:29:14+09:00",
+  "updatedAt": "2026-08-31T01:15:56.670+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -11,18 +11,12 @@
       "operationalState": {
         "date": "2026-08-31",
         "previousDate": "2026-08-30",
-        "previousDayStrictVerifiedPublicationsCount": 0,
-        "carriedPublicationDebt": 5,
-        "carriedRequiredIds": [
-          "note_20260830_52_receivables_collection_control",
-          "note_20260830_53_access_rights_review",
-          "note_20260830_54_vendor_price_revision_impact",
-          "note_20260830_55_meeting_decision_followthrough",
-          "note_20260830_56_equipment_inspection_exception"
-        ],
-        "todayStrictVerifiedPublicationsCount": 0,
+        "previousDayStrictVerifiedPublicationsCount": 5,
+        "carriedPublicationDebt": 0,
+        "carriedRequiredIds": [],
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "paidProductionInventoryComplete": true,
         "planningManifest": "sidehustle-autopublish/planning/2026-08-31_batch01.json",
         "preparedIds": [
@@ -35,7 +29,7 @@
         "queueMaterializationState": "complete_both_days",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260831_batch01.json",
-        "strictPublicationState": "2026-08-31 0/5 strict verified; Aug 30 debt 5",
+        "strictPublicationState": "2026-08-30 and 2026-08-31 complete: 10/10 paid NOTE strict verified",
         "fallbackPolicy": "Consume enabled Aug 30 paid NOTE IDs first, then Aug 31; reconcile exact-title public pages before every retry.",
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 10,
         "materializationManifests": [
@@ -49,17 +43,14 @@
         "durationDays": 14,
         "initialPublicationTargetPerDay": 2,
         "hardQuota": false,
-        "carriedPreviousDayRequiredIds": [
-          "free_note_20260830_01_receivables_warning_signals",
-          "free_note_20260830_02_access_rights_warning_signals"
-        ],
-        "carriedPreviousDayStrictVerifiedCount": 0,
+        "carriedPreviousDayRequiredIds": [],
+        "carriedPreviousDayStrictVerifiedCount": 2,
         "currentRequiredIds": [
           "free_note_20260831_01_invoice_difference_signals",
           "free_note_20260831_02_backup_restore_warning_signals"
         ],
-        "currentRequiredBatchStrictVerifiedCount": 0,
-        "currentMaterializationState": "complete_both_days",
+        "currentRequiredBatchStrictVerifiedCount": 2,
+        "currentMaterializationState": "complete_and_strict_verified",
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
@@ -75,18 +66,12 @@
       "operationalState": {
         "date": "2026-08-31",
         "previousDate": "2026-08-30",
-        "previousDayStrictVerifiedPublicationsCount": 0,
-        "carriedPublicationDebt": 5,
-        "carriedRequiredIds": [
-          "059_receivables_collection_control_os_20260830",
-          "060_access_rights_review_os_20260830",
-          "061_vendor_price_revision_impact_os_20260830",
-          "062_meeting_decision_followthrough_os_20260830",
-          "063_equipment_inspection_exception_os_20260830"
-        ],
-        "todayStrictVerifiedPublicationsCount": 0,
+        "previousDayStrictVerifiedPublicationsCount": 5,
+        "carriedPublicationDebt": 0,
+        "carriedRequiredIds": [],
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "paidProductionInventoryComplete": true,
         "planningManifest": "sidehustle-autopublish/planning/2026-08-31_batch01.json",
         "preparedIds": [
@@ -100,7 +85,7 @@
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
         "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260831_batch01.json",
         "queueRetryGeneration": 52,
-        "strictPublicationState": "2026-08-31 0/5 strict verified; Aug 30 debt 5",
+        "strictPublicationState": "2026-08-30 and 2026-08-31 complete: 10/10 BOOTH strict verified",
         "fallbackPolicy": "Consume enabled Aug 30 BOOTH IDs first, then Aug 31; reconcile exact-title buyer-visible pages before every retry.",
         "totalVerifiedPublicationsRequiredBeforeDaySatisfied": 10,
         "materializationManifests": [
@@ -125,12 +110,12 @@
       "total": 12
     },
     "strictVerifiedAtRollover": 0,
-    "strictVerifiedAfterRollover": 0,
-    "carryOverRemaining": 12,
+    "strictVerifiedAfterRollover": 24,
+    "carryOverRemaining": 0,
     "totalStrictObligationsBeforeDaySatisfied": 24,
-    "priority": "strict-publish Aug 30 carryover first, then Aug 31 targets",
-    "currentDayStrictVerified": 0,
-    "completionState": "pending_0_of_24"
+    "priority": "complete; preserve strict receipts and do not republish",
+    "currentDayStrictVerified": 12,
+    "completionState": "complete_24_of_24"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",

@@ -1,11 +1,11 @@
 {
   "version": 3,
-  "updatedAt": "2026-08-31T00:32:11+09:00",
+  "updatedAt": "2026-08-31T01:15:56.670+09:00",
   "retryGeneration": 53,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_aug30_carryover_then_aug31_paid_note_now",
+    "mode": "completed_aug30_aug31_paid_note",
     "requiredStrictPublications": 10,
     "orderedIds": [
       "note_20260830_52_receivables_collection_control",
@@ -28,7 +28,23 @@
       "dedicatedCover"
     ],
     "forcedAt": "2026-08-31T00:29:14+09:00",
-    "nonce": "paid-note-20260830-20260831-20260831T002914+0900"
+    "nonce": "paid-note-20260830-20260831-20260831T002914+0900",
+    "completedStrictPublications": 10,
+    "completedIds": [
+      "note_20260830_52_receivables_collection_control",
+      "note_20260830_53_access_rights_review",
+      "note_20260830_54_vendor_price_revision_impact",
+      "note_20260830_55_meeting_decision_followthrough",
+      "note_20260830_56_equipment_inspection_exception",
+      "note_20260831_57_purchase_invoice_match_control",
+      "note_20260831_58_inventory_expiry_lot_rotation",
+      "note_20260831_59_project_scope_change_control",
+      "note_20260831_60_backup_restore_verification",
+      "note_20260831_61_procedure_revision_acknowledgement"
+    ],
+    "remaining": 0,
+    "status": "complete",
+    "completedAt": "2026-08-31T01:15:56.670+09:00"
   },
   "entries": [
     {
@@ -1334,7 +1350,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260830_52_receivables_collection_control.enc.json",
       "sha256": "23c3c2d099b0502b35500f94ddf692e78b31a42241a1e5a6bde6c999627bc2fe",
       "createdAt": "2026-08-30T09:16:55+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1680,
@@ -1347,9 +1363,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n74d989bfc644",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260830_53_access_rights_review",
@@ -1357,7 +1378,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260830_53_access_rights_review.enc.json",
       "sha256": "63d6996017b57a8e45380ec55fe849042e44f876076634dbf585dbb97c45d0c7",
       "createdAt": "2026-08-30T09:16:55+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1480,
@@ -1370,9 +1391,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n91b6b264a63a",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260830_54_vendor_price_revision_impact",
@@ -1380,7 +1406,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260830_54_vendor_price_revision_impact.enc.json",
       "sha256": "fcc9c2d10110d2c7a29b32ae9bc0bf852d1f90cb7326f7792151420fb30659eb",
       "createdAt": "2026-08-30T09:16:55+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1680,
@@ -1393,9 +1419,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n62b770bb628d",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260830_55_meeting_decision_followthrough",
@@ -1403,7 +1434,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260830_55_meeting_decision_followthrough.enc.json",
       "sha256": "e2a4b1d9b8f2afe94dfe39a753b68c8f0403a58e2e41a17d1813863d90a40a5f",
       "createdAt": "2026-08-30T09:16:55+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1480,
@@ -1416,9 +1447,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nc76d4a8ab403",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260830_56_equipment_inspection_exception",
@@ -1426,7 +1462,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260830_56_equipment_inspection_exception.enc.json",
       "sha256": "8c3e1ff652237fb5846f07e1e8c061cff2722f673b8ade4db26ef8fa1f75514a",
       "createdAt": "2026-08-30T09:16:55+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260830T233557+0900",
       "expectedPriceJPY": 1480,
@@ -1439,9 +1475,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n8121f71fa3ab",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260831_57_purchase_invoice_match_control",
@@ -1449,7 +1490,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260831_57_purchase_invoice_match_control.enc.json",
       "sha256": "ba912d8bf23b44259ccf249c46fc70aa5048f970fd38d1d6d29258a20bf497d0",
       "createdAt": "2026-08-31T00:27:02+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
       "expectedPriceJPY": 1680,
@@ -1462,9 +1503,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/ne518356755d9",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260831_58_inventory_expiry_lot_rotation",
@@ -1472,7 +1518,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260831_58_inventory_expiry_lot_rotation.enc.json",
       "sha256": "2f63a0a42a00426599e26a3037a6c26fb70467c345c8b37a705bfcb669a84412",
       "createdAt": "2026-08-31T00:27:02+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
       "expectedPriceJPY": 1480,
@@ -1485,9 +1531,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/na6e110f78c9e",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260831_59_project_scope_change_control",
@@ -1495,7 +1546,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260831_59_project_scope_change_control.enc.json",
       "sha256": "312e07be4697be1b2f4facba927411b698b8c6d9f7b0bf9e61f9ae0ec920c9b2",
       "createdAt": "2026-08-31T00:27:02+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
       "expectedPriceJPY": 1680,
@@ -1508,9 +1559,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/ncfabc6c38ac9",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260831_60_backup_restore_verification",
@@ -1518,7 +1574,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260831_60_backup_restore_verification.enc.json",
       "sha256": "814fc974b412c3c9549f08413926874c01ae3dd84287e2bdd0cac7d8d7feaefa",
       "createdAt": "2026-08-31T00:27:02+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
       "expectedPriceJPY": 1680,
@@ -1531,9 +1587,14 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n1c9e43a8df93",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     },
     {
       "id": "note_20260831_61_procedure_revision_acknowledgement",
@@ -1541,7 +1602,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260831_61_procedure_revision_acknowledgement.enc.json",
       "sha256": "009668b1bffbaae41cb9e7a5a71925c1503f770b574ccbda94f72d53d5463a3f",
       "createdAt": "2026-08-31T00:27:02+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "paid-note-20260831-20260831T002702+0900",
       "expectedPriceJPY": 1480,
@@ -1554,17 +1615,19 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n792e7e41042e",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover after the Windows launcher found no remaining remote item.",
+      "verifiedAt": "2026-08-31T02:10:00+09:00"
     }
   ],
   "activePublicationDate": "2026-08-31",
-  "forceAllCurrentDayNow": true,
+  "forceAllCurrentDayNow": false,
   "forceRetryNonce": "force-current-day-20260830T233557+0900",
-  "outstandingDates": [
-    "2026-08-30",
-    "2026-08-31"
-  ],
+  "outstandingDates": [],
   "reconcileExistingBeforePublish": true
 }

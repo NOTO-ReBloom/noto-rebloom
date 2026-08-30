@@ -1,6 +1,6 @@
 {
-  "version": 50,
-  "updatedAt": "2026-08-31T00:29:14+09:00",
+  "version": 51,
+  "updatedAt": "2026-08-31T01:15:56.670+09:00",
   "activeRecovery": {
     "date": "2026-08-31",
     "sourceDates": [
@@ -9,8 +9,9 @@
     ],
     "mode": "carryover_then_current_day_paid_floor",
     "requiredStrictNewPublications": 10,
-    "remaining": 10,
-    "state": "ready"
+    "remaining": 0,
+    "state": "completed",
+    "completedAt": "2026-08-31T01:15:56.670+09:00"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-08-31T00:29:14+09:00",
@@ -27,7 +28,18 @@
       "067_backup_restore_verification_os_20260831",
       "068_procedure_revision_acknowledgement_os_20260831"
     ],
-    "completedIds": [],
+    "completedIds": [
+      "059_receivables_collection_control_os_20260830",
+      "060_access_rights_review_os_20260830",
+      "061_vendor_price_revision_impact_os_20260830",
+      "062_meeting_decision_followthrough_os_20260830",
+      "063_equipment_inspection_exception_os_20260830",
+      "064_purchase_invoice_match_control_os_20260831",
+      "065_inventory_expiry_lot_rotation_os_20260831",
+      "066_project_scope_change_control_os_20260831",
+      "067_backup_restore_verification_os_20260831",
+      "068_procedure_revision_acknowledgement_os_20260831"
+    ],
     "queueRetryGeneration": 52,
     "qaManifests": [
       "booth-autopublish/monitor/cloud_materialization_20260830_batch01.json",
@@ -53,7 +65,10 @@
       "068_procedure_revision_acknowledgement_os_20260831": 1480
     },
     "doNotStopAfterFirstSuccess": true,
-    "forceRetryNonce": "booth-20260830-20260831-20260831T002914+0900"
+    "forceRetryNonce": "booth-20260830-20260831-20260831T002914+0900",
+    "remaining": 0,
+    "status": "complete",
+    "completedAt": "2026-08-31T01:15:56.670+09:00"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -84,13 +99,14 @@
     "completionPredicate": "all ten Aug 30-31 IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-29T01:15:04.210+09:00",
+    "checkedAt": "2026-08-31T01:15:56.670+09:00",
     "windowsPublisherReachable": true,
-    "carryOverBOOTH": "2026-08-28 5/5 strict verified",
+    "carryOverBOOTH": "2026-08-30 5/5 strict verified",
     "aug27NewBOOTH": "planned but not materialized; do not consume yet",
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "None for Aug 28-29; preserve canonical ledger URLs and do not republish.",
-    "aug29NewBOOTH": "2026-08-29 5/5 strict verified"
+    "nextAction": "No BOOTH republish. Preserve the ten canonical ledger URLs.",
+    "aug29NewBOOTH": "2026-08-29 5/5 strict verified",
+    "aug31NewBOOTH": "2026-08-31 5/5 strict verified"
   },
   "heldAlreadyResolved": {
     "queueIds": [

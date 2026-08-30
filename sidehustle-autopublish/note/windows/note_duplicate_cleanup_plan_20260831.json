@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "account": "royal_lion645",
+  "auditedAt": "2026-08-31T02:10:00+09:00",
+  "status": "pending_guarded_exact_id_deletion",
+  "publishedCanonicalPages": 4,
+  "duplicateTitleGroups": 2,
+  "duplicatePagesToDelete": 2,
+  "selectionPolicy": [
+    "Keep the canonical URL verified by the controlled Aug 30-31 launcher run.",
+    "Delete only the later extra URL with the same exact title after both pages pass public identity checks."
+  ],
+  "groups": [
+    {
+      "title": "請求書をそのまま払う前に見る4つの差異｜発注・受領・請求の確認ポイント",
+      "queueId": "free_note_20260831_01_invoice_difference_signals",
+      "keep": {
+        "key": "nf02c3017b370",
+        "publicUrl": "https://note.com/royal_lion645/n/nf02c3017b370"
+      },
+      "delete": [
+        {
+          "key": "nbff6024f5dc2",
+          "publicUrl": "https://note.com/royal_lion645/n/nbff6024f5dc2"
+        }
+      ]
+    },
+    {
+      "title": "バックアップが使えないかもしれない4つのサイン｜復元前に確認したい項目",
+      "queueId": "free_note_20260831_02_backup_restore_warning_signals",
+      "keep": {
+        "key": "ne89377550c62",
+        "publicUrl": "https://note.com/royal_lion645/n/ne89377550c62"
+      },
+      "delete": [
+        {
+          "key": "nfa368246e504",
+          "publicUrl": "https://note.com/royal_lion645/n/nfa368246e504"
+        }
+      ]
+    }
+  ]
+}

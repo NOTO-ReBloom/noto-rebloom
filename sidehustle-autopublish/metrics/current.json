@@ -1,99 +1,73 @@
 {
-  "version": 40,
-  "updatedAt": "2026-08-31T00:32:11+09:00",
-  "objective": "Preserve the strictly verified Aug 28-29 batch: paid NOTE 10, free NOTE 4 and BOOTH 10.",
+  "version": 41,
+  "updatedAt": "2026-08-31T01:15:56.670+09:00",
+  "objective": "Preserve the strictly verified Aug 30-31 batch: paid NOTE 10, free NOTE 4 and BOOTH 10; remove only two extra free-note duplicates.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
     "notePaidQueue": "sidehustle-autopublish/note/queue/index.json",
     "notePaidReceipts": "sidehustle-autopublish/note/publication_receipts/",
     "noteMaterialization": [
-      "sidehustle-autopublish/note/staging/materialization_20260828_batch01.json",
-      "sidehustle-autopublish/note/staging/materialization_20260829_batch01.json"
+      "sidehustle-autopublish/note/staging/materialization_20260830_batch01.json",
+      "sidehustle-autopublish/note/staging/materialization_20260831_batch01.json"
     ],
     "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
     "noteFreeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
     "boothQueue": "booth-autopublish/queue/index.json",
     "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
     "boothMaterialization": [
-      "booth-autopublish/monitor/cloud_materialization_20260828_batch01.json",
-      "booth-autopublish/monitor/cloud_materialization_20260829_batch01.json"
+      "booth-autopublish/monitor/cloud_materialization_20260830_batch01.json",
+      "booth-autopublish/monitor/cloud_materialization_20260831_batch01.json"
     ],
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
     "date": "2026-08-31",
-    "observedAt": "2026-08-31T00:29:14+09:00",
+    "observedAt": "2026-08-31T01:15:56.670+09:00",
     "previousDate": "2026-08-30",
-    "previousDayPaidNoteStrictVerified": "0/5",
-    "previousDayBoothStrictVerified": "0/5",
-    "previousDayFreeNoteStrictVerified": "0/2",
-    "carriedTotalDebt": 12
+    "previousDayPaidNoteStrictVerified": "5/5",
+    "previousDayBoothStrictVerified": "5/5",
+    "previousDayFreeNoteStrictVerified": "2/2",
+    "carriedTotalDebt": 0
   },
   "currentDayTargets": {
     "date": "2026-08-31",
     "paidNote": {
       "target": 10,
-      "strictVerified": 0,
-      "remaining": 10,
+      "strictVerified": 10,
+      "remaining": 0,
       "materialized": 10,
-      "remainingIds": [
-        "note_20260830_52_receivables_collection_control",
-        "note_20260830_53_access_rights_review",
-        "note_20260830_54_vendor_price_revision_impact",
-        "note_20260830_55_meeting_decision_followthrough",
-        "note_20260830_56_equipment_inspection_exception",
-        "note_20260831_57_purchase_invoice_match_control",
-        "note_20260831_58_inventory_expiry_lot_rotation",
-        "note_20260831_59_project_scope_change_control",
-        "note_20260831_60_backup_restore_verification",
-        "note_20260831_61_procedure_revision_acknowledgement"
-      ]
+      "remainingIds": []
     },
     "BOOTH": {
       "target": 10,
-      "strictVerified": 0,
-      "remaining": 10,
+      "strictVerified": 10,
+      "remaining": 0,
       "materialized": 10,
-      "remainingIds": [
-        "059_receivables_collection_control_os_20260830",
-        "060_access_rights_review_os_20260830",
-        "061_vendor_price_revision_impact_os_20260830",
-        "062_meeting_decision_followthrough_os_20260830",
-        "063_equipment_inspection_exception_os_20260830",
-        "064_purchase_invoice_match_control_os_20260831",
-        "065_inventory_expiry_lot_rotation_os_20260831",
-        "066_project_scope_change_control_os_20260831",
-        "067_backup_restore_verification_os_20260831",
-        "068_procedure_revision_acknowledgement_os_20260831"
-      ]
+      "remainingIds": []
     },
     "freeNote": {
       "target": 4,
-      "strictVerified": 0,
-      "remaining": 4,
+      "strictVerified": 4,
+      "remaining": 0,
       "materialized": 4,
-      "remainingIds": [
-        "free_note_20260830_01_receivables_warning_signals",
-        "free_note_20260830_02_access_rights_warning_signals",
-        "free_note_20260831_01_invoice_difference_signals",
-        "free_note_20260831_02_backup_restore_warning_signals"
-      ],
+      "remainingIds": [],
       "paidQuotaContribution": 0
     },
-    "allDesignatedStrictVerified": false
+    "allDesignatedStrictVerified": true
   },
   "evidence": {
-    "paidNote": "10 encrypted payloads materialized; no public count yet",
-    "BOOTH": "10 encrypted product payloads materialized; no public count yet",
-    "freeNote": "4 manuscripts queued; no public count yet",
+    "paidNote": "10 canonical public URLs independently audited for exact title, price, paid boundary, purchase path and cover",
+    "BOOTH": "10 buyer-visible HTTP 200 exact-title URLs with PUBLIC_RECOVERY_SUCCESS",
+    "freeNote": "4 canonical reader-visible URLs independently audited for exact title, free state and cover; two later duplicate pages are isolated for guarded deletion",
+    "sourceLogSha256": "9a6bfa63a5d0420c8a6460fef98772d3042f15199879f86a2b4f4ca7b32f28c4",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-08-29T01:15:04.210+09:00",
+    "checkedAt": "2026-08-31T01:15:56.670+09:00",
     "cloudMaterializationComplete": true,
     "windowsAuthenticatedPublisherRequiredForPublicPosting": false,
-    "nextWindowsAction": "None for Aug 28-29. All 24 designated publications are strict verified and disabled."
+    "nextWindowsAction": "Run the guarded exact-ID cleanup for the two extra free-note pages; all 24 canonical publications are strict verified and disabled."
   },
   "rules": [
     "Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.",
