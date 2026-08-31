@@ -1,198 +1,30 @@
 {
-  "version": 33,
-  "updatedAt": "2026-08-31T01:15:56.670+09:00",
-  "status": "complete_24_of_24",
-  "date": "2026-08-31",
+  "version": 34,
+  "updatedAt": "2026-09-01T00:19:06+09:00",
+  "status": "in_progress_0_of_12",
+  "date": "2026-09-01",
   "timezone": "Asia/Tokyo",
-  "purpose": "Complete only after all carried Aug 30 obligations and all designated Aug 31 publications are strict verified.",
-  "carryOver": {
-    "sourceDate": "2026-08-30",
-    "requiredBeforeNewDayConsumption": true,
-    "remaining": {
-      "notePaid": [],
-      "noteFree": [],
-      "BOOTH": [],
-      "total": 0
-    }
-  },
+  "purpose": "Complete only after all designated Sep 1 publications are strict verified.",
+  "carryOver": {"sourceDate":"2026-08-31","requiredBeforeNewDayConsumption":true,"remaining":{"notePaid":[],"noteFree":[],"BOOTH":[],"total":0}},
   "completionConditions": {
-    "notePaid": {
-      "date": "2026-08-31",
-      "dailyStrictTarget": 5,
-      "requiredIds": [
-        "note_20260831_57_purchase_invoice_match_control",
-        "note_20260831_58_inventory_expiry_lot_rotation",
-        "note_20260831_59_project_scope_change_control",
-        "note_20260831_60_backup_restore_verification",
-        "note_20260831_61_procedure_revision_acknowledgement"
-      ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "paidBoundary",
-        "dedicatedCover"
-      ]
-    },
-    "BOOTH": {
-      "date": "2026-08-31",
-      "dailyStrictTarget": 5,
-      "requiredIds": [
-        "064_purchase_invoice_match_control_os_20260831",
-        "065_inventory_expiry_lot_rotation_os_20260831",
-        "066_project_scope_change_control_os_20260831",
-        "067_backup_restore_verification_os_20260831",
-        "068_procedure_revision_acknowledgement_os_20260831"
-      ],
-      "strictChecks": [
-        "buyerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "downloadableProductState",
-        "purchaseOrCartPath"
-      ]
-    },
-    "noteFree": {
-      "date": "2026-08-31",
-      "dailyStrictTarget": 2,
-      "requiredIds": [
-        "free_note_20260831_01_invoice_difference_signals",
-        "free_note_20260831_02_backup_restore_warning_signals"
-      ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "freeState",
-        "dedicatedCover"
-      ],
-      "paidQuotaContribution": 0
-    }
+    "notePaid": {"date":"2026-09-01","dailyStrictTarget":5,"requiredIds":["note_20260901_62_subscription_renewal_cost_control","note_20260901_63_support_escalation_sla_control","note_20260901_64_campaign_attribution_control","note_20260901_65_training_expiry_control","note_20260901_66_migration_rehearsal_control"],"strictChecks":["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]},
+    "BOOTH": {"date":"2026-09-01","dailyStrictTarget":5,"requiredIds":["069_subscription_renewal_cost_control_os_20260901","070_support_escalation_sla_control_os_20260901","071_campaign_attribution_control_os_20260901","072_training_expiry_control_os_20260901","073_migration_rehearsal_control_os_20260901"],"strictChecks":["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]},
+    "noteFree": {"date":"2026-09-01","dailyStrictTarget":2,"requiredIds":["free_note_20260901_01_subscription_waste_signals","free_note_20260901_02_support_escalation_signals"],"strictChecks":["readerVisibleUrl","exactTitle","freeState","dedicatedCover"],"paidQuotaContribution":0}
   },
-  "completionCounts": {
-    "todayNotePaid": 5,
-    "todayNoteFree": 2,
-    "todayBOOTH": 5,
-    "todayTotal": 12,
-    "carryOverStrictVerified": 12,
-    "carryOverRemaining": 0,
-    "requiredToday": 12,
-    "strictVerifiedTotal": 24,
-    "totalOutstanding": 0
-  },
-  "planningManifest": "sidehustle-autopublish/planning/2026-08-31_batch01.json",
-  "materializationState": "complete_and_strict_publication_verified",
-  "materializationEvidence": {
-    "paid": "sidehustle-autopublish/note/staging/materialization_20260830_batch01.json",
-    "free": "sidehustle-autopublish/note/free_drafts/2026-08-30_batch01.md",
-    "booth": "booth-autopublish/monitor/cloud_materialization_20260830_batch01.json",
-    "windowsRequest": "sidehustle-autopublish/windows_publication_request.json",
-    "qaPassed": true
-  },
-  "duplicateControl": {
-    "policy": "Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."
-  },
-  "executionPolicy": {
-    "singleRunMayPublishMany": true,
-    "switchCandidatesAfterBriefRecoverableFailure": true,
-    "doNotStopAfterFirstSuccessWhileTargetsRemain": true,
-    "carryOverBeforeCurrentDay": true,
-    "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-    "doNotUseScatteredWindowsRoots": true,
-    "noDailyZipOrCmdProliferation": true,
-    "newDayQueueSafety": "Aug 30 materialization QA complete; Windows consumer may consume only required Aug 30 IDs and must strict verify before counting."
-  },
-  "reportingPolicy": {
-    "intermediateProgressReports": false,
-    "diagnosticOnlyReports": false,
-    "queueOrCommitOnlyReports": false,
-    "nightlyAggregateOnly": true,
-    "humanOnlyBlockerException": true
-  },
-  "humanOnlyBlockers": [
-    "re-login",
-    "2FA",
-    "CAPTCHA",
-    "identity verification",
-    "legal declaration",
-    "tax/payment setup",
-    "OS permission",
-    "account lock"
-  ],
-  "antiFalseCompletion": [
-    "Do not report a commit as publication.",
-    "Do not report queue insertion as publication.",
-    "Do not report local publisher exit 0 without public verification.",
-    "Do not report editor/admin URLs as publication.",
-    "Do not invent public URLs.",
-    "Do not count historical reverification as a new current-day publication."
-  ],
-  "previousDayReceipt": {
-    "date": "2026-08-29",
-    "status": "complete_24_of_24",
-    "strictVerifiedToday": 12,
-    "carryOverResolved": 12,
-    "outstanding": 0
-  },
-  "executionRequestedAt": "2026-08-31T00:29:14+09:00",
-  "executionNonce": "publish-aug30-aug31-all24-20260831T002914+0900",
-  "completedAt": "2026-08-31T01:15:56.670+09:00",
-  "completionEvidence": {
-    "launcherVersion": "2026-08-31-AUG30-AUG31-ALL24-V1",
-    "executionWindow": {
-      "startedAt": "2026-08-31T00:57:58.690+09:00",
-      "endedAt": "2026-08-31T01:15:56.670+09:00"
-    },
-    "strictVerified": {
-      "paidNote": 10,
-      "freeNote": 4,
-      "BOOTH": 10,
-      "total": 24
-    },
-    "paidNoteUrls": {
-      "note_20260830_52_receivables_collection_control": "https://note.com/royal_lion645/n/n74d989bfc644",
-      "note_20260830_53_access_rights_review": "https://note.com/royal_lion645/n/n91b6b264a63a",
-      "note_20260830_54_vendor_price_revision_impact": "https://note.com/royal_lion645/n/n62b770bb628d",
-      "note_20260830_55_meeting_decision_followthrough": "https://note.com/royal_lion645/n/nc76d4a8ab403",
-      "note_20260830_56_equipment_inspection_exception": "https://note.com/royal_lion645/n/n8121f71fa3ab",
-      "note_20260831_57_purchase_invoice_match_control": "https://note.com/royal_lion645/n/ne518356755d9",
-      "note_20260831_58_inventory_expiry_lot_rotation": "https://note.com/royal_lion645/n/na6e110f78c9e",
-      "note_20260831_59_project_scope_change_control": "https://note.com/royal_lion645/n/ncfabc6c38ac9",
-      "note_20260831_60_backup_restore_verification": "https://note.com/royal_lion645/n/n1c9e43a8df93",
-      "note_20260831_61_procedure_revision_acknowledgement": "https://note.com/royal_lion645/n/n792e7e41042e"
-    },
-    "freeNoteUrls": {
-      "free_note_20260830_01_receivables_warning_signals": "https://note.com/royal_lion645/n/n9c8d6a504dae",
-      "free_note_20260830_02_access_rights_warning_signals": "https://note.com/royal_lion645/n/n2c79247f68ba",
-      "free_note_20260831_01_invoice_difference_signals": "https://note.com/royal_lion645/n/nf02c3017b370",
-      "free_note_20260831_02_backup_restore_warning_signals": "https://note.com/royal_lion645/n/ne89377550c62"
-    },
-    "boothUrls": {
-      "059_receivables_collection_control_os_20260830": "https://booth.pm/ja/items/8786112",
-      "060_access_rights_review_os_20260830": "https://booth.pm/ja/items/8786116",
-      "061_vendor_price_revision_impact_os_20260830": "https://booth.pm/ja/items/8786120",
-      "062_meeting_decision_followthrough_os_20260830": "https://booth.pm/ja/items/8786123",
-      "063_equipment_inspection_exception_os_20260830": "https://booth.pm/ja/items/8786124",
-      "064_purchase_invoice_match_control_os_20260831": "https://booth.pm/ja/items/8786131",
-      "065_inventory_expiry_lot_rotation_os_20260831": "https://booth.pm/ja/items/8786133",
-      "066_project_scope_change_control_os_20260831": "https://booth.pm/ja/items/8786136",
-      "067_backup_restore_verification_os_20260831": "https://booth.pm/ja/items/8786137",
-      "068_procedure_revision_acknowledgement_os_20260831": "https://booth.pm/ja/items/8786140"
-    },
-    "duplicateCleanup": {
-      "status": "pending_guarded_exact_id_deletion",
-      "canonicalPagesKept": 2,
-      "extraPagesToDelete": 2,
-      "deleteOnlyUrls": [
-        "https://note.com/royal_lion645/n/nbff6024f5dc2",
-        "https://note.com/royal_lion645/n/nfa368246e504"
-      ]
-    },
-    "sourceLogSha256": "9a6bfa63a5d0420c8a6460fef98772d3042f15199879f86a2b4f4ca7b32f28c4"
-  },
+  "completionCounts": {"todayNotePaid":0,"todayNoteFree":0,"todayBOOTH":0,"todayTotal":0,"carryOverStrictVerified":0,"carryOverRemaining":0,"requiredToday":12,"strictVerifiedTotal":0,"totalOutstanding":12},
+  "planningManifest": "sidehustle-autopublish/planning/2026-09-01_batch01.json",
+  "materializationState": "planned_free_drafts_started_paid_and_booth_pending",
+  "materializationEvidence": {"freeDrafts":"sidehustle-autopublish/note/free_drafts/2026-09-01_batch01.md","qaPassed":false},
+  "duplicateControl": {"policy":"Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."},
+  "executionPolicy": {"singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,"canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true,"newDayQueueSafety":"Sep 1 IDs may be consumed only after payload materialization and QA are complete."},
+  "reportingPolicy": {"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
+  "humanOnlyBlockers": ["re-login","2FA","CAPTCHA","identity verification","legal declaration","tax/payment setup","OS permission","account lock"],
+  "antiFalseCompletion": ["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
+  "previousDayReceipt": {"date":"2026-08-31","status":"complete_24_of_24","strictVerifiedToday":12,"carryOverResolved":12,"outstanding":0},
+  "executionRequestedAt": null,
+  "executionNonce": null,
+  "completedAt": null,
+  "completionEvidence": null,
   "forceNowRequested": false,
-  "forceNowMode": "completed_preserve_canonical_urls_do_not_republish",
-  "planningManifests": [
-    "sidehustle-autopublish/planning/2026-08-30_batch01.json",
-    "sidehustle-autopublish/planning/2026-08-31_batch01.json"
-  ]
+  "forceNowMode": "await_materialization_then_reconcile_existing_then_publish_absent_then_strict_verify"
 }
