@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "createdAt": "2026-09-01T00:19:06+09:00",
+  "date": "2026-09-01",
+  "dateId": "20260901",
+  "previousDate": "2026-08-31",
+  "status": "planned_materialization_pending",
+  "carryOver": {"paidNOTE":0,"freeNOTE":0,"BOOTH":0,"total":0},
+  "paid": [
+    {"id":"note_20260901_62_subscription_renewal_cost_control","title":"サブスク費用を更新日に気づかない状態から抜ける｜契約・利用者・更新日を一元管理する方法","price":1480},
+    {"id":"note_20260901_63_support_escalation_sla_control","title":"問い合わせの放置を防ぐ｜一次回答・エスカレーション・期限を管理するサポート運用","price":1480},
+    {"id":"note_20260901_64_campaign_attribution_control","title":"広告費を使ったのに成果が分からないを防ぐ｜UTM・費用・CVを結ぶ施策管理","price":1680},
+    {"id":"note_20260901_65_training_expiry_control","title":"資格・研修の期限切れを直前に知るのを防ぐ｜受講・更新・証跡を管理する仕組み","price":1480},
+    {"id":"note_20260901_66_migration_rehearsal_control","title":"データ移行を本番一発勝負にしない｜件数照合・差分・ロールバックを残す移行リハーサル","price":1680}
+  ],
+  "free": [
+    {"id":"free_note_20260901_01_subscription_waste_signals","title":"使っていないサブスクが残る4つのサイン｜更新前に確認したい契約項目","pairedPaidId":"note_20260901_62_subscription_renewal_cost_control"},
+    {"id":"free_note_20260901_02_support_escalation_signals","title":"問い合わせ対応が止まりやすい4つのサイン｜担当変更前に決めたい項目","pairedPaidId":"note_20260901_63_support_escalation_sla_control"}
+  ],
+  "booth": [
+    {"id":"069_subscription_renewal_cost_control_os_20260901","title":"サブスク・契約更新管理OS｜契約額・利用者・更新日・解約期限を一元管理","price":1480},
+    {"id":"070_support_escalation_sla_control_os_20260901","title":"問い合わせ・エスカレーション管理OS｜一次回答・担当・期限・引継ぎを追跡","price":1480},
+    {"id":"071_campaign_attribution_control_os_20260901","title":"広告施策・UTM・費用対効果管理OS｜流入・CV・支出を施策単位で追跡","price":1680},
+    {"id":"072_training_expiry_control_os_20260901","title":"資格・研修期限管理OS｜受講・更新期限・証跡・担当を一元管理","price":1480},
+    {"id":"073_migration_rehearsal_control_os_20260901","title":"データ移行リハーサルOS｜件数照合・差分・切戻し・承認を管理","price":1680}
+  ],
+  "qualityPolicy":{"noExactPublicTitleDuplicates":true,"semanticDuplicateCheckRequired":true,"paidBodiesOver900Chars":true,"boothReusableEditableAssets":true,"dedicatedCoverRequired":true,"publicStrictVerificationRequired":true},
+  "materialization":{"paid":false,"free":false,"booth":false,"queueQA":false},
+  "strictVerified":{"paid":0,"free":0,"booth":0,"total":0}
+}
