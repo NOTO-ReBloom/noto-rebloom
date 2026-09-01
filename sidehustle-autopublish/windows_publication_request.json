@@ -1,8 +1,9 @@
 {
-  "version": 1,
-  "updatedAt": "2026-09-01T12:25:03+09:00",
+  "version": 2,
+  "updatedAt": "2026-09-01T15:17:26+09:00",
   "date": "2026-09-01",
   "mode": "publish_all_current_day_now",
+  "triggerNonce": "sep1-force-20260901T151726+0900",
   "paidNote": {
     "ids": [
       "note_20260901_62_subscription_renewal_cost_control",
@@ -31,5 +32,6 @@
     "target": 5
   },
   "strictVerificationRequired": true,
-  "doNotStopAfterFirstSuccess": true
+  "doNotStopAfterFirstSuccess": true,
+  "reconcileExistingBeforeRepublish": true
 }
