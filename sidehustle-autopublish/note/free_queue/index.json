@@ -1,8 +1,8 @@
 {
-  "version": 20,
-  "updatedAt": "2026-09-01T10:51:31+09:00",
+  "version": 21,
+  "updatedAt": "2026-09-01T12:23:06+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-08-31_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-01_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1555,6 +1555,46 @@
       "publicUrl": "https://note.com/royal_lion645/n/ne89377550c62",
       "verificationState": "reader_visible_free_verified",
       "verifiedAt": "2026-08-31T01:04:19.320+09:00"
+    },
+    {
+      "id": "free_note_20260901_01_subscription_waste_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "使っていないサブスクが残る4つのサイン｜更新前に確認したい契約項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-01_batch01.md",
+      "pairedPaidId": "note_20260901_62_subscription_renewal_cost_control",
+      "tags": [
+        "サブスク",
+        "固定費",
+        "契約管理",
+        "コスト削減"
+      ],
+      "coverLabel": "サブスク見直し",
+      "coverCopy": "更新前に見る4サイン",
+      "accent": "#315E81",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260901-20260901T122306+0900"
+    },
+    {
+      "id": "free_note_20260901_02_support_escalation_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "問い合わせ対応が止まりやすい4つのサイン｜担当変更前に決めたい項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-01_batch01.md",
+      "pairedPaidId": "note_20260901_63_support_escalation_sla_control",
+      "tags": [
+        "問い合わせ対応",
+        "サポート",
+        "エスカレーション",
+        "業務改善"
+      ],
+      "coverLabel": "問い合わせ管理",
+      "coverCopy": "止まりやすい4サイン",
+      "accent": "#6A4C7D",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260901-20260901T122306+0900"
     }
   ],
   "eveningMarathon": {
@@ -1563,28 +1603,12 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "dateRange": [
-      "2026-08-30",
-      "2026-08-31"
-    ],
+    "date": "2026-09-01",
     "ids": [
-      "free_note_20260830_01_receivables_warning_signals",
-      "free_note_20260830_02_access_rights_warning_signals",
-      "free_note_20260831_01_invoice_difference_signals",
-      "free_note_20260831_02_backup_restore_warning_signals"
+      "free_note_20260901_01_subscription_waste_signals",
+      "free_note_20260901_02_support_escalation_signals"
     ],
-    "requiredStrictPublications": 4,
-    "carryOverFirst": true,
-    "completedIds": [
-      "free_note_20260830_01_receivables_warning_signals",
-      "free_note_20260830_02_access_rights_warning_signals",
-      "free_note_20260831_01_invoice_difference_signals",
-      "free_note_20260831_02_backup_restore_warning_signals"
-    ],
-    "completedStrictPublications": 4,
-    "remaining": 0,
-    "status": "complete",
-    "completedAt": "2026-08-31T01:15:56.670+09:00"
+    "requiredStrictPublications": 2
   },
   "retryGeneration": 2,
   "activePublicationDate": "2026-08-31",
