@@ -1,6 +1,6 @@
 {
-  "version": 7,
-  "updatedAt": "2026-08-31T05:13:29+09:00",
+  "version": 8,
+  "updatedAt": "2026-09-01T23:15:00+09:00",
   "forecastPolicy": "Do not invent numeric revenue or conversion uplift when observed sales, PV, clicks, purchases, acquisitions or install data are absent. Rank opportunities and define measurement gates instead.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
@@ -18,19 +18,18 @@
     "GitHubPages_outboundConversion": null
   },
   "verifiedAvailabilitySignals": {
-    "date": "2026-08-31",
+    "date": "2026-09-01",
     "todayPaidNoteStrictVerified": 5,
     "todayBOOTHStrictVerified": 5,
     "todayFreeNoteStrictVerified": 2,
     "todayTotalStrictVerified": 12,
-    "carryOverStrictVerified": 12,
-    "aggregateStrictVerifiedInRecovery": 24,
     "currentDayGateComplete": true,
     "carriedPaidDebt": 0,
     "carriedBoothDebt": 0,
     "carriedFreeDebt": 0,
     "noteFirstPartyFunnelValuesAvailable": false,
-    "duplicateCleanupCandidateCount": 2,
+    "duplicateCleanupCandidateCount": 0,
+    "duplicateCleanupComplete": true,
     "humanOnlyBlocker": null
   },
   "rankedOpportunities": [
@@ -39,35 +38,35 @@
       "channel": "cross-channel",
       "id": "matched_age_first_party_measurement",
       "opportunityBand": "highest-information-value",
-      "basis": "Publication debt is zero and 24 canonical Aug 30-31 publications are strict verified. No trustworthy sales/PV/CVR/acquisition values are present, so first-party measurement now has the highest expected decision value without adding user labor."
+      "basis": "Sep 1 publication debt and NOTE duplicate debt are both zero. No trustworthy sales/PV/CVR/acquisition values are present, so first-party measurement has the highest expected decision value without adding user labor."
     },
     {
       "rank": 2,
       "channel": "MicrosoftStore",
       "id": "ms_csv_cleaner_deduper",
       "opportunityBand": "high-option-value",
-      "basis": "Prepared public PWA and Store assets exist, but a verified Partner Center package identity/submission state is absent from the repository. Advance only when that state can be observed; do not fabricate package values."
+      "basis": "Prepared public PWA and Store assets exist, but a verified Partner Center package identity/submission state is absent from repository evidence. Preserve assets and advance automatically only when verifiable identity/submission evidence is available."
     },
     {
       "rank": 3,
-      "channel": "note",
-      "id": "guarded_duplicate_cleanup",
-      "opportunityBand": "quality-and-attribution-protection",
-      "basis": "Two extra free-note duplicate pages are isolated by strict completion evidence. Exact-ID guarded deletion protects buyer trust and attribution while preserving the canonical pages."
-    },
-    {
-      "rank": 4,
       "channel": "GitHubPages",
       "id": "measurable_context_cta",
       "opportunityBand": "measurement-enabling",
-      "basis": "Existing useful pages can support zero-cost attributable traffic to verified destinations once outbound measurement exists; thin SEO expansion remains unjustified."
+      "basis": "Useful existing pages can become zero-cost attributable acquisition surfaces once outbound measurement is present. Do not create thin SEO pages merely for volume."
     },
     {
-      "rank": 5,
+      "rank": 4,
       "channel": "planning",
       "id": "next_nonduplicate_purchase_intent_batch",
       "opportunityBand": "revenue-readiness",
-      "basis": "With publication debt zero, next inventory should be selected from non-overlapping purchase-intent problems and only materialized after duplicate and quality checks."
+      "basis": "With publication and duplicate debt zero, the next batch should target non-overlapping purchase-intent problems and pass duplicate/quality checks before materialization."
+    },
+    {
+      "rank": 5,
+      "channel": "cross-channel",
+      "id": "winner_amplification_gate",
+      "opportunityBand": "deferred-until-measured",
+      "basis": "Do not derive variants, raise prices, rewrite CTAs at scale or increase cadence until matched-age first-party evidence identifies a real winner."
     }
   ],
   "customerFacingChangesNow": {
