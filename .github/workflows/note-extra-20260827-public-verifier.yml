@@ -2,14 +2,6 @@ name: Verify extra 2026-08-27 NOTE batch
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sidehustle-autopublish/note/queue/index.json'
-      - 'sidehustle-autopublish/note/free_queue/index.json'
-      - 'sidehustle-autopublish/monitor/extra_note_completion_gate_20260827.json'
-      - '.github/workflows/note-extra-20260827-public-verifier.yml'
-  schedule:
-    - cron: '*/7 * * * *'
 
 permissions:
   contents: write
