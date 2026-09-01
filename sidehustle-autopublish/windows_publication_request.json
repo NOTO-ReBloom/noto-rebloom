@@ -1,92 +1,19 @@
 {
-  "version": 8,
-  "updatedAt": "2026-09-01T21:52:54+09:00",
-  "date": "2026-09-01",
-  "mode": "completed_sep1_all12_duplicate_cleanup_complete_schedulers_resumed",
-  "triggerNonce": "sep1-cleanup-complete-20260901T215128+0900",
-  "paidNote": {
-    "ids": [
-      "note_20260901_62_subscription_renewal_cost_control",
-      "note_20260901_63_support_escalation_sla_control",
-      "note_20260901_64_campaign_attribution_control",
-      "note_20260901_65_training_expiry_control",
-      "note_20260901_66_migration_rehearsal_control"
-    ],
-    "target": 5
-  },
-  "freeNote": {
-    "ids": [
-      "free_note_20260901_01_subscription_waste_signals",
-      "free_note_20260901_02_support_escalation_signals"
-    ],
-    "target": 2
-  },
-  "BOOTH": {
-    "ids": [
-      "069_subscription_renewal_cost_control_os_20260901",
-      "070_support_escalation_sla_control_os_20260901",
-      "071_campaign_attribution_control_os_20260901",
-      "072_training_expiry_control_os_20260901",
-      "073_migration_rehearsal_control_os_20260901"
-    ],
-    "target": 5
-  },
+  "version": 9,
+  "updatedAt": "2026-09-02T05:17:58+09:00",
+  "date": "2026-09-02",
+  "mode": "sep2_materialization_pending_do_not_consume_until_qa_complete",
+  "triggerNonce": "sep2-zero-touch-init-20260902T051758+0900",
+  "paidNote": {"ids":["note_20260902_67_invoice_approval_cycle_control","note_20260902_68_monthly_close_exception_control","note_20260902_69_knowledge_base_freshness_control","note_20260902_70_vendor_access_offboarding_control","note_20260902_71_refund_aging_control"],"target":5},
+  "freeNote": {"ids":["free_note_20260902_01_invoice_approval_delay_signals","free_note_20260902_02_monthly_close_delay_signals"],"target":2},
+  "BOOTH": {"ids":["074_invoice_approval_cycle_os_20260902","075_monthly_close_exception_os_20260902","076_knowledge_base_freshness_os_20260902","077_vendor_access_offboarding_os_20260902","078_refund_aging_os_20260902"],"target":5},
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
   "reconcileExistingBeforeRepublish": true,
   "forceNowRequested": false,
-  "completionState": "12_of_12",
-  "completedAt": "2026-09-01T17:53:06.420+09:00",
-  "completionEvidence": {
-    "paidNote": 5,
-    "freeNote": 2,
-    "BOOTH": 5,
-    "total": 12,
-    "sourceLogSha256": "5a2ae32b388bbd73ed307d1d03529417647ee203fa38191f87fcb6f974af6584"
-  },
-  "duplicateCleanup": {
-    "requested": false,
-    "status": "complete_7_deleted_0_remaining",
-    "receipt": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_receipt_20260901.json",
-    "completedAt": "2026-09-01T21:51:28.210+09:00",
-    "duplicateTitleGroupsResolved": 6,
-    "extraPagesDeletedVerified": 7,
-    "failedDeletions": 0,
-    "remainingDuplicateGroups": 0,
-    "remainingDuplicatePages": 0,
-    "preservedKeeperUrls": [
-      "https://note.com/royal_lion645/n/nf02c3017b370",
-      "https://note.com/royal_lion645/n/ne89377550c62",
-      "https://note.com/royal_lion645/n/n94c944ee8751",
-      "https://note.com/royal_lion645/n/n75a3f3ef371c",
-      "https://note.com/royal_lion645/n/n671b603a4d57",
-      "https://note.com/royal_lion645/n/n4afba968fb75"
-    ],
-    "deletedUrls": [
-      "https://note.com/royal_lion645/n/nbff6024f5dc2",
-      "https://note.com/royal_lion645/n/nfa368246e504",
-      "https://note.com/royal_lion645/n/ne2ff39f733ad",
-      "https://note.com/royal_lion645/n/nb01f3f59f4a1",
-      "https://note.com/royal_lion645/n/nb4dba9eb630f",
-      "https://note.com/royal_lion645/n/n0d1af95c1e8b",
-      "https://note.com/royal_lion645/n/nd2fcda5d27f6"
-    ],
-    "finalGlobalAudit": {
-      "verifiedAt": "2026-09-01T21:51:27.844+09:00",
-      "duplicateGroups": 0,
-      "groups": []
-    },
-    "scheduledTasks": {
-      "NOTE_RemoteQueue_30min": {
-        "enabled": true,
-        "status": "Ready",
-        "nextRunAt": "2026-09-01T22:05:00+09:00"
-      },
-      "BOOTH_RemoteQueue_30min": {
-        "enabled": true,
-        "status": "Ready",
-        "nextRunAt": "2026-09-01T22:20:00+09:00"
-      }
-    }
-  }
+  "materializationRequiredBeforeConsumption": true,
+  "completionState": "0_of_12_planned",
+  "completedAt": null,
+  "completionEvidence": null,
+  "duplicateCleanup": {"requested":false,"status":"no_known_debt_after_2026-09-01_global_audit"}
 }
