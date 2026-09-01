@@ -1,7 +1,7 @@
 {
-  "version": 69,
+  "version": 70,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-01T21:43:45+09:00",
+  "updatedAt": "2026-09-01T21:52:54+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -61,64 +61,47 @@
         "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-01_batch01.md",
         "currentCompletedDraftCount": 2,
         "duplicateCleanup": {
-          "status": "round1_complete_final_cleanup_retry_v2_ready",
-          "round1": {
-            "status": "target_deletions_completed_additional_groups_discovered",
-            "launcherVersion": "2026-09-01-CLEANUP-DUPLICATES-AND-RESUME-V1",
-            "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_plan_20260901.json",
-            "startedAt": "2026-09-01T21:26:40.600+09:00",
-            "targetDeletionsCompletedAt": "2026-09-01T21:27:54.318+09:00",
-            "endedAt": "2026-09-01T21:28:27.720+09:00",
-            "targetGroups": 3,
-            "targetPages": 4,
-            "deletedVerified": 4,
-            "alreadyRemoved": 0,
-            "failed": 0,
-            "deletedOnlyKeys": [
-              "nbff6024f5dc2",
-              "nfa368246e504",
-              "ne2ff39f733ad",
-              "nb01f3f59f4a1"
-            ],
-            "remainingDuplicateGroupsDiscovered": 3,
-            "remainingDuplicatePagesDiscovered": 3,
-            "scheduledTasksState": "disabled_until_final_duplicate_audit_zero"
+          "status": "complete_7_deleted_0_remaining",
+          "receipt": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_receipt_20260901.json",
+          "completedAt": "2026-09-01T21:51:28.210+09:00",
+          "duplicateTitleGroupsResolved": 6,
+          "extraPagesDeletedVerified": 7,
+          "failedDeletions": 0,
+          "remainingDuplicateGroups": 0,
+          "remainingDuplicatePages": 0,
+          "preservedKeeperUrls": [
+            "https://note.com/royal_lion645/n/nf02c3017b370",
+            "https://note.com/royal_lion645/n/ne89377550c62",
+            "https://note.com/royal_lion645/n/n94c944ee8751",
+            "https://note.com/royal_lion645/n/n75a3f3ef371c",
+            "https://note.com/royal_lion645/n/n671b603a4d57",
+            "https://note.com/royal_lion645/n/n4afba968fb75"
+          ],
+          "deletedUrls": [
+            "https://note.com/royal_lion645/n/nbff6024f5dc2",
+            "https://note.com/royal_lion645/n/nfa368246e504",
+            "https://note.com/royal_lion645/n/ne2ff39f733ad",
+            "https://note.com/royal_lion645/n/nb01f3f59f4a1",
+            "https://note.com/royal_lion645/n/nb4dba9eb630f",
+            "https://note.com/royal_lion645/n/n0d1af95c1e8b",
+            "https://note.com/royal_lion645/n/nd2fcda5d27f6"
+          ],
+          "finalGlobalAudit": {
+            "verifiedAt": "2026-09-01T21:51:27.844+09:00",
+            "duplicateGroups": 0,
+            "groups": []
           },
-          "remaining": {
-            "status": "retry_ready_confirmation_ui_v2",
-            "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
-            "duplicateTitleGroups": 3,
-            "extraPagesToDelete": 3,
-            "preserveKeeperUrls": [
-              "https://note.com/royal_lion645/n/n75a3f3ef371c",
-              "https://note.com/royal_lion645/n/n671b603a4d57",
-              "https://note.com/royal_lion645/n/n4afba968fb75"
-            ],
-            "deleteOnlyUrls": [
-              "https://note.com/royal_lion645/n/nb4dba9eb630f",
-              "https://note.com/royal_lion645/n/n0d1af95c1e8b",
-              "https://note.com/royal_lion645/n/nd2fcda5d27f6"
-            ],
-            "auditedAt": "2026-09-01T21:31:51+09:00",
-            "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs.",
-            "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
-            "retryReason": "The three exact target and keeper prechecks passed, but note rendered the confirmation control outside the previously assumed dialog scope or after a longer delay.",
-            "retryPreparedAt": "2026-09-01T21:43:45+09:00"
-          },
-          "lastAttempt": {
-            "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
-            "startedAt": "2026-09-01T21:40:28.390+09:00",
-            "endedAt": "2026-09-01T21:42:05.860+09:00",
-            "deleted": 0,
-            "alreadyRemoved": 0,
-            "failed": 3,
-            "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
-            "prechecksPassed": 3,
-            "targetsStillPublic": 3,
-            "keepersStillPublic": 3,
-            "remainingDuplicateGroups": 3,
-            "scheduledTasksState": "disabled",
-            "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
+          "scheduledTasks": {
+            "NOTE_RemoteQueue_30min": {
+              "enabled": true,
+              "status": "Ready",
+              "nextRunAt": "2026-09-01T22:05:00+09:00"
+            },
+            "BOOTH_RemoteQueue_30min": {
+              "enabled": true,
+              "status": "Ready",
+              "nextRunAt": "2026-09-01T22:20:00+09:00"
+            }
           }
         }
       }

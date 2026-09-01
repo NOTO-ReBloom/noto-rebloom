@@ -1,9 +1,9 @@
 {
-  "version": 7,
-  "updatedAt": "2026-09-01T21:43:45+09:00",
+  "version": 8,
+  "updatedAt": "2026-09-01T21:52:54+09:00",
   "date": "2026-09-01",
-  "mode": "completed_sep1_all12_final_duplicate_cleanup_retry_v2",
-  "triggerNonce": "sep1-final-duplicate-cleanup-v2-20260901T214345+0900",
+  "mode": "completed_sep1_all12_duplicate_cleanup_complete_schedulers_resumed",
+  "triggerNonce": "sep1-cleanup-complete-20260901T215128+0900",
   "paidNote": {
     "ids": [
       "note_20260901_62_subscription_renewal_cost_control",
@@ -45,57 +45,48 @@
     "sourceLogSha256": "5a2ae32b388bbd73ed307d1d03529417647ee203fa38191f87fcb6f974af6584"
   },
   "duplicateCleanup": {
-    "requested": true,
-    "round": 3,
-    "mode": "guarded_exact_id_delete_only_then_resume_scheduled_tasks",
-    "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
-    "account": "royal_lion645",
-    "round1DeletedVerifiedKeys": [
-      "nbff6024f5dc2",
-      "nfa368246e504",
-      "ne2ff39f733ad",
-      "nb01f3f59f4a1"
+    "requested": false,
+    "status": "complete_7_deleted_0_remaining",
+    "receipt": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_receipt_20260901.json",
+    "completedAt": "2026-09-01T21:51:28.210+09:00",
+    "duplicateTitleGroupsResolved": 6,
+    "extraPagesDeletedVerified": 7,
+    "failedDeletions": 0,
+    "remainingDuplicateGroups": 0,
+    "remainingDuplicatePages": 0,
+    "preservedKeeperUrls": [
+      "https://note.com/royal_lion645/n/nf02c3017b370",
+      "https://note.com/royal_lion645/n/ne89377550c62",
+      "https://note.com/royal_lion645/n/n94c944ee8751",
+      "https://note.com/royal_lion645/n/n75a3f3ef371c",
+      "https://note.com/royal_lion645/n/n671b603a4d57",
+      "https://note.com/royal_lion645/n/n4afba968fb75"
     ],
-    "deleteOnlyKeys": [
-      "nb4dba9eb630f",
-      "n0d1af95c1e8b",
-      "nd2fcda5d27f6"
+    "deletedUrls": [
+      "https://note.com/royal_lion645/n/nbff6024f5dc2",
+      "https://note.com/royal_lion645/n/nfa368246e504",
+      "https://note.com/royal_lion645/n/ne2ff39f733ad",
+      "https://note.com/royal_lion645/n/nb01f3f59f4a1",
+      "https://note.com/royal_lion645/n/nb4dba9eb630f",
+      "https://note.com/royal_lion645/n/n0d1af95c1e8b",
+      "https://note.com/royal_lion645/n/nd2fcda5d27f6"
     ],
-    "preserveKeeperKeys": [
-      "n75a3f3ef371c",
-      "n671b603a4d57",
-      "n4afba968fb75"
-    ],
-    "remainingDuplicateGroups": 3,
-    "remainingDuplicatePages": 3,
-    "preconditions": [
-      "verify exact account",
-      "verify exact title",
-      "verify keeper is still public",
-      "verify delete target is public and is not keeper",
-      "delete only explicit target key",
-      "verify target becomes non-public after deletion",
-      "verify global duplicate-title audit returns zero groups",
-      "never republish during cleanup"
-    ],
-    "requestedAt": "2026-09-01T21:43:45+09:00",
-    "status": "retry_ready_confirmation_ui_v2",
-    "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
-    "lastAttempt": {
-      "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
-      "startedAt": "2026-09-01T21:40:28.390+09:00",
-      "endedAt": "2026-09-01T21:42:05.860+09:00",
-      "deleted": 0,
-      "alreadyRemoved": 0,
-      "failed": 3,
-      "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
-      "prechecksPassed": 3,
-      "targetsStillPublic": 3,
-      "keepersStillPublic": 3,
-      "remainingDuplicateGroups": 3,
-      "scheduledTasksState": "disabled",
-      "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
+    "finalGlobalAudit": {
+      "verifiedAt": "2026-09-01T21:51:27.844+09:00",
+      "duplicateGroups": 0,
+      "groups": []
     },
-    "retryReason": "DELETE_CONFIRM_BUTTON_NOT_FOUND for all three targets after successful exact keeper/target prechecks; no deletion occurred."
+    "scheduledTasks": {
+      "NOTE_RemoteQueue_30min": {
+        "enabled": true,
+        "status": "Ready",
+        "nextRunAt": "2026-09-01T22:05:00+09:00"
+      },
+      "BOOTH_RemoteQueue_30min": {
+        "enabled": true,
+        "status": "Ready",
+        "nextRunAt": "2026-09-01T22:20:00+09:00"
+      }
+    }
   }
 }
