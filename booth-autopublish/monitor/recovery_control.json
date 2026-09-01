@@ -1,12 +1,13 @@
 {
-  "version": 53,
-  "updatedAt": "2026-09-01T12:25:03+09:00",
+  "version": 54,
+  "updatedAt": "2026-09-01T17:57:14+09:00",
   "activeRecovery": {
     "date": "2026-09-01",
     "mode": "current_day_paid_floor",
     "requiredStrictNewPublications": 5,
-    "remaining": 5,
-    "state": "ready"
+    "remaining": 0,
+    "state": "completed",
+    "completedAt": "2026-09-01T17:53:06.420+09:00"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-09-01T12:25:03+09:00",
@@ -18,7 +19,13 @@
       "072_training_expiry_control_os_20260901",
       "073_migration_rehearsal_control_os_20260901"
     ],
-    "completedIds": [],
+    "completedIds": [
+      "069_subscription_renewal_cost_control_os_20260901",
+      "070_support_escalation_sla_control_os_20260901",
+      "071_campaign_attribution_control_os_20260901",
+      "072_training_expiry_control_os_20260901",
+      "073_migration_rehearsal_control_os_20260901"
+    ],
     "queueRetryGeneration": 54,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260901_batch01.json",
     "requiredBuyerChecks": [
@@ -37,7 +44,10 @@
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260901-20260901T122503+0900"
+    "forceRetryNonce": "booth-20260901-20260901T122503+0900",
+    "remaining": 0,
+    "status": "complete",
+    "completedAt": "2026-09-01T17:53:06.420+09:00"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -58,14 +68,15 @@
     "completionPredicate": "all five current-day IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
-    "checkedAt": "2026-08-31T01:15:56.670+09:00",
+    "checkedAt": "2026-09-01T17:57:14+09:00",
     "windowsPublisherReachable": true,
     "carryOverBOOTH": "2026-08-30 5/5 strict verified",
     "aug27NewBOOTH": "planned but not materialized; do not consume yet",
     "humanOnlyBlockerEvidence": null,
-    "nextAction": "No BOOTH republish. Preserve the ten canonical ledger URLs.",
+    "nextAction": "No BOOTH republish; preserve the five canonical Sep 1 ledger URLs.",
     "aug29NewBOOTH": "2026-08-29 5/5 strict verified",
-    "aug31NewBOOTH": "2026-08-31 5/5 strict verified"
+    "aug31NewBOOTH": "2026-08-31 5/5 strict verified",
+    "sep1NewBOOTH": "2026-09-01 5/5 strict verified"
   },
   "heldAlreadyResolved": {
     "queueIds": [

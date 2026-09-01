@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "account": "royal_lion645",
+  "auditedAt": "2026-09-01T17:57:14+09:00",
+  "status": "pending_guarded_exact_id_deletion",
+  "duplicateTitleGroups": 3,
+  "duplicatePagesToDelete": 4,
+  "selectionPolicy": [
+    "Keep the canonical URL recorded by a successful controlled launcher verification.",
+    "Delete only explicitly listed extra URLs after exact account, title, keeper and target checks."
+  ],
+  "groups": [
+    {
+      "title": "請求書をそのまま払う前に見る4つの差異｜発注・受領・請求の確認ポイント",
+      "queueId": "free_note_20260831_01_invoice_difference_signals",
+      "keep": {
+        "key": "nf02c3017b370",
+        "publicUrl": "https://note.com/royal_lion645/n/nf02c3017b370"
+      },
+      "delete": [
+        {
+          "key": "nbff6024f5dc2",
+          "publicUrl": "https://note.com/royal_lion645/n/nbff6024f5dc2"
+        }
+      ]
+    },
+    {
+      "title": "バックアップが使えないかもしれない4つのサイン｜復元前に確認したい項目",
+      "queueId": "free_note_20260831_02_backup_restore_warning_signals",
+      "keep": {
+        "key": "ne89377550c62",
+        "publicUrl": "https://note.com/royal_lion645/n/ne89377550c62"
+      },
+      "delete": [
+        {
+          "key": "nfa368246e504",
+          "publicUrl": "https://note.com/royal_lion645/n/nfa368246e504"
+        }
+      ]
+    },
+    {
+      "title": "問い合わせ対応が止まりやすい4つのサイン｜担当変更前に決めたい項目",
+      "queueId": "free_note_20260901_02_support_escalation_signals",
+      "keep": {
+        "key": "n94c944ee8751",
+        "publicUrl": "https://note.com/royal_lion645/n/n94c944ee8751"
+      },
+      "delete": [
+        {
+          "key": "ne2ff39f733ad",
+          "publicUrl": "https://note.com/royal_lion645/n/ne2ff39f733ad"
+        },
+        {
+          "key": "nb01f3f59f4a1",
+          "publicUrl": "https://note.com/royal_lion645/n/nb01f3f59f4a1"
+        }
+      ]
+    }
+  ]
+}

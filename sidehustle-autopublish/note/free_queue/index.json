@@ -1,6 +1,6 @@
 {
   "version": 22,
-  "updatedAt": "2026-09-01T15:52:04+09:00",
+  "updatedAt": "2026-09-01T17:57:14+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-01_batch01.md",
   "requiredFreeChecks": [
@@ -1572,9 +1572,15 @@
       "coverLabel": "サブスク見直し",
       "coverCopy": "更新前に見る4サイン",
       "accent": "#315E81",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260901-20260901T122503+0900"
+      "forceRetryNonce": "free-note-20260901-20260901T122503+0900",
+      "forcePublicationNow": false,
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nf564d915f16e",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-01T17:45:14.196+09:00"
     },
     {
       "id": "free_note_20260901_02_support_escalation_signals",
@@ -1592,9 +1598,15 @@
       "coverLabel": "問い合わせ管理",
       "coverCopy": "止まりやすい4サイン",
       "accent": "#6A4C7D",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260901-20260901T122503+0900"
+      "forceRetryNonce": "free-note-20260901-20260901T122503+0900",
+      "forcePublicationNow": false,
+      "recoveryMode": "completed reader-visible strict verification",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n94c944ee8751",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-01T17:47:09.585+09:00"
     }
   ],
   "eveningMarathon": {
@@ -1608,7 +1620,15 @@
       "free_note_20260901_01_subscription_waste_signals",
       "free_note_20260901_02_support_escalation_signals"
     ],
-    "requiredStrictPublications": 2
+    "requiredStrictPublications": 2,
+    "completedIds": [
+      "free_note_20260901_01_subscription_waste_signals",
+      "free_note_20260901_02_support_escalation_signals"
+    ],
+    "completedStrictPublications": 2,
+    "remaining": 0,
+    "status": "complete",
+    "completedAt": "2026-09-01T17:53:06.420+09:00"
   },
   "retryGeneration": 2,
   "activePublicationDate": "2026-08-31",
