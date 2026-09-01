@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "createdAt": "2026-09-02T05:17:58+09:00",
+  "date": "2026-09-02",
+  "dateId": "20260902",
+  "previousDate": "2026-09-01",
+  "status": "planned_materialization_pending",
+  "carryOver": {"paidNOTE":0,"freeNOTE":0,"BOOTH":0,"total":0},
+  "paid": [
+    {"id":"note_20260902_67_invoice_approval_cycle_control","title":"請求書が承認待ちで止まるのを防ぐ｜受領・確認・承認・支払予定日をつなぐ管理方法","price":1480},
+    {"id":"note_20260902_68_monthly_close_exception_control","title":"月次締めが毎月ずれる原因を残さない｜未処理・例外・担当・解消期限を管理する方法","price":1680},
+    {"id":"note_20260902_69_knowledge_base_freshness_control","title":"社内マニュアルが古いまま使われるのを防ぐ｜更新責任者・確認日・失効を管理する仕組み","price":1480},
+    {"id":"note_20260902_70_vendor_access_offboarding_control","title":"外部委託終了後のアカウント残存を防ぐ｜権限・返却物・終了日を管理する手順","price":1680},
+    {"id":"note_20260902_71_refund_aging_control","title":"返金対応を問い合わせ履歴の中に埋もれさせない｜受付・承認・返金予定・完了を追う管理方法","price":1480}
+  ],
+  "free": [
+    {"id":"free_note_20260902_01_invoice_approval_delay_signals","title":"請求書の承認が止まりやすい4つのサイン｜支払遅延の前に確認したい項目","pairedPaidId":"note_20260902_67_invoice_approval_cycle_control"},
+    {"id":"free_note_20260902_02_monthly_close_delay_signals","title":"月次締めが遅れる4つのサイン｜締め日前に確認したい未処理項目","pairedPaidId":"note_20260902_68_monthly_close_exception_control"}
+  ],
+  "booth": [
+    {"id":"074_invoice_approval_cycle_os_20260902","title":"請求書・承認・支払予定管理OS｜受領・確認・承認者・期限を一元管理","price":1480},
+    {"id":"075_monthly_close_exception_os_20260902","title":"月次締め・未処理例外管理OS｜担当・期限・差戻し・解消状況を一元管理","price":1680},
+    {"id":"076_knowledge_base_freshness_os_20260902","title":"社内マニュアル鮮度管理OS｜更新責任者・確認日・失効・改訂履歴を管理","price":1480},
+    {"id":"077_vendor_access_offboarding_os_20260902","title":"外部委託・権限返却管理OS｜終了日・アカウント停止・返却物・確認を追跡","price":1680},
+    {"id":"078_refund_aging_os_20260902","title":"返金・返金期限管理OS｜受付・承認・返金予定・完了証跡を一元管理","price":1480}
+  ],
+  "qualityPolicy": {
+    "noExactPublicTitleDuplicates": true,
+    "semanticDuplicateCheckRequired": true,
+    "paidBodiesOver900Chars": true,
+    "boothReusableEditableAssets": true,
+    "dedicatedCoverRequired": true,
+    "publicStrictVerificationRequired": true
+  },
+  "materialization": {"paid":false,"free":false,"booth":false,"queueQA":false},
+  "strictVerified": {"paid":0,"free":0,"booth":0,"total":0}
+}
