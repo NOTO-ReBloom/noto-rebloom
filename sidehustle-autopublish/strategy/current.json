@@ -1,17 +1,98 @@
 {
-  "version": 41,
-  "updatedAt": "2026-09-01T00:19:06+09:00",
+  "version": 42,
+  "updatedAt": "2026-09-01T21:13:51+09:00",
   "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving strict publication integrity and minimizing user intervention",
   "activeChannels": ["BOOTH","note","GitHub Pages","Microsoft Store"],
   "disabledChannels": ["Amazon KDP","LINE Creators Market"],
-  "authoritativeState": {"date":"2026-09-01","carriedPaidNoteDebt":0,"carriedBoothDebt":0,"carriedFreeNoteDebt":0,"todayPaidNoteFloor":5,"todayBoothFloor":5,"todayFreeNoteTarget":2,"todayPaidNoteStrictVerified":0,"todayBoothStrictVerified":0,"todayFreeNoteStrictVerified":0,"todayTotalStrictVerified":0,"carryOverStrictVerified":0,"aggregateStrictVerifiedThisRecovery":0,"requiredToday":12,"allDesignatedStrictVerified":false,"humanOnlyBlocker":null,"planningManifest":"sidehustle-autopublish/planning/2026-09-01_batch01.json","rule":"completion_gate.json is authoritative; Aug 31 has zero debt and Sep 1 must not count until strict verification."},
-  "allocationDecision": {"rank1":"Materialize, QA, queue and strict-publish the Sep 1 12-item floor with no semantic clones and no blind reposts.","rank2":"Preserve all Aug 30-31 canonical URLs and remove only isolated duplicate free-note IDs through guarded cleanup.","rank3":"Instrument first-party funnel metrics before speculative price/CTA changes.","rank4":"Advance Microsoft Store CSV Cleaner & Duplicate Remover only through submission steps supported by verified Partner Center identity evidence.","rank5":"Use useful GitHub Pages tools as attributable acquisition surfaces rather than thin SEO pages."},
-  "currentBatch": {"date":"2026-09-01","paidNoteIds":["note_20260901_62_subscription_renewal_cost_control","note_20260901_63_support_escalation_sla_control","note_20260901_64_campaign_attribution_control","note_20260901_65_training_expiry_control","note_20260901_66_migration_rehearsal_control"],"freeNoteIds":["free_note_20260901_01_subscription_waste_signals","free_note_20260901_02_support_escalation_signals"],"boothIds":["069_subscription_renewal_cost_control_os_20260901","070_support_escalation_sla_control_os_20260901","071_campaign_attribution_control_os_20260901","072_training_expiry_control_os_20260901","073_migration_rehearsal_control_os_20260901"],"materializationState":"planning_and_free_drafts_complete_paid_booth_pending","publicationDebt":12},
-  "duplicateCleanup": {"status":"pending_guarded_exact_id_deletion","deleteOnlyUrls":["https://note.com/royal_lion645/n/nbff6024f5dc2","https://note.com/royal_lion645/n/nfa368246e504"],"rule":"Delete only exact isolated duplicate IDs after canonical-page precheck; never delete or republish canonical pages."},
-  "noteFunnel": {"status":"measurement_first_no_invented_values","firstPartyMetrics":{"PV":null,"likes":null,"follows":null,"relatedPaidClicks":null,"relatedPaidPurchases":null,"revenue":null},"measurementWindows":["24h","72h","7d"],"freeCadence":"2/day experimental target; free never substitutes for paid publication floor","ctaRule":"one exact-intent paid CTA after standalone useful free content; only verified reader-visible paid URLs"},
-  "winnerAmplification": {"winnerCandidates":[],"rule":"No winner claim without observed first-party evidence."},
-  "microsoftStore": {"currentPriority":"CSV Cleaner & Duplicate Remover submission completion after daily publication floor is safely materialized","currentState":"public PWA and prepared Store assets exist; repository does not contain a verified Partner Center package identity state","publicPwaUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/","nextAction":"Preserve prepared assets; do not invent package identity or submission completion."},
-  "windowsPublisher": {"canonicalRoot":"C:\\SIDEHUSTLE_AUTO","policy":"Repair canonical runner in place; no daily ZIP/CMD proliferation; centralize logs under C:\\SIDEHUSTLE_AUTO\\logs.","currentRisk":"Sep 1 payload materialization is not yet complete, so publisher must not consume these IDs yet."},
-  "dataIntegrity":"No publication, winner, loser, conversion uplift, revenue, acquisition, install or retention claim without observed evidence.",
-  "notificationPolicy":"No ordinary-cycle notification. Consolidated nightly report only, except a proven human-only blocker requiring exactly one minimal action."
+  "authoritativeState": {
+    "date": "2026-09-01",
+    "carriedPaidNoteDebt": 0,
+    "carriedBoothDebt": 0,
+    "carriedFreeNoteDebt": 0,
+    "todayPaidNoteFloor": 5,
+    "todayBoothFloor": 5,
+    "todayFreeNoteTarget": 2,
+    "todayPaidNoteStrictVerified": 5,
+    "todayBoothStrictVerified": 5,
+    "todayFreeNoteStrictVerified": 2,
+    "todayTotalStrictVerified": 12,
+    "carryOverStrictVerified": 0,
+    "aggregateStrictVerifiedThisRecovery": 12,
+    "requiredToday": 12,
+    "allDesignatedStrictVerified": true,
+    "humanOnlyBlocker": null,
+    "planningManifest": "sidehustle-autopublish/planning/2026-09-01_batch01.json",
+    "rule": "completion_gate.json is authoritative; Sep 1 completed 12/12 with strict public verification and zero publication debt."
+  },
+  "allocationDecision": {
+    "rank1": "Instrument first-party funnel metrics before speculative price, CTA or winner-amplification changes.",
+    "rank2": "Remove only the four isolated duplicate free-note URLs through guarded exact-ID cleanup while preserving canonical pages.",
+    "rank3": "Advance Microsoft Store CSV Cleaner & Duplicate Remover only through submission steps supported by verified Partner Center identity evidence.",
+    "rank4": "Use useful GitHub Pages tools as attributable acquisition surfaces rather than thin SEO pages.",
+    "rank5": "Preserve all Sep 1 canonical NOTE and BOOTH URLs and never republish them solely because local state is stale."
+  },
+  "currentBatch": {
+    "date": "2026-09-01",
+    "paidNoteIds": [
+      "note_20260901_62_subscription_renewal_cost_control",
+      "note_20260901_63_support_escalation_sla_control",
+      "note_20260901_64_campaign_attribution_control",
+      "note_20260901_65_training_expiry_control",
+      "note_20260901_66_migration_rehearsal_control"
+    ],
+    "freeNoteIds": [
+      "free_note_20260901_01_subscription_waste_signals",
+      "free_note_20260901_02_support_escalation_signals"
+    ],
+    "boothIds": [
+      "069_subscription_renewal_cost_control_os_20260901",
+      "070_support_escalation_sla_control_os_20260901",
+      "071_campaign_attribution_control_os_20260901",
+      "072_training_expiry_control_os_20260901",
+      "073_migration_rehearsal_control_os_20260901"
+    ],
+    "materializationState": "complete_and_strict_publication_verified",
+    "publicationDebt": 0
+  },
+  "duplicateCleanup": {
+    "status": "pending_guarded_exact_id_deletion",
+    "deleteOnlyUrls": [
+      "https://note.com/royal_lion645/n/nbff6024f5dc2",
+      "https://note.com/royal_lion645/n/nfa368246e504",
+      "https://note.com/royal_lion645/n/ne2ff39f733ad",
+      "https://note.com/royal_lion645/n/nb01f3f59f4a1"
+    ],
+    "rule": "Delete only exact isolated duplicate IDs after canonical-page precheck; never delete or republish canonical pages."
+  },
+  "noteFunnel": {
+    "status": "measurement_first_no_invented_values",
+    "firstPartyMetrics": {
+      "PV": null,
+      "likes": null,
+      "follows": null,
+      "relatedPaidClicks": null,
+      "relatedPaidPurchases": null,
+      "revenue": null
+    },
+    "measurementWindows": ["24h", "72h", "7d"],
+    "freeCadence": "2/day experimental target; free never substitutes for paid publication floor",
+    "ctaRule": "one exact-intent paid CTA after standalone useful free content; only verified reader-visible paid URLs"
+  },
+  "winnerAmplification": {
+    "winnerCandidates": [],
+    "rule": "No winner claim without observed first-party evidence."
+  },
+  "microsoftStore": {
+    "currentPriority": "CSV Cleaner & Duplicate Remover submission completion after verified Partner Center identity evidence exists",
+    "currentState": "public PWA and prepared Store assets exist; repository does not contain a verified Partner Center package identity state",
+    "publicPwaUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
+    "nextAction": "Preserve prepared assets; do not invent package identity or submission completion."
+  },
+  "windowsPublisher": {
+    "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
+    "policy": "Repair canonical runner in place; no daily ZIP/CMD proliferation; centralize logs under C:\\SIDEHUSTLE_AUTO\\logs.",
+    "currentRisk": "No publication debt. Remaining Windows-side work is guarded duplicate cleanup only; this is not a human-only blocker."
+  },
+  "dataIntegrity": "No publication, winner, loser, conversion uplift, revenue, acquisition, install or retention claim without observed evidence.",
+  "notificationPolicy": "No ordinary-cycle notification. Consolidated nightly report only, except a proven human-only blocker requiring exactly one minimal action."
 }
