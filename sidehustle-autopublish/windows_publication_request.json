@@ -1,9 +1,9 @@
 {
-  "version": 5,
-  "updatedAt": "2026-09-01T18:16:18+09:00",
+  "version": 6,
+  "updatedAt": "2026-09-01T21:31:51+09:00",
   "date": "2026-09-01",
-  "mode": "completed_sep1_all12_guarded_duplicate_cleanup_requested",
-  "triggerNonce": "sep1-duplicate-cleanup-20260901T181618+0900",
+  "mode": "completed_sep1_all12_final_duplicate_cleanup_requested",
+  "triggerNonce": "sep1-final-duplicate-cleanup-20260901T213151+0900",
   "paidNote": {
     "ids": [
       "note_20260901_62_subscription_renewal_cost_control",
@@ -46,20 +46,28 @@
   },
   "duplicateCleanup": {
     "requested": true,
-    "mode": "guarded_exact_id_delete_only",
-    "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_plan_20260901.json",
+    "round": 2,
+    "mode": "guarded_exact_id_delete_only_then_resume_scheduled_tasks",
+    "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
     "account": "royal_lion645",
-    "deleteOnlyKeys": [
+    "round1DeletedVerifiedKeys": [
       "nbff6024f5dc2",
       "nfa368246e504",
       "ne2ff39f733ad",
       "nb01f3f59f4a1"
     ],
-    "preserveKeeperKeys": [
-      "nf02c3017b370",
-      "ne89377550c62",
-      "n94c944ee8751"
+    "deleteOnlyKeys": [
+      "nb4dba9eb630f",
+      "n0d1af95c1e8b",
+      "nd2fcda5d27f6"
     ],
+    "preserveKeeperKeys": [
+      "n75a3f3ef371c",
+      "n671b603a4d57",
+      "n4afba968fb75"
+    ],
+    "remainingDuplicateGroups": 3,
+    "remainingDuplicatePages": 3,
     "preconditions": [
       "verify exact account",
       "verify exact title",
@@ -67,8 +75,9 @@
       "verify delete target is public and is not keeper",
       "delete only explicit target key",
       "verify target becomes non-public after deletion",
+      "verify global duplicate-title audit returns zero groups",
       "never republish during cleanup"
     ],
-    "requestedAt": "2026-09-01T18:16:18+09:00"
+    "requestedAt": "2026-09-01T21:31:51+09:00"
   }
 }

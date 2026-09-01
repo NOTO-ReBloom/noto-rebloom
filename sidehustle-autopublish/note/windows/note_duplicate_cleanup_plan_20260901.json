@@ -2,7 +2,7 @@
   "version": 1,
   "account": "royal_lion645",
   "auditedAt": "2026-09-01T17:57:14+09:00",
-  "status": "pending_guarded_exact_id_deletion",
+  "status": "target_deletions_completed_additional_groups_discovered",
   "duplicateTitleGroups": 3,
   "duplicatePagesToDelete": 4,
   "selectionPolicy": [
@@ -56,5 +56,28 @@
         }
       ]
     }
-  ]
+  ],
+  "execution": {
+    "status": "target_deletions_completed_additional_groups_discovered",
+    "launcherVersion": "2026-09-01-CLEANUP-DUPLICATES-AND-RESUME-V1",
+    "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_plan_20260901.json",
+    "startedAt": "2026-09-01T21:26:40.600+09:00",
+    "targetDeletionsCompletedAt": "2026-09-01T21:27:54.318+09:00",
+    "endedAt": "2026-09-01T21:28:27.720+09:00",
+    "targetGroups": 3,
+    "targetPages": 4,
+    "deletedVerified": 4,
+    "alreadyRemoved": 0,
+    "failed": 0,
+    "deletedOnlyKeys": [
+      "nbff6024f5dc2",
+      "nfa368246e504",
+      "ne2ff39f733ad",
+      "nb01f3f59f4a1"
+    ],
+    "remainingDuplicateGroupsDiscovered": 3,
+    "remainingDuplicatePagesDiscovered": 3,
+    "scheduledTasksState": "disabled_until_final_duplicate_audit_zero"
+  },
+  "remainingCleanupPlan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json"
 }

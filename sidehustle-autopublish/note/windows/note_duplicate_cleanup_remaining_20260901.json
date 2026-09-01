@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "account": "royal_lion645",
+  "auditedAt": "2026-09-01T21:31:51+09:00",
+  "status": "pending_guarded_exact_id_deletion",
+  "duplicateTitleGroups": 3,
+  "duplicatePagesToDelete": 3,
+  "selectionPolicy": [
+    "Keep the canonical URL already recorded by the successful controlled publication ledger.",
+    "Delete only the explicitly listed extra URL after exact account, title, keeper and target checks.",
+    "Enable scheduled publishers only after the final all-title duplicate audit returns zero groups."
+  ],
+  "sourceEvidence": {
+    "round1FinalAuditAt": "2026-09-01T21:28:17.575+09:00",
+    "freshPublicBrowserAuditAt": "2026-09-01T21:31:51+09:00",
+    "round1DeletedVerified": 4,
+    "round1Failed": 0
+  },
+  "groups": [
+    {
+      "title": "黒字でも危ない？｜13週間の資金繰りで先に見る3つのサイン",
+      "queueId": "free_note_20260829_02_cashflow_warning_signals",
+      "keep": {
+        "key": "n75a3f3ef371c",
+        "publicUrl": "https://note.com/royal_lion645/n/n75a3f3ef371c"
+      },
+      "delete": [
+        {
+          "key": "nb4dba9eb630f",
+          "publicUrl": "https://note.com/royal_lion645/n/nb4dba9eb630f"
+        }
+      ]
+    },
+    {
+      "title": "自動更新で損する前に見る4項目｜契約満了より先に確認する日付",
+      "queueId": "free_note_20260829_01_contract_renewal_signals",
+      "keep": {
+        "key": "n671b603a4d57",
+        "publicUrl": "https://note.com/royal_lion645/n/n671b603a4d57"
+      },
+      "delete": [
+        {
+          "key": "n0d1af95c1e8b",
+          "publicUrl": "https://note.com/royal_lion645/n/n0d1af95c1e8b"
+        }
+      ]
+    },
+    {
+      "title": "AI導入が『効率化止まり』になる3つのサイン｜効果検証で最初に決める数字",
+      "queueId": "free_note_20260828_02_ai_efficiency_measurement_signals",
+      "keep": {
+        "key": "n4afba968fb75",
+        "publicUrl": "https://note.com/royal_lion645/n/n4afba968fb75"
+      },
+      "delete": [
+        {
+          "key": "nd2fcda5d27f6",
+          "publicUrl": "https://note.com/royal_lion645/n/nd2fcda5d27f6"
+        }
+      ]
+    }
+  ]
+}
