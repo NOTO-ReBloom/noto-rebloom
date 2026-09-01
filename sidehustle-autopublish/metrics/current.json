@@ -1,6 +1,6 @@
 {
-  "version": 45,
-  "updatedAt": "2026-09-01T21:31:51+09:00",
+  "version": 46,
+  "updatedAt": "2026-09-01T21:43:45+09:00",
   "objective": "Preserve the strictly verified Sep 1 batch, finish the three remaining guarded duplicate deletions, then resume both empty-queue scheduled publishers.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -58,7 +58,7 @@
     "BOOTH": "5 buyer-visible HTTP 200 exact-title URLs with price setup, downloadable ZIP and PUBLIC_RECOVERY_SUCCESS",
     "freeNote": "2 canonical public URLs independently audited for exact title, free state and cover",
     "duplicateCleanup": {
-      "status": "round1_complete_round2_pending",
+      "status": "round1_complete_final_cleanup_retry_v2_ready",
       "round1": {
         "status": "target_deletions_completed_additional_groups_discovered",
         "launcherVersion": "2026-09-01-CLEANUP-DUPLICATES-AND-RESUME-V1",
@@ -82,7 +82,7 @@
         "scheduledTasksState": "disabled_until_final_duplicate_audit_zero"
       },
       "remaining": {
-        "status": "pending_guarded_exact_id_deletion",
+        "status": "retry_ready_confirmation_ui_v2",
         "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
         "duplicateTitleGroups": 3,
         "extraPagesToDelete": 3,
@@ -97,17 +97,35 @@
           "https://note.com/royal_lion645/n/nd2fcda5d27f6"
         ],
         "auditedAt": "2026-09-01T21:31:51+09:00",
-        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs."
+        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs.",
+        "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+        "retryReason": "The three exact target and keeper prechecks passed, but note rendered the confirmation control outside the previously assumed dialog scope or after a longer delay.",
+        "retryPreparedAt": "2026-09-01T21:43:45+09:00"
+      },
+      "lastAttempt": {
+        "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+        "startedAt": "2026-09-01T21:40:28.390+09:00",
+        "endedAt": "2026-09-01T21:42:05.860+09:00",
+        "deleted": 0,
+        "alreadyRemoved": 0,
+        "failed": 3,
+        "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+        "prechecksPassed": 3,
+        "targetsStillPublic": 3,
+        "keepersStillPublic": 3,
+        "remainingDuplicateGroups": 3,
+        "scheduledTasksState": "disabled",
+        "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
       }
     },
     "sourceLogSha256": "5a2ae32b388bbd73ed307d1d03529417647ee203fa38191f87fcb6f974af6584",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-09-01T21:31:51+09:00",
+    "checkedAt": "2026-09-01T21:43:45+09:00",
     "cloudMaterializationComplete": true,
     "windowsAuthenticatedPublisherRequiredForPublicPosting": false,
-    "nextWindowsAction": "Run the final guarded exact-ID cleanup for three extra URLs; re-enable both scheduled tasks only after the global duplicate audit returns zero groups."
+    "nextWindowsAction": "Run the v2 guarded cleanup with portal/native-dialog confirmation handling; keep both tasks disabled unless the final global audit returns zero duplicate groups."
   },
   "rules": [
     "Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.",

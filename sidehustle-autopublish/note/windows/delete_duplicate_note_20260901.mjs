@@ -144,22 +144,90 @@ async function openDeleteFromExactRow(page, key, title) {
   throw new Error(`DELETE_MENU_ITEM_NOT_FOUND ${key}`);
 }
 
-async function confirmExactDelete(page, key) {
+async function visibleDeleteControls(page) {
+  return page.locator('button,[role="button"],input[type="submit"],input[type="button"]').evaluateAll(elements => elements.map((element, index) => {
+    const rect = element.getBoundingClientRect();
+    const label = `${element.textContent || ''} ${element.getAttribute('aria-label') || ''} ${element.getAttribute('title') || ''} ${element.getAttribute('value') || ''}`.replace(/\s+/g, ' ').trim();
+    return { index, visible: rect.width > 0 && rect.height > 0, enabled: !element.disabled && element.getAttribute('aria-disabled') !== 'true', x: rect.x, y: rect.y, label };
+  }).filter(control => control.visible && /削除|キャンセル|戻る|閉じる|はい|OK/i.test(control.label))).catch(() => []);
+}
+
+async function findDeleteConfirm(page, dialog) {
+  const scopes = dialog ? [dialog, page] : [page];
+  const exactLabel = dialog
+    ? /^\s*(削除する|削除|記事を削除|完全に削除|はい|OK)\s*$/i
+    : /^\s*(削除する|記事を削除|完全に削除|はい|OK)\s*$/i;
+  for (const scope of scopes) {
+    const confirm = await firstVisible([
+      scope.getByRole('button', { name: exactLabel }),
+      scope.locator('button').filter({ hasText: exactLabel }),
+      scope.locator('[role="button"]').filter({ hasText: exactLabel }),
+      scope.locator('input[type="submit"][value*="削除"],input[type="button"][value*="削除"]'),
+    ], 350);
+    if (confirm && await confirm.isEnabled().catch(() => false)) return { confirm, controls: [] };
+  }
+  const controls = await visibleDeleteControls(page);
+  const hasCancel = controls.some(control => control.enabled && /キャンセル|戻る/.test(control.label));
+  const selected = controls.find(control => control.enabled && /削除する|記事を削除|完全に削除|削除を実行/i.test(control.label) && !/削除しない|キャンセル|戻る|閉じる/.test(control.label))
+    || (hasCancel ? controls.find(control => control.enabled && /^削除$/.test(control.label)) : null);
+  if (!selected) return { confirm: null, controls };
+  return { confirm: page.locator('button,[role="button"],input[type="submit"],input[type="button"]').nth(selected.index), controls };
+}
+
+async function clickDeleteAndConfirm(page, key, deleteItem) {
   if (!/note\.com\/notes/.test(page.url())) throw new Error(`ARTICLE_LIST_CHANGED_BEFORE_CONFIRM ${page.url()}`);
   const duplicateLinks = await page.locator(`a[href*="${key}"]`).count().catch(() => 0);
   if (duplicateLinks < 1) throw new Error(`TARGET_LINK_MISSING_BEFORE_CONFIRM ${key}`);
-  const dialog = await firstVisible([page.getByRole('dialog'), page.locator('[role="alertdialog"]')], 1600);
-  const scope = dialog || page;
-  const confirm = await firstVisible([
-    scope.getByRole('button', { name: /削除する/ }),
-    scope.getByRole('button', { name: /^削除$/ }),
-    scope.getByText('削除する', { exact: true }),
-    scope.getByText('削除', { exact: true }),
-  ], 1300);
-  if (!confirm) throw new Error(`DELETE_CONFIRM_BUTTON_NOT_FOUND ${key}`);
-  log('DELETE_CONFIRM_READY', { key, label: normalize(await confirm.innerText().catch(() => '')) });
-  await confirm.click();
-  await page.waitForTimeout(2500);
+  let nativeAccepted = false;
+  let nativeError = null;
+  const nativeHandler = async dialog => {
+    const message = normalize(dialog.message());
+    log('NATIVE_DELETE_DIALOG', { key, type: dialog.type(), message });
+    try {
+      if (!/削除/.test(message)) {
+        await dialog.dismiss();
+        nativeError = new Error(`UNEXPECTED_NATIVE_DIALOG ${message}`);
+        return;
+      }
+      await dialog.accept();
+      nativeAccepted = true;
+    } catch (error) {
+      nativeError = error;
+    }
+  };
+  page.once('dialog', nativeHandler);
+  try {
+    await deleteItem.click();
+    await page.waitForTimeout(900);
+    for (let round = 1; round <= 12; round++) {
+      if (nativeError) throw nativeError;
+      if (nativeAccepted) {
+        log('DELETE_CONFIRM_NATIVE_ACCEPTED', { key, round });
+        await page.waitForTimeout(2500);
+        return;
+      }
+      const dialog = await firstVisible([page.getByRole('dialog'), page.locator('[role="alertdialog"]')], 300);
+      const found = await findDeleteConfirm(page, dialog);
+      const confirm = found.confirm;
+      if (confirm) {
+        const dialogText = dialog ? normalize(await dialog.innerText().catch(() => '')).slice(0, 900) : '';
+        const label = normalize(await confirm.innerText().catch(async () => await confirm.getAttribute('value').catch(() => '')));
+        log('DELETE_CONFIRM_READY', { key, round, label, dialogText });
+        await confirm.click();
+        await page.waitForTimeout(2500);
+        return;
+      }
+      if ([1, 4, 8, 12].includes(round)) {
+        const dialogText = dialog ? normalize(await dialog.innerText().catch(() => '')).slice(0, 900) : '';
+        const bodyTail = normalize(await page.locator('body').innerText().catch(() => '')).slice(-1600);
+        log('DELETE_CONFIRM_DIAGNOSTIC', { key, round, url: page.url(), dialogText, controls: found?.controls || await visibleDeleteControls(page), bodyTail });
+      }
+      await page.waitForTimeout(750);
+    }
+  } finally {
+    page.off('dialog', nativeHandler);
+  }
+  throw new Error(`DELETE_CONFIRM_BUTTON_NOT_FOUND ${key}`);
 }
 
 async function verifyRemoval(verifier, group, target) {
@@ -242,9 +310,7 @@ async function main() {
         if (!duplicateBefore.publicExact) { results.push({ key: target.key, status: 'already_removed' }); log('TARGET_ALREADY_REMOVED', target.key); continue; }
         const deleteItem = await openDeleteFromExactRow(page, target.key, group.title);
         log('DELETE_MENU_ITEM_FOUND', { key: target.key, label: normalize(await deleteItem.innerText().catch(() => '')) });
-        await deleteItem.click();
-        await page.waitForTimeout(650);
-        await confirmExactDelete(page, target.key);
+        await clickDeleteAndConfirm(page, target.key, deleteItem);
         await verifyRemoval(verifier, group, target);
         results.push({ key: target.key, status: 'deleted_verified' });
         log('TARGET_DELETE_SUCCESS_VERIFIED', { keep: group.keep.key, deleted: target.key });

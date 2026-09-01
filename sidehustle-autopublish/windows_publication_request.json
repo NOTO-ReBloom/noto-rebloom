@@ -1,9 +1,9 @@
 {
-  "version": 6,
-  "updatedAt": "2026-09-01T21:31:51+09:00",
+  "version": 7,
+  "updatedAt": "2026-09-01T21:43:45+09:00",
   "date": "2026-09-01",
-  "mode": "completed_sep1_all12_final_duplicate_cleanup_requested",
-  "triggerNonce": "sep1-final-duplicate-cleanup-20260901T213151+0900",
+  "mode": "completed_sep1_all12_final_duplicate_cleanup_retry_v2",
+  "triggerNonce": "sep1-final-duplicate-cleanup-v2-20260901T214345+0900",
   "paidNote": {
     "ids": [
       "note_20260901_62_subscription_renewal_cost_control",
@@ -46,7 +46,7 @@
   },
   "duplicateCleanup": {
     "requested": true,
-    "round": 2,
+    "round": 3,
     "mode": "guarded_exact_id_delete_only_then_resume_scheduled_tasks",
     "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
     "account": "royal_lion645",
@@ -78,6 +78,24 @@
       "verify global duplicate-title audit returns zero groups",
       "never republish during cleanup"
     ],
-    "requestedAt": "2026-09-01T21:31:51+09:00"
+    "requestedAt": "2026-09-01T21:43:45+09:00",
+    "status": "retry_ready_confirmation_ui_v2",
+    "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+    "lastAttempt": {
+      "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+      "startedAt": "2026-09-01T21:40:28.390+09:00",
+      "endedAt": "2026-09-01T21:42:05.860+09:00",
+      "deleted": 0,
+      "alreadyRemoved": 0,
+      "failed": 3,
+      "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+      "prechecksPassed": 3,
+      "targetsStillPublic": 3,
+      "keepersStillPublic": 3,
+      "remainingDuplicateGroups": 3,
+      "scheduledTasksState": "disabled",
+      "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
+    },
+    "retryReason": "DELETE_CONFIRM_BUTTON_NOT_FOUND for all three targets after successful exact keeper/target prechecks; no deletion occurred."
   }
 }

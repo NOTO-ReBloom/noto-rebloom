@@ -1,8 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "account": "royal_lion645",
   "auditedAt": "2026-09-01T21:31:51+09:00",
-  "status": "pending_guarded_exact_id_deletion",
+  "status": "retry_ready_confirmation_ui_v2",
   "duplicateTitleGroups": 3,
   "duplicatePagesToDelete": 3,
   "selectionPolicy": [
@@ -59,5 +59,28 @@
         }
       ]
     }
+  ],
+  "updatedAt": "2026-09-01T21:43:45+09:00",
+  "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+  "lastAttempt": {
+    "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+    "startedAt": "2026-09-01T21:40:28.390+09:00",
+    "endedAt": "2026-09-01T21:42:05.860+09:00",
+    "deleted": 0,
+    "alreadyRemoved": 0,
+    "failed": 3,
+    "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+    "prechecksPassed": 3,
+    "targetsStillPublic": 3,
+    "keepersStillPublic": 3,
+    "remainingDuplicateGroups": 3,
+    "scheduledTasksState": "disabled",
+    "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
+  },
+  "retrySafety": [
+    "Keep and delete key sets are unchanged from the independently audited plan.",
+    "The v2 script accepts a native browser confirmation or a visible enabled delete-confirm control in either the dialog or page portal.",
+    "The v2 script records confirmation controls and page state before failing again.",
+    "Scheduled publishers remain disabled unless all three targets become non-public and the global duplicate audit returns zero groups."
   ]
 }

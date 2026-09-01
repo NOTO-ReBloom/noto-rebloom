@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "purpose": "Canonical independent ledger for reader-visible FREE note.com publications. Free entries never decrement paid publication debt.",
   "entries": [
     {
@@ -603,7 +603,7 @@
       },
       "sourceLogSha256": "42f40d86e7fa2a24d30bdcd9fa539f4b387d088da7ecbd4e5a5f60ae56ccc83e",
       "duplicateCleanup": {
-        "status": "pending_guarded_exact_id_deletion",
+        "status": "retry_ready_confirmation_ui_v2",
         "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
         "duplicateTitleGroups": 3,
         "extraPagesToDelete": 3,
@@ -618,7 +618,24 @@
           "https://note.com/royal_lion645/n/nd2fcda5d27f6"
         ],
         "auditedAt": "2026-09-01T21:31:51+09:00",
-        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs."
+        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs.",
+        "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+        "lastAttempt": {
+          "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+          "startedAt": "2026-09-01T21:40:28.390+09:00",
+          "endedAt": "2026-09-01T21:42:05.860+09:00",
+          "deleted": 0,
+          "alreadyRemoved": 0,
+          "failed": 3,
+          "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+          "prechecksPassed": 3,
+          "targetsStillPublic": 3,
+          "keepersStillPublic": 3,
+          "remainingDuplicateGroups": 3,
+          "scheduledTasksState": "disabled",
+          "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
+        },
+        "retryPreparedAt": "2026-09-01T21:43:45+09:00"
       }
     },
     {
@@ -640,7 +657,7 @@
       },
       "sourceLogSha256": "42f40d86e7fa2a24d30bdcd9fa539f4b387d088da7ecbd4e5a5f60ae56ccc83e",
       "duplicateCleanup": {
-        "status": "pending_guarded_exact_id_deletion",
+        "status": "retry_ready_confirmation_ui_v2",
         "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
         "duplicateTitleGroups": 3,
         "extraPagesToDelete": 3,
@@ -655,7 +672,24 @@
           "https://note.com/royal_lion645/n/nd2fcda5d27f6"
         ],
         "auditedAt": "2026-09-01T21:31:51+09:00",
-        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs."
+        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs.",
+        "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+        "lastAttempt": {
+          "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+          "startedAt": "2026-09-01T21:40:28.390+09:00",
+          "endedAt": "2026-09-01T21:42:05.860+09:00",
+          "deleted": 0,
+          "alreadyRemoved": 0,
+          "failed": 3,
+          "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+          "prechecksPassed": 3,
+          "targetsStillPublic": 3,
+          "keepersStillPublic": 3,
+          "remainingDuplicateGroups": 3,
+          "scheduledTasksState": "disabled",
+          "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
+        },
+        "retryPreparedAt": "2026-09-01T21:43:45+09:00"
       }
     },
     {
@@ -677,7 +711,7 @@
       },
       "sourceLogSha256": "42f40d86e7fa2a24d30bdcd9fa539f4b387d088da7ecbd4e5a5f60ae56ccc83e",
       "duplicateCleanup": {
-        "status": "pending_guarded_exact_id_deletion",
+        "status": "retry_ready_confirmation_ui_v2",
         "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
         "duplicateTitleGroups": 3,
         "extraPagesToDelete": 3,
@@ -692,7 +726,24 @@
           "https://note.com/royal_lion645/n/nd2fcda5d27f6"
         ],
         "auditedAt": "2026-09-01T21:31:51+09:00",
-        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs."
+        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs.",
+        "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+        "lastAttempt": {
+          "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+          "startedAt": "2026-09-01T21:40:28.390+09:00",
+          "endedAt": "2026-09-01T21:42:05.860+09:00",
+          "deleted": 0,
+          "alreadyRemoved": 0,
+          "failed": 3,
+          "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+          "prechecksPassed": 3,
+          "targetsStillPublic": 3,
+          "keepersStillPublic": 3,
+          "remainingDuplicateGroups": 3,
+          "scheduledTasksState": "disabled",
+          "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
+        },
+        "retryPreparedAt": "2026-09-01T21:43:45+09:00"
       }
     },
     {
@@ -876,5 +927,5 @@
       }
     }
   ],
-  "updatedAt": "2026-09-01T21:31:51+09:00"
+  "updatedAt": "2026-09-01T21:43:45+09:00"
 }

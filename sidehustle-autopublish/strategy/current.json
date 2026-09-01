@@ -1,6 +1,6 @@
 {
-  "version": 43,
-  "updatedAt": "2026-09-01T21:31:51+09:00",
+  "version": 44,
+  "updatedAt": "2026-09-01T21:43:45+09:00",
   "objective": "maximize cumulative profit, buyer satisfaction and measurable funnel learning while preserving strict publication integrity and minimizing user intervention",
   "activeChannels": [
     "BOOTH",
@@ -63,7 +63,7 @@
     "publicationDebt": 0
   },
   "duplicateCleanup": {
-    "status": "round1_complete_round2_pending",
+    "status": "round1_complete_final_cleanup_retry_v2_ready",
     "round1": {
       "status": "target_deletions_completed_additional_groups_discovered",
       "launcherVersion": "2026-09-01-CLEANUP-DUPLICATES-AND-RESUME-V1",
@@ -87,7 +87,7 @@
       "scheduledTasksState": "disabled_until_final_duplicate_audit_zero"
     },
     "remaining": {
-      "status": "pending_guarded_exact_id_deletion",
+      "status": "retry_ready_confirmation_ui_v2",
       "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
       "duplicateTitleGroups": 3,
       "extraPagesToDelete": 3,
@@ -102,7 +102,25 @@
         "https://note.com/royal_lion645/n/nd2fcda5d27f6"
       ],
       "auditedAt": "2026-09-01T21:31:51+09:00",
-      "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs."
+      "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs.",
+      "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+      "retryReason": "The three exact target and keeper prechecks passed, but note rendered the confirmation control outside the previously assumed dialog scope or after a longer delay.",
+      "retryPreparedAt": "2026-09-01T21:43:45+09:00"
+    },
+    "lastAttempt": {
+      "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+      "startedAt": "2026-09-01T21:40:28.390+09:00",
+      "endedAt": "2026-09-01T21:42:05.860+09:00",
+      "deleted": 0,
+      "alreadyRemoved": 0,
+      "failed": 3,
+      "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+      "prechecksPassed": 3,
+      "targetsStillPublic": 3,
+      "keepersStillPublic": 3,
+      "remainingDuplicateGroups": 3,
+      "scheduledTasksState": "disabled",
+      "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
     }
   },
   "noteFunnel": {
@@ -136,7 +154,7 @@
   "windowsPublisher": {
     "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
     "policy": "Repair canonical runner in place; no daily ZIP/CMD proliferation; centralize logs under C:\\SIDEHUSTLE_AUTO\\logs.",
-    "currentRisk": "No publication debt. Four planned duplicate pages were deleted and verified; three newly discovered extra pages remain. Both scheduled tasks stay disabled until the final global duplicate audit returns zero."
+    "currentRisk": "No publication debt and no unintended deletion. The three remaining targets passed identity prechecks but their confirmation controls were not found; v2 handles page portals, native confirmation dialogs and longer render delays. Tasks remain disabled until audit zero."
   },
   "dataIntegrity": "No publication, winner, loser, conversion uplift, revenue, acquisition, install or retention claim without observed evidence.",
   "notificationPolicy": "No ordinary-cycle notification. Consolidated nightly report only, except a proven human-only blocker requiring exactly one minimal action."

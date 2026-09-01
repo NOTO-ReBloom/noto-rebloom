@@ -1,6 +1,6 @@
 {
-  "version": 39,
-  "updatedAt": "2026-09-01T21:31:51+09:00",
+  "version": 40,
+  "updatedAt": "2026-09-01T21:43:45+09:00",
   "status": "complete_12_of_12",
   "date": "2026-09-01",
   "timezone": "Asia/Tokyo",
@@ -168,7 +168,7 @@
       "073_migration_rehearsal_control_os_20260901": "https://booth.pm/ja/items/8793726"
     },
     "duplicateCleanup": {
-      "status": "round1_complete_round2_pending",
+      "status": "round1_complete_final_cleanup_retry_v2_ready",
       "round1": {
         "status": "target_deletions_completed_additional_groups_discovered",
         "launcherVersion": "2026-09-01-CLEANUP-DUPLICATES-AND-RESUME-V1",
@@ -192,7 +192,7 @@
         "scheduledTasksState": "disabled_until_final_duplicate_audit_zero"
       },
       "remaining": {
-        "status": "pending_guarded_exact_id_deletion",
+        "status": "retry_ready_confirmation_ui_v2",
         "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_remaining_20260901.json",
         "duplicateTitleGroups": 3,
         "extraPagesToDelete": 3,
@@ -207,7 +207,25 @@
           "https://note.com/royal_lion645/n/nd2fcda5d27f6"
         ],
         "auditedAt": "2026-09-01T21:31:51+09:00",
-        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs."
+        "auditEvidence": "The launcher final audit discovered all three groups; a fresh public-browser audit confirmed every keeper and target has the exact title and a dedicated cover, and repository ledgers identify the canonical keeper URLs.",
+        "executionScript": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260901.mjs",
+        "retryReason": "The three exact target and keeper prechecks passed, but note rendered the confirmation control outside the previously assumed dialog scope or after a longer delay.",
+        "retryPreparedAt": "2026-09-01T21:43:45+09:00"
+      },
+      "lastAttempt": {
+        "launcherVersion": "2026-09-01-FINAL-CLEANUP-AND-RESUME-V1",
+        "startedAt": "2026-09-01T21:40:28.390+09:00",
+        "endedAt": "2026-09-01T21:42:05.860+09:00",
+        "deleted": 0,
+        "alreadyRemoved": 0,
+        "failed": 3,
+        "failure": "DELETE_CONFIRM_BUTTON_NOT_FOUND",
+        "prechecksPassed": 3,
+        "targetsStillPublic": 3,
+        "keepersStillPublic": 3,
+        "remainingDuplicateGroups": 3,
+        "scheduledTasksState": "disabled",
+        "safetyOutcome": "No target or keeper was deleted; scheduled publishers remained disabled."
       }
     },
     "sourceLogSha256": "5a2ae32b388bbd73ed307d1d03529417647ee203fa38191f87fcb6f974af6584"
