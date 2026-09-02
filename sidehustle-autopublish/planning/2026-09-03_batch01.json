@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "date": "2026-09-03",
+  "timezone": "Asia/Tokyo",
+  "createdAt": "2026-09-03T05:12:55+09:00",
+  "state": "planned_waiting_for_2026-09-02_carryover_strict_verification",
+  "activationRule": "Do not enable or consume Sep 3 publication IDs until every Sep 2 required ID is strict verified and canonical ledgers are synchronized.",
+  "qualityPolicy": "Reject semantic clones, thin variants, duplicate public promises, or products that cannot provide standalone practical value.",
+  "measurementPolicy": "Do not claim winners, CVR, revenue uplift, installs or purchase demand without observed first-party evidence.",
+  "paidNote": [
+    {
+      "id": "note_20260903_72_contract_signature_turnaround_control",
+      "title": "契約書が署名待ちで止まるのを防ぐ｜送付・確認・差戻し・締結予定日をつなぐ管理方法",
+      "expectedPriceJPY": 980,
+      "pairedFreeId": "free_note_20260903_01_contract_signature_delay_signals",
+      "promise": "契約締結の滞留箇所を可視化し、担当・差戻し理由・期限を一つの流れで管理する。"
+    },
+    {
+      "id": "note_20260903_73_customer_master_duplicate_control",
+      "title": "顧客台帳の重複を放置しない｜名寄せ・更新責任・統合履歴を残す顧客マスター管理",
+      "expectedPriceJPY": 980,
+      "promise": "顧客情報の二重登録と更新漏れを減らすための照合・統合・履歴管理を標準化する。"
+    },
+    {
+      "id": "note_20260903_74_postmortem_action_closure_control",
+      "title": "振り返りを反省会で終わらせない｜再発防止策・担当・期限・完了証拠を残す改善管理",
+      "expectedPriceJPY": 980,
+      "promise": "インシデント後の改善策を実行・検証まで閉じるための管理方法を提供する。"
+    },
+    {
+      "id": "note_20260903_75_inventory_cycle_count_variance_control",
+      "title": "棚卸差異を月末だけで処理しない｜実在庫・帳簿・原因・是正を追う在庫差異管理",
+      "expectedPriceJPY": 980,
+      "promise": "在庫差異の発見から原因特定・是正・再確認までを追跡可能にする。"
+    },
+    {
+      "id": "note_20260903_76_expense_receipt_completeness_control",
+      "title": "経費精算の領収書不足を締日前に潰す｜申請・証憑・差戻し・再提出をつなぐ管理方法",
+      "expectedPriceJPY": 980,
+      "pairedFreeId": "free_note_20260903_02_expense_receipt_missing_signals",
+      "promise": "証憑不足や差戻しを締日前に発見し、再提出まで追える運用を作る。"
+    }
+  ],
+  "freeNote": [
+    {
+      "id": "free_note_20260903_01_contract_signature_delay_signals",
+      "title": "契約締結が遅れ始めたときに出る5つのサイン｜署名待ちを長期化させない確認ポイント",
+      "funnelTargetPaidId": "note_20260903_72_contract_signature_turnaround_control",
+      "standaloneValueRequired": true
+    },
+    {
+      "id": "free_note_20260903_02_expense_receipt_missing_signals",
+      "title": "経費精算が締日前に詰まる5つのサイン｜領収書不足と差戻しを早く見つける",
+      "funnelTargetPaidId": "note_20260903_76_expense_receipt_completeness_control",
+      "standaloneValueRequired": true
+    }
+  ],
+  "BOOTH": [
+    {
+      "id": "079_contract_signature_turnaround_os_20260903",
+      "title": "契約締結進行OS｜送付・確認・差戻し・署名・締結予定日を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage", "search", "status filters", "CSV export", "JSON backup/import", "print"]
+    },
+    {
+      "id": "080_customer_master_duplicate_control_os_20260903",
+      "title": "顧客マスター重複防止OS｜名寄せ・統合判断・更新責任・履歴を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage", "search", "duplicate review", "CSV export", "JSON backup/import", "print"]
+    },
+    {
+      "id": "081_postmortem_action_closure_os_20260903",
+      "title": "再発防止アクション管理OS｜原因・対策・担当・期限・完了証拠を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage", "search", "status filters", "CSV export", "JSON backup/import", "print"]
+    },
+    {
+      "id": "082_inventory_cycle_count_variance_os_20260903",
+      "title": "在庫差異管理OS｜実在庫・帳簿・差異原因・是正・再確認を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage", "search", "variance calculation", "CSV export", "JSON backup/import", "print"]
+    },
+    {
+      "id": "083_expense_receipt_completeness_os_20260903",
+      "title": "経費証憑チェックOS｜申請・領収書・差戻し・再提出・締切を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage", "search", "completeness checks", "CSV export", "JSON backup/import", "print"]
+    }
+  ],
+  "materializationRequirements": {
+    "paidNote": ["complete article", "dedicated 1280x670 cover", "encrypted payload", "sha256", "reader-visible strict verification after publication"],
+    "freeNote": ["standalone useful article", "dedicated cover", "free-state verification", "exact-title reconciliation before retry"],
+    "BOOTH": ["offline HTML product", "product.json", "preview images", "ZIP integrity", "encrypted/chunked queue payload", "sha256", "buyer-visible commerce verification after publication"]
+  },
+  "publicationOrder": "Sep 2 carryover first; then Sep 3 paid NOTE and BOOTH hard floors; free NOTE acquisition pair may follow without substituting paid floors."
+}
