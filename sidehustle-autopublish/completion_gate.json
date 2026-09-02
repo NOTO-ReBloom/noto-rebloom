@@ -1,6 +1,6 @@
 {
   "version": 43,
-  "updatedAt": "2026-09-02T09:20:21+09:00",
+  "updatedAt": "2026-09-02T12:14:38+09:00",
   "status": "in_progress_0_of_12",
   "date": "2026-09-02",
   "timezone": "Asia/Tokyo",
@@ -126,10 +126,10 @@
     "outstanding": 0,
     "duplicateCleanup": "complete_7_deleted_0_remaining"
   },
-  "executionRequestedAt": "2026-09-02T05:17:58+09:00",
-  "executionNonce": "sep2-zero-touch-init-20260902T051758+0900",
+  "executionRequestedAt": "2026-09-02T12:14:38+09:00",
+  "executionNonce": "force-current-day-20260902T121438+0900",
   "completedAt": null,
   "completionEvidence": null,
-  "forceNowRequested": false,
-  "forceNowMode": "materialize_then_reconcile_existing_then_publish_absent_then_strict_verify"
+  "forceNowRequested": true,
+  "forceNowMode": "reconcile_existing_then_publish_absent_then_strict_verify"
 }

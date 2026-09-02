@@ -1,12 +1,12 @@
 {
-  "version": 55,
-  "updatedAt": "2026-09-02T09:20:21+09:00",
+  "version": 56,
+  "updatedAt": "2026-09-02T12:14:38+09:00",
   "activeRecovery": {
     "date": "2026-09-02",
-    "mode": "current_day_paid_floor",
+    "mode": "force_current_day_all_now_reconcile_first",
     "requiredStrictNewPublications": 5,
     "remaining": 5,
-    "state": "ready"
+    "nonce": "force-current-day-20260902T121438+0900"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-09-02T09:20:21+09:00",
@@ -19,7 +19,7 @@
       "078_refund_aging_os_20260902"
     ],
     "completedIds": [],
-    "queueRetryGeneration": 55,
+    "queueRetryGeneration": 56,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260902_batch01.json",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
@@ -37,7 +37,9 @@
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260902-20260902T092021+0900"
+    "forceRetryNonce": "force-current-day-20260902T121438+0900",
+    "forcedRecoveryAt": "2026-09-02T12:14:38+09:00",
+    "instruction": "Reconcile exact-title public products before create; publish only absent current-day BOOTH targets; strict verify all required conditions."
   },
   "windowsResumeContract": {
     "requiredIds": [
