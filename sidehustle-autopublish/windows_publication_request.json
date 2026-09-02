@@ -1,6 +1,6 @@
 {
-  "version": 5,
-  "updatedAt": "2026-09-02T21:18:39+09:00",
+  "version": 6,
+  "updatedAt": "2026-09-03T05:12:55+09:00",
   "date": "2026-09-02",
   "mode": "publish_all_current_day_now_reconcile_first",
   "paidNote": {
@@ -32,10 +32,12 @@
   },
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-02T21:18:39+09:00",
-  "nonce": "force-current-day-20260902T211839+0900",
+  "requestedAt": "2026-09-03T05:12:55+09:00",
+  "nonce": "carryover-retry-20260902-20260903T051255+0900",
   "completionState": "pending_strict_verification",
   "reconcileExistingBeforePublish": true,
   "ignorePriorDayUnverified": false,
-  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO"
+  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
+  "carryOverPriority": true,
+  "nextDayConsumptionBlockedUntilStrictVerified": true
 }
