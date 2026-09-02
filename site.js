@@ -3,6 +3,8 @@
 
   const OLD_FORM_TOKEN='jdSpe6Pb3pyFf7QU6';
   const PARTICIPANT_FORM='https://forms.gle/6ZMrhrhtWmBCQViD8';
+  const CONTACT_PAGE='contact.html';
+  const CONTACT_EMAIL='infonotorebloom@gmail.com';
   const REBOOST_STUDIO_URL='https://coworkingsquarekanazawa.com/events/event/re%EF%BC%9Aboostreboost-studio-%EF%BD%9Ekanazawa-reboost-u23%EF%BD%9E%EF%BD%9C%E5%AD%A6%E7%94%9F%E3%81%AE%E6%8C%91%E6%88%A6%E3%82%92%E3%80%81%E5%9C%B0%E5%9F%9F%E3%81%AE%E7%86%B1%E7%8B%82%E3%81%AB/';
   const INSTAGRAM_URL='https://www.instagram.com/doronkounndoukai2026?igsi=MTNmdjN6bWY0YnJjcQ%3D%3D&utm_source=qr';
   const FACEBOOK_URL='https://www.facebook.com/share/1GqkbWfDAN/?mibextid=wwXIfr';
@@ -22,6 +24,65 @@
     link.rel='stylesheet';
     link.href='site-finishing.css?v=20260827d';
     document.head.appendChild(link);
+  };
+
+  const ensureGlobalContactStyles=()=>{
+    if(document.getElementById('rb-global-contact-style')) return;
+    const style=document.createElement('style');
+    style.id='rb-global-contact-style';
+    style.textContent=`
+      .rb-contact-nav{font-weight:900!important}
+      .rb-contact-header{display:inline-flex!important;align-items:center;justify-content:center;min-height:38px;padding:0 13px;border-radius:999px;border:1px solid rgba(24,75,61,.2);background:#fff;color:#184b3d!important;text-decoration:none!important;font-size:12px;font-weight:900;white-space:nowrap;box-shadow:0 3px 10px rgba(24,75,61,.05)}
+      .rb-contact-header::before{content:"?";display:grid;place-items:center;width:20px;height:20px;margin-right:6px;border-radius:50%;background:#e7f3e8;font-size:11px;font-weight:900}
+      .rb-contact-fab{position:fixed;z-index:79;right:20px;bottom:20px;display:flex;align-items:center;gap:9px;min-height:48px;padding:0 17px 0 11px;border-radius:999px;background:#fff;color:#184b3d;text-decoration:none;border:1px solid rgba(24,75,61,.18);box-shadow:0 12px 30px rgba(23,58,49,.18);font-size:13px;font-weight:900;transition:transform .16s ease,box-shadow .16s ease}
+      .rb-contact-fab__icon{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#184b3d;color:#fff;font-size:15px;font-weight:900;line-height:1}
+      .rb-contact-footer{box-sizing:border-box;width:min(1120px,calc(100% - 40px));margin:14px auto 0;padding:16px 0 2px;border-top:1px solid rgba(255,255,255,.13);display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;color:rgba(255,255,255,.78);font-size:12px}
+      .rb-contact-footer strong{color:#fff;font-size:12px}.rb-contact-footer a{color:#fff!important;text-decoration:underline;text-underline-offset:3px;font-weight:800}.rb-contact-footer .rb-contact-footer__page{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;text-decoration:none!important;background:rgba(255,255,255,.07)}
+      @media(hover:hover){.rb-contact-header:hover,.rb-contact-fab:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(23,58,49,.2)}.rb-contact-footer .rb-contact-footer__page:hover{background:rgba(255,255,255,.14)}}
+      @media(max-width:900px){.rb-contact-header{display:none!important}}
+      @media(max-width:760px){.rb-contact-fab{right:10px;bottom:10px;min-height:44px;padding:0 13px 0 8px;font-size:12px}.rb-contact-fab__icon{width:28px;height:28px}.nr-new-event .rb-contact-fab{bottom:78px}.rb-contact-footer{width:min(100% - 28px,1120px);align-items:flex-start;flex-direction:column;gap:7px;padding-top:14px}}
+    `;
+    document.head.appendChild(style);
+  };
+
+  const injectGlobalContact=()=>{
+    ensureGlobalContactStyles();
+    const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    const nav=document.querySelector('.site-nav');
+    if(nav && !nav.querySelector('a[href="contact.html"]')){
+      const link=document.createElement('a');
+      link.href=CONTACT_PAGE;
+      link.className='rb-contact-nav';
+      link.textContent='お問い合わせ';
+      if(current==='contact.html') link.setAttribute('aria-current','page');
+      nav.appendChild(link);
+    }
+
+    const actions=document.querySelector('.header-actions');
+    if(actions && !actions.querySelector('.rb-contact-header')){
+      const link=document.createElement('a');
+      link.href=CONTACT_PAGE;
+      link.className='rb-contact-header';
+      link.textContent='質問・お問い合わせ';
+      actions.appendChild(link);
+    }
+
+    if(!document.querySelector('.rb-contact-fab') && current!=='contact.html'){
+      const fab=document.createElement('a');
+      fab.href=CONTACT_PAGE;
+      fab.className='rb-contact-fab';
+      fab.setAttribute('aria-label','質問・お問い合わせページを開く');
+      fab.innerHTML='<span class="rb-contact-fab__icon" aria-hidden="true">?</span><span>質問・お問い合わせ</span>';
+      document.body.appendChild(fab);
+    }
+
+    const footer=document.querySelector('.site-footer');
+    if(footer && !footer.querySelector('.rb-contact-footer')){
+      const block=document.createElement('div');
+      block.className='rb-contact-footer';
+      block.innerHTML=`<strong>質問・お問い合わせ</strong><span>参加・持ち物・アクセス・取材・協賛など</span><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a><a class="rb-contact-footer__page" href="${CONTACT_PAGE}">お問い合わせページを見る →</a>`;
+      footer.appendChild(block);
+    }
   };
 
   const ensureGlobalSocialStyles=()=>{
@@ -103,7 +164,9 @@
       ['上黒丸地区の元レンコン田。許可・安全条件は未確定','洲巻地区の田んぼ（約20m×50m・約1,000㎡）。土地使用許可取得済み'],
       ['会場候補となる土地の一つ','能登で確認してきた農地の様子'],
       ['活動候補となる土地の一つ','能登で確認してきた農地の様子'],
-      ['企画への参加、個人からの支援、企業・団体としての協力から選んでください。','9月20日のイベント参加、個人からの支援、企業・団体としての協力から選んでください。']
+      ['企画への参加、個人からの支援、企業・団体としての協力から選んでください。','9月20日のイベント参加、個人からの支援、企業・団体としての協力から選んでください。'],
+      ['17:00頃終了予定','16:30頃閉会予定'],
+      ['終了17:00予定','閉会16:30予定']
     ];
     const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
     const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
@@ -317,6 +380,7 @@
 
   ensureLatestStyles();
   ensureFinishingStyles();
+  injectGlobalContact();
   setupNav();
   updateLegacyVenueText();
   removeDedicatedRecruitment();
