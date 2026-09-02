@@ -1,19 +1,35 @@
 {
-  "version": 9,
-  "updatedAt": "2026-09-02T05:17:58+09:00",
+  "version": 1,
+  "updatedAt": "2026-09-02T09:20:21+09:00",
   "date": "2026-09-02",
-  "mode": "sep2_materialization_pending_do_not_consume_until_qa_complete",
-  "triggerNonce": "sep2-zero-touch-init-20260902T051758+0900",
-  "paidNote": {"ids":["note_20260902_67_invoice_approval_cycle_control","note_20260902_68_monthly_close_exception_control","note_20260902_69_knowledge_base_freshness_control","note_20260902_70_vendor_access_offboarding_control","note_20260902_71_refund_aging_control"],"target":5},
-  "freeNote": {"ids":["free_note_20260902_01_invoice_approval_delay_signals","free_note_20260902_02_monthly_close_delay_signals"],"target":2},
-  "BOOTH": {"ids":["074_invoice_approval_cycle_os_20260902","075_monthly_close_exception_os_20260902","076_knowledge_base_freshness_os_20260902","077_vendor_access_offboarding_os_20260902","078_refund_aging_os_20260902"],"target":5},
+  "mode": "publish_all_current_day_now",
+  "paidNote": {
+    "ids": [
+      "note_20260902_67_invoice_approval_cycle_control",
+      "note_20260902_68_monthly_close_exception_control",
+      "note_20260902_69_knowledge_base_freshness_control",
+      "note_20260902_70_vendor_access_offboarding_control",
+      "note_20260902_71_refund_aging_control"
+    ],
+    "target": 5
+  },
+  "freeNote": {
+    "ids": [
+      "free_note_20260902_01_invoice_approval_delay_signals",
+      "free_note_20260902_02_monthly_close_delay_signals"
+    ],
+    "target": 2
+  },
+  "BOOTH": {
+    "ids": [
+      "074_invoice_approval_cycle_os_20260902",
+      "075_monthly_close_exception_os_20260902",
+      "076_knowledge_base_freshness_os_20260902",
+      "077_vendor_access_offboarding_os_20260902",
+      "078_refund_aging_os_20260902"
+    ],
+    "target": 5
+  },
   "strictVerificationRequired": true,
-  "doNotStopAfterFirstSuccess": true,
-  "reconcileExistingBeforeRepublish": true,
-  "forceNowRequested": false,
-  "materializationRequiredBeforeConsumption": true,
-  "completionState": "0_of_12_planned",
-  "completedAt": null,
-  "completionEvidence": null,
-  "duplicateCleanup": {"requested":false,"status":"no_known_debt_after_2026-09-01_global_audit"}
+  "doNotStopAfterFirstSuccess": true
 }

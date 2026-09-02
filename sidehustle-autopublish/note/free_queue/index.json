@@ -1,8 +1,8 @@
 {
-  "version": 22,
-  "updatedAt": "2026-09-01T17:57:14+09:00",
+  "version": 23,
+  "updatedAt": "2026-09-02T09:20:21+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-01_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1607,6 +1607,46 @@
       "publicUrl": "https://note.com/royal_lion645/n/n94c944ee8751",
       "verificationState": "reader_visible_free_verified",
       "verifiedAt": "2026-09-01T17:47:09.585+09:00"
+    },
+    {
+      "id": "free_note_20260902_01_invoice_approval_delay_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "請求書の承認が止まりやすい4つのサイン｜支払遅延の前に確認したい項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md",
+      "pairedPaidId": "note_20260902_67_invoice_approval_cycle_control",
+      "tags": [
+        "請求書",
+        "承認フロー",
+        "支払管理",
+        "業務改善"
+      ],
+      "coverLabel": "請求書承認",
+      "coverCopy": "止まる前に見る4サイン",
+      "accent": "#315E81",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260902-20260902T092021+0900"
+    },
+    {
+      "id": "free_note_20260902_02_monthly_close_delay_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "月次締めが遅れる4つのサイン｜締め日前に確認したい未処理項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md",
+      "pairedPaidId": "note_20260902_68_monthly_close_exception_control",
+      "tags": [
+        "月次決算",
+        "経理",
+        "締め作業",
+        "例外管理"
+      ],
+      "coverLabel": "月次締め",
+      "coverCopy": "遅れる前に見る4サイン",
+      "accent": "#6A4C93",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260902-20260902T092021+0900"
     }
   ],
   "eveningMarathon": {
@@ -1615,20 +1655,12 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-01",
+    "date": "2026-09-02",
     "ids": [
-      "free_note_20260901_01_subscription_waste_signals",
-      "free_note_20260901_02_support_escalation_signals"
+      "free_note_20260902_01_invoice_approval_delay_signals",
+      "free_note_20260902_02_monthly_close_delay_signals"
     ],
-    "requiredStrictPublications": 2,
-    "completedIds": [
-      "free_note_20260901_01_subscription_waste_signals",
-      "free_note_20260901_02_support_escalation_signals"
-    ],
-    "completedStrictPublications": 2,
-    "remaining": 0,
-    "status": "complete",
-    "completedAt": "2026-09-01T17:53:06.420+09:00"
+    "requiredStrictPublications": 2
   },
   "retryGeneration": 2,
   "activePublicationDate": "2026-08-31",

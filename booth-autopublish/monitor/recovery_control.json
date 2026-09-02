@@ -1,33 +1,26 @@
 {
-  "version": 54,
-  "updatedAt": "2026-09-01T17:57:14+09:00",
+  "version": 55,
+  "updatedAt": "2026-09-02T09:20:21+09:00",
   "activeRecovery": {
-    "date": "2026-09-01",
+    "date": "2026-09-02",
     "mode": "current_day_paid_floor",
     "requiredStrictNewPublications": 5,
-    "remaining": 0,
-    "state": "completed",
-    "completedAt": "2026-09-01T17:53:06.420+09:00"
+    "remaining": 5,
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-09-01T12:25:03+09:00",
+    "generatedAt": "2026-09-02T09:20:21+09:00",
     "requiredStrictNewPublications": 5,
     "queueIds": [
-      "069_subscription_renewal_cost_control_os_20260901",
-      "070_support_escalation_sla_control_os_20260901",
-      "071_campaign_attribution_control_os_20260901",
-      "072_training_expiry_control_os_20260901",
-      "073_migration_rehearsal_control_os_20260901"
+      "074_invoice_approval_cycle_os_20260902",
+      "075_monthly_close_exception_os_20260902",
+      "076_knowledge_base_freshness_os_20260902",
+      "077_vendor_access_offboarding_os_20260902",
+      "078_refund_aging_os_20260902"
     ],
-    "completedIds": [
-      "069_subscription_renewal_cost_control_os_20260901",
-      "070_support_escalation_sla_control_os_20260901",
-      "071_campaign_attribution_control_os_20260901",
-      "072_training_expiry_control_os_20260901",
-      "073_migration_rehearsal_control_os_20260901"
-    ],
-    "queueRetryGeneration": 54,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260901_batch01.json",
+    "completedIds": [],
+    "queueRetryGeneration": 55,
+    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260902_batch01.json",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -36,33 +29,30 @@
       "purchaseOrCartPath"
     ],
     "expectedPricesJPY": {
-      "069_subscription_renewal_cost_control_os_20260901": 1480,
-      "070_support_escalation_sla_control_os_20260901": 1480,
-      "071_campaign_attribution_control_os_20260901": 1680,
-      "072_training_expiry_control_os_20260901": 1480,
-      "073_migration_rehearsal_control_os_20260901": 1680
+      "074_invoice_approval_cycle_os_20260902": 1480,
+      "075_monthly_close_exception_os_20260902": 1680,
+      "076_knowledge_base_freshness_os_20260902": 1480,
+      "077_vendor_access_offboarding_os_20260902": 1680,
+      "078_refund_aging_os_20260902": 1480
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260901-20260901T122503+0900",
-    "remaining": 0,
-    "status": "complete",
-    "completedAt": "2026-09-01T17:53:06.420+09:00"
+    "forceRetryNonce": "booth-20260902-20260902T092021+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
-      "069_subscription_renewal_cost_control_os_20260901",
-      "070_support_escalation_sla_control_os_20260901",
-      "071_campaign_attribution_control_os_20260901",
-      "072_training_expiry_control_os_20260901",
-      "073_migration_rehearsal_control_os_20260901"
+      "074_invoice_approval_cycle_os_20260902",
+      "075_monthly_close_exception_os_20260902",
+      "076_knowledge_base_freshness_os_20260902",
+      "077_vendor_access_offboarding_os_20260902",
+      "078_refund_aging_os_20260902"
     ],
     "firstPassOrder": [
-      "069_subscription_renewal_cost_control_os_20260901",
-      "070_support_escalation_sla_control_os_20260901",
-      "071_campaign_attribution_control_os_20260901",
-      "072_training_expiry_control_os_20260901",
-      "073_migration_rehearsal_control_os_20260901"
+      "074_invoice_approval_cycle_os_20260902",
+      "075_monthly_close_exception_os_20260902",
+      "076_knowledge_base_freshness_os_20260902",
+      "077_vendor_access_offboarding_os_20260902",
+      "078_refund_aging_os_20260902"
     ],
     "strictSuccessOnly": true,
     "completionPredicate": "all five current-day IDs buyer-visible strict verified"

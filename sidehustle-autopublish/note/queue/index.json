@@ -1,18 +1,18 @@
 {
   "version": 3,
-  "updatedAt": "2026-09-01T17:57:14+09:00",
-  "retryGeneration": 55,
+  "updatedAt": "2026-09-02T09:20:21+09:00",
+  "retryGeneration": 56,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "completed_20260901_paid_note",
+    "mode": "publish_2026-09-02_paid_note_batch_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260901_62_subscription_renewal_cost_control",
-      "note_20260901_63_support_escalation_sla_control",
-      "note_20260901_64_campaign_attribution_control",
-      "note_20260901_65_training_expiry_control",
-      "note_20260901_66_migration_rehearsal_control"
+      "note_20260902_67_invoice_approval_cycle_control",
+      "note_20260902_68_monthly_close_exception_control",
+      "note_20260902_69_knowledge_base_freshness_control",
+      "note_20260902_70_vendor_access_offboarding_control",
+      "note_20260902_71_refund_aging_control"
     ],
     "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
@@ -22,19 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-09-01T12:25:03+09:00",
-    "nonce": "paid-note-20260901-20260901T122503+0900",
-    "completedStrictPublications": 5,
-    "completedIds": [
-      "note_20260901_62_subscription_renewal_cost_control",
-      "note_20260901_63_support_escalation_sla_control",
-      "note_20260901_64_campaign_attribution_control",
-      "note_20260901_65_training_expiry_control",
-      "note_20260901_66_migration_rehearsal_control"
-    ],
-    "remaining": 0,
-    "status": "complete",
-    "completedAt": "2026-09-01T17:53:06.420+09:00"
+    "forcedAt": "2026-09-02T09:20:21+09:00",
+    "nonce": "paid-note-20260902-20260902T092021+0900"
   },
   "entries": [
     {
@@ -1748,6 +1737,106 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Fresh public-browser audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover.",
       "verifiedAt": "2026-09-01T17:57:14+09:00"
+    },
+    {
+      "id": "note_20260902_67_invoice_approval_cycle_control",
+      "title": "請求書が承認待ちで止まるのを防ぐ｜受領・確認・承認・支払予定日をつなぐ管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260902_67_invoice_approval_cycle_control.enc.json",
+      "sha256": "aa737d4698d8e99ebd3de9291dfc60a28acadf8514f863bca8e629a4a1bb283f",
+      "createdAt": "2026-09-02T09:20:21+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260902-20260902T092021+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260902_68_monthly_close_exception_control",
+      "title": "月次締めが毎月ずれる原因を残さない｜未処理・例外・担当・解消期限を管理する方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260902_68_monthly_close_exception_control.enc.json",
+      "sha256": "3a98ffec36780e2a29a0a8754d4d6daf3a29f42efe04307e83e668edc6cf2c3d",
+      "createdAt": "2026-09-02T09:20:21+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260902-20260902T092021+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260902_69_knowledge_base_freshness_control",
+      "title": "社内マニュアルが古いまま使われるのを防ぐ｜更新責任者・確認日・失効を管理する仕組み",
+      "path": "sidehustle-autopublish/note/queue/note_20260902_69_knowledge_base_freshness_control.enc.json",
+      "sha256": "bbb7b36899257fb7052b3cace0d80ea0089e80c8e858e8ee7a14f126559afa11",
+      "createdAt": "2026-09-02T09:20:21+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260902-20260902T092021+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260902_70_vendor_access_offboarding_control",
+      "title": "外部委託終了後のアカウント残存を防ぐ｜権限・返却物・終了日を管理する手順",
+      "path": "sidehustle-autopublish/note/queue/note_20260902_70_vendor_access_offboarding_control.enc.json",
+      "sha256": "b3df2c77cb34847e9bb581eb7fb5970818a0081169759fd9dbb6088d34b64d77",
+      "createdAt": "2026-09-02T09:20:21+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260902-20260902T092021+0900",
+      "expectedPriceJPY": 1680,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260902_71_refund_aging_control",
+      "title": "返金対応を問い合わせ履歴の中に埋もれさせない｜受付・承認・返金予定・完了を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260902_71_refund_aging_control.enc.json",
+      "sha256": "51eef958202e81849cb1bb34b9b6bf48434176c5439e11295ef502d69a343e07",
+      "createdAt": "2026-09-02T09:20:21+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260902-20260902T092021+0900",
+      "expectedPriceJPY": 1480,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
   "activePublicationDate": "2026-08-31",
