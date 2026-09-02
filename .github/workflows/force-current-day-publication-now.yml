@@ -67,7 +67,6 @@ jobs:
                 found.add(eid)
                 if not e.get('publicUrlVerified', False):
                   e['enabled'] = True
-                  # First reconcile existing public pages; do not use blind force-repost semantics.
                   e['forceRetry'] = False
                   e['forcePublicationNow'] = True
                   e['forceRetryNonce'] = nonce
@@ -164,3 +163,5 @@ jobs:
           git commit -m 'Activate current-day strict publication now'
           git pull --rebase origin main
           git push origin HEAD:main
+
+# automation kick 2026-09-02T12:12:38+09:00
