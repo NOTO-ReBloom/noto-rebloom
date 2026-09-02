@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>泥ん子運動会2026｜NOTO Re:Bloom</title>
-  <meta name="description" content="2026年9月20日、石川県珠洲市若山町洲巻で開催する泥ん子運動会2026。参加費無料・全年齢対象。綱引き、リレー、台風の目、バケツリレー、玉入れなどを行います。">
+  <meta name="description" content="2026年9月20日、石川県珠洲市若山町洲巻で開催する泥ん子運動会2026。参加費無料・全年齢対象。受付12:30、13:00開始、16:30閉会予定。後援：北國新聞社。">
   <meta name="theme-color" content="#184b3d">
   <link rel="canonical" href="https://noto-rebloom.github.io/noto-rebloom/event.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NOTO Re:Bloom">
   <meta property="og:title" content="泥ん子運動会2026｜9月20日 珠洲市・参加無料">
-  <meta property="og:description" content="子どもも大人も、約1,000㎡の田んぼで泥だらけになって遊ぶ一日。参加費無料、受付12:30・13:00開始です。">
+  <meta property="og:description" content="子どもも大人も、約1,000㎡の田んぼで泥だらけになって遊ぶ一日。参加費無料、受付12:30・13:00開始・16:30閉会予定です。">
   <meta property="og:url" content="https://noto-rebloom.github.io/noto-rebloom/event.html">
   <meta property="og:image" content="https://noto-rebloom.github.io/noto-rebloom/field-overview.webp">
   <meta name="twitter:card" content="summary_large_image">
@@ -24,7 +24,7 @@
     "name": "泥ん子運動会2026",
     "description": "2026年9月20日、石川県珠洲市若山町洲巻の田んぼで開催する、子どもから大人まで参加できる泥ん子運動会。参加費無料。",
     "startDate": "2026-09-20T13:00:00+09:00",
-    "endDate": "2026-09-20T17:00:00+09:00",
+    "endDate": "2026-09-20T16:30:00+09:00",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
     "image": ["https://noto-rebloom.github.io/noto-rebloom/field-overview.webp"],
@@ -70,12 +70,39 @@
   <link rel="stylesheet" href="reboost-studio.css?v=20260817ac">
   <link rel="stylesheet" href="brand-refresh.css?v=20260827a">
   <link rel="stylesheet" href="event-delight.css?v=20260827a">
+  <style>
+    .nr-new-event .event-latest{padding:22px 0;background:#fff7cf;border-top:1px solid rgba(24,75,61,.08);border-bottom:1px solid rgba(24,75,61,.1)}
+    .nr-new-event .event-latest__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .nr-new-event .event-latest__label{display:inline-flex;align-items:center;gap:7px;margin:0 0 5px;color:#184b3d;font-size:11px;font-weight:900;letter-spacing:.08em}
+    .nr-new-event .event-latest__label::before{content:"";width:8px;height:8px;border-radius:50%;background:#ffd85c;box-shadow:0 0 0 4px rgba(255,216,92,.28)}
+    .nr-new-event .event-latest p{margin:0;color:#284b41;line-height:1.7}
+    .nr-new-event .event-latest strong{font-weight:900;color:#153f34}
+    .nr-new-event .event-support{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;background:#fff;border:1px solid rgba(24,75,61,.14);color:#184b3d;font-size:12px;font-weight:900;white-space:nowrap}
+    .nr-new-event .contact-link-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(24,75,61,.22);background:#fff;color:#184b3d;text-decoration:none;font-weight:900;box-shadow:0 6px 16px rgba(24,75,61,.06)}
+    .nr-new-event .contact-link-btn:hover{transform:translateY(-1px)}
+    .nr-new-event .event-contact{background:linear-gradient(135deg,#184b3d 0%,#245f4d 100%);color:#fff}
+    .nr-new-event .event-contact .container{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,460px);gap:36px;align-items:center}
+    .nr-new-event .event-contact h2{color:#fff;margin-bottom:12px}
+    .nr-new-event .event-contact p{color:rgba(255,255,255,.88);line-height:1.85}
+    .nr-new-event .event-contact-card{padding:24px;border-radius:24px;background:#fff;color:#184b3d;box-shadow:0 18px 42px rgba(0,0,0,.16)}
+    .nr-new-event .event-contact-card small{display:block;margin-bottom:6px;color:#708079;font-size:11px;font-weight:900;letter-spacing:.08em}
+    .nr-new-event .event-contact-card a{display:block;color:#184b3d;font-size:clamp(18px,2.5vw,26px);font-weight:900;line-height:1.35;word-break:break-all;text-underline-offset:4px}
+    .nr-new-event .event-contact-card p{margin:10px 0 0;color:#60716a;font-size:13px;line-height:1.7}
+    .nr-new-event .contact-mini{margin-top:12px;font-size:12px;color:rgba(255,255,255,.76)}
+    @media(max-width:760px){
+      .nr-new-event .event-latest__inner{display:block}
+      .nr-new-event .event-support{margin-top:12px}
+      .nr-new-event .event-contact .container{grid-template-columns:1fr;gap:20px}
+      .nr-new-event .event-contact-card{padding:19px;border-radius:20px}
+      .nr-new-event .button-row .contact-link-btn{width:100%}
+    }
+  </style>
 </head>
 <body class="nr-new-event">
 <a class="skip-link" href="#main">本文へ移動</a>
 <header class="site-header">
   <a class="brand" href="index.html"><span class="brand-mark"><span class="brand-sprout"></span></span><span><b>NOTO Re:Bloom</b><small>泥臭い挑戦で、能登を咲かせる。</small></span></a>
-  <nav class="site-nav" id="siteNav"><a href="index.html">ホーム</a><a href="learn.html">土地と企画</a><a aria-current="page" href="event.html">泥ん子運動会</a><a href="partner.html">協賛・協力</a><a href="diagnosis.html">花タイプ診断</a></nav>
+  <nav class="site-nav" id="siteNav"><a href="index.html">ホーム</a><a href="learn.html">土地と企画</a><a aria-current="page" href="event.html">泥ん子運動会</a><a href="partner.html">協賛・協力</a><a href="diagnosis.html">花タイプ診断</a><a href="#contact">お問い合わせ</a></nav>
   <div class="header-actions"><a class="btn btn--small btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加申込</a></div>
   <button class="menu-button" aria-controls="siteNav" aria-expanded="false"><span></span><span></span><span></span><em>MENU</em></button>
 </header>
@@ -86,9 +113,9 @@
         <p class="eyebrow"><span>泥だらけで、能登を咲かせる。</span><small>2026.9.20 / SUZU</small></p>
         <h1>泥ん子運動会<br><span class="headline-marker">2026</span></h1>
         <p>使われなくなった土地を、みんなが集まり、笑い合える場所へ。珠洲市若山町洲巻の約1,000㎡の田んぼで、子どもから大人まで泥の中で思いっきり体を動かします。競技参加者50名を目標に開催します。</p>
-        <div class="hero-sticker-note">参加費無料・全年齢対象。受付12:30、13:00開始、17:00頃終了予定です。</div>
+        <div class="hero-sticker-note">参加費無料・全年齢対象。受付12:30、13:00開始、16:30頃閉会予定です。着替え・片付け後、17:00頃の解散を予定しています。</div>
         <div class="event-delight-meta" aria-label="イベントのポイント"><span class="event-countdown"><strong id="eventCountdown">9月20日開催</strong></span><span class="event-fun-chip">参加無料</span><span class="event-fun-chip">5つの競技</span><span class="event-fun-chip">レンゲカップ</span></div>
-        <div class="button-row"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加フォームを開く</a></div>
+        <div class="button-row"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加フォームを開く</a><a class="contact-link-btn" href="#contact">質問・お問い合わせ</a></div>
       </div>
       <figure class="photo-frame"><img src="field-overview.webp" alt="泥ん子運動会を開催する珠洲市若山町洲巻の農地" decoding="async" fetchpriority="high"><figcaption>約20m×50mの田んぼをお借りします。</figcaption></figure>
     </div>
@@ -97,10 +124,18 @@
   <section class="event-summary">
     <div class="container summary-grid">
       <div><span>開催日</span><b>2026年9月20日（日）</b></div>
-      <div><span>時間</span><b>受付12:30 / 開始13:00 / 終了17:00予定</b></div>
+      <div><span>時間</span><b>受付12:30 / 開始13:00 / 閉会16:30予定</b></div>
       <div><span>会場</span><b>石川県珠洲市若山町洲巻</b></div>
       <div><span>参加費</span><b>無料</b></div>
       <div><span>対象</span><b>全年齢</b></div>
+      <div><span>天候</span><b>雨天決行（荒天中止）</b></div>
+    </div>
+  </section>
+
+  <section class="event-latest" aria-label="最新情報">
+    <div class="container event-latest__inner">
+      <div><div class="event-latest__label">LATEST UPDATE / 2026.9.2</div><p><strong>参加者募集中です。</strong> 正式版チラシでの地域周知を開始しています。ご質問はページ内の「お問い合わせ」からお気軽にご連絡ください。</p></div>
+      <div class="event-support">後援：北國新聞社</div>
     </div>
   </section>
 
@@ -192,7 +227,21 @@
     <div class="container"><div class="rb-reboost-card"><figure class="rb-reboost-photo"><img src="team-presentation.webp" alt="RE-BOOSTの場で活動を発表する学生" loading="lazy" decoding="async"></figure><div class="rb-reboost-copy"><p class="rb-reboost-kicker">9.19 SAT / RE-BOOST STUDIO</p><h2>前日は香林坊で、<br>NOTO Re:Bloomを発表します。</h2><p>RE-BOOST STUDIOは、「復興支援」で終わらず、その先の地域の発展につなげる挑戦を共有する場です。スポーツを軸に、学生・地域・企業が出会い、次の行動につなげます。</p><div class="rb-reboost-facts"><div><small>DATE / TIME</small><b>2026年9月19日（土）<br>15:00–17:00</b></div><div><small>PLACE</small><b>コワーキングスクエア金沢香林坊<br>香林坊東急スクエア2F</b></div><div><small>FEE</small><b>参加無料</b></div></div><div class="rb-reboost-highlight"><strong>NOTO Re:Bloomも登壇予定。</strong><br>これまで能登で進めてきた活動と、翌20日に珠洲で開催する泥ん子運動会についてお話しします。</div><ul class="rb-reboost-program"><li>NOTO REBOOST U23 実績報告</li><li>参加大学生の体験談</li><li>Team A の発表</li><li>地元大学生ライトピッチ</li><li>交流会</li><li>参加企業紹介</li><li>グループチャット作成</li></ul></div></div></div>
   </section>
 
-  <section class="section section--soil"><div class="container"><div><p class="eyebrow eyebrow--light"><span>お問い合わせ</span><small>CONTACT</small></p><h2>気になることがあれば、ご連絡ください。</h2><p>泥ん子運動会の参加についてのご質問は infonotorebloom@gmail.com までお願いします。</p></div></div></section>
+  <section class="section event-contact" id="contact">
+    <div class="container">
+      <div>
+        <p class="eyebrow eyebrow--light"><span>質問・お問い合わせ</span><small>CONTACT</small></p>
+        <h2>分からないことは、参加前にお気軽にご連絡ください。</h2>
+        <p>参加方法、子どもの参加条件、持ち物、会場への行き方など、泥ん子運動会について気になることがあればメールでお問い合わせください。参加フォームの入力が難しい場合のご相談も受け付けています。</p>
+        <p class="contact-mini">主催：NOTO Re:Bloom　／　後援：北國新聞社</p>
+      </div>
+      <div class="event-contact-card">
+        <small>EVENT CONTACT</small>
+        <a href="mailto:infonotorebloom@gmail.com">infonotorebloom@gmail.com</a>
+        <p>メールを確認後、NOTO Re:Bloomから返信します。「泥ん子運動会2026について」と書いていただくとスムーズです。</p>
+      </div>
+    </div>
+  </section>
 
   <section class="faq-visual" id="event-faq">
     <div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加前によく確認したいこと</span><small>FAQ</small></p><h2>参加前のよくある質問</h2><p>服装やアクセスなど、参加前に気になる情報をここにまとめています。未確定の内容は「現在調整中」と明記しています。</p></div><div class="faq-grid">
@@ -206,21 +255,22 @@
       <article class="faq-card"><div class="q">泥は落とせますか？</div><p>シャワー設備ではありませんが、<strong>水で体についた泥を落とす程度</strong>の洗い流しは可能です。</p></article>
       <article class="faq-card"><div class="q">駐車場はありますか？</div><p><strong>現在調整中です。</strong> 田んぼ近くに停められる可能性があり、旧上黒丸小学校周辺も候補です。具体的な駐車位置と台数は確定後に案内します。</p></article>
       <article class="faq-card"><div class="q">公共交通で行けますか？</div><p>9月20日は日曜日で、上黒丸方面の<strong>若山飯田ルートは土日運休</strong>のため利用できません。現時点では車での来場をおすすめしており、車以外の来場方法は<strong>現在調整中です。</strong></p></article>
-      <article class="faq-card"><div class="q">雨天時はどうなりますか？</div><p><strong>現在調整中です。</strong> 小雨時を含む最終的な開催基準を詰めています。雷・大雨など安全確保が難しい場合は、競技の変更や中止を判断します。</p></article>
+      <article class="faq-card"><div class="q">雨天時はどうなりますか？</div><p><strong>雨天決行、荒天中止です。</strong> 雷・大雨など、安全確保が難しいと判断した場合は競技の変更または中止とします。開催可否に変更がある場合はこのサイトでお知らせします。</p></article>
       <article class="faq-card"><div class="q">トイレはありますか？</div><p><strong>現在調整中です。</strong> 確保方法と利用場所が決まり次第、このサイトでお知らせします。</p></article>
       <article class="faq-card"><div class="q">途中参加・途中退出はできますか？</div><p><strong>現在調整中です。</strong> 受付方法や安全確認の手順とあわせて、確定後に案内します。</p></article>
       <article class="faq-card"><div class="q">けがをした場合はどうなりますか？</div><p>体調不良やけががあった場合は競技を止めて対応し、必要に応じて119番通報や保護者への連絡を行います。イベント保険も準備を進めています。</p></article>
       <article class="faq-card"><div class="q">どんな競技をしますか？</div><p><strong>綱引き、リレー、台風の目、バケツリレー、玉入れ</strong>の5種目を行います。田んぼや天候の状態によって、安全のため進行方法を変更する場合があります。</p></article>
       <article class="faq-card"><div class="q">何人くらい参加しますか？</div><p>競技参加者は<strong>50名を目標</strong>にしています。運営スタッフ約10名、保護者や見学の方も含め、全体で約70名が関わる想定です。</p></article>
-      <article class="faq-card"><div class="q">何時から何時までですか？</div><p>12:30受付、13:00開始、16:30頃閉会、17:00頃解散予定です。</p></article>
+      <article class="faq-card"><div class="q">何時から何時までですか？</div><p>12:30受付、13:00開始、16:30頃閉会予定です。着替えや片付けを含め、17:00頃の解散を予定しています。</p></article>
       <article class="faq-card"><div class="q">飲み物はありますか？</div><p><strong>あります。</strong> 参加者向けにアクエリアスをご用意します。暑さ対策のため、ご自身でも飲み物をご準備ください。</p></article>
+      <article class="faq-card"><div class="q">FAQにないことを質問したいです。</div><p><a href="mailto:infonotorebloom@gmail.com"><strong>infonotorebloom@gmail.com</strong></a> までお気軽にお問い合わせください。参加フォームの入力が難しい場合もご相談いただけます。</p></article>
     </div><p class="event-faq-source">公共交通情報は2026年8月26日時点です。珠洲市が掲載している「若山飯田ルート」時刻表で土・日運休を確認しています。<a href="https://www.city.suzu.lg.jp/soshiki/2/12602.html" target="_blank" rel="noopener">珠洲市の市営路線バス案内を見る ↗</a></p></div>
   </section>
 
-  <section class="section section--paper"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加する</span><small>JOIN</small></p><h2>9月20日、若山町洲巻の田んぼでお待ちしています。</h2><p>参加費は無料です。子どもから大人まで、泥の中で思いっきり体を動かして楽しみましょう。参加フォームからお申し込みください。</p><div class="button-row button-row--center"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加フォームを開く</a></div></div></div></section>
+  <section class="section section--paper"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow"><span>参加する</span><small>JOIN</small></p><h2>9月20日、若山町洲巻の田んぼでお待ちしています。</h2><p>参加費は無料です。子どもから大人まで、泥の中で思いっきり体を動かして楽しみましょう。参加フォームからお申し込みください。分からないことがあれば、<a href="#contact">お問い合わせ</a>からご連絡ください。</p><div class="button-row button-row--center"><a class="btn btn--green" href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加フォームを開く</a><a class="contact-link-btn" href="#contact">質問・お問い合わせ</a></div></div></div></section>
 </main>
 <div class="event-sticky-join" role="region" aria-label="参加申込"><div><small>9.20 / SUZU</small><strong>参加無料・全年齢</strong></div><a href="https://forms.gle/6ZMrhrhtWmBCQViD8" target="_blank" rel="noopener">参加申込</a></div>
-<footer class="site-footer"><div class="container footer-bottom"><span>NOTO Re:Bloom</span><small>infonotorebloom@gmail.com</small><a href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">2026年クラウドファンディング結果</a></div></footer>
+<footer class="site-footer"><div class="container footer-bottom"><span>NOTO Re:Bloom</span><small><a href="mailto:infonotorebloom@gmail.com">infonotorebloom@gmail.com</a></small><small>後援：北國新聞社</small><a href="https://readyfor.jp/projects/kousakuhoukiti-saisei" target="_blank" rel="noopener">2026年クラウドファンディング結果</a></div></footer>
 <script src="site.js?v=20260827d"></script>
 <script defer src="rebloom-unified.js?v=20260820brand2"></script>
 <script defer src="event-delight.js?v=20260826d"></script>
