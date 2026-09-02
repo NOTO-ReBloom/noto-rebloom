@@ -1,6 +1,6 @@
 {
   "version": 45,
-  "updatedAt": "2026-09-02T18:16:07+09:00",
+  "updatedAt": "2026-09-02T21:18:39+09:00",
   "status": "in_progress_0_of_12",
   "date": "2026-09-02",
   "timezone": "Asia/Tokyo",
@@ -8,30 +8,77 @@
   "carryOver": {
     "sourceDate": "2026-09-01",
     "requiredBeforeNewDayConsumption": true,
-    "remaining": {"notePaid": [], "noteFree": [], "BOOTH": [], "total": 0}
+    "remaining": {
+      "notePaid": [],
+      "noteFree": [],
+      "BOOTH": [],
+      "total": 0
+    }
   },
   "completionConditions": {
     "notePaid": {
       "date": "2026-09-02",
       "dailyStrictTarget": 5,
-      "requiredIds": ["note_20260902_67_invoice_approval_cycle_control","note_20260902_68_monthly_close_exception_control","note_20260902_69_knowledge_base_freshness_control","note_20260902_70_vendor_access_offboarding_control","note_20260902_71_refund_aging_control"],
-      "strictChecks": ["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]
+      "requiredIds": [
+        "note_20260902_67_invoice_approval_cycle_control",
+        "note_20260902_68_monthly_close_exception_control",
+        "note_20260902_69_knowledge_base_freshness_control",
+        "note_20260902_70_vendor_access_offboarding_control",
+        "note_20260902_71_refund_aging_control"
+      ],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "paidBoundary",
+        "dedicatedCover"
+      ]
     },
     "BOOTH": {
       "date": "2026-09-02",
       "dailyStrictTarget": 5,
-      "requiredIds": ["074_invoice_approval_cycle_os_20260902","075_monthly_close_exception_os_20260902","076_knowledge_base_freshness_os_20260902","077_vendor_access_offboarding_os_20260902","078_refund_aging_os_20260902"],
-      "strictChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]
+      "requiredIds": [
+        "074_invoice_approval_cycle_os_20260902",
+        "075_monthly_close_exception_os_20260902",
+        "076_knowledge_base_freshness_os_20260902",
+        "077_vendor_access_offboarding_os_20260902",
+        "078_refund_aging_os_20260902"
+      ],
+      "strictChecks": [
+        "buyerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "downloadableProductState",
+        "purchaseOrCartPath"
+      ]
     },
     "noteFree": {
       "date": "2026-09-02",
       "dailyStrictTarget": 2,
-      "requiredIds": ["free_note_20260902_01_invoice_approval_delay_signals","free_note_20260902_02_monthly_close_delay_signals"],
-      "strictChecks": ["readerVisibleUrl","exactTitle","freeState","dedicatedCover"],
+      "requiredIds": [
+        "free_note_20260902_01_invoice_approval_delay_signals",
+        "free_note_20260902_02_monthly_close_delay_signals"
+      ],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "freeState",
+        "dedicatedCover"
+      ],
       "paidQuotaContribution": 0
     }
   },
-  "completionCounts": {"todayNotePaid":0,"todayNoteFree":0,"todayBOOTH":0,"todayTotal":0,"carryOverStrictVerified":0,"carryOverRemaining":0,"requiredToday":12,"strictVerifiedTotal":0,"totalOutstanding":12},
+  "completionCounts": {
+    "todayNotePaid": 0,
+    "todayNoteFree": 0,
+    "todayBOOTH": 0,
+    "todayTotal": 0,
+    "carryOverStrictVerified": 0,
+    "carryOverRemaining": 0,
+    "requiredToday": 12,
+    "strictVerifiedTotal": 0,
+    "totalOutstanding": 12
+  },
   "planningManifest": "sidehustle-autopublish/planning/2026-09-02_batch01.json",
   "materializationState": "complete_12_queued_pending_strict_verification",
   "materializationEvidence": {
@@ -42,7 +89,9 @@
     "qaPassed": true,
     "reconciledAt": "2026-09-02T18:16:07+09:00"
   },
-  "duplicateControl": {"policy":"Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."},
+  "duplicateControl": {
+    "policy": "Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."
+  },
   "executionPolicy": {
     "singleRunMayPublishMany": true,
     "switchCandidatesAfterBriefRecoverableFailure": true,
@@ -53,12 +102,40 @@
     "noDailyZipOrCmdProliferation": true,
     "newDayQueueSafety": "Sep 2 materialization QA complete; Windows consumer may consume only required Sep 2 IDs and must strict verify before counting."
   },
-  "reportingPolicy": {"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
-  "humanOnlyBlockers": ["re-login","2FA","CAPTCHA","identity verification","legal declaration","tax/payment setup","OS permission","account lock"],
-  "antiFalseCompletion": ["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
-  "previousDayReceipt": {"date":"2026-09-01","status":"complete_12_of_12","strictVerifiedToday":12,"outstanding":0,"duplicateCleanup":"complete_7_deleted_0_remaining"},
-  "executionRequestedAt": "2026-09-02T18:16:07+09:00",
-  "executionNonce": "force-current-day-20260902T181607+0900",
+  "reportingPolicy": {
+    "intermediateProgressReports": false,
+    "diagnosticOnlyReports": false,
+    "queueOrCommitOnlyReports": false,
+    "nightlyAggregateOnly": true,
+    "humanOnlyBlockerException": true
+  },
+  "humanOnlyBlockers": [
+    "re-login",
+    "2FA",
+    "CAPTCHA",
+    "identity verification",
+    "legal declaration",
+    "tax/payment setup",
+    "OS permission",
+    "account lock"
+  ],
+  "antiFalseCompletion": [
+    "Do not report a commit as publication.",
+    "Do not report queue insertion as publication.",
+    "Do not report local publisher exit 0 without public verification.",
+    "Do not report editor/admin URLs as publication.",
+    "Do not invent public URLs.",
+    "Do not count historical reverification as a new current-day publication."
+  ],
+  "previousDayReceipt": {
+    "date": "2026-09-01",
+    "status": "complete_12_of_12",
+    "strictVerifiedToday": 12,
+    "outstanding": 0,
+    "duplicateCleanup": "complete_7_deleted_0_remaining"
+  },
+  "executionRequestedAt": "2026-09-02T21:18:39+09:00",
+  "executionNonce": "force-current-day-20260902T211839+0900",
   "completedAt": null,
   "completionEvidence": null,
   "forceNowRequested": true,
