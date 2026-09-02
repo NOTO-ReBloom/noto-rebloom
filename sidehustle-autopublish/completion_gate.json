@@ -1,6 +1,6 @@
 {
-  "version": 43,
-  "updatedAt": "2026-09-02T12:14:38+09:00",
+  "version": 44,
+  "updatedAt": "2026-09-02T12:16:00+09:00",
   "status": "in_progress_0_of_12",
   "date": "2026-09-02",
   "timezone": "Asia/Tokyo",
@@ -80,7 +80,15 @@
     "totalOutstanding": 12
   },
   "planningManifest": "sidehustle-autopublish/planning/2026-09-02_batch01.json",
-  "materializationState": "planned_materialization_pending",
+  "materializationState": "complete_12_queued_pending_strict_verification",
+  "materializationEvidence": {
+    "paid": "sidehustle-autopublish/note/staging/materialization_20260902_batch01.json",
+    "free": "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md",
+    "booth": "booth-autopublish/monitor/cloud_materialization_20260902_batch01.json",
+    "windowsRequest": "sidehustle-autopublish/windows_publication_request.json",
+    "qaPassed": true,
+    "reconciledAt": "2026-09-02T12:16:00+09:00"
+  },
   "duplicateControl": {
     "policy": "Before any retry, discover an existing public page by editor key/API/profile/exact title and reconcile the canonical URL. Never create another copy solely because URL discovery failed. Multiple same-title pages count once; extras become cleanup candidates."
   },
@@ -92,7 +100,7 @@
     "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
     "doNotUseScatteredWindowsRoots": true,
     "noDailyZipOrCmdProliferation": true,
-    "newDayQueueSafety": "Do not consume Sep 2 IDs until materialization QA is complete."
+    "newDayQueueSafety": "Sep 2 materialization QA complete; Windows consumer may consume only required Sep 2 IDs and must strict verify before counting."
   },
   "reportingPolicy": {
     "intermediateProgressReports": false,
