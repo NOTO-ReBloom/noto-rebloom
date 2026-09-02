@@ -49,13 +49,19 @@
     ensureGlobalContactStyles();
     const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
     const nav=document.querySelector('.site-nav');
-    if(nav && !nav.querySelector('a[href="contact.html"]')){
-      const link=document.createElement('a');
-      link.href=CONTACT_PAGE;
-      link.className='rb-contact-nav';
-      link.textContent='お問い合わせ';
-      if(current==='contact.html') link.setAttribute('aria-current','page');
-      nav.appendChild(link);
+    if(nav){
+      const existing=[...nav.querySelectorAll('a[href]')].find(a=>(a.textContent||'').trim()==='お問い合わせ');
+      if(existing){
+        existing.classList.add('rb-contact-nav');
+        if(current!=='event.html') existing.href=CONTACT_PAGE;
+      }else{
+        const link=document.createElement('a');
+        link.href=CONTACT_PAGE;
+        link.className='rb-contact-nav';
+        link.textContent='お問い合わせ';
+        if(current==='contact.html') link.setAttribute('aria-current','page');
+        nav.appendChild(link);
+      }
     }
 
     const actions=document.querySelector('.header-actions');
