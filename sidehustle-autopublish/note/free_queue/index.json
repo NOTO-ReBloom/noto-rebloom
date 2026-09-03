@@ -1687,10 +1687,10 @@
       "accent": "#315E81",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "verified-residual-20260903-v2",
+      "forceRetryNonce": "final-free2-20260903-v1",
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
+      "recoveryMode": "minimum-length manuscript repaired; exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
     },
     {
       "id": "free_note_20260902_02_monthly_close_delay_signals",
@@ -1710,10 +1710,10 @@
       "accent": "#6A4C93",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "verified-residual-20260903-v2",
+      "forceRetryNonce": "final-free2-20260903-v1",
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
+      "recoveryMode": "minimum-length manuscript repaired; exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
     },
     {
       "id": "free_note_20260903_01_contract_signature_delay_signals",
@@ -1731,12 +1731,16 @@
       "coverLabel": "契約締結",
       "coverCopy": "遅れ始める5つのサイン",
       "accent": "#315E81",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "verified-residual-20260903-v2",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
+      "recoveryMode": "completed reader-visible strict verification; preserve canonical URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n67d8fe752122",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-03T22:18:12.261+09:00"
     },
     {
       "id": "free_note_20260903_02_expense_receipt_missing_signals",
@@ -1754,12 +1758,16 @@
       "coverLabel": "経費精算",
       "coverCopy": "締日前に見る5つのサイン",
       "accent": "#7A4F2B",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "verified-residual-20260903-v2",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
+      "recoveryMode": "completed reader-visible strict verification; preserve canonical URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n311539ed71c8",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-03T22:18:55.688+09:00"
     }
   ],
   "eveningMarathon": {
@@ -1768,30 +1776,26 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "mode": "verified_missing_sep2_and_sep3_free_only",
+    "mode": "final_verified_missing_sep2_free_only",
     "dateRange": [
-      "2026-09-02",
-      "2026-09-03"
+      "2026-09-02"
     ],
     "orderedIds": [
       "free_note_20260902_01_invoice_approval_delay_signals",
-      "free_note_20260902_02_monthly_close_delay_signals",
-      "free_note_20260903_01_contract_signature_delay_signals",
-      "free_note_20260903_02_expense_receipt_missing_signals"
+      "free_note_20260902_02_monthly_close_delay_signals"
     ],
-    "requiredStrictPublications": 4,
+    "requiredStrictPublications": 2,
     "carryOverFirst": true,
     "forceRetry": true,
-    "forceRetryNonce": "verified-residual-20260903-v2",
+    "forceRetryNonce": "final-free2-20260903-v1",
     "duplicateRule": "Exact-title API precheck reconciles one public page and blocks ambiguous multiples before editor creation."
   },
   "retryGeneration": 27,
   "activePublicationDate": "2026-09-03",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "verified-residual-20260903-v2",
+  "forceRetryNonce": "final-free2-20260903-v1",
   "sourceBatchPaths": [
-    "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md",
-    "sidehustle-autopublish/note/free_drafts/2026-09-03_batch01.md"
+    "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md"
   ],
   "reconcileExistingBeforePublish": true
 }

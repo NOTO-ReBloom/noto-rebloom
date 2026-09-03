@@ -4,7 +4,7 @@ if (!/^https:\/\/raw\.githubusercontent\.com\/NOTO-ReBloom\/noto-rebloom\/[0-9a-
   throw new Error('PINNED_RAW_BASE_REQUIRED');
 }
 
-const NONCE = 'verified-residual-20260903-v2';
+const NONCE = 'final-free2-20260903-v1';
 const PAID_DONE = {
   note_20260903_72_contract_signature_turnaround_control: 'https://note.com/royal_lion645/n/n94a96110400c',
   note_20260903_73_customer_master_duplicate_control: 'https://note.com/royal_lion645/n/n9782796e2857',
@@ -15,17 +15,17 @@ const PAID_DONE = {
 const FREE_PENDING = [
   'free_note_20260902_01_invoice_approval_delay_signals',
   'free_note_20260902_02_monthly_close_delay_signals',
-  'free_note_20260903_01_contract_signature_delay_signals',
-  'free_note_20260903_02_expense_receipt_missing_signals',
 ];
-const BOOTH_PENDING = [
-  '074_invoice_approval_cycle_os_20260902',
-  '075_monthly_close_exception_os_20260902',
-  '076_knowledge_base_freshness_os_20260902',
-  '077_vendor_access_offboarding_os_20260902',
-  '078_refund_aging_os_20260902',
-];
+const FREE_DONE = {
+  free_note_20260903_01_contract_signature_delay_signals: 'https://note.com/royal_lion645/n/n67d8fe752122',
+  free_note_20260903_02_expense_receipt_missing_signals: 'https://note.com/royal_lion645/n/n311539ed71c8',
+};
 const BOOTH_DONE = {
+  '074_invoice_approval_cycle_os_20260902': 'https://booth.pm/ja/items/8802284',
+  '075_monthly_close_exception_os_20260902': 'https://booth.pm/ja/items/8802287',
+  '076_knowledge_base_freshness_os_20260902': 'https://booth.pm/ja/items/8802293',
+  '077_vendor_access_offboarding_os_20260902': 'https://booth.pm/ja/items/8802296',
+  '078_refund_aging_os_20260902': 'https://booth.pm/ja/items/8802298',
   '079_contract_signature_turnaround_os_20260903': 'https://booth.pm/ja/items/8801001',
   '080_customer_master_duplicate_control_os_20260903': 'https://booth.pm/ja/items/8801006',
   '081_postmortem_action_closure_os_20260903': 'https://booth.pm/ja/items/8801009',
@@ -33,31 +33,48 @@ const BOOTH_DONE = {
   '083_expense_receipt_completeness_os_20260903': 'https://booth.pm/ja/items/8801018',
 };
 
-async function getJson(path) {
+async function getText(path) {
   const response = await fetch(REPO_RAW + path, {
-    headers: {'cache-control': 'no-cache', 'user-agent': 'SIDEHUSTLE-RESIDUAL-PUBLISHER/2.0'},
+    headers: {'cache-control': 'no-cache', 'user-agent': 'SIDEHUSTLE-FINAL-FREE-PUBLISHER/1.0'},
   });
   if (!response.ok) throw new Error(`HTTP_${response.status}_${path}`);
-  return response.json();
+  return response.text();
 }
 
-function mapById(entries) {
-  return new Map((entries || []).map(entry => [entry.id, entry]));
+async function getJson(path) {
+  return JSON.parse(await getText(path));
+}
+
+function mapById(entries, key = 'id') {
+  return new Map((entries || []).map(entry => [entry[key], entry]));
 }
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-const [paid, free, booth, manifest] = await Promise.all([
+function articleBody(markdown, title) {
+  const escaped = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const heading = markdown.match(new RegExp(`^##\\s+\\d+\\.\\s+${escaped}\\s*$`, 'm'));
+  assert(heading, `SOURCE_SECTION_MISSING_${title}`);
+  const tail = markdown.slice((heading.index || 0) + heading[0].length);
+  const separator = tail.search(/\n---\s*(?:\n|$)/);
+  return (separator >= 0 ? tail.slice(0, separator) : tail).trim();
+}
+
+const [paid, free, booth, manifest, freeLedger, boothLedger] = await Promise.all([
   getJson('sidehustle-autopublish/note/queue/index.json'),
   getJson('sidehustle-autopublish/note/free_queue/index.json'),
   getJson('booth-autopublish/queue/index.json'),
   getJson('sidehustle-autopublish/note/free_publisher/manifest.json'),
+  getJson('sidehustle-autopublish/note/free_publication_ledger.json'),
+  getJson('booth-autopublish/monitor/publication_ledger.json'),
 ]);
 const paidMap = mapById(paid.entries);
 const freeMap = mapById(free.entries);
 const boothMap = mapById(booth.entries);
+const freeLedgerMap = mapById(freeLedger.entries);
+const boothLedgerMap = mapById(boothLedger.entries, 'queueId');
 
 for (const [id, url] of Object.entries(PAID_DONE)) {
   const item = paidMap.get(id);
@@ -66,14 +83,22 @@ for (const [id, url] of Object.entries(PAID_DONE)) {
 for (const id of FREE_PENDING) {
   const item = freeMap.get(id);
   assert(item && item.enabled === true && item.forceRetry === true && item.forceRetryNonce === NONCE, `FREE_PENDING_CONTRACT_${id}`);
+  assert(item.kind === 'free' && Number(item.price) === 0 && item.sourceBatchPath, `FREE_PENDING_IDENTITY_${id}`);
+  const markdown = await getText(item.sourceBatchPath);
+  const body = articleBody(markdown, item.title);
+  assert(body.length >= 500, `FREE_PENDING_BODY_TOO_SHORT_${id}_${body.length}`);
 }
-for (const id of BOOTH_PENDING) {
-  const item = boothMap.get(id);
-  assert(item && item.enabled === true && item.forceRetry === true && item.forceRetryNonce === NONCE, `BOOTH_PENDING_CONTRACT_${id}`);
+for (const [id, url] of Object.entries(FREE_DONE)) {
+  const item = freeMap.get(id);
+  const ledger = freeLedgerMap.get(id);
+  assert(item && item.enabled === false && item.publicUrlVerified === true && item.publicUrl === url, `FREE_DONE_CONTRACT_${id}`);
+  assert(ledger && ledger.publicUrlVerified === true && ledger.freeStateVerified === true && ledger.coverImageVerified === true && ledger.publicUrl === url, `FREE_LEDGER_CONTRACT_${id}`);
 }
 for (const [id, url] of Object.entries(BOOTH_DONE)) {
   const item = boothMap.get(id);
+  const ledger = boothLedgerMap.get(id);
   assert(item && item.enabled === false && item.publicUrlVerified === true && item.publicUrl === url, `BOOTH_DONE_CONTRACT_${id}`);
+  assert(ledger && ledger.publicUrlVerified === true && ledger.publicUrl === url, `BOOTH_LEDGER_CONTRACT_${id}`);
 }
 
 const activePaid = paid.entries.filter(item => item.enabled === true).map(item => item.id);
@@ -81,7 +106,10 @@ const activeFree = free.entries.filter(item => item.enabled === true).map(item =
 const activeBooth = booth.entries.filter(item => item.enabled === true).map(item => item.id);
 assert(activePaid.length === 0, `UNEXPECTED_PAID_ACTIVE_${activePaid.join(',')}`);
 assert(JSON.stringify(activeFree) === JSON.stringify(FREE_PENDING), `UNEXPECTED_FREE_ACTIVE_${activeFree.join(',')}`);
-assert(JSON.stringify(activeBooth) === JSON.stringify(BOOTH_PENDING), `UNEXPECTED_BOOTH_ACTIVE_${activeBooth.join(',')}`);
+assert(activeBooth.length === 0, `UNEXPECTED_BOOTH_ACTIVE_${activeBooth.join(',')}`);
+assert(free.activePriorityBatch?.requiredStrictPublications === 2, 'FREE_ACTIVE_BATCH_COUNT');
+assert(JSON.stringify(free.activePriorityBatch?.orderedIds) === JSON.stringify(FREE_PENDING), 'FREE_ACTIVE_BATCH_ORDER');
+assert(Array.isArray(booth.outstandingDates) && booth.outstandingDates.length === 0, 'BOOTH_OUTSTANDING_DATES_NOT_EMPTY');
 assert(manifest.runtimeSha256 === '70e03588b399c1c1cdaf09dfad25ac836d1dc15f5298f0e96d33e5bb895bb5d0', 'FREE_RUNTIME_MANIFEST_SHA_MISMATCH');
 
-console.log('REMOTE_RESIDUAL_CONTRACT_OK paid_locked=5 free_pending=4 booth_locked=5 booth_pending=5 duplicates=0 total_pending=9');
+console.log('REMOTE_FINAL_FREE2_CONTRACT_OK paid_locked=5 free_locked=2 free_pending=2 booth_locked=10 total_pending=2');
