@@ -1,26 +1,38 @@
 {
-  "version": 57,
-  "updatedAt": "2026-09-02T21:18:39+09:00",
+  "version": 59,
+  "updatedAt": "2026-09-03T16:25:00+09:00",
   "activeRecovery": {
-    "date": "2026-09-02",
-    "mode": "force_current_day_all_now_reconcile_first",
-    "requiredStrictNewPublications": 5,
-    "remaining": 5,
-    "nonce": "force-current-day-20260902T211839+0900"
+    "date": "2026-09-03",
+    "sourceDates": [
+      "2026-09-02",
+      "2026-09-03"
+    ],
+    "mode": "sep2_carryover_then_current_day_paid_floor",
+    "requiredStrictNewPublications": 10,
+    "remaining": 10,
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-09-02T09:20:21+09:00",
-    "requiredStrictNewPublications": 5,
+    "generatedAt": "2026-09-03T16:25:00+09:00",
+    "requiredStrictNewPublications": 10,
     "queueIds": [
       "074_invoice_approval_cycle_os_20260902",
       "075_monthly_close_exception_os_20260902",
       "076_knowledge_base_freshness_os_20260902",
       "077_vendor_access_offboarding_os_20260902",
-      "078_refund_aging_os_20260902"
+      "078_refund_aging_os_20260902",
+      "079_contract_signature_turnaround_os_20260903",
+      "080_customer_master_duplicate_control_os_20260903",
+      "081_postmortem_action_closure_os_20260903",
+      "082_inventory_cycle_count_variance_os_20260903",
+      "083_expense_receipt_completeness_os_20260903"
     ],
     "completedIds": [],
-    "queueRetryGeneration": 57,
-    "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260902_batch01.json",
+    "queueRetryGeneration": 59,
+    "qaManifests": [
+      "booth-autopublish/monitor/cloud_materialization_20260902_batch01.json",
+      "booth-autopublish/monitor/cloud_materialization_20260903_batch01.json"
+    ],
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -33,13 +45,18 @@
       "075_monthly_close_exception_os_20260902": 1680,
       "076_knowledge_base_freshness_os_20260902": 1480,
       "077_vendor_access_offboarding_os_20260902": 1680,
-      "078_refund_aging_os_20260902": 1480
+      "078_refund_aging_os_20260902": 1480,
+      "079_contract_signature_turnaround_os_20260903": 1480,
+      "080_customer_master_duplicate_control_os_20260903": 1480,
+      "081_postmortem_action_closure_os_20260903": 1480,
+      "082_inventory_cycle_count_variance_os_20260903": 1480,
+      "083_expense_receipt_completeness_os_20260903": 1480
     },
+    "carryOverFirst": true,
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "force-current-day-20260902T211839+0900",
-    "forcedRecoveryAt": "2026-09-02T21:18:39+09:00",
-    "instruction": "Reconcile exact-title public products before create; publish only absent current-day BOOTH targets; strict verify all required conditions."
+    "forceRetry": false,
+    "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -47,17 +64,27 @@
       "075_monthly_close_exception_os_20260902",
       "076_knowledge_base_freshness_os_20260902",
       "077_vendor_access_offboarding_os_20260902",
-      "078_refund_aging_os_20260902"
+      "078_refund_aging_os_20260902",
+      "079_contract_signature_turnaround_os_20260903",
+      "080_customer_master_duplicate_control_os_20260903",
+      "081_postmortem_action_closure_os_20260903",
+      "082_inventory_cycle_count_variance_os_20260903",
+      "083_expense_receipt_completeness_os_20260903"
     ],
     "firstPassOrder": [
       "074_invoice_approval_cycle_os_20260902",
       "075_monthly_close_exception_os_20260902",
       "076_knowledge_base_freshness_os_20260902",
       "077_vendor_access_offboarding_os_20260902",
-      "078_refund_aging_os_20260902"
+      "078_refund_aging_os_20260902",
+      "079_contract_signature_turnaround_os_20260903",
+      "080_customer_master_duplicate_control_os_20260903",
+      "081_postmortem_action_closure_os_20260903",
+      "082_inventory_cycle_count_variance_os_20260903",
+      "083_expense_receipt_completeness_os_20260903"
     ],
     "strictSuccessOnly": true,
-    "completionPredicate": "all five current-day IDs buyer-visible strict verified"
+    "completionPredicate": "all ten Sep 2 carryover and Sep 3 current-day IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
     "checkedAt": "2026-09-01T17:57:14+09:00",

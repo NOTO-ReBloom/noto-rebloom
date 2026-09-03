@@ -1,24 +1,41 @@
 {
-  "version": 7,
-  "updatedAt": "2026-09-03T15:15:00+09:00",
-  "date": "2026-09-02",
-  "mode": "publish_all_current_day_now_reconcile_first",
+  "version": 2,
+  "updatedAt": "2026-09-03T16:25:00+09:00",
+  "date": "2026-09-03",
+  "sourceDates": [
+    "2026-09-02",
+    "2026-09-03"
+  ],
+  "mode": "delete_known_duplicates_then_publish_sep2_carryover_and_all_sep3_now",
   "paidNote": {
     "ids": [
+      "note_20260903_72_contract_signature_turnaround_control",
+      "note_20260903_73_customer_master_duplicate_control",
+      "note_20260903_74_postmortem_action_closure_control",
+      "note_20260903_75_inventory_cycle_count_variance_control",
+      "note_20260903_76_expense_receipt_completeness_control"
+    ],
+    "target": 5,
+    "alreadyVerifiedSep2Ids": [
       "note_20260902_67_invoice_approval_cycle_control",
       "note_20260902_68_monthly_close_exception_control",
       "note_20260902_69_knowledge_base_freshness_control",
       "note_20260902_70_vendor_access_offboarding_control",
       "note_20260902_71_refund_aging_control"
-    ],
-    "target": 5
+    ]
   },
   "freeNote": {
     "ids": [
       "free_note_20260902_01_invoice_approval_delay_signals",
-      "free_note_20260902_02_monthly_close_delay_signals"
+      "free_note_20260902_02_monthly_close_delay_signals",
+      "free_note_20260903_01_contract_signature_delay_signals",
+      "free_note_20260903_02_expense_receipt_missing_signals"
     ],
-    "target": 2
+    "target": 4,
+    "carryOverIds": [
+      "free_note_20260902_01_invoice_approval_delay_signals",
+      "free_note_20260902_02_monthly_close_delay_signals"
+    ]
   },
   "BOOTH": {
     "ids": [
@@ -26,18 +43,44 @@
       "075_monthly_close_exception_os_20260902",
       "076_knowledge_base_freshness_os_20260902",
       "077_vendor_access_offboarding_os_20260902",
-      "078_refund_aging_os_20260902"
+      "078_refund_aging_os_20260902",
+      "079_contract_signature_turnaround_os_20260903",
+      "080_customer_master_duplicate_control_os_20260903",
+      "081_postmortem_action_closure_os_20260903",
+      "082_inventory_cycle_count_variance_os_20260903",
+      "083_expense_receipt_completeness_os_20260903"
     ],
-    "target": 5
+    "target": 10,
+    "carryOverIds": [
+      "074_invoice_approval_cycle_os_20260902",
+      "075_monthly_close_exception_os_20260902",
+      "076_knowledge_base_freshness_os_20260902",
+      "077_vendor_access_offboarding_os_20260902",
+      "078_refund_aging_os_20260902"
+    ]
+  },
+  "totalPublicationTarget": 19,
+  "carryOverFirst": true,
+  "duplicateCleanup": {
+    "status": "pending_guarded_exact_id_cleanup",
+    "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_plan_20260903.json",
+    "script": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260903.mjs",
+    "duplicateTitleGroups": 3,
+    "extraPagesToDelete": 3,
+    "keeperUrls": [
+      "https://note.com/royal_lion645/n/n1a35c8d22d29",
+      "https://note.com/royal_lion645/n/ne4584b4d6f3c",
+      "https://note.com/royal_lion645/n/nb84aa678e686"
+    ],
+    "deleteOnlyUrls": [
+      "https://note.com/royal_lion645/n/ndd69a282fbc2",
+      "https://note.com/royal_lion645/n/n0e9933e9c39a",
+      "https://note.com/royal_lion645/n/n26fb9dba1c21"
+    ],
+    "safety": "Exact account, title, keeper and delete IDs are checked before each deletion."
   },
   "strictVerificationRequired": true,
-  "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-03T15:15:00+09:00",
-  "nonce": "carryover-retry-20260902-20260903T151500+0900",
-  "completionState": "pending_strict_verification",
-  "reconcileExistingBeforePublish": true,
-  "ignorePriorDayUnverified": false,
-  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-  "carryOverPriority": true,
-  "nextDayConsumptionBlockedUntilStrictVerified": true
+  "exactTitleReconciliationRequired": true,
+  "forceRetry": false,
+  "doNotStopAfterFirstSuccess": true
 }

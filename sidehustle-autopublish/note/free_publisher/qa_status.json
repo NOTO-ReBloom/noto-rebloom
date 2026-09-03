@@ -1,8 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "qaPassed": true,
-  "runtimeSha256": "9e85ecc1940c688bce9bf624e596cd3b3812f14d4ee377a5733f23aa652953d9",
-  "queueEntriesValidated": 65,
+  "runtimeSha256": "e375354f40a83588e09514296685cda8919a144c64ef46a4190cba51cc78fb42",
+  "queueEntriesValidated": 71,
   "checks": [
     "runtime_sha256",
     "node_syntax",
@@ -12,9 +12,12 @@
     "paired_paid_ids_exist",
     "source_insights_verified_when_present",
     "active_batch_count_contract",
-    "installer_contract"
+    "installer_contract",
+    "exact_title_api_reconciliation_before_editor",
+    "reader_url_api_fallback_after_publish",
+    "ambiguous_duplicate_title_block"
   ],
   "notePlatformPublicationVerified": false,
   "notePlatformPublicationNote": "Requires next Windows PC session because it reuses the authenticated local NOTE Chrome profile; cloud QA does not count as note.com publication.",
-  "checkedAt": "2026-08-31T00:32:10.981599+09:00"
+  "checkedAt": "2026-09-03T16:22:25+09:00"
 }

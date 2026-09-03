@@ -1,29 +1,29 @@
 {
   "version": 3,
-  "updatedAt": "2026-09-02T21:18:39+09:00",
-  "retryGeneration": 58,
+  "updatedAt": "2026-09-03T16:25:00+09:00",
+  "retryGeneration": 60,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_current_day_all_now",
+    "mode": "publish_2026-09-03_paid_note_batch_after_sep2_reconciliation",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260902_67_invoice_approval_cycle_control",
-      "note_20260902_68_monthly_close_exception_control",
-      "note_20260902_69_knowledge_base_freshness_control",
-      "note_20260902_70_vendor_access_offboarding_control",
-      "note_20260902_71_refund_aging_control"
+      "note_20260903_72_contract_signature_turnaround_control",
+      "note_20260903_73_customer_master_duplicate_control",
+      "note_20260903_74_postmortem_action_closure_control",
+      "note_20260903_75_inventory_cycle_count_variance_control",
+      "note_20260903_76_expense_receipt_completeness_control"
     ],
-    "instruction": "For every ID, first reconcile an existing exact-title public page. If absent, publish now. Continue after brief recoverable failure. Count only strict reader-visible verification.",
+    "instruction": "Publish each exact title once; forceRetry stays false; count only strict reader-visible verification.",
     "strictChecks": [
       "readerVisibleUrl",
-      "exactTitle",
-      "expectedPrice",
+      "title",
+      "price",
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-09-02T21:18:39+09:00",
-    "nonce": "force-current-day-20260902T211839+0900"
+    "forcedAt": "2026-09-03T16:25:00+09:00",
+    "nonce": "publish-20260902-carryover-20260903-now-v1"
   },
   "entries": [
     {
@@ -36,7 +36,8 @@
       "forceRetry": false,
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nf625206fc610",
-      "verificationState": "reader_visible_verified"
+      "verificationState": "reader_visible_verified",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260819_02",
@@ -48,7 +49,8 @@
       "forceRetry": false,
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n0c48dab1b56e",
-      "verificationState": "reader_visible_verified"
+      "verificationState": "reader_visible_verified",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260819_03",
@@ -60,7 +62,8 @@
       "forceRetry": false,
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/ne7c86017bfd3",
-      "verificationState": "reader_visible_verified"
+      "verificationState": "reader_visible_verified",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260819_04",
@@ -72,7 +75,8 @@
       "forceRetry": false,
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/na1f8adc2bfa8",
-      "verificationState": "reader_visible_verified"
+      "verificationState": "reader_visible_verified",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260820_05",
@@ -91,7 +95,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "holdReason": "Deferred after repeated strict publication failure so new paid fallbacks can discharge publication debt; preserve for later repair."
+      "holdReason": "Deferred after repeated strict publication failure so new paid fallbacks can discharge publication debt; preserve for later repair.",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260821_06_ai_small_org_workflow",
@@ -117,7 +122,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n35217754d383",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T00:10:51.048617+00:00"
+      "verifiedAt": "2026-08-22T00:10:51.048617+00:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260821_07_event_sponsor_followup",
@@ -143,7 +149,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n6219f5ba167f",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T00:10:51.731279+00:00"
+      "verifiedAt": "2026-08-22T00:10:51.731279+00:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260821_08_creator_pricing",
@@ -169,7 +176,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/ne36f4582b7be",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T00:10:52.664825+00:00"
+      "verifiedAt": "2026-08-22T00:10:52.664825+00:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260821_09_student_org_role_design",
@@ -195,7 +203,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nd903a5e7fbc4",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T00:10:53.458405+00:00"
+      "verifiedAt": "2026-08-22T00:10:53.458405+00:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260821_10_thesis_weekly_review",
@@ -221,7 +230,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n35b37f148b63",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T00:10:54.152729+00:00"
+      "verifiedAt": "2026-08-22T00:10:54.152729+00:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260821_11_ai_jobhunt_answer_audit",
@@ -247,7 +257,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/na6b65b41a15c",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T00:10:54.970073+00:00"
+      "verifiedAt": "2026-08-22T00:10:54.970073+00:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260822_12_event_cancel_decision",
@@ -273,7 +284,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nc56fc2b91dae",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:28:09.160Z"
+      "verifiedAt": "2026-08-22T02:28:09.160Z",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260822_13_meeting_decision_log",
@@ -299,7 +311,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n82fef8621581",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:28:09.160Z"
+      "verifiedAt": "2026-08-22T02:28:09.160Z",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260822_14_sponsor_menu_design",
@@ -325,7 +338,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n602d00911623",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:28:09.160Z"
+      "verifiedAt": "2026-08-22T02:28:09.160Z",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260822_15_research_interview_coding",
@@ -351,7 +365,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nd4a4205bc4bd",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:28:09.160Z"
+      "verifiedAt": "2026-08-22T02:28:09.160Z",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260822_16_jobhunt_company_research",
@@ -377,7 +392,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n0e5e9c35c649",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated HTTP verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-08-22T02:28:09.160Z"
+      "verifiedAt": "2026-08-22T02:28:09.160Z",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260823_17_sponsor_deliverables",
@@ -398,7 +414,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260823_18_event_incident_response",
@@ -420,7 +437,8 @@
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260823_19_grant_tracker",
@@ -442,7 +460,8 @@
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260823_20_meeting_decision_log",
@@ -464,7 +483,8 @@
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260823_21_literature_matrix",
@@ -486,7 +506,8 @@
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "recoveryMode": "decrypt, publish, strict reader-visible verify; current-day forced recovery",
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260824_22_ai_ops_audit",
@@ -511,7 +532,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260824_23_sponsor_report_kpi",
@@ -536,7 +558,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260824_24_event_emergency_comms",
@@ -561,7 +584,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260824_25_research_claim_audit",
@@ -586,7 +610,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260824_26_digital_product_offer_design",
@@ -611,7 +636,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor"
+      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260825_27_grant_evidence_match",
@@ -632,7 +658,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260825_28_event_authority_transfer",
@@ -653,7 +680,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260825_29_access_handover",
@@ -674,7 +702,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260825_30_research_exclusion_log",
@@ -695,7 +724,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260825_31_creator_release_qa",
@@ -716,7 +746,8 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00"
+      "deferredByCurrentDayPriorityAt": "2026-08-26T23:36:09+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_37_budget_variance_control",
@@ -741,7 +772,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nfd93b3630a10",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
-      "verifiedAt": "2026-08-27T14:29:21+09:00"
+      "verifiedAt": "2026-08-27T14:29:21+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_38_near_miss_reporting",
@@ -766,7 +798,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n54f5d36205fe",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
-      "verifiedAt": "2026-08-27T14:29:21+09:00"
+      "verifiedAt": "2026-08-27T14:29:21+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_39_sponsor_post_event_report",
@@ -791,7 +824,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n77d259d4279e",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
-      "verifiedAt": "2026-08-27T14:29:21+09:00"
+      "verifiedAt": "2026-08-27T14:29:21+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_40_interview_anonymization",
@@ -816,7 +850,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n35025967ba79",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
-      "verifiedAt": "2026-08-27T14:29:21+09:00"
+      "verifiedAt": "2026-08-27T14:29:21+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_41_digital_refund_support_policy",
@@ -841,7 +876,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n261d406ce918",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
-      "verifiedAt": "2026-08-27T14:29:21+09:00"
+      "verifiedAt": "2026-08-27T14:29:21+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_42_jobhunt_experience_ledger",
@@ -867,7 +903,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nbbd3dfc79a03",
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
-      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover."
+      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_43_ai_review_depth_design",
@@ -893,7 +930,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nadcf5e947457",
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
-      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover."
+      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_44_realestate_inquiry_triage",
@@ -919,7 +957,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n1b90327e4bd8",
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
-      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover."
+      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_45_delegation_checkpoint_design",
@@ -945,7 +984,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n09601520714d",
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
-      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover."
+      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260827_46_thesis_advisor_decision_log",
@@ -971,7 +1011,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nb8fc2b5fa8ff",
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
-      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover."
+      "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260826_32_event_cancellation_decision_log",
@@ -991,7 +1032,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260826_33_sponsor_benefit_inventory",
@@ -1011,7 +1053,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260826_34_volunteer_shift_handover",
@@ -1031,7 +1074,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260826_35_research_consent_version_control",
@@ -1051,7 +1095,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260826_36_digital_support_triage",
@@ -1071,7 +1116,8 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260828_42_attendance_month_end_exception_control",
@@ -1096,7 +1142,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nef1bc1b603c6",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260828_43_estimate_to_order_followup_control",
@@ -1121,7 +1168,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n84107d7e44dd",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260828_44_applicant_response_sla_control",
@@ -1146,7 +1194,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n78d69894342b",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260828_45_ai_efficiency_roi_measurement",
@@ -1171,7 +1220,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n135f522069dd",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260828_46_backoffice_labor_saving_priority_matrix",
@@ -1196,7 +1246,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n3ebb370af28e",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260829_47_contract_renewal_control",
@@ -1221,7 +1272,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n4cc3d1d90b84",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260829_48_complaint_root_cause_control",
@@ -1246,7 +1298,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n243cf12e4c99",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260829_49_onboarding_skill_matrix",
@@ -1271,7 +1324,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n10f407e00e23",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260829_50_cashflow_weekly_forecast",
@@ -1296,7 +1350,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n63062bd5c187",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260829_51_document_retention_disposition",
@@ -1321,7 +1376,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n9f15e444433d",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
-      "verifiedAt": "2026-08-29T01:15:04.210+09:00"
+      "verifiedAt": "2026-08-29T01:15:04.210+09:00",
+      "forcePublicationNow": false
     },
     {
       "id": "note_20260830_52_receivables_collection_control",
@@ -1744,7 +1800,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260902_67_invoice_approval_cycle_control.enc.json",
       "sha256": "aa737d4698d8e99ebd3de9291dfc60a28acadf8514f863bca8e629a4a1bb283f",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260902T211839+0900",
       "expectedPriceJPY": 1480,
@@ -1757,9 +1813,16 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n1a35c8d22d29",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent anonymous public-page audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover.",
+      "verifiedAt": "2026-09-03T16:18:00+09:00",
+      "verificationMode": "independent-public-browser-audit-20260903",
+      "duplicateCleanupRequired": true
     },
     {
       "id": "note_20260902_68_monthly_close_exception_control",
@@ -1767,7 +1830,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260902_68_monthly_close_exception_control.enc.json",
       "sha256": "3a98ffec36780e2a29a0a8754d4d6daf3a29f42efe04307e83e668edc6cf2c3d",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260902T211839+0900",
       "expectedPriceJPY": 1680,
@@ -1780,9 +1843,16 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/ne4584b4d6f3c",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent anonymous public-page audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover.",
+      "verifiedAt": "2026-09-03T16:18:00+09:00",
+      "verificationMode": "independent-public-browser-audit-20260903",
+      "duplicateCleanupRequired": true
     },
     {
       "id": "note_20260902_69_knowledge_base_freshness_control",
@@ -1790,7 +1860,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260902_69_knowledge_base_freshness_control.enc.json",
       "sha256": "bbb7b36899257fb7052b3cace0d80ea0089e80c8e858e8ee7a14f126559afa11",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260902T211839+0900",
       "expectedPriceJPY": 1480,
@@ -1803,9 +1873,16 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nb84aa678e686",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent anonymous public-page audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover.",
+      "verifiedAt": "2026-09-03T16:18:00+09:00",
+      "verificationMode": "independent-public-browser-audit-20260903",
+      "duplicateCleanupRequired": true
     },
     {
       "id": "note_20260902_70_vendor_access_offboarding_control",
@@ -1813,7 +1890,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260902_70_vendor_access_offboarding_control.enc.json",
       "sha256": "b3df2c77cb34847e9bb581eb7fb5970818a0081169759fd9dbb6088d34b64d77",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260902T211839+0900",
       "expectedPriceJPY": 1680,
@@ -1826,9 +1903,16 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n30bad25262de",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent anonymous public-page audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover.",
+      "verifiedAt": "2026-09-03T16:18:00+09:00",
+      "verificationMode": "independent-public-browser-audit-20260903",
+      "duplicateCleanupRequired": false
     },
     {
       "id": "note_20260902_71_refund_aging_control",
@@ -1836,7 +1920,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260902_71_refund_aging_control.enc.json",
       "sha256": "51eef958202e81849cb1bb34b9b6bf48434176c5439e11295ef502d69a343e07",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260902T211839+0900",
       "expectedPriceJPY": 1480,
@@ -1849,14 +1933,138 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n6e00309ef43d",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent anonymous public-page audit confirmed exact title, expected price, paid boundary, purchase path and dedicated cover.",
+      "verifiedAt": "2026-09-03T16:18:00+09:00",
+      "verificationMode": "independent-public-browser-audit-20260903",
+      "duplicateCleanupRequired": false
+    },
+    {
+      "id": "note_20260903_72_contract_signature_turnaround_control",
+      "title": "契約書が署名待ちで止まるのを防ぐ｜送付・確認・差戻し・締結予定日をつなぐ管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260903_72_contract_signature_turnaround_control.enc.json",
+      "sha256": "26e08bac64155798c7893ae00b607fa8fc75ac204fb917fd2ac5b74062187bec",
+      "createdAt": "2026-09-03T16:19:50+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+    },
+    {
+      "id": "note_20260903_73_customer_master_duplicate_control",
+      "title": "顧客台帳の重複を放置しない｜名寄せ・更新責任・統合履歴を残す顧客マスター管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260903_73_customer_master_duplicate_control.enc.json",
+      "sha256": "8b0f7f56f4136b00eba0277db9c263a416c350dbb8cb5255810fd0a48fcfe370",
+      "createdAt": "2026-09-03T16:19:50+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+    },
+    {
+      "id": "note_20260903_74_postmortem_action_closure_control",
+      "title": "振り返りを反省会で終わらせない｜再発防止策・担当・期限・完了証拠を残す改善管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260903_74_postmortem_action_closure_control.enc.json",
+      "sha256": "cfb4ce9741280d4d6c6a7fe1a66f771d5d1570d2dd7b74f4f318cb142bbd6933",
+      "createdAt": "2026-09-03T16:19:50+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+    },
+    {
+      "id": "note_20260903_75_inventory_cycle_count_variance_control",
+      "title": "棚卸差異を月末だけで処理しない｜実在庫・帳簿・原因・是正を追う在庫差異管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260903_75_inventory_cycle_count_variance_control.enc.json",
+      "sha256": "0a3d7458d76173d038719e56775b7b992a5c00aa73ac89c3b67b6aeaf3579bd2",
+      "createdAt": "2026-09-03T16:19:50+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+    },
+    {
+      "id": "note_20260903_76_expense_receipt_completeness_control",
+      "title": "経費精算の領収書不足を締日前に潰す｜申請・証憑・差戻し・再提出をつなぐ管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260903_76_expense_receipt_completeness_control.enc.json",
+      "sha256": "e0d312a269053abe63b2c6d75f4cbbffa60fb92898f4894e549253920ef0ecb9",
+      "createdAt": "2026-09-03T16:19:50+09:00",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
     }
   ],
-  "activePublicationDate": "2026-09-02",
+  "activePublicationDate": "2026-09-03",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-current-day-20260902T211839+0900",
-  "outstandingDates": [],
+  "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+  "outstandingDates": [
+    "2026-09-03"
+  ],
   "reconcileExistingBeforePublish": true
 }

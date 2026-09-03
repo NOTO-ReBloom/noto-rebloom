@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "account": "royal_lion645",
+  "auditedAt": "2026-09-03T16:18:00+09:00",
+  "status": "pending_guarded_exact_id_deletion",
+  "duplicateTitleGroups": 3,
+  "duplicatePagesToDelete": 3,
+  "selectionPolicy": [
+    "Keep the newest strict-verified page selected by the fresh public audit, preferring the indexed page when available.",
+    "Delete only explicitly listed extra URLs after exact account, title, keeper and target checks."
+  ],
+  "groups": [
+    {
+      "title": "請求書が承認待ちで止まるのを防ぐ｜受領・確認・承認・支払予定日をつなぐ管理方法",
+      "queueId": "note_20260902_67_invoice_approval_cycle_control",
+      "keep": {
+        "key": "n1a35c8d22d29",
+        "publicUrl": "https://note.com/royal_lion645/n/n1a35c8d22d29"
+      },
+      "delete": [
+        {
+          "key": "ndd69a282fbc2",
+          "publicUrl": "https://note.com/royal_lion645/n/ndd69a282fbc2"
+        }
+      ]
+    },
+    {
+      "title": "月次締めが毎月ずれる原因を残さない｜未処理・例外・担当・解消期限を管理する方法",
+      "queueId": "note_20260902_68_monthly_close_exception_control",
+      "keep": {
+        "key": "ne4584b4d6f3c",
+        "publicUrl": "https://note.com/royal_lion645/n/ne4584b4d6f3c"
+      },
+      "delete": [
+        {
+          "key": "n0e9933e9c39a",
+          "publicUrl": "https://note.com/royal_lion645/n/n0e9933e9c39a"
+        }
+      ]
+    },
+    {
+      "title": "社内マニュアルが古いまま使われるのを防ぐ｜更新責任者・確認日・失効を管理する仕組み",
+      "queueId": "note_20260902_69_knowledge_base_freshness_control",
+      "keep": {
+        "key": "nb84aa678e686",
+        "publicUrl": "https://note.com/royal_lion645/n/nb84aa678e686"
+      },
+      "delete": [
+        {
+          "key": "n26fb9dba1c21",
+          "publicUrl": "https://note.com/royal_lion645/n/n26fb9dba1c21"
+        }
+      ]
+    }
+  ]
+}
