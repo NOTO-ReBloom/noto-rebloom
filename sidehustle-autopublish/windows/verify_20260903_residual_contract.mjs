@@ -4,7 +4,6 @@ if (!/^https:\/\/raw\.githubusercontent\.com\/NOTO-ReBloom\/noto-rebloom\/[0-9a-
   throw new Error('PINNED_RAW_BASE_REQUIRED');
 }
 
-const NONCE = 'final-free2-20260903-v1';
 const PAID_DONE = {
   note_20260903_72_contract_signature_turnaround_control: 'https://note.com/royal_lion645/n/n94a96110400c',
   note_20260903_73_customer_master_duplicate_control: 'https://note.com/royal_lion645/n/n9782796e2857',
@@ -12,11 +11,10 @@ const PAID_DONE = {
   note_20260903_75_inventory_cycle_count_variance_control: 'https://note.com/royal_lion645/n/n4f1f5e12ef5e',
   note_20260903_76_expense_receipt_completeness_control: 'https://note.com/royal_lion645/n/nfa5ad51667e5',
 };
-const FREE_PENDING = [
-  'free_note_20260902_01_invoice_approval_delay_signals',
-  'free_note_20260902_02_monthly_close_delay_signals',
-];
+const FREE_PENDING = [];
 const FREE_DONE = {
+  free_note_20260902_01_invoice_approval_delay_signals: 'https://note.com/royal_lion645/n/n90f707a012ef',
+  free_note_20260902_02_monthly_close_delay_signals: 'https://note.com/royal_lion645/n/n38ad5600146a',
   free_note_20260903_01_contract_signature_delay_signals: 'https://note.com/royal_lion645/n/n67d8fe752122',
   free_note_20260903_02_expense_receipt_missing_signals: 'https://note.com/royal_lion645/n/n311539ed71c8',
 };
@@ -82,7 +80,7 @@ for (const [id, url] of Object.entries(PAID_DONE)) {
 }
 for (const id of FREE_PENDING) {
   const item = freeMap.get(id);
-  assert(item && item.enabled === true && item.forceRetry === true && item.forceRetryNonce === NONCE, `FREE_PENDING_CONTRACT_${id}`);
+  assert(item && item.enabled === true && item.forceRetry === true, `FREE_PENDING_CONTRACT_${id}`);
   assert(item.kind === 'free' && Number(item.price) === 0 && item.sourceBatchPath, `FREE_PENDING_IDENTITY_${id}`);
   const markdown = await getText(item.sourceBatchPath);
   const body = articleBody(markdown, item.title);
@@ -107,9 +105,9 @@ const activeBooth = booth.entries.filter(item => item.enabled === true).map(item
 assert(activePaid.length === 0, `UNEXPECTED_PAID_ACTIVE_${activePaid.join(',')}`);
 assert(JSON.stringify(activeFree) === JSON.stringify(FREE_PENDING), `UNEXPECTED_FREE_ACTIVE_${activeFree.join(',')}`);
 assert(activeBooth.length === 0, `UNEXPECTED_BOOTH_ACTIVE_${activeBooth.join(',')}`);
-assert(free.activePriorityBatch?.requiredStrictPublications === 2, 'FREE_ACTIVE_BATCH_COUNT');
+assert(free.activePriorityBatch?.requiredStrictPublications === 0, 'FREE_ACTIVE_BATCH_COUNT');
 assert(JSON.stringify(free.activePriorityBatch?.orderedIds) === JSON.stringify(FREE_PENDING), 'FREE_ACTIVE_BATCH_ORDER');
 assert(Array.isArray(booth.outstandingDates) && booth.outstandingDates.length === 0, 'BOOTH_OUTSTANDING_DATES_NOT_EMPTY');
-assert(manifest.runtimeSha256 === '70e03588b399c1c1cdaf09dfad25ac836d1dc15f5298f0e96d33e5bb895bb5d0', 'FREE_RUNTIME_MANIFEST_SHA_MISMATCH');
+assert(manifest.runtimeSha256 === 'fe5dae2086f0cd02db91535f8ae412c7d534a941fe655be879868a975f2381ae', 'FREE_RUNTIME_MANIFEST_SHA_MISMATCH');
 
-console.log('REMOTE_FINAL_FREE2_CONTRACT_OK paid_locked=5 free_locked=2 free_pending=2 booth_locked=10 total_pending=2');
+console.log('REMOTE_SEP2_SEP3_COMPLETE_CONTRACT_OK paid_locked=5 free_locked=4 booth_locked=10 total_pending=0');

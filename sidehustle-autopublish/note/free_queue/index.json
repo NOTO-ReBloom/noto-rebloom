@@ -1685,12 +1685,16 @@
       "coverLabel": "請求書承認",
       "coverCopy": "止まる前に見る4サイン",
       "accent": "#315E81",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "final-free2-20260903-v1",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "minimum-length manuscript repaired; exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
+      "recoveryMode": "completed; public page contains full body and no purchase control; prior free-state failure was a verifier false positive from article copy",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n90f707a012ef",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-03T22:43:32.795+09:00"
     },
     {
       "id": "free_note_20260902_02_monthly_close_delay_signals",
@@ -1708,12 +1712,16 @@
       "coverLabel": "月次締め",
       "coverCopy": "遅れる前に見る4サイン",
       "accent": "#6A4C93",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "final-free2-20260903-v1",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "minimum-length manuscript repaired; exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
+      "recoveryMode": "completed; public page contains full body and no purchase control; prior free-state failure was a verifier false positive from article copy",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n38ad5600146a",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-03T22:44:15.973+09:00"
     },
     {
       "id": "free_note_20260903_01_contract_signature_delay_signals",
@@ -1776,26 +1784,19 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "mode": "final_verified_missing_sep2_free_only",
-    "dateRange": [
-      "2026-09-02"
-    ],
-    "orderedIds": [
-      "free_note_20260902_01_invoice_approval_delay_signals",
-      "free_note_20260902_02_monthly_close_delay_signals"
-    ],
-    "requiredStrictPublications": 2,
+    "mode": "completed_sep2_sep3_free_batch",
+    "dateRange": [],
+    "orderedIds": [],
+    "requiredStrictPublications": 0,
     "carryOverFirst": true,
-    "forceRetry": true,
-    "forceRetryNonce": "final-free2-20260903-v1",
+    "forceRetry": false,
+    "forceRetryNonce": "final-free2-completed-20260903-v1",
     "duplicateRule": "Exact-title API precheck reconciles one public page and blocks ambiguous multiples before editor creation."
   },
   "retryGeneration": 27,
   "activePublicationDate": "2026-09-03",
-  "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "final-free2-20260903-v1",
-  "sourceBatchPaths": [
-    "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md"
-  ],
+  "forceAllCurrentDayNow": false,
+  "forceRetryNonce": "final-free2-completed-20260903-v1",
+  "sourceBatchPaths": [],
   "reconcileExistingBeforePublish": true
 }

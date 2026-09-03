@@ -1,7 +1,7 @@
 {
-  "version": 3,
+  "version": 4,
   "qaPassed": true,
-  "runtimeSha256": "70e03588b399c1c1cdaf09dfad25ac836d1dc15f5298f0e96d33e5bb895bb5d0",
+  "runtimeSha256": "fe5dae2086f0cd02db91535f8ae412c7d534a941fe655be879868a975f2381ae",
   "queueEntriesValidated": 71,
   "checks": [
     "runtime_sha256",
@@ -18,9 +18,11 @@
     "ambiguous_duplicate_title_block",
     "semantic_header_trigger",
     "guarded_header_geometry_fallback",
-    "header_image_post_upload_verification"
+    "header_image_post_upload_verification",
+    "free_state_uses_visible_purchase_controls",
+    "article_copy_paid_word_false_positive_regression"
   ],
-  "notePlatformPublicationVerified": false,
-  "notePlatformPublicationNote": "Requires next Windows PC session because it reuses the authenticated local NOTE Chrome profile; cloud QA does not count as note.com publication.",
-  "checkedAt": "2026-09-03T17:06:18+09:00"
+  "notePlatformPublicationVerified": true,
+  "notePlatformPublicationNote": "All Sep 2 and Sep 3 target pages are public. A fresh public-browser audit confirmed the final two articles expose their complete bodies with no purchase control; the previous free-state failure was a text-matching false positive.",
+  "checkedAt": "2026-09-03T22:48:00+09:00"
 }
