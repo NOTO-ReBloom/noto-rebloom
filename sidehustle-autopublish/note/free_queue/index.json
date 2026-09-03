@@ -1,6 +1,6 @@
 {
-  "version": 25,
-  "updatedAt": "2026-09-03T16:25:00+09:00",
+  "version": 26,
+  "updatedAt": "2026-09-03T16:33:47+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-03_batch01.md",
   "requiredFreeChecks": [
@@ -1685,7 +1685,7 @@
       "coverLabel": "請求書承認",
       "coverCopy": "止まる前に見る4サイン",
       "accent": "#315E81",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
       "forcePublicationNow": true,
@@ -1708,7 +1708,7 @@
       "coverLabel": "月次締め",
       "coverCopy": "遅れる前に見る4サイン",
       "accent": "#6A4C93",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
       "forcePublicationNow": true,
@@ -1733,10 +1733,7 @@
       "accent": "#315E81",
       "enabled": true,
       "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
-      "forcePublicationNow": true,
-      "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+      "forceRetryNonce": "free-note-20260903-20260903T163347+0900"
     },
     {
       "id": "free_note_20260903_02_expense_receipt_missing_signals",
@@ -1756,10 +1753,7 @@
       "accent": "#7A4F2B",
       "enabled": true,
       "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
-      "forcePublicationNow": true,
-      "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+      "forceRetryNonce": "free-note-20260903-20260903T163347+0900"
     }
   ],
   "eveningMarathon": {
@@ -1768,21 +1762,12 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "mode": "sep2_carryover_then_sep3_current_day",
-    "dateRange": [
-      "2026-09-02",
-      "2026-09-03"
-    ],
-    "orderedIds": [
-      "free_note_20260902_01_invoice_approval_delay_signals",
-      "free_note_20260902_02_monthly_close_delay_signals",
+    "date": "2026-09-03",
+    "ids": [
       "free_note_20260903_01_contract_signature_delay_signals",
       "free_note_20260903_02_expense_receipt_missing_signals"
     ],
-    "requiredStrictPublications": 4,
-    "carryOverFirst": true,
-    "forceRetry": false,
-    "duplicateRule": "One exact-title public page is reconciled; multiple exact-title pages stop the publisher."
+    "requiredStrictPublications": 2
   },
   "retryGeneration": 25,
   "activePublicationDate": "2026-09-03",

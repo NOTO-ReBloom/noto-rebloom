@@ -1,6 +1,6 @@
 {
-  "version": 50,
-  "updatedAt": "2026-09-03T16:25:00+09:00",
+  "version": 51,
+  "updatedAt": "2026-09-03T16:33:47+09:00",
   "objective": "Finish 7 Sep 2 carryover publications and all 12 Sep 3 publications without adding duplicate NOTE titles.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -23,15 +23,12 @@
   },
   "currentRecovery": {
     "date": "2026-09-03",
-    "observedAt": "2026-09-03T16:18:00+09:00",
+    "observedAt": "2026-09-03T16:33:47+09:00",
     "previousDate": "2026-09-02",
     "previousDayPaidNoteStrictVerified": "5/5",
-    "previousDayFreeNoteStrictVerified": "0/2",
-    "previousDayBoothStrictVerified": "0/5",
-    "carriedPaidDebt": 0,
-    "carriedFreeDebt": 2,
-    "carriedBoothDebt": 5,
-    "carriedTotalDebt": 7
+    "previousDayBoothStrictVerified": "5/5",
+    "previousDayFreeNoteStrictVerified": "2/2",
+    "carriedPaidDebt": 0
   },
   "currentDayTargets": {
     "date": "2026-09-03",
@@ -48,29 +45,12 @@
         "note_20260903_76_expense_receipt_completeness_control"
       ]
     },
-    "freeNote": {
-      "targetIncludingCarryover": 4,
-      "strictVerified": 0,
-      "remaining": 4,
-      "remainingIds": [
-        "free_note_20260902_01_invoice_approval_delay_signals",
-        "free_note_20260902_02_monthly_close_delay_signals",
-        "free_note_20260903_01_contract_signature_delay_signals",
-        "free_note_20260903_02_expense_receipt_missing_signals"
-      ],
-      "paidQuotaContribution": 0
-    },
     "BOOTH": {
-      "targetIncludingCarryover": 10,
+      "target": 5,
       "strictVerified": 0,
-      "remaining": 10,
-      "materialized": 10,
+      "remaining": 5,
+      "materialized": 5,
       "remainingIds": [
-        "074_invoice_approval_cycle_os_20260902",
-        "075_monthly_close_exception_os_20260902",
-        "076_knowledge_base_freshness_os_20260902",
-        "077_vendor_access_offboarding_os_20260902",
-        "078_refund_aging_os_20260902",
         "079_contract_signature_turnaround_os_20260903",
         "080_customer_master_duplicate_control_os_20260903",
         "081_postmortem_action_closure_os_20260903",
@@ -78,31 +58,22 @@
         "083_expense_receipt_completeness_os_20260903"
       ]
     },
-    "allDesignatedStrictVerified": false,
-    "totalOutstanding": 19
+    "freeNote": {
+      "target": 2,
+      "strictVerified": 0,
+      "remaining": 2,
+      "remainingIds": [
+        "free_note_20260903_01_contract_signature_delay_signals",
+        "free_note_20260903_02_expense_receipt_missing_signals"
+      ],
+      "paidQuotaContribution": 0
+    },
+    "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "Sep 2 5/5 independently verified and locked; Sep 3 five encrypted payloads materialized.",
-    "freeNote": "Sep 2 and Sep 3 four manuscripts queued; none yet observed publicly.",
-    "BOOTH": "Sep 2 and Sep 3 ten encrypted products queued; none yet observed publicly.",
-    "duplicateCleanup": {
-      "status": "pending_guarded_exact_id_cleanup",
-      "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_plan_20260903.json",
-      "script": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260903.mjs",
-      "duplicateTitleGroups": 3,
-      "extraPagesToDelete": 3,
-      "keeperUrls": [
-        "https://note.com/royal_lion645/n/n1a35c8d22d29",
-        "https://note.com/royal_lion645/n/ne4584b4d6f3c",
-        "https://note.com/royal_lion645/n/nb84aa678e686"
-      ],
-      "deleteOnlyUrls": [
-        "https://note.com/royal_lion645/n/ndd69a282fbc2",
-        "https://note.com/royal_lion645/n/n0e9933e9c39a",
-        "https://note.com/royal_lion645/n/n26fb9dba1c21"
-      ],
-      "safety": "Exact account, title, keeper and delete IDs are checked before each deletion."
-    },
+    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
+    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
+    "freeNote": "2 manuscripts queued; no public count yet",
     "humanOnlyBlocker": null
   },
   "monitor": {

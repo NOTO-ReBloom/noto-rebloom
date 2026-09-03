@@ -1,7 +1,7 @@
 {
-  "version": 73,
+  "version": 74,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-03T16:25:00+09:00",
+  "updatedAt": "2026-09-03T16:33:47+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -29,8 +29,8 @@
         "queueMaterializationState": "complete",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260903_batch01.json",
-        "strictPublicationState": "2026-09-03 0/5 strict verified; 2026-09-02 5/5 locked",
-        "fallbackPolicy": "Process only enabled Sep 3 paid IDs; exact-title reconcile before publish; never republish Sep 2 verified items.",
+        "strictPublicationState": "2026-09-03 0/5 strict verified",
+        "fallbackPolicy": "Process only enabled 2026-09-03 paid NOTE IDs; do not republish previous-day verified items.",
         "lastStrictVerificationAt": "2026-09-03T16:18:00+09:00",
         "lastStrictVerifiedIds": [
           "note_20260902_67_invoice_approval_cycle_control",
@@ -90,8 +90,8 @@
       "operationalState": {
         "date": "2026-09-03",
         "previousDate": "2026-09-02",
-        "previousDayStrictVerifiedPublicationsCount": 0,
-        "carriedPublicationDebt": 5,
+        "previousDayStrictVerifiedPublicationsCount": 5,
+        "carriedPublicationDebt": 0,
         "carriedRequiredIds": [
           "074_invoice_approval_cycle_os_20260902",
           "075_monthly_close_exception_os_20260902",
@@ -114,9 +114,9 @@
         "materializationState": "complete",
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
         "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260903_batch01.json",
-        "queueRetryGeneration": 59,
-        "strictPublicationState": "2026-09-02 0/5 and 2026-09-03 0/5 strict verified",
-        "fallbackPolicy": "Publish Sep 2 carryover first, then Sep 3; exact-title reconcile before every publish.",
+        "queueRetryGeneration": 60,
+        "strictPublicationState": "2026-09-03 0/5 strict verified",
+        "fallbackPolicy": "Process only enabled 2026-09-03 BOOTH IDs; do not republish previous-day verified items.",
         "lastStrictVerificationAt": "2026-09-03T16:18:00+09:00",
         "lastStrictVerifiedIds": []
       }
