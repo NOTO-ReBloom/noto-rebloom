@@ -1,7 +1,7 @@
 {
-  "version": 48,
-  "updatedAt": "2026-09-03T16:33:47+09:00",
-  "status": "in_progress_0_of_12",
+  "version": 50,
+  "updatedAt": "2026-09-03T17:06:18+09:00",
+  "status": "in_progress_15_of_24",
   "date": "2026-09-03",
   "timezone": "Asia/Tokyo",
   "purpose": "2026-09-03: complete only after all 12 designated publications are strict verified.",
@@ -90,21 +90,21 @@
     }
   },
   "completionCounts": {
-    "todayNotePaid": 0,
+    "todayNotePaid": 5,
     "todayNoteFree": 0,
-    "todayBOOTH": 0,
-    "todayTotal": 0,
+    "todayBOOTH": 5,
+    "todayTotal": 10,
     "carryOverStrictVerified": 5,
     "carryOverRemaining": 7,
     "requiredToday": 12,
-    "strictVerifiedTotal": 5,
-    "totalOutstanding": 19
+    "strictVerifiedTotal": 15,
+    "totalOutstanding": 9
   },
   "planningManifest": [
     "sidehustle-autopublish/planning/2026-09-02_batch01.json",
     "sidehustle-autopublish/planning/2026-09-03_batch01.json"
   ],
-  "materializationState": "complete_24_materialized_5_verified_19_pending",
+  "materializationState": "complete_24_materialized_15_verified_9_pending",
   "materializationEvidence": {
     "paid": [
       "sidehustle-autopublish/note/staging/materialization_20260902_batch01.json",
@@ -125,7 +125,7 @@
   "duplicateControl": {
     "policy": "Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.",
     "knownCleanup": {
-      "status": "pending_guarded_exact_id_cleanup",
+      "status": "completed_verified",
       "plan": "sidehustle-autopublish/note/windows/note_duplicate_cleanup_plan_20260903.json",
       "script": "sidehustle-autopublish/note/windows/delete_duplicate_note_20260903.mjs",
       "duplicateTitleGroups": 3,
@@ -140,9 +140,12 @@
         "https://note.com/royal_lion645/n/n0e9933e9c39a",
         "https://note.com/royal_lion645/n/n26fb9dba1c21"
       ],
-      "safety": "Exact account, title, keeper and delete IDs are checked before each deletion."
+      "safety": "Exact account, title, keeper and delete IDs are checked before each deletion.",
+      "completedAt": "2026-09-03T16:55:00.958+09:00",
+      "remainingDuplicateTitleGroups": 0,
+      "sourceLogSha256": "cbd9245fdeeb05272584b9b5c08ef9e9739d717d961bd7ade878882e02c9760e"
     },
-    "freePublisherGuardVersion": 2
+    "freePublisherGuardVersion": 3
   },
   "executionPolicy": {
     "singleRunMayPublishMany": true,
@@ -192,10 +195,10 @@
       "note_20260902_71_refund_aging_control": "https://note.com/royal_lion645/n/n6e00309ef43d"
     }
   },
-  "executionRequestedAt": "2026-09-03T16:25:00+09:00",
-  "executionNonce": "publish-20260902-carryover-20260903-now-v1",
+  "executionRequestedAt": "2026-09-03T17:06:18+09:00",
+  "executionNonce": "verified-residual-20260903-v2",
   "completedAt": null,
   "completionEvidence": null,
   "forceNowRequested": true,
-  "forceNowMode": "cleanup_known_duplicates_then_carryover_first_then_current_day_with_exact_title_reconciliation"
+  "forceNowMode": "publish_only_four_verified-missing_free_notes_and_five_verified-missing_sep2_booth_items"
 }

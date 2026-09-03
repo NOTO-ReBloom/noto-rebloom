@@ -1,9 +1,9 @@
 {
-  "version": 2,
-  "updatedAt": "2026-09-03T16:22:25+09:00",
+  "version": 3,
+  "updatedAt": "2026-09-03T17:06:18+09:00",
   "runtimeBundle": "sidehustle-autopublish/note/free_publisher/note-free-bot.mjs.gz.b64",
-  "runtimeSha256": "e375354f40a83588e09514296685cda8919a144c64ef46a4190cba51cc78fb42",
-  "bundleTextSha256": "50dfde6347d2cbf15ef45eada0634154db2cbe92b088424bda4f6cec9445ef29",
+  "runtimeSha256": "70e03588b399c1c1cdaf09dfad25ac836d1dc15f5298f0e96d33e5bb895bb5d0",
+  "bundleTextSha256": "4671bdbaa8f109ec9817c5b48b839308fb7bddc38473b83753f9301a53e629e8",
   "queue": "sidehustle-autopublish/note/free_queue/index.json",
   "targetWindowsDirectory": "C:\\note-business\\note_auto_publisher_windows\\note_auto_publisher",
   "strictFreeChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover"],
@@ -11,5 +11,7 @@
   "freeNeverDecrementsPaidDebt": true,
   "exactTitleReconciliationBeforeEditor": true,
   "apiFallbackAfterPublish": true,
-  "duplicateOnAmbiguousTitleBlocked": true
+  "duplicateOnAmbiguousTitleBlocked": true,
+  "headerImageTriggerRecovery": "semantic selectors, top-scroll retry, then guarded 40x40 editor-header geometry",
+  "headerImagePostUploadVerification": true
 }

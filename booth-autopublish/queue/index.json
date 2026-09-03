@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "updatedAt": "2026-09-03T16:33:47+09:00",
-  "retryGeneration": 60,
+  "updatedAt": "2026-09-03T17:06:18+09:00",
+  "retryGeneration": 62,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -2783,9 +2783,9 @@
       ],
       "sha256": "89c8624d763fb69e6caf825050d2148e797a60f6c61f3d051f8b6e3c0b95adb6",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2814,7 +2814,7 @@
       },
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public product first; publish only when absent; strict-verify afterward"
+      "recoveryMode": "buyer-visible exact-title absence independently confirmed; retry once with strict public verification"
     },
     {
       "id": "075_monthly_close_exception_os_20260902",
@@ -2824,9 +2824,9 @@
       ],
       "sha256": "6a338c971079d4077cf1ec841d15f1a7482d62e9ed0d27e8b54169cfddf6dfdd",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
       "expectedPriceJPY": 1680,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2855,7 +2855,7 @@
       },
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public product first; publish only when absent; strict-verify afterward"
+      "recoveryMode": "buyer-visible exact-title absence independently confirmed; retry once with strict public verification"
     },
     {
       "id": "076_knowledge_base_freshness_os_20260902",
@@ -2865,9 +2865,9 @@
       ],
       "sha256": "6e5129630021a2df763f9dbbe50d3f0431ea975937658e0c674a914fcdf1c5b4",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2896,7 +2896,7 @@
       },
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public product first; publish only when absent; strict-verify afterward"
+      "recoveryMode": "buyer-visible exact-title absence independently confirmed; retry once with strict public verification"
     },
     {
       "id": "077_vendor_access_offboarding_os_20260902",
@@ -2906,9 +2906,9 @@
       ],
       "sha256": "32ebd87acf4d4b392259e428ad6a90e53bf94c1b50018c75a52440d1fcb9eb01",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
       "expectedPriceJPY": 1680,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2937,7 +2937,7 @@
       },
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public product first; publish only when absent; strict-verify afterward"
+      "recoveryMode": "buyer-visible exact-title absence independently confirmed; retry once with strict public verification"
     },
     {
       "id": "078_refund_aging_os_20260902",
@@ -2947,9 +2947,9 @@
       ],
       "sha256": "bdbda83347b2461c0b49a2646074e6f192885e8a73c089260521be1fa96e38f8",
       "createdAt": "2026-09-02T09:20:21+09:00",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
       "requiredBuyerChecks": [
@@ -2978,7 +2978,7 @@
       },
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public product first; publish only when absent; strict-verify afterward"
+      "recoveryMode": "buyer-visible exact-title absence independently confirmed; retry once with strict public verification"
     },
     {
       "id": "079_contract_signature_turnaround_os_20260903",
@@ -2988,8 +2988,8 @@
       ],
       "sha256": "269994659ce9dd8998217a17987e9812d872aa1f73b4cf056c2ec7a4b2636266",
       "createdAt": "2026-09-03T16:33:47+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "cloud-materialize-079_contract_signature_turnaround_os_20260903-20260903T163347+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
@@ -3016,7 +3016,13 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://booth.pm/ja/items/8801001",
+      "verificationState": "buyer_visible_verified",
+      "verifiedAt": "2026-09-03T16:50:56.224+09:00"
     },
     {
       "id": "080_customer_master_duplicate_control_os_20260903",
@@ -3026,8 +3032,8 @@
       ],
       "sha256": "68444c6ec80bd7159675f424ae8ba75aa373bd66480c2ce709c6becaf89e5ed1",
       "createdAt": "2026-09-03T16:33:47+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "cloud-materialize-080_customer_master_duplicate_control_os_20260903-20260903T163347+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
@@ -3054,7 +3060,13 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://booth.pm/ja/items/8801006",
+      "verificationState": "buyer_visible_verified",
+      "verifiedAt": "2026-09-03T16:51:35.174+09:00"
     },
     {
       "id": "081_postmortem_action_closure_os_20260903",
@@ -3064,8 +3076,8 @@
       ],
       "sha256": "42328807e9c9034030f31ab1ea36d3f0a73feb181275608aaa4c04889bde194e",
       "createdAt": "2026-09-03T16:33:47+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "cloud-materialize-081_postmortem_action_closure_os_20260903-20260903T163347+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
@@ -3092,7 +3104,13 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://booth.pm/ja/items/8801009",
+      "verificationState": "buyer_visible_verified",
+      "verifiedAt": "2026-09-03T16:52:17.766+09:00"
     },
     {
       "id": "082_inventory_cycle_count_variance_os_20260903",
@@ -3102,8 +3120,8 @@
       ],
       "sha256": "49f9b2af84381dc346312cd5846f0582224d50f034deeca3ae755164ee3080c9",
       "createdAt": "2026-09-03T16:33:47+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "cloud-materialize-082_inventory_cycle_count_variance_os_20260903-20260903T163347+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
@@ -3130,7 +3148,13 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://booth.pm/ja/items/8801015",
+      "verificationState": "buyer_visible_verified",
+      "verifiedAt": "2026-09-03T16:53:04.823+09:00"
     },
     {
       "id": "083_expense_receipt_completeness_os_20260903",
@@ -3140,8 +3164,8 @@
       ],
       "sha256": "2e5d0435953083d44ac996eff53a6bd686fe6f3e83c9e57767bd05f15cab133d",
       "createdAt": "2026-09-03T16:33:47+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "cloud-materialize-083_expense_receipt_completeness_os_20260903-20260903T163347+0900",
       "expectedPriceJPY": 1480,
       "requireBuyerVisibleVerification": true,
@@ -3168,15 +3192,20 @@
           "JSON backup/import",
           "print"
         ]
-      }
+      },
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://booth.pm/ja/items/8801018",
+      "verificationState": "buyer_visible_verified",
+      "verifiedAt": "2026-09-03T16:53:55.105+09:00"
     }
   ],
-  "activePublicationDate": "2026-09-03",
+  "activePublicationDate": "2026-09-02",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+  "forceRetryNonce": "verified-residual-20260903-v2",
   "outstandingDates": [
-    "2026-09-02",
-    "2026-09-03"
+    "2026-09-02"
   ],
   "reconcileExistingBeforePublish": true
 }

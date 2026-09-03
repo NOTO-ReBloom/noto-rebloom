@@ -1,6 +1,6 @@
 {
   "version": 26,
-  "updatedAt": "2026-09-03T16:33:47+09:00",
+  "updatedAt": "2026-09-03T17:06:18+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-03_batch01.md",
   "requiredFreeChecks": [
@@ -1685,12 +1685,12 @@
       "coverLabel": "請求書承認",
       "coverCopy": "止まる前に見る4サイン",
       "accent": "#315E81",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
     },
     {
       "id": "free_note_20260902_02_monthly_close_delay_signals",
@@ -1708,12 +1708,12 @@
       "coverLabel": "月次締め",
       "coverCopy": "遅れる前に見る4サイン",
       "accent": "#6A4C93",
-      "enabled": false,
-      "forceRetry": false,
-      "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public pages first; publish only when absent; strict-verify afterward"
+      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
     },
     {
       "id": "free_note_20260903_01_contract_signature_delay_signals",
@@ -1732,8 +1732,11 @@
       "coverCopy": "遅れ始める5つのサイン",
       "accent": "#315E81",
       "enabled": true,
-      "forceRetry": false,
-      "forceRetryNonce": "free-note-20260903-20260903T163347+0900"
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
     },
     {
       "id": "free_note_20260903_02_expense_receipt_missing_signals",
@@ -1752,8 +1755,11 @@
       "coverCopy": "締日前に見る5つのサイン",
       "accent": "#7A4F2B",
       "enabled": true,
-      "forceRetry": false,
-      "forceRetryNonce": "free-note-20260903-20260903T163347+0900"
+      "forceRetry": true,
+      "forceRetryNonce": "verified-residual-20260903-v2",
+      "forcePublicationNow": true,
+      "prePublishReconcileRequired": true,
+      "recoveryMode": "exact-title public absence independently confirmed; retry with duplicate-safe precheck and strict verification"
     }
   ],
   "eveningMarathon": {
@@ -1762,17 +1768,27 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-03",
-    "ids": [
+    "mode": "verified_missing_sep2_and_sep3_free_only",
+    "dateRange": [
+      "2026-09-02",
+      "2026-09-03"
+    ],
+    "orderedIds": [
+      "free_note_20260902_01_invoice_approval_delay_signals",
+      "free_note_20260902_02_monthly_close_delay_signals",
       "free_note_20260903_01_contract_signature_delay_signals",
       "free_note_20260903_02_expense_receipt_missing_signals"
     ],
-    "requiredStrictPublications": 2
+    "requiredStrictPublications": 4,
+    "carryOverFirst": true,
+    "forceRetry": true,
+    "forceRetryNonce": "verified-residual-20260903-v2",
+    "duplicateRule": "Exact-title API precheck reconciles one public page and blocks ambiguous multiples before editor creation."
   },
-  "retryGeneration": 25,
+  "retryGeneration": 27,
   "activePublicationDate": "2026-09-03",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "publish-20260902-carryover-20260903-now-v1",
+  "forceRetryNonce": "verified-residual-20260903-v2",
   "sourceBatchPaths": [
     "sidehustle-autopublish/note/free_drafts/2026-09-02_batch01.md",
     "sidehustle-autopublish/note/free_drafts/2026-09-03_batch01.md"

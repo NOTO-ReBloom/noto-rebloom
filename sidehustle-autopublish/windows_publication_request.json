@@ -1,35 +1,63 @@
 {
-  "version": 1,
-  "updatedAt": "2026-09-03T16:33:47+09:00",
+  "version": 2,
+  "updatedAt": "2026-09-03T17:06:18+09:00",
   "date": "2026-09-03",
-  "mode": "publish_all_current_day_now",
+  "mode": "publish_only_nine_independently_verified_missing_items",
   "paidNote": {
-    "ids": [
+    "ids": [],
+    "target": 0,
+    "verifiedSep3Ids": [
       "note_20260903_72_contract_signature_turnaround_control",
       "note_20260903_73_customer_master_duplicate_control",
       "note_20260903_74_postmortem_action_closure_control",
       "note_20260903_75_inventory_cycle_count_variance_control",
       "note_20260903_76_expense_receipt_completeness_control"
-    ],
-    "target": 5
+    ]
   },
   "freeNote": {
     "ids": [
+      "free_note_20260902_01_invoice_approval_delay_signals",
+      "free_note_20260902_02_monthly_close_delay_signals",
       "free_note_20260903_01_contract_signature_delay_signals",
       "free_note_20260903_02_expense_receipt_missing_signals"
     ],
-    "target": 2
+    "target": 4,
+    "carryOverIds": [
+      "free_note_20260902_01_invoice_approval_delay_signals",
+      "free_note_20260902_02_monthly_close_delay_signals"
+    ]
   },
   "BOOTH": {
     "ids": [
+      "074_invoice_approval_cycle_os_20260902",
+      "075_monthly_close_exception_os_20260902",
+      "076_knowledge_base_freshness_os_20260902",
+      "077_vendor_access_offboarding_os_20260902",
+      "078_refund_aging_os_20260902"
+    ],
+    "target": 5,
+    "carryOverIds": [
+      "074_invoice_approval_cycle_os_20260902",
+      "075_monthly_close_exception_os_20260902",
+      "076_knowledge_base_freshness_os_20260902",
+      "077_vendor_access_offboarding_os_20260902",
+      "078_refund_aging_os_20260902"
+    ],
+    "verifiedSep3Ids": [
       "079_contract_signature_turnaround_os_20260903",
       "080_customer_master_duplicate_control_os_20260903",
       "081_postmortem_action_closure_os_20260903",
       "082_inventory_cycle_count_variance_os_20260903",
       "083_expense_receipt_completeness_os_20260903"
-    ],
-    "target": 5
+    ]
   },
   "strictVerificationRequired": true,
-  "doNotStopAfterFirstSuccess": true
+  "doNotStopAfterFirstSuccess": true,
+  "totalPublicationTarget": 9,
+  "forceRetry": true,
+  "duplicateCleanup": {
+    "status": "completed_verified",
+    "remainingDuplicateTitleGroups": 0
+  },
+  "executionNonce": "verified-residual-20260903-v2"
 }
