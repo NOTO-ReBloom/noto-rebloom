@@ -1,6 +1,6 @@
 {
-  "version": 63,
-  "updatedAt": "2026-09-04T23:46:59+09:00",
+  "version": 64,
+  "updatedAt": "2026-09-04T23:50:44+09:00",
   "activeRecovery": {
     "date": "2026-09-04",
     "mode": "current_day_paid_floor",
@@ -9,7 +9,7 @@
     "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-09-04T23:46:59+09:00",
+    "generatedAt": "2026-09-04T23:50:44+09:00",
     "requiredStrictNewPublications": 5,
     "queueIds": [
       "084_three_way_match_exception_os_20260904",
@@ -19,7 +19,7 @@
       "088_supplier_bank_change_verification_os_20260904"
     ],
     "completedIds": [],
-    "queueRetryGeneration": 63,
+    "queueRetryGeneration": 64,
     "qaManifest": "booth-autopublish/monitor/cloud_materialization_20260904_batch01.json",
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
@@ -37,7 +37,7 @@
     },
     "doNotStopAfterFirstSuccess": true,
     "doNotReturnToLegacy009": true,
-    "forceRetryNonce": "booth-20260904-20260904T234659+0900"
+    "forceRetryNonce": "booth-20260904-20260904T235044+0900"
   },
   "windowsResumeContract": {
     "requiredIds": [
