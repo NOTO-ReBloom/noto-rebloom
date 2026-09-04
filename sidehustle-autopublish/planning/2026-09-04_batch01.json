@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "date": "2026-09-04",
+  "timezone": "Asia/Tokyo",
+  "createdAt": "2026-09-04T23:17:37+09:00",
+  "state": "planned_pending_materialization",
+  "activationRule": "Sep 2-3 designated publications are finalized; materialize this batch before any Windows publisher consumption.",
+  "qualityPolicy": "Reject semantic clones, thin variants, duplicate public promises, or products that cannot provide standalone practical value.",
+  "measurementPolicy": "Do not claim winners, CVR, revenue uplift, installs or purchase demand without observed first-party evidence.",
+  "paidNote": [
+    {
+      "id": "note_20260904_77_three_way_match_exception_control",
+      "title": "請求書・発注書・検収の不一致を放置しない｜三点照合の差異と解消期限を追う管理方法",
+      "expectedPriceJPY": 980,
+      "pairedFreeId": "free_note_20260904_01_three_way_match_warning_signals",
+      "promise": "支払前の三点照合で発生する数量・単価・検収差異を担当、期限、根拠とともに追跡し、未解消を残さない運用を作る。"
+    },
+    {
+      "id": "note_20260904_78_bank_reconciliation_open_items_control",
+      "title": "銀行照合の未消込を翌月へ持ち越さない｜入出金・仕訳・原因・解消証拠をつなぐ管理方法",
+      "expectedPriceJPY": 980,
+      "promise": "銀行残高と帳簿の差異を未消込のまま放置せず、原因特定から修正・再照合までを追跡可能にする。"
+    },
+    {
+      "id": "note_20260904_79_policy_exception_approval_control",
+      "title": "社内ルールの例外承認を口頭で済ませない｜理由・期限・承認者・失効を残す例外管理",
+      "expectedPriceJPY": 980,
+      "promise": "恒久ルールを崩さずに例外処理を可視化し、期限切れや無承認運用の常態化を防ぐ。"
+    },
+    {
+      "id": "note_20260904_80_document_version_approval_conflict_control",
+      "title": "承認中の文書が差し替わる事故を防ぐ｜版・承認状態・変更理由をつなぐ文書管理",
+      "expectedPriceJPY": 980,
+      "promise": "承認対象の版と変更履歴を一致させ、古い版への承認や差し替え事故を防ぐ。"
+    },
+    {
+      "id": "note_20260904_81_supplier_bank_change_verification_control",
+      "title": "取引先の振込先変更をメールだけで受け付けない｜申請・本人確認・承認・反映を追う管理方法",
+      "expectedPriceJPY": 980,
+      "pairedFreeId": "free_note_20260904_02_supplier_bank_change_risk_signals",
+      "promise": "振込先変更時のなりすまし・確認漏れ・反映ミスを減らすため、検証と承認を標準化する。"
+    }
+  ],
+  "freeNote": [
+    {
+      "id": "free_note_20260904_01_three_way_match_warning_signals",
+      "title": "請求書の支払い前に止めたい5つの不一致サイン｜発注・検収とのズレを早く見つける",
+      "funnelTargetPaidId": "note_20260904_77_three_way_match_exception_control",
+      "standaloneValueRequired": true
+    },
+    {
+      "id": "free_note_20260904_02_supplier_bank_change_risk_signals",
+      "title": "取引先の振込先変更で確認したい5つの危険サイン｜なりすまし送金を防ぐ基本チェック",
+      "funnelTargetPaidId": "note_20260904_81_supplier_bank_change_verification_control",
+      "standaloneValueRequired": true
+    }
+  ],
+  "BOOTH": [
+    {
+      "id": "084_three_way_match_exception_os_20260904",
+      "title": "三点照合・支払差異管理OS｜請求書・発注・検収の不一致と解消期限を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage","search","exception filters","CSV export","JSON backup/import","print"]
+    },
+    {
+      "id": "085_bank_reconciliation_open_items_os_20260904",
+      "title": "銀行照合・未消込管理OS｜入出金・仕訳・差異原因・解消証拠を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage","search","aging filters","CSV export","JSON backup/import","print"]
+    },
+    {
+      "id": "086_policy_exception_approval_os_20260904",
+      "title": "社内ルール例外承認OS｜理由・承認者・適用期限・失効を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage","search","expiry filters","CSV export","JSON backup/import","print"]
+    },
+    {
+      "id": "087_document_version_approval_os_20260904",
+      "title": "文書版・承認整合OS｜版番号・変更理由・承認状態・差し替え履歴を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1480,
+      "coreFunctions": ["localStorage","search","version conflict checks","CSV export","JSON backup/import","print"]
+    },
+    {
+      "id": "088_supplier_bank_change_verification_os_20260904",
+      "title": "取引先振込先変更確認OS｜申請・本人確認・承認・反映証拠を一元管理｜オフラインHTML",
+      "expectedPriceJPY": 1680,
+      "coreFunctions": ["localStorage","search","verification checklist","CSV export","JSON backup/import","print"]
+    }
+  ],
+  "materializationRequirements": {
+    "paidNote": ["complete article","dedicated 1280x670 cover","encrypted payload","sha256","reader-visible strict verification after publication"],
+    "freeNote": ["standalone useful article","dedicated cover","free-state verification","exact-title reconciliation before retry"],
+    "BOOTH": ["offline HTML product","product.json","preview images","ZIP integrity","encrypted/chunked queue payload","sha256","buyer-visible commerce verification after publication"]
+  },
+  "publicationOrder": "Materialize and QA all Sep 4 targets, then paid NOTE and BOOTH hard floors; free NOTE acquisition pair follows without substituting paid floors.",
+  "strictVerified": {"paid":0,"free":0,"booth":0,"total":0},
+  "remaining": {
+    "paid": ["note_20260904_77_three_way_match_exception_control","note_20260904_78_bank_reconciliation_open_items_control","note_20260904_79_policy_exception_approval_control","note_20260904_80_document_version_approval_conflict_control","note_20260904_81_supplier_bank_change_verification_control"],
+    "free": ["free_note_20260904_01_three_way_match_warning_signals","free_note_20260904_02_supplier_bank_change_risk_signals"],
+    "BOOTH": ["084_three_way_match_exception_os_20260904","085_bank_reconciliation_open_items_os_20260904","086_policy_exception_approval_os_20260904","087_document_version_approval_os_20260904","088_supplier_bank_change_verification_os_20260904"],
+    "total": 12
+  }
+}
