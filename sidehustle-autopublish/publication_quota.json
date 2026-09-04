@@ -1,7 +1,7 @@
 {
-  "version": 77,
+  "version": 78,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-04T23:50:44+09:00",
+  "updatedAt": "2026-09-05T00:13:01+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -9,47 +9,43 @@
       "completionDefinition": "reader-visible official paid note page verified with exact title, expected price, paid boundary and dedicated cover",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "operationalState": {
-        "date": "2026-09-04",
-        "previousDate": "2026-09-03",
-        "previousDayStrictVerifiedPublicationsCount": 5,
-        "carriedPublicationDebt": 0,
-        "carriedRequiredIds": [],
-        "todayStrictVerifiedPublicationsCount": 0,
-        "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
-        "paidProductionInventoryComplete": true,
-        "planningManifest": "sidehustle-autopublish/planning/2026-09-04_batch01.json",
-        "preparedIds": [
+        "date": "2026-09-05",
+        "previousDate": "2026-09-04",
+        "previousDayStrictVerifiedPublicationsCount": 0,
+        "carriedPublicationDebt": 5,
+        "carriedRequiredIds": [
           "note_20260904_77_three_way_match_exception_control",
           "note_20260904_78_bank_reconciliation_open_items_control",
           "note_20260904_79_policy_exception_approval_control",
           "note_20260904_80_document_version_approval_conflict_control",
           "note_20260904_81_supplier_bank_change_verification_control"
         ],
-        "queueMaterializationState": "complete",
+        "todayStrictVerifiedPublicationsCount": 0,
+        "dailyPublicTarget": 5,
+        "todayRemainingToTarget": 5,
+        "paidProductionInventoryComplete": false,
+        "planningManifest": null,
+        "preparedIds": [],
+        "queueMaterializationState": "sep4_carryover_complete_sep5_pending",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
-        "strictPublicationState": "2026-09-04 0/5 strict verified",
-        "fallbackPolicy": "Process only enabled 2026-09-04 paid NOTE IDs; do not republish previous-day verified items.",
-        "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260904_batch01.json"
+        "strictPublicationState": "Sep 4 carryover 0/5; Sep 5 0/5",
+        "fallbackPolicy": "Consume Sep 4 materialized IDs first; never republish verified IDs; materialize Sep 5 only after carryover-first attempt.",
+        "carryoverMaterializationManifest": "sidehustle-autopublish/note/staging/materialization_20260904_batch01.json"
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
         "initialPublicationTargetPerDay": 2,
         "hardQuota": false,
-        "carriedPreviousDayRequiredIds": [],
-        "carriedPreviousDayStrictVerifiedCount": 2,
-        "currentRequiredIds": [
-          "free_note_20260904_01_three_way_match_warning_signals",
-          "free_note_20260904_02_supplier_bank_change_risk_signals"
-        ],
+        "carriedPreviousDayRequiredIds": ["free_note_20260904_01_three_way_match_warning_signals","free_note_20260904_02_supplier_bank_change_risk_signals"],
+        "carriedPreviousDayStrictVerifiedCount": 0,
+        "currentRequiredIds": [],
         "currentRequiredBatchStrictVerifiedCount": 0,
-        "currentMaterializationState": "planned_pending_materialization",
+        "currentMaterializationState": "sep4_carryover_complete_sep5_pending",
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
         "duplicateRule": "Discover and reconcile an existing exact-title public page before any retry that could create a duplicate.",
-        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-04_batch01.md",
-        "currentCompletedDraftCount": 2
+        "carryoverDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-04_batch01.md"
       }
     },
     "BOOTH": {
@@ -57,52 +53,42 @@
       "completionDefinition": "buyer-visible official BOOTH product page verified with exact title, expected price, downloadable-product state and purchase/cart path",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "operationalState": {
-        "date": "2026-09-04",
-        "previousDate": "2026-09-03",
-        "previousDayStrictVerifiedPublicationsCount": 5,
-        "carriedPublicationDebt": 0,
-        "carriedRequiredIds": [],
-        "todayStrictVerifiedPublicationsCount": 0,
-        "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
-        "paidProductionInventoryComplete": true,
-        "planningManifest": "sidehustle-autopublish/planning/2026-09-04_batch01.json",
-        "preparedIds": [
+        "date": "2026-09-05",
+        "previousDate": "2026-09-04",
+        "previousDayStrictVerifiedPublicationsCount": 0,
+        "carriedPublicationDebt": 5,
+        "carriedRequiredIds": [
           "084_three_way_match_exception_os_20260904",
           "085_bank_reconciliation_open_items_os_20260904",
           "086_policy_exception_approval_os_20260904",
           "087_document_version_approval_os_20260904",
           "088_supplier_bank_change_verification_os_20260904"
         ],
-        "materializationState": "complete",
+        "todayStrictVerifiedPublicationsCount": 0,
+        "dailyPublicTarget": 5,
+        "todayRemainingToTarget": 5,
+        "paidProductionInventoryComplete": false,
+        "planningManifest": null,
+        "preparedIds": [],
+        "materializationState": "sep4_carryover_complete_sep5_pending",
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
-        "strictPublicationState": "2026-09-04 0/5 strict verified",
-        "fallbackPolicy": "Process only enabled 2026-09-04 BOOTH IDs; do not republish previous-day verified items.",
-        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260904_batch01.json",
+        "strictPublicationState": "Sep 4 carryover 0/5; Sep 5 0/5",
+        "fallbackPolicy": "Consume Sep 4 materialized BOOTH IDs first; never republish verified IDs; materialize Sep 5 only after carryover-first attempt.",
+        "carryoverMaterializationManifest": "booth-autopublish/monitor/cloud_materialization_20260904_batch01.json",
         "queueRetryGeneration": 64
       }
     }
   },
   "currentDay": {
-    "date": "2026-09-04",
-    "standardNewTarget": {
-      "paidNOTE": 5,
-      "freeNOTE": 2,
-      "BOOTH": 5,
-      "total": 12
-    },
-    "carryOverFrom20260903": {
-      "paidNOTE": 0,
-      "freeNOTE": 0,
-      "BOOTH": 0,
-      "total": 0
-    },
-    "strictVerifiedAtRollover": 12,
-    "carryOverRemaining": 0,
+    "date": "2026-09-05",
+    "standardNewTarget": {"paidNOTE":5,"freeNOTE":2,"BOOTH":5,"total":12},
+    "carryOverFrom20260904": {"paidNOTE":5,"freeNOTE":2,"BOOTH":5,"total":12},
+    "strictVerifiedAtRollover": 0,
+    "carryOverRemaining": 12,
     "currentDayStrictVerified": 0,
-    "totalOutstanding": 12,
-    "priority": "Materialize and QA all Sep 4 targets, then publish paid NOTE/BOOTH floors and free acquisition pair.",
-    "completionState": "planned_0_of_12_materialization_pending"
+    "totalOutstanding": 24,
+    "priority": "Publish and strict-verify already materialized Sep 4 debt first; then materialize and publish Sep 5 standard targets.",
+    "completionState": "carryover_pending_0_of_24"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",
@@ -110,7 +96,7 @@
     "Do not count queue insertion, commits, local exit 0, editor/admin URLs, or invented URLs as publication.",
     "Free NOTE never replaces or decrements the paid NOTE floor.",
     "Before retrying an ambiguous publication, reconcile existing exact-title public pages to prevent duplicates.",
-    "Do not consume planned current-day IDs until queue/payload materialization and QA are complete.",
+    "Do not consume Sep 5 IDs until their queue/payload materialization and QA are complete.",
     "Canonical Windows root is C:\\SIDEHUSTLE_AUTO; do not create daily scattered ZIP/CMD runners."
   ]
 }
