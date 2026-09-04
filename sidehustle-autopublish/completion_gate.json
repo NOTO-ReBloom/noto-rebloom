@@ -1,10 +1,10 @@
 {
-  "version": 51,
-  "updatedAt": "2026-09-04T23:17:37+09:00",
-  "status": "planned_0_of_12_materialization_pending",
+  "version": 52,
+  "updatedAt": "2026-09-04T23:46:59+09:00",
+  "status": "in_progress_0_of_12",
   "date": "2026-09-04",
   "timezone": "Asia/Tokyo",
-  "purpose": "2026-09-04: complete only after all 12 designated publications are materialized, published and strict verified.",
+  "purpose": "2026-09-04: complete only after all 12 designated publications are strict verified.",
   "carryOver": {
     "sourceDate": "2026-09-03",
     "requiredBeforeNewDayConsumption": true,
@@ -29,7 +29,12 @@
       ],
       "total": 12
     },
-    "remaining": {"notePaid":[],"noteFree":[],"BOOTH":[],"total":0}
+    "remaining": {
+      "notePaid": [],
+      "noteFree": [],
+      "BOOTH": [],
+      "total": 0
+    }
   },
   "completionConditions": {
     "notePaid": {
@@ -42,17 +47,13 @@
         "note_20260904_80_document_version_approval_conflict_control",
         "note_20260904_81_supplier_bank_change_verification_control"
       ],
-      "strictChecks": ["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]
-    },
-    "noteFree": {
-      "date": "2026-09-04",
-      "dailyStrictTarget": 2,
-      "requiredIds": [
-        "free_note_20260904_01_three_way_match_warning_signals",
-        "free_note_20260904_02_supplier_bank_change_risk_signals"
-      ],
-      "strictChecks": ["readerVisibleUrl","exactTitle","freeState","dedicatedCover"],
-      "paidQuotaContribution": 0
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "paidBoundary",
+        "dedicatedCover"
+      ]
     },
     "BOOTH": {
       "date": "2026-09-04",
@@ -64,7 +65,28 @@
         "087_document_version_approval_os_20260904",
         "088_supplier_bank_change_verification_os_20260904"
       ],
-      "strictChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]
+      "strictChecks": [
+        "buyerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "downloadableProductState",
+        "purchaseOrCartPath"
+      ]
+    },
+    "noteFree": {
+      "date": "2026-09-04",
+      "dailyStrictTarget": 2,
+      "requiredIds": [
+        "free_note_20260904_01_three_way_match_warning_signals",
+        "free_note_20260904_02_supplier_bank_change_risk_signals"
+      ],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "freeState",
+        "dedicatedCover"
+      ],
+      "paidQuotaContribution": 0
     }
   },
   "completionCounts": {
@@ -101,7 +123,10 @@
   },
   "duplicateControl": {
     "policy": "Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.",
-    "knownCleanup": {"status":"completed_verified","remainingDuplicateTitleGroups":0}
+    "knownCleanup": {
+      "status": "completed_verified",
+      "remainingDuplicateTitleGroups": 0
+    }
   },
   "executionPolicy": {
     "singleRunMayPublishMany": true,
@@ -120,7 +145,16 @@
     "nightlyAggregateOnly": true,
     "humanOnlyBlockerException": true
   },
-  "humanOnlyBlockers": ["re-login","2FA","CAPTCHA","identity verification","legal declaration","tax/payment setup","OS permission","account lock"],
+  "humanOnlyBlockers": [
+    "re-login",
+    "2FA",
+    "CAPTCHA",
+    "identity verification",
+    "legal declaration",
+    "tax/payment setup",
+    "OS permission",
+    "account lock"
+  ],
   "humanOnlyBlocker": null,
   "antiFalseCompletion": [
     "Do not report a commit as publication.",

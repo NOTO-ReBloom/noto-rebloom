@@ -1,7 +1,7 @@
 {
-  "version": 75,
+  "version": 76,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-04T23:17:37+09:00",
+  "updatedAt": "2026-09-04T23:46:59+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -17,7 +17,7 @@
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
-        "paidProductionInventoryComplete": false,
+        "paidProductionInventoryComplete": true,
         "planningManifest": "sidehustle-autopublish/planning/2026-09-04_batch01.json",
         "preparedIds": [
           "note_20260904_77_three_way_match_exception_control",
@@ -26,10 +26,11 @@
           "note_20260904_80_document_version_approval_conflict_control",
           "note_20260904_81_supplier_bank_change_verification_control"
         ],
-        "queueMaterializationState": "pending",
+        "queueMaterializationState": "complete",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
         "strictPublicationState": "2026-09-04 0/5 strict verified",
-        "fallbackPolicy": "Materialize and QA Sep 4 payloads first; then consume only enabled Sep 4 paid NOTE IDs."
+        "fallbackPolicy": "Process only enabled 2026-09-04 paid NOTE IDs; do not republish previous-day verified items.",
+        "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260904_batch01.json"
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
@@ -46,7 +47,9 @@
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
-        "duplicateRule": "Discover and reconcile an existing exact-title public page before any retry that could create a duplicate."
+        "duplicateRule": "Discover and reconcile an existing exact-title public page before any retry that could create a duplicate.",
+        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-04_batch01.md",
+        "currentCompletedDraftCount": 2
       }
     },
     "BOOTH": {
@@ -62,7 +65,7 @@
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
-        "paidProductionInventoryComplete": false,
+        "paidProductionInventoryComplete": true,
         "planningManifest": "sidehustle-autopublish/planning/2026-09-04_batch01.json",
         "preparedIds": [
           "084_three_way_match_exception_os_20260904",
@@ -71,17 +74,29 @@
           "087_document_version_approval_os_20260904",
           "088_supplier_bank_change_verification_os_20260904"
         ],
-        "materializationState": "pending",
+        "materializationState": "complete",
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
         "strictPublicationState": "2026-09-04 0/5 strict verified",
-        "fallbackPolicy": "Materialize and QA Sep 4 product payloads first; then consume only enabled Sep 4 BOOTH IDs."
+        "fallbackPolicy": "Process only enabled 2026-09-04 BOOTH IDs; do not republish previous-day verified items.",
+        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260904_batch01.json",
+        "queueRetryGeneration": 63
       }
     }
   },
   "currentDay": {
     "date": "2026-09-04",
-    "standardNewTarget": {"paidNOTE":5,"freeNOTE":2,"BOOTH":5,"total":12},
-    "carryOverFrom20260903": {"paidNOTE":0,"freeNOTE":0,"BOOTH":0,"total":0},
+    "standardNewTarget": {
+      "paidNOTE": 5,
+      "freeNOTE": 2,
+      "BOOTH": 5,
+      "total": 12
+    },
+    "carryOverFrom20260903": {
+      "paidNOTE": 0,
+      "freeNOTE": 0,
+      "BOOTH": 0,
+      "total": 0
+    },
     "strictVerifiedAtRollover": 12,
     "carryOverRemaining": 0,
     "currentDayStrictVerified": 0,

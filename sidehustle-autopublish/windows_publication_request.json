@@ -1,48 +1,35 @@
 {
-  "version": 3,
-  "updatedAt": "2026-09-04T23:17:37+09:00",
+  "version": 1,
+  "updatedAt": "2026-09-04T23:46:59+09:00",
   "date": "2026-09-04",
-  "mode": "hold_until_current_day_materialization_qa_complete",
+  "mode": "publish_all_current_day_now",
   "paidNote": {
-    "ids": [],
-    "target": 0,
-    "pendingMaterializationIds": [
+    "ids": [
       "note_20260904_77_three_way_match_exception_control",
       "note_20260904_78_bank_reconciliation_open_items_control",
       "note_20260904_79_policy_exception_approval_control",
       "note_20260904_80_document_version_approval_conflict_control",
       "note_20260904_81_supplier_bank_change_verification_control"
-    ]
+    ],
+    "target": 5
   },
   "freeNote": {
-    "ids": [],
-    "target": 0,
-    "pendingMaterializationIds": [
+    "ids": [
       "free_note_20260904_01_three_way_match_warning_signals",
       "free_note_20260904_02_supplier_bank_change_risk_signals"
-    ]
+    ],
+    "target": 2
   },
   "BOOTH": {
-    "ids": [],
-    "target": 0,
-    "pendingMaterializationIds": [
+    "ids": [
       "084_three_way_match_exception_os_20260904",
       "085_bank_reconciliation_open_items_os_20260904",
       "086_policy_exception_approval_os_20260904",
       "087_document_version_approval_os_20260904",
       "088_supplier_bank_change_verification_os_20260904"
-    ]
+    ],
+    "target": 5
   },
   "strictVerificationRequired": true,
-  "doNotStopAfterFirstSuccess": true,
-  "totalPublicationTarget": 0,
-  "plannedPublicationTargetAfterMaterialization": 12,
-  "forceRetry": false,
-  "materializationGate": {
-    "planningManifest": "sidehustle-autopublish/planning/2026-09-04_batch01.json",
-    "qaRequiredBeforeActivation": true,
-    "state": "pending"
-  },
-  "duplicateCleanup": {"status":"completed_verified","remainingDuplicateTitleGroups":0},
-  "executionNonce": "sep4-hold-materialization-20260904T231737+0900"
+  "doNotStopAfterFirstSuccess": true
 }

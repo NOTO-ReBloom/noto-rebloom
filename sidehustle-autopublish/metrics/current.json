@@ -1,6 +1,6 @@
 {
-  "version": 51,
-  "updatedAt": "2026-09-03T16:33:47+09:00",
+  "version": 52,
+  "updatedAt": "2026-09-04T23:46:59+09:00",
   "objective": "Finish 7 Sep 2 carryover publications and all 12 Sep 3 publications without adding duplicate NOTE titles.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
@@ -22,27 +22,27 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "date": "2026-09-03",
-    "observedAt": "2026-09-03T16:33:47+09:00",
-    "previousDate": "2026-09-02",
+    "date": "2026-09-04",
+    "observedAt": "2026-09-04T23:46:59+09:00",
+    "previousDate": "2026-09-03",
     "previousDayPaidNoteStrictVerified": "5/5",
     "previousDayBoothStrictVerified": "5/5",
     "previousDayFreeNoteStrictVerified": "2/2",
     "carriedPaidDebt": 0
   },
   "currentDayTargets": {
-    "date": "2026-09-03",
+    "date": "2026-09-04",
     "paidNote": {
       "target": 5,
       "strictVerified": 0,
       "remaining": 5,
       "materialized": 5,
       "remainingIds": [
-        "note_20260903_72_contract_signature_turnaround_control",
-        "note_20260903_73_customer_master_duplicate_control",
-        "note_20260903_74_postmortem_action_closure_control",
-        "note_20260903_75_inventory_cycle_count_variance_control",
-        "note_20260903_76_expense_receipt_completeness_control"
+        "note_20260904_77_three_way_match_exception_control",
+        "note_20260904_78_bank_reconciliation_open_items_control",
+        "note_20260904_79_policy_exception_approval_control",
+        "note_20260904_80_document_version_approval_conflict_control",
+        "note_20260904_81_supplier_bank_change_verification_control"
       ]
     },
     "BOOTH": {
@@ -51,11 +51,11 @@
       "remaining": 5,
       "materialized": 5,
       "remainingIds": [
-        "079_contract_signature_turnaround_os_20260903",
-        "080_customer_master_duplicate_control_os_20260903",
-        "081_postmortem_action_closure_os_20260903",
-        "082_inventory_cycle_count_variance_os_20260903",
-        "083_expense_receipt_completeness_os_20260903"
+        "084_three_way_match_exception_os_20260904",
+        "085_bank_reconciliation_open_items_os_20260904",
+        "086_policy_exception_approval_os_20260904",
+        "087_document_version_approval_os_20260904",
+        "088_supplier_bank_change_verification_os_20260904"
       ]
     },
     "freeNote": {
@@ -63,8 +63,8 @@
       "strictVerified": 0,
       "remaining": 2,
       "remainingIds": [
-        "free_note_20260903_01_contract_signature_delay_signals",
-        "free_note_20260903_02_expense_receipt_missing_signals"
+        "free_note_20260904_01_three_way_match_warning_signals",
+        "free_note_20260904_02_supplier_bank_change_risk_signals"
       ],
       "paidQuotaContribution": 0
     },

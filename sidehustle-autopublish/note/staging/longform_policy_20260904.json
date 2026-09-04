@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-04",
+  "policy": "Every paidBody and free NOTE body must contain at least 5,001 characters before queue materialization.",
+  "minimumBodyChars": 5001,
+  "paid": [
+    {
+      "id": "note_20260904_77_three_way_match_exception_control",
+      "bodyChars": 6266,
+      "passed": true
+    },
+    {
+      "id": "note_20260904_78_bank_reconciliation_open_items_control",
+      "bodyChars": 6175,
+      "passed": true
+    },
+    {
+      "id": "note_20260904_79_policy_exception_approval_control",
+      "bodyChars": 6069,
+      "passed": true
+    },
+    {
+      "id": "note_20260904_80_document_version_approval_conflict_control",
+      "bodyChars": 6087,
+      "passed": true
+    },
+    {
+      "id": "note_20260904_81_supplier_bank_change_verification_control",
+      "bodyChars": 6177,
+      "passed": true
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260904_01_three_way_match_warning_signals",
+      "bodyChars": 5917,
+      "passed": true
+    },
+    {
+      "id": "free_note_20260904_02_supplier_bank_change_risk_signals",
+      "bodyChars": 6039,
+      "passed": true
+    }
+  ]
+}

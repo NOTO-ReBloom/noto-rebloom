@@ -33,7 +33,7 @@ jobs:
           set -euo pipefail
           base64 -d sidehustle-autopublish/note/free_publisher/note-free-bot.mjs.gz.b64 > /tmp/runtime.gz
           gzip -dc /tmp/runtime.gz > /tmp/note-free-bot.mjs
-          echo '70e03588b399c1c1cdaf09dfad25ac836d1dc15f5298f0e96d33e5bb895bb5d0  /tmp/note-free-bot.mjs' | sha256sum -c -
+          echo '48534141f13e3b8705c4a7064d3932e7e3d13545bf09e6091768dcae1cfb7c8b  /tmp/note-free-bot.mjs' | sha256sum -c -
           node --check /tmp/note-free-bot.mjs
       - name: Validate queue, source articles and paired paid candidates
         shell: bash
@@ -54,6 +54,15 @@ jobs:
             if(!e.sourceBatchPath||!fs.existsSync(e.sourceBatchPath)) throw new Error(`source batch missing ${e.id}`);
             const md=fs.readFileSync(e.sourceBatchPath,'utf8');
             if(!md.includes(e.title)) throw new Error(`source section missing ${e.id}`);
+            if(e.enabled===true){
+              const escaped=e.title.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+              const heading=md.match(new RegExp(`^##\\s+\\d+\\.\\s+${escaped}\\s*$`,'m'));
+              if(!heading) throw new Error(`source heading missing ${e.id}`);
+              const tail=md.slice((heading.index||0)+heading[0].length);
+              const sep=tail.search(/\n---\s*(?:\n|$)/);
+              const body=(sep>=0?tail.slice(0,sep):tail).trim();
+              if(body.length<5001) throw new Error(`active free body must exceed 5000 chars ${e.id}=${body.length}`);
+            }
             if(e.sourcePublicUrl&&!(insights.items||[]).some(x=>x.publicUrl===e.sourcePublicUrl&&x.publicUrlVerified===true)) throw new Error(`source insight not verified ${e.id}`);
           }
           const active=new Set(q.activePriorityBatch?.orderedIds||q.activePriorityBatch?.ids||[]);
@@ -71,7 +80,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -F '70e03588b399c1c1cdaf09dfad25ac836d1dc15f5298f0e96d33e5bb895bb5d0' sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
+          grep -F '48534141f13e3b8705c4a7064d3932e7e3d13545bf09e6091768dcae1cfb7c8b' sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
           grep -F 'NOTE_FreePublish_0805' sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
           grep -F 'NOTE_FreePublish_1705' sidehustle-autopublish/note/free_publisher/INSTALL_FREE_NOTE_PUBLISHER.ps1
       - name: Write QA state only if semantic QA changed
@@ -81,10 +90,10 @@ jobs:
           p=pathlib.Path('sidehustle-autopublish/note/free_publisher/qa_status.json')
           old=json.loads(p.read_text(encoding='utf-8')) if p.exists() else {}
           semantic={
-            'version':3,'qaPassed':True,
-            'runtimeSha256':'70e03588b399c1c1cdaf09dfad25ac836d1dc15f5298f0e96d33e5bb895bb5d0',
+            'version':5,'qaPassed':True,
+            'runtimeSha256':'48534141f13e3b8705c4a7064d3932e7e3d13545bf09e6091768dcae1cfb7c8b',
             'queueEntriesValidated':len(json.loads(pathlib.Path('sidehustle-autopublish/note/free_queue/index.json').read_text(encoding='utf-8'))['entries']),
-            'checks':['runtime_sha256','node_syntax','all_free_queue_entries','source_article_extraction','no_internal_marker_leak','paired_paid_ids_exist','source_insights_verified_when_present','active_batch_count_contract','installer_contract','exact_title_api_reconciliation_before_editor','reader_url_api_fallback_after_publish','ambiguous_duplicate_title_block','semantic_header_trigger','guarded_header_geometry_fallback','header_image_post_upload_verification'],
+            'checks':['runtime_sha256','node_syntax','all_free_queue_entries','source_article_extraction','minimum_body_5001_runtime_guard','no_internal_marker_leak','paired_paid_ids_exist','source_insights_verified_when_present','active_batch_count_contract','installer_contract','exact_title_api_reconciliation_before_editor','reader_url_api_fallback_after_publish','ambiguous_duplicate_title_block','semantic_header_trigger','guarded_header_geometry_fallback','header_image_post_upload_verification','free_state_uses_visible_purchase_controls','article_copy_paid_word_false_positive_regression'],
             'notePlatformPublicationVerified':bool(old.get('notePlatformPublicationVerified',False)),
             'notePlatformPublicationNote':old.get('notePlatformPublicationNote','Requires authenticated Windows NOTE profile for platform publication.')
           }

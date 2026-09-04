@@ -1,13 +1,14 @@
 {
-  "version": 4,
+  "version": 5,
   "qaPassed": true,
-  "runtimeSha256": "fe5dae2086f0cd02db91535f8ae412c7d534a941fe655be879868a975f2381ae",
-  "queueEntriesValidated": 71,
+  "runtimeSha256": "48534141f13e3b8705c4a7064d3932e7e3d13545bf09e6091768dcae1cfb7c8b",
+  "queueEntriesValidated": 73,
   "checks": [
     "runtime_sha256",
     "node_syntax",
     "all_free_queue_entries",
     "source_article_extraction",
+    "minimum_body_5001_runtime_guard",
     "no_internal_marker_leak",
     "paired_paid_ids_exist",
     "source_insights_verified_when_present",
@@ -24,5 +25,5 @@
   ],
   "notePlatformPublicationVerified": true,
   "notePlatformPublicationNote": "All Sep 2 and Sep 3 target pages are public. A fresh public-browser audit confirmed the final two articles expose their complete bodies with no purchase control; the previous free-state failure was a text-matching false positive.",
-  "checkedAt": "2026-09-03T22:48:00+09:00"
+  "checkedAt": "2026-09-04T23:45:00+09:00"
 }

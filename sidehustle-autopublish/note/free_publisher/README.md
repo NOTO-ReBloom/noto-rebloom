@@ -1,5 +1,7 @@
 # NOTE Free Publisher
 
+All newly queued free NOTE manuscripts must contain at least 5,001 characters. The cloud materializer and the Windows runtime both reject shorter bodies before the editor is opened.
+
 This runtime is deliberately isolated from the paid NOTE publisher. It publishes only entries whose queue contract is `kind: free` and `price: 0`.
 
 ## Safety invariants
