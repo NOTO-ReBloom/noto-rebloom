@@ -1,34 +1,44 @@
 {
-  "version": 54,
-  "updatedAt": "2026-09-05T00:13:01+09:00",
-  "status": "carryover_pending_0_of_24",
-  "date": "2026-09-05",
+  "version": 55,
+  "updatedAt": "2026-09-06T00:14:34+09:00",
+  "status": "carryover_pending_0_of_36",
+  "date": "2026-09-06",
   "timezone": "Asia/Tokyo",
-  "purpose": "2026-09-05: discharge Sep 4 strict-publication debt first, then complete Sep 5 standard targets; count only strict public verification.",
+  "purpose": "2026-09-06: discharge all strict-publication debt oldest-first, beginning with the already materialized Sep 4 batch; count only strict public verification.",
   "carryOver": {
-    "sourceDate": "2026-09-04",
+    "sourceThroughDate": "2026-09-05",
     "requiredBeforeNewDayConsumption": true,
     "strictVerified": {"notePaid": [], "noteFree": [], "BOOTH": [], "total": 0},
     "remaining": {
-      "notePaid": [
-        "note_20260904_77_three_way_match_exception_control",
-        "note_20260904_78_bank_reconciliation_open_items_control",
-        "note_20260904_79_policy_exception_approval_control",
-        "note_20260904_80_document_version_approval_conflict_control",
-        "note_20260904_81_supplier_bank_change_verification_control"
-      ],
-      "noteFree": [
-        "free_note_20260904_01_three_way_match_warning_signals",
-        "free_note_20260904_02_supplier_bank_change_risk_signals"
-      ],
-      "BOOTH": [
-        "084_three_way_match_exception_os_20260904",
-        "085_bank_reconciliation_open_items_os_20260904",
-        "086_policy_exception_approval_os_20260904",
-        "087_document_version_approval_os_20260904",
-        "088_supplier_bank_change_verification_os_20260904"
-      ],
-      "total": 12
+      "materializedSep4": {
+        "notePaid": [
+          "note_20260904_77_three_way_match_exception_control",
+          "note_20260904_78_bank_reconciliation_open_items_control",
+          "note_20260904_79_policy_exception_approval_control",
+          "note_20260904_80_document_version_approval_conflict_control",
+          "note_20260904_81_supplier_bank_change_verification_control"
+        ],
+        "noteFree": [
+          "free_note_20260904_01_three_way_match_warning_signals",
+          "free_note_20260904_02_supplier_bank_change_risk_signals"
+        ],
+        "BOOTH": [
+          "084_three_way_match_exception_os_20260904",
+          "085_bank_reconciliation_open_items_os_20260904",
+          "086_policy_exception_approval_os_20260904",
+          "087_document_version_approval_os_20260904",
+          "088_supplier_bank_change_verification_os_20260904"
+        ],
+        "total": 12
+      },
+      "unmaterializedStandardDebt": {
+        "date": "2026-09-05",
+        "notePaid": 5,
+        "noteFree": 2,
+        "BOOTH": 5,
+        "total": 12
+      },
+      "total": 24
     },
     "materializationEvidence": {
       "paid": "sidehustle-autopublish/note/staging/materialization_20260904_batch01.json",
@@ -39,33 +49,36 @@
     }
   },
   "completionConditions": {
-    "notePaid": {"date":"2026-09-05","dailyStrictTarget":5,"requiredIds":[],"strictChecks":["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]},
-    "noteFree": {"date":"2026-09-05","dailyStrictTarget":2,"requiredIds":[],"strictChecks":["readerVisibleUrl","exactTitle","freeState","dedicatedCover"],"paidQuotaContribution":0},
-    "BOOTH": {"date":"2026-09-05","dailyStrictTarget":5,"requiredIds":[],"strictChecks":["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]}
+    "notePaid": {"date":"2026-09-06","dailyStrictTarget":5,"requiredIds":[],"strictChecks":["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover"]},
+    "noteFree": {"date":"2026-09-06","dailyStrictTarget":2,"requiredIds":[],"strictChecks":["readerVisibleUrl","exactTitle","freeState","dedicatedCover"],"paidQuotaContribution":0},
+    "BOOTH": {"date":"2026-09-06","dailyStrictTarget":5,"requiredIds":[],"strictChecks":["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]}
   },
   "currentDayPlanning": {
-    "state": "deferred_until_carryover_first_attempt_then_materialize",
+    "state": "deferred_until_oldest_materialized_debt_attempt",
     "standardTarget": {"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},
     "hardFloorPreserved": true,
-    "reason": "Sep 4 materialized debt is already ready for Windows consumption and must be attempted before adding another unverified publication batch."
+    "reason": "Sep 4 has a fully materialized QA-passed batch waiting for Windows consumption; avoid stacking additional unverified materialized batches until oldest debt receives a publication attempt."
   },
   "completionCounts": {
     "todayNotePaid":0,"todayNoteFree":0,"todayBOOTH":0,"todayTotal":0,
-    "carryOverStrictVerified":0,"carryOverRemaining":12,"requiredToday":12,"strictVerifiedTotal":0,"totalOutstanding":24
+    "carryOverStrictVerified":0,"carryOverRemaining":24,"requiredToday":12,"strictVerifiedTotal":0,"totalOutstanding":36
   },
-  "materializationState": "sep4_carryover_complete_queued; sep5_pending_planning",
+  "materializationState": "sep4_carryover_complete_queued; sep5_standard_debt_unmaterialized; sep6_pending",
   "duplicateControl": {"policy":"Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.","knownCleanup":{"status":"completed_verified","remainingDuplicateTitleGroups":0}},
   "executionPolicy": {
     "singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,
     "canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true,
-    "newDayQueueSafety":"Consume the already materialized Sep 4 carryover request first; Sep 5 IDs must not be consumed until their own materialization and QA are complete."
+    "newDayQueueSafety":"Consume and strict-verify the already materialized Sep 4 request first. Sep 5/Sep 6 IDs must not be consumed before their own materialization and QA."
   },
   "reportingPolicy":{"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
   "humanOnlyBlockers":["re-login","2FA","CAPTCHA","identity verification","legal declaration","tax/payment setup","OS permission","account lock"],
   "humanOnlyBlocker":null,
   "antiFalseCompletion":["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
-  "previousDayReceipt":{"date":"2026-09-04","status":"materialized_queued_0_of_12_strict_verified","strictVerified":0,"outstanding":12},
-  "executionRequestedAt":"2026-09-05T00:13:01+09:00",
-  "executionNonce":"sep5-carryover-first-20260905T001301+0900",
-  "completedAt":null,"completionEvidence":null,"forceNowRequested":true,"forceNowMode":"publish_sep4_carryover_then_strict_verify_then_materialize_sep5"
+  "previousDayReceipt":{"date":"2026-09-05","status":"no_strict_publication_evidence_recorded","strictVerified":0,"outstandingAtClose":24},
+  "executionRequestedAt":"2026-09-06T00:14:34+09:00",
+  "executionNonce":"sep6-oldest-debt-first-20260906T001434+0900",
+  "completedAt":null,
+  "completionEvidence":null,
+  "forceNowRequested":true,
+  "forceNowMode":"publish_sep4_materialized_carryover_then_strict_verify_then_materialize_oldest_unmaterialized_debt"
 }
