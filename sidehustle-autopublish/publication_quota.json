@@ -1,7 +1,7 @@
 {
-  "version": 83,
+  "version": 85,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-06T11:57:25+09:00",
+  "updatedAt": "2026-09-06T17:42:14+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -20,12 +20,10 @@
           "note_20260904_80_document_version_approval_conflict_control",
           "note_20260904_81_supplier_bank_change_verification_control"
         ],
-        "unmaterializedDebtByDate": {
-          "2026-09-05": 5
-        },
-        "todayStrictVerifiedPublicationsCount": 0,
+        "unmaterializedDebtByDate": {},
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "paidProductionInventoryComplete": true,
         "planningManifest": null,
         "preparedIds": [
@@ -37,8 +35,8 @@
         ],
         "queueMaterializationState": "complete",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
-        "strictPublicationState": "2026-09-06 0/5 strict verified",
-        "fallbackPolicy": "Process only enabled 2026-09-06 paid NOTE IDs; do not republish previous-day verified items.",
+        "strictPublicationState": "2026-09-06 5/5 strict verified",
+        "fallbackPolicy": "No republish; all designated IDs are locked to canonical reader-visible URLs.",
         "carryoverMaterializationManifest": "sidehustle-autopublish/note/staging/materialization_20260904_batch01.json",
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260906_batch01.json"
       },
@@ -50,13 +48,11 @@
           "free_note_20260904_01_three_way_match_warning_signals",
           "free_note_20260904_02_supplier_bank_change_risk_signals"
         ],
-        "carriedStrictVerifiedCount": 0,
-        "unmaterializedDebtByDate": {
-          "2026-09-05": 2
-        },
+        "carriedStrictVerifiedCount": 2,
+        "unmaterializedDebtByDate": {},
         "currentRequiredIds": [],
-        "currentRequiredBatchStrictVerifiedCount": 0,
-        "currentMaterializationState": "sep4_ready_sep5_debt_unmaterialized_sep6_pending",
+        "currentRequiredBatchStrictVerifiedCount": 2,
+        "currentMaterializationState": "complete_through_2026-09-06",
         "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
@@ -82,12 +78,10 @@
           "087_document_version_approval_os_20260904",
           "088_supplier_bank_change_verification_os_20260904"
         ],
-        "unmaterializedDebtByDate": {
-          "2026-09-05": 5
-        },
-        "todayStrictVerifiedPublicationsCount": 0,
+        "unmaterializedDebtByDate": {},
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "paidProductionInventoryComplete": true,
         "planningManifest": null,
         "preparedIds": [
@@ -99,8 +93,8 @@
         ],
         "materializationState": "complete",
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
-        "strictPublicationState": "2026-09-06 0/5 strict verified",
-        "fallbackPolicy": "Process only enabled 2026-09-06 BOOTH IDs; do not republish previous-day verified items.",
+        "strictPublicationState": "2026-09-06 5/5 strict verified",
+        "fallbackPolicy": "No republish; all designated IDs are locked to canonical buyer-visible URLs.",
         "carryoverMaterializationManifest": "booth-autopublish/monitor/cloud_materialization_20260904_batch01.json",
         "queueRetryGeneration": 68,
         "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260906_batch01.json"
@@ -109,54 +103,14 @@
   },
   "currentDay": {
     "date": "2026-09-06",
-    "currentDayTargets": {
-      "paidNote": [
-        "note_20260906_87_purchase_order_change_control",
-        "note_20260906_88_payroll_master_change_control",
-        "note_20260906_89_marketing_consent_evidence_control",
-        "note_20260906_90_asset_checkout_return_control",
-        "note_20260906_91_ai_output_approval_trace_control"
-      ],
-      "freeNote": [
-        "free_note_20260906_01_purchase_order_change_warning_signals",
-        "free_note_20260906_02_ai_output_approval_warning_signals"
-      ],
-      "BOOTH": [
-        "094_purchase_order_change_os_20260906",
-        "095_payroll_master_change_os_20260906",
-        "096_marketing_consent_evidence_os_20260906",
-        "097_asset_checkout_return_os_20260906",
-        "098_ai_output_review_trace_os_20260906"
-      ],
-      "total": 12
-    },
     "carryOverRemaining": {
-      "paidNote": [
-        "note_20260904_77_three_way_match_exception_control",
-        "note_20260904_80_document_version_approval_conflict_control",
-        "note_20260904_81_supplier_bank_change_verification_control",
-        "note_20260905_82_vendor_onboarding_due_diligence_control",
-        "note_20260905_83_recurring_journal_entry_review_control",
-        "note_20260905_84_customer_credit_limit_override_control",
-        "note_20260905_85_sensitive_data_export_handoff_control",
-        "note_20260905_86_service_incident_customer_notification_control"
-      ],
-      "freeNote": [
-        "free_note_20260905_01_vendor_onboarding_warning_signals",
-        "free_note_20260905_02_customer_credit_override_warning_signals"
-      ],
-      "BOOTH": [
-        "089_vendor_onboarding_due_diligence_os_20260905",
-        "090_recurring_journal_review_os_20260905",
-        "091_credit_limit_override_os_20260905",
-        "092_sensitive_data_handoff_os_20260905",
-        "093_incident_customer_notification_os_20260905"
-      ],
-      "total": 15
+      "paidNote": [],
+      "freeNote": [],
+      "BOOTH": [],
+      "total": 0
     },
-    "totalOutstanding": 27,
-    "priority": "Publish exact-title-reconciled carryover first, then current-day targets; count only strict public verification.",
-    "completionState": "pending_0_of_27"
+    "totalOutstanding": 0,
+    "completionState": "complete_through_2026-09-06"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",
@@ -169,66 +123,14 @@
   ],
   "activePublicationContract": {
     "throughDate": "2026-09-06",
-    "outstandingByDate": {
-      "2026-09-04": {
-        "paidNote": [
-          "note_20260904_77_three_way_match_exception_control",
-          "note_20260904_80_document_version_approval_conflict_control",
-          "note_20260904_81_supplier_bank_change_verification_control"
-        ],
-        "freeNote": [],
-        "BOOTH": [],
-        "total": 3
-      },
-      "2026-09-05": {
-        "paidNote": [
-          "note_20260905_82_vendor_onboarding_due_diligence_control",
-          "note_20260905_83_recurring_journal_entry_review_control",
-          "note_20260905_84_customer_credit_limit_override_control",
-          "note_20260905_85_sensitive_data_export_handoff_control",
-          "note_20260905_86_service_incident_customer_notification_control"
-        ],
-        "freeNote": [
-          "free_note_20260905_01_vendor_onboarding_warning_signals",
-          "free_note_20260905_02_customer_credit_override_warning_signals"
-        ],
-        "BOOTH": [
-          "089_vendor_onboarding_due_diligence_os_20260905",
-          "090_recurring_journal_review_os_20260905",
-          "091_credit_limit_override_os_20260905",
-          "092_sensitive_data_handoff_os_20260905",
-          "093_incident_customer_notification_os_20260905"
-        ],
-        "total": 12
-      },
-      "2026-09-06": {
-        "paidNote": [
-          "note_20260906_87_purchase_order_change_control",
-          "note_20260906_88_payroll_master_change_control",
-          "note_20260906_89_marketing_consent_evidence_control",
-          "note_20260906_90_asset_checkout_return_control",
-          "note_20260906_91_ai_output_approval_trace_control"
-        ],
-        "freeNote": [
-          "free_note_20260906_01_purchase_order_change_warning_signals",
-          "free_note_20260906_02_ai_output_approval_warning_signals"
-        ],
-        "BOOTH": [
-          "094_purchase_order_change_os_20260906",
-          "095_payroll_master_change_os_20260906",
-          "096_marketing_consent_evidence_os_20260906",
-          "097_asset_checkout_return_os_20260906",
-          "098_ai_output_review_trace_os_20260906"
-        ],
-        "total": 12
-      }
-    },
-    "paidNoteRemaining": 13,
-    "freeNoteRemaining": 4,
-    "BOOTHRemaining": 10,
-    "totalRemaining": 27,
-    "strictVerifiedInThisRequest": 0,
-    "state": "materialized_waiting_for_authenticated_windows_publisher",
+    "paidNoteRemaining": 0,
+    "freeNoteRemaining": 0,
+    "BOOTHRemaining": 0,
+    "totalRemaining": 0,
+    "strictVerifiedThisReconciliation": 27,
+    "previouslyLocked": 9,
+    "throughSep6StrictVerified": 36,
+    "state": "complete",
     "noteMinimumBodyChars": 5001
   }
 }

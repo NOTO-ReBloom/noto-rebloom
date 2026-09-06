@@ -1,61 +1,29 @@
 {
-  "version": 2,
-  "updatedAt": "2026-09-06T11:57:25+09:00",
+  "version": 4,
+  "updatedAt": "2026-09-06T17:42:14+09:00",
   "date": "2026-09-06",
-  "mode": "publish_all_outstanding_through_current_day_now",
+  "mode": "completed",
   "paidNote": {
-    "ids": [
-      "note_20260904_77_three_way_match_exception_control",
-      "note_20260904_80_document_version_approval_conflict_control",
-      "note_20260904_81_supplier_bank_change_verification_control",
-      "note_20260905_82_vendor_onboarding_due_diligence_control",
-      "note_20260905_83_recurring_journal_entry_review_control",
-      "note_20260905_84_customer_credit_limit_override_control",
-      "note_20260905_85_sensitive_data_export_handoff_control",
-      "note_20260905_86_service_incident_customer_notification_control",
-      "note_20260906_87_purchase_order_change_control",
-      "note_20260906_88_payroll_master_change_control",
-      "note_20260906_89_marketing_consent_evidence_control",
-      "note_20260906_90_asset_checkout_return_control",
-      "note_20260906_91_ai_output_approval_trace_control"
-    ],
-    "target": 13
+    "ids": [],
+    "target": 0
   },
   "freeNote": {
-    "ids": [
-      "free_note_20260905_01_vendor_onboarding_warning_signals",
-      "free_note_20260905_02_customer_credit_override_warning_signals",
-      "free_note_20260906_01_purchase_order_change_warning_signals",
-      "free_note_20260906_02_ai_output_approval_warning_signals"
-    ],
-    "target": 4
+    "ids": [],
+    "target": 0
   },
   "BOOTH": {
-    "ids": [
-      "089_vendor_onboarding_due_diligence_os_20260905",
-      "090_recurring_journal_review_os_20260905",
-      "091_credit_limit_override_os_20260905",
-      "092_sensitive_data_handoff_os_20260905",
-      "093_incident_customer_notification_os_20260905",
-      "094_purchase_order_change_os_20260906",
-      "095_payroll_master_change_os_20260906",
-      "096_marketing_consent_evidence_os_20260906",
-      "097_asset_checkout_return_os_20260906",
-      "098_ai_output_review_trace_os_20260906"
-    ],
-    "target": 10
+    "ids": [],
+    "target": 0
   },
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
   "requestedAt": "2026-09-06T11:57:25+09:00",
   "throughDate": "2026-09-06",
   "order": "oldest_publication_date_first",
-  "outstandingDates": [
-    "2026-09-04",
-    "2026-09-05",
-    "2026-09-06"
-  ],
-  "totalTarget": 27,
+  "outstandingDates": [],
+  "totalTarget": 0,
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "0_of_27_strict_verified_in_this_request"
+  "completionState": "complete_27_of_27_reconciled",
+  "completedAt": "2026-09-06T17:42:14+09:00",
+  "sourceLogSha256": "143d48aaf7849380a938b04c743a946a5833be69a3030cc3901184381a3818d2"
 }

@@ -1,17 +1,18 @@
 {
-  "version": 68,
-  "updatedAt": "2026-09-06T11:57:25+09:00",
+  "version": 70,
+  "updatedAt": "2026-09-06T17:42:14+09:00",
   "activeRecovery": {
     "throughDate": "2026-09-06",
-    "mode": "all_outstanding_oldest_first",
-    "requiredStrictNewPublications": 10,
-    "remaining": 10,
-    "state": "ready"
+    "mode": "completed",
+    "requiredStrictNewPublications": 0,
+    "remaining": 0,
+    "state": "complete"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-09-06T11:57:25+09:00",
-    "requiredStrictNewPublications": 10,
-    "queueIds": [
+    "generatedAt": "2026-09-06T17:42:14+09:00",
+    "requiredStrictNewPublications": 0,
+    "queueIds": [],
+    "completedIds": [
       "089_vendor_onboarding_due_diligence_os_20260905",
       "090_recurring_journal_review_os_20260905",
       "091_credit_limit_override_os_20260905",
@@ -23,56 +24,13 @@
       "097_asset_checkout_return_os_20260906",
       "098_ai_output_review_trace_os_20260906"
     ],
-    "completedIds": [],
-    "expectedPricesJPY": {
-      "089_vendor_onboarding_due_diligence_os_20260905": 1680,
-      "090_recurring_journal_review_os_20260905": 1480,
-      "091_credit_limit_override_os_20260905": 1680,
-      "092_sensitive_data_handoff_os_20260905": 1680,
-      "093_incident_customer_notification_os_20260905": 1480,
-      "094_purchase_order_change_os_20260906": 1480,
-      "095_payroll_master_change_os_20260906": 1680,
-      "096_marketing_consent_evidence_os_20260906": 1680,
-      "097_asset_checkout_return_os_20260906": 1480,
-      "098_ai_output_review_trace_os_20260906": 1680
-    },
-    "requiredBuyerChecks": [
-      "buyerVisibleUrl",
-      "exactTitle",
-      "expectedPrice",
-      "downloadableProductState",
-      "purchaseOrCartPath"
-    ],
-    "doNotStopAfterFirstSuccess": true,
-    "forceRetryNonce": "booth-through-20260906-2026-09-06T11:57:25+09:00"
+    "expectedPricesJPY": {},
+    "doNotStopAfterFirstSuccess": true
   },
   "windowsResumeContract": {
-    "requiredIds": [
-      "089_vendor_onboarding_due_diligence_os_20260905",
-      "090_recurring_journal_review_os_20260905",
-      "091_credit_limit_override_os_20260905",
-      "092_sensitive_data_handoff_os_20260905",
-      "093_incident_customer_notification_os_20260905",
-      "094_purchase_order_change_os_20260906",
-      "095_payroll_master_change_os_20260906",
-      "096_marketing_consent_evidence_os_20260906",
-      "097_asset_checkout_return_os_20260906",
-      "098_ai_output_review_trace_os_20260906"
-    ],
-    "firstPassOrder": [
-      "089_vendor_onboarding_due_diligence_os_20260905",
-      "090_recurring_journal_review_os_20260905",
-      "091_credit_limit_override_os_20260905",
-      "092_sensitive_data_handoff_os_20260905",
-      "093_incident_customer_notification_os_20260905",
-      "094_purchase_order_change_os_20260906",
-      "095_payroll_master_change_os_20260906",
-      "096_marketing_consent_evidence_os_20260906",
-      "097_asset_checkout_return_os_20260906",
-      "098_ai_output_review_trace_os_20260906"
-    ],
+    "requiredIds": [],
     "strictSuccessOnly": true,
-    "completionPredicate": "all active BOOTH IDs buyer-visible strict verified"
+    "completionPredicate": "satisfied"
   },
   "cloudPreflight": {
     "checkedAt": "2026-09-01T17:57:14+09:00",

@@ -1,7 +1,7 @@
 {
-  "version": 57,
-  "updatedAt": "2026-09-06T11:57:25+09:00",
-  "objective": "Publish and strict-verify all 27 active items through 2026-09-06 without duplicate NOTE titles.",
+  "version": 59,
+  "updatedAt": "2026-09-06T17:42:14+09:00",
+  "objective": "All designated Sep 4-Sep 6 publications strict verified; resume duplicate-safe scheduled publishers.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -23,65 +23,48 @@
   },
   "currentRecovery": {
     "throughDate": "2026-09-06",
-    "observedAt": "2026-09-06T11:57:25+09:00",
-    "outstandingDates": [
-      "2026-09-04",
-      "2026-09-05",
-      "2026-09-06"
-    ],
-    "strictVerifiedInThisRequest": 0,
-    "remaining": 27
+    "observedAt": "2026-09-06T17:42:14+09:00",
+    "outstandingDates": [],
+    "strictVerifiedThisReconciliation": 27,
+    "previouslyLocked": 9,
+    "remaining": 0
   },
   "currentDayTargets": {
     "date": "2026-09-06",
     "paidNote": {
       "target": 5,
-      "strictVerified": 0,
-      "remaining": 5,
+      "strictVerified": 5,
+      "remaining": 0,
       "materialized": 5,
-      "remainingIds": [
-        "note_20260906_87_purchase_order_change_control",
-        "note_20260906_88_payroll_master_change_control",
-        "note_20260906_89_marketing_consent_evidence_control",
-        "note_20260906_90_asset_checkout_return_control",
-        "note_20260906_91_ai_output_approval_trace_control"
-      ]
+      "remainingIds": []
     },
     "BOOTH": {
       "target": 5,
-      "strictVerified": 0,
-      "remaining": 5,
+      "strictVerified": 5,
+      "remaining": 0,
       "materialized": 5,
-      "remainingIds": [
-        "094_purchase_order_change_os_20260906",
-        "095_payroll_master_change_os_20260906",
-        "096_marketing_consent_evidence_os_20260906",
-        "097_asset_checkout_return_os_20260906",
-        "098_ai_output_review_trace_os_20260906"
-      ]
+      "remainingIds": []
     },
     "freeNote": {
       "target": 2,
-      "strictVerified": 0,
-      "remaining": 2,
-      "remainingIds": [
-        "free_note_20260906_01_purchase_order_change_warning_signals",
-        "free_note_20260906_02_ai_output_approval_warning_signals"
-      ],
+      "strictVerified": 2,
+      "remaining": 0,
+      "remainingIds": [],
       "paidQuotaContribution": 0
     },
-    "allDesignatedStrictVerified": false
+    "allDesignatedStrictVerified": true
   },
   "evidence": {
-    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
-    "publication": "not counted until strict public URLs are verified",
+    "publication": "27 newly reconciled public URLs plus 9 previously locked URLs; all 36 designated Sep 4-Sep 6 items complete",
+    "sourceLogSha256": "143d48aaf7849380a938b04c743a946a5833be69a3030cc3901184381a3818d2",
+    "remainingDuplicateTitleGroups": 0,
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-09-01T21:52:54+09:00",
+    "checkedAt": "2026-09-06T17:42:14+09:00",
     "cloudMaterializationComplete": true,
     "windowsAuthenticatedPublisherRequiredForPublicPosting": false,
-    "nextWindowsAction": "No cleanup action remains; both empty-queue scheduled publishers are enabled and Ready."
+    "nextWindowsAction": "Run the SHA256-pinned finalizer once to verify this remote completion contract and re-enable both empty-queue scheduled publishers."
   },
   "rules": [
     "Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.",
@@ -106,49 +89,19 @@
   },
   "activeTargets": {
     "paidNote": {
-      "target": 13,
-      "remainingIds": [
-        "note_20260904_77_three_way_match_exception_control",
-        "note_20260904_80_document_version_approval_conflict_control",
-        "note_20260904_81_supplier_bank_change_verification_control",
-        "note_20260905_82_vendor_onboarding_due_diligence_control",
-        "note_20260905_83_recurring_journal_entry_review_control",
-        "note_20260905_84_customer_credit_limit_override_control",
-        "note_20260905_85_sensitive_data_export_handoff_control",
-        "note_20260905_86_service_incident_customer_notification_control",
-        "note_20260906_87_purchase_order_change_control",
-        "note_20260906_88_payroll_master_change_control",
-        "note_20260906_89_marketing_consent_evidence_control",
-        "note_20260906_90_asset_checkout_return_control",
-        "note_20260906_91_ai_output_approval_trace_control"
-      ]
+      "target": 0,
+      "remainingIds": []
     },
     "freeNote": {
-      "target": 4,
-      "remainingIds": [
-        "free_note_20260905_01_vendor_onboarding_warning_signals",
-        "free_note_20260905_02_customer_credit_override_warning_signals",
-        "free_note_20260906_01_purchase_order_change_warning_signals",
-        "free_note_20260906_02_ai_output_approval_warning_signals"
-      ],
+      "target": 0,
+      "remainingIds": [],
       "paidQuotaContribution": 0
     },
     "BOOTH": {
-      "target": 10,
-      "remainingIds": [
-        "089_vendor_onboarding_due_diligence_os_20260905",
-        "090_recurring_journal_review_os_20260905",
-        "091_credit_limit_override_os_20260905",
-        "092_sensitive_data_handoff_os_20260905",
-        "093_incident_customer_notification_os_20260905",
-        "094_purchase_order_change_os_20260906",
-        "095_payroll_master_change_os_20260906",
-        "096_marketing_consent_evidence_os_20260906",
-        "097_asset_checkout_return_os_20260906",
-        "098_ai_output_review_trace_os_20260906"
-      ]
+      "target": 0,
+      "remainingIds": []
     },
-    "total": 27,
-    "allDesignatedStrictVerified": false
+    "total": 0,
+    "allDesignatedStrictVerified": true
   }
 }

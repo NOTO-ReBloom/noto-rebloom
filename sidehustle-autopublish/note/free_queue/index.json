@@ -1,6 +1,6 @@
 {
-  "version": 32,
-  "updatedAt": "2026-09-06T11:57:25+09:00",
+  "version": 34,
+  "updatedAt": "2026-09-06T17:42:14+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-06_batch01.md",
   "requiredFreeChecks": [
@@ -1845,9 +1845,15 @@
       "coverLabel": "取引先審査",
       "coverCopy": "登録前の6サイン",
       "accent": "#315E81",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260905-20260906T115051+0900"
+      "forceRetryNonce": "free-note-20260905-20260906T115051+0900",
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n0a1ed7325656",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-06T17:42:14+09:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "free_note_20260905_02_customer_credit_override_warning_signals",
@@ -1865,9 +1871,15 @@
       "coverLabel": "与信例外",
       "coverCopy": "受注前の6サイン",
       "accent": "#6B4E71",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260905-20260906T115051+0900"
+      "forceRetryNonce": "free-note-20260905-20260906T115051+0900",
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n6722164ba65d",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-06T17:42:14+09:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "free_note_20260906_01_purchase_order_change_warning_signals",
@@ -1885,9 +1897,15 @@
       "coverLabel": "発注変更",
       "coverCopy": "差し替え前の6サイン",
       "accent": "#315E81",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260906-20260906T115725+0900"
+      "forceRetryNonce": "free-note-20260906-20260906T115725+0900",
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nf2a95a2b43fc",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-06T17:42:14+09:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "free_note_20260906_02_ai_output_approval_warning_signals",
@@ -1905,9 +1923,15 @@
       "coverLabel": "AI出力確認",
       "coverCopy": "採用前の6サイン",
       "accent": "#6B4E71",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260906-20260906T115725+0900"
+      "forceRetryNonce": "free-note-20260906-20260906T115725+0900",
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n9212528f1626",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-06T17:42:14+09:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     }
   ],
   "eveningMarathon": {
@@ -1925,13 +1949,9 @@
   },
   "retryGeneration": 27,
   "activePublicationDate": "2026-09-06",
-  "forceAllCurrentDayNow": true,
+  "forceAllCurrentDayNow": false,
   "forceRetryNonce": "materialize-free-note-20260906-20260906T115725+0900",
   "sourceBatchPaths": [],
   "reconcileExistingBeforePublish": true,
-  "outstandingDates": [
-    "2026-09-04",
-    "2026-09-05",
-    "2026-09-06"
-  ]
+  "outstandingDates": []
 }
