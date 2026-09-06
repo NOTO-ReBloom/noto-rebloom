@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-07",
+  "dateId": "20260907",
+  "previousDate": "2026-09-06",
+  "objective": "Zero-touch daily production with strict publication integrity; previous-day debt is zero, so prepare today's 5 paid NOTE + 2 free NOTE + 5 BOOTH without semantic duplication.",
+  "selectionModel": "expected_profit * continuity * automation_rate * success_probability / max(user_minutes,0.1)",
+  "userMinutesTarget": 0,
+  "noteLengthPolicy": {"minimumBodyChars": 5001, "scope": "all paid and free NOTE manuscripts"},
+  "candidateScoring": [
+    {"cluster":"employee_offboarding_access_revoke","expectedProfit":4.3,"continuity":4.8,"automationRate":4.9,"successProbability":4.4,"userMinutes":0,"initialCost":0,"policyRisk":"low","selected":true},
+    {"cluster":"duplicate_expense_claim_control","expectedProfit":4.1,"continuity":4.6,"automationRate":4.9,"successProbability":4.5,"userMinutes":0,"initialCost":0,"policyRisk":"low","selected":true},
+    {"cluster":"saas_admin_privilege_review","expectedProfit":4.0,"continuity":4.7,"automationRate":4.8,"successProbability":4.4,"userMinutes":0,"initialCost":0,"policyRisk":"low","selected":true},
+    {"cluster":"contract_renewal_notice_control","expectedProfit":3.9,"continuity":4.7,"automationRate":4.9,"successProbability":4.3,"userMinutes":0,"initialCost":0,"policyRisk":"low","selected":true},
+    {"cluster":"customer_refund_exception_control","expectedProfit":4.0,"continuity":4.5,"automationRate":4.8,"successProbability":4.3,"userMinutes":0,"initialCost":0,"policyRisk":"low","selected":true}
+  ],
+  "paid": [
+    {"id":"note_20260907_92_employee_offboarding_access_control","title":"退職者のアカウントを翌月まで残さない｜最終出社・権限回収・共有IDを閉じる退職管理","price":980,"cluster":"employee_offboarding_access_revoke"},
+    {"id":"note_20260907_93_duplicate_expense_claim_control","title":"同じ領収書を二重精算させない｜申請番号・金額・日付・証憑ハッシュで重複を止める方法","price":980,"cluster":"duplicate_expense_claim_control"},
+    {"id":"note_20260907_94_saas_admin_privilege_review_control","title":"SaaS管理者権限を付けっぱなしにしない｜付与理由・期限・棚卸し・剥奪を追う管理方法","price":980,"cluster":"saas_admin_privilege_review"},
+    {"id":"note_20260907_95_contract_renewal_notice_control","title":"契約の自動更新を見落とさない｜解約期限・値上げ通知・承認判断を前倒しする更新管理","price":980,"cluster":"contract_renewal_notice_control"},
+    {"id":"note_20260907_96_customer_refund_exception_control","title":"返金を担当者判断だけで通さない｜理由・上限・承認・原決済との照合を残す返金管理","price":980,"cluster":"customer_refund_exception_control"}
+  ],
+  "free": [
+    {"id":"free_note_20260907_01_offboarding_access_warning_signals","title":"退職者アカウントの消し忘れを見つける7つの兆候｜最終出社前に確認する無料チェック","pairedPaid":"note_20260907_92_employee_offboarding_access_control"},
+    {"id":"free_note_20260907_02_duplicate_expense_warning_signals","title":"経費精算の二重申請を見抜く7つの兆候｜領収書・日付・金額で確認する無料チェック","pairedPaid":"note_20260907_93_duplicate_expense_claim_control"}
+  ],
+  "booth": [
+    {"id":"099_employee_offboarding_access_os_20260907","title":"退職者アカウント・権限回収OS｜最終出社・共有ID・SaaS・返却物を一元管理","expectedPriceJPY":1480,"pairedPaid":"note_20260907_92_employee_offboarding_access_control"},
+    {"id":"100_duplicate_expense_claim_os_20260907","title":"経費精算 重複申請チェックOS｜領収書・金額・日付・申請番号を照合","expectedPriceJPY":1280,"pairedPaid":"note_20260907_93_duplicate_expense_claim_control"},
+    {"id":"101_saas_admin_privilege_review_os_20260907","title":"SaaS管理者権限 棚卸しOS｜付与理由・期限・最終利用・剥奪を管理","expectedPriceJPY":1380,"pairedPaid":"note_20260907_94_saas_admin_privilege_review_control"},
+    {"id":"102_contract_renewal_notice_os_20260907","title":"契約更新・解約期限管理OS｜自動更新・値上げ・通知期限・承認を一元管理","expectedPriceJPY":1380,"pairedPaid":"note_20260907_95_contract_renewal_notice_control"},
+    {"id":"103_customer_refund_exception_os_20260907","title":"返金例外・承認管理OS｜原決済・返金理由・上限・承認証跡を一元管理","expectedPriceJPY":1280,"pairedPaid":"note_20260907_96_customer_refund_exception_control"}
+  ],
+  "materializationState": "planned_not_materialized",
+  "publicationRule": "Do not count planning, queue insertion, commit, admin/editor URL or local exit 0 as publication. Strict public verification only.",
+  "duplicateRule": "Before materialization compare title, promise and asset schema against recent catalog; before publishing reconcile exact-title public pages.",
+  "measurementRule": "No winner or revenue claim without observed first-party metrics.",
+  "humanOnlyBlocker": null
+}
