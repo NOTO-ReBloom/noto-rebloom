@@ -1,29 +1,21 @@
 {
-  "version": 4,
-  "updatedAt": "2026-09-06T17:42:14+09:00",
-  "date": "2026-09-06",
-  "mode": "completed",
-  "paidNote": {
-    "ids": [],
-    "target": 0
-  },
-  "freeNote": {
-    "ids": [],
-    "target": 0
-  },
-  "BOOTH": {
-    "ids": [],
-    "target": 0
-  },
+  "version": 5,
+  "updatedAt": "2026-09-07T00:12:18+09:00",
+  "date": "2026-09-07",
+  "mode": "hold_until_materialized_and_qa_complete",
+  "paidNote": {"ids":[],"target":0},
+  "freeNote": {"ids":[],"target":0},
+  "BOOTH": {"ids":[],"target":0},
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-06T11:57:25+09:00",
-  "throughDate": "2026-09-06",
+  "throughDate": "2026-09-07",
   "order": "oldest_publication_date_first",
-  "outstandingDates": [],
+  "outstandingDates": ["2026-09-07"],
   "totalTarget": 0,
+  "plannedTargetAfterMaterialization": 12,
+  "planningManifest": "sidehustle-autopublish/planning/2026-09-07_batch01.json",
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "complete_27_of_27_reconciled",
-  "completedAt": "2026-09-06T17:42:14+09:00",
-  "sourceLogSha256": "143d48aaf7849380a938b04c743a946a5833be69a3030cc3901184381a3818d2"
+  "completionState": "not_requested_to_windows_until_cloud_materialization_qa_complete",
+  "reason": "Prevent stale or partial Windows consumption. Enable exact Sep 7 IDs only after NOTE manuscripts/payloads/covers and BOOTH products/previews/payloads have passed QA.",
+  "humanOnlyBlocker": null
 }
