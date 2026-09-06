@@ -1,8 +1,8 @@
 {
-  "version": 28,
-  "updatedAt": "2026-09-04T23:50:44+09:00",
+  "version": 31,
+  "updatedAt": "2026-09-06T11:53:02+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-04_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-06_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1793,9 +1793,15 @@
       "coverLabel": "三点照合",
       "coverCopy": "支払前に見る5サイン",
       "accent": "#315E81",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260904-20260904T235044+0900"
+      "forceRetryNonce": "free-note-20260904-20260904T235044+0900",
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n13563ab3e2ea",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-05T05:19:39.514+09:00"
     },
     {
       "id": "free_note_20260904_02_supplier_bank_change_risk_signals",
@@ -1813,9 +1819,95 @@
       "coverLabel": "振込先変更",
       "coverCopy": "送金前に見る5サイン",
       "accent": "#7A4F2B",
+      "enabled": false,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260904-20260904T235044+0900",
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n663bf37707d1",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-05T05:20:22.786+09:00"
+    },
+    {
+      "id": "free_note_20260905_01_vendor_onboarding_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "新規取引先の登録前に確認したい6つの危険サイン｜急ぎの支払いで審査を飛ばさない",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-05_batch01.md",
+      "pairedPaidId": "note_20260905_82_vendor_onboarding_due_diligence_control",
+      "tags": [
+        "取引先管理",
+        "購買管理",
+        "経理",
+        "不正防止"
+      ],
+      "coverLabel": "取引先審査",
+      "coverCopy": "登録前の6サイン",
+      "accent": "#315E81",
       "enabled": true,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260904-20260904T235044+0900"
+      "forceRetryNonce": "free-note-20260905-20260906T115051+0900"
+    },
+    {
+      "id": "free_note_20260905_02_customer_credit_override_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "与信限度額を超える受注で止めたい6つのサイン｜売上優先の例外を膨らませない",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-05_batch01.md",
+      "pairedPaidId": "note_20260905_84_customer_credit_limit_override_control",
+      "tags": [
+        "与信管理",
+        "営業管理",
+        "債権管理",
+        "受注管理"
+      ],
+      "coverLabel": "与信例外",
+      "coverCopy": "受注前の6サイン",
+      "accent": "#6B4E71",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260905-20260906T115051+0900"
+    },
+    {
+      "id": "free_note_20260906_01_purchase_order_change_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "承認後の発注変更で確認したい6つの危険サイン｜差し替えと追加費用を見逃さない",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-06_batch01.md",
+      "pairedPaidId": "note_20260906_87_purchase_order_change_control",
+      "tags": [
+        "購買管理",
+        "発注書",
+        "変更管理",
+        "承認"
+      ],
+      "coverLabel": "発注変更",
+      "coverCopy": "差し替え前の6サイン",
+      "accent": "#315E81",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260906-20260906T115302+0900"
+    },
+    {
+      "id": "free_note_20260906_02_ai_output_approval_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "AIの出力をそのまま使う前に止めたい6つのサイン｜出典・個人情報・最終責任を確認する",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-06_batch01.md",
+      "pairedPaidId": "note_20260906_91_ai_output_approval_trace_control",
+      "tags": [
+        "生成AI",
+        "AIガバナンス",
+        "レビュー",
+        "情報管理"
+      ],
+      "coverLabel": "AI出力確認",
+      "coverCopy": "採用前の6サイン",
+      "accent": "#6B4E71",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260906-20260906T115302+0900"
     }
   ],
   "eveningMarathon": {
@@ -1824,17 +1916,22 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-04",
+    "date": "2026-09-06",
     "ids": [
-      "free_note_20260904_01_three_way_match_warning_signals",
-      "free_note_20260904_02_supplier_bank_change_risk_signals"
+      "free_note_20260906_01_purchase_order_change_warning_signals",
+      "free_note_20260906_02_ai_output_approval_warning_signals"
     ],
     "requiredStrictPublications": 2
   },
   "retryGeneration": 27,
-  "activePublicationDate": "2026-09-04",
+  "activePublicationDate": "2026-09-06",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "materialize-free-note-20260904-20260904T235044+0900",
+  "forceRetryNonce": "materialize-free-note-20260906-20260906T115302+0900",
   "sourceBatchPaths": [],
-  "reconcileExistingBeforePublish": true
+  "reconcileExistingBeforePublish": true,
+  "outstandingDates": [
+    "2026-09-04",
+    "2026-09-05",
+    "2026-09-06"
+  ]
 }

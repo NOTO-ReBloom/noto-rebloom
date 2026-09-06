@@ -1,18 +1,18 @@
 {
   "version": 3,
-  "updatedAt": "2026-09-04T23:50:44+09:00",
-  "retryGeneration": 63,
+  "updatedAt": "2026-09-06T11:53:02+09:00",
+  "retryGeneration": 66,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_2026-09-04_paid_note_batch_now",
+    "mode": "publish_2026-09-06_paid_note_batch_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260904_77_three_way_match_exception_control",
-      "note_20260904_78_bank_reconciliation_open_items_control",
-      "note_20260904_79_policy_exception_approval_control",
-      "note_20260904_80_document_version_approval_conflict_control",
-      "note_20260904_81_supplier_bank_change_verification_control"
+      "note_20260906_87_purchase_order_change_control",
+      "note_20260906_88_payroll_master_change_control",
+      "note_20260906_89_marketing_consent_evidence_control",
+      "note_20260906_90_asset_checkout_return_control",
+      "note_20260906_91_ai_output_approval_trace_control"
     ],
     "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
@@ -22,8 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-09-04T23:50:44+09:00",
-    "nonce": "paid-note-20260904-20260904T235044+0900"
+    "forcedAt": "2026-09-06T11:53:02+09:00",
+    "nonce": "paid-note-20260906-20260906T115302+0900"
   },
   "entries": [
     {
@@ -2100,8 +2100,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260904_78_bank_reconciliation_open_items_control.enc.json",
       "sha256": "06a638b669c4f512b9c39dd72a8a866e6a21b7a6d08d4490e0cd4775f96ebe41",
       "createdAt": "2026-09-04T23:50:44+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260904-20260904T235044+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -2112,7 +2112,13 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n913053a54df8",
+      "verificationState": "reader_visible_verified",
+      "verifiedAt": "2026-09-05T05:18:00+09:00"
     },
     {
       "id": "note_20260904_79_policy_exception_approval_control",
@@ -2120,8 +2126,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260904_79_policy_exception_approval_control.enc.json",
       "sha256": "d1a35f707749bde9675d27fe3a933d3ea54e7fa4197e1a29fe1e01dbd0f4a7d8",
       "createdAt": "2026-09-04T23:50:44+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260904-20260904T235044+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -2132,7 +2138,13 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n5f2f681d5e86",
+      "verificationState": "reader_visible_verified",
+      "verifiedAt": "2026-09-05T05:18:30+09:00"
     },
     {
       "id": "note_20260904_80_document_version_approval_conflict_control",
@@ -2173,13 +2185,215 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260905_82_vendor_onboarding_due_diligence_control",
+      "title": "新規取引先の登録を急いで事故を起こさない｜実在確認・契約・税務・支払条件をつなぐ審査方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260905_82_vendor_onboarding_due_diligence_control.enc.json",
+      "sha256": "b7860b848f8ba0234dcdecc04c84bd2387ebd8b90a560def2ba53a293d63e688",
+      "createdAt": "2026-09-06T11:50:51+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260905-20260906T115051+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260905_83_recurring_journal_entry_review_control",
+      "title": "定型仕訳を毎月そのまま計上しない｜根拠・金額変動・終了日・承認を追うレビュー方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260905_83_recurring_journal_entry_review_control.enc.json",
+      "sha256": "3d01ead4ac46735fbdc2c638ad82a4eaf10db9fccf07a27cae551a48071135cb",
+      "createdAt": "2026-09-06T11:50:51+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260905-20260906T115051+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260905_84_customer_credit_limit_override_control",
+      "title": "与信限度額の超過を営業判断だけで通さない｜例外理由・回収見込み・承認期限を残す管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260905_84_customer_credit_limit_override_control.enc.json",
+      "sha256": "b8beb4f3f42ad4851fe37f70d873237134fa9e9e810fb13614163d544cc0005f",
+      "createdAt": "2026-09-06T11:50:51+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260905-20260906T115051+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260905_85_sensitive_data_export_handoff_control",
+      "title": "機密データの書き出しを渡して終わりにしない｜範囲・承認・暗号化・受領・削除を追う方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260905_85_sensitive_data_export_handoff_control.enc.json",
+      "sha256": "bf0d5e82ad86fc869e88863e11c8ec0517be5ff6790e4089b3293ffb5b4945de",
+      "createdAt": "2026-09-06T11:50:51+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260905-20260906T115051+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260905_86_service_incident_customer_notification_control",
+      "title": "サービス障害の顧客連絡を場当たりにしない｜影響判定・通知・更新・収束をつなぐ実務設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260905_86_service_incident_customer_notification_control.enc.json",
+      "sha256": "5def4105c754d1aa73fb759d4891263d89b3d867986133bbe8a7d20770cb3311",
+      "createdAt": "2026-09-06T11:50:51+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260905-20260906T115051+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260906_87_purchase_order_change_control",
+      "title": "承認後の発注書を黙って差し替えない｜数量・単価・納期変更と再承認を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260906_87_purchase_order_change_control.enc.json",
+      "sha256": "b77f1ae85b392cf3ea03b39903e87bbae70e9ce186f2dd049bc3af9a4ff68528",
+      "createdAt": "2026-09-06T11:53:02+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260906-20260906T115302+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260906_88_payroll_master_change_control",
+      "title": "給与マスターの変更を一人で完結させない｜口座・手当・等級・反映結果を照合する方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260906_88_payroll_master_change_control.enc.json",
+      "sha256": "e6e8fd63fc8afb8bdbc9c9c4d9ad93c7305f548f40d5f7e5f3fc2925c714e731",
+      "createdAt": "2026-09-06T11:53:02+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260906-20260906T115302+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260906_89_marketing_consent_evidence_control",
+      "title": "マーケティング同意を取得済みの一言で済ませない｜取得経路・目的・撤回を証拠でつなぐ方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260906_89_marketing_consent_evidence_control.enc.json",
+      "sha256": "0cf17e5e709c64436f7c79528641798f13633c159ca74920334cc17f1ca667ac",
+      "createdAt": "2026-09-06T11:53:02+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260906-20260906T115302+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260906_90_asset_checkout_return_control",
+      "title": "貸与備品が誰の手元にあるか分からないを防ぐ｜受渡し・期限・返却・故障を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260906_90_asset_checkout_return_control.enc.json",
+      "sha256": "6a37c7eabc07e8502b0be064c87093afc48889e1724406298110afad90a39949",
+      "createdAt": "2026-09-06T11:53:02+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260906-20260906T115302+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260906_91_ai_output_approval_trace_control",
+      "title": "AIの出力を採用した根拠が残らないを防ぐ｜入力・出典・レビュー・承認版をつなぐ実務設計",
+      "path": "sidehustle-autopublish/note/queue/note_20260906_91_ai_output_approval_trace_control.enc.json",
+      "sha256": "34b77cd36a078a2677f8e2d99a0f1d42282bd2812294e0f480121fa469dac8a3",
+      "createdAt": "2026-09-06T11:53:02+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260906-20260906T115302+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
-  "activePublicationDate": "2026-09-04",
+  "activePublicationDate": "2026-09-06",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "materialize-paid-note-20260904-20260904T235044+0900",
+  "forceRetryNonce": "materialize-paid-note-20260906-20260906T115302+0900",
   "outstandingDates": [
-    "2026-09-04"
+    "2026-09-04",
+    "2026-09-05",
+    "2026-09-06"
   ],
   "reconcileExistingBeforePublish": true
 }

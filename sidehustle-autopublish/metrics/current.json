@@ -1,7 +1,7 @@
 {
-  "version": 53,
-  "updatedAt": "2026-09-04T23:50:44+09:00",
-  "objective": "Finish 7 Sep 2 carryover publications and all 12 Sep 3 publications without adding duplicate NOTE titles.",
+  "version": 56,
+  "updatedAt": "2026-09-06T11:53:02+09:00",
+  "objective": "Publish and strict-verify all 27 active items through 2026-09-06 without duplicate NOTE titles.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -22,27 +22,29 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "date": "2026-09-04",
-    "observedAt": "2026-09-04T23:50:44+09:00",
-    "previousDate": "2026-09-03",
-    "previousDayPaidNoteStrictVerified": "5/5",
-    "previousDayBoothStrictVerified": "5/5",
-    "previousDayFreeNoteStrictVerified": "2/2",
-    "carriedPaidDebt": 0
+    "throughDate": "2026-09-06",
+    "observedAt": "2026-09-06T11:53:02+09:00",
+    "outstandingDates": [
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06"
+    ],
+    "strictVerifiedInThisRequest": 0,
+    "remaining": 27
   },
   "currentDayTargets": {
-    "date": "2026-09-04",
+    "date": "2026-09-06",
     "paidNote": {
       "target": 5,
       "strictVerified": 0,
       "remaining": 5,
       "materialized": 5,
       "remainingIds": [
-        "note_20260904_77_three_way_match_exception_control",
-        "note_20260904_78_bank_reconciliation_open_items_control",
-        "note_20260904_79_policy_exception_approval_control",
-        "note_20260904_80_document_version_approval_conflict_control",
-        "note_20260904_81_supplier_bank_change_verification_control"
+        "note_20260906_87_purchase_order_change_control",
+        "note_20260906_88_payroll_master_change_control",
+        "note_20260906_89_marketing_consent_evidence_control",
+        "note_20260906_90_asset_checkout_return_control",
+        "note_20260906_91_ai_output_approval_trace_control"
       ]
     },
     "BOOTH": {
@@ -51,11 +53,11 @@
       "remaining": 5,
       "materialized": 5,
       "remainingIds": [
-        "084_three_way_match_exception_os_20260904",
-        "085_bank_reconciliation_open_items_os_20260904",
-        "086_policy_exception_approval_os_20260904",
-        "087_document_version_approval_os_20260904",
-        "088_supplier_bank_change_verification_os_20260904"
+        "094_purchase_order_change_os_20260906",
+        "095_payroll_master_change_os_20260906",
+        "096_marketing_consent_evidence_os_20260906",
+        "097_asset_checkout_return_os_20260906",
+        "098_ai_output_review_trace_os_20260906"
       ]
     },
     "freeNote": {
@@ -63,17 +65,16 @@
       "strictVerified": 0,
       "remaining": 2,
       "remainingIds": [
-        "free_note_20260904_01_three_way_match_warning_signals",
-        "free_note_20260904_02_supplier_bank_change_risk_signals"
+        "free_note_20260906_01_purchase_order_change_warning_signals",
+        "free_note_20260906_02_ai_output_approval_warning_signals"
       ],
       "paidQuotaContribution": 0
     },
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "5 current-day encrypted payloads materialized; no public count yet",
-    "BOOTH": "5 current-day encrypted payload ZIPs materialized; no public count yet",
-    "freeNote": "2 manuscripts queued; no public count yet",
+    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
+    "publication": "not counted until strict public URLs are verified",
     "humanOnlyBlocker": null
   },
   "monitor": {
@@ -102,5 +103,52 @@
     "gate": "sidehustle-autopublish/monitor/extra_note_completion_gate_20260827.json",
     "analysis": "sidehustle-autopublish/monitor/note_likes_analysis_20260827.json",
     "status": "complete_10_of_10"
+  },
+  "activeTargets": {
+    "paidNote": {
+      "target": 13,
+      "remainingIds": [
+        "note_20260904_77_three_way_match_exception_control",
+        "note_20260904_80_document_version_approval_conflict_control",
+        "note_20260904_81_supplier_bank_change_verification_control",
+        "note_20260905_82_vendor_onboarding_due_diligence_control",
+        "note_20260905_83_recurring_journal_entry_review_control",
+        "note_20260905_84_customer_credit_limit_override_control",
+        "note_20260905_85_sensitive_data_export_handoff_control",
+        "note_20260905_86_service_incident_customer_notification_control",
+        "note_20260906_87_purchase_order_change_control",
+        "note_20260906_88_payroll_master_change_control",
+        "note_20260906_89_marketing_consent_evidence_control",
+        "note_20260906_90_asset_checkout_return_control",
+        "note_20260906_91_ai_output_approval_trace_control"
+      ]
+    },
+    "freeNote": {
+      "target": 4,
+      "remainingIds": [
+        "free_note_20260905_01_vendor_onboarding_warning_signals",
+        "free_note_20260905_02_customer_credit_override_warning_signals",
+        "free_note_20260906_01_purchase_order_change_warning_signals",
+        "free_note_20260906_02_ai_output_approval_warning_signals"
+      ],
+      "paidQuotaContribution": 0
+    },
+    "BOOTH": {
+      "target": 10,
+      "remainingIds": [
+        "089_vendor_onboarding_due_diligence_os_20260905",
+        "090_recurring_journal_review_os_20260905",
+        "091_credit_limit_override_os_20260905",
+        "092_sensitive_data_handoff_os_20260905",
+        "093_incident_customer_notification_os_20260905",
+        "094_purchase_order_change_os_20260906",
+        "095_payroll_master_change_os_20260906",
+        "096_marketing_consent_evidence_os_20260906",
+        "097_asset_checkout_return_os_20260906",
+        "098_ai_output_review_trace_os_20260906"
+      ]
+    },
+    "total": 27,
+    "allDesignatedStrictVerified": false
   }
 }

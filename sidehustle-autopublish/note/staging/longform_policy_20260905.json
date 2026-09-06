@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-05",
+  "policy": "Every paidBody and free NOTE body must contain at least 5,001 characters before queue materialization.",
+  "minimumBodyChars": 5001,
+  "paid": [
+    {
+      "id": "note_20260905_82_vendor_onboarding_due_diligence_control",
+      "bodyChars": 6041,
+      "passed": true
+    },
+    {
+      "id": "note_20260905_83_recurring_journal_entry_review_control",
+      "bodyChars": 5862,
+      "passed": true
+    },
+    {
+      "id": "note_20260905_84_customer_credit_limit_override_control",
+      "bodyChars": 5901,
+      "passed": true
+    },
+    {
+      "id": "note_20260905_85_sensitive_data_export_handoff_control",
+      "bodyChars": 5953,
+      "passed": true
+    },
+    {
+      "id": "note_20260905_86_service_incident_customer_notification_control",
+      "bodyChars": 5997,
+      "passed": true
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260905_01_vendor_onboarding_warning_signals",
+      "bodyChars": 5874,
+      "passed": true
+    },
+    {
+      "id": "free_note_20260905_02_customer_credit_override_warning_signals",
+      "bodyChars": 5686,
+      "passed": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updatedAt": "2026-09-03T22:48:00+09:00",
+  "version": 2,
+  "updatedAt": "2026-09-06T12:00:00+09:00",
   "purpose": "Canonical GitHub-side ledger for BOOTH items whose buyer-visible public URL has been independently verified. Queue enabled=true alone is never treated as publication.",
   "entries": [
     {
@@ -808,6 +808,71 @@
       "verificationEvidence": "Windows publisher buyer-browser verification and independent public browser audit confirmed exact title, expected price, downloadable-product state and purchase path.",
       "publishMode": "remaining-nine-v1",
       "sourceLogSha256": "d408264f3dd92144ca4e6e032867800654a5a867adcc515080c8b3b8e640b413"
+    },
+    {
+      "queueId": "084_three_way_match_exception_os_20260904",
+      "title": "三点照合・支払差異管理OS｜請求書・発注・検収の不一致と解消期限を一元管理｜オフラインHTML",
+      "boothItemId": "8806747",
+      "publicUrl": "https://booth.pm/ja/items/8806747",
+      "publicUrlVerified": true,
+      "expectedPriceJPY": 1480,
+      "verifiedAt": "2026-09-05T05:21:45.180+09:00",
+      "reconciledAt": "2026-09-06T12:00:00+09:00",
+      "verificationEvidence": "Windows buyer-browser verification returned HTTP 200 with exact title, expected price and public BOOTH page; repeated PUBLIC_RECOVERY_SUCCESS confirmed the canonical URL.",
+      "publishMode": "sep4-all12-now-v1",
+      "sourceLogSha256": "2887947d577d08f2fb5f8e349349eca84b54d00c149725567c5cacf8ea52feb7"
+    },
+    {
+      "queueId": "085_bank_reconciliation_open_items_os_20260904",
+      "title": "銀行照合・未消込管理OS｜入出金・仕訳・差異原因・解消証拠を一元管理｜オフラインHTML",
+      "boothItemId": "8806749",
+      "publicUrl": "https://booth.pm/ja/items/8806749",
+      "publicUrlVerified": true,
+      "expectedPriceJPY": 1480,
+      "verifiedAt": "2026-09-05T05:22:20.990+09:00",
+      "reconciledAt": "2026-09-06T12:00:00+09:00",
+      "verificationEvidence": "Windows buyer-browser verification returned HTTP 200 with exact title, expected price and public BOOTH page; repeated PUBLIC_RECOVERY_SUCCESS confirmed the canonical URL.",
+      "publishMode": "sep4-all12-now-v1",
+      "sourceLogSha256": "2887947d577d08f2fb5f8e349349eca84b54d00c149725567c5cacf8ea52feb7"
+    },
+    {
+      "queueId": "086_policy_exception_approval_os_20260904",
+      "title": "社内ルール例外承認OS｜理由・承認者・適用期限・失効を一元管理｜オフラインHTML",
+      "boothItemId": "8806750",
+      "publicUrl": "https://booth.pm/ja/items/8806750",
+      "publicUrlVerified": true,
+      "expectedPriceJPY": 1480,
+      "verifiedAt": "2026-09-05T05:22:58.842+09:00",
+      "reconciledAt": "2026-09-06T12:00:00+09:00",
+      "verificationEvidence": "Windows buyer-browser verification returned HTTP 200 with exact title, expected price and public BOOTH page; repeated PUBLIC_RECOVERY_SUCCESS confirmed the canonical URL.",
+      "publishMode": "sep4-all12-now-v1",
+      "sourceLogSha256": "2887947d577d08f2fb5f8e349349eca84b54d00c149725567c5cacf8ea52feb7"
+    },
+    {
+      "queueId": "087_document_version_approval_os_20260904",
+      "title": "文書版・承認整合OS｜版番号・変更理由・承認状態・差し替え履歴を一元管理｜オフラインHTML",
+      "boothItemId": "8806751",
+      "publicUrl": "https://booth.pm/ja/items/8806751",
+      "publicUrlVerified": true,
+      "expectedPriceJPY": 1480,
+      "verifiedAt": "2026-09-05T05:23:41.882+09:00",
+      "reconciledAt": "2026-09-06T12:00:00+09:00",
+      "verificationEvidence": "Windows buyer-browser verification returned HTTP 200 with exact title, expected price and public BOOTH page; repeated PUBLIC_RECOVERY_SUCCESS confirmed the canonical URL.",
+      "publishMode": "sep4-all12-now-v1",
+      "sourceLogSha256": "2887947d577d08f2fb5f8e349349eca84b54d00c149725567c5cacf8ea52feb7"
+    },
+    {
+      "queueId": "088_supplier_bank_change_verification_os_20260904",
+      "title": "取引先振込先変更確認OS｜申請・本人確認・承認・反映証拠を一元管理｜オフラインHTML",
+      "boothItemId": "8806752",
+      "publicUrl": "https://booth.pm/ja/items/8806752",
+      "publicUrlVerified": true,
+      "expectedPriceJPY": 1680,
+      "verifiedAt": "2026-09-05T05:24:32.519+09:00",
+      "reconciledAt": "2026-09-06T12:00:00+09:00",
+      "verificationEvidence": "Windows buyer-browser verification returned HTTP 200 with exact title, expected price and public BOOTH page; repeated PUBLIC_RECOVERY_SUCCESS confirmed the canonical URL.",
+      "publishMode": "sep4-all12-now-v1",
+      "sourceLogSha256": "2887947d577d08f2fb5f8e349349eca84b54d00c149725567c5cacf8ea52feb7"
     }
   ]
 }
