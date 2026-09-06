@@ -1,172 +1,23 @@
 {
-  "version": 62,
-  "updatedAt": "2026-09-06T17:42:14+09:00",
-  "status": "complete_through_2026-09-06",
-  "date": "2026-09-06",
+  "version": 63,
+  "updatedAt": "2026-09-07T00:12:18+09:00",
+  "status": "incomplete_2026-09-07_planned_not_materialized",
+  "date": "2026-09-07",
   "timezone": "Asia/Tokyo",
-  "purpose": "All designated Sep 4-Sep 6 publications are strict verified and locked.",
-  "carryOver": {
-    "sourceDates": [
-      "2026-09-04",
-      "2026-09-05"
-    ],
-    "remaining": {
-      "paidNote": [],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 0
-    },
-    "strictVerified": {
-      "previouslyLocked": 9,
-      "reconciledNow": 27,
-      "total": 36
-    }
-  },
+  "previousDayReceipt": {"date":"2026-09-06","status":"strict_verified_and_locked","strictVerified":12,"outstandingAtClose":0},
+  "carryOver": {"sourceDates":[],"remaining":{"paidNote":[],"freeNote":[],"BOOTH":[],"total":0}},
   "completionConditions": {
-    "notePaid": {
-      "requiredIds": [
-        "note_20260904_77_three_way_match_exception_control",
-        "note_20260904_80_document_version_approval_conflict_control",
-        "note_20260904_81_supplier_bank_change_verification_control",
-        "note_20260905_82_vendor_onboarding_due_diligence_control",
-        "note_20260905_83_recurring_journal_entry_review_control",
-        "note_20260905_84_customer_credit_limit_override_control",
-        "note_20260905_85_sensitive_data_export_handoff_control",
-        "note_20260905_86_service_incident_customer_notification_control",
-        "note_20260906_87_purchase_order_change_control",
-        "note_20260906_88_payroll_master_change_control",
-        "note_20260906_89_marketing_consent_evidence_control",
-        "note_20260906_90_asset_checkout_return_control",
-        "note_20260906_91_ai_output_approval_trace_control"
-      ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "paidBoundary",
-        "dedicatedCover",
-        "bodyCharsAtLeast5001"
-      ]
-    },
-    "noteFree": {
-      "requiredIds": [
-        "free_note_20260905_01_vendor_onboarding_warning_signals",
-        "free_note_20260905_02_customer_credit_override_warning_signals",
-        "free_note_20260906_01_purchase_order_change_warning_signals",
-        "free_note_20260906_02_ai_output_approval_warning_signals"
-      ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "freeState",
-        "dedicatedCover",
-        "bodyCharsAtLeast5001"
-      ],
-      "paidQuotaContribution": 0
-    },
-    "BOOTH": {
-      "requiredIds": [
-        "089_vendor_onboarding_due_diligence_os_20260905",
-        "090_recurring_journal_review_os_20260905",
-        "091_credit_limit_override_os_20260905",
-        "092_sensitive_data_handoff_os_20260905",
-        "093_incident_customer_notification_os_20260905",
-        "094_purchase_order_change_os_20260906",
-        "095_payroll_master_change_os_20260906",
-        "096_marketing_consent_evidence_os_20260906",
-        "097_asset_checkout_return_os_20260906",
-        "098_ai_output_review_trace_os_20260906"
-      ],
-      "strictChecks": [
-        "buyerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "downloadableProductState",
-        "purchaseOrCartPath"
-      ]
-    }
+    "notePaid": {"requiredIds":["note_20260907_92_employee_offboarding_access_control","note_20260907_93_duplicate_expense_claim_control","note_20260907_94_saas_admin_privilege_review_control","note_20260907_95_contract_renewal_notice_control","note_20260907_96_customer_refund_exception_control"],"strictChecks":["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover","bodyCharsAtLeast5001"]},
+    "noteFree": {"requiredIds":["free_note_20260907_01_offboarding_access_warning_signals","free_note_20260907_02_duplicate_expense_warning_signals"],"strictChecks":["readerVisibleUrl","exactTitle","freeState","dedicatedCover","bodyCharsAtLeast5001"],"paidQuotaContribution":0},
+    "BOOTH": {"requiredIds":["099_employee_offboarding_access_os_20260907","100_duplicate_expense_claim_os_20260907","101_saas_admin_privilege_review_os_20260907","102_contract_renewal_notice_os_20260907","103_customer_refund_exception_os_20260907"],"strictChecks":["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]}
   },
-  "currentDayPlanning": {
-    "state": "complete",
-    "standardTarget": {
-      "notePaid": 5,
-      "noteFree": 2,
-      "BOOTH": 5,
-      "total": 12
-    },
-    "hardFloorPreserved": true,
-    "reason": "All designated Sep 4-Sep 6 publications are strict verified and locked; no publication debt remains."
-  },
-  "completionCounts": {
-    "previouslyLocked": 9,
-    "reconciledNow": 27,
-    "throughSep6StrictVerified": 36,
-    "remaining": 0,
-    "paidNoteReconciledNow": 13,
-    "freeNoteReconciledNow": 4,
-    "BOOTHReconciledNow": 10
-  },
-  "materializationState": "complete_and_publication_ledgers_reconciled",
-  "duplicateControl": {
-    "policy": "Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.",
-    "knownCleanup": {
-      "status": "completed_verified",
-      "remainingDuplicateTitleGroups": 0
-    }
-  },
-  "executionPolicy": {
-    "singleRunMayPublishMany": true,
-    "switchCandidatesAfterBriefRecoverableFailure": true,
-    "doNotStopAfterFirstSuccessWhileTargetsRemain": true,
-    "carryOverBeforeCurrentDay": true,
-    "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-    "doNotUseScatteredWindowsRoots": true,
-    "noDailyZipOrCmdProliferation": true,
-    "newDayQueueSafety": "Consume and strict-verify the already materialized Sep 4 request first. Sep 5/Sep 6 IDs must not be consumed before their own materialization and QA."
-  },
-  "reportingPolicy": {
-    "intermediateProgressReports": false,
-    "diagnosticOnlyReports": false,
-    "queueOrCommitOnlyReports": false,
-    "nightlyAggregateOnly": true,
-    "humanOnlyBlockerException": true
-  },
-  "humanOnlyBlockers": [
-    "re-login",
-    "2FA",
-    "CAPTCHA",
-    "identity verification",
-    "legal declaration",
-    "tax/payment setup",
-    "OS permission",
-    "account lock"
-  ],
+  "currentDayPlanning": {"state":"planned_not_materialized","planningManifest":"sidehustle-autopublish/planning/2026-09-07_batch01.json","standardTarget":{"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},"hardFloorPreserved":true},
+  "completionCounts": {"strictVerifiedToday":0,"remaining":12,"paidNoteRemaining":5,"freeNoteRemaining":2,"BOOTHRemaining":5},
+  "materializationState": "pending",
+  "duplicateControl": {"policy":"Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.","knownCleanup":{"status":"completed_verified","remainingDuplicateTitleGroups":0}},
+  "executionPolicy": {"singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,"canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true,"newDayQueueSafety":"Do not let Windows consume Sep 7 IDs before payload/product materialization and QA are complete."},
+  "reportingPolicy": {"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
   "humanOnlyBlocker": null,
-  "antiFalseCompletion": [
-    "Do not report a commit as publication.",
-    "Do not report queue insertion as publication.",
-    "Do not report local publisher exit 0 without public verification.",
-    "Do not report editor/admin URLs as publication.",
-    "Do not invent public URLs.",
-    "Do not count historical reverification as a new current-day publication."
-  ],
-  "previousDayReceipt": {
-    "date": "2026-09-05",
-    "status": "strict_verified_and_locked",
-    "strictVerified": 12,
-    "outstandingAtClose": 0
-  },
-  "executionRequestedAt": "2026-09-06T11:57:25+09:00",
-  "executionNonce": "catchup-through-20260906-2026-09-06T11:57:25+09:00",
-  "completedAt": "2026-09-06T17:42:14+09:00",
-  "completionEvidence": {
-    "sourceLogSha256": "143d48aaf7849380a938b04c743a946a5833be69a3030cc3901184381a3818d2",
-    "paidReceiptDirectory": "sidehustle-autopublish/note/publication_receipts/",
-    "freeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
-    "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
-    "remainingDuplicateTitleGroups": 0
-  },
-  "forceNowRequested": false,
-  "forceNowMode": "completed",
-  "outstandingByDate": {}
+  "antiFalseCompletion": ["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
+  "outstandingByDate": {"2026-09-07":{"paidNote":5,"freeNote":2,"BOOTH":5,"total":12}}
 }
