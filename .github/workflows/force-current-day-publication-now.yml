@@ -67,11 +67,13 @@ jobs:
                 found.add(eid)
                 if not e.get('publicUrlVerified', False):
                   e['enabled'] = True
-                  e['forceRetry'] = False
+                  e['forceRetry'] = True
                   e['forcePublicationNow'] = True
                   e['forceRetryNonce'] = nonce
                   e['prePublishReconcileRequired'] = True
                   e['recoveryMode'] = 'reconcile existing exact-title public page first; if absent publish now; then strict-verify'
+                  for stale in ('processing','processingAt','lockedAt','lockOwner','deferredUntil','deferUntil'):
+                    e.pop(stale, None)
                   if kind == 'paid-note':
                     e['invalidateLocalSuccessWithoutReaderVerification'] = True
                   elif kind == 'booth':
@@ -164,4 +166,4 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
-# automation kick forced-by-chat-20260908-1
+# automation kick forced-by-chat-20260908-2
