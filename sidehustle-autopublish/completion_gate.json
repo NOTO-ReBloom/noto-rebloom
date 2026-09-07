@@ -1,6 +1,6 @@
 {
-  "version": 64,
-  "updatedAt": "2026-09-07T09:24:46+09:00",
+  "version": 65,
+  "updatedAt": "2026-09-07T23:19:15+09:00",
   "status": "in_progress_0_of_12",
   "date": "2026-09-07",
   "timezone": "Asia/Tokyo",
@@ -76,7 +76,7 @@
     }
   },
   "currentDayPlanning": {
-    "state": "planned_not_materialized",
+    "state": "materialized_and_qa_passed",
     "planningManifest": "sidehustle-autopublish/planning/2026-09-07_batch01.json",
     "standardTarget": {
       "notePaid": 5,
@@ -110,7 +110,7 @@
     "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
     "doNotUseScatteredWindowsRoots": true,
     "noDailyZipOrCmdProliferation": true,
-    "newDayQueueSafety": "Do not let Windows consume Sep 7 IDs before payload/product materialization and QA are complete."
+    "newDayQueueSafety": "All Sep 7 payload/product materialization and QA are complete; Windows may consume only the listed Sep 7 outstanding IDs and must strict-verify before counting completion."
   },
   "reportingPolicy": {
     "intermediateProgressReports": false,
@@ -154,8 +154,8 @@
   "completedAt": null,
   "completionEvidence": null,
   "purpose": "Publish and strict-verify every active item through 2026-09-07; only public verification completes an item.",
-  "executionRequestedAt": "2026-09-07T09:24:46+09:00",
-  "executionNonce": "catchup-through-20260907-2026-09-07T09:24:46+09:00",
+  "executionRequestedAt": "2026-09-07T23:19:15+09:00",
+  "executionNonce": "catchup-through-20260907-2026-09-07T23:19:15+09:00",
   "forceNowRequested": true,
   "forceNowMode": "publish_all_outstanding_oldest_first"
 }
