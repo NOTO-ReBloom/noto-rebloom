@@ -1,7 +1,7 @@
 {
   "version": 5,
-  "updatedAt": "2026-09-08T00:54:20+09:00",
-  "retryGeneration": 70,
+  "updatedAt": "2026-09-08T05:21:19+09:00",
+  "retryGeneration": 71,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
@@ -14,7 +14,7 @@
       "note_20260907_95_contract_renewal_notice_control",
       "note_20260907_96_customer_refund_exception_control"
     ],
-    "instruction": "For every ID, first reconcile an existing exact-title public page. If absent, publish now. Continue after brief recoverable failure. Count only strict reader-visible verification.",
+    "instruction": "Reconcile exact-title public page first, publish only if absent, strict-verify all required checks.",
     "strictChecks": [
       "readerVisibleUrl",
       "exactTitle",
@@ -23,8 +23,8 @@
       "dedicatedCover",
       "bodyCharsAtLeast5001"
     ],
-    "forcedAt": "2026-09-08T00:54:20+09:00",
-    "nonce": "force-current-day-20260908T005420+0900"
+    "forcedAt": "2026-09-08T05:21:19+09:00",
+    "nonce": "force-current-day-20260908T052119+0900"
   },
   "entries": [
     {
@@ -2473,7 +2473,7 @@
       "createdAt": "2026-09-07T09:24:46+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "force-current-day-20260908T005420+0900",
+      "forceRetryNonce": "force-current-day-20260908T052119+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2486,7 +2486,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
     },
     {
       "id": "note_20260907_93_duplicate_expense_claim_control",
@@ -2496,7 +2496,7 @@
       "createdAt": "2026-09-07T09:24:46+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "force-current-day-20260908T005420+0900",
+      "forceRetryNonce": "force-current-day-20260908T052119+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2509,7 +2509,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
     },
     {
       "id": "note_20260907_94_saas_admin_privilege_review_control",
@@ -2519,7 +2519,7 @@
       "createdAt": "2026-09-07T09:24:46+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "force-current-day-20260908T005420+0900",
+      "forceRetryNonce": "force-current-day-20260908T052119+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2532,7 +2532,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
     },
     {
       "id": "note_20260907_95_contract_renewal_notice_control",
@@ -2542,7 +2542,7 @@
       "createdAt": "2026-09-07T09:24:46+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "force-current-day-20260908T005420+0900",
+      "forceRetryNonce": "force-current-day-20260908T052119+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2555,7 +2555,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
     },
     {
       "id": "note_20260907_96_customer_refund_exception_control",
@@ -2565,7 +2565,7 @@
       "createdAt": "2026-09-07T09:24:46+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "force-current-day-20260908T005420+0900",
+      "forceRetryNonce": "force-current-day-20260908T052119+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2578,12 +2578,12 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
     }
   ],
   "activePublicationDate": "2026-09-07",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-current-day-20260908T005420+0900",
+  "forceRetryNonce": "force-current-day-20260908T052119+0900",
   "outstandingDates": [
     "2026-09-07"
   ],

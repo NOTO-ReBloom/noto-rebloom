@@ -1,6 +1,6 @@
 {
   "version": 35,
-  "updatedAt": "2026-09-08T00:54:20+09:00",
+  "updatedAt": "2026-09-08T05:21:19+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-07_batch01.md",
   "requiredFreeChecks": [
@@ -1952,10 +1952,10 @@
       "accent": "#315E81",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "force-current-day-20260908T005420+0900",
+      "forceRetryNonce": "force-current-day-20260908T052119+0900",
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
     },
     {
       "id": "free_note_20260907_02_duplicate_expense_warning_signals",
@@ -1976,10 +1976,10 @@
       "accent": "#6B4E71",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "force-current-day-20260908T005420+0900",
+      "forceRetryNonce": "force-current-day-20260908T052119+0900",
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify"
+      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
     }
   ],
   "eveningMarathon": {
@@ -1995,10 +1995,10 @@
     ],
     "requiredStrictPublications": 2
   },
-  "retryGeneration": 29,
+  "retryGeneration": 30,
   "activePublicationDate": "2026-09-07",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-current-day-20260908T005420+0900",
+  "forceRetryNonce": "force-current-day-20260908T052119+0900",
   "sourceBatchPaths": [],
   "reconcileExistingBeforePublish": true,
   "outstandingDates": [
