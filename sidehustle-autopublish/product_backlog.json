@@ -1,71 +1,17 @@
 {
-  "version": 30,
-  "updatedAt": "2026-08-27T18:16:00+09:00",
-  "purpose": "Post-gate Aug 27 execution backlog: profit-maximizing non-human work first, evidence-gated amplification second, tomorrow preparation third.",
-  "evidenceLimit": "Authoritative repository state still does not contain first-party sales, PV, click, purchase, Microsoft Store acquisition/install or GitHub outbound conversion values. Do not infer winners.",
-  "hardFloorSnapshot": {
-    "date": "2026-08-27",
-    "note": {"carriedDebt":0,"todayPaidFloor":5,"strictVerifiedToday":5,"totalRemaining":0},
-    "BOOTH": {"carriedDebt":0,"todayPaidFloor":5,"strictVerifiedToday":5,"totalRemaining":0},
-    "freeNote": {"experimentalTarget":2,"strictVerified":2,"hardQuota":false,"paidQuotaContribution":0},
-    "allDesignatedStrictVerified": true
-  },
+  "version": 31,
+  "updatedAt": "2026-09-08T05:21:00+09:00",
+  "purpose": "Zero-touch profit backlog ranked by expected profit x continuity x automation x success probability / user work time.",
+  "evidenceLimit": "No observed first-party sales/PV/click/purchase/Store acquisition values are available in the repository; do not infer winners.",
+  "activeDebt": {"publicationDate":"2026-09-07","paidNote":5,"freeNote":2,"BOOTH":5,"total":12,"strictVerified":0},
   "executionBacklog": [
-    {
-      "rank":1,
-      "channel":"MicrosoftStore",
-      "id":"ms_csv_cleaner_deduper",
-      "type":"submission_completion",
-      "state":"code_and_listing_ready_package_identity_pending",
-      "nextAction":"Complete all remaining non-human submission prerequisites while preserving the existing highest-quality QA. Do not invent Partner Center identity values. Keep the final package blocked only on real reserved identity values and authenticated submission if those remain the only missing inputs."
-    },
-    {
-      "rank":2,
-      "channel":"cross-channel",
-      "type":"first_party_measurement",
-      "metrics":["note PV","note likes","note follows","related paid clicks","related paid purchases","note revenue","BOOTH sales","Microsoft Store page views","Microsoft Store acquisitions","Microsoft Store installs","Microsoft Store conversion","Microsoft Store health","GitHub outbound clicks/conversion"],
-      "windows":["24h","72h","7d"],
-      "nextAction":"Capture only values that are actually accessible; leave unavailable values null and compare only matched-age cohorts."
-    },
-    {
-      "rank":3,
-      "channel":"note",
-      "id":"free_note_20260827_02_near_miss_questions",
-      "type":"duplicate_cleanup",
-      "canonicalUrl":"https://note.com/royal_lion645/n/nc29774521b20",
-      "candidateUrls":["https://note.com/royal_lion645/n/na061ab23d0a3","https://note.com/royal_lion645/n/n503d65677851"],
-      "nextAction":"Do not republish. Keep only the canonical URL in funnels and metrics. Remove extras only through a safe authenticated cleanup path that cannot affect the canonical article."
-    },
-    {
-      "rank":4,
-      "channel":"planning",
-      "type":"2026-08-28_candidate_research",
-      "state":"fresh_research_completed_not_materialized",
-      "researchFile":"sidehustle-autopublish/planning/2026-08-28_candidate_research.json",
-      "candidateClusters":["attendance_month_end_exception_control","estimate_to_order_followup_control","applicant_response_sla_control","ai_efficiency_roi_measurement","backoffice_labor_saving_priority_matrix"],
-      "freshEvidence":"2026 Small Enterprise White Paper, IPA DX Trends 2026, SME Support Japan labor-saving portal updated 2026-08-26",
-      "nextAction":"Before queue materialization, compare these clusters against the full recent published inventory (especially Aug 22-27) at title, promise and asset-schema level. Replace any semantic clone rather than renaming it. If clean, prefer attendance and AI-effect-measurement as the two free→paid pairs."
-    },
-    {
-      "rank":5,
-      "channel":"GitHubPages",
-      "type":"measurement_support",
-      "nextAction":"Improve attributable context-matched outbound links on useful existing surfaces only when destinations are strict verified; no thin SEO pages and no mass CTA rewrite without baseline data."
-    }
+    {"rank":1,"channel":"cross-channel","type":"strict_publication_recovery","state":"materialized_waiting_for_publisher","nextAction":"Consume the twelve Sep 7 canonical IDs using exact-title reconcile-first publishers; strict-verify reader/buyer-visible state and synchronize queue, ledgers, metrics, quota and completion gate in the same recovery cycle."},
+    {"rank":2,"channel":"WindowsPublisher","type":"self_repair","state":"canonical_runner_hardened","nextAction":"Use C:\\SIDEHUSTLE_AUTO only; cap hung child processes, align BOOTH local targets to the remote request, restore scheduled tasks even after failures, keep logs centralized."},
+    {"rank":3,"channel":"planning","type":"2026-09-08_materialization","state":"deferred_behind_sep7_debt","nextAction":"When Sep 7 debt is discharged or explicitly rolled as debt, select fresh nonduplicate purchase-intent clusters and materialize the Sep 8 batch without reducing hard floors."},
+    {"rank":4,"channel":"cross-channel","type":"first_party_measurement","metrics":["note PV","note likes","note follows","paid CTA clicks","paid purchases","note revenue","BOOTH sales","Microsoft Store page views","acquisitions","installs","conversion","health","GitHub outbound clicks"],"nextAction":"Capture only accessible observed values; leave unavailable values null and compare matched-age cohorts."},
+    {"rank":5,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","state":"public_pwa_and_assets_ready_identity_unverified","nextAction":"Preserve assets and advance only through verifiable Partner Center identity/submission evidence; do not request user work unless identity, legal, tax or payment setup is proven to be the sole blocker."},
+    {"rank":6,"channel":"GitHubPages","type":"measurable_acquisition","nextAction":"Use useful existing tools as attributable acquisition surfaces after strict destinations are known; no thin SEO or mass CTA rewriting without baseline data."}
   ],
   "winnerCandidates": [],
-  "amplificationGate": {
-    "note":"Verified paid purchase strongly promotes a coherent cluster; strong free but weak paid conversion triggers CTA/theme/value/price diagnosis first; weak free+paid after sufficient exposure is deprioritized.",
-    "MicrosoftStore":"Require observed acquisition/install/usage or other meaningful first-party evidence before derivatives.",
-    "BOOTH":"Require observed sales or coherent cross-channel evidence before winner-derived bundles beyond daily hard-floor products.",
-    "risk":"Avoid semantic clones, cosmetic variants, duplicate public pages and cannibalizing paid promises."
-  },
-  "rules": [
-    "Previous-day debt outranks discretionary work, but Aug 27 debt is zero.",
-    "Completed Aug 27 IDs must never be republished.",
-    "Free output never replaces paid debt/floor.",
-    "Do not invent sales, PV, likes, clicks, purchases, revenue, acquisitions, installs, retention or CVR.",
-    "Strict public verification, not queue insertion or commit, completes publication.",
-    "Duplicate cleanup candidates never count as additional publication or acquisition assets."
-  ]
+  "rules": ["Publication debt outranks discretionary optimization.","Strict public verification, not commits or exit 0, completes publication.","Never republish a strict-verified exact title.","Free NOTE never replaces paid NOTE quota.","No invented sales, PV, conversion, installs or revenue.","Do not create semantic clones merely to hit volume."]
 }
