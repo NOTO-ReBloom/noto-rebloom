@@ -1,7 +1,7 @@
 {
-  "version": 59,
-  "updatedAt": "2026-09-06T17:42:14+09:00",
-  "objective": "All designated Sep 4-Sep 6 publications strict verified; resume duplicate-safe scheduled publishers.",
+  "version": 60,
+  "updatedAt": "2026-09-07T09:24:46+09:00",
+  "objective": "Publish and strict-verify all 12 active items through 2026-09-07 without duplicate NOTE titles.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -22,42 +22,57 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "throughDate": "2026-09-06",
-    "observedAt": "2026-09-06T17:42:14+09:00",
-    "outstandingDates": [],
-    "strictVerifiedThisReconciliation": 27,
-    "previouslyLocked": 9,
-    "remaining": 0
+    "throughDate": "2026-09-07",
+    "observedAt": "2026-09-07T09:24:46+09:00",
+    "outstandingDates": [
+      "2026-09-07"
+    ],
+    "strictVerifiedInThisRequest": 0,
+    "remaining": 12
   },
   "currentDayTargets": {
-    "date": "2026-09-06",
+    "date": "2026-09-07",
     "paidNote": {
       "target": 5,
-      "strictVerified": 5,
-      "remaining": 0,
+      "strictVerified": 0,
+      "remaining": 5,
       "materialized": 5,
-      "remainingIds": []
+      "remainingIds": [
+        "note_20260907_92_employee_offboarding_access_control",
+        "note_20260907_93_duplicate_expense_claim_control",
+        "note_20260907_94_saas_admin_privilege_review_control",
+        "note_20260907_95_contract_renewal_notice_control",
+        "note_20260907_96_customer_refund_exception_control"
+      ]
     },
     "BOOTH": {
       "target": 5,
-      "strictVerified": 5,
-      "remaining": 0,
+      "strictVerified": 0,
+      "remaining": 5,
       "materialized": 5,
-      "remainingIds": []
+      "remainingIds": [
+        "099_employee_offboarding_access_os_20260907",
+        "100_duplicate_expense_claim_os_20260907",
+        "101_saas_admin_privilege_review_os_20260907",
+        "102_contract_renewal_notice_os_20260907",
+        "103_customer_refund_exception_os_20260907"
+      ]
     },
     "freeNote": {
       "target": 2,
-      "strictVerified": 2,
-      "remaining": 0,
-      "remainingIds": [],
+      "strictVerified": 0,
+      "remaining": 2,
+      "remainingIds": [
+        "free_note_20260907_01_offboarding_access_warning_signals",
+        "free_note_20260907_02_duplicate_expense_warning_signals"
+      ],
       "paidQuotaContribution": 0
     },
-    "allDesignatedStrictVerified": true
+    "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "publication": "27 newly reconciled public URLs plus 9 previously locked URLs; all 36 designated Sep 4-Sep 6 items complete",
-    "sourceLogSha256": "143d48aaf7849380a938b04c743a946a5833be69a3030cc3901184381a3818d2",
-    "remainingDuplicateTitleGroups": 0,
+    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
+    "publication": "not counted until strict public URLs are verified",
     "humanOnlyBlocker": null
   },
   "monitor": {
@@ -89,19 +104,34 @@
   },
   "activeTargets": {
     "paidNote": {
-      "target": 0,
-      "remainingIds": []
+      "target": 5,
+      "remainingIds": [
+        "note_20260907_92_employee_offboarding_access_control",
+        "note_20260907_93_duplicate_expense_claim_control",
+        "note_20260907_94_saas_admin_privilege_review_control",
+        "note_20260907_95_contract_renewal_notice_control",
+        "note_20260907_96_customer_refund_exception_control"
+      ]
     },
     "freeNote": {
-      "target": 0,
-      "remainingIds": [],
+      "target": 2,
+      "remainingIds": [
+        "free_note_20260907_01_offboarding_access_warning_signals",
+        "free_note_20260907_02_duplicate_expense_warning_signals"
+      ],
       "paidQuotaContribution": 0
     },
     "BOOTH": {
-      "target": 0,
-      "remainingIds": []
+      "target": 5,
+      "remainingIds": [
+        "099_employee_offboarding_access_os_20260907",
+        "100_duplicate_expense_claim_os_20260907",
+        "101_saas_admin_privilege_review_os_20260907",
+        "102_contract_renewal_notice_os_20260907",
+        "103_customer_refund_exception_os_20260907"
+      ]
     },
-    "total": 0,
-    "allDesignatedStrictVerified": true
+    "total": 12,
+    "allDesignatedStrictVerified": false
   }
 }

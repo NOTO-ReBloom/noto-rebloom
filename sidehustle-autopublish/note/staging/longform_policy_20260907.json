@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-07",
+  "policy": "Every paidBody and free NOTE body must contain at least 5,001 characters before queue materialization.",
+  "minimumBodyChars": 5001,
+  "paid": [
+    {
+      "id": "note_20260907_92_employee_offboarding_access_control",
+      "bodyChars": 5983,
+      "passed": true
+    },
+    {
+      "id": "note_20260907_93_duplicate_expense_claim_control",
+      "bodyChars": 5844,
+      "passed": true
+    },
+    {
+      "id": "note_20260907_94_saas_admin_privilege_review_control",
+      "bodyChars": 5862,
+      "passed": true
+    },
+    {
+      "id": "note_20260907_95_contract_renewal_notice_control",
+      "bodyChars": 5863,
+      "passed": true
+    },
+    {
+      "id": "note_20260907_96_customer_refund_exception_control",
+      "bodyChars": 5800,
+      "passed": true
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260907_01_offboarding_access_warning_signals",
+      "bodyChars": 6244,
+      "passed": true
+    },
+    {
+      "id": "free_note_20260907_02_duplicate_expense_warning_signals",
+      "bodyChars": 6106,
+      "passed": true
+    }
+  ]
+}

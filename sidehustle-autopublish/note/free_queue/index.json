@@ -1,8 +1,8 @@
 {
-  "version": 34,
-  "updatedAt": "2026-09-06T17:42:14+09:00",
+  "version": 35,
+  "updatedAt": "2026-09-07T09:24:46+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-06_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-07_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1932,6 +1932,48 @@
       "verificationState": "reader_visible_free_verified",
       "verifiedAt": "2026-09-06T17:42:14+09:00",
       "recoveryMode": "completed; preserve canonical public URL and do not republish"
+    },
+    {
+      "id": "free_note_20260907_01_offboarding_access_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "退職者アカウントの消し忘れを見つける7つの兆候｜最終出社前に確認する無料チェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-07_batch01.md",
+      "pairedPaidId": "note_20260907_92_employee_offboarding_access_control",
+      "tags": [
+        "退職管理",
+        "アクセス権",
+        "無料チェック",
+        "SaaS",
+        "情報セキュリティ"
+      ],
+      "coverLabel": "無料チェック",
+      "coverCopy": "退職者アカウントの消し忘れを見つける7つの兆候",
+      "accent": "#315E81",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260907-20260907T092446+0900"
+    },
+    {
+      "id": "free_note_20260907_02_duplicate_expense_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "経費精算の二重申請を見抜く7つの兆候｜領収書・日付・金額で確認する無料チェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-07_batch01.md",
+      "pairedPaidId": "note_20260907_93_duplicate_expense_claim_control",
+      "tags": [
+        "経費精算",
+        "重複申請",
+        "無料チェック",
+        "領収書",
+        "内部統制"
+      ],
+      "coverLabel": "無料チェック",
+      "coverCopy": "経費精算の二重申請を見抜く7つの兆候",
+      "accent": "#6B4E71",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260907-20260907T092446+0900"
     }
   ],
   "eveningMarathon": {
@@ -1940,18 +1982,20 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-06",
+    "date": "2026-09-07",
     "ids": [
-      "free_note_20260906_01_purchase_order_change_warning_signals",
-      "free_note_20260906_02_ai_output_approval_warning_signals"
+      "free_note_20260907_01_offboarding_access_warning_signals",
+      "free_note_20260907_02_duplicate_expense_warning_signals"
     ],
     "requiredStrictPublications": 2
   },
   "retryGeneration": 27,
-  "activePublicationDate": "2026-09-06",
-  "forceAllCurrentDayNow": false,
-  "forceRetryNonce": "materialize-free-note-20260906-20260906T115725+0900",
+  "activePublicationDate": "2026-09-07",
+  "forceAllCurrentDayNow": true,
+  "forceRetryNonce": "materialize-free-note-20260907-20260907T092446+0900",
   "sourceBatchPaths": [],
   "reconcileExistingBeforePublish": true,
-  "outstandingDates": []
+  "outstandingDates": [
+    "2026-09-07"
+  ]
 }
