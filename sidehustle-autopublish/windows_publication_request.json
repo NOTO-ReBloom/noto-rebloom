@@ -1,8 +1,8 @@
 {
-  "version": 3,
-  "updatedAt": "2026-09-08T00:08:00+09:00",
+  "version": 4,
+  "updatedAt": "2026-09-08T00:40:01+09:00",
   "date": "2026-09-07",
-  "mode": "publish_all_outstanding_through_current_day_now",
+  "mode": "publish_all_current_day_now_reconcile_first",
   "paidNote": {
     "ids": [
       "note_20260907_92_employee_offboarding_access_control",
@@ -32,7 +32,7 @@
   },
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-08T00:08:00+09:00",
+  "requestedAt": "2026-09-08T00:40:01+09:00",
   "throughDate": "2026-09-07",
   "order": "oldest_publication_date_first",
   "outstandingDates": [
@@ -40,6 +40,10 @@
   ],
   "totalTarget": 12,
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "0_of_12_strict_verified_in_this_request",
-  "requestNonce": "manual-force-all-20260908T000800+0900"
+  "completionState": "pending_strict_verification",
+  "requestNonce": "manual-force-all-20260908T000800+0900",
+  "nonce": "force-current-day-20260908T004001+0900",
+  "reconcileExistingBeforePublish": true,
+  "ignorePriorDayUnverified": false,
+  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO"
 }

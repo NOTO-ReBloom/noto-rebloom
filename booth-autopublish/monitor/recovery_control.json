@@ -1,12 +1,12 @@
 {
-  "version": 71,
-  "updatedAt": "2026-09-07T09:24:46+09:00",
+  "version": 72,
+  "updatedAt": "2026-09-08T00:40:01+09:00",
   "activeRecovery": {
-    "throughDate": "2026-09-07",
-    "mode": "all_outstanding_oldest_first",
+    "date": "2026-09-07",
+    "mode": "force_current_day_all_now_reconcile_first",
     "requiredStrictNewPublications": 5,
     "remaining": 5,
-    "state": "ready"
+    "nonce": "force-current-day-20260908T004001+0900"
   },
   "readyPaidRecoveryBatch": {
     "generatedAt": "2026-09-07T09:24:46+09:00",
@@ -34,7 +34,10 @@
       "purchaseOrCartPath"
     ],
     "doNotStopAfterFirstSuccess": true,
-    "forceRetryNonce": "booth-through-20260907-2026-09-07T09:24:46+09:00"
+    "forceRetryNonce": "force-current-day-20260908T004001+0900",
+    "queueRetryGeneration": 70,
+    "forcedRecoveryAt": "2026-09-08T00:40:01+09:00",
+    "instruction": "Reconcile exact-title public products before create; publish only absent current-day BOOTH targets; strict verify all required conditions."
   },
   "windowsResumeContract": {
     "requiredIds": [
