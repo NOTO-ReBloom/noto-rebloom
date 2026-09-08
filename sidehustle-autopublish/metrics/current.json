@@ -1,48 +1,39 @@
 {
-  "version": 60,
-  "updatedAt": "2026-09-07T09:24:46+09:00",
-  "objective": "Publish and strict-verify all 12 active items through 2026-09-07 without duplicate NOTE titles.",
+  "version": 61,
+  "updatedAt": "2026-09-08T21:20:30+09:00",
+  "objective": "Finish the remaining Sep 7 strict publication debt without duplicate publication, then advance the canonical day.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
     "notePaidQueue": "sidehustle-autopublish/note/queue/index.json",
     "notePaidReceipts": "sidehustle-autopublish/note/publication_receipts/",
-    "noteMaterialization": [
-      "sidehustle-autopublish/note/staging/materialization_20260902_batch01.json",
-      "sidehustle-autopublish/note/staging/materialization_20260903_batch01.json"
-    ],
     "noteFreeQueue": "sidehustle-autopublish/note/free_queue/index.json",
     "noteFreeLedger": "sidehustle-autopublish/note/free_publication_ledger.json",
     "boothQueue": "booth-autopublish/queue/index.json",
     "boothLedger": "booth-autopublish/monitor/publication_ledger.json",
-    "boothMaterialization": [
-      "booth-autopublish/monitor/cloud_materialization_20260902_batch01.json",
-      "booth-autopublish/monitor/cloud_materialization_20260903_batch01.json"
-    ],
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
     "throughDate": "2026-09-07",
-    "observedAt": "2026-09-07T09:24:46+09:00",
-    "outstandingDates": [
-      "2026-09-07"
-    ],
-    "strictVerifiedInThisRequest": 0,
-    "remaining": 12
+    "observedAt": "2026-09-08T21:20:30+09:00",
+    "outstandingDates": ["2026-09-07"],
+    "strictVerifiedInThisRequest": 5,
+    "remaining": 7
   },
   "currentDayTargets": {
     "date": "2026-09-07",
     "paidNote": {
       "target": 5,
-      "strictVerified": 0,
-      "remaining": 5,
+      "strictVerified": 5,
+      "remaining": 0,
       "materialized": 5,
-      "remainingIds": [
-        "note_20260907_92_employee_offboarding_access_control",
-        "note_20260907_93_duplicate_expense_claim_control",
-        "note_20260907_94_saas_admin_privilege_review_control",
-        "note_20260907_95_contract_renewal_notice_control",
-        "note_20260907_96_customer_refund_exception_control"
+      "remainingIds": [],
+      "verifiedUrls": [
+        "https://note.com/royal_lion645/n/n60c824191ec1",
+        "https://note.com/royal_lion645/n/na44700d0927d",
+        "https://note.com/royal_lion645/n/nec43d9d40072",
+        "https://note.com/royal_lion645/n/n27d4fd09612c",
+        "https://note.com/royal_lion645/n/n138d81e02bd8"
       ]
     },
     "BOOTH": {
@@ -71,67 +62,20 @@
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
-    "publication": "not counted until strict public URLs are verified",
+    "paidNote": "All five Sep 7 paid NOTE queue entries contain canonical reader-visible URLs, publicUrlVerified=true, and independent strict verification evidence.",
+    "remainingPublication": "No strict public evidence yet for Sep 7 free NOTE 2 or BOOTH 5; do not count them.",
     "humanOnlyBlocker": null
   },
   "monitor": {
-    "checkedAt": "2026-09-06T17:42:14+09:00",
+    "checkedAt": "2026-09-08T21:20:30+09:00",
     "cloudMaterializationComplete": true,
-    "windowsAuthenticatedPublisherRequiredForPublicPosting": false,
-    "nextWindowsAction": "Run the SHA256-pinned finalizer once to verify this remote completion contract and re-enable both empty-queue scheduled publishers."
+    "windowsAuthenticatedPublisherRequiredForPublicPosting": true,
+    "nextWindowsAction": "Canonical request now contains only the seven unverified Sep 7 items; the existing C:\\SIDEHUSTLE_AUTO runner should consume them on the next available authenticated Windows execution."
   },
   "rules": [
     "Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.",
     "Do not reduce paid publication floors without strict public verification.",
-    "Do not republish any of the twelve strict-verified 2026-08-27 designated items.",
-    "Keep legacy note_20260820_05 and BOOTH 009 deferred until separately authorized.",
+    "Do not republish Sep 7 paid NOTE items now marked strict verified.",
     "Do not invent public URLs, sales, PV, likes, acquisitions or conversions."
-  ],
-  "extraNoteBatch": {
-    "date": "2026-08-27",
-    "reason": "likes_driven_expansion",
-    "target": {
-      "paid": 5,
-      "free": 5,
-      "total": 10
-    },
-    "strictVerified": 10,
-    "remaining": 0,
-    "gate": "sidehustle-autopublish/monitor/extra_note_completion_gate_20260827.json",
-    "analysis": "sidehustle-autopublish/monitor/note_likes_analysis_20260827.json",
-    "status": "complete_10_of_10"
-  },
-  "activeTargets": {
-    "paidNote": {
-      "target": 5,
-      "remainingIds": [
-        "note_20260907_92_employee_offboarding_access_control",
-        "note_20260907_93_duplicate_expense_claim_control",
-        "note_20260907_94_saas_admin_privilege_review_control",
-        "note_20260907_95_contract_renewal_notice_control",
-        "note_20260907_96_customer_refund_exception_control"
-      ]
-    },
-    "freeNote": {
-      "target": 2,
-      "remainingIds": [
-        "free_note_20260907_01_offboarding_access_warning_signals",
-        "free_note_20260907_02_duplicate_expense_warning_signals"
-      ],
-      "paidQuotaContribution": 0
-    },
-    "BOOTH": {
-      "target": 5,
-      "remainingIds": [
-        "099_employee_offboarding_access_os_20260907",
-        "100_duplicate_expense_claim_os_20260907",
-        "101_saas_admin_privilege_review_os_20260907",
-        "102_contract_renewal_notice_os_20260907",
-        "103_customer_refund_exception_os_20260907"
-      ]
-    },
-    "total": 12,
-    "allDesignatedStrictVerified": false
-  }
+  ]
 }
