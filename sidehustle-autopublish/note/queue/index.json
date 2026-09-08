@@ -1,7 +1,7 @@
 {
   "version": 5,
-  "updatedAt": "2026-09-08T15:14:33+09:00",
-  "retryGeneration": 71,
+  "updatedAt": "2026-09-08T18:18:55+09:00",
+  "retryGeneration": 72,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
@@ -23,8 +23,8 @@
       "dedicatedCover",
       "bodyCharsAtLeast5001"
     ],
-    "forcedAt": "2026-09-08T05:21:19+09:00",
-    "nonce": "force-current-day-20260908T052119+0900"
+    "forcedAt": "2026-09-08T18:18:55+09:00",
+    "nonce": "force-current-day-20260908T181855+0900"
   },
   "entries": [
     {
@@ -2608,7 +2608,7 @@
   ],
   "activePublicationDate": "2026-09-07",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-current-day-20260908T052119+0900",
+  "forceRetryNonce": "force-current-day-20260908T181855+0900",
   "outstandingDates": [
     "2026-09-07"
   ],
