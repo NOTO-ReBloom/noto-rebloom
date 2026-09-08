@@ -1,36 +1,58 @@
 {
-  "version": 79,
-  "updatedAt": "2026-09-08T22:58:01+09:00",
+  "version": 80,
+  "updatedAt": "2026-09-08T23:02:08+09:00",
   "activeRecovery": {
     "throughDate": "2026-09-08",
-    "mode": "completed",
-    "requiredStrictNewPublications": 0,
-    "remaining": 0,
-    "state": "complete"
+    "mode": "all_outstanding_oldest_first",
+    "requiredStrictNewPublications": 5,
+    "remaining": 5,
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-09-08T22:58:01+09:00",
-    "requiredStrictNewPublications": 0,
-    "queueIds": [],
-    "completedIds": [
-      "099_employee_offboarding_access_os_20260907",
-      "100_duplicate_expense_claim_os_20260907",
-      "101_saas_admin_privilege_review_os_20260907",
-      "102_contract_renewal_notice_os_20260907",
-      "103_customer_refund_exception_os_20260907",
+    "generatedAt": "2026-09-08T23:02:08+09:00",
+    "requiredStrictNewPublications": 5,
+    "queueIds": [
       "104_vendor_master_cleanup_os_20260908",
       "105_corporate_card_spend_control_os_20260908",
       "106_customer_data_retention_os_20260908",
       "107_invoice_number_gap_control_os_20260908",
       "108_software_license_seat_optimization_os_20260908"
     ],
-    "expectedPricesJPY": {},
-    "doNotStopAfterFirstSuccess": true
+    "completedIds": [],
+    "expectedPricesJPY": {
+      "104_vendor_master_cleanup_os_20260908": 1380,
+      "105_corporate_card_spend_control_os_20260908": 1280,
+      "106_customer_data_retention_os_20260908": 1380,
+      "107_invoice_number_gap_control_os_20260908": 1280,
+      "108_software_license_seat_optimization_os_20260908": 1480
+    },
+    "requiredBuyerChecks": [
+      "buyerVisibleUrl",
+      "exactTitle",
+      "expectedPrice",
+      "downloadableProductState",
+      "purchaseOrCartPath"
+    ],
+    "doNotStopAfterFirstSuccess": true,
+    "forceRetryNonce": "booth-through-20260908-2026-09-08T23:02:08+09:00"
   },
   "windowsResumeContract": {
-    "requiredIds": [],
+    "requiredIds": [
+      "104_vendor_master_cleanup_os_20260908",
+      "105_corporate_card_spend_control_os_20260908",
+      "106_customer_data_retention_os_20260908",
+      "107_invoice_number_gap_control_os_20260908",
+      "108_software_license_seat_optimization_os_20260908"
+    ],
+    "firstPassOrder": [
+      "104_vendor_master_cleanup_os_20260908",
+      "105_corporate_card_spend_control_os_20260908",
+      "106_customer_data_retention_os_20260908",
+      "107_invoice_number_gap_control_os_20260908",
+      "108_software_license_seat_optimization_os_20260908"
+    ],
     "strictSuccessOnly": true,
-    "completionPredicate": "satisfied"
+    "completionPredicate": "all active BOOTH IDs buyer-visible strict verified"
   },
   "cloudPreflight": {
     "checkedAt": "2026-09-01T17:57:14+09:00",

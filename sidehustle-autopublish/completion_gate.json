@@ -1,7 +1,7 @@
 {
-  "version": 70,
-  "updatedAt": "2026-09-08T22:58:01+09:00",
-  "status": "in_progress_19_of_24_through_2026-09-08",
+  "version": 71,
+  "updatedAt": "2026-09-08T23:02:08+09:00",
+  "status": "in_progress_0_of_12",
   "date": "2026-09-08",
   "timezone": "Asia/Tokyo",
   "previousDayReceipt": {
@@ -11,24 +11,13 @@
     "outstandingAtClose": 0
   },
   "carryOver": {
-    "sourceDates": [
-      "2026-09-07"
-    ],
+    "sourceDates": [],
     "requiredBeforeCurrentDay": true,
     "remaining": {
       "paidNote": [],
-      "freeNote": [
-        "free_note_20260907_01_offboarding_access_warning_signals",
-        "free_note_20260907_02_duplicate_expense_warning_signals"
-      ],
-      "BOOTH": [
-        "099_employee_offboarding_access_os_20260907",
-        "100_duplicate_expense_claim_os_20260907",
-        "101_saas_admin_privilege_review_os_20260907",
-        "102_contract_renewal_notice_os_20260907",
-        "103_customer_refund_exception_os_20260907"
-      ],
-      "total": 7
+      "freeNote": [],
+      "BOOTH": [],
+      "total": 0
     },
     "strictVerifiedInThisRequest": {
       "paidNote": 0,
@@ -52,17 +41,38 @@
         "expectedPrice",
         "paidBoundary",
         "dedicatedCover",
-        "paidBodyCharsAtLeast5001",
-        "freeBodyCharsAtLeast5001"
+        "bodyCharsAtLeast5001"
       ]
     },
     "noteFree": {
-      "requiredIds": [],
-      "strictChecks": []
+      "requiredIds": [
+        "free_note_20260908_01_dormant_vendor_warning_signals",
+        "free_note_20260908_02_unused_saas_seat_warning_signals"
+      ],
+      "strictChecks": [
+        "readerVisibleUrl",
+        "exactTitle",
+        "freeState",
+        "dedicatedCover",
+        "bodyCharsAtLeast5001"
+      ],
+      "paidQuotaContribution": 0
     },
     "BOOTH": {
-      "requiredIds": [],
-      "strictChecks": []
+      "requiredIds": [
+        "104_vendor_master_cleanup_os_20260908",
+        "105_corporate_card_spend_control_os_20260908",
+        "106_customer_data_retention_os_20260908",
+        "107_invoice_number_gap_control_os_20260908",
+        "108_software_license_seat_optimization_os_20260908"
+      ],
+      "strictChecks": [
+        "buyerVisibleUrl",
+        "exactTitle",
+        "expectedPrice",
+        "downloadableProductState",
+        "purchaseOrCartPath"
+      ]
     }
   },
   "currentDayPlanning": {
@@ -77,16 +87,14 @@
     "hardFloorPreserved": true
   },
   "completionCounts": {
-    "previouslyLockedSep7Paid": 5,
-    "reconciledNow": 14,
-    "strictVerifiedThroughRequest": 19,
-    "requiredThroughRequest": 24,
-    "remaining": 5,
+    "strictVerifiedInThisRequest": 0,
+    "required": 12,
+    "remaining": 12,
     "paidNoteRemaining": 5,
-    "freeNoteRemaining": 0,
-    "BOOTHRemaining": 0
+    "freeNoteRemaining": 2,
+    "BOOTHRemaining": 5
   },
-  "materializationState": "five_paid_note_payloads_repaired_and_ready",
+  "materializationState": "all_active_items_materialized_and_qa_passed",
   "duplicateControl": {
     "policy": "Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.",
     "knownCleanup": {
@@ -142,21 +150,25 @@
         "note_20260908_100_invoice_number_gap_control",
         "note_20260908_101_software_license_seat_optimization"
       ],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 5
+      "freeNote": [
+        "free_note_20260908_01_dormant_vendor_warning_signals",
+        "free_note_20260908_02_unused_saas_seat_warning_signals"
+      ],
+      "BOOTH": [
+        "104_vendor_master_cleanup_os_20260908",
+        "105_corporate_card_spend_control_os_20260908",
+        "106_customer_data_retention_os_20260908",
+        "107_invoice_number_gap_control_os_20260908",
+        "108_software_license_seat_optimization_os_20260908"
+      ],
+      "total": 12
     }
   },
   "completedAt": null,
-  "completionEvidence": {
-    "sourceLogSha256": "db0aa6eb5c23ef66ae3f0150c2c23ed4768911444f58d2b56327f69666dff1f5",
-    "reconciledFreeNote": 4,
-    "reconciledBOOTH": 10,
-    "remainingDuplicateTitleGroups": 0
-  },
-  "purpose": "Publish and strict-verify only the five remaining Sep 8 paid NOTE items; 4 free NOTE and 10 BOOTH results are locked.",
-  "executionRequestedAt": "2026-09-08T22:52:17+09:00",
-  "executionNonce": "catchup-through-20260908-2026-09-08T22:52:17+09:00",
+  "completionEvidence": null,
+  "purpose": "Publish and strict-verify every active item through 2026-09-08; only public verification completes an item.",
+  "executionRequestedAt": "2026-09-08T23:02:08+09:00",
+  "executionNonce": "catchup-through-20260908-2026-09-08T23:02:08+09:00",
   "forceNowRequested": true,
-  "forceNowMode": "remaining_paid_note_only"
+  "forceNowMode": "publish_all_outstanding_oldest_first"
 }

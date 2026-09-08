@@ -1,6 +1,6 @@
 {
-  "version": 39,
-  "updatedAt": "2026-09-08T22:58:01+09:00",
+  "version": 40,
+  "updatedAt": "2026-09-08T23:02:08+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-08_batch01.md",
   "requiredFreeChecks": [
@@ -2006,15 +2006,9 @@
       "coverLabel": "無料チェック",
       "coverCopy": "休眠取引先マスタを見つける7つの兆候",
       "accent": "#8A5A32",
-      "enabled": false,
+      "enabled": true,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260908-20260908T225217+0900",
-      "forcePublicationNow": false,
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/n354606954dcd",
-      "verificationState": "reader_visible_free_verified",
-      "verifiedAt": "2026-09-08T22:58:01+09:00",
-      "recoveryMode": "completed; preserve canonical public URL and do not republish"
+      "forceRetryNonce": "free-note-20260908-20260908T230208+0900"
     },
     {
       "id": "free_note_20260908_02_unused_saas_seat_warning_signals",
@@ -2033,15 +2027,9 @@
       "coverLabel": "無料チェック",
       "coverCopy": "使われていないSaaS席を見つける7つの兆候",
       "accent": "#3D5A80",
-      "enabled": false,
+      "enabled": true,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260908-20260908T225217+0900",
-      "forcePublicationNow": false,
-      "publicUrlVerified": true,
-      "publicUrl": "https://note.com/royal_lion645/n/ncfcb71b37648",
-      "verificationState": "reader_visible_free_verified",
-      "verifiedAt": "2026-09-08T22:58:01+09:00",
-      "recoveryMode": "completed; preserve canonical public URL and do not republish"
+      "forceRetryNonce": "free-note-20260908-20260908T230208+0900"
     }
   ],
   "eveningMarathon": {
@@ -2050,15 +2038,21 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "ids": [],
-    "target": 0,
-    "state": "complete"
+    "date": "2026-09-08",
+    "ids": [
+      "free_note_20260908_01_dormant_vendor_warning_signals",
+      "free_note_20260908_02_unused_saas_seat_warning_signals"
+    ],
+    "requiredStrictPublications": 2
   },
   "retryGeneration": 31,
   "activePublicationDate": "2026-09-08",
-  "forceAllCurrentDayNow": false,
-  "forceRetryNonce": "materialize-free-note-20260908-20260908T225217+0900",
+  "forceAllCurrentDayNow": true,
+  "forceRetryNonce": "materialize-free-note-20260908-20260908T230208+0900",
   "sourceBatchPaths": [],
   "reconcileExistingBeforePublish": true,
-  "outstandingDates": []
+  "outstandingDates": [
+    "2026-09-07",
+    "2026-09-08"
+  ]
 }

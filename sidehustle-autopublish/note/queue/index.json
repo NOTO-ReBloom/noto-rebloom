@@ -1,7 +1,7 @@
 {
   "version": 7,
-  "updatedAt": "2026-09-08T22:58:01+09:00",
-  "retryGeneration": 74,
+  "updatedAt": "2026-09-08T23:02:08+09:00",
+  "retryGeneration": 75,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
@@ -22,8 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-09-08T22:52:17+09:00",
-    "nonce": "paid-note-20260908-20260908T225217+0900"
+    "forcedAt": "2026-09-08T23:02:08+09:00",
+    "nonce": "paid-note-20260908-20260908T230208+0900"
   },
   "entries": [
     {
@@ -2608,11 +2608,11 @@
       "id": "note_20260908_97_vendor_master_dormant_cleanup",
       "title": "使っていない取引先を登録しっぱなしにしない｜最終取引日・口座・担当者で休眠マスタを整理する方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_97_vendor_master_dormant_cleanup.enc.json",
-      "sha256": "a808faa3b070eee41ab791898aadfd72c9948bc452794d0d44d4422f62c2b646",
-      "createdAt": "2026-09-08T22:52:17+09:00",
+      "sha256": "5448884c9f0fbd94db2f0227e36e81a38cec0e3bbd1d88967947d25e16db42d0",
+      "createdAt": "2026-09-08T23:02:08+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T225217+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230208+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2622,20 +2622,17 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
-      "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title reconcile, then publish only if no reader-visible canonical page exists"
+      "invalidateLocalSuccessWithoutReaderVerification": true
     },
     {
       "id": "note_20260908_98_corporate_card_spend_control",
       "title": "法人カードを使った後で慌てない｜利用目的・証憑・上限・承認を月末前に揃える管理方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_98_corporate_card_spend_control.enc.json",
-      "sha256": "8fd57c126e6615f98c551fff2e5a731d116dd90ffa5b9b80c9b30f82f510f18f",
-      "createdAt": "2026-09-08T22:52:17+09:00",
+      "sha256": "41a7e1bdd6c20aab3fb9126129bda2d36f6ca5415e47051d9e85742afc70d980",
+      "createdAt": "2026-09-08T23:02:08+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T225217+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230208+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2645,20 +2642,17 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
-      "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title reconcile, then publish only if no reader-visible canonical page exists"
+      "invalidateLocalSuccessWithoutReaderVerification": true
     },
     {
       "id": "note_20260908_99_customer_data_retention_deletion",
       "title": "顧客データを期限なく残さない｜保管理由・保持期間・削除確認を追えるデータ管理",
       "path": "sidehustle-autopublish/note/queue/note_20260908_99_customer_data_retention_deletion.enc.json",
-      "sha256": "ef6aceda50d1c5b7f45080e9a736538b934e3c98c51391aaaf477df2f3da1497",
-      "createdAt": "2026-09-08T22:52:17+09:00",
+      "sha256": "bde74750af6128a1e1bf4126dbe373065b39433473cc9d6df4e34094525b500f",
+      "createdAt": "2026-09-08T23:02:08+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T225217+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230208+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2668,20 +2662,17 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
-      "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title reconcile, then publish only if no reader-visible canonical page exists"
+      "invalidateLocalSuccessWithoutReaderVerification": true
     },
     {
       "id": "note_20260908_100_invoice_number_gap_control",
       "title": "請求書番号の抜けを放置しない｜欠番理由・取消・再発行をあとから説明できる管理方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_100_invoice_number_gap_control.enc.json",
-      "sha256": "1939b6dde8a3516d4056ab86f5c192b2d4d7c80cf1bdaff8cc4ea8358e076d22",
-      "createdAt": "2026-09-08T22:52:17+09:00",
+      "sha256": "e1662f6ff42deea7708908c7186da96151195fc44edcc770aaf6fe8a82626350",
+      "createdAt": "2026-09-08T23:02:08+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T225217+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230208+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2691,20 +2682,17 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
-      "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title reconcile, then publish only if no reader-visible canonical page exists"
+      "invalidateLocalSuccessWithoutReaderVerification": true
     },
     {
       "id": "note_20260908_101_software_license_seat_optimization",
       "title": "使っていないSaaS席に払い続けない｜最終利用・契約単価・回収候補でライセンス費を見直す方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_101_software_license_seat_optimization.enc.json",
-      "sha256": "9ebd930450c1d0da475ee04a22996fe8fcf77f4c0862d42fba777350a8d2deaf",
-      "createdAt": "2026-09-08T22:52:17+09:00",
+      "sha256": "38e60d345fe1311c6c94d108c57ed90751275ced9d6871fee301bc46279a59bd",
+      "createdAt": "2026-09-08T23:02:08+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T225217+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230208+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2714,16 +2702,14 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true,
-      "forcePublicationNow": true,
-      "prePublishReconcileRequired": true,
-      "recoveryMode": "exact-title reconcile, then publish only if no reader-visible canonical page exists"
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
   "activePublicationDate": "2026-09-08",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "materialize-paid-note-20260908-20260908T225217+0900",
+  "forceRetryNonce": "materialize-paid-note-20260908-20260908T230208+0900",
   "outstandingDates": [
+    "2026-09-07",
     "2026-09-08"
   ],
   "reconcileExistingBeforePublish": true
