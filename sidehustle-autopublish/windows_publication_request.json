@@ -1,17 +1,18 @@
 {
-  "version": 7,
-  "updatedAt": "2026-09-08T18:18:55+09:00",
+  "version": 8,
+  "updatedAt": "2026-09-08T21:16:25+09:00",
   "date": "2026-09-07",
-  "mode": "publish_all_current_day_now_reconcile_first",
+  "mode": "publish_remaining_strict_debt_reconcile_first",
   "paidNote": {
-    "ids": [
+    "ids": [],
+    "target": 0,
+    "alreadyStrictVerifiedIds": [
       "note_20260907_92_employee_offboarding_access_control",
       "note_20260907_93_duplicate_expense_claim_control",
       "note_20260907_94_saas_admin_privilege_review_control",
       "note_20260907_95_contract_renewal_notice_control",
       "note_20260907_96_customer_refund_exception_control"
-    ],
-    "target": 5
+    ]
   },
   "freeNote": {
     "ids": [
@@ -32,18 +33,18 @@
   },
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-08T18:18:55+09:00",
+  "requestedAt": "2026-09-08T21:16:25+09:00",
   "throughDate": "2026-09-07",
   "order": "oldest_publication_date_first",
-  "outstandingDates": [
-    "2026-09-07"
-  ],
-  "totalTarget": 12,
+  "outstandingDates": ["2026-09-07"],
+  "totalTarget": 7,
+  "strictVerifiedBeforeRequest": 5,
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "pending_strict_verification",
-  "requestNonce": "manual-force-all-20260908T000800+0900",
-  "nonce": "force-current-day-20260908T181855+0900",
+  "completionState": "pending_strict_verification_5_of_12",
+  "requestNonce": "automation-reconcile-20260908T211625+0900",
+  "nonce": "automation-reconcile-20260908T211625+0900",
   "reconcileExistingBeforePublish": true,
   "ignorePriorDayUnverified": false,
-  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO"
+  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
+  "humanOnlyBlocker": null
 }
