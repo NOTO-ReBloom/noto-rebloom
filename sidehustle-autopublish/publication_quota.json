@@ -1,7 +1,7 @@
 {
-  "version": 101,
+  "version": 102,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-08T23:13:40+09:00",
+  "updatedAt": "2026-09-08T23:15:53+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -73,7 +73,7 @@
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
         "paidProductionInventoryComplete": true,
         "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260908_batch01.json",
-        "queueRetryGeneration": 80,
+        "queueRetryGeneration": 81,
         "fallbackPolicy": "Process only enabled 2026-09-08 BOOTH IDs; do not republish previous-day verified items."
       }
     }
