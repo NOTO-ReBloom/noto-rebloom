@@ -1,22 +1,27 @@
 {
-  "version": 75,
-  "updatedAt": "2026-09-08T18:18:55+09:00",
+  "version": 76,
+  "updatedAt": "2026-09-08T21:43:03+09:00",
   "activeRecovery": {
-    "date": "2026-09-07",
-    "mode": "force_current_day_all_now_reconcile_first",
-    "requiredStrictNewPublications": 5,
-    "remaining": 5,
-    "nonce": "force-current-day-20260908T181855+0900"
+    "throughDate": "2026-09-08",
+    "mode": "all_outstanding_oldest_first",
+    "requiredStrictNewPublications": 10,
+    "remaining": 10,
+    "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-09-07T09:24:46+09:00",
-    "requiredStrictNewPublications": 5,
+    "generatedAt": "2026-09-08T21:43:03+09:00",
+    "requiredStrictNewPublications": 10,
     "queueIds": [
       "099_employee_offboarding_access_os_20260907",
       "100_duplicate_expense_claim_os_20260907",
       "101_saas_admin_privilege_review_os_20260907",
       "102_contract_renewal_notice_os_20260907",
-      "103_customer_refund_exception_os_20260907"
+      "103_customer_refund_exception_os_20260907",
+      "104_vendor_master_cleanup_os_20260908",
+      "105_corporate_card_spend_control_os_20260908",
+      "106_customer_data_retention_os_20260908",
+      "107_invoice_number_gap_control_os_20260908",
+      "108_software_license_seat_optimization_os_20260908"
     ],
     "completedIds": [],
     "expectedPricesJPY": {
@@ -24,7 +29,12 @@
       "100_duplicate_expense_claim_os_20260907": 1280,
       "101_saas_admin_privilege_review_os_20260907": 1380,
       "102_contract_renewal_notice_os_20260907": 1380,
-      "103_customer_refund_exception_os_20260907": 1280
+      "103_customer_refund_exception_os_20260907": 1280,
+      "104_vendor_master_cleanup_os_20260908": 1380,
+      "105_corporate_card_spend_control_os_20260908": 1280,
+      "106_customer_data_retention_os_20260908": 1380,
+      "107_invoice_number_gap_control_os_20260908": 1280,
+      "108_software_license_seat_optimization_os_20260908": 1480
     },
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
@@ -34,10 +44,7 @@
       "purchaseOrCartPath"
     ],
     "doNotStopAfterFirstSuccess": true,
-    "forceRetryNonce": "force-current-day-20260908T181855+0900",
-    "queueRetryGeneration": 73,
-    "forcedRecoveryAt": "2026-09-08T18:18:55+09:00",
-    "instruction": "Reconcile exact-title public products before create; strict verify every required condition."
+    "forceRetryNonce": "booth-through-20260908-2026-09-08T21:43:03+09:00"
   },
   "windowsResumeContract": {
     "requiredIds": [
@@ -45,14 +52,24 @@
       "100_duplicate_expense_claim_os_20260907",
       "101_saas_admin_privilege_review_os_20260907",
       "102_contract_renewal_notice_os_20260907",
-      "103_customer_refund_exception_os_20260907"
+      "103_customer_refund_exception_os_20260907",
+      "104_vendor_master_cleanup_os_20260908",
+      "105_corporate_card_spend_control_os_20260908",
+      "106_customer_data_retention_os_20260908",
+      "107_invoice_number_gap_control_os_20260908",
+      "108_software_license_seat_optimization_os_20260908"
     ],
     "firstPassOrder": [
       "099_employee_offboarding_access_os_20260907",
       "100_duplicate_expense_claim_os_20260907",
       "101_saas_admin_privilege_review_os_20260907",
       "102_contract_renewal_notice_os_20260907",
-      "103_customer_refund_exception_os_20260907"
+      "103_customer_refund_exception_os_20260907",
+      "104_vendor_master_cleanup_os_20260908",
+      "105_corporate_card_spend_control_os_20260908",
+      "106_customer_data_retention_os_20260908",
+      "107_invoice_number_gap_control_os_20260908",
+      "108_software_license_seat_optimization_os_20260908"
     ],
     "strictSuccessOnly": true,
     "completionPredicate": "all active BOOTH IDs buyer-visible strict verified"

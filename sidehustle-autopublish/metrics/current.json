@@ -1,7 +1,7 @@
 {
-  "version": 61,
-  "updatedAt": "2026-09-08T21:20:30+09:00",
-  "objective": "Finish the remaining Sep 7 strict publication debt without duplicate publication, then advance the canonical day.",
+  "version": 62,
+  "updatedAt": "2026-09-08T21:43:03+09:00",
+  "objective": "Publish and strict-verify all 19 active items through 2026-09-08 without duplicate NOTE titles.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -14,26 +14,28 @@
     "boothRecoveryControl": "booth-autopublish/monitor/recovery_control.json"
   },
   "currentRecovery": {
-    "throughDate": "2026-09-07",
-    "observedAt": "2026-09-08T21:20:30+09:00",
-    "outstandingDates": ["2026-09-07"],
-    "strictVerifiedInThisRequest": 5,
-    "remaining": 7
+    "throughDate": "2026-09-08",
+    "observedAt": "2026-09-08T21:43:03+09:00",
+    "outstandingDates": [
+      "2026-09-07",
+      "2026-09-08"
+    ],
+    "strictVerifiedInThisRequest": 0,
+    "remaining": 19
   },
   "currentDayTargets": {
-    "date": "2026-09-07",
+    "date": "2026-09-08",
     "paidNote": {
       "target": 5,
-      "strictVerified": 5,
-      "remaining": 0,
+      "strictVerified": 0,
+      "remaining": 5,
       "materialized": 5,
-      "remainingIds": [],
-      "verifiedUrls": [
-        "https://note.com/royal_lion645/n/n60c824191ec1",
-        "https://note.com/royal_lion645/n/na44700d0927d",
-        "https://note.com/royal_lion645/n/nec43d9d40072",
-        "https://note.com/royal_lion645/n/n27d4fd09612c",
-        "https://note.com/royal_lion645/n/n138d81e02bd8"
+      "remainingIds": [
+        "note_20260908_97_vendor_master_dormant_cleanup",
+        "note_20260908_98_corporate_card_spend_control",
+        "note_20260908_99_customer_data_retention_deletion",
+        "note_20260908_100_invoice_number_gap_control",
+        "note_20260908_101_software_license_seat_optimization"
       ]
     },
     "BOOTH": {
@@ -42,11 +44,11 @@
       "remaining": 5,
       "materialized": 5,
       "remainingIds": [
-        "099_employee_offboarding_access_os_20260907",
-        "100_duplicate_expense_claim_os_20260907",
-        "101_saas_admin_privilege_review_os_20260907",
-        "102_contract_renewal_notice_os_20260907",
-        "103_customer_refund_exception_os_20260907"
+        "104_vendor_master_cleanup_os_20260908",
+        "105_corporate_card_spend_control_os_20260908",
+        "106_customer_data_retention_os_20260908",
+        "107_invoice_number_gap_control_os_20260908",
+        "108_software_license_seat_optimization_os_20260908"
       ]
     },
     "freeNote": {
@@ -54,16 +56,16 @@
       "strictVerified": 0,
       "remaining": 2,
       "remainingIds": [
-        "free_note_20260907_01_offboarding_access_warning_signals",
-        "free_note_20260907_02_duplicate_expense_warning_signals"
+        "free_note_20260908_01_dormant_vendor_warning_signals",
+        "free_note_20260908_02_unused_saas_seat_warning_signals"
       ],
       "paidQuotaContribution": 0
     },
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "paidNote": "All five Sep 7 paid NOTE queue entries contain canonical reader-visible URLs, publicUrlVerified=true, and independent strict verification evidence.",
-    "remainingPublication": "No strict public evidence yet for Sep 7 free NOTE 2 or BOOTH 5; do not count them.",
+    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
+    "publication": "not counted until strict public URLs are verified",
     "humanOnlyBlocker": null
   },
   "monitor": {
@@ -77,5 +79,44 @@
     "Do not reduce paid publication floors without strict public verification.",
     "Do not republish Sep 7 paid NOTE items now marked strict verified.",
     "Do not invent public URLs, sales, PV, likes, acquisitions or conversions."
-  ]
+  ],
+  "activeTargets": {
+    "paidNote": {
+      "target": 5,
+      "remainingIds": [
+        "note_20260908_97_vendor_master_dormant_cleanup",
+        "note_20260908_98_corporate_card_spend_control",
+        "note_20260908_99_customer_data_retention_deletion",
+        "note_20260908_100_invoice_number_gap_control",
+        "note_20260908_101_software_license_seat_optimization"
+      ]
+    },
+    "freeNote": {
+      "target": 4,
+      "remainingIds": [
+        "free_note_20260907_01_offboarding_access_warning_signals",
+        "free_note_20260907_02_duplicate_expense_warning_signals",
+        "free_note_20260908_01_dormant_vendor_warning_signals",
+        "free_note_20260908_02_unused_saas_seat_warning_signals"
+      ],
+      "paidQuotaContribution": 0
+    },
+    "BOOTH": {
+      "target": 10,
+      "remainingIds": [
+        "099_employee_offboarding_access_os_20260907",
+        "100_duplicate_expense_claim_os_20260907",
+        "101_saas_admin_privilege_review_os_20260907",
+        "102_contract_renewal_notice_os_20260907",
+        "103_customer_refund_exception_os_20260907",
+        "104_vendor_master_cleanup_os_20260908",
+        "105_corporate_card_spend_control_os_20260908",
+        "106_customer_data_retention_os_20260908",
+        "107_invoice_number_gap_control_os_20260908",
+        "108_software_license_seat_optimization_os_20260908"
+      ]
+    },
+    "total": 19,
+    "allDesignatedStrictVerified": false
+  }
 }

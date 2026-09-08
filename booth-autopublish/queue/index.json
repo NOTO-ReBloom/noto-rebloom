@@ -1,7 +1,7 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-08T18:18:55+09:00",
-  "retryGeneration": 73,
+  "updatedAt": "2026-09-08T21:43:03+09:00",
+  "retryGeneration": 74,
   "entries": [
     {
       "id": "007_thesis_progress_os_20260820",
@@ -4084,13 +4084,204 @@
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
       "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
+    },
+    {
+      "id": "104_vendor_master_cleanup_os_20260908",
+      "title": "取引先マスタ休眠整理OS｜最終取引・口座・担当者・停止判断を一元管理",
+      "chunks": [
+        "booth-autopublish/queue/104_vendor_master_cleanup_os_20260908.part01.txt"
+      ],
+      "sha256": "8b1831e474bda7bca8c450b8f16764129f68aa6fb9dedb5790ce90d139fa9e22",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-104_vendor_master_cleanup_os_20260908-20260908T214303+0900",
+      "expectedPriceJPY": 1380,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "105_corporate_card_spend_control_os_20260908",
+      "title": "法人カード利用・証憑管理OS｜目的・領収書・上限・承認を一元管理",
+      "chunks": [
+        "booth-autopublish/queue/105_corporate_card_spend_control_os_20260908.part01.txt"
+      ],
+      "sha256": "6b083a0a7aa5639b33d654e6540b3d0f4192a2dbd4ebb6c209a85315dfdbefc5",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-105_corporate_card_spend_control_os_20260908-20260908T214303+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "106_customer_data_retention_os_20260908",
+      "title": "顧客データ保持・削除管理OS｜保管理由・期限・削除確認を一元管理",
+      "chunks": [
+        "booth-autopublish/queue/106_customer_data_retention_os_20260908.part01.txt"
+      ],
+      "sha256": "f80c59ab020aebd4b092f16af3c3fab30ba1371ab2d0656aa42fa2d9f438e24e",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-106_customer_data_retention_os_20260908-20260908T214303+0900",
+      "expectedPriceJPY": 1380,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "107_invoice_number_gap_control_os_20260908",
+      "title": "請求書番号・欠番管理OS｜取消・再発行・欠番理由・証跡を一元管理",
+      "chunks": [
+        "booth-autopublish/queue/107_invoice_number_gap_control_os_20260908.part01.txt"
+      ],
+      "sha256": "6577d58aa4ad98368c37edc421b87f834fe4292307b49bc24fec5636e2b371b8",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-107_invoice_number_gap_control_os_20260908-20260908T214303+0900",
+      "expectedPriceJPY": 1280,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "108_software_license_seat_optimization_os_20260908",
+      "title": "SaaSライセンス席数最適化OS｜最終利用・単価・回収候補・更新判断を一元管理",
+      "chunks": [
+        "booth-autopublish/queue/108_software_license_seat_optimization_os_20260908.part01.txt"
+      ],
+      "sha256": "eb458065a8d93949e975db2075dcc6e3ee2a75325292a2a3eba80adece28318f",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "cloud-materialize-108_software_license_seat_optimization_os_20260908-20260908T214303+0900",
+      "expectedPriceJPY": 1480,
+      "requireBuyerVisibleVerification": true,
+      "requiredBuyerChecks": [
+        "buyerVisibleUrl",
+        "title",
+        "price",
+        "downloadableProductState",
+        "purchasePath"
+      ],
+      "invalidateLocalSuccessWithoutVerifiedLedger": true,
+      "payloadFormat": "zip:product.json",
+      "cloudQa": {
+        "zipReadable": true,
+        "productJson": true,
+        "downloadFilePresent": true,
+        "previewImagesPresent": true,
+        "htmlCoreFunctions": [
+          "localStorage",
+          "search",
+          "filter",
+          "summary",
+          "CSV",
+          "JSON backup/import",
+          "print"
+        ]
+      }
     }
   ],
-  "activePublicationDate": "2026-09-07",
+  "activePublicationDate": "2026-09-08",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-current-day-20260908T181855+0900",
+  "forceRetryNonce": "materialize-booth-20260908-20260908T214303+0900",
   "outstandingDates": [
-    "2026-09-07"
+    "2026-09-07",
+    "2026-09-08"
   ],
   "reconcileExistingBeforePublish": true
 }

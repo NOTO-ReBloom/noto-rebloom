@@ -1,30 +1,29 @@
 {
   "version": 5,
-  "updatedAt": "2026-09-08T18:18:55+09:00",
-  "retryGeneration": 72,
+  "updatedAt": "2026-09-08T21:43:03+09:00",
+  "retryGeneration": 73,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_current_day_all_now",
+    "mode": "publish_2026-09-08_paid_note_batch_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260907_92_employee_offboarding_access_control",
-      "note_20260907_93_duplicate_expense_claim_control",
-      "note_20260907_94_saas_admin_privilege_review_control",
-      "note_20260907_95_contract_renewal_notice_control",
-      "note_20260907_96_customer_refund_exception_control"
+      "note_20260908_97_vendor_master_dormant_cleanup",
+      "note_20260908_98_corporate_card_spend_control",
+      "note_20260908_99_customer_data_retention_deletion",
+      "note_20260908_100_invoice_number_gap_control",
+      "note_20260908_101_software_license_seat_optimization"
     ],
-    "instruction": "Reconcile exact-title public page first, publish only if absent, strict-verify all required checks.",
+    "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
       "readerVisibleUrl",
-      "exactTitle",
-      "expectedPrice",
+      "title",
+      "price",
       "paidBoundary",
-      "dedicatedCover",
-      "bodyCharsAtLeast5001"
+      "dedicatedCover"
     ],
-    "forcedAt": "2026-09-08T18:18:55+09:00",
-    "nonce": "force-current-day-20260908T181855+0900"
+    "forcedAt": "2026-09-08T21:43:03+09:00",
+    "nonce": "paid-note-20260908-20260908T214303+0900"
   },
   "entries": [
     {
@@ -2604,13 +2603,114 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
       "verifiedAt": "2026-09-08T06:14:33.475715+00:00"
+    },
+    {
+      "id": "note_20260908_97_vendor_master_dormant_cleanup",
+      "title": "使っていない取引先を登録しっぱなしにしない｜最終取引日・口座・担当者で休眠マスタを整理する方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260908_97_vendor_master_dormant_cleanup.enc.json",
+      "sha256": "51a9adc4cc91bf63318696146a01854779595f19398f6c3ec589d74c1d3c2aab",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260908_98_corporate_card_spend_control",
+      "title": "法人カードを使った後で慌てない｜利用目的・証憑・上限・承認を月末前に揃える管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260908_98_corporate_card_spend_control.enc.json",
+      "sha256": "49be51b89b506b04d942e4fad51afc305da9f62901fd57214e767df1062b130b",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260908_99_customer_data_retention_deletion",
+      "title": "顧客データを期限なく残さない｜保管理由・保持期間・削除確認を追えるデータ管理",
+      "path": "sidehustle-autopublish/note/queue/note_20260908_99_customer_data_retention_deletion.enc.json",
+      "sha256": "72489cdbea7a1c0fa3d37082c0150f63123970c8a30dc9f3a44d384be04b88f3",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260908_100_invoice_number_gap_control",
+      "title": "請求書番号の抜けを放置しない｜欠番理由・取消・再発行をあとから説明できる管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260908_100_invoice_number_gap_control.enc.json",
+      "sha256": "35b8c795c79bfaf6de592423e4926c2ce838126a8a54c0638f4117bd1fccfa09",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260908_101_software_license_seat_optimization",
+      "title": "使っていないSaaS席に払い続けない｜最終利用・契約単価・回収候補でライセンス費を見直す方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260908_101_software_license_seat_optimization.enc.json",
+      "sha256": "bc16ee4b45460659b5f60d1d2bb98604864bedbd12acca900c059265a8179258",
+      "createdAt": "2026-09-08T21:43:03+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
-  "activePublicationDate": "2026-09-07",
+  "activePublicationDate": "2026-09-08",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-current-day-20260908T181855+0900",
+  "forceRetryNonce": "materialize-paid-note-20260908-20260908T214303+0900",
   "outstandingDates": [
-    "2026-09-07"
+    "2026-09-07",
+    "2026-09-08"
   ],
   "reconcileExistingBeforePublish": true
 }

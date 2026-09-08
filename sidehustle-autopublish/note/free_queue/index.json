@@ -1,8 +1,8 @@
 {
-  "version": 35,
-  "updatedAt": "2026-09-08T18:18:55+09:00",
+  "version": 36,
+  "updatedAt": "2026-09-08T21:43:03+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-07_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-08_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -1980,6 +1980,48 @@
       "forcePublicationNow": true,
       "prePublishReconcileRequired": true,
       "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
+    },
+    {
+      "id": "free_note_20260908_01_dormant_vendor_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "休眠取引先マスタを見つける7つの兆候｜最終取引日と口座情報で確認する無料チェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-08_batch01.md",
+      "pairedPaidId": "note_20260908_97_vendor_master_dormant_cleanup",
+      "tags": [
+        "取引先管理",
+        "無料チェック",
+        "マスタ管理",
+        "経理",
+        "内部統制"
+      ],
+      "coverLabel": "無料チェック",
+      "coverCopy": "休眠取引先マスタを見つける7つの兆候",
+      "accent": "#8A5A32",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260908-20260908T214303+0900"
+    },
+    {
+      "id": "free_note_20260908_02_unused_saas_seat_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "使われていないSaaSアカウントを見つける7つの兆候｜最終利用と契約席数の無料チェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-08_batch01.md",
+      "pairedPaidId": "note_20260908_101_software_license_seat_optimization",
+      "tags": [
+        "SaaS",
+        "無料チェック",
+        "ライセンス管理",
+        "コスト削減",
+        "アカウント管理"
+      ],
+      "coverLabel": "無料チェック",
+      "coverCopy": "使われていないSaaS席を見つける7つの兆候",
+      "accent": "#3D5A80",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260908-20260908T214303+0900"
     }
   ],
   "eveningMarathon": {
@@ -1988,20 +2030,21 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-07",
+    "date": "2026-09-08",
     "ids": [
-      "free_note_20260907_01_offboarding_access_warning_signals",
-      "free_note_20260907_02_duplicate_expense_warning_signals"
+      "free_note_20260908_01_dormant_vendor_warning_signals",
+      "free_note_20260908_02_unused_saas_seat_warning_signals"
     ],
     "requiredStrictPublications": 2
   },
   "retryGeneration": 31,
-  "activePublicationDate": "2026-09-07",
+  "activePublicationDate": "2026-09-08",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "force-current-day-20260908T181855+0900",
+  "forceRetryNonce": "materialize-free-note-20260908-20260908T214303+0900",
   "sourceBatchPaths": [],
   "reconcileExistingBeforePublish": true,
   "outstandingDates": [
-    "2026-09-07"
+    "2026-09-07",
+    "2026-09-08"
   ]
 }
