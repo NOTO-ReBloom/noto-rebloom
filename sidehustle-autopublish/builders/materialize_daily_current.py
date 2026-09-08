@@ -43,9 +43,12 @@ def expand_and_validate_plan(source):
     for item in plan.get("paid", []):
         if "longform" in item:
             item["paid"] = render_longform(item.pop("longform"))
-        length = len(item.get("paid", ""))
-        if length < NOTE_MIN_BODY_CHARS:
-            failures.append(f"{item.get('id')}:paidBody={length}")
+        paid_length = len(item.get("paid", ""))
+        free_length = len(item.get("free", ""))
+        if paid_length < NOTE_MIN_BODY_CHARS:
+            failures.append(f"{item.get('id')}:paidBody={paid_length}")
+        if free_length < NOTE_MIN_BODY_CHARS:
+            failures.append(f"{item.get('id')}:freeBody={free_length}")
     for item in plan.get("free", []):
         if "longform" in item:
             item["body"] = render_longform(item.pop("longform"))
@@ -111,7 +114,7 @@ length_report = {
     "date": PLAN["date"],
     "policy": "Every paidBody and free NOTE body must contain at least 5,001 characters before queue materialization.",
     "minimumBodyChars": NOTE_MIN_BODY_CHARS,
-    "paid": [{"id": item["id"], "bodyChars": len(item["paid"]), "passed": len(item["paid"]) >= NOTE_MIN_BODY_CHARS} for item in PLAN["paid"]],
+    "paid": [{"id": item["id"], "bodyChars": len(item["paid"]), "freeBodyChars": len(item["free"]), "passed": len(item["paid"]) >= NOTE_MIN_BODY_CHARS and len(item["free"]) >= NOTE_MIN_BODY_CHARS} for item in PLAN["paid"]],
     "free": [{"id": item["id"], "bodyChars": len(item["body"]), "passed": len(item["body"]) >= NOTE_MIN_BODY_CHARS} for item in PLAN["free"]],
 }
 report_path = ROOT / "sidehustle-autopublish" / "note" / "staging" / f"longform_policy_{PLAN['dateId']}.json"

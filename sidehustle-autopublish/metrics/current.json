@@ -1,7 +1,7 @@
 {
-  "version": 62,
-  "updatedAt": "2026-09-08T21:43:03+09:00",
-  "objective": "Publish and strict-verify all 19 active items through 2026-09-08 without duplicate NOTE titles.",
+  "version": 65,
+  "updatedAt": "2026-09-08T22:58:01+09:00",
+  "objective": "Publish and strict-verify only the five remaining Sep 8 paid NOTE entries; preserve 19 locked public results.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -15,13 +15,12 @@
   },
   "currentRecovery": {
     "throughDate": "2026-09-08",
-    "observedAt": "2026-09-08T21:43:03+09:00",
+    "observedAt": "2026-09-08T22:58:01+09:00",
     "outstandingDates": [
-      "2026-09-07",
       "2026-09-08"
     ],
-    "strictVerifiedInThisRequest": 0,
-    "remaining": 19
+    "alreadyStrictVerified": 19,
+    "remaining": 5
   },
   "currentDayTargets": {
     "date": "2026-09-08",
@@ -64,9 +63,10 @@
     "allDesignatedStrictVerified": false
   },
   "evidence": {
-    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
-    "publication": "not counted until strict public URLs are verified",
-    "humanOnlyBlocker": null
+    "publication": "4 free NOTE and 10 BOOTH results reconciled from the pinned Windows log; 5 Sep 7 paid NOTE URLs were already locked.",
+    "sourceLogSha256": "db0aa6eb5c23ef66ae3f0150c2c23ed4768911444f58d2b56327f69666dff1f5",
+    "remainingDuplicateTitleGroups": 0,
+    "humanOnlyBlocker": "authenticated Windows NOTE browser profile"
   },
   "monitor": {
     "checkedAt": "2026-09-08T21:20:30+09:00",
@@ -92,31 +92,15 @@
       ]
     },
     "freeNote": {
-      "target": 4,
-      "remainingIds": [
-        "free_note_20260907_01_offboarding_access_warning_signals",
-        "free_note_20260907_02_duplicate_expense_warning_signals",
-        "free_note_20260908_01_dormant_vendor_warning_signals",
-        "free_note_20260908_02_unused_saas_seat_warning_signals"
-      ],
+      "target": 0,
+      "remainingIds": [],
       "paidQuotaContribution": 0
     },
     "BOOTH": {
-      "target": 10,
-      "remainingIds": [
-        "099_employee_offboarding_access_os_20260907",
-        "100_duplicate_expense_claim_os_20260907",
-        "101_saas_admin_privilege_review_os_20260907",
-        "102_contract_renewal_notice_os_20260907",
-        "103_customer_refund_exception_os_20260907",
-        "104_vendor_master_cleanup_os_20260908",
-        "105_corporate_card_spend_control_os_20260908",
-        "106_customer_data_retention_os_20260908",
-        "107_invoice_number_gap_control_os_20260908",
-        "108_software_license_seat_optimization_os_20260908"
-      ]
+      "target": 0,
+      "remainingIds": []
     },
-    "total": 19,
+    "total": 5,
     "allDesignatedStrictVerified": false
   }
 }

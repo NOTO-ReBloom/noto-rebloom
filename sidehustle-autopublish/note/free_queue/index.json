@@ -1,6 +1,6 @@
 {
-  "version": 36,
-  "updatedAt": "2026-09-08T21:43:03+09:00",
+  "version": 39,
+  "updatedAt": "2026-09-08T22:58:01+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-08_batch01.md",
   "requiredFreeChecks": [
@@ -1950,12 +1950,16 @@
       "coverLabel": "無料チェック",
       "coverCopy": "退職者アカウントの消し忘れを見つける7つの兆候",
       "accent": "#315E81",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260908T181855+0900",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n824cb93a70c5",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-08T22:58:01+09:00"
     },
     {
       "id": "free_note_20260907_02_duplicate_expense_warning_signals",
@@ -1974,12 +1978,16 @@
       "coverLabel": "無料チェック",
       "coverCopy": "経費精算の二重申請を見抜く7つの兆候",
       "accent": "#6B4E71",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "force-current-day-20260908T181855+0900",
-      "forcePublicationNow": true,
+      "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify"
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n2bba7c421b46",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-08T22:58:01+09:00"
     },
     {
       "id": "free_note_20260908_01_dormant_vendor_warning_signals",
@@ -1998,9 +2006,15 @@
       "coverLabel": "無料チェック",
       "coverCopy": "休眠取引先マスタを見つける7つの兆候",
       "accent": "#8A5A32",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260908-20260908T214303+0900"
+      "forceRetryNonce": "free-note-20260908-20260908T225217+0900",
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n354606954dcd",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-08T22:58:01+09:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "free_note_20260908_02_unused_saas_seat_warning_signals",
@@ -2019,9 +2033,15 @@
       "coverLabel": "無料チェック",
       "coverCopy": "使われていないSaaS席を見つける7つの兆候",
       "accent": "#3D5A80",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260908-20260908T214303+0900"
+      "forceRetryNonce": "free-note-20260908-20260908T225217+0900",
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/ncfcb71b37648",
+      "verificationState": "reader_visible_free_verified",
+      "verifiedAt": "2026-09-08T22:58:01+09:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     }
   ],
   "eveningMarathon": {
@@ -2030,21 +2050,15 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-08",
-    "ids": [
-      "free_note_20260908_01_dormant_vendor_warning_signals",
-      "free_note_20260908_02_unused_saas_seat_warning_signals"
-    ],
-    "requiredStrictPublications": 2
+    "ids": [],
+    "target": 0,
+    "state": "complete"
   },
   "retryGeneration": 31,
   "activePublicationDate": "2026-09-08",
-  "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "materialize-free-note-20260908-20260908T214303+0900",
+  "forceAllCurrentDayNow": false,
+  "forceRetryNonce": "materialize-free-note-20260908-20260908T225217+0900",
   "sourceBatchPaths": [],
   "reconcileExistingBeforePublish": true,
-  "outstandingDates": [
-    "2026-09-07",
-    "2026-09-08"
-  ]
+  "outstandingDates": []
 }
