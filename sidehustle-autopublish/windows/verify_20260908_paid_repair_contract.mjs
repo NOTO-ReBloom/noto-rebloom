@@ -72,6 +72,7 @@ same(request.freeNote.ids, [], 'REQUEST_FREE_SET');
 same(request.BOOTH.ids, [], 'REQUEST_BOOTH_SET');
 same(request.outstandingDates, ['2026-09-08'], 'OUTSTANDING_DATES');
 assert(request.totalTarget === 5 && request.reconcileExistingExactTitleBeforeCreate === true, 'REQUEST_CONTRACT');
+assert(paidQueue.forceAllCurrentDayNow === true && paidQueue.reconcileExistingBeforePublish === true, 'PAID_QUEUE_FORCE_AND_RECONCILE');
 assert(gate.completionCounts?.remaining === 5 && gate.completionCounts?.paidNoteRemaining === 5 && gate.completionCounts?.freeNoteRemaining === 0 && gate.completionCounts?.BOOTHRemaining === 0, 'COMPLETION_GATE');
 assert(quota.activePublicationContract?.totalRemaining === 5 && quota.activePublicationContract?.noteMinimumBodyChars === MIN && quota.activePublicationContract?.paidFreeBodyMinimumChars === MIN, 'QUOTA_CONTRACT');
 assert(builder.includes('paidBody=') && builder.includes('freeBody=') && builder.includes('NOTE_MIN_BODY_CHARS = 5001'), 'PERMANENT_DUAL_LONGFORM_GATE');
@@ -79,8 +80,8 @@ assert(builder.includes('paidBody=') && builder.includes('freeBody=') && builder
 const paidMap = mapById(paidQueue);
 for (const id of ACTIVE_PAID) {
   const entry = paidMap.get(id);
-  assert(entry?.enabled === true && entry.forceRetry === true && entry.forcePublicationNow === true && entry.expectedPriceJPY === 980, `PAID_IDENTITY_${id}`);
-  assert(entry.requireReaderVisibleVerification === true && entry.invalidateLocalSuccessWithoutReaderVerification === true && entry.prePublishReconcileRequired === true, `PAID_STRICT_GUARD_${id}`);
+  assert(entry?.enabled === true && entry.forceRetry === true && entry.expectedPriceJPY === 980, `PAID_IDENTITY_${id}`);
+  assert(entry.requireReaderVisibleVerification === true && entry.invalidateLocalSuccessWithoutReaderVerification === true, `PAID_STRICT_GUARD_${id}`);
   assert(digest(await text(entry.path)) === entry.sha256, `PAID_SHA256_${id}`);
 }
 
