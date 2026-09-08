@@ -1,7 +1,7 @@
 {
-  "version": 5,
-  "updatedAt": "2026-09-08T21:43:03+09:00",
-  "retryGeneration": 73,
+  "version": 7,
+  "updatedAt": "2026-09-08T23:09:04+09:00",
+  "retryGeneration": 78,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
@@ -22,8 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-09-08T21:43:03+09:00",
-    "nonce": "paid-note-20260908-20260908T214303+0900"
+    "forcedAt": "2026-09-08T23:09:04+09:00",
+    "nonce": "paid-note-20260908-20260908T230904+0900"
   },
   "entries": [
     {
@@ -37,7 +37,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nf625206fc610",
       "verificationState": "reader_visible_verified",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260819_02",
@@ -50,7 +51,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n0c48dab1b56e",
       "verificationState": "reader_visible_verified",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260819_03",
@@ -63,7 +65,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/ne7c86017bfd3",
       "verificationState": "reader_visible_verified",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260819_04",
@@ -76,7 +79,8 @@
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/na1f8adc2bfa8",
       "verificationState": "reader_visible_verified",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260820_05",
@@ -117,7 +121,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated local cover if absent, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n35217754d383",
       "verificationState": "reader_visible_verified",
@@ -144,7 +148,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated local cover if absent, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n6219f5ba167f",
       "verificationState": "reader_visible_verified",
@@ -171,7 +175,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated local cover if absent, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/ne36f4582b7be",
       "verificationState": "reader_visible_verified",
@@ -198,7 +202,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated local cover if absent, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nd903a5e7fbc4",
       "verificationState": "reader_visible_verified",
@@ -225,7 +229,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated local cover if absent, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n35b37f148b63",
       "verificationState": "reader_visible_verified",
@@ -252,7 +256,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated local cover if absent, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/na6b65b41a15c",
       "verificationState": "reader_visible_verified",
@@ -279,7 +283,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated 1280x670 local cover from coverCopy, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nc56fc2b91dae",
       "verificationState": "reader_visible_verified",
@@ -306,7 +310,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated 1280x670 local cover from coverCopy, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n82fef8621581",
       "verificationState": "reader_visible_verified",
@@ -333,7 +337,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated 1280x670 local cover from coverCopy, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n602d00911623",
       "verificationState": "reader_visible_verified",
@@ -360,7 +364,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated 1280x670 local cover from coverCopy, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nd4a4205bc4bd",
       "verificationState": "reader_visible_verified",
@@ -387,7 +391,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, generate dedicated 1280x670 local cover from coverCopy, publish, strict reader-visible verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n0e5e9c35c649",
       "verificationState": "reader_visible_verified",
@@ -532,7 +536,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "forcePublicationNow": false
     },
     {
@@ -558,7 +562,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "forcePublicationNow": false
     },
     {
@@ -584,7 +588,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "forcePublicationNow": false
     },
     {
@@ -610,7 +614,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "forcePublicationNow": false
     },
     {
@@ -636,7 +640,7 @@
         "dedicatedCover"
       ],
       "invalidateLocalSuccessWithoutReaderVerification": true,
-      "recoveryMode": "decrypt, publish, strict reader-visible verify; 2026-08-24 paid floor",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "forcePublicationNow": false
     },
     {
@@ -773,7 +777,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
       "verifiedAt": "2026-08-27T14:29:21+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_38_near_miss_reporting",
@@ -799,7 +804,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
       "verifiedAt": "2026-08-27T14:29:21+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_39_sponsor_post_event_report",
@@ -825,7 +831,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
       "verifiedAt": "2026-08-27T14:29:21+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_40_interview_anonymization",
@@ -851,7 +858,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
       "verifiedAt": "2026-08-27T14:29:21+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_41_digital_refund_support_policy",
@@ -877,7 +885,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent public API and logged-out reader verification confirmed exact title, expected price, paid boundary and dedicated cover image.",
       "verifiedAt": "2026-08-27T14:29:21+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_42_jobhunt_experience_ledger",
@@ -904,7 +913,8 @@
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
       "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_43_ai_review_depth_design",
@@ -931,7 +941,8 @@
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
       "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_44_realestate_inquiry_triage",
@@ -958,7 +969,8 @@
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
       "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_45_delegation_checkpoint_design",
@@ -985,7 +997,8 @@
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
       "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260827_46_thesis_advisor_decision_log",
@@ -1012,7 +1025,8 @@
       "verificationState": "reader_visible_verified",
       "verifiedAt": "2026-08-28T00:08:41+09:00",
       "verificationEvidence": "Independent public API and reader page confirmed exact title, expected price, paid boundary and dedicated cover.",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260826_32_event_cancellation_decision_log",
@@ -1143,7 +1157,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260828_43_estimate_to_order_followup_control",
@@ -1169,7 +1184,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260828_44_applicant_response_sla_control",
@@ -1195,7 +1211,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260828_45_ai_efficiency_roi_measurement",
@@ -1221,7 +1238,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260828_46_backoffice_labor_saving_priority_matrix",
@@ -1247,7 +1265,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260829_47_contract_renewal_control",
@@ -1273,7 +1292,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260829_48_complaint_root_cause_control",
@@ -1299,7 +1319,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260829_49_onboarding_skill_matrix",
@@ -1325,7 +1346,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260829_50_cashflow_weekly_forecast",
@@ -1351,7 +1373,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260829_51_document_retention_disposition",
@@ -1377,7 +1400,8 @@
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Windows V2 strict verifier confirmed exact title, expected price, paid boundary, dedicated cover and anonymous reader visibility.",
       "verifiedAt": "2026-08-29T01:15:04.210+09:00",
-      "forcePublicationNow": false
+      "forcePublicationNow": false,
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260830_52_receivables_collection_control",
@@ -1815,7 +1839,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n1a35c8d22d29",
       "verificationState": "reader_visible_verified",
@@ -1845,7 +1869,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/ne4584b4d6f3c",
       "verificationState": "reader_visible_verified",
@@ -1875,7 +1899,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nb84aa678e686",
       "verificationState": "reader_visible_verified",
@@ -1905,7 +1929,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n30bad25262de",
       "verificationState": "reader_visible_verified",
@@ -1935,7 +1959,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile existing exact-title public page first; if absent publish now; then strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n6e00309ef43d",
       "verificationState": "reader_visible_verified",
@@ -2485,7 +2509,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n60c824191ec1",
       "verificationState": "reader_visible_verified",
@@ -2513,7 +2537,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/na44700d0927d",
       "verificationState": "reader_visible_verified",
@@ -2541,7 +2565,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/nec43d9d40072",
       "verificationState": "reader_visible_verified",
@@ -2569,7 +2593,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n27d4fd09612c",
       "verificationState": "reader_visible_verified",
@@ -2597,7 +2621,7 @@
       "invalidateLocalSuccessWithoutReaderVerification": true,
       "forcePublicationNow": false,
       "prePublishReconcileRequired": true,
-      "recoveryMode": "reconcile exact-title public page first; if absent publish now; strict-verify",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish",
       "publicUrlVerified": true,
       "publicUrl": "https://note.com/royal_lion645/n/n138d81e02bd8",
       "verificationState": "reader_visible_verified",
@@ -2608,11 +2632,11 @@
       "id": "note_20260908_97_vendor_master_dormant_cleanup",
       "title": "使っていない取引先を登録しっぱなしにしない｜最終取引日・口座・担当者で休眠マスタを整理する方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_97_vendor_master_dormant_cleanup.enc.json",
-      "sha256": "51a9adc4cc91bf63318696146a01854779595f19398f6c3ec589d74c1d3c2aab",
-      "createdAt": "2026-09-08T21:43:03+09:00",
+      "sha256": "041acbeb03be06b9bf636e044129ecede18c5db89caf7c5185586ab452a46f8b",
+      "createdAt": "2026-09-08T23:09:04+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230904+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2628,11 +2652,11 @@
       "id": "note_20260908_98_corporate_card_spend_control",
       "title": "法人カードを使った後で慌てない｜利用目的・証憑・上限・承認を月末前に揃える管理方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_98_corporate_card_spend_control.enc.json",
-      "sha256": "49be51b89b506b04d942e4fad51afc305da9f62901fd57214e767df1062b130b",
-      "createdAt": "2026-09-08T21:43:03+09:00",
+      "sha256": "f4acbea8cb1460584234722465d96c0492be6cead45006f1c13d7d2bc4af740f",
+      "createdAt": "2026-09-08T23:09:04+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230904+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2648,11 +2672,11 @@
       "id": "note_20260908_99_customer_data_retention_deletion",
       "title": "顧客データを期限なく残さない｜保管理由・保持期間・削除確認を追えるデータ管理",
       "path": "sidehustle-autopublish/note/queue/note_20260908_99_customer_data_retention_deletion.enc.json",
-      "sha256": "72489cdbea7a1c0fa3d37082c0150f63123970c8a30dc9f3a44d384be04b88f3",
-      "createdAt": "2026-09-08T21:43:03+09:00",
+      "sha256": "281ad7f7d2aa1bfc18081aa519c27c432cd680d71510432f65b58612dec8434c",
+      "createdAt": "2026-09-08T23:09:04+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230904+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2668,11 +2692,11 @@
       "id": "note_20260908_100_invoice_number_gap_control",
       "title": "請求書番号の抜けを放置しない｜欠番理由・取消・再発行をあとから説明できる管理方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_100_invoice_number_gap_control.enc.json",
-      "sha256": "35b8c795c79bfaf6de592423e4926c2ce838126a8a54c0638f4117bd1fccfa09",
-      "createdAt": "2026-09-08T21:43:03+09:00",
+      "sha256": "6c6873152e1d0c32a2cdfbc5a347045475ae9136c0a3f5fe1589e6535f7070c9",
+      "createdAt": "2026-09-08T23:09:04+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230904+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2688,11 +2712,11 @@
       "id": "note_20260908_101_software_license_seat_optimization",
       "title": "使っていないSaaS席に払い続けない｜最終利用・契約単価・回収候補でライセンス費を見直す方法",
       "path": "sidehustle-autopublish/note/queue/note_20260908_101_software_license_seat_optimization.enc.json",
-      "sha256": "bc16ee4b45460659b5f60d1d2bb98604864bedbd12acca900c059265a8179258",
-      "createdAt": "2026-09-08T21:43:03+09:00",
+      "sha256": "cc6574baac04ee954427289a9f3348b6bc9c4c08b015d9230c53e7701828da50",
+      "createdAt": "2026-09-08T23:09:04+09:00",
       "enabled": true,
       "forceRetry": true,
-      "forceRetryNonce": "paid-note-20260908-20260908T214303+0900",
+      "forceRetryNonce": "paid-note-20260908-20260908T230904+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
@@ -2707,9 +2731,8 @@
   ],
   "activePublicationDate": "2026-09-08",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "materialize-paid-note-20260908-20260908T214303+0900",
+  "forceRetryNonce": "materialize-paid-note-20260908-20260908T230904+0900",
   "outstandingDates": [
-    "2026-09-07",
     "2026-09-08"
   ],
   "reconcileExistingBeforePublish": true

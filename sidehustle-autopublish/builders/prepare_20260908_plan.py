@@ -18,6 +18,44 @@ def section(title, situation, action, record, pitfall, review):
     }
 
 
+def render_paid_free_body(content):
+    """Create a genuinely useful 5,001+ character public section for a paid NOTE."""
+    rendered = [
+        content["free"],
+        *content["intro"],
+        "## この無料部分の使い方",
+        "この無料部分は、課題が自社にあるかを判断し、改善を始める前の棚卸しを終えるための実務ガイドです。いきなり新しい台帳やツールを導入するのではなく、現状の事実、担当者、期限、根拠、例外をそろえます。ここまでを無料部分で実行すれば、有料部分の詳細設計を採用するかどうかも具体的に判断できます。",
+        "読みながら、現在使っているメール、表計算、申請フォーム、会計・人事・顧客管理システムを一つだけ対象にしてください。全社を一度に変えようとすると、例外が多すぎて基準を決められません。まず直近十件ほどを並べ、同じ判断を別の担当者が再現できるかを確認します。",
+    ]
+    for number, item in enumerate(content["sections"], 1):
+        rendered.extend([
+            f"## 無料チェック{number}：{item['title']}",
+            item["situation"] + "。この状態が一件でもあれば、担当者の注意力だけでなく、入力項目や承認経路そのものを確認する必要があります。件数が少なくても、重要案件で起きた場合の影響を先に考えます。",
+            "最初に行うことは、" + item["action"] + "。作業した事実だけで終わらせず、誰が見ても同じ対象と条件を確認できるよう、対象範囲と基準日を明示します。不明点があれば推測で埋めず、未確認として責任者と確認期限を置きます。",
+            "最低限の記録として、" + item["record"] + "。文章を一つの欄へ詰め込まず、日付、担当、状態、期限、根拠を分けてください。元資料に個人情報や機密情報が含まれる場合は複製せず、権限管理された保管先の参照だけを残します。",
+            "よくある失敗は、" + item["pitfall"] + "。正常な案件だけで手順を作ると、期限超過、担当不在、申請後の変更が起きた時に運用が止まります。例外理由、暫定対応、承認者、解消予定日を別に記録し、放置と承認済み例外を区別します。",
+            "短いレビューでは、" + item["review"] + "。完了件数だけを数えず、止まっている理由、次に動く人、期限を越えた場合の影響まで確認します。同じ理由が続く場合は催促を増やすのではなく、必須項目、通知時点、権限、完了条件のどこを直すか決めます。",
+        ])
+    rendered.extend([
+        "## 棚卸しを始める前の共通ルール",
+        "対象期間を決めます。直近一か月、直近十件、更新期限が六十日以内など、調査が終わる範囲に絞ります。母数を残さず問題案件だけを集めると、改善前後の比較ができません。対象件数、除外件数、除外理由を同時に記録し、後から対象を都合よく変えないようにします。",
+        "状態名を統一します。未確認、確認中、対応待ち、承認待ち、例外、完了、取消など、次の行動が分かる名前にします。『保留』『対応中』だけでは期限も担当も分からないため、状態を付ける時には次に動く担当者と期限を必須にします。完了は作業実施ではなく、結果の検証と証拠保存まで終わった状態と定義します。",
+        "役割を分けます。事実を登録する人、内容を確認する人、例外を承認する人、運用全体を点検する人を区別します。小規模組織で同じ人が兼務する場合も、どの立場で判断したかは履歴上分けます。自分で登録した案件を自分で承認した場合は、後日別の担当者が抽出確認します。",
+        "証拠の置き方を決めます。メール本文やファイルを台帳へ大量に複製するのではなく、管理番号、保管場所、確認日、確認者を残します。リンク切れや閲覧権限不足も定期的に確認します。証拠を残す目的は量を増やすことではなく、第三者が事実から結論までたどれる状態を作ることです。",
+        "例外には期限を付けます。緊急対応や担当不在で通常手順を省略した場合も、理由、承認者、暫定措置、残るリスク、再確認日を記録します。例外期限を越えた案件は通常一覧へ埋もれさせず、責任者へ通知します。同じ例外が続くなら個別案件ではなく、規程やシステム設定の改善課題として扱います。",
+        "## 7日で試す導入手順",
+        "一日目は対象と母数を決め、二日目は直近案件を十件登録します。三日目は空欄が多い項目と担当者ごとに解釈が違う状態名を洗い出します。四日目は期限超過と例外だけをレビューし、五日目は必須項目と完了条件を修正します。六日目に別担当者が二件を追跡し、七日目に残す運用と削る項目を決めます。",
+        "試行中は新しい項目を増やしすぎないでください。判断に使わなかった項目は削り、足りなかった事実だけを追加します。入力時間、確認待ち日数、差戻し数、証拠不足数を記録すれば、運用の負担と効果を比較できます。見栄えのよい台帳を完成させるより、止まった案件が次へ動くことを優先します。",
+        "## 有料部分へ進む判断基準",
+        "無料部分のチェックで問題が一件もなく、担当、期限、証拠、例外がすでに一続きで管理できているなら、新しい仕組みを急いで導入する必要はありません。一方、対象漏れ、期限超過、担当不明、証拠不足、未承認例外のいずれかが見つかった場合は、有料部分の詳細設計を使って項目、役割、レビュー、エスカレーションを組み立てる価値があります。",
+        "有料部分では、ここで見つけた問題を実際の運用へ落とすため、各段階の管理項目、例外処理、役割分担、レビュー指標、三十日導入手順まで詳しく扱います。無料部分で作った十件の棚卸し結果を手元に置いて読み進めると、一般論ではなく自社の改善案として適用できます。",
+    ])
+    value = "\n\n".join(rendered).strip()
+    if len(value) < 5001:
+        raise ValueError(f"paid freeBody unexpectedly short: {len(value)}")
+    return value
+
+
 PAID = {
     "note_20260908_97_vendor_master_dormant_cleanup": {
         "tags": ["取引先管理", "マスタ管理", "内部統制", "経理", "業務改善"],
@@ -176,7 +214,7 @@ for identifier, content in PAID.items():
         "title": spec["title"],
         "price": spec["price"],
         "tags": content["tags"],
-        "free": content["free"],
+        "free": render_paid_free_body(content),
         "longform": {"intro": content["intro"], "sections": content["sections"], "closing": content["closing"]},
     })
 
@@ -215,18 +253,25 @@ paid_queue = load("sidehustle-autopublish/note/queue/index.json")
 free_queue = load("sidehustle-autopublish/note/free_queue/index.json")
 booth_queue = load("booth-autopublish/queue/index.json")
 preserve = {
-    "paid": [item["id"] for item in paid_queue["entries"] if item.get("enabled")],
-    "free": [item["id"] for item in free_queue["entries"] if item.get("enabled")],
-    "booth": [item["id"] for item in booth_queue["entries"] if item.get("enabled")],
+    "paid": [item["id"] for item in paid_queue["entries"] if item.get("enabled") and "20260907" in item["id"]],
+    "free": [item["id"] for item in free_queue["entries"] if item.get("enabled") and "20260907" in item["id"]],
+    "booth": [item["id"] for item in booth_queue["entries"] if item.get("enabled") and "20260907" in item["id"]],
 }
-assert preserve == {
+expected_initial_carryover = {
     "paid": [],
     "free": ["free_note_20260907_01_offboarding_access_warning_signals", "free_note_20260907_02_duplicate_expense_warning_signals"],
     "booth": ["099_employee_offboarding_access_os_20260907", "100_duplicate_expense_claim_os_20260907", "101_saas_admin_privilege_review_os_20260907", "102_contract_renewal_notice_os_20260907", "103_customer_refund_exception_os_20260907"],
 }
+assert preserve in (expected_initial_carryover, {"paid": [], "free": [], "booth": []})
 
-existing_titles = {item["title"] for queue in (paid_queue, free_queue, booth_queue) for item in queue["entries"]}
 new_titles = [item["title"] for item in paid + free + booth]
+replacement_ids = {item["id"] for item in paid + free + booth}
+existing_titles = {
+    item["title"]
+    for queue in (paid_queue, free_queue, booth_queue)
+    for item in queue["entries"]
+    if item["id"] not in replacement_ids
+}
 assert len(new_titles) == len(set(new_titles))
 assert not (existing_titles & set(new_titles))
 
@@ -236,7 +281,7 @@ plan = {
     "previousDate": "2026-09-07",
     "noteLengthPolicy": {"minimumBodyChars": 5001, "scope": "all paid and free NOTE manuscripts"},
     "preserveEnabledIds": preserve,
-    "outstandingDates": ["2026-09-07", "2026-09-08"],
+    "outstandingDates": (["2026-09-07"] if any(preserve.values()) else []) + ["2026-09-08"],
     "paid": paid,
     "free": free,
     "booth": booth,

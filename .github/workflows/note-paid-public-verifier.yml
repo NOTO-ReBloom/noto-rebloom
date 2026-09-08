@@ -99,12 +99,17 @@ jobs:
               return sum(1 for i in ids if m.get(i,{}).get('publicUrlVerified') is True)
           pids=list(cc.get('notePaid',{}).get('requiredIds',[])); fids=list(cc.get('noteFree',{}).get('requiredIds',[])); bids=list(cc.get('BOOTH',{}).get('requiredIds',[]))
           pd=done(q,pids); fd=done(freeq,fids); bd=done(boothq,bids); total=pd+fd+bd; required=len(pids)+len(fids)+len(bids)
-          gate['updatedAt']=stamp; gate['completionCounts']={'strictVerifiedInThisRequest':total,'required':required,'remaining':required-total,'paidNoteRemaining':len(pids)-pd,'freeNoteRemaining':len(fids)-fd,'BOOTHRemaining':len(bids)-bd}
-          gate['status']='complete_strict_verified' if total==required else f'in_progress_{total}_of_{required}'
-          save('sidehustle-autopublish/completion_gate.json',gate)
-          quota=load('sidehustle-autopublish/publication_quota.json'); st=quota['channels']['note']['operationalState']
-          st['todayStrictVerifiedPublicationsCount']=pd; st['todayRemainingToTarget']=max(0,len(pids)-pd); st['strictPublicationState']=f"{gate.get('date')} {pd}/{len(pids)} strict verified"; st['lastStrictVerificationAt']=stamp
-          quota['updatedAt']=stamp; quota['version']=int(quota.get('version',0))+1; save('sidehustle-autopublish/publication_quota.json',quota)
+          next_counts={'strictVerifiedInThisRequest':total,'required':required,'remaining':required-total,'paidNoteRemaining':len(pids)-pd,'freeNoteRemaining':len(fids)-fd,'BOOTHRemaining':len(bids)-bd}
+          next_status='complete_strict_verified' if total==required else f'in_progress_{total}_of_{required}'
+          state_changed=bool(newly) or gate.get('completionCounts')!=next_counts or gate.get('status')!=next_status
+          if state_changed:
+              gate['updatedAt']=stamp; gate['completionCounts']=next_counts; gate['status']=next_status
+              save('sidehustle-autopublish/completion_gate.json',gate)
+              quota=load('sidehustle-autopublish/publication_quota.json'); st=quota['channels']['note']['operationalState']
+              st['todayStrictVerifiedPublicationsCount']=pd; st['todayRemainingToTarget']=max(0,len(pids)-pd); st['strictPublicationState']=f"{gate.get('date')} {pd}/{len(pids)} strict verified"; st['lastStrictVerificationAt']=stamp
+              quota['updatedAt']=stamp; quota['version']=int(quota.get('version',0))+1; save('sidehustle-autopublish/publication_quota.json',quota)
+          else:
+              print('NO_RECONCILIATION_STATE_CHANGE')
           print('CURRENT_PAID_VERIFIED',pd,'OF',len(pids),'NEW',newly)
       - name: Commit verifier reconciliation
         run: |
