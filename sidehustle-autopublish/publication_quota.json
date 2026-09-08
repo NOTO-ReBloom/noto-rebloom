@@ -1,7 +1,7 @@
 {
-  "version": 102,
+  "version": 103,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-08T23:15:53+09:00",
+  "updatedAt": "2026-09-08T23:46:50+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -13,9 +13,9 @@
         "previousDate": "2026-09-07",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 0,
+        "todayStrictVerifiedPublicationsCount": 5,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 5,
+        "todayRemainingToTarget": 0,
         "planningManifest": "sidehustle-autopublish/planning/2026-09-07_batch01.json",
         "preparedIds": [
           "note_20260908_97_vendor_master_dormant_cleanup",
@@ -25,12 +25,12 @@
           "note_20260908_101_software_license_seat_optimization"
         ],
         "queueMaterializationState": "complete",
-        "strictPublicationState": "2026-09-08 0/5 strict verified",
+        "strictPublicationState": "2026-09-08 5/5 strict verified",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
         "paidProductionInventoryComplete": true,
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260908_batch01.json",
         "fallbackPolicy": "Process only enabled 2026-09-08 paid NOTE IDs; do not republish previous-day verified items.",
-        "lastStrictVerificationAt": "2026-09-08T23:02:08+09:00"
+        "lastStrictVerificationAt": "2026-09-08T23:46:50+09:00"
       },
       "freeAcquisitionExperiment": {
         "enabled": true,

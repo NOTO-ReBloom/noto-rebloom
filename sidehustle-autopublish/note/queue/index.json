@@ -1,6 +1,6 @@
 {
   "version": 7,
-  "updatedAt": "2026-09-08T23:15:53+09:00",
+  "updatedAt": "2026-09-08T23:46:50+09:00",
   "retryGeneration": 80,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
@@ -2634,8 +2634,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260908_97_vendor_master_dormant_cleanup.enc.json",
       "sha256": "680c87903ba5d721ebeb8fcbf067288cecb5b41a8db1c0386771215597cb570a",
       "createdAt": "2026-09-08T23:15:53+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260908-20260908T231553+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -2646,7 +2646,13 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n7766cab5a433",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-09-08T14:46:47.323621+00:00"
     },
     {
       "id": "note_20260908_98_corporate_card_spend_control",
@@ -2654,8 +2660,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260908_98_corporate_card_spend_control.enc.json",
       "sha256": "e2f4ad306b6b579c7657d17fbd26eae844a217a208c92dca99bbf99a56fd9987",
       "createdAt": "2026-09-08T23:15:53+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260908-20260908T231553+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -2666,7 +2672,13 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nd094ccf9773f",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-09-08T14:46:48.121630+00:00"
     },
     {
       "id": "note_20260908_99_customer_data_retention_deletion",
@@ -2674,8 +2686,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260908_99_customer_data_retention_deletion.enc.json",
       "sha256": "9048e5805b77bb3f4db399b14cfa1e23b049e0ef4794aa28973e7960d585e047",
       "createdAt": "2026-09-08T23:15:53+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260908-20260908T231553+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -2686,7 +2698,13 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/nd08003aa22ae",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-09-08T14:46:49.040923+00:00"
     },
     {
       "id": "note_20260908_100_invoice_number_gap_control",
@@ -2694,8 +2712,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260908_100_invoice_number_gap_control.enc.json",
       "sha256": "8d8b79e5d68ec2e32fcd42557b4c6bc52c1838fd35e9ace9041663bcf2bc3385",
       "createdAt": "2026-09-08T23:15:53+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260908-20260908T231553+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -2706,7 +2724,13 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n00f1229e0469",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-09-08T14:46:49.801098+00:00"
     },
     {
       "id": "note_20260908_101_software_license_seat_optimization",
@@ -2714,8 +2738,8 @@
       "path": "sidehustle-autopublish/note/queue/note_20260908_101_software_license_seat_optimization.enc.json",
       "sha256": "13d84f021c8fb35c4f564279415390d054bc82cac6db96bd53a7703d425111df",
       "createdAt": "2026-09-08T23:15:53+09:00",
-      "enabled": true,
-      "forceRetry": true,
+      "enabled": false,
+      "forceRetry": false,
       "forceRetryNonce": "paid-note-20260908-20260908T231553+0900",
       "expectedPriceJPY": 980,
       "requireReaderVisibleVerification": true,
@@ -2726,7 +2750,13 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "forcePublicationNow": false,
+      "publicUrlVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n998de2009b02",
+      "verificationState": "reader_visible_verified",
+      "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
+      "verifiedAt": "2026-09-08T14:46:50.624713+00:00"
     }
   ],
   "activePublicationDate": "2026-09-08",
