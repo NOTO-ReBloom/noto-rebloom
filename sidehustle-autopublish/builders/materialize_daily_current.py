@@ -43,9 +43,12 @@ def expand_and_validate_plan(source):
     for item in plan.get("paid", []):
         if "longform" in item:
             item["paid"] = render_longform(item.pop("longform"))
-        length = len(item.get("paid", ""))
-        if length < NOTE_MIN_BODY_CHARS:
-            failures.append(f"{item.get('id')}:paidBody={length}")
+        paid_length = len(item.get("paid", ""))
+        free_length = len(item.get("free", ""))
+        if paid_length < NOTE_MIN_BODY_CHARS:
+            failures.append(f"{item.get('id')}:paidBody={paid_length}")
+        if free_length < NOTE_MIN_BODY_CHARS:
+            failures.append(f"{item.get('id')}:freeBody={free_length}")
     for item in plan.get("free", []):
         if "longform" in item:
             item["body"] = render_longform(item.pop("longform"))
@@ -66,6 +69,24 @@ plan_date = plan.get("date")
 if not plan_date:
     raise ValueError("daily_plan_current.json must contain date")
 expanded_plan = expand_and_validate_plan(plan)
+
+# A GitHub Actions materialization may run after Windows has already strict-verified
+# part of the same daily plan. Preserve those canonical URLs so rebuilding encrypted
+# payloads can never reactivate a completed NOTE or BOOTH item.
+repo_root_before_build = base.parents[1]
+queue_paths = {
+    "paid-note": repo_root_before_build / "sidehustle-autopublish" / "note" / "queue" / "index.json",
+    "free-note": repo_root_before_build / "sidehustle-autopublish" / "note" / "free_queue" / "index.json",
+    "booth": repo_root_before_build / "booth-autopublish" / "queue" / "index.json",
+}
+verified_before_materialization = {}
+for channel, path in queue_paths.items():
+    current = json.loads(path.read_text("utf-8-sig")) if path.exists() else {"entries": []}
+    verified_before_materialization[channel] = {
+        entry["id"]: deepcopy(entry)
+        for entry in current.get("entries", [])
+        if entry.get("publicUrlVerified") is True and entry.get("publicUrl")
+    }
 
 # Legacy builder parts are retained only as the implementation body. Runtime date and
 # plan selection come from daily_plan_current.json; never pin a historical daily plan.
@@ -88,17 +109,40 @@ exec(code, globals(), globals())
 
 def write_current_queue_contract(path, channel):
     data = json.loads(path.read_text("utf-8-sig"))
+    preserved = verified_before_materialization[channel]
+    for entry in data.get("entries", []):
+        previous = preserved.get(entry.get("id"))
+        if not previous:
+            continue
+        for field in ("publicUrl", "publicUrlVerified", "verificationState", "verificationEvidence", "verifiedAt"):
+            if field in previous:
+                entry[field] = previous[field]
+        entry["enabled"] = False
+        entry["forceRetry"] = False
+        entry["forcePublicationNow"] = False
+        entry["recoveryMode"] = "completed; preserve canonical public URL and do not republish"
+    active_entries = [entry for entry in data.get("entries", []) if entry.get("enabled")]
+    active_dates = sorted({
+        f"{match.group(0)[:4]}-{match.group(0)[4:6]}-{match.group(0)[6:]}"
+        for entry in active_entries
+        if (match := re.search(r"20\d{6}", entry.get("id", "")))
+    })
     data["activePublicationDate"] = PLAN["date"]
-    data["forceAllCurrentDayNow"] = True
+    data["forceAllCurrentDayNow"] = bool(active_entries)
     data["forceRetryNonce"] = f"materialize-{channel}-{PLAN['dateId']}-{nonce}"
     data["reconcileExistingBeforePublish"] = True
-    data["outstandingDates"] = PLAN.get("outstandingDates", [PLAN["date"]])
+    data["outstandingDates"] = active_dates
     if channel == "free":
         data["sourceBatchPaths"] = sorted({
             entry.get("sourceBatchPath")
             for entry in data.get("entries", [])
             if entry.get("enabled") and entry.get("sourceBatchPath")
         })
+        data["activePriorityBatch"] = {
+            "date": PLAN["date"],
+            "ids": [entry["id"] for entry in active_entries],
+            "requiredStrictPublications": len(active_entries),
+        }
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), "utf-8")
 
 
@@ -109,9 +153,9 @@ write_current_queue_contract(ROOT / "booth-autopublish" / "queue" / "index.json"
 length_report = {
     "version": 1,
     "date": PLAN["date"],
-    "policy": "Every paidBody and free NOTE body must contain at least 5,001 characters before queue materialization.",
+    "policy": "Every paidBody, paid freeBody, and standalone free NOTE body must contain at least 5,001 characters before queue materialization.",
     "minimumBodyChars": NOTE_MIN_BODY_CHARS,
-    "paid": [{"id": item["id"], "bodyChars": len(item["paid"]), "passed": len(item["paid"]) >= NOTE_MIN_BODY_CHARS} for item in PLAN["paid"]],
+    "paid": [{"id": item["id"], "bodyChars": len(item["paid"]), "freeBodyChars": len(item["free"]), "passed": len(item["paid"]) >= NOTE_MIN_BODY_CHARS and len(item["free"]) >= NOTE_MIN_BODY_CHARS} for item in PLAN["paid"]],
     "free": [{"id": item["id"], "bodyChars": len(item["body"]), "passed": len(item["body"]) >= NOTE_MIN_BODY_CHARS} for item in PLAN["free"]],
 }
 report_path = ROOT / "sidehustle-autopublish" / "note" / "staging" / f"longform_policy_{PLAN['dateId']}.json"
@@ -196,7 +240,7 @@ def aggregate_active_publication_contracts():
             "strictVerifiedInThisRequest": {"paidNote": 0, "freeNote": 0, "BOOTH": 0, "total": 0},
         },
         "completionConditions": {
-            "notePaid": {"requiredIds": active["paidNote"], "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover", "bodyCharsAtLeast5001"]},
+            "notePaid": {"requiredIds": active["paidNote"], "strictChecks": ["readerVisibleUrl", "exactTitle", "expectedPrice", "paidBoundary", "dedicatedCover", "paidBodyCharsAtLeast5001", "freeBodyCharsAtLeast5001"]},
             "noteFree": {"requiredIds": active["freeNote"], "strictChecks": ["readerVisibleUrl", "exactTitle", "freeState", "dedicatedCover", "bodyCharsAtLeast5001"], "paidQuotaContribution": 0},
             "BOOTH": {"requiredIds": active["BOOTH"], "strictChecks": ["buyerVisibleUrl", "exactTitle", "expectedPrice", "downloadableProductState", "purchaseOrCartPath"]},
         },
@@ -229,6 +273,7 @@ def aggregate_active_publication_contracts():
         "strictVerifiedInThisRequest": 0,
         "state": "materialized_waiting_for_authenticated_windows_publisher",
         "noteMinimumBodyChars": NOTE_MIN_BODY_CHARS,
+        "paidFreeBodyMinimumChars": NOTE_MIN_BODY_CHARS,
     }})
     quota["currentDay"] = {
         "date": PLAN["date"],
@@ -278,3 +323,31 @@ def aggregate_active_publication_contracts():
 
 
 aggregate_active_publication_contracts()
+
+
+def normalize_post_build_queue_metadata():
+    """Make summary fields describe the final preserved entry states, not the plan inputs."""
+    for channel, path in queue_paths.items():
+        data = json.loads(path.read_text("utf-8-sig"))
+        active_entries = [entry for entry in data.get("entries", []) if entry.get("enabled")]
+        data["forceAllCurrentDayNow"] = bool(active_entries)
+        data["outstandingDates"] = sorted({
+            f"{match.group(0)[:4]}-{match.group(0)[4:6]}-{match.group(0)[6:]}"
+            for entry in active_entries
+            if (match := re.search(r"20\d{6}", entry.get("id", "")))
+        })
+        if channel == "free-note":
+            data["sourceBatchPaths"] = sorted({
+                entry.get("sourceBatchPath")
+                for entry in active_entries
+                if entry.get("sourceBatchPath")
+            })
+            data["activePriorityBatch"] = {
+                "date": PLAN["date"],
+                "ids": [entry["id"] for entry in active_entries],
+                "requiredStrictPublications": len(active_entries),
+            }
+        path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", "utf-8")
+
+
+normalize_post_build_queue_metadata()
