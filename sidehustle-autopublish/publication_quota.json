@@ -1,7 +1,7 @@
 {
-  "version": 90,
+  "version": 91,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-08T21:19:26+09:00",
+  "updatedAt": "2026-09-08T21:20:00+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -29,8 +29,8 @@
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
         "paidProductionInventoryComplete": true,
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260907_batch01.json",
-        "fallbackPolicy": "Process only enabled 2026-09-07 paid NOTE IDs; do not republish previous-day verified items.",
-        "lastStrictVerificationAt": "2026-09-08T21:19:26+09:00"
+        "fallbackPolicy": "Do not republish verified 2026-09-07 paid NOTE IDs.",
+        "lastStrictVerificationAt": "2026-09-08T06:14:33.475715+00:00"
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
@@ -41,7 +41,7 @@
           "free_note_20260907_02_duplicate_expense_warning_signals"
         ],
         "currentRequiredBatchStrictVerifiedCount": 0,
-        "currentMaterializationState": "pending",
+        "currentMaterializationState": "complete_waiting_for_strict_publication",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
         "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-07_batch01.md",
@@ -74,7 +74,7 @@
         "paidProductionInventoryComplete": true,
         "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260907_batch01.json",
         "queueRetryGeneration": 69,
-        "fallbackPolicy": "Process only enabled 2026-09-07 BOOTH IDs; do not republish previous-day verified items."
+        "fallbackPolicy": "Process only enabled unverified 2026-09-07 BOOTH IDs; reconcile exact-title pages before create."
       }
     }
   },
@@ -101,15 +101,10 @@
       ],
       "total": 12
     },
-    "carryOverRemaining": {
-      "paidNote": [],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 0
-    },
-    "totalOutstanding": 12,
-    "priority": "Publish exact-title-reconciled carryover first, then current-day targets; count only strict public verification.",
-    "completionState": "pending_0_of_12"
+    "carryOverRemaining": {"paidNote": [], "freeNote": [], "BOOTH": [], "total": 0},
+    "totalOutstanding": 7,
+    "priority": "Complete remaining Sep 7 free NOTE and BOOTH debt before advancing the canonical current day.",
+    "completionState": "strict_verified_5_of_12"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",
@@ -123,13 +118,7 @@
     "throughDate": "2026-09-07",
     "outstandingByDate": {
       "2026-09-07": {
-        "paidNote": [
-          "note_20260907_92_employee_offboarding_access_control",
-          "note_20260907_93_duplicate_expense_claim_control",
-          "note_20260907_94_saas_admin_privilege_review_control",
-          "note_20260907_95_contract_renewal_notice_control",
-          "note_20260907_96_customer_refund_exception_control"
-        ],
+        "paidNote": [],
         "freeNote": [
           "free_note_20260907_01_offboarding_access_warning_signals",
           "free_note_20260907_02_duplicate_expense_warning_signals"
@@ -141,15 +130,15 @@
           "102_contract_renewal_notice_os_20260907",
           "103_customer_refund_exception_os_20260907"
         ],
-        "total": 12
+        "total": 7
       }
     },
-    "paidNoteRemaining": 5,
+    "paidNoteRemaining": 0,
     "freeNoteRemaining": 2,
     "BOOTHRemaining": 5,
-    "totalRemaining": 12,
-    "strictVerifiedInThisRequest": 0,
-    "state": "materialized_waiting_for_authenticated_windows_publisher",
+    "totalRemaining": 7,
+    "strictVerifiedInThisRequest": 5,
+    "state": "materialized_waiting_for_remaining_publication",
     "noteMinimumBodyChars": 5001
   }
 }
