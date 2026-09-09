@@ -1,6 +1,6 @@
 {
-  "version": 10,
-  "updatedAt": "2026-09-09T18:12:09+09:00",
+  "version": 11,
+  "updatedAt": "2026-09-10T05:12:51+09:00",
   "forecastPolicy": "Do not invent revenue, CVR or uplift without observed first-party data. Rank opportunities by expected profit x continuity x automation rate x success probability / user work time.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
@@ -20,60 +20,24 @@
     "GitHubPages_outboundConversion": null
   },
   "verifiedAvailabilitySignals": {
-    "activePublicationDate": "2026-09-09",
-    "currentCalendarDate": "2026-09-09",
-    "strictVerifiedInActiveRequest": 5,
+    "activePublicationDate": "2026-09-10",
+    "currentCalendarDate": "2026-09-10",
+    "carryoverSourceDate": "2026-09-09",
+    "strictVerifiedInCarryoverRequest": 5,
     "publicationDebt": 7,
     "paidNoteDebt": 0,
     "freeNoteDebt": 2,
     "BOOTHDebt": 5,
+    "todayPlannedNotActivated": 12,
     "humanOnlyBlocker": null
   },
   "rankedOpportunities": [
-    {
-      "rank": 1,
-      "id": "clear_remaining_sep9_publication_debt",
-      "band": "highest",
-      "basis": "All remaining Sep 9 free NOTE and BOOTH assets are materialized. Converting those seven assets to strict verified public inventory has higher near-term expected value and lower user work than starting a new channel."
-    },
-    {
-      "rank": 2,
-      "id": "publisher_state_consistency",
-      "band": "highest-continuity",
-      "basis": "Keeping the canonical Windows request limited to strict-unverified IDs prevents duplicate paid NOTE attempts and improves future zero-touch success probability."
-    },
-    {
-      "rank": 3,
-      "id": "matched_age_first_party_measurement",
-      "band": "highest-information-value",
-      "basis": "No trustworthy funnel values exist; measurement is required before price, cadence or winner amplification can be optimized safely."
-    },
-    {
-      "rank": 4,
-      "id": "ms_csv_cleaner_deduper",
-      "band": "high-option-value",
-      "basis": "Public PWA and Store assets exist, while verified Partner Center identity/submission evidence remains absent; preserve optionality without claiming completion."
-    },
-    {
-      "rank": 5,
-      "id": "github_pages_attributable_acquisition",
-      "band": "measurement-enabling",
-      "basis": "Existing utility tools can become low-cost acquisition surfaces once attributable outbound measurement is available."
-    }
+    {"rank":1,"id":"clear_sep9_publication_debt","band":"highest","basis":"Seven Sep 9 assets are already materialized; converting them to strict verified public inventory has higher immediate expected value and lower user work than activating new inventory."},
+    {"rank":2,"id":"materialize_sep10_after_carryover_safe_check","band":"high","basis":"Sep 10 candidate selection is complete with zero expected user work; activation remains gated behind carryover-safe QA to avoid compounding publisher debt."},
+    {"rank":3,"id":"matched_age_first_party_measurement","band":"highest-information-value","basis":"No trustworthy funnel values exist; measurement is required before price, cadence or winner amplification can be optimized safely."},
+    {"rank":4,"id":"ms_csv_cleaner_deduper","band":"high-option-value","basis":"Public PWA and Store assets exist, while verified Partner Center identity/submission evidence remains absent; preserve optionality without claiming completion."},
+    {"rank":5,"id":"github_pages_attributable_acquisition","band":"measurement-enabling","basis":"Existing utility tools can become low-cost acquisition surfaces once attributable outbound measurement is available."}
   ],
-  "customerFacingChangesNow": {
-    "livePriceChanges": "none",
-    "massCtaRewrite": "none",
-    "freeCadenceIncrease": "none",
-    "winnerDerivedVariants": "none",
-    "reason": "No first-party purchase/conversion evidence and seven strict publication targets remain."
-  },
-  "nextDataNeeded": [
-    "strict Sep 9 free NOTE public URLs and checks",
-    "strict Sep 9 BOOTH public URLs and commerce checks",
-    "note matched-age PV/likes/purchases/revenue",
-    "BOOTH sales/revenue",
-    "Microsoft Store page views/acquisitions/installs/conversion",
-    "GitHub Pages outbound clicks/conversion"
-  ]
+  "customerFacingChangesNow": {"livePriceChanges":"none","massCtaRewrite":"none","freeCadenceIncrease":"none","winnerDerivedVariants":"none","reason":"No first-party purchase/conversion evidence and seven strict carryover targets remain."},
+  "nextDataNeeded": ["strict Sep 9 free NOTE public URLs and checks","strict Sep 9 BOOTH public URLs and commerce checks","note matched-age PV/likes/purchases/revenue","BOOTH sales/revenue","Microsoft Store page views/acquisitions/installs/conversion","GitHub Pages outbound clicks/conversion"]
 }
