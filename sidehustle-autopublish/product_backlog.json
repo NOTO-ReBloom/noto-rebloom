@@ -1,16 +1,61 @@
 {
-  "version": 32,
-  "updatedAt": "2026-09-09T12:17:50+09:00",
+  "version": 33,
+  "updatedAt": "2026-09-09T18:12:09+09:00",
   "purpose": "Zero-touch profit backlog ranked by expected profit x continuity x automation x success probability / user work time.",
   "evidenceLimit": "No observed first-party sales/PV/click/purchase/Store acquisition values are available in the repository; do not infer winners.",
-  "activeDebt": {"publicationDate":"2026-09-09","paidNote":0,"freeNote":0,"BOOTH":0,"total":0,"strictVerified":0,"state":"planning_before_materialization"},
+  "activeDebt": {
+    "publicationDate": "2026-09-09",
+    "paidNote": 0,
+    "freeNote": 2,
+    "BOOTH": 5,
+    "total": 7,
+    "strictVerified": 5,
+    "state": "materialized_partial_completion"
+  },
   "executionBacklog": [
-    {"rank":1,"channel":"cross-channel","type":"2026-09-09_materialization","state":"planned","manifest":"sidehustle-autopublish/planning/2026-09-09_batch01.json","nextAction":"Materialize the five paid NOTE, two free NOTE and five BOOTH candidates, enforce semantic nonduplication and QA, then atomically activate complete items only."},
-    {"rank":2,"channel":"WindowsPublisher","type":"current_day_execution","state":"idle_no_debt","nextAction":"After queue activation, C:\\SIDEHUSTLE_AUTO consumes only current-day IDs with exact-title reconcile-first strict publishers; never republish Sep 8 verified items."},
-    {"rank":3,"channel":"cross-channel","type":"first_party_measurement","metrics":["note PV","note likes","note follows","paid CTA clicks","paid purchases","note revenue","BOOTH sales","Microsoft Store page views","acquisitions","installs","conversion","health","GitHub outbound clicks"],"nextAction":"Capture only accessible observed values; leave unavailable values null and compare matched-age cohorts."},
-    {"rank":4,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","state":"public_pwa_and_assets_ready_identity_unverified","nextAction":"Preserve assets and advance only through verifiable Partner Center identity/submission evidence; do not request user work unless identity, legal, tax or payment setup is proven to be the sole blocker."},
-    {"rank":5,"channel":"GitHubPages","type":"measurable_acquisition","nextAction":"Use existing utility tools as attributable acquisition surfaces after destinations and analytics are measurable; avoid thin SEO or spam-like expansion."}
+    {
+      "rank": 1,
+      "channel": "cross-channel",
+      "type": "remaining_current_day_publication",
+      "state": "ready_for_authenticated_windows_publisher",
+      "nextAction": "Publish only the two Sep 9 free NOTE and five Sep 9 BOOTH IDs still lacking strict verification; reconcile exact-title public pages before create and synchronize evidence atomically."
+    },
+    {
+      "rank": 2,
+      "channel": "WindowsPublisher",
+      "type": "state_consistency",
+      "state": "canonical_request_reconciled",
+      "nextAction": "C:\\SIDEHUSTLE_AUTO consumes only the seven strict-unverified IDs; never republish the five strict-verified Sep 9 paid NOTE items."
+    },
+    {
+      "rank": 3,
+      "channel": "cross-channel",
+      "type": "first_party_measurement",
+      "metrics": ["note PV","note likes","note follows","paid CTA clicks","paid purchases","note revenue","BOOTH sales","Microsoft Store page views","acquisitions","installs","conversion","health","GitHub outbound clicks"],
+      "nextAction": "Capture only accessible observed values; leave unavailable values null and compare matched-age cohorts."
+    },
+    {
+      "rank": 4,
+      "channel": "MicrosoftStore",
+      "id": "ms_csv_cleaner_deduper",
+      "type": "submission_completion",
+      "state": "public_pwa_and_assets_ready_identity_unverified",
+      "nextAction": "Preserve assets and advance only through verifiable Partner Center identity/submission evidence; request user work only if identity, legal, tax or payment setup is proven to be the sole blocker."
+    },
+    {
+      "rank": 5,
+      "channel": "GitHubPages",
+      "type": "measurable_acquisition",
+      "nextAction": "Use existing utility tools as attributable acquisition surfaces after destinations and analytics are measurable; avoid thin SEO or spam-like expansion."
+    }
   ],
   "winnerCandidates": [],
-  "rules": ["Publication debt outranks discretionary optimization.","Strict public verification, not commits or exit 0, completes publication.","Never republish a strict-verified exact title.","Free NOTE never replaces paid NOTE quota.","No invented sales, PV, conversion, installs or revenue.","Do not create semantic clones merely to hit volume."]
+  "rules": [
+    "Publication debt outranks discretionary optimization.",
+    "Strict public verification, not commits or exit 0, completes publication.",
+    "Never republish a strict-verified exact title.",
+    "Free NOTE never replaces paid NOTE quota.",
+    "No invented sales, PV, conversion, installs or revenue.",
+    "Do not create semantic clones merely to hit volume."
+  ]
 }
