@@ -1,29 +1,20 @@
 {
-  "version": 3,
-  "updatedAt": "2026-09-09T09:14:49+09:00",
+  "version": 4,
+  "updatedAt": "2026-09-09T12:17:50+09:00",
   "date": "2026-09-09",
-  "mode": "publish_all_outstanding_through_previous_day_before_new_day",
+  "mode": "idle_until_current_day_materialization",
   "paidNote": {"ids": [], "target": 0},
   "freeNote": {"ids": [], "target": 0},
-  "BOOTH": {
-    "ids": [
-      "104_vendor_master_cleanup_os_20260908",
-      "105_corporate_card_spend_control_os_20260908",
-      "106_customer_data_retention_os_20260908",
-      "107_invoice_number_gap_control_os_20260908",
-      "108_software_license_seat_optimization_os_20260908"
-    ],
-    "target": 5
-  },
+  "BOOTH": {"ids": [], "target": 0},
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-09T09:14:49+09:00",
+  "requestedAt": null,
   "throughDate": "2026-09-08",
   "order": "oldest_publication_date_first",
-  "outstandingDates": ["2026-09-08"],
-  "totalTarget": 5,
+  "outstandingDates": [],
+  "totalTarget": 0,
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "0_of_5_booth_strict_verified",
+  "completionState": "previous_day_debt_reconciled_strict_verified",
   "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-  "reason": "Canonical publication_quota reports Sep 8 BOOTH 0/5 strict verified while paid NOTE is already 5/5. Carry BOOTH debt forward before Sep 9 production."
+  "reason": "Sep 8 BOOTH 104-108 are already present in the canonical buyer-visible publication ledger and queue as strict verified; do not republish. Await Sep 9 materialization."
 }
