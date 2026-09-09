@@ -1,17 +1,11 @@
 {
-  "version": 2,
-  "updatedAt": "2026-09-09T15:23:38+09:00",
+  "version": 3,
+  "updatedAt": "2026-09-09T18:12:09+09:00",
   "date": "2026-09-09",
-  "mode": "publish_all_outstanding_through_current_day_now",
+  "mode": "publish_remaining_current_day_now_reconcile_first",
   "paidNote": {
-    "ids": [
-      "note_20260909_102_receivables_collection_escalation_control",
-      "note_20260909_103_subscription_price_increase_review_control",
-      "note_20260909_104_support_refund_root_cause_control",
-      "note_20260909_105_slow_moving_inventory_control",
-      "note_20260909_106_vendor_contract_obligation_control"
-    ],
-    "target": 5
+    "ids": [],
+    "target": 0
   },
   "freeNote": {
     "ids": [
@@ -32,13 +26,22 @@
   },
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-09T15:23:38+09:00",
+  "requestedAt": "2026-09-09T18:12:09+09:00",
   "throughDate": "2026-09-09",
   "order": "oldest_publication_date_first",
   "outstandingDates": [
     "2026-09-09"
   ],
-  "totalTarget": 12,
+  "totalTarget": 7,
+  "alreadyStrictVerifiedInCurrentDay": {
+    "paidNote": 5,
+    "freeNote": 0,
+    "BOOTH": 0,
+    "total": 5
+  },
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "0_of_12_strict_verified_in_this_request"
+  "reconcileExistingBeforePublish": true,
+  "completionState": "5_of_12_strict_verified_remaining_7",
+  "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
+  "humanOnlyBlocker": null
 }
