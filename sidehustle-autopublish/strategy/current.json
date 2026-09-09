@@ -1,23 +1,23 @@
 {
-  "version": 47,
-  "updatedAt": "2026-09-09T12:17:50+09:00",
+  "version": 48,
+  "updatedAt": "2026-09-09T18:12:09+09:00",
   "objective": "maximize expected profit x continuity x automation rate x success probability / user work time, with strict publication integrity and buyer satisfaction",
   "activeChannels": ["BOOTH","note","GitHub Pages","Microsoft Store"],
   "authoritativeState": {
     "source": "sidehustle-autopublish/completion_gate.json",
     "activePublicationDate": "2026-09-09",
     "currentCalendarDate": "2026-09-09",
-    "publicationDebt": {"paidNote":0,"freeNote":0,"BOOTH":0,"total":0},
+    "publicationDebt": {"paidNote":0,"freeNote":2,"BOOTH":5,"total":7},
     "previousDayStrictVerified": {"paidNote":5,"freeNote":0,"BOOTH":5,"hardQuotaTotal":10},
-    "strictVerifiedInActiveRequest": 0,
+    "strictVerifiedInActiveRequest": 5,
     "humanOnlyBlocker": null,
-    "rule": "Sep 8 hard publication debt is cleared by strict queue and ledger evidence; proceed to Sep 9 materialization without republishing prior-day verified titles."
+    "rule": "Sep 9 paid NOTE 5/5 is strict verified. Do not republish it; finish the remaining two free NOTE and five BOOTH targets first."
   },
   "allocationDecision": [
-    {"rank":1,"action":"Materialize the Sep 9 ranked batch from sidehustle-autopublish/planning/2026-09-09_batch01.json, preserving nonduplication, >=5001-char NOTE bodies, dedicated covers and complete BOOTH downloadable products."},
-    {"rank":2,"action":"After QA, atomically activate current-day queues and let C:\\SIDEHUSTLE_AUTO consume only those IDs with exact-title reconciliation before create."},
+    {"rank":1,"action":"Finish the remaining Sep 9 free NOTE 2 and BOOTH 5 through C:\\SIDEHUSTLE_AUTO with exact-title reconciliation and strict public verification."},
+    {"rank":2,"action":"Keep paid NOTE 102-106 locked against republishing and synchronize any newly recovered public URLs into queue, ledger, metrics, quota and completion gate in the same run."},
     {"rank":3,"action":"Instrument first-party note/BOOTH/Store/GitHub funnel metrics before price, CTA, cadence or winner-amplification claims."},
-    {"rank":4,"action":"Use GitHub Pages and Microsoft Store primarily as measurable low-touch acquisition surfaces; prioritize utility products with zero support burden."},
+    {"rank":4,"action":"Use GitHub Pages and Microsoft Store as measurable low-touch acquisition surfaces; prioritize useful zero-support utilities rather than thin expansion."},
     {"rank":5,"action":"Advance Microsoft Store only through evidence-backed Partner Center steps; do not claim submission or acquisition state without source evidence."}
   ],
   "measurement": {
@@ -31,12 +31,13 @@
   "microsoftStore": {
     "currentPriority": "CSV Cleaner & Duplicate Remover submission completion after verified Partner Center identity evidence exists",
     "publicPwaUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
+    "submissionState": "code_and_listing_ready_package_identity_pending",
     "humanOnlyBlocker": null
   },
   "windowsPublisher": {
     "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
     "canonicalRemoteRunner": "sidehustle-autopublish/windows/run_current_debt.ps1",
-    "latestRepair": "bounded NOTE/BOOTH child processes, stale-process cleanup, automatic BOOTH target alignment, battery-safe tasks, scheduled-task restoration in finally",
+    "latestRepair": "canonical publication request now contains only remaining strict-unverified IDs; paid Sep 9 NOTE targets are excluded",
     "dailyZipOrCmdProliferation": false
   },
   "notificationPolicy": "No ordinary-cycle notification. Aggregate only after strict results or notify immediately only for a proven human-only blocker requiring one minimal action."
