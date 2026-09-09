@@ -1,21 +1,20 @@
 {
-  "version": 48,
-  "updatedAt": "2026-09-09T18:12:09+09:00",
+  "version": 49,
+  "updatedAt": "2026-09-10T05:12:51+09:00",
   "objective": "maximize expected profit x continuity x automation rate x success probability / user work time, with strict publication integrity and buyer satisfaction",
   "activeChannels": ["BOOTH","note","GitHub Pages","Microsoft Store"],
   "authoritativeState": {
     "source": "sidehustle-autopublish/completion_gate.json",
-    "activePublicationDate": "2026-09-09",
-    "currentCalendarDate": "2026-09-09",
-    "publicationDebt": {"paidNote":0,"freeNote":2,"BOOTH":5,"total":7},
-    "previousDayStrictVerified": {"paidNote":5,"freeNote":0,"BOOTH":5,"hardQuotaTotal":10},
-    "strictVerifiedInActiveRequest": 5,
+    "activePublicationDate": "2026-09-10",
+    "currentCalendarDate": "2026-09-10",
+    "publicationDebt": {"paidNote":0,"freeNote":2,"BOOTH":5,"total":7,"sourceDate":"2026-09-09"},
+    "todayPlan": {"paidNote":5,"freeNote":2,"BOOTH":5,"total":12,"state":"planned_not_activated_until_carryover_strict_verified"},
     "humanOnlyBlocker": null,
-    "rule": "Sep 9 paid NOTE 5/5 is strict verified. Do not republish it; finish the remaining two free NOTE and five BOOTH targets first."
+    "rule": "Finish Sep 9 carryover first. Do not republish Sep 9 paid NOTE. Activate Sep 10 only after complete QA/materialization."
   },
   "allocationDecision": [
-    {"rank":1,"action":"Finish the remaining Sep 9 free NOTE 2 and BOOTH 5 through C:\\SIDEHUSTLE_AUTO with exact-title reconciliation and strict public verification."},
-    {"rank":2,"action":"Keep paid NOTE 102-106 locked against republishing and synchronize any newly recovered public URLs into queue, ledger, metrics, quota and completion gate in the same run."},
+    {"rank":1,"action":"Finish Sep 9 free NOTE 2 and BOOTH 5 through C:\\SIDEHUSTLE_AUTO with exact-title reconciliation and strict public verification."},
+    {"rank":2,"action":"Materialize Sep 10 planned candidates only at full quality, then activate atomically after carryover-safe checks."},
     {"rank":3,"action":"Instrument first-party note/BOOTH/Store/GitHub funnel metrics before price, CTA, cadence or winner-amplification claims."},
     {"rank":4,"action":"Use GitHub Pages and Microsoft Store as measurable low-touch acquisition surfaces; prioritize useful zero-support utilities rather than thin expansion."},
     {"rank":5,"action":"Advance Microsoft Store only through evidence-backed Partner Center steps; do not claim submission or acquisition state without source evidence."}
@@ -37,7 +36,7 @@
   "windowsPublisher": {
     "canonicalRoot": "C:\\SIDEHUSTLE_AUTO",
     "canonicalRemoteRunner": "sidehustle-autopublish/windows/run_current_debt.ps1",
-    "latestRepair": "canonical publication request now contains only remaining strict-unverified IDs; paid Sep 9 NOTE targets are excluded",
+    "latestRepair": "Sep 9 carryover remains canonical active debt; Sep 10 plan exists but is not activated prematurely.",
     "dailyZipOrCmdProliferation": false
   },
   "notificationPolicy": "No ordinary-cycle notification. Aggregate only after strict results or notify immediately only for a proven human-only blocker requiring one minimal action."
