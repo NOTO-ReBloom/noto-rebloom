@@ -1,7 +1,7 @@
 {
-  "version": 72,
-  "updatedAt": "2026-09-09T12:17:50+09:00",
-  "objective": "Materialize and strict-publish the 2026-09-09 batch after reconciling Sep 8 hard quota completion.",
+  "version": 73,
+  "updatedAt": "2026-09-09T15:23:38+09:00",
+  "objective": "Publish and strict-verify all 12 active items through 2026-09-09 without duplicate NOTE titles.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -15,38 +15,100 @@
   },
   "previousDay": {
     "date": "2026-09-08",
-    "paidNote": {"target":5,"strictVerified":5,"remaining":0},
-    "BOOTH": {"target":5,"strictVerified":5,"remaining":0},
-    "freeNote": {"hardTarget":false,"strictVerified":0},
+    "paidNote": {
+      "target": 5,
+      "strictVerified": 5,
+      "remaining": 0
+    },
+    "BOOTH": {
+      "target": 5,
+      "strictVerified": 5,
+      "remaining": 0
+    },
+    "freeNote": {
+      "hardTarget": false,
+      "strictVerified": 0
+    },
     "hardQuotaDebtRemaining": 0,
     "evidence": "Paid NOTE queue entries 97-101 are reader-visible verified; BOOTH queue and canonical publication ledger entries 104-108 are buyer-visible verified."
   },
   "currentRecovery": {
     "throughDate": "2026-09-09",
-    "observedAt": "2026-09-09T12:17:50+09:00",
-    "outstandingDates": [],
+    "observedAt": "2026-09-09T15:23:38+09:00",
+    "outstandingDates": [
+      "2026-09-09"
+    ],
     "strictVerifiedInThisRequest": 0,
-    "remaining": 0,
-    "state": "planning_before_current_day_materialization"
+    "remaining": 12
   },
   "currentDayTargets": {
     "date": "2026-09-09",
-    "paidNote": {"target":5,"strictVerified":0,"remaining":5,"materialized":0,"remainingIds":[]},
-    "BOOTH": {"target":5,"strictVerified":0,"remaining":5,"materialized":0,"remainingIds":[]},
-    "freeNote": {"target":2,"strictVerified":0,"remaining":2,"materialized":0,"remainingIds":[],"paidQuotaContribution":0},
-    "planningManifest": "sidehustle-autopublish/planning/2026-09-09_batch01.json",
+    "paidNote": {
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "remainingIds": [
+        "note_20260909_102_receivables_collection_escalation_control",
+        "note_20260909_103_subscription_price_increase_review_control",
+        "note_20260909_104_support_refund_root_cause_control",
+        "note_20260909_105_slow_moving_inventory_control",
+        "note_20260909_106_vendor_contract_obligation_control"
+      ]
+    },
+    "BOOTH": {
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "remainingIds": [
+        "109_receivables_collection_escalation_os_20260909",
+        "110_subscription_price_increase_review_os_20260909",
+        "111_support_refund_root_cause_os_20260909",
+        "112_slow_moving_inventory_os_20260909",
+        "113_vendor_contract_obligation_os_20260909"
+      ]
+    },
+    "freeNote": {
+      "target": 2,
+      "strictVerified": 0,
+      "remaining": 2,
+      "remainingIds": [
+        "free_note_20260909_01_overdue_receivable_warning_signals",
+        "free_note_20260909_02_subscription_cost_creep_signals"
+      ],
+      "paidQuotaContribution": 0
+    },
     "allDesignatedStrictVerified": false
   },
   "observedBusinessMetrics": {
-    "note": {"PV":null,"likes":null,"follows":null,"purchases":null,"revenue":null},
-    "BOOTH": {"sales":null,"revenue":null},
-    "MicrosoftStore": {"pageViews":null,"acquisitions":null,"installs":null,"conversion":null,"health":null},
-    "GitHubPages": {"outboundClicks":null,"conversion":null},
+    "note": {
+      "PV": null,
+      "likes": null,
+      "follows": null,
+      "purchases": null,
+      "revenue": null
+    },
+    "BOOTH": {
+      "sales": null,
+      "revenue": null
+    },
+    "MicrosoftStore": {
+      "pageViews": null,
+      "acquisitions": null,
+      "installs": null,
+      "conversion": null,
+      "health": null
+    },
+    "GitHubPages": {
+      "outboundClicks": null,
+      "conversion": null
+    },
     "interpretationRule": "Unavailable is null, never assumed zero; no success or winner claim without measured values."
   },
   "evidence": {
-    "materialization": "Sep 9 planning manifest exists; payload materialization not yet evidenced.",
-    "publication": "No Sep 9 publication counted until strict public URLs are verified.",
+    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
+    "publication": "not counted until strict public URLs are verified",
     "humanOnlyBlocker": null
   },
   "monitor": {
@@ -60,5 +122,37 @@
     "Do not reduce paid publication floors without strict public verification.",
     "Do not republish strict-verified Sep 8 NOTE or BOOTH items.",
     "Do not invent public URLs, sales, PV, likes, acquisitions or conversions."
-  ]
+  ],
+  "activeTargets": {
+    "paidNote": {
+      "target": 5,
+      "remainingIds": [
+        "note_20260909_102_receivables_collection_escalation_control",
+        "note_20260909_103_subscription_price_increase_review_control",
+        "note_20260909_104_support_refund_root_cause_control",
+        "note_20260909_105_slow_moving_inventory_control",
+        "note_20260909_106_vendor_contract_obligation_control"
+      ]
+    },
+    "freeNote": {
+      "target": 2,
+      "remainingIds": [
+        "free_note_20260909_01_overdue_receivable_warning_signals",
+        "free_note_20260909_02_subscription_cost_creep_signals"
+      ],
+      "paidQuotaContribution": 0
+    },
+    "BOOTH": {
+      "target": 5,
+      "remainingIds": [
+        "109_receivables_collection_escalation_os_20260909",
+        "110_subscription_price_increase_review_os_20260909",
+        "111_support_refund_root_cause_os_20260909",
+        "112_slow_moving_inventory_os_20260909",
+        "113_vendor_contract_obligation_os_20260909"
+      ]
+    },
+    "total": 12,
+    "allDesignatedStrictVerified": false
+  }
 }

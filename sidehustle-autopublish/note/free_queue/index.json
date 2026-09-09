@@ -1,8 +1,8 @@
 {
-  "version": 45,
-  "updatedAt": "2026-09-08T23:15:53+09:00",
+  "version": 46,
+  "updatedAt": "2026-09-09T15:23:38+09:00",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-08_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-09_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -2072,6 +2072,44 @@
       "verifiedAt": "2026-09-08T22:58:01+09:00",
       "forcePublicationNow": false,
       "recoveryMode": "completed; preserve canonical public URL and do not republish"
+    },
+    {
+      "id": "free_note_20260909_01_overdue_receivable_warning_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "入金遅延が長期化する前に見たい7つの兆候｜督促前の無料チェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-09_batch01.md",
+      "pairedPaidId": "note_20260909_102_receivables_collection_escalation_control",
+      "tags": [
+        "無料チェック",
+        "業務改善",
+        "accounts"
+      ],
+      "coverLabel": "入金遅延チェック",
+      "coverCopy": "長期化前の7サイン",
+      "accent": "#2F6B5F",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260909-20260909T152338+0900"
+    },
+    {
+      "id": "free_note_20260909_02_subscription_cost_creep_signals",
+      "kind": "free",
+      "price": 0,
+      "title": "SaaSコストが膨らみ始めたときに見る7つのサイン｜更新前の無料チェック",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-09_batch01.md",
+      "pairedPaidId": "note_20260909_103_subscription_price_increase_review_control",
+      "tags": [
+        "無料チェック",
+        "業務改善",
+        "subscription"
+      ],
+      "coverLabel": "SaaSコスト確認",
+      "coverCopy": "更新前の7サイン",
+      "accent": "#4959A8",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260909-20260909T152338+0900"
     }
   ],
   "eveningMarathon": {
@@ -2080,15 +2118,22 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-08",
-    "ids": [],
-    "requiredStrictPublications": 0
+    "date": "2026-09-09",
+    "ids": [
+      "free_note_20260909_01_overdue_receivable_warning_signals",
+      "free_note_20260909_02_subscription_cost_creep_signals"
+    ],
+    "requiredStrictPublications": 2
   },
   "retryGeneration": 31,
-  "activePublicationDate": "2026-09-08",
-  "forceAllCurrentDayNow": false,
-  "forceRetryNonce": "materialize-free-note-20260908-20260908T231553+0900",
-  "sourceBatchPaths": [],
+  "activePublicationDate": "2026-09-09",
+  "forceAllCurrentDayNow": true,
+  "forceRetryNonce": "materialize-free-note-20260909-20260909T152338+0900",
+  "sourceBatchPaths": [
+    "sidehustle-autopublish/note/free_drafts/2026-09-09_batch01.md"
+  ],
   "reconcileExistingBeforePublish": true,
-  "outstandingDates": []
+  "outstandingDates": [
+    "2026-09-09"
+  ]
 }

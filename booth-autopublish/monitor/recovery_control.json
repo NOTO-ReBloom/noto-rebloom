@@ -1,19 +1,31 @@
 {
-  "version": 85,
-  "updatedAt": "2026-09-08T23:15:53+09:00",
+  "version": 86,
+  "updatedAt": "2026-09-09T15:23:38+09:00",
   "activeRecovery": {
-    "throughDate": "2026-09-08",
+    "throughDate": "2026-09-09",
     "mode": "all_outstanding_oldest_first",
-    "requiredStrictNewPublications": 0,
-    "remaining": 0,
+    "requiredStrictNewPublications": 5,
+    "remaining": 5,
     "state": "ready"
   },
   "readyPaidRecoveryBatch": {
-    "generatedAt": "2026-09-08T23:15:53+09:00",
-    "requiredStrictNewPublications": 0,
-    "queueIds": [],
+    "generatedAt": "2026-09-09T15:23:38+09:00",
+    "requiredStrictNewPublications": 5,
+    "queueIds": [
+      "109_receivables_collection_escalation_os_20260909",
+      "110_subscription_price_increase_review_os_20260909",
+      "111_support_refund_root_cause_os_20260909",
+      "112_slow_moving_inventory_os_20260909",
+      "113_vendor_contract_obligation_os_20260909"
+    ],
     "completedIds": [],
-    "expectedPricesJPY": {},
+    "expectedPricesJPY": {
+      "109_receivables_collection_escalation_os_20260909": 1480,
+      "110_subscription_price_increase_review_os_20260909": 1480,
+      "111_support_refund_root_cause_os_20260909": 1680,
+      "112_slow_moving_inventory_os_20260909": 1580,
+      "113_vendor_contract_obligation_os_20260909": 1780
+    },
     "requiredBuyerChecks": [
       "buyerVisibleUrl",
       "exactTitle",
@@ -22,11 +34,23 @@
       "purchaseOrCartPath"
     ],
     "doNotStopAfterFirstSuccess": true,
-    "forceRetryNonce": "booth-through-20260908-2026-09-08T23:15:53+09:00"
+    "forceRetryNonce": "booth-through-20260909-2026-09-09T15:23:38+09:00"
   },
   "windowsResumeContract": {
-    "requiredIds": [],
-    "firstPassOrder": [],
+    "requiredIds": [
+      "109_receivables_collection_escalation_os_20260909",
+      "110_subscription_price_increase_review_os_20260909",
+      "111_support_refund_root_cause_os_20260909",
+      "112_slow_moving_inventory_os_20260909",
+      "113_vendor_contract_obligation_os_20260909"
+    ],
+    "firstPassOrder": [
+      "109_receivables_collection_escalation_os_20260909",
+      "110_subscription_price_increase_review_os_20260909",
+      "111_support_refund_root_cause_os_20260909",
+      "112_slow_moving_inventory_os_20260909",
+      "113_vendor_contract_obligation_os_20260909"
+    ],
     "strictSuccessOnly": true,
     "completionPredicate": "all active BOOTH IDs buyer-visible strict verified"
   },

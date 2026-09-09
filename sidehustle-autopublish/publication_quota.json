@@ -1,7 +1,7 @@
 {
-  "version": 104,
+  "version": 105,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-09T12:17:50+09:00",
+  "updatedAt": "2026-09-09T15:23:38+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -17,12 +17,19 @@
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
         "planningManifest": "sidehustle-autopublish/planning/2026-09-09_batch01.json",
-        "preparedIds": [],
-        "queueMaterializationState": "pending",
+        "preparedIds": [
+          "note_20260909_102_receivables_collection_escalation_control",
+          "note_20260909_103_subscription_price_increase_review_control",
+          "note_20260909_104_support_refund_root_cause_control",
+          "note_20260909_105_slow_moving_inventory_control",
+          "note_20260909_106_vendor_contract_obligation_control"
+        ],
+        "queueMaterializationState": "complete",
         "strictPublicationState": "2026-09-09 0/5 strict verified",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
-        "paidProductionInventoryComplete": false,
-        "fallbackPolicy": "After materialization process only enabled 2026-09-09 paid NOTE IDs; never republish strict-verified prior-day items."
+        "paidProductionInventoryComplete": true,
+        "fallbackPolicy": "Process only enabled 2026-09-09 paid NOTE IDs; do not republish previous-day verified items.",
+        "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260909_batch01.json"
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
@@ -32,7 +39,9 @@
         "currentRequiredBatchStrictVerifiedCount": 0,
         "currentMaterializationState": "pending",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
-        "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor."
+        "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
+        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-09_batch01.md",
+        "currentCompletedDraftCount": 2
       }
     },
     "BOOTH": {
@@ -48,22 +57,55 @@
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
         "planningManifest": "sidehustle-autopublish/planning/2026-09-09_batch01.json",
-        "preparedIds": [],
-        "materializationState": "pending",
+        "preparedIds": [
+          "109_receivables_collection_escalation_os_20260909",
+          "110_subscription_price_increase_review_os_20260909",
+          "111_support_refund_root_cause_os_20260909",
+          "112_slow_moving_inventory_os_20260909",
+          "113_vendor_contract_obligation_os_20260909"
+        ],
+        "materializationState": "complete",
         "strictPublicationState": "2026-09-09 0/5 strict verified",
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
-        "paidProductionInventoryComplete": false,
-        "fallbackPolicy": "After materialization process only enabled 2026-09-09 BOOTH IDs; never republish strict-verified prior-day items."
+        "paidProductionInventoryComplete": true,
+        "fallbackPolicy": "Process only enabled 2026-09-09 BOOTH IDs; do not republish previous-day verified items.",
+        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260909_batch01.json",
+        "queueRetryGeneration": 82
       }
     }
   },
   "currentDay": {
     "date": "2026-09-09",
-    "currentDayTargets": {"paidNote": [], "freeNote": [], "BOOTH": [], "total": 0},
-    "carryOverRemaining": {"paidNote": [], "freeNote": [], "BOOTH": [], "total": 0},
-    "totalOutstanding": 0,
-    "priority": "Materialize a fresh nonduplicate Sep 9 batch, then publish exact-title-reconciled targets; count only strict public verification.",
-    "completionState": "planning_not_yet_materialized"
+    "currentDayTargets": {
+      "paidNote": [
+        "note_20260909_102_receivables_collection_escalation_control",
+        "note_20260909_103_subscription_price_increase_review_control",
+        "note_20260909_104_support_refund_root_cause_control",
+        "note_20260909_105_slow_moving_inventory_control",
+        "note_20260909_106_vendor_contract_obligation_control"
+      ],
+      "freeNote": [
+        "free_note_20260909_01_overdue_receivable_warning_signals",
+        "free_note_20260909_02_subscription_cost_creep_signals"
+      ],
+      "BOOTH": [
+        "109_receivables_collection_escalation_os_20260909",
+        "110_subscription_price_increase_review_os_20260909",
+        "111_support_refund_root_cause_os_20260909",
+        "112_slow_moving_inventory_os_20260909",
+        "113_vendor_contract_obligation_os_20260909"
+      ],
+      "total": 12
+    },
+    "carryOverRemaining": {
+      "paidNote": [],
+      "freeNote": [],
+      "BOOTH": [],
+      "total": 0
+    },
+    "totalOutstanding": 12,
+    "priority": "Publish exact-title-reconciled carryover first, then current-day targets; count only strict public verification.",
+    "completionState": "pending_0_of_12"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",
@@ -75,13 +117,35 @@
   ],
   "activePublicationContract": {
     "throughDate": "2026-09-09",
-    "outstandingByDate": {},
-    "paidNoteRemaining": 0,
-    "freeNoteRemaining": 0,
-    "BOOTHRemaining": 0,
-    "totalRemaining": 0,
+    "outstandingByDate": {
+      "2026-09-09": {
+        "paidNote": [
+          "note_20260909_102_receivables_collection_escalation_control",
+          "note_20260909_103_subscription_price_increase_review_control",
+          "note_20260909_104_support_refund_root_cause_control",
+          "note_20260909_105_slow_moving_inventory_control",
+          "note_20260909_106_vendor_contract_obligation_control"
+        ],
+        "freeNote": [
+          "free_note_20260909_01_overdue_receivable_warning_signals",
+          "free_note_20260909_02_subscription_cost_creep_signals"
+        ],
+        "BOOTH": [
+          "109_receivables_collection_escalation_os_20260909",
+          "110_subscription_price_increase_review_os_20260909",
+          "111_support_refund_root_cause_os_20260909",
+          "112_slow_moving_inventory_os_20260909",
+          "113_vendor_contract_obligation_os_20260909"
+        ],
+        "total": 12
+      }
+    },
+    "paidNoteRemaining": 5,
+    "freeNoteRemaining": 2,
+    "BOOTHRemaining": 5,
+    "totalRemaining": 12,
     "strictVerifiedInThisRequest": 0,
-    "state": "planning_current_day_before_materialization",
+    "state": "materialized_waiting_for_authenticated_windows_publisher",
     "noteMinimumBodyChars": 5001,
     "paidFreeBodyMinimumChars": 5001
   },
@@ -91,6 +155,10 @@
     "boothStrictVerified": 5,
     "freeNoteStrictVerified": 0,
     "hardQuotaDebtRemaining": 0,
-    "evidenceSources": ["sidehustle-autopublish/note/queue/index.json","booth-autopublish/queue/index.json","booth-autopublish/monitor/publication_ledger.json"]
+    "evidenceSources": [
+      "sidehustle-autopublish/note/queue/index.json",
+      "booth-autopublish/queue/index.json",
+      "booth-autopublish/monitor/publication_ledger.json"
+    ]
   }
 }
