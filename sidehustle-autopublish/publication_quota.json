@@ -1,7 +1,7 @@
 {
-  "version": 103,
+  "version": 104,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-08T23:46:50+09:00",
+  "updatedAt": "2026-09-09T12:17:50+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -9,43 +9,30 @@
       "completionDefinition": "reader-visible official paid note page verified with exact title, expected price, paid boundary and dedicated cover",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "operationalState": {
-        "date": "2026-09-08",
-        "previousDate": "2026-09-07",
+        "date": "2026-09-09",
+        "previousDate": "2026-09-08",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
-        "todayStrictVerifiedPublicationsCount": 5,
+        "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
-        "todayRemainingToTarget": 0,
-        "planningManifest": "sidehustle-autopublish/planning/2026-09-07_batch01.json",
-        "preparedIds": [
-          "note_20260908_97_vendor_master_dormant_cleanup",
-          "note_20260908_98_corporate_card_spend_control",
-          "note_20260908_99_customer_data_retention_deletion",
-          "note_20260908_100_invoice_number_gap_control",
-          "note_20260908_101_software_license_seat_optimization"
-        ],
-        "queueMaterializationState": "complete",
-        "strictPublicationState": "2026-09-08 5/5 strict verified",
+        "todayRemainingToTarget": 5,
+        "planningManifest": "sidehustle-autopublish/planning/2026-09-09_batch01.json",
+        "preparedIds": [],
+        "queueMaterializationState": "pending",
+        "strictPublicationState": "2026-09-09 0/5 strict verified",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
-        "paidProductionInventoryComplete": true,
-        "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260908_batch01.json",
-        "fallbackPolicy": "Process only enabled 2026-09-08 paid NOTE IDs; do not republish previous-day verified items.",
-        "lastStrictVerificationAt": "2026-09-08T23:46:50+09:00"
+        "paidProductionInventoryComplete": false,
+        "fallbackPolicy": "After materialization process only enabled 2026-09-09 paid NOTE IDs; never republish strict-verified prior-day items."
       },
       "freeAcquisitionExperiment": {
         "enabled": true,
         "initialPublicationTargetPerDay": 2,
         "hardQuota": false,
-        "currentRequiredIds": [
-          "free_note_20260907_01_offboarding_access_warning_signals",
-          "free_note_20260907_02_duplicate_expense_warning_signals"
-        ],
+        "currentRequiredIds": [],
         "currentRequiredBatchStrictVerifiedCount": 0,
-        "currentMaterializationState": "complete_waiting_for_strict_publication",
+        "currentMaterializationState": "pending",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
-        "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
-        "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-08_batch01.md",
-        "currentCompletedDraftCount": 2
+        "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor."
       }
     },
     "BOOTH": {
@@ -53,54 +40,30 @@
       "completionDefinition": "buyer-visible official BOOTH product page verified with exact title, expected price, downloadable-product state and purchase/cart path",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "operationalState": {
-        "date": "2026-09-08",
-        "previousDate": "2026-09-07",
+        "date": "2026-09-09",
+        "previousDate": "2026-09-08",
         "previousDayStrictVerifiedPublicationsCount": 5,
         "carriedPublicationDebt": 0,
         "todayStrictVerifiedPublicationsCount": 0,
         "dailyPublicTarget": 5,
         "todayRemainingToTarget": 5,
-        "planningManifest": "sidehustle-autopublish/planning/2026-09-07_batch01.json",
-        "preparedIds": [
-          "104_vendor_master_cleanup_os_20260908",
-          "105_corporate_card_spend_control_os_20260908",
-          "106_customer_data_retention_os_20260908",
-          "107_invoice_number_gap_control_os_20260908",
-          "108_software_license_seat_optimization_os_20260908"
-        ],
-        "materializationState": "complete",
-        "strictPublicationState": "2026-09-08 0/5 strict verified",
+        "planningManifest": "sidehustle-autopublish/planning/2026-09-09_batch01.json",
+        "preparedIds": [],
+        "materializationState": "pending",
+        "strictPublicationState": "2026-09-09 0/5 strict verified",
         "debtRule": "Only strict buyer-visible verification decrements BOOTH debt or counts toward the daily floor.",
-        "paidProductionInventoryComplete": true,
-        "materializationManifest": "booth-autopublish/monitor/cloud_materialization_20260908_batch01.json",
-        "queueRetryGeneration": 81,
-        "fallbackPolicy": "Process only enabled 2026-09-08 BOOTH IDs; do not republish previous-day verified items."
+        "paidProductionInventoryComplete": false,
+        "fallbackPolicy": "After materialization process only enabled 2026-09-09 BOOTH IDs; never republish strict-verified prior-day items."
       }
     }
   },
   "currentDay": {
-    "date": "2026-09-08",
-    "currentDayTargets": {
-      "paidNote": [
-        "note_20260908_97_vendor_master_dormant_cleanup",
-        "note_20260908_98_corporate_card_spend_control",
-        "note_20260908_99_customer_data_retention_deletion",
-        "note_20260908_100_invoice_number_gap_control",
-        "note_20260908_101_software_license_seat_optimization"
-      ],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 5
-    },
-    "carryOverRemaining": {
-      "paidNote": [],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 0
-    },
-    "totalOutstanding": 5,
-    "priority": "Publish exact-title-reconciled carryover first, then current-day targets; count only strict public verification.",
-    "completionState": "pending_0_of_5"
+    "date": "2026-09-09",
+    "currentDayTargets": {"paidNote": [], "freeNote": [], "BOOTH": [], "total": 0},
+    "carryOverRemaining": {"paidNote": [], "freeNote": [], "BOOTH": [], "total": 0},
+    "totalOutstanding": 0,
+    "priority": "Materialize a fresh nonduplicate Sep 9 batch, then publish exact-title-reconciled targets; count only strict public verification.",
+    "completionState": "planning_not_yet_materialized"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",
@@ -111,28 +74,23 @@
     "Canonical Windows root is C:\\SIDEHUSTLE_AUTO; do not create daily scattered ZIP/CMD runners."
   ],
   "activePublicationContract": {
-    "throughDate": "2026-09-08",
-    "outstandingByDate": {
-      "2026-09-08": {
-        "paidNote": [
-          "note_20260908_97_vendor_master_dormant_cleanup",
-          "note_20260908_98_corporate_card_spend_control",
-          "note_20260908_99_customer_data_retention_deletion",
-          "note_20260908_100_invoice_number_gap_control",
-          "note_20260908_101_software_license_seat_optimization"
-        ],
-        "freeNote": [],
-        "BOOTH": [],
-        "total": 5
-      }
-    },
-    "paidNoteRemaining": 5,
+    "throughDate": "2026-09-09",
+    "outstandingByDate": {},
+    "paidNoteRemaining": 0,
     "freeNoteRemaining": 0,
     "BOOTHRemaining": 0,
-    "totalRemaining": 5,
+    "totalRemaining": 0,
     "strictVerifiedInThisRequest": 0,
-    "state": "materialized_waiting_for_authenticated_windows_publisher",
+    "state": "planning_current_day_before_materialization",
     "noteMinimumBodyChars": 5001,
     "paidFreeBodyMinimumChars": 5001
+  },
+  "previousDayEvidence": {
+    "date": "2026-09-08",
+    "paidNoteStrictVerified": 5,
+    "boothStrictVerified": 5,
+    "freeNoteStrictVerified": 0,
+    "hardQuotaDebtRemaining": 0,
+    "evidenceSources": ["sidehustle-autopublish/note/queue/index.json","booth-autopublish/queue/index.json","booth-autopublish/monitor/publication_ledger.json"]
   }
 }
