@@ -1,141 +1,59 @@
 {
-  "version": 79,
-  "updatedAt": "2026-09-09T18:12:09+09:00",
-  "status": "in_progress_5_of_12",
-  "date": "2026-09-09",
+  "version": 80,
+  "updatedAt": "2026-09-10T05:12:51+09:00",
+  "status": "carryover_in_progress_7_plus_today_12_planned",
+  "date": "2026-09-10",
   "timezone": "Asia/Tokyo",
   "previousDayReceipt": {
-    "date": "2026-09-08",
-    "status": "strict_verified_and_locked",
-    "strictVerified": 10,
+    "date": "2026-09-09",
+    "status": "partial_strict_verified",
+    "strictVerified": 5,
     "paidNote": 5,
-    "BOOTH": 5,
-    "outstandingAtClose": 0
+    "freeNote": 0,
+    "BOOTH": 0,
+    "outstandingAtClose": 7
   },
   "carryOver": {
-    "sourceDates": [],
+    "sourceDates": ["2026-09-09"],
     "requiredBeforeCurrentDay": true,
-    "remaining": {"paidNote":[],"freeNote":[],"BOOTH":[],"total":0},
-    "strictVerifiedInThisRequest": {"paidNote":0,"freeNote":0,"BOOTH":0,"total":0}
-  },
-  "completionConditions": {
-    "notePaid": {
-      "requiredIds": [
-        "note_20260909_102_receivables_collection_escalation_control",
-        "note_20260909_103_subscription_price_increase_review_control",
-        "note_20260909_104_support_refund_root_cause_control",
-        "note_20260909_105_slow_moving_inventory_control",
-        "note_20260909_106_vendor_contract_obligation_control"
-      ],
-      "strictChecks": [
-        "readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover","paidBodyCharsAtLeast5001","freeBodyCharsAtLeast5001"
-      ]
-    },
-    "noteFree": {
-      "requiredIds": [
-        "free_note_20260909_01_overdue_receivable_warning_signals",
-        "free_note_20260909_02_subscription_cost_creep_signals"
-      ],
-      "strictChecks": ["readerVisibleUrl","exactTitle","freeState","dedicatedCover","bodyCharsAtLeast5001"],
-      "paidQuotaContribution": 0
-    },
-    "BOOTH": {
-      "requiredIds": [
-        "109_receivables_collection_escalation_os_20260909",
-        "110_subscription_price_increase_review_os_20260909",
-        "111_support_refund_root_cause_os_20260909",
-        "112_slow_moving_inventory_os_20260909",
-        "113_vendor_contract_obligation_os_20260909"
-      ],
-      "strictChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]
-    }
-  },
-  "currentDayPlanning": {
-    "state": "materialized_and_partially_published",
-    "planningManifest": "sidehustle-autopublish/planning/2026-09-09_batch01.json",
-    "standardTarget": {"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},
-    "hardFloorPreserved": true,
-    "rule": "Paid NOTE batch is strict verified. Publish remaining nonduplicate free NOTE and BOOTH items with exact-title reconciliation before create."
-  },
-  "completionCounts": {
-    "strictVerifiedInThisRequest": 5,
-    "required": 12,
-    "remaining": 7,
-    "paidNoteRemaining": 0,
-    "freeNoteRemaining": 2,
-    "BOOTHRemaining": 5
-  },
-  "materializationState": "all_active_items_materialized_and_qa_passed",
-  "duplicateControl": {
-    "policy": "Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.",
-    "knownCleanup": {"status":"completed_verified","remainingDuplicateTitleGroups":0}
-  },
-  "executionPolicy": {
-    "singleRunMayPublishMany": true,
-    "switchCandidatesAfterBriefRecoverableFailure": true,
-    "doNotStopAfterFirstSuccessWhileTargetsRemain": true,
-    "carryOverBeforeCurrentDay": true,
-    "canonicalWindowsRoot": "C:\\SIDEHUSTLE_AUTO",
-    "doNotUseScatteredWindowsRoots": true,
-    "noDailyZipOrCmdProliferation": true
-  },
-  "reportingPolicy": {
-    "intermediateProgressReports": false,
-    "diagnosticOnlyReports": false,
-    "queueOrCommitOnlyReports": false,
-    "nightlyAggregateOnly": true,
-    "humanOnlyBlockerException": true
-  },
-  "humanOnlyBlocker": null,
-  "antiFalseCompletion": [
-    "Do not report a commit as publication.",
-    "Do not report queue insertion as publication.",
-    "Do not report local publisher exit 0 without public verification.",
-    "Do not report editor/admin URLs as publication.",
-    "Do not invent public URLs.",
-    "Do not count historical reverification as a new current-day publication."
-  ],
-  "strictVerifiedByDate": {
-    "2026-09-07": {
-      "paidNote": [
-        "note_20260907_92_employee_offboarding_access_control","note_20260907_93_duplicate_expense_claim_control","note_20260907_94_saas_admin_privilege_review_control","note_20260907_95_contract_renewal_notice_control","note_20260907_96_customer_refund_exception_control"
-      ],
-      "freeNote": ["free_note_20260907_01_offboarding_access_warning_signals","free_note_20260907_02_duplicate_expense_warning_signals"],
-      "BOOTH": ["099_employee_offboarding_access_os_20260907","100_duplicate_expense_claim_os_20260907","101_saas_admin_privilege_review_os_20260907","102_contract_renewal_notice_os_20260907","103_customer_refund_exception_os_20260907"],
-      "total": 12
-    },
-    "2026-09-08": {
-      "paidNote": ["note_20260908_97_vendor_master_dormant_cleanup","note_20260908_98_corporate_card_spend_control","note_20260908_99_customer_data_retention_deletion","note_20260908_100_invoice_number_gap_control","note_20260908_101_software_license_seat_optimization"],
-      "freeNote": [],
-      "BOOTH": ["104_vendor_master_cleanup_os_20260908","105_corporate_card_spend_control_os_20260908","106_customer_data_retention_os_20260908","107_invoice_number_gap_control_os_20260908","108_software_license_seat_optimization_os_20260908"],
-      "total": 10
-    },
-    "2026-09-09": {
-      "paidNote": [
-        "note_20260909_102_receivables_collection_escalation_control",
-        "note_20260909_103_subscription_price_increase_review_control",
-        "note_20260909_104_support_refund_root_cause_control",
-        "note_20260909_105_slow_moving_inventory_control",
-        "note_20260909_106_vendor_contract_obligation_control"
-      ],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 5
-    }
-  },
-  "outstandingByDate": {
-    "2026-09-09": {
+    "remaining": {
       "paidNote": [],
       "freeNote": ["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],
       "BOOTH": ["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],
       "total": 7
-    }
+    },
+    "strictVerifiedInThisRequest": {"paidNote":5,"freeNote":0,"BOOTH":0,"total":5}
   },
+  "completionConditions": {
+    "notePaid": {"requiredIds": [], "strictChecks": ["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover","paidBodyCharsAtLeast5001","freeBodyCharsAtLeast5001"]},
+    "noteFree": {"requiredIds": ["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"], "strictChecks": ["readerVisibleUrl","exactTitle","freeState","dedicatedCover","bodyCharsAtLeast5001"], "paidQuotaContribution":0},
+    "BOOTH": {"requiredIds": ["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"], "strictChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]}
+  },
+  "currentDayPlanning": {
+    "state": "planned_not_activated_until_carryover_strict_verified",
+    "planningManifest": "sidehustle-autopublish/planning/2026-09-10_batch01.json",
+    "standardTarget": {"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},
+    "hardFloorPreserved": true,
+    "rule": "Finish Sep 9 carryover first. Sep 10 candidates are selected but are not counted or activated until complete QA/materialization and carryover-safe activation."
+  },
+  "completionCounts": {"strictVerifiedInThisRequest":5,"carryOverRequired":7,"carryOverRemaining":7,"todayPlanned":12,"todayActivated":0},
+  "materializationState": "carryover_complete; sep10 planning complete; sep10 materialization pending",
+  "duplicateControl": {"policy":"Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.","knownCleanup":{"status":"completed_verified","remainingDuplicateTitleGroups":0}},
+  "executionPolicy": {"singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,"canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true},
+  "reportingPolicy": {"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
+  "humanOnlyBlocker": null,
+  "antiFalseCompletion": ["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
+  "strictVerifiedByDate": {
+    "2026-09-07": {"paidNote":["note_20260907_92_employee_offboarding_access_control","note_20260907_93_duplicate_expense_claim_control","note_20260907_94_saas_admin_privilege_review_control","note_20260907_95_contract_renewal_notice_control","note_20260907_96_customer_refund_exception_control"],"freeNote":["free_note_20260907_01_offboarding_access_warning_signals","free_note_20260907_02_duplicate_expense_warning_signals"],"BOOTH":["099_employee_offboarding_access_os_20260907","100_duplicate_expense_claim_os_20260907","101_saas_admin_privilege_review_os_20260907","102_contract_renewal_notice_os_20260907","103_customer_refund_exception_os_20260907"],"total":12},
+    "2026-09-08": {"paidNote":["note_20260908_97_vendor_master_dormant_cleanup","note_20260908_98_corporate_card_spend_control","note_20260908_99_customer_data_retention_deletion","note_20260908_100_invoice_number_gap_control","note_20260908_101_software_license_seat_optimization"],"freeNote":[],"BOOTH":["104_vendor_master_cleanup_os_20260908","105_corporate_card_spend_control_os_20260908","106_customer_data_retention_os_20260908","107_invoice_number_gap_control_os_20260908","108_software_license_seat_optimization_os_20260908"],"total":10},
+    "2026-09-09": {"paidNote":["note_20260909_102_receivables_collection_escalation_control","note_20260909_103_subscription_price_increase_review_control","note_20260909_104_support_refund_root_cause_control","note_20260909_105_slow_moving_inventory_control","note_20260909_106_vendor_contract_obligation_control"],"freeNote":[],"BOOTH":[],"total":5}
+  },
+  "outstandingByDate": {"2026-09-09":{"paidNote":[],"freeNote":["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],"BOOTH":["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],"total":7}},
   "completedAt": null,
   "completionEvidence": null,
-  "purpose": "Publish and strict-verify every active item through 2026-09-09; only public verification completes an item.",
+  "purpose": "Clear all strict-unverified carryover, then materialize and publish Sep 10 targets without duplicate creation.",
   "forceNowRequested": true,
-  "executionRequestedAt": "2026-09-09T18:12:09+09:00",
-  "executionNonce": "remaining-seven-20260909-2026-09-09T18:12:09+09:00",
-  "forceNowMode": "publish_remaining_outstanding_reconcile_first"
+  "executionRequestedAt": "2026-09-10T05:12:51+09:00",
+  "executionNonce": "carryover-first-20260910T051251+0900",
+  "forceNowMode": "publish_carryover_reconcile_first_then_activate_today_after_QA"
 }
