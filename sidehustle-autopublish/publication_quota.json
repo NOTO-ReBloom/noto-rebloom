@@ -1,7 +1,7 @@
 {
-  "version": 106,
+  "version": 107,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-09T15:42:01+09:00",
+  "updatedAt": "2026-09-09T18:12:09+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
@@ -28,7 +28,7 @@
         "strictPublicationState": "2026-09-09 5/5 strict verified",
         "debtRule": "Only strict reader-visible verification decrements paid debt or counts toward the paid daily target.",
         "paidProductionInventoryComplete": true,
-        "fallbackPolicy": "Process only enabled 2026-09-09 paid NOTE IDs; do not republish previous-day verified items.",
+        "fallbackPolicy": "Do not republish any Sep 9 paid NOTE; all five are strict verified.",
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260909_batch01.json",
         "lastStrictVerificationAt": "2026-09-09T15:42:01+09:00"
       },
@@ -36,9 +36,12 @@
         "enabled": true,
         "initialPublicationTargetPerDay": 2,
         "hardQuota": false,
-        "currentRequiredIds": [],
+        "currentRequiredIds": [
+          "free_note_20260909_01_overdue_receivable_warning_signals",
+          "free_note_20260909_02_subscription_cost_creep_signals"
+        ],
         "currentRequiredBatchStrictVerifiedCount": 0,
-        "currentMaterializationState": "pending",
+        "currentMaterializationState": "complete_waiting_for_authenticated_publisher",
         "strictFreePublicationDefinition": "reader-visible official note page verified with exact title, free state and dedicated cover image",
         "separationRule": "Free publications never decrement paid note debt and never replace the paid 5/day strict floor.",
         "currentCompletedDraftBatch": "sidehustle-autopublish/note/free_drafts/2026-09-09_batch01.md",
@@ -98,15 +101,10 @@
       ],
       "total": 12
     },
-    "carryOverRemaining": {
-      "paidNote": [],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 0
-    },
-    "totalOutstanding": 12,
-    "priority": "Publish exact-title-reconciled carryover first, then current-day targets; count only strict public verification.",
-    "completionState": "pending_0_of_12"
+    "carryOverRemaining": {"paidNote":[],"freeNote":[],"BOOTH":[],"total":0},
+    "totalOutstanding": 7,
+    "priority": "Publish exact-title-reconciled remaining current-day targets; count only strict public verification.",
+    "completionState": "5_of_12_strict_verified_remaining_7"
   },
   "rules": [
     "Paid daily targets are hard minimums and are not silently reduced for expected-profit optimization.",
@@ -120,13 +118,7 @@
     "throughDate": "2026-09-09",
     "outstandingByDate": {
       "2026-09-09": {
-        "paidNote": [
-          "note_20260909_102_receivables_collection_escalation_control",
-          "note_20260909_103_subscription_price_increase_review_control",
-          "note_20260909_104_support_refund_root_cause_control",
-          "note_20260909_105_slow_moving_inventory_control",
-          "note_20260909_106_vendor_contract_obligation_control"
-        ],
+        "paidNote": [],
         "freeNote": [
           "free_note_20260909_01_overdue_receivable_warning_signals",
           "free_note_20260909_02_subscription_cost_creep_signals"
@@ -138,15 +130,15 @@
           "112_slow_moving_inventory_os_20260909",
           "113_vendor_contract_obligation_os_20260909"
         ],
-        "total": 12
+        "total": 7
       }
     },
-    "paidNoteRemaining": 5,
+    "paidNoteRemaining": 0,
     "freeNoteRemaining": 2,
     "BOOTHRemaining": 5,
-    "totalRemaining": 12,
-    "strictVerifiedInThisRequest": 0,
-    "state": "materialized_waiting_for_authenticated_windows_publisher",
+    "totalRemaining": 7,
+    "strictVerifiedInThisRequest": 5,
+    "state": "remaining_materialized_waiting_for_authenticated_windows_publisher",
     "noteMinimumBodyChars": 5001,
     "paidFreeBodyMinimumChars": 5001
   },
