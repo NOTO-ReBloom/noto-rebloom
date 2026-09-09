@@ -1,6 +1,6 @@
 {
-  "version": 78,
-  "updatedAt": "2026-09-09T15:42:01+09:00",
+  "version": 79,
+  "updatedAt": "2026-09-09T18:12:09+09:00",
   "status": "in_progress_5_of_12",
   "date": "2026-09-09",
   "timezone": "Asia/Tokyo",
@@ -15,18 +15,8 @@
   "carryOver": {
     "sourceDates": [],
     "requiredBeforeCurrentDay": true,
-    "remaining": {
-      "paidNote": [],
-      "freeNote": [],
-      "BOOTH": [],
-      "total": 0
-    },
-    "strictVerifiedInThisRequest": {
-      "paidNote": 0,
-      "freeNote": 0,
-      "BOOTH": 0,
-      "total": 0
-    }
+    "remaining": {"paidNote":[],"freeNote":[],"BOOTH":[],"total":0},
+    "strictVerifiedInThisRequest": {"paidNote":0,"freeNote":0,"BOOTH":0,"total":0}
   },
   "completionConditions": {
     "notePaid": {
@@ -38,13 +28,7 @@
         "note_20260909_106_vendor_contract_obligation_control"
       ],
       "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "paidBoundary",
-        "dedicatedCover",
-        "paidBodyCharsAtLeast5001",
-        "freeBodyCharsAtLeast5001"
+        "readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover","paidBodyCharsAtLeast5001","freeBodyCharsAtLeast5001"
       ]
     },
     "noteFree": {
@@ -52,13 +36,7 @@
         "free_note_20260909_01_overdue_receivable_warning_signals",
         "free_note_20260909_02_subscription_cost_creep_signals"
       ],
-      "strictChecks": [
-        "readerVisibleUrl",
-        "exactTitle",
-        "freeState",
-        "dedicatedCover",
-        "bodyCharsAtLeast5001"
-      ],
+      "strictChecks": ["readerVisibleUrl","exactTitle","freeState","dedicatedCover","bodyCharsAtLeast5001"],
       "paidQuotaContribution": 0
     },
     "BOOTH": {
@@ -69,26 +47,15 @@
         "112_slow_moving_inventory_os_20260909",
         "113_vendor_contract_obligation_os_20260909"
       ],
-      "strictChecks": [
-        "buyerVisibleUrl",
-        "exactTitle",
-        "expectedPrice",
-        "downloadableProductState",
-        "purchaseOrCartPath"
-      ]
+      "strictChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]
     }
   },
   "currentDayPlanning": {
-    "state": "selection_and_materialization_required",
+    "state": "materialized_and_partially_published",
     "planningManifest": "sidehustle-autopublish/planning/2026-09-09_batch01.json",
-    "standardTarget": {
-      "notePaid": 5,
-      "noteFree": 2,
-      "BOOTH": 5,
-      "total": 12
-    },
+    "standardTarget": {"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},
     "hardFloorPreserved": true,
-    "rule": "Select nonduplicate high-automation purchase-intent themes, materialize and QA before activating required IDs."
+    "rule": "Paid NOTE batch is strict verified. Publish remaining nonduplicate free NOTE and BOOTH items with exact-title reconciliation before create."
   },
   "completionCounts": {
     "strictVerifiedInThisRequest": 5,
@@ -101,10 +68,7 @@
   "materializationState": "all_active_items_materialized_and_qa_passed",
   "duplicateControl": {
     "policy": "Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.",
-    "knownCleanup": {
-      "status": "completed_verified",
-      "remainingDuplicateTitleGroups": 0
-    }
+    "knownCleanup": {"status":"completed_verified","remainingDuplicateTitleGroups":0}
   },
   "executionPolicy": {
     "singleRunMayPublishMany": true,
@@ -134,45 +98,18 @@
   "strictVerifiedByDate": {
     "2026-09-07": {
       "paidNote": [
-        "note_20260907_92_employee_offboarding_access_control",
-        "note_20260907_93_duplicate_expense_claim_control",
-        "note_20260907_94_saas_admin_privilege_review_control",
-        "note_20260907_95_contract_renewal_notice_control",
-        "note_20260907_96_customer_refund_exception_control"
+        "note_20260907_92_employee_offboarding_access_control","note_20260907_93_duplicate_expense_claim_control","note_20260907_94_saas_admin_privilege_review_control","note_20260907_95_contract_renewal_notice_control","note_20260907_96_customer_refund_exception_control"
       ],
-      "freeNote": [
-        "free_note_20260907_01_offboarding_access_warning_signals",
-        "free_note_20260907_02_duplicate_expense_warning_signals"
-      ],
-      "BOOTH": [
-        "099_employee_offboarding_access_os_20260907",
-        "100_duplicate_expense_claim_os_20260907",
-        "101_saas_admin_privilege_review_os_20260907",
-        "102_contract_renewal_notice_os_20260907",
-        "103_customer_refund_exception_os_20260907"
-      ],
+      "freeNote": ["free_note_20260907_01_offboarding_access_warning_signals","free_note_20260907_02_duplicate_expense_warning_signals"],
+      "BOOTH": ["099_employee_offboarding_access_os_20260907","100_duplicate_expense_claim_os_20260907","101_saas_admin_privilege_review_os_20260907","102_contract_renewal_notice_os_20260907","103_customer_refund_exception_os_20260907"],
       "total": 12
     },
     "2026-09-08": {
-      "paidNote": [
-        "note_20260908_97_vendor_master_dormant_cleanup",
-        "note_20260908_98_corporate_card_spend_control",
-        "note_20260908_99_customer_data_retention_deletion",
-        "note_20260908_100_invoice_number_gap_control",
-        "note_20260908_101_software_license_seat_optimization"
-      ],
+      "paidNote": ["note_20260908_97_vendor_master_dormant_cleanup","note_20260908_98_corporate_card_spend_control","note_20260908_99_customer_data_retention_deletion","note_20260908_100_invoice_number_gap_control","note_20260908_101_software_license_seat_optimization"],
       "freeNote": [],
-      "BOOTH": [
-        "104_vendor_master_cleanup_os_20260908",
-        "105_corporate_card_spend_control_os_20260908",
-        "106_customer_data_retention_os_20260908",
-        "107_invoice_number_gap_control_os_20260908",
-        "108_software_license_seat_optimization_os_20260908"
-      ],
+      "BOOTH": ["104_vendor_master_cleanup_os_20260908","105_corporate_card_spend_control_os_20260908","106_customer_data_retention_os_20260908","107_invoice_number_gap_control_os_20260908","108_software_license_seat_optimization_os_20260908"],
       "total": 10
-    }
-  },
-  "outstandingByDate": {
+    },
     "2026-09-09": {
       "paidNote": [
         "note_20260909_102_receivables_collection_escalation_control",
@@ -181,25 +118,24 @@
         "note_20260909_105_slow_moving_inventory_control",
         "note_20260909_106_vendor_contract_obligation_control"
       ],
-      "freeNote": [
-        "free_note_20260909_01_overdue_receivable_warning_signals",
-        "free_note_20260909_02_subscription_cost_creep_signals"
-      ],
-      "BOOTH": [
-        "109_receivables_collection_escalation_os_20260909",
-        "110_subscription_price_increase_review_os_20260909",
-        "111_support_refund_root_cause_os_20260909",
-        "112_slow_moving_inventory_os_20260909",
-        "113_vendor_contract_obligation_os_20260909"
-      ],
-      "total": 12
+      "freeNote": [],
+      "BOOTH": [],
+      "total": 5
+    }
+  },
+  "outstandingByDate": {
+    "2026-09-09": {
+      "paidNote": [],
+      "freeNote": ["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],
+      "BOOTH": ["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],
+      "total": 7
     }
   },
   "completedAt": null,
   "completionEvidence": null,
   "purpose": "Publish and strict-verify every active item through 2026-09-09; only public verification completes an item.",
   "forceNowRequested": true,
-  "executionRequestedAt": "2026-09-09T15:23:38+09:00",
-  "executionNonce": "catchup-through-20260909-2026-09-09T15:23:38+09:00",
-  "forceNowMode": "publish_all_outstanding_oldest_first"
+  "executionRequestedAt": "2026-09-09T18:12:09+09:00",
+  "executionNonce": "remaining-seven-20260909-2026-09-09T18:12:09+09:00",
+  "forceNowMode": "publish_remaining_outstanding_reconcile_first"
 }
