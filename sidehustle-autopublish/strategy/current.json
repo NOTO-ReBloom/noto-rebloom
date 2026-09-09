@@ -1,23 +1,24 @@
 {
-  "version": 46,
-  "updatedAt": "2026-09-08T05:20:00+09:00",
+  "version": 47,
+  "updatedAt": "2026-09-09T12:17:50+09:00",
   "objective": "maximize expected profit x continuity x automation rate x success probability / user work time, with strict publication integrity and buyer satisfaction",
   "activeChannels": ["BOOTH","note","GitHub Pages","Microsoft Store"],
   "authoritativeState": {
     "source": "sidehustle-autopublish/completion_gate.json",
-    "activePublicationDate": "2026-09-07",
-    "currentCalendarDate": "2026-09-08",
-    "publicationDebt": {"paidNote":5,"freeNote":2,"BOOTH":5,"total":12},
+    "activePublicationDate": "2026-09-09",
+    "currentCalendarDate": "2026-09-09",
+    "publicationDebt": {"paidNote":0,"freeNote":0,"BOOTH":0,"total":0},
+    "previousDayStrictVerified": {"paidNote":5,"freeNote":0,"BOOTH":5,"hardQuotaTotal":10},
     "strictVerifiedInActiveRequest": 0,
     "humanOnlyBlocker": null,
-    "rule": "Do not roll the completion gate to Sep 8 or count new Sep 8 quota until Sep 7 strict publication debt is discharged or preserved as explicit carryover."
+    "rule": "Sep 8 hard publication debt is cleared by strict queue and ledger evidence; proceed to Sep 9 materialization without republishing prior-day verified titles."
   },
   "allocationDecision": [
-    {"rank":1,"action":"Discharge Sep 7 strict publication debt using canonical Windows queues, exact-title reconciliation and bounded direct publishers; never count queue/commit/admin URLs."},
-    {"rank":2,"action":"Keep C:\\SIDEHUSTLE_AUTO as the sole Windows root; repair the same runner in place, cap hung browser/publisher calls, restore scheduled tasks in finally paths and keep logs in C:\\SIDEHUSTLE_AUTO\\logs."},
-    {"rank":3,"action":"After debt clears, materialize Sep 8 nonduplicate purchase-intent products and free-to-paid pairs; do not publish semantic clones for quota."},
-    {"rank":4,"action":"Instrument first-party note/BOOTH/Store/GitHub funnel metrics before price, CTA, cadence or winner-amplification claims."},
-    {"rank":5,"action":"Advance Microsoft Store only through evidence-backed Partner Center steps; preserve the public PWA as a measurable acquisition surface without inventing package identity or submission state."}
+    {"rank":1,"action":"Materialize the Sep 9 ranked batch from sidehustle-autopublish/planning/2026-09-09_batch01.json, preserving nonduplication, >=5001-char NOTE bodies, dedicated covers and complete BOOTH downloadable products."},
+    {"rank":2,"action":"After QA, atomically activate current-day queues and let C:\\SIDEHUSTLE_AUTO consume only those IDs with exact-title reconciliation before create."},
+    {"rank":3,"action":"Instrument first-party note/BOOTH/Store/GitHub funnel metrics before price, CTA, cadence or winner-amplification claims."},
+    {"rank":4,"action":"Use GitHub Pages and Microsoft Store primarily as measurable low-touch acquisition surfaces; prioritize utility products with zero support burden."},
+    {"rank":5,"action":"Advance Microsoft Store only through evidence-backed Partner Center steps; do not claim submission or acquisition state without source evidence."}
   ],
   "measurement": {
     "note": {"PV":null,"likes":null,"follows":null,"paidClicks":null,"purchases":null,"revenue":null},
