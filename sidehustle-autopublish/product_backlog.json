@@ -1,16 +1,18 @@
 {
-  "version": 34,
-  "updatedAt": "2026-09-10T05:12:51+09:00",
+  "version": 35,
+  "updatedAt": "2026-09-11T12:16:51+09:00",
   "purpose": "Zero-touch profit backlog ranked by expected profit x continuity x automation x success probability / user work time.",
   "evidenceLimit": "No observed first-party sales/PV/click/purchase/Store acquisition values are available in the repository; do not infer winners.",
   "activeDebt": {"publicationDate":"2026-09-09","paidNote":0,"freeNote":2,"BOOTH":5,"total":7,"strictVerified":5,"state":"carryover_active"},
-  "todayPlan": {"publicationDate":"2026-09-10","planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12,"state":"planned_not_activated"},
+  "priorDayObligation": {"publicationDate":"2026-09-10","planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12,"state":"planned_not_materialized"},
+  "todayPlan": {"publicationDate":"2026-09-11","planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12,"state":"planned_not_activated"},
   "executionBacklog": [
     {"rank":1,"channel":"cross-channel","type":"carryover_publication","state":"ready_for_authenticated_windows_publisher","nextAction":"Publish only Sep 9 free NOTE 2 and BOOTH 5 still lacking strict verification; reconcile exact-title public pages before create and synchronize evidence atomically."},
     {"rank":2,"channel":"cross-channel","type":"sep10_materialization","state":"planned","nextAction":"Materialize Sep 10 five paid NOTE, two free NOTE and five BOOTH products at full QA quality; activate only after carryover-safe checks."},
-    {"rank":3,"channel":"cross-channel","type":"first_party_measurement","metrics":["note PV","note likes","note follows","paid CTA clicks","paid purchases","note revenue","BOOTH sales","Microsoft Store page views","acquisitions","installs","conversion","health","GitHub outbound clicks"],"nextAction":"Capture only accessible observed values; leave unavailable values null and compare matched-age cohorts."},
-    {"rank":4,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","state":"public_pwa_and_assets_ready_identity_unverified","nextAction":"Preserve assets and advance only through verifiable Partner Center identity/submission evidence; request user work only if identity, legal, tax or payment setup is proven to be the sole blocker."},
-    {"rank":5,"channel":"GitHubPages","type":"measurable_acquisition","nextAction":"Use existing utility tools as attributable acquisition surfaces after destinations and analytics are measurable; avoid thin SEO or spam-like expansion."}
+    {"rank":3,"channel":"cross-channel","type":"sep11_materialization","state":"planned_waiting_behind_older_debt","nextAction":"Materialize Sep 11 batch only after Sep 10 is safely materialized/activated; never jump older debt or duplicate titles."},
+    {"rank":4,"channel":"cross-channel","type":"first_party_measurement","metrics":["note PV","note likes","note follows","paid CTA clicks","paid purchases","note revenue","BOOTH sales","Microsoft Store page views","acquisitions","installs","conversion","health","GitHub outbound clicks"],"nextAction":"Capture only accessible observed values; leave unavailable values null and compare matched-age cohorts."},
+    {"rank":5,"channel":"MicrosoftStore","id":"ms_csv_cleaner_deduper","type":"submission_completion","state":"public_pwa_and_assets_ready_identity_unverified","nextAction":"Preserve assets and advance only through verifiable Partner Center identity/submission evidence; request user work only if identity, legal, tax or payment setup is proven to be the sole blocker."},
+    {"rank":6,"channel":"GitHubPages","type":"measurable_acquisition","nextAction":"Use existing utility tools as attributable acquisition surfaces after destinations and analytics are measurable; avoid thin SEO or spam-like expansion."}
   ],
   "winnerCandidates": [],
   "rules": ["Publication debt outranks discretionary optimization.","Strict public verification, not commits or exit 0, completes publication.","Never republish a strict-verified exact title.","Free NOTE never replaces paid NOTE quota.","No invented sales, PV, conversion, installs or revenue.","Do not create semantic clones merely to hit volume."]
