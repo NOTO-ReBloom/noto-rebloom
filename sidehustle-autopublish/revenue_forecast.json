@@ -1,6 +1,6 @@
 {
-  "version": 11,
-  "updatedAt": "2026-09-10T05:12:51+09:00",
+  "version": 12,
+  "updatedAt": "2026-09-11T21:18:00+09:00",
   "forecastPolicy": "Do not invent revenue, CVR or uplift without observed first-party data. Rank opportunities by expected profit x continuity x automation rate x success probability / user work time.",
   "observedDataAvailability": {
     "BOOTH_sales": null,
@@ -20,24 +20,38 @@
     "GitHubPages_outboundConversion": null
   },
   "verifiedAvailabilitySignals": {
-    "activePublicationDate": "2026-09-10",
-    "currentCalendarDate": "2026-09-10",
+    "currentCalendarDate": "2026-09-11",
     "carryoverSourceDate": "2026-09-09",
     "strictVerifiedInCarryoverRequest": 5,
-    "publicationDebt": 7,
-    "paidNoteDebt": 0,
-    "freeNoteDebt": 2,
-    "BOOTHDebt": 5,
-    "todayPlannedNotActivated": 12,
+    "activatedPublicationDebt": 7,
+    "activatedPaidNoteDebt": 0,
+    "activatedFreeNoteDebt": 2,
+    "activatedBOOTHDebt": 5,
+    "sep10PlannedUnmaterialized": 12,
+    "sep11PlannedNotActivated": 12,
     "humanOnlyBlocker": null
   },
   "rankedOpportunities": [
-    {"rank":1,"id":"clear_sep9_publication_debt","band":"highest","basis":"Seven Sep 9 assets are already materialized; converting them to strict verified public inventory has higher immediate expected value and lower user work than activating new inventory."},
-    {"rank":2,"id":"materialize_sep10_after_carryover_safe_check","band":"high","basis":"Sep 10 candidate selection is complete with zero expected user work; activation remains gated behind carryover-safe QA to avoid compounding publisher debt."},
-    {"rank":3,"id":"matched_age_first_party_measurement","band":"highest-information-value","basis":"No trustworthy funnel values exist; measurement is required before price, cadence or winner amplification can be optimized safely."},
-    {"rank":4,"id":"ms_csv_cleaner_deduper","band":"high-option-value","basis":"Public PWA and Store assets exist, while verified Partner Center identity/submission evidence remains absent; preserve optionality without claiming completion."},
-    {"rank":5,"id":"github_pages_attributable_acquisition","band":"measurement-enabling","basis":"Existing utility tools can become low-cost acquisition surfaces once attributable outbound measurement is available."}
+    {"rank":1,"id":"clear_sep9_publication_debt","band":"highest","basis":"Seven Sep 9 assets are already materialized; strict publication/reconciliation converts finished inventory into sellable or acquisition inventory with near-zero incremental user work."},
+    {"rank":2,"id":"materialize_sep10_after_carryover","band":"high","basis":"Sep 10 candidate selection is complete; materialize only after the active Sep 9 request is safely reconciled to avoid compounding duplicate risk."},
+    {"rank":3,"id":"materialize_sep11_after_sep10","band":"high","basis":"Sep 11 planning is complete and zero-touch compatible, but older obligations outrank it."},
+    {"rank":4,"id":"matched_age_first_party_measurement","band":"highest-information-value","basis":"No trustworthy funnel values exist; observed matched-age data is required before price, cadence, CTA or winner amplification can be optimized safely."},
+    {"rank":5,"id":"ms_csv_cleaner_deduper","band":"high-option-value","basis":"Public PWA, listing copy and assets exist; verified Partner Center identity/submission evidence is absent, so retain option value without claiming a human-only blocker until identity/legal/tax/payment gating is actually observed."},
+    {"rank":6,"id":"github_pages_attributable_acquisition","band":"measurement-enabling","basis":"Existing free utilities can support low-touch acquisition once outbound attribution is instrumented; avoid thin SEO expansion before measurement exists."}
   ],
-  "customerFacingChangesNow": {"livePriceChanges":"none","massCtaRewrite":"none","freeCadenceIncrease":"none","winnerDerivedVariants":"none","reason":"No first-party purchase/conversion evidence and seven strict carryover targets remain."},
-  "nextDataNeeded": ["strict Sep 9 free NOTE public URLs and checks","strict Sep 9 BOOTH public URLs and commerce checks","note matched-age PV/likes/purchases/revenue","BOOTH sales/revenue","Microsoft Store page views/acquisitions/installs/conversion","GitHub Pages outbound clicks/conversion"]
+  "customerFacingChangesNow": {
+    "livePriceChanges":"none",
+    "massCtaRewrite":"none",
+    "freeCadenceIncrease":"none",
+    "winnerDerivedVariants":"none",
+    "reason":"No first-party purchase/conversion evidence and activated strict carryover remains."
+  },
+  "nextDataNeeded": [
+    "strict Sep 9 free NOTE public URLs and checks",
+    "strict Sep 9 BOOTH public URLs and commerce checks",
+    "note matched-age PV/likes/purchases/revenue",
+    "BOOTH sales/revenue",
+    "Microsoft Store page views/acquisitions/installs/conversion",
+    "GitHub Pages outbound clicks/conversion"
+  ]
 }
