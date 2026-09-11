@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "date": "2026-09-11",
+  "createdAt": "2026-09-11T12:16:51+09:00",
+  "objective": "maximize expected profit x continuity x automation rate x success probability / user work time while preserving strict quality, buyer satisfaction and nonduplication",
+  "sourceEvidence": {
+    "firstPartyRevenueMetricsAvailable": false,
+    "winnerClaimsAllowed": false,
+    "activatedCarryOverRemaining": 7,
+    "unmaterializedPriorDayStandardTarget": 12,
+    "executionPriority": "Finish activated Sep 9 strict debt first; then materialize Sep 10 obligation before Sep 11 activation."
+  },
+  "scoreScale": "1-10 except userWorkMinutes and risk",
+  "candidates": [
+    {"rank":1,"cluster":"invoice_dispute_aging_control","paidNoteId":"note_20260911_112_invoice_dispute_aging_control","freeNoteId":"free_note_20260911_01_invoice_dispute_warning_signals","boothId":"119_invoice_dispute_aging_os_20260911","paidTitle":"請求書の異議申立てを放置しない｜争点・担当・期限・回収見込を追う管理方法","freeTitle":"請求トラブルが長期化する前に見る7つの兆候｜無料チェック","boothTitle":"請求異議・回収停滞管理OS｜争点・担当・期限・回収見込を一元管理","expectedProfit":8,"continuity":9,"automationRate":10,"successProbability":7,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":2,"cluster":"saas_renewal_owner_control","paidNoteId":"note_20260911_113_saas_renewal_owner_control","freeNoteId":"free_note_20260911_02_saas_renewal_warning_signals","boothId":"120_saas_renewal_owner_os_20260911","paidTitle":"SaaS更新を担当者の記憶に任せない｜契約期限・利用状況・責任者で更新判断を管理する方法","freeTitle":"SaaSの無駄更新が起きる前に見る7つの兆候｜無料チェック","boothTitle":"SaaS更新判断OS｜契約期限・利用状況・責任者・更新判断を一元管理","expectedProfit":8,"continuity":9,"automationRate":10,"successProbability":7,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":3,"cluster":"purchase_requisition_cycle_control","paidNoteId":"note_20260911_114_purchase_requisition_cycle_control","boothId":"121_purchase_requisition_cycle_os_20260911","paidTitle":"購買申請がどこで止まっているか見える化する｜申請・承認・発注までの滞留を減らす方法","boothTitle":"購買申請リードタイムOS｜申請・承認・発注・滞留理由を一元管理","expectedProfit":7,"continuity":9,"automationRate":10,"successProbability":7,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":4,"cluster":"customer_implementation_risk_control","paidNoteId":"note_20260911_115_customer_implementation_risk_control","boothId":"122_customer_implementation_risk_os_20260911","paidTitle":"導入案件の遅延を直前に知る状態をやめる｜依存関係・懸念・期限で実装リスクを追う方法","boothTitle":"顧客導入リスク管理OS｜依存関係・懸念・期限・責任者を一元管理","expectedProfit":7,"continuity":8,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":5,"cluster":"audit_evidence_request_tracker","paidNoteId":"note_20260911_116_audit_evidence_request_tracker","boothId":"123_audit_evidence_request_os_20260911","paidTitle":"監査資料の依頼をメールで追わない｜証憑・担当・期限・差戻しを一元管理する方法","boothTitle":"監査証憑依頼トラッカーOS｜証憑・担当・期限・差戻し・提出状況を一元管理","expectedProfit":7,"continuity":9,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1}
+  ],
+  "standardTarget": {"paidNote":5,"freeNote":2,"BOOTH":5,"total":12},
+  "activationState": "planned_not_activated_until_older_debt_materialized_and_strict_verified",
+  "rules": ["Do not invent demand, revenue, PV, conversion or purchases.","Do not activate Sep 11 ahead of older strict publication debt.","Do not create thin semantic clones.","Free NOTE never substitutes for the paid daily floor."]
+}
