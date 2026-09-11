@@ -1,7 +1,7 @@
 {
-  "version": 75,
-  "updatedAt": "2026-09-10T05:12:51+09:00",
-  "objective": "Clear strict publication debt through 2026-09-09, then materialize and publish 2026-09-10 without duplicate creation.",
+  "version": 76,
+  "updatedAt": "2026-09-11T21:18:00+09:00",
+  "objective": "Clear strict publication debt in date order through 2026-09-11 without duplicate creation, while preserving zero-touch operation and truthful measurement.",
   "authoritativeSources": {
     "completionGate":"sidehustle-autopublish/completion_gate.json",
     "publicationQuota":"sidehustle-autopublish/publication_quota.json",
@@ -13,30 +13,29 @@
     "boothLedger":"booth-autopublish/monitor/publication_ledger.json",
     "boothRecoveryControl":"booth-autopublish/monitor/recovery_control.json"
   },
-  "previousDay": {
-    "date":"2026-09-09",
+  "activatedCarryover": {
+    "sourceDate":"2026-09-09",
     "paidNote":{"target":5,"strictVerified":5,"remaining":0},
-    "BOOTH":{"target":5,"strictVerified":0,"remaining":5},
-    "freeNote":{"hardTarget":false,"strictVerified":0,"remaining":2},
-    "hardQuotaDebtRemaining":5,
-    "evidence":"Sep 9 paid NOTE five are reader-visible verified; Sep 9 free NOTE two and BOOTH five remain strict-unverified."
+    "BOOTH":{"target":5,"strictVerified":0,"remaining":5,"remainingIds":["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"]},
+    "freeNote":{"target":2,"strictVerified":0,"remaining":2,"remainingIds":["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"]},
+    "remaining":7
   },
-  "currentRecovery": {"throughDate":"2026-09-10","observedAt":"2026-09-10T05:12:51+09:00","outstandingDates":["2026-09-09"],"strictVerifiedInCarryoverRequest":5,"remaining":7},
-  "currentDayTargets": {
+  "priorDayObligation": {
     "date":"2026-09-10",
+    "paidNote":{"target":5,"strictVerified":0,"materialized":0},
+    "BOOTH":{"target":5,"strictVerified":0,"materialized":0},
+    "freeNote":{"target":2,"strictVerified":0,"materialized":0},
+    "planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json",
+    "activationState":"planned_not_materialized"
+  },
+  "currentDayTargets": {
+    "date":"2026-09-11",
     "paidNote":{"target":5,"strictVerified":0,"remaining":5,"materialized":0,"remainingIds":[]},
     "BOOTH":{"target":5,"strictVerified":0,"remaining":5,"materialized":0,"remainingIds":[]},
     "freeNote":{"target":2,"strictVerified":0,"remaining":2,"materialized":0,"remainingIds":[],"paidQuotaContribution":0},
-    "planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json",
-    "activationState":"planned_not_activated_until_carryover_strict_verified",
+    "planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json",
+    "activationState":"planned_not_activated_until_older_debt_cleared",
     "allDesignatedStrictVerified":false
-  },
-  "carryOverTargets": {
-    "date":"2026-09-09",
-    "paidNote":{"remainingIds":[]},
-    "freeNote":{"remainingIds":["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"]},
-    "BOOTH":{"remainingIds":["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"]},
-    "total":7
   },
   "observedBusinessMetrics": {
     "note":{"PV":null,"likes":null,"follows":null,"purchases":null,"revenue":null},
@@ -45,7 +44,29 @@
     "GitHubPages":{"outboundClicks":null,"conversion":null},
     "interpretationRule":"Unavailable is null, never assumed zero; no success or winner claim without measured values."
   },
-  "evidence": {"carryoverMaterialization":"all Sep 9 strict-unverified encrypted payloads/manuscripts and QA manifests are present","sep10Planning":"candidate planning complete; materialization pending","humanOnlyBlocker":null},
-  "monitor": {"checkedAt":"2026-09-10T05:12:51+09:00","carryoverCloudMaterializationComplete":true,"windowsAuthenticatedPublisherRequiredForCarryoverPublicPosting":true,"nextWindowsAction":"Consume only Sep 9 remaining two free NOTE and five BOOTH IDs from canonical request; reconcile exact titles before create."},
-  "rules": ["Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.","Do not reduce paid publication floors without strict public verification.","Do not republish strict-verified Sep 9 paid NOTE items.","Do not invent public URLs, sales, PV, likes, acquisitions or conversions."]
+  "publicDiscoveryCheck": {
+    "checkedAt":"2026-09-11T21:18:00+09:00",
+    "sep9FreeNoteExactTitlePublicUrlsDiscovered":0,
+    "sep9BoothExactTitlePublicUrlsDiscovered":0,
+    "boothShopSignal":"nicetools products remain visible in BOOTH category/search pages, but the five Sep 9 exact target titles were not discovered; this is not strict verification.",
+    "rule":"Search absence is not proof of non-publication; publisher must reconcile authenticated edit/profile surfaces before create."
+  },
+  "microsoftStore": {
+    "product":"ms_csv_cleaner_deduper",
+    "state":"code_and_listing_ready_package_identity_pending",
+    "publicPwaUrl":"https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
+    "humanOnlyBlockerProven":false
+  },
+  "monitor": {
+    "checkedAt":"2026-09-11T21:18:00+09:00",
+    "carryoverCloudMaterializationComplete":true,
+    "windowsAuthenticatedPublisherRequiredForCarryoverPublicPosting":true,
+    "nextWindowsAction":"Consume only Sep 9 remaining two free NOTE and five BOOTH IDs from canonical request; reconcile exact titles before create; write strict evidence back atomically."
+  },
+  "rules": [
+    "Do not count queue insertion, materialization, commits, local success, editor/admin URLs or historical reverification as current-day publication.",
+    "Do not reduce paid publication floors without strict public verification.",
+    "Do not republish strict-verified Sep 9 paid NOTE items.",
+    "Do not invent public URLs, sales, PV, likes, acquisitions or conversions."
+  ]
 }
