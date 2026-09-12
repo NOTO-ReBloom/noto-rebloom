@@ -1,68 +1,51 @@
 {
-  "version": 82,
-  "updatedAt": "2026-09-12T09:15:32+09:00",
-  "status": "carryover_in_progress_7_sep10_12_sep11_12_sep12_12_planned",
-  "date": "2026-09-12",
+  "version": 83,
+  "updatedAt": "2026-09-13T05:14:17+09:00",
+  "status": "carryover_in_progress_7_sep10_12_sep11_12_sep12_12_sep13_12_planned",
+  "date": "2026-09-13",
   "timezone": "Asia/Tokyo",
-  "previousDayReceipt": {
-    "date": "2026-09-11",
-    "status": "no_new_strict_verification_recorded",
-    "strictVerified": 0,
-    "notePaid": 0,
-    "noteFree": 0,
-    "BOOTH": 0,
-    "note": "Sep 11 standard batch was planned but not materialized or activated; do not count it as published."
-  },
+  "previousDayReceipt": {"date":"2026-09-12","status":"no_new_strict_verification_recorded","strictVerified":0,"notePaid":0,"noteFree":0,"BOOTH":0,"note":"Sep 12 standard batch remained planned and was not activated; do not count it as published."},
   "carryOver": {
-    "sourceDates": ["2026-09-09","2026-09-10","2026-09-11"],
+    "sourceDates": ["2026-09-09","2026-09-10","2026-09-11","2026-09-12"],
     "requiredBeforeCurrentDay": true,
-    "activatedRemaining": {
-      "paidNote": [],
-      "freeNote": ["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],
-      "BOOTH": ["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],
-      "total": 7
-    },
+    "activatedRemaining": {"paidNote":[],"freeNote":["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],"BOOTH":["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],"total":7},
     "unmaterializedObligations": [
       {"date":"2026-09-10","planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12},
-      {"date":"2026-09-11","planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12}
+      {"date":"2026-09-11","planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12},
+      {"date":"2026-09-12","planningManifest":"sidehustle-autopublish/planning/2026-09-12_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12}
     ],
     "strictVerifiedInActiveCarryoverRequest": {"paidNote":5,"freeNote":0,"BOOTH":0,"total":5}
   },
   "completionConditions": {
-    "notePaid": {"requiredIds": [], "strictChecks": ["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover","paidBodyCharsAtLeast5001","freeBodyCharsAtLeast5001"]},
-    "noteFree": {"requiredIds": ["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"], "strictChecks": ["readerVisibleUrl","exactTitle","freeState","dedicatedCover","bodyCharsAtLeast5001"], "paidQuotaContribution":0},
-    "BOOTH": {"requiredIds": ["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"], "strictChecks": ["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]}
+    "notePaid": {"requiredIds":[],"strictChecks":["readerVisibleUrl","exactTitle","expectedPrice","paidBoundary","dedicatedCover","paidBodyCharsAtLeast5001","freeBodyCharsAtLeast5001"]},
+    "noteFree": {"requiredIds":["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],"strictChecks":["readerVisibleUrl","exactTitle","freeState","dedicatedCover","bodyCharsAtLeast5001"],"paidQuotaContribution":0},
+    "BOOTH": {"requiredIds":["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],"strictChecks":["buyerVisibleUrl","exactTitle","expectedPrice","downloadableProductState","purchaseOrCartPath"]}
   },
-  "currentDayPlanning": {
-    "state": "planned_not_activated_until_older_debt_cleared",
-    "planningManifest": "sidehustle-autopublish/planning/2026-09-12_batch01.json",
-    "standardTarget": {"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},
-    "hardFloorPreserved": true,
-    "rule": "Finish activated Sep 9 debt first, materialize Sep 10 second, Sep 11 third, then Sep 12."
-  },
-  "completionCounts": {"activeCarryoverStrictVerified":5,"activatedCarryOverRemaining":7,"sep10UnmaterializedObligation":12,"sep11UnmaterializedObligation":12,"todayPlanned":12,"todayActivated":0,"totalOutstandingIncludingPlanned":43},
-  "materializationState": "sep9 carryover materialized active; sep10 and sep11 planned unmaterialized; sep12 planning complete",
+  "currentDayPlanning": {"state":"planned_not_activated_until_older_debt_cleared","planningManifest":"sidehustle-autopublish/planning/2026-09-13_batch01.json","standardTarget":{"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},"hardFloorPreserved":true,"rule":"Finish activated Sep 9 debt first, materialize Sep 10, Sep 11, Sep 12, then Sep 13."},
+  "completionCounts": {"activeCarryoverStrictVerified":5,"activatedCarryOverRemaining":7,"sep10UnmaterializedObligation":12,"sep11UnmaterializedObligation":12,"sep12UnmaterializedObligation":12,"todayPlanned":12,"todayActivated":0,"totalOutstandingIncludingPlanned":55},
+  "materializationState": "sep9 carryover materialized active; sep10 sep11 sep12 planned unmaterialized; sep13 planning complete",
   "duplicateControl": {"policy":"Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.","knownCleanup":{"status":"completed_verified","remainingDuplicateTitleGroups":0}},
   "executionPolicy": {"singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,"canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true},
   "reportingPolicy": {"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
   "humanOnlyBlocker": null,
   "antiFalseCompletion": ["Do not report a commit as publication.","Do not report queue insertion as publication.","Do not report local publisher exit 0 without public verification.","Do not report editor/admin URLs as publication.","Do not invent public URLs.","Do not count historical reverification as a new current-day publication."],
   "strictVerifiedByDate": {
-    "2026-09-07": {"paidNote":["note_20260907_92_employee_offboarding_access_control","note_20260907_93_duplicate_expense_claim_control","note_20260907_94_saas_admin_privilege_review_control","note_20260907_95_contract_renewal_notice_control","note_20260907_96_customer_refund_exception_control"],"freeNote":["free_note_20260907_01_offboarding_access_warning_signals","free_note_20260907_02_duplicate_expense_warning_signals"],"BOOTH":["099_employee_offboarding_access_os_20260907","100_duplicate_expense_claim_os_20260907","101_saas_admin_privilege_review_os_20260907","102_contract_renewal_notice_os_20260907","103_customer_refund_exception_os_20260907"],"total":12},
-    "2026-09-08": {"paidNote":["note_20260908_97_vendor_master_dormant_cleanup","note_20260908_98_corporate_card_spend_control","note_20260908_99_customer_data_retention_deletion","note_20260908_100_invoice_number_gap_control","note_20260908_101_software_license_seat_optimization"],"freeNote":[],"BOOTH":["104_vendor_master_cleanup_os_20260908","105_corporate_card_spend_control_os_20260908","106_customer_data_retention_os_20260908","107_invoice_number_gap_control_os_20260908","108_software_license_seat_optimization_os_20260908"],"total":10},
-    "2026-09-09": {"paidNote":["note_20260909_102_receivables_collection_escalation_control","note_20260909_103_subscription_price_increase_review_control","note_20260909_104_support_refund_root_cause_control","note_20260909_105_slow_moving_inventory_control","note_20260909_106_vendor_contract_obligation_control"],"freeNote":[],"BOOTH":[],"total":5}
+    "2026-09-07":{"paidNote":["note_20260907_92_employee_offboarding_access_control","note_20260907_93_duplicate_expense_claim_control","note_20260907_94_saas_admin_privilege_review_control","note_20260907_95_contract_renewal_notice_control","note_20260907_96_customer_refund_exception_control"],"freeNote":["free_note_20260907_01_offboarding_access_warning_signals","free_note_20260907_02_duplicate_expense_warning_signals"],"BOOTH":["099_employee_offboarding_access_os_20260907","100_duplicate_expense_claim_os_20260907","101_saas_admin_privilege_review_os_20260907","102_contract_renewal_notice_os_20260907","103_customer_refund_exception_os_20260907"],"total":12},
+    "2026-09-08":{"paidNote":["note_20260908_97_vendor_master_dormant_cleanup","note_20260908_98_corporate_card_spend_control","note_20260908_99_customer_data_retention_deletion","note_20260908_100_invoice_number_gap_control","note_20260908_101_software_license_seat_optimization"],"freeNote":[],"BOOTH":["104_vendor_master_cleanup_os_20260908","105_corporate_card_spend_control_os_20260908","106_customer_data_retention_os_20260908","107_invoice_number_gap_control_os_20260908","108_software_license_seat_optimization_os_20260908"],"total":10},
+    "2026-09-09":{"paidNote":["note_20260909_102_receivables_collection_escalation_control","note_20260909_103_subscription_price_increase_review_control","note_20260909_104_support_refund_root_cause_control","note_20260909_105_slow_moving_inventory_control","note_20260909_106_vendor_contract_obligation_control"],"freeNote":[],"BOOTH":[],"total":5}
   },
   "outstandingByDate": {
     "2026-09-09":{"paidNote":[],"freeNote":["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],"BOOTH":["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],"total":7},
     "2026-09-10":{"state":"planned_not_materialized","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json"},
     "2026-09-11":{"state":"planned_not_materialized","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json"},
-    "2026-09-12":{"state":"planned_not_activated","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-12_batch01.json"}
+    "2026-09-12":{"state":"planned_not_materialized","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-12_batch01.json"},
+    "2026-09-13":{"state":"planned_not_activated","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-13_batch01.json"}
   },
   "completedAt": null,
   "completionEvidence": null,
   "purpose": "Clear strict-unverified carryover in date order, then materialize planned daily targets without duplicate creation.",
   "forceNowRequested": true,
-  "executionRequestedAt": "2026-09-12T09:15:32+09:00",
-  "executionNonce": "carryover-first-20260912T091532+0900",
+  "executionRequestedAt": "2026-09-13T05:14:17+09:00",
+  "executionNonce": "carryover-first-20260913T051417+0900",
   "forceNowMode": "publish_activated_carryover_reconcile_first_then_materialize_older_plans_in_order"
 }
