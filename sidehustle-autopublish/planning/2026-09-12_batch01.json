@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "date": "2026-09-12",
+  "createdAt": "2026-09-12T09:15:32+09:00",
+  "objective": "maximize expected profit x continuity x automation rate x success probability / user work time while preserving strict quality, buyer satisfaction and nonduplication",
+  "sourceEvidence": {
+    "firstPartyRevenueMetricsAvailable": false,
+    "winnerClaimsAllowed": false,
+    "activatedCarryOverRemaining": 7,
+    "unmaterializedPriorDayObligations": [
+      {"date":"2026-09-10","total":12},
+      {"date":"2026-09-11","total":12}
+    ],
+    "executionPriority": "Finish activated Sep 9 strict debt first; materialize Sep 10 obligation second; Sep 11 third; keep Sep 12 planned behind older debt."
+  },
+  "scoreScale": "1-10 except userWorkMinutes and risk",
+  "candidates": [
+    {"rank":1,"cluster":"accounts_payable_duplicate_invoice_control","paidNoteId":"note_20260912_117_ap_duplicate_invoice_control","freeNoteId":"free_note_20260912_01_duplicate_invoice_warning_signals","boothId":"124_ap_duplicate_invoice_os_20260912","paidTitle":"二重請求を支払後に気づかない｜請求番号・金額・取引先・承認履歴で重複を止める方法","freeTitle":"二重請求が通る前に見る7つの兆候｜無料チェック","boothTitle":"買掛・二重請求防止OS｜請求番号・金額・取引先・承認履歴を一元管理","expectedProfit":8,"continuity":9,"automationRate":10,"successProbability":7,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":2,"cluster":"employee_expense_policy_exception_control","paidNoteId":"note_20260912_118_expense_policy_exception_control","freeNoteId":"free_note_20260912_02_expense_policy_warning_signals","boothId":"125_expense_policy_exception_os_20260912","paidTitle":"経費例外を口頭承認で残さない｜理由・承認者・期限・再発防止を追う管理方法","freeTitle":"経費ルールが形骸化する前に見る7つの兆候｜無料チェック","boothTitle":"経費例外承認OS｜理由・承認者・期限・証憑・再発防止を一元管理","expectedProfit":8,"continuity":9,"automationRate":10,"successProbability":7,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":3,"cluster":"customer_credit_note_control","paidNoteId":"note_20260912_119_customer_credit_note_control","boothId":"126_customer_credit_note_os_20260912","paidTitle":"値引き・返金の根拠を後から探さない｜クレジットノートの理由・承認・対象請求を管理する方法","boothTitle":"クレジットノート管理OS｜理由・承認・対象請求・金額・処理状況を一元管理","expectedProfit":7,"continuity":8,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":4,"cluster":"contract_obligation_evidence_control","paidNoteId":"note_20260912_120_contract_obligation_evidence_control","boothId":"127_contract_obligation_evidence_os_20260912","paidTitle":"契約上の義務を担当者の記憶に任せない｜期限・証跡・責任者で履行漏れを防ぐ方法","boothTitle":"契約義務・履行証跡OS｜義務・期限・責任者・証跡・完了状況を一元管理","expectedProfit":7,"continuity":9,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":5,"cluster":"customer_refund_aging_control","paidNoteId":"note_20260912_121_refund_aging_control","boothId":"128_refund_aging_control_os_20260912","paidTitle":"返金案件を未処理のまま残さない｜受付日・理由・承認・返金期限で滞留をなくす方法","boothTitle":"返金滞留管理OS｜受付日・理由・承認・返金期限・完了を一元管理","expectedProfit":7,"continuity":8,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1}
+  ],
+  "standardTarget": {"paidNote":5,"freeNote":2,"BOOTH":5,"total":12},
+  "activationState": "planned_not_activated_until_older_debt_materialized_and_strict_verified",
+  "materializationOrder": [
+    "finish Sep 9 strict publication debt",
+    "materialize and publish Sep 10",
+    "materialize and publish Sep 11",
+    "materialize Sep 12 full-QA assets only when older debt order is preserved",
+    "strict verify public URLs before counting completion"
+  ],
+  "rules": [
+    "Do not invent demand, revenue, PV, conversion or purchases.",
+    "Do not activate Sep 12 ahead of older strict publication debt.",
+    "Do not create thin semantic clones.",
+    "Free NOTE never substitutes for the paid daily floor."
+  ]
+}
