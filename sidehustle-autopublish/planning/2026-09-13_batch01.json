@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "date": "2026-09-13",
+  "createdAt": "2026-09-13T05:14:17+09:00",
+  "objective": "maximize expected profit x continuity x automation rate x success probability / user work time while preserving strict quality, buyer satisfaction and nonduplication",
+  "sourceEvidence": {
+    "firstPartyRevenueMetricsAvailable": false,
+    "winnerClaimsAllowed": false,
+    "activatedCarryOverRemaining": 7,
+    "unmaterializedPriorDayObligations": [
+      {"date":"2026-09-10","total":12},
+      {"date":"2026-09-11","total":12},
+      {"date":"2026-09-12","total":12}
+    ],
+    "executionPriority": "Finish activated Sep 9 strict debt first; materialize Sep 10, Sep 11 and Sep 12 in order; keep Sep 13 planned behind older debt."
+  },
+  "scoreScale": "1-10 except userWorkMinutes and risk",
+  "candidates": [
+    {"rank":1,"cluster":"vendor_insurance_certificate_expiry_control","paidNoteId":"note_20260913_122_vendor_insurance_expiry_control","freeNoteId":"free_note_20260913_01_vendor_insurance_expiry_signals","boothId":"129_vendor_insurance_expiry_os_20260913","paidTitle":"取引先の保険証明切れを契約後に見落とさない｜期限・補償・更新証跡を追う管理方法","freeTitle":"取引先の保険証明が切れる前に見る7つの兆候｜無料チェック","boothTitle":"取引先保険証明・期限管理OS｜補償・期限・更新依頼・証跡を一元管理","expectedProfit":8,"continuity":9,"automationRate":10,"successProbability":7,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":2,"cluster":"unapplied_customer_deposit_control","paidNoteId":"note_20260913_123_unapplied_deposit_control","freeNoteId":"free_note_20260913_02_unapplied_deposit_signals","boothId":"130_unapplied_customer_deposit_os_20260913","paidTitle":"入金済みなのに消込されないを放置しない｜顧客・請求・入金日で未消込をなくす方法","freeTitle":"未消込入金が増える前に見る7つの兆候｜無料チェック","boothTitle":"未消込入金管理OS｜顧客・請求・入金日・金額・消込状況を一元管理","expectedProfit":8,"continuity":9,"automationRate":10,"successProbability":7,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":3,"cluster":"supplier_sla_breach_control","paidNoteId":"note_20260913_124_supplier_sla_breach_control","boothId":"131_supplier_sla_breach_os_20260913","paidTitle":"委託先のSLA違反を感覚で処理しない｜基準・発生日・是正・再発を追う管理方法","boothTitle":"委託先SLA違反管理OS｜基準・発生日・影響・是正・再発防止を一元管理","expectedProfit":7,"continuity":9,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":4,"cluster":"prepaid_expense_amortization_control","paidNoteId":"note_20260913_125_prepaid_expense_amortization_control","boothId":"132_prepaid_expense_amortization_os_20260913","paidTitle":"前払費用の償却漏れを月末に探さない｜契約期間・月額・残高で締め処理を整える方法","boothTitle":"前払費用・償却管理OS｜契約期間・月額・残高・仕訳予定を一元管理","expectedProfit":7,"continuity":8,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1},
+    {"rank":5,"cluster":"warranty_claim_aging_control","paidNoteId":"note_20260913_126_warranty_claim_aging_control","boothId":"133_warranty_claim_aging_os_20260913","paidTitle":"保証対応を受付後に放置しない｜期限・原因・代替品・顧客連絡で滞留を減らす方法","boothTitle":"保証・クレーム滞留管理OS｜受付・期限・原因・対応・顧客連絡を一元管理","expectedProfit":7,"continuity":8,"automationRate":10,"successProbability":6,"userWorkMinutes":0,"initialCost":0,"policyReviewRisk":1}
+  ],
+  "standardTarget": {"paidNote":5,"freeNote":2,"BOOTH":5,"total":12},
+  "activationState": "planned_not_activated_until_older_debt_materialized_and_strict_verified",
+  "materializationOrder": ["finish Sep 9 strict publication debt","materialize and publish Sep 10","materialize and publish Sep 11","materialize and publish Sep 12","materialize Sep 13 full-QA assets only when older debt order is preserved","strict verify public URLs before counting completion"],
+  "rules": ["Do not invent demand, revenue, PV, conversion or purchases.","Do not activate Sep 13 ahead of older strict publication debt.","Do not create thin semantic clones.","Free NOTE never substitutes for the paid daily floor."]
+}
