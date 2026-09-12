@@ -1,20 +1,20 @@
 {
-  "version": 81,
-  "updatedAt": "2026-09-11T12:16:51+09:00",
-  "status": "carryover_in_progress_7_sep10_12_unmaterialized_sep11_12_planned",
-  "date": "2026-09-11",
+  "version": 82,
+  "updatedAt": "2026-09-12T09:15:32+09:00",
+  "status": "carryover_in_progress_7_sep10_12_sep11_12_sep12_12_planned",
+  "date": "2026-09-12",
   "timezone": "Asia/Tokyo",
   "previousDayReceipt": {
-    "date": "2026-09-10",
+    "date": "2026-09-11",
     "status": "no_new_strict_verification_recorded",
     "strictVerified": 0,
     "notePaid": 0,
     "noteFree": 0,
     "BOOTH": 0,
-    "note": "Sep 10 standard batch was planned but not materialized or activated; do not count it as published."
+    "note": "Sep 11 standard batch was planned but not materialized or activated; do not count it as published."
   },
   "carryOver": {
-    "sourceDates": ["2026-09-09","2026-09-10"],
+    "sourceDates": ["2026-09-09","2026-09-10","2026-09-11"],
     "requiredBeforeCurrentDay": true,
     "activatedRemaining": {
       "paidNote": [],
@@ -22,14 +22,10 @@
       "BOOTH": ["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],
       "total": 7
     },
-    "unmaterializedObligation": {
-      "date": "2026-09-10",
-      "planningManifest": "sidehustle-autopublish/planning/2026-09-10_batch01.json",
-      "paidNote": 5,
-      "freeNote": 2,
-      "BOOTH": 5,
-      "total": 12
-    },
+    "unmaterializedObligations": [
+      {"date":"2026-09-10","planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12},
+      {"date":"2026-09-11","planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json","paidNote":5,"freeNote":2,"BOOTH":5,"total":12}
+    ],
     "strictVerifiedInActiveCarryoverRequest": {"paidNote":5,"freeNote":0,"BOOTH":0,"total":5}
   },
   "completionConditions": {
@@ -39,13 +35,13 @@
   },
   "currentDayPlanning": {
     "state": "planned_not_activated_until_older_debt_cleared",
-    "planningManifest": "sidehustle-autopublish/planning/2026-09-11_batch01.json",
+    "planningManifest": "sidehustle-autopublish/planning/2026-09-12_batch01.json",
     "standardTarget": {"notePaid":5,"noteFree":2,"BOOTH":5,"total":12},
     "hardFloorPreserved": true,
-    "rule": "Finish activated Sep 9 debt first, materialize Sep 10 obligation second, then materialize/activate Sep 11."
+    "rule": "Finish activated Sep 9 debt first, materialize Sep 10 second, Sep 11 third, then Sep 12."
   },
-  "completionCounts": {"activeCarryoverStrictVerified":5,"activatedCarryOverRemaining":7,"sep10UnmaterializedObligation":12,"todayPlanned":12,"todayActivated":0},
-  "materializationState": "sep9 carryover materialized; sep10 planned but unmaterialized; sep11 planning complete",
+  "completionCounts": {"activeCarryoverStrictVerified":5,"activatedCarryOverRemaining":7,"sep10UnmaterializedObligation":12,"sep11UnmaterializedObligation":12,"todayPlanned":12,"todayActivated":0,"totalOutstandingIncludingPlanned":43},
+  "materializationState": "sep9 carryover materialized active; sep10 and sep11 planned unmaterialized; sep12 planning complete",
   "duplicateControl": {"policy":"Reconcile exact-title public pages before publishing; never retry a verified title; block on ambiguous multiples.","knownCleanup":{"status":"completed_verified","remainingDuplicateTitleGroups":0}},
   "executionPolicy": {"singleRunMayPublishMany":true,"switchCandidatesAfterBriefRecoverableFailure":true,"doNotStopAfterFirstSuccessWhileTargetsRemain":true,"carryOverBeforeCurrentDay":true,"canonicalWindowsRoot":"C:\\SIDEHUSTLE_AUTO","doNotUseScatteredWindowsRoots":true,"noDailyZipOrCmdProliferation":true},
   "reportingPolicy": {"intermediateProgressReports":false,"diagnosticOnlyReports":false,"queueOrCommitOnlyReports":false,"nightlyAggregateOnly":true,"humanOnlyBlockerException":true},
@@ -59,13 +55,14 @@
   "outstandingByDate": {
     "2026-09-09":{"paidNote":[],"freeNote":["free_note_20260909_01_overdue_receivable_warning_signals","free_note_20260909_02_subscription_cost_creep_signals"],"BOOTH":["109_receivables_collection_escalation_os_20260909","110_subscription_price_increase_review_os_20260909","111_support_refund_root_cause_os_20260909","112_slow_moving_inventory_os_20260909","113_vendor_contract_obligation_os_20260909"],"total":7},
     "2026-09-10":{"state":"planned_not_materialized","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json"},
-    "2026-09-11":{"state":"planned_not_activated","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json"}
+    "2026-09-11":{"state":"planned_not_materialized","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json"},
+    "2026-09-12":{"state":"planned_not_activated","paidNoteTarget":5,"freeNoteTarget":2,"BOOTHTarget":5,"totalTarget":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-12_batch01.json"}
   },
   "completedAt": null,
   "completionEvidence": null,
-  "purpose": "Clear strict-unverified carryover in order, then materialize and publish Sep 10 and Sep 11 targets without duplicate creation.",
+  "purpose": "Clear strict-unverified carryover in date order, then materialize planned daily targets without duplicate creation.",
   "forceNowRequested": true,
-  "executionRequestedAt": "2026-09-11T12:16:51+09:00",
-  "executionNonce": "carryover-first-20260911T121651+0900",
+  "executionRequestedAt": "2026-09-12T09:15:32+09:00",
+  "executionNonce": "carryover-first-20260912T091532+0900",
   "forceNowMode": "publish_activated_carryover_reconcile_first_then_materialize_older_plans_in_order"
 }
