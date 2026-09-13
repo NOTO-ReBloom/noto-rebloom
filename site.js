@@ -37,6 +37,13 @@
     const script=document.createElement('script');
     script.src='site-current-20260913.js?v=20260913b';
     script.dataset.currentFactsLoader='1';
+    script.onload=()=>{
+      if(document.querySelector('script[data-final-audit-loader]')) return;
+      const audit=document.createElement('script');
+      audit.src='site-final-audit-20260913.js?v=20260913a';
+      audit.dataset.finalAuditLoader='1';
+      document.body.appendChild(audit);
+    };
     document.body.appendChild(script);
   };
 
