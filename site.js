@@ -30,6 +30,19 @@
     }
   });
 
-  document.write('<script src="site-core.js?v=20260913audit1"><\/script>');
-  document.write('<script src="site-current-20260913.js?v=20260913a"><\/script>');
+  document.write('<script src="site-core.js?v=20260913audit2"><\/script>');
+
+  const loadCurrentFacts=()=>{
+    if(document.querySelector('script[data-current-facts-loader]')) return;
+    const script=document.createElement('script');
+    script.src='site-current-20260913.js?v=20260913b';
+    script.dataset.currentFactsLoader='1';
+    document.body.appendChild(script);
+  };
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',loadCurrentFacts,{once:true});
+  }else{
+    loadCurrentFacts();
+  }
 })();
