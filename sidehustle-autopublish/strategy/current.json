@@ -1,32 +1,53 @@
 {
-  "version": 50,
-  "updatedAt": "2026-09-11T12:16:51+09:00",
+  "version": 51,
+  "updatedAt": "2026-09-13T12:15:00+09:00",
   "objective": "maximize expected profit x continuity x automation rate x success probability / user work time, with strict publication integrity and buyer satisfaction",
-  "activeChannels": ["BOOTH","note","GitHub Pages","Microsoft Store"],
+  "activeChannels": ["BOOTH", "note", "GitHub Pages", "Microsoft Store"],
   "authoritativeState": {
     "source": "sidehustle-autopublish/completion_gate.json",
-    "currentCalendarDate": "2026-09-11",
-    "activatedPublicationDebt": {"paidNote":0,"freeNote":2,"BOOTH":5,"total":7,"sourceDate":"2026-09-09"},
-    "unmaterializedPriorDayObligation": {"date":"2026-09-10","paidNote":5,"freeNote":2,"BOOTH":5,"total":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-10_batch01.json"},
-    "todayPlan": {"date":"2026-09-11","paidNote":5,"freeNote":2,"BOOTH":5,"total":12,"planningManifest":"sidehustle-autopublish/planning/2026-09-11_batch01.json","state":"planned_not_activated_until_older_debt_cleared"},
+    "currentCalendarDate": "2026-09-13",
+    "activatedPublicationDebt": {
+      "paidNote": 0,
+      "freeNote": 2,
+      "BOOTH": 5,
+      "total": 7,
+      "sourceDate": "2026-09-09"
+    },
+    "unmaterializedPriorDayObligations": [
+      {"date": "2026-09-10", "paidNote": 5, "freeNote": 2, "BOOTH": 5, "total": 12, "planningManifest": "sidehustle-autopublish/planning/2026-09-10_batch01.json"},
+      {"date": "2026-09-11", "paidNote": 5, "freeNote": 2, "BOOTH": 5, "total": 12, "planningManifest": "sidehustle-autopublish/planning/2026-09-11_batch01.json"},
+      {"date": "2026-09-12", "paidNote": 5, "freeNote": 2, "BOOTH": 5, "total": 12, "planningManifest": "sidehustle-autopublish/planning/2026-09-12_batch01.json"}
+    ],
+    "todayPlan": {
+      "date": "2026-09-13",
+      "paidNote": 5,
+      "freeNote": 2,
+      "BOOTH": 5,
+      "total": 12,
+      "planningManifest": "sidehustle-autopublish/planning/2026-09-13_batch01.json",
+      "state": "planned_not_activated_until_older_debt_cleared"
+    },
     "humanOnlyBlocker": null,
-    "rule": "Clear activated Sep 9 debt first, materialize Sep 10 obligation second, then activate Sep 11 only after full QA. Never republish strict-verified titles."
+    "rule": "Clear activated Sep 9 debt first; materialize Sep 10, Sep 11 and Sep 12 in date order; activate Sep 13 only after older debt is strict verified. Never republish strict-verified titles."
   },
   "allocationDecision": [
-    {"rank":1,"action":"Finish Sep 9 free NOTE 2 and BOOTH 5 through C:\\SIDEHUSTLE_AUTO with exact-title reconciliation and strict public verification."},
-    {"rank":2,"action":"Materialize Sep 10 planned batch at full QA quality; activate atomically only after older-debt safety checks."},
-    {"rank":3,"action":"Keep Sep 11 batch planned and ready for materialization, but do not jump the queue or inflate completion counts."},
-    {"rank":4,"action":"Instrument first-party note/BOOTH/Store/GitHub funnel metrics before price, CTA, cadence or winner-amplification claims."},
-    {"rank":5,"action":"Use GitHub Pages and Microsoft Store as measurable low-touch acquisition surfaces; prioritize useful zero-support utilities rather than thin expansion."}
+    {"rank": 1, "action": "Finish Sep 9 free NOTE 2 and BOOTH 5 through C:\\SIDEHUSTLE_AUTO with exact-title reconciliation and strict public verification."},
+    {"rank": 2, "action": "Materialize Sep 10 planned batch at full QA quality, then Sep 11 and Sep 12 in order; activate atomically only after older-debt safety checks."},
+    {"rank": 3, "action": "Keep Sep 13 planned and ready for materialization, but do not jump the queue or inflate completion counts."},
+    {"rank": 4, "action": "Instrument first-party note/BOOTH/Store/GitHub funnel metrics before price, CTA, cadence or winner-amplification claims."},
+    {"rank": 5, "action": "Use GitHub Pages and Microsoft Store as measurable low-touch acquisition surfaces; prioritize useful zero-support utilities rather than thin expansion."}
   ],
   "measurement": {
-    "note": {"PV":null,"likes":null,"follows":null,"paidClicks":null,"purchases":null,"revenue":null},
-    "BOOTH": {"sales":null,"revenue":null},
-    "MicrosoftStore": {"pageViews":null,"acquisitions":null,"installs":null,"conversion":null,"health":null},
-    "GitHubPages": {"outboundClicks":null,"conversion":null},
+    "note": {"PV": null, "likes": null, "follows": null, "paidClicks": null, "purchases": null, "revenue": null},
+    "BOOTH": {"sales": null, "revenue": null},
+    "MicrosoftStore": {"pageViews": null, "acquisitions": null, "installs": null, "conversion": null, "health": null},
+    "GitHubPages": {"outboundClicks": null, "conversion": null},
     "rule": "Null means unavailable, not zero; no winner or loser claim without observed matched-age evidence."
   },
-  "winnerAmplification": {"winnerCandidates":[],"rule":"No automatic derivative, bundle, price increase or cadence increase without observed purchase or conversion evidence."},
+  "winnerAmplification": {
+    "winnerCandidates": [],
+    "rule": "No automatic derivative, bundle, price increase or cadence increase without observed purchase or conversion evidence."
+  },
   "microsoftStore": {
     "currentPriority": "CSV Cleaner & Duplicate Remover submission completion after verified Partner Center identity evidence exists",
     "publicPwaUrl": "https://noto-rebloom.github.io/noto-rebloom/auto-tools/csv-cleaner-deduper/",
