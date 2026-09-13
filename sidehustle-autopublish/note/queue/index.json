@@ -1,18 +1,18 @@
 {
   "version": 7,
-  "updatedAt": "2026-09-09T15:42:01+09:00",
-  "retryGeneration": 81,
+  "updatedAt": "2026-09-13T20:02:18+09:00",
+  "retryGeneration": 85,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "publish_2026-09-09_paid_note_batch_now",
+    "mode": "publish_2026-09-13_paid_note_batch_now",
     "requiredStrictPublications": 5,
     "orderedIds": [
-      "note_20260909_102_receivables_collection_escalation_control",
-      "note_20260909_103_subscription_price_increase_review_control",
-      "note_20260909_104_support_refund_root_cause_control",
-      "note_20260909_105_slow_moving_inventory_control",
-      "note_20260909_106_vendor_contract_obligation_control"
+      "note_20260913_122_vendor_insurance_expiry_control",
+      "note_20260913_123_unapplied_deposit_control",
+      "note_20260913_124_supplier_sla_breach_control",
+      "note_20260913_125_prepaid_expense_amortization_control",
+      "note_20260913_126_warranty_claim_aging_control"
     ],
     "instruction": "Publish all five; switch after brief recoverable failure; count only strict reader verification.",
     "strictChecks": [
@@ -22,8 +22,8 @@
       "paidBoundary",
       "dedicatedCover"
     ],
-    "forcedAt": "2026-09-09T15:23:38+09:00",
-    "nonce": "paid-note-20260909-20260909T152338+0900"
+    "forcedAt": "2026-09-13T20:02:18+09:00",
+    "nonce": "paid-note-20260913-20260913T200218+0900"
   },
   "entries": [
     {
@@ -2787,7 +2787,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n779f1cbdfb8b",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-09-09T06:41:57.299120+00:00"
+      "verifiedAt": "2026-09-09T06:41:57.299120+00:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260909_103_subscription_price_increase_review_control",
@@ -2813,7 +2814,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n43d427199689",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-09-09T06:41:58.121553+00:00"
+      "verifiedAt": "2026-09-09T06:41:58.121553+00:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260909_104_support_refund_root_cause_control",
@@ -2839,7 +2841,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/n968229fb9bd1",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-09-09T06:41:59.501122+00:00"
+      "verifiedAt": "2026-09-09T06:41:59.501122+00:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260909_105_slow_moving_inventory_control",
@@ -2865,7 +2868,8 @@
       "publicUrl": "https://note.com/royal_lion645/n/nc5ac701da38e",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-09-09T06:42:00.287994+00:00"
+      "verifiedAt": "2026-09-09T06:42:00.287994+00:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
     },
     {
       "id": "note_20260909_106_vendor_contract_obligation_control",
@@ -2891,14 +2895,418 @@
       "publicUrl": "https://note.com/royal_lion645/n/nd84b1df4ca5b",
       "verificationState": "reader_visible_verified",
       "verificationEvidence": "Independent unauthenticated verifier confirmed HTTP 200, exact title, expected price, paid purchase boundary and dedicated cover.",
-      "verifiedAt": "2026-09-09T06:42:01.177909+00:00"
+      "verifiedAt": "2026-09-09T06:42:01.177909+00:00",
+      "recoveryMode": "completed; preserve canonical public URL and do not republish"
+    },
+    {
+      "id": "note_20260910_107_supplier_delivery_delay_escalation",
+      "title": "仕入先の納期遅延を発覚後対応にしない｜約束日・影響範囲・代替策を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260910_107_supplier_delivery_delay_escalation.enc.json",
+      "sha256": "a124ae8e9868df7e13fff23cf316f94805a76f6a7eb360adcf37ec0faa7a185b",
+      "createdAt": "2026-09-13T20:02:09+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260910-20260913T200209+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260910_108_customer_onboarding_handoff_control",
+      "title": "受注後の引継ぎ漏れを防ぐ｜契約条件・初回設定・担当者を営業から運用へ渡す方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260910_108_customer_onboarding_handoff_control.enc.json",
+      "sha256": "c5e236efc2358602c3f7d8fffb8f0ef0ce6b5c322448c8a443101d1babfad9fb",
+      "createdAt": "2026-09-13T20:02:09+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260910-20260913T200209+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260910_109_subscription_churn_reason_tracking",
+      "title": "解約率だけを見て終わらせない｜解約理由・利用期間・プランから改善優先度を決める方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260910_109_subscription_churn_reason_tracking.enc.json",
+      "sha256": "4abc3dcc70ee338bbfb608dc9791fb4a62a729d970570e44baf7e612f9d2b324",
+      "createdAt": "2026-09-13T20:02:09+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260910-20260913T200209+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260910_110_project_budget_forecast_variance",
+      "title": "予算超過を月末に知る状態をやめる｜見込額・確定額・残予算で早期に差異を捉える方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260910_110_project_budget_forecast_variance.enc.json",
+      "sha256": "2b97f71055db322203593445993d855aebacb9b6a11ef41f2384d82276a22394",
+      "createdAt": "2026-09-13T20:02:09+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260910-20260913T200209+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260910_111_customer_complaint_sla_escalation",
+      "title": "重大クレームを担当者の受信箱に埋めない｜期限・重大度・責任者で対応を止めない方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260910_111_customer_complaint_sla_escalation.enc.json",
+      "sha256": "1494b0b7b1bb0bfc94083e050ccf89b2133c89b75ee4656a8b431881389a7cfd",
+      "createdAt": "2026-09-13T20:02:09+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260910-20260913T200209+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260911_112_invoice_dispute_aging_control",
+      "title": "請求書の異議申立てを放置しない｜争点・担当・期限・回収見込を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260911_112_invoice_dispute_aging_control.enc.json",
+      "sha256": "dd45a6ab407d3e8681cead1f8085b753daaa1c34b02d8ae5b189c0e0121be13e",
+      "createdAt": "2026-09-13T20:02:17+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260911-20260913T200217+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260911_113_saas_renewal_owner_control",
+      "title": "SaaS更新を担当者の記憶に任せない｜契約期限・利用状況・責任者で更新判断を管理する方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260911_113_saas_renewal_owner_control.enc.json",
+      "sha256": "8ee56b2f73394626bc40258e318d659c693dc27882b40dc764ac5a56c6cf3c9f",
+      "createdAt": "2026-09-13T20:02:17+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260911-20260913T200217+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260911_114_purchase_requisition_cycle_control",
+      "title": "購買申請がどこで止まっているか見える化する｜申請・承認・発注までの滞留を減らす方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260911_114_purchase_requisition_cycle_control.enc.json",
+      "sha256": "acc2df1774c0fc3fa3025f4d1cf444882899c9413c6255967df533c40b30f0ff",
+      "createdAt": "2026-09-13T20:02:17+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260911-20260913T200217+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260911_115_customer_implementation_risk_control",
+      "title": "導入案件の遅延を直前に知る状態をやめる｜依存関係・懸念・期限で実装リスクを追う方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260911_115_customer_implementation_risk_control.enc.json",
+      "sha256": "0f5c83576edce281c39e45c9b07f6ea94f132bef9f46836958fcfee419b71a02",
+      "createdAt": "2026-09-13T20:02:17+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260911-20260913T200217+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260911_116_audit_evidence_request_tracker",
+      "title": "監査資料の依頼をメールで追わない｜証憑・担当・期限・差戻しを一元管理する方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260911_116_audit_evidence_request_tracker.enc.json",
+      "sha256": "151752714febe196d87c7851178ce9efc22a1c4b40368f3b0f02e5854865066e",
+      "createdAt": "2026-09-13T20:02:17+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260911-20260913T200217+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260912_117_ap_duplicate_invoice_control",
+      "title": "二重請求を支払後に気づかない｜請求番号・金額・取引先・承認履歴で重複を止める方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260912_117_ap_duplicate_invoice_control.enc.json",
+      "sha256": "84fc1b11769e678a305be14084f7262bb88b3b291da441991ffb692daed54f9c",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260912-20260913T200218+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260912_118_expense_policy_exception_control",
+      "title": "経費例外を口頭承認で残さない｜理由・承認者・期限・再発防止を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260912_118_expense_policy_exception_control.enc.json",
+      "sha256": "c9db7265c4135846534bc2d51ee2e7f072eb1db97adf3906f64f2313a6ba515c",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260912-20260913T200218+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260912_119_customer_credit_note_control",
+      "title": "値引き・返金の根拠を後から探さない｜クレジットノートの理由・承認・対象請求を管理する方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260912_119_customer_credit_note_control.enc.json",
+      "sha256": "1aa2ea1d6895db4f6dbb36f0928739031c937941d3bed3b65a35573a2d9b2b23",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260912-20260913T200218+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260912_120_contract_obligation_evidence_control",
+      "title": "契約上の義務を担当者の記憶に任せない｜期限・証跡・責任者で履行漏れを防ぐ方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260912_120_contract_obligation_evidence_control.enc.json",
+      "sha256": "8ba58517de661371b576b249d717b9baac80b428f93723a89a9bc22a421abf39",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260912-20260913T200218+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260912_121_refund_aging_control",
+      "title": "返金案件を未処理のまま残さない｜受付日・理由・承認・返金期限で滞留をなくす方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260912_121_refund_aging_control.enc.json",
+      "sha256": "c590735049e6e40c243354f8dca6d6437ade0dfaf2f20d31a555242fd45de859",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260912-20260913T200218+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260913_122_vendor_insurance_expiry_control",
+      "title": "取引先の保険証明切れを契約後に見落とさない｜期限・補償・更新証跡を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260913_122_vendor_insurance_expiry_control.enc.json",
+      "sha256": "1b158360cf62a7daf9de490a34bc31c2ba99fb717b9dec69ece6bdd84b4127e4",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260913-20260913T200218+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260913_123_unapplied_deposit_control",
+      "title": "入金済みなのに消込されないを放置しない｜顧客・請求・入金日で未消込をなくす方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260913_123_unapplied_deposit_control.enc.json",
+      "sha256": "1ed28920e5a3f26b604fa0a3ec4ed405c99afef4344ddaa828be522a862043b5",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260913-20260913T200218+0900",
+      "expectedPriceJPY": 980,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260913_124_supplier_sla_breach_control",
+      "title": "委託先のSLA違反を感覚で処理しない｜基準・発生日・是正・再発を追う管理方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260913_124_supplier_sla_breach_control.enc.json",
+      "sha256": "d4c6d4602debd0e8ecfecb3ba7983127a2751460433d8a3570bb405d30be1a6e",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260913-20260913T200218+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260913_125_prepaid_expense_amortization_control",
+      "title": "前払費用の償却漏れを月末に探さない｜契約期間・月額・残高で締め処理を整える方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260913_125_prepaid_expense_amortization_control.enc.json",
+      "sha256": "279c4ce387af7c4f35543b10af2d9c30b6ff332884bc678ed8a9c40dd844d928",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260913-20260913T200218+0900",
+      "expectedPriceJPY": 1180,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260913_126_warranty_claim_aging_control",
+      "title": "保証対応を受付後に放置しない｜期限・原因・代替品・顧客連絡で滞留を減らす方法",
+      "path": "sidehustle-autopublish/note/queue/note_20260913_126_warranty_claim_aging_control.enc.json",
+      "sha256": "668668237e7780525e41710982487c8aae6ddefcbf975c789a1c7f6570fd3b93",
+      "createdAt": "2026-09-13T20:02:18+09:00",
+      "enabled": true,
+      "forceRetry": true,
+      "forceRetryNonce": "paid-note-20260913-20260913T200218+0900",
+      "expectedPriceJPY": 1280,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
-  "activePublicationDate": "2026-09-09",
+  "activePublicationDate": "2026-09-13",
   "forceAllCurrentDayNow": true,
-  "forceRetryNonce": "materialize-paid-note-20260909-20260909T152338+0900",
+  "forceRetryNonce": "materialize-paid-note-20260913-20260913T200218+0900",
   "outstandingDates": [
-    "2026-09-09"
+    "2026-09-10",
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13"
   ],
   "reconcileExistingBeforePublish": true
 }

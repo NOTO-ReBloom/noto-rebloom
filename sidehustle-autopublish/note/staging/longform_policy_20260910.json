@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "date": "2026-09-10",
+  "policy": "Every paidBody, paid freeBody, and standalone free NOTE body must contain at least 5,001 characters before queue materialization.",
+  "minimumBodyChars": 5001,
+  "paid": [
+    {
+      "id": "note_20260910_107_supplier_delivery_delay_escalation",
+      "bodyChars": 6779,
+      "freeBodyChars": 5431,
+      "passed": true
+    },
+    {
+      "id": "note_20260910_108_customer_onboarding_handoff_control",
+      "bodyChars": 6847,
+      "freeBodyChars": 5499,
+      "passed": true
+    },
+    {
+      "id": "note_20260910_109_subscription_churn_reason_tracking",
+      "bodyChars": 6845,
+      "freeBodyChars": 5500,
+      "passed": true
+    },
+    {
+      "id": "note_20260910_110_project_budget_forecast_variance",
+      "bodyChars": 6781,
+      "freeBodyChars": 5435,
+      "passed": true
+    },
+    {
+      "id": "note_20260910_111_customer_complaint_sla_escalation",
+      "bodyChars": 6857,
+      "freeBodyChars": 5402,
+      "passed": true
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260910_01_supplier_delay_warning_signals",
+      "bodyChars": 6779,
+      "passed": true
+    },
+    {
+      "id": "free_note_20260910_02_onboarding_handoff_warning_signals",
+      "bodyChars": 6847,
+      "passed": true
+    }
+  ]
+}

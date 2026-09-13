@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "date": "2026-09-13",
+  "policy": "Every paidBody, paid freeBody, and standalone free NOTE body must contain at least 5,001 characters before queue materialization.",
+  "minimumBodyChars": 5001,
+  "paid": [
+    {
+      "id": "note_20260913_122_vendor_insurance_expiry_control",
+      "bodyChars": 6801,
+      "freeBodyChars": 5454,
+      "passed": true
+    },
+    {
+      "id": "note_20260913_123_unapplied_deposit_control",
+      "bodyChars": 6801,
+      "freeBodyChars": 5454,
+      "passed": true
+    },
+    {
+      "id": "note_20260913_124_supplier_sla_breach_control",
+      "bodyChars": 6778,
+      "freeBodyChars": 5430,
+      "passed": true
+    },
+    {
+      "id": "note_20260913_125_prepaid_expense_amortization_control",
+      "bodyChars": 6736,
+      "freeBodyChars": 5498,
+      "passed": true
+    },
+    {
+      "id": "note_20260913_126_warranty_claim_aging_control",
+      "bodyChars": 6782,
+      "freeBodyChars": 5434,
+      "passed": true
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260913_01_vendor_insurance_expiry_signals",
+      "bodyChars": 6801,
+      "passed": true
+    },
+    {
+      "id": "free_note_20260913_02_unapplied_deposit_signals",
+      "bodyChars": 6801,
+      "passed": true
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "version": 78,
-  "updatedAt": "2026-09-13T12:15:00+09:00",
-  "objective": "Clear strict publication debt in date order through 2026-09-13 without duplicate creation, while preserving zero-touch operation and truthful measurement.",
+  "version": 82,
+  "updatedAt": "2026-09-13T20:02:18+09:00",
+  "objective": "Publish and strict-verify all 55 active items through 2026-09-13 without duplicate NOTE titles.",
   "authoritativeSources": {
     "completionGate": "sidehustle-autopublish/completion_gate.json",
     "publicationQuota": "sidehustle-autopublish/publication_quota.json",
@@ -15,22 +15,92 @@
   },
   "activatedCarryover": {
     "sourceDate": "2026-09-09",
-    "paidNote": {"target": 5, "strictVerified": 5, "remaining": 0},
-    "BOOTH": {"target": 5, "strictVerified": 0, "remaining": 5, "remainingIds": ["109_receivables_collection_escalation_os_20260909", "110_subscription_price_increase_review_os_20260909", "111_support_refund_root_cause_os_20260909", "112_slow_moving_inventory_os_20260909", "113_vendor_contract_obligation_os_20260909"]},
-    "freeNote": {"target": 2, "strictVerified": 0, "remaining": 2, "remainingIds": ["free_note_20260909_01_overdue_receivable_warning_signals", "free_note_20260909_02_subscription_cost_creep_signals"]},
+    "paidNote": {
+      "target": 5,
+      "strictVerified": 5,
+      "remaining": 0
+    },
+    "BOOTH": {
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "remainingIds": [
+        "109_receivables_collection_escalation_os_20260909",
+        "110_subscription_price_increase_review_os_20260909",
+        "111_support_refund_root_cause_os_20260909",
+        "112_slow_moving_inventory_os_20260909",
+        "113_vendor_contract_obligation_os_20260909"
+      ]
+    },
+    "freeNote": {
+      "target": 2,
+      "strictVerified": 0,
+      "remaining": 2,
+      "remainingIds": [
+        "free_note_20260909_01_overdue_receivable_warning_signals",
+        "free_note_20260909_02_subscription_cost_creep_signals"
+      ]
+    },
     "remaining": 7
   },
   "unmaterializedObligations": [
-    {"date": "2026-09-10", "paidNote": 5, "freeNote": 2, "BOOTH": 5, "total": 12, "planningManifest": "sidehustle-autopublish/planning/2026-09-10_batch01.json"},
-    {"date": "2026-09-11", "paidNote": 5, "freeNote": 2, "BOOTH": 5, "total": 12, "planningManifest": "sidehustle-autopublish/planning/2026-09-11_batch01.json"},
-    {"date": "2026-09-12", "paidNote": 5, "freeNote": 2, "BOOTH": 5, "total": 12, "planningManifest": "sidehustle-autopublish/planning/2026-09-12_batch01.json"},
-    {"date": "2026-09-13", "paidNote": 5, "freeNote": 2, "BOOTH": 5, "total": 12, "planningManifest": "sidehustle-autopublish/planning/2026-09-13_batch01.json", "state": "planned_not_activated"}
+    {
+      "date": "2026-09-10",
+      "paidNote": 5,
+      "freeNote": 2,
+      "BOOTH": 5,
+      "total": 12,
+      "planningManifest": "sidehustle-autopublish/planning/2026-09-10_batch01.json"
+    },
+    {
+      "date": "2026-09-11",
+      "paidNote": 5,
+      "freeNote": 2,
+      "BOOTH": 5,
+      "total": 12,
+      "planningManifest": "sidehustle-autopublish/planning/2026-09-11_batch01.json"
+    },
+    {
+      "date": "2026-09-12",
+      "paidNote": 5,
+      "freeNote": 2,
+      "BOOTH": 5,
+      "total": 12,
+      "planningManifest": "sidehustle-autopublish/planning/2026-09-12_batch01.json"
+    },
+    {
+      "date": "2026-09-13",
+      "paidNote": 5,
+      "freeNote": 2,
+      "BOOTH": 5,
+      "total": 12,
+      "planningManifest": "sidehustle-autopublish/planning/2026-09-13_batch01.json",
+      "state": "planned_not_activated"
+    }
   ],
   "observedBusinessMetrics": {
-    "note": {"PV": null, "likes": null, "follows": null, "purchases": null, "revenue": null},
-    "BOOTH": {"sales": null, "revenue": null},
-    "MicrosoftStore": {"pageViews": null, "acquisitions": null, "installs": null, "conversion": null, "health": null},
-    "GitHubPages": {"outboundClicks": null, "conversion": null},
+    "note": {
+      "PV": null,
+      "likes": null,
+      "follows": null,
+      "purchases": null,
+      "revenue": null
+    },
+    "BOOTH": {
+      "sales": null,
+      "revenue": null
+    },
+    "MicrosoftStore": {
+      "pageViews": null,
+      "acquisitions": null,
+      "installs": null,
+      "conversion": null,
+      "health": null
+    },
+    "GitHubPages": {
+      "outboundClicks": null,
+      "conversion": null
+    },
     "interpretationRule": "Unavailable is null, never assumed zero; no success or winner claim without measured values."
   },
   "microsoftStore": {
@@ -44,7 +114,12 @@
     "canonicalRunner": "sidehustle-autopublish/windows/run_current_debt.ps1",
     "revision": "zero-touch-canonical-root-v3",
     "repairAppliedAt": "2026-09-12T21:13:43+09:00",
-    "changes": ["skip paid publisher when paid debt is empty", "remove Downloads publisher fallback", "require canonical app roots", "retain bounded timeouts and scheduled-task restoration"],
+    "changes": [
+      "skip paid publisher when paid debt is empty",
+      "remove Downloads publisher fallback",
+      "require canonical app roots",
+      "retain bounded timeouts and scheduled-task restoration"
+    ],
     "humanOnlyBlocker": null
   },
   "monitor": {
@@ -59,5 +134,138 @@
     "Do not reduce paid publication floors without strict public verification.",
     "Do not republish strict-verified Sep 9 paid NOTE items.",
     "Do not invent public URLs, sales, PV, likes, acquisitions or conversions."
-  ]
+  ],
+  "currentRecovery": {
+    "throughDate": "2026-09-13",
+    "observedAt": "2026-09-13T20:02:18+09:00",
+    "outstandingDates": [
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13"
+    ],
+    "strictVerifiedInThisRequest": 0,
+    "remaining": 55
+  },
+  "currentDayTargets": {
+    "date": "2026-09-13",
+    "paidNote": {
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "remainingIds": [
+        "note_20260913_122_vendor_insurance_expiry_control",
+        "note_20260913_123_unapplied_deposit_control",
+        "note_20260913_124_supplier_sla_breach_control",
+        "note_20260913_125_prepaid_expense_amortization_control",
+        "note_20260913_126_warranty_claim_aging_control"
+      ]
+    },
+    "BOOTH": {
+      "target": 5,
+      "strictVerified": 0,
+      "remaining": 5,
+      "materialized": 5,
+      "remainingIds": [
+        "129_vendor_insurance_expiry_os_20260913",
+        "130_unapplied_customer_deposit_os_20260913",
+        "131_supplier_sla_breach_os_20260913",
+        "132_prepaid_expense_amortization_os_20260913",
+        "133_warranty_claim_aging_os_20260913"
+      ]
+    },
+    "freeNote": {
+      "target": 2,
+      "strictVerified": 0,
+      "remaining": 2,
+      "remainingIds": [
+        "free_note_20260913_01_vendor_insurance_expiry_signals",
+        "free_note_20260913_02_unapplied_deposit_signals"
+      ],
+      "paidQuotaContribution": 0
+    },
+    "allDesignatedStrictVerified": false
+  },
+  "evidence": {
+    "materialization": "all active encrypted payloads/manuscripts and QA manifests are present",
+    "publication": "not counted until strict public URLs are verified",
+    "humanOnlyBlocker": null
+  },
+  "activeTargets": {
+    "paidNote": {
+      "target": 20,
+      "remainingIds": [
+        "note_20260910_107_supplier_delivery_delay_escalation",
+        "note_20260910_108_customer_onboarding_handoff_control",
+        "note_20260910_109_subscription_churn_reason_tracking",
+        "note_20260910_110_project_budget_forecast_variance",
+        "note_20260910_111_customer_complaint_sla_escalation",
+        "note_20260911_112_invoice_dispute_aging_control",
+        "note_20260911_113_saas_renewal_owner_control",
+        "note_20260911_114_purchase_requisition_cycle_control",
+        "note_20260911_115_customer_implementation_risk_control",
+        "note_20260911_116_audit_evidence_request_tracker",
+        "note_20260912_117_ap_duplicate_invoice_control",
+        "note_20260912_118_expense_policy_exception_control",
+        "note_20260912_119_customer_credit_note_control",
+        "note_20260912_120_contract_obligation_evidence_control",
+        "note_20260912_121_refund_aging_control",
+        "note_20260913_122_vendor_insurance_expiry_control",
+        "note_20260913_123_unapplied_deposit_control",
+        "note_20260913_124_supplier_sla_breach_control",
+        "note_20260913_125_prepaid_expense_amortization_control",
+        "note_20260913_126_warranty_claim_aging_control"
+      ]
+    },
+    "freeNote": {
+      "target": 10,
+      "remainingIds": [
+        "free_note_20260909_01_overdue_receivable_warning_signals",
+        "free_note_20260909_02_subscription_cost_creep_signals",
+        "free_note_20260910_01_supplier_delay_warning_signals",
+        "free_note_20260910_02_onboarding_handoff_warning_signals",
+        "free_note_20260911_01_invoice_dispute_warning_signals",
+        "free_note_20260911_02_saas_renewal_warning_signals",
+        "free_note_20260912_01_duplicate_invoice_warning_signals",
+        "free_note_20260912_02_expense_policy_warning_signals",
+        "free_note_20260913_01_vendor_insurance_expiry_signals",
+        "free_note_20260913_02_unapplied_deposit_signals"
+      ],
+      "paidQuotaContribution": 0
+    },
+    "BOOTH": {
+      "target": 25,
+      "remainingIds": [
+        "109_receivables_collection_escalation_os_20260909",
+        "110_subscription_price_increase_review_os_20260909",
+        "111_support_refund_root_cause_os_20260909",
+        "112_slow_moving_inventory_os_20260909",
+        "113_vendor_contract_obligation_os_20260909",
+        "114_supplier_delivery_delay_escalation_os_20260910",
+        "115_customer_onboarding_handoff_os_20260910",
+        "116_subscription_churn_reason_os_20260910",
+        "117_project_budget_forecast_variance_os_20260910",
+        "118_customer_complaint_sla_escalation_os_20260910",
+        "119_invoice_dispute_aging_os_20260911",
+        "120_saas_renewal_owner_os_20260911",
+        "121_purchase_requisition_cycle_os_20260911",
+        "122_customer_implementation_risk_os_20260911",
+        "123_audit_evidence_request_os_20260911",
+        "124_ap_duplicate_invoice_os_20260912",
+        "125_expense_policy_exception_os_20260912",
+        "126_customer_credit_note_os_20260912",
+        "127_contract_obligation_evidence_os_20260912",
+        "128_refund_aging_control_os_20260912",
+        "129_vendor_insurance_expiry_os_20260913",
+        "130_unapplied_customer_deposit_os_20260913",
+        "131_supplier_sla_breach_os_20260913",
+        "132_prepaid_expense_amortization_os_20260913",
+        "133_warranty_claim_aging_os_20260913"
+      ]
+    },
+    "total": 55,
+    "allDesignatedStrictVerified": false
+  }
 }

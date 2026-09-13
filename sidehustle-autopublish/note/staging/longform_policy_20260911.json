@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "date": "2026-09-11",
+  "policy": "Every paidBody, paid freeBody, and standalone free NOTE body must contain at least 5,001 characters before queue materialization.",
+  "minimumBodyChars": 5001,
+  "paid": [
+    {
+      "id": "note_20260911_112_invoice_dispute_aging_control",
+      "bodyChars": 6783,
+      "freeBodyChars": 5433,
+      "passed": true
+    },
+    {
+      "id": "note_20260911_113_saas_renewal_owner_control",
+      "bodyChars": 6786,
+      "freeBodyChars": 5444,
+      "passed": true
+    },
+    {
+      "id": "note_20260911_114_purchase_requisition_cycle_control",
+      "bodyChars": 6793,
+      "freeBodyChars": 5448,
+      "passed": true
+    },
+    {
+      "id": "note_20260911_115_customer_implementation_risk_control",
+      "bodyChars": 6793,
+      "freeBodyChars": 5448,
+      "passed": true
+    },
+    {
+      "id": "note_20260911_116_audit_evidence_request_tracker",
+      "bodyChars": 6796,
+      "freeBodyChars": 5448,
+      "passed": true
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260911_01_invoice_dispute_warning_signals",
+      "bodyChars": 6783,
+      "passed": true
+    },
+    {
+      "id": "free_note_20260911_02_saas_renewal_warning_signals",
+      "bodyChars": 6786,
+      "passed": true
+    }
+  ]
+}

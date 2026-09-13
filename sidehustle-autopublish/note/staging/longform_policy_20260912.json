@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "date": "2026-09-12",
+  "policy": "Every paidBody, paid freeBody, and standalone free NOTE body must contain at least 5,001 characters before queue materialization.",
+  "minimumBodyChars": 5001,
+  "paid": [
+    {
+      "id": "note_20260912_117_ap_duplicate_invoice_control",
+      "bodyChars": 6718,
+      "freeBodyChars": 5481,
+      "passed": true
+    },
+    {
+      "id": "note_20260912_118_expense_policy_exception_control",
+      "bodyChars": 6783,
+      "freeBodyChars": 5433,
+      "passed": true
+    },
+    {
+      "id": "note_20260912_119_customer_credit_note_control",
+      "bodyChars": 6812,
+      "freeBodyChars": 5470,
+      "passed": true
+    },
+    {
+      "id": "note_20260912_120_contract_obligation_evidence_control",
+      "bodyChars": 6818,
+      "freeBodyChars": 5470,
+      "passed": true
+    },
+    {
+      "id": "note_20260912_121_refund_aging_control",
+      "bodyChars": 6755,
+      "freeBodyChars": 5408,
+      "passed": true
+    }
+  ],
+  "free": [
+    {
+      "id": "free_note_20260912_01_duplicate_invoice_warning_signals",
+      "bodyChars": 6718,
+      "passed": true
+    },
+    {
+      "id": "free_note_20260912_02_expense_policy_warning_signals",
+      "bodyChars": 6783,
+      "passed": true
+    }
+  ]
+}
