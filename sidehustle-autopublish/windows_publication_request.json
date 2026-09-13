@@ -1,32 +1,11 @@
 {
   "version": 2,
-  "updatedAt": "2026-09-13T20:02:18+09:00",
-  "date": "2026-09-13",
-  "mode": "publish_all_outstanding_through_current_day_now",
+  "updatedAt": "2026-09-14T00:31:00+09:00",
+  "date": "2026-09-14",
+  "mode": "publish_remaining_free_note_10_and_booth_25_now",
   "paidNote": {
-    "ids": [
-      "note_20260910_107_supplier_delivery_delay_escalation",
-      "note_20260910_108_customer_onboarding_handoff_control",
-      "note_20260910_109_subscription_churn_reason_tracking",
-      "note_20260910_110_project_budget_forecast_variance",
-      "note_20260910_111_customer_complaint_sla_escalation",
-      "note_20260911_112_invoice_dispute_aging_control",
-      "note_20260911_113_saas_renewal_owner_control",
-      "note_20260911_114_purchase_requisition_cycle_control",
-      "note_20260911_115_customer_implementation_risk_control",
-      "note_20260911_116_audit_evidence_request_tracker",
-      "note_20260912_117_ap_duplicate_invoice_control",
-      "note_20260912_118_expense_policy_exception_control",
-      "note_20260912_119_customer_credit_note_control",
-      "note_20260912_120_contract_obligation_evidence_control",
-      "note_20260912_121_refund_aging_control",
-      "note_20260913_122_vendor_insurance_expiry_control",
-      "note_20260913_123_unapplied_deposit_control",
-      "note_20260913_124_supplier_sla_breach_control",
-      "note_20260913_125_prepaid_expense_amortization_control",
-      "note_20260913_126_warranty_claim_aging_control"
-    ],
-    "target": 20
+    "ids": [],
+    "target": 0
   },
   "freeNote": {
     "ids": [
@@ -75,7 +54,7 @@
   },
   "strictVerificationRequired": true,
   "doNotStopAfterFirstSuccess": true,
-  "requestedAt": "2026-09-13T20:02:18+09:00",
+  "requestedAt": "2026-09-14T00:31:00+09:00",
   "throughDate": "2026-09-13",
   "order": "oldest_publication_date_first",
   "outstandingDates": [
@@ -85,7 +64,11 @@
     "2026-09-12",
     "2026-09-13"
   ],
-  "totalTarget": 55,
+  "totalTarget": 35,
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "0_of_55_strict_verified_in_this_request"
+  "completionState": "20_of_55_strict_verified;_35_remaining",
+  "requestNonce": "remaining-35-20260914T003100+0900",
+  "originalRequestedTotal": 55,
+  "strictVerifiedThisRequest": 20,
+  "remainingTarget": 35
 }
