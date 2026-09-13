@@ -48,6 +48,14 @@
       const t=(el.textContent||'').trim();
       if(t==='綱引きやリレーなど5つの競技を楽しみます。') el.textContent=`${OFFICIAL_GAMES}の5種目を行います。`;
     });
+
+    const faq=document.querySelector('#event-faq .faq-list');
+    if(faq && !faq.querySelector('[data-transit-faq]')){
+      const detail=document.createElement('details');
+      detail.dataset.transitFaq='1';
+      detail.innerHTML='<summary>公共交通で会場まで行けますか？</summary><p>9月20日は日曜日で、会場方面を通る珠洲市営バスの<strong>若山飯田ルートは土・日曜日運休</strong>です。そのため、基本的には車での来場をおすすめします。車以外での来場を検討されている方は、事前に運営へご相談ください。</p>';
+      faq.appendChild(detail);
+    }
   };
 
   ensureFooterFacts();
