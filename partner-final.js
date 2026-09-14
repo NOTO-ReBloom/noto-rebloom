@@ -9,6 +9,41 @@
 
   const socialMarkup=(placement)=>`<nav class="rb-social-links rb-social-links--${placement}" aria-label="公式SNS"><a href="${INSTAGRAM}" target="_blank" rel="noopener noreferrer" aria-label="泥ん子運動会 公式Instagram">${instagramIcon}</a><a href="${FACEBOOK}" target="_blank" rel="noopener noreferrer" aria-label="泥ん子運動会 公式Facebook">${facebookIcon}</a></nav>`;
 
+  const tweakStyle=document.createElement('style');
+  tweakStyle.id='partner-oteru-compact-tweaks';
+  tweakStyle.textContent=`
+    .nr-new-partner .site-header .site-nav a{white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important}
+    .nr-new-partner .site-header .site-nav a[href="partner.html"]{min-width:max-content!important}
+    @media (min-width:821px) and (max-width:1100px){
+      .nr-new-partner .site-header{gap:14px!important;padding-left:14px!important;padding-right:10px!important}
+      .nr-new-partner .site-header .brand{min-width:196px!important}
+      .nr-new-partner .site-header .site-nav{gap:2px!important}
+      .nr-new-partner .site-header .site-nav a{padding-inline:5px!important;font-size:10px!important}
+    }
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple{grid-template-columns:minmax(250px,21%) minmax(0,79%)!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__brand{padding:20px 24px!important;justify-content:center!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__partnerline{margin-bottom:9px!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__logo{height:92px!important;margin-bottom:10px!important;padding:10px 16px!important;border-radius:16px!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__logo img{max-height:68px!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__brand>small{margin-top:4px!important;line-height:1.45!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__brandlinks{margin-top:9px!important;padding-top:9px!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__body{padding:18px 26px!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__titlebar{margin-bottom:8px!important;padding-bottom:7px!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__intro{grid-template-columns:minmax(0,1fr) auto!important;gap:16px!important;align-items:center!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__intro h3{font-size:clamp(21px,1.9vw,29px)!important;line-height:1.22!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__intro p{margin-top:5px!important;line-height:1.6!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__company{margin-top:8px!important;padding:8px 11px!important}
+    .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__action{margin-top:8px!important}
+    @media(max-width:820px){
+      .nr-new-partner #current-partners .nr-sponsor-wide--simple{grid-template-columns:1fr!important}
+      .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__brand{padding:18px 20px!important}
+      .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__logo{height:86px!important}
+      .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__body{padding:18px 20px 20px!important}
+      .nr-new-partner #current-partners .nr-sponsor-wide--simple .nr-sponsor-wide__intro{grid-template-columns:1fr!important;gap:10px!important}
+    }
+  `;
+  document.head.appendChild(tweakStyle);
+
   document.querySelectorAll('.header-social,.footer-social,.rb-social-links').forEach(el=>el.remove());
   const header=document.querySelector('.site-header');
   const menu=header?.querySelector('.menu-button');
