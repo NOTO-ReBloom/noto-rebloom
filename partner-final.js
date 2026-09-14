@@ -24,7 +24,7 @@
     const h2=head.querySelector('h2');
     const lead=head.querySelector('h2+p');
     if(h2) h2.textContent='協賛パートナーの皆さま';
-    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている2社です。各社の公式サイト・ご提供資料で確認できる情報をもとに、サービスや取り組みをご紹介します。';
+    if(lead) lead.textContent='NOTO Re:Bloomの活動を支えてくださっている協賛パートナーの皆さまです。公式情報をもとにご紹介します。';
   }
 
   section.querySelectorAll('.nr-main-sponsor,.nr-sponsor-row,.nr-sponsor-wide').forEach(el=>el.remove());
@@ -106,6 +106,22 @@
     }
   ];
 
+  const simpleSponsors=[
+    {
+      company:'萬屋おてる',
+      service:'萬屋おてる',
+      url:'https://www.instagram.com/yorozuya.oteru26/',
+      logo:'https://kitchencars-japan.com/storage/user_profile/Am5q9pedln4yOjNCe0ZJ3oBwP48YdixnyVA2r3KD.png',
+      logoAlt:'萬屋おてる ロゴ',
+      eyebrow:'YOROZUYA OTERU',
+      title:'鉄板焼きキッチンカー「萬屋おてる」',
+      lead:'石川県を中心に、富山県・福井県を含む北陸で移動販売を行うキッチンカーです。NOTO Re:Bloomの活動にご協賛いただいています。',
+      tags:['鉄板焼きキッチンカー','北陸三県'],
+      thanks:'NOTO Re:Bloomの活動にご協賛いただいています。ありがとうございます。',
+      cta:'Instagramを見る'
+    }
+  ];
+
   const makeFacts=(s)=>{
     if(s.reasons){
       return `<div class="nr-sponsor-wide__reasons-title"><span>サービスの主な特徴</span><small>OFFICIAL INFORMATION</small></div><div class="nr-sponsor-wide__reasons">${s.reasons.map(([title,text],i)=>`<div><b>0${i+1}</b><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>${s.sourceNote?`<p class="nr-sponsor-wide__source-note">${s.sourceNote}</p>`:''}`;
@@ -152,5 +168,38 @@
     return article;
   };
 
+  const makeSimpleSponsor=(s,index)=>{
+    const article=document.createElement('article');
+    article.className='nr-sponsor-wide rb-detail-card nr-sponsor-wide--simple';
+    article.id='sponsor-oteru';
+    article.innerHTML=`
+      <span class="nr-sponsor-wide__ornament" aria-hidden="true"></span>
+      <div class="nr-sponsor-wide__brand">
+        <div class="nr-sponsor-wide__partnerline"><span>SPONSOR PARTNER</span><b>0${index+1}</b></div>
+        <a class="nr-sponsor-wide__logo" href="${s.url}" target="_blank" rel="sponsored noopener" aria-label="${s.company} Instagram">
+          <img src="${s.logo}" alt="${s.logoAlt}" loading="lazy" decoding="async">
+        </a>
+        <p>${s.company}</p>
+        <small>${s.thanks}</small>
+        <div class="nr-sponsor-wide__brandlinks">
+          <a href="${s.url}" target="_blank" rel="sponsored noopener">Instagram ↗</a>
+        </div>
+      </div>
+      <div class="nr-sponsor-wide__body">
+        <div class="nr-sponsor-wide__titlebar"><span>${s.eyebrow}</span><small>SPONSOR PARTNER</small></div>
+        <div class="nr-sponsor-wide__intro">
+          <div>
+            <h3>${s.title}</h3>
+            <p>${s.lead}</p>
+          </div>
+          <div class="nr-sponsor-wide__tags" aria-label="${s.company}の情報">${s.tags.map(tag=>`<span>${tag}</span>`).join('')}</div>
+        </div>
+        <div class="nr-sponsor-wide__company"><span>屋号</span><p>${s.company}</p></div>
+        <div class="nr-sponsor-wide__action"><span>@yorozuya.oteru26</span><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}<b>↗</b></a></div>
+      </div>`;
+    return article;
+  };
+
   sponsors.forEach((s,index)=>section.appendChild(makeSponsor(s,index)));
+  simpleSponsors.forEach((s,index)=>section.appendChild(makeSimpleSponsor(s,index+sponsors.length)));
 })();
