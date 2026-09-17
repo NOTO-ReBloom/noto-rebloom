@@ -47,6 +47,13 @@
         const polish=document.createElement('script');
         polish.src='site-visual-polish-20260913.js?v=20260913b';
         polish.dataset.visualPolishLoader='1';
+        polish.onload=()=>{
+          if(document.querySelector('script[data-latest-facts-loader]')) return;
+          const latest=document.createElement('script');
+          latest.src='site-current-20260917.js?v=20260917a';
+          latest.dataset.latestFactsLoader='1';
+          document.body.appendChild(latest);
+        };
         document.body.appendChild(polish);
       };
       document.body.appendChild(audit);
