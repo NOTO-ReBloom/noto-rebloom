@@ -1,0 +1,232 @@
+name: Replace Flower Photos With Free Stock
+
+on:
+  push:
+    paths:
+      - '.github/workflows/replace-flower-photos-free-stock.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+      - name: Download free stock flower photos and build credits
+        run: |
+          python - <<'PY'
+          import io, json, pathlib, urllib.request, html
+          from PIL import Image, ImageOps
+
+          root = pathlib.Path('.')
+          headers = {'User-Agent': 'NOTO-ReBloom/1.0 (+https://github.com/NOTO-ReBloom/noto-rebloom)'}
+
+          PEXELS_LICENSE = 'https://www.pexels.com/license/'
+          UNSPLASH_LICENSE = 'https://unsplash.com/license'
+          PIXABAY_LICENSE = 'https://pixabay.com/service/license-summary/'
+          PAKUTASO_LICENSE = 'https://www.pakutaso.com/userpolicy.html'
+
+          # All source pages are public stock-photo pages whose stated licenses allow website use.
+          items = [
+            dict(slug='himawari', name='ヒマワリ', provider='Pexels', creator='Snapwire',
+                 source='https://www.pexels.com/photo/sunflower-6695/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/6695/pexels-photo-6695.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='gerbera', name='ガーベラ', provider='Pexels', creator='Kaboompics',
+                 source='https://www.pexels.com/photo/gerbera-in-close-up-6757654/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/6757654/pexels-photo-6757654.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='salvia', name='サルビア', provider='Unsplash', creator='YIHO HAN',
+                 source='https://unsplash.com/photos/a-close-up-of-a-vibrant-blue-salvia-flower-XFVyvSomEQU', license=UNSPLASH_LICENSE,
+                 image='https://images.unsplash.com/photo-1768903741182-128b3db1f0dc?auto=format&fit=crop&w=1800&q=85'),
+            dict(slug='dahlia', name='ダリア', provider='Pexels', creator='Rov Camato',
+                 source='https://www.pexels.com/photo/dahlia-flowers-699963/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/699963/pexels-photo-699963.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='tulip', name='チューリップ', provider='Pexels', creator='Studio Naae',
+                 source='https://www.pexels.com/photo/close-up-photograph-of-tulip-flowers-8842819/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/8842819/pexels-photo-8842819.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='marigold', name='マリーゴールド', provider='Pexels', creator='Silvia Corradin',
+                 source='https://www.pexels.com/photo/close-up-photography-of-marigold-flower-1031628/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/1031628/pexels-photo-1031628.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='poppy', name='ポピー', provider='Pexels', creator='Alesia Kozik',
+                 source='https://www.pexels.com/photo/poppy-flowers-in-bloom-6629985/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/6629985/pexels-photo-6629985.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='hibiscus', name='ハイビスカス', provider='Pexels', creator='Antonio Friedemann',
+                 source='https://www.pexels.com/photo/close-up-shot-of-a-hibiscus-flower-14217646/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/14217646/pexels-photo-14217646.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='freesia', name='フリージア', provider='Pexels', creator='Gintare Baradinske',
+                 source='https://www.pexels.com/photo/freesia-flower-in-close-up-photography-12224114/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/12224114/pexels-photo-12224114.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='cosmos', name='コスモス', provider='Pexels', creator='Honglei Yue',
+                 source='https://www.pexels.com/photo/close-up-of-a-cosmos-flower-18416512/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/18416512/pexels-photo-18416512.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='anemone', name='アネモネ', provider='Pexels', creator='Eva Bronzini',
+                 source='https://www.pexels.com/photo/anemone-flower-in-close-up-view-6068455/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/6068455/pexels-photo-6068455.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='clematis', name='クレマチス', provider='Unsplash', creator='Kasia Gajek',
+                 source='https://unsplash.com/photos/a-close-up-of-a-purple-flower-with-a-blurry-background-WtxY3b2fIas', license=UNSPLASH_LICENSE,
+                 image='https://images.unsplash.com/photo-1687693054634-45f9e97847cf?auto=format&fit=crop&w=1800&q=85'),
+            dict(slug='iris', name='アイリス', provider='Pexels', creator='Dale Jackson',
+                 source='https://www.pexels.com/photo/close-up-shot-of-iris-flower-6622641/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/6622641/pexels-photo-6622641.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='nemophila', name='ネモフィラ', provider='Pexels', creator='Esther',
+                 source='https://www.pexels.com/photo/close-up-shot-of-a-nemophila-5681068/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/5681068/pexels-photo-5681068.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='lupinus', name='ルピナス', provider='Pexels', creator='Efrem Efre',
+                 source='https://www.pexels.com/photo/lupine-25190111/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/25190111/pexels-photo-25190111.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='kasumisou', name='カスミソウ', provider='Pexels', creator='Pelageia Zelenina',
+                 source='https://www.pexels.com/photo/baby-s-breath-flowers-in-close-up-shot-9657152/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/9657152/pexels-photo-9657152.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='shirotsumekusa', name='シロツメクサ', provider='Pexels', creator='Kathrine Birch',
+                 source='https://www.pexels.com/photo/clovers-in-close-up-12892836/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/12892836/pexels-photo-12892836.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='renge', name='レンゲ', provider='ぱくたそ', creator='ELFA',
+                 source='https://www.pakutaso.com/20181205348post-18827.html', license=PAKUTASO_LICENSE,
+                 image='https://download.pakutaso.com/shared/img/thumb/ELFAIMG_9199_TP_V.jpg'),
+            dict(slug='tsubaki', name='ツバキ', provider='Pexels', creator='Studio Naae',
+                 source='https://www.pexels.com/photo/camellia-flowers-in-bloom-13122885/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/13122885/pexels-photo-13122885.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='nadeshiko', name='ナデシコ', provider='Unsplash', creator='Sara Gomes',
+                 source='https://unsplash.com/photos/close-up-of-vibrant-pink-dianthus-flowers-blooming-wYMmgBlMiJI', license=UNSPLASH_LICENSE,
+                 image='https://images.unsplash.com/photo-1761323078893-517efb00878c?auto=format&fit=crop&w=1800&q=85'),
+            dict(slug='nanohana', name='ナノハナ', provider='Pexels', creator='Szymon Shields',
+                 source='https://www.pexels.com/photo/bright-yellow-rapeseed-field-in-tokyo-s-spring-sunshine-36233858/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/36233858/pexels-photo-36233858.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='mimosa', name='ミモザ', provider='Pexels', creator='Matilda Iglesias',
+                 source='https://www.pexels.com/photo/close-up-photo-of-acacia-dealbata-11768131/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/11768131/pexels-photo-11768131.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='rindou', name='リンドウ', provider='Unsplash', creator='Leni Thalin',
+                 source='https://unsplash.com/photos/macro-photography-of-blue-gentian-flower-W1yhhX5w9x4', license=UNSPLASH_LICENSE,
+                 image='https://images.unsplash.com/photo-1576605635426-63eea1b301c6?auto=format&fit=crop&w=1800&q=85'),
+            dict(slug='edelweiss', name='エーデルワイス', provider='Unsplash', creator='Quentin Baret',
+                 source='https://unsplash.com/photos/a-single-edelweiss-flower-surrounded-by-green-foliage-wK9Wdsqojyo', license=UNSPLASH_LICENSE,
+                 image='https://images.unsplash.com/photo-1767133891311-14c6e5330036?auto=format&fit=crop&w=1800&q=85'),
+            dict(slug='ajisai', name='アジサイ', provider='Pexels', creator='TIVASEE .',
+                 source='https://www.pexels.com/photo/hydrangea-flowers-17401622/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/17401622/pexels-photo-17401622.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='lavender', name='ラベンダー', provider='Pexels', creator='Mike Bird',
+                 source='https://www.pexels.com/photo/lavender-flowers-109646/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/109646/pexels-photo-109646.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='suiren', name='スイレン', provider='Pexels', creator='Philipp Fahlbusch',
+                 source='https://www.pexels.com/photo/water-lily-on-water-surface-12656990/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/12656990/pexels-photo-12656990.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='kikyo', name='キキョウ', provider='Pixabay', creator='ardeena',
+                 source='https://pixabay.com/photos/flower-platycodon-mariesii-2649575/', license=PIXABAY_LICENSE,
+                 image='https://cdn.pixabay.com/photo/2017/08/17/00/00/flower-2649575_1280.jpg'),
+            dict(slug='wasurenagusa', name='ワスレナグサ', provider='Pexels', creator='Suzy Hazelwood',
+                 source='https://www.pexels.com/photo/forget-me-not-flowers-in-close-up-photography-13755336/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/13755336/pexels-photo-13755336.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='sumire', name='スミレ', provider='Pexels', creator='Sybil Schleicher',
+                 source='https://www.pexels.com/photo/close-up-of-a-violet-flower-16779896/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/16779896/pexels-photo-16779896.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='tanpopo', name='タンポポ', provider='Pexels', creator='Petr Ganaj',
+                 source='https://www.pexels.com/photo/a-close-up-shot-of-a-dandelion-flower-7256531/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/7256531/pexels-photo-7256531.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+            dict(slug='chamomile', name='カモミール', provider='Pexels', creator='ROMAN ODINTSOV',
+                 source='https://www.pexels.com/photo/chamomile-flowers-in-bloom-8753607/', license=PEXELS_LICENSE,
+                 image='https://images.pexels.com/photos/8753607/pexels-photo-8753607.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+          ]
+
+          if len(items) != 32:
+              raise SystemExit(f'Expected 32 photos, got {len(items)}')
+
+          def fetch(url):
+              req = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return r.read()
+
+          for idx, item in enumerate(items, 1):
+              raw = fetch(item['image'])
+              im = ImageOps.exif_transpose(Image.open(io.BytesIO(raw))).convert('RGB')
+              fitted = ImageOps.fit(im, (900, 675), method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
+              out = root / f"flower-photo-{item['slug']}.webp"
+              fitted.save(out, 'WEBP', quality=86, method=6)
+              print(f"[{idx:02d}/32] {item['slug']} <- {item['provider']} / {item['creator']}")
+
+          # Machine-readable audit file. Direct download URL is intentionally retained
+          # so the exact selected image can be reconstructed later.
+          (root / 'flower-photo-credits.json').write_text(
+              json.dumps(items, ensure_ascii=False, indent=2),
+              encoding='utf-8'
+          )
+
+          rows = []
+          for item in items:
+              rows.append(
+                  '<tr>'
+                  f"<td>{html.escape(item['name'])}</td>"
+                  f"<td>{html.escape(item['provider'])}</td>"
+                  f"<td>{html.escape(item['creator'])}</td>"
+                  f"<td><a href=\"{html.escape(item['source'])}\" target=\"_blank\" rel=\"noopener\">元写真ページ</a></td>"
+                  f"<td><a href=\"{html.escape(item['license'])}\" target=\"_blank\" rel=\"noopener\">利用条件</a></td>"
+                  '</tr>'
+              )
+
+          credits = f'''<!doctype html>
+          <html lang="ja"><head><meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>花写真の出典・ライセンス｜NOTO Re:Bloom</title>
+          <style>
+          :root{{--ink:#153d34;--paper:#fffdf7;--line:#d9d2c3;--soft:#f4efe4}}
+          *{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:#243c35;font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.7}}
+          main{{max-width:1120px;margin:auto;padding:48px 20px 80px}}a{{color:#0d614d}}h1{{color:var(--ink);font-size:clamp(28px,5vw,48px);margin-bottom:8px}}
+          .lead{{max-width:850px}}.note{{background:var(--soft);border:1px solid var(--line);padding:18px 20px;border-radius:16px;margin:24px 0}}
+          .table-wrap{{overflow:auto;border:1px solid var(--line);border-radius:16px}}table{{border-collapse:collapse;width:100%;min-width:760px;background:white}}
+          th,td{{padding:12px 14px;text-align:left;border-bottom:1px solid #eee8dc}}th{{background:#f6f1e8;color:var(--ink);position:sticky;top:0}}
+          footer{{margin-top:28px;font-size:14px;color:#64746e}}.back{{display:inline-block;margin-bottom:18px}}
+          </style></head><body><main>
+          <a class="back" href="diagnosis.html">← 花タイプ診断へ戻る</a>
+          <h1>花写真の出典・ライセンス</h1>
+          <p class="lead">NOTO Re:Bloom「花タイプ診断」で使用している32種類の花写真について、配布元・撮影者・元写真ページ・利用条件を記録しています。サイト表示用には元写真を900×675pxへトリミングし、WebP形式へ変換しています。</p>
+          <div class="note"><b>方針：</b> Pexels・Unsplash・Pixabay・ぱくたその、Webサイト利用が認められている素材のみを使用しています。各サービスでは出典表示が必須でない素材もありますが、確認可能性を優先して全写真の出典を表示しています。</div>
+          <div class="table-wrap"><table>
+          <thead><tr><th>花</th><th>配布元</th><th>撮影者</th><th>元写真</th><th>利用条件</th></tr></thead>
+          <tbody>{''.join(rows)}</tbody></table></div>
+          <footer>最終更新：2026-09-18 ／ NOTO Re:Bloom</footer>
+          </main></body></html>'''
+          (root / 'photo-credits.html').write_text(credits, encoding='utf-8')
+
+          # Add a visible source link under the flower atlas.
+          html_path = root / 'diagnosis.html'
+          diagnosis = html_path.read_text(encoding='utf-8')
+          marker = '<p class="flower-atlas-note">※図鑑は診断結果の一覧です。花を選ぶだけで結果が決まるものではありません。</p>'
+          link = marker + '<p class="flower-atlas-note"><a href="photo-credits.html">写真出典・ライセンス（32種類）</a></p>'
+          if 'photo-credits.html' not in diagnosis:
+              diagnosis = diagnosis.replace(marker, link)
+          diagnosis = diagnosis.replace('diagnosis-visual-v2.js?v=20260827c', 'diagnosis-visual-v2.js?v=20260918free1')
+          html_path.write_text(diagnosis, encoding='utf-8')
+
+          js_path = root / 'diagnosis-visual-v2.js'
+          js = js_path.read_text(encoding='utf-8')
+          js = js.replace("const VERSION='20260827c';", "const VERSION='20260918free1';")
+          js_path.write_text(js, encoding='utf-8')
+          PY
+      - name: Verify all 32 assets
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          from PIL import Image
+          root=pathlib.Path('.')
+          data=json.loads((root/'flower-photo-credits.json').read_text(encoding='utf-8'))
+          assert len(data)==32
+          for item in data:
+              p=root/f"flower-photo-{item['slug']}.webp"
+              assert p.exists(), p
+              with Image.open(p) as im:
+                  assert im.size==(900,675), (p,im.size)
+          print('verified',len(data),'photos')
+          PY
+      - name: Commit replacements
+        run: |
+          git config user.name 'NOTO-ReBloom Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add flower-photo-*.webp flower-photo-credits.json photo-credits.html diagnosis.html diagnosis-visual-v2.js
+          git commit -m 'Replace flower photos with documented free stock sources'
+          git push
