@@ -70,7 +70,7 @@ function drawCover(ctx,img,x,y,w,h,r=0){
   ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);
   ctx.restore();
 }
-function drawPill(ctx,text,x,y,fill,ink,font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif'){
+function drawPill(ctx,text,x,y,fill,ink,font='800 22px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif'){
   ctx.font=font;
   const padX=20,h=46,w=Math.ceil(ctx.measureText(text).width)+padX*2;
   ctx.fillStyle=fill;roundRectPath(ctx,x,y,w,h,23);ctx.fill();
@@ -83,14 +83,14 @@ function cardAccent(group){
 function fitText(ctx,text,maxWidth,startSize,minSize,weight='900'){
   let size=startSize;
   while(size>minSize){
-    ctx.font=`${weight} ${size}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+    ctx.font=`${weight} ${size}px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif`;
     if(ctx.measureText(text).width<=maxWidth)break;
     size-=2;
   }
   return size;
 }
 function drawChip(ctx,text,x,y,maxW){
-  ctx.font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+  ctx.font='800 22px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
   const w=Math.min(maxW,Math.ceil(ctx.measureText(text).width)+36),h=48;
   ctx.fillStyle='#eef4ee';roundRectPath(ctx,x,y,w,h,24);ctx.fill();
   ctx.fillStyle='#355d4d';ctx.fillText(text,x+18,y+32);
@@ -116,37 +116,37 @@ function buildShareCard(photo,data,story=false){
   ctx.fillStyle=grad;roundRectPath(ctx,px,py,pw,ph,42);ctx.fill();
 
   ctx.fillStyle='#fff';
-  ctx.font='900 24px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+  ctx.font='900 24px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
   ctx.fillText('Re:Bloom 花タイプ診断',px+34,py+46);
-  ctx.font='700 17px "Noto Sans JP",sans-serif';
+  ctx.font='700 17px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
   ctx.fillStyle='rgba(255,255,255,.82)';
   ctx.fillText('32 FLOWERS / 5 AXES',px+34,py+76);
 
   const labelY=py+ph-76;
-  drawPill(ctx,data.group,px+34,labelY,'rgba(255,253,248,.92)',accent,'900 21px "M PLUS Rounded 1c","Noto Sans JP",sans-serif');
+  drawPill(ctx,data.group,px+34,labelY,'rgba(255,253,248,.92)',accent,'900 21px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif');
 
   const contentY=py+ph+(story?82:64);
   ctx.fillStyle=accent;
-  ctx.font='900 18px "Noto Sans JP",sans-serif';
+  ctx.font='900 18px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
   ctx.fillText('YOUR FLOWER TYPE',64,contentY);
 
   const nameSize=fitText(ctx,data.name,900,story?104:92,60);
   ctx.fillStyle='#173f33';
-  ctx.font=`900 ${nameSize}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  ctx.font=`900 ${nameSize}px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif`;
   ctx.fillText(data.name,64,contentY+(story?108:94));
 
   ctx.fillStyle='#50685d';
-  ctx.font=`700 ${story?34:30}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  ctx.font=`700 ${story?34:30}px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif`;
   const leadY=contentY+(story?174:148);
   wrapText(ctx,data.lead,64,leadY,920,story?49:43,3);
 
   const strengthsY=leadY+(story?176:146);
   ctx.fillStyle='#8a7640';
-  ctx.font='900 16px "Noto Sans JP",sans-serif';
+  ctx.font='900 16px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
   ctx.fillText('STRENGTHS',64,strengthsY);
   let x=64,y=strengthsY+22;
   for(const s of data.strengths){
-    ctx.font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+    ctx.font='800 22px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
     const needed=Math.min(420,Math.ceil(ctx.measureText(s).width)+36);
     if(x+needed>1016){x=64;y+=60;}
     const used=drawChip(ctx,s,x,y,420);x+=used+10;
@@ -154,9 +154,9 @@ function buildShareCard(photo,data,story=false){
 
   const flowerY=story?H-246:H-168;
   ctx.strokeStyle='rgba(23,75,59,.16)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(64,flowerY-38);ctx.lineTo(1016,flowerY-38);ctx.stroke();
-  ctx.fillStyle='#6c7d75';ctx.font='700 18px "Noto Sans JP",sans-serif';ctx.fillText('FLOWER LANGUAGE',64,flowerY);
-  ctx.fillStyle='#173f33';ctx.font='900 27px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';ctx.fillText(data.language,64,flowerY+40);
-  ctx.fillStyle='#7a8982';ctx.font='600 15px "Noto Sans JP",sans-serif';ctx.textAlign='right';ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',1016,flowerY+38);ctx.textAlign='left';
+  ctx.fillStyle='#6c7d75';ctx.font='700 18px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';ctx.fillText('FLOWER LANGUAGE',64,flowerY);
+  ctx.fillStyle='#173f33';ctx.font='900 27px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';ctx.fillText(data.language,64,flowerY+40);
+  ctx.fillStyle='#7a8982';ctx.font='600 15px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';ctx.textAlign='right';ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',1016,flowerY+38);ctx.textAlign='left';
 
   return canvas.toDataURL('image/png',.94);
 }
