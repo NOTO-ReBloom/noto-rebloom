@@ -158,16 +158,27 @@ jobs:
                       return html.unescape(url).replace('\\u0026','&')
               if 'freephoto.sakura.ne.jp' in item['source']:
                   candidates = re.findall(r'(?:src|href)=["\\\']([^"\\\']+\\.(?:jpg|jpeg|png))', page, re.I)
-                  preferred = [u for u in candidates if 'renge' in u.lower()]
-                  for url in preferred + candidates:
+                  scored=[]
+                  seen=set()
+                  for url in candidates:
+                      if url in seen: continue
+                      seen.add(url)
+                      low=url.lower()
+                      if any(x in low for x in ('thumbnail.png','favicon','logo','banner','icon','button','counter')): continue
                       if not url.startswith('http'):
                           url = urllib.parse.urljoin(item['source'], url)
                       try:
                           raw = fetch(url)
-                          Image.open(io.BytesIO(raw)).verify()
-                          return url
+                          with Image.open(io.BytesIO(raw)) as probe:
+                              w,h=probe.size
+                          if w>=600 and h>=400:
+                              scored.append((w*h,url,w,h))
                       except Exception:
                           pass
+                  if scored:
+                      scored.sort(reverse=True)
+                      print('freephoto selected',scored[0][1],scored[0][2],scored[0][3])
+                      return scored[0][1]
               raise RuntimeError(f"Could not resolve image from {item['source']}")
 
           for idx, item in enumerate(items, 1):
