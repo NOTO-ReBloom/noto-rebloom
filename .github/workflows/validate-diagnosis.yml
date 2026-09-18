@@ -1,0 +1,69 @@
+name: Validate Flower Diagnosis
+
+on:
+  push:
+    paths:
+      - 'diagnosis.html'
+      - 'diagnosis.js'
+      - 'diagnosis-visual-v2.js'
+      - 'diagnosis-ux-v3.css'
+      - '.github/workflows/validate-diagnosis.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check diagnosis.js
+          node --check diagnosis-visual-v2.js
+      - name: Check diagnosis HTML and required hooks
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+
+          html = Path('diagnosis.html').read_text(encoding='utf-8')
+          js = Path('diagnosis.js').read_text(encoding='utf-8')
+          visual = Path('diagnosis-visual-v2.js').read_text(encoding='utf-8')
+
+          class IdParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids=[]
+              def handle_starttag(self, tag, attrs):
+                  for k,v in attrs:
+                      if k=='id' and v:
+                          self.ids.append(v)
+
+          p=IdParser(); p.feed(html)
+          dup=sorted({x for x in p.ids if p.ids.count(x)>1})
+          if dup:
+              raise SystemExit(f'Duplicate ids: {dup}')
+
+          required=[
+              'startDiagnosis','resumeDiagnosis','diagnosisQuestionAnchor','diagnosisPanel',
+              'questionCount','remainingCount','progressPercent','questionText',
+              'diagnosisResult','resultTitle','resultStrengths','resultEnergyStyle',
+              'resultPaceStyle','resultDecisionStyle','resultMotivationStyle',
+              'resultStressStyle','resultMisreadStyle','resultAxisNarratives',
+              'resultShareImage','downloadCard','downloadStoryCard','copyDiagnosisResult'
+          ]
+          missing=[x for x in required if x not in p.ids]
+          if missing:
+              raise SystemExit(f'Missing required ids: {missing}')
+
+          for text,name in [(html,'diagnosis.html'),(js,'diagnosis.js'),(visual,'diagnosis-visual-v2.js')]:
+              if re.search(r'\bMBTI\b',text,re.I):
+                  raise SystemExit(f'Prohibited external diagnosis name found in {name}')
+
+          if html.count('href="diagnosis-ux-v3.css') != 1:
+              raise SystemExit('diagnosis-ux-v3.css must be linked exactly once')
+
+          print(f'OK: {len(p.ids)} unique ids; required hooks present; JS syntax checked.')
+          PY
