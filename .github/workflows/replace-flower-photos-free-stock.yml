@@ -32,7 +32,7 @@ jobs:
           PEXELS_LICENSE = 'https://www.pexels.com/license/'
           UNSPLASH_LICENSE = 'https://unsplash.com/license'
           PIXABAY_LICENSE = 'https://pixabay.com/service/license-summary/'
-          FREEPHOTO_LICENSE = 'https://freephoto.sakura.ne.jp/rengesou.html'
+          CC_BY_2 = 'https://creativecommons.org/licenses/by/2.0/'
 
           # All source pages are public stock-photo pages whose stated licenses allow website use.
           items = [
@@ -87,9 +87,9 @@ jobs:
             dict(slug='shirotsumekusa', name='シロツメクサ', provider='Pexels', creator='Kathrine Birch',
                  source='https://www.pexels.com/photo/clovers-in-close-up-12892836/', license=PEXELS_LICENSE,
                  image='https://images.pexels.com/photos/12892836/pexels-photo-12892836.jpeg?auto=compress&cs=tinysrgb&w=1800'),
-            dict(slug='renge', name='レンゲ', provider='フリー写真Web', creator='石垣水魚',
-                 source='https://freephoto.sakura.ne.jp/rengesou.html', license=FREEPHOTO_LICENSE,
-                 image=''),
+            dict(slug='renge', name='レンゲ', provider='Wikimedia Commons', creator='houroumono',
+                 source='https://commons.wikimedia.org/wiki/File:Astragalus_sinicus_(25645794703).jpg', license=CC_BY_2,
+                 image='https://commons.wikimedia.org/wiki/Special:Redirect/file/Astragalus_sinicus_%2825645794703%29.jpg'),
             dict(slug='tsubaki', name='ツバキ', provider='Pexels', creator='Studio Naae',
                  source='https://www.pexels.com/photo/camellia-flowers-in-bloom-13122885/', license=PEXELS_LICENSE,
                  image='https://images.pexels.com/photos/13122885/pexels-photo-13122885.jpeg?auto=compress&cs=tinysrgb&w=1800'),
@@ -232,7 +232,7 @@ jobs:
           <a class="back" href="diagnosis.html">← 花タイプ診断へ戻る</a>
           <h1>花写真の出典・ライセンス</h1>
           <p class="lead">NOTO Re:Bloom「花タイプ診断」で使用している32種類の花写真について、配布元・撮影者・元写真ページ・利用条件を記録しています。サイト表示用には元写真を900×675pxへトリミングし、WebP形式へ変換しています。</p>
-          <div class="note"><b>方針：</b> Pexels・Unsplash・Pixabay・フリー写真Webの、Webサイト利用・加工が認められている素材のみを使用しています。各サービスでは出典表示が必須でない素材もありますが、確認可能性を優先して全写真の出典を表示しています。</div>
+          <div class="note"><b>方針：</b> Pexels・Unsplash・Pixabay・Wikimedia Commonsの、Webサイト利用・加工が認められている素材のみを使用しています。各サービスでは出典表示が必須でない素材もありますが、確認可能性を優先して全写真の出典を表示しています。</div>
           <div class="table-wrap"><table>
           <thead><tr><th>花</th><th>配布元</th><th>撮影者</th><th>元写真</th><th>利用条件</th></tr></thead>
           <tbody>{''.join(rows)}</tbody></table></div>
@@ -275,5 +275,9 @@ jobs:
           git config user.name 'NOTO-ReBloom Bot'
           git config user.email 'actions@users.noreply.github.com'
           git add flower-photo-*.webp flower-photo-credits.json photo-credits.html diagnosis.html diagnosis-visual-v2.js
-          git commit -m 'Replace flower photos with documented free stock sources'
-          git push
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+          else
+            git commit -m 'Replace flower photos with documented free stock sources'
+            git push
+          fi
