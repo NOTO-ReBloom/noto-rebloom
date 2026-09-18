@@ -159,6 +159,7 @@ jobs:
                           raw = fetch(url)
                           with Image.open(io.BytesIO(raw)) as probe:
                               w,h=probe.size
+                          print('freephoto candidate',w,h,url)
                           if w>=600 and h>=400:
                               scored.append((w*h,url,w,h))
                       except Exception:
