@@ -18,7 +18,7 @@
   // This deliberately bypasses target attributes and any later link rewriting.
   const navigateHeaderInPlace=(event)=>{
     if(event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const link=event.target?.closest?.('.site-header a[href]');
+    const link=event.target?.closest?.('.site-nav a[href], a.brand[href]');
     if(!(link instanceof HTMLAnchorElement)) return;
     const href=link.getAttribute('href');
     if(!href || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
