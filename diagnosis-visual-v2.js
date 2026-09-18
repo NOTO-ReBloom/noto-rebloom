@@ -6,7 +6,7 @@ const NAME_TO_SLUG={
 'シロツメクサ':'shirotsumekusa','レンゲ':'renge','ツバキ':'tsubaki','ナデシコ':'nadeshiko','ナノハナ':'nanohana','ミモザ':'mimosa','リンドウ':'rindou','エーデルワイス':'edelweiss',
 'アジサイ':'ajisai','ラベンダー':'lavender','スイレン':'suiren','キキョウ':'kikyo','ワスレナグサ':'wasurenagusa','スミレ':'sumire','タンポポ':'tanpopo','カモミール':'chamomile'
 };
-const VERSION='20260827c';
+const VERSION='20260918free1';
 const photoUrl=slug=>`flower-photo-${slug}.webp?v=${VERSION}`;
 const legacyUrl=slug=>`${slug}.png?v=${VERSION}`;
 function ensureFixStyles(){
