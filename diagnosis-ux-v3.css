@@ -10,10 +10,10 @@
   --dx-shadow:var(--shadow-small,0 8px 24px rgba(48,37,26,.10));
   font-family:var(--sans)!important;
 }
-/* Lock the diagnosis page to the same typography tokens used across the site. */
+/* Match the unified site's real font stack: rounded display + clean Japanese body. */
 body.page-diagnosis,
 body.page-diagnosis *{
-  font-family:var(--sans)!important;
+  font-family:"Noto Sans JP",var(--sans)!important;
 }
 body.page-diagnosis :where(
   h1,h2,h3,h4,
@@ -36,12 +36,24 @@ body.page-diagnosis :where(
   .result-next-action h3,
   .result-rich-insights h3,
   .result-rich-insights h4,
+  .result-reason-card h4,
+  .result-share-copy h3,
   .final-cta h2
 ){
-  font-family:var(--serif)!important;
-}
-body.page-diagnosis :where(h1,h2,h3,h4,.diagnosis-question){
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",var(--serif)!important;
+  font-weight:900!important;
   font-style:normal!important;
+}
+body.page-diagnosis .page-hero--diagnosis h1{
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.055em!important;
+  line-height:1.16!important;
+  text-wrap:balance;
+}
+body.page-diagnosis .page-hero--diagnosis .headline-marker{
+  font-family:inherit!important;
+  font-weight:900!important;
 }
 .page-diagnosis .page-hero--diagnosis:before{content:"RE:BLOOM FLOWER TYPE"!important}
 
@@ -436,4 +448,71 @@ body.page-diagnosis :where(h1,h2,h3,h4,.diagnosis-question){
 }
 .page-diagnosis .hero-sticker-note{
   font-family:var(--sans)!important;
+}
+
+/* Result rationale */
+.page-diagnosis .result-reason-card{
+  margin:20px 0 6px;
+  padding:22px;
+  border:1px solid rgba(21,72,59,.12);
+  border-radius:20px;
+  background:#fbfaf5;
+}
+.page-diagnosis .result-reason-card h4{
+  margin:4px 0 14px!important;
+  color:var(--forest)!important;
+  font-size:22px!important;
+}
+.page-diagnosis .result-reason-card ol{
+  display:grid;
+  gap:9px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.page-diagnosis .result-reason-card li{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:10px;
+  align-items:start;
+  padding:11px 13px;
+  border-radius:14px;
+  background:#fff;
+  color:#41594f;
+  font-size:13px;
+  line-height:1.7;
+}
+.page-diagnosis .result-reason-card li b{
+  display:grid;
+  place-items:center;
+  min-width:28px;
+  height:28px;
+  padding:0 7px;
+  border-radius:999px;
+  background:#e7f1e8;
+  color:var(--forest);
+  font-size:10px;
+  font-weight:900;
+}
+.page-diagnosis .result-reason-note{
+  margin-top:12px!important;
+  font-size:11px!important;
+  color:#75827c!important;
+}
+
+/* Share area: neutral, editorial, and information-led */
+.page-diagnosis .result-share-section{
+  background:#fff!important;
+  border-color:rgba(21,72,59,.14)!important;
+}
+.page-diagnosis .result-share-preview{
+  background:#f4f0e8!important;
+  border:1px solid rgba(21,72,59,.08);
+}
+.page-diagnosis .result-share-section .btn--green{
+  background:var(--forest)!important;
+  color:#fff!important;
+}
+.page-diagnosis .result-share-copy p{
+  max-width:560px;
 }
