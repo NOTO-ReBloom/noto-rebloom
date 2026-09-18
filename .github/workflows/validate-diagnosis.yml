@@ -7,6 +7,8 @@ on:
       - 'diagnosis.js'
       - 'diagnosis-visual-v2.js'
       - 'diagnosis-ux-v3.css'
+      - 'diagnosis-v2.css'
+      - 'diagnosis-fixes.css'
       - '.github/workflows/validate-diagnosis.yml'
 
 jobs:
@@ -31,6 +33,7 @@ jobs:
           html = Path('diagnosis.html').read_text(encoding='utf-8')
           js = Path('diagnosis.js').read_text(encoding='utf-8')
           visual = Path('diagnosis-visual-v2.js').read_text(encoding='utf-8')
+          css_files = [Path(x).read_text(encoding='utf-8') for x in ['diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css']]
 
           class IdParser(HTMLParser):
               def __init__(self):
@@ -61,6 +64,15 @@ jobs:
           for text,name in [(html,'diagnosis.html'),(js,'diagnosis.js'),(visual,'diagnosis-visual-v2.js')]:
               if re.search(r'\bMBTI\b',text,re.I):
                   raise SystemExit(f'Prohibited external diagnosis name found in {name}')
+
+          banned_fonts=('M PLUS Rounded','Noto Sans JP','Yu Mincho','Hiragino Mincho','Noto Serif')
+          for i,text in enumerate(css_files):
+              for font in banned_fonts:
+                  if font.lower() in text.lower():
+                      raise SystemExit(f'Diagnosis CSS still contains non-site font: {font} in css index {i}')
+
+          if '答えるたびに、小さな花が咲きます' in html:
+              raise SystemExit('Decorative flower progress copy must not return')
 
           if html.count('href="diagnosis-ux-v3.css') != 1:
               raise SystemExit('diagnosis-ux-v3.css must be linked exactly once')
