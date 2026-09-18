@@ -14,21 +14,23 @@
     }
   }
 
-  // Top navigation must always use the current tab on an ordinary click.
-  // Run at window-capture level so later page scripts cannot turn the click into a new tab.
-  window.addEventListener('click',event=>{
-    if(event.defaultPrevented) return;
+  // Every link in the site header must stay in the current browsing tab on an ordinary click.
+  // This deliberately bypasses target attributes and any later link rewriting.
+  const navigateHeaderInPlace=(event)=>{
     if(event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const link=event.target?.closest?.('.site-nav a[href], a.brand[href]');
+    const link=event.target?.closest?.('.site-header a[href]');
     if(!(link instanceof HTMLAnchorElement)) return;
     const href=link.getAttribute('href');
     if(!href || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
     event.preventDefault();
+    event.stopPropagation();
     event.stopImmediatePropagation();
     link.removeAttribute('target');
     const url=new URL(href,location.href);
-    location.assign(url.href);
-  },true);
+    window.location.href=url.href;
+  };
+  window.addEventListener('click',navigateHeaderInPlace,true);
+
 
   const isInternalSiteLink=(link)=>{
     if(!(link instanceof HTMLAnchorElement)) return false;
