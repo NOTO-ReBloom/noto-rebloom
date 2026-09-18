@@ -189,7 +189,7 @@
     const nav=document.querySelector('.site-nav');
     const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 
-    document.querySelectorAll('.site-header a[href]').forEach(link=>{
+    document.querySelectorAll('.site-nav a[href], a.brand[href]').forEach(link=>{
       link.removeAttribute('target');
       link.onclick=(event)=>{
         if(event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
