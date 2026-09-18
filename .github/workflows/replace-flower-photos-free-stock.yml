@@ -23,7 +23,7 @@ jobs:
       - name: Download free stock flower photos and build credits
         run: |
           python - <<'PY'
-          import io, json, pathlib, urllib.request, html
+          import io, json, pathlib, urllib.request, urllib.error, html, re
           from PIL import Image, ImageOps
 
           root = pathlib.Path('.')
@@ -38,7 +38,7 @@ jobs:
           items = [
             dict(slug='himawari', name='ヒマワリ', provider='Pexels', creator='Snapwire',
                  source='https://www.pexels.com/photo/sunflower-6695/', license=PEXELS_LICENSE,
-                 image='https://images.pexels.com/photos/6695/pexels-photo-6695.jpeg?auto=compress&cs=tinysrgb&w=1800'),
+                 image='https://images.pexels.com/photos/6695/summer-sun-yellow-spring.jpg?auto=compress&cs=tinysrgb&w=1800'),
             dict(slug='gerbera', name='ガーベラ', provider='Pexels', creator='Kaboompics',
                  source='https://www.pexels.com/photo/gerbera-in-close-up-6757654/', license=PEXELS_LICENSE,
                  image='https://images.pexels.com/photos/6757654/pexels-photo-6757654.jpeg?auto=compress&cs=tinysrgb&w=1800'),
@@ -142,8 +142,30 @@ jobs:
               with urllib.request.urlopen(req, timeout=60) as r:
                   return r.read()
 
+          def resolve_from_source(item):
+              page = fetch(item['source']).decode('utf-8', 'ignore')
+              patterns = [
+                  r'<meta[^>]+property=["\\\']og:image(?::secure_url)?["\\\'][^>]+content=["\\\']([^"\\\']+)',
+                  r'<meta[^>]+content=["\\\']([^"\\\']+)["\\\'][^>]+property=["\\\']og:image(?::secure_url)?["\\\']',
+                  r'https://images\\.pexels\\.com/[^"\\\'<> ]+',
+                  r'https://images\\.unsplash\\.com/[^"\\\'<> ]+',
+                  r'https://cdn\\.pixabay\\.com/[^"\\\'<> ]+',
+                  r'https://(?:download|cdn)\\.pakutaso\\.com/[^"\\\'<> ]+',
+              ]
+              for pattern in patterns:
+                  m = re.search(pattern, page, re.I)
+                  if m:
+                      url = m.group(1) if m.lastindex else m.group(0)
+                      return html.unescape(url).replace('\\u0026','&')
+              raise RuntimeError(f"Could not resolve image from {item['source']}")
+
           for idx, item in enumerate(items, 1):
-              raw = fetch(item['image'])
+              try:
+                  raw = fetch(item['image'])
+              except (urllib.error.HTTPError, urllib.error.URLError) as exc:
+                  print(f"direct image failed for {item['slug']}: {exc}; resolving from source page")
+                  item['image'] = resolve_from_source(item)
+                  raw = fetch(item['image'])
               im = ImageOps.exif_transpose(Image.open(io.BytesIO(raw))).convert('RGB')
               fitted = ImageOps.fit(im, (900, 675), method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
               out = root / f"flower-photo-{item['slug']}.webp"
