@@ -23,7 +23,7 @@ jobs:
       - name: Download free stock flower photos and build credits
         run: |
           python - <<'PY'
-          import io, json, pathlib, urllib.request, urllib.error, html, re
+          import io, json, pathlib, urllib.request, urllib.error, urllib.parse, html, re
           from PIL import Image, ImageOps
 
           root = pathlib.Path('.')
@@ -32,7 +32,7 @@ jobs:
           PEXELS_LICENSE = 'https://www.pexels.com/license/'
           UNSPLASH_LICENSE = 'https://unsplash.com/license'
           PIXABAY_LICENSE = 'https://pixabay.com/service/license-summary/'
-          PAKUTASO_LICENSE = 'https://www.pakutaso.com/userpolicy.html'
+          FREEPHOTO_LICENSE = 'https://freephoto.sakura.ne.jp/rengesou.html'
 
           # All source pages are public stock-photo pages whose stated licenses allow website use.
           items = [
@@ -87,9 +87,9 @@ jobs:
             dict(slug='shirotsumekusa', name='シロツメクサ', provider='Pexels', creator='Kathrine Birch',
                  source='https://www.pexels.com/photo/clovers-in-close-up-12892836/', license=PEXELS_LICENSE,
                  image='https://images.pexels.com/photos/12892836/pexels-photo-12892836.jpeg?auto=compress&cs=tinysrgb&w=1800'),
-            dict(slug='renge', name='レンゲ', provider='ぱくたそ', creator='ELFA',
-                 source='https://www.pakutaso.com/20181205348post-18827.html', license=PAKUTASO_LICENSE,
-                 image='https://download.pakutaso.com/shared/img/thumb/ELFAIMG_9199_TP_V.jpg'),
+            dict(slug='renge', name='レンゲ', provider='フリー写真Web', creator='石垣水魚',
+                 source='https://freephoto.sakura.ne.jp/rengesou.html', license=FREEPHOTO_LICENSE,
+                 image=''),
             dict(slug='tsubaki', name='ツバキ', provider='Pexels', creator='Studio Naae',
                  source='https://www.pexels.com/photo/camellia-flowers-in-bloom-13122885/', license=PEXELS_LICENSE,
                  image='https://images.pexels.com/photos/13122885/pexels-photo-13122885.jpeg?auto=compress&cs=tinysrgb&w=1800'),
@@ -150,16 +150,29 @@ jobs:
                   r'https://images\\.pexels\\.com/[^"\\\'<> ]+',
                   r'https://images\\.unsplash\\.com/[^"\\\'<> ]+',
                   r'https://cdn\\.pixabay\\.com/[^"\\\'<> ]+',
-                  r'https://(?:download|cdn)\\.pakutaso\\.com/[^"\\\'<> ]+',
               ]
               for pattern in patterns:
                   m = re.search(pattern, page, re.I)
                   if m:
                       url = m.group(1) if m.lastindex else m.group(0)
                       return html.unescape(url).replace('\\u0026','&')
+              if 'freephoto.sakura.ne.jp' in item['source']:
+                  candidates = re.findall(r'(?:src|href)=["\\\']([^"\\\']+\\.(?:jpg|jpeg|png))', page, re.I)
+                  preferred = [u for u in candidates if 'renge' in u.lower()]
+                  for url in preferred + candidates:
+                      if not url.startswith('http'):
+                          url = urllib.parse.urljoin(item['source'], url)
+                      try:
+                          raw = fetch(url)
+                          Image.open(io.BytesIO(raw)).verify()
+                          return url
+                      except Exception:
+                          pass
               raise RuntimeError(f"Could not resolve image from {item['source']}")
 
           for idx, item in enumerate(items, 1):
+              if not item['image']:
+                  item['image'] = resolve_from_source(item)
               try:
                   raw = fetch(item['image'])
               except (urllib.error.HTTPError, urllib.error.URLError) as exc:
@@ -207,7 +220,7 @@ jobs:
           <a class="back" href="diagnosis.html">← 花タイプ診断へ戻る</a>
           <h1>花写真の出典・ライセンス</h1>
           <p class="lead">NOTO Re:Bloom「花タイプ診断」で使用している32種類の花写真について、配布元・撮影者・元写真ページ・利用条件を記録しています。サイト表示用には元写真を900×675pxへトリミングし、WebP形式へ変換しています。</p>
-          <div class="note"><b>方針：</b> Pexels・Unsplash・Pixabay・ぱくたその、Webサイト利用が認められている素材のみを使用しています。各サービスでは出典表示が必須でない素材もありますが、確認可能性を優先して全写真の出典を表示しています。</div>
+          <div class="note"><b>方針：</b> Pexels・Unsplash・Pixabay・フリー写真Webの、Webサイト利用・加工が認められている素材のみを使用しています。各サービスでは出典表示が必須でない素材もありますが、確認可能性を優先して全写真の出典を表示しています。</div>
           <div class="table-wrap"><table>
           <thead><tr><th>花</th><th>配布元</th><th>撮影者</th><th>元写真</th><th>利用条件</th></tr></thead>
           <tbody>{''.join(rows)}</tbody></table></div>
