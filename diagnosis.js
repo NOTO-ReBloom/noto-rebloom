@@ -140,7 +140,7 @@
   const STORAGE_KEY='rebloom-flower-diagnosis-v4';
   const $=id=>document.getElementById(id);
   const esc=(s)=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-  const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),remaining=$('remainingCount'),percent=$('progressPercent'),fill=$('progressFill'),seedRow=$('seedRow');
+  const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),remaining=$('remainingCount'),percent=$('progressPercent'),fill=$('progressFill');
   const start=$('startDiagnosis'),resume=$('resumeDiagnosis'),back=$('backQuestion'),reset=$('resetDiagnosis'),mobileStart=$('mobileStartDiagnosis');
   const questionAnchor=$('diagnosisQuestionAnchor');if(questionAnchor&&panel){questionAnchor.after(panel);panel.after(result);}
   let answers=[],index=0;
@@ -254,12 +254,12 @@
       <path d="M20 20 H500 Q390 95 530 104 H20 Z" fill="url(#dots)" opacity=".95"/>
       <path d="M650 545 H1100 V112 Q955 160 980 315 Q870 390 650 545 Z" fill="url(#dots)" opacity=".75"/>
       <path d="M58 58 L370 58 L340 104 L402 104 L368 154 L58 154 Z" fill="${groupColor}" stroke="#24180f" stroke-width="8" filter="url(#shadow)"/>
-      <text x="88" y="117" font-family="Arial,'Noto Sans JP',sans-serif" font-size="36" font-weight="900" fill="#24180f">${groupIcon} ${esc(f.group)}</text>
-      <text x="62" y="268" font-family="Arial,'Noto Sans JP',sans-serif" font-size="88" font-weight="900" fill="#111">${esc(f.name)}</text>
-      <text x="80" y="345" font-family="Arial,'Noto Sans JP',sans-serif" font-size="52" font-weight="900" fill="#111">タイプ</text>
+      <text x="88" y="117" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="36" font-weight="900" fill="#24180f">${groupIcon} ${esc(f.group)}</text>
+      <text x="62" y="268" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="88" font-weight="900" fill="#111">${esc(f.name)}</text>
+      <text x="80" y="345" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="52" font-weight="900" fill="#111">タイプ</text>
       <path d="M66 374 H482" stroke="${c}" stroke-width="9" stroke-dasharray="12 12" stroke-linecap="round"/>
-      <text x="66" y="425" font-family="Arial,'Noto Sans JP',sans-serif" font-size="30" font-weight="900" fill="#24180f">${esc(subtitle)}</text>
-      <g font-family="Arial,'Noto Sans JP',sans-serif" font-weight="900" font-size="22" fill="#24180f">
+      <text x="66" y="425" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="30" font-weight="900" fill="#24180f">${esc(subtitle)}</text>
+      <g font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-weight="900" font-size="22" fill="#24180f">
         <rect x="62" y="460" width="104" height="34" rx="17" fill="${groupColor}" stroke="#24180f" stroke-width="4"/><text x="86" y="485">原産地</text><text x="184" y="485">${esc(f.origin)}</text>
         <rect x="62" y="504" width="124" height="34" rx="17" fill="${groupColor}" stroke="#24180f" stroke-width="4"/><text x="80" y="529">開花時期</text><text x="204" y="529">${esc(f.bloom)}</text>
         <rect x="62" y="548" width="104" height="34" rx="17" fill="${groupColor}" stroke="#24180f" stroke-width="4"/><text x="86" y="573">花言葉</text><text x="184" y="573">${esc(f.language.length>16?f.language.slice(0,16)+'…':f.language)}</text>
@@ -268,7 +268,7 @@
       <path d="M990 86 l18 38 l42 6 l-31 28 l8 41 l-37-22 l-37 22 l8-41 l-31-28 l42-6 z" fill="#ffd44d" stroke="#24180f" stroke-width="5"/>
       <path d="M885 73 l0 46 M862 96 l46 0" stroke="#24180f" stroke-width="7" stroke-linecap="round"/>
       <path d="M965 455 l0 46 M942 478 l46 0" stroke="#24180f" stroke-width="7" stroke-linecap="round"/>
-      <text x="560" y="600" text-anchor="middle" font-family="Arial,'Noto Sans JP',sans-serif" font-size="24" font-weight="900" fill="#24180f">Re:Bloom 花タイプ診断</text>
+      <text x="560" y="600" text-anchor="middle" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="24" font-weight="900" fill="#24180f">Re:Bloom 花タイプ診断</text>
     </svg>`;
     return svg;
   }
@@ -287,18 +287,16 @@
       <rect x="18" y="18" width="864" height="864" rx="54" fill="url(#portraitBg)" stroke="${ink}" stroke-width="10"/>
       <path d="M30 30 H870 V210 C700 175 630 260 470 204 C300 145 190 238 30 175Z" fill="url(#paperDots)"/>
       <path d="M68 72 H420 L380 140 H68Z" fill="${soft}" stroke="${ink}" stroke-width="7" filter="url(#portraitShadow)"/>
-      <text x="100" y="119" font-family="Arial,'Noto Sans JP',sans-serif" font-size="38" font-weight="900" fill="${ink}">${esc(profile.symbol)} ${esc(f.group)}</text>
+      <text x="100" y="119" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="38" font-weight="900" fill="${ink}">${esc(profile.symbol)} ${esc(f.group)}</text>
       <g transform="translate(0 88)">${svgShape(f.shape,c,450,330)}</g>
       <path d="M112 690 H788" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="12 16"/>
-      <text x="450" y="758" text-anchor="middle" font-family="Arial,'Noto Sans JP',sans-serif" font-size="70" font-weight="900" fill="${ink}">${esc(f.name)}</text>
-      <text x="450" y="812" text-anchor="middle" font-family="Arial,'Noto Sans JP',sans-serif" font-size="25" font-weight="800" fill="${ink}">${esc(f.short)}</text>
-      <g font-family="Arial,'Noto Sans JP',sans-serif" font-size="18" font-weight="800" fill="${ink}"><text x="74" y="852">BLOOM / ${esc(f.bloom)}</text><text x="826" y="852" text-anchor="end">LANGUAGE / ${esc(f.language)}</text></g>
+      <text x="450" y="758" text-anchor="middle" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="70" font-weight="900" fill="${ink}">${esc(f.name)}</text>
+      <text x="450" y="812" text-anchor="middle" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="25" font-weight="800" fill="${ink}">${esc(f.short)}</text>
+      <g font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="18" font-weight="800" fill="${ink}"><text x="74" y="852">BLOOM / ${esc(f.bloom)}</text><text x="826" y="852" text-anchor="end">LANGUAGE / ${esc(f.language)}</text></g>
     </svg>`;
   }
   function portraitDataUri(f){return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(flowerPortraitSvg(f));}
-  
-  function updateSeeds(){if(!seedRow)return;seedRow.innerHTML='';for(let i=0;i<QUESTIONS.length;i++){const dot=document.createElement('i');if(i<answers.length)dot.className='is-on';seedRow.appendChild(dot);}}
-  function render(scroll=false){document.body.classList.add('diagnosis-running');document.body.classList.remove('diagnosis-finished');panel.classList.add('is-active');result.classList.remove('is-active');const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;if(remaining)remaining.textContent=index>=QUESTIONS.length-1?'最後の1問':`あと${QUESTIONS.length-index-1}問`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';if(back)back.disabled=index===0;updateSeeds();save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
+  function render(scroll=false){document.body.classList.add('diagnosis-running');document.body.classList.remove('diagnosis-finished');panel.classList.add('is-active');result.classList.remove('is-active');const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;if(remaining)remaining.textContent=index>=QUESTIONS.length-1?'最後の1問':`あと${QUESTIONS.length-index-1}問`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';if(back)back.disabled=index===0;save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
   function clearAll(){answers=[];index=0;try{localStorage.removeItem(STORAGE_KEY);}catch(e){}}
   function calc(){const scores={G:0,A:0,P:0,H:0,F:0},counts={G:0,A:0,P:0,H:0,F:0};QUESTIONS.forEach((q,i)=>{const val=answers[i]??0;Object.entries(q.axes).forEach(([k,w])=>{scores[k]+=val*w;counts[k]+=Math.abs(w);});});const allNeutral=Object.values(scores).every(value=>value===0);const bits=['G','A','P','H','F'].map(k=>scores[k]>=0?'1':'0').join('');return{scores,counts,flower:flowerBySlug(allNeutral?'renge':(FLOWER_MAP[bits]||'renge'))};}
   function list(items){return items.map(x=>`<li>${esc(x)}</li>`).join('');}
