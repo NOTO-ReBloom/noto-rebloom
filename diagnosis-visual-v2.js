@@ -70,7 +70,7 @@ function drawCover(ctx,img,x,y,w,h,r=0){
   ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);
   ctx.restore();
 }
-function drawPill(ctx,text,x,y,fill,ink,font='800 22px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif'){
+function drawPill(ctx,text,x,y,fill,ink,font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif'){
   ctx.font=font;
   const padX=20,h=46,w=Math.ceil(ctx.measureText(text).width)+padX*2;
   ctx.fillStyle=fill;roundRectPath(ctx,x,y,w,h,23);ctx.fill();
@@ -83,82 +83,113 @@ function cardAccent(group){
 function fitText(ctx,text,maxWidth,startSize,minSize,weight='900'){
   let size=startSize;
   while(size>minSize){
-    ctx.font=`${weight} ${size}px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif`;
+    ctx.font=`${weight} ${size}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
     if(ctx.measureText(text).width<=maxWidth)break;
     size-=2;
   }
   return size;
 }
 function drawChip(ctx,text,x,y,maxW){
-  ctx.font='800 22px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
+  ctx.font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
   const w=Math.min(maxW,Math.ceil(ctx.measureText(text).width)+36),h=48;
   ctx.fillStyle='#eef4ee';roundRectPath(ctx,x,y,w,h,24);ctx.fill();
   ctx.fillStyle='#355d4d';ctx.fillText(text,x+18,y+32);
   return w;
 }
+let latestFeedCard='';
+function drawSectionLabel(ctx,text,x,y){
+  ctx.fillStyle='#67766f';
+  ctx.font='800 16px "Noto Sans JP",sans-serif';
+  ctx.fillText(text,x,y);
+}
+function drawFeatureRow(ctx,features,x,y,maxWidth,story){
+  const size=story?27:24;
+  ctx.font=`800 ${size}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  let cx=x,cy=y;
+  for(const item of features){
+    const w=Math.min(maxWidth,Math.ceil(ctx.measureText(item).width)+34);
+    if(cx+w>x+maxWidth){cx=x;cy+=story?58:54;}
+    ctx.fillStyle='#f2f4ef';
+    roundRectPath(ctx,cx,cy,w,story?44:42,21);ctx.fill();
+    ctx.fillStyle='#24483b';
+    ctx.fillText(item,cx+17,cy+(story?30:29));
+    cx+=w+9;
+  }
+  return cy+(story?44:42);
+}
 function buildShareCard(photo,data,story=false){
   const W=1080,H=story?1920:1350;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const accent=cardAccent(data.group);
-  ctx.fillStyle='#fbf6ed';ctx.fillRect(0,0,W,H);
+  const ink='#17352e',muted='#63736c',paper='#fffdf8',soft='#f4f1e9',green='#15483b';
 
-  // paper texture / botanical dots
-  ctx.globalAlpha=.07;ctx.fillStyle=accent;
-  for(let i=0;i<24;i++){const x=70+(i*137)%940,y=80+(i*211)%(H-160);ctx.beginPath();ctx.arc(x,y,3+(i%4),0,Math.PI*2);ctx.fill();}
-  ctx.globalAlpha=1;
+  ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
 
-  const px=54,py=54,pw=972,ph=story?930:610;
-  drawCover(ctx,photo,px,py,pw,ph,42);
-  const grad=ctx.createLinearGradient(0,py+ph*.48,0,py+ph);
-  grad.addColorStop(0,'rgba(10,35,28,0)');
-  grad.addColorStop(1,'rgba(10,35,28,.50)');
-  ctx.fillStyle=grad;roundRectPath(ctx,px,py,pw,ph,42);ctx.fill();
+  const margin=56;
+  const photoH=story?800:540;
+  drawCover(ctx,photo,margin,margin,W-margin*2,photoH,34);
 
-  ctx.fillStyle='#fff';
-  ctx.font='900 24px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
-  ctx.fillText('Re:Bloom 花タイプ診断',px+34,py+46);
-  ctx.font='700 17px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
-  ctx.fillStyle='rgba(255,255,255,.82)';
-  ctx.fillText('32 FLOWERS / 5 AXES',px+34,py+76);
+  // Quiet white label over the photo; the photograph supplies the color.
+  ctx.fillStyle='rgba(255,253,248,.94)';
+  roundRectPath(ctx,margin+24,margin+24,270,48,24);ctx.fill();
+  ctx.fillStyle=green;
+  ctx.font='900 19px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+  ctx.fillText('Re:Bloom 花タイプ診断',margin+44,margin+56);
 
-  const labelY=py+ph-76;
-  drawPill(ctx,data.group,px+34,labelY,'rgba(255,253,248,.92)',accent,'900 21px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif');
+  const y0=margin+photoH+(story?62:48);
+  ctx.fillStyle=muted;
+  ctx.font='800 17px "Noto Sans JP",sans-serif';
+  ctx.fillText('私の花タイプは',margin,y0);
 
-  const contentY=py+ph+(story?82:64);
-  ctx.fillStyle=accent;
-  ctx.font='900 18px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
-  ctx.fillText('YOUR FLOWER TYPE',64,contentY);
+  const nameText=`${data.name}タイプ`;
+  const nameSize=fitText(ctx,nameText,W-margin*2,story?92:76,54);
+  ctx.fillStyle=ink;
+  ctx.font=`900 ${nameSize}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  ctx.fillText(nameText,margin,y0+(story?96:82));
 
-  const nameSize=fitText(ctx,data.name,900,story?104:92,60);
-  ctx.fillStyle='#173f33';
-  ctx.font=`900 ${nameSize}px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif`;
-  ctx.fillText(data.name,64,contentY+(story?108:94));
+  ctx.fillStyle='#4d6258';
+  ctx.font=`700 ${story?31:27}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  const leadY=y0+(story?154:134);
+  wrapText(ctx,data.lead,margin,leadY,W-margin*2,story?46:40,2);
 
-  ctx.fillStyle='#50685d';
-  ctx.font=`700 ${story?34:30}px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif`;
-  const leadY=contentY+(story?174:148);
-  wrapText(ctx,data.lead,64,leadY,920,story?49:43,3);
+  let sectionY=leadY+(story?126:106);
+  drawSectionLabel(ctx,'当てはまりやすい特徴',margin,sectionY);
+  sectionY=drawFeatureRow(ctx,data.strengths,margin,sectionY+18,W-margin*2,story)+(story?40:32);
 
-  const strengthsY=leadY+(story?176:146);
-  ctx.fillStyle='#8a7640';
-  ctx.font='900 16px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
-  ctx.fillText('STRENGTHS',64,strengthsY);
-  let x=64,y=strengthsY+22;
-  for(const s of data.strengths){
-    ctx.font='800 22px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
-    const needed=Math.min(420,Math.ceil(ctx.measureText(s).width)+36);
-    if(x+needed>1016){x=64;y+=60;}
-    const used=drawChip(ctx,s,x,y,420);x+=used+10;
-  }
+  drawSectionLabel(ctx,'回答で強く出た傾向',margin,sectionY);
+  sectionY=drawFeatureRow(ctx,data.tendencies,margin,sectionY+18,W-margin*2,story)+(story?48:38);
 
-  const flowerY=story?H-246:H-168;
-  ctx.strokeStyle='rgba(23,75,59,.16)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(64,flowerY-38);ctx.lineTo(1016,flowerY-38);ctx.stroke();
-  ctx.fillStyle='#6c7d75';ctx.font='700 18px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';ctx.fillText('FLOWER LANGUAGE',64,flowerY);
-  ctx.fillStyle='#173f33';ctx.font='900 27px "Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';ctx.fillText(data.language,64,flowerY+40);
-  ctx.fillStyle='#7a8982';ctx.font='600 15px "Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';ctx.textAlign='right';ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',1016,flowerY+38);ctx.textAlign='left';
+  const ctaH=story?250:190;
+  const ctaY=H-margin-ctaH;
+  ctx.fillStyle=soft;roundRectPath(ctx,margin,ctaY,W-margin*2,ctaH,28);ctx.fill();
+  ctx.fillStyle=green;
+  ctx.font=`900 ${story?34:29}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  ctx.fillText('あなたは何タイプ？',margin+28,ctaY+(story?58:50));
+  ctx.fillStyle=ink;
+  ctx.font=`800 ${story?25:22}px "Noto Sans JP",sans-serif`;
+  ctx.fillText('32種類の花から診断',margin+28,ctaY+(story?103:88));
+  ctx.fillStyle=muted;
+  ctx.font=`700 ${story?20:18}px "Noto Sans JP",sans-serif`;
+  ctx.fillText('全56問  /  約6〜10分  /  登録不要',margin+28,ctaY+(story?144:122));
+  ctx.fillStyle=green;
+  ctx.font=`800 ${story?19:17}px "Noto Sans JP",sans-serif`;
+  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',margin+28,ctaY+(story?194:160));
 
-  return canvas.toDataURL('image/png',.94);
+  // Small group label, intentionally monochrome.
+  ctx.textAlign='right';
+  ctx.fillStyle='#6f7e77';
+  ctx.font='800 16px "Noto Sans JP",sans-serif';
+  ctx.fillText(data.group,W-margin,ctaY-22);
+  ctx.textAlign='left';
+
+  return canvas.toDataURL('image/png',.95);
+}
+function dataUrlToFile(dataUrl,name){
+  const [head,body]=dataUrl.split(',');
+  const mime=(head.match(/data:(.*?);/)||[])[1]||'image/png';
+  const bin=atob(body);const bytes=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+  return new File([bytes],name,{type:mime});
 }
 async function refreshResult(){
   const result=document.getElementById('diagnosisResult');if(!result?.classList.contains('is-active'))return;
@@ -170,18 +201,34 @@ async function refreshResult(){
     const photo=await loadFlowerImage(slug);if(token!==cardToken)return;
     const group=document.getElementById('resultGroup')?.textContent||'';
     const lead=document.getElementById('resultLead')?.textContent||'';
-    const language=document.getElementById('resultLanguage')?.textContent||'';
     const strengths=[...document.querySelectorAll('#resultStrengths li')].slice(0,3).map(el=>el.textContent.trim());
-    const data={name,group,lead,language,strengths};
+    const tendencies=[...document.querySelectorAll('#resultReasonList strong')].slice(0,2).map(el=>el.textContent.trim());
+    const data={name,group,lead,strengths,tendencies};
     const feed=buildShareCard(photo,data,false);
     const story=buildShareCard(photo,data,true);
+    latestFeedCard=feed;
     const share=document.getElementById('resultShareImage');if(share)share.src=feed;
-    const dl=document.getElementById('downloadCard');if(dl){dl.href=feed;dl.download=`${name}タイプ_ReBloom_4x5.png`;dl.textContent='4:5カードを保存';}
-    const storyDl=document.getElementById('downloadStoryCard');if(storyDl){storyDl.href=story;storyDl.download=`${name}タイプ_ReBloom_story.png`;}
+    const dl=document.getElementById('downloadCard');if(dl){dl.href=feed;dl.download=`${name}タイプ_花タイプ診断.png`;dl.textContent='投稿用カードを保存';}
+    const storyDl=document.getElementById('downloadStoryCard');if(storyDl){storyDl.href=story;storyDl.download=`${name}タイプ_花タイプ診断_story.png`;}
   }catch(e){console.warn('share card render failed',e);}
 }
 function init(){
   ensureFixStyles();rewriteHero();refreshHero();refreshAtlas();setTimeout(refreshAtlas,120);
+  const shareBtn=document.getElementById('shareDiagnosisCard');
+  shareBtn?.addEventListener('click',async()=>{
+    const status=document.getElementById('diagnosisCopyStatus');
+    if(!latestFeedCard){if(status)status.textContent='カードを準備しています。';return;}
+    const title=document.getElementById('resultTitle')?.textContent||'花タイプ診断';
+    try{
+      const file=dataUrlToFile(latestFeedCard,'flower-type-result.png');
+      if(navigator.share&&navigator.canShare?.({files:[file]})){
+        await navigator.share({files:[file],title:'Re:Bloom 花タイプ診断',text:`私は「${title}」でした。あなたは何タイプ？`});
+        if(status)status.textContent='共有メニューを開きました。';
+      }else{
+        if(status)status.textContent='この端末では画像共有に対応していません。カードを保存して共有してください。';
+      }
+    }catch(e){if(e?.name!=='AbortError'&&status)status.textContent='共有できませんでした。カードを保存して共有してください。';}
+  });
   const atlas=document.getElementById('flowerAtlasGrid');if(atlas)new MutationObserver(()=>refreshAtlas()).observe(atlas,{childList:true,subtree:true});
   const dialog=document.getElementById('flowerAtlasDialog');if(dialog)new MutationObserver(()=>refreshDialog()).observe(dialog,{attributes:true,childList:true,subtree:true});
   const title=document.getElementById('resultTitle');if(title)new MutationObserver(()=>setTimeout(refreshResult,120)).observe(title,{childList:true,subtree:true,characterData:true});
