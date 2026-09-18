@@ -10,12 +10,38 @@
   --dx-shadow:var(--shadow-small,0 8px 24px rgba(48,37,26,.10));
   font-family:var(--sans)!important;
 }
-.page-diagnosis :where(h1,h2,h3,h4,.diagnosis-question,.flower-atlas-card b,.result-copy h2,.page-hero--diagnosis h1){
-  font-family:var(--serif)!important;
-  letter-spacing:-.025em!important;
+/* Lock the diagnosis page to the same typography tokens used across the site. */
+body.page-diagnosis,
+body.page-diagnosis *{
+  font-family:var(--sans)!important;
 }
-.page-diagnosis :where(p,li,button,a,span,small,b,strong){
-  font-family:var(--sans);
+body.page-diagnosis :where(
+  h1,h2,h3,h4,
+  .page-hero h1,
+  .section-heading h2,
+  .diagnosis-intro h2,
+  .diagnosis-start-card h3,
+  .diagnosis-question,
+  .flower-group-card h3,
+  .flower-atlas-card b,
+  .atlas-dialog-grid h2,
+  .result-copy h2,
+  .result-card h3,
+  .result-group-profile h3,
+  .result-deep-dive h3,
+  .result-life-scenes h3,
+  .result-reflection h3,
+  .result-tendency-section h3,
+  .result-month-plan h3,
+  .result-next-action h3,
+  .result-rich-insights h3,
+  .result-rich-insights h4,
+  .final-cta h2
+){
+  font-family:var(--serif)!important;
+}
+body.page-diagnosis :where(h1,h2,h3,h4,.diagnosis-question){
+  font-style:normal!important;
 }
 .page-diagnosis .page-hero--diagnosis:before{content:"RE:BLOOM FLOWER TYPE"!important}
 
@@ -171,7 +197,6 @@
 }
 .page-diagnosis #resetDiagnosis{opacity:.72}
 .page-diagnosis #backQuestion:disabled{opacity:.35;pointer-events:none}
-.page-diagnosis .diagnosis-mini-field{opacity:.72}
 
 /* Long result navigation */
 .page-diagnosis .result-jump-nav{
@@ -388,4 +413,27 @@
 }
 @media(min-width:761px){
   .page-diagnosis .diagnosis-mobile-start{display:none!important}
+}
+
+/* Final visual cleanup */
+.page-diagnosis .diagnosis-controls{
+  margin-top:16px!important;
+  padding-top:16px;
+  border-top:1px solid rgba(21,72,59,.10);
+}
+.page-diagnosis .diagnosis-controls .btn{
+  min-height:44px;
+}
+.page-diagnosis .diagnosis-purpose-note{
+  margin-top:12px!important;
+  font-size:12px!important;
+  line-height:1.75!important;
+  color:var(--muted)!important;
+}
+.page-diagnosis .diagnosis-trust-note{
+  font-family:var(--sans)!important;
+  font-weight:700!important;
+}
+.page-diagnosis .hero-sticker-note{
+  font-family:var(--sans)!important;
 }
