@@ -64,7 +64,7 @@ async function refreshResult(){
     c.fillStyle='#f8f2e8';c.fillRect(0,0,1200,675);c.fillStyle='#174b3b';c.fillRect(0,0,1200,74);
     const scale=Math.max(520/photo.width,500/photo.height),sw=520/scale,sh=500/scale,sx=(photo.width-sw)/2,sy=(photo.height-sh)/2;
     c.save();c.beginPath();c.roundRect(42,112,520,500,28);c.clip();c.drawImage(photo,sx,sy,sw,sh,42,112,520,500);c.restore();
-    c.fillStyle='#fffdf8';c.font='700 24px sans-serif';c.fillText('NOTO Re:Bloom / 花タイプ診断',48,48);
+    c.fillStyle='#fffdf8';c.font='700 24px sans-serif';c.fillText('Re:Bloom 花タイプ診断',48,48);
     c.fillStyle='#756d55';c.font='700 20px sans-serif';c.fillText(group,620,170);
     c.fillStyle='#174b3b';c.font='700 76px "Yu Mincho",serif';c.fillText(name,620,265);
     c.fillStyle='#4d665b';c.font='600 27px sans-serif';wrapText(c,lead,620,330,500,42,3);
