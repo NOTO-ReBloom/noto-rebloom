@@ -142,7 +142,7 @@
   const esc=(s)=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
   const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),remaining=$('remainingCount'),percent=$('progressPercent'),fill=$('progressFill'),seedRow=$('seedRow');
   const start=$('startDiagnosis'),resume=$('resumeDiagnosis'),back=$('backQuestion'),reset=$('resetDiagnosis'),mobileStart=$('mobileStartDiagnosis');
-  const questionAnchor=$('diagnosisQuestionAnchor');if(questionAnchor&&panel)questionAnchor.after(panel);
+  const questionAnchor=$('diagnosisQuestionAnchor');if(questionAnchor&&panel){questionAnchor.after(panel);panel.after(result);}
   let answers=[],index=0;
   function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({answers,index}));}catch(e){}}
   function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(Array.isArray(d.answers)){answers=d.answers;index=Math.min(Number(d.index)||0,QUESTIONS.length-1);}}catch(e){}}
