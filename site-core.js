@@ -188,12 +188,27 @@
     const menu=document.querySelector('.menu-button');
     const nav=document.querySelector('.site-nav');
     const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+
+    document.querySelectorAll('.site-header a[href]').forEach(link=>{
+      link.removeAttribute('target');
+      link.onclick=(event)=>{
+        if(event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const href=link.getAttribute('href');
+        if(!href || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        event.preventDefault();
+        body.classList.remove('menu-open');
+        menu?.setAttribute('aria-expanded','false');
+        window.location.href=new URL(href,location.href).href;
+        return false;
+      };
+    });
+
     nav?.querySelectorAll('a[href]').forEach(link=>{
       const href=(link.getAttribute('href')||'').split('#')[0].toLowerCase();
       if(href===current||(current===''&&href==='index.html')) link.setAttribute('aria-current','page');
       if(href==='partner.html'&&link.textContent.trim()==='法人・団体') link.textContent='協賛・協力';
-      link.addEventListener('click',()=>{body.classList.remove('menu-open');menu?.setAttribute('aria-expanded','false');});
     });
+
     menu?.addEventListener('click',()=>{
       const open=body.classList.toggle('menu-open');
       menu.setAttribute('aria-expanded',String(open));
