@@ -85,7 +85,7 @@
     }
   });
 
-  document.write('<script src="site-core.js?v=20260913audit2"><\/script>');
+  document.write('<script src="site-core.js?v=20260919sametab2"><\/script>');
 
   const loadCurrentFacts=()=>{
     if(document.querySelector('script[data-current-facts-loader]')) return;
