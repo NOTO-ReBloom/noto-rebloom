@@ -303,7 +303,26 @@
   function portraitDataUri(f){return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(flowerPortraitSvg(f));}
   function render(scroll=false){document.body.classList.add('diagnosis-running');document.body.classList.remove('diagnosis-finished');panel.classList.add('is-active');result.classList.remove('is-active');const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;if(remaining)remaining.textContent=index>=QUESTIONS.length-1?'最後の1問':`あと${QUESTIONS.length-index-1}問`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';if(back)back.disabled=index===0;save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
   function clearAll(){answers=[];index=0;try{localStorage.removeItem(STORAGE_KEY);}catch(e){}}
-  function calc(){const scores={G:0,A:0,P:0,H:0,F:0},counts={G:0,A:0,P:0,H:0,F:0};QUESTIONS.forEach((q,i)=>{const val=answers[i]??0;Object.entries(q.axes).forEach(([k,w])=>{scores[k]+=val*w;counts[k]+=Math.abs(w);});});const allNeutral=Object.values(scores).every(value=>value===0);const bits=['G','A','P','H','F'].map(k=>scores[k]>=0?'1':'0').join('');return{scores,counts,flower:flowerBySlug(allNeutral?'renge':(FLOWER_MAP[bits]||'renge'))};}
+  function calc(){
+    const positive={G:0,A:0,P:0,H:0,F:0},negative={G:0,A:0,P:0,H:0,F:0};
+    const positiveWeight={G:0,A:0,P:0,H:0,F:0},negativeWeight={G:0,A:0,P:0,H:0,F:0};
+    QUESTIONS.forEach((q,i)=>{
+      const val=answers[i]??0;
+      Object.entries(q.axes).forEach(([k,w])=>{
+        if(w>0){positive[k]+=val*w;positiveWeight[k]+=w;}
+        else{negative[k]+=val*Math.abs(w);negativeWeight[k]+=Math.abs(w);}
+      });
+    });
+    const scores={},counts={G:1,A:1,P:1,H:1,F:1};
+    AXIS_KEYS.forEach(k=>{
+      const pos=positiveWeight[k]?positive[k]/positiveWeight[k]:0;
+      const neg=negativeWeight[k]?negative[k]/negativeWeight[k]:0;
+      scores[k]=(pos-neg)/2;
+    });
+    const allNeutral=AXIS_KEYS.every(k=>Math.abs(scores[k])<1e-9);
+    const bits=AXIS_KEYS.map(k=>scores[k]>=0?'1':'0').join('');
+    return{scores,counts,flower:flowerBySlug(allNeutral?'renge':(FLOWER_MAP[bits]||'renge'))};
+  }
   function list(items){return items.map(x=>`<li>${esc(x)}</li>`).join('');}
   function bar(k,score,count){const pct=Math.min(100,Math.round(Math.abs(score)/Math.max(1,count)*100));const neg=score<0,l=AXIS_LABELS[k];return `<div class="axis-row"><span>${l[0]}</span><div class="axis-track"><span class="${neg?'neg':''}" style="width:${pct/2}%"></span></div><span>${l[1]}</span></div>`;}
   const AXIS_KEYS=['G','A','P','H','F'];
@@ -416,7 +435,7 @@
     $('resultGroupFlowers').textContent=FLOWERS.filter(item=>item.group===flower.group).map(item=>item.name).join('・');
     const reasons=resultReasonData(scores,counts);
     $('resultReasonList').innerHTML=reasons.map((item,i)=>`<li><b>${i+1}</b><span><strong>${esc(item.label)}</strong><br>${esc(item.text)}</span></li>`).join('');
-    $('resultReasonNote').textContent='5つの軸それぞれで回答がどちら側に寄ったか、その組み合わせから32種類の花タイプを決めています。';
+    $('resultReasonNote').textContent='5つの軸ごとに、両方向から尋ねた設問をそれぞれ平均して比較し、どちら側に寄ったかの組み合わせから32種類の花タイプを決めています。';
     const roles=roleSuggestions(flower);const roleWrap=$('resultRoleChips');if(roleWrap)roleWrap.innerHTML=roles.map(item=>`<span>${esc(item)}</span>`).join('');
     const scenes=sceneAdvice(flower);$('resultInSchool').textContent=scenes.school;$('resultInWork').textContent=scenes.work;$('resultInCommunity').textContent=scenes.community;
     $('resultCommunication').textContent=communicationAdvice(flower);$('resultBoundary').textContent=boundaryAdvice(flower);
