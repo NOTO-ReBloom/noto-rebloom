@@ -435,7 +435,10 @@
     $('resultGroupFlowers').textContent=FLOWERS.filter(item=>item.group===flower.group).map(item=>item.name).join('・');
     const reasons=resultReasonData(scores,counts);
     $('resultReasonList').innerHTML=reasons.map((item,i)=>`<li><b>${i+1}</b><span><strong>${esc(item.label)}</strong><br>${esc(item.text)}</span></li>`).join('');
-    $('resultReasonNote').textContent='5つの軸ごとに、両方向から尋ねた設問をそれぞれ平均して比較し、どちら側に寄ったかの組み合わせから32種類の花タイプを決めています。';
+    const answerCounts=answers.reduce((acc,v)=>{acc[String(v)]=(acc[String(v)]||0)+1;return acc;},{});
+    const dominantShare=Math.max(...Object.values(answerCounts))/Math.max(1,answers.length);
+    const qualityNote=dominantShare>=.86?' 回答が一つの選択肢に集中しているため、今回は傾向が出にくい結果です。選択肢にもう少し差をつけて答えると、特徴がはっきりします。':'';
+    $('resultReasonNote').textContent='5つの軸ごとに、両方向から尋ねた設問をそれぞれ平均して比較し、どちら側に寄ったかの組み合わせから32種類の花タイプを決めています。'+qualityNote;
     const roles=roleSuggestions(flower);const roleWrap=$('resultRoleChips');if(roleWrap)roleWrap.innerHTML=roles.map(item=>`<span>${esc(item)}</span>`).join('');
     const scenes=sceneAdvice(flower);$('resultInSchool').textContent=scenes.school;$('resultInWork').textContent=scenes.work;$('resultInCommunity').textContent=scenes.community;
     $('resultCommunication').textContent=communicationAdvice(flower);$('resultBoundary').textContent=boundaryAdvice(flower);
