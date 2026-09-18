@@ -52,33 +52,139 @@ function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=4){let line='',lines
 async function loadImage(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=src;});}
 async function loadFlowerImage(slug){try{return await loadImage(photoUrl(slug));}catch{return await loadImage(legacyUrl(slug));}}
 let cardToken=0;
+function roundRectPath(ctx,x,y,w,h,r){
+  const rr=Math.min(r,w/2,h/2);
+  ctx.beginPath();
+  ctx.moveTo(x+rr,y);
+  ctx.arcTo(x+w,y,x+w,y+h,rr);
+  ctx.arcTo(x+w,y+h,x,y+h,rr);
+  ctx.arcTo(x,y+h,x,y,rr);
+  ctx.arcTo(x,y,x+w,y,rr);
+  ctx.closePath();
+}
+function drawCover(ctx,img,x,y,w,h,r=0){
+  const scale=Math.max(w/img.width,h/img.height);
+  const sw=w/scale,sh=h/scale,sx=(img.width-sw)/2,sy=(img.height-sh)/2;
+  ctx.save();
+  if(r){roundRectPath(ctx,x,y,w,h,r);ctx.clip();}
+  ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);
+  ctx.restore();
+}
+function drawPill(ctx,text,x,y,fill,ink,font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif'){
+  ctx.font=font;
+  const padX=20,h=46,w=Math.ceil(ctx.measureText(text).width)+padX*2;
+  ctx.fillStyle=fill;roundRectPath(ctx,x,y,w,h,23);ctx.fill();
+  ctx.fillStyle=ink;ctx.fillText(text,x+padX,y+31);
+  return w;
+}
+function cardAccent(group){
+  return {'太陽の花':'#c89b13','風の花':'#4f91aa','里山の花':'#5f8b56','水辺の花':'#6878ae'}[group]||'#174b3b';
+}
+function fitText(ctx,text,maxWidth,startSize,minSize,weight='900'){
+  let size=startSize;
+  while(size>minSize){
+    ctx.font=`${weight} ${size}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+    if(ctx.measureText(text).width<=maxWidth)break;
+    size-=2;
+  }
+  return size;
+}
+function drawChip(ctx,text,x,y,maxW){
+  ctx.font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+  const w=Math.min(maxW,Math.ceil(ctx.measureText(text).width)+36),h=48;
+  ctx.fillStyle='#eef4ee';roundRectPath(ctx,x,y,w,h,24);ctx.fill();
+  ctx.fillStyle='#355d4d';ctx.fillText(text,x+18,y+32);
+  return w;
+}
+function buildShareCard(photo,data,story=false){
+  const W=1080,H=story?1920:1350;
+  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  const accent=cardAccent(data.group);
+  ctx.fillStyle='#fbf6ed';ctx.fillRect(0,0,W,H);
+
+  // paper texture / botanical dots
+  ctx.globalAlpha=.07;ctx.fillStyle=accent;
+  for(let i=0;i<24;i++){const x=70+(i*137)%940,y=80+(i*211)%(H-160);ctx.beginPath();ctx.arc(x,y,3+(i%4),0,Math.PI*2);ctx.fill();}
+  ctx.globalAlpha=1;
+
+  const px=54,py=54,pw=972,ph=story?930:610;
+  drawCover(ctx,photo,px,py,pw,ph,42);
+  const grad=ctx.createLinearGradient(0,py+ph*.48,0,py+ph);
+  grad.addColorStop(0,'rgba(10,35,28,0)');
+  grad.addColorStop(1,'rgba(10,35,28,.50)');
+  ctx.fillStyle=grad;roundRectPath(ctx,px,py,pw,ph,42);ctx.fill();
+
+  ctx.fillStyle='#fff';
+  ctx.font='900 24px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+  ctx.fillText('Re:Bloom 花タイプ診断',px+34,py+46);
+  ctx.font='700 17px "Noto Sans JP",sans-serif';
+  ctx.fillStyle='rgba(255,255,255,.82)';
+  ctx.fillText('32 FLOWERS / 5 AXES',px+34,py+76);
+
+  const labelY=py+ph-76;
+  drawPill(ctx,data.group,px+34,labelY,'rgba(255,253,248,.92)',accent,'900 21px "M PLUS Rounded 1c","Noto Sans JP",sans-serif');
+
+  const contentY=py+ph+(story?82:64);
+  ctx.fillStyle=accent;
+  ctx.font='900 18px "Noto Sans JP",sans-serif';
+  ctx.fillText('YOUR FLOWER TYPE',64,contentY);
+
+  const nameSize=fitText(ctx,data.name,900,story?104:92,60);
+  ctx.fillStyle='#173f33';
+  ctx.font=`900 ${nameSize}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  ctx.fillText(data.name,64,contentY+(story?108:94));
+
+  ctx.fillStyle='#50685d';
+  ctx.font=`700 ${story?34:30}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
+  const leadY=contentY+(story?174:148);
+  wrapText(ctx,data.lead,64,leadY,920,story?49:43,3);
+
+  const strengthsY=leadY+(story?176:146);
+  ctx.fillStyle='#8a7640';
+  ctx.font='900 16px "Noto Sans JP",sans-serif';
+  ctx.fillText('STRENGTHS',64,strengthsY);
+  let x=64,y=strengthsY+22;
+  for(const s of data.strengths){
+    ctx.font='800 22px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+    const needed=Math.min(420,Math.ceil(ctx.measureText(s).width)+36);
+    if(x+needed>1016){x=64;y+=60;}
+    const used=drawChip(ctx,s,x,y,420);x+=used+10;
+  }
+
+  const flowerY=story?H-246:H-168;
+  ctx.strokeStyle='rgba(23,75,59,.16)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(64,flowerY-38);ctx.lineTo(1016,flowerY-38);ctx.stroke();
+  ctx.fillStyle='#6c7d75';ctx.font='700 18px "Noto Sans JP",sans-serif';ctx.fillText('FLOWER LANGUAGE',64,flowerY);
+  ctx.fillStyle='#173f33';ctx.font='900 27px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';ctx.fillText(data.language,64,flowerY+40);
+  ctx.fillStyle='#7a8982';ctx.font='600 15px "Noto Sans JP",sans-serif';ctx.textAlign='right';ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',1016,flowerY+38);ctx.textAlign='left';
+
+  return canvas.toDataURL('image/png',.94);
+}
 async function refreshResult(){
   const result=document.getElementById('diagnosisResult');if(!result?.classList.contains('is-active'))return;
   const slug=slugFromTitle(),title=document.getElementById('resultTitle')?.textContent||'花タイプ',name=title.replace(/タイプ$/,'');
   setPhoto(document.getElementById('resultImage'),slug,name);
   const token=++cardToken;
   try{
+    if(document.fonts?.ready)await document.fonts.ready;
     const photo=await loadFlowerImage(slug);if(token!==cardToken)return;
-    const group=document.getElementById('resultGroup')?.textContent||'',lead=document.getElementById('resultLead')?.textContent||'';
-    const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=675;const c=canvas.getContext('2d');
-    c.fillStyle='#f8f2e8';c.fillRect(0,0,1200,675);c.fillStyle='#174b3b';c.fillRect(0,0,1200,74);
-    const scale=Math.max(520/photo.width,500/photo.height),sw=520/scale,sh=500/scale,sx=(photo.width-sw)/2,sy=(photo.height-sh)/2;
-    c.save();c.beginPath();c.roundRect(42,112,520,500,28);c.clip();c.drawImage(photo,sx,sy,sw,sh,42,112,520,500);c.restore();
-    c.fillStyle='#fffdf8';c.font='700 24px sans-serif';c.fillText('Re:Bloom 花タイプ診断',48,48);
-    c.fillStyle='#756d55';c.font='700 20px sans-serif';c.fillText(group,620,170);
-    c.fillStyle='#174b3b';c.font='700 76px "Yu Mincho",serif';c.fillText(name,620,265);
-    c.fillStyle='#4d665b';c.font='600 27px sans-serif';wrapText(c,lead,620,330,500,42,3);
-    c.fillStyle='#174b3b';c.font='700 18px sans-serif';c.fillText('あなたの個性に咲く、一輪。',620,500);
-    c.fillStyle='#75857d';c.font='500 16px sans-serif';c.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',620,548);
-    const data=canvas.toDataURL('image/png',.92);const share=document.getElementById('resultShareImage');if(share)share.src=data;
-    const dl=document.getElementById('downloadCard');if(dl){dl.href=data;dl.download=`${name}タイプ_ReBloom.png`;dl.textContent='写真カードを保存';}
-  }catch(e){}
+    const group=document.getElementById('resultGroup')?.textContent||'';
+    const lead=document.getElementById('resultLead')?.textContent||'';
+    const language=document.getElementById('resultLanguage')?.textContent||'';
+    const strengths=[...document.querySelectorAll('#resultStrengths li')].slice(0,3).map(el=>el.textContent.trim());
+    const data={name,group,lead,language,strengths};
+    const feed=buildShareCard(photo,data,false);
+    const story=buildShareCard(photo,data,true);
+    const share=document.getElementById('resultShareImage');if(share)share.src=feed;
+    const dl=document.getElementById('downloadCard');if(dl){dl.href=feed;dl.download=`${name}タイプ_ReBloom_4x5.png`;dl.textContent='4:5カードを保存';}
+    const storyDl=document.getElementById('downloadStoryCard');if(storyDl){storyDl.href=story;storyDl.download=`${name}タイプ_ReBloom_story.png`;}
+  }catch(e){console.warn('share card render failed',e);}
 }
 function init(){
   ensureFixStyles();rewriteHero();refreshHero();refreshAtlas();setTimeout(refreshAtlas,120);
   const atlas=document.getElementById('flowerAtlasGrid');if(atlas)new MutationObserver(()=>refreshAtlas()).observe(atlas,{childList:true,subtree:true});
   const dialog=document.getElementById('flowerAtlasDialog');if(dialog)new MutationObserver(()=>refreshDialog()).observe(dialog,{attributes:true,childList:true,subtree:true});
-  const title=document.getElementById('resultTitle');if(title)new MutationObserver(()=>setTimeout(refreshResult,30)).observe(title,{childList:true,subtree:true,characterData:true});
+  const title=document.getElementById('resultTitle');if(title)new MutationObserver(()=>setTimeout(refreshResult,120)).observe(title,{childList:true,subtree:true,characterData:true});
   document.addEventListener('click',e=>{if(e.target.closest('.flower-atlas-card'))setTimeout(refreshDialog,40);});
   ['renge','himawari','freesia','ajisai','tsubaki'].forEach(slug=>{const i=new Image();i.src=photoUrl(slug)});
 }
