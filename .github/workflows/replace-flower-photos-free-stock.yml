@@ -144,18 +144,6 @@ jobs:
 
           def resolve_from_source(item):
               page = fetch(item['source']).decode('utf-8', 'ignore')
-              patterns = [
-                  r'<meta[^>]+property=["\\\']og:image(?::secure_url)?["\\\'][^>]+content=["\\\']([^"\\\']+)',
-                  r'<meta[^>]+content=["\\\']([^"\\\']+)["\\\'][^>]+property=["\\\']og:image(?::secure_url)?["\\\']',
-                  r'https://images\\.pexels\\.com/[^"\\\'<> ]+',
-                  r'https://images\\.unsplash\\.com/[^"\\\'<> ]+',
-                  r'https://cdn\\.pixabay\\.com/[^"\\\'<> ]+',
-              ]
-              for pattern in patterns:
-                  m = re.search(pattern, page, re.I)
-                  if m:
-                      url = m.group(1) if m.lastindex else m.group(0)
-                      return html.unescape(url).replace('\\u0026','&')
               if 'freephoto.sakura.ne.jp' in item['source']:
                   candidates = re.findall(r'(?:src|href)=["\\\']([^"\\\']+\\.(?:jpg|jpeg|png))', page, re.I)
                   scored=[]
@@ -179,6 +167,18 @@ jobs:
                       scored.sort(reverse=True)
                       print('freephoto selected',scored[0][1],scored[0][2],scored[0][3])
                       return scored[0][1]
+              patterns = [
+                  r'<meta[^>]+property=["\\\']og:image(?::secure_url)?["\\\'][^>]+content=["\\\']([^"\\\']+)',
+                  r'<meta[^>]+content=["\\\']([^"\\\']+)["\\\'][^>]+property=["\\\']og:image(?::secure_url)?["\\\']',
+                  r'https://images\\.pexels\\.com/[^"\\\'<> ]+',
+                  r'https://images\\.unsplash\\.com/[^"\\\'<> ]+',
+                  r'https://cdn\\.pixabay\\.com/[^"\\\'<> ]+',
+              ]
+              for pattern in patterns:
+                  m = re.search(pattern, page, re.I)
+                  if m:
+                      url = m.group(1) if m.lastindex else m.group(0)
+                      return html.unescape(url).replace('\\u0026','&')
               raise RuntimeError(f"Could not resolve image from {item['source']}")
 
           for idx, item in enumerate(items, 1):
