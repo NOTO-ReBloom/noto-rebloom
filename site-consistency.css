@@ -147,3 +147,12 @@ body .site-footer .footer-bottom{gap:10px 18px!important}
   .page-photo-credits main{width:min(100% - 28px,1160px)!important;padding-top:118px!important}
 }
 @media(prefers-reduced-motion:reduce){.venue-map-visual,body .btn,body .contact-actions a{transition:none!important}}
+/* Homepage venue hero photo */
+.nr-home-hero .photo-frame--home-venue{overflow:hidden!important}
+.nr-home-hero .photo-frame--home-venue img{
+  display:block!important;width:100%!important;height:clamp(360px,38vw,520px)!important;
+  object-fit:cover!important;object-position:center 58%!important;background:#e8e3d7!important
+}
+@media(max-width:680px){
+  .nr-home-hero .photo-frame--home-venue img{height:300px!important;object-position:center 55%!important}
+}
