@@ -124,10 +124,10 @@
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.site-nav a[href="event.html"]').forEach(a=>{a.textContent='開催レポート';});
   document.querySelectorAll('footer a[href="event.html"]').forEach(a=>{if(/泥ん子運動会|詳細/.test(a.textContent||'')) a.textContent='開催レポート';});
-  if(!document.body.classList.contains('rb-postevent') && !document.querySelector('link[data-post-event-polish]')){
+  if(!document.body.classList.contains('rb-postevent') && !document.querySelector('link[href^="post-event-legacy.css"]')){
     const l=document.createElement('link');
     l.rel='stylesheet';
-    l.href='post-event-legacy.css?v=20260922b';
+    l.href='post-event-legacy.css?v=20260922c';
     l.dataset.postEventPolish='1';
     document.head.appendChild(l);
   }
