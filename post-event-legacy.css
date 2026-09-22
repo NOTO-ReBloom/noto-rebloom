@@ -1,0 +1,69 @@
+
+/* Post-event visual polish for legacy pages */
+body:not(.rb-postevent){background:#f5f1e8;color:#183129}
+body:not(.rb-postevent) .site-header{
+  background:rgba(245,241,232,.9)!important;
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(24,49,41,.08)!important;
+}
+body:not(.rb-postevent) .site-header .brand,
+body:not(.rb-postevent) .site-nav a{color:#183129}
+body:not(.rb-postevent) .site-nav a{
+  border-radius:999px;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+body:not(.rb-postevent) .site-nav a:hover,
+body:not(.rb-postevent) .site-nav a[aria-current="page"]{
+  background:rgba(23,79,60,.09);
+  color:#174f3c;
+}
+body:not(.rb-postevent) .page-hero{
+  background:
+    radial-gradient(circle at 85% 15%,rgba(143,167,142,.2),transparent 34%),
+    linear-gradient(145deg,#f5f1e8 0%,#fffdf8 65%,#edf3e8 100%)!important;
+  padding-top:clamp(72px,8vw,120px)!important;
+  padding-bottom:clamp(54px,7vw,96px)!important;
+}
+body:not(.rb-postevent) .page-hero h1{
+  color:#183129;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+body:not(.rb-postevent) .headline-marker{color:#174f3c}
+body:not(.rb-postevent) .photo-frame,
+body:not(.rb-postevent) .visual-tile{
+  overflow:hidden;
+  border-radius:26px!important;
+  box-shadow:0 20px 58px rgba(20,53,43,.12)!important;
+  border:1px solid rgba(24,49,41,.1)!important;
+}
+body:not(.rb-postevent) .section{padding-top:clamp(68px,8vw,104px);padding-bottom:clamp(68px,8vw,104px)}
+body:not(.rb-postevent) .section--paper,
+body:not(.rb-postevent) .section--mint{background:#fffdf8!important}
+body:not(.rb-postevent) .event-values article,
+body:not(.rb-postevent) .cause-grid article,
+body:not(.rb-postevent) .info-card,
+body:not(.rb-postevent) .contact-card{
+  border-radius:24px!important;
+  border:1px solid rgba(24,49,41,.12)!important;
+  box-shadow:0 14px 40px rgba(20,53,43,.07)!important;
+}
+body:not(.rb-postevent) .btn{
+  border-radius:999px!important;
+  transition:transform .2s ease,box-shadow .2s ease!important;
+}
+body:not(.rb-postevent) .btn:hover{transform:translateY(-2px)}
+body:not(.rb-postevent) .btn--green{background:#174f3c!important}
+body:not(.rb-postevent) .conversion-band{
+  background:#174f3c!important;
+  border-radius:28px;
+  margin:30px auto 80px;
+  max-width:min(1180px,calc(100% - 32px));
+  padding:42px!important;
+  box-shadow:0 22px 60px rgba(20,53,43,.18);
+}
+body:not(.rb-postevent) .site-footer{background:#102c23!important}
+@media(max-width:760px){
+  body:not(.rb-postevent) .page-hero{padding-top:58px!important}
+  body:not(.rb-postevent) .conversion-band{margin-bottom:48px;padding:28px 22px!important;border-radius:22px}
+}
