@@ -86,38 +86,8 @@
   });
 
   document.write('<script src="site-core.js?v=20260919sametab3"><\/script>');
-
-  const loadCurrentFacts=()=>{
-    if(document.querySelector('script[data-current-facts-loader]')) return;
-    const script=document.createElement('script');
-    script.src='site-current-20260913.js?v=20260913b';
-    script.dataset.currentFactsLoader='1';
-    script.onload=()=>{
-      if(document.querySelector('script[data-final-audit-loader]')) return;
-      const audit=document.createElement('script');
-      audit.src='site-final-audit-20260913.js?v=20260913a';
-      audit.dataset.finalAuditLoader='1';
-      audit.onload=()=>{
-        if(document.querySelector('script[data-visual-polish-loader]')) return;
-        const polish=document.createElement('script');
-        polish.src='site-visual-polish-20260913.js?v=20260913b';
-        polish.dataset.visualPolishLoader='1';
-        polish.onload=()=>{
-          if(document.querySelector('script[data-latest-facts-loader]')) return;
-          const latest=document.createElement('script');
-          latest.src='site-current-20260917.js?v=20260917a';
-          latest.dataset.latestFactsLoader='1';
-          document.body.appendChild(latest);
-        };
-        document.body.appendChild(polish);
-      };
-      document.body.appendChild(audit);
-    };
-    document.body.appendChild(script);
-  };
-
-  // Pre-event fact injectors retired after the 2026-09-20 event.
-  // They remain in the repository for archive/history, but are no longer loaded.
+  // Pre-event fact injectors were retired after the 2026-09-20 event.
+  // Historical scripts remain in the repository but are intentionally not loaded.
 })();
 
 /* 2026 post-event mode */
@@ -127,7 +97,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(!document.body.classList.contains('rb-postevent') && !document.querySelector('link[href^="post-event-legacy.css"]')){
     const l=document.createElement('link');
     l.rel='stylesheet';
-    l.href='post-event-legacy.css?v=20260922c';
+    l.href='post-event-legacy.css?v=20260922e';
     l.dataset.postEventPolish='1';
     document.head.appendChild(l);
   }
