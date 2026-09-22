@@ -278,3 +278,83 @@ body:not(.rb-postevent) .site-footer .footer-bottom a{
 @media(max-width:700px){
   body:not(.rb-postevent) .page-hero{padding:20px 0 42px!important}
 }
+
+
+/* 2026-09-22 page-family unification v4 */
+/* Contact page: same contained editorial rhythm as the report pages. */
+body:not(.rb-postevent) .contact-page-hero{
+  width:min(1180px,calc(100% - 40px))!important;
+  margin:32px auto 0!important;
+  padding:64px 54px!important;
+  border-radius:28px!important;
+  background:var(--rb-green)!important;
+  color:#fff!important;
+  box-shadow:var(--rb-shadow)!important;
+}
+body:not(.rb-postevent) .contact-page-hero .container{width:100%!important;margin:0!important}
+body:not(.rb-postevent) .contact-page-hero h1{
+  margin:8px 0 20px!important;
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-size:clamp(2.35rem,5.2vw,5.3rem)!important;
+  line-height:1.05!important;letter-spacing:-.05em!important;color:#fff!important;
+}
+body:not(.rb-postevent) .contact-page-hero p{max-width:780px!important;color:rgba(255,255,255,.82)!important}
+body:not(.rb-postevent) .contact-page-hero .eyebrow,
+body:not(.rb-postevent) .contact-page-hero .eyebrow small{color:#bfe0cf!important}
+body:not(.rb-postevent) .contact-main{padding:72px 0 88px!important}
+body:not(.rb-postevent) .contact-grid{gap:22px!important}
+body:not(.rb-postevent) .contact-card{
+  padding:34px!important;background:var(--rb-paper)!important;border:1px solid var(--rb-line)!important;
+  border-radius:24px!important;box-shadow:0 14px 42px rgba(20,53,43,.08)!important;
+}
+body:not(.rb-postevent) .contact-card--primary{background:var(--rb-green)!important;color:#fff!important}
+body:not(.rb-postevent) .contact-card--primary p,
+body:not(.rb-postevent) .contact-card--primary .eyebrow,
+body:not(.rb-postevent) .contact-card--primary .eyebrow small{color:rgba(255,255,255,.8)!important}
+body:not(.rb-postevent) .contact-email{color:#fff!important;overflow-wrap:anywhere}
+body:not(.rb-postevent) .contact-actions{display:flex!important;gap:12px!important;flex-wrap:wrap!important;margin-top:24px!important}
+body:not(.rb-postevent) .contact-actions a{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:48px!important;
+  padding:0 19px!important;border-radius:999px!important;text-decoration:none!important;font-weight:800!important;
+}
+body:not(.rb-postevent) .contact-actions .primary{background:var(--rb-green)!important;color:#fff!important}
+body:not(.rb-postevent) .contact-actions .secondary{background:var(--rb-paper)!important;color:var(--rb-ink)!important;border:1px solid var(--rb-line)!important}
+
+/* Partner page: remove the old landing-page feel and use the same paper/green system. */
+body:not(.rb-postevent) .nr-sponsor-feature,
+body:not(.rb-postevent) .nr-value-prop{padding:88px max(20px,calc((100vw - 1180px)/2))!important}
+body:not(.rb-postevent) .nr-sponsor-feature{background:var(--rb-paper)!important}
+body:not(.rb-postevent) .nr-value-prop{background:var(--rb-cream)!important}
+body:not(.rb-postevent) .nr-section-head{max-width:780px!important;margin:0 0 38px!important}
+body:not(.rb-postevent) .nr-section-head h2{
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-size:clamp(2rem,4.3vw,4.2rem)!important;line-height:1.12!important;letter-spacing:-.045em!important;color:var(--rb-ink)!important;
+}
+body:not(.rb-postevent) .nr-section-head p{color:var(--rb-ink-2)!important}
+body:not(.rb-postevent) .nr-main-sponsor,
+body:not(.rb-postevent) .nr-value-grid article,
+body:not(.rb-postevent) .industry-partner-card{
+  border-radius:24px!important;border:1px solid var(--rb-line)!important;
+  box-shadow:0 14px 42px rgba(20,53,43,.08)!important;
+}
+body:not(.rb-postevent) .nr-main-sponsor{background:var(--rb-paper)!important}
+body:not(.rb-postevent) .nr-value-grid article{background:var(--rb-paper)!important}
+body:not(.rb-postevent) .industry-partner-card{background:var(--rb-paper)!important}
+body:not(.rb-postevent) .nr-btn,
+body:not(.rb-postevent) .text-link{border-radius:999px!important}
+
+/* Consistent image treatment on all editorial pages. */
+body:not(.rb-postevent) .photo-frame img,
+body:not(.rb-postevent) .visual-tile img{
+  image-rendering:auto!important;
+  filter:none!important;
+}
+@media(max-width:700px){
+  body:not(.rb-postevent) .contact-page-hero{
+    width:calc(100% - 24px)!important;margin-top:20px!important;padding:36px 24px!important;border-radius:22px!important;
+  }
+  body:not(.rb-postevent) .contact-main{padding:52px 0 66px!important}
+  body:not(.rb-postevent) .contact-actions a{width:100%!important}
+  body:not(.rb-postevent) .nr-sponsor-feature,
+  body:not(.rb-postevent) .nr-value-prop{padding:66px 12px!important}
+}
