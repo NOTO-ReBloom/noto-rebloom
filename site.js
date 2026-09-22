@@ -119,3 +119,35 @@
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadCurrentFacts,{once:true});
   else loadCurrentFacts();
 })();
+
+/* 2026 post-event mode */
+document.addEventListener('DOMContentLoaded',()=>{
+  if(!document.body.classList.contains('rb-postevent') && !document.querySelector('link[data-post-event-polish]')){
+    const l=document.createElement('link');
+    l.rel='stylesheet';
+    l.href='post-event-legacy.css?v=20260922a';
+    l.dataset.postEventPolish='1';
+    document.head.appendChild(l);
+  }
+  document.querySelectorAll('a[href*="forms.gle/6ZMrhrhtWmBCQViD8"]').forEach(a=>{
+    a.href='event.html';
+    a.target='_self';
+    a.removeAttribute('rel');
+    a.textContent='開催レポートを見る';
+  });
+  document.querySelectorAll('.header-actions a').forEach(a=>{
+    if(/9\/20|参加申込|参加フォーム/.test(a.textContent||'')){
+      a.href='event.html';
+      a.target='_self';
+      a.textContent='開催レポート';
+    }
+  });
+  document.querySelectorAll('a').forEach(a=>{
+    if(/参加フォームを開く|無料で参加申込|9月20日に参加する/.test(a.textContent||'')){
+      a.href='event.html';
+      a.target='_self';
+      a.removeAttribute('rel');
+      a.textContent='開催レポートを見る';
+    }
+  });
+});
