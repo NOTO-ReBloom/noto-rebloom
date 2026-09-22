@@ -116,16 +116,18 @@
     document.body.appendChild(script);
   };
 
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadCurrentFacts,{once:true});
-  else loadCurrentFacts();
+  // Pre-event fact injectors retired after the 2026-09-20 event.
+  // They remain in the repository for archive/history, but are no longer loaded.
 })();
 
 /* 2026 post-event mode */
 document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.site-nav a[href="event.html"]').forEach(a=>{a.textContent='開催レポート';});
+  document.querySelectorAll('footer a[href="event.html"]').forEach(a=>{if(/泥ん子運動会|詳細/.test(a.textContent||'')) a.textContent='開催レポート';});
   if(!document.body.classList.contains('rb-postevent') && !document.querySelector('link[data-post-event-polish]')){
     const l=document.createElement('link');
     l.rel='stylesheet';
-    l.href='post-event-legacy.css?v=20260922a';
+    l.href='post-event-legacy.css?v=20260922b';
     l.dataset.postEventPolish='1';
     document.head.appendChild(l);
   }
@@ -143,7 +145,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
   document.querySelectorAll('a').forEach(a=>{
-    if(/参加フォームを開く|無料で参加申込|9月20日に参加する/.test(a.textContent||'')){
+    if(/参加フォームを開く|無料で参加申込|9月20日に参加する|泥ん子運動会の詳細を見る|9\/20の詳細/.test(a.textContent||'')){
       a.href='event.html';
       a.target='_self';
       a.removeAttribute('rel');
