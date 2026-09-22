@@ -234,3 +234,47 @@ body:not(.rb-postevent) .site-footer small{color:rgba(255,255,255,.68)!important
   body:not(.rb-postevent) .conversion-band{max-width:calc(100% - 24px)!important;padding:30px 22px!important;margin-bottom:46px!important}
   body:not(.rb-postevent) .site-footer .footer-bottom{width:calc(100% - 24px)!important;align-items:flex-start!important;flex-direction:column!important}
 }
+
+
+/* 2026-09-22 site-wide visual unification v3 */
+body:not(.rb-postevent) .site-header{min-height:72px!important}
+body:not(.rb-postevent) .page-hero{padding:32px 0 64px!important}
+body:not(.rb-postevent) .page-hero-grid{gap:28px!important}
+body:not(.rb-postevent) .page-hero-grid>div,
+body:not(.rb-postevent) .page-hero .photo-frame{
+  min-height:520px!important;
+  border-radius:28px!important;
+  box-shadow:0 20px 60px rgba(20,53,43,.12)!important;
+}
+body:not(.rb-postevent) .page-hero .photo-frame{aspect-ratio:auto!important}
+body:not(.rb-postevent) .page-hero .photo-frame img{
+  width:100%!important;height:520px!important;object-fit:cover!important;object-position:center!important;
+  image-rendering:auto!important;filter:none!important;
+}
+body:not(.rb-postevent) .visual-tile img,
+body:not(.rb-postevent) .split-story .photo-frame img{
+  image-rendering:auto!important;filter:none!important;
+}
+body:not(.rb-postevent) .site-footer{
+  padding:0!important;background:#102c23!important;
+}
+body:not(.rb-postevent) .site-footer .footer-bottom{
+  min-height:116px!important;padding:32px 0!important;
+  border-top:0!important;
+}
+body:not(.rb-postevent) .site-footer .footer-bottom>span{
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-size:1.08rem!important;font-weight:900!important;color:#fff!important;
+}
+body:not(.rb-postevent) .site-footer .footer-bottom a{
+  text-decoration:none!important;
+}
+@media(max-width:1120px){
+  body:not(.rb-postevent) .page-hero-grid>div,
+  body:not(.rb-postevent) .page-hero .photo-frame{min-height:0!important}
+  body:not(.rb-postevent) .page-hero .photo-frame{aspect-ratio:16/9!important}
+  body:not(.rb-postevent) .page-hero .photo-frame img{height:100%!important}
+}
+@media(max-width:700px){
+  body:not(.rb-postevent) .page-hero{padding:20px 0 42px!important}
+}
