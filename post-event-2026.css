@@ -200,3 +200,71 @@ img{display:block;max-width:100%}
   .rb-actions .rb-btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){.rb-postevent *, .rb-postevent *::before, .rb-postevent *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+/* 2026-09-22 unified contained-hero pass */
+/* Keep report photography at sensible display sizes so compressed source images are not stretched across the viewport. */
+.rb-report-hero{
+  width:min(1180px,calc(100% - 40px));
+  margin:40px auto 0;
+  min-height:590px;
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  align-items:stretch;
+  border-radius:30px;
+  overflow:hidden;
+  background:var(--green);
+  box-shadow:var(--shadow);
+}
+.rb-report-hero__image{
+  position:static;
+  grid-column:2;
+  grid-row:1;
+  width:100%;
+  height:100%;
+  min-height:590px;
+  object-fit:cover;
+  object-position:center;
+}
+.rb-report-hero::after{display:none}
+.rb-report-hero__content{
+  grid-column:1;
+  grid-row:1;
+  width:auto;
+  margin:0;
+  padding:54px 46px;
+  align-self:stretch;
+  display:flex;
+  align-items:flex-end;
+  color:#fff;
+}
+.rb-report-hero__content>div{max-width:100%}
+.rb-report-hero h1{font-size:clamp(2.7rem,5vw,5.4rem)}
+.rb-report-hero p{font-size:1rem}
+.rb-metrics{width:min(1180px,calc(100% - 40px));margin:0 auto 0;border-radius:0 0 24px 24px;overflow:hidden}
+.rb-photo-card{min-height:420px}
+.rb-feature{min-height:440px}
+.rb-gallery{grid-template-rows:240px 240px}
+.rb-gallery figure{background:#e1e3df}
+.rb-gallery img{object-position:center}
+@media(max-width:1120px){
+  .rb-report-hero{
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+  .rb-report-hero__image{
+    grid-column:1;grid-row:1;min-height:0;aspect-ratio:16/9;height:auto;
+  }
+  .rb-report-hero__content{
+    grid-column:1;grid-row:2;padding:40px 34px;display:block;
+  }
+  .rb-metrics{border-radius:0 0 22px 22px}
+}
+@media(max-width:640px){
+  .rb-report-hero{width:calc(100% - 24px);margin-top:20px;border-radius:22px}
+  .rb-report-hero__image{aspect-ratio:16/9}
+  .rb-report-hero__content{padding:30px 22px 34px}
+  .rb-report-hero h1{font-size:clamp(2.3rem,12vw,3.8rem)}
+  .rb-metrics{width:calc(100% - 24px)}
+  .rb-gallery{grid-template-rows:none}
+}
