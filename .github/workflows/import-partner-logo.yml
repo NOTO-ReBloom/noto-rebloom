@@ -1,0 +1,29 @@
+name: Import partner logo
+on:
+  push:
+    paths:
+      - '.github/workflows/import-partner-logo.yml'
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download partner logo locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/partners
+          curl -fL 'https://kitchencars-japan.com/storage/user_profile/Am5q9pedln4yOjNCe0ZJ3oBwP48YdixnyVA2r3KD.png' -o assets/partners/yorozuya-oteru.png
+          file assets/partners/yorozuya-oteru.png
+          test $(stat -c%s assets/partners/yorozuya-oteru.png) -gt 1000
+      - name: Commit partner logo
+        shell: bash
+        run: |
+          git config user.name "NOTO-ReBloom"
+          git config user.email "ryoya20041219@gmail.com"
+          git add assets/partners/yorozuya-oteru.png
+          git diff --cached --quiet && exit 0
+          git commit -m "Store sponsor logo locally"
+          git push
