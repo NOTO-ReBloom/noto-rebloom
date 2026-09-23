@@ -189,3 +189,30 @@
   .report-cup-grid img{max-height:none}
   .report-inline-photo{width:min(86vw,420px);margin-left:0}
 }
+
+
+/* 2026-09-23 final polish */
+.nr-home-hero .photo-frame--postevent img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1400/788!important;
+  object-fit:cover!important;
+  object-position:center!important;
+}
+.nr-home-hero .photo-frame--postevent{overflow:visible!important}
+.visual-tile--event{aspect-ratio:16/9}
+.visual-tile--event img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 52%!important}
+.report-photo--four-three img{aspect-ratio:4/3!important}
+.report-photo-grid>.report-photo--game{grid-area:land}
+.report-photo-grid>.report-photo--game img{max-height:720px}
+.report-photo-grid>.report-photo--portrait:not(.report-photo--game){grid-area:portrait}
+@media(max-width:980px){
+  .report-photo-grid>.report-photo--game{grid-area:land}
+  .report-photo-grid>.report-photo--portrait:not(.report-photo--game){grid-area:portrait}
+}
+@media(max-width:700px){
+  .nr-home-hero .photo-frame--postevent{overflow:hidden!important}
+  .report-photo-grid>.report-photo--game,
+  .report-photo-grid>.report-photo--portrait:not(.report-photo--game){grid-area:auto}
+  .report-photo-grid>.report-photo--game img{max-height:none}
+}
