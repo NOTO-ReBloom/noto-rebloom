@@ -1,5 +1,20 @@
 (()=>{
   const nav=document.querySelector('.site-nav');
+  const isDiagnosis=document.body.classList.contains('page-diagnosis');
+
+  const applyPostEventLinks=()=>{
+    if(isDiagnosis) return;
+    document.querySelectorAll('a[href*="forms.gle/6ZMrhrhtWmBCQViD8"]').forEach(link=>{
+      link.setAttribute('href','report.html');
+      link.setAttribute('target','_self');
+      link.removeAttribute('rel');
+      link.textContent='開催レポートを見る';
+    });
+  };
+  applyPostEventLinks();
+  if(!isDiagnosis){
+    new MutationObserver(applyPostEventLinks).observe(document.documentElement,{childList:true,subtree:true});
+  }
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 
   if(nav){
