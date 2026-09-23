@@ -10,20 +10,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download partner logo locally
+      - name: Download and optimize partner logo
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p assets/partners
-          curl -fL 'https://kitchencars-japan.com/storage/user_profile/Am5q9pedln4yOjNCe0ZJ3oBwP48YdixnyVA2r3KD.png' -o assets/partners/yorozuya-oteru.png
-          file assets/partners/yorozuya-oteru.png
-          test $(stat -c%s assets/partners/yorozuya-oteru.png) -gt 1000
-      - name: Commit partner logo
+          curl -fL 'https://kitchencars-japan.com/storage/user_profile/Am5q9pedln4yOjNCe0ZJ3oBwP48YdixnyVA2r3KD.png' -o /tmp/yorozuya-oteru.png
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from PIL import Image
+          im=Image.open('/tmp/yorozuya-oteru.png').convert('RGBA')
+          im.thumbnail((900,900), Image.Resampling.LANCZOS)
+          bg=Image.new('RGB', im.size, 'white')
+          bg.paste(im, mask=im.getchannel('A'))
+          bg.save('assets/partners/yorozuya-oteru.webp','WEBP',quality=86,method=6)
+          PY
+          rm -f assets/partners/yorozuya-oteru.png
+          file assets/partners/yorozuya-oteru.webp
+          test $(stat -c%s assets/partners/yorozuya-oteru.webp) -gt 1000
+          test $(stat -c%s assets/partners/yorozuya-oteru.webp) -lt 500000
+      - name: Commit optimized partner logo
         shell: bash
         run: |
           git config user.name "NOTO-ReBloom"
           git config user.email "ryoya20041219@gmail.com"
-          git add assets/partners/yorozuya-oteru.png
+          git add -A assets/partners
           git diff --cached --quiet && exit 0
-          git commit -m "Store sponsor logo locally"
+          git commit -m "Optimize local sponsor logo"
           git push
