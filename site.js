@@ -86,42 +86,36 @@
   });
 
   document.write('<script src="site-core.js?v=20260919sametab3"><\/script>');
-  // Pre-event fact injectors were retired after the 2026-09-20 event.
-  // Historical scripts remain in the repository but are intentionally not loaded.
-})();
 
-/* 2026 post-event mode */
-document.addEventListener('DOMContentLoaded',()=>{
-  // Keep the flower diagnosis as its standalone experience; do not apply post-event rewrites or styles.
-  if(document.body.classList.contains('page-diagnosis')) return;
-  document.querySelectorAll('.site-nav a[href="event.html"]').forEach(a=>{a.textContent='開催レポート';});
-  document.querySelectorAll('footer a[href="event.html"]').forEach(a=>{if(/泥ん子運動会|詳細/.test(a.textContent||'')) a.textContent='開催レポート';});
-  if(!document.body.classList.contains('rb-postevent') && !document.querySelector('link[href^="post-event-legacy.css"]')){
-    const l=document.createElement('link');
-    l.rel='stylesheet';
-    l.href='post-event-legacy.css?v=20260922e';
-    l.dataset.postEventPolish='1';
-    document.head.appendChild(l);
-  }
-  document.querySelectorAll('a[href*="forms.gle/6ZMrhrhtWmBCQViD8"]').forEach(a=>{
-    a.href='event.html';
-    a.target='_self';
-    a.removeAttribute('rel');
-    a.textContent='開催レポートを見る';
-  });
-  document.querySelectorAll('.header-actions a').forEach(a=>{
-    if(/9\/20|参加申込|参加フォーム/.test(a.textContent||'')){
-      a.href='event.html';
-      a.target='_self';
-      a.textContent='開催レポート';
-    }
-  });
-  document.querySelectorAll('a').forEach(a=>{
-    if(/参加フォームを開く|無料で参加申込|9月20日に参加する|泥ん子運動会の詳細を見る|9\/20の詳細/.test(a.textContent||'')){
-      a.href='event.html';
-      a.target='_self';
-      a.removeAttribute('rel');
-      a.textContent='開催レポートを見る';
-    }
-  });
-});
+  const loadCurrentFacts=()=>{
+    if(document.querySelector('script[data-current-facts-loader]')) return;
+    const script=document.createElement('script');
+    script.src='site-current-20260913.js?v=20260913b';
+    script.dataset.currentFactsLoader='1';
+    script.onload=()=>{
+      if(document.querySelector('script[data-final-audit-loader]')) return;
+      const audit=document.createElement('script');
+      audit.src='site-final-audit-20260913.js?v=20260913a';
+      audit.dataset.finalAuditLoader='1';
+      audit.onload=()=>{
+        if(document.querySelector('script[data-visual-polish-loader]')) return;
+        const polish=document.createElement('script');
+        polish.src='site-visual-polish-20260913.js?v=20260913b';
+        polish.dataset.visualPolishLoader='1';
+        polish.onload=()=>{
+          if(document.querySelector('script[data-latest-facts-loader]')) return;
+          const latest=document.createElement('script');
+          latest.src='site-current-20260917.js?v=20260917a';
+          latest.dataset.latestFactsLoader='1';
+          document.body.appendChild(latest);
+        };
+        document.body.appendChild(polish);
+      };
+      document.body.appendChild(audit);
+    };
+    document.body.appendChild(script);
+  };
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadCurrentFacts,{once:true});
+  else loadCurrentFacts();
+})();
