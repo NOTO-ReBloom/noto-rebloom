@@ -76,3 +76,17 @@
   .report-thanks-box{grid-template-columns:1fr;padding:26px 22px}
   .report-thanks-box .btn{width:100%}
 }
+
+
+/* 2026-09-23 restrained report-photo presentation */
+.report-page .report-main-photo{max-width:700px}
+.report-page .report-main-photo img{max-width:700px;margin-inline:auto}
+.report-page .page-hero-grid{align-items:center}
+.report-page .event-values article{min-height:0}
+.report-page .section--soil .event-values article{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.16)}
+.report-page .section--soil .event-values article h3,
+.report-page .section--soil .event-values article p{color:#fff}
+.report-page .section--soil .event-values article span{background:#ffd85c;color:#173e34}
+@media(max-width:760px){
+  .report-page .report-main-photo,.report-page .report-main-photo img{max-width:100%}
+}
