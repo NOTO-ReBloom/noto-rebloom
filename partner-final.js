@@ -146,7 +146,7 @@
       company:'萬屋おてる',
       service:'萬屋おてる',
       url:'https://www.instagram.com/yorozuya.oteru26/',
-      logo:'https://kitchencars-japan.com/storage/user_profile/Am5q9pedln4yOjNCe0ZJ3oBwP48YdixnyVA2r3KD.png',
+      logo:'assets/partners/yorozuya-oteru.webp',
       logoAlt:'萬屋おてる ロゴ',
       eyebrow:'YOROZUYA OTERU',
       title:'鉄板焼きキッチンカー「萬屋おてる」',
