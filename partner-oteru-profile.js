@@ -6,7 +6,7 @@
   if(!article) return;
 
   const url='https://www.instagram.com/yorozuya.oteru26/';
-  const logo='https://kitchencars-japan.com/storage/user_profile/Am5q9pedln4yOjNCe0ZJ3oBwP48YdixnyVA2r3KD.png';
+  const logo='assets/partners/yorozuya-oteru.webp';
 
   article.className='nr-sponsor-wide rb-detail-card nr-sponsor-wide--simple nr-sponsor-wide--oteru-rich';
   article.innerHTML=`
