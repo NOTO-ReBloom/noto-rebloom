@@ -90,3 +90,102 @@
 @media(max-width:760px){
   .report-page .report-main-photo,.report-page .report-main-photo img{max-width:100%}
 }
+
+
+/* 2026-09-23 high-quality event photo layout */
+.report-photo-story{padding:84px 0;background:#fff}
+.report-photo-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(240px,.75fr);
+  grid-template-areas:
+    "wide portrait"
+    "land portrait";
+  gap:22px;
+  align-items:start;
+  margin-top:36px;
+}
+.report-photo{margin:0}
+.report-photo img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:22px;
+  image-rendering:auto;
+  box-shadow:0 16px 38px rgba(24,75,61,.10);
+}
+.report-photo figcaption{
+  margin-top:10px;
+  color:#66746f;
+  font-size:11px;
+  line-height:1.7;
+}
+.report-photo--wide{grid-area:wide}
+.report-photo--wide img{aspect-ratio:1400/788}
+.report-photo-grid>.report-photo:not(.report-photo--wide):not(.report-photo--portrait){grid-area:land}
+.report-photo--portrait{grid-area:portrait}
+.report-photo--portrait img{aspect-ratio:3/4}
+.report-photo-grid>.report-photo--portrait img{max-height:720px}
+.report-inline-photo{
+  width:min(100%,420px);
+  margin:0 auto;
+}
+.report-inline-photo img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:22px;
+  box-shadow:0 16px 38px rgba(24,75,61,.12);
+  image-rendering:auto;
+}
+.report-inline-photo figcaption{
+  margin-top:10px;
+  color:#66746f;
+  font-size:11px;
+  line-height:1.7;
+}
+.report-cup-photos{padding:84px 0;background:#f7f2e6}
+.report-cup-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,420px));
+  justify-content:center;
+  gap:26px;
+  margin-top:34px;
+}
+.report-cup-grid .report-photo{width:100%}
+.report-cup-grid .report-photo--portrait{grid-area:auto}
+.report-cup-grid img{aspect-ratio:3/4;max-height:620px}
+
+.report-page .report-main-photo{
+  max-width:760px;
+  justify-self:end;
+}
+.report-page .report-main-photo img{
+  width:100%;
+  height:auto!important;
+  aspect-ratio:1400/788;
+  object-fit:cover;
+  image-rendering:auto;
+}
+@media(max-width:980px){
+  .report-photo-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "wide wide"
+      "land portrait";
+  }
+  .report-page .report-main-photo{justify-self:start}
+}
+@media(max-width:700px){
+  .report-photo-story,.report-cup-photos{padding:64px 0}
+  .report-photo-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:"wide" "land" "portrait";
+  }
+  .report-photo-grid>.report-photo--portrait img{max-height:none}
+  .report-cup-grid{grid-template-columns:1fr}
+  .report-cup-grid img{max-height:none}
+  .report-inline-photo{width:min(86vw,420px);margin-left:0}
+}
