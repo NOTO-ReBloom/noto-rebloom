@@ -92,6 +92,8 @@
 
 /* 2026 post-event mode */
 document.addEventListener('DOMContentLoaded',()=>{
+  // Keep the flower diagnosis as its standalone experience; do not apply post-event rewrites or styles.
+  if(document.body.classList.contains('page-diagnosis')) return;
   document.querySelectorAll('.site-nav a[href="event.html"]').forEach(a=>{a.textContent='開催レポート';});
   document.querySelectorAll('footer a[href="event.html"]').forEach(a=>{if(/泥ん子運動会|詳細/.test(a.textContent||'')) a.textContent='開催レポート';});
   if(!document.body.classList.contains('rb-postevent') && !document.querySelector('link[href^="post-event-legacy.css"]')){
