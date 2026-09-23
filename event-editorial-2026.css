@@ -545,3 +545,36 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
   .ed-home-report--actual .ed-home-report-main{grid-row:auto}
   .ed-home-report--actual .ed-home-report-sub{width:min(72vw,300px);justify-self:start}
 }
+
+
+/* 2026-09-23 actual-photo sizing across editorial pages */
+.ed-page-event-photo{position:relative}
+.ed-page-event-photo img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:820/461!important;
+  object-fit:cover!important;
+  border-radius:3px!important;
+  box-shadow:var(--shadow);
+}
+.ed-action-portrait{
+  position:relative;
+  width:min(100%,320px);
+  justify-self:center;
+}
+.ed-action-portrait img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:320/426!important;
+  object-fit:cover!important;
+  border-radius:3px!important;
+  box-shadow:0 16px 44px rgba(17,52,40,.14);
+}
+.ed-action-portrait figcaption{
+  margin-top:10px;
+  font-size:.72rem;
+  line-height:1.6;
+}
+@media(max-width:1080px){
+  .ed-action-portrait{justify-self:start}
+}
