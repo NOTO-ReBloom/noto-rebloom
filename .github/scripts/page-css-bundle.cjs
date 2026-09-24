@@ -79,6 +79,7 @@ const stats=[];
       return '';
     });
     if(!inserted) throw new Error('Could not insert optimized CSS link for '+page);
+    html=html.replace(/site-postevent\.js\?v=[^"'\s<]+/g,'site-postevent.js?v=20260924perf4');
     fs.writeFileSync(page,html);
 
     stats.push({
