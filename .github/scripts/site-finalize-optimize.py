@@ -135,6 +135,11 @@ if os.path.exists('site-core.js'):
                 'src="ishikawa-zukan-logo.png" alt="イシカワズカン" loading="lazy" decoding="async" width="250" height="250"')
     open('site-core.js','w',encoding='utf-8').write(s)
 
+if os.path.exists('site-postevent.js'):
+    s=open('site-postevent.js',encoding='utf-8').read()
+    s=s.replace('site-core.js?v=20260924perf1','site-core.js?v=20260924perf2')
+    open('site-postevent.js','w',encoding='utf-8').write(s)
+
 with open('qa/responsive-derivatives.tsv','w',encoding='utf-8') as o:
     o.write('source\\tvariant\\toriginal_dims\\tvariant_dims\\n')
     for src,(out,ow,oh,vw,vh) in responsive.items():
