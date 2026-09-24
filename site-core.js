@@ -18,51 +18,8 @@
     document.head.appendChild(link);
   };
 
-  const ensureFinishingStyles=()=>{
-    if(document.querySelector('link[href*="site-finishing.css"]')) return;
-    const link=document.createElement('link');
-    link.rel='stylesheet';
-    link.href='site-finishing.css?v=20260827d';
-    document.head.appendChild(link);
-  };
-
-  const ensureGlobalContactStyles=()=>{
-    if(document.getElementById('rb-global-contact-style')) return;
-    const style=document.createElement('style');
-    style.id='rb-global-contact-style';
-    style.textContent=`
-      .rb-contact-nav{font-weight:900!important}
-      .rb-contact-header{display:inline-flex!important;align-items:center;justify-content:center;min-height:38px;padding:0 13px;border-radius:999px;border:1px solid rgba(24,75,61,.2);background:#fff;color:#184b3d!important;text-decoration:none!important;font-size:12px;font-weight:900;white-space:nowrap;box-shadow:0 3px 10px rgba(24,75,61,.05)}
-      .rb-contact-header::before{content:"?";display:grid;place-items:center;width:20px;height:20px;margin-right:6px;border-radius:50%;background:#e7f3e8;font-size:11px;font-weight:900}
-      .rb-contact-fab{position:fixed;z-index:79;right:20px;bottom:20px;display:flex;align-items:center;gap:9px;min-height:48px;padding:0 17px 0 11px;border-radius:999px;background:#fff;color:#184b3d;text-decoration:none;border:1px solid rgba(24,75,61,.18);box-shadow:0 12px 30px rgba(23,58,49,.18);font-size:13px;font-weight:900;transition:transform .16s ease,box-shadow .16s ease}
-      .rb-contact-fab__icon{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#184b3d;color:#fff;font-size:15px;font-weight:900;line-height:1}
-      .rb-contact-footer{box-sizing:border-box;width:min(1120px,calc(100% - 40px));margin:14px auto 0;padding:16px 0 2px;border-top:1px solid rgba(255,255,255,.13);display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;color:rgba(255,255,255,.78);font-size:12px}
-      .rb-contact-footer strong{color:#fff;font-size:12px}.rb-contact-footer a{color:#fff!important;text-decoration:underline;text-underline-offset:3px;font-weight:800}.rb-contact-footer .rb-contact-footer__page{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;text-decoration:none!important;background:rgba(255,255,255,.07)}
-      @media(hover:hover){.rb-contact-header:hover,.rb-contact-fab:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(23,58,49,.2)}.rb-contact-footer .rb-contact-footer__page:hover{background:rgba(255,255,255,.14)}}
-      @media(max-width:900px){.rb-contact-header{display:none!important}}
-      @media(max-width:760px){.rb-contact-fab{right:10px;bottom:78px;min-height:44px;padding:0 13px 0 8px;font-size:12px}.rb-contact-fab__icon{width:28px;height:28px}.report-page .rb-contact-fab,.page-404 .rb-contact-fab{bottom:10px}.rb-contact-footer{width:min(100% - 28px,1120px);align-items:flex-start;flex-direction:column;gap:7px;padding-top:14px}}
-    `;
-    document.head.appendChild(style);
-  };
-
   const injectGlobalContact=()=>{
-    ensureGlobalContactStyles();
     const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-    const nav=document.querySelector('.site-nav');
-    if(nav){
-      const existing=[...nav.querySelectorAll('a[href]')].find(a=>(a.textContent||'').trim()==='お問い合わせ');
-      if(existing){
-        existing.classList.add('rb-contact-nav');
-        if(current!=='event.html') existing.href=CONTACT_PAGE;
-      }else{
-        const link=document.createElement('a');
-        link.href=CONTACT_PAGE;
-        link.className='rb-contact-nav';
-        link.textContent='お問い合わせ';
-        if(current==='contact.html') link.setAttribute('aria-current','page');
-        nav.appendChild(link);
-      }
-    }
 
     if(!document.querySelector('.rb-contact-fab') && current!=='contact.html'){
       const fab=document.createElement('a');
@@ -82,27 +39,7 @@
     }
   };
 
-  const ensureGlobalSocialStyles=()=>{
-    if(document.getElementById('rb-global-social-style')) return;
-    const style=document.createElement('style');
-    style.id='rb-global-social-style';
-    style.textContent=`
-      .rb-social-links{display:flex;align-items:center;gap:9px}
-      .rb-social-links a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;text-decoration:none;transition:transform .16s ease,background .16s ease,border-color .16s ease,color .16s ease}
-      .rb-social-links svg{display:block;width:18px;height:18px}
-      .rb-social-links--footer{box-sizing:border-box;width:min(1120px,calc(100% - 40px));margin:18px auto 0;padding:18px 0 2px;border-top:1px solid rgba(255,255,255,.13);justify-content:flex-start}
-      .rb-social-links--footer::before{content:"公式SNS";margin-right:5px;color:rgba(255,255,255,.62);font-size:10px;font-weight:900;letter-spacing:.1em}
-      .rb-social-links--footer a{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);color:#fff}
-      .story-step--linked{color:inherit;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-      .story-step--linked::after{content:"公式ページを見る ↗";display:block;margin-top:12px;color:#245f4c;font-size:10px;font-weight:900;letter-spacing:.02em}
-      @media(hover:hover){.rb-social-links--footer a:hover{transform:translateY(-2px);background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);color:#ffe88d}.story-step--linked:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(23,58,49,.11);border-color:rgba(23,75,62,.24)}}
-      @media(max-width:700px){.rb-social-links--footer{width:min(100% - 28px,1120px);padding-top:15px}.rb-social-links--footer a{width:34px;height:34px}.rb-social-links--footer svg{width:17px;height:17px}}
-    `;
-    document.head.appendChild(style);
-  };
-
   const injectFooterSocial=()=>{
-    ensureGlobalSocialStyles();
     const footer=document.querySelector('.site-footer');
     if(!footer) return;
     footer.querySelectorAll('.rb-social-links--footer').forEach(el=>el.remove());
@@ -174,52 +111,13 @@
     });
   };
 
-  const setupNav=()=>{
-    const body=document.body;
-    const menu=document.querySelector('.menu-button');
-    const nav=document.querySelector('.site-nav');
-    const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-
-    document.querySelectorAll('.site-nav a[href], a.brand[href]').forEach(link=>{
-      link.removeAttribute('target');
-      link.onclick=(event)=>{
-        if(event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        const href=link.getAttribute('href');
-        if(!href || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-        event.preventDefault();
-        body.classList.remove('menu-open');
-        menu?.setAttribute('aria-expanded','false');
-        window.location.href=new URL(href,location.href).href;
-        return false;
-      };
-    });
-
-    nav?.querySelectorAll('a[href]').forEach(link=>{
-      const href=(link.getAttribute('href')||'').split('#')[0].toLowerCase();
-      if(href===current||(current===''&&href==='index.html')) link.setAttribute('aria-current','page');
-      if(href==='partner.html'&&link.textContent.trim()==='法人・団体') link.textContent='協賛・協力';
-    });
-
-    menu?.addEventListener('click',()=>{
-      const open=body.classList.toggle('menu-open');
-      menu.setAttribute('aria-expanded',String(open));
-    });
-    addEventListener('keydown',e=>{
-      if(e.key==='Escape'&&body.classList.contains('menu-open')){
-        body.classList.remove('menu-open');menu?.setAttribute('aria-expanded','false');menu?.focus();
-      }
-    });
-  };
-
   const setupRevealAndScroll=()=>{
     const progress=document.querySelector('.scroll-progress span');
     const back=document.querySelector('.back-top');
-    const dock=document.querySelector('.mobile-dock');
     const update=()=>{
       const max=document.documentElement.scrollHeight-innerHeight;
       if(progress) progress.style.width=(max>0?scrollY/max*100:0)+'%';
       back?.classList.toggle('is-visible',scrollY>700);
-      dock?.classList.toggle('is-visible',scrollY>520);
     };
     addEventListener('scroll',update,{passive:true}); update();
     back?.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
@@ -391,9 +289,7 @@
   };
 
   ensureLatestStyles();
-  ensureFinishingStyles();
   injectGlobalContact();
-  setupNav();
   updateLegacyVenueText();
   removeDedicatedRecruitment();
   refineHomepage();
