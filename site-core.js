@@ -11,7 +11,7 @@
   const recruitmentText=/学生企画メンバー|学生募集|企画メンバー募集|共創メンバー|申込は8月8日まで|8月8日まで・学生募集/;
 
   const ensureLatestStyles=()=>{
-    if(document.querySelector('link[href*="student-refresh.css?v=20260813c"]')) return;
+    if(document.querySelector('link[href*="student-refresh.css?v=20260813c"],link[href*="legacy-base-20260924.css"]')) return;
     const link=document.createElement('link');
     link.rel='stylesheet';
     link.href='student-refresh.css?v=20260813c';
