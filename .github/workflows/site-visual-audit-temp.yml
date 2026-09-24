@@ -1,0 +1,137 @@
+name: Temporary Site Visual Audit
+on:
+  push:
+    paths:
+      - '.github/workflows/site-visual-audit-temp.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install audit deps
+        run: npm install --no-save puppeteer-core@24.16.0 axe-core@4.10.3
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/noto-http.log 2>&1 &
+          sleep 2
+      - name: Audit all pages
+        shell: bash
+        run: |
+          cat > /tmp/audit.mjs <<'NODE'
+          import puppeteer from 'puppeteer-core';
+          import path from 'node:path';
+          import { createRequire } from 'node:module';
+          const require=createRequire(import.meta.url);
+          const axePath=require.resolve('axe-core/axe.min.js');
+          const chrome=process.env.CHROME_BIN || '/usr/bin/google-chrome';
+          const browser=await puppeteer.launch({headless:true,executablePath:chrome,args:['--no-sandbox','--disable-dev-shm-usage']});
+          const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
+          const viewports=[
+            {name:'desktop',width:1440,height:1000},
+            {name:'laptop',width:1100,height:900},
+            {name:'tablet',width:900,height:1000},
+            {name:'mobile',width:390,height:844},
+            {name:'small',width:320,height:700}
+          ];
+          const summary=[];
+          for(const file of pages){
+            for(const vp of viewports){
+              const p=await browser.newPage();
+              await p.setViewport({width:vp.width,height:vp.height,deviceScaleFactor:1});
+              const consoleErrors=[];
+              p.on('pageerror',e=>consoleErrors.push(String(e.message||e)));
+              await p.goto('http://127.0.0.1:4173/'+file,{waitUntil:'networkidle0',timeout:30000}).catch(()=>{});
+              await new Promise(r=>setTimeout(r,300));
+              const metrics=await p.evaluate(()=>{
+                const visible=el=>{
+                  const s=getComputedStyle(el),r=el.getBoundingClientRect();
+                  return s.display!=='none'&&s.visibility!=='hidden'&&+s.opacity!==0&&r.width>1&&r.height>1;
+                };
+                const label=el=>{
+                  const id=el.id?('#'+el.id):'';
+                  const cls=typeof el.className==='string'&&el.className.trim()?'.'+el.className.trim().split(/\s+/).slice(0,3).join('.'):'';
+                  const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,80);
+                  return el.tagName.toLowerCase()+id+cls+(txt?' :: '+txt:'');
+                };
+                const all=[...document.querySelectorAll('body *')].filter(visible);
+                const horizontalOverflow=document.documentElement.scrollWidth-window.innerWidth;
+                const viewportOverflow=all.filter(el=>{
+                  const r=el.getBoundingClientRect(),s=getComputedStyle(el);
+                  if(s.position==='fixed') return false;
+                  return r.right>window.innerWidth+3 || r.left<-3;
+                }).slice(0,25).map(label);
+                const clipped=all.filter(el=>{
+                  const txt=(el.innerText||'').trim();
+                  if(txt.length<3) return false;
+                  const s=getComputedStyle(el);
+                  const clips=/hidden|clip/.test(s.overflow+s.overflowX+s.overflowY);
+                  return clips && (el.scrollWidth>el.clientWidth+2 || el.scrollHeight>el.clientHeight+2);
+                }).slice(0,30).map(el=>({el:label(el),client:[el.clientWidth,el.clientHeight],scroll:[el.scrollWidth,el.scrollHeight]}));
+                const overlaps=[];
+                for(const parent of all){
+                  const kids=[...parent.children].filter(el=>visible(el)&&(el.innerText||'').trim().length>0);
+                  if(kids.length<2||kids.length>14) continue;
+                  for(let i=0;i<kids.length;i++) for(let j=i+1;j<kids.length;j++){
+                    const a=kids[i],b=kids[j],ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
+                    if(a.contains(b)||b.contains(a)) continue;
+                    const ix=Math.min(ra.right,rb.right)-Math.max(ra.left,rb.left);
+                    const iy=Math.min(ra.bottom,rb.bottom)-Math.max(ra.top,rb.top);
+                    if(ix>6&&iy>6){
+                      const sa=getComputedStyle(a),sb=getComputedStyle(b);
+                      const intended=(sa.position==='absolute'||sb.position==='absolute') && (parent.matches('figure,.visual-tile,.photo-frame')||parent.closest('figure,.visual-tile,.photo-frame'));
+                      if(!intended) overlaps.push({a:label(a),b:label(b),intersection:[Math.round(ix),Math.round(iy)]});
+                    }
+                  }
+                }
+                const header=document.querySelector('.site-header');
+                const h1=document.querySelector('main h1');
+                let headerOverlap=null;
+                if(header&&h1&&visible(header)&&visible(h1)){
+                  const rh=header.getBoundingClientRect(),r1=h1.getBoundingClientRect();
+                  if(rh.bottom>r1.top+2) headerOverlap={headerBottom:Math.round(rh.bottom),h1Top:Math.round(r1.top)};
+                }
+                const tinyText=all.filter(el=>{
+                  const txt=(el.childElementCount===0?(el.textContent||'').trim():'');
+                  if(!txt||txt.length>120) return false;
+                  const fs=parseFloat(getComputedStyle(el).fontSize);
+                  return fs>0&&fs<10;
+                }).slice(0,30).map(el=>({el:label(el),px:parseFloat(getComputedStyle(el).fontSize)}));
+                const links=[...document.querySelectorAll('a,button,summary,input,select,textarea')].filter(visible);
+                const smallTargets=links.filter(el=>{
+                  const r=el.getBoundingClientRect();
+                  return r.width<24||r.height<24;
+                }).slice(0,30).map(el=>{const r=el.getBoundingClientRect();return {el:label(el),size:[Math.round(r.width),Math.round(r.height)]}});
+                return {horizontalOverflow,viewportOverflow,clipped,overlaps:overlaps.slice(0,40),headerOverlap,tinyText,smallTargets};
+              });
+              let axe={violations:[]};
+              try{
+                await p.addScriptTag({path:axePath});
+                axe=await p.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
+              }catch(e){}
+              const serious=axe.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length,help:v.help}));
+              const row={file,viewport:vp.name,width:vp.width,...metrics,axeSerious:serious,consoleErrors};
+              summary.push(row);
+              console.log('AUDIT '+JSON.stringify(row));
+              await p.close();
+            }
+          }
+          const totals={
+            cases:summary.length,
+            horizontalOverflow:summary.filter(x=>x.horizontalOverflow>2).length,
+            clipped:summary.reduce((n,x)=>n+x.clipped.length,0),
+            overlaps:summary.reduce((n,x)=>n+x.overlaps.length,0),
+            headerOverlap:summary.filter(x=>x.headerOverlap).length,
+            seriousAxe:summary.reduce((n,x)=>n+x.axeSerious.length,0),
+            consoleErrors:summary.reduce((n,x)=>n+x.consoleErrors.length,0)
+          };
+          console.log('AUDIT_TOTAL '+JSON.stringify(totals));
+          await browser.close();
+          NODE
+          node /tmp/audit.mjs
