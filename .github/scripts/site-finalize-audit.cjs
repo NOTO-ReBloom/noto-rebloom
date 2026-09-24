@@ -35,7 +35,7 @@ const heights={375:812,430:932,768:1024,1440:1000};
           const r=el.getBoundingClientRect();
           return {tag:el.tagName,cls:String(el.className||'').slice(0,120),left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)};
         });
-        const brokenImages=[...document.images].filter(img=>img.complete&&img.naturalWidth===0).map(img=>img.src);
+        const brokenImages=[...document.images].filter(img=>img.getAttribute('src')&&img.complete&&img.naturalWidth===0).map(img=>img.src);
         const tinyTargets=[...document.querySelectorAll('a,button,input,select,textarea')].filter(el=>{
           const r=el.getBoundingClientRect(),s=getComputedStyle(el);
           return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0&&(r.width<36||r.height<36);
