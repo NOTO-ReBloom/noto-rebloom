@@ -98,15 +98,15 @@ for src,(out,size) in logo_variants.items():
         subprocess.check_call(['convert',src,'-auto-orient','-strip','-resize',size,'-quality','90','-define','webp:method=6','-define','webp:alpha-quality=100',out])
 
 pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','contact.html','photo-credits.html','404.html']
-imgpat=re.compile(r'<img\\b([^>]*)>',re.I)
+imgpat=re.compile(r'<img\b([^>]*)>',re.I)
 for page in pages:
     s=open(page,encoding='utf-8').read()
     s=s.replace('src="noto-rebloom-logo.png"','src="assets/perf/noto-rebloom-logo-220.webp"')
     s=s.replace('src="gyakuten-coaching-official-logo.png"','src="assets/perf/gyakuten-coaching-logo-720.webp"')
     def add_srcset(m):
         attrs=m.group(1)
-        sm=re.search(r'\\bsrc=["\\']([^"\\']+)["\\']',attrs,re.I)
-        if not sm or re.search(r'\\bsrcset=',attrs,re.I):
+        sm=re.search(r'\bsrc=["\']([^"\']+)["\']',attrs,re.I)
+        if not sm or re.search(r'\bsrcset=',attrs,re.I):
             return m.group(0)
         raw=sm.group(1)
         src=raw.split('?')[0]
