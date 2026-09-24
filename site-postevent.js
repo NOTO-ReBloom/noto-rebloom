@@ -52,21 +52,31 @@
 
   const actions=document.querySelector('.header-actions');
   if(actions){
-    actions.innerHTML='';
-    const action=document.createElement('a');
-    action.className='btn btn--small btn--green';
-    action.target='_self';
+    let href='report.html';
+    let label='開催レポート';
     if(current==='partner.html'){
-      action.href='mailto:infonotorebloom@gmail.com';
-      action.textContent='今後の連携を相談';
+      href='mailto:infonotorebloom@gmail.com';
+      label='今後の連携を相談';
     }else if(current==='report.html'){
-      action.href='partner.html';
-      action.textContent='協賛・協力を見る';
-    }else{
-      action.href='report.html';
-      action.textContent='開催レポート';
+      href='partner.html';
+      label='協賛・協力を見る';
     }
-    actions.appendChild(action);
+    const existing=actions.querySelector(':scope > a:only-child');
+    const same=existing
+      && (existing.getAttribute('href')||'')===href
+      && (existing.textContent||'').trim()===label
+      && existing.classList.contains('btn')
+      && existing.classList.contains('btn--small')
+      && existing.classList.contains('btn--green');
+    if(!same){
+      actions.innerHTML='';
+      const action=document.createElement('a');
+      action.className='btn btn--small btn--green';
+      action.target='_self';
+      action.href=href;
+      action.textContent=label;
+      actions.appendChild(action);
+    }
   }
 
   const richFooterPages=new Set(['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','404.html']);
