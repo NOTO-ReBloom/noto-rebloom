@@ -10,14 +10,6 @@
   const FACEBOOK_URL='https://www.facebook.com/share/1GqkbWfDAN/?mibextid=wwXIfr';
   const recruitmentText=/学生企画メンバー|学生募集|企画メンバー募集|共創メンバー|申込は8月8日まで|8月8日まで・学生募集/;
 
-  const ensureLatestStyles=()=>{
-    if(document.querySelector('link[href*="student-refresh.css?v=20260813c"],link[href*="legacy-base-20260924.css"]')) return;
-    const link=document.createElement('link');
-    link.rel='stylesheet';
-    link.href='student-refresh.css?v=20260813c';
-    document.head.appendChild(link);
-  };
-
   const injectGlobalContact=()=>{
     const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 
@@ -288,7 +280,6 @@
     footer.before(strip);
   };
 
-  ensureLatestStyles();
   injectGlobalContact();
   updateLegacyVenueText();
   removeDedicatedRecruitment();
