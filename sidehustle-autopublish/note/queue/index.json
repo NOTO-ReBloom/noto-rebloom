@@ -1,46 +1,23 @@
 {
   "version": 8,
-  "updatedAt": "2026-09-14T00:31:00+09:00",
-  "retryGeneration": 86,
+  "updatedAt": "2026-09-24T04:59:45.531Z",
+  "retryGeneration": 87,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
-    "mode": "completed_through_2026-09-13",
-    "requiredStrictPublications": 0,
-    "orderedIds": [],
-    "completedIds": [
-      "note_20260910_107_supplier_delivery_delay_escalation",
-      "note_20260910_108_customer_onboarding_handoff_control",
-      "note_20260910_109_subscription_churn_reason_tracking",
-      "note_20260910_110_project_budget_forecast_variance",
-      "note_20260910_111_customer_complaint_sla_escalation",
-      "note_20260911_112_invoice_dispute_aging_control",
-      "note_20260911_113_saas_renewal_owner_control",
-      "note_20260911_114_purchase_requisition_cycle_control",
-      "note_20260911_115_customer_implementation_risk_control",
-      "note_20260911_116_audit_evidence_request_tracker",
-      "note_20260912_117_ap_duplicate_invoice_control",
-      "note_20260912_118_expense_policy_exception_control",
-      "note_20260912_119_customer_credit_note_control",
-      "note_20260912_120_contract_obligation_evidence_control",
-      "note_20260912_121_refund_aging_control",
-      "note_20260913_122_vendor_insurance_expiry_control",
-      "note_20260913_123_unapplied_deposit_control",
-      "note_20260913_124_supplier_sla_breach_control",
-      "note_20260913_125_prepaid_expense_amortization_control",
-      "note_20260913_126_warranty_claim_aging_control"
+    "mode": "publish_new_note24_20260924",
+    "requiredStrictPublications": 1,
+    "orderedIds": [
+      "note_20260924_127_npo_recruitment_funnel"
     ],
-    "instruction": "Do not republish verified titles; preserve canonical public URLs.",
     "strictChecks": [
       "readerVisibleUrl",
       "title",
       "price",
       "paidBoundary",
-      "dedicatedCover",
-      "paidBodyCharsAtLeast5001"
+      "dedicatedCover"
     ],
-    "verifiedAt": "2026-09-14T00:31:00+09:00",
-    "nonce": "remaining-35-20260914T003100+0900"
+    "nonce": "note24-original-batch-20260924"
   },
   "entries": [
     {
@@ -3474,6 +3451,26 @@
       "verifiedAt": "2026-09-14T00:31:00+09:00",
       "verifiedPaidBodyChars": 11821,
       "recoveryMode": "completed; preserve canonical public URL and do not republish"
+    },
+    {
+      "id": "note_20260924_127_npo_recruitment_funnel",
+      "title": "NPOの採用応募が途切れる前に｜募集から初回活動までを可視化する管理表",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_127_npo_recruitment_funnel.enc.json",
+      "sha256": "79735d99c44dac4295f960efc6c5a44300e2f3a7a8f4846d2000825f9fa12f57",
+      "createdAt": "2026-09-24T04:59:45.531Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-127-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
     }
   ],
   "activePublicationDate": "2026-09-13",
