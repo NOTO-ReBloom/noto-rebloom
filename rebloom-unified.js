@@ -16,9 +16,12 @@
     document.head.appendChild(link);
     return link;
   };
-  ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260820sponsor');
-  ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
-  ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
+  const hasCoreBundle=!!document.querySelector('link[href*="legacy-core-20260924.css"]');
+  if(!hasCoreBundle){
+    ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260820sponsor');
+    ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
+    ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
+  }
 
   const labels={'index.html':'ホーム','thoughts.html':'私たちの思い','learn.html':'土地と企画','event.html':'泥ん子運動会','partner.html':'協賛・協力','diagnosis.html':'花タイプ診断','contact.html':'お問い合わせ'};
   const nav=document.querySelector('.site-nav');
