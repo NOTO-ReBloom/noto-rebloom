@@ -155,3 +155,9 @@ body:not(.page-diagnosis){
   --display:"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
   --body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif;
 }
+
+
+/* === LAYOUT STABILITY / 2026-09-24 FINAL === */
+body:not(.page-diagnosis).rb-unified .site-header.rbpc-section{
+  position:fixed!important;
+}
