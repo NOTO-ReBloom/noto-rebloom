@@ -1,8 +1,8 @@
 {
   "version": 51,
-  "updatedAt": "2026-09-24T04:39:07.381Z",
+  "updatedAt": "2026-09-24T04:48:48.704Z",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
-  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-13_batch01.md",
+  "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-24_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
     "exactTitle",
@@ -2288,9 +2288,15 @@
       "coverLabel": "NPOの人材確保",
       "coverCopy": "応募から二回目の参加まで",
       "accent": "#2F6B5F",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
-      "forceRetryNonce": "free-note-20260924-original-01"
+      "forceRetryNonce": "free-note-20260924-original-01",
+      "publicUrlVerified": true,
+      "freeStateVerified": true,
+      "coverImageVerified": true,
+      "publicUrl": "https://note.com/royal_lion645/n/n3f8dab7294e8",
+      "verifiedAt": "2026-09-24T04:33:36.351Z",
+      "verificationState": "reader_visible_free_verified_from_user_publisher_log"
     },
     {
       "id": "free_note_20260924_02_volunteer_retention_checkin",
@@ -2310,6 +2316,78 @@
       "enabled": true,
       "forceRetry": false,
       "forceRetryNonce": "free-note-20260924-original-02"
+    },
+    {
+      "id": "free_note_20260924_03_shared_backoffice_request",
+      "kind": "free",
+      "price": 0,
+      "title": "共同バックオフィスの依頼が滞る理由｜受付時に確認したい7項目",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-24_batch01.md",
+      "tags": [
+        "業務改善",
+        "NPO",
+        "実務"
+      ],
+      "coverLabel": "共同事務局の受付",
+      "coverCopy": "依頼の7項目",
+      "accent": "#597189",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260924-original-03"
+    },
+    {
+      "id": "free_note_20260924_04_grant_report_evidence",
+      "kind": "free",
+      "price": 0,
+      "title": "助成金報告の直前に慌てない｜活動当日に残しておく証拠",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-24_batch01.md",
+      "tags": [
+        "業務改善",
+        "NPO",
+        "実務"
+      ],
+      "coverLabel": "活動報告の証拠",
+      "coverCopy": "活動当日の記録",
+      "accent": "#A47550",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260924-original-04"
+    },
+    {
+      "id": "free_note_20260924_05_event_safety_handoff",
+      "kind": "free",
+      "price": 0,
+      "title": "イベントの安全担当が交代するとき｜伝達漏れを防ぐ確認リスト",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-24_batch01.md",
+      "tags": [
+        "業務改善",
+        "NPO",
+        "実務"
+      ],
+      "coverLabel": "イベント安全",
+      "coverCopy": "担当交代の確認",
+      "accent": "#3B6F61",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260924-original-05"
+    },
+    {
+      "id": "free_note_20260924_06_community_partner_followup",
+      "kind": "free",
+      "price": 0,
+      "title": "地域連携が打合せだけで終わる前に｜次の約束を残す方法",
+      "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-24_batch01.md",
+      "tags": [
+        "業務改善",
+        "NPO",
+        "実務"
+      ],
+      "coverLabel": "地域連携",
+      "coverCopy": "次の約束を残す",
+      "accent": "#6957A2",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260924-original-06"
     }
   ],
   "eveningMarathon": {
@@ -2318,22 +2396,18 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "date": "2026-09-14",
+    "date": "2026-09-24",
     "ids": [
-      "free_note_20260909_01_overdue_receivable_warning_signals",
-      "free_note_20260909_02_subscription_cost_creep_signals",
-      "free_note_20260910_01_supplier_delay_warning_signals",
-      "free_note_20260910_02_onboarding_handoff_warning_signals",
-      "free_note_20260911_01_invoice_dispute_warning_signals",
-      "free_note_20260911_02_saas_renewal_warning_signals",
-      "free_note_20260912_01_duplicate_invoice_warning_signals",
-      "free_note_20260912_02_expense_policy_warning_signals",
-      "free_note_20260913_01_vendor_insurance_expiry_signals",
-      "free_note_20260913_02_unapplied_deposit_signals"
+      "free_note_20260924_01_npo_recruitment_funnel",
+      "free_note_20260924_02_volunteer_retention_checkin",
+      "free_note_20260924_03_shared_backoffice_request",
+      "free_note_20260924_04_grant_report_evidence",
+      "free_note_20260924_05_event_safety_handoff",
+      "free_note_20260924_06_community_partner_followup"
     ],
-    "requiredStrictPublications": 10
+    "requiredStrictPublications": 6
   },
-  "retryGeneration": 34,
+  "retryGeneration": 35,
   "activePublicationDate": "2026-09-09",
   "forceAllCurrentDayNow": true,
   "forceRetryNonce": "remaining-35-20260914T003100+0900",
