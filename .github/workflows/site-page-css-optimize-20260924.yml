@@ -1,0 +1,117 @@
+name: NOTO ReBloom page CSS optimization 2026-09-24
+
+on:
+  push:
+    paths:
+      - '.github/workflows/site-page-css-optimize-20260924.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: noto-rebloom-page-css-optimize
+  cancel-in-progress: true
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          npm install --no-save purgecss clean-css puppeteer-core lighthouse
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+
+      - name: Serve site
+        run: |
+          python3 -m http.server 8000 >/tmp/rebloom-page-css-http.log 2>&1 &
+          sleep 2
+
+      - name: Capture baseline
+        run: node .github/scripts/page-css-capture.cjs before
+
+      - name: Build page-specific CSS
+        run: node .github/scripts/page-css-bundle.cjs
+
+      - name: Capture candidate
+        run: node .github/scripts/page-css-capture.cjs after
+
+      - name: Visual regression gate
+        run: python3 .github/scripts/page-css-compare.py
+
+      - name: Browser smoke test
+        run: node .github/scripts/site-browser-smoke.cjs
+
+      - name: Lighthouse verification
+        run: |
+          mkdir -p qa-page-css/lighthouse
+          for p in index partner report contact; do
+            npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="qa-page-css/lighthouse/$p-mobile.json" || true
+            npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --preset=desktop --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="qa-page-css/lighthouse/$p-desktop.json" || true
+          done
+          node - <<'NODE'
+          const fs=require('fs');
+          const out=[];
+          for(const f of fs.readdirSync('qa-page-css/lighthouse').filter(x=>x.endsWith('.json')).sort()){
+            const j=JSON.parse(fs.readFileSync('qa-page-css/lighthouse/'+f,'utf8'));
+            const c=j.categories||{},a=j.audits||{};
+            out.push({
+              file:f,
+              performance:Math.round((c.performance?.score||0)*100),
+              accessibility:Math.round((c.accessibility?.score||0)*100),
+              bestPractices:Math.round((c['best-practices']?.score||0)*100),
+              seo:Math.round((c.seo?.score||0)*100),
+              lcp:Math.round(a['largest-contentful-paint']?.numericValue||0),
+              cls:Number((a['cumulative-layout-shift']?.numericValue||0).toFixed(4)),
+              tbt:Math.round(a['total-blocking-time']?.numericValue||0)
+            });
+          }
+          fs.writeFileSync('qa-page-css/lighthouse-summary.json',JSON.stringify(out,null,2));
+          console.log('PAGE_CSS_LIGHTHOUSE='+JSON.stringify(out));
+          NODE
+
+      - name: Show optimization summary
+        run: |
+          echo "===== PAGE CSS STATS ====="
+          cat qa-page-css/stats.json
+          echo "===== VISUAL GATE ====="
+          cat qa-page-css/compare.json
+          echo "===== LIGHTHOUSE ====="
+          cat qa-page-css/lighthouse-summary.json
+
+      - name: Commit accepted bundles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/css/index-optimized-20260924.css assets/css/partner-optimized-20260924.css assets/css/report-optimized-20260924.css assets/css/contact-optimized-20260924.css
+          git add index.html partner.html report.html contact.html
+          git diff --cached --quiet || git commit -m "Use verified page-specific CSS bundles"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Upload QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: noto-rebloom-page-css-qa-20260924
+          path: |
+            qa-page-css/
+            qa-page-css-before/
+            qa-page-css-after/
+          retention-days: 7
+
+# run: 2026-09-24 initial-page-bundle-v1
