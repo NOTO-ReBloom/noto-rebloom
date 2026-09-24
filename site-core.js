@@ -121,49 +121,7 @@
     }
   };
 
-  const refineHomepage=()=>{
-    if(!document.body.classList.contains('nr-new-home')) return;
-
-    const ishimo=document.getElementById('ishimo-collaboration');
-    const story=document.getElementById('project-story');
-    const people=document.getElementById('people-behind-project');
-    if(ishimo){
-      if(story) story.after(ishimo);
-      else if(people) people.before(ishimo);
-    }
-
-    const facts=document.querySelector('#visual-day .join-facts');
-    if(facts && !facts.dataset.experienceFacts){
-      facts.dataset.experienceFacts='true';
-      facts.innerHTML=`<div class="join-fact"><small>VISITORS</small><strong>約30名</strong><span>見学を含む総来場</span></div><div class="join-fact"><small>PLAYERS</small><strong>15名</strong><span>正式競技に参加</span></div><div class="join-fact"><small>PROGRAM</small><strong>5競技</strong><span>予定した競技を実施</span></div><div class="join-fact"><small>FIELD</small><strong>約1,000㎡</strong><span>洲巻の田んぼを使用</span></div>`;
-      const action=facts.nextElementSibling;
-      const b=action?.querySelector('b');
-      const span=action?.querySelector('span');
-      if(b) b.textContent='泥だらけで笑った、9月20日の記録。';
-      if(span) span.textContent='当日の写真と開催結果を、開催レポートで公開しています。';
-    }
-
-    const steps=[...document.querySelectorAll('#project-story .story-step')];
-    if(steps.length>=8){
-      const h3=steps[1]?.querySelector('h3');
-      const p=steps[1]?.querySelector('p');
-      if(h3) h3.textContent='現地へ行き、会場を探す';
-      if(p) p.textContent='土地を見て地域の方と話し、開催できる場所を一つずつ探しました。';
-      steps[2]?.remove();
-    }
-
-    const reportStep=[...document.querySelectorAll('#project-story .story-step')].find(step=>(step.querySelector('.story-dot')?.textContent||'').trim()==='9.19');
-    if(reportStep && reportStep.tagName!=='A'){
-      const link=document.createElement('a');
-      link.className=`${reportStep.className} story-step--linked`;
-      link.href=REBOOST_STUDIO_URL;
-      link.target='_blank';
-      link.rel='noopener';
-      link.setAttribute('aria-label','9月19日 RE:BOOST STUDIO 公式イベントページを見る');
-      while(reportStep.firstChild) link.appendChild(reportStep.firstChild);
-      reportStep.replaceWith(link);
-    }
-  };
+  const refineHomepage=()=>{};
 
   const enrichLearnPage=()=>{
     if(!document.body.classList.contains('page-learn')||document.getElementById('farmland-data-story')) return;
@@ -281,8 +239,6 @@
   };
 
   injectGlobalContact();
-  updateLegacyVenueText();
-  removeDedicatedRecruitment();
   refineHomepage();
   enrichLearnPage();
   refineEventPage();
