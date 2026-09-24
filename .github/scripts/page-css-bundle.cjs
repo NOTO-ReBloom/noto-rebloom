@@ -23,6 +23,20 @@ const safeGreedy=[
 
 const stats=[];
 
+function expandLocalImports(css,sourcePath,stack=[]){
+  const dir=path.dirname(sourcePath);
+  return css.replace(/@import\s+(?:url\()?\s*["']?([^"'\)\s;]+)["']?\s*\)?\s*;/gi,(full,href)=>{
+    if(/^https?:/i.test(href)||href.startsWith('//')) return full;
+    const clean=href.split('?')[0].split('#')[0];
+    if(!clean.endsWith('.css')) return full;
+    const resolved=path.normalize(path.join(dir,clean));
+    if(!fs.existsSync(resolved)) return full;
+    if(stack.includes(resolved)) return '';
+    const nested=fs.readFileSync(resolved,'utf8');
+    return `\n/* ===== INLINED IMPORT: ${resolved} ===== */\n${expandLocalImports(nested,resolved,[...stack,resolved])}\n`;
+  });
+}
+
 (async()=>{
   for(const page of targets){
     let html=fs.readFileSync(page,'utf8');
@@ -40,7 +54,7 @@ const stats=[];
 
     let combined='';
     for(const item of cssHrefs){
-      combined+=`\n/* ===== SOURCE: ${item.clean} ===== */\n${fs.readFileSync(item.clean,'utf8')}\n`;
+      combined+=`\n/* ===== SOURCE: ${item.clean} ===== */\n${expandLocalImports(fs.readFileSync(item.clean,'utf8'),item.clean,[item.clean])}\n`;
     }
 
     const purged=(await new PurgeCSS().purge({
