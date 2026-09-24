@@ -40,7 +40,7 @@
       .rb-contact-footer strong{color:#fff;font-size:12px}.rb-contact-footer a{color:#fff!important;text-decoration:underline;text-underline-offset:3px;font-weight:800}.rb-contact-footer .rb-contact-footer__page{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;text-decoration:none!important;background:rgba(255,255,255,.07)}
       @media(hover:hover){.rb-contact-header:hover,.rb-contact-fab:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(23,58,49,.2)}.rb-contact-footer .rb-contact-footer__page:hover{background:rgba(255,255,255,.14)}}
       @media(max-width:900px){.rb-contact-header{display:none!important}}
-      @media(max-width:760px){.rb-contact-fab{right:10px;bottom:10px;min-height:44px;padding:0 13px 0 8px;font-size:12px}.rb-contact-fab__icon{width:28px;height:28px}.nr-new-event .rb-contact-fab{bottom:78px}.rb-contact-footer{width:min(100% - 28px,1120px);align-items:flex-start;flex-direction:column;gap:7px;padding-top:14px}}
+      @media(max-width:760px){.rb-contact-fab{right:10px;bottom:78px;min-height:44px;padding:0 13px 0 8px;font-size:12px}.rb-contact-fab__icon{width:28px;height:28px}.report-page .rb-contact-fab,.page-404 .rb-contact-fab{bottom:10px}.rb-contact-footer{width:min(100% - 28px,1120px);align-items:flex-start;flex-direction:column;gap:7px;padding-top:14px}}
     `;
     document.head.appendChild(style);
   };
@@ -62,15 +62,6 @@
         if(current==='contact.html') link.setAttribute('aria-current','page');
         nav.appendChild(link);
       }
-    }
-
-    const actions=document.querySelector('.header-actions');
-    if(actions && !actions.querySelector('.rb-contact-header')){
-      const link=document.createElement('a');
-      link.href=CONTACT_PAGE;
-      link.className='rb-contact-header';
-      link.textContent='質問・お問い合わせ';
-      actions.appendChild(link);
     }
 
     if(!document.querySelector('.rb-contact-fab') && current!=='contact.html'){
