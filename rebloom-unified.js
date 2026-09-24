@@ -18,7 +18,8 @@
     return link;
   };
   const hasCoreBundle=!!document.querySelector('link[href*="legacy-core-20260924.css"]');
-  if(!hasCoreBundle){
+  const hasFoundation=!!document.querySelector('link[href*="site-foundation-20260924.css"]');
+  if(!hasCoreBundle && !hasFoundation && !postEventShell){
     ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260820sponsor');
     ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
     ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
