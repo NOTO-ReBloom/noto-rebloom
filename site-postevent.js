@@ -154,5 +154,5 @@
     }
   });
 
-  document.write('<script src="site-core.js?v=20260924shell1"><\/script>');
+  document.write('<script src="site-core.js?v=20260924shell2"><\/script>');
 })();
