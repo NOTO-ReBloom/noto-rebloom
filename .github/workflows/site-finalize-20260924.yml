@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: noto-rebloom-site-finalize
+  cancel-in-progress: true
+
 jobs:
   finalize:
     runs-on: ubuntu-latest
@@ -69,6 +73,13 @@ jobs:
       - name: Build audit report
         run: python3 .github/scripts/site-finalize-report.py
 
+      - name: Show final audit summary
+        run: |
+          echo "===== SITE AUDIT ====="
+          cat SITE_AUDIT_2026-09-24.md
+          echo "===== LIGHTHOUSE SUMMARY ====="
+          cat qa/lighthouse-summary.json
+
       - name: Commit accepted changes
         run: |
           git config user.name "github-actions[bot]"
@@ -79,9 +90,18 @@ jobs:
           git add index.html thoughts.html learn.html event.html report.html partner.html contact.html photo-credits.html 404.html
           git add SITE_AUDIT_2026-09-24.md
           git diff --cached --quiet || git commit -m "Optimize site assets and remove verified unused CSS"
-          git push
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
 
       - name: Upload QA evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: noto-rebloom-final-qa-20260924
@@ -96,3 +116,5 @@ jobs:
 # perf rerun: 2026-09-24 responsive-images-v2
 
 # perf rerun: 2026-09-24 responsive-images-v3
+
+# perf rerun: 2026-09-24 robust-push-v4
