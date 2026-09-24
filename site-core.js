@@ -247,18 +247,4 @@
   injectFooterSocial();
   setupRevealAndScroll();
 
-  let cleaning=false;
-  const observer=new MutationObserver(mutations=>{
-    if(cleaning) return;
-    let relevant=false;
-    for(const m of mutations){
-      if(m.type==='attributes'&&m.attributeName==='href'){relevant=true;break;}
-      if(m.type==='childList'||m.type==='characterData'){relevant=true;break;}
-    }
-    if(!relevant) return;
-    cleaning=true;
-    removeDedicatedRecruitment();
-    cleaning=false;
-  });
-  observer.observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['href']});
 })();
