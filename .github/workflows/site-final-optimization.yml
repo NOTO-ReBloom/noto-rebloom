@@ -1,0 +1,255 @@
+name: Site final optimization
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/site-final-optimization.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  optimize-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install optimization and browser tools
+        run: |
+          python -m pip install --disable-pip-version-check pillow playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Optimize photographic WebP assets
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import os, json
+
+          targets = [
+              "field-detail.webp",
+              "field-overview.webp",
+              "team-reboost.webp",
+              "team-presentation.webp",
+              "assets/event-2026/group.webp",
+              "assets/event-2026/child.webp",
+              "assets/event-2026/field.webp",
+              "assets/event-2026/game.webp",
+              "assets/event-2026/cup-making.webp",
+              "assets/event-2026/cup.webp",
+              "assets/partners/yorozuya-oteru.webp",
+          ]
+          Path("qa-output").mkdir(exist_ok=True)
+          report = []
+          for name in targets:
+              p = Path(name)
+              if not p.exists():
+                  report.append({"file": name, "status": "missing"})
+                  continue
+              before = p.stat().st_size
+              with Image.open(p) as im:
+                  im.load()
+                  width, height = im.size
+                  mode = im.mode
+                  icc = im.info.get("icc_profile")
+                  exif = im.info.get("exif")
+                  tmp = p.with_suffix(".optimized.webp")
+                  kwargs = {"format":"WEBP","quality":86,"method":6}
+                  if icc:
+                      kwargs["icc_profile"] = icc
+                  if exif:
+                      kwargs["exif"] = exif
+                  im.save(tmp, **kwargs)
+              candidate = tmp.stat().st_size
+              if candidate <= before * 0.90:
+                  os.replace(tmp, p)
+                  after = candidate
+                  status = "replaced"
+              else:
+                  tmp.unlink(missing_ok=True)
+                  after = before
+                  status = "kept-original"
+              report.append({
+                  "file": name,
+                  "status": status,
+                  "width": width,
+                  "height": height,
+                  "mode": mode,
+                  "before": before,
+                  "after": after,
+                  "saving": before-after,
+                  "saving_pct": round((before-after)/before*100, 1) if before else 0
+              })
+          Path("qa-output/image-optimization.json").write_text(
+              json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Static integrity audit
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, json, hashlib
+
+          pages = ["index.html","thoughts.html","learn.html","event.html","report.html","partner.html","contact.html","photo-credits.html","404.html","diagnosis.html"]
+          rows=[]
+          for name in pages:
+              text=Path(name).read_text(encoding="utf-8")
+              ids=re.findall(r'\bid=["' + "'" + r']([^"' + "'" + r']+)["' + "'" + r']', text)
+              hrefs=re.findall(r'href=["' + "'" + r']#([^"' + "'" + r']+)["' + "'" + r']', text)
+              imgs=re.findall(r'<img\b[^>]*>', text, flags=re.I)
+              rows.append({
+                  "page":name,
+                  "h1":len(re.findall(r'<h1\b',text,flags=re.I)),
+                  "duplicate_ids":sorted({x for x in ids if ids.count(x)>1}),
+                  "missing_anchors":sorted({x for x in hrefs if x not in ids}),
+                  "img_missing_alt":sum(1 for x in imgs if not re.search(r'\balt=',x,re.I)),
+                  "stale_registration":bool(re.search(r'6ZMrhrhtWmBCQViD8|jdSpe6Pb3pyFf7QU6|9/20\s*参加申込',text)),
+                  "sha256":hashlib.sha256(text.encode()).hexdigest()
+              })
+          Path("qa-output/static-audit.json").write_text(
+              json.dumps(rows,ensure_ascii=False,indent=2),encoding="utf-8"
+          )
+          print(json.dumps(rows,ensure_ascii=False,indent=2))
+          bad=[r for r in rows if r["h1"]!=1 or r["duplicate_ids"] or r["missing_anchors"] or r["img_missing_alt"] or r["stale_registration"]]
+          if bad:
+              raise SystemExit("Static audit failed")
+          PY
+
+      - name: Start local site
+        run: |
+          python -m http.server 8000 --bind 127.0.0.1 >qa-output/server.log 2>&1 &
+          echo $! > qa-output/server.pid
+          sleep 2
+
+      - name: Browser viewport audit
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          from pathlib import Path
+          import json
+
+          pages = ["index.html","thoughts.html","learn.html","event.html","report.html","partner.html","contact.html","photo-credits.html","404.html","diagnosis.html"]
+          viewports = [
+              ("mobile-375",375,812),
+              ("mobile-430",430,900),
+              ("tablet-768",768,1024),
+              ("desktop-1440",1440,1000),
+          ]
+          Path("qa-output/screenshots").mkdir(parents=True,exist_ok=True)
+          results=[]
+          with sync_playwright() as p:
+              browser=p.chromium.launch(headless=True)
+              for vpname,w,h in viewports:
+                  for file in pages:
+                      page=browser.new_page(viewport={"width":w,"height":h})
+                      console_errors=[]
+                      page_errors=[]
+                      page.on("console", lambda msg, bag=console_errors: bag.append(msg.text) if msg.type=="error" else None)
+                      page.on("pageerror", lambda err, bag=page_errors: bag.append(str(err)))
+                      response=page.goto("http://127.0.0.1:8000/"+file,wait_until="domcontentloaded",timeout=30000)
+                      page.wait_for_timeout(700)
+                      layout=page.evaluate("""() => {
+                        const root=document.documentElement;
+                        const broken=[...document.images].filter(i=>i.complete && i.naturalWidth===0).map(i=>i.currentSrc||i.src);
+                        const overflowers=[...document.querySelectorAll('body *')].filter(el=>{
+                          const r=el.getBoundingClientRect();
+                          const s=getComputedStyle(el);
+                          return s.position!=='fixed' && r.width>0 && (r.right>innerWidth+2 || r.left<-2);
+                        }).slice(0,20).map(el=>{
+                          const r=el.getBoundingClientRect();
+                          return {tag:el.tagName,cls:String(el.className||'').slice(0,100),right:Math.round(r.right),left:Math.round(r.left),width:Math.round(r.width)};
+                        });
+                        return {scrollWidth:root.scrollWidth,innerWidth,broken,overflowers};
+                      }""")
+                      row={
+                          "file":file,"viewport":vpname,
+                          "status":response.status if response else 0,
+                          "overflow":layout["scrollWidth"]>layout["innerWidth"]+2,
+                          "overflow_by":layout["scrollWidth"]-layout["innerWidth"],
+                          "overflowers":layout["overflowers"],
+                          "broken_images":layout["broken"],
+                          "console_errors":console_errors,
+                          "page_errors":page_errors,
+                      }
+                      results.append(row)
+                      if vpname in ("mobile-375","desktop-1440"):
+                          page.screenshot(path="qa-output/screenshots/"+file.replace(".html","")+"-"+vpname+".png",full_page=True)
+                      page.close()
+              browser.close()
+          Path("qa-output/browser-audit.json").write_text(
+              json.dumps(results,ensure_ascii=False,indent=2),encoding="utf-8"
+          )
+          hard=[r for r in results if r["status"]>=400 or r["overflow"] or r["broken_images"] or r["page_errors"]]
+          Path("qa-output/browser-hard-issues.json").write_text(
+              json.dumps(hard,ensure_ascii=False,indent=2),encoding="utf-8"
+          )
+          print("hard_issues=",len(hard))
+          print(json.dumps(hard,ensure_ascii=False,indent=2))
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Lighthouse key pages
+        continue-on-error: true
+        run: |
+          npm install --no-save lighthouse
+          mkdir -p qa-output/lighthouse
+          for p in index.html report.html partner.html; do
+            npx lighthouse "http://127.0.0.1:8000/$p" --quiet --chrome-flags="--headless --no-sandbox" --output=json --output-path="qa-output/lighthouse/$p.json" || true
+          done
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          rows=[]
+          for p in ["index.html","report.html","partner.html"]:
+              f=Path("qa-output/lighthouse")/(p+".json")
+              if not f.exists():
+                  continue
+              d=json.loads(f.read_text())
+              cats=d.get("categories",{})
+              rows.append({
+                  "page":p,
+                  "performance":round(cats.get("performance",{}).get("score",0)*100),
+                  "accessibility":round(cats.get("accessibility",{}).get("score",0)*100),
+                  "best_practices":round(cats.get("best-practices",{}).get("score",0)*100),
+                  "seo":round(cats.get("seo",{}).get("score",0)*100),
+                  "lcp_ms":round(d.get("audits",{}).get("largest-contentful-paint",{}).get("numericValue",0)),
+                  "cls":round(d.get("audits",{}).get("cumulative-layout-shift",{}).get("numericValue",0),3),
+                  "tbt_ms":round(d.get("audits",{}).get("total-blocking-time",{}).get("numericValue",0)),
+              })
+          Path("qa-output/lighthouse-summary.json").write_text(json.dumps(rows,indent=2))
+          print(json.dumps(rows,indent=2))
+          PY
+
+      - name: Commit optimized images
+        run: |
+          git add field-detail.webp field-overview.webp team-reboost.webp team-presentation.webp \
+            assets/event-2026/group.webp assets/event-2026/child.webp assets/event-2026/field.webp \
+            assets/event-2026/game.webp assets/event-2026/cup-making.webp assets/event-2026/cup.webp \
+            assets/partners/yorozuya-oteru.webp
+          if git diff --cached --quiet; then
+            echo "No image changes met the 10% saving threshold."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "perf: optimize site image payloads"
+            git push
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-final-qa
+          path: qa-output/
+          retention-days: 7
