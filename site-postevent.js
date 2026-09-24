@@ -2,7 +2,7 @@
   'use strict';
   window.__RB_POSTEVENT_RUNTIME__=true;
   const ensureRuntimeStyle=()=>{
-    if(document.querySelector('link[href*="site-runtime-20260924.css"]')) return;
+    if(document.querySelector('link[href*="site-runtime-20260924.css"],link[href*="-optimized-20260924.css"]')) return;
     const link=document.createElement('link');
     link.rel='stylesheet';
     link.href='site-runtime-20260924.css?v=1';
