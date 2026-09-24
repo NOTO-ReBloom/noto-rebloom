@@ -70,5 +70,5 @@
     }
   });
 
-  document.write('<script src="site-core.js?v=20260919sametab3"><\/script>');
+  document.write('<script src="site-core.js?v=20260924postevent1"><\/script>');
 })();
