@@ -154,5 +154,8 @@
     }
   });
 
-  document.write('<script src="site-core.js?v=20260924shell2"><\/script>');
+  const coreScript=document.createElement('script');
+  coreScript.src='site-core.js?v=20260924perf1';
+  coreScript.async=false;
+  document.body.appendChild(coreScript);
 })();
