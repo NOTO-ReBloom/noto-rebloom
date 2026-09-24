@@ -2,7 +2,7 @@
   document.documentElement.classList.add('js');
 
   const OLD_FORM_TOKEN='jdSpe6Pb3pyFf7QU6';
-  const PARTICIPANT_FORM='https://forms.gle/6ZMrhrhtWmBCQViD8';
+  const REPORT_PAGE='report.html';
   const CONTACT_PAGE='contact.html';
   const CONTACT_EMAIL='infonotorebloom@gmail.com';
   const REBOOST_STUDIO_URL='https://coworkingsquarekanazawa.com/events/event/re%EF%BC%9Aboostreboost-studio-%EF%BD%9Ekanazawa-reboost-u23%EF%BD%9E%EF%BD%9C%E5%AD%A6%E7%94%9F%E3%81%AE%E6%8C%91%E6%88%A6%E3%82%92%E3%80%81%E5%9C%B0%E5%9F%9F%E3%81%AE%E7%86%B1%E7%8B%82%E3%81%AB/';
@@ -86,7 +86,7 @@
     if(footer && !footer.querySelector('.rb-contact-footer')){
       const block=document.createElement('div');
       block.className='rb-contact-footer';
-      block.innerHTML=`<strong>質問・お問い合わせ</strong><span>参加・持ち物・アクセス・取材・協賛など</span><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a><a class="rb-contact-footer__page" href="${CONTACT_PAGE}">お問い合わせページを見る →</a>`;
+      block.innerHTML=`<strong>質問・お問い合わせ</strong><span>活動・取材・協賛・今後の連携など</span><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a><a class="rb-contact-footer__page" href="${CONTACT_PAGE}">お問い合わせページを見る →</a>`;
       footer.appendChild(block);
     }
   };
@@ -125,21 +125,21 @@
   const normalizeLegacyLink=(a)=>{
     if(!(a instanceof HTMLAnchorElement)) return;
     if(!(a.getAttribute('href')||'').includes(OLD_FORM_TOKEN)) return;
-    a.href=PARTICIPANT_FORM;
-    a.target='_blank';
-    a.rel='noopener';
+    a.href=REPORT_PAGE;
+    a.target='_self';
+    a.removeAttribute('rel');
     if(a.classList.contains('conversion-card')){
-      const small=a.querySelector('small'); if(small) small.textContent='イベントに参加';
-      const h3=a.querySelector('h3'); if(h3) h3.textContent='泥ん子運動会に参加';
-      const p=a.querySelector('p'); if(p) p.textContent='2026年9月20日、珠洲市・洲巻地区で開催。参加費は無料です。';
-      const b=a.querySelector('b'); if(b) b.textContent='参加フォームを開く →';
+      const small=a.querySelector('small'); if(small) small.textContent='開催結果を見る';
+      const h3=a.querySelector('h3'); if(h3) h3.textContent='泥ん子運動会2026 開催報告';
+      const p=a.querySelector('p'); if(p) p.textContent='2026年9月20日、珠洲市若山町洲巻で開催した一日の記録を公開しています。';
+      const b=a.querySelector('b'); if(b) b.textContent='開催レポートを見る →';
       return;
     }
-    if(a.closest('.header-actions')) a.textContent='9/20 参加申込';
-    else if(a.closest('.mobile-dock')) a.textContent='イベント参加';
-    else if(a.closest('.site-footer')) a.textContent='泥ん子運動会に参加';
-    else if(a.closest('.diagnosis-result,.final-cta')) a.textContent='泥ん子運動会に参加';
-    else a.textContent='9/20 参加申込';
+    if(a.closest('.header-actions')) a.textContent='開催レポート';
+    else if(a.closest('.mobile-dock')) a.textContent='開催レポート';
+    else if(a.closest('.site-footer')) a.textContent='開催レポートを見る';
+    else if(a.closest('.diagnosis-result,.final-cta')) a.textContent='開催レポートを見る';
+    else a.textContent='開催レポート';
   };
 
   const removeDedicatedRecruitment=()=>{
@@ -154,7 +154,7 @@
     });
     const reason=document.getElementById('resultActionReason');
     if(reason && /企画から一緒につくる|当日だけでなく、企画から/.test(reason.textContent||'')){
-      reason.textContent='人が集まる場でこそ、あなたの明るさと行動力が生きます。まずは9月20日のイベントに参加し、能登と出会う一歩がおすすめです。';
+      reason.textContent='人が集まる場でこそ、あなたの明るさと行動力が生きます。9月20日の開催レポートから、能登で生まれたつながりを見てみてください。';
     }
     document.querySelectorAll('.button-row,.header-actions,.quick-grid,.renge-event-facts,.callout,.source-note').forEach(el=>{
       const text=(el.textContent||'').replace(/\s+/g,'').trim();
@@ -170,7 +170,7 @@
       ['上黒丸地区の元レンコン田。許可・安全条件は未確定','洲巻地区の田んぼ（約20m×50m・約1,000㎡）。土地使用許可取得済み'],
       ['会場候補となる土地の一つ','能登で確認してきた農地の様子'],
       ['活動候補となる土地の一つ','能登で確認してきた農地の様子'],
-      ['企画への参加、個人からの支援、企業・団体としての協力から選んでください。','9月20日のイベント参加、個人からの支援、企業・団体としての協力から選んでください。'],
+      ['企画への参加、個人からの支援、企業・団体としての協力から選んでください。','開催レポート、個人からの支援、企業・団体としての協力から選んでください。'],
       ['17:00頃終了予定','16:30頃閉会予定'],
       ['終了17:00予定','閉会16:30予定']
     ];
@@ -254,12 +254,12 @@
     const facts=document.querySelector('#visual-day .join-facts');
     if(facts && !facts.dataset.experienceFacts){
       facts.dataset.experienceFacts='true';
-      facts.innerHTML=`<div class="join-fact"><small>GAMES</small><strong>5種目</strong><span>綱引き・リレーなど</span></div><div class="join-fact"><small>TAKE HOME</small><strong>レンゲ</strong><span>カップを作って持ち帰る</span></div><div class="join-fact"><small>DRINK</small><strong>水分補給</strong><span>アクエリアスをご用意</span></div><div class="join-fact"><small>FIELD</small><strong>約1,000㎡</strong><span>洲巻の田んぼが会場</span></div>`;
+      facts.innerHTML=`<div class="join-fact"><small>VISITORS</small><strong>約30名</strong><span>見学を含む総来場</span></div><div class="join-fact"><small>PLAYERS</small><strong>15名</strong><span>正式競技に参加</span></div><div class="join-fact"><small>PROGRAM</small><strong>5競技</strong><span>予定した競技を実施</span></div><div class="join-fact"><small>FIELD</small><strong>約1,000㎡</strong><span>洲巻の田んぼを使用</span></div>`;
       const action=facts.nextElementSibling;
       const b=action?.querySelector('b');
       const span=action?.querySelector('span');
-      if(b) b.textContent='5つの競技と、持ち帰れるレンゲカップ。';
-      if(span) span.textContent='泥だらけで思いきり遊んだあとまで、楽しみが続く一日にします。';
+      if(b) b.textContent='泥だらけで笑った、9月20日の記録。';
+      if(span) span.textContent='当日の写真と開催結果を、開催レポートで公開しています。';
     }
 
     const steps=[...document.querySelectorAll('#project-story .story-step')];
@@ -305,13 +305,13 @@
 
     const heroH1=document.querySelector('.page-hero--event h1');
     const heroLead=heroH1?.nextElementSibling;
-    if(heroLead?.tagName==='P') heroLead.textContent='使われなくなった土地を、みんなが集まり、笑い合える場所へ。珠洲市若山町洲巻の約1,000㎡の田んぼで、綱引きやリレーなど5つの競技を楽しみ、最後はRe:Bloomレンゲカップを作って持ち帰ります。';
+    if(heroLead?.tagName==='P') heroLead.textContent='使われなくなった土地を、みんなが集まり、笑い合える場所へ。2026年9月20日、珠洲市若山町洲巻の約1,000㎡の田んぼで5つの泥競技とRe:Bloomレンゲカップを実施しました。';
 
     const reboost=document.getElementById('reboost-studio');
     const faq=document.getElementById('event-faq');
     if(reboost){
       reboost.className='rb-reboost-section rb-reboost-section--compact';
-      reboost.innerHTML=`<a class="event-reboost-note" href="${REBOOST_STUDIO_URL}" target="_blank" rel="noopener" aria-label="9月19日 RE:BOOST STUDIO 公式イベントページを見る"><div class="event-reboost-note__copy"><small>9.19 SAT / KANAZAWA</small><strong>前日は香林坊で、NOTO Re:Bloomの活動を発表します。</strong><p>これまでの活動と、翌9月20日に珠洲で開催する泥ん子運動会について紹介します。</p></div><div class="event-reboost-note__date">9/19<br>15:00–17:00</div></a>`;
+      reboost.innerHTML=`<a class="event-reboost-note" href="${REBOOST_STUDIO_URL}" target="_blank" rel="noopener" aria-label="9月19日 RE:BOOST STUDIO 公式イベントページを見る"><div class="event-reboost-note__copy"><small>9.19 SAT / KANAZAWA</small><strong>前日の9月19日には、香林坊でNOTO Re:Bloomの活動を発表しました。</strong><p>これまでの活動と、翌9月20日に珠洲で実施した泥ん子運動会について紹介しました。</p></div><div class="event-reboost-note__date">9/19<br>15:00–17:00</div></a>`;
       if(faq) faq.after(reboost);
     }
 
