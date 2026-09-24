@@ -1,0 +1,91 @@
+name: NOTO ReBloom final site optimization 2026-09-24
+
+on:
+  push:
+    paths:
+      - '.github/workflows/site-finalize-20260924.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick webp
+          npm install --no-save puppeteer-core lighthouse purgecss
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+
+      - name: Prepare QA
+        run: |
+          mkdir -p qa qa-css-original qa-before qa-after qa-final qa/lighthouse
+          cp site.css qa-css-original/site.css
+          cp legacy-base-20260924.css qa-css-original/legacy-base-20260924.css
+          cp legacy-core-20260924.css qa-css-original/legacy-core-20260924.css
+          cp legacy-tuning-20260924.css qa-css-original/legacy-tuning-20260924.css
+
+      - name: Optimize images and add dimensions
+        run: python3 .github/scripts/site-finalize-optimize.py
+
+      - name: Start local server
+        run: |
+          python3 -m http.server 8000 >/tmp/rebloom-http.log 2>&1 &
+          sleep 2
+
+      - name: Capture CSS baseline
+        run: node .github/scripts/site-finalize-audit.cjs before
+
+      - name: Purge unused CSS
+        run: node .github/scripts/site-finalize-purge.cjs
+
+      - name: Capture CSS candidate
+        run: node .github/scripts/site-finalize-audit.cjs after
+
+      - name: Visual regression gate
+        run: python3 .github/scripts/site-finalize-compare.py
+
+      - name: Capture final browser state
+        run: node .github/scripts/site-finalize-audit.cjs final
+
+      - name: Lighthouse mobile and desktop
+        run: |
+          for p in index report partner contact; do
+            npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="qa/lighthouse/$p-mobile.json" || true
+            npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --preset=desktop --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="qa/lighthouse/$p-desktop.json" || true
+          done
+          node .github/scripts/site-finalize-lighthouse-summary.cjs
+
+      - name: Build audit report
+        run: python3 .github/scripts/site-finalize-report.py
+
+      - name: Commit accepted changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add field-detail.webp field-overview.webp team-reboost.webp team-presentation.webp
+          git add site.css legacy-base-20260924.css legacy-core-20260924.css legacy-tuning-20260924.css
+          git add index.html thoughts.html learn.html event.html report.html partner.html contact.html photo-credits.html 404.html
+          git add SITE_AUDIT_2026-09-24.md
+          git diff --cached --quiet || git commit -m "Optimize site assets and remove verified unused CSS"
+          git push
+
+      - name: Upload QA evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: noto-rebloom-final-qa-20260924
+          path: |
+            qa/
+            qa-before/
+            qa-after/
+            qa-final/
+            SITE_AUDIT_2026-09-24.md
+          retention-days: 7
