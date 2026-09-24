@@ -1,0 +1,50 @@
+name: NOTO ReBloom performance check 2026-09-24
+
+on:
+  push:
+    paths:
+      - '.github/workflows/site-perf-check-20260924.yml'
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lighthouse
+        run: |
+          npm install --no-save lighthouse
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Serve site
+        run: |
+          python3 -m http.server 8000 >/tmp/rebloom-perf-http.log 2>&1 &
+          sleep 2
+      - name: Measure
+        run: |
+          mkdir -p perf
+          for p in index partner report contact; do
+            npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="perf/$p-mobile.json" || true
+            npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --preset=desktop --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="perf/$p-desktop.json" || true
+          done
+          node - <<'NODE'
+          const fs=require('fs');
+          const out=[];
+          for(const f of fs.readdirSync('perf').filter(x=>x.endsWith('.json')).sort()){
+            const j=JSON.parse(fs.readFileSync('perf/'+f,'utf8'));
+            const c=j.categories||{},a=j.audits||{};
+            out.push({
+              file:f,
+              performance:Math.round((c.performance?.score||0)*100),
+              accessibility:Math.round((c.accessibility?.score||0)*100),
+              bestPractices:Math.round((c['best-practices']?.score||0)*100),
+              seo:Math.round((c.seo?.score||0)*100),
+              lcp:Math.round(a['largest-contentful-paint']?.numericValue||0),
+              cls:Number((a['cumulative-layout-shift']?.numericValue||0).toFixed(4)),
+              tbt:Math.round(a['total-blocking-time']?.numericValue||0)
+            });
+          }
+          console.log('PERF_SUMMARY='+JSON.stringify(out));
+          NODE
