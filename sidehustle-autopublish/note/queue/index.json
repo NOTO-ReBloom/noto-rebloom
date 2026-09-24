@@ -1,16 +1,17 @@
 {
   "version": 8,
-  "updatedAt": "2026-09-24T08:36:46.182Z",
-  "retryGeneration": 89,
+  "updatedAt": "2026-09-24T08:41:55.059Z",
+  "retryGeneration": 90,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
     "mode": "publish_new_note24_20260924",
-    "requiredStrictPublications": 3,
+    "requiredStrictPublications": 4,
     "orderedIds": [
       "note_20260924_127_npo_recruitment_funnel",
       "note_20260924_128_volunteer_retention_checkin",
-      "note_20260924_129_shared_backoffice_request"
+      "note_20260924_129_shared_backoffice_request",
+      "note_20260924_130_grant_report_evidence"
     ],
     "strictChecks": [
       "readerVisibleUrl",
@@ -3503,6 +3504,26 @@
       "enabled": true,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-129-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_130_grant_report_evidence",
+      "title": "助成金報告で資料を探し回らない｜実施時から作る証拠一覧",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_130_grant_report_evidence.enc.json",
+      "sha256": "f34602f1a76a5ef72e24a307cdae862319f7a9d71c76e3d1717244fcd94ff11d",
+      "createdAt": "2026-09-24T08:41:55.059Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-130-20260924",
       "expectedPriceJPY": 200,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
