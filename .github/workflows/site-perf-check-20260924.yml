@@ -24,7 +24,7 @@ jobs:
           echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
       - name: Serve site
         run: |
-          python3 -m http.server 8000 >/tmp/rebloom-perf-http.log 2>&1 &
+          node .github/scripts/static-gzip-server.cjs >/tmp/rebloom-perf-http.log 2>&1 &
           sleep 2
       - name: Browser smoke test
         continue-on-error: true
@@ -90,3 +90,5 @@ jobs:
 # rerun after css bundling: 2026-09-24 v9
 
 # a11y detail rerun: 2026-09-24 v4
+
+# gzip realism rerun: 2026-09-24 v5
