@@ -1,14 +1,15 @@
 {
   "version": 8,
-  "updatedAt": "2026-09-24T04:59:45.531Z",
-  "retryGeneration": 87,
+  "updatedAt": "2026-09-24T05:04:42.872Z",
+  "retryGeneration": 88,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
     "mode": "publish_new_note24_20260924",
-    "requiredStrictPublications": 1,
+    "requiredStrictPublications": 2,
     "orderedIds": [
-      "note_20260924_127_npo_recruitment_funnel"
+      "note_20260924_127_npo_recruitment_funnel",
+      "note_20260924_128_volunteer_retention_checkin"
     ],
     "strictChecks": [
       "readerVisibleUrl",
@@ -3461,6 +3462,26 @@
       "enabled": true,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-127-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_128_volunteer_retention_checkin",
+      "title": "ボランティアが2回目に来ない理由を探る｜活動後フォローの記録テンプレ",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_128_volunteer_retention_checkin.enc.json",
+      "sha256": "7d6fdc6d61149c6c9ca1735cae46fb6c4c10e49cdb2e68762859b38852d0b548",
+      "createdAt": "2026-09-24T05:04:42.872Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-128-20260924",
       "expectedPriceJPY": 200,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
