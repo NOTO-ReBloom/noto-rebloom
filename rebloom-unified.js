@@ -5,6 +5,7 @@
   const ISHIMO='https://www.ishimo-ishikawa.jp/';
   const GYAKUTEN='https://gyakuten-coaching.com/';
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  const postEventShell=!!window.__RB_POSTEVENT_RUNTIME__;
   document.body.classList.add('rb-unified');
 
   const ensureStyle=(name,href)=>{
@@ -23,34 +24,36 @@
     ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
   }
 
-  const labels={'index.html':'ホーム','thoughts.html':'私たちの思い','learn.html':'土地と企画','event.html':'泥ん子運動会','partner.html':'協賛・協力','diagnosis.html':'花タイプ診断','contact.html':'お問い合わせ'};
-  const nav=document.querySelector('.site-nav');
-  if(nav){
-    [...nav.querySelectorAll('a')].forEach(a=>{
-      const href=(a.getAttribute('href')||'').split('#')[0];
-      if(labels[href])a.textContent=labels[href];
-      a.removeAttribute('aria-current');
-      if(href===page||(page===''&&href==='index.html'))a.setAttribute('aria-current','page');
-    });
-  }
-
-  const actions=document.querySelector('.header-actions');
-  if(actions){
-    actions.innerHTML='';
-    const action=document.createElement('a');
-    action.className='btn btn--small btn--green';
-    action.target='_self';
-    if(page==='partner.html'){
-      action.href='mailto:infonotorebloom@gmail.com';
-      action.textContent='今後の連携を相談';
-    }else if(page==='report.html'){
-      action.href='partner.html';
-      action.textContent='協賛・協力を見る';
-    }else{
-      action.href=REPORT;
-      action.textContent='開催レポート';
+  if(!postEventShell){
+    const labels={'index.html':'ホーム','thoughts.html':'私たちの思い','learn.html':'土地と企画','event.html':'泥ん子運動会','partner.html':'協賛・協力','diagnosis.html':'花タイプ診断','contact.html':'お問い合わせ'};
+    const nav=document.querySelector('.site-nav');
+    if(nav){
+      [...nav.querySelectorAll('a')].forEach(a=>{
+        const href=(a.getAttribute('href')||'').split('#')[0];
+        if(labels[href])a.textContent=labels[href];
+        a.removeAttribute('aria-current');
+        if(href===page||(page===''&&href==='index.html'))a.setAttribute('aria-current','page');
+      });
     }
-    actions.appendChild(action);
+
+    const actions=document.querySelector('.header-actions');
+    if(actions){
+      actions.innerHTML='';
+      const action=document.createElement('a');
+      action.className='btn btn--small btn--green';
+      action.target='_self';
+      if(page==='partner.html'){
+        action.href='mailto:infonotorebloom@gmail.com';
+        action.textContent='今後の連携を相談';
+      }else if(page==='report.html'){
+        action.href='partner.html';
+        action.textContent='協賛・協力を見る';
+      }else{
+        action.href=REPORT;
+        action.textContent='開催レポート';
+      }
+      actions.appendChild(action);
+    }
   }
 
   const replacements=new Map([
