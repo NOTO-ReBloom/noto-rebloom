@@ -44,7 +44,7 @@ const widths=[[375,812],[430,932],[768,1024],[1440,1000]];
       footerSocial:!!document.querySelector('.rb-social-links--footer'),
       contactFab:!!document.querySelector('.rb-contact-fab'),
       farmlandStory:!!document.querySelector('#farmland-data-story'),
-      faqCategory:!!document.querySelector('.faq-category')
+      faqArchive:document.querySelectorAll('#event-faq .faq-list details').length>=10
     }));
   }
   await featurePage.close();
@@ -53,7 +53,7 @@ const widths=[[375,812],[430,932],[768,1024],[1440,1000]];
   const failures=results.filter(x=>x.overflow||x.broken.length||x.errors.length||x.h1!==1);
   const required=[
     ['index.html','partnerStrip'],['index.html','footerSocial'],['index.html','contactFab'],
-    ['learn.html','farmlandStory'],['event.html','faqCategory'],
+    ['learn.html','farmlandStory'],['event.html','faqArchive'],
     ['report.html','partnerStrip'],['partner.html','partnerStrip']
   ];
   const missing=required.filter(([p,k])=>!features[p]?.[k]).map(([p,k])=>p+':'+k);
