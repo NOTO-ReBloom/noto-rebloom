@@ -5,9 +5,10 @@ const {PurgeCSS}=require('purgecss');
   fs.mkdirSync('qa',{recursive:true});
   const contentFiles=[
     'index.html','thoughts.html','learn.html','event.html','report.html','partner.html',
-    'contact.html','photo-credits.html','404.html',
-    'site-core.js','site-postevent.js','rebloom-unified.js','rebloom-detail.js',
-    'partner-final.js','partner-oteru-profile.js'
+    'contact.html','photo-credits.html','404.html','diagnosis.html',
+    'site-core.js','site-postevent.js','rebloom-unified.js','rebloom-detail.js','site.js',
+    'partner-final.js','partner-oteru-profile.js',
+    'diagnosis.js','diagnosis-group-colors.js','diagnosis-visual-v2.js'
   ];
   const cssFiles=[
     'site.css',
