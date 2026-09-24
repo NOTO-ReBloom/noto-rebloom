@@ -1,6 +1,6 @@
 (()=>{
   'use strict';
-  const JOIN='https://forms.gle/6ZMrhrhtWmBCQViD8';
+  const REPORT='report.html';
   const CROWD='https://readyfor.jp/projects/kousakuhoukiti-saisei';
   const ISHIMO='https://www.ishimo-ishikawa.jp/';
   const GYAKUTEN='https://gyakuten-coaching.com/';
@@ -16,7 +16,7 @@
   ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
   ensureStyle('rebloom-detail.css','rebloom-detail.css?v=20260817e');
 
-  const labels={'index.html':'ホーム','learn.html':'土地と企画','event.html':'泥ん子運動会','partner.html':'協賛・協力','diagnosis.html':'花タイプ診断'};
+  const labels={'index.html':'ホーム','thoughts.html':'私たちの思い','learn.html':'土地と企画','event.html':'泥ん子運動会','partner.html':'協賛・協力','diagnosis.html':'花タイプ診断','contact.html':'お問い合わせ'};
   const nav=document.querySelector('.site-nav');
   if(nav){
     [...nav.querySelectorAll('a')].forEach(a=>{
@@ -30,10 +30,20 @@
   const actions=document.querySelector('.header-actions');
   if(actions){
     actions.innerHTML='';
+    const action=document.createElement('a');
+    action.className='btn btn--small btn--green';
+    action.target='_self';
     if(page==='partner.html'){
-      const consult=document.createElement('a');consult.className='rb-header-secondary';consult.href='mailto:infonotorebloom@gmail.com';consult.textContent='協賛について相談';actions.appendChild(consult);
+      action.href='mailto:infonotorebloom@gmail.com';
+      action.textContent='今後の連携を相談';
+    }else if(page==='report.html'){
+      action.href='partner.html';
+      action.textContent='協賛・協力を見る';
+    }else{
+      action.href=REPORT;
+      action.textContent='開催レポート';
     }
-    const join=document.createElement('a');join.className='btn btn--small btn--green';join.href=JOIN;join.target='_blank';join.rel='noopener';join.textContent='9/20 参加申込';actions.appendChild(join);
+    actions.appendChild(action);
   }
 
   const replacements=new Map([
@@ -54,7 +64,7 @@
     const section=document.createElement('section');
     section.id='ishimo-collaboration';
     section.className='section ishimo-collaboration';
-    section.innerHTML=`<div class="container"><article class="ishimo-collaboration-card"><div class="ishimo-collaboration-mark"><img class="ishimo-collaboration-logo--ishimo" src="ishimo-logo.svg" alt="石川をもっと、ishimo"><small aria-hidden="true">×</small><img class="ishimo-collaboration-logo--rebloom" src="noto-rebloom-logo.png" alt="NOTO Re:Bloom"></div><div class="ishimo-collaboration-copy"><p class="ishimo-collaboration-kicker">COLLABORATION</p><h2>学生プロジェクト<br><span>ishimo（イシモ）</span>と連携します。</h2><p>2026年9月20日の泥ん子運動会に向け、石川県主催の学生プロジェクト「ishimo」と連携します。学生への情報発信や参加の呼びかけを通じて、能登と学生がつながる入口を一緒につくります。</p><p class="ishimo-collaboration-note">今回の連携を、学生が継続して能登に関わる仕組みへつなげていきます。</p><a class="btn btn--paper ishimo-collaboration-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイトを見る ↗</a></div></article></div>`;
+    section.innerHTML=`<div class="container"><article class="ishimo-collaboration-card"><div class="ishimo-collaboration-mark"><img class="ishimo-collaboration-logo--ishimo" src="ishimo-logo.svg" alt="石川をもっと、ishimo"><small aria-hidden="true">×</small><img class="ishimo-collaboration-logo--rebloom" src="noto-rebloom-logo.png" alt="NOTO Re:Bloom"></div><div class="ishimo-collaboration-copy"><p class="ishimo-collaboration-kicker">COLLABORATION</p><h2>学生プロジェクト<br><span>ishimo（イシモ）</span>と連携します。</h2><p>2026年9月20日の泥ん子運動会では、石川県主催の学生プロジェクト「ishimo」と連携しました。学生への情報発信や参加の呼びかけを通じて、能登と学生がつながる入口づくりを支えていただきました。</p><p class="ishimo-collaboration-note">今回生まれたつながりを、学生が継続して能登に関わる次の活動へつなげていきます。</p><a class="btn btn--paper ishimo-collaboration-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイトを見る ↗</a></div></article></div>`;
     const target=document.querySelector('#project-story');
     if(target)target.before(section);else document.querySelector('main')?.appendChild(section);
   }
@@ -65,7 +75,7 @@
       grid.classList.add('industry-grid--partners');
       const article=document.createElement('article');
       article.className='industry-partner--ishimo';
-      article.innerHTML=`<span class="industry-partner-label">COLLABORATION</span><a class="industry-partner-logo" href="${ISHIMO}" target="_blank" rel="noopener" aria-label="ishimo公式サイト"><img src="ishimo-logo.svg" alt="石川をもっと、ishimo"></a><h3>学生プロジェクト ishimo（イシモ）</h3><p>石川県主催の学生プロジェクトです。NOTO Re:Bloomとは、泥ん子運動会の情報発信と学生参加に向けて連携します。</p><a class="text-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト →</a>`;
+      article.innerHTML=`<span class="industry-partner-label">COLLABORATION</span><a class="industry-partner-logo" href="${ISHIMO}" target="_blank" rel="noopener" aria-label="ishimo公式サイト"><img src="ishimo-logo.svg" alt="石川をもっと、ishimo"></a><h3>学生プロジェクト ishimo（イシモ）</h3><p>石川県主催の学生プロジェクトです。NOTO Re:Bloomとは、泥ん子運動会の情報発信と学生参加に向けて連携いただきました。</p><a class="text-link" href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト →</a>`;
       grid.prepend(article);
     }
   }
@@ -125,15 +135,19 @@
 
   const footer=document.querySelector('.site-footer');
   if(footer){
+    const ctaHref=page==='report.html'?'partner.html':REPORT;
+    const ctaLabel=page==='report.html'?'協賛・協力を見る':'開催レポートを見る';
+    const ctaTitle=page==='report.html'?'この一日を支えてくださった皆さまへ。':'泥ん子運動会2026を開催しました。';
+    const ctaText=page==='report.html'?'協賛・物品提供・情報発信・現地調整など、多くの協力に支えられて開催できました。':'2026年9月20日、珠洲市若山町洲巻で開催した一日の記録を公開しています。';
     footer.classList.add('rb-footer');footer.innerHTML=`
-      <div class="container rb-footer-cta"><div><h2>9月20日、洲巻の田んぼで開催します。</h2><p>参加費無料。受付12:30、13:00開始、17:00頃終了予定です。</p></div><a class="btn" href="${JOIN}" target="_blank" rel="noopener">参加申込</a></div>
-      <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>泥スポーツをきっかけに能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
+      <div class="container rb-footer-cta"><div><h2>${ctaTitle}</h2><p>${ctaText}</p></div><a class="btn" href="${ctaHref}">${ctaLabel}</a></div>
+      <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>楽しさを入口に能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="report.html">開催レポート</a><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会アーカイブ</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
       <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
   }
 
   document.querySelectorAll('.mobile-dock,.join-dock,.rb-mobile-join').forEach(el=>el.remove());
-  if(page!=='404.html'){
-    const dock=document.createElement('div');dock.className='rb-mobile-join';dock.innerHTML=`<a href="${JOIN}" target="_blank" rel="noopener"><span>9/20 参加申込</span><small>参加費無料</small></a>`;document.body.appendChild(dock);
+  if(page!=='404.html'&&page!=='report.html'){
+    const dock=document.createElement('div');dock.className='rb-mobile-join';dock.innerHTML=`<a href="${REPORT}"><span>開催レポート</span><small>9/20の記録</small></a>`;document.body.appendChild(dock);
   }
 
   const revealTargets=[...document.querySelectorAll('main>section,.rb-illustration-section')].filter(el=>!el.classList.contains('diagnosis-panel'));
