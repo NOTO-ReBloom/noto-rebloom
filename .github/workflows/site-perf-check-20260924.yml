@@ -64,7 +64,10 @@ jobs:
               renderBlockers:(a['render-blocking-insight']?.details?.items||[]).slice(0,5).map(x=>({
                 url:(x.url||'').split('/').pop(),
                 ms:Math.round(x.wastedMs||0)
-              }))
+              })),
+              accessibilityFailures:Object.entries(a)
+                .filter(([id,x])=>x?.scoreDisplayMode==='binary'&&x?.score===0&&x?.details?.items?.length)
+                .map(([id,x])=>({id,title:x.title,count:x.details.items.length,items:x.details.items.slice(0,5).map(i=>({selector:i.node?.selector||null,label:i.node?.nodeLabel||null}))}))
             });
           }
           console.log('PERF_SUMMARY='+JSON.stringify(out));
@@ -85,3 +88,5 @@ jobs:
 # rerun after single-core fix: 2026-09-24 v8
 
 # rerun after css bundling: 2026-09-24 v9
+
+# a11y detail rerun: 2026-09-24 v4
