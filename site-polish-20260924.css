@@ -13,6 +13,57 @@
   --rb-polish-shadow:0 14px 36px rgba(23,63,52,.07);
 }
 
+/* Post-event banner lives in the shared polish layer so home no longer needs report CSS. */
+.nr-new-home .postevent-notice{
+  background:var(--rb-polish-green)!important;
+  color:#fff!important;
+  border:0!important;
+}
+.nr-new-home .postevent-notice__inner{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  padding:13px 0!important;
+}
+.nr-new-home .postevent-notice__copy{
+  display:flex!important;
+  align-items:center!important;
+  gap:13px!important;
+  min-width:0!important;
+}
+.nr-new-home .postevent-notice__copy b{
+  color:#fff!important;
+  font-size:14px!important;
+}
+.nr-new-home .postevent-notice__copy span:not(.postevent-notice__badge){
+  color:rgba(255,255,255,.78)!important;
+  font-size:12px!important;
+}
+.nr-new-home .postevent-notice__badge{
+  flex:0 0 auto!important;
+  padding:5px 9px!important;
+  border-radius:999px!important;
+  background:var(--rb-polish-yellow)!important;
+  color:var(--rb-polish-green)!important;
+  font-size:10px!important;
+  font-weight:900!important;
+}
+.nr-new-home .postevent-notice__link{
+  flex:0 0 auto!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:38px!important;
+  padding:0 14px!important;
+  border-radius:999px!important;
+  background:#fff!important;
+  color:var(--rb-polish-green)!important;
+  text-decoration:none!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+
 /* Shared editorial rhythm — never targets .page-diagnosis */
 .nr-new-home main,
 .page-thoughts main,
@@ -397,6 +448,15 @@ body.page-learn:not(.page-thoughts) .conversion-band{
 
 /* Mobile */
 @media(max-width:700px){
+  .nr-new-home .postevent-notice__inner{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+    gap:9px!important;
+  }
+  .nr-new-home .postevent-notice__copy{align-items:flex-start!important}
+  .nr-new-home .postevent-notice__copy>div span{display:block!important;margin-top:2px!important}
+  .nr-new-home .postevent-notice__link{width:100%!important}
+
   .nr-new-home .container,
   .page-thoughts .container,
   body.page-learn:not(.page-thoughts) .container,
