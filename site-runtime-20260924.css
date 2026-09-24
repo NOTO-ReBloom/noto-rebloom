@@ -1,0 +1,136 @@
+/* NOTO Re:Bloom runtime UI styles — 2026-09-24
+   Non-diagnosis pages only. Static replacement for JS-injected finishing/contact/social styles. */
+
+/* NOTO Re:Bloom / final content hierarchy + shared partner strip */
+
+/* Home: the second summary row is about the experience, not repeated logistics. */
+.nr-new-home #visual-day .join-facts .join-fact strong{font-size:clamp(24px,3vw,36px)}
+.nr-new-home #visual-day .join-facts .join-fact span{line-height:1.45}
+
+/* Event FAQ: organise many questions into clear groups without reducing information. */
+.nr-new-event #event-faq .faq-grid{display:block!important}
+.nr-new-event #event-faq .faq-category{margin-top:24px}
+.nr-new-event #event-faq .faq-category:first-child{margin-top:0}
+.nr-new-event #event-faq .faq-category__title{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:#184b3d;font-size:17px;font-weight:900;line-height:1.4}
+.nr-new-event #event-faq .faq-category__title::before{content:"";width:9px;height:9px;border-radius:50%;background:#8fba8c;box-shadow:0 0 0 5px rgba(143,186,140,.15)}
+.nr-new-event #event-faq .faq-category:nth-child(2) .faq-category__title::before{background:#d8b552;box-shadow:0 0 0 5px rgba(216,181,82,.14)}
+.nr-new-event #event-faq .faq-category:nth-child(3) .faq-category__title::before{background:#7fa8c8;box-shadow:0 0 0 5px rgba(127,168,200,.14)}
+.nr-new-event #event-faq .faq-category:nth-child(4) .faq-category__title::before{background:#a988b7;box-shadow:0 0 0 5px rgba(169,136,183,.14)}
+.nr-new-event #event-faq .faq-category__cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+
+/* Event: the 9/19 notice is supporting information, not a competing main section. */
+.nr-new-event .rb-reboost-section--compact{padding:18px 20px 34px;background:#fffaf2}
+.nr-new-event .event-reboost-note{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 22px;border:1px solid rgba(24,75,61,.13);border-radius:18px;background:#fff;box-shadow:0 7px 20px rgba(24,75,61,.05)}
+.nr-new-event .event-reboost-note__copy{min-width:0}
+.nr-new-event .event-reboost-note small{display:block;margin-bottom:4px;color:#7c6a92;font-size:10px;font-weight:900;letter-spacing:.1em}
+.nr-new-event .event-reboost-note strong{display:block;color:#173e34;font-size:17px;line-height:1.45}
+.nr-new-event .event-reboost-note p{margin:5px 0 0;color:#627069;font-size:13px;line-height:1.7}
+.nr-new-event .event-reboost-note__date{flex:none;display:grid;place-items:center;min-width:82px;min-height:64px;padding:8px 12px;border-radius:14px;background:#f2eaf6;color:#633f76;text-align:center;font-size:12px;font-weight:900;line-height:1.35}
+
+/* Shared acknowledgement strip shown directly above every page footer. */
+.site-partner-strip{padding:30px 20px 26px;background:#fffaf2;border-top:1px solid rgba(24,75,61,.11)}
+.site-partner-strip__inner{width:min(1180px,100%);margin:0 auto;text-align:center}
+.site-partner-strip__label{margin:0 0 15px;color:#78837e;font-size:10px;font-weight:900;letter-spacing:.12em}
+.site-partner-strip__logos{display:flex;align-items:stretch;justify-content:center;gap:10px;flex-wrap:nowrap}
+.site-partner-strip__logo{display:grid;place-items:center;flex:1 1 0;min-width:0;height:64px;padding:9px 10px;border:1px solid rgba(24,75,61,.11);border-radius:14px;background:#fff;text-decoration:none;box-sizing:border-box;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.site-partner-strip__logo img{display:block;max-width:100%;max-height:42px;width:auto;height:auto;object-fit:contain}
+.site-partner-strip__logo--rebloom img{max-height:48px}
+/* Ishikawa Zukan: the source PNG is 250x250, while the actual black mark occupies x=36..214 and y=103..146. Render the original PNG as a precisely sized centered background so only the black mark fills the card. */
+.site-partner-strip__logo[aria-label="イシカワズカン"]{padding:0!important;overflow:hidden!important;background-color:#fff!important;background-image:url("ishikawa-zukan-logo.png?v=20260827c")!important;background-repeat:no-repeat!important;background-position:center!important;background-size:217px 217px!important}
+.site-partner-strip__logo[aria-label="イシカワズカン"] img{display:none!important}
+.site-partner-strip__more{display:inline-block;margin-top:13px;color:#184b3d;font-size:11px;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(24,75,61,.25)}
+@media(hover:hover){.site-partner-strip__logo:hover{transform:translateY(-2px);border-color:rgba(24,75,61,.24);box-shadow:0 7px 18px rgba(24,75,61,.07)}}
+
+/* Conversion-first home hierarchy: trust appears before project-history material. */
+.nr-new-home main{display:flex;flex-direction:column}
+.nr-new-home main>.nr-home-hero{order:10}
+.nr-new-home main>#visual-day{order:20}
+.nr-new-home main>#participant-guide{order:30}
+.nr-new-home main>#people-behind-project{order:40}
+.nr-new-home main>.nr-choice-grid{order:50}
+.nr-new-home main>#crowdfunding-result{order:60}
+.nr-new-home main>#project-story{order:70}
+.nr-new-home main>#ishimo-collaboration{order:80}
+.nr-new-home main>.conversion-band{order:90}
+
+/* Event readiness facts: factual, compact reassurance immediately after the summary. */
+.nr-new-event .event-readiness-strip{padding:14px 20px 6px;background:#fff}
+.nr-new-event .event-readiness-strip__inner{width:min(1160px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.nr-new-event .event-readiness-item{display:flex;align-items:center;gap:10px;min-height:60px;padding:11px 13px;border:1px solid rgba(24,75,61,.13);border-radius:15px;background:#f8fbf5}
+.nr-new-event .event-readiness-item>span{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:#e1efdd;color:#184b3d;font-size:14px;font-weight:900}
+.nr-new-event .event-readiness-item b{display:block;color:#173e34;font-size:12px;line-height:1.4}
+.nr-new-event .event-readiness-item small{display:block;margin-top:2px;color:#6b7771;font-size:10px;line-height:1.45}
+
+/* Share strip: make parent-to-parent and friend-to-friend forwarding frictionless. */
+.nr-new-event .event-share-strip{padding:10px 20px 22px;background:#fff}
+.nr-new-event .event-share-strip__inner{width:min(1160px,100%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;border:1px solid rgba(24,75,61,.13);border-radius:18px;background:linear-gradient(135deg,#fff8d9,#edf7ea)}
+.nr-new-event .event-share-strip__copy b{display:block;color:#173e34;font-size:14px;line-height:1.45}
+.nr-new-event .event-share-strip__copy span{display:block;margin-top:3px;color:#68756e;font-size:11px;line-height:1.5}
+.nr-new-event .event-share-actions{display:flex;flex:none;gap:8px}
+.nr-new-event .event-share-btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 13px;border:1px solid rgba(24,75,61,.2);border-radius:999px;background:#fff;color:#184b3d;font:inherit;font-size:11px;font-weight:900;text-decoration:none;cursor:pointer}
+.nr-new-event .event-share-btn--line{background:#06c755;color:#fff;border-color:#06b64d}
+.nr-new-event .event-share-status{min-width:72px;color:#42675b;font-size:10px;font-weight:800;text-align:center;align-self:center}
+
+@media(max-width:900px){
+  .site-partner-strip__logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .site-partner-strip__logo{height:60px}
+  .nr-new-event #event-faq .faq-category__cards{grid-template-columns:1fr}
+  .nr-new-event .event-readiness-strip__inner{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nr-new-event .event-share-strip__inner{align-items:flex-start;flex-direction:column}
+  .nr-new-event .event-share-actions{width:100%;flex-wrap:wrap}
+}
+@media(max-width:620px){
+  .site-partner-strip{padding:24px 14px 22px}
+  .site-partner-strip__logos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .site-partner-strip__logo{height:58px;padding:8px 10px}
+  .site-partner-strip__logo img{max-height:38px}
+  .site-partner-strip__logo--rebloom img{max-height:42px}
+  .site-partner-strip__logo[aria-label="イシカワズカン"]{background-size:205px 205px!important}
+  .nr-new-event .event-reboost-note{align-items:flex-start;padding:15px 16px;gap:12px}
+  .nr-new-event .event-reboost-note__date{min-width:68px;min-height:56px;font-size:11px}
+  .nr-new-event #event-faq .faq-category{margin-top:20px}
+  .nr-new-event #event-faq .faq-category__title{font-size:15px;margin-bottom:9px}
+  .nr-new-event .event-readiness-strip{padding:10px 13px 4px}
+  .nr-new-event .event-readiness-strip__inner{grid-template-columns:1fr 1fr;gap:7px}
+  .nr-new-event .event-readiness-item{min-height:64px;padding:9px 10px;gap:8px}
+  .nr-new-event .event-readiness-item>span{width:26px;height:26px;font-size:12px}
+  .nr-new-event .event-readiness-item b{font-size:11px}.nr-new-event .event-readiness-item small{font-size:9px}
+  .nr-new-event .event-share-strip{padding:8px 13px 18px}
+  .nr-new-event .event-share-strip__inner{padding:14px;border-radius:16px;gap:12px}
+  .nr-new-event .event-share-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .nr-new-event .event-share-btn{width:100%;min-height:42px;padding:8px 10px}
+  .nr-new-event .event-share-status{grid-column:1/-1;width:100%}
+
+  /* Keep a high-visibility participation CTA available on mobile across core pages.
+     Event and diagnosis already have their own dedicated mobile bars. */
+  .nr-new-home .hero-copy .button-row>a[href*="6ZMrhrhtWmBCQViD8"],
+  .page-learn #learn-join-cta>a[href*="6ZMrhrhtWmBCQViD8"],
+  .nr-new-partner .header-actions>a[href*="6ZMrhrhtWmBCQViD8"]{
+    display:flex!important;position:fixed!important;z-index:930!important;left:12px!important;right:12px!important;bottom:9px!important;width:auto!important;min-height:52px!important;margin:0!important;padding:12px 18px!important;border:2px solid #fff!important;border-radius:18px!important;background:#174b3d!important;color:#fff!important;box-shadow:0 8px 28px rgba(14,52,43,.28)!important;font-size:13px!important;font-weight:900!important;line-height:1.35!important;text-align:center!important;transform:none!important
+  }
+  .nr-new-home,.page-learn,.nr-new-partner{padding-bottom:72px}
+}
+
+/* ===== global contact UI ===== */
+.rb-contact-nav{font-weight:900!important}
+      .rb-contact-header{display:inline-flex!important;align-items:center;justify-content:center;min-height:38px;padding:0 13px;border-radius:999px;border:1px solid rgba(24,75,61,.2);background:#fff;color:#184b3d!important;text-decoration:none!important;font-size:12px;font-weight:900;white-space:nowrap;box-shadow:0 3px 10px rgba(24,75,61,.05)}
+      .rb-contact-header::before{content:"?";display:grid;place-items:center;width:20px;height:20px;margin-right:6px;border-radius:50%;background:#e7f3e8;font-size:11px;font-weight:900}
+      .rb-contact-fab{position:fixed;z-index:79;right:20px;bottom:20px;display:flex;align-items:center;gap:9px;min-height:48px;padding:0 17px 0 11px;border-radius:999px;background:#fff;color:#184b3d;text-decoration:none;border:1px solid rgba(24,75,61,.18);box-shadow:0 12px 30px rgba(23,58,49,.18);font-size:13px;font-weight:900;transition:transform .16s ease,box-shadow .16s ease}
+      .rb-contact-fab__icon{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#184b3d;color:#fff;font-size:15px;font-weight:900;line-height:1}
+      .rb-contact-footer{box-sizing:border-box;width:min(1120px,calc(100% - 40px));margin:14px auto 0;padding:16px 0 2px;border-top:1px solid rgba(255,255,255,.13);display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;color:rgba(255,255,255,.78);font-size:12px}
+      .rb-contact-footer strong{color:#fff;font-size:12px}.rb-contact-footer a{color:#fff!important;text-decoration:underline;text-underline-offset:3px;font-weight:800}.rb-contact-footer .rb-contact-footer__page{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;text-decoration:none!important;background:rgba(255,255,255,.07)}
+      @media(hover:hover){.rb-contact-header:hover,.rb-contact-fab:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(23,58,49,.2)}.rb-contact-footer .rb-contact-footer__page:hover{background:rgba(255,255,255,.14)}}
+      @media(max-width:900px){.rb-contact-header{display:none!important}}
+      @media(max-width:760px){.rb-contact-fab{right:10px;bottom:78px;min-height:44px;padding:0 13px 0 8px;font-size:12px}.rb-contact-fab__icon{width:28px;height:28px}.report-page .rb-contact-fab,.page-404 .rb-contact-fab{bottom:10px}.rb-contact-footer{width:min(100% - 28px,1120px);align-items:flex-start;flex-direction:column;gap:7px;padding-top:14px}}
+
+/* ===== global social UI ===== */
+.rb-social-links{display:flex;align-items:center;gap:9px}
+      .rb-social-links a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;text-decoration:none;transition:transform .16s ease,background .16s ease,border-color .16s ease,color .16s ease}
+      .rb-social-links svg{display:block;width:18px;height:18px}
+      .rb-social-links--footer{box-sizing:border-box;width:min(1120px,calc(100% - 40px));margin:18px auto 0;padding:18px 0 2px;border-top:1px solid rgba(255,255,255,.13);justify-content:flex-start}
+      .rb-social-links--footer::before{content:"公式SNS";margin-right:5px;color:rgba(255,255,255,.62);font-size:10px;font-weight:900;letter-spacing:.1em}
+      .rb-social-links--footer a{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);color:#fff}
+      .story-step--linked{color:inherit;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+      .story-step--linked::after{content:"公式ページを見る ↗";display:block;margin-top:12px;color:#245f4c;font-size:10px;font-weight:900;letter-spacing:.02em}
+      @media(hover:hover){.rb-social-links--footer a:hover{transform:translateY(-2px);background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);color:#ffe88d}.story-step--linked:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(23,58,49,.11);border-color:rgba(23,75,62,.24)}}
+      @media(max-width:700px){.rb-social-links--footer{width:min(100% - 28px,1120px);padding-top:15px}.rb-social-links--footer a{width:34px;height:34px}.rb-social-links--footer svg{width:17px;height:17px}}
