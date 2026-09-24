@@ -143,21 +143,23 @@
     if(imageCount===0&&textLength>420)section.classList.add('rb-text-heavy');if(imageCount>=2)section.classList.add('rb-image-rich');
   });
 
-  const footer=document.querySelector('.site-footer');
-  if(footer){
-    const ctaHref=page==='report.html'?'partner.html':REPORT;
-    const ctaLabel=page==='report.html'?'協賛・協力を見る':'開催レポートを見る';
-    const ctaTitle=page==='report.html'?'この一日を支えてくださった皆さまへ。':'泥ん子運動会2026を開催しました。';
-    const ctaText=page==='report.html'?'協賛・物品提供・情報発信・現地調整など、多くの協力に支えられて開催できました。':'2026年9月20日、珠洲市若山町洲巻で開催した一日の記録を公開しています。';
-    footer.classList.add('rb-footer');footer.innerHTML=`
-      <div class="container rb-footer-cta"><div><h2>${ctaTitle}</h2><p>${ctaText}</p></div><a class="btn" href="${ctaHref}">${ctaLabel}</a></div>
-      <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>楽しさを入口に能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="report.html">開催レポート</a><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会アーカイブ</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
-      <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
-  }
+  if(!postEventShell){
+    const footer=document.querySelector('.site-footer');
+    if(footer){
+      const ctaHref=page==='report.html'?'partner.html':REPORT;
+      const ctaLabel=page==='report.html'?'協賛・協力を見る':'開催レポートを見る';
+      const ctaTitle=page==='report.html'?'この一日を支えてくださった皆さまへ。':'泥ん子運動会2026を開催しました。';
+      const ctaText=page==='report.html'?'協賛・物品提供・情報発信・現地調整など、多くの協力に支えられて開催できました。':'2026年9月20日、珠洲市若山町洲巻で開催した一日の記録を公開しています。';
+      footer.classList.add('rb-footer');footer.innerHTML=`
+        <div class="container rb-footer-cta"><div><h2>${ctaTitle}</h2><p>${ctaText}</p></div><a class="btn" href="${ctaHref}">${ctaLabel}</a></div>
+        <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>楽しさを入口に能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="report.html">開催レポート</a><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会アーカイブ</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
+        <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
+    }
 
-  document.querySelectorAll('.mobile-dock,.join-dock,.rb-mobile-join').forEach(el=>el.remove());
-  if(page!=='404.html'&&page!=='report.html'){
-    const dock=document.createElement('div');dock.className='rb-mobile-join';dock.innerHTML=`<a href="${REPORT}"><span>開催レポート</span><small>9/20の記録</small></a>`;document.body.appendChild(dock);
+    document.querySelectorAll('.mobile-dock,.join-dock,.rb-mobile-join').forEach(el=>el.remove());
+    if(page!=='404.html'&&page!=='report.html'){
+      const dock=document.createElement('div');dock.className='rb-mobile-join';dock.innerHTML=`<a href="${REPORT}"><span>開催レポート</span><small>9/20の記録</small></a>`;document.body.appendChild(dock);
+    }
   }
 
   const revealTargets=[...document.querySelectorAll('main>section,.rb-illustration-section')].filter(el=>!el.classList.contains('diagnosis-panel'));
