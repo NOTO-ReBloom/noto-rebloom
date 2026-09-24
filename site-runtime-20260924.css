@@ -134,3 +134,12 @@
       .story-step--linked::after{content:"公式ページを見る ↗";display:block;margin-top:12px;color:#245f4c;font-size:10px;font-weight:900;letter-spacing:.02em}
       @media(hover:hover){.rb-social-links--footer a:hover{transform:translateY(-2px);background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);color:#ffe88d}.story-step--linked:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(23,58,49,.11);border-color:rgba(23,75,62,.24)}}
       @media(max-width:700px){.rb-social-links--footer{width:min(100% - 28px,1120px);padding-top:15px}.rb-social-links--footer a{width:34px;height:34px}.rb-social-links--footer svg{width:17px;height:17px}}
+
+
+/* === ACCESSIBILITY + PERFORMANCE FINISH / 2026-09-24 === */
+.rb-mobile-join small{opacity:1!important;color:#184b3d!important}
+.site-partner-strip__label{color:#56645e!important}
+.rb-footer-links a{display:flex;align-items:center;min-height:36px}
+.rb-contact-footer>a{display:inline-flex;align-items:center;min-height:36px}
+.site-partner-strip__more{display:inline-flex;align-items:center;min-height:36px}
+@media(max-width:700px){.rb-social-links--footer a{width:36px!important;height:36px!important}}
