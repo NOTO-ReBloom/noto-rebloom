@@ -4,16 +4,56 @@
   const nav=document.querySelector('.site-nav');
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 
+  const labels={
+    'index.html':'ホーム',
+    'thoughts.html':'私たちの思い',
+    'learn.html':'土地と企画',
+    'event.html':'泥ん子運動会',
+    'partner.html':'協賛・協力',
+    'diagnosis.html':'花タイプ診断',
+    'contact.html':'お問い合わせ'
+  };
+
   if(nav){
     nav.setAttribute('aria-label','メインナビゲーション');
     if(!nav.querySelector('a[href="thoughts.html"]')){
       const link=document.createElement('a');
       link.href='thoughts.html';
       link.textContent='私たちの思い';
-      if(current==='thoughts.html') link.setAttribute('aria-current','page');
       const before=nav.querySelector('a[href="learn.html"]');
       if(before) nav.insertBefore(link,before); else nav.appendChild(link);
     }
+    if(!nav.querySelector('a[href="contact.html"]')){
+      const link=document.createElement('a');
+      link.href='contact.html';
+      link.textContent='お問い合わせ';
+      nav.appendChild(link);
+    }
+    nav.querySelectorAll('a[href]').forEach(link=>{
+      const href=(link.getAttribute('href')||'').split('#')[0].toLowerCase();
+      if(labels[href]) link.textContent=labels[href];
+      link.removeAttribute('aria-current');
+      if(href===current||(current===''&&href==='index.html')) link.setAttribute('aria-current','page');
+    });
+  }
+
+  const actions=document.querySelector('.header-actions');
+  if(actions){
+    actions.innerHTML='';
+    const action=document.createElement('a');
+    action.className='btn btn--small btn--green';
+    action.target='_self';
+    if(current==='partner.html'){
+      action.href='mailto:infonotorebloom@gmail.com';
+      action.textContent='今後の連携を相談';
+    }else if(current==='report.html'){
+      action.href='partner.html';
+      action.textContent='協賛・協力を見る';
+    }else{
+      action.href='report.html';
+      action.textContent='開催レポート';
+    }
+    actions.appendChild(action);
   }
 
   const navigateHeaderInPlace=(event)=>{
