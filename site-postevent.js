@@ -1,4 +1,6 @@
 (()=>{
+  'use strict';
+  window.__RB_POSTEVENT_RUNTIME__=true;
   const nav=document.querySelector('.site-nav');
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 
