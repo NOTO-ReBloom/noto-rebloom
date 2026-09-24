@@ -43,8 +43,20 @@ jobs:
               seo:Math.round((c.seo?.score||0)*100),
               lcp:Math.round(a['largest-contentful-paint']?.numericValue||0),
               cls:Number((a['cumulative-layout-shift']?.numericValue||0).toFixed(4)),
-              tbt:Math.round(a['total-blocking-time']?.numericValue||0)
+              tbt:Math.round(a['total-blocking-time']?.numericValue||0),
+              lcpElement:(a['lcp-breakdown-insight']?.details?.items||[]).find(x=>x.type==='node')?.selector||null,
+              shifts:(a['layout-shifts']?.details?.items||[]).slice(0,3).map(x=>({
+                score:Number((x.score||0).toFixed(4)),
+                selector:x.node?.selector||null,
+                cause:x.subItems?.items?.[0]?.cause||null
+              })),
+              renderBlockers:(a['render-blocking-insight']?.details?.items||[]).slice(0,5).map(x=>({
+                url:(x.url||'').split('/').pop(),
+                ms:Math.round(x.wastedMs||0)
+              }))
             });
           }
           console.log('PERF_SUMMARY='+JSON.stringify(out));
           NODE
+
+# detail rerun: 2026-09-24 cls-lcp-v2
