@@ -1,18 +1,31 @@
 {
   "version": 8,
-  "updatedAt": "2026-09-24T08:47:55.188Z",
-  "retryGeneration": 91,
+  "updatedAt": "2026-09-24T08:59:03.491Z",
+  "retryGeneration": 92,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
   "recoveryBatch": {
     "mode": "publish_new_note24_20260924",
-    "requiredStrictPublications": 5,
+    "requiredStrictPublications": 18,
     "orderedIds": [
       "note_20260924_127_npo_recruitment_funnel",
       "note_20260924_128_volunteer_retention_checkin",
       "note_20260924_129_shared_backoffice_request",
       "note_20260924_130_grant_report_evidence",
-      "note_20260924_131_event_safety_handoff"
+      "note_20260924_131_event_safety_handoff",
+      "note_20260924_132_community_partner_followup",
+      "note_20260924_133_small_team_shift_gap",
+      "note_20260924_134_donation_use_explanation",
+      "note_20260924_135_npo_board_decision_record",
+      "note_20260924_136_service_inquiry_triage",
+      "note_20260924_137_project_scope_change_log",
+      "note_20260924_138_new_staff_first_month",
+      "note_20260924_139_customer_feedback_to_action",
+      "note_20260924_140_vendor_meeting_followthrough",
+      "note_20260924_141_remote_team_handoff",
+      "note_20260924_142_cash_commitment_calendar",
+      "note_20260924_143_website_change_review",
+      "note_20260924_144_monthly_operations_review"
     ],
     "strictChecks": [
       "readerVisibleUrl",
@@ -3545,6 +3558,266 @@
       "enabled": true,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-131-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_132_community_partner_followup",
+      "title": "地域連携の打合せを成果につなぐ｜約束・期限・次回連絡の管理法",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_132_community_partner_followup.enc.json",
+      "sha256": "9d1b94610da9dd2094ec32476b30b432d0942724db357e71ed540c92a8ad2c94",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-132-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_133_small_team_shift_gap",
+      "title": "少人数チームのシフト穴を早く見つける｜代替担当まで決める表",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_133_small_team_shift_gap.enc.json",
+      "sha256": "ca564c633f7be77e99846476acab1a06482829dcd736e8221e9cb900b06ffd4e",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-133-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_134_donation_use_explanation",
+      "title": "寄付金の使途を一文で説明できるか｜支出と成果をつなぐ台帳",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_134_donation_use_explanation.enc.json",
+      "sha256": "be5db0d84f2eda2e93fb28299676d931202c8f287438dd5bdfffd61ebdb51128",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-134-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_135_npo_board_decision_record",
+      "title": "理事会の決定事項を実行につなぐ｜議事録に追加したい7項目",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_135_npo_board_decision_record.enc.json",
+      "sha256": "d210fcb2b5b6db12913071b69d85e33314c236f0e8f089bd7db99ac16bf4b584",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-135-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_136_service_inquiry_triage",
+      "title": "問い合わせ対応の優先順位を揃える｜緊急度と回答期限の分け方",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_136_service_inquiry_triage.enc.json",
+      "sha256": "2181074663360fd85a69578c45e186384c6d1010c044f07e2e52390ed3342d77",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-136-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_137_project_scope_change_log",
+      "title": "プロジェクトの追加依頼で赤字にならない｜変更依頼の記録票",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_137_project_scope_change_log.enc.json",
+      "sha256": "b4b38b5582484f5f4e8511b1efdc9d11859d31181df7f6d4b17e4d6db98a3bf3",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-137-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_138_new_staff_first_month",
+      "title": "新任担当が1か月で迷わない｜最初の30日に渡す業務地図",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_138_new_staff_first_month.enc.json",
+      "sha256": "d0a4637e416b9876a9e38f4f412bf4ca02172235bea5f5cc3dd33909c308a6e5",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-138-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_139_customer_feedback_to_action",
+      "title": "顧客の声を集めっぱなしにしない｜改善案件に変える分類表",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_139_customer_feedback_to_action.enc.json",
+      "sha256": "3d568647cb78798d62c8d84b2461585c8c8351bb6d98cab44e84a202104e63be",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-139-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_140_vendor_meeting_followthrough",
+      "title": "委託先との定例会を形骸化させない｜未決事項の追跡テンプレ",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_140_vendor_meeting_followthrough.enc.json",
+      "sha256": "e87a9a9324b61d5c844890c0e837a5ff560ad31ea143491540291ea445025c1c",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-140-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_141_remote_team_handoff",
+      "title": "リモートチームの引継ぎ漏れを減らす｜時差より先に決めたい項目",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_141_remote_team_handoff.enc.json",
+      "sha256": "5d7a6a074718399ebc0d861243cf856c02214f44b40bbb6dcfd1e48824fd3726",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-141-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_142_cash_commitment_calendar",
+      "title": "入金予定と支払予定を混ぜない｜小規模事業の資金予定表",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_142_cash_commitment_calendar.enc.json",
+      "sha256": "7dfec70ff4e748af71a58de0898c30ae414523e0360af26420d6544146cf5988",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-142-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_143_website_change_review",
+      "title": "サイト更新で古い情報を残さない｜公開前後のチェック表",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_143_website_change_review.enc.json",
+      "sha256": "43eef562ae2d182ce6f62b5771d69df2224695351eecced6a35672bb70d8f852",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-143-20260924",
+      "expectedPriceJPY": 200,
+      "requireReaderVisibleVerification": true,
+      "requiredReaderChecks": [
+        "readerVisibleUrl",
+        "title",
+        "price",
+        "paidBoundary",
+        "dedicatedCover"
+      ],
+      "invalidateLocalSuccessWithoutReaderVerification": true
+    },
+    {
+      "id": "note_20260924_144_monthly_operations_review",
+      "title": "月次報告を数字の読み上げで終わらせない｜課題と担当を残すレビュー",
+      "path": "sidehustle-autopublish/note/queue/note_20260924_144_monthly_operations_review.enc.json",
+      "sha256": "97066cbab03172969c6fb27255f00a897bce82a324df5fb80c52e33a841e7f15",
+      "createdAt": "2026-09-24T08:59:03.491Z",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "note24-original-144-20260924",
       "expectedPriceJPY": 200,
       "requireReaderVisibleVerification": true,
       "requiredReaderChecks": [
