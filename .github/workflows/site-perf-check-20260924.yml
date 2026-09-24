@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Lighthouse
         run: |
-          npm install --no-save lighthouse
+          npm install --no-save lighthouse puppeteer-core
           CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$CHROME"
           echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
@@ -22,6 +22,9 @@ jobs:
         run: |
           python3 -m http.server 8000 >/tmp/rebloom-perf-http.log 2>&1 &
           sleep 2
+      - name: Trace layout shifts
+        run: node .github/scripts/site-layout-shift-trace.cjs
+
       - name: Measure
         run: |
           mkdir -p perf
@@ -60,3 +63,5 @@ jobs:
           NODE
 
 # detail rerun: 2026-09-24 cls-lcp-v2
+
+# trace rerun: 2026-09-24 v3
