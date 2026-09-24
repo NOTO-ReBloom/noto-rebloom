@@ -22,7 +22,7 @@
 
   /* One simple reveal language. No sideways/card-by-card spectacle. */
   const unsafeParent='dialog,.diagnosis-panel,.diagnosis-result,[hidden]';
-  const targets=[...document.querySelectorAll('.section-heading,.visual-mosaic-head,.rb-illustration-head,.people-trust-copy,.nr-section-head,.photo-frame,.people-trust-photo,.visual-tile,.nr-choice,.join-fact,.summary-grid>div,.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article,.faq-card,.story-step,.rb-illustration-card,.flower-group-card,.event-flow article')].filter(el=>!el.closest(unsafeParent));
+  const targets=[...document.querySelectorAll('.section-heading,.visual-mosaic-head,.rb-illustration-head,.people-trust-copy,.nr-section-head,.photo-frame,.people-trust-photo,.visual-tile,.nr-choice,.join-fact,.summary-grid>div,.event-values article,.definition-card,.cause-grid article,.game-grid article,.check-list>div,.nr-value-grid article,.industry-grid article,.faq-card,.story-step,.rb-illustration-card,.flower-group-card,.event-flow article')].filter(el=>!el.closest(unsafeParent)&&!el.closest('.hero,.page-hero,.nr-home-hero'));
   targets.forEach((el,i)=>{el.classList.add('rb-detail-reveal');el.style.setProperty('--rb-reveal-delay',`${Math.min((i%4)*35,105)}ms`)});
   if(!reduced&&'IntersectionObserver' in window){
     const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;entry.target.classList.add('rb-detail-inview','rb-inview');io.unobserve(entry.target)}),{threshold:.08,rootMargin:'0px 0px -5% 0px'});
@@ -59,28 +59,42 @@
   /* Final loading order: refinement -> density -> structural cleanup -> hierarchy -> complete purpose pass -> experience layer -> appeal layer -> participant guide -> final event fixes. */
   const ensureStyle=(name,href)=>{
     let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
-    if(!link){link=document.createElement('link');link.rel='stylesheet'}link.href=href;document.head.appendChild(link);
+    if(link){link.href=href;return link}
+    link=document.createElement('link');link.rel='stylesheet';link.href=href;document.head.appendChild(link);return link;
   };
   const ensureScript=(name,src)=>{
     const existing=document.querySelector(`script[src*="${name}"]`);
     if(existing)return existing;
     const script=document.createElement('script');script.src=src;script.async=false;document.body.appendChild(script);return script;
   };
-  ensureStyle('rebloom-refine.css','rebloom-refine.css?v=20260817n');
-  ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817n');
-  ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817q');
-  ensureStyle('rebloom-purpose.css','rebloom-purpose.css?v=20260817q');
-  ensureStyle('rebloom-purpose-complete.css','rebloom-purpose-complete.css?v=20260817v');
+  const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  const hasTuningBundle=!!document.querySelector('link[href*="legacy-tuning-20260924.css"]');
+  const isDiagnosis=body.classList.contains('page-diagnosis');
+  const isExperiencePage=page==='index.html'||page==='event.html';
+
+  /* Non-diagnosis pages already contain these five files, in order, inside legacy-tuning. */
+  if(!hasTuningBundle||isDiagnosis){
+    ensureStyle('rebloom-refine.css','rebloom-refine.css?v=20260817n');
+    ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817n');
+    ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817q');
+    ensureStyle('rebloom-purpose.css','rebloom-purpose.css?v=20260817q');
+    ensureStyle('rebloom-purpose-complete.css','rebloom-purpose-complete.css?v=20260817v');
+  }
   ensureStyle('rebloom-fit.css','rebloom-fit.css?v=20260817y');
-  ensureStyle('rebloom-experience.css','rebloom-experience.css?v=20260817ad');
-  ensureStyle('rebloom-appeal.css','rebloom-appeal.css?v=20260817ad');
-  ensureStyle('reboost-studio.css','reboost-studio.css?v=20260817ad');
+  if(isExperiencePage){
+    ensureStyle('rebloom-experience.css','rebloom-experience.css?v=20260817ad');
+    ensureStyle('rebloom-appeal.css','rebloom-appeal.css?v=20260817ad');
+    ensureStyle('reboost-studio.css','reboost-studio.css?v=20260817ad');
+  }
+
   ensureScript('rebloom-refine.js','rebloom-refine.js?v=20260817n');
   ensureScript('rebloom-tight.js','rebloom-tight.js?v=20260817q');
   ensureScript('rebloom-purpose.js','rebloom-purpose.js?v=20260817q');
   ensureScript('rebloom-purpose-complete.js','rebloom-purpose-complete.js?v=20260817q');
-  ensureScript('rebloom-experience.js','rebloom-experience.js?v=20260817ad');
-  ensureScript('rebloom-appeal.js','rebloom-appeal.js?v=20260825generated2');
-  ensureScript('participant-final.js','participant-final.js?v=20260826final2');
-  ensureScript('final-event-fixes.js','final-event-fixes.js?v=20260826photoFaq3');
+  if(isExperiencePage){
+    ensureScript('rebloom-experience.js','rebloom-experience.js?v=20260817ad');
+    ensureScript('rebloom-appeal.js','rebloom-appeal.js?v=20260825generated2');
+    ensureScript('final-event-fixes.js','final-event-fixes.js?v=20260826photoFaq3');
+  }
+  if(page==='event.html') ensureScript('participant-final.js','participant-final.js?v=20260826final2');
 })();
