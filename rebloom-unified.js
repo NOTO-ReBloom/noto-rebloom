@@ -9,8 +9,12 @@
 
   const ensureStyle=(name,href)=>{
     let link=[...document.querySelectorAll('link[rel="stylesheet"]')].find(el=>(el.getAttribute('href')||'').includes(name));
-    if(!link){link=document.createElement('link');link.rel='stylesheet'}
-    link.href=href;document.head.appendChild(link);return link;
+    if(link){link.href=href;return link}
+    link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href=href;
+    document.head.appendChild(link);
+    return link;
   };
   ensureStyle('rebloom-unified.css','rebloom-unified.css?v=20260820sponsor');
   ensureStyle('rebloom-polish.css','rebloom-polish.css?v=20260817e');
