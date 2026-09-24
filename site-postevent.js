@@ -70,5 +70,5 @@
     }
   });
 
-  document.write('<script src="site-core.js?v=20260924postevent2"><\/script>');
+  document.write('<script src="site-core.js?v=20260924bundle1"><\/script>');
 })();
