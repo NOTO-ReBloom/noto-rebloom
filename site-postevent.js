@@ -1,6 +1,16 @@
 (()=>{
   'use strict';
   window.__RB_POSTEVENT_RUNTIME__=true;
+  const ensureRuntimeStyle=()=>{
+    if(document.querySelector('link[href*="site-runtime-20260924.css"]')) return;
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='site-runtime-20260924.css?v=1';
+    const consistency=document.querySelector('link[href*="site-consistency.css"]');
+    if(consistency) consistency.before(link); else document.head.appendChild(link);
+  };
+  ensureRuntimeStyle();
+
   const nav=document.querySelector('.site-nav');
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 
