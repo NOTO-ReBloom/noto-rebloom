@@ -56,20 +56,6 @@
     actions.appendChild(action);
   }
 
-  const navigateHeaderInPlace=(event)=>{
-    if(event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const link=event.target?.closest?.('.site-nav a[href], a.brand[href]');
-    if(!(link instanceof HTMLAnchorElement)) return;
-    const href=link.getAttribute('href');
-    if(!href || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-    link.removeAttribute('target');
-    window.location.href=new URL(href,location.href).href;
-  };
-  window.addEventListener('click',navigateHeaderInPlace,true);
-
   const isInternalSiteLink=(link)=>{
     if(!(link instanceof HTMLAnchorElement)) return false;
     const href=link.getAttribute('href');
@@ -96,6 +82,25 @@
     }
   }).observe(document.documentElement,{childList:true,subtree:true});
 
+  const menu=document.querySelector('.menu-button');
+  const closeMenu=()=>{
+    document.body.classList.remove('menu-open');
+    menu?.setAttribute('aria-expanded','false');
+  };
+  menu?.addEventListener('click',()=>{
+    const open=document.body.classList.toggle('menu-open');
+    menu.setAttribute('aria-expanded',String(open));
+  });
+  nav?.addEventListener('click',event=>{
+    if(event.target?.closest?.('a[href]')) closeMenu();
+  });
+  addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&document.body.classList.contains('menu-open')){
+      closeMenu();
+      menu?.focus();
+    }
+  });
+
   document.querySelectorAll('a[target="_blank"]').forEach(link=>{
     const rel=new Set((link.getAttribute('rel')||'').split(/\s+/).filter(Boolean));
     rel.add('noopener');
@@ -112,5 +117,5 @@
     }
   });
 
-  document.write('<script src="site-core.js?v=20260924bundle1"><\/script>');
+  document.write('<script src="site-core.js?v=20260924shell1"><\/script>');
 })();
