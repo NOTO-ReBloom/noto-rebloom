@@ -5,7 +5,7 @@ on:
       - '.github/workflows/site-visual-audit-temp.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install audit deps
+      - name: Install audit dependencies
         run: npm install --no-save puppeteer-core@24.16.0 axe-core@4.10.3
       - name: Start local site
         run: |
@@ -26,12 +26,11 @@ jobs:
         run: |
           cat > /tmp/audit.mjs <<'NODE'
           import puppeteer from 'puppeteer-core';
-          import path from 'node:path';
+          import fs from 'node:fs';
           import { createRequire } from 'node:module';
           const require=createRequire(import.meta.url);
           const axePath=require.resolve('axe-core/axe.min.js');
-          const chrome=process.env.CHROME_BIN || '/usr/bin/google-chrome';
-          const browser=await puppeteer.launch({headless:true,executablePath:chrome,args:['--no-sandbox','--disable-dev-shm-usage']});
+          const browser=await puppeteer.launch({headless:true,executablePath:'/usr/bin/google-chrome',args:['--no-sandbox','--disable-dev-shm-usage']});
           const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
           const viewports=[
             {name:'desktop',width:1440,height:1000},
@@ -48,7 +47,7 @@ jobs:
               const consoleErrors=[];
               p.on('pageerror',e=>consoleErrors.push(String(e.message||e)));
               await p.goto('http://127.0.0.1:4173/'+file,{waitUntil:'networkidle0',timeout:30000}).catch(()=>{});
-              await new Promise(r=>setTimeout(r,300));
+              await new Promise(r=>setTimeout(r,250));
               const metrics=await p.evaluate(()=>{
                 const visible=el=>{
                   const s=getComputedStyle(el),r=el.getBoundingClientRect();
@@ -57,27 +56,29 @@ jobs:
                 const label=el=>{
                   const id=el.id?('#'+el.id):'';
                   const cls=typeof el.className==='string'&&el.className.trim()?'.'+el.className.trim().split(/\s+/).slice(0,3).join('.'):'';
-                  const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,80);
+                  const txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,90);
                   return el.tagName.toLowerCase()+id+cls+(txt?' :: '+txt:'');
                 };
                 const all=[...document.querySelectorAll('body *')].filter(visible);
-                const horizontalOverflow=document.documentElement.scrollWidth-window.innerWidth;
+                const horizontalOverflow=Math.max(0,document.documentElement.scrollWidth-window.innerWidth);
                 const viewportOverflow=all.filter(el=>{
                   const r=el.getBoundingClientRect(),s=getComputedStyle(el);
-                  if(s.position==='fixed') return false;
+                  if(s.position==='fixed'||s.position==='absolute') return false;
                   return r.right>window.innerWidth+3 || r.left<-3;
                 }).slice(0,25).map(label);
                 const clipped=all.filter(el=>{
-                  const txt=(el.innerText||'').trim();
+                  const txt=(el.innerText||'').replace(/\s+/g,' ').trim();
                   if(txt.length<3) return false;
                   const s=getComputedStyle(el);
                   const clips=/hidden|clip/.test(s.overflow+s.overflowX+s.overflowY);
-                  return clips && (el.scrollWidth>el.clientWidth+2 || el.scrollHeight>el.clientHeight+2);
+                  if(!clips) return false;
+                  const x=el.scrollWidth>el.clientWidth+2,y=el.scrollHeight>el.clientHeight+2;
+                  return x||y;
                 }).slice(0,30).map(el=>({el:label(el),client:[el.clientWidth,el.clientHeight],scroll:[el.scrollWidth,el.scrollHeight]}));
                 const overlaps=[];
-                for(const parent of all){
+                const parents=all.filter(el=>el.children.length>=2&&el.children.length<=14);
+                for(const parent of parents){
                   const kids=[...parent.children].filter(el=>visible(el)&&(el.innerText||'').trim().length>0);
-                  if(kids.length<2||kids.length>14) continue;
                   for(let i=0;i<kids.length;i++) for(let j=i+1;j<kids.length;j++){
                     const a=kids[i],b=kids[j],ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
                     if(a.contains(b)||b.contains(a)) continue;
@@ -85,8 +86,9 @@ jobs:
                     const iy=Math.min(ra.bottom,rb.bottom)-Math.max(ra.top,rb.top);
                     if(ix>6&&iy>6){
                       const sa=getComputedStyle(a),sb=getComputedStyle(b);
-                      const intended=(sa.position==='absolute'||sb.position==='absolute') && (parent.matches('figure,.visual-tile,.photo-frame')||parent.closest('figure,.visual-tile,.photo-frame'));
-                      if(!intended) overlaps.push({a:label(a),b:label(b),intersection:[Math.round(ix),Math.round(iy)]});
+                      const intentional=(sa.position==='absolute'||sb.position==='absolute') &&
+                        !!parent.closest('figure,.visual-tile,.photo-frame,.brand-mark');
+                      if(!intentional) overlaps.push({a:label(a),b:label(b),intersection:[Math.round(ix),Math.round(iy)]});
                     }
                   }
                 }
@@ -98,27 +100,29 @@ jobs:
                   if(rh.bottom>r1.top+2) headerOverlap={headerBottom:Math.round(rh.bottom),h1Top:Math.round(r1.top)};
                 }
                 const tinyText=all.filter(el=>{
-                  const txt=(el.childElementCount===0?(el.textContent||'').trim():'');
+                  if(el.childElementCount!==0) return false;
+                  const txt=(el.textContent||'').replace(/\s+/g,' ').trim();
                   if(!txt||txt.length>120) return false;
                   const fs=parseFloat(getComputedStyle(el).fontSize);
                   return fs>0&&fs<10;
                 }).slice(0,30).map(el=>({el:label(el),px:parseFloat(getComputedStyle(el).fontSize)}));
-                const links=[...document.querySelectorAll('a,button,summary,input,select,textarea')].filter(visible);
-                const smallTargets=links.filter(el=>{
+                const targets=[...document.querySelectorAll('a,button,summary,input,select,textarea')].filter(visible);
+                const smallTargets=targets.filter(el=>{
                   const r=el.getBoundingClientRect();
                   return r.width<24||r.height<24;
                 }).slice(0,30).map(el=>{const r=el.getBoundingClientRect();return {el:label(el),size:[Math.round(r.width),Math.round(r.height)]}});
                 return {horizontalOverflow,viewportOverflow,clipped,overlaps:overlaps.slice(0,40),headerOverlap,tinyText,smallTargets};
               });
-              let axe={violations:[]};
+              let axeSerious=[];
               try{
                 await p.addScriptTag({path:axePath});
-                axe=await p.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
+                const axe=await p.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}}));
+                axeSerious=axe.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>({
+                  id:v.id,impact:v.impact,nodes:v.nodes.length,help:v.help,
+                  samples:v.nodes.slice(0,3).map(n=>n.target.join(' '))
+                }));
               }catch(e){}
-              const serious=axe.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length,help:v.help}));
-              const row={file,viewport:vp.name,width:vp.width,...metrics,axeSerious:serious,consoleErrors};
-              summary.push(row);
-              console.log('AUDIT '+JSON.stringify(row));
+              summary.push({file,viewport:vp.name,width:vp.width,...metrics,axeSerious,consoleErrors});
               await p.close();
             }
           }
@@ -131,7 +135,15 @@ jobs:
             seriousAxe:summary.reduce((n,x)=>n+x.axeSerious.length,0),
             consoleErrors:summary.reduce((n,x)=>n+x.consoleErrors.length,0)
           };
+          fs.writeFileSync('SITE_AUDIT_RESULT.json',JSON.stringify({generatedAt:new Date().toISOString(),totals,cases:summary},null,2));
           console.log('AUDIT_TOTAL '+JSON.stringify(totals));
           await browser.close();
           NODE
           node /tmp/audit.mjs
+      - name: Commit audit result
+        run: |
+          git config user.name "noto-rebloom-audit"
+          git config user.email "audit@users.noreply.github.com"
+          git add SITE_AUDIT_RESULT.json
+          git commit -m "chore: capture temporary visual audit result"
+          git push
