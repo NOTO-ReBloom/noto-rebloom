@@ -1,8 +1,9 @@
 (()=>{
   'use strict';
   const body=document.body;
-  if(!body||body.classList.contains('rb-detail-ready'))return;
-  body.classList.add('rb-detail-ready');
+  if(!body||body.dataset.rbDetailInit==='1')return;
+  body.dataset.rbDetailInit='1';
+  if(!body.classList.contains('rb-detail-ready')) body.classList.add('rb-detail-ready');
 
   const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -68,7 +69,7 @@
     const script=document.createElement('script');script.src=src;script.async=false;document.body.appendChild(script);return script;
   };
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-  const hasTuningBundle=!!document.querySelector('link[href*="legacy-tuning-20260924.css"]');
+  const hasTuningBundle=!!document.querySelector('link[href*="legacy-tuning-20260924.css"],link[href*="site-foundation-20260924.css"]');
   const isDiagnosis=body.classList.contains('page-diagnosis');
   const isExperiencePage=page==='index.html'||page==='event.html';
 
