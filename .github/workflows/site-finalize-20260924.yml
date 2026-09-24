@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - '.github/workflows/site-finalize-20260924.yml'
+      - '.github/scripts/site-finalize-optimize.py'
+      - '.github/scripts/site-finalize-audit.cjs'
   workflow_dispatch:
 
 permissions:
@@ -72,6 +74,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add field-detail.webp field-overview.webp team-reboost.webp team-presentation.webp
+          git add assets/perf site-core.js
           git add site.css legacy-base-20260924.css legacy-core-20260924.css legacy-tuning-20260924.css
           git add index.html thoughts.html learn.html event.html report.html partner.html contact.html photo-credits.html 404.html
           git add SITE_AUDIT_2026-09-24.md
@@ -89,3 +92,5 @@ jobs:
             qa-final/
             SITE_AUDIT_2026-09-24.md
           retention-days: 7
+
+# perf rerun: 2026-09-24 responsive-images-v2
