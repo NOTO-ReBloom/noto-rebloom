@@ -68,6 +68,27 @@ jobs:
           for(const k of axes){
             if(directions[k].pos!==4||directions[k].neg!==4) throw new Error('Axis '+k+' must have 4 positive and 4 negative questions');
           }
+
+          // Every flower pattern must be reachable by a coherent extreme response profile.
+          for(let i=0;i<32;i++){
+            const bits=i.toString(2).padStart(5,'0');
+            const wanted=Object.fromEntries(axes.map((k,j)=>[k,bits[j]==='1'?1:-1]));
+            const positive=Object.fromEntries(axes.map(k=>[k,0]));
+            const negative=Object.fromEntries(axes.map(k=>[k,0]));
+            const positiveWeight=Object.fromEntries(axes.map(k=>[k,0]));
+            const negativeWeight=Object.fromEntries(axes.map(k=>[k,0]));
+            questions.forEach(q=>{
+              const [k,w]=Object.entries(q.axes)[0];
+              const v=2*w*wanted[k];
+              if(w>0){positive[k]+=v;positiveWeight[k]++;}
+              else{negative[k]+=v;negativeWeight[k]++;}
+            });
+            const got=axes.map(k=>{
+              const score=((positive[k]/positiveWeight[k])-(negative[k]/negativeWeight[k]))/4;
+              return score>0?'1':'0';
+            }).join('');
+            if(got!==bits) throw new Error('Unreachable flower pattern '+bits+' -> '+got);
+          }
           for(const required of ['CLASSIFICATION_EPS=.04','NEUTRAL_BITS={G:\'0\',A:\'1\',P:\'1\',H:\'1\',F:\'1\'}','completed=true','前回の結果を見る','v===-2||v===-1||v===1||v===2']){
             if(!src.includes(required)) throw new Error('Missing scoring/state safeguard: '+required);
           }
@@ -131,6 +152,13 @@ jobs:
 
           if html.count('href="diagnosis-ux-v3.css') != 1:
               raise SystemExit('diagnosis-ux-v3.css must be linked exactly once')
+
+          if len(re.findall(r'class="diagnosis-answer"', html)) != 4:
+              raise SystemExit('Diagnosis must expose exactly four answer buttons')
+          if 'data-value="0"' in html:
+              raise SystemExit('Neutral answer must not return in the four-choice scale')
+          if '1 / 40' not in html or 'あと39問' not in html:
+              raise SystemExit('Initial 40-question progress copy is missing')
 
           print(f'OK: {len(p.ids)} unique ids; required hooks present; JS syntax checked.')
           PY
