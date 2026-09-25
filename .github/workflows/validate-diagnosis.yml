@@ -56,8 +56,12 @@ jobs:
           if(map['01111']!=='renge') throw new Error('Neutral reference pattern must remain renge');
           if(questions.length!==40) throw new Error('Expected 40 questions, got '+questions.length);
           const directions=Object.fromEntries(axes.map(k=>[k,{pos:0,neg:0}]));
+          const seenTexts=new Set();
           for(const [i,q] of questions.entries()){
             if(!q.text||!q.category||!q.axes) throw new Error('Malformed question '+(i+1));
+            if(seenTexts.has(q.text)) throw new Error('Duplicate question text at '+(i+1));
+            seenTexts.add(q.text);
+            if([...q.text].length>36) throw new Error('Question '+(i+1)+' is too long');
             const entries=Object.entries(q.axes);
             if(entries.length!==1) throw new Error('Question '+(i+1)+' must measure exactly one axis');
             for(const [k,w] of entries){
@@ -126,7 +130,7 @@ jobs:
               'diagnosisResult','resultTitle','resultStrengths','resultEnergyStyle',
               'resultPaceStyle','resultDecisionStyle','resultMotivationStyle',
               'resultStressStyle','resultMisreadStyle','resultAxisNarratives',
-              'resultQuickSummary','resultQuickHeading','resultQuickStrength','resultQuickWatch','resultQuickRole','resultQuickAxis',
+              'resultQuickSummary','resultQuickHeading','resultQuickStrength','resultQuickWatch','resultQuickRole','resultQuickAxis','resultDetailToggle',
               'resultShareImage','downloadCard','downloadStoryCard','shareDiagnosisCard','copyDiagnosisResult','resultReasonList','resultReasonNote'
           ]
           missing=[x for x in required if x not in p.ids]
