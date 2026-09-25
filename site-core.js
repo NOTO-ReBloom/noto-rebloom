@@ -189,11 +189,11 @@
     const partnerNav=document.querySelector('.site-nav a[href="partner.html"]');
     if(partnerNav) partnerNav.textContent='協賛・協力';
     const trust=document.querySelector('.diagnosis-trust-note');
-    if(trust) trust.textContent='全56問、目安は6〜10分。途中保存でき、結果では32種類の花タイプから自分の傾向を見られます。';
+    if(trust) trust.textContent='全40問、目安は4〜6分。途中保存でき、結果では32種類の花タイプから自分の傾向を見られます。';
     const tags=[...document.querySelectorAll('.diagnosis-tags li')];
     if(tags[2]) tags[2].textContent='32種類';
     const startCard=document.querySelector('.diagnosis-start-card h3');
-    if(startCard) startCard.textContent='直感で、3つから答えるだけ。';
+    if(startCard) startCard.textContent='直感で、4つから答えるだけ。';
 
     if(!panel.querySelector('.diagnosis-focus-bar')){
       const bar=document.createElement('div');
