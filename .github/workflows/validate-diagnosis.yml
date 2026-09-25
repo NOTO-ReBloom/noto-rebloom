@@ -9,6 +9,8 @@ on:
       - 'diagnosis-ux-v3.css'
       - 'diagnosis-v2.css'
       - 'diagnosis-fixes.css'
+      - 'flower-photo-*.webp'
+      - 'flower-photo-credits.json'
       - '.github/workflows/validate-diagnosis.yml'
 
 jobs:
@@ -49,6 +51,13 @@ jobs:
             if(!map[bits]) throw new Error('Missing FLOWER_MAP pattern '+bits);
           }
           const flowerSlugs=new Set(flowers.map(x=>x.slug));
+          const credits=JSON.parse(fs.readFileSync('flower-photo-credits.json','utf8'));
+          const creditSlugs=new Set(credits.map(x=>x.slug));
+          if(credits.length!==32||creditSlugs.size!==32) throw new Error('Expected 32 unique photo credits');
+          for(const slug of flowerSlugs){
+            if(!fs.existsSync('flower-photo-'+slug+'.webp')) throw new Error('Missing flower photo for '+slug);
+            if(!creditSlugs.has(slug)) throw new Error('Missing photo credit for '+slug);
+          }
           for(const [bits,slug] of Object.entries(map)){
             if(!/^[01]{5}$/.test(bits)) throw new Error('Invalid pattern '+bits);
             if(!flowerSlugs.has(slug)) throw new Error('Unknown flower slug '+slug);
