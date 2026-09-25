@@ -2,7 +2,7 @@
 <html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>花タイプ診断｜NOTO Re:Bloom</title><meta content="40の質問と5つの傾向軸から、あなたに近い花を32種類から表示。強み、人間関係、向く環境、疲れ方、成長のヒントまで読み解く自己理解コンテンツです。" name="description"/><meta content="#15483b" name="theme-color"/><link href="favicon.svg" rel="icon"/><link href="site.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&amp;family=Noto+Sans+JP:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/><link href="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" rel="canonical"/><meta content="website" property="og:type"/><meta content="NOTO Re:Bloom" property="og:site_name"/><meta content="花タイプ診断｜NOTO Re:Bloom" property="og:title"/><meta content="40の質問から、考え方・人との関わり方・動き方の傾向を5つの軸で読み解き、あなたに近い一輪を見つけます。" property="og:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" property="og:url"/><meta content="https://noto-rebloom.github.io/noto-rebloom/flower-photo-renge.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="花タイプ診断｜NOTO Re:Bloom" name="twitter:title"/><meta content="40の質問から、5つの傾向軸と32種類の花で自分らしさを読み解く自己理解コンテンツです。" name="twitter:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/flower-photo-renge.webp" name="twitter:image"/><link rel="stylesheet" href="rebloom-unified.css?v=20260817e"><link rel="stylesheet" href="rebloom-polish.css?v=20260817e"><link rel="stylesheet" href="rebloom-detail.css?v=20260817e"><link rel="stylesheet" href="rebloom-refine.css?v=20260817n"><link rel="stylesheet" href="rebloom-balance.css?v=20260817n"><link rel="stylesheet" href="rebloom-tight.css?v=20260817q"><link rel="stylesheet" href="rebloom-purpose.css?v=20260817q"><link rel="stylesheet" href="rebloom-purpose-complete.css?v=20260817v"><link rel="stylesheet" href="brand-refresh.css?v=20260820c">
 <link rel="stylesheet" href="diagnosis-v2.css?v=20260926scale1">
 <link rel="stylesheet" href="diagnosis-fixes.css?v=20260919font1">
-<link rel="stylesheet" href="diagnosis-ux-v3.css?v=20260926a">
+<link rel="stylesheet" href="diagnosis-ux-v3.css?v=20260926b">
 <script src="diagnosis-group-colors.js?v=20260827f" defer></script>
 <link rel="stylesheet" href="site-consistency.css?v=20260926a">
 </head><body class="page-diagnosis">
@@ -24,7 +24,18 @@
 <p class="eyebrow"><span>この診断の見方</span><small>HOW IT WORKS</small></p>
 <h3>5つの傾向を重ねて、32の花へ。</h3>
 <p>「人との距離感」「動き出し方」「ものの見方」「判断のよりどころ」「予定との付き合い方」という5つの観点から回答を整理します。各設問は1つの軸だけに対応し、各軸では両方向から4問ずつ尋ねた回答を平均して比較します。単に肯定的な回答を多く選んだだけで片側へ寄りにくい構成です。</p>
-<p class="diagnosis-note">回答時点の傾向を整理し、自己理解の参考として表示します。</p>
+<div class="diagnosis-group-map" aria-label="4つの花グループの決まり方">
+  <div class="diagnosis-group-map__corner"></div>
+  <div class="diagnosis-group-map__col">じっくり整える</div>
+  <div class="diagnosis-group-map__col">まず動く</div>
+  <div class="diagnosis-group-map__row">外へ広げる</div>
+  <div class="diagnosis-group-map__cell"><b>風の花</b><span>広げる × 整える</span></div>
+  <div class="diagnosis-group-map__cell diagnosis-group-map__cell--sun"><b>太陽の花</b><span>広げる × 動く</span></div>
+  <div class="diagnosis-group-map__row">内で深める</div>
+  <div class="diagnosis-group-map__cell"><b>水辺の花</b><span>深める × 整える</span></div>
+  <div class="diagnosis-group-map__cell"><b>里山の花</b><span>深める × 動く</span></div>
+</div>
+<p class="diagnosis-note">最初の2軸で4つの花グループを決め、残り3軸を重ねてグループ内の8種類に分けます。回答時点の傾向を、自己理解の参考として表示します。</p>
 </div></div><div class="container flower-group-showcase" id="flower-groups">
 <div class="section-heading section-heading--center reveal">
 <p class="eyebrow"><span>4つの花グループ</span><small>FOUR FLOWER FIELDS</small></p>
@@ -59,7 +70,16 @@
 </dialog>
 <div class="container diagnosis-panel" id="diagnosisPanel"><div class="diagnosis-progress"><div class="diagnosis-progress-top"><span id="questionCount">1 / 40</span><span class="diagnosis-remaining" id="remainingCount">あと39問</span><span id="progressPercent">0%</span></div><div aria-label="診断の進捗" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="diagnosis-progress-track" role="progressbar"><span class="diagnosis-progress-fill" id="progressFill"></span></div></div><div class="diagnosis-question-card"><span class="diagnosis-q-category" id="questionCategory"></span><p aria-live="polite" class="diagnosis-question" id="questionText" tabindex="-1"></p><div aria-label="キーボード操作" class="keyboard-guide"><span><kbd>1</kbd> あてはまる</span><span><kbd>2</kbd> ややあてはまる</span><span><kbd>3</kbd> ややあてはまらない</span><span><kbd>4</kbd> あてはまらない</span><span><kbd>Backspace</kbd> ひとつ戻る</span></div><div class="diagnosis-answer-grid"><button aria-keyshortcuts="1" class="diagnosis-answer" data-value="2" type="button"><kbd>1</kbd><span>あてはまる</span><small>YES</small></button><button aria-keyshortcuts="2" class="diagnosis-answer" data-value="1" type="button"><kbd>2</kbd><span>ややあてはまる</span><small>LEAN YES</small></button><button aria-keyshortcuts="3" class="diagnosis-answer" data-value="-1" type="button"><kbd>3</kbd><span>ややあてはまらない</span><small>LEAN NO</small></button><button aria-keyshortcuts="4" class="diagnosis-answer" data-value="-2" type="button"><kbd>4</kbd><span>あてはまらない</span><small>NO</small></button></div></div><div class="diagnosis-controls"><button class="btn btn--paper" id="backQuestion" type="button">ひとつ戻る</button><button class="btn btn--outline" id="resetDiagnosis" type="button">最初からやり直す</button></div></div>
 <div class="container diagnosis-result" id="diagnosisResult"><div class="result-hero"><div class="result-portrait-wrap"><img alt="診断結果カード" class="result-image" decoding="async" id="resultImage" loading="lazy"/><span class="result-portrait-label">BOTANICAL PORTRAIT</span></div><div class="result-copy"><span class="result-group" id="resultGroup"></span><h2 id="resultTitle"></h2><p class="result-lead" id="resultLead"></p><p id="resultDesc"></p></div></div>
-<nav class="result-jump-nav" aria-label="診断結果の目次"><a href="#resultOverview">まず要約</a><a href="#resultDeepDive">詳しく読む</a><a href="#resultTendencies">5つの傾向</a><a href="#resultShare">結果カード</a></nav>
+<section class="result-quick-summary" id="resultQuickSummary" aria-labelledby="resultQuickHeading">
+  <div class="result-quick-head"><p class="result-kicker">30秒サマリー</p><h3 id="resultQuickHeading">まず、ここだけ読めばOK。</h3><p>詳しい結果の前に、今回の回答で特に目立ったポイントを4つに絞りました。</p></div>
+  <div class="result-quick-grid">
+    <article><span>STRENGTH</span><h4>強み</h4><p id="resultQuickStrength"></p></article>
+    <article><span>WATCH</span><h4>気をつけたいこと</h4><p id="resultQuickWatch"></p></article>
+    <article><span>ROLE</span><h4>自然に担いやすい役割</h4><p id="resultQuickRole"></p></article>
+    <article><span>AXIS</span><h4>強く出た傾向</h4><p id="resultQuickAxis"></p></article>
+  </div>
+</section>
+<nav class="result-jump-nav" aria-label="診断結果の目次"><a href="#resultQuickSummary">30秒要約</a><a href="#resultDeepDive">詳しく読む</a><a href="#resultTendencies">5つの傾向</a><a href="#resultShare">結果カード</a></nav>
 <section aria-labelledby="resultGroupHeading" class="result-group-profile" id="resultOverview">
 <div class="group-badge-wrap">
 <span aria-hidden="true" class="group-symbol" id="resultGroupSymbol">✿</span>
