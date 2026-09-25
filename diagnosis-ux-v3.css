@@ -13,7 +13,7 @@
 /* Match the unified site's real font stack: rounded display + clean Japanese body. */
 body.page-diagnosis,
 body.page-diagnosis *{
-  font-family:"Noto Sans JP",var(--sans)!important;
+  font-family:var(--sans)!important;
 }
 body.page-diagnosis :where(
   h1,h2,h3,h4,
@@ -40,12 +40,12 @@ body.page-diagnosis :where(
   .result-share-copy h3,
   .final-cta h2
 ){
-  font-family:"M PLUS Rounded 1c","Noto Sans JP",var(--serif)!important;
+  font-family:var(--serif)!important;
   font-weight:900!important;
   font-style:normal!important;
 }
 body.page-diagnosis .page-hero--diagnosis h1{
-  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-family:var(--serif)!important;
   font-weight:900!important;
   letter-spacing:-.055em!important;
   line-height:1.16!important;
@@ -725,4 +725,9 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
   color:#718078;
   font-size:11px;
   line-height:1.6;
+}
+
+.page-diagnosis .rb-mobile-join small{
+  opacity:1!important;
+  color:#123d32!important;
 }
