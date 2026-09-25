@@ -156,10 +156,10 @@ jobs:
                   if font.lower() in text.lower():
                       raise SystemExit(f'Diagnosis CSS contains unwanted Mincho font: {font} in css index {i}')
 
-          if 'M PLUS Rounded 1c' not in ''.join(css_files):
-              raise SystemExit('Rounded display font is missing from diagnosis CSS')
-          if 'family=M+PLUS+Rounded+1c' not in html:
-              raise SystemExit('Diagnosis page is not loading the shared rounded font family')
+          if 'fonts.googleapis.com' in html or 'fonts.gstatic.com' in html:
+              raise SystemExit('Diagnosis page must not depend on blocking external web fonts')
+          if 'var(--serif)' not in ''.join(css_files):
+              raise SystemExit('Diagnosis CSS must use the shared local display font stack')
 
           if '答えるたびに、小さな花が咲きます' in html:
               raise SystemExit('Decorative flower progress copy must not return')
