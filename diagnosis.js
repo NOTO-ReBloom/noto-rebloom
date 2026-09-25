@@ -284,7 +284,7 @@
       <g font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-weight="900" font-size="22" fill="#24180f">
         <rect x="62" y="460" width="104" height="34" rx="17" fill="${groupColor}" stroke="#24180f" stroke-width="4"/><text x="86" y="485">原産地</text><text x="184" y="485">${esc(f.origin)}</text>
         <rect x="62" y="504" width="124" height="34" rx="17" fill="${groupColor}" stroke="#24180f" stroke-width="4"/><text x="80" y="529">開花時期</text><text x="204" y="529">${esc(f.bloom)}</text>
-        <rect x="62" y="548" width="104" height="34" rx="17" fill="${groupColor}" stroke="#24180f" stroke-width="4"/><text x="86" y="573">花言葉</text><text x="184" y="573">${esc(f.language.length>16?f.language.slice(0,16)+'…':f.language)}</text>
+        <rect x="62" y="548" width="104" height="34" rx="17" fill="${groupColor}" stroke="#24180f" stroke-width="4"/><text x="76" y="573">花言葉例</text><text x="184" y="573">${esc(f.language.length>16?f.language.slice(0,16)+'…':f.language)}</text>
       </g>
       <g>${svgShape(f.shape, c)}</g>
       <path d="M990 86 l18 38 l42 6 l-31 28 l8 41 l-37-22 l-37 22 l8-41 l-31-28 l42-6 z" fill="#ffd44d" stroke="#24180f" stroke-width="5"/>
@@ -425,6 +425,7 @@
     document.body.classList.remove('diagnosis-running');document.body.classList.add('diagnosis-finished');
     panel.classList.remove('is-active');
     result.classList.add('is-active');
+    setResultDetails(false);
     result.style.setProperty('--result-accent',flower.color);
     result.style.setProperty('--group-accent',profile.color);
     $('resultImage').src=flowerPhotoUrl(flower.slug);
