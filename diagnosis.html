@@ -50,7 +50,7 @@
 </div>
 </div><div class="container flower-atlas" id="flower-atlas">
 <div class="flower-atlas-heading reveal">
-<div><p class="eyebrow"><span>花の図鑑</span><small>32 FLOWER ATLAS</small></p><h2>32の花を、<br class="desktop-break"/>一輪ずつ。</h2><p>実際の花の写真、花言葉、開花時期、タイプの短い特徴を一覧にしました。気になる花を選ぶと、詳しいプロフィールを読めます。</p></div>
+<div><p class="eyebrow"><span>花の図鑑</span><small>32 FLOWER ATLAS</small></p><h2>32の花を、<br class="desktop-break"/>一輪ずつ。</h2><p>実際の花の写真、主な花言葉の一例、開花時期、タイプの短い特徴を一覧にしました。気になる花を選ぶと、詳しいプロフィールを読めます。</p></div>
 <div aria-label="花グループで絞り込む" class="flower-atlas-filters">
 <button aria-pressed="true" class="is-active" data-atlas-filter="all" type="button">すべて</button>
 <button aria-pressed="false" data-atlas-filter="太陽の花" type="button">太陽</button>
@@ -65,7 +65,7 @@
 <button aria-label="閉じる" class="atlas-dialog-close" id="atlasDialogClose" type="button">×</button>
 <div class="atlas-dialog-grid">
 <img alt="" id="atlasDialogImage"/>
-<div><span class="result-group" id="atlasDialogGroup"></span><h2 id="atlasDialogName"></h2><p class="atlas-dialog-tagline" id="atlasDialogTagline"></p><p id="atlasDialogDesc"></p><div class="atlas-dialog-facts"><div><b>原産地</b><span id="atlasDialogOrigin"></span></div><div><b>開花時期</b><span id="atlasDialogBloom"></span></div><div><b>花言葉</b><span id="atlasDialogLanguage"></span></div></div><p class="atlas-dialog-note">診断では、回答全体からこの花らしさを詳しく読み解きます。</p><button class="btn btn--green" id="atlasStartDiagnosis" type="button">診断を始める</button></div>
+<div><span class="result-group" id="atlasDialogGroup"></span><h2 id="atlasDialogName"></h2><p class="atlas-dialog-tagline" id="atlasDialogTagline"></p><p id="atlasDialogDesc"></p><div class="atlas-dialog-facts"><div><b>原産地</b><span id="atlasDialogOrigin"></span></div><div><b>開花時期</b><span id="atlasDialogBloom"></span></div><div><b>主な花言葉</b><span id="atlasDialogLanguage"></span></div></div><p class="atlas-dialog-note">診断では、回答全体からこの花らしさを詳しく読み解きます。</p><button class="btn btn--green" id="atlasStartDiagnosis" type="button">診断を始める</button></div>
 </div>
 </dialog>
 <div class="container diagnosis-panel" id="diagnosisPanel"><div class="diagnosis-progress"><div class="diagnosis-progress-top"><span id="questionCount">1 / 40</span><span class="diagnosis-remaining" id="remainingCount">あと39問</span><span id="progressPercent">0%</span></div><div aria-label="診断の進捗" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="diagnosis-progress-track" role="progressbar"><span class="diagnosis-progress-fill" id="progressFill"></span></div></div><div class="diagnosis-question-card"><span class="diagnosis-q-category" id="questionCategory"></span><p aria-live="polite" class="diagnosis-question" id="questionText" tabindex="-1"></p><div aria-label="キーボード操作" class="keyboard-guide"><span><kbd>1</kbd> あてはまる</span><span><kbd>2</kbd> ややあてはまる</span><span><kbd>3</kbd> ややあてはまらない</span><span><kbd>4</kbd> あてはまらない</span><span><kbd>Backspace</kbd> ひとつ戻る</span></div><div class="diagnosis-answer-grid"><button aria-keyshortcuts="1" class="diagnosis-answer" data-value="2" type="button"><kbd>1</kbd><span>あてはまる</span><small>YES</small></button><button aria-keyshortcuts="2" class="diagnosis-answer" data-value="1" type="button"><kbd>2</kbd><span>ややあてはまる</span><small>LEAN YES</small></button><button aria-keyshortcuts="3" class="diagnosis-answer" data-value="-1" type="button"><kbd>3</kbd><span>ややあてはまらない</span><small>LEAN NO</small></button><button aria-keyshortcuts="4" class="diagnosis-answer" data-value="-2" type="button"><kbd>4</kbd><span>あてはまらない</span><small>NO</small></button></div></div><div class="diagnosis-controls"><button class="btn btn--paper" id="backQuestion" type="button">ひとつ戻る</button><button class="btn btn--outline" id="resetDiagnosis" type="button">最初からやり直す</button></div></div>
@@ -102,7 +102,7 @@
 <p class="result-reason-note" id="resultReasonNote"></p>
 </section>
 <p class="group-flower-list"><b>同じグループの花：</b><span id="resultGroupFlowers"></span></p>
-<div class="result-role-wrap"><b>自然に担いやすい役割</b><div class="result-role-chips" id="resultRoleChips"></div></div></section><div class="result-section-grid"><article class="result-card"><h3>あなたの強み</h3><ul id="resultStrengths"></ul></article><article class="result-card"><h3>気をつけたいこと</h3><ul id="resultWatch"></ul></article><article class="result-card"><h3>人との関わり方</h3><p id="resultRelation"></p></article><article class="result-card"><h3>力を発揮しやすい場</h3><p id="resultFit"></p></article><article class="result-card"><h3>心地よく過ごすコツ</h3><p id="resultRecommended"></p></article><article class="result-card"><h3>花のプロフィール</h3><div class="result-facts"><div><b>原産地</b><span id="resultOrigin"></span></div><div><b>開花時期</b><span id="resultBloom"></span></div><div><b>花言葉</b><span id="resultLanguage"></span></div></div></article></div>
+<div class="result-role-wrap"><b>自然に担いやすい役割</b><div class="result-role-chips" id="resultRoleChips"></div></div></section><div class="result-section-grid"><article class="result-card"><h3>あなたの強み</h3><ul id="resultStrengths"></ul></article><article class="result-card"><h3>気をつけたいこと</h3><ul id="resultWatch"></ul></article><article class="result-card"><h3>人との関わり方</h3><p id="resultRelation"></p></article><article class="result-card"><h3>力を発揮しやすい場</h3><p id="resultFit"></p></article><article class="result-card"><h3>心地よく過ごすコツ</h3><p id="resultRecommended"></p></article><article class="result-card"><h3>花のプロフィール</h3><div class="result-facts"><div><b>原産地</b><span id="resultOrigin"></span></div><div><b>開花時期</b><span id="resultBloom"></span></div><div><b>主な花言葉</b><span id="resultLanguage"></span></div></div></article></div>
 <section class="result-rich-insights" aria-labelledby="resultRichHeading">
 <div class="result-deep-heading"><p class="result-kicker">もう少し深く読む</p><h3 id="resultRichHeading">回答から見えた、6つの傾向。</h3><p>同じ花タイプでも、5つの軸の出方によって特徴は少しずつ異なります。ここでは、あなたの回答に合わせて日常で表れやすい傾向を整理します。</p></div>
 <div class="result-insight-grid">
@@ -153,7 +153,7 @@
 <div class="neighbor-card">
 <span class="neighbor-flower-mark">＋</span><div><p class="result-kicker">あなたに近い、もう一輪</p><h3 id="resultNeighborHeading"><span id="resultNeighborName"></span>タイプ</h3><p id="resultNeighborText"></p></div>
 </div>
-<div class="collaboration-card"><p class="result-kicker">チームで補い合うなら</p><h3 id="resultPartnerGroup"></h3><p id="resultPartnerText"></p></div>
+<div class="collaboration-card"><p class="result-kicker">違う強みを持つ一例</p><h3 id="resultPartnerGroup"></h3><p id="resultPartnerText"></p><small>※相性の良し悪しを判定するものではなく、役割を補い合う組み合わせの一例です。</small></div>
 </section><section aria-labelledby="resultMonthHeading" class="result-month-plan">
 <div class="result-deep-heading"><p class="result-kicker">30日プラン</p><h3 id="resultMonthHeading">自分の傾向を、日常で使いやすくする。</h3><p>強みを使いやすくし、負担になりやすい場面を整えるための4週間です。</p></div>
 <ol id="resultMonthPlan"></ol>
