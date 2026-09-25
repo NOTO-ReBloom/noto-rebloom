@@ -36,7 +36,7 @@ jobs:
       - name: Measure
         run: |
           mkdir -p perf
-          for p in index partner report contact; do
+          for p in index thoughts learn event report partner contact photo-credits 404 diagnosis; do
             npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="perf/$p-mobile.json" || true
             npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --preset=desktop --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="perf/$p-desktop.json" || true
           done
@@ -96,3 +96,5 @@ jobs:
 # final runtime-dedupe rerun: 2026-09-24 v6
 
 # rerun current main: 2026-09-26 trace-v10
+
+# full-site lighthouse: 2026-09-26 v11
