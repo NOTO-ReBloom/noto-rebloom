@@ -1,0 +1,30 @@
+name: NOTO ReBloom CLS trace 2026-09-26
+
+on:
+  push:
+    paths:
+      - '.github/workflows/site-shift-trace-20260926.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: noto-rebloom-cls-trace
+  cancel-in-progress: true
+
+jobs:
+  trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser helper
+        run: |
+          npm install --no-save puppeteer-core
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Serve site
+        run: |
+          python3 -m http.server 8000 >/tmp/rebloom-trace-http.log 2>&1 &
+          sleep 1
+      - name: Trace layout shifts
+        run: node .github/scripts/site-layout-shift-trace.cjs
