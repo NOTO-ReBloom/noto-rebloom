@@ -28,6 +28,19 @@ function setPhoto(img,slug,name){
   img.src=photoUrl(slug);
   img.alt=`${name||slug}の花の写真`;
 }
+function bindVisibleFlowerPhoto(img){
+  if(!(img instanceof HTMLImageElement))return;
+  const sync=()=>{
+    if(img.complete&&img.naturalWidth>0)img.classList.add('fd-photo-ready');
+    else if(img.complete)img.closest('.flower-atlas-card')?.classList.add('is-photo-missing');
+  };
+  img.addEventListener('load',()=>{img.classList.add('fd-photo-ready');img.closest('.flower-atlas-card')?.classList.remove('is-photo-missing');},{once:true});
+  img.addEventListener('error',()=>img.closest('.flower-atlas-card')?.classList.add('is-photo-missing'),{once:true});
+  sync();
+}
+function bindAllVisibleFlowerPhotos(root=document){
+  root.querySelectorAll?.('img[src*="flower-photo-"]').forEach(bindVisibleFlowerPhoto);
+}
 function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=4){let line='',lines=[];for(const ch of [...text]){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;if(lines.length>=maxLines-1)break;}else line=test;}if(line&&lines.length<maxLines)lines.push(line);lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));}
 async function loadImage(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=src;});}
 async function loadFlowerImage(slug){try{return await loadImage(photoUrl(slug));}catch{return await loadImage(legacyUrl(slug));}}
@@ -202,6 +215,20 @@ async function refreshResult(){
 }
 function init(){
   ensureFixStyles();
+  bindAllVisibleFlowerPhotos();
+  new MutationObserver(records=>{
+    for(const record of records){
+      if(record.type==='attributes'&&record.target instanceof HTMLImageElement){
+        if((record.target.getAttribute('src')||'').includes('flower-photo-'))bindVisibleFlowerPhoto(record.target);
+        continue;
+      }
+      for(const node of record.addedNodes){
+        if(node.nodeType!==1)continue;
+        if(node.matches?.('img[src*="flower-photo-"]'))bindVisibleFlowerPhoto(node);
+        bindAllVisibleFlowerPhotos(node);
+      }
+    }
+  }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['src']});
   const shareBtn=document.getElementById('shareDiagnosisCard');
   shareBtn?.addEventListener('click',async()=>{
     const status=document.getElementById('diagnosisCopyStatus');
