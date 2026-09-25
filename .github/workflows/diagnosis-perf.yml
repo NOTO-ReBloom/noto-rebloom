@@ -57,7 +57,10 @@ jobs:
                 score:Number((x.score||0).toFixed(4)),
                 selector:x.node?.selector||null,
                 cause:x.subItems?.items?.[0]?.cause||null
-              }))
+              })),
+              accessibilityFailures:Object.entries(a)
+                .filter(([id,x])=>x?.scoreDisplayMode==='binary'&&x?.score===0&&x?.details?.items?.length)
+                .map(([id,x])=>({id,title:x.title,count:x.details.items.length,items:x.details.items.slice(0,8).map(i=>({selector:i.node?.selector||null,label:i.node?.nodeLabel||null}))}))
             };
             results[mode]=item;
             console.log('DIAGNOSIS_PERF_'+mode.toUpperCase()+'='+JSON.stringify(item));
