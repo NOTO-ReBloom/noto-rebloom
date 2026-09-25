@@ -78,6 +78,23 @@ const puppeteer=require('puppeteer-core');
   if(flowerPhotos.atlasCount!==32||flowerPhotos.atlasVisible!==32||flowerPhotos.fileCount!==32||flowerPhotos.fileFailures.length||!flowerPhotos.heroLoaded){
     throw new Error('Flower photos not fully available: '+JSON.stringify(flowerPhotos));
   }
+  const photoPresentation=await page.evaluate(()=>{
+    const hero=document.querySelector('.page-hero--diagnosis .photo-frame');
+    const atlas=document.querySelector('.flower-atlas-card');
+    const pseudo=(el,p)=>getComputedStyle(el,p).content;
+    return{
+      heroBefore:pseudo(hero,'::before'),
+      heroAfter:pseudo(hero,'::after'),
+      atlasBefore:pseudo(atlas,'::before'),
+      resultOverlay:!!document.querySelector('.result-portrait-label'),
+      heroCaptionOutside:!!hero?.querySelector('figcaption'),
+      creditOutside:!!hero?.querySelector('.hero-photo-credit')
+    };
+  });
+  const activePseudo=v=>v&&v!=='none'&&v!=='normal'&&v!=='""'&&v!=="''";
+  if(activePseudo(photoPresentation.heroBefore)||activePseudo(photoPresentation.heroAfter)||activePseudo(photoPresentation.atlasBefore)||photoPresentation.resultOverlay||!photoPresentation.heroCaptionOutside||!photoPresentation.creditOutside){
+    throw new Error('Photography overlay regression: '+JSON.stringify(photoPresentation));
+  }
 
   await page.evaluate(()=>document.getElementById('startDiagnosis').click());
   for(let i=0;i<40;i++){
@@ -127,7 +144,7 @@ const puppeteer=require('puppeteer-core');
 
   if(errors.length)throw new Error('Browser errors: '+errors.join(' | '));
   console.log('DIAGNOSIS_SHIFT_TRACE='+JSON.stringify(initialShiftTrace));
-  console.log('DIAGNOSIS_E2E_OK='+JSON.stringify({initial,flowerPhotos,result,expanded,saved}));
+  console.log('DIAGNOSIS_E2E_OK='+JSON.stringify({initial,flowerPhotos,photoPresentation,result,expanded,saved}));
   await browser.close();
 })().catch(async e=>{
   console.error(e);
