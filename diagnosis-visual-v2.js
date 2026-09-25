@@ -44,8 +44,8 @@ function refreshHero(){
 }
 function rewriteHero(){
   const h1=document.querySelector('.page-hero--diagnosis h1');if(h1)h1.innerHTML='花から、<br><span class="headline-marker">わたしを再発見。</span>';
-  const p=document.querySelector('.page-hero--diagnosis .reveal>p:not(.eyebrow)');if(p)p.textContent='56の質問から、考え方や人との関わり方の傾向を32種類の花に重ねて読み解きます。花の姿も写真で知りながら、自分らしい一輪を見つけてください。';
-  const note=document.querySelector('.hero-sticker-note');if(note)note.textContent='約6〜10分 / 登録不要 / 途中保存できます';
+  const p=document.querySelector('.page-hero--diagnosis .reveal>p:not(.eyebrow)');if(p)p.textContent='40の質問から、考え方や人との関わり方の傾向を32種類の花に重ねて読み解きます。花の姿も写真で知りながら、自分らしい一輪を見つけてください。';
+  const note=document.querySelector('.hero-sticker-note');if(note)note.textContent='約4〜6分 / 登録不要 / 途中保存できます';
   const tags=[...document.querySelectorAll('.diagnosis-tags li')];tags.forEach(tag=>{if(/30種類以上/.test(tag.textContent))tag.textContent='32種類';});
 }
 function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=4){let line='',lines=[];for(const ch of [...text]){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;if(lines.length>=maxLines-1)break;}else line=test;}if(line&&lines.length<maxLines)lines.push(line);lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));}
@@ -170,7 +170,7 @@ function buildShareCard(photo,data,story=false){
   ctx.fillText('32種類の花から診断',margin+28,ctaY+(story?103:88));
   ctx.fillStyle=muted;
   ctx.font=`700 ${story?20:18}px "Noto Sans JP",sans-serif`;
-  ctx.fillText('全56問  /  約6〜10分  /  登録不要',margin+28,ctaY+(story?144:122));
+  ctx.fillText('全40問  /  約4〜6分  /  登録不要',margin+28,ctaY+(story?144:122));
   ctx.fillStyle=green;
   ctx.font=`800 ${story?19:17}px "Noto Sans JP",sans-serif`;
   ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',margin+28,ctaY+(story?194:160));
