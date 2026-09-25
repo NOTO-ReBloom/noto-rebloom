@@ -126,6 +126,7 @@ jobs:
               'diagnosisResult','resultTitle','resultStrengths','resultEnergyStyle',
               'resultPaceStyle','resultDecisionStyle','resultMotivationStyle',
               'resultStressStyle','resultMisreadStyle','resultAxisNarratives',
+              'resultQuickSummary','resultQuickHeading','resultQuickStrength','resultQuickWatch','resultQuickRole','resultQuickAxis',
               'resultShareImage','downloadCard','downloadStoryCard','shareDiagnosisCard','copyDiagnosisResult','resultReasonList','resultReasonNote'
           ]
           missing=[x for x in required if x not in p.ids]
