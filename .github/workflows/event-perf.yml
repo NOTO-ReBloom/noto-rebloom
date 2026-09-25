@@ -1,0 +1,65 @@
+name: Validate Event Page Performance
+
+on:
+  push:
+    paths:
+      - 'event.html'
+      - 'event-final-bundle-20260926.css'
+      - 'site-postevent.js'
+      - 'rebloom-unified.js'
+      - '.github/workflows/event-perf.yml'
+      - '.github/scripts/static-gzip-server.cjs'
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Lighthouse
+        run: |
+          npm install --no-save lighthouse puppeteer-core
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Serve site
+        run: |
+          node .github/scripts/static-gzip-server.cjs >/tmp/rebloom-event-perf-http.log 2>&1 &
+          sleep 2
+      - name: Measure event page
+        run: |
+          npx lighthouse "http://127.0.0.1:8000/event.html" --quiet --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="/tmp/event-mobile.json"
+          npx lighthouse "http://127.0.0.1:8000/event.html" --quiet --preset=desktop --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="/tmp/event-desktop.json"
+          node - <<'NODE'
+          const fs=require('fs');
+          const results={};
+          for(const mode of ['mobile','desktop']){
+            const j=JSON.parse(fs.readFileSync('/tmp/event-'+mode+'.json','utf8'));
+            const c=j.categories,a=j.audits;
+            const item={
+              performance:Math.round(c.performance.score*100),
+              accessibility:Math.round(c.accessibility.score*100),
+              bestPractices:Math.round(c['best-practices'].score*100),
+              seo:Math.round(c.seo.score*100),
+              lcp:Math.round(a['largest-contentful-paint'].numericValue||0),
+              cls:Number((a['cumulative-layout-shift'].numericValue||0).toFixed(4)),
+              tbt:Math.round(a['total-blocking-time'].numericValue||0),
+              shifts:(a['layout-shifts']?.details?.items||[]).slice(0,5).map(x=>({
+                score:Number((x.score||0).toFixed(4)),
+                selector:x.node?.selector||null
+              }))
+            };
+            results[mode]=item;
+            console.log('EVENT_PERF_'+mode.toUpperCase()+'='+JSON.stringify(item));
+            if(item.accessibility<100)throw new Error(mode+' accessibility '+item.accessibility+' < 100');
+            if(item.cls>=0.1)throw new Error(mode+' CLS '+item.cls+' >= 0.1');
+            if(mode==='mobile'&&item.lcp>=4000)throw new Error('mobile LCP '+item.lcp+' >= 4000ms');
+            if(mode==='desktop'&&item.lcp>=2500)throw new Error('desktop LCP '+item.lcp+' >= 2500ms');
+            if(item.performance<85)throw new Error(mode+' performance '+item.performance+' < 85');
+          }
+          console.log('EVENT_PERF='+JSON.stringify(results));
+          NODE
