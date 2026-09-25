@@ -213,7 +213,7 @@ async function refreshResult(){
   }catch(e){console.warn('share card render failed',e);}
 }
 function init(){
-  ensureFixStyles();rewriteHero();refreshHero();refreshAtlas();setTimeout(refreshAtlas,120);
+  ensureFixStyles();
   const shareBtn=document.getElementById('shareDiagnosisCard');
   shareBtn?.addEventListener('click',async()=>{
     const status=document.getElementById('diagnosisCopyStatus');
@@ -229,10 +229,8 @@ function init(){
       }
     }catch(e){if(e?.name!=='AbortError'&&status)status.textContent='共有できませんでした。カードを保存して共有してください。';}
   });
-  const atlas=document.getElementById('flowerAtlasGrid');if(atlas)new MutationObserver(()=>refreshAtlas()).observe(atlas,{childList:true,subtree:true});
-  const dialog=document.getElementById('flowerAtlasDialog');if(dialog)new MutationObserver(()=>refreshDialog()).observe(dialog,{attributes:true,childList:true,subtree:true});
-  const title=document.getElementById('resultTitle');if(title)new MutationObserver(()=>setTimeout(refreshResult,120)).observe(title,{childList:true,subtree:true,characterData:true});
-  document.addEventListener('click',e=>{if(e.target.closest('.flower-atlas-card'))setTimeout(refreshDialog,40);});
+  const title=document.getElementById('resultTitle');
+  if(title)new MutationObserver(()=>setTimeout(refreshResult,80)).observe(title,{childList:true,subtree:true,characterData:true});
   ['renge','himawari','freesia','ajisai','tsubaki'].forEach(slug=>{const i=new Image();i.src=photoUrl(slug)});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
