@@ -6,6 +6,7 @@ on:
       - 'diagnosis.html'
       - 'diagnosis.js'
       - 'diagnosis-visual-v2.js'
+      - 'diagnosis-shell.js'
       - 'diagnosis-ux-v3.css'
       - 'diagnosis-v2.css'
       - 'diagnosis-fixes.css'
@@ -25,6 +26,7 @@ jobs:
         run: |
           node --check diagnosis.js
           node --check diagnosis-visual-v2.js
+          node --check diagnosis-shell.js
       - name: Validate diagnosis model invariants
         run: |
           node - <<'NODE'
