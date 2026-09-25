@@ -2,7 +2,7 @@
 <html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>花タイプ診断｜NOTO Re:Bloom</title><meta content="56の質問と5つの傾向軸から、あなたに近い花を32種類から表示。強み、人間関係、向く環境、疲れ方、成長のヒントまで読み解く自己理解コンテンツです。" name="description"/><meta content="#15483b" name="theme-color"/><link href="favicon.svg" rel="icon"/><link href="site.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&amp;family=Noto+Sans+JP:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/><link href="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" rel="canonical"/><meta content="website" property="og:type"/><meta content="NOTO Re:Bloom" property="og:site_name"/><meta content="花タイプ診断｜NOTO Re:Bloom" property="og:title"/><meta content="56の質問から、考え方・人との関わり方・動き方の傾向を5つの軸で読み解き、あなたに近い一輪を見つけます。" property="og:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" property="og:url"/><meta content="https://noto-rebloom.github.io/noto-rebloom/flower-photo-renge.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="花タイプ診断｜NOTO Re:Bloom" name="twitter:title"/><meta content="56の質問から、5つの傾向軸と32種類の花で自分らしさを読み解く自己理解コンテンツです。" name="twitter:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/flower-photo-renge.webp" name="twitter:image"/><link rel="stylesheet" href="rebloom-unified.css?v=20260817e"><link rel="stylesheet" href="rebloom-polish.css?v=20260817e"><link rel="stylesheet" href="rebloom-detail.css?v=20260817e"><link rel="stylesheet" href="rebloom-refine.css?v=20260817n"><link rel="stylesheet" href="rebloom-balance.css?v=20260817n"><link rel="stylesheet" href="rebloom-tight.css?v=20260817q"><link rel="stylesheet" href="rebloom-purpose.css?v=20260817q"><link rel="stylesheet" href="rebloom-purpose-complete.css?v=20260817v"><link rel="stylesheet" href="brand-refresh.css?v=20260820c">
 <link rel="stylesheet" href="diagnosis-v2.css?v=20260919font1">
 <link rel="stylesheet" href="diagnosis-fixes.css?v=20260919font1">
-<link rel="stylesheet" href="diagnosis-ux-v3.css?v=20260919c">
+<link rel="stylesheet" href="diagnosis-ux-v3.css?v=20260926a">
 <script src="diagnosis-group-colors.js?v=20260827f" defer></script>
 <link rel="stylesheet" href="site-consistency.css?v=20260924a">
 </head><body class="page-diagnosis">
@@ -41,23 +41,23 @@
 <div class="flower-atlas-heading reveal">
 <div><p class="eyebrow"><span>花の図鑑</span><small>32 FLOWER ATLAS</small></p><h2>32の花を、<br class="desktop-break"/>一輪ずつ。</h2><p>実際の花の写真、花言葉、開花時期、タイプの短い特徴を一覧にしました。気になる花を選ぶと、詳しいプロフィールを読めます。</p></div>
 <div aria-label="花グループで絞り込む" class="flower-atlas-filters">
-<button class="is-active" data-atlas-filter="all" type="button">すべて</button>
-<button data-atlas-filter="太陽の花" type="button">太陽</button>
-<button data-atlas-filter="風の花" type="button">風</button>
-<button data-atlas-filter="里山の花" type="button">里山</button>
-<button data-atlas-filter="水辺の花" type="button">水辺</button>
+<button aria-pressed="true" class="is-active" data-atlas-filter="all" type="button">すべて</button>
+<button aria-pressed="false" data-atlas-filter="太陽の花" type="button">太陽</button>
+<button aria-pressed="false" data-atlas-filter="風の花" type="button">風</button>
+<button aria-pressed="false" data-atlas-filter="里山の花" type="button">里山</button>
+<button aria-pressed="false" data-atlas-filter="水辺の花" type="button">水辺</button>
 </div>
 </div>
 <div class="flower-atlas-grid" id="flowerAtlasGrid"></div>
 <p class="flower-atlas-note">※図鑑は診断結果の一覧です。花を選ぶだけで結果が決まるものではありません。</p><p class="flower-atlas-note"><a href="photo-credits.html">写真出典・ライセンス（32種類）</a></p>
-</div><dialog class="flower-atlas-dialog" id="flowerAtlasDialog">
+</div><dialog aria-labelledby="atlasDialogName" class="flower-atlas-dialog" id="flowerAtlasDialog">
 <button aria-label="閉じる" class="atlas-dialog-close" id="atlasDialogClose" type="button">×</button>
 <div class="atlas-dialog-grid">
 <img alt="" id="atlasDialogImage"/>
 <div><span class="result-group" id="atlasDialogGroup"></span><h2 id="atlasDialogName"></h2><p class="atlas-dialog-tagline" id="atlasDialogTagline"></p><p id="atlasDialogDesc"></p><div class="atlas-dialog-facts"><div><b>原産地</b><span id="atlasDialogOrigin"></span></div><div><b>開花時期</b><span id="atlasDialogBloom"></span></div><div><b>花言葉</b><span id="atlasDialogLanguage"></span></div></div><p class="atlas-dialog-note">診断では、回答全体からこの花らしさを詳しく読み解きます。</p><button class="btn btn--green" id="atlasStartDiagnosis" type="button">診断を始める</button></div>
 </div>
 </dialog>
-<div class="container diagnosis-panel" id="diagnosisPanel"><div class="diagnosis-progress"><div class="diagnosis-progress-top"><span id="questionCount">1 / 56</span><span class="diagnosis-remaining" id="remainingCount">あと55問</span><span id="progressPercent">0%</span></div><div class="diagnosis-progress-track"><span class="diagnosis-progress-fill" id="progressFill"></span></div></div><div class="diagnosis-question-card"><span class="diagnosis-q-category" id="questionCategory"></span><p aria-live="polite" class="diagnosis-question" id="questionText" tabindex="-1"></p><div aria-label="キーボード操作" class="keyboard-guide"><span><kbd>1</kbd> あてはまる</span><span><kbd>2</kbd> どちらともいえない</span><span><kbd>3</kbd> あてはまらない</span><span><kbd>Backspace</kbd> ひとつ戻る</span></div><div class="diagnosis-answer-grid"><button aria-keyshortcuts="1" class="diagnosis-answer" data-value="1" type="button"><kbd>1</kbd><span>あてはまる</span><small>YES</small></button><button aria-keyshortcuts="2" class="diagnosis-answer" data-value="0" type="button"><kbd>2</kbd><span>どちらともいえない</span><small>MAYBE</small></button><button aria-keyshortcuts="3" class="diagnosis-answer" data-value="-1" type="button"><kbd>3</kbd><span>あてはまらない</span><small>NO</small></button></div></div><div class="diagnosis-controls"><button class="btn btn--paper" id="backQuestion" type="button">ひとつ戻る</button><button class="btn btn--outline" id="resetDiagnosis" type="button">最初からやり直す</button></div></div>
+<div class="container diagnosis-panel" id="diagnosisPanel"><div class="diagnosis-progress"><div class="diagnosis-progress-top"><span id="questionCount">1 / 56</span><span class="diagnosis-remaining" id="remainingCount">あと55問</span><span id="progressPercent">0%</span></div><div aria-label="診断の進捗" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="diagnosis-progress-track" role="progressbar"><span class="diagnosis-progress-fill" id="progressFill"></span></div></div><div class="diagnosis-question-card"><span class="diagnosis-q-category" id="questionCategory"></span><p aria-live="polite" class="diagnosis-question" id="questionText" tabindex="-1"></p><div aria-label="キーボード操作" class="keyboard-guide"><span><kbd>1</kbd> あてはまる</span><span><kbd>2</kbd> どちらともいえない</span><span><kbd>3</kbd> あてはまらない</span><span><kbd>Backspace</kbd> ひとつ戻る</span></div><div class="diagnosis-answer-grid"><button aria-keyshortcuts="1" class="diagnosis-answer" data-value="1" type="button"><kbd>1</kbd><span>あてはまる</span><small>YES</small></button><button aria-keyshortcuts="2" class="diagnosis-answer" data-value="0" type="button"><kbd>2</kbd><span>どちらともいえない</span><small>MAYBE</small></button><button aria-keyshortcuts="3" class="diagnosis-answer" data-value="-1" type="button"><kbd>3</kbd><span>あてはまらない</span><small>NO</small></button></div></div><div class="diagnosis-controls"><button class="btn btn--paper" id="backQuestion" type="button">ひとつ戻る</button><button class="btn btn--outline" id="resetDiagnosis" type="button">最初からやり直す</button></div></div>
 <div class="container diagnosis-result" id="diagnosisResult"><div class="result-hero"><div class="result-portrait-wrap"><img alt="診断結果カード" class="result-image" decoding="async" id="resultImage" loading="lazy"/><span class="result-portrait-label">BOTANICAL PORTRAIT</span></div><div class="result-copy"><span class="result-group" id="resultGroup"></span><h2 id="resultTitle"></h2><p class="result-lead" id="resultLead"></p><p id="resultDesc"></p></div></div>
 <nav class="result-jump-nav" aria-label="診断結果の目次"><a href="#resultOverview">まず要約</a><a href="#resultDeepDive">詳しく読む</a><a href="#resultTendencies">5つの傾向</a><a href="#resultShare">結果カード</a></nav>
 <section aria-labelledby="resultGroupHeading" class="result-group-profile" id="resultOverview">
@@ -154,5 +154,5 @@
 <div class="diagnosis-mobile-start"><button type="button" id="mobileStartDiagnosis">花タイプ診断を始める <span>約6〜10分</span></button></div>
 <button aria-label="ページ上部へ戻る" class="back-top" type="button">↑</button>
 <script defer="" src="site.js?v=20260919sametab3"></script>
-<script defer="" src="diagnosis.js?v=20260919result2"></script><script defer src="rebloom-unified.js?v=20260924postevent1"></script><script defer src="diagnosis-visual-v2.js?v=20260919card2"></script>
+<script defer="" src="diagnosis.js?v=20260926logic1"></script><script defer src="rebloom-unified.js?v=20260924postevent1"></script><script defer src="diagnosis-visual-v2.js?v=20260919card2"></script>
 </body></html>
