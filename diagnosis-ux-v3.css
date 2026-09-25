@@ -696,3 +696,25 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
   font-size:11px;
   line-height:1.6;
 }
+
+
+/* Mobile progressive disclosure — 2026-09-26 */
+.page-diagnosis .result-detail-toggle-wrap{display:none}
+@media(max-width:760px){
+  .page-diagnosis .result-detail-toggle-wrap{
+    display:flex;
+    justify-content:center;
+    margin:10px 0 6px;
+  }
+  .page-diagnosis .result-detail-toggle-wrap .btn{width:100%}
+  .page-diagnosis .diagnosis-result:not(.show-result-details) :is(
+    .result-rich-insights,
+    .result-deep-dive,
+    .result-life-scenes,
+    .result-reflection,
+    .result-neighbor-section,
+    .result-month-plan
+  ){
+    display:none!important;
+  }
+}
