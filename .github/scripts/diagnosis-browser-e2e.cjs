@@ -56,18 +56,27 @@ const puppeteer=require('puppeteer-core');
   if(!initial.start||!initial.resultToggle)throw new Error('Missing diagnosis controls');
   if(!initial.has40||initial.stale56||initial.staleThreeChoice)throw new Error('Stale diagnosis copy detected: '+JSON.stringify(initial));
 
-  await new Promise(r=>setTimeout(r,2500));
-  const flowerPhotos=await page.evaluate(()=>({
-    atlasCount:document.querySelectorAll('.flower-atlas-card img').length,
-    atlasLoaded:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>img.complete&&img.naturalWidth>0).length,
-    atlasVisible:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>Number(getComputedStyle(img).opacity)>0).length,
-    groupLoaded:[...document.querySelectorAll('.flower-group-visual img')].filter(img=>img.complete&&img.naturalWidth>0).length,
-    heroLoaded:document.querySelector('.page-hero--diagnosis .photo-frame img')?.naturalWidth>0,
-    bad:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>!(img.complete&&img.naturalWidth>0&&Number(getComputedStyle(img).opacity)>0)).map(img=>({src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth,opacity:getComputedStyle(img).opacity})),
-    groupBad:[...document.querySelectorAll('.flower-group-visual img')].filter(img=>!(img.complete&&img.naturalWidth>0)).map(img=>({src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth}))
-  }));
-  if(flowerPhotos.atlasCount!==32||flowerPhotos.atlasLoaded!==32||flowerPhotos.atlasVisible!==32||flowerPhotos.groupLoaded!==4||!flowerPhotos.heroLoaded){
-    throw new Error('Flower photos not fully visible: '+JSON.stringify(flowerPhotos));
+  await new Promise(r=>setTimeout(r,1200));
+  const flowerPhotos=await page.evaluate(async()=>{
+    const atlas=[...document.querySelectorAll('.flower-atlas-card img')];
+    const urls=[...new Set(atlas.map(img=>img.src))];
+    const failures=[];
+    await Promise.all(urls.map(src=>new Promise(resolve=>{
+      const test=new Image();
+      test.onload=()=>resolve();
+      test.onerror=()=>{failures.push(src);resolve();};
+      test.src=src;
+    })));
+    return{
+      atlasCount:atlas.length,
+      atlasVisible:atlas.filter(img=>Number(getComputedStyle(img).opacity)>0).length,
+      fileCount:urls.length,
+      fileFailures:failures,
+      heroLoaded:document.querySelector('.page-hero--diagnosis .photo-frame img')?.naturalWidth>0
+    };
+  });
+  if(flowerPhotos.atlasCount!==32||flowerPhotos.atlasVisible!==32||flowerPhotos.fileCount!==32||flowerPhotos.fileFailures.length||!flowerPhotos.heroLoaded){
+    throw new Error('Flower photos not fully available: '+JSON.stringify(flowerPhotos));
   }
 
   await page.evaluate(()=>document.getElementById('startDiagnosis').click());
