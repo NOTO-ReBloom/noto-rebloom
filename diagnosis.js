@@ -143,14 +143,29 @@
   }
 
   const STORAGE_KEY='rebloom-flower-diagnosis-v4';
+  const QUESTION_SET_VERSION='2026-09-18-v1';
+  const CLASSIFICATION_EPS=.08;
+  const NEUTRAL_BITS={G:'0',A:'1',P:'1',H:'1',F:'1'};
   const $=id=>document.getElementById(id);
   const esc=(s)=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
   const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),remaining=$('remainingCount'),percent=$('progressPercent'),fill=$('progressFill');
   const start=$('startDiagnosis'),resume=$('resumeDiagnosis'),back=$('backQuestion'),reset=$('resetDiagnosis'),mobileStart=$('mobileStartDiagnosis');
   const questionAnchor=$('diagnosisQuestionAnchor');if(questionAnchor&&panel){questionAnchor.after(panel);panel.after(result);}
-  let answers=[],index=0;
-  function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({answers,index}));}catch(e){}}
-  function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(Array.isArray(d.answers)){answers=d.answers;index=Math.min(Number(d.index)||0,QUESTIONS.length-1);}}catch(e){}}
+  let answers=[],index=0,completed=false,lastResultSlug='';
+  function validAnswers(items){return Array.isArray(items)&&items.length<=QUESTIONS.length&&items.every(v=>v===-1||v===0||v===1);}
+  function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({version:QUESTION_SET_VERSION,answers,index,completed,lastResultSlug}));}catch(e){}}
+  function load(){
+    try{
+      const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+      const compatible=!d.version||d.version===QUESTION_SET_VERSION;
+      if(compatible&&validAnswers(d.answers)){
+        answers=d.answers.slice(0,QUESTIONS.length);
+        completed=Boolean(d.completed&&answers.length===QUESTIONS.length);
+        lastResultSlug=typeof d.lastResultSlug==='string'?d.lastResultSlug:'';
+        index=completed?QUESTIONS.length-1:Math.min(Number(d.index)||0,Math.max(0,QUESTIONS.length-1));
+      }
+    }catch(e){}
+  }
   function flowerBySlug(slug){return FLOWERS.find(f=>f.slug===slug)||FLOWERS[0];}
   function svgShape(kind, c, cx=705, cy=235){
     const ink = '#24180f';
@@ -301,8 +316,8 @@
     </svg>`;
   }
   function portraitDataUri(f){return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(flowerPortraitSvg(f));}
-  function render(scroll=false){document.body.classList.add('diagnosis-running');document.body.classList.remove('diagnosis-finished');panel.classList.add('is-active');result.classList.remove('is-active');const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;if(remaining)remaining.textContent=index>=QUESTIONS.length-1?'最後の1問':`あと${QUESTIONS.length-index-1}問`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';if(back)back.disabled=index===0;save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
-  function clearAll(){answers=[];index=0;try{localStorage.removeItem(STORAGE_KEY);}catch(e){}}
+  function render(scroll=false){document.body.classList.add('diagnosis-running');document.body.classList.remove('diagnosis-finished');panel.classList.add('is-active');result.classList.remove('is-active');completed=false;lastResultSlug='';const q=QUESTIONS[index];qText.textContent=q.text;qCat.textContent=q.category;count.textContent=`${index+1} / ${QUESTIONS.length}`;if(remaining)remaining.textContent=index>=QUESTIONS.length-1?'最後の1問':`あと${QUESTIONS.length-index-1}問`;const pct=Math.round(answers.length/QUESTIONS.length*100);percent.textContent=pct+'%';fill.style.width=pct+'%';const progressTrack=document.querySelector('.diagnosis-progress-track');if(progressTrack)progressTrack.setAttribute('aria-valuenow',String(pct));if(back)back.disabled=index===0;save();if(scroll)panel.scrollIntoView({behavior:'smooth',block:'start'});}
+  function clearAll(){answers=[];index=0;completed=false;lastResultSlug='';try{localStorage.removeItem(STORAGE_KEY);}catch(e){}}
   function calc(){
     const positive={G:0,A:0,P:0,H:0,F:0},negative={G:0,A:0,P:0,H:0,F:0};
     const positiveWeight={G:0,A:0,P:0,H:0,F:0},negativeWeight={G:0,A:0,P:0,H:0,F:0};
@@ -319,9 +334,9 @@
       const neg=negativeWeight[k]?negative[k]/negativeWeight[k]:0;
       scores[k]=(pos-neg)/2;
     });
-    const allNeutral=AXIS_KEYS.every(k=>Math.abs(scores[k])<1e-9);
-    const bits=AXIS_KEYS.map(k=>scores[k]>=0?'1':'0').join('');
-    return{scores,counts,flower:flowerBySlug(allNeutral?'renge':(FLOWER_MAP[bits]||'renge'))};
+    const allNeutral=AXIS_KEYS.every(k=>Math.abs(scores[k])<CLASSIFICATION_EPS);
+    const bits=AXIS_KEYS.map(k=>axisBit(k,scores[k])).join('');
+    return{scores,counts,bits,flower:flowerBySlug(allNeutral?'renge':(FLOWER_MAP[bits]||'renge'))};
   }
   function list(items){return items.map(x=>`<li>${esc(x)}</li>`).join('');}
   function bar(k,score,count){const pct=Math.min(100,Math.round(Math.abs(score)/Math.max(1,count)*100));const neg=score<0,l=AXIS_LABELS[k];return `<div class="axis-row"><span>${l[0]}</span><div class="axis-track"><span class="${neg?'neg':''}" style="width:${pct/2}%"></span></div><span>${l[1]}</span></div>`;}
@@ -366,7 +381,8 @@
     if(pct>=72)text='選び方の輪郭がとても明確です。強みが出やすい一方、反対側の力を持つ人と組むと視野が広がります。';
     return{pct,text};
   }
-  function resultBits(scores){return AXIS_KEYS.map(k=>scores[k]>=0?'1':'0').join('');}
+  function axisBit(k,score){return Math.abs(score)<CLASSIFICATION_EPS?NEUTRAL_BITS[k]:(score>0?'1':'0');}
+  function resultBits(scores){return AXIS_KEYS.map(k=>axisBit(k,scores[k])).join('');}
   function nearestFlower(scores,counts,currentFlower){
     const bits=resultBits(scores).split('');
     const values=AXIS_KEYS.map(k=>Math.abs(normalizedAxis(scores[k],counts[k])));
@@ -438,7 +454,7 @@
     const answerCounts=answers.reduce((acc,v)=>{acc[String(v)]=(acc[String(v)]||0)+1;return acc;},{});
     const dominantShare=Math.max(...Object.values(answerCounts))/Math.max(1,answers.length);
     const qualityNote=dominantShare>=.86?' 回答が一つの選択肢に集中しているため、今回は傾向が出にくい結果です。選択肢にもう少し差をつけて答えると、特徴がはっきりします。':'';
-    $('resultReasonNote').textContent='5つの軸ごとに、両方向から尋ねた設問をそれぞれ平均して比較し、どちら側に寄ったかの組み合わせから32種類の花タイプを決めています。'+qualityNote;
+    $('resultReasonNote').textContent='5つの軸ごとに、両方向から尋ねた設問をそれぞれ平均して比較しています。ごく中央に近い軸は中立として扱い、わずかな回答差だけで花タイプが変わりにくいようにした上で、5軸の組み合わせから32種類の花タイプを決めています。'+qualityNote;
     const roles=roleSuggestions(flower);const roleWrap=$('resultRoleChips');if(roleWrap)roleWrap.innerHTML=roles.map(item=>`<span>${esc(item)}</span>`).join('');
     const scenes=sceneAdvice(flower);$('resultInSchool').textContent=scenes.school;$('resultInWork').textContent=scenes.work;$('resultInCommunity').textContent=scenes.community;
     $('resultCommunication').textContent=communicationAdvice(flower);$('resultBoundary').textContent=boundaryAdvice(flower);
@@ -450,7 +466,7 @@
     $('axisBars').innerHTML=AXIS_KEYS.map(k=>bar(k,scores[k],counts[k])).join('');
     $('resultAxisNarratives').innerHTML=AXIS_KEYS.map(k=>{
       const item=axisNarrative(k,scores[k],counts[k]);
-      return `<article class="axis-narrative-card"><div><span>${esc(item.badge)}</span><b>${esc(item.title)}</b></div><p>${esc(item.text)}</p><div class="axis-position" aria-label="軸上の位置"><i style="left:${item.pct}%"></i></div></article>`;
+      return `<article class="axis-narrative-card"><div><span>${esc(item.badge)}</span><b>${esc(item.title)}</b></div><p>${esc(item.text)}</p><div class="axis-position" aria-label="${esc(AXIS_LABELS[k][0])} ${100-item.pct}%、${esc(AXIS_LABELS[k][1])} ${item.pct}%"><i style="left:${item.pct}%"></i></div></article>`;
     }).join('');
     const clarity=resultClarityData(scores,counts);
     $('resultClarity').textContent=clarity.pct+'%';
@@ -463,6 +479,8 @@
     $('resultPartnerGroup').textContent=complement.group+'と組むと';
     $('resultPartnerText').textContent=complement.text;
     $('resultMonthPlan').innerHTML=monthPlan(flower,profile).map(item=>`<li>${item}</li>`).join('');
+    completed=true;
+    lastResultSlug=flower.slug;
     save();
     result.scrollIntoView({behavior:'smooth',block:'start'});
   }
@@ -494,7 +512,12 @@
       render(false);
     }
   });
-  start?.addEventListener('click',()=>{clearAll();render(true);});resume?.addEventListener('click',()=>{load();render(true);});back?.addEventListener('click',()=>{if(index>0){index--;answers=answers.slice(0,index);render(false);}});reset?.addEventListener('click',()=>{if(window.confirm('ここまでの回答を消して最初からやり直しますか？')){clearAll();render(true);}});$('retryDiagnosis')?.addEventListener('click',()=>{clearAll();render(true);});mobileStart?.addEventListener('click',()=>{if(answers.length>0){load();render(true);}else{clearAll();render(true);}});
+  start?.addEventListener('click',()=>{clearAll();render(true);});
+  resume?.addEventListener('click',()=>{load();if(completed&&answers.length===QUESTIONS.length)showResult();else render(true);});
+  back?.addEventListener('click',()=>{if(index>0){index--;answers=answers.slice(0,index);completed=false;lastResultSlug='';render(false);}});
+  reset?.addEventListener('click',()=>{if(window.confirm('ここまでの回答を消して最初からやり直しますか？')){clearAll();render(true);}});
+  $('retryDiagnosis')?.addEventListener('click',()=>{clearAll();render(true);});
+  mobileStart?.addEventListener('click',()=>{if(answers.length>0){load();if(completed&&answers.length===QUESTIONS.length)showResult();else render(true);}else{clearAll();render(true);}});
   $('copyDiagnosisResult')?.addEventListener('click',async()=>{const{flower}=calc();const text=`私は「${flower.name}タイプ」でした。
 ${flower.tagline}
 
@@ -509,7 +532,7 @@ https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`;try{await navigator.
     grid.innerHTML=FLOWERS.map(makeCard).join('');
     document.querySelectorAll('[data-group-preview]').forEach((box)=>{const flower=FLOWERS.find(f=>f.group===box.dataset.groupPreview);if(flower)box.innerHTML=`<img src="${portraitDataUri(flower)}" alt="${flower.group}を代表する${flower.name}のイラスト" loading="lazy">`;});
     const filters=[...document.querySelectorAll('[data-atlas-filter]')];
-    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(x=>x.classList.remove('is-active'));btn.classList.add('is-active');const value=btn.dataset.atlasFilter;grid.querySelectorAll('.flower-atlas-card').forEach(card=>{card.hidden=value!=='all'&&card.dataset.flowerGroup!==value;});}));
+    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(x=>{x.classList.remove('is-active');x.setAttribute('aria-pressed','false');});btn.classList.add('is-active');btn.setAttribute('aria-pressed','true');const value=btn.dataset.atlasFilter;grid.querySelectorAll('.flower-atlas-card').forEach(card=>{card.hidden=value!=='all'&&card.dataset.flowerGroup!==value;});}));
     const dialog=$('flowerAtlasDialog'),close=$('atlasDialogClose'),startAtlas=$('atlasStartDiagnosis');
     function openFlower(slug){const flower=flowerBySlug(slug);$('atlasDialogImage').src=portraitDataUri(flower);$('atlasDialogImage').alt=flower.name+'の花タイプイラスト';$('atlasDialogGroup').textContent=flower.group;$('atlasDialogName').textContent=flower.name;$('atlasDialogTagline').textContent=flower.tagline;$('atlasDialogDesc').textContent=flower.desc;$('atlasDialogOrigin').textContent=flower.origin;$('atlasDialogBloom').textContent=flower.bloom;$('atlasDialogLanguage').textContent=flower.language;if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');}
     grid.addEventListener('click',(e)=>{const card=e.target.closest('.flower-atlas-card');if(card)openFlower(card.dataset.flowerSlug);});
@@ -518,5 +541,15 @@ https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`;try{await navigator.
     startAtlas?.addEventListener('click',()=>{if(dialog.open)dialog.close();clearAll();render(true);});
   }
   renderFlowerAtlas();
-  load();if(answers.length>0){resume.hidden=false;document.body.classList.add('has-saved-diagnosis');if(mobileStart){mobileStart.firstChild.textContent='続きから再開する ';}}else{document.body.classList.remove('has-saved-diagnosis');}
+  load();if(answers.length>0){
+    resume.hidden=false;
+    document.body.classList.add('has-saved-diagnosis');
+    if(completed&&answers.length===QUESTIONS.length){
+      resume.textContent='前回の結果を見る';
+      if(mobileStart)mobileStart.firstChild.textContent='前回の結果を見る ';
+    }else{
+      resume.textContent='続きから再開';
+      if(mobileStart)mobileStart.firstChild.textContent='続きから再開する ';
+    }
+  }else{document.body.classList.remove('has-saved-diagnosis');}
 })();
