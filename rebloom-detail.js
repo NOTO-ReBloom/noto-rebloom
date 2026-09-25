@@ -69,20 +69,23 @@
     const script=document.createElement('script');script.src=src;script.async=false;document.body.appendChild(script);return script;
   };
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-  const hasTuningBundle=!!document.querySelector('link[href*="legacy-tuning-20260924.css"],link[href*="site-foundation-20260924.css"]');
+  const hasFinalBundle=!!document.querySelector(
+    'link[href*="home-final-20260924.css"],link[href*="partner-pre-20260924.css"],link[href*="report-final-bundle-20260924.css"],link[href*="event-final-bundle-20260926.css"]'
+  );
+  const hasTuningBundle=hasFinalBundle||!!document.querySelector('link[href*="legacy-tuning-20260924.css"],link[href*="site-foundation-20260924.css"]');
   const isDiagnosis=body.classList.contains('page-diagnosis');
   const isExperiencePage=page==='index.html'||page==='event.html';
 
-  /* Non-diagnosis pages already contain these five files, in order, inside legacy-tuning. */
-  if(!hasTuningBundle||isDiagnosis){
+  /* Final bundles and legacy-tuning already contain these files in the correct cascade order. */
+  if((!hasTuningBundle||isDiagnosis)&&!hasFinalBundle){
     ensureStyle('rebloom-refine.css','rebloom-refine.css?v=20260817n');
     ensureStyle('rebloom-balance.css','rebloom-balance.css?v=20260817n');
     ensureStyle('rebloom-tight.css','rebloom-tight.css?v=20260817q');
     ensureStyle('rebloom-purpose.css','rebloom-purpose.css?v=20260817q');
     ensureStyle('rebloom-purpose-complete.css','rebloom-purpose-complete.css?v=20260817v');
   }
-  ensureStyle('rebloom-fit.css','rebloom-fit.css?v=20260817y');
-  if(isExperiencePage){
+  if(!hasFinalBundle) ensureStyle('rebloom-fit.css','rebloom-fit.css?v=20260817y');
+  if(isExperiencePage&&!hasFinalBundle){
     ensureStyle('rebloom-experience.css','rebloom-experience.css?v=20260817ad');
     ensureStyle('rebloom-appeal.css','rebloom-appeal.css?v=20260817ad');
     ensureStyle('reboost-studio.css','reboost-studio.css?v=20260817ad');
