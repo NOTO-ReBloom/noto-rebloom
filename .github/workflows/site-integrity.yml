@@ -1,0 +1,90 @@
+name: Validate public site integrity
+
+on:
+  push:
+    paths:
+      - '*.html'
+      - 'site-core.js'
+      - 'site-postevent.js'
+      - 'site.js'
+      - 'diagnosis.js'
+      - 'diagnosis-visual-v2.js'
+      - 'rebloom-unified.js'
+      - 'rebloom-detail.js'
+      - 'site-consistency.css'
+      - 'home-final-20260924.css'
+      - 'event-final-bundle-20260926.css'
+      - 'partner-pre-20260924.css'
+      - 'partner-post-20260924.css'
+      - 'report-final-bundle-20260924.css'
+      - '.github/workflows/site-integrity.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check public JavaScript syntax
+        run: |
+          for f in site-core.js site-postevent.js site.js diagnosis.js diagnosis-visual-v2.js rebloom-unified.js rebloom-detail.js; do
+            node --check "$f"
+          done
+
+      - name: Validate public HTML structure
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+
+          pages = [
+              'index.html','thoughts.html','learn.html','event.html','report.html',
+              'partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'
+          ]
+
+          class Checker(HTMLParser):
+              def __init__(self, page):
+                  super().__init__()
+                  self.page = page
+                  self.ids = []
+                  self.errors = []
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if a.get('id'):
+                      self.ids.append(a['id'])
+                  if tag == 'img' and 'alt' not in a:
+                      self.errors.append('img without alt')
+                  if tag == 'a':
+                      href = (a.get('href') or '').strip()
+                      target = (a.get('target') or '').lower()
+                      internal = bool(href) and not re.match(r'^(?:https?:|mailto:|tel:|#)', href, re.I)
+                      if internal and target == '_blank':
+                          self.errors.append(f'internal link opens new tab: {href}')
+
+          failures = []
+          for page in pages:
+              p = Path(page)
+              if not p.exists():
+                  failures.append(f'{page}: missing')
+                  continue
+              html = p.read_text(encoding='utf-8')
+              if re.search(r'<script\b[^>]*>\s*<script\b', html, re.I):
+                  failures.append(f'{page}: nested/unclosed script tag')
+              if re.search(r'<img\b[^>]*\/\s+(?:loading|decoding|srcset|sizes|fetchpriority)=', html, re.I):
+                  failures.append(f'{page}: malformed img self-closing slash before attributes')
+              if len(re.findall(r'<script\b', html, re.I)) != len(re.findall(r'</script\s*>', html, re.I)):
+                  failures.append(f'{page}: script open/close count mismatch')
+
+              c = Checker(page)
+              c.feed(html)
+              dup = sorted({x for x in c.ids if c.ids.count(x) > 1})
+              if dup:
+                  failures.append(f'{page}: duplicate ids {dup}')
+              failures.extend(f'{page}: {e}' for e in c.errors)
+
+          if failures:
+              raise SystemExit('\n'.join(failures))
+          print(f'OK: validated {len(pages)} public pages.')
+          PY
