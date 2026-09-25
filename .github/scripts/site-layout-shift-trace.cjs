@@ -5,6 +5,8 @@ const targets=[
   ['index.html',430,932],
   ['partner.html',1440,1000],
   ['partner.html',430,932],
+  ['event.html',1440,1000],
+  ['event.html',430,932],
   ['report.html',430,932]
 ];
 
