@@ -12,10 +12,35 @@ const puppeteer=require('puppeteer-core');
   page.on('console',m=>{if(m.type()==='error')errors.push('console:'+m.text())});
   page.on('pageerror',e=>errors.push('page:'+String(e)));
 
+  await page.evaluateOnNewDocument(()=>{
+    window.__diagnosisShiftTrace=[];
+    new PerformanceObserver(list=>{
+      for(const entry of list.getEntries()){
+        if(entry.hadRecentInput)continue;
+        const rect=r=>r?{x:Math.round(r.x),y:Math.round(r.y),w:Math.round(r.width),h:Math.round(r.height)}:null;
+        window.__diagnosisShiftTrace.push({
+          value:entry.value,
+          time:Math.round(entry.startTime),
+          sources:(entry.sources||[]).map(src=>{
+            const n=src.node;
+            const node=n?[
+              n.tagName?.toLowerCase?.()||'',
+              n.id?('#'+n.id):'',
+              n.className?('.'+String(n.className).trim().replace(/\s+/g,'.').slice(0,140)):''
+            ].join(''):null;
+            return{node,previous:rect(src.previousRect),current:rect(src.currentRect)};
+          })
+        });
+      }
+    }).observe({type:'layout-shift',buffered:true});
+  });
+
   const url='http://127.0.0.1:8000/diagnosis.html';
   await page.goto(url,{waitUntil:'networkidle0',timeout:30000});
   await page.evaluate(()=>localStorage.clear());
   await page.reload({waitUntil:'networkidle0',timeout:30000});
+  await new Promise(r=>setTimeout(r,1200));
+  const initialShiftTrace=await page.evaluate(()=>window.__diagnosisShiftTrace||[]);
 
   const initial=await page.evaluate(()=>({
     answers:document.querySelectorAll('.diagnosis-answer').length,
@@ -74,6 +99,7 @@ const puppeteer=require('puppeteer-core');
   await page.waitForFunction(()=>document.getElementById('diagnosisResult')?.classList.contains('is-active'),{timeout:5000});
 
   if(errors.length)throw new Error('Browser errors: '+errors.join(' | '));
+  console.log('DIAGNOSIS_SHIFT_TRACE='+JSON.stringify(initialShiftTrace));
   console.log('DIAGNOSIS_E2E_OK='+JSON.stringify({initial,result,expanded,saved}));
   await browser.close();
 })().catch(async e=>{
