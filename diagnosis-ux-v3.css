@@ -1198,3 +1198,383 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
   .page-diagnosis .result-hero{padding:9px!important;gap:12px!important}
   .page-diagnosis .result-image{min-height:0!important}
 }
+
+
+/* Typography & atmosphere refinement — 2026-09-26 */
+.page-diagnosis{
+  --fd-body:"Yu Gothic","YuGothic","Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,system-ui,-apple-system,sans-serif;
+  --fd-display:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Hiragino Sans",Meiryo,system-ui,sans-serif;
+  --fd-latin:"Avenir Next","Helvetica Neue","Segoe UI",Arial,sans-serif;
+  font-family:var(--fd-body)!important;
+  font-kerning:normal;
+  font-feature-settings:"palt" 1,"kern" 1;
+  text-rendering:optimizeLegibility;
+  background:#f5f0e6!important;
+}
+.page-diagnosis main{
+  position:relative;
+  background:
+    radial-gradient(circle at 1px 1px,rgba(24,75,61,.027) .75px,transparent .8px) 0 0/24px 24px,
+    radial-gradient(ellipse at 12% 6%,rgba(222,231,209,.56),transparent 25%),
+    radial-gradient(ellipse at 91% 18%,rgba(234,218,182,.34),transparent 27%),
+    radial-gradient(ellipse at 8% 58%,rgba(217,228,221,.25),transparent 24%),
+    linear-gradient(180deg,#fbf8ef 0%,#f7f2e8 29%,#f4efe4 66%,#f8f4eb 100%)!important;
+}
+.page-diagnosis h1,
+.page-diagnosis h2,
+.page-diagnosis h3,
+.page-diagnosis h4,
+.page-diagnosis .flower-atlas-card b,
+.page-diagnosis .diagnosis-question{
+  font-family:var(--fd-display)!important;
+  font-style:normal!important;
+  font-kerning:normal;
+  font-feature-settings:"palt" 1,"kern" 1;
+  text-wrap:balance;
+}
+.page-diagnosis h1{font-weight:700!important}
+.page-diagnosis h2{font-weight:700!important}
+.page-diagnosis h3{font-weight:700!important}
+.page-diagnosis h4{font-weight:700!important}
+.page-diagnosis p,
+.page-diagnosis li,
+.page-diagnosis small{
+  text-wrap:pretty;
+}
+.page-diagnosis p{
+  line-height:1.88!important;
+}
+.page-diagnosis .page-hero--diagnosis h1{
+  font-weight:700!important;
+  letter-spacing:-.055em!important;
+}
+.page-diagnosis .section-heading h2,
+.page-diagnosis .flower-atlas-heading h2,
+.page-diagnosis .diagnosis-intro h2{
+  font-weight:700!important;
+  letter-spacing:-.045em!important;
+}
+.page-diagnosis .diagnosis-method-card h3,
+.page-diagnosis .diagnosis-start-card h3,
+.page-diagnosis .result-copy h2{
+  font-weight:700!important;
+  letter-spacing:-.038em!important;
+}
+.page-diagnosis .flower-group-card h3,
+.page-diagnosis .flower-atlas-card b{
+  font-weight:700!important;
+}
+.page-diagnosis .eyebrow{
+  gap:10px!important;
+  margin-bottom:17px!important;
+  color:#587066!important;
+  font-size:10px!important;
+  font-weight:700!important;
+  letter-spacing:.04em!important;
+}
+.page-diagnosis .eyebrow::before{
+  width:22px!important;
+  height:1px!important;
+  background:#b99a3f!important;
+  opacity:.9;
+}
+.page-diagnosis .eyebrow span{
+  font-family:var(--fd-body)!important;
+  font-weight:700!important;
+  letter-spacing:.06em!important;
+}
+.page-diagnosis .eyebrow small,
+.page-diagnosis .result-kicker,
+.page-diagnosis .diagnosis-start-label,
+.page-diagnosis .result-quick-grid article>span{
+  font-family:var(--fd-latin)!important;
+  font-weight:700!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase;
+}
+.page-diagnosis .eyebrow small{
+  color:#8b978f!important;
+  font-size:9px!important;
+}
+.page-diagnosis .site-header{
+  background:rgba(255,252,245,.91)!important;
+  border-color:rgba(24,75,61,.11)!important;
+  box-shadow:0 8px 28px rgba(24,55,47,.065)!important;
+  backdrop-filter:blur(18px) saturate(.9)!important;
+}
+.page-diagnosis .brand b{
+  font-family:var(--fd-latin)!important;
+  font-weight:700!important;
+  letter-spacing:.01em!important;
+}
+.page-diagnosis .site-nav a{
+  font-weight:700!important;
+  letter-spacing:.01em!important;
+}
+
+/* hero atmosphere */
+.page-diagnosis .page-hero--diagnosis{
+  position:relative;
+  isolation:isolate;
+  overflow:visible!important;
+}
+.page-diagnosis .page-hero--diagnosis::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:clamp(280px,34vw,520px);
+  aspect-ratio:1;
+  right:-8%;
+  top:9%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 42% 42%,rgba(211,224,199,.58),rgba(211,224,199,.14) 45%,transparent 69%);
+  filter:blur(2px);
+  pointer-events:none;
+}
+.page-diagnosis .page-hero--diagnosis .photo-frame{
+  box-shadow:
+    0 30px 80px rgba(24,55,47,.105),
+    0 1px 0 rgba(255,255,255,.8) inset!important;
+}
+.page-diagnosis .page-hero--diagnosis .photo-frame figcaption{
+  font-family:var(--fd-body)!important;
+  letter-spacing:.01em;
+}
+.page-diagnosis .hero-photo-credit{
+  font-family:var(--fd-latin)!important;
+  letter-spacing:.02em!important;
+}
+
+/* section rhythm */
+.page-diagnosis .diagnosis-section{
+  position:relative;
+  isolation:isolate;
+}
+.page-diagnosis .diagnosis-section::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:50%;
+  top:9%;
+  width:100vw;
+  height:33%;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg,rgba(239,244,235,.58),rgba(239,244,235,.12),transparent);
+  pointer-events:none;
+}
+.page-diagnosis .diagnosis-shell{
+  position:relative;
+}
+.page-diagnosis .diagnosis-shell::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:180px;
+  height:180px;
+  left:-90px;
+  bottom:-48px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(229,204,118,.12),transparent 70%);
+  pointer-events:none;
+}
+.page-diagnosis .diagnosis-intro,
+.page-diagnosis .diagnosis-start-card,
+.page-diagnosis .diagnosis-method-card{
+  backdrop-filter:blur(2px);
+}
+.page-diagnosis .diagnosis-intro,
+.page-diagnosis .diagnosis-start-card{
+  box-shadow:
+    0 18px 42px rgba(28,55,47,.05),
+    0 1px 0 rgba(255,255,255,.72) inset!important;
+}
+.page-diagnosis .diagnosis-intro h2{
+  font-size:clamp(35px,4vw,52px)!important;
+  line-height:1.28!important;
+}
+.page-diagnosis .diagnosis-start-card h3{
+  font-size:clamp(27px,3vw,36px)!important;
+  line-height:1.34!important;
+}
+.page-diagnosis .diagnosis-method-card{
+  background:rgba(255,253,248,.82)!important;
+  border-color:rgba(24,75,61,.09)!important;
+  box-shadow:0 12px 34px rgba(28,55,47,.04)!important;
+}
+.page-diagnosis .diagnosis-method-card>p:not(.eyebrow){
+  max-width:850px;
+}
+
+/* group section gets a soft garden wash instead of decorative graphics */
+.page-diagnosis .flower-group-showcase{
+  position:relative;
+  isolation:isolate;
+}
+.page-diagnosis .flower-group-showcase::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:50%;
+  top:16px;
+  bottom:16px;
+  width:100vw;
+  transform:translateX(-50%);
+  background:
+    radial-gradient(ellipse at 15% 38%,rgba(231,211,154,.15),transparent 24%),
+    radial-gradient(ellipse at 88% 66%,rgba(177,204,191,.17),transparent 25%),
+    linear-gradient(180deg,rgba(255,255,255,0),rgba(248,246,238,.68) 24%,rgba(246,244,235,.58) 75%,rgba(255,255,255,0));
+  pointer-events:none;
+}
+.page-diagnosis .section-heading--center h2{
+  line-height:1.22!important;
+}
+.page-diagnosis .section-heading--center>p:last-child{
+  color:#6b7d74!important;
+}
+.page-diagnosis .flower-group-card{
+  box-shadow:
+    0 14px 34px rgba(24,55,47,.045),
+    0 1px 0 rgba(255,255,255,.8) inset!important;
+}
+.page-diagnosis .flower-group-card p{
+  color:#667970!important;
+}
+.page-diagnosis .flower-group-card small{
+  font-weight:700!important;
+  letter-spacing:.01em!important;
+}
+
+/* atlas becomes the visual anchor of the page */
+.page-diagnosis .flower-atlas{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 95% 0%,rgba(222,232,215,.27),transparent 24%),
+    linear-gradient(180deg,rgba(255,254,250,.97),rgba(255,252,246,.94))!important;
+  border-color:rgba(24,75,61,.11)!important;
+  box-shadow:
+    0 28px 72px rgba(25,55,47,.07),
+    0 1px 0 rgba(255,255,255,.92) inset!important;
+}
+.page-diagnosis .flower-atlas::after{
+  content:"32";
+  position:absolute;
+  right:18px;
+  top:2px;
+  z-index:-1;
+  font-family:var(--fd-latin);
+  font-size:clamp(110px,16vw,210px);
+  font-weight:700;
+  line-height:1;
+  letter-spacing:-.08em;
+  color:rgba(24,75,61,.025);
+  pointer-events:none;
+}
+.page-diagnosis .flower-atlas-heading p{
+  color:#687a72!important;
+}
+.page-diagnosis .flower-atlas-card{
+  box-shadow:0 7px 22px rgba(24,55,47,.042)!important;
+}
+.page-diagnosis .flower-atlas-card:hover{
+  box-shadow:0 18px 42px rgba(24,55,47,.085)!important;
+}
+.page-diagnosis .flower-atlas-card small{
+  font-weight:500!important;
+}
+.page-diagnosis .flower-atlas-filters button{
+  font-family:var(--fd-body)!important;
+  font-weight:700!important;
+  letter-spacing:.02em!important;
+}
+
+/* result typography */
+.page-diagnosis .result-copy h2{
+  line-height:1.08!important;
+}
+.page-diagnosis .result-lead{
+  font-family:var(--fd-display)!important;
+  font-weight:600!important;
+  letter-spacing:-.015em!important;
+}
+.page-diagnosis .result-card h3,
+.page-diagnosis .result-group-profile h3,
+.page-diagnosis .result-deep-dive h3,
+.page-diagnosis .result-life-scenes h3,
+.page-diagnosis .result-reflection h3,
+.page-diagnosis .result-tendency-section h3,
+.page-diagnosis .result-month-plan h3,
+.page-diagnosis .result-next-action h3{
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+}
+
+/* ending: quieter, richer dark green */
+.page-diagnosis .final-cta{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 14% 120%,rgba(117,142,106,.38),transparent 34%),
+    radial-gradient(circle at 91% 4%,rgba(222,200,112,.15),transparent 28%),
+    linear-gradient(135deg,#123e34 0%,#184b3d 54%,#1f5847 100%)!important;
+}
+.page-diagnosis .final-cta::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) .7px,transparent .8px) 0 0/22px 22px;
+  opacity:.7;
+  pointer-events:none;
+}
+.page-diagnosis .final-cta .container{
+  position:relative;
+  z-index:1;
+}
+.page-diagnosis .final-cta h2{
+  font-weight:700!important;
+  letter-spacing:-.04em!important;
+  line-height:1.2!important;
+}
+.page-diagnosis .final-cta p{
+  color:rgba(255,255,255,.78)!important;
+}
+.page-diagnosis .final-flower{
+  box-shadow:none!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+}
+
+/* mobile typography keeps hierarchy without becoming oversized */
+@media(max-width:680px){
+  .page-diagnosis main{
+    background:
+      radial-gradient(circle at 1px 1px,rgba(24,75,61,.022) .7px,transparent .8px) 0 0/22px 22px,
+      radial-gradient(ellipse at 88% 5%,rgba(222,231,209,.42),transparent 22%),
+      linear-gradient(180deg,#fbf8ef,#f5f0e6 64%,#f8f4eb)!important;
+  }
+  .page-diagnosis .page-hero--diagnosis h1{
+    font-size:clamp(43px,12vw,58px)!important;
+    line-height:1.09!important;
+  }
+  .page-diagnosis .page-hero--diagnosis::after{
+    width:310px;
+    right:-32%;
+    top:24%;
+    opacity:.68;
+  }
+  .page-diagnosis .eyebrow{
+    margin-bottom:14px!important;
+  }
+  .page-diagnosis .diagnosis-intro h2{
+    font-size:clamp(31px,9vw,42px)!important;
+  }
+  .page-diagnosis .section-heading--center h2,
+  .page-diagnosis .flower-atlas-heading h2{
+    font-size:clamp(34px,10vw,46px)!important;
+  }
+  .page-diagnosis .flower-atlas::after{
+    font-size:120px;
+    right:6px;
+  }
+}
