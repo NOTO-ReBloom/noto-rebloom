@@ -28,26 +28,6 @@ function setPhoto(img,slug,name){
   img.src=photoUrl(slug);
   img.alt=`${name||slug}の花の写真`;
 }
-function refreshAtlas(){
-  document.querySelectorAll('.flower-atlas-card[data-flower-slug]').forEach(card=>{
-    const slug=card.dataset.flowerSlug;const name=card.querySelector('b')?.textContent||'花';setPhoto(card.querySelector('img'),slug,name);
-  });
-  const reps={'太陽の花':'himawari','風の花':'freesia','里山の花':'renge','水辺の花':'ajisai'};
-  document.querySelectorAll('[data-group-preview]').forEach(box=>{
-    const slug=reps[box.dataset.groupPreview]||'renge';setPhoto(box.querySelector('img'),slug,box.dataset.groupPreview);
-  });
-}
-function refreshDialog(){const name=document.getElementById('atlasDialogName')?.textContent?.trim();const slug=NAME_TO_SLUG[name];if(slug)setPhoto(document.getElementById('atlasDialogImage'),slug,name);}
-function refreshHero(){
-  const img=document.querySelector('.page-hero--diagnosis .photo-frame img');setPhoto(img,'renge','レンゲ');
-  const cap=document.querySelector('.page-hero--diagnosis .photo-frame figcaption');if(cap)cap.textContent='実際の花の姿を知りながら、自分らしい一輪を見つける診断です。';
-}
-function rewriteHero(){
-  const h1=document.querySelector('.page-hero--diagnosis h1');if(h1)h1.innerHTML='花から、<br><span class="headline-marker">わたしを再発見。</span>';
-  const p=document.querySelector('.page-hero--diagnosis .reveal>p:not(.eyebrow)');if(p)p.textContent='40の質問から、考え方や人との関わり方の傾向を32種類の花に重ねて読み解きます。花の姿も写真で知りながら、自分らしい一輪を見つけてください。';
-  const note=document.querySelector('.hero-sticker-note');if(note)note.textContent='約4〜6分 / 登録不要 / 途中保存できます';
-  const tags=[...document.querySelectorAll('.diagnosis-tags li')];tags.forEach(tag=>{if(/30種類以上/.test(tag.textContent))tag.textContent='32種類';});
-}
 function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=4){let line='',lines=[];for(const ch of [...text]){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;if(lines.length>=maxLines-1)break;}else line=test;}if(line&&lines.length<maxLines)lines.push(line);lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));}
 async function loadImage(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=src;});}
 async function loadFlowerImage(slug){try{return await loadImage(photoUrl(slug));}catch{return await loadImage(legacyUrl(slug));}}
