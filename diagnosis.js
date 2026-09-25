@@ -466,6 +466,10 @@
     const qualityNote=dominantShare>=.86?' 回答が一つの選択肢に集中しているため、今回は傾向が出にくい結果です。選択肢にもう少し差をつけて答えると、特徴がはっきりします。':'';
     $('resultReasonNote').textContent='40問は1問につき1つの軸に対応しています。5つの軸それぞれで、両方向から4問ずつ尋ねた回答を平均して比較し、5軸の組み合わせから32種類の花タイプを決めています。完全に中央になった軸はバランス型として表示し、花タイプを決める時だけ、その軸の代表設問を補助的に参照します。'+qualityNote;
     const roles=roleSuggestions(flower);const roleWrap=$('resultRoleChips');if(roleWrap)roleWrap.innerHTML=roles.map(item=>`<span>${esc(item)}</span>`).join('');
+    $('resultQuickStrength').textContent=flower.strengths.slice(0,3).join('・');
+    $('resultQuickWatch').textContent=flower.watch[0];
+    $('resultQuickRole').textContent=roles.slice(0,2).join('・');
+    $('resultQuickAxis').textContent=reasons.slice(0,2).map(item=>item.label).join(' × ');
     const scenes=sceneAdvice(flower);$('resultInSchool').textContent=scenes.school;$('resultInWork').textContent=scenes.work;$('resultInCommunity').textContent=scenes.community;
     $('resultCommunication').textContent=communicationAdvice(flower);$('resultBoundary').textContent=boundaryAdvice(flower);
     $('resultReflectionQuestions').innerHTML=reflectionQuestions(flower).map(item=>`<li>${esc(item)}</li>`).join('');
