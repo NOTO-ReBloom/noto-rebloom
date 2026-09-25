@@ -516,3 +516,39 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
 .page-diagnosis .result-share-copy p{
   max-width:560px;
 }
+
+
+/* Accessibility and motion preferences — 2026-09-26 */
+.page-diagnosis .flower-atlas-filters button,
+.page-diagnosis .diagnosis-answer,
+.page-diagnosis .diagnosis-controls .btn,
+.page-diagnosis .result-jump-nav a{
+  min-height:44px;
+}
+.page-diagnosis .flower-atlas-filters button:focus-visible,
+.page-diagnosis .diagnosis-answer:focus-visible,
+.page-diagnosis .diagnosis-controls .btn:focus-visible,
+.page-diagnosis .result-jump-nav a:focus-visible,
+.page-diagnosis .atlas-dialog-close:focus-visible{
+  outline:3px solid rgba(21,72,59,.34);
+  outline-offset:3px;
+}
+@media (prefers-reduced-motion: reduce){
+  .page-diagnosis *,
+  .page-diagnosis *::before,
+  .page-diagnosis *::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  .page-diagnosis .reveal{
+    opacity:1!important;
+    transform:none!important;
+  }
+  .page-diagnosis .diagnosis-answer:hover,
+  .page-diagnosis .diagnosis-answer:focus-visible,
+  .page-diagnosis .flower-atlas-card:hover{
+    transform:none!important;
+  }
+}
