@@ -1,6 +1,6 @@
 {
-  "version": 51,
-  "updatedAt": "2026-09-24T09:02:36.765Z",
+  "version": 52,
+  "updatedAt": "2026-09-25T12:45:17.091Z",
   "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-24_batch01.md",
   "requiredFreeChecks": [
@@ -11,6 +11,246 @@
   ],
   "retryPolicy": "An item remains retryable while absent from the local strict publication state. forceRetry is reserved for a future explicit new nonce after a previously verified publication and is false for first publication to prevent duplicate republishing.",
   "entries": [
+    {
+      "id": "free_note_20260925_01_event_brief",
+      "kind": "free",
+      "price": 0,
+      "title": "小さなイベントの企画を一枚にまとめる｜目的から終了条件までの書き方",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_01_event_brief.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-01"
+    },
+    {
+      "id": "free_note_20260925_02_event_signup",
+      "kind": "free",
+      "price": 0,
+      "title": "イベント申込フォームを短くする｜集める情報と使い道の整理",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_02_event_signup.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-02"
+    },
+    {
+      "id": "free_note_20260925_03_arrival_guide",
+      "kind": "free",
+      "price": 0,
+      "title": "参加者が会場で迷わない案内文｜駅から受付までを言葉にする",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_03_arrival_guide.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-03"
+    },
+    {
+      "id": "free_note_20260925_04_checkin_desk",
+      "kind": "free",
+      "price": 0,
+      "title": "イベント受付が詰まる前に｜列・名簿・例外の置き方",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_04_checkin_desk.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-04"
+    },
+    {
+      "id": "free_note_20260925_05_equipment_return",
+      "kind": "free",
+      "price": 0,
+      "title": "備品を貸したままにしない｜持出しから返却までの一覧表",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_05_equipment_return.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-05"
+    },
+    {
+      "id": "free_note_20260925_06_morning_brief",
+      "kind": "free",
+      "price": 0,
+      "title": "スタッフ朝礼の10分を整える｜今日の変更点から話す順番",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_06_morning_brief.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-06"
+    },
+    {
+      "id": "free_note_20260925_07_photo_consent",
+      "kind": "free",
+      "price": 0,
+      "title": "活動写真を投稿する前に｜撮影から公開までの確認メモ",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_07_photo_consent.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-07"
+    },
+    {
+      "id": "free_note_20260925_08_event_closeout",
+      "kind": "free",
+      "price": 0,
+      "title": "イベント終了の連絡を一通で済ませない｜参加者と関係者への報告",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_08_event_closeout.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-08"
+    },
+    {
+      "id": "free_note_20260925_09_donor_update",
+      "kind": "free",
+      "price": 0,
+      "title": "寄付者への近況報告を続ける｜数字と現場の声を一緒に伝える",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_09_donor_update.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-09"
+    },
+    {
+      "id": "free_note_20260925_10_survey_followup",
+      "kind": "free",
+      "price": 0,
+      "title": "アンケートを集めて終わらせない｜自由記述を次回改善につなぐ",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_10_survey_followup.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-10"
+    },
+    {
+      "id": "free_note_20260925_11_weekly_priority",
+      "kind": "free",
+      "price": 0,
+      "title": "忙しい週の優先順位を3つに絞る｜小チームの月曜メモ",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_11_weekly_priority.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-11"
+    },
+    {
+      "id": "free_note_20260925_12_new_member_first_day",
+      "kind": "free",
+      "price": 0,
+      "title": "新メンバーの初日に迷わせない｜最初の90分を設計する",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_12_new_member_first_day.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-12"
+    },
+    {
+      "id": "free_note_20260925_13_absence_brief",
+      "kind": "free",
+      "price": 0,
+      "title": "会議に出られなかった人へ｜決定と宿題が伝わる短い共有文",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_13_absence_brief.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-13"
+    },
+    {
+      "id": "free_note_20260925_14_file_names",
+      "kind": "free",
+      "price": 0,
+      "title": "ファイル名で探す時間を減らす｜日付・案件・版の並べ方",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_14_file_names.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-14"
+    },
+    {
+      "id": "free_note_20260925_15_decision_log",
+      "kind": "free",
+      "price": 0,
+      "title": "口頭の決定を後から追えるように｜小チームの判断ログ",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_15_decision_log.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-15"
+    },
+    {
+      "id": "free_note_20260925_16_handoff_questions",
+      "kind": "free",
+      "price": 0,
+      "title": "引継ぎ相手が質問しやすい資料｜未決事項を先に書く",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_16_handoff_questions.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-16"
+    },
+    {
+      "id": "free_note_20260925_17_meeting_pre_read",
+      "kind": "free",
+      "price": 0,
+      "title": "会議前の資料はどこまで送る？｜読む負担を増やさない事前共有",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_17_meeting_pre_read.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-17"
+    },
+    {
+      "id": "free_note_20260925_18_recurring_work",
+      "kind": "free",
+      "price": 0,
+      "title": "毎月の作業が毎回初回になる前に｜定例業務のカレンダー",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_18_recurring_work.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-18"
+    },
+    {
+      "id": "free_note_20260925_19_small_budget",
+      "kind": "free",
+      "price": 0,
+      "title": "少額予算でも見通しを持つ｜企画ごとの支出予定メモ",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_19_small_budget.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-19"
+    },
+    {
+      "id": "free_note_20260925_20_community_notice",
+      "kind": "free",
+      "price": 0,
+      "title": "地域の掲示板に載せる案内文｜日時より先に伝えること",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_20_community_notice.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-20"
+    },
+    {
+      "id": "free_note_20260925_21_partner_request",
+      "kind": "free",
+      "price": 0,
+      "title": "地域の協力者へ頼むとき｜お願いを小さく具体化する文面",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_21_partner_request.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-21"
+    },
+    {
+      "id": "free_note_20260925_22_pilot_plan",
+      "kind": "free",
+      "price": 0,
+      "title": "新しい取組みを小さく試す｜2週間の実験計画を一枚で作る",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_22_pilot_plan.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-22"
+    },
+    {
+      "id": "free_note_20260925_23_closing_project",
+      "kind": "free",
+      "price": 0,
+      "title": "プロジェクトを終える前の片付け｜成果物と未対応を引き渡す",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_23_closing_project.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-23"
+    },
+    {
+      "id": "free_note_20260925_24_volunteer_time",
+      "kind": "free",
+      "price": 0,
+      "title": "ボランティアの参加時間を無理なく記録する｜集計前の小さなルール",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/free_note_20260925_24_volunteer_time.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "free-note-20260925-original-24"
+    },
     {
       "id": "free_note_20260924_02_volunteer_retention_checkin",
       "kind": "free",
@@ -2396,16 +2636,35 @@
     "policy": "Finish pre-existing 05/06 first, then publish prepared new free articles; strict reader-visible URL required."
   },
   "activePriorityBatch": {
-    "mode": "note24_new_publications",
+    "mode": "new_24_free_notes",
     "orderedIds": [
-      "free_note_20260924_02_volunteer_retention_checkin",
-      "free_note_20260924_03_shared_backoffice_request",
-      "free_note_20260924_04_grant_report_evidence",
-      "free_note_20260924_05_event_safety_handoff",
-      "free_note_20260924_06_community_partner_followup"
+      "free_note_20260925_01_event_brief",
+      "free_note_20260925_02_event_signup",
+      "free_note_20260925_03_arrival_guide",
+      "free_note_20260925_04_checkin_desk",
+      "free_note_20260925_05_equipment_return",
+      "free_note_20260925_06_morning_brief",
+      "free_note_20260925_07_photo_consent",
+      "free_note_20260925_08_event_closeout",
+      "free_note_20260925_09_donor_update",
+      "free_note_20260925_10_survey_followup",
+      "free_note_20260925_11_weekly_priority",
+      "free_note_20260925_12_new_member_first_day",
+      "free_note_20260925_13_absence_brief",
+      "free_note_20260925_14_file_names",
+      "free_note_20260925_15_decision_log",
+      "free_note_20260925_16_handoff_questions",
+      "free_note_20260925_17_meeting_pre_read",
+      "free_note_20260925_18_recurring_work",
+      "free_note_20260925_19_small_budget",
+      "free_note_20260925_20_community_notice",
+      "free_note_20260925_21_partner_request",
+      "free_note_20260925_22_pilot_plan",
+      "free_note_20260925_23_closing_project",
+      "free_note_20260925_24_volunteer_time"
     ],
-    "requiredStrictPublications": 6,
-    "nonce": "note24-priority-20260924"
+    "requiredStrictPublications": 24,
+    "nonce": "free24-priority-20260925"
   },
   "retryGeneration": 35,
   "activePublicationDate": "2026-09-09",
