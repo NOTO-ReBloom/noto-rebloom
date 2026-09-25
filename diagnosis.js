@@ -490,7 +490,7 @@
     const axisLabel=AXIS_LABELS[neighbor.axis];
     $('resultNeighborText').textContent=`「${axisLabel[0]}／${axisLabel[1]}」の軸が中央に近いため、この軸の答え方が少し変わると${neighbor.flower.name}タイプになります。今の結果と特徴が近い、もう一つのタイプです。`;
     const complement=COMPLEMENT_GROUP[flower.group]||COMPLEMENT_GROUP['里山の花'];
-    $('resultPartnerGroup').textContent=complement.group+'と組むと';
+    $('resultPartnerGroup').textContent=complement.group+'の強みを借りるなら';
     $('resultPartnerText').textContent=complement.text;
     $('resultMonthPlan').innerHTML=monthPlan(flower,profile).map(item=>`<li>${item}</li>`).join('');
     completed=true;
@@ -548,7 +548,7 @@
 ${flower.tagline}
 
 強み：${flower.strengths.slice(0,3).join('・')}
-花言葉：${flower.language}
+主な花言葉：${flower.language}
 
 Re:Bloom 花タイプ診断
 https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`;try{await navigator.clipboard.writeText(text);$('diagnosisCopyStatus').textContent='結果文をコピーしました。';}catch(e){$('diagnosisCopyStatus').textContent='コピーできませんでした。';}});
