@@ -146,6 +146,7 @@
   const QUESTION_SET_VERSION='2026-09-26-v2';
   const CLASSIFICATION_EPS=.04;
   const NEUTRAL_BITS={G:'0',A:'1',P:'1',H:'1',F:'1'};
+  const AXIS_TIE_BREAK={G:0,A:1,P:2,H:13,F:4};
   const $=id=>document.getElementById(id);
   const esc=(s)=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
   const panel=$('diagnosisPanel'),result=$('diagnosisResult'),qText=$('questionText'),qCat=$('questionCategory'),count=$('questionCount'),remaining=$('remainingCount'),percent=$('progressPercent'),fill=$('progressFill');
@@ -382,7 +383,15 @@
     if(pct>=72)text='選び方の輪郭がとても明確です。強みが出やすい一方、反対側の力を持つ人と組むと視野が広がります。';
     return{pct,text};
   }
-  function axisBit(k,score){return Math.abs(score)<CLASSIFICATION_EPS?NEUTRAL_BITS[k]:(score>0?'1':'0');}
+  function axisBit(k,score){
+    if(Math.abs(score)>=CLASSIFICATION_EPS)return score>0?'1':'0';
+    const i=AXIS_TIE_BREAK[k];
+    const q=QUESTIONS[i];
+    const w=q?.axes?.[k]||0;
+    const v=answers[i]??0;
+    if(w&&v)return v*w>0?'1':'0';
+    return NEUTRAL_BITS[k];
+  }
   function resultBits(scores){return AXIS_KEYS.map(k=>axisBit(k,scores[k])).join('');}
   function nearestFlower(scores,counts,currentFlower){
     const bits=resultBits(scores).split('');
@@ -455,7 +464,7 @@
     const answerCounts=answers.reduce((acc,v)=>{acc[String(v)]=(acc[String(v)]||0)+1;return acc;},{});
     const dominantShare=Math.max(...Object.values(answerCounts))/Math.max(1,answers.length);
     const qualityNote=dominantShare>=.86?' 回答が一つの選択肢に集中しているため、今回は傾向が出にくい結果です。選択肢にもう少し差をつけて答えると、特徴がはっきりします。':'';
-    $('resultReasonNote').textContent='40問は1問につき1つの軸に対応しています。5つの軸それぞれで、両方向から4問ずつ尋ねた回答を平均して比較し、5軸の組み合わせから32種類の花タイプを決めています。ごく中央に近い軸はバランス型として表示します。'+qualityNote;
+    $('resultReasonNote').textContent='40問は1問につき1つの軸に対応しています。5つの軸それぞれで、両方向から4問ずつ尋ねた回答を平均して比較し、5軸の組み合わせから32種類の花タイプを決めています。完全に中央になった軸はバランス型として表示し、花タイプを決める時だけ、その軸の代表設問を補助的に参照します。'+qualityNote;
     const roles=roleSuggestions(flower);const roleWrap=$('resultRoleChips');if(roleWrap)roleWrap.innerHTML=roles.map(item=>`<span>${esc(item)}</span>`).join('');
     const scenes=sceneAdvice(flower);$('resultInSchool').textContent=scenes.school;$('resultInWork').textContent=scenes.work;$('resultInCommunity').textContent=scenes.community;
     $('resultCommunication').textContent=communicationAdvice(flower);$('resultBoundary').textContent=boundaryAdvice(flower);
