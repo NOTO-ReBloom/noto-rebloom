@@ -533,6 +533,17 @@
   reset?.addEventListener('click',()=>{if(window.confirm('ここまでの回答を消して最初からやり直しますか？')){clearAll();render(true);}});
   $('retryDiagnosis')?.addEventListener('click',()=>{clearAll();render(true);});
   mobileStart?.addEventListener('click',()=>{if(answers.length>0){load();if(completed&&answers.length===QUESTIONS.length)showResult();else render(true);}else{clearAll();render(true);}});
+  const detailToggle=$('resultDetailToggle');
+  function setResultDetails(open){
+    result?.classList.toggle('show-result-details',open);
+    if(detailToggle){
+      detailToggle.setAttribute('aria-expanded',open?'true':'false');
+      detailToggle.textContent=open?'詳しい結果を閉じる':'詳しい結果を読む';
+    }
+  }
+  detailToggle?.addEventListener('click',()=>setResultDetails(!result.classList.contains('show-result-details')));
+  document.querySelectorAll('[data-open-result-details="true"]').forEach(link=>link.addEventListener('click',()=>setResultDetails(true)));
+
   $('copyDiagnosisResult')?.addEventListener('click',async()=>{const{flower}=calc();const text=`私は「${flower.name}タイプ」でした。
 ${flower.tagline}
 
