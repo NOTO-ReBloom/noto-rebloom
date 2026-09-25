@@ -12,6 +12,7 @@ on:
       - 'diagnosis-fixes.css'
       - 'flower-photo-*.webp'
       - 'flower-photo-credits.json'
+      - 'photo-credits.html'
       - '.github/workflows/validate-diagnosis.yml'
 
 jobs:
@@ -56,6 +57,16 @@ jobs:
           const credits=JSON.parse(fs.readFileSync('flower-photo-credits.json','utf8'));
           const creditSlugs=new Set(credits.map(x=>x.slug));
           if(credits.length!==32||creditSlugs.size!==32) throw new Error('Expected 32 unique photo credits');
+          const allowedProviders=new Set(['Pexels','Unsplash','Pixabay','Wikimedia Commons']);
+          for(const item of credits){
+            if(!allowedProviders.has(item.provider)) throw new Error('Unexpected photo provider: '+item.provider);
+            if(!/^https:\/\//.test(item.source||'')) throw new Error('Missing HTTPS source for '+item.slug);
+            if(!/^https:\/\//.test(item.license||'')) throw new Error('Missing HTTPS license for '+item.slug);
+          }
+          const renge=credits.find(x=>x.slug==='renge');
+          if(!renge||renge.provider!=='Wikimedia Commons'||!String(renge.license).includes('creativecommons.org/licenses/by/2.0')||!renge.creator||!renge.modifications){
+            throw new Error('Renge CC BY 2.0 attribution metadata is incomplete');
+          }
           for(const slug of flowerSlugs){
             if(!fs.existsSync('flower-photo-'+slug+'.webp')) throw new Error('Missing flower photo for '+slug);
             if(!creditSlugs.has(slug)) throw new Error('Missing photo credit for '+slug);
@@ -117,6 +128,7 @@ jobs:
           import re
 
           html = Path('diagnosis.html').read_text(encoding='utf-8')
+          credits_html = Path('photo-credits.html').read_text(encoding='utf-8')
           js = Path('diagnosis.js').read_text(encoding='utf-8')
           visual = Path('diagnosis-visual-v2.js').read_text(encoding='utf-8')
           css_files = [Path(x).read_text(encoding='utf-8') for x in ['diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css']]
@@ -176,5 +188,18 @@ jobs:
           if '1 / 40' not in html or 'あと39問' not in html:
               raise SystemExit('Initial 40-question progress copy is missing')
 
-          print(f'OK: {len(p.ids)} unique ids; required hooks present; JS syntax checked.')
+          required_credit_terms = [
+              'houroumono',
+              'creativecommons.org/licenses/by/2.0/',
+              'crop / WebP conversion',
+              '写真出典・ライセンス'
+          ]
+          combined_credit_text = html + credits_html
+          for term in required_credit_terms:
+              if term not in combined_credit_text:
+                  raise SystemExit(f'Missing required photo attribution term: {term}')
+          if 'Photo: houroumono' not in visual or 'CC BY 2.0' not in visual:
+              raise SystemExit('Share-card CC BY attribution must remain outside the photo area')
+
+          print(f'OK: {len(p.ids)} unique ids; required hooks present; JS syntax and photo attribution checked.')
           PY
