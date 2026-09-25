@@ -46,11 +46,15 @@ const puppeteer=require('puppeteer-core');
     answers:document.querySelectorAll('.diagnosis-answer').length,
     count:document.getElementById('questionCount')?.textContent?.trim(),
     start:!!document.getElementById('startDiagnosis'),
-    resultToggle:!!document.getElementById('resultDetailToggle')
+    resultToggle:!!document.getElementById('resultDetailToggle'),
+    has40:(document.body.innerText||'').includes('全40問'),
+    stale56:(document.body.innerText||'').includes('全56問'),
+    staleThreeChoice:(document.body.innerText||'').includes('3つの選択肢')
   }));
   if(initial.answers!==4)throw new Error('Expected 4 answer buttons, got '+initial.answers);
   if(initial.count!=='1 / 40')throw new Error('Expected initial progress 1 / 40, got '+initial.count);
   if(!initial.start||!initial.resultToggle)throw new Error('Missing diagnosis controls');
+  if(!initial.has40||initial.stale56||initial.staleThreeChoice)throw new Error('Stale diagnosis copy detected: '+JSON.stringify(initial));
 
   await page.evaluate(()=>document.getElementById('startDiagnosis').click());
   for(let i=0;i<40;i++){
