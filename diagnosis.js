@@ -167,6 +167,7 @@
     }catch(e){}
   }
   function flowerBySlug(slug){return FLOWERS.find(f=>f.slug===slug)||FLOWERS[0];}
+  function flowerPhotoUrl(slug){return `flower-photo-${slug}.webp?v=20260918free1`;}
   function svgShape(kind, c, cx=705, cy=235){
     const ink = '#24180f';
     const leaf = '#3fa447';
@@ -417,9 +418,9 @@
     result.classList.add('is-active');
     result.style.setProperty('--result-accent',flower.color);
     result.style.setProperty('--group-accent',profile.color);
-    $('resultImage').src=portraitDataUri(flower);
+    $('resultImage').src=flowerPhotoUrl(flower.slug);
     const shareImage=$('resultShareImage');if(shareImage)shareImage.src=svgDataUri(flower);
-    $('resultImage').alt=flower.name+'のボタニカルポートレート';
+    $('resultImage').alt=flower.name+'の花の写真';
     $('downloadCard').href=svgDataUri(flower);
     $('downloadCard').download=flower.name+'タイプ_ReBloom花診断.svg';
     $('resultGroup').textContent=flower.group;
@@ -528,13 +529,13 @@ Re:Bloom 花タイプ診断
 https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`;try{await navigator.clipboard.writeText(text);$('diagnosisCopyStatus').textContent='結果文をコピーしました。';}catch(e){$('diagnosisCopyStatus').textContent='コピーできませんでした。';}});
   function renderFlowerAtlas(){
     const grid=$('flowerAtlasGrid');if(!grid)return;
-    const makeCard=(flower)=>`<button class="flower-atlas-card" data-flower-slug="${flower.slug}" data-flower-group="${flower.group}" type="button"><img src="${portraitDataUri(flower)}" alt="${flower.name}の花タイプイラスト" loading="lazy"><span>${flower.group}</span><b>${flower.name}</b><small>${flower.short}</small></button>`;
+    const makeCard=(flower)=>`<button class="flower-atlas-card" data-flower-slug="${flower.slug}" data-flower-group="${flower.group}" type="button"><img src="${flowerPhotoUrl(flower.slug)}" alt="${flower.name}の花の写真" loading="lazy" decoding="async"><span>${flower.group}</span><b>${flower.name}</b><small>${flower.short}</small></button>`;
     grid.innerHTML=FLOWERS.map(makeCard).join('');
-    document.querySelectorAll('[data-group-preview]').forEach((box)=>{const flower=FLOWERS.find(f=>f.group===box.dataset.groupPreview);if(flower)box.innerHTML=`<img src="${portraitDataUri(flower)}" alt="${flower.group}を代表する${flower.name}のイラスト" loading="lazy">`;});
+    document.querySelectorAll('[data-group-preview]').forEach((box)=>{const flower=FLOWERS.find(f=>f.group===box.dataset.groupPreview);if(flower)box.innerHTML=`<img src="${flowerPhotoUrl(flower.slug)}" alt="${flower.group}を代表する${flower.name}の花の写真" loading="lazy" decoding="async">`;});
     const filters=[...document.querySelectorAll('[data-atlas-filter]')];
     filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(x=>{x.classList.remove('is-active');x.setAttribute('aria-pressed','false');});btn.classList.add('is-active');btn.setAttribute('aria-pressed','true');const value=btn.dataset.atlasFilter;grid.querySelectorAll('.flower-atlas-card').forEach(card=>{card.hidden=value!=='all'&&card.dataset.flowerGroup!==value;});}));
     const dialog=$('flowerAtlasDialog'),close=$('atlasDialogClose'),startAtlas=$('atlasStartDiagnosis');
-    function openFlower(slug){const flower=flowerBySlug(slug);$('atlasDialogImage').src=portraitDataUri(flower);$('atlasDialogImage').alt=flower.name+'の花タイプイラスト';$('atlasDialogGroup').textContent=flower.group;$('atlasDialogName').textContent=flower.name;$('atlasDialogTagline').textContent=flower.tagline;$('atlasDialogDesc').textContent=flower.desc;$('atlasDialogOrigin').textContent=flower.origin;$('atlasDialogBloom').textContent=flower.bloom;$('atlasDialogLanguage').textContent=flower.language;if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');}
+    function openFlower(slug){const flower=flowerBySlug(slug);$('atlasDialogImage').src=flowerPhotoUrl(flower.slug);$('atlasDialogImage').alt=flower.name+'の花の写真';$('atlasDialogGroup').textContent=flower.group;$('atlasDialogName').textContent=flower.name;$('atlasDialogTagline').textContent=flower.tagline;$('atlasDialogDesc').textContent=flower.desc;$('atlasDialogOrigin').textContent=flower.origin;$('atlasDialogBloom').textContent=flower.bloom;$('atlasDialogLanguage').textContent=flower.language;if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');}
     grid.addEventListener('click',(e)=>{const card=e.target.closest('.flower-atlas-card');if(card)openFlower(card.dataset.flowerSlug);});
     close?.addEventListener('click',()=>dialog.close?dialog.close():dialog.removeAttribute('open'));
     dialog?.addEventListener('click',(e)=>{if(e.target===dialog)(dialog.close?dialog.close():dialog.removeAttribute('open'));});
