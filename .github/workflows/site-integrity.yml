@@ -9,6 +9,7 @@ on:
       - 'site.js'
       - 'diagnosis.js'
       - 'diagnosis-visual-v2.js'
+      - 'diagnosis-shell.js'
       - 'rebloom-unified.js'
       - 'rebloom-detail.js'
       - 'site-consistency.css'
@@ -28,7 +29,7 @@ jobs:
 
       - name: Check public JavaScript syntax
         run: |
-          for f in site-core.js site-postevent.js site.js diagnosis.js diagnosis-visual-v2.js rebloom-unified.js rebloom-detail.js; do
+          for f in site-core.js site-postevent.js site.js diagnosis.js diagnosis-visual-v2.js diagnosis-shell.js rebloom-unified.js rebloom-detail.js; do
             node --check "$f"
           done
 
