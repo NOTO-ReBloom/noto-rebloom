@@ -109,6 +109,14 @@ function buildShareCard(photo,data,story=false){
   const photoH=story?800:540;
   drawCover(ctx,photo,margin,margin,W-margin*2,photoH,34);
 
+  if(data.slug==='renge'){
+    ctx.fillStyle='rgba(18,30,26,.72)';
+    ctx.font='700 14px "Noto Sans JP",sans-serif';
+    ctx.textAlign='right';
+    ctx.fillText('Photo: houroumono / CC BY 2.0',W-margin-18,margin+photoH-18);
+    ctx.textAlign='left';
+  }
+
   // Quiet white label over the photo; the photograph supplies the color.
   ctx.fillStyle='rgba(255,253,248,.94)';
   roundRectPath(ctx,margin+24,margin+24,270,48,24);ctx.fill();
@@ -183,7 +191,7 @@ async function refreshResult(){
     const lead=document.getElementById('resultLead')?.textContent||'';
     const strengths=[...document.querySelectorAll('#resultStrengths li')].slice(0,3).map(el=>el.textContent.trim());
     const tendencies=[...document.querySelectorAll('#resultReasonList strong')].slice(0,2).map(el=>el.textContent.trim());
-    const data={name,group,lead,strengths,tendencies};
+    const data={name,slug,group,lead,strengths,tendencies};
     const feed=buildShareCard(photo,data,false);
     const story=buildShareCard(photo,data,true);
     latestFeedCard=feed;
