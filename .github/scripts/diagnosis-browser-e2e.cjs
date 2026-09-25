@@ -56,6 +56,21 @@ const puppeteer=require('puppeteer-core');
   if(!initial.start||!initial.resultToggle)throw new Error('Missing diagnosis controls');
   if(!initial.has40||initial.stale56||initial.staleThreeChoice)throw new Error('Stale diagnosis copy detected: '+JSON.stringify(initial));
 
+  await page.waitForFunction(()=>{
+    const imgs=[...document.querySelectorAll('.flower-atlas-card img')];
+    return imgs.length===32&&imgs.every(img=>img.complete&&img.naturalWidth>0&&Number(getComputedStyle(img).opacity)>0);
+  },{timeout:10000});
+  const flowerPhotos=await page.evaluate(()=>({
+    atlasCount:document.querySelectorAll('.flower-atlas-card img').length,
+    atlasLoaded:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>img.complete&&img.naturalWidth>0).length,
+    atlasVisible:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>Number(getComputedStyle(img).opacity)>0).length,
+    groupLoaded:[...document.querySelectorAll('.flower-group-visual img')].filter(img=>img.complete&&img.naturalWidth>0).length,
+    heroLoaded:document.querySelector('.page-hero--diagnosis .photo-frame img')?.naturalWidth>0
+  }));
+  if(flowerPhotos.atlasCount!==32||flowerPhotos.atlasLoaded!==32||flowerPhotos.atlasVisible!==32||flowerPhotos.groupLoaded!==4||!flowerPhotos.heroLoaded){
+    throw new Error('Flower photos not fully visible: '+JSON.stringify(flowerPhotos));
+  }
+
   await page.evaluate(()=>document.getElementById('startDiagnosis').click());
   for(let i=0;i<40;i++){
     const state=await page.evaluate(()=>({
@@ -104,7 +119,7 @@ const puppeteer=require('puppeteer-core');
 
   if(errors.length)throw new Error('Browser errors: '+errors.join(' | '));
   console.log('DIAGNOSIS_SHIFT_TRACE='+JSON.stringify(initialShiftTrace));
-  console.log('DIAGNOSIS_E2E_OK='+JSON.stringify({initial,result,expanded,saved}));
+  console.log('DIAGNOSIS_E2E_OK='+JSON.stringify({initial,flowerPhotos,result,expanded,saved}));
   await browser.close();
 })().catch(async e=>{
   console.error(e);
