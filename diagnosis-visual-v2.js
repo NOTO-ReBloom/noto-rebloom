@@ -122,35 +122,32 @@ function buildShareCard(photo,data,story=false){
   const photoH=story?800:540;
   drawCover(ctx,photo,margin,margin,W-margin*2,photoH,34);
 
+  const y0=margin+photoH+(story?52:42);
+  ctx.fillStyle=green;
+  ctx.font='900 18px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
+  ctx.fillText('Re:Bloom 花タイプ診断',margin,y0);
   if(data.slug==='renge'){
-    ctx.fillStyle='rgba(18,30,26,.72)';
-    ctx.font='700 14px "Noto Sans JP",sans-serif';
     ctx.textAlign='right';
-    ctx.fillText('Photo: houroumono / CC BY 2.0',W-margin-18,margin+photoH-18);
+    ctx.fillStyle='#7b8982';
+    ctx.font='700 13px "Noto Sans JP",sans-serif';
+    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-margin,y0);
     ctx.textAlign='left';
   }
 
-  // Quiet white label over the photo; the photograph supplies the color.
-  ctx.fillStyle='rgba(255,253,248,.94)';
-  roundRectPath(ctx,margin+24,margin+24,270,48,24);ctx.fill();
-  ctx.fillStyle=green;
-  ctx.font='900 19px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
-  ctx.fillText('Re:Bloom 花タイプ診断',margin+44,margin+56);
-
-  const y0=margin+photoH+(story?62:48);
+  const contentY=y0+(story?45:38);
   ctx.fillStyle=muted;
   ctx.font='800 17px "Noto Sans JP",sans-serif';
-  ctx.fillText('私の花タイプは',margin,y0);
+  ctx.fillText('私の花タイプは',margin,contentY);
 
   const nameText=`${data.name}タイプ`;
   const nameSize=fitText(ctx,nameText,W-margin*2,story?92:76,54);
   ctx.fillStyle=ink;
   ctx.font=`900 ${nameSize}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
-  ctx.fillText(nameText,margin,y0+(story?96:82));
+  ctx.fillText(nameText,margin,contentY+(story?96:82));
 
   ctx.fillStyle='#4d6258';
   ctx.font=`700 ${story?31:27}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
-  const leadY=y0+(story?154:134);
+  const leadY=contentY+(story?154:134);
   wrapText(ctx,data.lead,margin,leadY,W-margin*2,story?46:40,2);
 
   let sectionY=leadY+(story?126:106);
