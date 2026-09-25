@@ -56,16 +56,15 @@ const puppeteer=require('puppeteer-core');
   if(!initial.start||!initial.resultToggle)throw new Error('Missing diagnosis controls');
   if(!initial.has40||initial.stale56||initial.staleThreeChoice)throw new Error('Stale diagnosis copy detected: '+JSON.stringify(initial));
 
-  await page.waitForFunction(()=>{
-    const imgs=[...document.querySelectorAll('.flower-atlas-card img')];
-    return imgs.length===32&&imgs.every(img=>img.complete&&img.naturalWidth>0&&Number(getComputedStyle(img).opacity)>0);
-  },{timeout:10000});
+  await new Promise(r=>setTimeout(r,2500));
   const flowerPhotos=await page.evaluate(()=>({
     atlasCount:document.querySelectorAll('.flower-atlas-card img').length,
     atlasLoaded:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>img.complete&&img.naturalWidth>0).length,
     atlasVisible:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>Number(getComputedStyle(img).opacity)>0).length,
     groupLoaded:[...document.querySelectorAll('.flower-group-visual img')].filter(img=>img.complete&&img.naturalWidth>0).length,
-    heroLoaded:document.querySelector('.page-hero--diagnosis .photo-frame img')?.naturalWidth>0
+    heroLoaded:document.querySelector('.page-hero--diagnosis .photo-frame img')?.naturalWidth>0,
+    bad:[...document.querySelectorAll('.flower-atlas-card img')].filter(img=>!(img.complete&&img.naturalWidth>0&&Number(getComputedStyle(img).opacity)>0)).map(img=>({src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth,opacity:getComputedStyle(img).opacity})),
+    groupBad:[...document.querySelectorAll('.flower-group-visual img')].filter(img=>!(img.complete&&img.naturalWidth>0)).map(img=>({src:img.getAttribute('src'),complete:img.complete,naturalWidth:img.naturalWidth}))
   }));
   if(flowerPhotos.atlasCount!==32||flowerPhotos.atlasLoaded!==32||flowerPhotos.atlasVisible!==32||flowerPhotos.groupLoaded!==4||!flowerPhotos.heroLoaded){
     throw new Error('Flower photos not fully visible: '+JSON.stringify(flowerPhotos));
