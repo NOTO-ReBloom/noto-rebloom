@@ -23,6 +23,54 @@ jobs:
         run: |
           node --check diagnosis.js
           node --check diagnosis-visual-v2.js
+      - name: Validate diagnosis model invariants
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const src = fs.readFileSync('diagnosis.js','utf8');
+
+          function jsonBetween(startToken,endToken){
+            const a=src.indexOf(startToken);
+            const b=src.indexOf(endToken,a+startToken.length);
+            if(a<0||b<0) throw new Error('Could not locate '+startToken);
+            return JSON.parse(src.slice(a+startToken.length,b).trim().replace(/;\s*$/,''));
+          }
+
+          const flowers=jsonBetween('const FLOWERS=','const FLOWER_MAP=');
+          const map=jsonBetween('const FLOWER_MAP=','const QUESTIONS=');
+          const questions=jsonBetween('const QUESTIONS=','const AXIS_LABELS=');
+          const axes=['G','A','P','H','F'];
+
+          if(flowers.length!==32) throw new Error('Expected 32 flowers, got '+flowers.length);
+          if(new Set(flowers.map(x=>x.slug)).size!==32) throw new Error('Flower slugs must be unique');
+          if(Object.keys(map).length!==32) throw new Error('FLOWER_MAP must contain all 32 bit patterns');
+          for(let i=0;i<32;i++){
+            const bits=i.toString(2).padStart(5,'0');
+            if(!map[bits]) throw new Error('Missing FLOWER_MAP pattern '+bits);
+          }
+          const flowerSlugs=new Set(flowers.map(x=>x.slug));
+          for(const [bits,slug] of Object.entries(map)){
+            if(!/^[01]{5}$/.test(bits)) throw new Error('Invalid pattern '+bits);
+            if(!flowerSlugs.has(slug)) throw new Error('Unknown flower slug '+slug);
+          }
+          if(map['01111']!=='renge') throw new Error('Neutral reference pattern must remain renge');
+          if(questions.length!==56) throw new Error('Expected 56 questions, got '+questions.length);
+          const directions=Object.fromEntries(axes.map(k=>[k,{pos:0,neg:0}]));
+          for(const [i,q] of questions.entries()){
+            if(!q.text||!q.category||!q.axes) throw new Error('Malformed question '+(i+1));
+            for(const [k,w] of Object.entries(q.axes)){
+              if(!axes.includes(k)||![-1,1].includes(w)) throw new Error('Invalid axis weight at question '+(i+1));
+              directions[k][w>0?'pos':'neg']++;
+            }
+          }
+          for(const k of axes){
+            if(!directions[k].pos||!directions[k].neg) throw new Error('Axis '+k+' must be asked in both directions');
+          }
+          for(const required of ['CLASSIFICATION_EPS=.08','NEUTRAL_BITS={G:\'0\',A:\'1\',P:\'1\',H:\'1\',F:\'1\'}','completed=true','前回の結果を見る']){
+            if(!src.includes(required)) throw new Error('Missing scoring/state safeguard: '+required);
+          }
+          console.log('OK: 32 flower mappings, 56 questions, bidirectional axes, neutral band and saved-result safeguards.');
+          NODE
       - name: Check diagnosis HTML and required hooks
         run: |
           python - <<'PY'
