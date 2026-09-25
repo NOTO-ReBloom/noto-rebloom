@@ -54,22 +54,24 @@ jobs:
             if(!flowerSlugs.has(slug)) throw new Error('Unknown flower slug '+slug);
           }
           if(map['01111']!=='renge') throw new Error('Neutral reference pattern must remain renge');
-          if(questions.length!==56) throw new Error('Expected 56 questions, got '+questions.length);
+          if(questions.length!==40) throw new Error('Expected 40 questions, got '+questions.length);
           const directions=Object.fromEntries(axes.map(k=>[k,{pos:0,neg:0}]));
           for(const [i,q] of questions.entries()){
             if(!q.text||!q.category||!q.axes) throw new Error('Malformed question '+(i+1));
-            for(const [k,w] of Object.entries(q.axes)){
+            const entries=Object.entries(q.axes);
+            if(entries.length!==1) throw new Error('Question '+(i+1)+' must measure exactly one axis');
+            for(const [k,w] of entries){
               if(!axes.includes(k)||![-1,1].includes(w)) throw new Error('Invalid axis weight at question '+(i+1));
               directions[k][w>0?'pos':'neg']++;
             }
           }
           for(const k of axes){
-            if(!directions[k].pos||!directions[k].neg) throw new Error('Axis '+k+' must be asked in both directions');
+            if(directions[k].pos!==4||directions[k].neg!==4) throw new Error('Axis '+k+' must have 4 positive and 4 negative questions');
           }
-          for(const required of ['CLASSIFICATION_EPS=.08','NEUTRAL_BITS={G:\'0\',A:\'1\',P:\'1\',H:\'1\',F:\'1\'}','completed=true','前回の結果を見る']){
+          for(const required of ['CLASSIFICATION_EPS=.04','NEUTRAL_BITS={G:\'0\',A:\'1\',P:\'1\',H:\'1\',F:\'1\'}','completed=true','前回の結果を見る','v===-2||v===-1||v===1||v===2']){
             if(!src.includes(required)) throw new Error('Missing scoring/state safeguard: '+required);
           }
-          console.log('OK: 32 flower mappings, 56 questions, bidirectional axes, neutral band and saved-result safeguards.');
+          console.log('OK: 32 flower mappings, 40 single-axis questions, balanced directions, four-choice scale and saved-result safeguards.');
           NODE
       - name: Check diagnosis HTML and required hooks
         run: |
