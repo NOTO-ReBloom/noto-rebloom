@@ -10,6 +10,13 @@
     H: ['筋道で考える','気持ちを汲む'],
     F: ['計画して積む','余白を楽しむ']
   };
+  const AXIS_NAMES={
+    G:'人との距離感',
+    A:'動き出し方',
+    P:'ものの見方',
+    H:'判断のよりどころ',
+    F:'予定との付き合い方'
+  };
 
   const GROUP_PROFILES={
     '太陽の花':{
@@ -353,10 +360,10 @@
   function normalizedAxis(score,count){return Math.max(-1,Math.min(1,score/Math.max(1,count)));}
   function axisStrengthLabel(value){const a=Math.abs(value);if(a<.16)return'バランス';if(a<.38)return'やや傾向';if(a<.66)return'はっきり';return'とても強い';}
   function axisNarrative(k,score,count){
-    const value=normalizedAxis(score,count),copy=AXIS_COPY[k],labels=AXIS_LABELS[k];
-    if(Math.abs(value)<.16)return{title:`${labels[0]} × ${labels[1]}`,badge:'バランス',text:copy.balanced,pct:Math.round((value+1)*50)};
+    const value=normalizedAxis(score,count),copy=AXIS_COPY[k],labels=AXIS_LABELS[k],stats=axisResponseStats(k);
+    if(Math.abs(value)<.16)return{title:`${labels[0]} × ${labels[1]}`,badge:'バランス',text:copy.balanced,pct:Math.round((value+1)*50),agreement:stats.summary};
     const side=value>0?copy.positive:copy.negative;
-    return{title:side[0],badge:axisStrengthLabel(value),text:side[1],pct:Math.round((value+1)*50)};
+    return{title:side[0],badge:axisStrengthLabel(value),text:side[1],pct:Math.round((value+1)*50),agreement:stats.summary};
   }
   function resultReasonData(scores,counts){
     return AXIS_KEYS.map(k=>{
@@ -383,13 +390,30 @@
     if(pct>=72)text='選び方の輪郭がとても明確です。強みが出やすい一方、反対側の力を持つ人と組むと視野が広がります。';
     return{pct,text};
   }
+  function axisResponseStats(k){
+    const keyed=[];
+    QUESTIONS.forEach((q,i)=>{
+      const w=q.axes?.[k];
+      if(!w)return;
+      const v=Number(answers[i]??0);
+      keyed.push(v*w);
+    });
+    const positive=keyed.filter(v=>v>0).length;
+    const negative=keyed.filter(v=>v<0).length;
+    const strongBalance=keyed.reduce((sum,v)=>sum+Math.sign(v)*(v*v),0);
+    const dominant=Math.max(positive,negative);
+    const total=keyed.length;
+    let summary='回答はほぼ半々に分かれています。場面によって両方の傾向が出やすい軸です。';
+    if(dominant===5)summary='回答は少し分かれています。状況によって傾向が変わりやすい軸です。';
+    if(dominant===6)summary='8問中6問が同じ方向で、ややまとまりのある軸です。';
+    if(dominant===7)summary='8問中7問が同じ方向で、かなりまとまりのある軸です。';
+    if(dominant===8)summary='8問すべてが同じ方向で、今回もっとも一貫して答えた軸の一つです。';
+    return{keyed,positive,negative,strongBalance,dominant,total,summary};
+  }
   function axisBit(k,score){
     if(Math.abs(score)>=CLASSIFICATION_EPS)return score>0?'1':'0';
-    const i=axisTieBreakIndex(k);
-    const q=QUESTIONS[i];
-    const w=q?.axes?.[k]||0;
-    const v=answers[i]??0;
-    if(w&&v)return v*w>0?'1':'0';
+    const stats=axisResponseStats(k);
+    if(stats.strongBalance!==0)return stats.strongBalance>0?'1':'0';
     return NEUTRAL_BITS[k];
   }
   function resultBits(scores){return AXIS_KEYS.map(k=>axisBit(k,scores[k])).join('');}
@@ -465,7 +489,7 @@
     const answerCounts=answers.reduce((acc,v)=>{acc[String(v)]=(acc[String(v)]||0)+1;return acc;},{});
     const dominantShare=Math.max(...Object.values(answerCounts))/Math.max(1,answers.length);
     const qualityNote=dominantShare>=.86?' 回答が一つの選択肢に集中しているため、今回は傾向が出にくい結果です。選択肢にもう少し差をつけて答えると、特徴がはっきりします。':'';
-    $('resultReasonNote').textContent='40問は1問につき1つの軸に対応しています。5つの軸それぞれで、両方向から4問ずつ尋ねた回答を平均して比較し、5軸の組み合わせから32種類の花タイプを決めています。完全に中央になった軸はバランス型として表示し、花タイプを決める時だけ、その軸の代表設問を補助的に参照します。'+qualityNote;
+    $('resultReasonNote').textContent='40問は1問につき1つの軸に対応しています。5つの軸それぞれで、両方向から4問ずつ尋ねた回答を平均して比較し、5軸の方向の組み合わせから代表となる花タイプを表示しています。完全に中央になった軸では、8問のうち強く選んだ回答の方向を補助的に参照します。中央に近い軸は、近い別タイプもあわせて確認できます。'+qualityNote;
     const roles=roleSuggestions(flower);const roleWrap=$('resultRoleChips');if(roleWrap)roleWrap.innerHTML=roles.map(item=>`<span>${esc(item)}</span>`).join('');
     $('resultQuickStrength').textContent=flower.strengths.slice(0,3).join('・');
     $('resultQuickWatch').textContent=flower.watch[0];
@@ -481,15 +505,24 @@
     $('axisBars').innerHTML=AXIS_KEYS.map(k=>bar(k,scores[k],counts[k])).join('');
     $('resultAxisNarratives').innerHTML=AXIS_KEYS.map(k=>{
       const item=axisNarrative(k,scores[k],counts[k]);
-      return `<article class="axis-narrative-card"><div><span>${esc(item.badge)}</span><b>${esc(item.title)}</b></div><p>${esc(item.text)}</p><div class="axis-position" aria-label="${esc(AXIS_LABELS[k][0])} ${100-item.pct}%、${esc(AXIS_LABELS[k][1])} ${item.pct}%"><i style="left:${item.pct}%"></i></div></article>`;
+      return `<article class="axis-narrative-card"><div><span>${esc(item.badge)}</span><b>${esc(item.title)}</b></div><p>${esc(item.text)}</p><small class="axis-response-agreement">${esc(item.agreement)}</small><div class="axis-position" aria-label="${esc(AXIS_LABELS[k][0])} ${100-item.pct}%、${esc(AXIS_LABELS[k][1])} ${item.pct}%"><i style="left:${item.pct}%"></i></div></article>`;
     }).join('');
     const clarity=resultClarityData(scores,counts);
     $('resultClarity').textContent=clarity.pct+'%';
     $('resultClarityText').textContent=clarity.text;
+    const axisStats=AXIS_KEYS.map(k=>({k,name:AXIS_NAMES[k],value:Math.abs(normalizedAxis(scores[k],counts[k])),...axisResponseStats(k)}));
+    const coherent=axisStats.filter(item=>item.dominant>=6).length;
+    const mixed=axisStats.filter(item=>item.dominant<=5).map(item=>item.name);
+    let responsePattern=`5軸のうち${coherent}軸は、8問中6問以上が同じ方向でした。`;
+    if(mixed.length)responsePattern+=` 「${mixed.join('」「')}」は回答が分かれており、場面によって傾向が変わりやすい可能性があります。`;
+    else responsePattern+=' 5軸すべてで回答の方向が比較的そろっています。';
+    $('resultResponsePattern').textContent=responsePattern;
     const neighbor=nearestFlower(scores,counts,flower);
     $('resultNeighborName').textContent=neighbor.flower.name;
     const axisLabel=AXIS_LABELS[neighbor.axis];
-    $('resultNeighborText').textContent=`「${axisLabel[0]}／${axisLabel[1]}」の軸が中央に近いため、この軸の答え方が少し変わると${neighbor.flower.name}タイプになります。今の結果と特徴が近い、もう一つのタイプです。`;
+    const neighborStats=axisResponseStats(neighbor.axis);
+    const borderText=neighbor.value<.16?'この軸は中央にかなり近い':'5軸の中でこの軸が最も中央に近い';
+    $('resultNeighborText').textContent=`${borderText}ため、「${axisLabel[0]}／${axisLabel[1]}」の答え方が少し変わると${neighbor.flower.name}タイプになります。この軸では${neighborStats.positive}問と${neighborStats.negative}問に回答が分かれており、今の結果と並べて読む価値があるタイプです。`;
     const complement=COMPLEMENT_GROUP[flower.group]||COMPLEMENT_GROUP['里山の花'];
     $('resultPartnerGroup').textContent=complement.group+'の強みを借りるなら';
     $('resultPartnerText').textContent=complement.text;
