@@ -1656,3 +1656,157 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
     margin-bottom:10px!important;
   }
 }
+
+
+/* Cute botanical typography refinement — 2026-09-26 */
+.page-diagnosis{
+  --fd-display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Maru Gothic Pro","Yu Gothic","YuGothic",Meiryo,sans-serif;
+  --fd-cute:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Maru Gothic Pro","Yu Gothic","YuGothic",Meiryo,sans-serif;
+  --fd-pink:#f2c9cf;
+  --fd-yellow:#f4df94;
+  --fd-mint:#dfead9;
+  --fd-lavender:#ded8ef;
+}
+.page-diagnosis h1,
+.page-diagnosis h2,
+.page-diagnosis h3,
+.page-diagnosis h4,
+.page-diagnosis .flower-atlas-card b,
+.page-diagnosis .diagnosis-question,
+.page-diagnosis .btn,
+.page-diagnosis .flower-atlas-filters button{
+  font-family:var(--fd-cute)!important;
+}
+.page-diagnosis .page-hero--diagnosis h1{
+  font-weight:900!important;
+  letter-spacing:-.045em!important;
+  line-height:1.09!important;
+}
+.page-diagnosis .section-heading h2,
+.page-diagnosis .flower-atlas-heading h2,
+.page-diagnosis .diagnosis-intro h2,
+.page-diagnosis .result-copy h2{
+  font-weight:900!important;
+  letter-spacing:-.035em!important;
+}
+.page-diagnosis .diagnosis-start-card h3,
+.page-diagnosis .diagnosis-method-card h3,
+.page-diagnosis .flower-group-card h3,
+.page-diagnosis .result-quick-head h3{
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+}
+.page-diagnosis .eyebrow span,
+.page-diagnosis .result-kicker,
+.page-diagnosis .diagnosis-start-label{
+  font-family:var(--fd-cute)!important;
+  font-weight:700!important;
+  text-transform:none!important;
+  letter-spacing:.08em!important;
+}
+.page-diagnosis .eyebrow small,
+.page-diagnosis .result-quick-grid article>span{
+  letter-spacing:.13em!important;
+}
+
+/* soft cute accents */
+.page-diagnosis main{
+  background:
+    radial-gradient(circle at 10% 8%,rgba(242,201,207,.20),transparent 18%),
+    radial-gradient(circle at 90% 14%,rgba(223,234,217,.42),transparent 22%),
+    radial-gradient(circle at 18% 52%,rgba(244,223,148,.18),transparent 20%),
+    radial-gradient(circle at 88% 68%,rgba(222,216,239,.17),transparent 18%),
+    linear-gradient(180deg,#fffaf2 0%,#f9f4ea 44%,#f7f2e8 100%)!important;
+}
+.page-diagnosis .page-hero--diagnosis::after{
+  background:
+    radial-gradient(circle at 46% 44%,rgba(223,234,217,.64),rgba(242,201,207,.12) 42%,transparent 70%)!important;
+}
+.page-diagnosis .diagnosis-intro,
+.page-diagnosis .diagnosis-start-card,
+.page-diagnosis .diagnosis-method-card,
+.page-diagnosis .flower-atlas,
+.page-diagnosis .result-quick-summary{
+  border-radius:30px!important;
+}
+.page-diagnosis .diagnosis-intro{
+  background:linear-gradient(145deg,#fffdf9,#fff8f2)!important;
+}
+.page-diagnosis .diagnosis-start-card{
+  background:linear-gradient(145deg,#fffdf6,#fff8dc)!important;
+}
+.page-diagnosis .diagnosis-method-card{
+  background:
+    radial-gradient(circle at 96% 8%,rgba(222,216,239,.22),transparent 26%),
+    rgba(255,253,248,.9)!important;
+}
+.page-diagnosis .flower-group-card{
+  border-radius:24px!important;
+}
+.page-diagnosis .flower-group-card--sun{background:linear-gradient(180deg,#fffdf8,#fff8dc)!important}
+.page-diagnosis .flower-group-card--wind{background:linear-gradient(180deg,#fffdfb,#f3f8fb)!important}
+.page-diagnosis .flower-group-card--satoyama{background:linear-gradient(180deg,#fffdf9,#f3f8ee)!important}
+.page-diagnosis .flower-group-card--water{background:linear-gradient(180deg,#fffdfc,#f5f1fb)!important}
+.page-diagnosis .flower-group-card>span{
+  font-family:var(--fd-cute)!important;
+  color:#80918a!important;
+  font-weight:700!important;
+}
+.page-diagnosis .flower-atlas{
+  background:
+    radial-gradient(circle at 100% 0%,rgba(223,234,217,.34),transparent 24%),
+    radial-gradient(circle at 0% 100%,rgba(242,201,207,.12),transparent 25%),
+    linear-gradient(180deg,#fffefa,#fffaf4)!important;
+}
+.page-diagnosis .flower-atlas-card{
+  border-radius:21px!important;
+}
+.page-diagnosis .flower-atlas-card>span{
+  font-family:var(--fd-cute)!important;
+  font-weight:700!important;
+}
+.page-diagnosis .btn{
+  font-weight:700!important;
+  letter-spacing:.01em!important;
+}
+.page-diagnosis .btn--yellow{
+  background:#f1d66e!important;
+}
+.page-diagnosis .btn--paper{
+  background:rgba(255,252,247,.92)!important;
+}
+.page-diagnosis .diagnosis-answer{
+  border-radius:20px!important;
+}
+.page-diagnosis .diagnosis-answer span{
+  font-family:var(--fd-cute)!important;
+  font-weight:700!important;
+}
+.page-diagnosis .result-group,
+.page-diagnosis .result-role-chips span,
+.page-diagnosis .diagnosis-tags li{
+  font-family:var(--fd-cute)!important;
+}
+.page-diagnosis .result-quick-grid article:nth-child(1){background:#fff9f2!important}
+.page-diagnosis .result-quick-grid article:nth-child(2){background:#fff7f8!important}
+.page-diagnosis .result-quick-grid article:nth-child(3){background:#f5f9f1!important}
+.page-diagnosis .result-quick-grid article:nth-child(4){background:#f7f4fb!important}
+.page-diagnosis .axis-narrative-card{
+  border-radius:22px!important;
+}
+.page-diagnosis .final-cta{
+  background:
+    radial-gradient(circle at 15% 110%,rgba(242,201,207,.17),transparent 28%),
+    radial-gradient(circle at 88% 0%,rgba(244,223,148,.14),transparent 25%),
+    linear-gradient(135deg,#15483a,#1e5a48)!important;
+}
+@media(max-width:680px){
+  .page-diagnosis .page-hero--diagnosis h1{
+    font-size:clamp(42px,12vw,57px)!important;
+  }
+  .page-diagnosis .diagnosis-intro,
+  .page-diagnosis .diagnosis-start-card,
+  .page-diagnosis .diagnosis-method-card{
+    border-radius:24px!important;
+  }
+}
