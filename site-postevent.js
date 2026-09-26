@@ -94,12 +94,17 @@
         <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
     }
 
-    document.querySelectorAll('.mobile-dock,.join-dock,.rb-mobile-join').forEach(el=>el.remove());
+    document.querySelectorAll('.mobile-dock,.join-dock').forEach(el=>el.remove());
+    const existingDock=document.querySelector('.rb-mobile-join');
     if(current!=='404.html'&&current!=='report.html'){
-      const dock=document.createElement('div');
-      dock.className='rb-mobile-join';
-      dock.innerHTML=`<a href="${REPORT}"><span>開催レポート</span><small>9/20の記録</small></a>`;
-      document.body.appendChild(dock);
+      if(!existingDock){
+        const dock=document.createElement('div');
+        dock.className='rb-mobile-join';
+        dock.innerHTML=`<a href="${REPORT}"><span>開催レポート</span><small>9/20の記録</small></a>`;
+        document.body.appendChild(dock);
+      }
+    }else{
+      existingDock?.remove();
     }
   }
 
