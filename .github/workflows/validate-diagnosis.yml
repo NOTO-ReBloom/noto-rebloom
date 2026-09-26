@@ -115,7 +115,7 @@ jobs:
             }).join('');
             if(got!==bits) throw new Error('Unreachable flower pattern '+bits+' -> '+got);
           }
-          for(const required of ['CLASSIFICATION_EPS=.04','NEUTRAL_BITS={G:\'0\',A:\'1\',P:\'1\',H:\'1\',F:\'1\'}','completed=true','前回の結果を見る','v===-2||v===-1||v===1||v===2']){
+          for(const required of ['CLASSIFICATION_EPS=.04','NEUTRAL_BITS={G:\'0\',A:\'1\',P:\'1\',H:\'1\',F:\'1\'}','completed=true','前回の結果を見る','v===-2||v===-1||v===1||v===2','function axisResponseStats','strongBalance']){
             if(!src.includes(required)) throw new Error('Missing scoring/state safeguard: '+required);
           }
           console.log('OK: 32 flower mappings, 40 single-axis questions, balanced directions, four-choice scale and saved-result safeguards.');
@@ -153,7 +153,7 @@ jobs:
               'diagnosisResult','resultTitle','resultStrengths','resultEnergyStyle',
               'resultPaceStyle','resultDecisionStyle','resultMotivationStyle',
               'resultStressStyle','resultMisreadStyle','resultAxisNarratives',
-              'resultQuickSummary','resultQuickHeading','resultQuickStrength','resultQuickWatch','resultQuickRole','resultQuickAxis','resultDetailToggle',
+              'resultQuickSummary','resultQuickHeading','resultQuickStrength','resultQuickWatch','resultQuickRole','resultQuickAxis','resultDetailToggle','resultResponsePattern',
               'resultShareImage','downloadCard','downloadStoryCard','shareDiagnosisCard','copyDiagnosisResult','resultReasonList','resultReasonNote'
           ]
           missing=[x for x in required if x not in p.ids]
@@ -187,6 +187,10 @@ jobs:
               raise SystemExit('Neutral answer must not return in the four-choice scale')
           if '1 / 40' not in html or 'あと39問' not in html:
               raise SystemExit('Initial 40-question progress copy is missing')
+          if '直近3か月くらい' not in html or '理想の自分ではなく' not in html:
+              raise SystemExit('Standardized response frame guidance is missing')
+          if '標準化や妥当性検証を行った心理検査ではありません' not in html:
+              raise SystemExit('Diagnosis limitation disclosure is missing')
 
           required_credit_terms = [
               'houroumono',
