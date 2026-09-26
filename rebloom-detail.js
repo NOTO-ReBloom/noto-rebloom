@@ -69,8 +69,9 @@
     const script=document.createElement('script');script.src=src;script.async=false;document.body.appendChild(script);return script;
   };
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  const hasSlimHomeBundle=page==='index.html'&&!!document.querySelector('link[href*="home-final-20260926.css"]');
   const hasFinalBundle=!!document.querySelector(
-    'link[href*="home-final-20260924.css"],link[href*="partner-pre-20260924.css"],link[href*="report-final-bundle-20260924.css"],link[href*="event-final-bundle-20260926.css"]'
+    'link[href*="home-final-20260924.css"],link[href*="home-final-20260926.css"],link[href*="partner-pre-20260924.css"],link[href*="report-final-bundle-20260924.css"],link[href*="event-final-bundle-20260926.css"]'
   );
   const hasTuningBundle=hasFinalBundle||!!document.querySelector('link[href*="legacy-tuning-20260924.css"],link[href*="site-foundation-20260924.css"]');
   const isDiagnosis=body.classList.contains('page-diagnosis');
@@ -91,11 +92,11 @@
     ensureStyle('reboost-studio.css','reboost-studio.css?v=20260817ad');
   }
 
-  ensureScript('rebloom-refine.js','rebloom-refine.js?v=20260817n');
+  if(!hasSlimHomeBundle) ensureScript('rebloom-refine.js','rebloom-refine.js?v=20260817n');
   ensureScript('rebloom-tight.js','rebloom-tight.js?v=20260817q');
   ensureScript('rebloom-purpose.js','rebloom-purpose.js?v=20260817q');
   ensureScript('rebloom-purpose-complete.js','rebloom-purpose-complete.js?v=20260817q');
-  if(isExperiencePage){
+  if(isExperiencePage&&!hasSlimHomeBundle){
     ensureScript('rebloom-experience.js','rebloom-experience.js?v=20260817ad');
     ensureScript('rebloom-appeal.js','rebloom-appeal.js?v=20260825generated2');
     ensureScript('final-event-fixes.js','final-event-fixes.js?v=20260826photoFaq3');
