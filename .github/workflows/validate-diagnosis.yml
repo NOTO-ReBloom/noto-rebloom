@@ -170,10 +170,13 @@ jobs:
                   if font.lower() in text.lower():
                       raise SystemExit(f'Diagnosis CSS contains unwanted Mincho font: {font} in css index {i}')
 
-          if 'fonts.googleapis.com/css2?family=Zen+Maru+Gothic' not in html:
-              raise SystemExit('Zen Maru Gothic display font is missing')
-          if 'media="print"' not in html or "onload=\"this.media='all'\"" not in html:
-              raise SystemExit('Zen Maru Gothic must load non-blocking')
+          shell = Path('diagnosis-shell.js').read_text(encoding='utf-8')
+          if 'fonts.googleapis.com/css2?family=Zen+Maru+Gothic' not in shell:
+              raise SystemExit('Zen Maru Gothic deferred loader is missing')
+          if "addEventListener('load'" not in shell or 'requestIdleCallback' not in shell:
+              raise SystemExit('Zen Maru Gothic must load after the first page load')
+          if 'fonts.googleapis.com' in html or 'fonts.gstatic.com' in html:
+              raise SystemExit('Diagnosis HTML must not block first paint on external font requests')
           if '--fd-display:"Zen Maru Gothic"' not in ''.join(css_files):
               raise SystemExit('Diagnosis display typography must use Zen Maru Gothic with local fallbacks')
 
