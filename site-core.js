@@ -142,10 +142,6 @@
   const refineEventPage=()=>{
     if(!document.body.classList.contains('nr-new-event')) return;
 
-    const heroH1=document.querySelector('.page-hero--event h1');
-    const heroLead=heroH1?.nextElementSibling;
-    if(heroLead?.tagName==='P') heroLead.textContent='使われなくなった土地を、みんなが集まり、笑い合える場所へ。2026年9月20日、珠洲市若山町洲巻の約1,000㎡の田んぼで5つの泥競技とRe:Bloomレンゲカップを実施しました。';
-
     const reboost=document.getElementById('reboost-studio');
     const faq=document.getElementById('event-faq');
     if(reboost){
