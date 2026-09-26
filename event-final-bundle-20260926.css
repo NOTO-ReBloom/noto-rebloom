@@ -4448,3 +4448,27 @@ body.event-final .event-archive-context__inner a:hover{
     white-space:normal;
   }
 }
+
+
+/* Mobile event hero LCP refinement — 2026-09-26 */
+@media(max-width:720px){
+  body.event-final .page-hero--event .page-hero-grid{
+    gap:18px!important;
+  }
+  body.event-final .page-hero--event .photo-frame{
+    width:min(58vw,240px)!important;
+    max-width:240px!important;
+    margin:0 auto!important;
+    border-radius:18px!important;
+  }
+  body.event-final .page-hero--event .photo-frame img{
+    width:100%!important;
+    height:150px!important;
+    aspect-ratio:4/3!important;
+    object-fit:cover!important;
+  }
+  body.event-final .page-hero--event .photo-frame figcaption{
+    padding:7px 9px!important;
+    font-size:10px!important;
+  }
+}
