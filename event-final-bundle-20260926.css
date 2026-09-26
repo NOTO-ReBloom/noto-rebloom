@@ -4549,3 +4549,12 @@ body.rb-unified.nr-new-event .page-hero.rb-reveal{
 
 /* Event quick-summary contrast — 2026-09-26 */
 body.nr-new-event .quick-grid>div>span{color:#4f6259!important;font-weight:900!important}
+
+
+/* Event first-view layout lock — 2026-09-26 */
+@media(max-width:700px){
+  body.nr-new-event .page-hero--event{
+    padding-top:30px!important;
+    padding-bottom:62px!important;
+  }
+}
