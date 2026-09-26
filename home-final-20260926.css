@@ -4529,3 +4529,10 @@ body .site-footer a{display:inline-flex;align-items:center;min-height:44px}
     padding:9px 18px!important;
   }
 }
+
+/* === HOME DECORATIVE CLS FINAL / 2026-09-26 === */
+body.nr-new-home main>section:nth-of-type(4n)::before,
+body.nr-new-home main>section:nth-of-type(4n+2)::after{
+  content:none!important;
+  display:none!important;
+}
