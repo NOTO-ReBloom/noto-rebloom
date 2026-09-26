@@ -49,12 +49,14 @@ const puppeteer=require('puppeteer-core');
     resultToggle:!!document.getElementById('resultDetailToggle'),
     has40:(document.body.innerText||'').includes('全40問'),
     stale56:(document.body.innerText||'').includes('全56問'),
-    staleThreeChoice:(document.body.innerText||'').includes('3つの選択肢')
+    staleThreeChoice:(document.body.innerText||'').includes('3つの選択肢'),
+    hasResponseFrame:(document.body.innerText||'').includes('直近3か月くらい'),
+    hasValidityDisclosure:(document.body.innerText||'').includes('標準化や妥当性検証を行った心理検査ではありません')
   }));
   if(initial.answers!==4)throw new Error('Expected 4 answer buttons, got '+initial.answers);
   if(initial.count!=='1 / 40')throw new Error('Expected initial progress 1 / 40, got '+initial.count);
   if(!initial.start||!initial.resultToggle)throw new Error('Missing diagnosis controls');
-  if(!initial.has40||initial.stale56||initial.staleThreeChoice)throw new Error('Stale diagnosis copy detected: '+JSON.stringify(initial));
+  if(!initial.has40||initial.stale56||initial.staleThreeChoice||!initial.hasResponseFrame||!initial.hasValidityDisclosure)throw new Error('Diagnosis guidance/copy regression: '+JSON.stringify(initial));
 
   await new Promise(r=>setTimeout(r,1200));
   const flowerPhotos=await page.evaluate(async()=>{
@@ -117,10 +119,12 @@ const puppeteer=require('puppeteer-core');
     title:document.getElementById('resultTitle')?.textContent?.trim(),
     quickStrength:document.getElementById('resultQuickStrength')?.textContent?.trim(),
     quickAxis:document.getElementById('resultQuickAxis')?.textContent?.trim(),
+    responsePattern:document.getElementById('resultResponsePattern')?.textContent?.trim(),
+    axisAgreement:[...document.querySelectorAll('.axis-response-agreement')].map(x=>x.textContent.trim()),
     detailExpanded:document.getElementById('resultDetailToggle')?.getAttribute('aria-expanded'),
     overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2
   }));
-  if(!result.title||!result.quickStrength||!result.quickAxis)throw new Error('Result summary was not populated');
+  if(!result.title||!result.quickStrength||!result.quickAxis||!result.responsePattern||result.axisAgreement.length!==5)throw new Error('Result transparency summary was not populated: '+JSON.stringify(result));
   if(result.detailExpanded!=='false')throw new Error('Mobile result details should start collapsed');
   if(result.overflow)throw new Error('Horizontal overflow on diagnosis result');
 
