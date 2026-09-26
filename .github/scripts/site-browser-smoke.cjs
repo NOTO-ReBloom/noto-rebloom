@@ -18,13 +18,28 @@ const widths=[[375,812],[430,932],[768,1024],[1440,1000]];
       page.on('console',m=>{if(m.type()==='error')errors.push('console:'+m.text())});
       page.on('pageerror',e=>errors.push('page:'+String(e)));
       await page.goto('http://127.0.0.1:8000/'+file,{waitUntil:'networkidle0',timeout:30000});
-      await new Promise(r=>setTimeout(r,250));
+      await page.evaluate(async()=>{
+        const step=Math.max(320,Math.floor(innerHeight*.75));
+        for(let y=0;y<document.documentElement.scrollHeight;y+=step){
+          scrollTo(0,y);
+          await new Promise(r=>setTimeout(r,45));
+        }
+        scrollTo(0,document.documentElement.scrollHeight);
+      });
+      await new Promise(r=>setTimeout(r,650));
       const data=await page.evaluate(()=>{
         const root=document.documentElement;
-        const broken=[...document.images].filter(img=>img.getAttribute('src')&&img.complete&&img.naturalWidth===0).map(img=>img.getAttribute('src'));
+        const images=[...document.images];
+        const broken=images
+          .filter(img=>img.getAttribute('src')&&img.complete&&img.naturalWidth===0)
+          .map(img=>img.currentSrc||img.getAttribute('src'));
+        const unloaded=images
+          .filter(img=>img.getAttribute('src')&&!img.complete)
+          .map(img=>img.currentSrc||img.getAttribute('src'));
         return {
           overflow:root.scrollWidth>root.clientWidth+2,
           broken,
+          unloaded,
           h1:document.querySelectorAll('h1').length
         };
       });
@@ -50,7 +65,7 @@ const widths=[[375,812],[430,932],[768,1024],[1440,1000]];
   await featurePage.close();
   await browser.close();
 
-  const failures=results.filter(x=>x.overflow||x.broken.length||x.errors.length||x.h1!==1);
+  const failures=results.filter(x=>x.overflow||x.broken.length||x.unloaded.length||x.errors.length||x.h1!==1);
   const required=[
     ['index.html','partnerStrip'],['index.html','footerSocial'],['index.html','contactFab'],
     ['learn.html','farmlandStory'],['event.html','faqArchive'],
