@@ -5239,23 +5239,17 @@ body .site-footer a{display:inline-flex;align-items:center;min-height:44px}
 .report-photo-grid--event-day .report-photo--kids img{
   aspect-ratio:4/5;
 }
-.report-photo-grid--event-day .report-photo--existing-child{
-  grid-column:1 / 5;
-}
-.report-photo-grid--event-day .report-photo--existing-child img{
-  aspect-ratio:4/5;
-}
 .report-photo-grid--event-day .report-photo--field{
-  grid-column:5 / 9;
+  grid-column:1 / 7;
 }
 .report-photo-grid--event-day .report-photo--field img{
-  aspect-ratio:4/5;
+  aspect-ratio:4/3;
 }
 .report-photo-grid--event-day .report-photo--game{
-  grid-column:9 / 13;
+  grid-column:7 / 13;
 }
 .report-photo-grid--event-day .report-photo--game img{
-  aspect-ratio:4/5;
+  aspect-ratio:4/3;
 }
 .report-photo-grid--event-day .report-photo figcaption{
   padding-inline:3px;
@@ -5315,13 +5309,11 @@ body .site-footer a{display:inline-flex;align-items:center;min-height:44px}
     grid-column:1 / -1;
   }
   .report-photo-grid--event-day .report-photo--kids,
-  .report-photo-grid--event-day .report-photo--existing-child,
   .report-photo-grid--event-day .report-photo--field,
   .report-photo-grid--event-day .report-photo--game{
     grid-column:auto;
   }
   .report-photo-grid--event-day .report-photo--kids img,
-  .report-photo-grid--event-day .report-photo--existing-child img,
   .report-photo-grid--event-day .report-photo--field img,
   .report-photo-grid--event-day .report-photo--game img{
     aspect-ratio:4/5;
