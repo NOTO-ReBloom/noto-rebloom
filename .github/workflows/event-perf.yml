@@ -49,7 +49,7 @@ jobs:
               cls:Number((a['cumulative-layout-shift'].numericValue||0).toFixed(4)),
               tbt:Math.round(a['total-blocking-time'].numericValue||0),
               lcpElement:(a['largest-contentful-paint-element']?.details?.items||[])[0]?.node?.selector||null,
-              accessibilityFailures:Object.values(a).filter(x=>x&&x.scoreDisplayMode!=='notApplicable'&&x.score===0&&x.details?.type==='table').filter(x=>['color-contrast','button-name','link-name','image-alt','aria-allowed-attr','aria-valid-attr-value','heading-order'].includes(x.id)).map(x=>({id:x.id,title:x.title,items:(x.details.items||[]).slice(0,5).map(y=>({selector:y.node?.selector||null,label:y.node?.nodeLabel||null}))})),
+              accessibilityFailures:Object.values(a).filter(x=>x&&x.scoreDisplayMode!=='notApplicable'&&x.score!==null&&x.score<1&&x.details?.type==='table').map(x=>({id:x.id,title:x.title,score:x.score,items:(x.details.items||[]).slice(0,8).map(y=>({selector:y.node?.selector||null,label:y.node?.nodeLabel||null,explanation:y.node?.explanation||null}))})),
               shifts:(a['layout-shifts']?.details?.items||[]).slice(0,5).map(x=>({
                 score:Number((x.score||0).toFixed(4)),
                 selector:x.node?.selector||null
