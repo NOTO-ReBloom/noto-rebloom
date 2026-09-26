@@ -66,6 +66,20 @@
     reveals.forEach(el=>io.observe(el));
   }
 
+  const loadCuteFont=()=>{
+    if(document.querySelector('link[data-diagnosis-font]'))return;
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap';
+    link.dataset.diagnosisFont='zen-maru-gothic';
+    link.onload=()=>{document.documentElement.classList.add('diagnosis-cute-font-ready');};
+    document.head.appendChild(link);
+  };
+  addEventListener('load',()=>{
+    if('requestIdleCallback' in window)requestIdleCallback(loadCuteFont,{timeout:1800});
+    else setTimeout(loadCuteFont,650);
+  },{once:true});
+
   document.querySelectorAll('img').forEach((img,index)=>{
     if(!img.hasAttribute('decoding'))img.decoding='async';
     if(!img.closest('.page-hero')&&!img.hasAttribute('loading'))img.loading='lazy';
