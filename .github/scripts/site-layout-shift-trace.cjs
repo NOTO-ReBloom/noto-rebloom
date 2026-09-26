@@ -3,6 +3,9 @@ const puppeteer=require('puppeteer-core');
 const targets=[
   ['index.html',1440,1000],
   ['index.html',430,932],
+  ['thoughts.html',1440,1000],
+  ['thoughts.html',430,932],
+  ['learn.html',430,932],
   ['partner.html',1440,1000],
   ['partner.html',430,932],
   ['event.html',1440,1000],
