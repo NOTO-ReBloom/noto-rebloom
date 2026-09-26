@@ -12,6 +12,7 @@
 
   const injectGlobalContact=()=>{
     const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    if(current==='404.html') return;
 
     if(!document.querySelector('.rb-contact-fab') && current!=='contact.html'){
       const fab=document.createElement('a');
@@ -32,6 +33,7 @@
   };
 
   const injectFooterSocial=()=>{
+    if((location.pathname.split('/').pop()||'index.html').toLowerCase()==='404.html') return;
     const footer=document.querySelector('.site-footer');
     if(!footer) return;
     footer.querySelectorAll('.rb-social-links--footer').forEach(el=>el.remove());
@@ -224,6 +226,7 @@
   };
 
   const injectPartnerStrip=()=>{
+    if((location.pathname.split('/').pop()||'index.html').toLowerCase()==='404.html') return;
     if(document.querySelector('.site-partner-strip')) return;
     const footer=document.querySelector('.site-footer');
     if(!footer) return;
