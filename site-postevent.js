@@ -79,7 +79,7 @@
     }
   }
 
-  const richFooterPages=new Set(['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','404.html']);
+  const richFooterPages=new Set(['index.html','thoughts.html','learn.html','event.html','report.html','partner.html']);
   if(richFooterPages.has(current)){
     const footer=document.querySelector('.site-footer');
     if(footer){
