@@ -70,7 +70,7 @@
     if(document.querySelector('link[data-diagnosis-font]'))return;
     const link=document.createElement('link');
     link.rel='stylesheet';
-    link.href='https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap';
+    link.href='https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500&display=swap';
     link.dataset.diagnosisFont='zen-maru-gothic';
     link.onload=()=>{document.documentElement.classList.add('diagnosis-cute-font-ready');};
     document.head.appendChild(link);
