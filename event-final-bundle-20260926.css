@@ -4472,3 +4472,14 @@ body.event-final .event-archive-context__inner a:hover{
     font-size:10px!important;
   }
 }
+
+
+/* Mobile archive hero performance — 2026-09-26 */
+@media(max-width:720px){
+  body.rb-unified.nr-new-event .page-hero .photo-frame{
+    display:none!important;
+  }
+  body.rb-unified.nr-new-event .page-hero-grid{
+    gap:0!important;
+  }
+}
