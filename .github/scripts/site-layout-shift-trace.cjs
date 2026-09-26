@@ -7,7 +7,9 @@ const targets=[
   ['partner.html',430,932],
   ['event.html',1440,1000],
   ['event.html',430,932],
-  ['report.html',430,932]
+  ['report.html',430,932],
+  ['404.html',1440,1000],
+  ['404.html',430,932]
 ];
 
 (async()=>{
