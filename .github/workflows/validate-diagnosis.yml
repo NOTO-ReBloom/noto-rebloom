@@ -170,10 +170,12 @@ jobs:
                   if font.lower() in text.lower():
                       raise SystemExit(f'Diagnosis CSS contains unwanted Mincho font: {font} in css index {i}')
 
-          if 'fonts.googleapis.com' in html or 'fonts.gstatic.com' in html:
-              raise SystemExit('Diagnosis page must not depend on blocking external web fonts')
-          if 'var(--serif)' not in ''.join(css_files):
-              raise SystemExit('Diagnosis CSS must use the shared local display font stack')
+          if 'fonts.googleapis.com/css2?family=Zen+Maru+Gothic' not in html:
+              raise SystemExit('Zen Maru Gothic display font is missing')
+          if 'media="print"' not in html or "onload=\"this.media='all'\"" not in html:
+              raise SystemExit('Zen Maru Gothic must load non-blocking')
+          if '--fd-display:"Zen Maru Gothic"' not in ''.join(css_files):
+              raise SystemExit('Diagnosis display typography must use Zen Maru Gothic with local fallbacks')
 
           if '答えるたびに、小さな花が咲きます' in html:
               raise SystemExit('Decorative flower progress copy must not return')
