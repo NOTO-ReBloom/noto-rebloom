@@ -71,7 +71,7 @@
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   const hasSlimHomeBundle=page==='index.html'&&!!document.querySelector('link[href*="home-final-20260926.css"]');
   const hasFinalBundle=!!document.querySelector(
-    'link[href*="home-final-20260924.css"],link[href*="home-final-20260926.css"],link[href*="partner-pre-20260924.css"],link[href*="report-final-bundle-20260924.css"],link[href*="event-final-bundle-20260926.css"]'
+    'link[href*="home-final-20260924.css"],link[href*="home-final-20260926.css"],link[href*="partner-pre-20260924.css"],link[href*="report-final-bundle-20260924.css"],link[href*="event-final-bundle-20260926.css"],link[href*="learn-final-bundle-20260927.css"]'
   );
   const hasTuningBundle=hasFinalBundle||!!document.querySelector('link[href*="legacy-tuning-20260924.css"],link[href*="site-foundation-20260924.css"]');
   const isDiagnosis=body.classList.contains('page-diagnosis');
