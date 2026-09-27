@@ -600,7 +600,25 @@ https://noto-rebloom.github.io/noto-rebloom/diagnosis.html`;try{await navigator.
     dialog?.addEventListener('click',(e)=>{if(e.target===dialog)(dialog.close?dialog.close():dialog.removeAttribute('open'));});
     startAtlas?.addEventListener('click',()=>{if(dialog.open)dialog.close();clearAll();render(true);});
   }
-  renderFlowerAtlas();
+  function scheduleFlowerAtlas(){
+    const atlas=$('flower-atlas');
+    const groups=$('flower-groups');
+    if(!atlas){renderFlowerAtlas();return;}
+    let rendered=false,observer=null;
+    const run=()=>{
+      if(rendered)return;
+      rendered=true;
+      observer?.disconnect();
+      renderFlowerAtlas();
+    };
+    document.querySelectorAll('a[href="#flower-atlas"],a[href="#flower-groups"]').forEach(link=>link.addEventListener('click',run,{once:true}));
+    if(location.hash==='#flower-atlas'||location.hash==='#flower-groups'||!('IntersectionObserver' in window)){run();return;}
+    observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting))run();
+    },{rootMargin:'700px 0px'});
+    observer.observe(groups||atlas);
+  }
+  scheduleFlowerAtlas();
   load();if(answers.length>0){
     resume.hidden=false;
     document.body.classList.add('has-saved-diagnosis');
