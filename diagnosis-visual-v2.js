@@ -114,72 +114,93 @@ function buildShareCard(photo,data,story=false){
   const W=1080,H=story?1920:1350;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const ink='#17352e',muted='#63736c',paper='#fffdf8',soft='#f4f1e9',green='#15483b';
-
+  const ink='#183a31',muted='#6d7a74',paper='#f5f1e9',white='#fffdf9';
+  const accent=cardAccent(data.group);
   ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
 
-  const margin=56;
-  const photoH=story?800:540;
-  drawCover(ctx,photo,margin,margin,W-margin*2,photoH,34);
+  // Quiet editorial frame.
+  const frame=story?48:44;
+  ctx.fillStyle=white;
+  roundRectPath(ctx,frame,frame,W-frame*2,H-frame*2,story?42:36);ctx.fill();
 
-  const y0=margin+photoH+(story?52:42);
-  ctx.fillStyle=green;
-  ctx.font='900 18px "M PLUS Rounded 1c","Noto Sans JP",sans-serif';
-  ctx.fillText('Re:Bloom 花タイプ診断',margin,y0);
-  if(data.slug==='renge'){
-    ctx.textAlign='right';
-    ctx.fillStyle='#7b8982';
-    ctx.font='700 13px "Noto Sans JP",sans-serif';
-    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-margin,y0);
-    ctx.textAlign='left';
-  }
+  // Large flower photograph.
+  const photoX=story?72:68;
+  const photoY=story?72:68;
+  const photoW=W-photoX*2;
+  const photoH=story?930:560;
+  drawCover(ctx,photo,photoX,photoY,photoW,photoH,story?34:30);
 
-  const contentY=y0+(story?45:38);
+  // Fine accent rule and group tag.
+  const ruleY=photoY+photoH+(story?42:34);
+  ctx.fillStyle=accent;ctx.fillRect(photoX,ruleY,story?120:96,5);
   ctx.fillStyle=muted;
-  ctx.font='800 17px "Noto Sans JP",sans-serif';
-  ctx.fillText('私の花タイプは',margin,contentY);
-
-  const nameText=`${data.name}タイプ`;
-  const nameSize=fitText(ctx,nameText,W-margin*2,story?92:76,54);
-  ctx.fillStyle=ink;
-  ctx.font=`900 ${nameSize}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
-  ctx.fillText(nameText,margin,contentY+(story?96:82));
-
-  ctx.fillStyle='#4d6258';
-  ctx.font=`700 ${story?31:27}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
-  const leadY=contentY+(story?154:134);
-  wrapText(ctx,data.lead,margin,leadY,W-margin*2,story?46:40,2);
-
-  let sectionY=leadY+(story?126:106);
-  drawSectionLabel(ctx,'当てはまりやすい特徴',margin,sectionY);
-  sectionY=drawFeatureRow(ctx,data.strengths,margin,sectionY+18,W-margin*2,story)+(story?40:32);
-
-  drawSectionLabel(ctx,'回答で強く出た傾向',margin,sectionY);
-  sectionY=drawFeatureRow(ctx,data.tendencies,margin,sectionY+18,W-margin*2,story)+(story?48:38);
-
-  const ctaH=story?250:190;
-  const ctaY=H-margin-ctaH;
-  ctx.fillStyle=soft;roundRectPath(ctx,margin,ctaY,W-margin*2,ctaH,28);ctx.fill();
-  ctx.fillStyle=green;
-  ctx.font=`900 ${story?34:29}px "M PLUS Rounded 1c","Noto Sans JP",sans-serif`;
-  ctx.fillText('あなたは何タイプ？',margin+28,ctaY+(story?58:50));
-  ctx.fillStyle=ink;
-  ctx.font=`800 ${story?25:22}px "Noto Sans JP",sans-serif`;
-  ctx.fillText('32種類の花から診断',margin+28,ctaY+(story?103:88));
-  ctx.fillStyle=muted;
-  ctx.font=`700 ${story?20:18}px "Noto Sans JP",sans-serif`;
-  ctx.fillText('全40問  /  約4〜6分  /  登録不要',margin+28,ctaY+(story?144:122));
-  ctx.fillStyle=green;
-  ctx.font=`800 ${story?19:17}px "Noto Sans JP",sans-serif`;
-  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',margin+28,ctaY+(story?194:160));
-
-  // Small group label, intentionally monochrome.
+  ctx.font=`700 ${story?18:16}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
+  ctx.fillText('RE:BLOOM FLOWER TYPE  /  32',photoX,ruleY+(story?42:36));
   ctx.textAlign='right';
-  ctx.fillStyle='#6f7e77';
-  ctx.font='800 16px "Noto Sans JP",sans-serif';
-  ctx.fillText(data.group,W-margin,ctaY-22);
+  ctx.fillText(data.group,W-photoX,ruleY+(story?42:36));
   ctx.textAlign='left';
 
+  // Main name in a calmer editorial face.
+  const contentY=ruleY+(story?92:80);
+  ctx.fillStyle=ink;
+  const nameText=`${data.name}タイプ`;
+  const nameSize=fitText(ctx,nameText,W-photoX*2,story?102:80,story?66:54,'800');
+  ctx.font=`800 ${nameSize}px "Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif`;
+  ctx.fillText(nameText,photoX,contentY);
+
+  // Tagline.
+  ctx.fillStyle='#425b51';
+  ctx.font=`700 ${story?32:27}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
+  const leadY=contentY+(story?74:62);
+  wrapText(ctx,data.lead,photoX,leadY,W-photoX*2,story?48:40,2);
+
+  // Keywords: minimal bordered chips.
+  let chipY=leadY+(story?126:102);
+  ctx.font=`700 ${story?23:20}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
+  let cx=photoX;
+  for(const item of (data.keywords||[]).slice(0,3)){
+    const pad=story?24:20;
+    const h=story?48:42;
+    const w=Math.ceil(ctx.measureText(item).width)+pad*2;
+    ctx.strokeStyle='rgba(24,58,49,.18)';ctx.lineWidth=2;
+    roundRectPath(ctx,cx,chipY,w,h,h/2);ctx.stroke();
+    ctx.fillStyle=ink;ctx.fillText(item,cx+pad,chipY+(story?32:29));
+    cx+=w+(story?12:10);
+  }
+
+  // Short note from the result, not a wall of text.
+  const noteY=chipY+(story?110:84);
+  ctx.fillStyle='#67756f';
+  ctx.font=`700 ${story?20:17}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
+  ctx.fillText('今のあなたへ',photoX,noteY);
+  ctx.fillStyle=ink;
+  ctx.font=`700 ${story?28:23}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
+  wrapText(ctx,data.message||'',photoX,noteY+(story?48:40),W-photoX*2,story?44:36,story?3:2);
+
+  // Footer: restrained, useful, shareable.
+  const footerY=H-frame-(story?150:118);
+  ctx.strokeStyle='rgba(24,58,49,.13)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(photoX,footerY);ctx.lineTo(W-photoX,footerY);ctx.stroke();
+
+  ctx.fillStyle=ink;
+  ctx.font=`800 ${story?22:18}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
+  ctx.fillText('花から、わたしを再発見。',photoX,footerY+(story?48:40));
+  ctx.fillStyle=muted;
+  ctx.font=`600 ${story?17:14}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
+  ctx.fillText('40問 / 約4〜6分 / 登録不要',photoX,footerY+(story?82:69));
+  ctx.textAlign='right';
+  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-photoX,footerY+(story?82:69));
+  ctx.textAlign='left';
+
+  // CC BY attribution must travel with the Renge image.
+  if(data.slug==='renge'){
+    ctx.fillStyle='rgba(255,253,249,.90)';
+    const creditY=photoY+photoH-(story?34:28);
+    roundRectPath(ctx,photoX+14,creditY-(story?27:23),photoW-28,story?31:27,10);ctx.fill();
+    ctx.fillStyle='#5d6863';
+    ctx.font=`600 ${story?13:11}px "Noto Sans JP",sans-serif`;
+    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',photoX+26,creditY-(story?7:5));
+  }
   return canvas.toDataURL('image/png',.95);
 }
 function dataUrlToFile(dataUrl,name){
@@ -201,12 +222,14 @@ async function refreshResult(){
     const lead=document.getElementById('resultLead')?.textContent||'';
     const strengths=[...document.querySelectorAll('#resultStrengths li')].slice(0,3).map(el=>el.textContent.trim());
     const tendencies=[...document.querySelectorAll('#resultReasonList strong')].slice(0,2).map(el=>el.textContent.trim());
-    const data={name,slug,group,lead,strengths,tendencies};
+    const keywords=[...document.querySelectorAll('#resultKeywords span')].slice(0,3).map(el=>el.textContent.trim());
+    const message=document.getElementById('resultMessage')?.textContent||'';
+    const data={name,slug,group,lead,strengths,tendencies,keywords,message};
     const feed=buildShareCard(photo,data,false);
     const story=buildShareCard(photo,data,true);
     latestFeedCard=feed;
     const share=document.getElementById('resultShareImage');if(share)share.src=feed;
-    const dl=document.getElementById('downloadCard');if(dl){dl.href=feed;dl.download=`${name}タイプ_花タイプ診断.png`;dl.textContent='投稿用カードを保存';}
+    const dl=document.getElementById('downloadCard');if(dl){dl.href=feed;dl.download=`${name}タイプ_花タイプ診断.png`;dl.textContent='4:5カードを保存';}
     const storyDl=document.getElementById('downloadStoryCard');if(storyDl){storyDl.href=story;storyDl.download=`${name}タイプ_花タイプ診断_story.png`;}
   }catch(e){console.warn('share card render failed',e);}
 }
