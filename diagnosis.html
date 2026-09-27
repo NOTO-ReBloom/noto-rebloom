@@ -2,7 +2,7 @@
 <html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>花タイプ診断｜NOTO Re:Bloom</title><meta content="40の質問と5つの傾向軸から、あなたに近い花を32種類から表示。強み、人間関係、向く環境、疲れ方、成長のヒントまで読み解く自己理解コンテンツです。" name="description"/><meta content="#15483b" name="theme-color"/><link href="favicon.svg" rel="icon"/><link rel="preload" as="image" href="flower-photo-renge.webp?v=20260918free1" fetchpriority="high"/><link href="site.css" rel="stylesheet"/><link href="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" rel="canonical"/><meta content="website" property="og:type"/><meta content="NOTO Re:Bloom" property="og:site_name"/><meta content="花タイプ診断｜NOTO Re:Bloom" property="og:title"/><meta content="40の質問から、考え方・人との関わり方・動き方の傾向を5つの軸で読み解き、あなたに近い一輪を見つけます。" property="og:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/diagnosis.html" property="og:url"/><meta content="https://noto-rebloom.github.io/noto-rebloom/flower-photo-renge.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="花タイプ診断｜NOTO Re:Bloom" name="twitter:title"/><meta content="40の質問から、5つの傾向軸と32種類の花で自分らしさを読み解く自己理解コンテンツです。" name="twitter:description"/><meta content="https://noto-rebloom.github.io/noto-rebloom/flower-photo-renge.webp" name="twitter:image"/><link rel="stylesheet" href="rebloom-unified.css?v=20260820sponsor"><link rel="stylesheet" href="rebloom-polish.css?v=20260817e"><link rel="stylesheet" href="rebloom-detail.css?v=20260817e"><link rel="stylesheet" href="rebloom-refine.css?v=20260817n"><link rel="stylesheet" href="rebloom-balance.css?v=20260817n"><link rel="stylesheet" href="rebloom-tight.css?v=20260817q"><link rel="stylesheet" href="rebloom-purpose.css?v=20260817q"><link rel="stylesheet" href="rebloom-purpose-complete.css?v=20260817v"><link rel="stylesheet" href="brand-refresh.css?v=20260820c">
 <link rel="stylesheet" href="diagnosis-v2.css?v=20260926scale3">
 <link rel="stylesheet" href="diagnosis-fixes.css?v=20260919font1">
-<link rel="stylesheet" href="diagnosis-ux-v3.css?v=20260927perf2">
+<link rel="stylesheet" href="diagnosis-ux-v3.css?v=20260927rich1">
 <script src="diagnosis-group-colors.js?v=20260827f" defer></script>
 <link rel="stylesheet" href="site-consistency.css?v=20260926a">
 </head><body class="page-diagnosis rb-unified">
@@ -71,8 +71,16 @@
 </dialog>
 <div class="container diagnosis-panel" id="diagnosisPanel"><p class="diagnosis-response-frame">直近3か月くらいの「普段の自分」を基準に回答してください。</p><div class="diagnosis-progress"><div class="diagnosis-progress-top"><span id="questionCount">1 / 40</span><span class="diagnosis-remaining" id="remainingCount">あと39問</span><span id="progressPercent">0%</span></div><div aria-label="診断の進捗" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="diagnosis-progress-track" role="progressbar"><span class="diagnosis-progress-fill" id="progressFill"></span></div></div><div class="diagnosis-question-card"><span class="diagnosis-q-category" id="questionCategory"></span><p aria-live="polite" class="diagnosis-question" id="questionText" tabindex="-1"></p><div aria-label="キーボード操作" class="keyboard-guide"><span><kbd>1</kbd> あてはまる</span><span><kbd>2</kbd> ややあてはまる</span><span><kbd>3</kbd> ややあてはまらない</span><span><kbd>4</kbd> あてはまらない</span><span><kbd>Backspace</kbd> ひとつ戻る</span></div><div class="diagnosis-answer-grid"><button aria-keyshortcuts="1" class="diagnosis-answer" data-value="2" type="button"><kbd>1</kbd><span>あてはまる</span><small>YES</small></button><button aria-keyshortcuts="2" class="diagnosis-answer" data-value="1" type="button"><kbd>2</kbd><span>ややあてはまる</span><small>LEAN YES</small></button><button aria-keyshortcuts="3" class="diagnosis-answer" data-value="-1" type="button"><kbd>3</kbd><span>ややあてはまらない</span><small>LEAN NO</small></button><button aria-keyshortcuts="4" class="diagnosis-answer" data-value="-2" type="button"><kbd>4</kbd><span>あてはまらない</span><small>NO</small></button></div></div><div class="diagnosis-controls"><button class="btn btn--paper" id="backQuestion" type="button">ひとつ戻る</button><button class="btn btn--outline" id="resetDiagnosis" type="button">最初からやり直す</button></div></div>
 <div class="container diagnosis-result" id="diagnosisResult"><div class="result-hero"><div class="result-portrait-wrap"><img alt="診断結果の花の写真" class="result-image" decoding="async" id="resultImage" loading="lazy"/><a class="result-photo-credit-link" href="photo-credits.html">写真出典・ライセンスを見る</a></div><div class="result-copy"><span class="result-group" id="resultGroup"></span><h2 id="resultTitle"></h2><p class="result-lead" id="resultLead"></p><p id="resultDesc"></p></div></div>
+<section class="result-personal-snapshot" aria-labelledby="resultSnapshotHeading">
+  <div class="result-snapshot-head"><p class="result-kicker">THIS IS YOU</p><h3 id="resultSnapshotHeading">このタイプを、普段の自分に重ねると。</h3><div class="result-keywords" id="resultKeywords"></div></div>
+  <div class="result-snapshot-grid">
+    <article><span>GOOD DAY</span><h4>調子がいいとき</h4><p id="resultBest"></p></article>
+    <article><span>LOW BATTERY</span><h4>余裕がないとき</h4><p id="resultTired"></p></article>
+    <article class="result-snapshot-message"><span>FOR YOU</span><h4>今のあなたへ</h4><p id="resultMessage"></p></article>
+  </div>
+</section>
 <section class="result-quick-summary" id="resultQuickSummary" aria-labelledby="resultQuickHeading">
-  <div class="result-quick-head"><p class="result-kicker">30秒サマリー</p><h3 id="resultQuickHeading">まず、ここだけ読めばOK。</h3><p>詳しい結果の前に、今回の回答で特に目立ったポイントを4つに絞りました。</p></div>
+  <div class="result-quick-head"><p class="result-kicker">まずここだけ</p><h3 id="resultQuickHeading">最初に、ここだけ。</h3><p>今回の回答で、特に出ていたところを4つだけ先にまとめました。</p></div>
   <div class="result-quick-grid">
     <article><span>STRENGTH</span><h4>強み</h4><p id="resultQuickStrength"></p></article>
     <article><span>WATCH</span><h4>気をつけたいこと</h4><p id="resultQuickWatch"></p></article>
@@ -106,7 +114,7 @@
 <p class="group-flower-list"><b>同じグループの花：</b><span id="resultGroupFlowers"></span></p>
 <div class="result-role-wrap"><b>自然に担いやすい役割</b><div class="result-role-chips" id="resultRoleChips"></div></div></section><div class="result-section-grid"><article class="result-card"><h3>あなたの強み</h3><ul id="resultStrengths"></ul></article><article class="result-card"><h3>気をつけたいこと</h3><ul id="resultWatch"></ul></article><article class="result-card"><h3>人との関わり方</h3><p id="resultRelation"></p></article><article class="result-card"><h3>力を発揮しやすい場</h3><p id="resultFit"></p></article><article class="result-card"><h3>心地よく過ごすコツ</h3><p id="resultRecommended"></p></article><article class="result-card"><h3>花のプロフィール</h3><div class="result-facts"><div><b>原産地</b><span id="resultOrigin"></span></div><div><b>開花時期</b><span id="resultBloom"></span></div><div><b>主な花言葉</b><span id="resultLanguage"></span></div></div></article></div>
 <section class="result-rich-insights" aria-labelledby="resultRichHeading">
-<div class="result-deep-heading"><p class="result-kicker">もう少し深く読む</p><h3 id="resultRichHeading">回答から見えた、6つの傾向。</h3><p>同じ花タイプでも、5つの軸の出方によって特徴は少しずつ異なります。ここでは、あなたの回答に合わせて日常で表れやすい傾向を整理します。</p></div>
+<div class="result-deep-heading"><p class="result-kicker">もう少し細かく</p><h3 id="resultRichHeading">もう少し細かく見ると、こんな感じ。</h3><p>同じ花タイプでも、5つの軸の出方で少しずつ違います。ここからは、日常で出やすいところをもう一段だけ細かく見ます。</p></div>
 <div class="result-insight-grid">
 <article><span>ENERGY</span><h4>エネルギーの戻し方</h4><p id="resultEnergyStyle"></p></article>
 <article><span>PACE</span><h4>動きやすいペース</h4><p id="resultPaceStyle"></p></article>
@@ -118,8 +126,8 @@
 </section>
 <section aria-labelledby="resultAdviceHeading" class="result-deep-dive" id="resultDeepDive">
 <div class="result-deep-heading">
-<p class="result-kicker">あなたへの読み解き</p>
-<h3 id="resultAdviceHeading">このタイプの特徴を、もう少し詳しく。</h3>
+<p class="result-kicker">もう少し自分に引き寄せて</p>
+<h3 id="resultAdviceHeading">普段の自分に重ねて読む。</h3>
 <p>強みが出やすい場面と、負担がかかりやすい場面を分けて見ていきます。</p>
 </div>
 <article class="result-long-card result-long-card--main">
@@ -144,10 +152,10 @@
 <ol id="resultFirstSteps"></ol>
 </article>
 </section><section aria-labelledby="resultScenesHeading" class="result-life-scenes">
-<div class="result-deep-heading"><p class="result-kicker">3つの場面で生かす</p><h3 id="resultScenesHeading">学校・仕事・プライベートでの、あなたらしい動き方。</h3><p>同じ強みでも、場面によって表れ方は変わります。無理に役割へ自分を合わせず、自然に力が出る使い方を探してください。</p></div>
+<div class="result-deep-heading"><p class="result-kicker">場面ごとに見る</p><h3 id="resultScenesHeading">学校でも仕事でも、無理なく力が出る形は少し違う。</h3><p>同じ強みでも、場面が変われば出方も変わります。役割に自分を合わせすぎず、自然に動ける形を探してみてください。</p></div>
 <div class="life-scene-grid"><article><span>01</span><h4>学校・学び</h4><p id="resultInSchool"></p></article><article><span>02</span><h4>仕事・チーム</h4><p id="resultInWork"></p></article><article><span>03</span><h4>友人・プライベート</h4><p id="resultInCommunity"></p></article></div>
 <div class="result-communication-grid"><article><p class="result-kicker">伝え方のヒント</p><h4>相手に届きやすい言葉</h4><p id="resultCommunication"></p></article><article><p class="result-kicker">自分を守る境界線</p><h4>頑張りすぎないために</h4><p id="resultBoundary"></p></article></div>
-</section><section aria-labelledby="resultReflectionHeading" class="result-reflection"><div><p class="result-kicker">結果を自分の言葉にする</p><h3 id="resultReflectionHeading">結果を、自分の経験と照らし合わせる。</h3><p>当てはまるかどうかを、最近の自分の行動と照らし合わせて確認できます。</p></div><ol id="resultReflectionQuestions"></ol></section><div class="result-card"><h3>5つの軸</h3><div class="axis-bars" id="axisBars"></div></div><section aria-labelledby="resultTendencyHeading" class="result-tendency-section" id="resultTendencies">
+</section><section aria-labelledby="resultReflectionHeading" class="result-reflection"><div><p class="result-kicker">最後に、少し振り返る</p><h3 id="resultReflectionHeading">「当たってる？」を、自分の出来事で確かめる。</h3><p>診断の言葉より、最近の自分の行動の方が確かです。思い当たる場面があるかだけ、少し振り返ってみてください。</p></div><ol id="resultReflectionQuestions"></ol></section><div class="result-card"><h3>5つの軸</h3><div class="axis-bars" id="axisBars"></div></div><section aria-labelledby="resultTendencyHeading" class="result-tendency-section" id="resultTendencies">
 <div class="result-deep-heading"><p class="result-kicker">5つの軸を言葉にする</p><h3 id="resultTendencyHeading">あなたの答え方に出た、5つの傾向。</h3><p>割合は優劣ではなく、どちら側を自然に選びやすかったかを示します。中央に近い軸は、状況に応じて両方を使えるバランス型です。</p></div>
 <div class="axis-narrative-grid" id="resultAxisNarratives"></div>
 <div class="result-clarity"><div><span>回答傾向の強さ</span><strong id="resultClarity"></strong></div><p id="resultClarityText"></p><small>※この数値は診断の正確さではなく、5つの軸が中央からどれくらい離れていたかを表します。</small></div>
@@ -157,9 +165,9 @@
 </div>
 <div class="collaboration-card"><p class="result-kicker">違う強みを持つ一例</p><h3 id="resultPartnerGroup"></h3><p id="resultPartnerText"></p><small>※相性の良し悪しを判定するものではなく、役割を補い合う組み合わせの一例です。</small></div>
 </section><section aria-labelledby="resultMonthHeading" class="result-month-plan">
-<div class="result-deep-heading"><p class="result-kicker">30日プラン</p><h3 id="resultMonthHeading">自分の傾向を、日常で使いやすくする。</h3><p>強みを使いやすくし、負担になりやすい場面を整えるための4週間です。</p></div>
+<div class="result-deep-heading"><p class="result-kicker">4週間で少し試す</p><h3 id="resultMonthHeading">結果を読んで終わりにしない、4週間。</h3><p>全部やる必要はありません。ひとつでも試せたら十分です。</p></div>
 <ol id="resultMonthPlan"></ol>
-</section><section class="result-share-section" id="resultShare"><div class="result-share-copy"><p class="result-kicker">結果カード</p><h3>保存したくなる一枚に。</h3><p>タイプ名だけでなく、特徴・強み・回答で強く出た傾向まで1枚にまとめます。見た人が「自分は何タイプだろう」と分かるよう、診断情報もカード内に入れます。</p><div class="button-row"><a class="btn btn--yellow" download id="downloadCard">投稿用カードを保存</a><a class="btn btn--paper" download id="downloadStoryCard">ストーリー用を保存</a><button class="btn btn--green" id="shareDiagnosisCard" type="button">カードを共有</button><button class="btn btn--paper" id="copyDiagnosisResult" type="button">結果文をコピー</button></div><p aria-live="polite" class="diagnosis-copy-status" id="diagnosisCopyStatus"></p></div><div class="result-share-preview"><img alt="診断結果の共有カード" id="resultShareImage" loading="lazy"/></div></section><section aria-labelledby="resultNextHeading" class="result-next-action">
+</section><section class="result-share-section" id="resultShare"><div class="result-share-copy"><p class="result-kicker">結果カード</p><h3>結果を、一枚に残す。</h3><p>花の写真を主役に、タイプ名と短い言葉だけを残したシンプルなカードです。投稿用は4:5、ストーリー用は9:16で保存できます。</p><div class="button-row"><a class="btn btn--yellow" download id="downloadCard">4:5カードを保存</a><a class="btn btn--paper" download id="downloadStoryCard">9:16カードを保存</a><button class="btn btn--green" id="shareDiagnosisCard" type="button">カードを共有</button><button class="btn btn--paper" id="copyDiagnosisResult" type="button">結果文をコピー</button></div><p aria-live="polite" class="diagnosis-copy-status" id="diagnosisCopyStatus"></p></div><div class="result-share-preview"><img alt="診断結果の共有カード" id="resultShareImage" loading="lazy"/></div></section><section aria-labelledby="resultNextHeading" class="result-next-action">
 <div>
 <p class="result-kicker">結果をもう少し楽しむ</p>
 <h3 id="resultNextHeading">結果は、今の自分を知るための一つの見方です。</h3>
@@ -177,6 +185,6 @@
 <div class="diagnosis-mobile-start"><button type="button" id="mobileStartDiagnosis">花タイプ診断を始める <span>約4〜6分</span></button></div>
 <button aria-label="ページ上部へ戻る" class="back-top" type="button">↑</button>
 <script defer src="diagnosis-shell.js?v=20260927perf1"></script>
-<script defer src="diagnosis.js?v=20260927perf2"></script>
-<script defer src="diagnosis-visual-v2.js?v=20260927perf1"></script>
+<script defer src="diagnosis.js?v=20260927rich1"></script>
+<script defer src="diagnosis-visual-v2.js?v=20260927rich1"></script>
 </body></html>
