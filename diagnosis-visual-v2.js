@@ -243,7 +243,6 @@ function init(){
   });
   const title=document.getElementById('resultTitle');
   if(title)new MutationObserver(()=>setTimeout(refreshResult,80)).observe(title,{childList:true,subtree:true,characterData:true});
-  ['renge','himawari','freesia','ajisai','tsubaki'].forEach(slug=>{const i=new Image();i.src=photoUrl(slug)});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
