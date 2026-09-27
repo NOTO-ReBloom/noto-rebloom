@@ -2070,3 +2070,220 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
     contain-intrinsic-size:auto 560px;
   }
 }
+
+/* Rich natural-result editorial layer — 2026-09-27 */
+.page-diagnosis .result-personal-snapshot{
+  margin:22px 0 18px;
+  padding:30px;
+  border:1px solid rgba(24,75,61,.12);
+  border-radius:30px;
+  background:#fffdf9;
+  box-shadow:0 16px 46px rgba(23,58,49,.065);
+}
+.page-diagnosis .result-snapshot-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px 24px;
+  align-items:end;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(24,75,61,.10);
+}
+.page-diagnosis .result-snapshot-head .result-kicker{grid-column:1/-1}
+.page-diagnosis .result-snapshot-head h3{
+  margin:0!important;
+  color:#173a31!important;
+  font-size:clamp(27px,3.5vw,42px)!important;
+  line-height:1.25!important;
+  letter-spacing:-.025em!important;
+}
+.page-diagnosis .result-keywords{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:7px;
+}
+.page-diagnosis .result-keywords span{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:6px 12px;
+  border:1px solid rgba(24,75,61,.14);
+  border-radius:999px;
+  background:#f8f5ee;
+  color:#36564c;
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.02em;
+}
+.page-diagnosis .result-snapshot-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.page-diagnosis .result-snapshot-grid article{
+  min-height:205px;
+  padding:22px 20px;
+  border:1px solid rgba(24,75,61,.10);
+  border-radius:22px;
+  background:#fbfaf6;
+}
+.page-diagnosis .result-snapshot-grid article>span{
+  display:block;
+  margin-bottom:12px;
+  color:#8a918c;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+.page-diagnosis .result-snapshot-grid h4{
+  margin:0 0 10px!important;
+  color:#184b3d!important;
+  font-size:18px!important;
+  line-height:1.45!important;
+}
+.page-diagnosis .result-snapshot-grid p{
+  margin:0!important;
+  color:#52675e!important;
+  font-size:13px!important;
+  line-height:1.9!important;
+}
+.page-diagnosis .result-snapshot-message{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#f3f6ef,#fffaf0)!important;
+}
+.page-diagnosis .result-snapshot-message::after{
+  content:"";
+  position:absolute;
+  width:90px;height:90px;
+  right:-28px;bottom:-34px;
+  border:1px solid color-mix(in srgb,var(--result-accent,#184b3d) 34%,transparent);
+  border-radius:50%;
+  box-shadow:0 0 0 14px color-mix(in srgb,var(--result-accent,#184b3d) 6%,transparent);
+  pointer-events:none;
+}
+.page-diagnosis .result-snapshot-message p{
+  color:#274b40!important;
+  font-weight:750!important;
+}
+
+/* Result hero: quieter, more editorial. */
+.page-diagnosis .diagnosis-result .result-hero{
+  border-color:rgba(24,75,61,.10)!important;
+  background:#fffdf9!important;
+}
+.page-diagnosis .diagnosis-result .result-copy h2{
+  font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif!important;
+  font-weight:700!important;
+  letter-spacing:-.05em!important;
+}
+.page-diagnosis .diagnosis-result .result-lead{
+  max-width:32em;
+  color:#3f5c52!important;
+  font-size:clamp(19px,2.1vw,25px)!important;
+  line-height:1.65!important;
+}
+.page-diagnosis .diagnosis-result #resultDesc{
+  max-width:42em;
+  color:#65766f!important;
+}
+
+/* Refined card studio. */
+.page-diagnosis .result-share-section{
+  grid-template-columns:minmax(260px,.78fr) minmax(360px,1.22fr)!important;
+  padding:34px!important;
+  border-color:rgba(24,75,61,.11)!important;
+  background:linear-gradient(145deg,#fffdf9,#f5f1e8)!important;
+}
+.page-diagnosis .result-share-copy{
+  align-self:center;
+}
+.page-diagnosis .result-share-copy>p:not(.result-kicker){
+  color:#63736c!important;
+  line-height:1.9!important;
+}
+.page-diagnosis .result-share-preview{
+  width:min(100%,460px);
+  max-width:none!important;
+  justify-self:end;
+  padding:14px!important;
+  border:1px solid rgba(24,75,61,.10);
+  border-radius:30px!important;
+  background:#eae4d9!important;
+  box-shadow:0 18px 50px rgba(27,57,47,.10);
+}
+.page-diagnosis .result-share-preview img{
+  display:block;
+  border-radius:20px!important;
+  box-shadow:0 10px 34px rgba(27,57,47,.12)!important;
+}
+.page-diagnosis .result-share-section .button-row{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+}
+.page-diagnosis .result-share-section .button-row .btn{
+  min-height:46px!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+.page-diagnosis .result-share-section #shareDiagnosisCard{
+  grid-column:1/-1;
+}
+.page-diagnosis .result-share-section #copyDiagnosisResult{
+  grid-column:1/-1;
+}
+
+/* Let the natural copy breathe. */
+.page-diagnosis .result-card li,
+.page-diagnosis .result-card p,
+.page-diagnosis .result-rich-insights p,
+.page-diagnosis .result-long-card p,
+.page-diagnosis .life-scene-grid p,
+.page-diagnosis .result-communication-grid p{
+  text-wrap:pretty;
+}
+.page-diagnosis .result-quick-summary{
+  box-shadow:none!important;
+  background:#f7f8f3!important;
+}
+.page-diagnosis .result-quick-grid article{
+  background:rgba(255,255,255,.82)!important;
+}
+
+@media(max-width:760px){
+  .page-diagnosis .result-personal-snapshot{
+    margin:16px 0 14px;
+    padding:20px 14px;
+    border-radius:24px;
+  }
+  .page-diagnosis .result-snapshot-head{
+    grid-template-columns:1fr;
+    gap:12px;
+    padding-bottom:18px;
+  }
+  .page-diagnosis .result-snapshot-head .result-kicker{grid-column:auto}
+  .page-diagnosis .result-keywords{justify-content:flex-start}
+  .page-diagnosis .result-snapshot-grid{grid-template-columns:1fr;gap:9px}
+  .page-diagnosis .result-snapshot-grid article{min-height:0;padding:18px 16px}
+  .page-diagnosis .result-share-section{
+    grid-template-columns:1fr!important;
+    padding:20px 14px!important;
+  }
+  .page-diagnosis .result-share-preview{
+    width:100%;
+    justify-self:stretch;
+    padding:10px!important;
+    border-radius:22px!important;
+  }
+  .page-diagnosis .result-share-section .button-row{
+    grid-template-columns:1fr!important;
+  }
+  .page-diagnosis .result-share-section .button-row .btn,
+  .page-diagnosis .result-share-section #shareDiagnosisCard,
+  .page-diagnosis .result-share-section #copyDiagnosisResult{
+    grid-column:auto;
+    width:100%;
+  }
+}
