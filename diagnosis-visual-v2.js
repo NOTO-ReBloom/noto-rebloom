@@ -192,14 +192,13 @@ function buildShareCard(photo,data,story=false){
   ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-photoX,footerY+(story?82:69));
   ctx.textAlign='left';
 
-  // CC BY attribution must travel with the Renge image.
+  // CC BY attribution must travel with the Renge image and stay outside the photo area.
   if(data.slug==='renge'){
-    ctx.fillStyle='rgba(255,253,249,.90)';
-    const creditY=photoY+photoH-(story?34:28);
-    roundRectPath(ctx,photoX+14,creditY-(story?27:23),photoW-28,story?31:27,10);ctx.fill();
-    ctx.fillStyle='#5d6863';
+    ctx.textAlign='right';
+    ctx.fillStyle='#66736d';
     ctx.font=`600 ${story?13:11}px "Noto Sans JP",sans-serif`;
-    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',photoX+26,creditY-(story?7:5));
+    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-photoX,ruleY-(story?13:10));
+    ctx.textAlign='left';
   }
   return canvas.toDataURL('image/png',.95);
 }
