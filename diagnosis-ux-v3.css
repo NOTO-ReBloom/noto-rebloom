@@ -1101,6 +1101,26 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
 .page-diagnosis .result-image{
   min-height:430px!important;
 }
+.page-diagnosis .result-photo-credit-link{
+  display:inline-flex;
+  align-items:center;
+  margin:10px 4px 2px;
+  color:#5c7168!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  line-height:1.5;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+.page-diagnosis .result-photo-credit-link:hover{
+  color:#184b3d!important;
+}
+.page-diagnosis .result-photo-credit-link:focus-visible{
+  outline:3px solid #e9cb67;
+  outline-offset:3px;
+  border-radius:4px;
+}
 .page-diagnosis .result-copy{
   padding:30px 22px 24px!important;
 }
