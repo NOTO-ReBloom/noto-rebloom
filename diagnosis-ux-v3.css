@@ -2050,3 +2050,23 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
     height:500px;
   }
 }
+
+/* Performance: keep complete atlas/content in the DOM, but skip initial paint/layout work off-screen. */
+@supports (content-visibility:auto){
+  .page-diagnosis .diagnosis-method-card{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 520px;
+  }
+  .page-diagnosis .flower-group-showcase{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 760px;
+  }
+  .page-diagnosis .flower-atlas{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 2200px;
+  }
+  .page-diagnosis .final-cta{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 560px;
+  }
+}
