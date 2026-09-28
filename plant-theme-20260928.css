@@ -1,0 +1,495 @@
+/* NOTO Re:Bloom — Botanical Theme 2026-09-28
+   Design-only override. No copy/content changes. */
+:root{
+  --plant-forest:#174a36;
+  --plant-forest-2:#0f3a2a;
+  --plant-leaf:#5f8f58;
+  --plant-leaf-2:#7da66f;
+  --plant-sage:#dfe9d8;
+  --plant-sage-2:#eef3e8;
+  --plant-cream:#fbf8ee;
+  --plant-paper:#fffdf8;
+  --plant-soil:#8a6a4a;
+  --plant-soil-soft:#eee3d5;
+  --plant-flower:#e8c84f;
+  --plant-ink:#1d342a;
+  --plant-muted:#586b61;
+  --plant-line:rgba(23,74,54,.14);
+  --plant-shadow:0 16px 42px rgba(23,74,54,.10);
+  --plant-shadow-soft:0 8px 24px rgba(23,74,54,.075);
+}
+
+/* foundation */
+html{background:var(--plant-cream)}
+body{
+  background:var(--plant-cream)!important;
+  color:var(--plant-ink)!important;
+}
+body,
+button,input,select,textarea{
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif!important;
+}
+:where(h1,h2,h3,h4,.brand b,.section-title,.section-heading h2){
+  color:var(--plant-ink)!important;
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif!important;
+  font-weight:900!important;
+}
+:where(p,li,dd,dt,figcaption){color:var(--plant-muted)}
+
+/* photograph reliability: do not let legacy reveal/lazy styles leave blanks */
+main img,
+.photo-frame img,
+.visual-tile img,
+.report-photo img,
+.contact-hero-photo img,
+.people-trust-photo img,
+.nr-main-sponsor img{
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+}
+.photo-frame,
+.visual-tile,
+.report-photo,
+.contact-hero-photo,
+.people-trust-photo{
+  opacity:1!important;
+  visibility:visible!important;
+}
+:where(.reveal,.rb-reveal,.rb-detail-reveal,.is-reveal,.will-reveal) img{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+
+/* header: a clean vine, not a hard rule */
+.site-header{
+  background:rgba(255,253,248,.97)!important;
+  border-bottom:0!important;
+  box-shadow:0 8px 24px rgba(23,74,54,.07)!important;
+  backdrop-filter:blur(12px);
+}
+.site-header::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-7px;
+  height:14px;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 8px 2px,rgba(95,143,88,.22) 0 5px,transparent 5.5px) 0 0/34px 14px repeat-x;
+  opacity:.75;
+}
+.brand,
+.site-nav a,
+.header-actions .btn,
+.menu-button{
+  color:var(--plant-forest)!important;
+}
+.brand-mark{
+  position:relative;
+  border-radius:46% 54% 48% 52% / 58% 45% 55% 42%!important;
+  background:var(--plant-sage)!important;
+}
+.brand-sprout{
+  color:var(--plant-leaf)!important;
+}
+.site-nav a{
+  position:relative;
+  font-weight:800!important;
+}
+.site-nav a::after{
+  content:"";
+  position:absolute;
+  left:16%;right:16%;bottom:8px;
+  height:4px;
+  border-radius:80% 20% 65% 35%;
+  background:var(--plant-leaf)!important;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .2s ease;
+}
+.site-nav a:hover::after,
+.site-nav a[aria-current="page"]::after{
+  transform:scaleX(1);
+}
+.btn--green,
+.header-actions .btn--green,
+.primary{
+  background:var(--plant-forest)!important;
+  border-color:var(--plant-forest)!important;
+  color:#fff!important;
+}
+.btn--paper,.secondary,.btn--outline{
+  background:var(--plant-paper)!important;
+  color:var(--plant-forest)!important;
+  border-color:rgba(23,74,54,.22)!important;
+}
+
+/* botanical hero */
+.hero,
+.page-hero,
+.contact-page-hero,
+.nr-partner-top{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 7% 18%,rgba(125,166,111,.18) 0 11%,transparent 12%),
+    radial-gradient(ellipse at 96% 70%,rgba(95,143,88,.12) 0 14%,transparent 15%),
+    linear-gradient(180deg,var(--plant-paper),var(--plant-cream))!important;
+}
+.hero::before,
+.page-hero::before,
+.contact-page-hero::before,
+.nr-partner-top::before{
+  content:"";
+  position:absolute;
+  width:220px;height:420px;
+  left:-118px;bottom:-150px;
+  border-radius:55% 45% 58% 42% / 38% 62% 38% 62%;
+  background:rgba(95,143,88,.13);
+  transform:rotate(-25deg);
+  z-index:-1;
+}
+.hero::after,
+.page-hero::after,
+.contact-page-hero::after,
+.nr-partner-top::after{
+  content:"";
+  position:absolute;
+  width:150px;height:74px;
+  right:3%;top:16%;
+  border-radius:100% 0 100% 0;
+  background:rgba(125,166,111,.14);
+  transform:rotate(-28deg);
+  z-index:-1;
+}
+.eyebrow,
+.postevent-notice__badge,
+.event-kicker,
+.nr-kicker{
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--plant-sage)!important;
+  color:var(--plant-forest)!important;
+}
+.headline-marker{
+  background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important;
+  color:inherit!important;
+}
+
+/* photo frames: leaf-like asymmetry, no multicolor decoration */
+.photo-frame,
+.contact-hero-photo,
+.people-trust-photo,
+.report-photo,
+.visual-tile{
+  position:relative;
+  overflow:hidden!important;
+  border:6px solid var(--plant-paper)!important;
+  border-radius:38px 18px 36px 20px!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow)!important;
+}
+.photo-frame::after,
+.contact-hero-photo::after,
+.people-trust-photo::after{
+  content:"";
+  position:absolute;
+  width:72px;height:34px;
+  right:-13px;top:16px;
+  border-radius:100% 0 100% 0;
+  background:rgba(95,143,88,.22);
+  transform:rotate(18deg);
+  pointer-events:none;
+}
+.photo-frame img,
+.contact-hero-photo img,
+.people-trust-photo img,
+.report-photo img,
+.visual-tile img{
+  display:block!important;
+  width:100%!important;
+  object-fit:cover!important;
+}
+
+/* sections — cream / sage / soil only */
+.section,
+.visual-mosaic-section,
+.why-join-section,
+.home-current-status,
+.story-timeline-section,
+.people-trust,
+.join-steps-section,
+.info-section,
+.program-section,
+.flow-section,
+.bring-section,
+.safety-section,
+.renge-section,
+.faq-section,
+.report-summary,
+.report-photo-story,
+.report-impact,
+.report-cup-photos,
+.report-voices,
+.report-finance,
+.nr-sponsor-feature,
+.nr-value-prop,
+.contact-main{
+  position:relative;
+}
+.section--paper,
+.report-photo-story,
+.people-trust,
+.contact-main,
+.nr-sponsor-feature{
+  background:var(--plant-paper)!important;
+}
+.section--mint,
+.home-current-status,
+.join-steps-section,
+.bring-section,
+.report-summary,
+.report-impact,
+.nr-value-prop{
+  background:var(--plant-sage-2)!important;
+}
+.section--soil,
+.safety-section,
+.renge-section,
+.report-finance{
+  background:var(--plant-soil-soft)!important;
+}
+.section-heading,
+.nr-section-head,
+.section-intro{
+  position:relative;
+}
+.section-heading::before,
+.nr-section-head::before,
+.section-intro::before{
+  content:"";
+  display:block;
+  width:42px;height:18px;
+  margin:0 0 12px 4px;
+  border-radius:100% 0 100% 0;
+  background:var(--plant-leaf);
+  transform:rotate(-18deg);
+}
+
+/* cards: eliminate ruled-document look */
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .chart-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .support-card,
+  .faq-list>*,
+  .report-summary-card,
+  .report-impact-card,
+  .report-voice-card,
+  .report-money-card,
+  .industry-partner-card,
+  .contact-card
+){
+  border:0!important;
+  border-radius:28px 16px 30px 18px!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow-soft)!important;
+}
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .report-summary-card,
+  .report-impact-card
+):nth-child(2n){
+  background:var(--plant-sage-2)!important;
+}
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .report-summary-card,
+  .report-impact-card
+):nth-child(3n){
+  background:#f5efe3!important;
+}
+
+/* thin straight rules -> short vine details */
+.story-timeline,
+.timeline{
+  position:relative;
+}
+.story-timeline::before,
+.timeline::before{
+  background:var(--plant-leaf)!important;
+  opacity:.32!important;
+}
+.story-dot,
+.game-num,
+.report-impact-no{
+  background:var(--plant-forest)!important;
+  color:#fff!important;
+}
+.story-step,
+.time-card{
+  border-color:transparent!important;
+}
+
+/* visual mosaic: photos as botanical scrapbook */
+.visual-mosaic{
+  gap:18px!important;
+}
+.visual-tile:nth-child(2n){transform:translateY(8px) rotate(.45deg)}
+.visual-tile:nth-child(3n){transform:translateY(-4px) rotate(-.35deg)}
+.visual-label{
+  background:rgba(255,253,248,.92)!important;
+  color:var(--plant-forest)!important;
+  border-radius:999px!important;
+}
+
+/* dark bands use forest only */
+.conversion-band,
+.update-band,
+.join-section,
+.rb-footer-cta,
+.report-thanks,
+.feature-band{
+  background:linear-gradient(135deg,var(--plant-forest-2),var(--plant-forest))!important;
+  color:#fff!important;
+}
+.conversion-band :where(h2,h3,p),
+.update-band :where(h2,h3,p),
+.join-section :where(h2,h3,p),
+.report-thanks :where(h2,h3,p){
+  color:#fff!important;
+}
+
+/* sponsor area: botanical restraint */
+.nr-badge,
+.support-chip,
+.contact-topic{
+  background:var(--plant-sage)!important;
+  color:var(--plant-forest)!important;
+  border-color:transparent!important;
+}
+.nr-main-sponsor,
+.industry-partner-card{
+  border-color:transparent!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow-soft)!important;
+}
+.nr-sponsor-logo,
+.industry-partner-logo{
+  filter:none!important;
+}
+
+/* footer */
+.site-footer{
+  position:relative;
+  overflow:hidden;
+  background:var(--plant-forest-2)!important;
+  color:#fff!important;
+}
+.site-footer::before{
+  content:"";
+  position:absolute;
+  width:190px;height:95px;
+  right:-35px;top:-28px;
+  border-radius:100% 0 100% 0;
+  background:rgba(125,166,111,.16);
+  transform:rotate(28deg);
+}
+.site-footer :where(a,p,small,span){color:rgba(255,255,255,.86)!important}
+
+/* flower diagnosis: same restrained palette */
+body.page-diagnosis{
+  --sun-soft:#f1df8b!important;
+  --leaf-soft:var(--plant-sage)!important;
+  --sky-soft:var(--plant-sage-2)!important;
+  --coral-soft:#f0e8da!important;
+  --lilac-soft:var(--plant-sage-2)!important;
+  background:var(--plant-cream)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(n),
+body.page-diagnosis .flower-atlas-card:nth-child(n),
+body.page-diagnosis .diagnosis-answer:nth-child(n){
+  background:var(--plant-paper)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(2n),
+body.page-diagnosis .flower-atlas-card:nth-child(2n),
+body.page-diagnosis .diagnosis-answer:nth-child(2n){
+  background:var(--plant-sage-2)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(3n),
+body.page-diagnosis .flower-atlas-card:nth-child(3n){
+  background:#f5efe3!important;
+}
+body.page-diagnosis .diagnosis-progress-fill,
+body.page-diagnosis .btn--green,
+body.page-diagnosis .diagnosis-mobile-start button{
+  background:var(--plant-forest)!important;
+}
+body.page-diagnosis .headline-marker{background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important}
+
+/* responsive */
+@media(max-width:820px){
+  .site-nav{
+    background:var(--plant-paper)!important;
+    border-color:rgba(23,74,54,.12)!important;
+    box-shadow:var(--plant-shadow)!important;
+  }
+  .visual-tile:nth-child(n){transform:none}
+}
+@media(max-width:640px){
+  .hero,.page-hero,.contact-page-hero{border-radius:0 0 34px 34px}
+  :where(
+    .first-visit-grid>*,
+    .why-join-grid>*,
+    .home-current-status__grid>*,
+    .nr-choice,
+    .event-values>*,
+    .cause-grid>*,
+    .definition-card,
+    .chart-card,
+    .info-card,
+    .game-card,
+    .time-card,
+    .bring-item,
+    .support-card,
+    .report-summary-card,
+    .report-impact-card,
+    .report-voice-card,
+    .report-money-card,
+    .industry-partner-card,
+    .contact-card
+  ){
+    border-radius:24px 14px 26px 16px!important;
+  }
+}
