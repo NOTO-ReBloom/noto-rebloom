@@ -9,15 +9,18 @@
     link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap';
     document.head.appendChild(link);
   };
+  const isEventArchive=!!document.body?.classList.contains('event-final')||!!document.body?.classList.contains('nr-new-event');
   if((document.body?.classList.contains('page-home')||document.body?.classList.contains('nr-new-home'))){
     loadFonts();
-  }else{
+  }else if(!isEventArchive){
     if('requestIdleCallback' in window)requestIdleCallback(loadFonts,{timeout:1600}); else setTimeout(loadFonts,900);
   }
 
   const makeImageReliable=(img)=>{
     try{
-      img.loading='eager';
+      const eventArchive=!!document.body?.classList.contains('event-final')||!!document.body?.classList.contains('nr-new-event');
+      const eventHero=eventArchive&&!!img.closest('.event-hero,.page-hero,.hero');
+      if(!eventArchive||eventHero) img.loading='eager';
       img.decoding='async';
       if(img.dataset?.src && !img.getAttribute('src')) img.src=img.dataset.src;
       if(img.dataset?.srcset && !img.getAttribute('srcset')) img.srcset=img.dataset.srcset;
