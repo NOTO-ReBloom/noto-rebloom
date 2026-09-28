@@ -110,6 +110,73 @@ const minPhotos={
         };
       },expected[file]||[],minPhotos[file]||0);
 
+      const layoutWarnings=await page.evaluate(()=>{
+        const visible=el=>{
+          if(!el)return false;
+          const s=getComputedStyle(el),r=el.getBoundingClientRect();
+          return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8;
+        };
+        const intersects=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>2&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>2;
+        const label=el=>({tag:el.tagName,cls:String(el.className||'').slice(0,100),id:el.id||'',text:(el.innerText||'').replace(/\\s+/g,' ').trim().slice(0,90)});
+        const warnings=[];
+
+        scrollTo(0,0);
+        const header=document.querySelector('.site-header');
+        const firstMain=[...document.querySelectorAll('main h1,main .eyebrow,main p')].find(visible);
+        if(visible(header)&&visible(firstMain)){
+          const hr=header.getBoundingClientRect(),fr=firstMain.getBoundingClientRect();
+          if(intersects(hr,fr))warnings.push({kind:'header-content-overlap',headerBottom:Math.round(hr.bottom),contentTop:Math.round(fr.top),content:label(firstMain)});
+        }
+
+        const clipSelectors='h1,h2,h3,h4,p,figcaption,.btn,button,article,.contact-card,.info-card,.game-card,.time-card,.bring-item,.report-summary-card,.report-impact-card,.report-voice-card,.industry-partner-card,.flower-group-card,.flower-atlas-card';
+        for(const el of document.querySelectorAll(clipSelectors)){
+          if(!visible(el))continue;
+          const s=getComputedStyle(el);
+          const clips=/(hidden|clip)/.test(s.overflow+s.overflowX+s.overflowY);
+          if(clips&&(el.scrollWidth>el.clientWidth+3||el.scrollHeight>el.clientHeight+3)){
+            warnings.push({kind:'content-clipping',el:label(el),client:[el.clientWidth,el.clientHeight],scroll:[el.scrollWidth,el.scrollHeight],overflow:[s.overflow,s.overflowX,s.overflowY]});
+          }
+        }
+
+        const layoutParents=[...document.querySelectorAll('[class*="grid"],.button-row,.site-nav,.header-actions')].filter(visible);
+        for(const parent of layoutParents){
+          const children=[...parent.children].filter(visible);
+          for(let i=0;i<children.length;i++)for(let j=i+1;j<children.length;j++){
+            const a=children[i],b=children[j];
+            if(a.contains(b)||b.contains(a))continue;
+            if(intersects(a.getBoundingClientRect(),b.getBoundingClientRect())){
+              warnings.push({kind:'sibling-overlap',parent:label(parent),a:label(a),b:label(b)});
+              if(warnings.filter(x=>x.kind==='sibling-overlap').length>=12)break;
+            }
+          }
+        }
+
+        for(const sec of document.querySelectorAll('main>section')){
+          if(!visible(sec)||sec.matches('.hero,.page-hero,.contact-page-hero,.final-cta,.diagnosis-section'))continue;
+          const sr=sec.getBoundingClientRect();
+          const kids=[...sec.children].filter(visible);
+          if(!kids.length)continue;
+          const tops=kids.map(x=>x.getBoundingClientRect().top), bottoms=kids.map(x=>x.getBoundingClientRect().bottom);
+          const topGap=Math.max(0,Math.min(...tops)-sr.top), bottomGap=Math.max(0,sr.bottom-Math.max(...bottoms));
+          if(topGap>190||bottomGap>190)warnings.push({kind:'large-section-blank-space',section:label(sec),topGap:Math.round(topGap),bottomGap:Math.round(bottomGap),height:Math.round(sr.height)});
+        }
+
+        scrollTo(0,document.documentElement.scrollHeight);
+        const fixed=[...document.querySelectorAll('body *')].filter(el=>{
+          if(!visible(el))return false;
+          const s=getComputedStyle(el),r=el.getBoundingClientRect();
+          return s.position==='fixed'&&r.bottom>innerHeight-120&&r.top<innerHeight&&r.width>80&&r.height>30&&!el.matches('.site-header,.site-nav,.menu-button');
+        });
+        const bottomTargets=[...document.querySelectorAll('footer a,footer p,footer small,footer strong,main>section:last-of-type h1,main>section:last-of-type h2,main>section:last-of-type h3,main>section:last-of-type p,main>section:last-of-type a')].filter(visible);
+        for(const fx of fixed){
+          const fr=fx.getBoundingClientRect();
+          const hits=bottomTargets.filter(t=>!fx.contains(t)&&intersects(fr,t.getBoundingClientRect())).slice(0,8).map(label);
+          if(hits.length)warnings.push({kind:'fixed-bottom-overlap',fixed:label(fx),hits});
+        }
+        scrollTo(0,0);
+        return warnings.slice(0,40);
+      });
+
       if(!response||response.status()>=400) failures.push({file,width,kind:'http',status:response?.status()});
       if(data.overflow) failures.push({file,width,kind:'overflow',by:data.overflowBy});
       if(data.h1!==1) failures.push({file,width,kind:'h1',count:data.h1});
@@ -146,12 +213,13 @@ const minPhotos={
         }
       }
 
-      summary.push({file,width,...data});
+      summary.push({file,width,...data,layoutWarnings});
       await page.close();
     }
   }
 
   await browser.close();
-  console.log('BOTANICAL_SMOKE='+JSON.stringify({tested:summary.length,failures}));
+  const layoutWarnings=summary.filter(x=>x.layoutWarnings?.length).map(x=>({file:x.file,width:x.width,warnings:x.layoutWarnings}));
+  console.log('BOTANICAL_SMOKE='+JSON.stringify({tested:summary.length,failures,layoutWarnings}));
   if(failures.length)process.exit(1);
 })().catch(e=>{console.error(e);process.exit(1)});
