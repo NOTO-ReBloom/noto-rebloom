@@ -8,7 +8,7 @@ const cardExpectations={
   'learn.html':[['.definition-card',3],['.chart-card',2]],
   'event.html':[['.info-card',6],['.game-card',6],['.time-card',4]],
   'report.html':[['.report-summary-card',5],['.report-impact-card',3],['.game-card',5],['.time-card',4]],
-  'partner.html':[['.nr-sponsor-wide',3],['.nr-value-grid article',4],['.industry-partner-card',3]],
+  'partner.html':[['.nr-main-sponsor',3],['.nr-value-grid article',4],['.industry-partner-card',3]],
   'contact.html':[['.contact-card',2]],
   'photo-credits.html':[['.license-card',4]],
   'diagnosis.html':[['.diagnosis-start-card',2],['.flower-group-card',4]]
