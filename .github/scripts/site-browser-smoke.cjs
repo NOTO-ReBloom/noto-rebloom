@@ -78,7 +78,7 @@ const visible=el=>{
       if(jsErrors.length) failures.push({file,width,kind:'js-errors',errors:jsErrors});
       if(groupFailures.length) failures.push({file,width,kind:'content',groups:groupFailures});
 
-      if(width>760){
+      if(width>820){
         if(!data.navVisible) failures.push({file,width,kind:'desktop-nav-hidden'});
         if(!data.ctaVisible) failures.push({file,width,kind:'desktop-cta-hidden'});
       }else{
