@@ -646,3 +646,10 @@ html body.page-learn main .eyebrow--light > small{
 .section--soil .eyebrow--light small{
   color:var(--plant-forest)!important;
 }
+
+/* ABSOLUTE LEARN EYEBROW OVERRIDE */
+html body.page-learn:not(.page-thoughts) main .section--soil .eyebrow.eyebrow--light > small,
+html body.page-learn:not(.page-thoughts) main .section--soil .eyebrow.eyebrow--light > span{
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
