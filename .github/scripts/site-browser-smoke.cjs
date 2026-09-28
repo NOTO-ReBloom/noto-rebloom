@@ -1,4 +1,6 @@
 const puppeteer=require('puppeteer-core');
+const fs=require('fs');
+const axeSource=fs.readFileSync(require.resolve('axe-core/axe.min.js'),'utf8');
 
 const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
 const viewports=[[375,812],[430,932],[768,1024],[1440,1000]];
@@ -56,6 +58,16 @@ const minPhotos={
       });
       await new Promise(r=>setTimeout(r,650));
 
+      await page.addScriptTag({content:axeSource});
+      const contrastViolations=await page.evaluate(async()=>{
+        const r=await axe.run(document,{runOnly:{type:'rule',values:['color-contrast']}});
+        return r.violations.map(v=>({
+          id:v.id,
+          impact:v.impact,
+          nodes:v.nodes.slice(0,20).map(n=>({target:n.target,html:n.html,summary:n.failureSummary}))
+        }));
+      });
+
       const data=await page.evaluate((expectedList,minPhotoCount)=>{
         const visible=el=>{
           if(!el)return false;
@@ -106,6 +118,7 @@ const minPhotos={
       if(data.zeroSizeVisible.length) failures.push({file,width,kind:'zero-size-visible-images',images:data.zeroSizeVisible});
       if(data.visiblePhotoCount<data.minPhotoCount) failures.push({file,width,kind:'too-few-visible-photos',visible:data.visiblePhotoCount,min:data.minPhotoCount});
       if(jsErrors.length) failures.push({file,width,kind:'js-errors',errors:jsErrors});
+      if(contrastViolations.length) failures.push({file,width,kind:'color-contrast',violations:contrastViolations});
       const realConsoleErrors=consoleErrors.filter(x=>!/favicon\.ico/i.test(x));
       if(realConsoleErrors.length) failures.push({file,width,kind:'console-errors',errors:realConsoleErrors});
 
