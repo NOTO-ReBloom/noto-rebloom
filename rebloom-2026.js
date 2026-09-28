@@ -2,9 +2,14 @@
   const optimizeBelowFoldImages=()=>{
     document.querySelectorAll('main img').forEach(img=>{
       const hero=img.closest('.hero,.subhero,.page-hero');
-      if(hero){ img.decoding='async'; return; }
-      img.loading='lazy';
       img.decoding='async';
+      if(hero){
+        img.loading='eager';
+        img.fetchPriority='high';
+        return;
+      }
+      /* Reliability over aggressive lazy-loading: photos must never stay blank. */
+      img.loading='eager';
       img.fetchPriority='low';
     });
   };
@@ -12,7 +17,7 @@
   const injectPhotoRibbon=()=>{
     const file=(location.pathname.split('/').pop()||'index.html').toLowerCase();
     const exists=()=>document.querySelector('.photo-ribbon-section');
-    const make=(items)=>`<section class="photo-ribbon-section" aria-label="活動写真"><div class="site-shell photo-ribbon">${items.map(i=>`<figure><img src="${i.src}" alt="${i.alt}"><figcaption>${i.cap}</figcaption></figure>`).join('')}</div></section>`;
+    const make=(items)=>`<section class="photo-ribbon-section" aria-label="活動写真"><div class="site-shell photo-ribbon">${items.map(i=>`<figure><img src="${i.src}" alt="${i.alt}" loading="eager" decoding="async" fetchpriority="low"><figcaption>${i.cap}</figcaption></figure>`).join('')}</div></section>`;
     if(file==='event.html'&&!exists()){
       const target=[...document.querySelectorAll('main>.article-section')].find(el=>el.classList.contains('soft'));
       if(target)target.insertAdjacentHTML('beforebegin',make([
