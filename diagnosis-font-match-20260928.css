@@ -1,0 +1,65 @@
+/* Match Flower Diagnosis typography to the established site/home design. */
+body.page-diagnosis{
+  --display:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --fd-display:var(--display);
+  --fd-cute:var(--display);
+  --fd-body:var(--body);
+  --fd-latin:var(--body);
+  font-family:var(--body)!important;
+}
+body.page-diagnosis,
+body.page-diagnosis button,
+body.page-diagnosis input,
+body.page-diagnosis select,
+body.page-diagnosis textarea,
+body.page-diagnosis dialog{
+  font-family:var(--body)!important;
+}
+body.page-diagnosis :where(
+  h1,h2,h3,h4,
+  .page-hero h1,
+  .section-heading h2,
+  .diagnosis-intro h2,
+  .diagnosis-start-card h3,
+  .diagnosis-method-card h3,
+  .diagnosis-question,
+  .flower-group-card h3,
+  .flower-atlas-heading h2,
+  .flower-atlas-card b,
+  .atlas-dialog-grid h2,
+  .result-copy h2,
+  .result-card h3,
+  .result-group-profile h3,
+  .result-deep-dive h3,
+  .result-life-scenes h3,
+  .result-reflection h3,
+  .result-tendency-section h3,
+  .result-month-plan h3,
+  .result-next-action h3,
+  .result-rich-insights h3,
+  .result-rich-insights h4,
+  .result-reason-card h4,
+  .result-share-copy h3,
+  .final-cta h2
+){
+  font-family:var(--display)!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .brand b{
+  font-family:var(--display)!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .site-nav a,
+body.page-diagnosis .header-actions .btn{
+  font-family:var(--body)!important;
+  font-weight:800!important;
+}
+body.page-diagnosis .btn,
+body.page-diagnosis .flower-atlas-filters button,
+body.page-diagnosis .diagnosis-answer span,
+body.page-diagnosis .diagnosis-tags li,
+body.page-diagnosis .result-role-chips span{
+  font-family:var(--display)!important;
+  font-weight:900!important;
+}
