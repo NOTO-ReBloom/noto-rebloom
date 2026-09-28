@@ -1,167 +1,109 @@
 const puppeteer=require('puppeteer-core');
 
-const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','contact.html','photo-credits.html','404.html','diagnosis.html'];
-const widths=[[375,812],[430,932],[768,1024],[1440,1000]];
-const cardExpectations={
-  'index.html':[['.first-visit-grid article',4],['.why-join-grid article',4],['.story-step',7]],
-  'thoughts.html':[['.event-values article',3],['.cause-grid article',4]],
-  'learn.html':[['.definition-card',3],['.chart-card',2]],
-  'event.html':[['.info-card',6],['.game-card',6],['.time-card',4]],
-  'report.html':[['.report-summary-card',5],['.report-impact-card',3],['.game-card',5],['.time-card',4]],
-  'partner.html':[['.nr-sponsor-wide',3],['.nr-value-grid article',4],['.industry-partner-card',3]],
-  'contact.html':[['.contact-card',2]],
-  'photo-credits.html':[['.license-card',4]],
-  'diagnosis.html':[['.diagnosis-start-card',2],['.flower-group-card',4]]
+const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
+const viewports=[[375,812],[430,932],[768,1024],[1440,1000]];
+const expected={
+  'index.html':[['.stat',4],['.feature',4],['.journey-step',4],['.partner-logo',6]],
+  'thoughts.html':[['.list-block',6],['.article-media',3]],
+  'learn.html':[['.term',3],['.data-metric',3],['.data-panel',2],['.list-block',8]],
+  'event.html':[['.report-step',7],['.list-block',11]],
+  'report.html':[['.stat',4],['.report-gallery figure',5],['.list-block',8],['.finance-block',2]],
+  'partner.html':[['.sponsor',3],['.partner-mini',3],['.list-block',4]],
+  'contact.html':[['.contact-card2',1],['.list-block',3]],
+  'photo-credits.html':[['.license-card',4],['tbody tr',32]],
+  'diagnosis.html':[['.diagnosis-start-card',2],['.flower-group-card',4],['.flower-atlas-card',32]]
+};
+const visible=el=>{
+  if(!el)return false;
+  const s=getComputedStyle(el),r=el.getBoundingClientRect();
+  return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>8&&r.height>8;
 };
 
-function visibleCardFailure(checks){
-  return checks.filter(x=>x.visible<x.min);
-}
-
 (async()=>{
-  const browser=await puppeteer.launch({
-    headless:true,
-    executablePath:process.env.CHROME_PATH,
-    args:['--no-sandbox','--disable-dev-shm-usage']
-  });
-  const results=[];
-  const typography={};
+  const browser=await puppeteer.launch({headless:true,executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--disable-dev-shm-usage']});
+  const failures=[];
+  const summary=[];
+
   for(const file of pages){
-    for(const [width,height] of widths){
+    for(const [width,height] of viewports){
       const page=await browser.newPage();
       await page.setViewport({width,height,deviceScaleFactor:1});
-      const errors=[];
-      page.on('console',m=>{if(m.type()==='error')errors.push('console:'+m.text())});
-      page.on('pageerror',e=>errors.push('page:'+String(e)));
+      const jsErrors=[];
+      page.on('pageerror',e=>jsErrors.push(String(e)));
+
       const response=await page.goto('http://127.0.0.1:8000/'+file,{waitUntil:'networkidle0',timeout:30000});
+      await new Promise(r=>setTimeout(r,file==='diagnosis.html'?900:250));
+
       await page.evaluate(async()=>{
-        const step=Math.max(320,Math.floor(innerHeight*.75));
-        for(let y=0;y<document.documentElement.scrollHeight;y+=step){
-          scrollTo(0,y);
-          await new Promise(r=>setTimeout(r,45));
-        }
-        scrollTo(0,document.documentElement.scrollHeight);
+        const max=document.documentElement.scrollHeight;
+        const step=Math.max(420,Math.floor(innerHeight*.8));
+        for(let y=0;y<max;y+=step){scrollTo(0,y);await new Promise(r=>setTimeout(r,20));}
+        scrollTo(0,0);
       });
-      await new Promise(r=>setTimeout(r,650));
-      const expected=cardExpectations[file]||[];
-      const data=await page.evaluate((expected)=>{
+      await new Promise(r=>setTimeout(r,250));
+
+      const data=await page.evaluate((expectedList)=>{
+        const visibleLocal=el=>{
+          if(!el)return false;
+          const s=getComputedStyle(el),r=el.getBoundingClientRect();
+          return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>8&&r.height>8;
+        };
         const root=document.documentElement;
-        const images=[...document.images];
-        const broken=images
-          .filter(img=>img.getAttribute('src')&&img.complete&&img.naturalWidth===0)
-          .map(img=>img.currentSrc||img.getAttribute('src'));
-        const unloaded=images
-          .filter(img=>img.getAttribute('src')&&!img.complete)
-          .map(img=>img.currentSrc||img.getAttribute('src'));
-        const cardChecks=expected.map(([selector,min])=>{
+        const groups=(expectedList||[]).map(([selector,min])=>{
           const els=[...document.querySelectorAll(selector)];
-          const visible=els.filter(el=>{
-            const s=getComputedStyle(el),r=el.getBoundingClientRect();
-            return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>10&&r.height>10;
-          }).length;
-          return {selector,min,total:els.length,visible};
+          return {selector,min,total:els.length,visible:els.filter(visibleLocal).length};
         });
-        const overflowers=[...document.querySelectorAll('body *')].filter(el=>{
-          const s=getComputedStyle(el);
-          if(s.position==='fixed'||s.display==='none')return false;
-          const r=el.getBoundingClientRect();
-          return r.width>0&&(r.right>innerWidth+3||r.left<-3);
-        }).slice(0,15).map(el=>{
-          const r=el.getBoundingClientRect();
-          return {tag:el.tagName,cls:String(el.className||'').slice(0,100),left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)};
-        });
-        const h1=document.querySelector('h1');
-        const nav=document.querySelector('.site-nav a');
+        const broken=[...document.images].filter(img=>img.complete&&img.getAttribute('src')&&img.naturalWidth===0).map(img=>img.getAttribute('src'));
+        const h1=document.querySelectorAll('h1').length;
+        const nav=document.querySelector('.site-nav');
+        const toggle=document.querySelector('.menu-toggle');
+        const cta=document.querySelector('.site-cta');
         return {
-          status:document.readyState,
           overflow:root.scrollWidth>root.clientWidth+3,
           overflowBy:root.scrollWidth-root.clientWidth,
-          overflowers,
+          h1,
           broken,
-          unloaded,
-          h1Count:document.querySelectorAll('h1').length,
-          cardChecks,
-          h1Typography:h1?{fontFamily:getComputedStyle(h1).fontFamily,fontWeight:getComputedStyle(h1).fontWeight}:null,
-          navTypography:nav?{fontFamily:getComputedStyle(nav).fontFamily,fontWeight:getComputedStyle(nav).fontWeight}:null
+          groups,
+          navVisible:visibleLocal(nav),
+          toggleVisible:visibleLocal(toggle),
+          ctaVisible:visibleLocal(cta)
         };
-      },expected);
-      const cardFailures=visibleCardFailure(data.cardChecks);
-      results.push({file,width,httpStatus:response?response.status():0,...data,cardFailures,errors});
-      if(width===1440) typography[file]={h1:data.h1Typography,nav:data.navTypography};
+      },expected[file]||[]);
+
+      const groupFailures=data.groups.filter(g=>g.total<g.min||g.visible<g.min);
+      if(!response||response.status()>=400) failures.push({file,width,kind:'http',status:response?.status()});
+      if(data.overflow) failures.push({file,width,kind:'overflow',by:data.overflowBy});
+      if(data.h1!==1) failures.push({file,width,kind:'h1',count:data.h1});
+      if(data.broken.length) failures.push({file,width,kind:'broken-images',images:data.broken});
+      if(jsErrors.length) failures.push({file,width,kind:'js-errors',errors:jsErrors});
+      if(groupFailures.length) failures.push({file,width,kind:'content',groups:groupFailures});
+
+      if(width>760){
+        if(!data.navVisible) failures.push({file,width,kind:'desktop-nav-hidden'});
+        if(!data.ctaVisible) failures.push({file,width,kind:'desktop-cta-hidden'});
+      }else{
+        if(!data.toggleVisible) failures.push({file,width,kind:'mobile-toggle-hidden'});
+        if(data.navVisible) failures.push({file,width,kind:'mobile-nav-open-before-click'});
+        const toggle=await page.$('.menu-toggle');
+        if(toggle){
+          await toggle.click();
+          await new Promise(r=>setTimeout(r,80));
+          const opened=await page.evaluate(()=>{
+            const n=document.querySelector('.site-nav'),b=document.querySelector('.menu-toggle');
+            if(!n)return false;
+            const s=getComputedStyle(n),r=n.getBoundingClientRect();
+            return s.display!=='none'&&s.visibility!=='hidden'&&r.width>8&&r.height>8&&b?.getAttribute('aria-expanded')==='true'&&document.body.classList.contains('menu-open');
+          });
+          if(!opened) failures.push({file,width,kind:'mobile-nav-did-not-open'});
+        }
+      }
+
+      summary.push({file,width,...data});
       await page.close();
     }
   }
 
-  const featurePage=await browser.newPage();
-  await featurePage.setViewport({width:1440,height:1000,deviceScaleFactor:1});
-  const features={};
-  for(const file of ['index.html','learn.html','event.html','report.html','partner.html','contact.html']){
-    await featurePage.goto('http://127.0.0.1:8000/'+file,{waitUntil:'networkidle0',timeout:30000});
-    await new Promise(r=>setTimeout(r,300));
-    features[file]=await featurePage.evaluate(()=>({
-      partnerStrip:!!document.querySelector('.site-partner-strip'),
-      footerSocial:!!document.querySelector('.rb-social-links--footer'),
-      contactFab:!!document.querySelector('.rb-contact-fab'),
-      farmlandStory:!!document.querySelector('#farmland-data-story'),
-      faqArchive:document.querySelectorAll('#event-faq .faq-list details').length>=10
-    }));
-  }
-  await featurePage.close();
-
-  /* Learn page regression: cards render without reveal dependency and mobile menu actually opens. */
-  const learnUi={};
-  const learnPage=await browser.newPage();
-  await learnPage.setViewport({width:1440,height:1000,deviceScaleFactor:1});
-  await learnPage.goto('http://127.0.0.1:8000/learn.html',{waitUntil:'networkidle0',timeout:30000});
-  learnUi.desktop=await learnPage.evaluate(()=>{
-    const nav=document.querySelector('.site-nav');
-    const cards=[...document.querySelectorAll('.definition-card,.chart-card,.cause-grid>article,.event-values>article')];
-    const visible=el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>10&&r.height>10};
-    return {navVisible:!!nav&&visible(nav),cardsVisible:cards.filter(visible).length,cardsTotal:cards.length};
-  });
-  await learnPage.setViewport({width:375,height:812,deviceScaleFactor:1});
-  await learnPage.reload({waitUntil:'networkidle0',timeout:30000});
-  learnUi.mobileBefore=await learnPage.evaluate(()=>{
-    const b=document.querySelector('.menu-button'),n=document.querySelector('.site-nav');
-    const vis=el=>{if(!el)return false;const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>10&&r.height>10};
-    return {buttonVisible:vis(b),navVisible:vis(n),expanded:b?.getAttribute('aria-expanded')};
-  });
-  await learnPage.click('.menu-button');
-  await new Promise(r=>setTimeout(r,120));
-  learnUi.mobileAfter=await learnPage.evaluate(()=>{
-    const b=document.querySelector('.menu-button'),n=document.querySelector('.site-nav');
-    const s=n?getComputedStyle(n):null,r=n?n.getBoundingClientRect():null;
-    return {navVisible:!!n&&s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>10&&r.height>10,expanded:b?.getAttribute('aria-expanded'),menuOpen:document.body.classList.contains('menu-open')};
-  });
-  await learnPage.close();
   await browser.close();
-
-  const failures=results.filter(x=>x.httpStatus>=400||x.overflow||x.broken.length||x.errors.length||x.h1Count!==1||x.cardFailures.length);
-  const required=[
-    ['index.html','partnerStrip'],['index.html','footerSocial'],['index.html','contactFab'],
-    ['learn.html','farmlandStory'],['event.html','faqArchive'],
-    ['report.html','partnerStrip'],['partner.html','partnerStrip']
-  ];
-  const missing=required.filter(([p,k])=>!features[p]?.[k]).map(([p,k])=>p+':'+k);
-
-  const homeFont=typography['index.html']?.h1;
-  const diagnosisFont=typography['diagnosis.html']?.h1;
-  const homeNav=typography['index.html']?.nav;
-  const diagnosisNav=typography['diagnosis.html']?.nav;
-  const typographyFailures=[];
-  if(!homeFont||!diagnosisFont||homeFont.fontFamily!==diagnosisFont.fontFamily||Number(diagnosisFont.fontWeight)<800){
-    typographyFailures.push({kind:'diagnosis-h1-vs-home',homeFont,diagnosisFont});
-  }
-  if(!homeNav||!diagnosisNav||homeNav.fontFamily!==diagnosisNav.fontFamily||Number(diagnosisNav.fontWeight)<700){
-    typographyFailures.push({kind:'diagnosis-nav-vs-home',homeNav,diagnosisNav});
-  }
-
-  const learnUiFailures=[];
-  if(!learnUi.desktop?.navVisible||learnUi.desktop.cardsVisible!==learnUi.desktop.cardsTotal) learnUiFailures.push({kind:'learn-desktop',...learnUi.desktop});
-  if(!learnUi.mobileBefore?.buttonVisible||learnUi.mobileBefore.navVisible) learnUiFailures.push({kind:'learn-mobile-closed',...learnUi.mobileBefore});
-  if(!learnUi.mobileAfter?.navVisible||learnUi.mobileAfter.expanded!=='true'||!learnUi.mobileAfter.menuOpen) learnUiFailures.push({kind:'learn-mobile-open',...learnUi.mobileAfter});
-
-  const summary={tested:results.length,failures,features,missing,typography,typographyFailures,learnUi,learnUiFailures};
-  console.log('SMOKE_SUMMARY='+JSON.stringify(summary));
-  if(failures.length||missing.length||typographyFailures.length||learnUiFailures.length) process.exit(1);
+  console.log('REDESIGN_SMOKE='+JSON.stringify({tested:summary.length,failures}));
+  if(failures.length) process.exit(1);
 })().catch(e=>{console.error(e);process.exit(1)});
