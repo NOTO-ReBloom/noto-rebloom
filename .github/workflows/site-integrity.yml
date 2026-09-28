@@ -116,7 +116,7 @@ jobs:
 
       - name: Install browser runner
         run: |
-          npm install --no-save puppeteer-core
+          npm install --no-save puppeteer-core axe-core
           CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$CHROME"
           echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
