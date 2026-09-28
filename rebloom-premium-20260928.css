@@ -1208,3 +1208,11 @@
     font-size:clamp(38px,11vw,52px)!important;
   }
 }
+
+
+/* Reliability first: content must never depend on intersection/reveal timing. */
+.rb-premium main :is(.rb-reveal,.rb-detail-reveal,.reveal){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
