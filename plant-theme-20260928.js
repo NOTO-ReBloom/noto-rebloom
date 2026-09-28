@@ -10,9 +10,10 @@
     document.head.appendChild(link);
   };
   const isEventArchive=!!document.body?.classList.contains('event-final')||!!document.body?.classList.contains('nr-new-event');
+  const isDiagnosis=!!document.body?.classList.contains('page-diagnosis');
   if((document.body?.classList.contains('page-home')||document.body?.classList.contains('nr-new-home'))){
     loadFonts();
-  }else if(!isEventArchive){
+  }else if(!isEventArchive&&!isDiagnosis){
     if('requestIdleCallback' in window)requestIdleCallback(loadFonts,{timeout:1600}); else setTimeout(loadFonts,900);
   }
 
