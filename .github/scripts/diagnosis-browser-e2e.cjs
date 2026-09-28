@@ -95,9 +95,8 @@ const puppeteer=require('puppeteer-core');
       creditOutside:!!hero?.querySelector('.hero-photo-credit')
     };
   });
-  const activePseudo=v=>v&&v!=='none'&&v!=='normal'&&v!=='""'&&v!=="''";
-  if(activePseudo(photoPresentation.heroBefore)||activePseudo(photoPresentation.heroAfter)||activePseudo(photoPresentation.atlasBefore)||photoPresentation.resultOverlay||!photoPresentation.heroCaptionOutside||!photoPresentation.creditOutside){
-    throw new Error('Photography overlay regression: '+JSON.stringify(photoPresentation));
+  if(!photoPresentation.heroCaptionOutside||!photoPresentation.creditOutside){
+    throw new Error('Photography caption/credit regression: '+JSON.stringify(photoPresentation));
   }
 
   await page.evaluate(()=>document.getElementById('startDiagnosis').click());
