@@ -15,20 +15,21 @@
     }
   }
 
-  /* LEARN: the diagram and the four idea cards said almost the same thing. Put the diagram inside the existing project section. */
+  /* LEARN: keep both the visual model and the four idea cards.
+     The cards carry concrete meaning and must not be replaced by the diagram. */
   if(page==='learn.html'){
     const injected=document.querySelector('#rb-learn-illustrations');
     const map=injected?.querySelector('.rb-project-map')?.cloneNode(true);
     const project=document.querySelector('#project .container');
-    const oldCards=project?.querySelector('.event-values');
-    if(project&&oldCards&&map){
+    const cards=project?.querySelector('.event-values');
+    if(project&&cards&&map&&!project.querySelector('.rb-project-map-inline')){
       const figure=document.createElement('figure');
       figure.className='rb-illustration-card rb-project-map-card rb-project-map-inline';
       figure.appendChild(map);
       const cap=document.createElement('figcaption');
       cap.textContent='NOTO Re:Bloomの全体像';
       figure.appendChild(cap);
-      oldCards.replaceWith(figure);
+      cards.before(figure);
     }
     injected?.remove();
     /* The venue proof and global footer already give a clear route to the event. Avoid three consecutive join prompts. */
