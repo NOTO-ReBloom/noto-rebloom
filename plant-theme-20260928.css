@@ -620,3 +620,13 @@ body.event-final .support-card .event-kicker{
 :where(.btn--paper,.btn--outline,.secondary){
   color:var(--plant-forest-2)!important;
 }
+
+
+/* EYEBROW CHILD CONTRAST GUARANTEE */
+:where(.eyebrow,.eyebrow--light,.event-kicker,.nr-kicker,.postevent-notice__badge) > :where(span,small,strong){
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+:where(.eyebrow,.eyebrow--light) small{
+  color:#365f4e!important;
+}
