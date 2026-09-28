@@ -4,7 +4,7 @@
     const link=document.createElement('link');
     link.rel='stylesheet';
     link.dataset.rbFonts='1';
-    link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap';
+    link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=swap';
     document.head.appendChild(link);
   };
   if('requestIdleCallback' in window) requestIdleCallback(loadFonts,{timeout:1200});
