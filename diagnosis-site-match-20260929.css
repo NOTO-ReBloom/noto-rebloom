@@ -740,3 +740,11 @@ body.page-diagnosis .result-group[data-group]{
 body.page-diagnosis .result-hero[data-group]{
   box-shadow:var(--dx-shadow)!important;
 }
+
+
+/* FINAL MOBILE HEADER CLEARANCE / 2026-09-29 */
+@media(max-width:620px){
+  body.page-diagnosis main#main .page-hero--diagnosis .page-hero-grid{
+    padding-top:24px!important;
+  }
+}
