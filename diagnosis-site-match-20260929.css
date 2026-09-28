@@ -683,3 +683,60 @@ body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card,.flower-gro
   body.page-diagnosis .diagnosis-answer{min-height:52px!important}
   body.page-diagnosis .result-copy h2{font-size:clamp(31px,9vw,43px)!important}
 }
+
+
+/* FINAL GROUP-COLOR RESTRAINT / 2026-09-29 */
+/* Keep the flower taxonomy meaningful without reverting to a separate,
+   multicolour app-like visual system. */
+body.page-diagnosis .flower-group-card>span{
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  padding:6px 9px!important;
+  border:0!important;
+  border-radius:12px 18px 12px 18px!important;
+  background:rgba(255,253,248,.78)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.10em!important;
+}
+body.page-diagnosis .flower-group-card--sun h3,
+body.page-diagnosis .flower-group-card--wind h3,
+body.page-diagnosis .flower-group-card--satoyama h3,
+body.page-diagnosis .flower-group-card--water h3{
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis .flower-atlas-filters button[data-atlas-filter]{
+  border-color:rgba(23,74,54,.16)!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis .flower-atlas-filters button[data-atlas-filter].is-active{
+  border-color:var(--dx-green)!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .flower-atlas-card[data-flower-group]{
+  border-top:0!important;
+}
+body.page-diagnosis .flower-atlas-card[data-flower-group]>span{
+  display:inline-flex!important;
+  width:max-content!important;
+  margin:0 2px 5px!important;
+  padding:5px 8px!important;
+  border:0!important;
+  border-radius:11px 16px 11px 16px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis .result-group[data-group]{
+  border:0!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis .result-hero[data-group]{
+  box-shadow:var(--dx-shadow)!important;
+}
