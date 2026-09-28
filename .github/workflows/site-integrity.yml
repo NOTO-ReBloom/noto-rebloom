@@ -27,6 +27,10 @@ on:
       - '.github/workflows/site-integrity.yml'
   workflow_dispatch:
 
+concurrency:
+  group: noto-rebloom-site-integrity
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
