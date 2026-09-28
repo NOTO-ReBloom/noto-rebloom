@@ -41,6 +41,11 @@ const visible=el=>{
         scrollTo(0,0);
       });
       await new Promise(r=>setTimeout(r,250));
+      if(file==='diagnosis.html'){
+        await page.evaluate(()=>document.getElementById('flower-atlas')?.scrollIntoView({block:'center'}));
+        await page.waitForFunction(()=>document.querySelectorAll('.flower-atlas-card').length===32,{timeout:12000});
+        await new Promise(r=>setTimeout(r,180));
+      }
 
       const data=await page.evaluate((expectedList)=>{
         const visibleLocal=el=>{
