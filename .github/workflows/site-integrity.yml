@@ -13,6 +13,12 @@ on:
       - 'rebloom-unified.js'
       - 'rebloom-detail.js'
       - 'site-consistency.css'
+      - 'diagnosis-font-match-20260928.css'
+      - 'responsive-text-20260928.css'
+      - 'refresh-core.css'
+      - 'refresh-sponsor.css'
+      - 'visual-text-tuning.css'
+      - '.github/scripts/site-browser-smoke.cjs'
       - 'home-final-20260924.css'
       - 'event-final-bundle-20260926.css'
       - 'partner-pre-20260924.css'
@@ -89,3 +95,22 @@ jobs:
               raise SystemExit('\n'.join(failures))
           print(f'OK: validated {len(pages)} public pages.')
           PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install browser runner
+        run: |
+          npm install --no-save puppeteer-core
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+
+      - name: Serve public site for browser QA
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/rebloom-integrity-http.log 2>&1 &
+          sleep 2
+
+      - name: Run cross-page browser smoke
+        run: node .github/scripts/site-browser-smoke.cjs
