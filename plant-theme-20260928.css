@@ -523,3 +523,100 @@ body.page-thoughts :where(.cause-grid>article,.event-values>article,.visual-tile
   visibility:visible!important;
   transform:none!important;
 }
+
+
+/* CONTRAST + JAPANESE HEADING SAFETY 2026-09-28 */
+/* Japanese headings: prefer phrase-aware breaks and avoid awkward 1–2 character wraps. */
+:where(
+  .hero h1,.page-hero h1,.contact-page-hero h1,
+  .section-heading h2,.section-intro h2,.first-visit-head h2,
+  .visual-mosaic-head h2,.nr-section-head h2,.report-hero h1
+){
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-break:strict!important;
+  hanging-punctuation:first last;
+}
+@supports (word-break:auto-phrase){
+  :where(
+    .hero h1,.page-hero h1,.contact-page-hero h1,
+    .section-heading h2,.section-intro h2,.first-visit-head h2,
+    .visual-mosaic-head h2,.nr-section-head h2,.report-hero h1
+  ){
+    word-break:auto-phrase!important;
+  }
+}
+
+/* Flower diagnosis hero must use the same rounded display face as the rest of the site. */
+body.page-diagnosis .page-hero--diagnosis h1,
+body.page-diagnosis .page-hero--diagnosis h1 .headline-marker{
+  font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.035em!important;
+}
+
+/* Dark botanical surfaces: never inherit dark legacy copy. */
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) :where(h1,h2,h3,h4,p,li,dd,dt,strong,small,span,a:not(.btn):not(.event-kicker):not(.eyebrow):not(.support-chip)){
+  color:rgba(255,255,255,.94)!important;
+}
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) :where(h1,h2,h3,h4,strong){
+  color:#fff!important;
+}
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) a:not(.btn){
+  text-decoration-color:rgba(255,255,255,.55)!important;
+}
+
+/* Light cards/surfaces: never inherit white text from older dark variants. */
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.diagnosis-start-card,
+  .diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card
+) :where(h1,h2,h3,h4,strong){
+  color:var(--plant-ink)!important;
+}
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.diagnosis-start-card,
+  .diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card
+) :where(p,li,dd,dt,small){
+  color:var(--plant-muted)!important;
+}
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor
+) a:not(.btn){
+  color:var(--plant-forest)!important;
+}
+
+/* Pills/badges keep dark copy on their light botanical fill even inside dark sections. */
+:where(.eyebrow,.event-kicker,.nr-kicker,.postevent-notice__badge,.support-chip,.contact-topic,.nr-badge){
+  color:var(--plant-forest-2)!important;
+}
+body.event-final .join-section .event-kicker,
+body.event-final .support-card .event-kicker{
+  color:var(--plant-forest-2)!important;
+}
+
+/* Paper buttons must never become white-on-white. */
+:where(.btn--paper,.btn--outline,.secondary){
+  color:var(--plant-forest-2)!important;
+}
