@@ -120,6 +120,9 @@
     else{
       const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}}),{threshold:.1});
       items.forEach(x=>io.observe(x));
+      // Fail-safe: content must never remain invisible if an observer event is skipped
+      // during fast scrolling, anchor jumps, background-tab restores, or layout shifts.
+      setTimeout(()=>items.forEach(x=>x.classList.add('is-visible')),900);
     }
   };
 
