@@ -86,11 +86,31 @@
     }
   },true);
 
+
+  document.addEventListener('click',async event=>{
+    const anchor=event.target.closest?.('a[href="#flower-atlas"]');
+    if(!anchor||loaded)return;
+    event.preventDefault();
+    anchor.dataset.loading='1';
+    try{
+      await loadCore();
+      document.getElementById('flower-atlas')?.scrollIntoView({behavior:'smooth',block:'start'});
+      history.replaceState(null,'','#flower-atlas');
+    }finally{
+      delete anchor.dataset.loading;
+    }
+  },true); // flower-atlas-link
+
+  addEventListener('hashchange',()=>{
+    if(location.hash==='#flower-atlas'&&!loaded)loadCore().catch(()=>{});
+  });
+
   const atlas=document.getElementById('flower-atlas');
   let io=null;
   const stopAtlasWatch=()=>{
     io?.disconnect();
     removeEventListener('scroll',maybeLoadAtlas);
+    document.removeEventListener('scroll',maybeLoadAtlas,true);
     removeEventListener('resize',maybeLoadAtlas);
   };
   const maybeLoadAtlas=()=>{
@@ -105,6 +125,7 @@
 
   if(atlas){
     addEventListener('scroll',maybeLoadAtlas,{passive:true});
+    document.addEventListener('scroll',maybeLoadAtlas,{passive:true,capture:true});
     addEventListener('resize',maybeLoadAtlas,{passive:true});
     if('IntersectionObserver' in window){
       io=new IntersectionObserver(entries=>{
