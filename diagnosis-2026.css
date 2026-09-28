@@ -1,0 +1,110 @@
+/* Flower Diagnosis — clean 2026 visual layer */
+body.page-diagnosis{margin:0;background:#fffdf8;color:#12382f;font-family:var(--body)!important}
+body.page-diagnosis .container{width:min(1080px,calc(100% - 48px));margin-inline:auto}
+body.page-diagnosis :where(h1,h2,h3,h4){font-family:var(--display)!important;font-weight:900!important;letter-spacing:-.04em;color:#12382f}
+body.page-diagnosis .page-hero--diagnosis{
+  padding:72px 0 82px!important;
+  background:linear-gradient(180deg,#fffdf8,#f3f0e6)!important;
+  min-height:0!important;
+}
+body.page-diagnosis .page-hero-grid{display:grid!important;grid-template-columns:minmax(0,.9fr) minmax(460px,1.1fr)!important;gap:68px!important;align-items:center!important}
+body.page-diagnosis .page-hero h1{font-size:clamp(48px,5.2vw,70px)!important;line-height:1.08!important;margin:0!important}
+body.page-diagnosis .page-hero p:not(.eyebrow){font-size:14px!important;line-height:1.95!important;color:#566961!important}
+body.page-diagnosis .headline-marker{background:linear-gradient(transparent 72%,#f4ca45 0)!important}
+body.page-diagnosis .eyebrow{display:inline-flex!important;margin:0 0 16px!important;padding:7px 11px!important;border:0!important;border-radius:999px!important;background:#fff3b8!important;color:#2b5c4b!important;box-shadow:none!important}
+body.page-diagnosis .eyebrow :is(span,small){font-size:9px!important;font-weight:800!important;letter-spacing:.08em!important;color:#2b5c4b!important}
+body.page-diagnosis .photo-frame{overflow:hidden!important;border:0!important;border-radius:28px!important;background:#fff!important;box-shadow:0 16px 50px rgba(23,62,51,.10)!important;transform:none!important}
+body.page-diagnosis .photo-frame img{width:100%!important;aspect-ratio:4/3!important;object-fit:cover!important}
+body.page-diagnosis .photo-frame figcaption{padding:11px 14px!important;background:#fff!important;color:#71817b!important;font-size:9px!important}
+body.page-diagnosis .hero-sticker-note{display:inline-block;margin-top:16px;padding:8px 11px;border-radius:999px;background:#eef4e9!important;color:#45675c!important;font-size:10px!important;font-weight:700!important}
+
+body.page-diagnosis .btn{min-height:48px!important;padding:0 18px!important;border-radius:999px!important;border:1px solid #dfe7df!important;background:#fff!important;color:#155844!important;font-family:var(--body)!important;font-weight:800!important;box-shadow:none!important}
+body.page-diagnosis .btn--green{background:#155844!important;color:#fff!important;border-color:#155844!important}
+body.page-diagnosis .btn--yellow{background:#f4ca45!important;color:#173d32!important;border-color:transparent!important}
+body.page-diagnosis .button-row{gap:10px!important}
+
+body.page-diagnosis .diagnosis-section{padding:84px 0!important;background:#fffdf8!important}
+body.page-diagnosis .diagnosis-shell{display:grid!important;grid-template-columns:.9fr 1.1fr!important;gap:36px!important;align-items:start!important}
+body.page-diagnosis .diagnosis-intro{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body.page-diagnosis .diagnosis-intro h2{font-size:clamp(34px,4vw,50px)!important;line-height:1.15!important}
+body.page-diagnosis .diagnosis-intro p{color:#687972!important;line-height:1.9!important}
+body.page-diagnosis .diagnosis-tags{display:flex!important;flex-wrap:wrap!important;gap:8px!important;padding:0!important;margin:22px 0 0!important;list-style:none!important}
+body.page-diagnosis .diagnosis-tags li{padding:8px 11px!important;border:1px solid #dfe7df!important;border-radius:999px!important;background:#fff!important;color:#45675c!important;font-size:10px!important;font-weight:700!important}
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card){padding:30px!important;border:1px solid #dfe7df!important;border-radius:24px!important;background:#fff!important;box-shadow:0 12px 34px rgba(23,62,51,.07)!important}
+body.page-diagnosis .diagnosis-start-card h3{font-size:26px!important}
+body.page-diagnosis .diagnosis-answer-guide{margin:22px 0!important;padding:18px!important;border-left:4px solid #f4ca45!important;background:#fff8dc!important;border-radius:0 14px 14px 0!important}
+body.page-diagnosis .diagnosis-start-steps{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:0!important;border-top:1px solid #dfe7df!important;border-bottom:1px solid #dfe7df!important}
+body.page-diagnosis .diagnosis-start-steps>div{padding:18px 12px!important;border:0!important;background:transparent!important}
+body.page-diagnosis .diagnosis-start-steps>div+div{border-left:1px solid #dfe7df!important}
+body.page-diagnosis .diagnosis-main-start{width:100%!important;margin-top:20px!important}
+
+body.page-diagnosis .flower-group-showcase{padding:86px 0!important}
+body.page-diagnosis .section-heading--center{text-align:left!important;max-width:720px!important;margin:0 0 34px!important}
+body.page-diagnosis .section-heading h2{font-size:clamp(34px,4vw,50px)!important;line-height:1.15!important}
+body.page-diagnosis .flower-group-grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:14px!important}
+body.page-diagnosis .flower-group-card{padding:22px!important;border:1px solid #dfe7df!important;border-radius:20px!important;background:#fff!important;box-shadow:none!important}
+body.page-diagnosis .flower-group-card .flower-group-visual{border-radius:16px!important;overflow:hidden!important}
+body.page-diagnosis .flower-group-card h3{font-size:19px!important}
+body.page-diagnosis .flower-group-card p{color:#687972!important;font-size:11.5px!important;line-height:1.75!important}
+
+body.page-diagnosis .flower-atlas{padding:80px 0!important;border-top:1px solid #dfe7df!important}
+body.page-diagnosis .flower-atlas-heading{display:grid!important;grid-template-columns:1fr auto!important;gap:30px!important;align-items:end!important}
+body.page-diagnosis .flower-atlas-heading h2{font-size:clamp(34px,4vw,50px)!important}
+body.page-diagnosis .flower-atlas-filters{display:flex!important;gap:6px!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+body.page-diagnosis .flower-atlas-filters button{padding:8px 12px!important;border:1px solid #dfe7df!important;border-radius:999px!important;background:#fff!important;color:#45675c!important;font-size:10px!important;font-weight:700!important}
+body.page-diagnosis .flower-atlas-filters button.is-active{background:#155844!important;color:#fff!important;border-color:#155844!important}
+body.page-diagnosis .flower-atlas-grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:14px!important;margin-top:26px!important}
+body.page-diagnosis .flower-atlas-card{overflow:hidden!important;border:1px solid #dfe7df!important;border-radius:18px!important;background:#fff!important;box-shadow:none!important}
+body.page-diagnosis .flower-atlas-card img{width:100%!important;aspect-ratio:4/3!important;object-fit:cover!important;border-radius:0!important}
+body.page-diagnosis .flower-atlas-card :is(b,p,small){padding-inline:14px!important}
+body.page-diagnosis .flower-atlas-card b{display:block;margin-top:12px!important}
+body.page-diagnosis .flower-atlas-footnote{margin-top:18px!important;color:#75857e!important;font-size:10px!important}
+
+body.page-diagnosis .diagnosis-panel{margin-top:36px!important;margin-bottom:72px!important;padding:28px!important;border:1px solid #dfe7df!important;border-radius:26px!important;background:#fff!important;box-shadow:0 16px 50px rgba(23,62,51,.10)!important}
+body.page-diagnosis .diagnosis-progress-track{background:#edf1ed!important;border-radius:999px!important}
+body.page-diagnosis .diagnosis-progress-fill{background:#155844!important;border-radius:999px!important}
+body.page-diagnosis .diagnosis-question-card{padding:28px!important;border:0!important;border-radius:20px!important;background:#f7f7f1!important;box-shadow:none!important}
+body.page-diagnosis .diagnosis-question{font-family:var(--display)!important;font-size:clamp(22px,2.4vw,30px)!important;line-height:1.45!important}
+body.page-diagnosis .diagnosis-answer-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:10px!important;margin-top:22px!important}
+body.page-diagnosis .diagnosis-answer{min-height:74px!important;padding:14px 16px!important;border:1px solid #dfe7df!important;border-radius:16px!important;background:#fff!important;color:#12382f!important;box-shadow:none!important}
+body.page-diagnosis .diagnosis-answer:hover{border-color:#8fb09f!important;background:#f1f6ee!important}
+body.page-diagnosis .diagnosis-answer.is-selected{border-color:#155844!important;background:#e7f0e4!important}
+body.page-diagnosis .keyboard-guide{opacity:.55!important}
+
+body.page-diagnosis .diagnosis-result{padding:0 0 80px!important}
+body.page-diagnosis .result-hero{display:grid!important;grid-template-columns:.8fr 1.2fr!important;gap:34px!important;align-items:center!important;padding:34px!important;border:1px solid #dfe7df!important;border-radius:28px!important;background:#fff!important;box-shadow:0 16px 50px rgba(23,62,51,.09)!important}
+body.page-diagnosis .result-portrait-wrap{overflow:hidden!important;border-radius:22px!important}
+body.page-diagnosis .result-image{width:100%!important;aspect-ratio:4/3!important;object-fit:cover!important}
+body.page-diagnosis .result-copy h2{font-size:clamp(36px,4.5vw,56px)!important}
+body.page-diagnosis :is(.result-personal-snapshot,.result-quick-summary,.result-group-profile,.result-deep-dive,.result-life-scenes,.result-reflection,.result-tendency-section,.result-neighbor-section,.result-month-plan,.result-share-section,.result-next-action,.result-rich-insights){margin-top:22px!important;padding:28px!important;border:1px solid #dfe7df!important;border-radius:22px!important;background:#fff!important;box-shadow:none!important}
+body.page-diagnosis :is(.result-snapshot-grid,.result-quick-grid,.result-section-grid,.result-insight-grid,.life-scene-grid,.result-communication-grid,.axis-narrative-grid){gap:12px!important}
+body.page-diagnosis :is(.result-snapshot-grid>article,.result-quick-grid>article,.result-card,.result-insight-grid>article,.life-scene-grid>article,.result-communication-grid>article,.axis-narrative-grid>article,.result-long-card,.result-practice-card,.neighbor-card,.collaboration-card){border:1px solid #e4eae4!important;border-radius:16px!important;background:#fafbf8!important;box-shadow:none!important}
+body.page-diagnosis .result-jump-nav{margin:18px 0!important;padding:8px!important;border:1px solid #dfe7df!important;border-radius:999px!important;background:#fff!important}
+body.page-diagnosis .result-jump-nav a{font-size:10px!important;color:#45675c!important}
+body.page-diagnosis .final-cta{padding:72px 0!important;background:#eef4e9!important}
+body.page-diagnosis .final-cta .container{width:min(900px,calc(100% - 48px))!important}
+body.page-diagnosis .final-cta h2{font-size:clamp(34px,4vw,50px)!important}
+
+body.page-diagnosis .site-footer{margin:0!important}
+body.page-diagnosis .diagnosis-mobile-start{background:rgba(255,253,248,.96)!important;border-top:1px solid #dfe7df!important}
+body.page-diagnosis .diagnosis-mobile-start button{background:#155844!important;color:#fff!important;border-radius:999px!important}
+
+@media(max-width:900px){
+  body.page-diagnosis .page-hero-grid,body.page-diagnosis .diagnosis-shell,body.page-diagnosis .result-hero{grid-template-columns:1fr!important}
+  body.page-diagnosis .flower-group-grid,body.page-diagnosis .flower-atlas-grid{grid-template-columns:repeat(2,1fr)!important}
+}
+@media(max-width:640px){
+  body.page-diagnosis .container{width:calc(100% - 28px)!important}
+  body.page-diagnosis .page-hero--diagnosis{padding:52px 0 58px!important}
+  body.page-diagnosis .page-hero h1{font-size:clamp(40px,12vw,54px)!important}
+  body.page-diagnosis .diagnosis-section{padding:64px 0!important}
+  body.page-diagnosis .diagnosis-start-card,body.page-diagnosis .diagnosis-method-card,body.page-diagnosis .diagnosis-panel{padding:20px!important}
+  body.page-diagnosis .diagnosis-start-steps{grid-template-columns:1fr!important}
+  body.page-diagnosis .diagnosis-start-steps>div+div{border-left:0!important;border-top:1px solid #dfe7df!important}
+  body.page-diagnosis .flower-group-grid,body.page-diagnosis .flower-atlas-grid{grid-template-columns:1fr!important}
+  body.page-diagnosis .flower-atlas-heading{grid-template-columns:1fr!important}
+  body.page-diagnosis .flower-atlas-filters{justify-content:flex-start!important}
+  body.page-diagnosis .diagnosis-answer-grid{grid-template-columns:1fr!important}
+  body.page-diagnosis .result-hero{padding:20px!important}
+  body.page-diagnosis :is(.result-personal-snapshot,.result-quick-summary,.result-group-profile,.result-deep-dive,.result-life-scenes,.result-reflection,.result-tendency-section,.result-neighbor-section,.result-month-plan,.result-share-section,.result-next-action,.result-rich-insights){padding:20px!important}
+}
