@@ -26,9 +26,7 @@ const expected=[
   });
   await new Promise(r=>setTimeout(r,350));
 
-  const desktop={};
-  desktop.causeDetails=await page.evaluate(()=>[...document.querySelectorAll('.cause-grid>article')].map((el,i)=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return {i,text:(el.innerText||'').replace(/\s+/g,' ').trim().slice(0,80),display:s.display,visibility:s.visibility,opacity:s.opacity,width:Math.round(r.width),height:Math.round(r.height),top:Math.round(r.top),left:Math.round(r.left),position:s.position,transform:s.transform,contentVisibility:s.contentVisibility};}));
-  desktop.projectDetails=await page.evaluate(()=>[...document.querySelectorAll('#project .event-values>article')].map((el,i)=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return {i,text:(el.innerText||'').replace(/\s+/g,' ').trim().slice(0,80),display:s.display,visibility:s.visibility,opacity:s.opacity,width:Math.round(r.width),height:Math.round(r.height),top:Math.round(r.top),left:Math.round(r.left),position:s.position,transform:s.transform,contentVisibility:s.contentVisibility};}));
+  const desktop={};return {i,text:(el.innerText||'').replace(/\s+/g,' ').trim().slice(0,80),display:s.display,visibility:s.visibility,opacity:s.opacity,width:Math.round(r.width),height:Math.round(r.height),top:Math.round(r.top),left:Math.round(r.left),position:s.position,transform:s.transform,contentVisibility:s.contentVisibility};}));
   for(const [sel,min,label] of expected){
     const visible=await visibleCount(sel);
     desktop[label]={visible,min};
