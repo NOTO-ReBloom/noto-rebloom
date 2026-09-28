@@ -504,8 +504,9 @@ body.event-final .support-card .event-kicker{
 
 /* Performance for the long event archive: defer layout only, never image fetching. */
 @supports (content-visibility:auto){
-  body.event-final main>section:nth-of-type(n+4){
+  body.event-final main>section:nth-of-type(n+2){
     content-visibility:auto;
+    contain:layout style paint;
     contain-intrinsic-size:auto 720px;
   }
 }
