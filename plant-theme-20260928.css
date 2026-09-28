@@ -800,9 +800,16 @@ body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two>.nr-choice{
 
 
 /* UNIVERSAL SOCIAL + PARTNER + FOOTER + CONTRAST / 2026-09-28 */
-.rb-auto-contrast-text{
+html body .rb-auto-contrast-text,
+html body .rb-auto-contrast-text:link,
+html body .rb-auto-contrast-text:visited{
   color:#173f34!important;
   -webkit-text-fill-color:#173f34!important;
+  text-shadow:none!important;
+}
+html body .rb-auto-contrast-text :is(span,small,strong,b){
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
   text-shadow:none!important;
 }
 
