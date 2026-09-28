@@ -9,7 +9,7 @@
     link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap';
     document.head.appendChild(link);
   };
-  if(document.body?.classList.contains('page-home')){
+  if((document.body?.classList.contains('page-home')||document.body?.classList.contains('nr-new-home'))){
     loadFonts();
   }else{
     if('requestIdleCallback' in window)requestIdleCallback(loadFonts,{timeout:1600}); else setTimeout(loadFonts,900);
