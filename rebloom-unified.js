@@ -165,7 +165,7 @@
 
   const revealTargets=[...document.querySelectorAll('main>section,.rb-illustration-section')].filter(el=>!el.classList.contains('diagnosis-panel')&&!el.matches('.hero,.page-hero,.nr-home-hero'));
   revealTargets.forEach(el=>el.classList.add('rb-reveal'));
-  if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('rb-inview');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -50px'});revealTargets.forEach(el=>io.observe(el))}else revealTargets.forEach(el=>el.classList.add('rb-inview'));
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('rb-inview');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -50px'});revealTargets.forEach(el=>io.observe(el));setTimeout(()=>revealTargets.forEach(el=>el.classList.add('rb-inview')),900)}else revealTargets.forEach(el=>el.classList.add('rb-inview'));
 
   if(page!=='diagnosis.html'&&!document.querySelector('script[src*="rebloom-detail.js"]')){
     const detail=document.createElement('script');detail.src='rebloom-detail.js?v=20260926bundle1';detail.defer=true;document.body.appendChild(detail);
