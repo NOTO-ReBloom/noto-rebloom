@@ -19,6 +19,7 @@ on:
       - 'refresh-sponsor.css'
       - 'visual-text-tuning.css'
       - '.github/scripts/site-browser-smoke.cjs'
+      - '.github/scripts/learn-browser-check.cjs'
       - 'home-final-20260924.css'
       - 'event-final-bundle-20260926.css'
       - 'partner-pre-20260924.css'
@@ -115,6 +116,9 @@ jobs:
         run: |
           python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/rebloom-integrity-http.log 2>&1 &
           sleep 2
+
+      - name: Run focused learn page browser check
+        run: node .github/scripts/learn-browser-check.cjs
 
       - name: Run cross-page browser smoke
         run: node .github/scripts/site-browser-smoke.cjs
