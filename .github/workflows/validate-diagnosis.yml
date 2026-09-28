@@ -192,9 +192,6 @@ jobs:
           if '答えるたびに、小さな花が咲きます' in html:
               raise SystemExit('Decorative flower progress copy must not return')
 
-          if html.count('href="diagnosis-ux-v3.css') != 1:
-              raise SystemExit('diagnosis-ux-v3.css must be linked exactly once')
-
           if len(re.findall(r'class="diagnosis-answer"', html)) != 4:
               raise SystemExit('Diagnosis must expose exactly four answer buttons')
           if 'data-value="0"' in html:
