@@ -509,3 +509,17 @@ body.event-final .support-card .event-kicker{
     contain-intrinsic-size:auto 720px;
   }
 }
+
+/* BOTANICAL VISIBILITY GUARANTEE
+   Legacy reveal effects must never leave content invisible. */
+:where(.rb-reveal,.rb-detail-reveal,.reveal,.is-reveal,.will-reveal){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+body.page-learn :where(.definition-card,.cause-grid>article,.event-values>article,.chart-card,.data-grid>article),
+body.page-thoughts :where(.cause-grid>article,.event-values>article,.visual-tile){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
