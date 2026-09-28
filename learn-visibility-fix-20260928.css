@@ -1,0 +1,75 @@
+/* Learn page visibility hardening — 2026-09-28
+   Keep the existing design, but remove failure modes that can make cards/menu disappear. */
+body.page-learn:not(.page-thoughts) main>section.rb-reveal,
+body.page-learn:not(.page-thoughts) main>section .rb-reveal{
+  opacity:1!important;
+  transform:none!important;
+  visibility:visible!important;
+}
+body.page-learn:not(.page-thoughts) main>section{
+  content-visibility:visible!important;
+  contain:none!important;
+}
+body.page-learn:not(.page-thoughts) :is(
+  .definition-card,
+  .chart-card,
+  .data-grid>article,
+  .cause-grid>article,
+  .event-values>article,
+  .rb-illustration-card
+){
+  display:block;
+  visibility:visible!important;
+  opacity:1!important;
+}
+body.page-learn:not(.page-thoughts) .definition-grid,
+body.page-learn:not(.page-thoughts) .chart-grid,
+body.page-learn:not(.page-thoughts) .data-grid,
+body.page-learn:not(.page-thoughts) .cause-grid,
+body.page-learn:not(.page-thoughts) .event-values,
+body.page-learn:not(.page-thoughts) .rb-illustration-grid{
+  visibility:visible!important;
+  opacity:1!important;
+}
+
+/* Desktop header must always expose the page menu. */
+@media(min-width:821px){
+  body.page-learn:not(.page-thoughts) .site-nav{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+  body.page-learn:not(.page-thoughts) .menu-button{
+    display:none!important;
+  }
+}
+
+/* Mobile: hamburger is always available; links appear when it is opened. */
+@media(max-width:820px){
+  body.page-learn:not(.page-thoughts) .menu-button{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+    flex:0 0 48px;
+  }
+  body.page-learn:not(.page-thoughts) .site-nav{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    pointer-events:none!important;
+  }
+  body.page-learn:not(.page-thoughts).menu-open .site-nav{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+}
+
+/* Preserve card layouts instead of flattening them while forcing visibility. */
+body.page-learn:not(.page-thoughts) .chart-card{
+  display:flex;
+  flex-direction:column;
+}
