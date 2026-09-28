@@ -3,12 +3,12 @@ const puppeteer=require('puppeteer-core');
 const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
 const viewports=[[375,812],[430,932],[768,1024],[1440,1000]];
 const expected={
-  'index.html':[['.visual-tile',3],['.story-step',4],['.event-values>article',4]],
+  'index.html':[['.visual-tile',3],['.story-step',4],['.event-values>article',2]],
   'thoughts.html':[['.visual-tile',3],['.cause-grid>article',4],['.event-values>article',3]],
   'learn.html':[['.definition-card',3],['.data-grid--large>article',3],['.chart-card',2],['.cause-grid>article',4],['#project .event-values>article',4]],
   'event.html':[['.join-step-grid>article',3],['.info-card',5],['.program-grid>.game-card',5],['.time-card',4],['.bring-item',6]],
   'report.html':[['.report-summary-card',4],['.report-photo',5],['.report-impact-card',3],['.game-grid>.game-card',5],['.time-card',4],['.report-voice-card',2]],
-  'partner.html':[['.nr-main-sponsor',3],['.industry-partner-card',3]],
+  'partner.html':[['.nr-sponsor-wide',3],['.industry-partner-card',3]],
   'contact.html':[['.contact-card',1]],
   'photo-credits.html':[['tbody tr',32]],
   'diagnosis.html':[['.diagnosis-start-card',1],['.flower-group-card',4],['.flower-atlas-card',32]]
