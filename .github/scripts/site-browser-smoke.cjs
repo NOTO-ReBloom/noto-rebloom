@@ -3,24 +3,27 @@ const puppeteer=require('puppeteer-core');
 const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
 const viewports=[[375,812],[430,932],[768,1024],[1440,1000]];
 const expected={
-  'index.html':[['.stat',4],['.feature',4],['.journey-step',4],['.partner-logo',6]],
-  'thoughts.html':[['.list-block',6],['.article-media',3]],
-  'learn.html':[['.term',3],['.data-metric',3],['.data-panel',2],['.list-block',8],['.photo-ribbon figure',3]],
-  'event.html':[['.report-step',7],['.list-block',11],['.photo-ribbon figure',3]],
-  'report.html':[['.stat',4],['.report-gallery figure',5],['.list-block',8],['.finance-block',2]],
-  'partner.html':[['.sponsor',3],['.partner-mini',3],['.list-block',4]],
-  'contact.html':[['.contact-card2',1],['.list-block',3],['.photo-ribbon figure',3]],
-  'photo-credits.html':[['.license-card',4],['tbody tr',32]],
-  'diagnosis.html':[['.diagnosis-start-card',2],['.flower-group-card',4],['.flower-atlas-card',32]]
+  'index.html':[['.visual-tile',3],['.story-step',4],['.event-values>article',4]],
+  'thoughts.html':[['.visual-tile',3],['.cause-grid>article',4],['.event-values>article',3]],
+  'learn.html':[['.definition-card',3],['.data-grid--large>article',3],['.chart-card',2],['.cause-grid>article',4],['#project .event-values>article',4]],
+  'event.html':[['.join-step-grid>article',3],['.info-card',5],['.program-grid>.game-card',5],['.time-card',4],['.bring-item',6]],
+  'report.html':[['.report-summary-card',4],['.report-photo',5],['.report-impact-card',3],['.game-grid>.game-card',5],['.time-card',4],['.report-voice-card',2]],
+  'partner.html':[['.nr-main-sponsor',3],['.industry-partner-card',3]],
+  'contact.html':[['.contact-card',1]],
+  'photo-credits.html':[['tbody tr',32]],
+  'diagnosis.html':[['.diagnosis-start-card',1],['.flower-group-card',4],['.flower-atlas-card',32]]
 };
-const visible=el=>{
-  if(!el)return false;
-  const s=getComputedStyle(el),r=el.getBoundingClientRect();
-  return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>8&&r.height>8;
+const minPhotos={
+  'index.html':5,'thoughts.html':5,'learn.html':4,'event.html':2,'report.html':5,
+  'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'404.html':1
 };
 
 (async()=>{
-  const browser=await puppeteer.launch({headless:true,executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--disable-dev-shm-usage']});
+  const browser=await puppeteer.launch({
+    headless:true,
+    executablePath:process.env.CHROME_PATH,
+    args:['--no-sandbox','--disable-dev-shm-usage']
+  });
   const failures=[];
   const summary=[];
 
@@ -29,88 +32,100 @@ const visible=el=>{
       const page=await browser.newPage();
       await page.setViewport({width,height,deviceScaleFactor:1});
       const jsErrors=[];
+      const consoleErrors=[];
       page.on('pageerror',e=>jsErrors.push(String(e)));
+      page.on('console',m=>{ if(m.type()==='error') consoleErrors.push(m.text()); });
 
       const response=await page.goto('http://127.0.0.1:8000/'+file,{waitUntil:'networkidle0',timeout:30000});
-      await new Promise(r=>setTimeout(r,file==='diagnosis.html'?900:250));
+      await new Promise(r=>setTimeout(r,file==='diagnosis.html'?900:300));
+
+      if(file==='diagnosis.html'){
+        await page.waitForFunction(()=>document.querySelectorAll('.flower-atlas-card').length===32,{timeout:12000});
+      }
 
       await page.evaluate(async()=>{
         const max=document.documentElement.scrollHeight;
-        const step=Math.max(420,Math.floor(innerHeight*.8));
-        for(let y=0;y<max;y+=step){scrollTo(0,y);await new Promise(r=>setTimeout(r,20));}
+        const step=Math.max(380,Math.floor(innerHeight*.72));
+        for(let y=0;y<max;y+=step){
+          scrollTo(0,y);
+          await new Promise(r=>setTimeout(r,28));
+        }
         scrollTo(0,0);
       });
-      await new Promise(r=>setTimeout(r,250));
-      if(file==='diagnosis.html'){
-        await page.evaluate(()=>document.getElementById('flower-atlas')?.scrollIntoView({block:'center'}));
-        await page.waitForFunction(()=>document.querySelectorAll('.flower-atlas-card').length===32,{timeout:12000});
-        await new Promise(r=>setTimeout(r,180));
-      }
+      await new Promise(r=>setTimeout(r,650));
 
-      const data=await page.evaluate((expectedList)=>{
-        const visibleLocal=el=>{
+      const data=await page.evaluate((expectedList,minPhotoCount)=>{
+        const visible=el=>{
           if(!el)return false;
           const s=getComputedStyle(el),r=el.getBoundingClientRect();
-          return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>8&&r.height>8;
+          return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!>0&&r.width>8&&r.height>8;
         };
         const root=document.documentElement;
         const groups=(expectedList||[]).map(([selector,min])=>{
           const els=[...document.querySelectorAll(selector)];
-          return {selector,min,total:els.length,visible:els.filter(visibleLocal).length};
+          return {selector,min,total:els.length,visible:els.filter(visible).length};
         });
-        const broken=[...document.images].filter(img=>img.complete&&img.getAttribute('src')&&img.naturalWidth===0).map(img=>img.getAttribute('src'));
-        const photoIssues=[...document.querySelectorAll('figure img,.photo-ribbon img')]
+
+        const allImages=[...document.images];
+        const visibleImages=allImages.filter(visible);
+        const brokenVisible=visibleImages
+          .filter(img=>img.complete&&(img.naturalWidth===0||img.naturalHeight===0))
+          .map(img=>img.getAttribute('src'));
+        const zeroSizeVisible=visibleImages
           .filter(img=>{
-            const frame=img.closest('figure');
-            if(!frame||!visibleLocal(frame))return false;
-            return !visibleLocal(img)||img.naturalWidth===0||img.naturalHeight===0;
+            const r=img.getBoundingClientRect();
+            return r.width<9||r.height<9;
           })
-          .map(img=>({src:img.getAttribute('src'),w:img.getBoundingClientRect().width,h:img.getBoundingClientRect().height,nw:img.naturalWidth,nh:img.naturalHeight}));
-        const visiblePhotoCount=[...document.querySelectorAll('figure img,.photo-ribbon img')].filter(visibleLocal).length;
-        const h1=document.querySelectorAll('h1').length;
+          .map(img=>({src:img.getAttribute('src'),w:img.getBoundingClientRect().width,h:img.getBoundingClientRect().height}));
+        const mainVisiblePhotos=[...document.querySelectorAll('main img')].filter(visible);
         const nav=document.querySelector('.site-nav');
-        const toggle=document.querySelector('.menu-toggle');
-        const cta=document.querySelector('.site-cta');
+        const toggle=document.querySelector('.menu-button,.menu-toggle');
         return {
           overflow:root.scrollWidth>root.clientWidth+3,
           overflowBy:root.scrollWidth-root.clientWidth,
-          h1,
-          broken,
-          photoIssues,
-          visiblePhotoCount,
+          h1:document.querySelectorAll('h1').length,
           groups,
-          navVisible:visibleLocal(nav),
-          toggleVisible:visibleLocal(toggle),
-          ctaVisible:visibleLocal(cta)
+          brokenVisible,
+          zeroSizeVisible,
+          visiblePhotoCount:mainVisiblePhotos.length,
+          minPhotoCount,
+          navVisible:visible(nav),
+          toggleVisible:visible(toggle),
+          toggleSelector:toggle?.classList.contains('menu-button')?'.menu-button':toggle?'.menu-toggle':null
         };
-      },expected[file]||[]);
+      },expected[file]||[],minPhotos[file]||0);
 
-      const groupFailures=data.groups.filter(g=>g.total<g.min||g.visible<g.min);
       if(!response||response.status()>=400) failures.push({file,width,kind:'http',status:response?.status()});
       if(data.overflow) failures.push({file,width,kind:'overflow',by:data.overflowBy});
       if(data.h1!==1) failures.push({file,width,kind:'h1',count:data.h1});
-      if(data.broken.length) failures.push({file,width,kind:'broken-images',images:data.broken});
-      if(data.photoIssues.length) failures.push({file,width,kind:'hidden-or-zero-size-photos',photos:data.photoIssues});
-      if(jsErrors.length) failures.push({file,width,kind:'js-errors',errors:jsErrors});
+      const groupFailures=data.groups.filter(g=>g.total<g.min||g.visible<g.min);
       if(groupFailures.length) failures.push({file,width,kind:'content',groups:groupFailures});
+      if(data.brokenVisible.length) failures.push({file,width,kind:'broken-visible-images',images:data.brokenVisible});
+      if(data.zeroSizeVisible.length) failures.push({file,width,kind:'zero-size-visible-images',images:data.zeroSizeVisible});
+      if(data.visiblePhotoCount<data.minPhotoCount) failures.push({file,width,kind:'too-few-visible-photos',visible:data.visiblePhotoCount,min:data.minPhotoCount});
+      if(jsErrors.length) failures.push({file,width,kind:'js-errors',errors:jsErrors});
+      const realConsoleErrors=consoleErrors.filter(x=>!/favicon\.ico/i.test(x));
+      if(realConsoleErrors.length) failures.push({file,width,kind:'console-errors',errors:realConsoleErrors});
 
       if(width>820){
         if(!data.navVisible) failures.push({file,width,kind:'desktop-nav-hidden'});
-        if(!data.ctaVisible) failures.push({file,width,kind:'desktop-cta-hidden'});
       }else{
-        if(!data.toggleVisible) failures.push({file,width,kind:'mobile-toggle-hidden'});
-        if(data.navVisible) failures.push({file,width,kind:'mobile-nav-open-before-click'});
-        const toggle=await page.$('.menu-toggle');
-        if(toggle){
-          await toggle.click();
-          await new Promise(r=>setTimeout(r,80));
-          const opened=await page.evaluate(()=>{
-            const n=document.querySelector('.site-nav'),b=document.querySelector('.menu-toggle');
-            if(!n)return false;
+        if(!data.toggleVisible) failures.push({file,width,kind:'mobile-toggle-hidden',selector:data.toggleSelector});
+        const selector=data.toggleSelector;
+        if(selector){
+          const beforeNav=data.navVisible;
+          if(beforeNav) failures.push({file,width,kind:'mobile-nav-open-before-click'});
+          await page.click(selector);
+          await new Promise(r=>setTimeout(r,120));
+          const opened=await page.evaluate((selector)=>{
+            const n=document.querySelector('.site-nav');
+            const b=document.querySelector(selector);
+            if(!n||!b)return false;
             const s=getComputedStyle(n),r=n.getBoundingClientRect();
-            return s.display!=='none'&&s.visibility!=='hidden'&&r.width>8&&r.height>8&&b?.getAttribute('aria-expanded')==='true'&&document.body.classList.contains('menu-open');
-          });
-          if(!opened) failures.push({file,width,kind:'mobile-nav-did-not-open'});
+            return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!>0&&r.width>8&&r.height>8&&
+              b.getAttribute('aria-expanded')==='true'&&document.body.classList.contains('menu-open');
+          },selector);
+          if(!opened) failures.push({file,width,kind:'mobile-nav-did-not-open',selector});
         }
       }
 
@@ -120,6 +135,6 @@ const visible=el=>{
   }
 
   await browser.close();
-  console.log('REDESIGN_SMOKE='+JSON.stringify({tested:summary.length,failures}));
-  if(failures.length) process.exit(1);
+  console.log('BOTANICAL_SMOKE='+JSON.stringify({tested:summary.length,failures}));
+  if(failures.length)process.exit(1);
 })().catch(e=>{console.error(e);process.exit(1)});
