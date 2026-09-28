@@ -1,18 +1,22 @@
 (()=>{
   'use strict';
 
-  const loadFonts=()=>{
+  const loadFonts=(displayMode='swap')=>{
     if(document.getElementById('rebloom-google-fonts'))return;
     const link=document.createElement('link');
     link.id='rebloom-google-fonts';
     link.rel='stylesheet';
-    link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap';
+    link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display='+encodeURIComponent(displayMode);
     document.head.appendChild(link);
   };
   const isEventArchive=!!document.body?.classList.contains('event-final')||!!document.body?.classList.contains('nr-new-event');
   const isDiagnosis=!!document.body?.classList.contains('page-diagnosis');
-  if((document.body?.classList.contains('page-home')||document.body?.classList.contains('nr-new-home')||isDiagnosis)){
-    loadFonts();
+  if((document.body?.classList.contains('page-home')||document.body?.classList.contains('nr-new-home'))){
+    loadFonts('swap');
+  }else if(isDiagnosis){
+    /* Keep the diagnosis typography aligned without allowing a slow font response
+       to shift the hero and reset LCP on mobile. */
+    loadFonts('optional');
   }else if(!isEventArchive){
     if('requestIdleCallback' in window)requestIdleCallback(loadFonts,{timeout:1600}); else setTimeout(loadFonts,900);
   }
