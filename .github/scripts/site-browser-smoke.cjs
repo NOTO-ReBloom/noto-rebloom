@@ -107,6 +107,33 @@ function visibleCardFailure(checks){
     }));
   }
   await featurePage.close();
+
+  /* Learn page regression: cards render without reveal dependency and mobile menu actually opens. */
+  const learnUi={};
+  const learnPage=await browser.newPage();
+  await learnPage.setViewport({width:1440,height:1000,deviceScaleFactor:1});
+  await learnPage.goto('http://127.0.0.1:8000/learn.html',{waitUntil:'networkidle0',timeout:30000});
+  learnUi.desktop=await learnPage.evaluate(()=>{
+    const nav=document.querySelector('.site-nav');
+    const cards=[...document.querySelectorAll('.definition-card,.chart-card,.cause-grid>article,.event-values>article')];
+    const visible=el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>10&&r.height>10};
+    return {navVisible:!!nav&&visible(nav),cardsVisible:cards.filter(visible).length,cardsTotal:cards.length};
+  });
+  await learnPage.setViewport({width:375,height:812,deviceScaleFactor:1});
+  await learnPage.reload({waitUntil:'networkidle0',timeout:30000});
+  learnUi.mobileBefore=await learnPage.evaluate(()=>{
+    const b=document.querySelector('.menu-button'),n=document.querySelector('.site-nav');
+    const vis=el=>{if(!el)return false;const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>10&&r.height>10};
+    return {buttonVisible:vis(b),navVisible:vis(n),expanded:b?.getAttribute('aria-expanded')};
+  });
+  await learnPage.click('.menu-button');
+  await new Promise(r=>setTimeout(r,120));
+  learnUi.mobileAfter=await learnPage.evaluate(()=>{
+    const b=document.querySelector('.menu-button'),n=document.querySelector('.site-nav');
+    const s=n?getComputedStyle(n):null,r=n?n.getBoundingClientRect():null;
+    return {navVisible:!!n&&s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!==0&&r.width>10&&r.height>10,expanded:b?.getAttribute('aria-expanded'),menuOpen:document.body.classList.contains('menu-open')};
+  });
+  await learnPage.close();
   await browser.close();
 
   const failures=results.filter(x=>x.httpStatus>=400||x.overflow||x.broken.length||x.errors.length||x.h1Count!==1||x.cardFailures.length);
@@ -129,7 +156,12 @@ function visibleCardFailure(checks){
     typographyFailures.push({kind:'diagnosis-nav-vs-home',homeNav,diagnosisNav});
   }
 
-  const summary={tested:results.length,failures,features,missing,typography,typographyFailures};
+  const learnUiFailures=[];
+  if(!learnUi.desktop?.navVisible||learnUi.desktop.cardsVisible!==learnUi.desktop.cardsTotal) learnUiFailures.push({kind:'learn-desktop',...learnUi.desktop});
+  if(!learnUi.mobileBefore?.buttonVisible||learnUi.mobileBefore.navVisible) learnUiFailures.push({kind:'learn-mobile-closed',...learnUi.mobileBefore});
+  if(!learnUi.mobileAfter?.navVisible||learnUi.mobileAfter.expanded!=='true'||!learnUi.mobileAfter.menuOpen) learnUiFailures.push({kind:'learn-mobile-open',...learnUi.mobileAfter});
+
+  const summary={tested:results.length,failures,features,missing,typography,typographyFailures,learnUi,learnUiFailures};
   console.log('SMOKE_SUMMARY='+JSON.stringify(summary));
-  if(failures.length||missing.length||typographyFailures.length) process.exit(1);
+  if(failures.length||missing.length||typographyFailures.length||learnUiFailures.length) process.exit(1);
 })().catch(e=>{console.error(e);process.exit(1)});
