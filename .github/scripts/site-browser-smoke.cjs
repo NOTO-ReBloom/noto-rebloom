@@ -239,7 +239,7 @@ const minPhotos={
               b.getAttribute('aria-expanded')==='true'&&document.body.classList.contains('menu-open');
           },selector);
           if(!opened) failures.push({file,width,kind:'mobile-nav-did-not-open',selector});
-          const menuSocial=await page.$eval('.rb-menu-social a',els=>els.filter(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8;}).length);
+          const menuSocial=await page.evaluate(()=>[...document.querySelectorAll('.rb-menu-social a')].filter(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8;}).length);
           if(menuSocial<2) failures.push({file,width,kind:'mobile-social-missing',visible:menuSocial});
         }
       }
