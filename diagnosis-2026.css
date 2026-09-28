@@ -108,3 +108,23 @@ body.page-diagnosis .diagnosis-mobile-start button{background:#155844!important;
   body.page-diagnosis .result-hero{padding:20px!important}
   body.page-diagnosis :is(.result-personal-snapshot,.result-quick-summary,.result-group-profile,.result-deep-dive,.result-life-scenes,.result-reflection,.result-tendency-section,.result-neighbor-section,.result-month-plan,.result-share-section,.result-next-action,.result-rich-insights){padding:20px!important}
 }
+
+
+/* Old diagnosis bundles used reveal opacity. The 2026 shell renders core content immediately. */
+body.page-diagnosis :is(.reveal,.rb-reveal,.rb-detail-reveal){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas,.flower-atlas-card){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+body.page-diagnosis .site-footer :is(.footer-brand strong,.footer-bottom span){
+  color:#fff!important;
+}
+body.page-diagnosis .site-footer .footer-col a{
+  color:rgba(255,255,255,.92)!important;
+  min-height:44px!important;
+}
