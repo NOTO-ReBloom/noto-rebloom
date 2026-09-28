@@ -1,5 +1,5 @@
 /* Flower Diagnosis — clean 2026 visual layer */
-body.page-diagnosis{margin:0;background:#fffdf8;color:#12382f;font-family:var(--body)!important}
+body.page-diagnosis{--sans:var(--body);--serif:var(--display);margin:0;background:#fffdf8;color:#12382f;font-family:var(--body)!important}
 body.page-diagnosis .container{width:min(1080px,calc(100% - 48px));margin-inline:auto}
 body.page-diagnosis :where(h1,h2,h3,h4){font-family:var(--display)!important;font-weight:900!important;letter-spacing:-.04em;color:#12382f}
 body.page-diagnosis .page-hero--diagnosis{
