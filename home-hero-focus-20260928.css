@@ -1,0 +1,309 @@
+/* Home hero refinement — botanical, photographic, human */
+body.page-home .hero--home{
+  min-height:calc(100svh - 74px);
+  padding:clamp(54px,7vw,96px) 0 clamp(68px,8vw,110px)!important;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 0% 18%,rgba(95,143,88,.18) 0 12%,transparent 12.6%),
+    radial-gradient(ellipse at 100% 88%,rgba(232,200,79,.18) 0 15%,transparent 15.6%),
+    linear-gradient(135deg,#fffdf8 0%,#f6f1e2 58%,#eef3e8 100%)!important;
+}
+body.page-home .hero--home::before{
+  width:310px;height:540px;
+  left:-150px;bottom:-220px;
+  background:rgba(95,143,88,.18);
+  border-radius:100% 0 100% 0;
+  transform:rotate(-12deg);
+}
+body.page-home .hero--home::after{
+  width:210px;height:105px;
+  right:4%;top:9%;
+  background:rgba(125,166,111,.17);
+  border-radius:100% 0 100% 0;
+  transform:rotate(-32deg);
+}
+body.page-home .hero--home .hero-grid{
+  width:min(1240px,calc(100% - 48px));
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:minmax(0,.88fr) minmax(460px,1.12fr);
+  gap:clamp(32px,5vw,72px);
+  align-items:center;
+}
+body.page-home .hero--home .hero-copy{
+  position:relative;
+  z-index:4;
+  max-width:660px;
+}
+body.page-home .hero--home .hero-copy::before{
+  content:"";
+  position:absolute;
+  width:54px;height:26px;
+  left:-18px;top:-34px;
+  border-radius:100% 0 100% 0;
+  background:var(--plant-leaf);
+  transform:rotate(-23deg);
+  opacity:.9;
+}
+body.page-home .hero--home .eyebrow{
+  width:max-content;
+  margin-bottom:22px;
+  padding:9px 15px 10px!important;
+  background:rgba(223,233,216,.88)!important;
+  border-radius:999px!important;
+  box-shadow:0 7px 22px rgba(23,74,54,.08);
+}
+body.page-home .hero--home h1{
+  max-width:720px;
+  margin:0 0 24px;
+  color:var(--plant-forest-2)!important;
+  font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Noto Sans JP",sans-serif!important;
+  font-size:clamp(48px,5.55vw,84px)!important;
+  font-weight:900!important;
+  line-height:.99!important;
+  letter-spacing:-.045em!important;
+  text-wrap:balance;
+}
+body.page-home .hero--home .headline-marker{
+  position:relative;
+  display:inline-block;
+  color:var(--plant-forest)!important;
+  background:none!important;
+  z-index:0;
+}
+body.page-home .hero--home .headline-marker::after{
+  content:"";
+  position:absolute;
+  left:-.03em;right:-.04em;bottom:.02em;
+  height:.23em;
+  background:rgba(232,200,79,.88);
+  border-radius:60% 35% 62% 28%;
+  transform:rotate(-1.2deg);
+  z-index:-1;
+}
+body.page-home .hero--home .hero-lead{
+  max-width:600px;
+  margin:0 0 22px;
+  color:#445d52!important;
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif!important;
+  font-size:clamp(15px,1.2vw,18px)!important;
+  font-weight:500;
+  line-height:1.95!important;
+  letter-spacing:.005em;
+}
+body.page-home .hero--home .status-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0 0 24px;
+}
+body.page-home .hero--home .status-chips span{
+  padding:8px 12px;
+  border:0!important;
+  border-radius:999px!important;
+  background:#fffdf8!important;
+  color:var(--plant-forest)!important;
+  box-shadow:0 5px 16px rgba(23,74,54,.07);
+  font-size:12px;
+  font-weight:800;
+}
+body.page-home .hero--home .button-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+body.page-home .hero--home .btn{
+  min-height:50px;
+  padding:13px 20px!important;
+  border-radius:999px!important;
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-weight:800!important;
+  letter-spacing:.01em;
+}
+body.page-home .hero--home .btn--green{
+  box-shadow:0 10px 24px rgba(15,58,42,.18);
+}
+body.page-home .hero--home .hero-reassurance{
+  margin-top:17px!important;
+  color:#6d7d75!important;
+  font-size:11px!important;
+  line-height:1.7!important;
+}
+
+body.page-home .hero--home .hero-media{
+  position:relative;
+  min-height:clamp(510px,48vw,670px);
+  z-index:2;
+}
+body.page-home .hero--home .photo-frame--home-venue{
+  position:absolute;
+  width:min(92%,680px);
+  right:0;
+  top:50%;
+  transform:translateY(-50%) rotate(-1.2deg);
+  margin:0;
+  overflow:hidden!important;
+  border:8px solid #fffdf8!important;
+  border-radius:58px 20px 54px 24px!important;
+  background:#fff;
+  box-shadow:0 28px 70px rgba(22,65,51,.18)!important;
+  z-index:2;
+}
+body.page-home .hero--home .photo-frame--home-venue img{
+  width:100%!important;
+  aspect-ratio:4/3;
+  object-fit:cover!important;
+}
+body.page-home .hero--home .photo-frame--home-venue figcaption{
+  padding:11px 16px 14px;
+  background:#fffdf8;
+  color:#617168!important;
+  font-size:10px;
+  line-height:1.6;
+}
+body.page-home .hero--home .hero-media::before,
+body.page-home .hero--home .hero-media::after{
+  content:"";
+  position:absolute;
+  display:block;
+  background-size:cover;
+  background-position:center;
+  border:7px solid #fffdf8;
+  box-shadow:0 20px 46px rgba(22,65,51,.16);
+  z-index:3;
+}
+body.page-home .hero--home .hero-media::before{
+  width:clamp(150px,15vw,220px);
+  aspect-ratio:4/5;
+  left:-2%;
+  top:5%;
+  background-image:url("assets/event-2026/game.webp");
+  border-radius:72% 28% 58% 42% / 38% 64% 36% 62%;
+  transform:rotate(-7deg);
+}
+body.page-home .hero--home .hero-media::after{
+  width:clamp(150px,14vw,210px);
+  aspect-ratio:1/1;
+  right:-2%;
+  bottom:1%;
+  background-image:url("assets/event-2026/child.webp");
+  border-radius:38% 62% 34% 66% / 58% 40% 60% 42%;
+  transform:rotate(6deg);
+}
+body.page-home .hero--home .nr-hero-brand-badge{
+  position:absolute!important;
+  width:104px!important;
+  right:5%!important;
+  top:2%!important;
+  z-index:5!important;
+  padding:10px!important;
+  border-radius:50% 45% 52% 48%!important;
+  background:#fffdf8!important;
+  box-shadow:0 12px 30px rgba(22,65,51,.13)!important;
+  transform:rotate(7deg);
+}
+body.page-home .hero--home .nr-hero-brand-badge img{
+  width:100%!important;
+  height:auto!important;
+}
+
+body.page-home .first-visit-section{
+  position:relative;
+  padding-top:clamp(70px,8vw,105px)!important;
+}
+body.page-home .first-visit-head h2,
+body.page-home .visual-mosaic-head h2,
+body.page-home .why-join-section h2{
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.03em!important;
+}
+body.page-home .first-visit-grid>article{
+  position:relative;
+  overflow:hidden;
+}
+body.page-home .first-visit-grid>article::after{
+  content:"";
+  position:absolute;
+  width:58px;height:28px;
+  right:-6px;bottom:-3px;
+  border-radius:100% 0 100% 0;
+  background:rgba(95,143,88,.12);
+  transform:rotate(-18deg);
+}
+
+@media(max-width:980px){
+  body.page-home .hero--home{
+    min-height:auto;
+    padding-top:54px!important;
+  }
+  body.page-home .hero--home .hero-grid{
+    width:min(100% - 32px,760px);
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  body.page-home .hero--home h1{
+    font-size:clamp(44px,10vw,68px)!important;
+  }
+  body.page-home .hero--home .hero-media{
+    min-height:520px;
+  }
+  body.page-home .hero--home .photo-frame--home-venue{
+    width:88%;
+    right:2%;
+  }
+}
+@media(max-width:640px){
+  body.page-home .hero--home{
+    padding:38px 0 58px!important;
+    border-radius:0 0 34px 34px;
+  }
+  body.page-home .hero--home .hero-grid{
+    width:calc(100% - 28px);
+  }
+  body.page-home .hero--home .hero-copy::before{
+    left:2px;top:-24px;width:38px;height:18px;
+  }
+  body.page-home .hero--home h1{
+    font-size:clamp(41px,12vw,56px)!important;
+    line-height:1.02!important;
+  }
+  body.page-home .hero--home .hero-lead{
+    font-size:14px!important;
+    line-height:1.88!important;
+  }
+  body.page-home .hero--home .hero-media{
+    min-height:390px;
+  }
+  body.page-home .hero--home .photo-frame--home-venue{
+    width:88%;
+    top:49%;
+    right:2%;
+    border-width:6px!important;
+    border-radius:38px 16px 36px 18px!important;
+  }
+  body.page-home .hero--home .hero-media::before{
+    width:112px;
+    left:0;
+    top:0;
+    border-width:5px;
+  }
+  body.page-home .hero--home .hero-media::after{
+    width:105px;
+    right:0;
+    bottom:0;
+    border-width:5px;
+  }
+  body.page-home .hero--home .nr-hero-brand-badge{
+    width:72px!important;
+    right:4%!important;
+  }
+  body.page-home .hero--home .button-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  body.page-home .hero--home .button-row .btn:first-child{
+    grid-column:1/-1;
+  }
+}
