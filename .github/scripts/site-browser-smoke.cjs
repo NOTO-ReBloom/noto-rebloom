@@ -58,7 +58,7 @@ const minPhotos={
         const visible=el=>{
           if(!el)return false;
           const s=getComputedStyle(el),r=el.getBoundingClientRect();
-          return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!>0&&r.width>8&&r.height>8;
+          return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8;
         };
         const root=document.documentElement;
         const groups=(expectedList||[]).map(([selector,min])=>{
@@ -122,7 +122,7 @@ const minPhotos={
             const b=document.querySelector(selector);
             if(!n||!b)return false;
             const s=getComputedStyle(n),r=n.getBoundingClientRect();
-            return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!>0&&r.width>8&&r.height>8&&
+            return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8&&
               b.getAttribute('aria-expanded')==='true'&&document.body.classList.contains('menu-open');
           },selector);
           if(!opened) failures.push({file,width,kind:'mobile-nav-did-not-open',selector});
