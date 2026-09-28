@@ -58,7 +58,7 @@
         io.disconnect();
         loadCore().catch(()=>{});
       }
-    },{rootMargin:'900px 0px'});
+    },{rootMargin:'120px 0px'});
     io.observe(atlas);
   }else if(atlas){
     const onScroll=()=>{
