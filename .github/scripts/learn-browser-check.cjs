@@ -6,7 +6,7 @@ const expected=[
   ['.chart-card',2,'データグラフカード'],
   ['.cause-grid>article',4,'原因カード'],
   ['#project .event-values>article',4,'企画カード'],
-  ['#rb-learn-illustrations .rb-illustration-card',1,'企画図カード']
+  ['#project .rb-project-map-inline',1,'企画図カード']
 ];
 const visible=el=>{
   const s=getComputedStyle(el),r=el.getBoundingClientRect();
