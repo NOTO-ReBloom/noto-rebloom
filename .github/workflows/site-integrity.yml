@@ -38,7 +38,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: noto-rebloom-site-integrity
+  group: noto-rebloom-site-integrity-v2
   cancel-in-progress: true
 
 jobs:
