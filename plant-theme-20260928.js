@@ -166,22 +166,27 @@
   };
   const forceReadableLightSurfaces=()=>{
     document.querySelectorAll('.rb-auto-contrast-text').forEach(el=>el.classList.remove('rb-auto-contrast-text'));
-    const surfaces=document.querySelectorAll('main section,main article,main [class*="card"],.site-header,.site-partner-strip');
-    const excluded='.btn,button,[class*="badge"],[class*="chip"],[class*="tag"],.rb-universal-social,.rb-universal-social *,figcaption,.visual-tile *, .photo-frame figcaption,.rb-footer,.rb-footer *,.section--soil,.section--soil *';
-    const textSelector='h1,h2,h3,h4,p,li,span,strong,b,small,a,td,th,label';
-    surfaces.forEach(surface=>{
-      const s=getComputedStyle(surface);
-      const bg=rgb(s.backgroundColor);
-      if(!bg||bg.a<.45||luminance(bg)<.72)return;
-      surface.querySelectorAll(textSelector).forEach(el=>{
-        if(el.matches(excluded)||el.closest(excluded))return;
-        const es=getComputedStyle(el);
-        const color=rgb(es.color);
-        if(!color||luminance(color)<.72)return;
-        const ownBg=rgb(es.backgroundColor);
-        if(ownBg&&ownBg.a>.35&&luminance(ownBg)<.55)return;
-        el.classList.add('rb-auto-contrast-text');
-      });
+    const excluded='.btn,button,[class*="badge"],[class*="chip"],[class*="tag"],[class*="label"],.story-dot,.rb-contact-fab__icon,.eyebrow--light,.rb-universal-social,.rb-universal-social *,figcaption,.visual-tile *, .photo-frame figcaption,.rb-footer,.rb-footer *,.section--soil,.section--soil *';
+    const textSelector='main h1,main h2,main h3,main h4,main p,main li,main span,main strong,main b,main small,main a,main td,main th,main label,.site-header a,.site-header span,.site-header b,.site-header small,.site-partner-strip *';
+    const effectiveBackground=(el)=>{
+      let node=el;
+      for(let depth=0;node&&depth<9;depth++,node=node.parentElement){
+        const style=getComputedStyle(node);
+        const bg=rgb(style.backgroundColor);
+        if(bg&&bg.a>=.55)return bg;
+        if(style.backgroundImage&&style.backgroundImage!=='none')return null;
+        if(node.matches?.('.rb-footer,.section--soil,.visual-tile,.photo-frame'))return null;
+      }
+      return null;
+    };
+    document.querySelectorAll(textSelector).forEach(el=>{
+      if(el.matches(excluded)||el.closest(excluded))return;
+      const style=getComputedStyle(el);
+      const color=rgb(style.color);
+      if(!color||luminance(color)<.72)return;
+      const bg=effectiveBackground(el);
+      if(!bg||luminance(bg)<.72)return;
+      el.classList.add('rb-auto-contrast-text');
     });
   };
 
