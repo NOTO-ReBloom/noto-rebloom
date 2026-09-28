@@ -1216,3 +1216,51 @@
   visibility:visible!important;
   transform:none!important;
 }
+
+
+/* Final specificity locks: one exact typography system across every public page. */
+body.rb-premium :is(h1,h2,h3,h4,.brand b){
+  font-family:var(--rr-display)!important;
+  font-weight:900!important;
+}
+body.rb-premium :is(.site-nav a,.header-actions a,.header-actions .btn,.menu-button){
+  font-family:var(--rr-body)!important;
+}
+body.rb-premium .site-nav a{font-weight:800!important}
+
+/* Partner runtime converts sponsor blocks to nr-sponsor-wide. Style that final DOM too. */
+body.rb-premium.nr-new-partner .nr-sponsor-wide{
+  overflow:hidden!important;
+  border:1px solid var(--rr-line)!important;
+  border-radius:var(--rr-radius-lg)!important;
+  background:#fffdf8!important;
+  box-shadow:var(--rr-shadow-soft)!important;
+}
+body.rb-premium.nr-new-partner .nr-sponsor-wide__brand{
+  background:#f4f1e6!important;
+  border-right:1px solid var(--rr-line)!important;
+}
+body.rb-premium.nr-new-partner .nr-sponsor-wide__body{
+  background:#fffdf8!important;
+}
+body.rb-premium.nr-new-partner .nr-sponsor-wide__ornament{
+  width:140px!important;
+  height:140px!important;
+  right:10px!important;
+  left:auto!important;
+  transform:none!important;
+  opacity:.07!important;
+}
+body.rb-premium.nr-new-partner .nr-sponsor-wide__partnerline,
+body.rb-premium.nr-new-partner .nr-sponsor-wide__intro :is(h2,h3){
+  color:var(--rr-ink-strong)!important;
+}
+body.rb-premium.nr-new-partner .nr-sponsor-wide__action>a{
+  background:var(--rr-green)!important;
+  color:#fff!important;
+  border-radius:999px!important;
+  border:0!important;
+}
+@media(max-width:820px){
+  body.rb-premium.nr-new-partner .nr-sponsor-wide__ornament{display:none!important}
+}
