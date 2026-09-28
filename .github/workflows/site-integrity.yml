@@ -17,6 +17,9 @@ on:
       - 'rebloom-2026.js'
       - 'diagnosis-2026.css'
       - 'diagnosis-loader-2026.js'
+      - 'plant-theme-20260928.css'
+      - 'plant-theme-20260928.js'
+      - 'typography-responsive-20260928.css'
       - 'diagnosis-font-match-20260928.css'
       - 'responsive-text-20260928.css'
       - 'refresh-core.css'
@@ -44,7 +47,7 @@ jobs:
 
       - name: Check public JavaScript syntax
         run: |
-          for f in rebloom-2026.js diagnosis-loader-2026.js diagnosis.js diagnosis-visual-v2.js diagnosis-shell.js site-core.js site-postevent.js site.js rebloom-unified.js rebloom-detail.js; do
+          for f in plant-theme-20260928.js rebloom-2026.js diagnosis-loader-2026.js diagnosis.js diagnosis-visual-v2.js diagnosis-shell.js site-core.js site-postevent.js site.js rebloom-unified.js rebloom-detail.js; do
             node --check "$f"
           done
 
