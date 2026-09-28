@@ -307,3 +307,143 @@ body.nr-new-home .first-visit-grid>article::after{
     grid-column:1/-1;
   }
 }
+
+
+/* PHOTO-FIRST HERO 2026-09-28 */
+body.nr-new-home .hero--home{
+  min-height:auto!important;
+  padding:clamp(28px,4vw,48px) 0 clamp(64px,7vw,92px)!important;
+}
+body.nr-new-home .hero--home .hero-grid{
+  width:min(1240px,calc(100% - 48px))!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-areas:"media" "copy"!important;
+  gap:clamp(34px,4vw,54px)!important;
+  align-items:start!important;
+}
+body.nr-new-home .hero--home .hero-media{
+  grid-area:media!important;
+  order:1!important;
+  width:100%!important;
+  min-height:clamp(430px,48vw,650px)!important;
+  margin:0 auto!important;
+}
+body.nr-new-home .hero--home .hero-copy{
+  grid-area:copy!important;
+  order:2!important;
+  width:min(920px,100%)!important;
+  max-width:920px!important;
+  margin-inline:auto!important;
+  text-align:center!important;
+}
+body.nr-new-home .hero--home .hero-copy::before{
+  left:50%!important;
+  top:-30px!important;
+  transform:translateX(-50%) rotate(-23deg)!important;
+}
+body.nr-new-home .hero--home .eyebrow{
+  margin-inline:auto!important;
+}
+body.nr-new-home .hero--home h1{
+  max-width:900px!important;
+  margin-inline:auto!important;
+  font-size:clamp(48px,6.5vw,88px)!important;
+  line-height:1.03!important;
+}
+body.nr-new-home .hero--home .hero-lead{
+  max-width:760px!important;
+  margin-inline:auto!important;
+}
+body.nr-new-home .hero--home .status-chips,
+body.nr-new-home .hero--home .button-row{
+  justify-content:center!important;
+}
+body.nr-new-home .hero--home .photo-frame--home-venue{
+  position:absolute!important;
+  width:min(86%,1040px)!important;
+  max-width:none!important;
+  left:50%!important;
+  right:auto!important;
+  top:50%!important;
+  transform:translate(-50%,-50%) rotate(-.35deg)!important;
+  border-radius:46px 20px 48px 22px!important;
+}
+body.nr-new-home .hero--home .photo-frame--home-venue img{
+  aspect-ratio:16/8.6!important;
+  object-position:center 48%!important;
+}
+body.nr-new-home .hero--home .hero-media::before{
+  width:clamp(120px,14vw,205px)!important;
+  left:1%!important;
+  top:5%!important;
+}
+body.nr-new-home .hero--home .hero-media::after{
+  width:clamp(118px,13vw,195px)!important;
+  right:1%!important;
+  bottom:2%!important;
+}
+body.nr-new-home .hero--home .nr-hero-brand-badge{
+  right:4%!important;
+  top:1%!important;
+}
+
+@media(max-width:980px){
+  body.nr-new-home .hero--home .hero-grid{
+    width:min(100% - 32px,860px)!important;
+  }
+  body.nr-new-home .hero--home .hero-media{
+    min-height:clamp(390px,62vw,540px)!important;
+  }
+  body.nr-new-home .hero--home .photo-frame--home-venue{
+    width:88%!important;
+  }
+}
+@media(max-width:640px){
+  body.nr-new-home .hero--home{
+    padding:24px 0 56px!important;
+  }
+  body.nr-new-home .hero--home .hero-grid{
+    width:calc(100% - 28px)!important;
+    gap:30px!important;
+  }
+  body.nr-new-home .hero--home .hero-media{
+    min-height:330px!important;
+  }
+  body.nr-new-home .hero--home .photo-frame--home-venue{
+    width:94%!important;
+    border-radius:30px 14px 32px 16px!important;
+  }
+  body.nr-new-home .hero--home .photo-frame--home-venue img{
+    aspect-ratio:4/3!important;
+  }
+  body.nr-new-home .hero--home .hero-media::before{
+    width:88px!important;
+    left:-1%!important;
+    top:1%!important;
+  }
+  body.nr-new-home .hero--home .hero-media::after{
+    width:82px!important;
+    right:-1%!important;
+    bottom:0!important;
+  }
+  body.nr-new-home .hero--home .nr-hero-brand-badge{
+    width:62px!important;
+    right:3%!important;
+    top:0!important;
+  }
+  body.nr-new-home .hero--home .hero-copy{
+    text-align:left!important;
+  }
+  body.nr-new-home .hero--home .eyebrow{
+    margin-inline:0!important;
+  }
+  body.nr-new-home .hero--home h1,
+  body.nr-new-home .hero--home .hero-lead{
+    margin-inline:0!important;
+  }
+  body.nr-new-home .hero--home .status-chips,
+  body.nr-new-home .hero--home .button-row{
+    justify-content:flex-start!important;
+  }
+}
