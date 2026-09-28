@@ -140,6 +140,17 @@
     requestAnimationFrame(maybeLoadAtlas);
   }
 
+  /* Existing users should see their saved/partial diagnosis immediately after reload. */
+  try{
+    const saved=JSON.parse(localStorage.getItem('rebloom-flower-diagnosis-v4')||'null');
+    if(saved&&saved.version==='2026-09-26-v4'&&(
+      saved.completed===true||
+      (Array.isArray(saved.answers)&&saved.answers.length>0)
+    )){
+      loadCore().catch(()=>{});
+    }
+  }catch{}
+
   [...legacyStyles,...coreScripts].forEach(href=>{
     const l=document.createElement('link');
     l.rel='prefetch';
