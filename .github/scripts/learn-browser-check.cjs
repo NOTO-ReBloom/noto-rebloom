@@ -15,7 +15,7 @@ const expected=[
 
   const visibleCount=async selector=>page.$$eval(selector,els=>els.filter(el=>{
     const s=getComputedStyle(el),r=el.getBoundingClientRect();
-    return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!>0&&r.width>8&&r.height>8;
+    return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8;
   }).length);
 
   await page.setViewport({width:1440,height:1000});
@@ -35,7 +35,7 @@ const expected=[
   desktop.nav=await visibleCount('.site-nav');
   desktop.photos=await page.$$eval('main img',imgs=>imgs.filter(img=>{
     const s=getComputedStyle(img),r=img.getBoundingClientRect();
-    return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!>0&&r.width>8&&r.height>8&&img.naturalWidth>0&&img.naturalHeight>0;
+    return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8&&img.naturalWidth>0&&img.naturalHeight>0;
   }).length);
   desktop.overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+3);
   if(!desktop.nav||desktop.photos<4||desktop.overflow)failures.push({kind:'desktop-shell',desktop});
@@ -53,7 +53,7 @@ const expected=[
     nav:(()=>{
       const el=document.querySelector('.site-nav');if(!el)return false;
       const s=getComputedStyle(el),r=el.getBoundingClientRect();
-      return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)!>0&&r.width>8&&r.height>8;
+      return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity)>0&&r.width>8&&r.height>8;
     })(),
     expanded:document.querySelector('.menu-button')?.getAttribute('aria-expanded'),
     menuOpen:document.body.classList.contains('menu-open')
