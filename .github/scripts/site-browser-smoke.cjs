@@ -110,6 +110,7 @@ const minPhotos={
         };
       },expected[file]||[],minPhotos[file]||0);
 
+      await page.addStyleTag({content:'main>section{content-visibility:visible!important;contain:none!important;contain-intrinsic-size:auto!important}'});
       const layoutWarnings=await page.evaluate(()=>{
         const visible=el=>{
           if(!el)return false;
@@ -128,9 +129,9 @@ const minPhotos={
           if(intersects(hr,fr))warnings.push({kind:'header-content-overlap',headerBottom:Math.round(hr.bottom),contentTop:Math.round(fr.top),content:label(firstMain)});
         }
 
-        const clipSelectors='h1,h2,h3,h4,p,figcaption,.btn,button,article,.contact-card,.info-card,.game-card,.time-card,.bring-item,.report-summary-card,.report-impact-card,.report-voice-card,.industry-partner-card,.flower-group-card,.flower-atlas-card';
+        const clipSelectors='h1,h2,h3,h4,p,figcaption,a,button,li,td,th,strong,b,small,span';
         for(const el of document.querySelectorAll(clipSelectors)){
-          if(!visible(el))continue;
+          if(!visible(el)||!(el.textContent||'').trim())continue;
           const s=getComputedStyle(el);
           const clips=/(hidden|clip)/.test(s.overflow+s.overflowX+s.overflowY);
           if(clips&&(el.scrollWidth>el.clientWidth+3||el.scrollHeight>el.clientHeight+3)){
@@ -145,7 +146,8 @@ const minPhotos={
             const a=children[i],b=children[j];
             if(a.contains(b)||b.contains(a))continue;
             if(intersects(a.getBoundingClientRect(),b.getBoundingClientRect())){
-              warnings.push({kind:'sibling-overlap',parent:label(parent),a:label(a),b:label(b)});
+              const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect();
+              warnings.push({kind:'sibling-overlap',parent:label(parent),a:label(a),b:label(b),aRect:[Math.round(ar.left),Math.round(ar.top),Math.round(ar.right),Math.round(ar.bottom)],bRect:[Math.round(br.left),Math.round(br.top),Math.round(br.right),Math.round(br.bottom)],intersection:[Math.round(Math.min(ar.right,br.right)-Math.max(ar.left,br.left)),Math.round(Math.min(ar.bottom,br.bottom)-Math.max(ar.top,br.top))]});
               if(warnings.filter(x=>x.kind==='sibling-overlap').length>=12)break;
             }
           }
@@ -154,12 +156,16 @@ const minPhotos={
         for(const sec of document.querySelectorAll('main>section')){
           if(!visible(sec)||sec.matches('.hero,.page-hero,.contact-page-hero,.final-cta,.diagnosis-section'))continue;
           const sr=sec.getBoundingClientRect();
-          const kids=[...sec.children].filter(visible);
+          let kids=[...sec.children].filter(visible);
+          if(kids.length===1&&kids[0].classList.contains('container')) kids=[...kids[0].children].filter(visible);
           if(!kids.length)continue;
           const tops=kids.map(x=>x.getBoundingClientRect().top), bottoms=kids.map(x=>x.getBoundingClientRect().bottom);
           const topGap=Math.max(0,Math.min(...tops)-sr.top), bottomGap=Math.max(0,sr.bottom-Math.max(...bottoms));
           if(topGap>190||bottomGap>190)warnings.push({kind:'large-section-blank-space',section:label(sec),topGap:Math.round(topGap),bottomGap:Math.round(bottomGap),height:Math.round(sr.height)});
         }
+
+        const dock=document.querySelector('.rb-mobile-join,.diagnosis-mobile-start');
+        if(visible(dock)) warnings.push({kind:'visible-mobile-dock',dock:label(dock),position:getComputedStyle(dock).position,bottom:getComputedStyle(dock).bottom});
 
         scrollTo(0,document.documentElement.scrollHeight);
         const fixed=[...document.querySelectorAll('body *')].filter(el=>{
