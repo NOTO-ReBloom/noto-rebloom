@@ -1328,8 +1328,9 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
   letter-spacing:.01em!important;
 }
 .page-diagnosis .site-nav a{
-  font-weight:700!important;
-  letter-spacing:.01em!important;
+  font-family:var(--body,var(--sans))!important;
+  font-weight:800!important;
+  letter-spacing:normal!important;
 }
 
 /* hero atmosphere */
@@ -1834,12 +1835,13 @@ body.page-diagnosis .page-hero--diagnosis .headline-marker{
 
 /* Unified cute typography & floral atmosphere — 2026-09-26 */
 .page-diagnosis{
-  --fd-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Maru Gothic Pro","Yu Gothic","YuGothic",Meiryo,sans-serif;
-  --fd-display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Maru Gothic Pro","Yu Gothic","YuGothic",Meiryo,sans-serif;
-  --fd-cute:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Maru Gothic Pro","Yu Gothic","YuGothic",Meiryo,sans-serif;
-  --fd-latin:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Maru Gothic Pro","Yu Gothic","YuGothic",Meiryo,sans-serif;
+  /* Keep diagnosis typography on the same tokens used by every other page. */
+  --fd-body:var(--body,var(--sans));
+  --fd-display:var(--display,var(--serif));
+  --fd-cute:var(--display,var(--serif));
+  --fd-latin:var(--body,var(--sans));
   font-family:var(--fd-body)!important;
-  font-size-adjust:.52;
+  font-size-adjust:none;
   background:#f8f1e8!important;
 }
 .page-diagnosis,
