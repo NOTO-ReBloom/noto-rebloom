@@ -1,4 +1,14 @@
 (()=>{
+  const optimizeBelowFoldImages=()=>{
+    document.querySelectorAll('main img').forEach(img=>{
+      const hero=img.closest('.hero,.subhero,.page-hero');
+      if(hero){ img.decoding='async'; return; }
+      img.loading='lazy';
+      img.decoding='async';
+      img.fetchPriority='low';
+    });
+  };
+
   const injectPhotoRibbon=()=>{
     const file=(location.pathname.split('/').pop()||'index.html').toLowerCase();
     const exists=()=>document.querySelector('.photo-ribbon-section');
@@ -20,8 +30,9 @@
       ]));
     }
   };
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',injectPhotoRibbon,{once:true});
-  else injectPhotoRibbon();
+  const bootVisuals=()=>{injectPhotoRibbon();optimizeBelowFoldImages();};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootVisuals,{once:true});
+  else bootVisuals();
 
   const loadFonts=()=>{
     if(document.querySelector('link[data-rb-fonts]')) return;
