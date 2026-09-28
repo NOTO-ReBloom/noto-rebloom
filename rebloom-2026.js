@@ -9,5 +9,5 @@
     b.setAttribute('aria-expanded',String(open));
   });
   nav.addEventListener('click',e=>{if(e.target.closest('a'))close()});
-  addEventListener('resize',()=>{if(innerWidth>760)close()},{passive:true});
+  addEventListener('resize',()=>{if(innerWidth>820)close()},{passive:true});
 })();
