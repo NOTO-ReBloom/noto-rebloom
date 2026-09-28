@@ -58,8 +58,8 @@ const puppeteer=require('puppeteer-core');
   if(!initial.start||!initial.resultToggle)throw new Error('Missing diagnosis controls');
   if(!initial.has40||initial.stale56||initial.staleThreeChoice||!initial.hasResponseFrame||!initial.hasValidityDisclosure)throw new Error('Diagnosis guidance/copy regression: '+JSON.stringify(initial));
 
-  await page.evaluate(()=>document.getElementById('flower-atlas')?.scrollIntoView({block:'center'}));
-  await page.waitForFunction(()=>document.querySelectorAll('.flower-atlas-card img').length===32,{timeout:12000});
+  await page.click('a[href="#flower-atlas"]');
+  await page.waitForFunction(()=>document.querySelectorAll('.flower-atlas-card img').length===32,{timeout:15000});
   await new Promise(r=>setTimeout(r,250));
   const flowerPhotos=await page.evaluate(async()=>{
     const atlas=[...document.querySelectorAll('.flower-atlas-card img')];
