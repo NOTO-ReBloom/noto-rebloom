@@ -1137,3 +1137,34 @@ body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two>.nr-choice{
     flex-direction:column!important;
   }
 }
+
+
+/* FINAL LIGHT-SURFACE VISIBILITY GUARD / 2026-09-28 */
+body.page-learn .cause-grid>article,
+body.page-thoughts .cause-grid>article{
+  display:flex!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+:where(
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.nr-sponsor-wide,
+  .diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,
+  .diagnosis-question-card,.result-card,.quick-card,.action-card,.way-card,.play-card
+){
+  color:#173f34!important;
+}
+:where(
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.nr-sponsor-wide,
+  .diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,
+  .diagnosis-question-card,.result-card,.quick-card,.action-card,.way-card,.play-card
+) :is(h1,h2,h3,h4,strong,b){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
