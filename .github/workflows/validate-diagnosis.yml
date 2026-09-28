@@ -182,9 +182,11 @@ jobs:
           if 'rebloom-2026.css' not in html or 'diagnosis-2026.css' not in html:
               raise SystemExit('Diagnosis must use the shared 2026 shell and diagnosis visual layer')
           for legacy in ('diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css'):
-              if f'href="{legacy}' not in html or 'media="print"' not in html:
-                  raise SystemExit(f'Legacy diagnosis CSS must be non-blocking: {legacy}')
-          if 'diagnosis-loader-2026.js' not in html or 'diagnosis.js' not in loader_2026:
+              if f'href="{legacy}' in html:
+                  raise SystemExit(f'Legacy diagnosis CSS must not block initial HTML: {legacy}')
+              if legacy not in loader_2026:
+                  raise SystemExit(f'Legacy diagnosis CSS must load through the 2026 loader: {legacy}')
+          if 'diagnosis-loader-2026.js' not in html or 'diagnosis.js' not in loader_2026 or 'diagnosis-visual-v2.js' not in loader_2026:
               raise SystemExit('Diagnosis core must load through the 2026 lazy loader')
 
           if '答えるたびに、小さな花が咲きます' in html:
