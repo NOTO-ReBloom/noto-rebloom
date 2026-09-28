@@ -14,9 +14,8 @@
   if((document.body?.classList.contains('page-home')||document.body?.classList.contains('nr-new-home'))){
     loadFonts('swap');
   }else if(isDiagnosis){
-    /* Keep the diagnosis typography aligned without allowing a slow font response
-       to shift the hero and reset LCP on mobile. */
-    loadFonts('optional');
+    /* The diagnosis uses the shared font stack from CSS without a late remote
+       font swap, preventing the stacked mobile hero from shifting after paint. */
   }else if(!isEventArchive){
     if('requestIdleCallback' in window)requestIdleCallback(loadFonts,{timeout:1600}); else setTimeout(loadFonts,900);
   }
