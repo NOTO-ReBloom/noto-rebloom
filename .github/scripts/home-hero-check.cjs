@@ -54,7 +54,7 @@ const puppeteer=require('puppeteer-core');
     if(!/Noto Sans JP/i.test(data.bodyFont))failures.push({width,kind:'body-font',font:data.bodyFont});
     if(data.visibleButtons<3)failures.push({width,kind:'hero-buttons',visible:data.visibleButtons});
     if(data.overflow)failures.push({width,kind:'overflow'});
-    if(!data.h1Text.includes('能登の次へ'))failures.push({width,kind:'headline-copy',text:data.h1Text});
+    if(!data.h1Text.includes('能登とのつながり'))failures.push({width,kind:'headline-copy',text:data.h1Text});
   }
 
   console.log('HOME_HERO='+JSON.stringify({failures}));
