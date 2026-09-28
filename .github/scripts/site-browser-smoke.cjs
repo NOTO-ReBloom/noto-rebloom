@@ -40,7 +40,9 @@ const minPhotos={
       await new Promise(r=>setTimeout(r,file==='diagnosis.html'?900:300));
 
       if(file==='diagnosis.html'){
-        await page.waitForFunction(()=>document.querySelectorAll('.flower-atlas-card').length===32,{timeout:12000});
+        const atlasLink=await page.$('a[href="#flower-atlas"]');
+        if(atlasLink)await atlasLink.click();
+        await page.waitForFunction(()=>document.querySelectorAll('.flower-atlas-card').length===32,{timeout:15000});
       }
 
       await page.evaluate(async()=>{
