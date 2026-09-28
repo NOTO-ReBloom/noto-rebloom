@@ -138,3 +138,25 @@ body.page-diagnosis .flower-atlas-card::after{
   content:none!important;
   display:none!important;
 }
+
+
+/* Accessibility: secondary diagnosis text remains comfortably readable. */
+body.page-diagnosis .photo-frame figcaption,
+body.page-diagnosis .hero-photo-credit,
+body.page-diagnosis .hero-photo-credit a,
+body.page-diagnosis .flower-atlas-footnote,
+body.page-diagnosis .flower-atlas-footnote p,
+body.page-diagnosis .flower-atlas-footnote a,
+body.page-diagnosis .keyboard-guide,
+body.page-diagnosis .keyboard-guide span,
+body.page-diagnosis .diagnosis-note,
+body.page-diagnosis .diagnosis-purpose-note,
+body.page-diagnosis .diagnosis-disclaimer{
+  color:#40574f!important;
+  opacity:1!important;
+}
+body.page-diagnosis .keyboard-guide kbd{
+  color:#29483d!important;
+  background:#eef2ec!important;
+  border-color:#c9d3cb!important;
+}
