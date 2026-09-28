@@ -175,11 +175,56 @@
     targets.forEach(el=>el.classList.add('rb-auto-contrast-text'));
   };
 
+  const applyKnownContrastFixes=()=>{
+    const important=(el,prop,value)=>el?.style?.setProperty(prop,value,'important');
+
+    document.querySelectorAll('.event-values>article>span,.cause-grid>article>span,.check-list>div>span').forEach(el=>{
+      important(el,'background-color','#174a36');
+      important(el,'color','#ffffff');
+      important(el,'-webkit-text-fill-color','#ffffff');
+    });
+
+    document.querySelectorAll('.eyebrow,.eyebrow--light').forEach(el=>{
+      important(el,'background-color','#dfe9d8');
+      important(el,'color','#173f34');
+      important(el,'-webkit-text-fill-color','#173f34');
+      el.querySelectorAll('span,small,strong').forEach(child=>{
+        important(child,'color','#173f34');
+        important(child,'-webkit-text-fill-color','#173f34');
+      });
+    });
+
+    document.querySelectorAll('body.page-learn #numbers .data-grid>article').forEach(card=>{
+      important(card,'background-color','#fffdf8');
+      important(card,'color','#173f34');
+      card.querySelectorAll('strong,h3,small').forEach(el=>{
+        important(el,'color','#173f34');
+        important(el,'-webkit-text-fill-color','#173f34');
+      });
+    });
+
+    document.querySelectorAll('body.report-page .report-money-card').forEach(card=>{
+      important(card,'background-color','#fffdf8');
+      important(card,'color','#173f34');
+      card.querySelectorAll('h3,p,span,strong,b,small,em,a').forEach(el=>{
+        important(el,'color','#173f34');
+        important(el,'-webkit-text-fill-color','#173f34');
+      });
+    });
+
+    document.querySelectorAll('body.report-page .report-thanks .report-volunteer-names>span').forEach(el=>{
+      important(el,'background-color','#f5f7f1');
+      important(el,'color','#315e50');
+      important(el,'-webkit-text-fill-color','#315e50');
+    });
+  };
+
   const ensureUniversalChrome=()=>{
     ensureHeaderSocial();
     ensureUniversalFooter();
     ensurePartnerStrip();
     forceReadableLightSurfaces();
+    applyKnownContrastFixes();
   };
 
   const runUniversal=()=>{
