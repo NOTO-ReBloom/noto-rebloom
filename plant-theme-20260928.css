@@ -1175,3 +1175,61 @@ body.page-thoughts .cause-grid>article{
   color:#173f34!important;
   -webkit-text-fill-color:#173f34!important;
 }
+
+
+/* FINAL CONTRAST + UNIVERSAL CHROME HARDENING / 2026-09-28 */
+/* These sections retained white legacy copy, so they must remain genuinely dark. */
+html body .section--soil,
+html body.report-page .report-finance{
+  background:linear-gradient(135deg,#2d4035 0%,#173f34 58%,#4b3d31 100%)!important;
+  color:#fff!important;
+}
+html body .section--soil :is(h1,h2,h3,h4,p,li,strong,b,span:not(.eyebrow span),a:not(.btn)),
+html body.report-page .report-finance :is(h1,h2,h3,h4,p,li,strong,b,span,a:not(.btn)){
+  color:rgba(255,255,255,.94)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.94)!important;
+}
+html body .section--soil :is(.eyebrow,.eyebrow span,.eyebrow small),
+html body.report-page .report-finance :is(.eyebrow,.eyebrow span,.eyebrow small){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+/* Explicitly protect light statistical cards from legacy white-text rules. */
+html body.page-learn #numbers .data-grid>article{
+  background:#fffdf8!important;
+  color:#173f34!important;
+}
+html body.page-learn #numbers .data-grid>article :is(strong,h3,small){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+html body.page-learn #numbers .data-grid>article strong{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
+/* The event archive update banner is deliberately dark in the botanical skin. */
+html body.nr-new-event .update-band{
+  background:linear-gradient(135deg,#174a36,#0f3a2a)!important;
+  border-color:rgba(23,74,54,.18)!important;
+}
+html body.nr-new-event .update-band :is(p,strong,span){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Keep the header SNS visible even on page-specific responsive overrides. */
+@media (min-width:901px){
+  html body .site-header .header-actions{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+  html body.nr-new-partner .site-header .header-actions{
+    display:flex!important;
+  }
+  html body .site-header .rb-header-social{
+    display:flex!important;
+  }
+}
