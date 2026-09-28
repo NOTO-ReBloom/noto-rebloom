@@ -128,3 +128,13 @@ body.page-diagnosis .site-footer .footer-col a{
   color:rgba(255,255,255,.92)!important;
   min-height:44px!important;
 }
+
+
+/* Keep photography clean: legacy decorative overlays stay disabled. */
+body.page-diagnosis .page-hero--diagnosis .photo-frame::before,
+body.page-diagnosis .page-hero--diagnosis .photo-frame::after,
+body.page-diagnosis .flower-atlas-card::before,
+body.page-diagnosis .flower-atlas-card::after{
+  content:none!important;
+  display:none!important;
+}
