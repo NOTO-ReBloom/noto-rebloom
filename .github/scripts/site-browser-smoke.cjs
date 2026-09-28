@@ -105,7 +105,8 @@ const minPhotos={
           minPhotoCount,
           navVisible:visible(nav),
           toggleVisible:visible(toggle),
-          toggleSelector:toggle?.classList.contains('menu-button')?'.menu-button':toggle?'.menu-toggle':null
+          toggleSelector:toggle?.classList.contains('menu-button')?'.menu-button':toggle?'.menu-toggle':null,
+          diagnosisHeroFont:document.body.classList.contains('page-diagnosis')?getComputedStyle(document.querySelector('.page-hero--diagnosis h1')).fontFamily:null
         };
       },expected[file]||[],minPhotos[file]||0);
 
@@ -117,6 +118,7 @@ const minPhotos={
       if(data.brokenVisible.length) failures.push({file,width,kind:'broken-visible-images',images:data.brokenVisible});
       if(data.zeroSizeVisible.length) failures.push({file,width,kind:'zero-size-visible-images',images:data.zeroSizeVisible});
       if(data.visiblePhotoCount<data.minPhotoCount) failures.push({file,width,kind:'too-few-visible-photos',visible:data.visiblePhotoCount,min:data.minPhotoCount});
+      if(file==='diagnosis.html'&&!/M PLUS Rounded 1c/i.test(data.diagnosisHeroFont||'')) failures.push({file,width,kind:'diagnosis-heading-font',font:data.diagnosisHeroFont});
       if(jsErrors.length) failures.push({file,width,kind:'js-errors',errors:jsErrors});
       if(contrastViolations.length) failures.push({file,width,kind:'color-contrast',violations:contrastViolations});
       const realConsoleErrors=consoleErrors.filter(x=>!/favicon\.ico/i.test(x));
