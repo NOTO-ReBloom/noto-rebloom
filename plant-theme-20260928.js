@@ -1,6 +1,20 @@
 (()=>{
   'use strict';
 
+  const loadFonts=()=>{
+    if(document.getElementById('rebloom-google-fonts'))return;
+    const link=document.createElement('link');
+    link.id='rebloom-google-fonts';
+    link.rel='stylesheet';
+    link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap';
+    document.head.appendChild(link);
+  };
+  if(document.body?.classList.contains('page-diagnosis')){
+    if('requestIdleCallback' in window)requestIdleCallback(loadFonts,{timeout:1400}); else setTimeout(loadFonts,700);
+  }else{
+    loadFonts();
+  }
+
   const makeImageReliable=(img)=>{
     try{
       img.loading='eager';
