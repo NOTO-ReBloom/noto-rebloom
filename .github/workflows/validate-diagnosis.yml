@@ -171,14 +171,21 @@ jobs:
                       raise SystemExit(f'Diagnosis CSS contains unwanted Mincho font: {font} in css index {i}')
 
           shell = Path('diagnosis-shell.js').read_text(encoding='utf-8')
-          if 'fonts.googleapis.com/css2?family=Zen+Maru+Gothic' not in shell:
-              raise SystemExit('Zen Maru Gothic deferred loader is missing')
-          if "addEventListener('load'" not in shell or 'requestIdleCallback' not in shell:
-              raise SystemExit('Zen Maru Gothic must load after the first page load')
+          diagnosis_2026 = Path('diagnosis-2026.css').read_text(encoding='utf-8')
+          loader_2026 = Path('diagnosis-loader-2026.js').read_text(encoding='utf-8')
+          if 'Zen+Maru+Gothic' in shell or 'Zen Maru Gothic' in shell:
+              raise SystemExit('Diagnosis shell must not load a second page-specific font')
           if 'fonts.googleapis.com' in html or 'fonts.gstatic.com' in html:
               raise SystemExit('Diagnosis HTML must not block first paint on external font requests')
-          if '--fd-display:"Zen Maru Gothic"' not in ''.join(css_files):
-              raise SystemExit('Diagnosis display typography must use Zen Maru Gothic with local fallbacks')
+          if '--sans:var(--body)' not in diagnosis_2026 or '--serif:var(--display)' not in diagnosis_2026:
+              raise SystemExit('Diagnosis typography must inherit the shared 2026 body/display font tokens')
+          if 'rebloom-2026.css' not in html or 'diagnosis-2026.css' not in html:
+              raise SystemExit('Diagnosis must use the shared 2026 shell and diagnosis visual layer')
+          for legacy in ('diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css'):
+              if f'href="{legacy}' not in html or 'media="print"' not in html:
+                  raise SystemExit(f'Legacy diagnosis CSS must be non-blocking: {legacy}')
+          if 'diagnosis-loader-2026.js' not in html or 'diagnosis.js' not in loader_2026:
+              raise SystemExit('Diagnosis core must load through the 2026 lazy loader')
 
           if '答えるたびに、小さな花が咲きます' in html:
               raise SystemExit('Decorative flower progress copy must not return')
