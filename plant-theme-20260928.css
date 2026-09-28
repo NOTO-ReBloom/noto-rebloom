@@ -767,3 +767,33 @@ body.report-page .page-hero h1{
     line-height:1.34!important;
   }
 }
+
+
+/* FINAL HOME ROUTE CARD LAYOUT / 2026-09-28 */
+/* Prevent the two homepage routing cards from visually overlapping after
+   legacy spacing/transform layers are combined. */
+body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  grid-auto-rows:auto!important;
+  align-items:stretch!important;
+  gap:14px!important;
+}
+body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two>.nr-choice{
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  margin:0!important;
+  transform:none!important;
+  translate:none!important;
+}
+@media(max-width:620px){
+  body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+}
