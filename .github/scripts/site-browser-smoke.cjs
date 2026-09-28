@@ -5,11 +5,11 @@ const viewports=[[375,812],[430,932],[768,1024],[1440,1000]];
 const expected={
   'index.html':[['.stat',4],['.feature',4],['.journey-step',4],['.partner-logo',6]],
   'thoughts.html':[['.list-block',6],['.article-media',3]],
-  'learn.html':[['.term',3],['.data-metric',3],['.data-panel',2],['.list-block',8]],
-  'event.html':[['.report-step',7],['.list-block',11]],
+  'learn.html':[['.term',3],['.data-metric',3],['.data-panel',2],['.list-block',8],['.photo-ribbon figure',3]],
+  'event.html':[['.report-step',7],['.list-block',11],['.photo-ribbon figure',3]],
   'report.html':[['.stat',4],['.report-gallery figure',5],['.list-block',8],['.finance-block',2]],
   'partner.html':[['.sponsor',3],['.partner-mini',3],['.list-block',4]],
-  'contact.html':[['.contact-card2',1],['.list-block',3]],
+  'contact.html':[['.contact-card2',1],['.list-block',3],['.photo-ribbon figure',3]],
   'photo-credits.html':[['.license-card',4],['tbody tr',32]],
   'diagnosis.html':[['.diagnosis-start-card',2],['.flower-group-card',4],['.flower-atlas-card',32]]
 };
@@ -59,6 +59,14 @@ const visible=el=>{
           return {selector,min,total:els.length,visible:els.filter(visibleLocal).length};
         });
         const broken=[...document.images].filter(img=>img.complete&&img.getAttribute('src')&&img.naturalWidth===0).map(img=>img.getAttribute('src'));
+        const photoIssues=[...document.querySelectorAll('figure img,.photo-ribbon img')]
+          .filter(img=>{
+            const frame=img.closest('figure');
+            if(!frame||!visibleLocal(frame))return false;
+            return !visibleLocal(img)||img.naturalWidth===0||img.naturalHeight===0;
+          })
+          .map(img=>({src:img.getAttribute('src'),w:img.getBoundingClientRect().width,h:img.getBoundingClientRect().height,nw:img.naturalWidth,nh:img.naturalHeight}));
+        const visiblePhotoCount=[...document.querySelectorAll('figure img,.photo-ribbon img')].filter(visibleLocal).length;
         const h1=document.querySelectorAll('h1').length;
         const nav=document.querySelector('.site-nav');
         const toggle=document.querySelector('.menu-toggle');
@@ -68,6 +76,8 @@ const visible=el=>{
           overflowBy:root.scrollWidth-root.clientWidth,
           h1,
           broken,
+          photoIssues,
+          visiblePhotoCount,
           groups,
           navVisible:visibleLocal(nav),
           toggleVisible:visibleLocal(toggle),
@@ -80,6 +90,7 @@ const visible=el=>{
       if(data.overflow) failures.push({file,width,kind:'overflow',by:data.overflowBy});
       if(data.h1!==1) failures.push({file,width,kind:'h1',count:data.h1});
       if(data.broken.length) failures.push({file,width,kind:'broken-images',images:data.broken});
+      if(data.photoIssues.length) failures.push({file,width,kind:'hidden-or-zero-size-photos',photos:data.photoIssues});
       if(jsErrors.length) failures.push({file,width,kind:'js-errors',errors:jsErrors});
       if(groupFailures.length) failures.push({file,width,kind:'content',groups:groupFailures});
 
