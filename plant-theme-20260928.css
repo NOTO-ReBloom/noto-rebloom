@@ -1233,3 +1233,20 @@ html body.nr-new-event .update-band :is(p,strong,span){
     display:flex!important;
   }
 }
+
+
+/* FINAL CHIP AND ICON CONTRAST / 2026-09-28 */
+/* Circular card markers are intentionally dark, with white glyphs. */
+html body :is(.event-values>article,.cause-grid>article,.check-list>div)>span{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Volunteer names are light chips even though the surrounding THANK YOU section is dark. */
+html body.report-page .report-thanks .report-volunteer-names>span{
+  background:#f5f7f1!important;
+  border-color:rgba(24,75,61,.12)!important;
+  color:#315e50!important;
+  -webkit-text-fill-color:#315e50!important;
+}
