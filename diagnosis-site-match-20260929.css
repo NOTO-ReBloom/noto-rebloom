@@ -1,0 +1,685 @@
+/* Flower Diagnosis — site-matched botanical layer / 2026-09-29
+   Visual-only override. Diagnosis copy, questions, result logic and flower data are unchanged. */
+
+body.page-diagnosis{
+  --display:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Noto Sans JP","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
+  --sans:var(--body);
+  --serif:var(--display);
+  --dx-green:var(--plant-forest,#174a36);
+  --dx-deep:var(--plant-forest-2,#0f3a2a);
+  --dx-leaf:var(--plant-leaf,#5f8f58);
+  --dx-sage:var(--plant-sage,#dfe9d8);
+  --dx-sage2:var(--plant-sage-2,#eef3e8);
+  --dx-paper:var(--plant-paper,#fffdf8);
+  --dx-cream:var(--plant-cream,#fbf8ee);
+  --dx-soil:var(--plant-soil,#8a6a4a);
+  --dx-soil-soft:var(--plant-soil-soft,#eee3d5);
+  --dx-flower:var(--plant-flower,#e8c84f);
+  --dx-ink:var(--plant-ink,#1d342a);
+  --dx-muted:var(--plant-muted,#586b61);
+  --dx-line:var(--plant-line,rgba(23,74,54,.14));
+  --dx-shadow:var(--plant-shadow,0 16px 42px rgba(23,74,54,.10));
+  --dx-shadow-soft:var(--plant-shadow-soft,0 8px 24px rgba(23,74,54,.075));
+  background:var(--dx-cream)!important;
+  color:var(--dx-ink)!important;
+  font-family:var(--body)!important;
+}
+body.page-diagnosis,
+body.page-diagnosis button,
+body.page-diagnosis input,
+body.page-diagnosis select,
+body.page-diagnosis textarea,
+body.page-diagnosis dialog{
+  font-family:var(--body)!important;
+}
+body.page-diagnosis :is(
+  h1,h2,h3,h4,
+  .brand b,.page-hero h1,.section-heading h2,.diagnosis-intro h2,
+  .diagnosis-start-card h3,.diagnosis-method-card h3,.diagnosis-question,
+  .flower-group-card h3,.flower-atlas-heading h2,.flower-atlas-card b,
+  .atlas-dialog-grid h2,.result-copy h2,.result-card h3,
+  .result-group-profile h3,.result-deep-dive h3,.result-life-scenes h3,
+  .result-reflection h3,.result-tendency-section h3,.result-month-plan h3,
+  .result-next-action h3,.result-rich-insights h3,.result-rich-insights h4,
+  .result-reason-card h4,.result-share-copy h3,.final-cta h2
+){
+  font-family:var(--display)!important;
+  font-style:normal!important;
+  font-weight:900!important;
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis :is(p,li,dd,dt,small){color:var(--dx-muted)}
+body.page-diagnosis main{background:var(--dx-cream)!important}
+
+/* HERO — same visual language as the rest of NOTO Re:Bloom */
+body.page-diagnosis .page-hero--diagnosis{
+  position:relative!important;
+  overflow:hidden!important;
+  min-height:0!important;
+  padding:68px 0 76px!important;
+  background:
+    radial-gradient(ellipse at 7% 18%,rgba(125,166,111,.18) 0 11%,transparent 12%),
+    radial-gradient(ellipse at 96% 70%,rgba(95,143,88,.12) 0 14%,transparent 15%),
+    linear-gradient(180deg,var(--dx-paper),var(--dx-cream))!important;
+}
+body.page-diagnosis .page-hero--diagnosis::before{
+  content:""!important;
+  position:absolute!important;
+  width:220px!important;height:420px!important;
+  left:-118px!important;bottom:-150px!important;top:auto!important;right:auto!important;
+  border-radius:55% 45% 58% 42% / 38% 62% 38% 62%!important;
+  background:rgba(95,143,88,.13)!important;
+  transform:rotate(-25deg)!important;
+  z-index:0!important;
+  letter-spacing:0!important;
+}
+body.page-diagnosis .page-hero--diagnosis::after{
+  content:""!important;
+  position:absolute!important;
+  width:150px!important;height:74px!important;
+  right:3%!important;top:16%!important;left:auto!important;bottom:auto!important;
+  border-radius:100% 0 100% 0!important;
+  background:rgba(125,166,111,.14)!important;
+  transform:rotate(-28deg)!important;
+  z-index:0!important;
+}
+body.page-diagnosis .page-hero--diagnosis .container{position:relative;z-index:1}
+body.page-diagnosis .page-hero-grid{
+  grid-template-columns:minmax(0,1fr) minmax(390px,.92fr)!important;
+  gap:clamp(38px,5vw,72px)!important;
+  align-items:center!important;
+}
+body.page-diagnosis .page-hero--diagnosis h1{
+  margin:0!important;
+  max-width:10em!important;
+  font-family:var(--display)!important;
+  font-size:clamp(46px,4.4vw,66px)!important;
+  line-height:1.16!important;
+  letter-spacing:-.04em!important;
+  color:var(--dx-ink)!important;
+  text-wrap:balance!important;
+}
+body.page-diagnosis .page-hero--diagnosis .headline-marker{
+  color:inherit!important;
+  -webkit-text-fill-color:currentColor!important;
+  background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important;
+}
+body.page-diagnosis .page-hero--diagnosis p:not(.eyebrow){
+  max-width:41em!important;
+  color:var(--dx-muted)!important;
+  font-size:14px!important;
+  line-height:1.9!important;
+}
+body.page-diagnosis .hero-sticker-note{
+  display:inline-flex!important;
+  align-items:center!important;
+  margin-top:17px!important;
+  padding:9px 13px!important;
+  border:0!important;
+  border-radius:14px 22px 14px 22px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+  transform:rotate(-.4deg);
+}
+body.page-diagnosis .page-hero--diagnosis .photo-frame{
+  border:6px solid var(--dx-paper)!important;
+  border-radius:38px 18px 36px 20px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow)!important;
+  transform:rotate(.65deg)!important;
+}
+body.page-diagnosis .page-hero--diagnosis .photo-frame img{
+  width:100%!important;
+  aspect-ratio:4/3!important;
+  object-fit:cover!important;
+}
+body.page-diagnosis .page-hero--diagnosis .photo-frame figcaption{
+  padding:12px 15px 13px!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-muted)!important;
+  font-size:10px!important;
+  line-height:1.65!important;
+}
+body.page-diagnosis .hero-photo-credit,
+body.page-diagnosis .hero-photo-credit a{color:#718079!important}
+
+/* Shared buttons — same weight and palette as other pages */
+body.page-diagnosis .btn{
+  min-height:48px!important;
+  padding:0 19px!important;
+  border:1px solid rgba(23,74,54,.20)!important;
+  border-radius:999px!important;
+  font-family:var(--body)!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  letter-spacing:0!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .btn--green,
+body.page-diagnosis .diagnosis-main-start{
+  background:var(--dx-green)!important;
+  border-color:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .btn--paper,
+body.page-diagnosis .btn--outline{
+  background:var(--dx-paper)!important;
+  color:var(--dx-green)!important;
+  -webkit-text-fill-color:var(--dx-green)!important;
+}
+body.page-diagnosis .btn--yellow{
+  background:var(--dx-flower)!important;
+  border-color:transparent!important;
+  color:var(--dx-deep)!important;
+  -webkit-text-fill-color:var(--dx-deep)!important;
+}
+
+/* START / EXPLANATION — less "web app", more editorial botanical section */
+body.page-diagnosis .diagnosis-section{
+  padding:78px 0 84px!important;
+  background:var(--dx-cream)!important;
+}
+body.page-diagnosis .diagnosis-shell{
+  display:grid!important;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;
+  gap:22px!important;
+  align-items:stretch!important;
+}
+body.page-diagnosis .diagnosis-intro{
+  padding:28px 30px 26px!important;
+  border:0!important;
+  border-radius:30px 18px 28px 16px!important;
+  background:var(--dx-sage2)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-intro h2{
+  margin:8px 0 13px!important;
+  font-size:clamp(31px,3.1vw,46px)!important;
+  line-height:1.28!important;
+  letter-spacing:-.035em!important;
+}
+body.page-diagnosis .diagnosis-intro p{
+  color:var(--dx-muted)!important;
+  line-height:1.85!important;
+}
+body.page-diagnosis .diagnosis-tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:7px!important;
+  margin:22px 0 0!important;
+  padding:0!important;
+}
+body.page-diagnosis .diagnosis-tags li{
+  padding:8px 11px!important;
+  border:0!important;
+  border-radius:14px 20px 14px 20px!important;
+  background:rgba(255,253,248,.86)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:10px!important;
+  font-weight:800!important;
+}
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card){
+  border:0!important;
+  border-radius:28px 16px 30px 18px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow-soft)!important;
+}
+body.page-diagnosis .diagnosis-start-card{
+  padding:29px 30px!important;
+}
+body.page-diagnosis .diagnosis-start-label{
+  margin:0 0 11px!important;
+  padding:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--dx-leaf)!important;
+  font-family:var(--body)!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  letter-spacing:.13em!important;
+}
+body.page-diagnosis .diagnosis-start-card h3{
+  margin:0!important;
+  font-size:clamp(25px,2.4vw,33px)!important;
+  line-height:1.36!important;
+}
+body.page-diagnosis .diagnosis-answer-guide{
+  margin:20px 0!important;
+  padding:16px 18px!important;
+  border:0!important;
+  border-left:5px solid var(--dx-flower)!important;
+  border-radius:8px 18px 18px 8px!important;
+  background:#fbf5df!important;
+  color:var(--dx-muted)!important;
+}
+body.page-diagnosis .diagnosis-start-steps{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:9px!important;
+  margin:18px 0 0!important;
+  border:0!important;
+}
+body.page-diagnosis .diagnosis-start-steps>div{
+  padding:13px 11px!important;
+  border:0!important;
+  border-radius:18px 11px 18px 11px!important;
+  background:var(--dx-sage2)!important;
+}
+body.page-diagnosis .diagnosis-start-steps>div+div{border-left:0!important}
+body.page-diagnosis .diagnosis-start-steps b{color:var(--dx-leaf)!important}
+body.page-diagnosis .diagnosis-start-steps span{color:var(--dx-green)!important}
+body.page-diagnosis .diagnosis-main-start{
+  width:100%!important;
+  min-height:54px!important;
+  margin-top:19px!important;
+  font-family:var(--body)!important;
+  font-size:15px!important;
+  box-shadow:0 10px 24px rgba(23,74,54,.12)!important;
+}
+body.page-diagnosis .diagnosis-method-card{
+  margin-top:18px!important;
+  padding:25px 27px!important;
+  background:var(--dx-sage2)!important;
+}
+body.page-diagnosis .diagnosis-group-map{
+  border:0!important;
+  border-radius:24px 14px 24px 14px!important;
+  background:rgba(255,253,248,.82)!important;
+  box-shadow:none!important;
+}
+
+/* Section headings */
+body.page-diagnosis .section-heading--center,
+body.page-diagnosis .flower-atlas-heading{
+  max-width:760px!important;
+  margin:0 0 30px!important;
+  text-align:left!important;
+}
+body.page-diagnosis .section-heading h2,
+body.page-diagnosis .flower-atlas-heading h2{
+  font-size:clamp(31px,3vw,48px)!important;
+  line-height:1.3!important;
+  letter-spacing:-.03em!important;
+  text-wrap:balance!important;
+}
+body.page-diagnosis .eyebrow{
+  display:inline-flex!important;
+  margin:0 0 14px!important;
+  padding:7px 11px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .eyebrow :is(span,small){
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.08em!important;
+}
+
+/* Four groups — retain meaning, mute the palette into the site's plant colors */
+body.page-diagnosis .flower-group-showcase{
+  padding:82px 0!important;
+  background:var(--dx-paper)!important;
+}
+body.page-diagnosis .flower-group-grid{
+  gap:14px!important;
+}
+body.page-diagnosis .flower-group-card{
+  border:0!important;
+  border-radius:30px 16px 28px 18px!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+}
+body.page-diagnosis .flower-group-card--sun{background:#f8f1d9!important}
+body.page-diagnosis .flower-group-card--wind{background:var(--dx-sage2)!important}
+body.page-diagnosis .flower-group-card--satoyama{background:var(--dx-soil-soft)!important}
+body.page-diagnosis .flower-group-card--water{background:#e9f0e8!important}
+body.page-diagnosis .flower-group-card h3{
+  font-size:clamp(24px,2.2vw,31px)!important;
+  line-height:1.35!important;
+}
+body.page-diagnosis .flower-group-card p{color:var(--dx-muted)!important}
+body.page-diagnosis .flower-group-visual{
+  border-radius:24px 14px 24px 14px!important;
+  overflow:hidden!important;
+}
+
+/* Flower atlas — editorial gallery instead of a separate app */
+body.page-diagnosis .flower-atlas{
+  padding:82px 0 88px!important;
+  background:var(--dx-cream)!important;
+}
+body.page-diagnosis .flower-atlas-filters{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  margin:0 0 24px!important;
+}
+body.page-diagnosis .flower-atlas-filters button{
+  min-height:40px!important;
+  padding:0 14px!important;
+  border:1px solid rgba(23,74,54,.16)!important;
+  border-radius:999px!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:11px!important;
+  font-weight:850!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-atlas-filters button.is-active{
+  border-color:var(--dx-green)!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .flower-atlas-grid{
+  gap:12px!important;
+}
+body.page-diagnosis .flower-atlas-card{
+  border:0!important;
+  border-radius:24px 13px 25px 15px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow-soft)!important;
+  overflow:hidden!important;
+}
+body.page-diagnosis .flower-atlas-card:nth-child(2n){background:var(--dx-sage2)!important}
+body.page-diagnosis .flower-atlas-card b{
+  font-family:var(--display)!important;
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis .flower-atlas-card :is(span,small,p){color:var(--dx-muted)!important}
+body.page-diagnosis .flower-atlas-dialog{
+  border:0!important;
+  border-radius:30px 18px 28px 18px!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-ink)!important;
+  box-shadow:0 28px 90px rgba(20,62,52,.18)!important;
+}
+body.page-diagnosis .atlas-dialog-close{
+  border:0!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+
+/* QUESTION FLOW — preserve usability, remove the unrelated corporate-card feeling */
+body.page-diagnosis .diagnosis-panel{
+  max-width:900px!important;
+  margin:28px auto 52px!important;
+}
+body.page-diagnosis .diagnosis-response-frame{
+  border:0!important;
+  border-radius:32px 18px 30px 18px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow)!important;
+}
+body.page-diagnosis .diagnosis-progress{
+  top:82px!important;
+  margin:0 0 14px!important;
+  padding:12px 14px 13px!important;
+  border:0!important;
+  border-radius:20px 13px 20px 13px!important;
+  background:rgba(251,248,238,.96)!important;
+  box-shadow:0 8px 22px rgba(23,74,54,.07)!important;
+  backdrop-filter:blur(12px)!important;
+}
+body.page-diagnosis .diagnosis-progress-top{
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+}
+body.page-diagnosis .diagnosis-progress-track{
+  overflow:hidden!important;
+  border-radius:999px!important;
+  background:var(--dx-sage)!important;
+}
+body.page-diagnosis .diagnosis-progress-fill{
+  border-radius:999px!important;
+  background:linear-gradient(90deg,var(--dx-leaf),var(--dx-green))!important;
+}
+body.page-diagnosis .diagnosis-question-card{
+  padding:clamp(24px,4vw,39px)!important;
+  border:0!important;
+  border-radius:30px 16px 30px 18px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-q-category{
+  margin-bottom:13px!important;
+  padding:7px 11px!important;
+  border-radius:13px 18px 13px 18px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:10px!important;
+  font-weight:850!important;
+}
+body.page-diagnosis .diagnosis-question{
+  max-width:760px!important;
+  margin:0 auto 26px!important;
+  color:var(--dx-ink)!important;
+  font-family:var(--display)!important;
+  font-size:clamp(24px,3vw,36px)!important;
+  line-height:1.5!important;
+  letter-spacing:-.025em!important;
+}
+body.page-diagnosis .diagnosis-answer-grid{
+  gap:9px!important;
+}
+body.page-diagnosis .diagnosis-answer{
+  min-height:54px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:20px 12px 21px 13px!important;
+  background:var(--dx-sage2)!important;
+  color:var(--dx-green)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-answer:hover,
+body.page-diagnosis .diagnosis-answer:focus-visible{
+  border-color:rgba(23,74,54,.35)!important;
+  background:var(--dx-sage)!important;
+}
+body.page-diagnosis .diagnosis-answer.is-selected,
+body.page-diagnosis .diagnosis-answer[aria-pressed="true"]{
+  border-color:var(--dx-green)!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+}
+body.page-diagnosis .diagnosis-answer span{
+  font-family:var(--body)!important;
+  font-weight:850!important;
+}
+body.page-diagnosis .diagnosis-controls{
+  gap:9px!important;
+  padding-top:16px!important;
+}
+
+/* RESULT — same card rhythm as report / learn */
+body.page-diagnosis .diagnosis-result{
+  background:var(--dx-cream)!important;
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis .result-hero{
+  border:0!important;
+  border-radius:34px 18px 32px 20px!important;
+  background:
+    radial-gradient(circle at 88% 12%,rgba(95,143,88,.13),transparent 28%),
+    var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow)!important;
+}
+body.page-diagnosis .result-portrait-wrap,
+body.page-diagnosis .result-image{
+  border-radius:30px 16px 28px 18px!important;
+  overflow:hidden!important;
+}
+body.page-diagnosis .result-copy h2{
+  font-size:clamp(34px,4.1vw,56px)!important;
+  line-height:1.24!important;
+  letter-spacing:-.035em!important;
+}
+body.page-diagnosis .result-kicker,
+body.page-diagnosis .group-badge-wrap,
+body.page-diagnosis .result-role-chips span{
+  border:0!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+  .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+  .result-practice-card,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.neighbor-card,.collaboration-card,
+  .result-month-plan,.result-share-section,.result-next-action
+){
+  border:0!important;
+  border-radius:28px 16px 29px 17px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow-soft)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-group-profile,.result-rich-insights,
+  .result-life-scenes,.result-tendency-section,.result-month-plan
+):nth-of-type(even){
+  background:var(--dx-sage2)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+  .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+  .result-practice-card,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.neighbor-card,.collaboration-card,
+  .result-month-plan,.result-share-section,.result-next-action
+) :is(h2,h3,h4,strong,b){
+  color:var(--dx-ink)!important;
+  -webkit-text-fill-color:var(--dx-ink)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+  .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+  .result-practice-card,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.neighbor-card,.collaboration-card,
+  .result-month-plan,.result-share-section,.result-next-action
+) :is(p,li,small,span){
+  color:var(--dx-muted);
+}
+body.page-diagnosis .result-jump-nav{
+  border:0!important;
+  border-radius:22px 13px 22px 13px!important;
+  background:var(--dx-sage2)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .result-jump-nav a{
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+}
+body.page-diagnosis .axis-bars>div,
+body.page-diagnosis .result-snapshot-grid>*,
+body.page-diagnosis .result-quick-grid>*{
+  border:0!important;
+  border-radius:18px 11px 18px 11px!important;
+  background:var(--dx-sage2)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-disclaimer{
+  border-left:4px solid var(--dx-leaf)!important;
+  border-radius:8px 17px 17px 8px!important;
+  background:var(--dx-sage2)!important;
+  color:var(--dx-muted)!important;
+}
+
+/* Final CTA belongs to the same garden */
+body.page-diagnosis .final-cta{
+  position:relative!important;
+  overflow:hidden!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+}
+body.page-diagnosis .final-cta :is(h2,p){color:#fff!important;-webkit-text-fill-color:#fff!important}
+body.page-diagnosis .final-cta .btn--green{
+  background:var(--dx-flower)!important;
+  border-color:var(--dx-flower)!important;
+  color:var(--dx-deep)!important;
+  -webkit-text-fill-color:var(--dx-deep)!important;
+}
+body.page-diagnosis .final-flower{opacity:.18!important}
+
+/* Mobile fixed start button: same floating treatment as the site's report dock */
+body.page-diagnosis .diagnosis-mobile-start{
+  border:1px solid rgba(23,74,54,.14)!important;
+  border-radius:999px!important;
+  background:rgba(255,253,248,.96)!important;
+  box-shadow:0 12px 30px rgba(23,74,54,.15)!important;
+  backdrop-filter:blur(12px)!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button,
+body.page-diagnosis .diagnosis-mobile-start a{
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+}
+
+/* Remove visual leftovers that make this page feel like a different product */
+body.page-diagnosis .hero-motif{opacity:.18!important}
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card,.result-card)::before,
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card,.result-card)::after{
+  box-shadow:none!important;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  body.page-diagnosis .page-hero--diagnosis{padding:54px 0 62px!important}
+  body.page-diagnosis .page-hero-grid,
+  body.page-diagnosis .diagnosis-shell{
+    grid-template-columns:1fr!important;
+    gap:24px!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis h1{
+    max-width:none!important;
+    font-size:clamp(40px,8.8vw,54px)!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis .photo-frame{transform:none!important}
+  body.page-diagnosis .diagnosis-intro{padding:24px!important}
+  body.page-diagnosis .flower-group-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  body.page-diagnosis .page-hero--diagnosis{padding:42px 0 50px!important}
+  body.page-diagnosis .page-hero--diagnosis h1{
+    font-size:clamp(36px,10vw,46px)!important;
+    line-height:1.2!important;
+    letter-spacing:-.025em!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis h1 br{display:none!important}
+  body.page-diagnosis .page-hero--diagnosis .button-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis .button-row>*{width:100%!important}
+  body.page-diagnosis .diagnosis-section,
+  body.page-diagnosis .flower-group-showcase,
+  body.page-diagnosis .flower-atlas{
+    padding:58px 0!important;
+  }
+  body.page-diagnosis .diagnosis-intro,
+  body.page-diagnosis .diagnosis-start-card,
+  body.page-diagnosis .diagnosis-method-card{
+    padding:21px!important;
+    border-radius:24px 14px 25px 15px!important;
+  }
+  body.page-diagnosis .diagnosis-start-steps{grid-template-columns:1fr!important}
+  body.page-diagnosis .flower-group-grid{grid-template-columns:1fr!important}
+  body.page-diagnosis .diagnosis-question-card{padding:22px 17px!important}
+  body.page-diagnosis .diagnosis-question{
+    font-size:clamp(23px,7.2vw,31px)!important;
+    line-height:1.5!important;
+  }
+  body.page-diagnosis .diagnosis-answer{min-height:52px!important}
+  body.page-diagnosis .result-copy h2{font-size:clamp(31px,9vw,43px)!important}
+}
