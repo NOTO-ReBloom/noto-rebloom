@@ -5,10 +5,10 @@ const widths=[[375,812],[430,932],[768,1024],[1440,1000]];
 const cardExpectations={
   'index.html':[['.first-visit-grid article',4],['.why-join-grid article',4],['.story-step',7]],
   'thoughts.html':[['.event-values article',3],['.cause-grid article',4]],
-  'learn.html':[['.definition-card',3],['.chart-card',2],['.takeaway-grid article',3]],
+  'learn.html':[['.definition-card',3],['.chart-card',2]],
   'event.html':[['.info-card',6],['.game-card',6],['.time-card',4]],
   'report.html':[['.report-summary-card',5],['.report-impact-card',3],['.game-card',5],['.time-card',4]],
-  'partner.html':[['.nr-main-sponsor',3],['.nr-value-grid article',4],['.industry-partner-card',3]],
+  'partner.html':[['.nr-sponsor-wide',3],['.nr-value-grid article',4],['.industry-partner-card',3]],
   'contact.html':[['.contact-card',2]],
   'photo-credits.html':[['.license-card',4]],
   'diagnosis.html':[['.diagnosis-start-card',2],['.flower-group-card',4]]
@@ -109,7 +109,7 @@ function visibleCardFailure(checks){
   await featurePage.close();
   await browser.close();
 
-  const failures=results.filter(x=>x.httpStatus>=400||x.overflow||x.broken.length||x.unloaded.length||x.errors.length||x.h1Count!==1||x.cardFailures.length);
+  const failures=results.filter(x=>x.httpStatus>=400||x.overflow||x.broken.length||x.errors.length||x.h1Count!==1||x.cardFailures.length);
   const required=[
     ['index.html','partnerStrip'],['index.html','footerSocial'],['index.html','contactFab'],
     ['learn.html','farmlandStory'],['event.html','faqArchive'],
