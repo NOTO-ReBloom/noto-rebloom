@@ -2544,3 +2544,24 @@ html body.nr-new-partner .nr-main-sponsor b{
 }
 
 /* FINAL AUDIT TRIGGER 2026-09-29 */
+
+
+/* REPORT FLOW DARK-SURFACE FIX V10 / 2026-09-29 */
+html body.report-page .flow-section{
+  background:#174a36!important;
+  color:#fff!important;
+}
+html body.report-page .flow-section .section-intro h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:none!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+html body.report-page .flow-section .section-intro p,
+html body.report-page .flow-section .event-kicker{
+  color:rgba(255,255,255,.86)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.86)!important;
+}
