@@ -112,91 +112,90 @@ function drawFeatureRow(ctx,features,x,y,maxWidth,story){
 }
 function buildShareCard(photo,data,story=false){
   const W=1080,H=story?1920:1350;
-  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
+  const canvas=document.createElement('canvas');
+  canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const ink='#1d342a',muted='#647169',paper='#f7f5ef',white='#ffffff';
+  const ink='#18372d',muted='#66736d',line='rgba(24,55,45,.16)',white='#ffffff';
   const accent=cardAccent(data.group);
-  const sans='"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif';
+  const sans='"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
 
   const wrap=(text,x,y,maxWidth,lineHeight,maxLines,font,fill)=>{
     const chars=[...(text||'').trim()];
     ctx.font=font;ctx.fillStyle=fill;
-    const lines=[];let line='';
+    const lines=[];let current='';
     for(const ch of chars){
-      const next=line+ch;
-      if(ctx.measureText(next).width>maxWidth&&line){
-        lines.push(line);line=ch;
+      const test=current+ch;
+      if(current&&ctx.measureText(test).width>maxWidth){
+        lines.push(current);current=ch;
         if(lines.length===maxLines-1)break;
-      }else line=next;
+      }else current=test;
     }
-    if(line&&lines.length<maxLines)lines.push(line);
+    if(current&&lines.length<maxLines)lines.push(current);
     const consumed=lines.join('').length;
     if(consumed<chars.length&&lines.length){
       let last=lines[lines.length-1];
       while(last&&ctx.measureText(last+'…').width>maxWidth)last=last.slice(0,-1);
       lines[lines.length-1]=last+'…';
     }
-    lines.forEach((lineText,i)=>ctx.fillText(lineText,x,y+i*lineHeight));
-    return y+Math.max(0,lines.length-1)*lineHeight;
+    lines.forEach((t,i)=>ctx.fillText(t,x,y+i*lineHeight));
   };
 
-  ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=white;ctx.fillRect(0,0,W,H);
 
-  const outer=story?54:48;
-  ctx.fillStyle=white;
-  roundRectPath(ctx,outer,outer,W-outer*2,H-outer*2,story?28:24);ctx.fill();
+  const m=story?64:58;
+  const photoY=m;
+  const photoW=W-m*2;
+  const photoH=story?1120:660;
+  drawCover(ctx,photo,m,photoY,photoW,photoH,story?30:26);
 
-  const x=story?76:70;
-  const w=W-x*2;
-  const photoY=story?76:70;
-  const photoH=story?1110:650;
-  drawCover(ctx,photo,x,photoY,w,photoH,story?20:18);
+  // One restrained accent only.
+  ctx.fillStyle=accent;
+  roundRectPath(ctx,m,photoY+photoH+(story?54:46),story?82:70,6,3);
+  ctx.fill();
 
-  const contentY=photoY+photoH+(story?56:48);
-  ctx.fillStyle=accent;ctx.fillRect(x,contentY,story?92:78,5);
-
+  const groupY=photoY+photoH+(story?105:94);
   ctx.fillStyle=muted;
-  ctx.font=`700 ${story?21:18}px ${sans}`;
-  ctx.fillText(data.group||'花タイプ診断',x,contentY+(story?44:38));
+  ctx.font=`700 ${story?20:18}px ${sans}`;
+  ctx.fillText(data.group||'花タイプ診断',m,groupY);
 
-  const titleY=contentY+(story?138:118);
-  const titleText=`${data.name}タイプ`;
-  const titleSize=fitText(ctx,titleText,w,story?96:76,story?66:54,'800');
+  const titleY=groupY+(story?104:86);
+  const title=`${data.name}タイプ`;
+  const titleSize=fitText(ctx,title,photoW,story?96:78,story?64:54,'800');
   ctx.fillStyle=ink;
   ctx.font=`800 ${titleSize}px ${sans}`;
-  ctx.fillText(titleText,x,titleY);
+  ctx.fillText(title,m,titleY);
 
-  const leadY=titleY+(story?92:76);
+  const leadY=titleY+(story?82:68);
   wrap(
     data.lead||'',
-    x,leadY,w,
-    story?50:42,2,
-    `600 ${story?31:26}px ${sans}`,
-    '#40544a'
+    m,leadY,photoW,
+    story?48:40,2,
+    `500 ${story?30:25}px ${sans}`,
+    '#43584f'
   );
 
-  const footerLineY=H-outer-(story?155:125);
-  ctx.strokeStyle='rgba(29,52,42,.14)';ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(x,footerLineY);ctx.lineTo(W-x,footerLineY);ctx.stroke();
+  const footerY=H-(story?175:132);
+  ctx.strokeStyle=line;ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(m,footerY);ctx.lineTo(W-m,footerY);ctx.stroke();
 
   ctx.fillStyle=ink;
-  ctx.font=`800 ${story?22:18}px ${sans}`;
-  ctx.fillText('NOTO Re:Bloom  花タイプ診断',x,footerLineY+(story?52:43));
+  ctx.font=`800 ${story?23:19}px ${sans}`;
+  ctx.fillText('NOTO Re:Bloom',m,footerY+(story?58:48));
 
-  ctx.fillStyle=muted;
-  ctx.font=`500 ${story?16:14}px ${sans}`;
-  ctx.fillText('40問 / 約4〜6分 / 登録不要',x,footerLineY+(story?88:73));
   ctx.textAlign='right';
-  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-x,footerLineY+(story?88:73));
+  ctx.fillStyle=muted;
+  ctx.font=`600 ${story?18:15}px ${sans}`;
+  ctx.fillText('花タイプ診断',W-m,footerY+(story?58:48));
   ctx.textAlign='left';
 
   if(data.slug==='renge'){
     ctx.textAlign='right';
-    ctx.fillStyle='rgba(255,255,255,.92)';
-    ctx.font=`600 ${story?12:10}px ${sans}`;
-    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',x+w-14,photoY+photoH-14);
+    ctx.fillStyle='rgba(255,255,255,.94)';
+    ctx.font=`500 ${story?12:10}px ${sans}`;
+    ctx.fillText('Photo: houroumono / CC BY 2.0',W-m-12,photoY+photoH-14);
     ctx.textAlign='left';
   }
+
   return canvas.toDataURL('image/png',.95);
 }
 function dataUrlToFile(dataUrl,name){
@@ -262,6 +261,7 @@ function init(){
   });
   const title=document.getElementById('resultTitle');
   if(title)new MutationObserver(()=>setTimeout(refreshResult,80)).observe(title,{childList:true,subtree:true,characterData:true});
+  setTimeout(refreshResult,120);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
