@@ -111,6 +111,40 @@ jobs:
           print(f'OK: validated {len(pages)} public pages.')
           PY
 
+      - name: Guard natural public copy
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          files = [
+              'index.html','thoughts.html','learn.html','event.html','report.html',
+              'partner.html','diagnosis.html','contact.html','photo-credits.html','404.html',
+              'plant-art-20260929.js','diagnosis-visual-v2.js'
+          ]
+          banned = [
+              'GOOD DAY','LOW BATTERY','THIS IS YOU','SHARE CARD',
+              'SUPPORTED BY','SPONSORSHIP','TRANSPARENCY','PROGRAM / ARCHIVE',
+              'HOW TO JOIN / ARCHIVE','BEFORE YOU COME / ARCHIVE',
+              'DAY FLOW / ARCHIVE','WHAT TO BRING / ARCHIVE',
+              'SAFETY & SUPPORT / ARCHIVE','FAQ / ARCHIVE',
+              '<small>YES</small>','LEAN YES','LEAN NO','<small>NO</small>',
+              'わたしを再発見','あなたの輪郭','自分を守る境界線',
+              '小さな循環','一つの見方です','同じ情報設計で',
+              'エネルギーの戻し方'
+          ]
+
+          failures = []
+          for name in files:
+              text = Path(name).read_text(encoding='utf-8')
+              for phrase in banned:
+                  if phrase in text:
+                      failures.append(f'{name}: banned public-copy phrase: {phrase}')
+
+          if failures:
+              raise SystemExit('\n'.join(failures))
+          print('OK: public copy avoids decorative English and flagged AI-like wording.')
+          PY
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
