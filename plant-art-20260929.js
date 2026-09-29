@@ -215,6 +215,14 @@
       });
     });
 
+    document.querySelectorAll('body.report-page .flow-section .section-intro h2').forEach(el=>{
+      important(el,'color','#173a31');
+      important(el,'-webkit-text-fill-color','#173a31');
+      important(el,'background','none');
+      important(el,'text-shadow','none');
+      important(el,'opacity','1');
+    });
+
     document.querySelectorAll('body.report-page .report-thanks .report-volunteer-names>span').forEach(el=>{
       important(el,'background-color','#f5f7f1');
       important(el,'color','#315e50');
