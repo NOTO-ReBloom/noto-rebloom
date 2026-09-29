@@ -97,6 +97,14 @@ let renderToken=0;
 function groupAccent(group){
   return {'太陽の花':'#c89b13','風の花':'#4f91aa','里山の花':'#5f8b56','水辺の花':'#6878ae'}[group]||'#174b3b';
 }
+function groupPalette(group){
+  return {
+    '太陽の花':{panel:'#fff0b8',ink:'#513c05',copy:'#6a5217',soft:'#fff8df'},
+    '風の花':{panel:'#e3f0f4',ink:'#18495a',copy:'#355d68',soft:'#f2f8fa'},
+    '里山の花':{panel:'#e7f0df',ink:'#29492d',copy:'#476049',soft:'#f4f8f0'},
+    '水辺の花':{panel:'#e9eaf7',ink:'#303a69',copy:'#525b82',soft:'#f5f5fb'}
+  }[group]||{panel:'#e7efe9',ink:'#17362c',copy:'#365248',soft:'#f5f8f5'};
+}
 function drawQr(ctx,x,y,size){
   const n=QR_MATRIX.length;
   const cell=size/n;
@@ -236,28 +244,30 @@ function currentData(){
 }
 
 function drawAxis(ctx,axis,x,y,w,accent,story=false){
-  const ink='#21372e',muted='#738078';
+  const ink='#18382e',muted='#596b62';
   const titleSize=story?19:15;
   ctx.fillStyle=ink;ctx.font=`800 ${titleSize}px ${SANS}`;
   ctx.fillText(axis.title||'傾向',x,y);
 
   const labelY=y+(story?28:23);
-  ctx.fillStyle=muted;ctx.font=`600 ${story?12:10}px ${SANS}`;
+  ctx.fillStyle=muted;ctx.font=`700 ${story?12:10}px ${SANS}`;
   ctx.fillText(axis.left||'',x,labelY);
   ctx.textAlign='right';ctx.fillText(axis.right||'',x+w,labelY);ctx.textAlign='left';
 
   const barY=labelY+(story?20:15);
-  ctx.strokeStyle='rgba(33,55,46,.16)';
-  ctx.lineWidth=story?4:3;
+  ctx.strokeStyle='#d9e0d9';
+  ctx.lineWidth=story?5:4;
   ctx.beginPath();ctx.moveTo(x,barY);ctx.lineTo(x+w,barY);ctx.stroke();
 
-  ctx.strokeStyle='rgba(33,55,46,.08)';
+  ctx.strokeStyle='rgba(24,56,46,.16)';
   ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(x+w/2,barY-(story?9:7));ctx.lineTo(x+w/2,barY+(story?9:7));ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x+w/2,barY-(story?10:8));ctx.lineTo(x+w/2,barY+(story?10:8));ctx.stroke();
 
   const p=Math.max(0,Math.min(100,Number(axis.position)||50))/100;
   const dotX=x+w*p;
-  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(dotX,barY,story?8:7,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(dotX,barY,story?9:8,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#fff';ctx.lineWidth=story?3:2;
+  ctx.beginPath();ctx.arc(dotX,barY,story?9:8,0,Math.PI*2);ctx.stroke();
 }
 
 function drawPaperPanel(ctx,x,y,w,h,fill='#fbf8f0',alpha=1){
@@ -299,7 +309,8 @@ function buildEditorialCard(photo,landscape,data){
   const W=1080,H=1350,m=56;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const ink='#17362c',muted='#65736c',paper='#f7f2e8',accent=groupAccent(data.group);
+  const ink='#17362c',muted='#5d6d65',paper='#f7f2e8',accent=groupAccent(data.group);
+  const palette=groupPalette(data.group);
 
   ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
   drawSoftWash(ctx,92,120,210,accent,.12);
@@ -316,26 +327,32 @@ function buildEditorialCard(photo,landscape,data){
   ctx.font=`700 14px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,44);
   ctx.textAlign='right';ctx.fillText('FLOWER TYPE / 32',W-m,44);ctx.textAlign='left';
 
-  // Torn-paper title sheet overlapping the hero.
+  // Colored title sheet: clearly separated from the neutral parameter area.
   const panelX=m,panelY=365,panelW=690,panelH=265;
-  drawPaperPanel(ctx,panelX,panelY,panelW,panelH,'#fbf7ed',.98);
-  ctx.fillStyle=accent;ctx.fillRect(panelX+26,panelY+34,62,4);
-  ctx.fillStyle=muted;ctx.font=`700 12px ${SANS}`;
-  ctx.fillText(data.group||'花タイプ',panelX+26,panelY+66);
+  ctx.save();
+  ctx.shadowColor='rgba(18,48,38,.16)';
+  ctx.shadowBlur=24;
+  ctx.shadowOffsetY=8;
+  drawPaperPanel(ctx,panelX,panelY,panelW,panelH,palette.panel,.99);
+  ctx.restore();
+  ctx.fillStyle=accent;ctx.fillRect(panelX+26,panelY+34,74,5);
+  ctx.fillStyle=palette.ink;ctx.font=`800 12px ${SANS}`;
+  ctx.fillText(data.group||'花タイプ',panelX+26,panelY+67);
 
-  const titleSize=fitText(ctx,data.name,panelW-52,70,50,'900');
-  ctx.fillStyle=ink;ctx.font=`900 ${titleSize}px ${SANS}`;
-  ctx.fillText(data.name,panelX+26,panelY+132);
+  const titleSize=fitText(ctx,data.name,panelW-52,72,52,'900');
+  ctx.fillStyle=palette.ink;ctx.font=`900 ${titleSize}px ${SANS}`;
+  ctx.fillText(data.name,panelX+26,panelY+134);
 
   const copy=SOCIAL_COPY[data.slug]||data.tagline||'';
-  drawWrapped(ctx,copy,panelX+26,panelY+184,panelW-54,34,2,`700 25px ${SANS}`,'#365248');
+  drawWrapped(ctx,copy,panelX+26,panelY+188,panelW-54,34,2,`800 25px ${SANS}`,palette.copy);
 
-  // Main information field.
-  ctx.fillStyle='#fbf8f1';ctx.fillRect(0,560,W,595);
+  // Main information field: neutral background so it does not merge with the title sheet.
+  ctx.fillStyle='#fffdf8';ctx.fillRect(0,560,W,595);
+  drawSoftWash(ctx,970,690,150,palette.panel,.22);
   drawLeafSprig(ctx,W-78,735,.72,accent);
 
-  ctx.fillStyle=muted;ctx.font=`800 11px ${SANS}`;ctx.fillText('わたしをつくる 5つの咲き方',m,686);
-  ctx.strokeStyle='rgba(23,54,44,.14)';ctx.lineWidth=1;
+  ctx.fillStyle=ink;ctx.font=`900 12px ${SANS}`;ctx.fillText('わたしをつくる 5つの咲き方',m,686);
+  ctx.strokeStyle='rgba(23,54,44,.22)';ctx.lineWidth=1.2;
   ctx.beginPath();ctx.moveTo(m,704);ctx.lineTo(W-m,704);ctx.stroke();
 
   const axes=(data.axes||[]).slice(0,5);
@@ -390,7 +407,8 @@ function buildStoryCard(photo,landscape,data){
   const W=1080,H=1920,m=60;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const ink='#17362c',muted='#65736c',paper='#f7f2e8',accent=groupAccent(data.group);
+  const ink='#17362c',muted='#5d6d65',paper='#f7f2e8',accent=groupAccent(data.group);
+  const palette=groupPalette(data.group);
 
   ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
   drawCover(ctx,photo,0,0,W,760);
@@ -400,16 +418,22 @@ function buildStoryCard(photo,landscape,data){
   ctx.fillText('NOTO Re:Bloom',m,58);
   ctx.textAlign='right';ctx.fillText('FLOWER TYPE / 32',W-m,58);ctx.textAlign='left';
 
-  drawPaperPanel(ctx,m,610,W-m*2,310,'#fbf7ed',.98);
-  ctx.fillStyle=accent;ctx.fillRect(m+28,650,72,5);
-  ctx.fillStyle=muted;ctx.font=`700 14px ${SANS}`;ctx.fillText(data.group,m+28,686);
-  const titleSize=fitText(ctx,data.name,W-m*2-56,82,60,'900');
-  ctx.fillStyle=ink;ctx.font=`900 ${titleSize}px ${SANS}`;ctx.fillText(data.name,m+28,774);
-  drawWrapped(ctx,SOCIAL_COPY[data.slug]||data.tagline||'',m+28,830,W-m*2-56,43,2,`700 31px ${SANS}`,'#365248');
+  ctx.save();
+  ctx.shadowColor='rgba(18,48,38,.16)';
+  ctx.shadowBlur=26;
+  ctx.shadowOffsetY=9;
+  drawPaperPanel(ctx,m,610,W-m*2,310,palette.panel,.99);
+  ctx.restore();
+  ctx.fillStyle=accent;ctx.fillRect(m+28,650,82,5);
+  ctx.fillStyle=palette.ink;ctx.font=`800 14px ${SANS}`;ctx.fillText(data.group,m+28,686);
+  const titleSize=fitText(ctx,data.name,W-m*2-56,84,62,'900');
+  ctx.fillStyle=palette.ink;ctx.font=`900 ${titleSize}px ${SANS}`;ctx.fillText(data.name,m+28,776);
+  drawWrapped(ctx,SOCIAL_COPY[data.slug]||data.tagline||'',m+28,834,W-m*2-56,43,2,`800 31px ${SANS}`,palette.copy);
 
-  ctx.fillStyle='#fbf8f1';ctx.fillRect(0,900,W,720);
-  ctx.fillStyle=muted;ctx.font=`800 12px ${SANS}`;ctx.fillText('わたしをつくる 5つの咲き方',m,962);
-  ctx.strokeStyle='rgba(23,54,44,.14)';ctx.beginPath();ctx.moveTo(m,980);ctx.lineTo(W-m,980);ctx.stroke();
+  ctx.fillStyle='#fffdf8';ctx.fillRect(0,900,W,720);
+  drawSoftWash(ctx,930,1010,170,palette.panel,.22);
+  ctx.fillStyle=ink;ctx.font=`900 12px ${SANS}`;ctx.fillText('わたしをつくる 5つの咲き方',m,962);
+  ctx.strokeStyle='rgba(23,54,44,.22)';ctx.beginPath();ctx.moveTo(m,980);ctx.lineTo(W-m,980);ctx.stroke();
 
   const axes=(data.axes||[]).slice(0,5);
   axes.forEach((axis,i)=>drawAxis(ctx,axis,m,1022+i*92,W-m*2,accent,true));
