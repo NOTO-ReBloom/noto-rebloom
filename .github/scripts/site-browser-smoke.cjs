@@ -1,3 +1,4 @@
+// contrast-audit-v2
 const puppeteer=require('puppeteer-core');
 const fs=require('fs');
 const axeSource=fs.readFileSync(require.resolve('axe-core/axe.min.js'),'utf8');
