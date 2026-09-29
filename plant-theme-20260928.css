@@ -1497,3 +1497,188 @@ html.rb-botanical-ready .rb-botanical-decor{opacity:1}
   .rb-botanical-petal{animation:none!important}
   .rb-botanical-decor{transition:none!important}
 }
+
+
+/* BOTANICAL FINISHING LAYER / 2026-09-29 */
+/* Keep content above background shadows, but decorative separators can sit inside sections. */
+main{position:relative;z-index:1}
+.rb-botanical-decor{z-index:0}
+.site-header,.site-footer,.site-partner-strip--universal{position:relative;z-index:40}
+
+/* Very soft leaf shadows in empty background zones. */
+.rb-leaf-shadow{
+  position:absolute;
+  width:clamp(180px,20vw,340px);
+  height:clamp(260px,30vw,480px);
+  opacity:.055;
+  filter:blur(10px);
+  transform-origin:50% 100%;
+}
+.rb-leaf-shadow::before,
+.rb-leaf-shadow::after{
+  content:"";
+  position:absolute;
+  border-radius:70% 30% 68% 32% / 76% 24% 76% 24%;
+  background:var(--rb-decor-leaf-dark);
+}
+.rb-leaf-shadow::before{
+  width:42%;height:66%;left:8%;top:4%;transform:rotate(-24deg);
+}
+.rb-leaf-shadow::after{
+  width:38%;height:58%;right:8%;bottom:2%;transform:rotate(28deg);
+}
+.rb-leaf-shadow--one{top:18%;right:-90px;transform:rotate(-12deg)}
+.rb-leaf-shadow--two{top:73%;left:-110px;transform:scaleX(-1) rotate(-16deg);opacity:.045}
+
+/* Section-to-section connector: a restrained vine line, not a divider bar. */
+.rb-section-botanical-host{
+  position:relative;
+}
+.rb-section-botanical{
+  position:absolute;
+  left:50%;
+  top:-18px;
+  width:min(280px,34vw);
+  height:38px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  opacity:.34;
+  z-index:3;
+}
+.rb-section-botanical svg{
+  width:100%;height:100%;display:block;overflow:visible;
+}
+.rb-section-botanical .rb-divider-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.7;
+  stroke-linecap:round;
+}
+.rb-section-botanical .rb-divider-leaf{fill:var(--rb-decor-leaf)}
+.rb-section-botanical .rb-divider-seed{fill:var(--rb-decor-bloom-2)}
+.rb-section-botanical--alt{
+  opacity:.25;
+  transform:translateX(-50%) scaleX(-1);
+}
+
+/* Page-specific motif badges live only in outer margins. */
+.rb-page-motif{
+  position:absolute;
+  width:120px;
+  height:120px;
+  pointer-events:none;
+  opacity:.22;
+}
+.rb-page-motif--top{top:9%;right:max(14px,calc((100vw - 1180px)/2 - 56px))}
+.rb-page-motif--bottom{top:88%;left:max(12px,calc((100vw - 1180px)/2 - 56px))}
+.rb-page-motif svg{width:100%;height:100%;overflow:visible}
+.rb-page-motif .rb-motif-stroke{
+  fill:none;stroke:var(--rb-decor-leaf-dark);stroke-width:2.2;stroke-linecap:round;
+}
+.rb-page-motif .rb-motif-fill{fill:var(--rb-decor-leaf)}
+.rb-page-motif .rb-motif-accent{fill:var(--rb-decor-bloom)}
+.rb-page-motif .rb-motif-seed{fill:var(--rb-decor-seed)}
+
+/* Buttons get a tiny sprout only on hover/focus. Existing button copy/background stays untouched. */
+.btn.rb-botanical-btn{
+  position:relative!important;
+  isolation:isolate;
+}
+.rb-btn-leaf{
+  position:absolute;
+  right:13px;
+  top:-8px;
+  width:18px;
+  height:18px;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(5px) rotate(-14deg) scale(.72);
+  transition:opacity .22s ease,transform .28s cubic-bezier(.2,.8,.2,1);
+  z-index:3;
+}
+.rb-btn-leaf::before,
+.rb-btn-leaf::after{
+  content:"";
+  position:absolute;
+  width:8px;height:13px;
+  border-radius:80% 20% 78% 22% / 72% 28% 72% 28%;
+  background:var(--rb-decor-leaf);
+}
+.rb-btn-leaf::before{left:2px;top:4px;transform:rotate(-30deg)}
+.rb-btn-leaf::after{right:1px;top:0;transform:rotate(34deg)}
+@media(hover:hover){
+  .btn.rb-botanical-btn:hover .rb-btn-leaf,
+  .btn.rb-botanical-btn:focus-visible .rb-btn-leaf{
+    opacity:.72;
+    transform:translateY(0) rotate(-4deg) scale(1);
+  }
+}
+
+/* Only selected, important photo blocks get a tiny overhanging leaf. */
+.rb-photo-botanical{
+  position:relative!important;
+  overflow:visible!important;
+}
+.rb-photo-corner-leaf{
+  position:absolute;
+  right:-13px;
+  bottom:-10px;
+  width:44px;
+  height:54px;
+  pointer-events:none;
+  z-index:5;
+  opacity:.42;
+  filter:drop-shadow(0 8px 12px rgba(45,80,54,.08));
+}
+.rb-photo-corner-leaf::before,
+.rb-photo-corner-leaf::after{
+  content:"";
+  position:absolute;
+  border-radius:78% 22% 76% 24% / 70% 30% 70% 30%;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--rb-decor-leaf) 78%,#fff),var(--rb-decor-leaf));
+}
+.rb-photo-corner-leaf::before{width:20px;height:36px;left:3px;bottom:2px;transform:rotate(-28deg)}
+.rb-photo-corner-leaf::after{width:18px;height:32px;right:2px;top:0;transform:rotate(31deg)}
+.rb-photo-corner-leaf i{
+  position:absolute;
+  left:21px;bottom:0;
+  width:2px;height:45px;
+  background:var(--rb-decor-leaf-dark);
+  transform:rotate(7deg);
+  opacity:.48;
+}
+
+/* Page personalities: same system, different motif emphasis. */
+body[data-rb-motif="home"] .rb-page-motif{opacity:.20}
+body[data-rb-motif="thoughts"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="learn"] .rb-page-motif{opacity:.20}
+body[data-rb-motif="event"] .rb-page-motif{opacity:.22}
+body[data-rb-motif="report"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="partner"] .rb-page-motif{opacity:.18}
+body[data-rb-motif="diagnosis"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="contact"] .rb-page-motif{opacity:.17}
+
+/* Dark sections should not inherit a muddy decorative overlay. */
+.section--soil .rb-section-botanical,
+.report-finance .rb-section-botanical,
+.update-band .rb-section-botanical{
+  display:none!important;
+}
+
+/* Desktop density only; mobile stays deliberately restrained. */
+@media(max-width:900px){
+  .rb-leaf-shadow{opacity:.035;width:180px;height:250px}
+  .rb-section-botanical{width:180px;top:-12px;opacity:.24}
+  .rb-page-motif{width:86px;height:86px;opacity:.15!important}
+  .rb-photo-corner-leaf{width:34px;height:42px;opacity:.30}
+}
+@media(max-width:620px){
+  .rb-leaf-shadow{display:none}
+  .rb-page-motif--bottom{display:none}
+  .rb-section-botanical{width:132px;height:28px;opacity:.19}
+  .rb-photo-corner-leaf{display:none}
+  .rb-btn-leaf{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .rb-btn-leaf{transition:none!important}
+}
