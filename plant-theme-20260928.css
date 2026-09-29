@@ -1681,3 +1681,189 @@ body[data-rb-motif="contact"] .rb-page-motif{opacity:.17}
 @media(prefers-reduced-motion:reduce){
   .rb-btn-leaf{transition:none!important}
 }
+
+
+/* HUMAN ART-DIRECTION OVERRIDE / 2026-09-29 */
+/* Reduce repetitive "AI decoration": fewer objects, larger intentional compositions. */
+.rb-botanical-petal--2,
+.rb-botanical-petal--3,
+.rb-botanical-petal--5,
+.rb-botanical-petal--6,
+.rb-botanical-petal--7,
+.rb-botanical-petal--8,
+.rb-seed-cluster--two,
+.rb-botanical-sprig--two,
+.rb-page-motif--bottom,
+.rb-btn-leaf{
+  display:none!important;
+}
+.rb-section-botanical{display:none!important}
+.rb-section-botanical.rb-section-botanical--feature{display:block!important}
+
+/* One large off-canvas botanical composition per side. */
+.rb-editorial-plant{
+  position:absolute;
+  width:clamp(260px,26vw,470px);
+  height:auto;
+  pointer-events:none;
+  opacity:.22;
+  filter:drop-shadow(0 22px 38px rgba(31,71,48,.06));
+}
+.rb-editorial-plant--left{
+  top:10%;
+  left:max(-250px,calc((100vw - 1180px)/2 - 320px));
+  transform:rotate(-10deg);
+}
+.rb-editorial-plant--right{
+  top:57%;
+  right:max(-270px,calc((100vw - 1180px)/2 - 335px));
+  transform:rotate(9deg) scaleX(-1);
+  opacity:.17;
+}
+.rb-editorial-plant .rb-art-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:2.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-editorial-plant .rb-art-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 84%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.1;
+}
+.rb-editorial-plant .rb-art-flower{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 84%,#fff);
+  stroke:color-mix(in srgb,var(--rb-decor-bloom) 62%,#5d4960);
+  stroke-width:1;
+}
+.rb-editorial-plant .rb-art-core{fill:var(--rb-decor-bloom-2)}
+.rb-editorial-plant .rb-art-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 82%,#fff);
+  stroke:color-mix(in srgb,var(--rb-decor-seed) 70%,#6f5735);
+  stroke-width:1;
+}
+
+/* Organic section washes: only JS-selected sections receive them. */
+main>section.rb-art-wash{
+  position:relative;
+  isolation:isolate;
+}
+main>section.rb-art-wash::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  left:max(-8vw,-120px);
+  right:max(-6vw,-90px);
+  top:8%;
+  bottom:8%;
+  background:
+    radial-gradient(ellipse at 23% 38%,color-mix(in srgb,var(--rb-decor-bloom-2) 15%,transparent),transparent 43%),
+    radial-gradient(ellipse at 72% 62%,color-mix(in srgb,var(--rb-decor-leaf) 13%,transparent),transparent 48%),
+    linear-gradient(100deg,rgba(255,250,239,.68),rgba(245,249,239,.46));
+  border-radius:44% 56% 48% 52% / 20% 26% 74% 80%;
+  transform:rotate(-.55deg);
+}
+main>section.rb-art-wash--alt::before{
+  background:
+    radial-gradient(ellipse at 78% 32%,color-mix(in srgb,var(--rb-decor-bloom) 10%,transparent),transparent 45%),
+    radial-gradient(ellipse at 20% 72%,color-mix(in srgb,var(--rb-decor-leaf) 12%,transparent),transparent 48%),
+    linear-gradient(98deg,rgba(248,244,234,.48),rgba(255,252,244,.72));
+  border-radius:56% 44% 61% 39% / 72% 69% 31% 28%;
+  transform:rotate(.45deg);
+}
+
+/* Real-paper feel using subtle non-repeating line and fiber noise. */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  pointer-events:none;
+  opacity:.025;
+  mix-blend-mode:multiply;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(45,64,51,.18) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(90deg,rgba(126,102,68,.10) 0 1px,transparent 1px 7px);
+  background-size:100% 4px,7px 100%;
+}
+
+/* Hand-drawn accent line: slightly irregular and intentionally asymmetric. */
+.rb-handline{
+  position:absolute;
+  width:clamp(150px,16vw,260px);
+  height:44px;
+  pointer-events:none;
+  opacity:.38;
+  z-index:2;
+}
+.rb-handline--left{left:max(12px,calc((100vw - 1180px)/2 - 32px));top:36%}
+.rb-handline--right{right:max(10px,calc((100vw - 1180px)/2 - 26px));top:79%;transform:scaleX(-1)}
+.rb-handline svg{display:block;width:100%;height:100%;overflow:visible}
+.rb-handline path{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.7;
+  stroke-linecap:round;
+}
+.rb-handline circle{fill:var(--rb-decor-bloom-2)}
+
+/* One photo accent, not every photo. */
+.rb-photo-botanical{overflow:visible!important}
+.rb-photo-corner-leaf{
+  width:76px!important;
+  height:92px!important;
+  right:-22px!important;
+  top:auto!important;
+  bottom:-22px!important;
+  opacity:.52!important;
+}
+.rb-photo-corner-leaf::before{width:32px!important;height:57px!important}
+.rb-photo-corner-leaf::after{width:29px!important;height:52px!important}
+.rb-photo-corner-leaf i{left:36px!important;height:72px!important}
+
+/* The remaining petals are larger and feel like deliberate foreground accents. */
+.rb-botanical-petal--1{
+  width:34px!important;height:54px!important;
+  opacity:.32!important;
+  left:5.5%!important;
+}
+.rb-botanical-petal--4{
+  width:38px!important;height:58px!important;
+  opacity:.28!important;
+  right:5%!important;
+}
+.rb-botanical-sprig--one{opacity:.18!important;width:210px!important}
+.rb-seed-cluster--one{opacity:.22!important;transform:rotate(-17deg) scale(1.12)!important}
+
+/* page-specific emphasis */
+body[data-rb-motif="diagnosis"] .rb-editorial-plant{opacity:.24}
+body[data-rb-motif="report"] .rb-editorial-plant,
+body[data-rb-motif="event"] .rb-editorial-plant{opacity:.20}
+body[data-rb-motif="partner"] .rb-editorial-plant{opacity:.15}
+body[data-rb-motif="thoughts"] .rb-editorial-plant--left{top:15%}
+body[data-rb-motif="learn"] .rb-editorial-plant--right{top:50%}
+
+@media(max-width:980px){
+  .rb-editorial-plant{width:260px;opacity:.13}
+  .rb-editorial-plant--left{left:-185px}
+  .rb-editorial-plant--right{right:-190px}
+  .rb-handline{opacity:.24}
+  main>section.rb-art-wash::before{left:-36px;right:-36px}
+}
+@media(max-width:700px){
+  body::after{opacity:.016}
+  .rb-editorial-plant{width:190px;opacity:.09}
+  .rb-editorial-plant--left{left:-145px}
+  .rb-editorial-plant--right{right:-150px}
+  .rb-handline{display:none}
+  .rb-botanical-petal--4{display:none!important}
+  .rb-botanical-petal--1{opacity:.18!important}
+  .rb-photo-corner-leaf{display:none!important}
+  main>section.rb-art-wash::before{
+    left:-16px;right:-16px;
+    border-radius:26px;
+    transform:none;
+  }
+}
