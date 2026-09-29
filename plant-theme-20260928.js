@@ -222,10 +222,92 @@
     });
   };
 
+  const ensureBotanicalDecor=()=>{
+    if(document.querySelector('.rb-botanical-decor'))return;
+    const layer=document.createElement('div');
+    layer.className='rb-botanical-decor';
+    layer.setAttribute('aria-hidden','true');
+    layer.innerHTML=`
+      <span class="rb-botanical-haze rb-botanical-haze--one"></span>
+      <span class="rb-botanical-haze rb-botanical-haze--two"></span>
+
+      <svg class="rb-botanical-vine rb-botanical-vine--left" viewBox="0 0 220 720" focusable="false" aria-hidden="true">
+        <path class="rb-vine-stem" d="M100 714C59 620 146 571 91 482C36 393 139 341 101 251C70 176 133 118 107 8"/>
+        <ellipse class="rb-vine-leaf" cx="79" cy="626" rx="24" ry="43" transform="rotate(-38 79 626)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="127" cy="574" rx="22" ry="40" transform="rotate(31 127 574)"/>
+        <ellipse class="rb-vine-leaf" cx="70" cy="502" rx="23" ry="42" transform="rotate(-44 70 502)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="136" cy="432" rx="22" ry="40" transform="rotate(38 136 432)"/>
+        <ellipse class="rb-vine-leaf" cx="77" cy="350" rx="21" ry="38" transform="rotate(-40 77 350)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="132" cy="274" rx="20" ry="37" transform="rotate(36 132 274)"/>
+        <ellipse class="rb-vine-leaf" cx="86" cy="192" rx="18" ry="34" transform="rotate(-34 86 192)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="128" cy="112" rx="17" ry="32" transform="rotate(30 128 112)"/>
+        <g transform="translate(139 382)">
+          <circle class="rb-vine-bloom" cx="-14" cy="0" r="16"/><circle class="rb-vine-bloom" cx="14" cy="0" r="16"/>
+          <circle class="rb-vine-bloom" cx="0" cy="-14" r="16"/><circle class="rb-vine-bloom" cx="0" cy="14" r="16"/>
+          <circle class="rb-vine-bloom-core" cx="0" cy="0" r="8"/>
+        </g>
+        <g transform="translate(80 145) scale(.72)">
+          <circle class="rb-vine-bloom" cx="-14" cy="0" r="16"/><circle class="rb-vine-bloom" cx="14" cy="0" r="16"/>
+          <circle class="rb-vine-bloom" cx="0" cy="-14" r="16"/><circle class="rb-vine-bloom" cx="0" cy="14" r="16"/>
+          <circle class="rb-vine-bloom-core" cx="0" cy="0" r="8"/>
+        </g>
+      </svg>
+
+      <svg class="rb-botanical-vine rb-botanical-vine--right" viewBox="0 0 220 720" focusable="false" aria-hidden="true">
+        <path class="rb-vine-stem" d="M100 714C59 620 146 571 91 482C36 393 139 341 101 251C70 176 133 118 107 8"/>
+        <ellipse class="rb-vine-leaf" cx="79" cy="626" rx="24" ry="43" transform="rotate(-38 79 626)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="127" cy="574" rx="22" ry="40" transform="rotate(31 127 574)"/>
+        <ellipse class="rb-vine-leaf" cx="70" cy="502" rx="23" ry="42" transform="rotate(-44 70 502)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="136" cy="432" rx="22" ry="40" transform="rotate(38 136 432)"/>
+        <ellipse class="rb-vine-leaf" cx="77" cy="350" rx="21" ry="38" transform="rotate(-40 77 350)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="132" cy="274" rx="20" ry="37" transform="rotate(36 132 274)"/>
+        <ellipse class="rb-vine-leaf" cx="86" cy="192" rx="18" ry="34" transform="rotate(-34 86 192)"/>
+        <ellipse class="rb-vine-leaf rb-vine-leaf--soft" cx="128" cy="112" rx="17" ry="32" transform="rotate(30 128 112)"/>
+        <g transform="translate(139 382)">
+          <circle class="rb-vine-bloom" cx="-14" cy="0" r="16"/><circle class="rb-vine-bloom" cx="14" cy="0" r="16"/>
+          <circle class="rb-vine-bloom" cx="0" cy="-14" r="16"/><circle class="rb-vine-bloom" cx="0" cy="14" r="16"/>
+          <circle class="rb-vine-bloom-core" cx="0" cy="0" r="8"/>
+        </g>
+      </svg>
+
+      <svg class="rb-botanical-sprig rb-botanical-sprig--one" viewBox="0 0 160 260" focusable="false" aria-hidden="true">
+        <path d="M78 252C82 194 65 149 92 98C106 71 111 40 108 10"/>
+        <ellipse cx="59" cy="187" rx="18" ry="34" transform="rotate(-43 59 187)"/>
+        <ellipse cx="103" cy="157" rx="17" ry="32" transform="rotate(38 103 157)"/>
+        <ellipse cx="75" cy="112" rx="16" ry="29" transform="rotate(-36 75 112)"/>
+        <ellipse cx="120" cy="78" rx="15" ry="27" transform="rotate(34 120 78)"/>
+        <circle cx="103" cy="28" r="9"/><circle cx="120" cy="34" r="6"/><circle cx="91" cy="39" r="5"/>
+      </svg>
+      <svg class="rb-botanical-sprig rb-botanical-sprig--two" viewBox="0 0 160 260" focusable="false" aria-hidden="true">
+        <path d="M78 252C82 194 65 149 92 98C106 71 111 40 108 10"/>
+        <ellipse cx="59" cy="187" rx="18" ry="34" transform="rotate(-43 59 187)"/>
+        <ellipse cx="103" cy="157" rx="17" ry="32" transform="rotate(38 103 157)"/>
+        <ellipse cx="75" cy="112" rx="16" ry="29" transform="rotate(-36 75 112)"/>
+        <ellipse cx="120" cy="78" rx="15" ry="27" transform="rotate(34 120 78)"/>
+        <circle cx="103" cy="28" r="9"/><circle cx="120" cy="34" r="6"/><circle cx="91" cy="39" r="5"/>
+      </svg>
+
+      <span class="rb-botanical-petal rb-botanical-petal--1"></span>
+      <span class="rb-botanical-petal rb-botanical-petal--2"></span>
+      <span class="rb-botanical-petal rb-botanical-petal--3"></span>
+      <span class="rb-botanical-petal rb-botanical-petal--4"></span>
+      <span class="rb-botanical-petal rb-botanical-petal--5"></span>
+      <span class="rb-botanical-petal rb-botanical-petal--6"></span>
+      <span class="rb-botanical-petal rb-botanical-petal--7"></span>
+      <span class="rb-botanical-petal rb-botanical-petal--8"></span>
+
+      <span class="rb-seed-cluster rb-seed-cluster--one"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="rb-seed-cluster rb-seed-cluster--two"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    `;
+    document.body.appendChild(layer);
+    requestAnimationFrame(()=>document.documentElement.classList.add('rb-botanical-ready'));
+  };
+
   const ensureUniversalChrome=()=>{
     ensureHeaderSocial();
     ensureUniversalFooter();
     ensurePartnerStrip();
+    ensureBotanicalDecor();
     forceReadableLightSurfaces();
     applyKnownContrastFixes();
   };
