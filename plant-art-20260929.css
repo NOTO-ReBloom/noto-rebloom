@@ -2468,3 +2468,40 @@ body.nr-new-partner .industry-partner-logo--zukan img{
     max-height:58px!important;
   }
 }
+
+
+/* FINAL READABILITY FIXES / 2026-09-29 */
+/* Buttons: never allow a light surface to inherit white button text. */
+body .btn.btn--green,
+body a.btn.btn--green,
+body button.btn--green{
+  background:#174a36!important;
+  border-color:#174a36!important;
+  color:#fff!important;
+}
+
+/* Report timeline heading sits on a light section. */
+body .flow-section .section-intro h2{
+  color:#173a31!important;
+}
+
+/* Sponsor guide numbers must stay readable on white/cream cards. */
+body.nr-new-partner .nr-navi-guide article>b,
+body.nr-new-partner .nr-main-sponsor article>b{
+  background:#edf5eb!important;
+  color:#173a31!important;
+  border:1px solid rgba(23,58,49,.14)!important;
+}
+
+/* Diagnosis start-step numbers: dark type on a pale botanical badge. */
+body.page-diagnosis .diagnosis-start-steps>div>b{
+  background:#fff0b8!important;
+  color:#173a31!important;
+  border:1px solid rgba(23,58,49,.16)!important;
+}
+
+/* Routing cards are content-first; botanical specimens must not cross them. */
+body .nr-choice-grid>.rb-root-line,
+body .nr-choice-grid>.rb-botanical-specimen{
+  display:none!important;
+}
