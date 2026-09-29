@@ -118,7 +118,7 @@
     return `
       <div class="container rb-footer-cta"><div><h2>${ctaTitle}</h2><p>${ctaText}</p></div><a class="btn rb-footer-cta__button" href="${ctaHref}">${ctaLabel}</a></div>
       <div class="container rb-footer-grid">
-        <div><b>NOTO Re:Bloom</b><p>楽しさを入口に能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div>
+        <div><b>NOTO Re:Bloom</b><p>楽しさをきっかけに能登を訪れ、土地や地域の方と関わる活動をしている学生プロジェクトです。</p></div>
         <div class="rb-footer-links"><strong>活動を見る</strong><a href="report.html">開催レポート</a><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会アーカイブ</a><a href="diagnosis.html">花タイプ診断</a></div>
         <div class="rb-footer-links"><strong>お問い合わせ</strong><a href="partner.html">協賛・協力</a><a href="contact.html">お問い合わせ</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${UNIVERSAL_CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div>
       </div>
