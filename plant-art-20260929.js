@@ -516,6 +516,115 @@
     });
   };
 
+  const botanicalSpecimenSvg=(kind,side='left')=>{
+    const cls=`rb-botanical-specimen rb-botanical-specimen--${side}`;
+    if(kind==='root'){
+      return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
+        <path class="rb-spec-stem" d="M130 20C126 72 135 116 129 166"/>
+        <ellipse class="rb-spec-leaf" cx="96" cy="78" rx="22" ry="46" transform="rotate(-39 96 78)"/>
+        <ellipse class="rb-spec-leaf" cx="160" cy="111" rx="20" ry="42" transform="rotate(36 160 111)"/>
+        <path class="rb-spec-root" d="M129 166C111 198 95 226 76 349M129 166C143 204 158 249 164 350M129 166C128 219 127 279 129 354"/>
+        <path class="rb-spec-root" d="M102 224C83 233 67 247 54 267M91 267C72 281 61 301 52 323M153 231C172 244 188 260 201 281M160 276C180 289 192 310 202 333M128 241C111 258 101 278 94 299M132 294C146 309 154 326 158 344"/>
+      </svg>`;
+    }
+    if(kind==='seed'){
+      return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
+        <path class="rb-spec-stem" d="M128 344C126 278 130 211 128 54"/>
+        <ellipse class="rb-spec-leaf" cx="91" cy="251" rx="20" ry="48" transform="rotate(-42 91 251)"/>
+        <ellipse class="rb-spec-leaf" cx="163" cy="216" rx="19" ry="46" transform="rotate(38 163 216)"/>
+        <ellipse class="rb-spec-seed" cx="111" cy="126" rx="12" ry="24" transform="rotate(-34 111 126)"/>
+        <ellipse class="rb-spec-seed" cx="149" cy="109" rx="11" ry="23" transform="rotate(29 149 109)"/>
+        <ellipse class="rb-spec-seed" cx="104" cy="86" rx="10" ry="21" transform="rotate(-39 104 86)"/>
+        <ellipse class="rb-spec-seed" cx="146" cy="70" rx="10" ry="21" transform="rotate(34 146 70)"/>
+        <ellipse class="rb-spec-seed" cx="126" cy="38" rx="10" ry="22"/>
+      </svg>`;
+    }
+    if(kind==='flower'){
+      return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
+        <path class="rb-spec-stem" d="M130 350C128 280 132 212 130 156"/>
+        <ellipse class="rb-spec-leaf" cx="92" cy="262" rx="22" ry="50" transform="rotate(-42 92 262)"/>
+        <ellipse class="rb-spec-leaf" cx="167" cy="226" rx="20" ry="47" transform="rotate(38 167 226)"/>
+        <ellipse class="rb-spec-petal" cx="130" cy="74" rx="27" ry="52"/>
+        <ellipse class="rb-spec-petal" cx="188" cy="126" rx="27" ry="52" transform="rotate(72 188 126)"/>
+        <ellipse class="rb-spec-petal" cx="166" cy="190" rx="27" ry="52" transform="rotate(144 166 190)"/>
+        <ellipse class="rb-spec-petal" cx="94" cy="190" rx="27" ry="52" transform="rotate(216 94 190)"/>
+        <ellipse class="rb-spec-petal" cx="72" cy="126" rx="27" ry="52" transform="rotate(288 72 126)"/>
+        <circle class="rb-spec-core" cx="130" cy="137" r="28"/>
+      </svg>`;
+    }
+    return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
+      <path class="rb-spec-stem" d="M78 348C103 301 123 250 139 194C153 145 167 89 181 18"/>
+      <ellipse class="rb-spec-leaf" cx="103" cy="270" rx="21" ry="49" transform="rotate(-48 103 270)"/>
+      <ellipse class="rb-spec-leaf" cx="151" cy="229" rx="20" ry="47" transform="rotate(40 151 229)"/>
+      <ellipse class="rb-spec-leaf" cx="121" cy="180" rx="19" ry="44" transform="rotate(-45 121 180)"/>
+      <ellipse class="rb-spec-leaf" cx="170" cy="138" rx="18" ry="42" transform="rotate(38 170 138)"/>
+      <ellipse class="rb-spec-leaf" cx="148" cy="84" rx="17" ry="39" transform="rotate(-41 148 84)"/>
+      <circle class="rb-spec-core" cx="184" cy="29" r="13"/>
+    </svg>`;
+  };
+
+  const rootLineMarkup=()=>`
+    <span class="rb-root-line" aria-hidden="true"><svg viewBox="0 0 620 78" focusable="false">
+      <path d="M310 4C306 24 306 44 310 74M310 24C272 31 245 43 221 69M310 28C350 35 379 47 405 71M275 37C253 42 233 52 218 64M345 40C368 46 388 56 401 68M309 48C291 54 279 62 268 74M313 50C329 57 340 64 350 75"/>
+    </svg></span>`;
+
+  const growthSpineMarkup=()=>`
+    <span class="rb-growth-spine" aria-hidden="true">
+      <svg viewBox="0 0 108 1600" preserveAspectRatio="none" focusable="false">
+        <path class="rb-spine-stem" d="M55 0C41 168 69 294 51 468C34 634 71 782 50 952C34 1081 69 1267 52 1600"/>
+        <path class="rb-spine-stem-ghost" d="M55 0C42 168 70 294 52 468C35 634 72 782 51 952C35 1081 70 1267 53 1600"/>
+        <ellipse class="rb-spine-leaf" cx="34" cy="247" rx="17" ry="38" transform="rotate(-38 34 247)"/>
+        <ellipse class="rb-spine-leaf" cx="75" cy="498" rx="16" ry="36" transform="rotate(34 75 498)"/>
+        <ellipse class="rb-spine-leaf" cx="31" cy="840" rx="17" ry="38" transform="rotate(-41 31 840)"/>
+        <ellipse class="rb-spine-leaf" cx="74" cy="1192" rx="16" ry="36" transform="rotate(35 74 1192)"/>
+        <g transform="translate(53 665)">
+          <ellipse class="rb-spine-flower" cx="0" cy="-24" rx="11" ry="23"/>
+          <ellipse class="rb-spine-flower" cx="23" cy="0" rx="11" ry="23" transform="rotate(90 23 0)"/>
+          <ellipse class="rb-spine-flower" cx="0" cy="24" rx="11" ry="23"/>
+          <ellipse class="rb-spine-flower" cx="-23" cy="0" rx="11" ry="23" transform="rotate(90 -23 0)"/>
+          <circle class="rb-spine-seed" cx="0" cy="0" r="8"/>
+        </g>
+        <ellipse class="rb-spine-seed" cx="40" cy="1420" rx="8" ry="18" transform="rotate(-30 40 1420)"/>
+        <ellipse class="rb-spine-seed" cx="69" cy="1470" rx="8" ry="18" transform="rotate(28 69 1470)"/>
+      </svg>
+    </span>`;
+
+  const ensureBotanicalStructure=()=>{
+    const layer=document.querySelector('.rb-botanical-decor');
+    if(layer && !layer.querySelector('.rb-growth-spine')){
+      layer.insertAdjacentHTML('beforeend',growthSpineMarkup());
+    }
+
+    document.querySelectorAll('main>section h2').forEach(h=>h.classList.add('rb-plant-heading'));
+
+    const motif=currentMotif();
+    const motifKinds={
+      home:['seed','flower','root'],
+      thoughts:['root','branch','flower'],
+      learn:['seed','branch','root'],
+      event:['seed','branch','flower'],
+      report:['flower','seed','root'],
+      partner:['branch','root','seed'],
+      diagnosis:['flower','branch','seed'],
+      contact:['branch','seed','root']
+    };
+    const kinds=motifKinds[motif]||motifKinds.home;
+    const sections=[...document.querySelectorAll('main>section')]
+      .filter(s=>!s.matches('.section--soil,.report-finance,.update-band,.conversion-band'));
+
+    const picks=[
+      sections[Math.min(1,sections.length-1)],
+      sections[Math.max(1,Math.floor(sections.length*.5))],
+      sections[Math.max(1,sections.length-2)]
+    ].filter(Boolean);
+    [...new Set(picks)].forEach((section,index)=>{
+      if(section.querySelector(':scope > .rb-botanical-specimen'))return;
+      section.classList.add('rb-botanical-specimen-host');
+      const side=index%2===0?'right':'left';
+      section.insertAdjacentHTML('afterbegin',botanicalSpecimenSvg(kinds[index%kinds.length],side)+rootLineMarkup());
+    });
+  };
+
   const ensureUniversalChrome=()=>{
     ensureHeaderSocial();
     ensureUniversalFooter();
@@ -523,6 +632,7 @@
     ensureBotanicalDecor();
     ensureFinishingDecor();
     ensureSignatureStages();
+    ensureBotanicalStructure();
     forceReadableLightSurfaces();
     applyKnownContrastFixes();
   };
