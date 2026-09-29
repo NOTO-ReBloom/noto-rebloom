@@ -2424,3 +2424,17 @@ body.nr-new-partner .industry-partner-logo--zukan img{
     transform:scale(2.02)!important;
   }
 }
+
+
+/* ISHIKAWA ZUKAN UNIVERSAL STRIP OPTICAL SIZE / 2026-09-29 */
+.site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+  max-width:none!important;
+  max-height:58px!important;
+  transform:scale(1.92)!important;
+  transform-origin:center center!important;
+}
+@media(max-width:600px){
+  .site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+    transform:scale(1.82)!important;
+  }
+}
