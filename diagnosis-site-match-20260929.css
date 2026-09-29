@@ -1176,3 +1176,21 @@ body.page-diagnosis .final-cta .button-row{
     width:100%!important;
   }
 }
+
+
+/* FINAL NARROW MOBILE ATLAS SAFETY / 2026-09-29 */
+body.page-diagnosis .flower-atlas-card{
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%!important;
+}
+body.page-diagnosis .flower-atlas-card :is(b,small,span,p){
+  min-width:0!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+@media(max-width:400px){
+  body.page-diagnosis .flower-atlas-grid{
+    grid-template-columns:1fr!important;
+  }
+}
