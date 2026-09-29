@@ -114,90 +114,87 @@ function buildShareCard(photo,data,story=false){
   const W=1080,H=story?1920:1350;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const ink='#183a31',muted='#6d7a74',paper='#f5f1e9',white='#fffdf9';
+  const ink='#1d342a',muted='#647169',paper='#f7f5ef',white='#ffffff';
   const accent=cardAccent(data.group);
+  const sans='"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif';
+
+  const wrap=(text,x,y,maxWidth,lineHeight,maxLines,font,fill)=>{
+    const chars=[...(text||'').trim()];
+    ctx.font=font;ctx.fillStyle=fill;
+    const lines=[];let line='';
+    for(const ch of chars){
+      const next=line+ch;
+      if(ctx.measureText(next).width>maxWidth&&line){
+        lines.push(line);line=ch;
+        if(lines.length===maxLines-1)break;
+      }else line=next;
+    }
+    if(line&&lines.length<maxLines)lines.push(line);
+    const consumed=lines.join('').length;
+    if(consumed<chars.length&&lines.length){
+      let last=lines[lines.length-1];
+      while(last&&ctx.measureText(last+'…').width>maxWidth)last=last.slice(0,-1);
+      lines[lines.length-1]=last+'…';
+    }
+    lines.forEach((lineText,i)=>ctx.fillText(lineText,x,y+i*lineHeight));
+    return y+Math.max(0,lines.length-1)*lineHeight;
+  };
+
   ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
 
-  // Quiet editorial frame.
-  const frame=story?48:44;
+  const outer=story?54:48;
   ctx.fillStyle=white;
-  roundRectPath(ctx,frame,frame,W-frame*2,H-frame*2,story?42:36);ctx.fill();
+  roundRectPath(ctx,outer,outer,W-outer*2,H-outer*2,story?28:24);ctx.fill();
 
-  // Large flower photograph.
-  const photoX=story?72:68;
-  const photoY=story?72:68;
-  const photoW=W-photoX*2;
-  const photoH=story?930:560;
-  drawCover(ctx,photo,photoX,photoY,photoW,photoH,story?34:30);
+  const x=story?76:70;
+  const w=W-x*2;
+  const photoY=story?76:70;
+  const photoH=story?1110:650;
+  drawCover(ctx,photo,x,photoY,w,photoH,story?20:18);
 
-  // Fine accent rule and group tag.
-  const ruleY=photoY+photoH+(story?42:34);
-  ctx.fillStyle=accent;ctx.fillRect(photoX,ruleY,story?120:96,5);
+  const contentY=photoY+photoH+(story?56:48);
+  ctx.fillStyle=accent;ctx.fillRect(x,contentY,story?92:78,5);
+
   ctx.fillStyle=muted;
-  ctx.font=`700 ${story?18:16}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
-  ctx.fillText('RE:BLOOM FLOWER TYPE  /  32',photoX,ruleY+(story?42:36));
+  ctx.font=`700 ${story?21:18}px ${sans}`;
+  ctx.fillText(data.group||'花タイプ診断',x,contentY+(story?44:38));
+
+  const titleY=contentY+(story?138:118);
+  const titleText=`${data.name}タイプ`;
+  const titleSize=fitText(ctx,titleText,w,story?96:76,story?66:54,'800');
+  ctx.fillStyle=ink;
+  ctx.font=`800 ${titleSize}px ${sans}`;
+  ctx.fillText(titleText,x,titleY);
+
+  const leadY=titleY+(story?92:76);
+  wrap(
+    data.lead||'',
+    x,leadY,w,
+    story?50:42,2,
+    `600 ${story?31:26}px ${sans}`,
+    '#40544a'
+  );
+
+  const footerLineY=H-outer-(story?155:125);
+  ctx.strokeStyle='rgba(29,52,42,.14)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(x,footerLineY);ctx.lineTo(W-x,footerLineY);ctx.stroke();
+
+  ctx.fillStyle=ink;
+  ctx.font=`800 ${story?22:18}px ${sans}`;
+  ctx.fillText('NOTO Re:Bloom  花タイプ診断',x,footerLineY+(story?52:43));
+
+  ctx.fillStyle=muted;
+  ctx.font=`500 ${story?16:14}px ${sans}`;
+  ctx.fillText('40問 / 約4〜6分 / 登録不要',x,footerLineY+(story?88:73));
   ctx.textAlign='right';
-  ctx.fillText(data.group,W-photoX,ruleY+(story?42:36));
+  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-x,footerLineY+(story?88:73));
   ctx.textAlign='left';
 
-  // Main name in a calmer editorial face.
-  const contentY=ruleY+(story?92:80);
-  ctx.fillStyle=ink;
-  const nameText=`${data.name}タイプ`;
-  const nameSize=fitText(ctx,nameText,W-photoX*2,story?102:80,story?66:54,'800');
-  ctx.font=`800 ${nameSize}px "Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif`;
-  ctx.fillText(nameText,photoX,contentY);
-
-  // Tagline.
-  ctx.fillStyle='#425b51';
-  ctx.font=`700 ${story?32:27}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
-  const leadY=contentY+(story?74:62);
-  wrapText(ctx,data.lead,photoX,leadY,W-photoX*2,story?48:40,2);
-
-  // Keywords: minimal bordered chips.
-  let chipY=leadY+(story?126:102);
-  ctx.font=`700 ${story?23:20}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
-  let cx=photoX;
-  for(const item of (data.keywords||[]).slice(0,3)){
-    const pad=story?24:20;
-    const h=story?48:42;
-    const w=Math.ceil(ctx.measureText(item).width)+pad*2;
-    ctx.strokeStyle='rgba(24,58,49,.18)';ctx.lineWidth=2;
-    roundRectPath(ctx,cx,chipY,w,h,h/2);ctx.stroke();
-    ctx.fillStyle=ink;ctx.fillText(item,cx+pad,chipY+(story?32:29));
-    cx+=w+(story?12:10);
-  }
-
-  // Short note from the result, not a wall of text.
-  const noteY=chipY+(story?110:84);
-  ctx.fillStyle='#67756f';
-  ctx.font=`700 ${story?20:17}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
-  ctx.fillText('今のあなたへ',photoX,noteY);
-  ctx.fillStyle=ink;
-  ctx.font=`700 ${story?28:23}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
-  wrapText(ctx,data.message||'',photoX,noteY+(story?48:40),W-photoX*2,story?44:36,story?3:2);
-
-  // Footer: restrained, useful, shareable.
-  const footerY=H-frame-(story?150:118);
-  ctx.strokeStyle='rgba(24,58,49,.13)';ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(photoX,footerY);ctx.lineTo(W-photoX,footerY);ctx.stroke();
-
-  ctx.fillStyle=ink;
-  ctx.font=`800 ${story?22:18}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
-  ctx.fillText('花から、わたしを再発見。',photoX,footerY+(story?48:40));
-  ctx.fillStyle=muted;
-  ctx.font=`600 ${story?17:14}px "Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif`;
-  ctx.fillText('40問 / 約4〜6分 / 登録不要',photoX,footerY+(story?82:69));
-  ctx.textAlign='right';
-  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-photoX,footerY+(story?82:69));
-  ctx.textAlign='left';
-
-  // CC BY attribution must travel with the Renge image and stay outside the photo area.
   if(data.slug==='renge'){
     ctx.textAlign='right';
-    ctx.fillStyle='#66736d';
-    ctx.font=`600 ${story?13:11}px "Noto Sans JP",sans-serif`;
-    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-photoX,ruleY-(story?13:10));
+    ctx.fillStyle='rgba(255,255,255,.92)';
+    ctx.font=`600 ${story?12:10}px ${sans}`;
+    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',x+w-14,photoY+photoH-14);
     ctx.textAlign='left';
   }
   return canvas.toDataURL('image/png',.95);
