@@ -1194,3 +1194,485 @@ body.page-diagnosis .flower-atlas-card :is(b,small,span,p){
     grid-template-columns:1fr!important;
   }
 }
+
+
+/* FINAL FLOWER DIAGNOSIS COMPOSITION / 2026-09-29 */
+/* The page now reads in five clear beats:
+   hero -> start -> four flower fields -> how it works -> atlas -> final CTA.
+   Copy and diagnosis logic remain untouched. */
+
+body.page-diagnosis .diagnosis-section{
+  padding:72px 0 88px!important;
+  background:
+    linear-gradient(180deg,#fbf8ee 0%,#fbf8ee 20%,#fffdf8 20%,#fffdf8 42%,#f2f6ed 42%,#f2f6ed 58%,#fbf8ee 58%,#fbf8ee 100%)!important;
+}
+
+/* 1. Start area: editorial explanation + one unmistakable action card. */
+body.page-diagnosis .diagnosis-shell{
+  position:relative!important;
+  gap:28px!important;
+  margin-bottom:74px!important;
+}
+body.page-diagnosis .diagnosis-intro{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  min-height:100%!important;
+  padding:36px 38px!important;
+  border:0!important;
+  border-radius:36px 18px 34px 20px!important;
+  background:#edf4e8!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-intro::after{
+  content:""!important;
+  align-self:flex-end!important;
+  width:86px!important;
+  height:42px!important;
+  margin-top:16px!important;
+  border-radius:100% 0 100% 0!important;
+  background:rgba(95,143,88,.16)!important;
+  transform:rotate(-15deg)!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card){
+  position:relative!important;
+  padding:34px 36px 32px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:24px 42px 24px 38px!important;
+  background:#fffdf8!important;
+  box-shadow:0 18px 42px rgba(23,74,54,.10)!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card)::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0 auto auto 34px!important;
+  width:72px!important;
+  height:5px!important;
+  border-radius:999px!important;
+  background:#5f8f58!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-start-card h3{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-answer-guide{
+  padding:17px 18px!important;
+  border:0!important;
+  border-left:4px solid #e8c84f!important;
+  border-radius:8px 18px 18px 8px!important;
+  background:#fbf4d9!important;
+}
+body.page-diagnosis .diagnosis-answer-guide b{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-start-steps{
+  gap:10px!important;
+}
+body.page-diagnosis .diagnosis-start-steps>div{
+  min-height:86px!important;
+  padding:14px 13px!important;
+  border:0!important;
+  background:#eff5ea!important;
+}
+body.page-diagnosis .diagnosis-start-steps b{
+  color:#5f8f58!important;
+  -webkit-text-fill-color:#5f8f58!important;
+}
+body.page-diagnosis .diagnosis-start-steps span,
+body.page-diagnosis .diagnosis-start-steps small{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+/* Buttons: readable in every section, including the dark closing CTA. */
+body.page-diagnosis :is(.btn,.diagnosis-main-start,.flower-atlas-filters button,.diagnosis-answer){
+  text-shadow:none!important;
+}
+body.page-diagnosis .btn{
+  min-height:50px!important;
+  padding:0 19px!important;
+  border-width:1px!important;
+  border-style:solid!important;
+  font-size:13px!important;
+  font-weight:850!important;
+}
+body.page-diagnosis .btn--green,
+body.page-diagnosis #startDiagnosis,
+body.page-diagnosis #atlasStartDiagnosis,
+body.page-diagnosis #retryDiagnosis{
+  border-color:#174a36!important;
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:0 8px 20px rgba(23,74,54,.14)!important;
+}
+body.page-diagnosis .btn--paper,
+body.page-diagnosis .btn--outline,
+body.page-diagnosis #resumeDiagnosis{
+  border-color:rgba(23,74,54,.30)!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .btn--yellow,
+body.page-diagnosis .diagnosis-main-start{
+  border-color:#d5b638!important;
+  background:#f3d86b!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  box-shadow:0 8px 20px rgba(84,67,13,.10)!important;
+}
+body.page-diagnosis .diagnosis-main-start{
+  min-height:56px!important;
+  font-size:14px!important;
+}
+@media(hover:hover){
+  body.page-diagnosis .btn--green:hover,
+  body.page-diagnosis #startDiagnosis:hover,
+  body.page-diagnosis #atlasStartDiagnosis:hover,
+  body.page-diagnosis #retryDiagnosis:hover{
+    background:#0f3a2a!important;
+    border-color:#0f3a2a!important;
+  }
+  body.page-diagnosis .btn--paper:hover,
+  body.page-diagnosis .btn--outline:hover{
+    border-color:#174a36!important;
+    background:#edf4e8!important;
+  }
+  body.page-diagnosis .btn--yellow:hover,
+  body.page-diagnosis .diagnosis-main-start:hover{
+    background:#e8c84f!important;
+  }
+}
+
+/* 2. The four flower fields come before the technical explanation. */
+body.page-diagnosis .flower-group-showcase{
+  width:min(1180px,calc(100% - 40px))!important;
+  max-width:none!important;
+  margin:0 auto 76px!important;
+  padding:66px 0 68px!important;
+  background:transparent!important;
+}
+body.page-diagnosis .flower-group-showcase::before{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:0!important;
+  width:100vw!important;
+  height:100%!important;
+  transform:translateX(-50%)!important;
+  background:#fffdf8!important;
+  z-index:-1!important;
+}
+body.page-diagnosis .flower-group-showcase .section-heading{
+  margin-bottom:30px!important;
+}
+body.page-diagnosis .flower-group-grid{
+  gap:16px!important;
+}
+body.page-diagnosis .flower-group-card{
+  padding:10px 10px 22px!important;
+  border:0!important;
+  border-radius:28px 14px 28px 16px!important;
+  background:#f2f6ed!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(2n){
+  background:#fbf4df!important;
+}
+body.page-diagnosis .flower-group-visual{
+  height:178px!important;
+  margin-bottom:17px!important;
+  border-radius:22px 11px 22px 11px!important;
+}
+body.page-diagnosis .flower-group-card h3{
+  margin:9px 4px 7px!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .flower-group-card p,
+body.page-diagnosis .flower-group-card small{
+  margin-inline:4px!important;
+}
+
+/* 3. Method section: one calm explainer, not another white dashboard card. */
+body.page-diagnosis .diagnosis-section>.container:has(.diagnosis-method-card){
+  width:min(1040px,calc(100% - 40px))!important;
+  margin:0 auto 82px!important;
+}
+body.page-diagnosis .diagnosis-method-card{
+  padding:38px 42px 40px!important;
+  border:0!important;
+  border-radius:38px 18px 36px 20px!important;
+  background:#eaf2e6!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-method-card h3{
+  margin-top:8px!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-group-map{
+  gap:9px!important;
+  margin:25px 0 18px!important;
+  padding:16px!important;
+  border:0!important;
+  border-radius:26px 14px 26px 14px!important;
+  background:rgba(255,253,248,.74)!important;
+}
+body.page-diagnosis .diagnosis-group-map__corner{
+  background:transparent!important;
+}
+body.page-diagnosis .diagnosis-group-map__col,
+body.page-diagnosis .diagnosis-group-map__row{
+  min-height:44px!important;
+  border:0!important;
+  border-radius:15px 10px 15px 10px!important;
+  background:#dce9d6!important;
+  color:#355c4e!important;
+  -webkit-text-fill-color:#355c4e!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell,
+body.page-diagnosis .diagnosis-group-map__cell--sun{
+  min-height:94px!important;
+  padding:16px!important;
+  border:1px solid rgba(23,74,54,.10)!important;
+  border-radius:19px 11px 19px 11px!important;
+  background:#fffdf8!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell b{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell span{
+  color:#5a6e63!important;
+  -webkit-text-fill-color:#5a6e63!important;
+}
+
+/* 4. Atlas: remove the giant leftover card shell; let the gallery itself be the section. */
+body.page-diagnosis .flower-atlas{
+  width:min(1180px,calc(100% - 40px))!important;
+  max-width:none!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-atlas-heading{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:24px!important;
+  align-items:end!important;
+  margin:0 0 28px!important;
+  padding:0 0 22px!important;
+  border-bottom:1px solid rgba(23,74,54,.12)!important;
+}
+body.page-diagnosis .flower-atlas-filters{
+  justify-content:flex-end!important;
+}
+body.page-diagnosis .flower-atlas-filters button{
+  min-width:48px!important;
+  min-height:40px!important;
+  padding:0 13px!important;
+  border:1px solid rgba(23,74,54,.22)!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .flower-atlas-filters button.is-active{
+  border-color:#174a36!important;
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .flower-atlas-grid{
+  gap:14px!important;
+}
+body.page-diagnosis .flower-atlas-card{
+  padding:9px 9px 15px!important;
+  border:1px solid rgba(23,74,54,.09)!important;
+  border-radius:24px 12px 24px 14px!important;
+  background:#fffdf8!important;
+  box-shadow:0 8px 20px rgba(23,74,54,.055)!important;
+}
+body.page-diagnosis .flower-atlas-card:nth-child(4n+2),
+body.page-diagnosis .flower-atlas-card:nth-child(4n+3){
+  background:#f0f5eb!important;
+}
+body.page-diagnosis .flower-atlas-card img{
+  margin-bottom:11px!important;
+  border:0!important;
+  border-radius:18px 9px 18px 9px!important;
+}
+body.page-diagnosis .flower-atlas-card b{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .flower-atlas-footnote{
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  align-items:center!important;
+  margin-top:20px!important;
+  padding:14px 0 0!important;
+  border-top:1px solid rgba(23,74,54,.10)!important;
+}
+body.page-diagnosis .flower-atlas-footnote a{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-weight:800!important;
+}
+
+/* 5. Closing CTA: strong contrast for both choices. */
+body.page-diagnosis .final-cta{
+  padding:74px 0!important;
+  background:#154638!important;
+}
+body.page-diagnosis .final-cta h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .final-cta p{
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+}
+body.page-diagnosis .final-cta .btn--yellow{
+  border-color:#f3d86b!important;
+  background:#f3d86b!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .final-cta .btn--paper{
+  border-color:#fff!important;
+  background:#fff!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
+/* Question / result controls keep the same palette once the interactive flow starts. */
+body.page-diagnosis .diagnosis-answer{
+  border:1px solid rgba(23,74,54,.18)!important;
+  background:#f0f5eb!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .diagnosis-answer :is(kbd,span,small){
+  color:inherit!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+body.page-diagnosis .diagnosis-answer:is(:hover,:focus-visible){
+  border-color:#5f8f58!important;
+  background:#e4eedf!important;
+}
+body.page-diagnosis .diagnosis-answer.is-selected,
+body.page-diagnosis .diagnosis-answer[aria-pressed="true"]{
+  border-color:#174a36!important;
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button span{
+  color:#5a6e63!important;
+  -webkit-text-fill-color:#5a6e63!important;
+}
+
+@media(max-width:900px){
+  body.page-diagnosis .diagnosis-section{
+    background:#fbf8ee!important;
+  }
+  body.page-diagnosis .diagnosis-shell{
+    margin-bottom:58px!important;
+  }
+  body.page-diagnosis .flower-group-showcase{
+    margin-bottom:58px!important;
+    padding:54px 0 56px!important;
+  }
+  body.page-diagnosis .diagnosis-section>.container:has(.diagnosis-method-card){
+    margin-bottom:62px!important;
+  }
+  body.page-diagnosis .diagnosis-method-card{
+    padding:30px!important;
+  }
+  body.page-diagnosis .flower-atlas-heading{
+    grid-template-columns:1fr!important;
+    align-items:start!important;
+  }
+  body.page-diagnosis .flower-atlas-filters{
+    justify-content:flex-start!important;
+  }
+}
+@media(max-width:620px){
+  body.page-diagnosis .diagnosis-section{
+    padding:52px 0 68px!important;
+  }
+  body.page-diagnosis .diagnosis-intro,
+  body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card){
+    padding:24px 22px!important;
+  }
+  body.page-diagnosis .diagnosis-start-steps{
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .diagnosis-start-steps>div{
+    min-height:0!important;
+  }
+  body.page-diagnosis .flower-group-showcase,
+  body.page-diagnosis .flower-atlas{
+    width:min(100% - 28px,1180px)!important;
+  }
+  body.page-diagnosis .diagnosis-section>.container:has(.diagnosis-method-card){
+    width:min(100% - 28px,1040px)!important;
+  }
+  body.page-diagnosis .diagnosis-method-card{
+    padding:23px 18px!important;
+    border-radius:28px 14px 28px 16px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map{
+    grid-template-columns:70px repeat(2,minmax(0,1fr))!important;
+    gap:6px!important;
+    padding:10px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__col,
+  body.page-diagnosis .diagnosis-group-map__row{
+    padding:6px!important;
+    font-size:9px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__cell,
+  body.page-diagnosis .diagnosis-group-map__cell--sun{
+    min-height:82px!important;
+    padding:11px 9px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__cell b{font-size:14px!important}
+  body.page-diagnosis .diagnosis-group-map__cell span{font-size:9px!important}
+  body.page-diagnosis .flower-atlas-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  body.page-diagnosis .flower-atlas-card{
+    padding:7px 7px 13px!important;
+  }
+  body.page-diagnosis .flower-atlas-footnote{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  body.page-diagnosis .final-cta{
+    padding:58px 0!important;
+  }
+  body.page-diagnosis .final-cta .button-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .final-cta .button-row>*{
+    width:100%!important;
+  }
+}
