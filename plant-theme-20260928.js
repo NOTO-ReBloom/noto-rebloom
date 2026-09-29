@@ -388,38 +388,75 @@
         <span class="rb-leaf-shadow rb-leaf-shadow--one"></span>
         <span class="rb-leaf-shadow rb-leaf-shadow--two"></span>
         <span class="rb-page-motif rb-page-motif--top">${motifSvg(motif)}</span>
-        <span class="rb-page-motif rb-page-motif--bottom">${motifSvg(motif)}</span>
+
+        <svg class="rb-editorial-plant rb-editorial-plant--left" viewBox="0 0 360 760" focusable="false" aria-hidden="true">
+          <path class="rb-art-stem" d="M176 748C151 670 194 612 165 541C138 475 204 421 170 347C142 286 190 224 164 160C148 119 166 73 153 17"/>
+          <path class="rb-art-stem" d="M166 535C115 510 88 480 59 438M174 350C221 323 250 288 275 243M164 164C118 145 89 111 69 78"/>
+          <path class="rb-art-leaf" d="M139 650C90 613 72 557 92 525C137 531 166 579 157 624C153 637 147 646 139 650Z"/>
+          <path class="rb-art-leaf" d="M194 593C240 562 263 512 247 479C204 482 171 521 174 565C176 578 182 588 194 593Z"/>
+          <path class="rb-art-leaf" d="M117 468C72 443 47 402 58 368C101 365 139 395 143 437C144 451 136 462 117 468Z"/>
+          <path class="rb-art-leaf" d="M213 405C254 381 283 342 276 307C235 300 197 328 190 370C188 384 196 397 213 405Z"/>
+          <path class="rb-art-leaf" d="M120 268C82 244 64 206 75 177C113 176 143 203 145 239C145 251 137 262 120 268Z"/>
+          <path class="rb-art-leaf" d="M198 218C232 194 249 159 239 132C204 134 177 161 176 195C176 207 184 216 198 218Z"/>
+          <g transform="translate(281 235)">
+            <path class="rb-art-flower" d="M0-32C16-31 24-20 18-7C33-5 38 7 29 18C18 32 3 27 0 14C-4 28-20 31-30 19C-39 8-33-5-18-8C-24-21-15-32 0-32Z"/>
+            <circle class="rb-art-core" cx="0" cy="0" r="8"/>
+          </g>
+          <g transform="translate(68 74) scale(.72)">
+            <path class="rb-art-flower" d="M0-32C16-31 24-20 18-7C33-5 38 7 29 18C18 32 3 27 0 14C-4 28-20 31-30 19C-39 8-33-5-18-8C-24-21-15-32 0-32Z"/>
+            <circle class="rb-art-core" cx="0" cy="0" r="8"/>
+          </g>
+          <ellipse class="rb-art-seed" cx="63" cy="445" rx="8" ry="17" transform="rotate(-36 63 445)"/>
+          <ellipse class="rb-art-seed" cx="280" cy="252" rx="7" ry="16" transform="rotate(34 280 252)"/>
+        </svg>
+
+        <svg class="rb-editorial-plant rb-editorial-plant--right" viewBox="0 0 360 760" focusable="false" aria-hidden="true">
+          <path class="rb-art-stem" d="M176 748C151 670 194 612 165 541C138 475 204 421 170 347C142 286 190 224 164 160C148 119 166 73 153 17"/>
+          <path class="rb-art-stem" d="M166 535C115 510 88 480 59 438M174 350C221 323 250 288 275 243M164 164C118 145 89 111 69 78"/>
+          <path class="rb-art-leaf" d="M139 650C90 613 72 557 92 525C137 531 166 579 157 624C153 637 147 646 139 650Z"/>
+          <path class="rb-art-leaf" d="M194 593C240 562 263 512 247 479C204 482 171 521 174 565C176 578 182 588 194 593Z"/>
+          <path class="rb-art-leaf" d="M117 468C72 443 47 402 58 368C101 365 139 395 143 437C144 451 136 462 117 468Z"/>
+          <path class="rb-art-leaf" d="M213 405C254 381 283 342 276 307C235 300 197 328 190 370C188 384 196 397 213 405Z"/>
+          <path class="rb-art-leaf" d="M120 268C82 244 64 206 75 177C113 176 143 203 145 239C145 251 137 262 120 268Z"/>
+          <path class="rb-art-leaf" d="M198 218C232 194 249 159 239 132C204 134 177 161 176 195C176 207 184 216 198 218Z"/>
+          <g transform="translate(281 235)">
+            <path class="rb-art-flower" d="M0-32C16-31 24-20 18-7C33-5 38 7 29 18C18 32 3 27 0 14C-4 28-20 31-30 19C-39 8-33-5-18-8C-24-21-15-32 0-32Z"/>
+            <circle class="rb-art-core" cx="0" cy="0" r="8"/>
+          </g>
+        </svg>
+
+        <span class="rb-handline rb-handline--left"><svg viewBox="0 0 260 44" aria-hidden="true"><path d="M4 27C38 9 65 35 98 20C128 7 154 32 184 18C210 6 230 16 255 10"/><circle cx="99" cy="20" r="3.2"/></svg></span>
+        <span class="rb-handline rb-handline--right"><svg viewBox="0 0 260 44" aria-hidden="true"><path d="M4 27C38 9 65 35 98 20C128 7 154 32 184 18C210 6 230 16 255 10"/><circle cx="184" cy="18" r="3.2"/></svg></span>
       `);
     }
 
     const sections=[...document.querySelectorAll('main>section')];
-    sections.forEach((section,index)=>{
-      if(index===0||section.querySelector(':scope > .rb-section-botanical'))return;
-      if(section.matches('.section--soil,.report-finance,.update-band'))return;
-      section.classList.add('rb-section-botanical-host');
-      section.insertAdjacentHTML('afterbegin',sectionDividerMarkup(index%2===0));
+    const usable=sections.filter(section=>!section.matches('.section--soil,.report-finance,.update-band'));
+    const washTargets=[usable[1],usable[Math.max(2,Math.floor(usable.length*.58))]].filter(Boolean);
+    washTargets.forEach((section,index)=>{
+      section.classList.add('rb-art-wash');
+      if(index%2===1)section.classList.add('rb-art-wash--alt');
     });
 
-    document.querySelectorAll('.btn').forEach(btn=>{
-      if(btn.querySelector(':scope > .rb-btn-leaf'))return;
-      btn.classList.add('rb-botanical-btn');
-      btn.insertAdjacentHTML('beforeend','<span class="rb-btn-leaf" aria-hidden="true"></span>');
+    const featureIndices=new Set([2,Math.max(3,Math.floor(sections.length*.68))]);
+    sections.forEach((section,index)=>{
+      if(index===0||section.matches('.section--soil,.report-finance,.update-band'))return;
+      if(!featureIndices.has(index))return;
+      section.classList.add('rb-section-botanical-host');
+      if(!section.querySelector(':scope > .rb-section-botanical')){
+        section.insertAdjacentHTML('afterbegin',sectionDividerMarkup(index%2===0));
+      }
+      section.querySelector(':scope > .rb-section-botanical')?.classList.add('rb-section-botanical--feature');
     });
 
     const photoCandidates=[
       ...document.querySelectorAll('.photo-frame,.contact-hero-photo,.report-photo,.people-trust-photo,.visual-tile')
     ].filter(el=>el.querySelector('img'));
-    const chosen=[];
-    for(const el of photoCandidates){
-      if(chosen.length>=3)break;
-      if(chosen.some(prev=>prev.contains(el)||el.contains(prev)))continue;
-      chosen.push(el);
+    const chosen=photoCandidates.find(el=>!photoCandidates.some(other=>other!==el&&other.contains(el)))||photoCandidates[0];
+    if(chosen && !chosen.querySelector(':scope > .rb-photo-corner-leaf')){
+      chosen.classList.add('rb-photo-botanical');
+      chosen.insertAdjacentHTML('beforeend','<span class="rb-photo-corner-leaf" aria-hidden="true"><i></i></span>');
     }
-    chosen.forEach(el=>{
-      if(el.querySelector(':scope > .rb-photo-corner-leaf'))return;
-      el.classList.add('rb-photo-botanical');
-      el.insertAdjacentHTML('beforeend','<span class="rb-photo-corner-leaf" aria-hidden="true"><i></i></span>');
-    });
   };
 
   const ensureUniversalChrome=()=>{
