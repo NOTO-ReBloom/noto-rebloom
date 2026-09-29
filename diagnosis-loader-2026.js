@@ -12,7 +12,7 @@
   ];
   const coreScripts=[
     'diagnosis.js?v=20260929editorial1',
-    'diagnosis-visual-v2.js?v=20260929art1'
+    'diagnosis-visual-v2.js?v=20260929contrast1'
   ];
 
   const addStyle=(href)=>new Promise((resolve,reject)=>{
