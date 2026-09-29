@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="diagnosis-ux-v3.css?v=20260928font1">
 <script src="diagnosis-group-colors.js?v=20260827f" defer></script>
 <link rel="stylesheet" href="site-consistency.css?v=20260926a">
-<link rel="stylesheet" href="typography-responsive-20260928.css?v=20260928b"><link rel="stylesheet" href="plant-theme-20260928.css?v=20260928universal8"><link rel="stylesheet" href="diagnosis-site-match-20260929.css?v=20260929i"><link rel="stylesheet" href="diagnosis-result-clean-20260929.css?v=20260929clean1">
+<link rel="stylesheet" href="typography-responsive-20260928.css?v=20260928b"><link rel="stylesheet" href="plant-theme-20260928.css?v=20260928universal8"><link rel="stylesheet" href="diagnosis-site-match-20260929.css?v=20260929i"><link rel="stylesheet" href="diagnosis-result-clean-20260929.css?v=20260929clean1"><link rel="stylesheet" href="diagnosis-social-20260929.css?v=20260929social1">
 </head><body class="page-diagnosis rb-unified">
 <a class="skip-link" href="#main">本文へ移動</a>
 <div aria-hidden="true" class="scroll-progress"><span></span></div>
@@ -168,7 +168,34 @@
 </section><section aria-labelledby="resultMonthHeading" class="result-month-plan">
 <div class="result-deep-heading"><p class="result-kicker">4週間で少し試す</p><h3 id="resultMonthHeading">結果を読んで終わりにしない、4週間。</h3><p>全部やる必要はありません。ひとつでも試せたら十分です。</p></div>
 <ol id="resultMonthPlan"></ol>
-</section><section class="result-share-section" id="resultShare"><div class="result-share-copy"><p class="result-kicker">結果カード</p><h3>結果を、一枚に残す。</h3><p>花の写真を主役に、タイプ名と短い言葉だけを残したシンプルなカードです。投稿用は4:5、ストーリー用は9:16で保存できます。</p><div class="button-row"><a class="btn btn--yellow" download id="downloadCard">4:5カードを保存</a><a class="btn btn--paper" download id="downloadStoryCard">9:16カードを保存</a><button class="btn btn--green" id="shareDiagnosisCard" type="button">カードを共有</button><button class="btn btn--paper" id="copyDiagnosisResult" type="button">結果文をコピー</button></div><p aria-live="polite" class="diagnosis-copy-status" id="diagnosisCopyStatus"></p></div><div class="result-share-preview"><img alt="診断結果の共有カード" id="resultShareImage" loading="lazy"/></div></section><section aria-labelledby="resultNextHeading" class="result-next-action">
+</section><section class="result-share-section" id="resultShare">
+<div class="result-share-heading">
+<p class="result-kicker">SNS SHARE</p>
+<h3>結果を、「今の自分のプロフィール」にする。</h3>
+<p>投稿用は3枚セットです。1枚目で花タイプを見せ、2枚目で5つの傾向を見せ、3枚目で近い花や友達との会話につなげます。ストーリー用は、投票や質問スタンプを重ねやすい専用レイアウトです。</p>
+</div>
+<div class="result-social-carousel" aria-label="投稿用3枚のプレビュー">
+<figure class="result-social-card-preview"><span>01 / 表紙</span><img alt="花タイプ診断の投稿用表紙カード" id="resultShareImage" loading="lazy"/><figcaption>花と一言で、自分のタイプを一瞬で見せる表紙。</figcaption></figure>
+<figure class="result-social-card-preview"><span>02 / 5つの咲き方</span><img alt="5つの傾向をまとめたプロフィールカード" id="resultShareProfileImage" loading="lazy"/><figcaption>今回の回答から出た5軸を、そのまま自分のプロフィールに。</figcaption></figure>
+<figure class="result-social-card-preview"><span>03 / 近い花</span><img alt="近い花と友達への問いをまとめたカード" id="resultShareRelationImage" loading="lazy"/><figcaption>近い花と違う強みを見せて、「あなたは何の花？」につなげます。</figcaption></figure>
+</div>
+<div class="result-social-actions">
+<button class="btn btn--green" id="shareDiagnosisCard" type="button">投稿用3枚を共有</button>
+<a class="btn btn--yellow" download id="downloadCard">1枚目を保存</a>
+<a class="btn btn--paper" download id="downloadProfileCard">2枚目を保存</a>
+<a class="btn btn--paper" download id="downloadRelationCard">3枚目を保存</a>
+</div>
+<div class="result-story-block">
+<div class="result-story-copy">
+<p class="result-kicker">INSTAGRAM STORY</p>
+<h4>ストーリーでは、友達に「私っぽい？」と聞ける形に。</h4>
+<p>9:16専用カードには、Instagramの投票・質問スタンプを重ねやすい余白を残しています。</p>
+<div class="button-row"><a class="btn btn--yellow" download id="downloadStoryCard">ストーリー用を保存</a><button class="btn btn--paper" id="copyDiagnosisResult" type="button">結果文をコピー</button></div>
+</div>
+<figure class="result-story-preview"><img alt="Instagramストーリー用の花タイプカード" id="resultStoryImage" loading="lazy"/></figure>
+</div>
+<p aria-live="polite" class="diagnosis-copy-status" id="diagnosisCopyStatus"></p>
+</section><section aria-labelledby="resultNextHeading" class="result-next-action">
 <div>
 <p class="result-kicker">結果をもう少し楽しむ</p>
 <h3 id="resultNextHeading">結果は、今の自分を知るための一つの見方です。</h3>
