@@ -542,7 +542,9 @@
       tagline:flower.tagline,
       keywords:[...(flower.keywords||[])],
       strengths:[...(flower.strengths||[])],
+      watch:[...(flower.watch||[])],
       message:flower.message||'',
+      desc:flower.desc||'',
       axes:AXIS_KEYS.map(k=>{
         const narrative=axisNarrative(k,scores[k],counts[k]);
         const position=Math.round((normalizedAxis(scores[k],counts[k])+1)*50);
