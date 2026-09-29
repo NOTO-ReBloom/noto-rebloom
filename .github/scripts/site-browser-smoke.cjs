@@ -21,6 +21,30 @@ const minPhotos={
   'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'404.html':1
 };
 
+const PUBLIC_COPY_BANNED=[
+  'GOOD DAY','LOW BATTERY','THIS IS YOU','SHARE CARD',
+  'SUPPORTED BY','SPONSORSHIP','TRANSPARENCY','PROGRAM / ARCHIVE',
+  'HOW TO JOIN / ARCHIVE','BEFORE YOU COME / ARCHIVE',
+  'DAY FLOW / ARCHIVE','WHAT TO BRING / ARCHIVE',
+  'SAFETY & SUPPORT / ARCHIVE','FAQ / ARCHIVE',
+  '<small>YES</small>','LEAN YES','LEAN NO','<small>NO</small>',
+  'わたしを再発見','あなたの輪郭','自分を守る境界線',
+  '小さな循環','一つの見方です','同じ情報設計で',
+  'エネルギーの戻し方'
+];
+const copyGuardFiles=[...pages,'plant-art-20260929.js','diagnosis-visual-v2.js'];
+const copyFailures=[];
+for(const file of copyGuardFiles){
+  const source=fs.readFileSync(file,'utf8');
+  for(const phrase of PUBLIC_COPY_BANNED){
+    if(source.includes(phrase)) copyFailures.push({file,phrase});
+  }
+}
+if(copyFailures.length){
+  console.error('PUBLIC_COPY_GUARD='+JSON.stringify(copyFailures));
+  process.exit(1);
+}
+
 (async()=>{
   const browser=await puppeteer.launch({
     headless:true,
