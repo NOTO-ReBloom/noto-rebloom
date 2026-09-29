@@ -321,7 +321,7 @@
       <path d="M112 690 H788" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-dasharray="12 16"/>
       <text x="450" y="758" text-anchor="middle" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="70" font-weight="900" fill="${ink}">${esc(f.name)}</text>
       <text x="450" y="812" text-anchor="middle" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="25" font-weight="800" fill="${ink}">${esc(f.short)}</text>
-      <g font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="18" font-weight="800" fill="${ink}"><text x="74" y="852">BLOOM / ${esc(f.bloom)}</text><text x="826" y="852" text-anchor="end">LANGUAGE / ${esc(f.language)}</text></g>
+      <g font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Yu Gothic',Meiryo,sans-serif" font-size="18" font-weight="800" fill="${ink}"><text x="74" y="852">開花時期 / ${esc(f.bloom)}</text><text x="826" y="852" text-anchor="end">花言葉 / ${esc(f.language)}</text></g>
     </svg>`;
   }
   function portraitDataUri(f){return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(flowerPortraitSvg(f));}
