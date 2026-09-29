@@ -260,153 +260,190 @@ function drawAxis(ctx,axis,x,y,w,accent,story=false){
   ctx.fillStyle=accent;ctx.beginPath();ctx.arc(dotX,barY,story?8:7,0,Math.PI*2);ctx.fill();
 }
 
-function buildEditorialCard(photo,data){
-  const W=1080,H=1350,m=62;
+function drawPaperPanel(ctx,x,y,w,h,fill='#fbf8f0',alpha=1){
+  ctx.save();
+  ctx.globalAlpha=alpha;
+  ctx.fillStyle=fill;
+  ctx.beginPath();
+  ctx.moveTo(x+18,y);
+  ctx.quadraticCurveTo(x+w*.18,y-10,x+w*.34,y+3);
+  ctx.quadraticCurveTo(x+w*.55,y+12,x+w*.72,y-2);
+  ctx.quadraticCurveTo(x+w*.9,y-8,x+w-10,y+6);
+  ctx.lineTo(x+w,y+h-10);
+  ctx.quadraticCurveTo(x+w*.82,y+h+8,x+w*.66,y+h-2);
+  ctx.quadraticCurveTo(x+w*.43,y+h-12,x+w*.24,y+h+4);
+  ctx.quadraticCurveTo(x+8,y+h+10,x,y+h-8);
+  ctx.lineTo(x,y+10);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+function drawLeafSprig(ctx,x,y,scale,color){
+  ctx.save();
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=Math.max(1,2*scale);
+  ctx.globalAlpha=.55;
+  ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+30*scale,y-58*scale,x+24*scale,y-118*scale);ctx.stroke();
+  [[10,-30,-20],[18,-54,20],[20,-80,-18],[22,-104,18]].forEach(([ox,oy,dir])=>{
+    ctx.save();ctx.translate(x+ox*scale,y+oy*scale);ctx.rotate((dir*Math.PI)/180);
+    ctx.beginPath();ctx.ellipse(0,0,9*scale,18*scale,0,0,Math.PI*2);ctx.fill();ctx.restore();
+  });
+  ctx.restore();
+}
+function drawSoftWash(ctx,x,y,r,color,alpha=.12){
+  const g=ctx.createRadialGradient(x,y,0,x,y,r);
+  g.addColorStop(0,color);g.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.save();ctx.globalAlpha=alpha;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2);ctx.restore();
+}
+
+function buildEditorialCard(photo,landscape,data){
+  const W=1080,H=1350,m=56;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const ink='#1d342a',muted='#66746d',paper='#f7f4ec',accent=groupAccent(data.group);
+  const ink='#17362c',muted='#65736c',paper='#f7f2e8',accent=groupAccent(data.group);
 
   ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
-  drawCover(ctx,photo,0,0,W,500);
+  drawSoftWash(ctx,92,120,210,accent,.12);
+  drawSoftWash(ctx,980,570,190,'#e8c85a',.10);
 
-  // Editorial photo caption line.
-  ctx.fillStyle='rgba(255,255,255,.96)';
-  ctx.font=`700 15px ${SANS}`;
-  ctx.fillText(data.group||'花タイプ',m,50);
-  ctx.textAlign='right';
-  ctx.fillText('FLOWER TYPE / 32',W-m,50);
-  ctx.textAlign='left';
+  // Hero flower photography.
+  drawCover(ctx,photo,0,0,W,560);
+  const shade=ctx.createLinearGradient(0,250,0,560);
+  shade.addColorStop(0,'rgba(0,0,0,0)');
+  shade.addColorStop(1,'rgba(10,34,26,.18)');
+  ctx.fillStyle=shade;ctx.fillRect(0,250,W,310);
 
-  // Main title field.
-  ctx.fillStyle=paper;ctx.fillRect(0,500,W,H-500);
-  ctx.fillStyle=accent;ctx.fillRect(m,548,72,4);
+  ctx.fillStyle='rgba(255,255,255,.93)';
+  ctx.font=`700 14px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,44);
+  ctx.textAlign='right';ctx.fillText('FLOWER TYPE / 32',W-m,44);ctx.textAlign='left';
 
-  ctx.fillStyle=muted;ctx.font=`700 13px ${SANS}`;
-  ctx.fillText('RESULT PROFILE',m,580);
+  // Torn-paper title sheet overlapping the hero.
+  const panelX=m,panelY=365,panelW=690,panelH=265;
+  drawPaperPanel(ctx,panelX,panelY,panelW,panelH,'#fbf7ed',.98);
+  ctx.fillStyle=accent;ctx.fillRect(panelX+26,panelY+34,62,4);
+  ctx.fillStyle=muted;ctx.font=`700 12px ${SANS}`;
+  ctx.fillText(data.group||'花タイプ',panelX+26,panelY+66);
 
-  const titleSize=fitText(ctx,data.name,W-m*2,64,48,'900');
+  const titleSize=fitText(ctx,data.name,panelW-52,70,50,'900');
   ctx.fillStyle=ink;ctx.font=`900 ${titleSize}px ${SANS}`;
-  ctx.fillText(data.name,m,652);
-  ctx.fillStyle=muted;ctx.font=`700 18px ${SANS}`;
-  ctx.fillText('TYPE',m+ctx.measureText(data.name).width+18,650);
+  ctx.fillText(data.name,panelX+26,panelY+132);
 
   const copy=SOCIAL_COPY[data.slug]||data.tagline||'';
-  drawWrapped(ctx,copy,m,704,W-m*2,35,2,`700 27px ${SANS}`,'#344d42');
+  drawWrapped(ctx,copy,panelX+26,panelY+184,panelW-54,34,2,`700 25px ${SANS}`,'#365248');
 
-  ctx.strokeStyle='rgba(29,52,42,.14)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(m,772);ctx.lineTo(W-m,772);ctx.stroke();
+  // Main information field.
+  ctx.fillStyle='#fbf8f1';ctx.fillRect(0,560,W,595);
+  drawLeafSprig(ctx,W-78,735,.72,accent);
 
-  // Five-axis profile — dense but clean, no pills/cards.
-  ctx.fillStyle=muted;ctx.font=`700 12px ${SANS}`;
-  ctx.fillText('5 AXES',m,803);
+  ctx.fillStyle=muted;ctx.font=`800 11px ${SANS}`;ctx.fillText('わたしをつくる 5つの咲き方',m,686);
+  ctx.strokeStyle='rgba(23,54,44,.14)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(m,704);ctx.lineTo(W-m,704);ctx.stroke();
 
   const axes=(data.axes||[]).slice(0,5);
-  const axisW=442;
   axes.forEach((axis,i)=>{
-    const col=i<3?0:1;
-    const row=col===0?i:i-3;
-    const x=col===0?m:W-m-axisW;
-    const y=837+row*74;
-    drawAxis(ctx,axis,x,y,axisW,accent,false);
+    const y=744+i*66;
+    drawAxis(ctx,axis,m,y,560,accent,false);
   });
 
-  // Bottom editorial information + direct site route.
-  const infoTop=1058;
-  ctx.beginPath();ctx.moveTo(m,infoTop);ctx.lineTo(W-m,infoTop);ctx.stroke();
-
-  const infoW=620;
-  const rows=[
-    ['STRENGTH',compactText(data.strengths?.[0]||data.keywords?.[0]||'',34)],
-    ['WATCH',compactText(data.watch?.[0]||'',34)],
-    ['NEAR FLOWER',compactText((data.neighbor?.name||'')+'タイプ',34)]
+  // Strength / caution / near flower editorial column.
+  const rightX=674,rightW=350;
+  const info=[
+    ['STRENGTH',compactText(data.strengths?.[0]||data.keywords?.[0]||'',32)],
+    ['WATCH',compactText(data.watch?.[0]||'',32)],
+    ['NEAR FLOWER',compactText((data.neighbor?.name||'')+'タイプ',32)]
   ];
-  rows.forEach((row,i)=>{
-    const y=1090+i*61;
-    ctx.fillStyle=muted;ctx.font=`700 10px ${SANS}`;
-    ctx.fillText(row[0],m,y);
-    ctx.fillStyle=ink;ctx.font=`700 15px ${SANS}`;
-    ctx.fillText(row[1],m+116,y);
+  info.forEach((row,i)=>{
+    const y=744+i*112;
+    ctx.fillStyle=muted;ctx.font=`800 10px ${SANS}`;ctx.fillText(row[0],rightX,y);
+    drawWrapped(ctx,row[1],rightX,y+29,rightW,24,2,`700 16px ${SANS}`,ink);
+    ctx.strokeStyle='rgba(23,54,44,.11)';
+    ctx.beginPath();ctx.moveTo(rightX,y+76);ctx.lineTo(rightX+rightW,y+76);ctx.stroke();
   });
 
-  const qrSize=166,qrX=W-m-qrSize,qrY=1083;
-  ctx.fillStyle=ink;ctx.font=`800 14px ${SANS}`;
-  ctx.fillText('あなたの花タイプを診断する',qrX,1070);
+  // Noto landscape as the final visual route back to the project.
+  if(landscape) drawCover(ctx,landscape,0,1155,W,195);
+  const landscapeShade=ctx.createLinearGradient(0,1155,0,1350);
+  landscapeShade.addColorStop(0,'rgba(20,48,37,.10)');
+  landscapeShade.addColorStop(1,'rgba(12,34,27,.54)');
+  ctx.fillStyle=landscapeShade;ctx.fillRect(0,1155,W,195);
+
+  drawPaperPanel(ctx,632,1171,392,152,'#fbf7ed',.97);
+  const qrSize=112,qrX=650,qrY=1191;
   drawQr(ctx,qrX,qrY,qrSize);
-  ctx.fillStyle=muted;ctx.font=`600 10px ${SANS}`;
-  ctx.fillText('QRから診断ページへ',qrX,1266);
-
-  ctx.beginPath();ctx.moveTo(m,1292);ctx.lineTo(W-m,1292);ctx.stroke();
   ctx.fillStyle=ink;ctx.font=`800 15px ${SANS}`;
-  ctx.fillText('NOTO Re:Bloom',m,1322);
-  ctx.textAlign='right';
+  ctx.fillText('あなたの花タイプを診断する',786,1212);
   ctx.fillStyle=muted;ctx.font=`600 10px ${SANS}`;
-  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-m,1322);
-  if(data.slug==='renge'){
-    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1340);
-  }
-  ctx.textAlign='left';
+  ctx.fillText('QRから診断ページへ',786,1238);
+  ctx.fillText('noto-rebloom.github.io',786,1261);
 
+  ctx.fillStyle='rgba(255,255,255,.94)';
+  ctx.font=`800 18px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,1298);
+  ctx.font=`600 11px ${SANS}`;ctx.fillText('泥臭い挑戦で、能登を咲かせる。',m,1321);
+
+  if(data.slug==='renge'){
+    ctx.textAlign='right';ctx.fillStyle='rgba(255,255,255,.9)';ctx.font=`500 9px ${SANS}`;
+    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1331);ctx.textAlign='left';
+  }
   return canvas.toDataURL('image/png',.97);
 }
 
-function buildStoryCard(photo,data){
-  const W=1080,H=1920,m=66;
+function buildStoryCard(photo,landscape,data){
+  const W=1080,H=1920,m=60;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
-  const ink='#1d342a',muted='#66746d',paper='#f7f4ec',accent=groupAccent(data.group);
+  const ink='#17362c',muted='#65736c',paper='#f7f2e8',accent=groupAccent(data.group);
 
   ctx.fillStyle=paper;ctx.fillRect(0,0,W,H);
   drawCover(ctx,photo,0,0,W,760);
+  drawSoftWash(ctx,930,930,220,accent,.11);
 
-  ctx.fillStyle='rgba(255,255,255,.96)';
-  ctx.font=`700 18px ${SANS}`;
-  ctx.fillText(data.group||'花タイプ',m,62);
-  ctx.textAlign='right';ctx.fillText('FLOWER TYPE / 32',W-m,62);ctx.textAlign='left';
+  ctx.fillStyle='rgba(255,255,255,.94)';ctx.font=`700 17px ${SANS}`;
+  ctx.fillText('NOTO Re:Bloom',m,58);
+  ctx.textAlign='right';ctx.fillText('FLOWER TYPE / 32',W-m,58);ctx.textAlign='left';
 
-  ctx.fillStyle=paper;ctx.fillRect(0,760,W,H-760);
-  ctx.fillStyle=accent;ctx.fillRect(m,820,80,5);
-  ctx.fillStyle=muted;ctx.font=`700 14px ${SANS}`;ctx.fillText('RESULT PROFILE',m,857);
+  drawPaperPanel(ctx,m,610,W-m*2,310,'#fbf7ed',.98);
+  ctx.fillStyle=accent;ctx.fillRect(m+28,650,72,5);
+  ctx.fillStyle=muted;ctx.font=`700 14px ${SANS}`;ctx.fillText(data.group,m+28,686);
+  const titleSize=fitText(ctx,data.name,W-m*2-56,82,60,'900');
+  ctx.fillStyle=ink;ctx.font=`900 ${titleSize}px ${SANS}`;ctx.fillText(data.name,m+28,774);
+  drawWrapped(ctx,SOCIAL_COPY[data.slug]||data.tagline||'',m+28,830,W-m*2-56,43,2,`700 31px ${SANS}`,'#365248');
 
-  const titleSize=fitText(ctx,data.name,W-m*2,82,60,'900');
-  ctx.fillStyle=ink;ctx.font=`900 ${titleSize}px ${SANS}`;
-  ctx.fillText(data.name,m,947);
-  ctx.fillStyle=muted;ctx.font=`700 20px ${SANS}`;ctx.fillText('TYPE',m+ctx.measureText(data.name).width+20,944);
-
-  const copy=SOCIAL_COPY[data.slug]||data.tagline||'';
-  drawWrapped(ctx,copy,m,1014,W-m*2,44,2,`700 32px ${SANS}`,'#344d42');
-
-  ctx.strokeStyle='rgba(29,52,42,.14)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(m,1116);ctx.lineTo(W-m,1116);ctx.stroke();
-  ctx.fillStyle=muted;ctx.font=`700 13px ${SANS}`;ctx.fillText('5 AXES',m,1152);
+  ctx.fillStyle='#fbf8f1';ctx.fillRect(0,900,W,720);
+  ctx.fillStyle=muted;ctx.font=`800 12px ${SANS}`;ctx.fillText('わたしをつくる 5つの咲き方',m,962);
+  ctx.strokeStyle='rgba(23,54,44,.14)';ctx.beginPath();ctx.moveTo(m,980);ctx.lineTo(W-m,980);ctx.stroke();
 
   const axes=(data.axes||[]).slice(0,5);
-  axes.forEach((axis,i)=>drawAxis(ctx,axis,m,1192+i*92,W-m*2,accent,true));
+  axes.forEach((axis,i)=>drawAxis(ctx,axis,m,1022+i*92,W-m*2,accent,true));
 
-  const infoTop=1668;
-  ctx.beginPath();ctx.moveTo(m,infoTop);ctx.lineTo(W-m,infoTop);ctx.stroke();
-
-  const storyRows=[
+  const infoY=1504;
+  ctx.strokeStyle='rgba(23,54,44,.13)';ctx.beginPath();ctx.moveTo(m,infoY);ctx.lineTo(W-m,infoY);ctx.stroke();
+  const colW=(W-m*2-36*2)/3;
+  const rows=[
     ['STRENGTH',compactText(data.strengths?.[0]||data.keywords?.[0]||'',24)],
     ['WATCH',compactText(data.watch?.[0]||'',24)],
     ['NEAR FLOWER',compactText((data.neighbor?.name||'')+'タイプ',24)]
   ];
-  storyRows.forEach((row,i)=>{
-    const y=1710+i*48;
-    ctx.fillStyle=muted;ctx.font=`700 11px ${SANS}`;ctx.fillText(row[0],m,y);
-    ctx.fillStyle=ink;ctx.font=`700 15px ${SANS}`;ctx.fillText(row[1],m+126,y);
+  rows.forEach((row,i)=>{
+    const x=m+i*(colW+36);
+    ctx.fillStyle=muted;ctx.font=`800 10px ${SANS}`;ctx.fillText(row[0],x,1542);
+    drawWrapped(ctx,row[1],x,1572,colW,24,2,`700 15px ${SANS}`,ink);
   });
 
-  const qrSize=172,qrX=W-m-qrSize,qrY=1692;
-  ctx.fillStyle=ink;ctx.font=`800 14px ${SANS}`;
-  ctx.fillText('診断はこちら',qrX,1677);
-  drawQr(ctx,qrX,qrY,qrSize);
+  if(landscape) drawCover(ctx,landscape,0,1650,W,270);
+  const shade=ctx.createLinearGradient(0,1650,0,1920);
+  shade.addColorStop(0,'rgba(10,34,27,.06)');shade.addColorStop(1,'rgba(10,34,27,.52)');
+  ctx.fillStyle=shade;ctx.fillRect(0,1650,W,270);
 
-  ctx.fillStyle=ink;ctx.font=`800 16px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,1883);
-  ctx.textAlign='right';ctx.fillStyle=muted;ctx.font=`600 10px ${SANS}`;
-  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-m,1883);
-  if(data.slug==='renge')ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1902);
-  ctx.textAlign='left';
+  drawPaperPanel(ctx,626,1688,398,176,'#fbf7ed',.97);
+  const qrSize=130,qrX=646,qrY=1710;drawQr(ctx,qrX,qrY,qrSize);
+  ctx.fillStyle=ink;ctx.font=`800 15px ${SANS}`;ctx.fillText('花タイプ診断はこちら',798,1737);
+  ctx.fillStyle=muted;ctx.font=`600 10px ${SANS}`;ctx.fillText('QRから診断ページへ',798,1764);
+  ctx.fillText('noto-rebloom.github.io',798,1787);
 
+  ctx.fillStyle='rgba(255,255,255,.95)';ctx.font=`800 17px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,1875);
+  ctx.font=`600 10px ${SANS}`;ctx.fillText('泥臭い挑戦で、能登を咲かせる。',m,1898);
+  if(data.slug==='renge'){
+    ctx.textAlign='right';ctx.font=`500 9px ${SANS}`;ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1898);ctx.textAlign='left';
+  }
   return canvas.toDataURL('image/png',.97);
 }
 
@@ -428,11 +465,14 @@ async function refreshResult(){
 
   try{
     if(document.fonts?.ready)await document.fonts.ready;
-    const photo=await loadFlowerImage(data.slug);
+    const [photo,landscape]=await Promise.all([
+      loadFlowerImage(data.slug),
+      loadImage('field-overview.webp?v=20260929share1').catch(()=>null)
+    ]);
     if(token!==renderToken)return;
 
-    const feed=buildEditorialCard(photo,data);
-    const story=buildStoryCard(photo,data);
+    const feed=buildEditorialCard(photo,landscape,data);
+    const story=buildStoryCard(photo,landscape,data);
     latestCards={feed,story,data};
 
     const preview=document.getElementById('resultShareImage');
