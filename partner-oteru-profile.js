@@ -12,7 +12,7 @@
   article.innerHTML=`
     <span class="nr-sponsor-wide__ornament" aria-hidden="true"></span>
     <div class="nr-sponsor-wide__brand">
-      <div class="nr-sponsor-wide__partnerline"><span>SPONSOR PARTNER</span><b>03</b></div>
+      <div class="nr-sponsor-wide__partnerline"><span>協賛パートナー</span><b>03</b></div>
       <a class="nr-sponsor-wide__logo" href="${url}" target="_blank" rel="sponsored noopener" aria-label="萬屋おてる Instagram">
         <img src="${logo}" alt="萬屋おてる ロゴ" loading="lazy" decoding="async">
       </a>
@@ -23,17 +23,17 @@
       </div>
     </div>
     <div class="nr-sponsor-wide__body">
-      <div class="nr-sponsor-wide__titlebar"><span>YOROZUYA OTERU</span><small>ABOUT THE PARTNER</small></div>
+      <div class="nr-sponsor-wide__titlebar"><span>萬屋おてる</span><small>協賛パートナー</small></div>
       <div class="nr-sponsor-wide__intro">
         <div>
-          <h3>食でつなぐ。笑顔でつなぐ。<br>北陸を走る鉄板焼きキッチンカー。</h3>
-          <p>石川県小松市を拠点に、石川県・富山県・福井県を中心とした北陸各地のイベントや地域催事へ出店する「萬屋おてる」。鉄板焼きを中心に、できたての美味しさを届けることはもちろん、「食」をきっかけに人と人がつながり、笑顔が生まれる場をつくることを大切に活動されています。</p>
+          <h3>北陸各地で出店する、<br>鉄板焼きキッチンカー。</h3>
+          <p>石川県小松市を拠点に、石川・富山・福井のイベントや地域催事へ出店する鉄板焼きキッチンカーです。能登での災害支援や地域活動にも参加しています。</p>
         </div>
         <div class="nr-sponsor-wide__tags" aria-label="萬屋おてるの活動">
           <span>石川県小松市拠点</span><span>北陸三県</span><span>鉄板焼きキッチンカー</span><span>能登での地域活動</span>
         </div>
       </div>
-      <div class="nr-sponsor-wide__reasons-title"><span>萬屋おてるの活動</span><small>FOOD × COMMUNITY</small></div>
+      <div class="nr-sponsor-wide__reasons-title"><span>萬屋おてるの活動</span><small>活動内容</small></div>
       <div class="nr-sponsor-wide__reasons nr-oteru-reasons">
         <div><b>01</b><strong>北陸各地へ出店</strong><span>小松市を拠点に、石川・富山・福井を中心としたイベントや地域催事へ。キッチンカーならではの機動力で、地域へ足を運んでいます。</span></div>
         <div><b>02</b><strong>食から生まれるつながり</strong><span>鉄板焼きを中心に、できたての美味しさとともに、人と人が出会い、会話し、笑顔になれる場づくりを大切にしています。</span></div>
