@@ -72,8 +72,8 @@
       companyUrl:'https://earnest-technologies.co.jp/',
       logo:'bukatsu-navi-logo.svg',
       logoAlt:'部活ナビ',
-      eyebrow:'BUKATSU NAVI',
-      title:'部活から、学校と活動のリアルを探せる。',
+      eyebrow:'部活ナビ',
+      title:'部活から学校を探せる情報サイト。',
       lead:'部活ナビは、高校・中学・大学の部活動を検索できる情報プラットフォームです。部活そのものを探すだけでなく、見学・体験会、イベント、ニュース、動画コンテンツ「部活ストーリー」まで、部活動に関する情報を横断して見ることができます。',
       tags:['高校・中学・大学','部活検索','見学・体験会','イベント・ニュース'],
       metrics:[
@@ -92,7 +92,7 @@
       related:{
         name:'Bukatsu Page',
         url:'https://bukatsunavi.com/services/',
-        kicker:'アーネストテクノロジーズ公式でも紹介される部活動支援SaaS',
+        kicker:'アーネストテクノロジーズが提供する部活動支援サービス',
         headline:'部活動の運営に必要な機能をまとめた、オールインワンシステム。',
         lead:'アーネストテクノロジーズ公式サイトでは、部活動支援SaaS「Bukatsu Page」を自社サービスとして紹介。公式サービスページでは、部活動ホームページ作成からイベント管理、オンライン集金、寄付・クラウドファンディングなどの機能が案内されています。',
         badges:['ホームページ制作','イベント管理','オンライン集金','寄付・クラウドファンディング']
@@ -109,7 +109,7 @@
       companyUrl:'https://techsplus.co.jp/',
       logo:'gyakuten-coaching-official-logo.png',
       logoAlt:'逆転コーチング',
-      eyebrow:'GYAKUTEN COACHING',
+      eyebrow:'逆転コーチング',
       title:'逆転合格に特化した、学習管理塾。',
       lead:'逆転コーチングは、志望校合格から逆算して学習を管理する大学受験オンライン塾です。ご提供いただいた公式チラシでは、難関大学への合格実績や、1日単位の学習管理、志望校特化の対策、継続的なサポート体制などが案内されています。',
       tags:['志望校特化','1日単位の学習管理','オンライン','無料体験あり'],
@@ -148,7 +148,7 @@
       url:'https://www.instagram.com/yorozuya.oteru26/',
       logo:'assets/partners/yorozuya-oteru.webp',
       logoAlt:'萬屋おてる ロゴ',
-      eyebrow:'YOROZUYA OTERU',
+      eyebrow:'萬屋おてる',
       title:'鉄板焼きキッチンカー「萬屋おてる」',
       lead:'石川県を中心に、富山県・福井県を含む北陸で移動販売を行うキッチンカーです。NOTO Re:Bloomの活動にご協賛いただいています。',
       tags:['鉄板焼きキッチンカー','北陸三県'],
@@ -159,7 +159,7 @@
 
   const makeFacts=(s)=>{
     if(s.reasons){
-      return `<div class="nr-sponsor-wide__reasons-title"><span>サービスの主な特徴</span><small>OFFICIAL INFORMATION</small></div><div class="nr-sponsor-wide__reasons">${s.reasons.map(([title,text],i)=>`<div><b>0${i+1}</b><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>${s.sourceNote?`<p class="nr-sponsor-wide__source-note">${s.sourceNote}</p>`:''}`;
+      return `<div class="nr-sponsor-wide__reasons-title"><span>サービスの主な特徴</span><small>公式情報</small></div><div class="nr-sponsor-wide__reasons">${s.reasons.map(([title,text],i)=>`<div><b>0${i+1}</b><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>${s.sourceNote?`<p class="nr-sponsor-wide__source-note">${s.sourceNote}</p>`:''}`;
     }
     return `<div class="nr-sponsor-wide__facts">${s.facts.map(([title,text],i)=>`<div><small>0${i+1}</small><strong>${title}</strong><span>${text}</span></div>`).join('')}</div>`;
   };
@@ -174,7 +174,7 @@
     article.innerHTML=`
       <span class="nr-sponsor-wide__ornament" aria-hidden="true"></span>
       <div class="nr-sponsor-wide__brand">
-        <div class="nr-sponsor-wide__partnerline"><span>SPONSOR PARTNER</span><b>0${index+1}</b></div>
+        <div class="nr-sponsor-wide__partnerline"><span>協賛パートナー</span><b>0${index+1}</b></div>
         <a class="nr-sponsor-wide__logo" href="${s.url}" target="_blank" rel="sponsored noopener" aria-label="${s.service}公式サイト">
           <img src="${s.logo}" alt="${s.logoAlt}" loading="lazy" decoding="async">
         </a>
@@ -186,7 +186,7 @@
         </div>
       </div>
       <div class="nr-sponsor-wide__body">
-        <div class="nr-sponsor-wide__titlebar"><span>${s.eyebrow}</span><small>OFFICIAL INFORMATION</small></div>
+        <div class="nr-sponsor-wide__titlebar"><span>${s.eyebrow}</span><small>公式情報</small></div>
         <div class="nr-sponsor-wide__intro">
           <div>
             <h3>${s.title}</h3>
@@ -198,7 +198,7 @@
         ${makeFacts(s)}
         ${makeRelated(s)}
         <div class="nr-sponsor-wide__company"><span>${s.companyLabel||'企業について'}</span><p>${s.companyInfo}</p></div>
-        <div class="nr-sponsor-wide__action"><span>公式サイトで、さらに詳しく</span><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}<b>↗</b></a></div>
+        <div class="nr-sponsor-wide__action"><span>公式サイトを見る</span><a href="${s.url}" target="_blank" rel="sponsored noopener">${s.cta}<b>↗</b></a></div>
       </div>`;
     return article;
   };
@@ -210,7 +210,7 @@
     article.innerHTML=`
       <span class="nr-sponsor-wide__ornament" aria-hidden="true"></span>
       <div class="nr-sponsor-wide__brand">
-        <div class="nr-sponsor-wide__partnerline"><span>SPONSOR PARTNER</span><b>0${index+1}</b></div>
+        <div class="nr-sponsor-wide__partnerline"><span>協賛パートナー</span><b>0${index+1}</b></div>
         <a class="nr-sponsor-wide__logo" href="${s.url}" target="_blank" rel="sponsored noopener" aria-label="${s.company} Instagram">
           <img src="${s.logo}" alt="${s.logoAlt}" loading="lazy" decoding="async">
         </a>
@@ -221,7 +221,7 @@
         </div>
       </div>
       <div class="nr-sponsor-wide__body">
-        <div class="nr-sponsor-wide__titlebar"><span>${s.eyebrow}</span><small>SPONSOR PARTNER</small></div>
+        <div class="nr-sponsor-wide__titlebar"><span>${s.eyebrow}</span><small>協賛パートナー</small></div>
         <div class="nr-sponsor-wide__intro">
           <div>
             <h3>${s.title}</h3>
