@@ -45,6 +45,50 @@ rindou:'静かに決めたことほど、最後まで手放さない。'
 
 const PHOTO_VERSION='20260918free1';
 const SANS='"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif';
+const DIAGNOSIS_URL='https://noto-rebloom.github.io/noto-rebloom/diagnosis.html';
+const QR_MATRIX=[
+'00000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000',
+'00001111111010011010011001000011111110000',
+'00001000001010011000111110100010000010000',
+'00001011101010100001100011100010111010000',
+'00001011101001011001011101011010111010000',
+'00001011101011011111011101000010111010000',
+'00001000001001001110000011110010000010000',
+'00001111111010101010101010101011111110000',
+'00000000000000000100000110010000000000000',
+'00001001111110001001110000011100101110000',
+'00000001010100101011011111111000111100000',
+'00001111101111010011000001010010111110000',
+'00001000010110001011011010000011001110000',
+'00001100111000101110100010001011000000000',
+'00000011000101100000111000011101011000000',
+'00001100001111111010101111000010101000000',
+'00000110010101010011000110000101111010000',
+'00001001101100001000000010101111110000000',
+'00001101010111101111100110100010101010000',
+'00000011101100101101111101111001011010000',
+'00001110100001010111001000100110111100000',
+'00000110011101001101110010001001010010000',
+'00001011100000110110100100110001110000000',
+'00001000101111101011010000010101100110000',
+'00001000100110000110011110100010111010000',
+'00001110101101010000100010001111110100000',
+'00000000000010100001101000011000101100000',
+'00001111111011111101000110011010101000000',
+'00001000001010110100001100011000111100000',
+'00001011101011101001000110111111100100000',
+'00001011101011110001001111100101000110000',
+'00001011101000111011011111000101101110000',
+'00001000001000001100101000000001111110000',
+'00001111111011001100010000011011110000000',
+'00000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000'
+];
 const photoUrl=slug=>`flower-photo-${slug}.webp?v=${PHOTO_VERSION}`;
 const legacyUrl=slug=>`${slug}.png?v=${PHOTO_VERSION}`;
 let latestCards=null;
@@ -52,6 +96,23 @@ let renderToken=0;
 
 function groupAccent(group){
   return {'太陽の花':'#c89b13','風の花':'#4f91aa','里山の花':'#5f8b56','水辺の花':'#6878ae'}[group]||'#174b3b';
+}
+function drawQr(ctx,x,y,size){
+  const n=QR_MATRIX.length;
+  const cell=size/n;
+  ctx.fillStyle='#fff';
+  ctx.fillRect(x,y,size,size);
+  ctx.fillStyle='#111';
+  for(let row=0;row<n;row++){
+    const line=QR_MATRIX[row];
+    for(let col=0;col<n;col++){
+      if(line[col]==='1'){
+        const x0=x+col*cell,y0=y+row*cell;
+        const x1=x+(col+1)*cell,y1=y+(row+1)*cell;
+        ctx.fillRect(Math.floor(x0),Math.floor(y0),Math.ceil(x1)-Math.floor(x0),Math.ceil(y1)-Math.floor(y0));
+      }
+    }
+  }
 }
 function ensureFixStyles(){
   if(document.querySelector('link[href*="diagnosis-fixes.css"]'))return;
@@ -249,35 +310,39 @@ function buildEditorialCard(photo,data){
     drawAxis(ctx,axis,x,y,axisW,accent,false);
   });
 
-  // Bottom editorial information grid.
-  const infoTop=1062;
+  // Bottom editorial information + direct site route.
+  const infoTop=1058;
   ctx.beginPath();ctx.moveTo(m,infoTop);ctx.lineTo(W-m,infoTop);ctx.stroke();
 
-  const colGap=26,colW=(W-m*2-colGap*2)/3;
-  const labels=['STRENGTH','WATCH','NEAR FLOWER'];
-  const values=[
-    compactText(data.strengths?.[0]||data.keywords?.[0]||'',28),
-    compactText(data.watch?.[0]||'',28),
-    compactText((data.neighbor?.name||'')+'タイプ',28)
+  const infoW=620;
+  const rows=[
+    ['STRENGTH',compactText(data.strengths?.[0]||data.keywords?.[0]||'',34)],
+    ['WATCH',compactText(data.watch?.[0]||'',34)],
+    ['NEAR FLOWER',compactText((data.neighbor?.name||'')+'タイプ',34)]
   ];
-  for(let i=0;i<3;i++){
-    const x=m+i*(colW+colGap);
-    ctx.fillStyle=muted;ctx.font=`700 11px ${SANS}`;
-    ctx.fillText(labels[i],x,1096);
-    drawWrapped(ctx,values[i],x,1130,colW,24,2,`700 16px ${SANS}`,ink);
-  }
+  rows.forEach((row,i)=>{
+    const y=1090+i*61;
+    ctx.fillStyle=muted;ctx.font=`700 10px ${SANS}`;
+    ctx.fillText(row[0],m,y);
+    ctx.fillStyle=ink;ctx.font=`700 15px ${SANS}`;
+    ctx.fillText(row[1],m+116,y);
+  });
 
-  ctx.beginPath();ctx.moveTo(m,1212);ctx.lineTo(W-m,1212);ctx.stroke();
+  const qrSize=166,qrX=W-m-qrSize,qrY=1083;
+  ctx.fillStyle=ink;ctx.font=`800 14px ${SANS}`;
+  ctx.fillText('あなたの花タイプを診断する',qrX,1070);
+  drawQr(ctx,qrX,qrY,qrSize);
+  ctx.fillStyle=muted;ctx.font=`600 10px ${SANS}`;
+  ctx.fillText('QRから診断ページへ',qrX,1266);
 
-  ctx.fillStyle=ink;ctx.font=`800 17px ${SANS}`;
-  ctx.fillText('NOTO Re:Bloom',m,1260);
-  ctx.fillStyle=muted;ctx.font=`500 12px ${SANS}`;
-  ctx.fillText('花タイプ診断',m,1284);
+  ctx.beginPath();ctx.moveTo(m,1292);ctx.lineTo(W-m,1292);ctx.stroke();
+  ctx.fillStyle=ink;ctx.font=`800 15px ${SANS}`;
+  ctx.fillText('NOTO Re:Bloom',m,1322);
   ctx.textAlign='right';
-  ctx.font=`600 12px ${SANS}`;
-  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-m,1262);
+  ctx.fillStyle=muted;ctx.font=`600 10px ${SANS}`;
+  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-m,1322);
   if(data.slug==='renge'){
-    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1284);
+    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1340);
   }
   ctx.textAlign='left';
 
@@ -317,25 +382,29 @@ function buildStoryCard(photo,data){
   const axes=(data.axes||[]).slice(0,5);
   axes.forEach((axis,i)=>drawAxis(ctx,axis,m,1192+i*92,W-m*2,accent,true));
 
-  const infoTop=1682;
+  const infoTop=1668;
   ctx.beginPath();ctx.moveTo(m,infoTop);ctx.lineTo(W-m,infoTop);ctx.stroke();
-  const colGap=28,colW=(W-m*2-colGap*2)/3;
-  const labels=['STRENGTH','WATCH','NEAR FLOWER'];
-  const values=[
-    compactText(data.strengths?.[0]||data.keywords?.[0]||'',26),
-    compactText(data.watch?.[0]||'',26),
-    compactText((data.neighbor?.name||'')+'タイプ',26)
-  ];
-  for(let i=0;i<3;i++){
-    const x=m+i*(colW+colGap);
-    ctx.fillStyle=muted;ctx.font=`700 12px ${SANS}`;ctx.fillText(labels[i],x,1720);
-    drawWrapped(ctx,values[i],x,1758,colW,26,2,`700 17px ${SANS}`,ink);
-  }
 
-  ctx.fillStyle=ink;ctx.font=`800 17px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,1870);
-  ctx.textAlign='right';ctx.fillStyle=muted;ctx.font=`600 12px ${SANS}`;
-  ctx.fillText('花タイプ診断',W-m,1870);
-  if(data.slug==='renge')ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1894);
+  const storyRows=[
+    ['STRENGTH',compactText(data.strengths?.[0]||data.keywords?.[0]||'',24)],
+    ['WATCH',compactText(data.watch?.[0]||'',24)],
+    ['NEAR FLOWER',compactText((data.neighbor?.name||'')+'タイプ',24)]
+  ];
+  storyRows.forEach((row,i)=>{
+    const y=1710+i*48;
+    ctx.fillStyle=muted;ctx.font=`700 11px ${SANS}`;ctx.fillText(row[0],m,y);
+    ctx.fillStyle=ink;ctx.font=`700 15px ${SANS}`;ctx.fillText(row[1],m+126,y);
+  });
+
+  const qrSize=172,qrX=W-m-qrSize,qrY=1692;
+  ctx.fillStyle=ink;ctx.font=`800 14px ${SANS}`;
+  ctx.fillText('診断はこちら',qrX,1677);
+  drawQr(ctx,qrX,qrY,qrSize);
+
+  ctx.fillStyle=ink;ctx.font=`800 16px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,1883);
+  ctx.textAlign='right';ctx.fillStyle=muted;ctx.font=`600 10px ${SANS}`;
+  ctx.fillText('noto-rebloom.github.io/noto-rebloom/diagnosis.html',W-m,1883);
+  if(data.slug==='renge')ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1902);
   ctx.textAlign='left';
 
   return canvas.toDataURL('image/png',.97);
@@ -393,7 +462,7 @@ async function shareCard(){
   if(!latestCards){if(status)status.textContent='カードを準備しています。';return;}
   const {feed,data}=latestCards;
   const file=dataUrlToFile(feed,'flower-type-result.png');
-  const shareText=`私は「${data.name}タイプ」でした。\n${SOCIAL_COPY[data.slug]||data.tagline||''}`;
+  const shareText=`私は「${data.name}タイプ」でした。\n${SOCIAL_COPY[data.slug]||data.tagline||''}\n\n花タイプ診断はこちら\n${DIAGNOSIS_URL}`;
   try{
     if(navigator.share&&navigator.canShare?.({files:[file]})){
       await navigator.share({files:[file],title:'NOTO Re:Bloom 花タイプ診断',text:shareText});
