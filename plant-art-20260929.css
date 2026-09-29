@@ -2505,3 +2505,40 @@ body .nr-choice-grid>.rb-root-line,
 body .nr-choice-grid>.rb-botanical-specimen{
   display:none!important;
 }
+
+
+/* FINAL CONTRAST OVERRIDE V9 / 2026-09-29 */
+/* Report timeline heading: force real dark text on the light schedule section. */
+html body.report-page .flow-section .section-intro h2{
+  color:#173a31!important;
+  -webkit-text-fill-color:#173a31!important;
+  background:none!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* Sponsor numeric markers: HTML and JS-injected cards both use dark text on pale badges. */
+html body.nr-new-partner :is(
+  .nr-navi-guide article>b,
+  .nr-sponsor-wide__partnerline>b,
+  .nr-sponsor-wide__reasons b,
+  .nr-oteru-reasons b
+){
+  color:#173a31!important;
+  -webkit-text-fill-color:#173a31!important;
+  background:#edf5eb!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  border:1px solid rgba(23,58,49,.16)!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* Any numbered sponsor feature marker that is intentionally dark/light must not inherit white fill. */
+html body.nr-new-partner .nr-sponsor-story b,
+html body.nr-new-partner .nr-main-sponsor b{
+  -webkit-text-fill-color:currentColor!important;
+  text-shadow:none!important;
+}
