@@ -11,8 +11,8 @@
     'diagnosis-ux-v3.css?v=20260928font1'
   ];
   const coreScripts=[
-    'diagnosis.js?v=20260929social1',
-    'diagnosis-visual-v2.js?v=20260929social2'
+    'diagnosis.js?v=20260929editorial1',
+    'diagnosis-visual-v2.js?v=20260929editorial1'
   ];
 
   const addStyle=(href)=>new Promise((resolve,reject)=>{
