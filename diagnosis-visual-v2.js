@@ -240,6 +240,13 @@ function buildCoverCard(photo,data){
   ctx.font=`600 18px ${SANS}`;
   ctx.fillText(tags.map(x=>'#'+x.replace(/\s+/g,'')).join('   '),m,1168);
 
+  if(data.slug==='renge'){
+    ctx.textAlign='right';
+    ctx.fillStyle='#7b8580';
+    ctx.font=`500 11px ${SANS}`;
+    ctx.fillText('Photo: houroumono / CC BY 2.0 / crop + WebP',W-m,1228);
+    ctx.textAlign='left';
+  }
   drawFooter(ctx,W,H,m,'32 FLOWER TYPES','01 / 03');
   return canvas.toDataURL('image/png',.96);
 }
