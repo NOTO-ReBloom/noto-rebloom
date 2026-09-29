@@ -1867,3 +1867,210 @@ body[data-rb-motif="learn"] .rb-editorial-plant--right{top:50%}
     transform:none;
   }
 }
+
+
+/* RE:BLOOM SIGNATURE STAGES / 2026-09-29 */
+:root{
+  --rb-stage-a:#f0c84f;
+  --rb-stage-b:#dfead8;
+  --rb-stage-c:#e7a4a8;
+  --rb-stage-ink:#174a36;
+}
+body[data-rb-motif="home"]{--rb-stage-a:#f0cf5a;--rb-stage-b:#dcebd3;--rb-stage-c:#e9a7a4}
+body[data-rb-motif="thoughts"]{--rb-stage-a:#e7c96a;--rb-stage-b:#dce7d5;--rb-stage-c:#dca3b2}
+body[data-rb-motif="learn"]{--rb-stage-a:#e8bc59;--rb-stage-b:#d6e7d2;--rb-stage-c:#e2a479}
+body[data-rb-motif="event"]{--rb-stage-a:#efc04f;--rb-stage-b:#dce7d2;--rb-stage-c:#e5966d}
+body[data-rb-motif="report"]{--rb-stage-a:#ecc35a;--rb-stage-b:#d8e8d5;--rb-stage-c:#e7a36e}
+body[data-rb-motif="partner"]{--rb-stage-a:#dfc86d;--rb-stage-b:#dfe8d8;--rb-stage-c:#d8a57b}
+body[data-rb-motif="diagnosis"]{--rb-stage-a:#e3c45e;--rb-stage-b:#dce8d6;--rb-stage-c:#c9abd9}
+body[data-rb-motif="contact"]{--rb-stage-a:#e6c96e;--rb-stage-b:#d7e9df;--rb-stage-c:#e8b39d}
+
+/* Hero gets one oversized, cropped block-print flower and one organic color field. */
+main>section:first-child.rb-signature-hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.rb-hero-colorfield{
+  position:absolute;
+  z-index:-2;
+  width:min(760px,58vw);
+  height:min(520px,42vw);
+  right:-10vw;
+  top:-7vw;
+  border-radius:56% 44% 64% 36% / 38% 54% 46% 62%;
+  background:
+    radial-gradient(circle at 28% 32%,rgba(255,255,255,.58),transparent 22%),
+    linear-gradient(138deg,color-mix(in srgb,var(--rb-stage-a) 78%,#fff),var(--rb-stage-a));
+  transform:rotate(-7deg);
+  opacity:.92;
+  box-shadow:0 34px 90px rgba(49,68,46,.07);
+}
+.rb-hero-print{
+  position:absolute;
+  z-index:-1;
+  right:-68px;
+  bottom:-96px;
+  width:clamp(260px,30vw,520px);
+  height:auto;
+  color:var(--rb-stage-ink);
+  opacity:.17;
+  transform:rotate(8deg);
+  mix-blend-mode:multiply;
+}
+.rb-hero-print .rb-print-petal{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-hero-print .rb-print-core{fill:var(--rb-stage-c);stroke:currentColor;stroke-width:5}
+.rb-hero-print .rb-print-seed{fill:var(--rb-stage-a)}
+.rb-hero-print .rb-print-leaf{
+  fill:color-mix(in srgb,var(--rb-stage-b) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:5;
+}
+
+/* Strong section stages: only two per page. */
+main>section.rb-stage{
+  position:relative;
+  isolation:isolate;
+}
+main>section.rb-stage::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  pointer-events:none;
+  left:max(-9vw,-130px);
+  right:max(-7vw,-110px);
+  top:2%;
+  bottom:2%;
+  border-radius:42% 58% 47% 53% / 20% 27% 73% 80%;
+  transform:rotate(-.8deg);
+  box-shadow:inset 0 0 0 1px rgba(42,70,53,.025);
+}
+main>section.rb-stage--a::before{
+  background:
+    radial-gradient(circle at 15% 22%,rgba(255,255,255,.62),transparent 20%),
+    linear-gradient(110deg,color-mix(in srgb,var(--rb-stage-a) 54%,#fff),color-mix(in srgb,var(--rb-stage-a) 82%,#fff));
+}
+main>section.rb-stage--b::before{
+  background:
+    radial-gradient(circle at 82% 28%,rgba(255,255,255,.72),transparent 18%),
+    linear-gradient(105deg,color-mix(in srgb,var(--rb-stage-b) 72%,#fff),color-mix(in srgb,var(--rb-stage-b) 92%,#fff));
+  border-radius:58% 42% 61% 39% / 70% 74% 26% 30%;
+  transform:rotate(.65deg);
+}
+main>section.rb-stage--c::before{
+  background:
+    radial-gradient(circle at 75% 75%,rgba(255,255,255,.54),transparent 22%),
+    linear-gradient(112deg,color-mix(in srgb,var(--rb-stage-c) 42%,#fff),color-mix(in srgb,var(--rb-stage-c) 70%,#fff));
+  border-radius:50% 50% 38% 62% / 26% 34% 66% 74%;
+  transform:rotate(-.35deg);
+}
+
+/* large pressed-flower / leaf signatures for stage corners */
+.rb-stage-mark{
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  width:clamp(170px,18vw,310px);
+  height:auto;
+  opacity:.18;
+  color:var(--rb-stage-ink);
+  mix-blend-mode:multiply;
+}
+.rb-stage-mark--left{left:max(-110px,calc((100vw - 1180px)/2 - 190px));top:12%;transform:rotate(-12deg)}
+.rb-stage-mark--right{right:max(-120px,calc((100vw - 1180px)/2 - 200px));bottom:6%;transform:rotate(13deg) scaleX(-1)}
+.rb-stage-mark path,.rb-stage-mark ellipse{
+  fill:color-mix(in srgb,var(--rb-stage-b) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:4;
+}
+.rb-stage-mark circle{fill:var(--rb-stage-c);stroke:currentColor;stroke-width:3}
+
+/* Small confetti-like pollen is used only beside signature stages, not globally. */
+.rb-pollen{
+  position:absolute;
+  width:110px;
+  height:90px;
+  pointer-events:none;
+  opacity:.45;
+  z-index:1;
+}
+.rb-pollen--a{right:5%;top:9%}
+.rb-pollen--b{left:4%;bottom:8%;transform:rotate(18deg)}
+.rb-pollen i{
+  position:absolute;
+  border-radius:50%;
+  background:var(--rb-stage-a);
+  box-shadow:0 0 0 1px rgba(88,72,33,.08);
+}
+.rb-pollen i:nth-child(1){width:8px;height:8px;left:8px;top:18px}
+.rb-pollen i:nth-child(2){width:5px;height:5px;left:38px;top:4px}
+.rb-pollen i:nth-child(3){width:10px;height:10px;left:68px;top:31px}
+.rb-pollen i:nth-child(4){width:6px;height:6px;left:92px;top:10px}
+.rb-pollen i:nth-child(5){width:7px;height:7px;left:48px;top:61px}
+.rb-pollen i:nth-child(6){width:4px;height:4px;left:18px;top:70px}
+
+/* Give the whole page a more editorial background rhythm without touching cards. */
+body[data-rb-motif]{
+  background:
+    linear-gradient(180deg,#fffdf8 0 19%,#fbf8f0 19% 38%,#fff 38% 58%,#f8f7ef 58% 78%,#fffdf8 78% 100%)!important;
+}
+
+/* Make existing large off-canvas plants bolder instead of multiplying objects. */
+.rb-editorial-plant{
+  opacity:.30!important;
+  width:clamp(320px,30vw,540px)!important;
+}
+.rb-editorial-plant--right{opacity:.23!important}
+.rb-handline{opacity:.52!important}
+.rb-page-motif--top{opacity:.30!important;transform:scale(1.18) rotate(-5deg)}
+.rb-leaf-shadow{opacity:.08!important}
+
+/* Hide older faint washes once the strong stages are applied. */
+main>section.rb-stage.rb-art-wash::before{display:none!important}
+
+/* Decorative depth around images without changing the image itself. */
+.rb-photo-botanical::before{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  inset:10px -16px -16px 12px;
+  border-radius:inherit;
+  background:color-mix(in srgb,var(--rb-stage-a) 36%,#fff);
+  transform:rotate(1.3deg);
+}
+.rb-photo-botanical::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-2;
+  left:-18px;top:14%;
+  width:42%;
+  height:66%;
+  border-radius:58% 42% 50% 50%;
+  background:color-mix(in srgb,var(--rb-stage-b) 68%,#fff);
+  transform:rotate(-7deg);
+}
+
+@media(max-width:900px){
+  .rb-hero-colorfield{width:70vw;height:46vw;right:-24vw;top:-8vw;opacity:.72}
+  .rb-hero-print{width:320px;right:-110px;bottom:-90px;opacity:.11}
+  main>section.rb-stage::before{left:-30px;right:-30px;border-radius:28px;transform:none}
+  .rb-stage-mark{width:180px;opacity:.11}
+  .rb-pollen{opacity:.30}
+  .rb-editorial-plant{opacity:.16!important;width:280px!important}
+}
+@media(max-width:620px){
+  .rb-hero-colorfield{width:84vw;height:54vw;right:-38vw;top:-6vw;opacity:.55}
+  .rb-hero-print{width:220px;right:-100px;bottom:-70px;opacity:.08}
+  main>section.rb-stage::before{left:-14px;right:-14px;top:4%;bottom:4%;border-radius:22px}
+  .rb-stage-mark,.rb-pollen{display:none}
+  .rb-editorial-plant{opacity:.08!important}
+  .rb-photo-botanical::before,.rb-photo-botanical::after{display:none}
+}
