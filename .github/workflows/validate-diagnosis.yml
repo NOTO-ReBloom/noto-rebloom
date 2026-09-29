@@ -14,8 +14,8 @@ on:
       - 'flower-photo-*.webp'
       - 'flower-photo-credits.json'
       - 'photo-credits.html'
-      - 'plant-theme-20260928.css'
-      - 'plant-theme-20260928.js'
+      - 'plant-art-20260929.css'
+      - 'plant-art-20260929.js'
       - 'typography-responsive-20260928.css'
       - '.github/workflows/validate-diagnosis.yml'
 
@@ -175,15 +175,15 @@ jobs:
                       raise SystemExit(f'Diagnosis CSS contains unwanted Mincho font: {font} in css index {i}')
 
           shell = Path('diagnosis-shell.js').read_text(encoding='utf-8')
-          plant_css = Path('plant-theme-20260928.css').read_text(encoding='utf-8')
-          plant_js = Path('plant-theme-20260928.js').read_text(encoding='utf-8')
+          plant_css = Path('plant-art-20260929.css').read_text(encoding='utf-8')
+          plant_js = Path('plant-art-20260929.js').read_text(encoding='utf-8')
           loader = Path('diagnosis-loader-2026.js').read_text(encoding='utf-8')
           if 'fonts.googleapis.com' in html or 'fonts.gstatic.com' in html:
               raise SystemExit('Diagnosis HTML must not block first paint on external font requests')
-          for css_name in ('diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css','plant-theme-20260928.css'):
+          for css_name in ('diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css','plant-art-20260929.css'):
               if f'href="{css_name}' not in html:
                   raise SystemExit(f'Missing diagnosis stylesheet: {css_name}')
-          for js_name in ('diagnosis-shell.js','diagnosis-loader-2026.js','plant-theme-20260928.js'):
+          for js_name in ('diagnosis-shell.js','diagnosis-loader-2026.js','plant-art-20260929.js'):
               if f'src="{js_name}' not in html:
                   raise SystemExit(f'Missing diagnosis script: {js_name}')
           for core_name in ('diagnosis.js','diagnosis-visual-v2.js'):
