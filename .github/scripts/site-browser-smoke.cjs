@@ -111,6 +111,34 @@ const minPhotos={
           const color=rgb(getComputedStyle(el).color); if(!color||lum(color)<.78)return false;
           const bg=effectiveBg(el); return !!(bg&&lum(bg)>.78);
         }).slice(0,20).map(el=>({tag:el.tagName,cls:String(el.className||'').slice(0,100),text:(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,90)}));
+
+        const contrastRatio=(a,b)=>{
+          const la=lum(a),lb=lum(b);
+          return (Math.max(la,lb)+.05)/(Math.min(la,lb)+.05);
+        };
+        const explicitContrastWarnings=[...document.querySelectorAll(
+          'button,.btn,a.btn,h1,h2,h3,h4,strong,b,[class*="number"],[class*="stat"],[class*="metric"],[class*="count"],[class*="amount"],[class*="total"]'
+        )].filter(el=>{
+          const text=(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim();
+          if(!text||!visible(el)||el.closest('.visual-tile,.photo-frame figcaption'))return false;
+          const isButton=el.matches('button,.btn,a.btn');
+          const isNumeric=/\d/.test(text)&&text.length<=48;
+          if(!isButton&&!isNumeric)return false;
+          const style=getComputedStyle(el),color=rgb(style.color),bg=effectiveBg(el);
+          if(!color||!bg)return false;
+          const fs=parseFloat(style.fontSize)||16,fw=parseInt(style.fontWeight,10)||400;
+          const large=fs>=24||(fs>=18.66&&fw>=700);
+          const min=large?3:4.5;
+          return contrastRatio(color,bg)+.01<min;
+        }).slice(0,24).map(el=>{
+          const style=getComputedStyle(el),color=rgb(style.color),bg=effectiveBg(el);
+          return {
+            tag:el.tagName,
+            cls:String(el.className||'').slice(0,100),
+            text:(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim().slice(0,90),
+            ratio:Number(contrastRatio(color,bg).toFixed(2))
+          };
+        });
         return {
           overflow:root.scrollWidth>root.clientWidth+3,
           overflowBy:root.scrollWidth-root.clientWidth,
@@ -125,7 +153,8 @@ const minPhotos={
           toggleSelector:toggle?.classList.contains('menu-button')?'.menu-button':toggle?'.menu-toggle':null,
           diagnosisHeroFont:document.body.classList.contains('page-diagnosis')?getComputedStyle(document.querySelector('.page-hero--diagnosis h1')).fontFamily:null,
           universalChrome,
-          whiteOnLight
+          whiteOnLight,
+          explicitContrastWarnings
         };
       },expected[file]||[],minPhotos[file]||0);
 
@@ -207,6 +236,7 @@ const minPhotos={
       if(!data.universalChrome.partnerStripVisible||data.universalChrome.partnerLogoCount<6) failures.push({file,width,kind:'universal-partner-strip',chrome:data.universalChrome});
       if(!data.universalChrome.footerVisible||data.universalChrome.footerSocialCount<2) failures.push({file,width,kind:'universal-footer',chrome:data.universalChrome});
       if(data.whiteOnLight.length) failures.push({file,width,kind:'white-on-light',elements:data.whiteOnLight});
+      if(data.explicitContrastWarnings.length) failures.push({file,width,kind:'button-or-number-contrast',elements:data.explicitContrastWarnings});
       if(data.h1!==1) failures.push({file,width,kind:'h1',count:data.h1});
       const groupFailures=data.groups.filter(g=>g.total<g.min||g.visible<g.min);
       if(groupFailures.length) failures.push({file,width,kind:'content',groups:groupFailures});
