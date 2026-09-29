@@ -216,8 +216,8 @@
     });
 
     document.querySelectorAll('body.report-page .flow-section .section-intro h2').forEach(el=>{
-      important(el,'color','#173a31');
-      important(el,'-webkit-text-fill-color','#173a31');
+      important(el,'color','#ffffff');
+      important(el,'-webkit-text-fill-color','#ffffff');
       important(el,'background','none');
       important(el,'text-shadow','none');
       important(el,'opacity','1');
