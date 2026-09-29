@@ -459,12 +459,70 @@
     }
   };
 
+  const signatureFlowerSvg=()=>`
+    <svg class="rb-hero-print" viewBox="0 0 360 360" focusable="false" aria-hidden="true">
+      <path class="rb-print-petal" d="M181 38C205 68 207 103 181 128C154 103 157 68 181 38Z"/>
+      <path class="rb-print-petal" d="M322 178C292 201 257 203 232 179C257 152 293 154 322 178Z"/>
+      <path class="rb-print-petal" d="M182 321C158 292 155 257 181 232C207 257 205 292 182 321Z"/>
+      <path class="rb-print-petal" d="M39 181C69 156 104 155 129 180C104 207 68 205 39 181Z"/>
+      <path class="rb-print-petal" d="M81 81C117 87 142 112 143 147C108 148 84 123 81 81Z"/>
+      <path class="rb-print-petal" d="M281 80C276 118 251 141 216 143C215 108 240 84 281 80Z"/>
+      <path class="rb-print-petal" d="M281 281C243 276 219 252 216 217C251 215 276 240 281 281Z"/>
+      <path class="rb-print-petal" d="M80 281C87 243 112 219 147 217C148 252 123 276 80 281Z"/>
+      <circle class="rb-print-core" cx="181" cy="181" r="46"/>
+      <circle class="rb-print-seed" cx="181" cy="181" r="10"/>
+      <path class="rb-print-leaf" d="M173 298C136 286 112 313 111 346C148 351 174 331 173 298Z"/>
+      <path class="rb-print-leaf" d="M194 303C230 290 254 316 255 348C219 353 193 334 194 303Z"/>
+    </svg>`;
+
+  const stageMarkSvg=(side='left')=>`
+    <svg class="rb-stage-mark rb-stage-mark--${side}" viewBox="0 0 220 320" focusable="false" aria-hidden="true">
+      <path d="M108 310C107 262 109 223 107 174C106 125 120 78 112 15"/>
+      <ellipse cx="71" cy="240" rx="28" ry="56" transform="rotate(-38 71 240)"/>
+      <ellipse cx="149" cy="204" rx="26" ry="52" transform="rotate(34 149 204)"/>
+      <ellipse cx="77" cy="142" rx="25" ry="49" transform="rotate(-36 77 142)"/>
+      <ellipse cx="145" cy="98" rx="23" ry="44" transform="rotate(31 145 98)"/>
+      <circle cx="112" cy="39" r="25"/>
+    </svg>`;
+
+  const pollenMarkup=(side='a')=>`
+    <span class="rb-pollen rb-pollen--${side}" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i>
+    </span>`;
+
+  const ensureSignatureStages=()=>{
+    const sections=[...document.querySelectorAll('main>section')];
+    if(!sections.length)return;
+
+    const hero=sections[0];
+    if(!hero.classList.contains('rb-signature-hero')){
+      hero.classList.add('rb-signature-hero');
+      hero.insertAdjacentHTML('afterbegin','<span class="rb-hero-colorfield" aria-hidden="true"></span>'+signatureFlowerSvg());
+    }
+
+    const usable=sections.filter(section=>!section.matches('.section--soil,.report-finance,.update-band,.conversion-band'));
+    const candidates=[
+      usable[Math.min(2,Math.max(1,usable.length-1))],
+      usable[Math.max(2,Math.floor(usable.length*.52))],
+      usable[Math.max(2,usable.length-2)]
+    ].filter(Boolean);
+    const unique=[...new Set(candidates)].filter(section=>section!==hero);
+
+    unique.slice(0,3).forEach((section,index)=>{
+      section.classList.add('rb-stage',index===0?'rb-stage--a':index===1?'rb-stage--b':'rb-stage--c');
+      if(!section.querySelector(':scope > .rb-stage-mark')){
+        section.insertAdjacentHTML('afterbegin',stageMarkSvg(index%2===0?'left':'right')+pollenMarkup(index%2===0?'a':'b'));
+      }
+    });
+  };
+
   const ensureUniversalChrome=()=>{
     ensureHeaderSocial();
     ensureUniversalFooter();
     ensurePartnerStrip();
     ensureBotanicalDecor();
     ensureFinishingDecor();
+    ensureSignatureStages();
     forceReadableLightSurfaces();
     applyKnownContrastFixes();
   };
