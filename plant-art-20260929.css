@@ -2438,3 +2438,33 @@ body.nr-new-partner .industry-partner-logo--zukan img{
     transform:scale(1.82)!important;
   }
 }
+
+
+/* UPDATED ISHIKAWA ZUKAN LOGO RESET / 2026-09-29 */
+body.nr-new-partner .industry-partner-logo--zukan img{
+  width:min(100%,220px)!important;
+  max-width:220px!important;
+  max-height:88px!important;
+  height:auto!important;
+  transform:none!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+  width:auto!important;
+  max-width:100%!important;
+  max-height:64px!important;
+  height:auto!important;
+  transform:none!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+@media(max-width:600px){
+  body.nr-new-partner .industry-partner-logo--zukan img{
+    max-width:200px!important;
+    max-height:80px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+    max-height:58px!important;
+  }
+}
