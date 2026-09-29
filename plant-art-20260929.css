@@ -2074,3 +2074,259 @@ main>section.rb-stage.rb-art-wash::before{display:none!important}
   .rb-editorial-plant{opacity:.08!important}
   .rb-photo-botanical::before,.rb-photo-botanical::after{display:none}
 }
+
+
+/* BOTANICAL STRUCTURE V3 / 2026-09-29 */
+/* Typography stays horizontal and readable. Atmosphere comes from plants, not tilted text. */
+html body :is(h1,h2,h3,h4,.eyebrow,.eyebrow span,.eyebrow small,.headline-marker,.section-heading){
+  transform:none!important;
+  rotate:0deg!important;
+  font-style:normal!important;
+}
+html body .eyebrow small{display:none!important}
+
+/* Retire the previous color-blob / scattered-decoration approach. */
+.rb-hero-colorfield,
+.rb-hero-print,
+.rb-stage-mark,
+.rb-pollen,
+.rb-editorial-plant,
+.rb-handline,
+.rb-page-motif,
+.rb-leaf-shadow,
+.rb-botanical-vine,
+.rb-botanical-sprig,
+.rb-botanical-petal,
+.rb-seed-cluster,
+.rb-botanical-haze,
+.rb-section-botanical{
+  display:none!important;
+}
+main>section.rb-stage::before,
+main>section.rb-art-wash::before{
+  display:none!important;
+}
+body[data-rb-motif]{
+  background:#faf8f1!important;
+}
+body::after{
+  opacity:.018!important;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(50,67,54,.12) 0 1px,transparent 1px 5px),
+    repeating-linear-gradient(90deg,rgba(130,105,71,.07) 0 1px,transparent 1px 11px)!important;
+}
+
+/* A single growth line gives the page a botanical backbone. */
+.rb-growth-spine{
+  position:absolute;
+  top:150px;
+  bottom:280px;
+  left:max(12px,calc((100vw - 1180px)/2 - 102px));
+  width:108px;
+  z-index:0;
+  pointer-events:none;
+  opacity:.42;
+}
+.rb-growth-spine svg{
+  width:100%;
+  height:100%;
+  display:block;
+  overflow:visible;
+}
+.rb-growth-spine .rb-spine-stem,
+.rb-growth-spine .rb-spine-stem-ghost{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-stem{stroke-width:2.1}
+.rb-growth-spine .rb-spine-stem-ghost{
+  stroke-width:.8;
+  opacity:.34;
+  transform:translateX(3px);
+}
+.rb-growth-spine .rb-spine-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 72%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.2;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-flower{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 74%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.1;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 72%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+
+/* Plant specimens occupy the margins and never cover copy/cards. */
+.rb-botanical-specimen-host{
+  position:relative!important;
+  isolation:isolate;
+}
+.rb-botanical-specimen-host > :not(.rb-botanical-specimen):not(.rb-root-line){
+  position:relative;
+  z-index:2;
+}
+.rb-botanical-specimen{
+  position:absolute;
+  z-index:1;
+  width:clamp(190px,20vw,330px);
+  height:auto;
+  pointer-events:none;
+  color:var(--rb-decor-leaf-dark);
+  opacity:.30;
+  filter:drop-shadow(0 18px 28px rgba(34,69,47,.055));
+}
+.rb-botanical-specimen--left{
+  left:max(-170px,calc((100vw - 1180px)/2 - 220px));
+  top:12%;
+}
+.rb-botanical-specimen--right{
+  right:max(-180px,calc((100vw - 1180px)/2 - 230px));
+  top:14%;
+}
+.rb-botanical-specimen path.rb-spec-stem,
+.rb-botanical-specimen path.rb-spec-root{
+  fill:none;
+  stroke:currentColor;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-botanical-specimen path.rb-spec-stem{stroke-width:2.2}
+.rb-botanical-specimen path.rb-spec-root{stroke-width:1.35;opacity:.8}
+.rb-botanical-specimen .rb-spec-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 78%,#fff);
+  stroke:currentColor;
+  stroke-width:1.1;
+}
+.rb-botanical-specimen .rb-spec-petal{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 72%,#fff);
+  stroke:currentColor;
+  stroke-width:1.1;
+}
+.rb-botanical-specimen .rb-spec-core{
+  fill:var(--rb-decor-bloom-2);
+  stroke:currentColor;
+  stroke-width:1;
+}
+.rb-botanical-specimen .rb-spec-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:1;
+}
+
+/* Roots mark a section ending; unlike a decorative divider, they express growth below ground. */
+.rb-root-line{
+  position:absolute;
+  left:50%;
+  bottom:-34px;
+  width:min(620px,58vw);
+  height:78px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index:1;
+  opacity:.18;
+}
+.rb-root-line svg{display:block;width:100%;height:100%;overflow:visible}
+.rb-root-line path{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.25;
+  stroke-linecap:round;
+}
+
+/* Headings get a real botanical underline: stem + one leaf, never rotated text. */
+.rb-plant-heading{
+  position:relative;
+  padding-bottom:18px!important;
+}
+.rb-plant-heading::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:3px;
+  width:88px;
+  height:13px;
+  background:
+    radial-gradient(ellipse at 76% 34%,var(--rb-decor-leaf) 0 34%,transparent 36%),
+    linear-gradient(var(--rb-decor-leaf-dark),var(--rb-decor-leaf-dark)) 0 9px/78px 1.5px no-repeat;
+  border-radius:100%;
+  opacity:.54;
+}
+.section-heading--center .rb-plant-heading::after,
+.section-heading--center.rb-plant-heading::after{
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Selected photographs feel embedded in a herbarium page. */
+.rb-photo-botanical::before{
+  background:#eee8d9!important;
+  box-shadow:0 12px 24px rgba(48,64,50,.06);
+}
+.rb-photo-botanical::after{
+  background:transparent!important;
+  border-left:1px solid rgba(58,90,64,.24);
+  border-bottom:1px solid rgba(58,90,64,.16);
+  border-radius:0!important;
+}
+.rb-photo-corner-leaf{
+  opacity:.62!important;
+}
+.rb-photo-corner-leaf::before,
+.rb-photo-corner-leaf::after{
+  background:color-mix(in srgb,var(--rb-decor-leaf) 82%,#fff)!important;
+  border:1px solid rgba(49,84,58,.24);
+}
+
+/* Give alternating sections a paper tone only; plants provide the identity. */
+main>section:nth-of-type(4n+2):not(.section--soil):not(.report-finance):not(.update-band){
+  background:rgba(244,241,231,.50);
+}
+main>section:nth-of-type(4n):not(.section--soil):not(.report-finance):not(.update-band){
+  background:rgba(239,245,235,.38);
+}
+
+/* Preserve all content contrast over botanical art. */
+main>section :is(h1,h2,h3,h4,p,li,a,button,label,strong,small){
+  position:relative;
+}
+main>section :is(.container,.page-hero-grid,.split-story,.section-heading,.diagnosis-shell,.diagnosis-layout){
+  position:relative;
+  z-index:3;
+}
+
+@media(max-width:1180px){
+  .rb-growth-spine{
+    left:-42px;
+    opacity:.26;
+    width:94px;
+  }
+  .rb-botanical-specimen{opacity:.19;width:230px}
+  .rb-botanical-specimen--left{left:-150px}
+  .rb-botanical-specimen--right{right:-160px}
+}
+@media(max-width:760px){
+  .rb-growth-spine{display:none}
+  .rb-botanical-specimen{
+    width:150px;
+    opacity:.10;
+  }
+  .rb-botanical-specimen--left{left:-112px;top:7%}
+  .rb-botanical-specimen--right{right:-118px;top:8%}
+  .rb-root-line{width:72vw;opacity:.10}
+  .rb-plant-heading{padding-bottom:14px!important}
+  .rb-plant-heading::after{width:66px;height:10px;bottom:2px}
+}
+@media(max-width:520px){
+  .rb-botanical-specimen{display:none}
+  .rb-root-line{opacity:.07}
+}
