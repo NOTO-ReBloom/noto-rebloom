@@ -12,7 +12,7 @@
   ];
   const coreScripts=[
     'diagnosis.js?v=20260927rich2',
-    'diagnosis-visual-v2.js?v=20260927rich3'
+    'diagnosis-visual-v2.js?v=20260929clean1'
   ];
 
   const addStyle=(href)=>new Promise((resolve,reject)=>{
