@@ -518,48 +518,61 @@
 
   const botanicalSpecimenSvg=(kind,side='left')=>{
     const cls=`rb-botanical-specimen rb-botanical-specimen--${side}`;
+
     if(kind==='root'){
       return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
-        <path class="rb-spec-stem" d="M130 20C126 72 135 116 129 166"/>
-        <ellipse class="rb-spec-leaf" cx="96" cy="78" rx="22" ry="46" transform="rotate(-39 96 78)"/>
-        <ellipse class="rb-spec-leaf" cx="160" cy="111" rx="20" ry="42" transform="rotate(36 160 111)"/>
-        <path class="rb-spec-root" d="M129 166C111 198 95 226 76 349M129 166C143 204 158 249 164 350M129 166C128 219 127 279 129 354"/>
-        <path class="rb-spec-root" d="M102 224C83 233 67 247 54 267M91 267C72 281 61 301 52 323M153 231C172 244 188 260 201 281M160 276C180 289 192 310 202 333M128 241C111 258 101 278 94 299M132 294C146 309 154 326 158 344"/>
+        <path class="rb-spec-line" d="M132 18C127 52 134 86 128 121C124 145 129 161 127 178"/>
+        <path class="rb-spec-line" d="M128 96C104 81 87 64 77 45C102 47 119 62 128 85"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M79 46C91 57 104 67 124 83"/>
+        <path class="rb-spec-line" d="M128 126C151 111 170 90 180 69C158 72 139 88 129 112"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M178 71C166 84 151 97 134 110"/>
+        <path class="rb-spec-line" d="M127 178C111 209 93 239 76 351"/>
+        <path class="rb-spec-line" d="M128 178C142 211 157 252 165 351"/>
+        <path class="rb-spec-line" d="M127 178C127 226 127 286 130 354"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M101 225C84 235 69 250 57 269M91 267C75 281 63 299 53 324"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M153 232C171 245 187 261 200 282M160 278C178 291 191 311 201 334"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M128 242C112 258 102 278 95 300M131 294C145 309 153 327 158 344"/>
       </svg>`;
     }
+
     if(kind==='seed'){
       return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
-        <path class="rb-spec-stem" d="M128 344C126 278 130 211 128 54"/>
-        <ellipse class="rb-spec-leaf" cx="91" cy="251" rx="20" ry="48" transform="rotate(-42 91 251)"/>
-        <ellipse class="rb-spec-leaf" cx="163" cy="216" rx="19" ry="46" transform="rotate(38 163 216)"/>
-        <ellipse class="rb-spec-seed" cx="111" cy="126" rx="12" ry="24" transform="rotate(-34 111 126)"/>
-        <ellipse class="rb-spec-seed" cx="149" cy="109" rx="11" ry="23" transform="rotate(29 149 109)"/>
-        <ellipse class="rb-spec-seed" cx="104" cy="86" rx="10" ry="21" transform="rotate(-39 104 86)"/>
-        <ellipse class="rb-spec-seed" cx="146" cy="70" rx="10" ry="21" transform="rotate(34 146 70)"/>
-        <ellipse class="rb-spec-seed" cx="126" cy="38" rx="10" ry="22"/>
+        <path class="rb-spec-line" d="M128 348C127 302 129 255 127 205C126 155 130 103 127 48"/>
+        <path class="rb-spec-line" d="M127 254C106 242 90 225 80 204C103 206 118 221 127 241"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M82 205C94 217 108 229 123 239"/>
+        <path class="rb-spec-line" d="M128 225C149 214 165 196 174 176C152 179 138 193 129 212"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M172 178C160 190 146 200 133 210"/>
+        <path class="rb-spec-line rb-spec-line--accent" d="M127 142C112 134 103 122 105 111C119 109 128 119 130 132"/>
+        <path class="rb-spec-line rb-spec-line--accent" d="M128 118C142 109 151 97 149 86C136 84 128 94 126 107"/>
+        <path class="rb-spec-line rb-spec-line--accent" d="M126 92C111 84 103 72 106 61C120 60 128 69 130 81"/>
+        <path class="rb-spec-line rb-spec-line--accent" d="M128 72C141 63 148 52 145 42C133 41 126 49 124 60"/>
+        <path class="rb-spec-line rb-spec-line--accent" d="M126 48C119 38 119 27 126 18C135 27 136 39 128 49"/>
       </svg>`;
     }
+
     if(kind==='flower'){
       return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
-        <path class="rb-spec-stem" d="M130 350C128 280 132 212 130 156"/>
-        <ellipse class="rb-spec-leaf" cx="92" cy="262" rx="22" ry="50" transform="rotate(-42 92 262)"/>
-        <ellipse class="rb-spec-leaf" cx="167" cy="226" rx="20" ry="47" transform="rotate(38 167 226)"/>
-        <ellipse class="rb-spec-petal" cx="130" cy="74" rx="27" ry="52"/>
-        <ellipse class="rb-spec-petal" cx="188" cy="126" rx="27" ry="52" transform="rotate(72 188 126)"/>
-        <ellipse class="rb-spec-petal" cx="166" cy="190" rx="27" ry="52" transform="rotate(144 166 190)"/>
-        <ellipse class="rb-spec-petal" cx="94" cy="190" rx="27" ry="52" transform="rotate(216 94 190)"/>
-        <ellipse class="rb-spec-petal" cx="72" cy="126" rx="27" ry="52" transform="rotate(288 72 126)"/>
-        <circle class="rb-spec-core" cx="130" cy="137" r="28"/>
+        <path class="rb-spec-line" d="M130 351C128 303 131 254 129 204C128 188 129 170 130 154"/>
+        <path class="rb-spec-line" d="M129 269C107 257 90 239 80 217C103 219 120 235 129 255"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M82 219C96 232 110 243 125 253"/>
+        <path class="rb-spec-line" d="M130 238C151 226 168 207 177 184C153 188 138 203 130 224"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M174 187C160 200 146 212 134 222"/>
+        <path class="rb-spec-line rb-spec-line--flower" d="M130 154C111 149 96 137 90 121C106 118 119 125 128 137C125 120 129 103 141 91C151 106 151 121 142 137C154 126 170 124 184 132C177 148 164 156 147 158C161 163 171 174 173 188C156 192 143 185 135 171C133 185 124 196 109 201C101 185 105 171 118 162C102 163 90 155 84 141C99 134 114 138 130 154Z"/>
+        <path class="rb-spec-line rb-spec-line--fine" d="M130 154C131 145 134 139 140 134M130 154C121 151 114 147 109 141M130 154C137 159 141 165 143 172"/>
       </svg>`;
     }
+
     return `<svg class="${cls}" viewBox="0 0 260 360" focusable="false" aria-hidden="true">
-      <path class="rb-spec-stem" d="M78 348C103 301 123 250 139 194C153 145 167 89 181 18"/>
-      <ellipse class="rb-spec-leaf" cx="103" cy="270" rx="21" ry="49" transform="rotate(-48 103 270)"/>
-      <ellipse class="rb-spec-leaf" cx="151" cy="229" rx="20" ry="47" transform="rotate(40 151 229)"/>
-      <ellipse class="rb-spec-leaf" cx="121" cy="180" rx="19" ry="44" transform="rotate(-45 121 180)"/>
-      <ellipse class="rb-spec-leaf" cx="170" cy="138" rx="18" ry="42" transform="rotate(38 170 138)"/>
-      <ellipse class="rb-spec-leaf" cx="148" cy="84" rx="17" ry="39" transform="rotate(-41 148 84)"/>
-      <circle class="rb-spec-core" cx="184" cy="29" r="13"/>
+      <path class="rb-spec-line" d="M72 350C96 309 115 268 132 221C149 174 163 121 180 18"/>
+      <path class="rb-spec-line" d="M108 286C89 276 74 261 65 243C85 243 101 255 110 272"/>
+      <path class="rb-spec-line rb-spec-line--fine" d="M67 244C79 254 91 263 106 270"/>
+      <path class="rb-spec-line" d="M129 236C150 226 167 209 178 190C157 190 141 202 131 220"/>
+      <path class="rb-spec-line rb-spec-line--fine" d="M176 192C163 202 149 212 135 218"/>
+      <path class="rb-spec-line" d="M145 181C126 170 113 155 106 137C126 139 141 151 147 168"/>
+      <path class="rb-spec-line rb-spec-line--fine" d="M108 139C119 149 131 158 144 166"/>
+      <path class="rb-spec-line" d="M160 132C179 122 192 107 199 90C180 90 166 101 158 117"/>
+      <path class="rb-spec-line rb-spec-line--fine" d="M197 92C185 101 174 110 161 116"/>
+      <path class="rb-spec-line rb-spec-line--accent" d="M180 18C173 30 174 42 184 52C195 41 196 28 188 17C185 13 182 13 180 18Z"/>
     </svg>`;
   };
 
@@ -571,21 +584,10 @@
   const growthSpineMarkup=()=>`
     <span class="rb-growth-spine" aria-hidden="true">
       <svg viewBox="0 0 108 1600" preserveAspectRatio="none" focusable="false">
-        <path class="rb-spine-stem" d="M55 0C41 168 69 294 51 468C34 634 71 782 50 952C34 1081 69 1267 52 1600"/>
-        <path class="rb-spine-stem-ghost" d="M55 0C42 168 70 294 52 468C35 634 72 782 51 952C35 1081 70 1267 53 1600"/>
-        <ellipse class="rb-spine-leaf" cx="34" cy="247" rx="17" ry="38" transform="rotate(-38 34 247)"/>
-        <ellipse class="rb-spine-leaf" cx="75" cy="498" rx="16" ry="36" transform="rotate(34 75 498)"/>
-        <ellipse class="rb-spine-leaf" cx="31" cy="840" rx="17" ry="38" transform="rotate(-41 31 840)"/>
-        <ellipse class="rb-spine-leaf" cx="74" cy="1192" rx="16" ry="36" transform="rotate(35 74 1192)"/>
-        <g transform="translate(53 665)">
-          <ellipse class="rb-spine-flower" cx="0" cy="-24" rx="11" ry="23"/>
-          <ellipse class="rb-spine-flower" cx="23" cy="0" rx="11" ry="23" transform="rotate(90 23 0)"/>
-          <ellipse class="rb-spine-flower" cx="0" cy="24" rx="11" ry="23"/>
-          <ellipse class="rb-spine-flower" cx="-23" cy="0" rx="11" ry="23" transform="rotate(90 -23 0)"/>
-          <circle class="rb-spine-seed" cx="0" cy="0" r="8"/>
-        </g>
-        <ellipse class="rb-spine-seed" cx="40" cy="1420" rx="8" ry="18" transform="rotate(-30 40 1420)"/>
-        <ellipse class="rb-spine-seed" cx="69" cy="1470" rx="8" ry="18" transform="rotate(28 69 1470)"/>
+        <path class="rb-spine-line" d="M55 0C41 168 69 294 51 468C34 634 71 782 50 952C34 1081 69 1267 52 1600"/>
+        <path class="rb-spine-line rb-spine-line--fine" d="M54 236C40 219 29 201 24 182C39 187 49 198 55 216M52 494C66 478 78 460 84 440C69 443 58 455 52 475M51 837C36 820 25 801 21 781C36 786 46 797 52 817M51 1187C65 1173 77 1155 84 1136C70 1138 59 1149 52 1167"/>
+        <path class="rb-spine-line rb-spine-line--flower" d="M51 662C39 658 31 648 31 638C42 636 50 641 55 651C55 639 61 629 71 624C79 634 79 644 72 654C82 651 92 654 98 663C91 672 82 675 71 671C77 681 76 691 68 699C57 694 52 685 54 674C46 682 36 684 27 678C32 668 40 663 51 662Z"/>
+        <path class="rb-spine-line rb-spine-line--fine" d="M52 1414C42 1404 35 1394 34 1383C44 1384 51 1391 55 1401M53 1465C62 1455 70 1444 72 1433C62 1434 55 1440 51 1451"/>
       </svg>
     </span>`;
 
