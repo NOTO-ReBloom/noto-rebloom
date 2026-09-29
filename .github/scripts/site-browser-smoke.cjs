@@ -30,9 +30,9 @@ const PUBLIC_COPY_BANNED=[
   '<small>YES</small>','LEAN YES','LEAN NO','<small>NO</small>',
   'わたしを再発見','あなたの輪郭','自分を守る境界線',
   '小さな循環','一つの見方です','同じ情報設計で',
-  'エネルギーの戻し方'
+  'エネルギーの戻し方','BLOOM /','LANGUAGE /'
 ];
-const copyGuardFiles=[...pages,'plant-art-20260929.js','diagnosis-visual-v2.js'];
+const copyGuardFiles=[...pages,'plant-art-20260929.js','diagnosis-visual-v2.js','diagnosis.js'];
 const copyFailures=[];
 for(const file of copyGuardFiles){
   const source=fs.readFileSync(file,'utf8');
