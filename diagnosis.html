@@ -170,29 +170,34 @@
 <ol id="resultMonthPlan"></ol>
 </section><section class="result-share-section" id="resultShare">
 <div class="result-share-heading">
-<p class="result-kicker">SNS SHARE</p>
-<h3>結果を、「今の自分のプロフィール」にする。</h3>
-<p>投稿用は3枚セットです。1枚目で花タイプを見せ、2枚目で5つの傾向を見せ、3枚目で近い花や友達との会話につなげます。ストーリー用は、投票や質問スタンプを重ねやすい専用レイアウトです。</p>
+<p class="result-kicker">SHARE CARD</p>
+<h3>診断結果を、一枚のプロフィールに。</h3>
+<p>花写真、タイプ名、5つの傾向、強み、注意点、近い花までを一枚にまとめました。装飾を増やすのではなく、植物図鑑や雑誌の誌面のように情報を整理しています。</p>
 </div>
-<div class="result-social-carousel" aria-label="投稿用3枚のプレビュー">
-<figure class="result-social-card-preview"><span>01 / 表紙</span><img alt="花タイプ診断の投稿用表紙カード" id="resultShareImage" loading="lazy"/><figcaption>花と一言で、自分のタイプを一瞬で見せる表紙。</figcaption></figure>
-<figure class="result-social-card-preview"><span>02 / 5つの咲き方</span><img alt="5つの傾向をまとめたプロフィールカード" id="resultShareProfileImage" loading="lazy"/><figcaption>今回の回答から出た5軸を、そのまま自分のプロフィールに。</figcaption></figure>
-<figure class="result-social-card-preview"><span>03 / 近い花</span><img alt="近い花と友達への問いをまとめたカード" id="resultShareRelationImage" loading="lazy"/><figcaption>近い花と違う強みを見せて、「あなたは何の花？」につなげます。</figcaption></figure>
+<div class="result-share-layout">
+<figure class="result-share-main-preview">
+<img alt="花タイプ診断のSNS投稿用結果カード" id="resultShareImage" loading="lazy"/>
+</figure>
+<div class="result-share-side">
+<div class="result-share-notes">
+<span>このカードに入る内容</span>
+<ul><li>花タイプと短いコピー</li><li>今回の回答から出た5つの傾向</li><li>強み・注意点・近い花</li></ul>
 </div>
 <div class="result-social-actions">
-<button class="btn btn--green" id="shareDiagnosisCard" type="button">投稿用3枚を共有</button>
-<a class="btn btn--yellow" download id="downloadCard">1枚目を保存</a>
-<a class="btn btn--paper" download id="downloadProfileCard">2枚目を保存</a>
-<a class="btn btn--paper" download id="downloadRelationCard">3枚目を保存</a>
+<button class="btn btn--green" id="shareDiagnosisCard" type="button">結果カードを共有</button>
+<a class="btn btn--yellow" download id="downloadCard">投稿用を保存</a>
+<button class="btn btn--paper" id="copyDiagnosisResult" type="button">結果文をコピー</button>
 </div>
 <div class="result-story-block">
 <div class="result-story-copy">
-<p class="result-kicker">INSTAGRAM STORY</p>
-<h4>ストーリーでは、友達に「私っぽい？」と聞ける形に。</h4>
-<p>9:16専用カードには、Instagramの投票・質問スタンプを重ねやすい余白を残しています。</p>
-<div class="button-row"><a class="btn btn--yellow" download id="downloadStoryCard">ストーリー用を保存</a><button class="btn btn--paper" id="copyDiagnosisResult" type="button">結果文をコピー</button></div>
+<p class="result-kicker">STORY 9:16</p>
+<h4>ストーリー版も、同じ情報設計で。</h4>
+<p>投稿用の内容を縦長に組み替えた専用レイアウトです。余計な問いかけやスタンプ前提の文言は入れていません。</p>
+<a class="btn btn--paper" download id="downloadStoryCard">ストーリー用を保存</a>
 </div>
-<figure class="result-story-preview"><img alt="Instagramストーリー用の花タイプカード" id="resultStoryImage" loading="lazy"/></figure>
+<figure class="result-story-preview"><img alt="花タイプ診断のストーリー用結果カード" id="resultStoryImage" loading="lazy"/></figure>
+</div>
+</div>
 </div>
 <p aria-live="polite" class="diagnosis-copy-status" id="diagnosisCopyStatus"></p>
 </section><section aria-labelledby="resultNextHeading" class="result-next-action">
