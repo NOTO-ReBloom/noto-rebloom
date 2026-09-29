@@ -303,11 +303,131 @@
     requestAnimationFrame(()=>document.documentElement.classList.add('rb-botanical-ready'));
   };
 
+  const currentMotif=()=>{
+    const file=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    if(file==='index.html')return'home';
+    if(file==='thoughts.html')return'thoughts';
+    if(file==='learn.html')return'learn';
+    if(file==='event.html')return'event';
+    if(file==='report.html')return'report';
+    if(file==='partner.html')return'partner';
+    if(file==='diagnosis.html')return'diagnosis';
+    if(file==='contact.html')return'contact';
+    return'home';
+  };
+
+  const motifSvg=(kind)=>{
+    const commonStart='<svg viewBox="0 0 120 120" focusable="false" aria-hidden="true">';
+    const commonEnd='</svg>';
+    const motifs={
+      home:
+        '<path class="rb-motif-stroke" d="M60 104C58 82 61 64 59 43"/>'+
+        '<ellipse class="rb-motif-fill" cx="43" cy="58" rx="15" ry="27" transform="rotate(-42 43 58)"/>'+
+        '<ellipse class="rb-motif-fill" cx="77" cy="48" rx="14" ry="25" transform="rotate(38 77 48)"/>'+
+        '<ellipse class="rb-motif-seed" cx="61" cy="100" rx="8" ry="13" transform="rotate(12 61 100)"/>',
+      thoughts:
+        '<path class="rb-motif-stroke" d="M60 14C57 40 61 59 58 76M58 76C42 84 29 94 18 108M58 76C73 86 88 97 101 109M58 76C52 91 49 102 47 114M58 76C67 91 72 102 74 114"/>'+
+        '<ellipse class="rb-motif-fill" cx="42" cy="35" rx="12" ry="23" transform="rotate(-36 42 35)"/>'+
+        '<ellipse class="rb-motif-fill" cx="76" cy="29" rx="11" ry="21" transform="rotate(33 76 29)"/>',
+      learn:
+        '<path class="rb-motif-stroke" d="M60 102C61 82 62 62 61 42"/>'+
+        '<ellipse class="rb-motif-seed" cx="45" cy="87" rx="8" ry="16" transform="rotate(-34 45 87)"/>'+
+        '<ellipse class="rb-motif-seed" cx="72" cy="79" rx="8" ry="16" transform="rotate(28 72 79)"/>'+
+        '<ellipse class="rb-motif-fill" cx="47" cy="48" rx="13" ry="24" transform="rotate(-39 47 48)"/>'+
+        '<ellipse class="rb-motif-fill" cx="78" cy="40" rx="12" ry="22" transform="rotate(35 78 40)"/>',
+      event:
+        '<path class="rb-motif-stroke" d="M60 106C59 88 61 66 60 45"/>'+
+        '<path class="rb-motif-stroke" d="M23 106C39 96 79 94 98 106"/>'+
+        '<ellipse class="rb-motif-fill" cx="44" cy="60" rx="14" ry="25" transform="rotate(-42 44 60)"/>'+
+        '<ellipse class="rb-motif-fill" cx="77" cy="50" rx="13" ry="24" transform="rotate(37 77 50)"/>'+
+        '<circle class="rb-motif-seed" cx="31" cy="101" r="5"/><circle class="rb-motif-seed" cx="87" cy="102" r="4"/>',
+      report:
+        '<circle class="rb-motif-accent" cx="60" cy="55" r="13"/>'+
+        '<ellipse class="rb-motif-fill" cx="60" cy="28" rx="12" ry="22"/>'+
+        '<ellipse class="rb-motif-fill" cx="88" cy="55" rx="12" ry="22" transform="rotate(90 88 55)"/>'+
+        '<ellipse class="rb-motif-fill" cx="60" cy="82" rx="12" ry="22"/>'+
+        '<ellipse class="rb-motif-fill" cx="32" cy="55" rx="12" ry="22" transform="rotate(90 32 55)"/>'+
+        '<path class="rb-motif-stroke" d="M60 69C58 84 58 96 61 111"/>',
+      partner:
+        '<path class="rb-motif-stroke" d="M20 96C31 67 49 60 61 33M100 96C89 68 72 58 60 33"/>'+
+        '<ellipse class="rb-motif-fill" cx="35" cy="71" rx="11" ry="21" transform="rotate(-42 35 71)"/>'+
+        '<ellipse class="rb-motif-fill" cx="85" cy="70" rx="11" ry="21" transform="rotate(41 85 70)"/>'+
+        '<circle class="rb-motif-accent" cx="60" cy="28" r="11"/>',
+      diagnosis:
+        '<path class="rb-motif-stroke" d="M58 100C58 82 60 66 60 52"/>'+
+        '<ellipse class="rb-motif-accent" cx="36" cy="35" rx="10" ry="18" transform="rotate(-36 36 35)"/>'+
+        '<ellipse class="rb-motif-accent" cx="75" cy="26" rx="9" ry="17" transform="rotate(31 75 26)"/>'+
+        '<ellipse class="rb-motif-fill" cx="45" cy="68" rx="12" ry="22" transform="rotate(-40 45 68)"/>'+
+        '<ellipse class="rb-motif-fill" cx="79" cy="60" rx="11" ry="21" transform="rotate(37 79 60)"/>',
+      contact:
+        '<path class="rb-motif-stroke" d="M34 107C54 82 72 57 86 16"/>'+
+        '<ellipse class="rb-motif-fill" cx="50" cy="79" rx="11" ry="21" transform="rotate(-41 50 79)"/>'+
+        '<ellipse class="rb-motif-fill" cx="74" cy="51" rx="10" ry="19" transform="rotate(37 74 51)"/>'+
+        '<circle class="rb-motif-accent" cx="89" cy="18" r="8"/><circle class="rb-motif-accent" cx="100" cy="27" r="5"/>'
+    };
+    return commonStart+(motifs[kind]||motifs.home)+commonEnd;
+  };
+
+  const sectionDividerMarkup=(alt=false)=>`
+    <span class="rb-section-botanical${alt?' rb-section-botanical--alt':''}" aria-hidden="true">
+      <svg viewBox="0 0 280 38" focusable="false">
+        <path class="rb-divider-stem" d="M8 21C58 11 96 29 140 18C184 7 221 27 272 16"/>
+        <ellipse class="rb-divider-leaf" cx="90" cy="18" rx="9" ry="4.5" transform="rotate(-22 90 18)"/>
+        <ellipse class="rb-divider-leaf" cx="185" cy="18" rx="9" ry="4.5" transform="rotate(24 185 18)"/>
+        <circle class="rb-divider-seed" cx="140" cy="18" r="3.5"/>
+      </svg>
+    </span>`;
+
+  const ensureFinishingDecor=()=>{
+    const motif=currentMotif();
+    document.body.dataset.rbMotif=motif;
+
+    const layer=document.querySelector('.rb-botanical-decor');
+    if(layer && !layer.querySelector('.rb-leaf-shadow')){
+      layer.insertAdjacentHTML('beforeend',`
+        <span class="rb-leaf-shadow rb-leaf-shadow--one"></span>
+        <span class="rb-leaf-shadow rb-leaf-shadow--two"></span>
+        <span class="rb-page-motif rb-page-motif--top">${motifSvg(motif)}</span>
+        <span class="rb-page-motif rb-page-motif--bottom">${motifSvg(motif)}</span>
+      `);
+    }
+
+    const sections=[...document.querySelectorAll('main>section')];
+    sections.forEach((section,index)=>{
+      if(index===0||section.querySelector(':scope > .rb-section-botanical'))return;
+      if(section.matches('.section--soil,.report-finance,.update-band'))return;
+      section.classList.add('rb-section-botanical-host');
+      section.insertAdjacentHTML('afterbegin',sectionDividerMarkup(index%2===0));
+    });
+
+    document.querySelectorAll('.btn').forEach(btn=>{
+      if(btn.querySelector(':scope > .rb-btn-leaf'))return;
+      btn.classList.add('rb-botanical-btn');
+      btn.insertAdjacentHTML('beforeend','<span class="rb-btn-leaf" aria-hidden="true"></span>');
+    });
+
+    const photoCandidates=[
+      ...document.querySelectorAll('.photo-frame,.contact-hero-photo,.report-photo,.people-trust-photo,.visual-tile')
+    ].filter(el=>el.querySelector('img'));
+    const chosen=[];
+    for(const el of photoCandidates){
+      if(chosen.length>=3)break;
+      if(chosen.some(prev=>prev.contains(el)||el.contains(prev)))continue;
+      chosen.push(el);
+    }
+    chosen.forEach(el=>{
+      if(el.querySelector(':scope > .rb-photo-corner-leaf'))return;
+      el.classList.add('rb-photo-botanical');
+      el.insertAdjacentHTML('beforeend','<span class="rb-photo-corner-leaf" aria-hidden="true"><i></i></span>');
+    });
+  };
+
   const ensureUniversalChrome=()=>{
     ensureHeaderSocial();
     ensureUniversalFooter();
     ensurePartnerStrip();
     ensureBotanicalDecor();
+    ensureFinishingDecor();
     forceReadableLightSurfaces();
     applyKnownContrastFixes();
   };
