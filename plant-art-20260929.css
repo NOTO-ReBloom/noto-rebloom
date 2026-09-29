@@ -2403,3 +2403,24 @@ main>section :is(.container,.page-hero-grid,.split-story,.section-heading,.diagn
 .rb-editorial-plant{
   display:none!important;
 }
+
+
+/* ISHIKAWA ZUKAN LOGO OPTICAL SIZE / 2026-09-29 */
+body.nr-new-partner .industry-partner-logo--zukan{
+  overflow:hidden!important;
+}
+body.nr-new-partner .industry-partner-logo--zukan img{
+  width:178px!important;
+  max-width:none!important;
+  max-height:none!important;
+  height:auto!important;
+  transform:scale(2.08)!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+@media(max-width:600px){
+  body.nr-new-partner .industry-partner-logo--zukan img{
+    width:164px!important;
+    transform:scale(2.02)!important;
+  }
+}
