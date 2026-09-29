@@ -1615,14 +1615,13 @@ main{position:relative;z-index:1}
 }
 
 /* Only selected, important photo blocks get a tiny overhanging leaf. */
-.rb-photo-botanical{
+ .rb-photo-botanical{
   position:relative!important;
-  overflow:visible!important;
 }
 .rb-photo-corner-leaf{
   position:absolute;
-  right:-13px;
-  bottom:-10px;
+  right:8px;
+  top:8px;
   width:44px;
   height:54px;
   pointer-events:none;
