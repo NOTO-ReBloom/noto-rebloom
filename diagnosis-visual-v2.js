@@ -325,7 +325,7 @@ function buildEditorialCard(photo,landscape,data){
 
   ctx.fillStyle='rgba(255,255,255,.93)';
   ctx.font=`700 14px ${SANS}`;ctx.fillText('NOTO Re:Bloom',m,44);
-  ctx.textAlign='right';ctx.fillText('FLOWER TYPE / 32',W-m,44);ctx.textAlign='left';
+  ctx.textAlign='right';ctx.fillText('花タイプ / 32',W-m,44);ctx.textAlign='left';
 
   // Colored title sheet: clearly separated from the neutral parameter area.
   const panelX=m,panelY=365,panelW=690,panelH=265;
@@ -364,9 +364,9 @@ function buildEditorialCard(photo,landscape,data){
   // Strength / caution / near flower editorial column.
   const rightX=674,rightW=350;
   const info=[
-    ['STRENGTH',compactText(data.strengths?.[0]||data.keywords?.[0]||'',32)],
-    ['WATCH',compactText(data.watch?.[0]||'',32)],
-    ['NEAR FLOWER',compactText((data.neighbor?.name||'')+'タイプ',32)]
+    ['強み',compactText(data.strengths?.[0]||data.keywords?.[0]||'',32)],
+    ['注意点',compactText(data.watch?.[0]||'',32)],
+    ['近い花',compactText((data.neighbor?.name||'')+'タイプ',32)]
   ];
   info.forEach((row,i)=>{
     const y=744+i*112;
@@ -416,7 +416,7 @@ function buildStoryCard(photo,landscape,data){
 
   ctx.fillStyle='rgba(255,255,255,.94)';ctx.font=`700 17px ${SANS}`;
   ctx.fillText('NOTO Re:Bloom',m,58);
-  ctx.textAlign='right';ctx.fillText('FLOWER TYPE / 32',W-m,58);ctx.textAlign='left';
+  ctx.textAlign='right';ctx.fillText('花タイプ / 32',W-m,58);ctx.textAlign='left';
 
   ctx.save();
   ctx.shadowColor='rgba(18,48,38,.16)';
@@ -442,9 +442,9 @@ function buildStoryCard(photo,landscape,data){
   ctx.strokeStyle='rgba(23,54,44,.13)';ctx.beginPath();ctx.moveTo(m,infoY);ctx.lineTo(W-m,infoY);ctx.stroke();
   const colW=(W-m*2-36*2)/3;
   const rows=[
-    ['STRENGTH',compactText(data.strengths?.[0]||data.keywords?.[0]||'',24)],
-    ['WATCH',compactText(data.watch?.[0]||'',24)],
-    ['NEAR FLOWER',compactText((data.neighbor?.name||'')+'タイプ',24)]
+    ['強み',compactText(data.strengths?.[0]||data.keywords?.[0]||'',24)],
+    ['注意点',compactText(data.watch?.[0]||'',24)],
+    ['近い花',compactText((data.neighbor?.name||'')+'タイプ',24)]
   ];
   rows.forEach((row,i)=>{
     const x=m+i*(colW+36);
