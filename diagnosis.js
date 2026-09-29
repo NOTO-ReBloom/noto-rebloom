@@ -532,6 +532,35 @@
     $('resultPartnerGroup').textContent=complement.group+'の強みを借りるなら';
     $('resultPartnerText').textContent=complement.text;
     $('resultMonthPlan').innerHTML=monthPlan(flower,profile).map(item=>`<li>${item}</li>`).join('');
+
+    // Public result payload for the SNS card renderer.
+    // This does not change diagnosis scoring; it only exposes the already-calculated result.
+    const sharePayload={
+      slug:flower.slug,
+      name:flower.name,
+      group:flower.group,
+      tagline:flower.tagline,
+      keywords:[...(flower.keywords||[])],
+      strengths:[...(flower.strengths||[])],
+      message:flower.message||'',
+      axes:AXIS_KEYS.map(k=>{
+        const narrative=axisNarrative(k,scores[k],counts[k]);
+        const position=Math.round((normalizedAxis(scores[k],counts[k])+1)*50);
+        return{
+          key:k,
+          left:AXIS_LABELS[k][0],
+          right:AXIS_LABELS[k][1],
+          title:narrative.title,
+          badge:narrative.badge,
+          position
+        };
+      }),
+      neighbor:{slug:neighbor.flower.slug,name:neighbor.flower.name},
+      complementGroup:complement.group
+    };
+    window.__rebloomShareResult=sharePayload;
+    window.dispatchEvent(new CustomEvent('rebloom:diagnosis-result',{detail:sharePayload}));
+
     completed=true;
     lastResultSlug=flower.slug;
     save();
