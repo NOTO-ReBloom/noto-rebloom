@@ -1,8 +1,8 @@
 /* Homepage final polish — 2026-09-30
-   First-view intent: the event photo itself is the hero.
-   Keep the full original photo visible; place the headline above it. */
+   The event photo is the first content users see.
+   The original 1400x788 image is always shown in full, never cropped. */
 
-/* IMPORTANT: older bundle assigns hero order:10. Force the real hero to the very top. */
+/* ----- page order ----- */
 body.nr-new-home main{
   display:flex!important;
   flex-direction:column!important;
@@ -11,31 +11,28 @@ body.nr-new-home main>.nr-home-hero{
   order:-100!important;
 }
 
-/* ===== HERO: headline above, full uncropped photo below ===== */
+/* ----- hero shell ----- */
 body.nr-new-home .nr-home-hero{
   position:relative!important;
   overflow:hidden!important;
-  box-sizing:border-box!important;
   min-height:0!important;
+  box-sizing:border-box!important;
   padding:94px 0 58px!important;
   background:
-    radial-gradient(circle at 3% 14%,rgba(242,201,76,.24),transparent 22%),
+    radial-gradient(circle at 3% 13%,rgba(242,201,76,.24),transparent 22%),
     radial-gradient(circle at 97% 88%,rgba(78,134,85,.17),transparent 25%),
     linear-gradient(180deg,#f4edd9 0%,#fffaf0 68%,#eef5ea 100%)!important;
-}
-body.nr-new-home .nr-home-hero::before,
-body.nr-new-home .nr-home-hero::after{
-  pointer-events:none!important;
 }
 body.nr-new-home .nr-home-hero::before{
   content:""!important;
   position:absolute!important;
   left:-95px!important;
-  top:150px!important;
+  top:145px!important;
   width:260px!important;
   height:260px!important;
   border-radius:50%!important;
   background:rgba(242,201,76,.15)!important;
+  pointer-events:none!important;
 }
 body.nr-new-home .nr-home-hero::after{
   content:""!important;
@@ -46,8 +43,8 @@ body.nr-new-home .nr-home-hero::after{
   height:340px!important;
   border-radius:50%!important;
   background:rgba(23,74,54,.10)!important;
+  pointer-events:none!important;
 }
-
 body.nr-new-home .nr-home-hero .hero-grid{
   position:relative!important;
   z-index:1!important;
@@ -66,7 +63,120 @@ body.nr-new-home .nr-home-hero .hero-grid{
   box-shadow:0 30px 78px rgba(18,61,50,.20)!important;
 }
 
-/* Headline band above the image. */
+/* ----- full, uncropped photo first ----- */
+body.nr-new-home .nr-home-hero .hero-media{
+  grid-area:media!important;
+  position:relative!important;
+  z-index:2!important;
+  width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  overflow:hidden!important;
+  border-radius:0!important;
+  background:#fffaf0!important;
+  box-shadow:none!important;
+}
+body.nr-new-home .nr-home-hero .photo-frame--home-venue{
+  position:relative!important;
+  z-index:2!important;
+  inset:auto!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#fffaf0!important;
+  box-shadow:none!important;
+}
+body.nr-new-home .nr-home-hero .photo-frame--home-venue::before{
+  display:none!important;
+  content:none!important;
+}
+body.nr-new-home .nr-home-hero .photo-frame--home-venue img{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  filter:saturate(1.04) contrast(1.02)!important;
+}
+body.nr-new-home .nr-home-hero .photo-frame--home-venue figcaption{
+  position:relative!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  padding:10px 18px 12px!important;
+  border:0!important;
+  border-top:1px solid rgba(23,74,54,.10)!important;
+  border-radius:0!important;
+  background:#fffaf0!important;
+  color:#52645d!important;
+  font-size:9.5px!important;
+  line-height:1.5!important;
+}
+
+/* No cropped collage photos: the main photo carries the impact. */
+body.nr-new-home .nr-home-hero .hero-media::before,
+body.nr-new-home .nr-home-hero .hero-media::after{
+  display:none!important;
+  content:none!important;
+  background-image:none!important;
+}
+body.nr-new-home .nr-home-hero .hero-event-label{
+  position:absolute!important;
+  z-index:7!important;
+  left:22px!important;
+  top:22px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:2px!important;
+  padding:10px 13px 9px!important;
+  border-radius:14px 8px 14px 8px!important;
+  background:#f2c94c!important;
+  color:#173f34!important;
+  box-shadow:0 10px 24px rgba(4,28,21,.18)!important;
+  transform:none!important;
+}
+body.nr-new-home .nr-home-hero .hero-event-label strong{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-size:12px!important;
+  font-weight:950!important;
+  line-height:1.2!important;
+}
+body.nr-new-home .nr-home-hero .hero-event-label span{
+  color:#315044!important;
+  -webkit-text-fill-color:#315044!important;
+  font-size:8px!important;
+  font-weight:900!important;
+  letter-spacing:.12em!important;
+}
+body.nr-new-home .nr-home-hero .nr-hero-brand-badge{
+  position:absolute!important;
+  z-index:7!important;
+  width:62px!important;
+  min-height:0!important;
+  right:22px!important;
+  top:22px!important;
+  left:auto!important;
+  padding:6px!important;
+  border-radius:50%!important;
+  background:#fffaf0!important;
+  box-shadow:0 10px 24px rgba(4,28,21,.18)!important;
+  transform:none!important;
+}
+
+/* ----- headline band below the photo ----- */
 body.nr-new-home .nr-home-hero .hero-copy{
   grid-area:copy!important;
   position:relative!important;
@@ -94,7 +204,6 @@ body.nr-new-home .nr-home-hero .hero-copy{
   text-align:left!important;
 }
 body.nr-new-home .nr-home-hero .hero-copy::before{display:none!important}
-
 body.nr-new-home .nr-home-hero .eyebrow{
   grid-area:eyebrow!important;
   width:max-content!important;
@@ -136,7 +245,6 @@ body.nr-new-home .nr-home-hero .headline-marker::after{
   background:#f2c94c!important;
   opacity:.98!important;
 }
-
 body.nr-new-home .nr-home-hero .hero-lead{
   grid-area:lead!important;
   max-width:600px!important;
@@ -215,125 +323,11 @@ body.nr-new-home .nr-home-hero .hero-reassurance{
   font-size:9.5px!important;
   line-height:1.6!important;
 }
-
-/* Full original event photo. No crop, no fixed height, no object-fit cover. */
-body.nr-new-home .nr-home-hero .hero-media{
-  grid-area:media!important;
-  position:relative!important;
-  z-index:2!important;
-  width:100%!important;
-  min-height:0!important;
-  height:auto!important;
-  margin:0!important;
-  overflow:visible!important;
-  border-radius:0!important;
-  background:#fffaf0!important;
-  box-shadow:none!important;
-}
-body.nr-new-home .nr-home-hero .photo-frame--home-venue{
-  position:relative!important;
-  z-index:2!important;
-  inset:auto!important;
-  width:100%!important;
-  max-width:none!important;
-  height:auto!important;
-  margin:0!important;
-  padding:0!important;
-  transform:none!important;
-  overflow:hidden!important;
-  border:0!important;
-  border-radius:0!important;
-  background:#fffaf0!important;
-  box-shadow:none!important;
-}
-body.nr-new-home .nr-home-hero .photo-frame--home-venue::before{
-  display:none!important;
-}
-body.nr-new-home .nr-home-hero .photo-frame--home-venue img{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  height:auto!important;
-  min-height:0!important;
-  aspect-ratio:auto!important;
-  object-fit:contain!important;
-  object-position:center center!important;
-  filter:saturate(1.04) contrast(1.02)!important;
-}
-body.nr-new-home .nr-home-hero .photo-frame--home-venue figcaption{
-  position:relative!important;
-  left:auto!important;
-  right:auto!important;
-  bottom:auto!important;
-  margin:0!important;
-  padding:10px 18px 12px!important;
-  border:0!important;
-  border-top:1px solid rgba(23,74,54,.10)!important;
-  border-radius:0!important;
-  background:#fffaf0!important;
-  color:#52645d!important;
-  font-size:9.5px!important;
-  line-height:1.5!important;
-}
-
-/* Keep only a small event label; remove cropped decorative photo fragments. */
-body.nr-new-home .nr-home-hero .hero-media::before,
-body.nr-new-home .nr-home-hero .hero-media::after{
-  display:none!important;
-  content:none!important;
-}
-body.nr-new-home .nr-home-hero .hero-event-label{
-  position:absolute!important;
-  z-index:7!important;
-  left:22px!important;
-  top:22px!important;
-  display:flex!important;
-  flex-direction:column!important;
-  gap:2px!important;
-  padding:10px 13px 9px!important;
-  border-radius:14px 8px 14px 8px!important;
-  background:#f2c94c!important;
-  color:#173f34!important;
-  box-shadow:0 10px 24px rgba(4,28,21,.18)!important;
-  transform:none!important;
-}
-body.nr-new-home .nr-home-hero .hero-event-label strong{
-  color:#173f34!important;
-  -webkit-text-fill-color:#173f34!important;
-  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
-  font-size:12px!important;
-  font-weight:950!important;
-  line-height:1.2!important;
-}
-body.nr-new-home .nr-home-hero .hero-event-label span{
-  color:#315044!important;
-  -webkit-text-fill-color:#315044!important;
-  font-size:8px!important;
-  font-weight:900!important;
-  letter-spacing:.12em!important;
-}
-body.nr-new-home .nr-home-hero .nr-hero-brand-badge{
-  position:absolute!important;
-  z-index:7!important;
-  width:62px!important;
-  right:22px!important;
-  top:22px!important;
-  left:auto!important;
-  padding:6px!important;
-  border-radius:50%!important;
-  background:#fffaf0!important;
-  box-shadow:0 10px 24px rgba(4,28,21,.18)!important;
-  transform:none!important;
-}
-
-/* Fixed nav remains above; hero starts directly under it. */
 body.nr-new-home .site-header{z-index:1000!important}
 
-/* Tablet: simplify heading band, still show full photo. */
+/* ----- hero responsive ----- */
 @media(max-width:980px){
-  body.nr-new-home .nr-home-hero{
-    padding:88px 0 48px!important;
-  }
+  body.nr-new-home .nr-home-hero{padding:88px 0 48px!important}
   body.nr-new-home .nr-home-hero .hero-grid{
     width:min(900px,calc(100% - 30px))!important;
     border-radius:32px 16px 34px 18px!important;
@@ -350,23 +344,15 @@ body.nr-new-home .site-header{z-index:1000!important}
     gap:12px!important;
     padding:30px 28px 32px!important;
   }
-  body.nr-new-home .nr-home-hero h1{
-    font-size:clamp(44px,8vw,66px)!important;
-  }
+  body.nr-new-home .nr-home-hero h1{font-size:clamp(44px,8vw,66px)!important}
 }
-
-/* Phone: headline then entire photo, both immediately visible in page order. */
 @media(max-width:640px){
-  body.nr-new-home .nr-home-hero{
-    padding:80px 0 38px!important;
-  }
+  body.nr-new-home .nr-home-hero{padding:80px 0 38px!important}
   body.nr-new-home .nr-home-hero .hero-grid{
     width:calc(100% - 18px)!important;
     border-radius:24px 11px 26px 13px!important;
   }
-  body.nr-new-home .nr-home-hero .hero-copy{
-    padding:24px 18px 24px!important;
-  }
+  body.nr-new-home .nr-home-hero .hero-copy{padding:24px 18px!important}
   body.nr-new-home .nr-home-hero h1{
     font-size:clamp(36px,10.8vw,50px)!important;
     line-height:1.05!important;
@@ -375,20 +361,14 @@ body.nr-new-home .site-header{z-index:1000!important}
     font-size:13px!important;
     line-height:1.76!important;
   }
-  body.nr-new-home .nr-home-hero .status-chips span{
-    font-size:8.5px!important;
-  }
+  body.nr-new-home .nr-home-hero .status-chips span{font-size:8.5px!important}
   body.nr-new-home .nr-home-hero .button-row{
     display:grid!important;
     grid-template-columns:1fr 1fr!important;
     width:100%!important;
   }
-  body.nr-new-home .nr-home-hero .button-row .btn:first-child{
-    grid-column:1/-1!important;
-  }
-  body.nr-new-home .nr-home-hero .button-row .btn{
-    width:100%!important;
-  }
+  body.nr-new-home .nr-home-hero .button-row .btn:first-child{grid-column:1/-1!important}
+  body.nr-new-home .nr-home-hero .button-row .btn{width:100%!important}
   body.nr-new-home .nr-home-hero .hero-event-label{
     left:10px!important;
     top:10px!important;
@@ -404,17 +384,15 @@ body.nr-new-home .site-header{z-index:1000!important}
   }
 }
 
-/* ===== TIMELINE: color now communicates time ===== */
-body.rb-unified.nr-new-home #project-story .story-timeline{
-  position:relative!important;
-}
+/* ----- timeline: colors represent time, not decoration ----- */
+body.rb-unified.nr-new-home #project-story .story-timeline{position:relative!important}
 body.rb-unified.nr-new-home #project-story .story-timeline::before,
 body.rb-unified.nr-new-home #project-story .rbpc-progress::before{
   background:linear-gradient(90deg,#789a7d 0 87%,#c8d5c6 87% 100%)!important;
   opacity:1!important;
 }
 
-/* Past / completed: one calm sage treatment. */
+/* Past / completed */
 body.rb-unified.nr-new-home #project-story .story-step.is-complete:not(.is-latest) .story-dot,
 body.rb-unified.nr-new-home #project-story .story-step:not(.is-next):not(.is-latest) .story-dot{
   border:3px solid #6f9276!important;
@@ -425,7 +403,7 @@ body.rb-unified.nr-new-home #project-story .story-step:not(.is-next):not(.is-lat
   box-shadow:0 0 0 5px #fffdf8!important;
 }
 
-/* Event day is the only yellow milestone. */
+/* 9.20 event day */
 body.rb-unified.nr-new-home #project-story .story-step.is-latest .story-dot,
 body.rb-unified.nr-new-home #project-story .story-step--event-day .story-dot{
   border:3px solid #174a36!important;
@@ -441,7 +419,7 @@ body.rb-unified.nr-new-home #project-story .story-step--event-day small{
   -webkit-text-fill-color:#8b6a00!important;
 }
 
-/* Future: deep green. No purple, no dashed circle. */
+/* Future */
 body.rb-unified.nr-new-home #project-story .story-step--future,
 body.rb-unified.nr-new-home #project-story .story-step--future.is-next{
   border-color:rgba(23,74,54,.18)!important;
@@ -457,18 +435,12 @@ body.rb-unified.nr-new-home #project-story .story-step--future.is-next .story-do
   -webkit-text-fill-color:#fff!important;
   box-shadow:0 0 0 6px #fffdf8,0 9px 20px rgba(23,74,54,.14)!important;
 }
-body.rb-unified.nr-new-home #project-story .story-step--future small,
-body.rb-unified.nr-new-home #project-story .story-step--future.is-next small{
-  color:#174a36!important;
-  -webkit-text-fill-color:#174a36!important;
-}
-body.rb-unified.nr-new-home #project-story .story-step--future h3,
-body.rb-unified.nr-new-home #project-story .story-step--future.is-next h3{
+body.rb-unified.nr-new-home #project-story .story-step--future :is(small,h3){
   color:#174a36!important;
   -webkit-text-fill-color:#174a36!important;
 }
 
-/* Remove decorative per-item color cycling. */
+/* Neutralize old nth-child color cycling. */
 body.rb-unified.nr-new-home #project-story .story-step:nth-child(2n) .story-dot,
 body.rb-unified.nr-new-home #project-story .story-step:nth-child(3n) .story-dot{
   background:#e8f0e5!important;
@@ -481,127 +453,13 @@ body.rb-unified.nr-new-home #project-story .story-step--future:nth-child(n) .sto
   background:#174a36!important;
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:980px){
-  body.nr-new-home .nr-home-hero{
-    padding:24px 0 58px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-grid{
-    width:min(860px,calc(100% - 32px))!important;
-    grid-template-areas:"media" "copy"!important;
-    gap:18px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-media{
-    grid-area:media!important;
-    min-height:clamp(390px,61vw,520px)!important;
-    border-radius:40px 18px 42px 20px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-copy{
-    grid-area:copy!important;
-    width:100%!important;
-    margin:0!important;
-    padding:25px 26px!important;
-    border-radius:24px 12px 26px 14px!important;
-  }
-  body.nr-new-home .nr-home-hero .photo-frame--home-venue{
-    width:calc(100% - 46px)!important;
-    border-width:7px!important;
-  }
-  body.nr-new-home .nr-home-hero .photo-frame--home-venue img{
-    aspect-ratio:16/9!important;
-  }
-  body.nr-new-home .nr-home-hero h1{
-    font-size:clamp(42px,7.8vw,64px)!important;
-  }
-}
-
-@media(max-width:640px){
-  body.nr-new-home .nr-home-hero{
-    padding:18px 0 48px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-grid{
-    width:calc(100% - 22px)!important;
-    gap:12px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-media{
-    min-height:320px!important;
-    border-radius:30px 14px 32px 16px!important;
-  }
-  body.nr-new-home .nr-home-hero .photo-frame--home-venue{
-    width:calc(100% - 26px)!important;
-    border-width:5px!important;
-    border-radius:24px 10px 26px 12px!important;
-  }
-  body.nr-new-home .nr-home-hero .photo-frame--home-venue img{
-    aspect-ratio:4/3!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-media::before{
-    width:76px!important;
-    left:1%!important;
-    top:2%!important;
-    border-width:4px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-media::after{
-    width:72px!important;
-    right:1%!important;
-    bottom:2%!important;
-    border-width:4px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-event-label{
-    left:3.5%!important;
-    top:3.5%!important;
-    padding:8px 10px 7px!important;
-    border-radius:12px 6px 12px 6px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-event-label strong{font-size:10px!important}
-  body.nr-new-home .nr-home-hero .hero-event-label span{font-size:7px!important}
-  body.nr-new-home .nr-home-hero .nr-hero-brand-badge{
-    width:54px!important;
-    right:3%!important;
-    top:3%!important;
-    padding:6px!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-copy{
-    padding:21px 18px 20px!important;
-    border-radius:21px 10px 23px 12px!important;
-  }
-  body.nr-new-home .nr-home-hero h1{
-    font-size:clamp(36px,10.6vw,50px)!important;
-    line-height:1.04!important;
-  }
-  body.nr-new-home .nr-home-hero .hero-lead{
-    font-size:13px!important;
-    line-height:1.78!important;
-  }
-  body.nr-new-home .nr-home-hero .status-chips span{
-    font-size:9px!important;
-  }
-  body.nr-new-home .nr-home-hero .button-row{
-    display:grid!important;
-    grid-template-columns:1fr 1fr!important;
-    width:100%!important;
-  }
-  body.nr-new-home .nr-home-hero .button-row .btn:first-child{
-    grid-column:1/-1!important;
-  }
-  body.nr-new-home .nr-home-hero .button-row .btn{
-    width:100%!important;
-  }
-  body.rb-unified.nr-new-home #project-story .story-step::after{
-    background:#9bb69b!important;
-  }
-}
-
-
-/* Keep the full 8-step story on one deliberate line on wide screens. */
+/* Timeline layout */
 @media(min-width:1200px){
   body.rb-unified.nr-new-home #project-story .story-timeline{
     grid-template-columns:repeat(8,minmax(0,1fr))!important;
     gap:4px!important;
   }
-  body.rb-unified.nr-new-home #project-story .story-step{
-    padding-inline:8px!important;
-  }
+  body.rb-unified.nr-new-home #project-story .story-step{padding-inline:8px!important}
   body.rb-unified.nr-new-home #project-story .story-step h3{
     font-size:15px!important;
     line-height:1.45!important;
@@ -619,5 +477,10 @@ body.rb-unified.nr-new-home #project-story .story-step--future:nth-child(n) .sto
   body.rb-unified.nr-new-home #project-story .story-timeline::before,
   body.rb-unified.nr-new-home #project-story .rbpc-progress::before{
     display:none!important;
+  }
+}
+@media(max-width:700px){
+  body.rb-unified.nr-new-home #project-story .story-step::after{
+    background:#9bb69b!important;
   }
 }
