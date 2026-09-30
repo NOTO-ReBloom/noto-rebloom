@@ -125,7 +125,7 @@
         <div class="rb-footer-links"><strong>お問い合わせ</strong><a href="partner.html">協賛・協力</a><a href="contact.html">お問い合わせ</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${UNIVERSAL_CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div>
       </div>
       ${socialIconMarkup('rb-footer-social')}
-      <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
+      <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>後援：北國新聞社・MRO北陸放送・テレビ金沢</span><span>infonotorebloom@gmail.com</span></div>`;
   };
 
   const ensureUniversalFooter=()=>{
