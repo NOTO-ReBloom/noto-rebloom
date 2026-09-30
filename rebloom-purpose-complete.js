@@ -39,9 +39,14 @@
     add('#purpose .event-values article','rbpc-process-step');
     add('#project-story .story-timeline','rbpc-progress');
     const steps=[...document.querySelectorAll('#project-story .story-step')];
-    steps.forEach((step,i)=>step.classList.add(i<5?'is-complete':'is-upcoming'));
-    if(steps[4])steps[4].classList.add('is-latest');
-    if(steps[5])steps[5].classList.add('is-next');
+    const eventStep=steps.find(step=>step.classList.contains('story-step--event-day') || (step.querySelector('.story-dot')?.textContent||'').trim()==='9.20');
+    const futureStep=steps.find(step=>step.classList.contains('story-step--future'));
+    steps.forEach(step=>{
+      step.classList.remove('is-complete','is-upcoming','is-latest','is-next');
+      if(step===futureStep) step.classList.add('is-upcoming','is-next');
+      else step.classList.add('is-complete');
+    });
+    eventStep?.classList.add('is-latest');
     add('#people-behind-project','rbpc-identity-proof');
     add('#people-behind-project .people-trust-tags','rbpc-trust-badges');
   }
