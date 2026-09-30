@@ -97,6 +97,8 @@
   const ensureHeaderSocial=()=>{
     const header=document.querySelector('.site-header');
     if(!header)return;
+    /* Remove page-specific legacy social controls before adding the single universal set. */
+    header.querySelectorAll('.rb-social-links--header,.header-social').forEach(el=>el.remove());
     const actions=header.querySelector('.header-actions');
     if(actions && !actions.querySelector('.rb-header-social')){
       actions.insertAdjacentHTML('afterbegin',socialIconMarkup('rb-header-social'));
@@ -123,7 +125,6 @@
         <div class="rb-footer-links"><strong>お問い合わせ</strong><a href="partner.html">協賛・協力</a><a href="contact.html">お問い合わせ</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${UNIVERSAL_CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div>
       </div>
       ${socialIconMarkup('rb-footer-social')}
-      <div class="container rb-contact-footer"><strong>質問・お問い合わせ</strong><span>活動・取材・協賛・今後の連携など</span><a href="mailto:infonotorebloom@gmail.com">infonotorebloom@gmail.com</a><a class="rb-contact-footer__page" href="contact.html">お問い合わせページを見る →</a></div>
       <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
   };
 
