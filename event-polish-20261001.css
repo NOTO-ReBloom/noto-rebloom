@@ -488,3 +488,21 @@ body.nr-new-event .join-section .container{
     grid-template-columns:1fr!important;
   }
 }
+
+/* Accessibility + archive performance */
+body.nr-new-event #safety .support-card h3,
+body.nr-new-event #safety .support-card p,
+body.nr-new-event #safety .support-card .event-kicker{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.nr-new-event #safety .support-card .support-chip{
+  background:#f2c94c!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.nr-new-event .event-archive-detail{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 760px;
+}
+
