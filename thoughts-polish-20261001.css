@@ -1,0 +1,477 @@
+/* Thoughts page editorial polish — 2026-10-01
+   Purpose: help visitors understand WHY the project exists, what the team learned,
+   and what comes next. Keep all existing copy, but give it a clear 3-chapter rhythm. */
+
+body.page-thoughts{
+  --thoughts-green:#174a36;
+  --thoughts-deep:#123d32;
+  --thoughts-yellow:#f2c94c;
+  --thoughts-paper:#fffaf0;
+  --thoughts-mint:#eef5ea;
+  --thoughts-ink:#173f34;
+  --thoughts-muted:#607168;
+}
+
+/* Hero: calm editorial opening, not another card-heavy page. */
+body.page-thoughts .page-hero--learn{
+  padding-top:130px!important;
+  padding-bottom:76px!important;
+  background:
+    radial-gradient(circle at 88% 18%,rgba(242,201,76,.16),transparent 23%),
+    linear-gradient(180deg,#f6f0df 0%,#fffaf0 100%)!important;
+}
+body.page-thoughts .page-hero--learn .page-hero-grid{
+  grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr)!important;
+  gap:clamp(38px,5vw,70px)!important;
+  align-items:center!important;
+}
+body.page-thoughts .page-hero--learn h1{
+  max-width:780px!important;
+  font-size:clamp(48px,5.4vw,78px)!important;
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+}
+body.page-thoughts .page-hero--learn .page-hero-grid>div>p:not(.eyebrow):first-of-type{
+  font-size:16px!important;
+  line-height:1.95!important;
+  color:#344e44!important;
+  -webkit-text-fill-color:#344e44!important;
+}
+body.page-thoughts .page-hero--learn .page-hero-grid>div>p:not(.eyebrow)+p{
+  max-width:720px!important;
+}
+body.page-thoughts .page-hero--learn .photo-frame{
+  transform:none!important;
+  border-radius:34px 16px 36px 18px!important;
+  box-shadow:0 24px 56px rgba(23,58,49,.13)!important;
+}
+body.page-thoughts .page-hero--learn .photo-frame img{
+  aspect-ratio:4/3!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+
+/* Chapter index */
+body.page-thoughts .thoughts-chapter-nav{
+  position:relative;
+  z-index:5;
+  margin:0;
+  padding:0 20px;
+  background:#fffaf0;
+  border-top:1px solid rgba(23,74,54,.10);
+  border-bottom:1px solid rgba(23,74,54,.12);
+}
+body.page-thoughts .thoughts-chapter-nav__inner{
+  width:min(1120px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+body.page-thoughts .thoughts-chapter-nav a{
+  position:relative;
+  display:grid;
+  grid-template-columns:44px 1fr auto;
+  gap:12px;
+  align-items:center;
+  min-height:82px;
+  padding:14px 22px;
+  color:var(--thoughts-ink)!important;
+  -webkit-text-fill-color:var(--thoughts-ink)!important;
+  text-decoration:none!important;
+  border-right:1px solid rgba(23,74,54,.10);
+}
+body.page-thoughts .thoughts-chapter-nav a:first-child{
+  border-left:1px solid rgba(23,74,54,.10);
+}
+body.page-thoughts .thoughts-chapter-nav a>span{
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#e9f0e5;
+  color:var(--thoughts-green)!important;
+  -webkit-text-fill-color:var(--thoughts-green)!important;
+  font-size:12px;
+  font-weight:950;
+}
+body.page-thoughts .thoughts-chapter-nav a>b{
+  font-size:14px;
+  font-weight:950;
+}
+body.page-thoughts .thoughts-chapter-nav a>small{
+  color:#7a8a82!important;
+  -webkit-text-fill-color:#7a8a82!important;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+@media(hover:hover){
+  body.page-thoughts .thoughts-chapter-nav a:hover{
+    background:#f3f6ef;
+  }
+  body.page-thoughts .thoughts-chapter-nav a:hover>span{
+    background:var(--thoughts-green);
+    color:#fff!important;
+    -webkit-text-fill-color:#fff!important;
+  }
+}
+
+/* Visual intro: slightly tighter, more magazine-like. */
+body.page-thoughts .thoughts-intro-visual{
+  padding-top:72px!important;
+  padding-bottom:82px!important;
+  background:linear-gradient(180deg,#fffaf0 0%,#f2f6ef 100%)!important;
+}
+body.page-thoughts .thoughts-intro-visual .visual-mosaic-head{
+  max-width:1080px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.page-thoughts .thoughts-intro-visual .visual-mosaic{
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* Major chapter starts */
+body.page-thoughts .thoughts-chapter-start{
+  position:relative!important;
+  overflow:hidden!important;
+  padding-top:clamp(96px,9vw,138px)!important;
+  padding-bottom:clamp(82px,8vw,118px)!important;
+  background:#fffdf8!important;
+}
+body.page-thoughts .thoughts-chapter-start::before{
+  content:attr(data-chapter)!important;
+  position:absolute!important;
+  left:max(20px,calc((100vw - 1160px)/2 - 42px))!important;
+  top:34px!important;
+  color:rgba(23,74,54,.075)!important;
+  -webkit-text-fill-color:rgba(23,74,54,.075)!important;
+  font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif!important;
+  font-size:clamp(92px,12vw,180px)!important;
+  font-weight:950!important;
+  line-height:.8!important;
+  letter-spacing:-.08em!important;
+  pointer-events:none!important;
+}
+body.page-thoughts .thoughts-chapter-start>.container{
+  position:relative!important;
+  z-index:1!important;
+}
+body.page-thoughts .thoughts-chapter-start .split-story{
+  grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr)!important;
+  gap:clamp(42px,6vw,78px)!important;
+  align-items:start!important;
+}
+body.page-thoughts .thoughts-chapter-start .photo-frame{
+  position:sticky!important;
+  top:128px!important;
+  transform:none!important;
+  border-radius:28px 14px 30px 16px!important;
+  box-shadow:0 20px 46px rgba(23,58,49,.10)!important;
+}
+body.page-thoughts .thoughts-chapter-start .split-story>div>p{
+  max-width:720px!important;
+}
+body.page-thoughts .thoughts-chapter-start h2{
+  font-size:clamp(36px,4.3vw,58px)!important;
+  line-height:1.2!important;
+}
+
+/* 02 and 03 get subtle chapter tint differences to help long-page orientation. */
+body.page-thoughts #after{
+  background:linear-gradient(180deg,#fffdf8 0%,#f6f3e9 100%)!important;
+}
+body.page-thoughts #future{
+  background:linear-gradient(180deg,#f0f6ed 0%,#fffdf8 100%)!important;
+}
+
+/* Principles / lessons: editorial columns, not floating card soup. */
+body.page-thoughts .thoughts-principles,
+body.page-thoughts .thoughts-lessons{
+  padding-top:72px!important;
+  padding-bottom:82px!important;
+}
+body.page-thoughts .thoughts-principles{
+  background:#f6f3e9!important;
+}
+body.page-thoughts .thoughts-lessons{
+  background:#fffaf0!important;
+}
+body.page-thoughts .thoughts-principles .event-values,
+body.page-thoughts .thoughts-lessons .event-values,
+body.page-thoughts #future .cause-grid{
+  display:grid!important;
+  gap:0!important;
+  border-top:1px solid rgba(23,74,54,.17)!important;
+  border-bottom:1px solid rgba(23,74,54,.17)!important;
+}
+body.page-thoughts .thoughts-principles .event-values{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+body.page-thoughts .thoughts-lessons .event-values{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+body.page-thoughts #future .cause-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+body.page-thoughts .thoughts-principles .event-values>article,
+body.page-thoughts .thoughts-lessons .event-values>article,
+body.page-thoughts #future .cause-grid>article{
+  min-height:0!important;
+  margin:0!important;
+  padding:26px 24px 28px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+body.page-thoughts .thoughts-principles .event-values>article+article,
+body.page-thoughts .thoughts-lessons .event-values>article+article,
+body.page-thoughts #future .cause-grid>article+article{
+  border-left:1px solid rgba(23,74,54,.13)!important;
+}
+body.page-thoughts .thoughts-principles .event-values>article>span,
+body.page-thoughts .thoughts-lessons .event-values>article>span,
+body.page-thoughts #future .cause-grid>article>span{
+  width:42px!important;
+  height:42px!important;
+  margin-bottom:15px!important;
+  border-radius:50%!important;
+  background:var(--thoughts-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* Why section remains a strong dark pause between chapters. */
+body.page-thoughts .thoughts-why{
+  padding-top:88px!important;
+  padding-bottom:92px!important;
+  background:
+    radial-gradient(circle at 88% 20%,rgba(242,201,76,.13),transparent 22%),
+    linear-gradient(145deg,#123d32,#184b3d)!important;
+}
+body.page-thoughts .thoughts-why :is(h2,p){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-thoughts .thoughts-why p{
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+}
+body.page-thoughts .thoughts-why .eyebrow{
+  background:#f2c94c!important;
+}
+body.page-thoughts .thoughts-why .eyebrow :is(span,small,strong){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-thoughts .thoughts-why .photo-frame{
+  transform:none!important;
+  border:6px solid rgba(255,250,240,.92)!important;
+  box-shadow:0 22px 50px rgba(4,28,21,.24)!important;
+}
+
+/* Boundaries: make humility/role clarity a deliberate chapter, not just another text block. */
+body.page-thoughts .thoughts-boundaries{
+  padding-top:88px!important;
+  padding-bottom:92px!important;
+  background:#153f34!important;
+}
+body.page-thoughts .thoughts-boundaries .section-heading{
+  max-width:900px!important;
+  margin:0 auto!important;
+}
+body.page-thoughts .thoughts-boundaries :is(h2,p){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-thoughts .thoughts-boundaries p{
+  color:rgba(255,255,255,.80)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.80)!important;
+}
+body.page-thoughts .thoughts-boundaries .eyebrow{
+  background:#f2c94c!important;
+}
+body.page-thoughts .thoughts-boundaries .eyebrow :is(span,small,strong){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+/* Team section: photo and copy should feel personal, not corporate. */
+body.page-thoughts .thoughts-us{
+  padding-top:88px!important;
+  padding-bottom:92px!important;
+  background:#eef5ea!important;
+}
+body.page-thoughts .thoughts-us .split-story{
+  grid-template-columns:minmax(0,1fr) minmax(360px,.82fr)!important;
+  gap:clamp(40px,6vw,76px)!important;
+  align-items:center!important;
+}
+body.page-thoughts .thoughts-us .photo-frame{
+  transform:none!important;
+  border-radius:30px 14px 32px 16px!important;
+  box-shadow:0 20px 46px rgba(23,58,49,.10)!important;
+}
+
+/* Strong closing: definition, then a quieter final invitation. */
+body.page-thoughts .thoughts-definition{
+  padding-top:90px!important;
+  padding-bottom:88px!important;
+  background:linear-gradient(145deg,#10372d 0%,#174b3d 100%)!important;
+}
+body.page-thoughts .thoughts-definition .section-heading{
+  max-width:940px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.page-thoughts .thoughts-definition :is(h2,p){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-thoughts .thoughts-definition p{
+  color:rgba(255,255,255,.80)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.80)!important;
+}
+body.page-thoughts .thoughts-definition .eyebrow{
+  background:#f2c94c!important;
+}
+body.page-thoughts .thoughts-definition .eyebrow :is(span,small,strong){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-thoughts .thoughts-definition .event-values{
+  max-width:980px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.page-thoughts .thoughts-definition .event-values>article{
+  border-color:rgba(255,255,255,.14)!important;
+  background:rgba(255,255,255,.07)!important;
+  box-shadow:none!important;
+}
+body.page-thoughts .thoughts-definition .event-values>article :is(h3,p){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-thoughts .thoughts-definition .event-values>article p{
+  color:rgba(255,255,255,.76)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.76)!important;
+}
+body.page-thoughts .thoughts-definition .event-values>article>span{
+  background:#f2c94c!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+body.page-thoughts .thoughts-closing{
+  padding-top:72px!important;
+  padding-bottom:76px!important;
+  background:#fffaf0!important;
+}
+body.page-thoughts .thoughts-closing .section-heading{
+  max-width:880px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.page-thoughts .thoughts-closing h2{
+  font-size:clamp(34px,4vw,54px)!important;
+}
+
+/* Conversion band follows immediately as the practical next action. */
+body.page-thoughts .conversion-band{
+  margin-top:0!important;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  body.page-thoughts .page-hero--learn{
+    padding-top:112px!important;
+  }
+  body.page-thoughts .page-hero--learn .page-hero-grid{
+    grid-template-columns:1fr!important;
+  }
+  body.page-thoughts .thoughts-chapter-nav__inner{
+    grid-template-columns:1fr!important;
+  }
+  body.page-thoughts .thoughts-chapter-nav a,
+  body.page-thoughts .thoughts-chapter-nav a:first-child{
+    border-left:0!important;
+    border-right:0!important;
+    border-bottom:1px solid rgba(23,74,54,.10)!important;
+  }
+  body.page-thoughts .thoughts-chapter-nav a:last-child{
+    border-bottom:0!important;
+  }
+  body.page-thoughts .thoughts-chapter-start .split-story,
+  body.page-thoughts .thoughts-us .split-story{
+    grid-template-columns:1fr!important;
+  }
+  body.page-thoughts .thoughts-chapter-start .photo-frame{
+    position:relative!important;
+    top:auto!important;
+  }
+  body.page-thoughts #future .cause-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.page-thoughts #future .cause-grid>article:nth-child(3){
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.page-thoughts #future .cause-grid>article:nth-child(4){
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+}
+@media(max-width:640px){
+  body.page-thoughts .page-hero--learn{
+    padding-top:96px!important;
+    padding-bottom:54px!important;
+  }
+  body.page-thoughts .page-hero--learn h1{
+    font-size:clamp(38px,11vw,52px)!important;
+  }
+  body.page-thoughts .thoughts-chapter-nav{
+    padding-inline:12px!important;
+  }
+  body.page-thoughts .thoughts-chapter-nav a{
+    min-height:68px!important;
+    grid-template-columns:38px 1fr auto!important;
+    padding:10px 8px!important;
+  }
+  body.page-thoughts .thoughts-chapter-nav a>span{
+    width:34px!important;
+    height:34px!important;
+  }
+  body.page-thoughts .thoughts-chapter-start{
+    padding-top:78px!important;
+    padding-bottom:68px!important;
+  }
+  body.page-thoughts .thoughts-chapter-start::before{
+    top:22px!important;
+    left:12px!important;
+    font-size:84px!important;
+  }
+  body.page-thoughts .thoughts-principles .event-values,
+  body.page-thoughts .thoughts-lessons .event-values,
+  body.page-thoughts #future .cause-grid{
+    grid-template-columns:1fr!important;
+  }
+  body.page-thoughts .thoughts-principles .event-values>article+article,
+  body.page-thoughts .thoughts-lessons .event-values>article+article,
+  body.page-thoughts #future .cause-grid>article+article{
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.page-thoughts .thoughts-why,
+  body.page-thoughts .thoughts-boundaries,
+  body.page-thoughts .thoughts-us,
+  body.page-thoughts .thoughts-definition{
+    padding-top:66px!important;
+    padding-bottom:68px!important;
+  }
+}
