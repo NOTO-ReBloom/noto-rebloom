@@ -2671,8 +2671,15 @@ html body .rb-footer--universal .rb-footer-bottom{padding-top:12px!important}
   }
   html body:not(.page-diagnosis) .rb-mobile-join>a{
     box-sizing:border-box!important;width:100%!important;min-height:56px!important;height:auto!important;
-    padding:8px 16px!important;border-radius:18px!important;
+    padding:8px 16px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:18px!important;
+    background:#174a36!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
     box-shadow:0 10px 24px rgba(23,58,49,.18)!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a>span{
+    color:#fff!important;-webkit-text-fill-color:#fff!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a>small{
+    color:rgba(255,255,255,.82)!important;-webkit-text-fill-color:rgba(255,255,255,.82)!important;opacity:1!important
   }
   html body .site-partner-strip--universal{padding:18px 0 16px!important}
   html body .site-partner-strip--universal .site-partner-strip__logo{min-height:68px!important;padding:9px!important}
