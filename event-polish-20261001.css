@@ -1,0 +1,490 @@
+/* Event archive polish — 2026-10-01
+   Purpose: preserve pre-event information without making the page feel like a live registration page. */
+
+body.nr-new-event{
+  --ev-green:#174a36;
+  --ev-deep:#123d32;
+  --ev-yellow:#f2c94c;
+  --ev-paper:#fffaf0;
+  --ev-mint:#eef5ea;
+  --ev-ink:#173f34;
+  --ev-muted:#5a6b63;
+}
+
+/* Clear archive status at the very top. */
+body.nr-new-event .postevent-notice{
+  padding-top:96px!important;
+  background:linear-gradient(90deg,#123d32,#184b3d)!important;
+}
+body.nr-new-event .postevent-notice__inner{
+  min-height:64px!important;
+}
+body.nr-new-event .postevent-notice__badge{
+  background:#f2c94c!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.nr-new-event .postevent-notice__link{
+  background:#fffaf0!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
+/* Hero = event overview, not registration page. */
+body.nr-new-event .page-hero--event{
+  padding-top:58px!important;
+  padding-bottom:70px!important;
+  background:
+    radial-gradient(circle at 88% 15%,rgba(242,201,76,.14),transparent 22%),
+    linear-gradient(180deg,#fffaf0 0%,#f7f4ea 100%)!important;
+}
+body.nr-new-event .page-hero--event .page-hero-grid{
+  grid-template-columns:minmax(0,.95fr) minmax(430px,1.05fr)!important;
+  gap:clamp(38px,5vw,72px)!important;
+}
+body.nr-new-event .page-hero--event h1{
+  font-size:clamp(52px,6vw,84px)!important;
+  line-height:1.03!important;
+}
+body.nr-new-event .page-hero--event .eyebrow{
+  background:#e9f0e5!important;
+  border-color:rgba(23,74,54,.12)!important;
+}
+body.nr-new-event .page-hero--event .photo-frame{
+  transform:none!important;
+  border-radius:34px 16px 36px 18px!important;
+  box-shadow:0 24px 54px rgba(23,58,49,.12)!important;
+}
+body.nr-new-event .page-hero--event .photo-frame img{
+  border-radius:0!important;
+}
+body.nr-new-event .page-hero--event .button-row .btn--green{
+  background:#174a36!important;
+  border-color:#174a36!important;
+}
+body.nr-new-event .page-hero--event .button-row .btn--paper{
+  background:#fffaf0!important;
+}
+
+/* Archive context and summary should read like metadata. */
+body.nr-new-event .event-archive-context{
+  padding-top:22px!important;
+  padding-bottom:16px!important;
+  background:#f7f4ea!important;
+}
+body.nr-new-event .event-archive-context__inner{
+  border-radius:18px!important;
+  background:#fffdf8!important;
+  box-shadow:none!important;
+}
+body.nr-new-event .quick-grid{
+  margin-top:0!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  border-radius:20px!important;
+  background:#fffdf8!important;
+}
+body.nr-new-event .quick-grid>div{
+  min-height:96px!important;
+  padding:18px 20px!important;
+  background:#fffdf8!important;
+}
+body.nr-new-event .quick-grid>div:nth-child(3n){
+  border-right:0!important;
+}
+body.nr-new-event .quick-grid>div:nth-child(n+4){
+  border-top:1px solid rgba(23,63,52,.13)!important;
+}
+
+/* Archive table of contents */
+body.nr-new-event .event-archive-nav{
+  padding:24px 20px 0;
+  background:#fffaf0;
+}
+body.nr-new-event .event-archive-nav__inner{
+  width:min(1120px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  border-top:1px solid rgba(23,74,54,.14);
+  border-bottom:1px solid rgba(23,74,54,.14);
+}
+body.nr-new-event .event-archive-nav a{
+  display:grid;
+  grid-template-columns:40px 1fr auto;
+  gap:10px;
+  align-items:center;
+  min-height:74px;
+  padding:12px 16px;
+  border-right:1px solid rgba(23,74,54,.10);
+  text-decoration:none!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.nr-new-event .event-archive-nav a:last-child{
+  border-right:0;
+}
+body.nr-new-event .event-archive-nav a>span{
+  display:grid;
+  place-items:center;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#e8f0e5;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-size:10px;
+  font-weight:950;
+}
+body.nr-new-event .event-archive-nav a>b{
+  font-size:12.5px;
+  font-weight:950;
+}
+body.nr-new-event .event-archive-nav a>small{
+  color:#52645d!important;
+  -webkit-text-fill-color:#52645d!important;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+@media(hover:hover){
+  body.nr-new-event .event-archive-nav a:hover{
+    background:#f1f5ed;
+  }
+}
+
+/* Last pre-event update is context, not a headline section. */
+body.nr-new-event .update-band{
+  padding-top:18px!important;
+  padding-bottom:20px!important;
+  background:#fffaf0!important;
+}
+body.nr-new-event .update-band__inner{
+  border-radius:16px!important;
+  box-shadow:none!important;
+}
+
+/* First priority on archive: what was planned and how the day was supposed to work. */
+body.nr-new-event .event-core{
+  padding-top:82px!important;
+  padding-bottom:88px!important;
+}
+body.nr-new-event #program{
+  background:#fffdf8!important;
+}
+body.nr-new-event #program .program-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+body.nr-new-event #program .game-card{
+  min-height:210px!important;
+  padding:22px 20px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:20px!important;
+  background:#f7f8f2!important;
+  box-shadow:none!important;
+}
+body.nr-new-event #program .game-card--special{
+  background:linear-gradient(145deg,#edf4e8,#e2edde)!important;
+}
+body.nr-new-event #program .game-num{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Schedule becomes a clean connected timeline. */
+body.nr-new-event #flow{
+  background:linear-gradient(180deg,#eef5ea 0%,#f7f8f1 100%)!important;
+}
+body.nr-new-event #flow .timeline{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:0!important;
+  max-width:1120px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  border-top:1px solid rgba(23,74,54,.18)!important;
+  border-bottom:1px solid rgba(23,74,54,.18)!important;
+}
+body.nr-new-event #flow .time-card{
+  min-height:0!important;
+  padding:26px 22px 28px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.nr-new-event #flow .time-card+article{
+  border-left:1px solid rgba(23,74,54,.13)!important;
+}
+body.nr-new-event #flow .time-card time{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-weight:950!important;
+}
+
+/* Renge cup is part of the planned experience, not a loose afterthought. */
+body.nr-new-event .event-renge{
+  background:#fffaf0!important;
+}
+body.nr-new-event .event-renge .renge-layout{
+  grid-template-columns:minmax(320px,.85fr) minmax(0,1.15fr)!important;
+  gap:clamp(36px,6vw,70px)!important;
+  align-items:center!important;
+}
+body.nr-new-event .event-renge figure{
+  transform:none!important;
+  border-radius:30px 14px 32px 16px!important;
+  overflow:hidden!important;
+  box-shadow:0 20px 46px rgba(23,58,49,.10)!important;
+}
+
+/* Practical pre-event information is still preserved, but visually secondary. */
+body.nr-new-event .event-archive-detail{
+  padding-top:70px!important;
+  padding-bottom:76px!important;
+}
+body.nr-new-event #join-steps,
+body.nr-new-event #bring,
+body.nr-new-event #event-faq{
+  background:#f7f4ea!important;
+}
+body.nr-new-event #before-you-come,
+body.nr-new-event #safety{
+  background:#fffdf8!important;
+}
+body.nr-new-event .event-archive-detail .section-intro{
+  max-width:820px!important;
+}
+body.nr-new-event .event-archive-detail .section-intro::before{
+  content:"開催前資料"!important;
+  display:inline-flex!important;
+  margin-bottom:10px!important;
+  padding:5px 8px!important;
+  border-radius:999px!important;
+  background:#e8f0e5!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-size:9px!important;
+  font-weight:950!important;
+  letter-spacing:.10em!important;
+}
+
+/* Participation steps are archival records, so reduce CTA-like card styling. */
+body.nr-new-event #join-steps .join-step-grid{
+  gap:0!important;
+  border-top:1px solid rgba(23,74,54,.16)!important;
+  border-bottom:1px solid rgba(23,74,54,.16)!important;
+}
+body.nr-new-event #join-steps .join-step-grid>article{
+  padding:26px 22px 28px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.nr-new-event #join-steps .join-step-grid>article+article{
+  border-left:1px solid rgba(23,74,54,.13)!important;
+}
+body.nr-new-event #join-steps .join-step-grid>article>span{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Arrival information: keep useful distinctions but lower card noise. */
+body.nr-new-event #before-you-come .info-grid{
+  gap:10px!important;
+}
+body.nr-new-event #before-you-come .info-card{
+  box-shadow:none!important;
+  border-color:rgba(23,74,54,.12)!important;
+  background:#f8f8f3!important;
+}
+
+/* Bring list becomes a compact checklist. */
+body.nr-new-event #bring .bring-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:0!important;
+  border-top:1px solid rgba(23,74,54,.15)!important;
+  border-bottom:1px solid rgba(23,74,54,.15)!important;
+}
+body.nr-new-event #bring .bring-item{
+  min-height:0!important;
+  padding:20px 18px 22px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.nr-new-event #bring .bring-item{
+  border-right:1px solid rgba(23,74,54,.11)!important;
+  border-bottom:1px solid rgba(23,74,54,.11)!important;
+}
+body.nr-new-event #bring .bring-item:nth-child(3n){
+  border-right:0!important;
+}
+body.nr-new-event #bring .bring-item:nth-last-child(-n+3){
+  border-bottom:0!important;
+}
+
+/* Safety remains prominent because it is meaningful archival information. */
+body.nr-new-event #safety{
+  background:linear-gradient(145deg,#123d32,#184b3d)!important;
+}
+body.nr-new-event #safety .section-intro :is(h2,p),
+body.nr-new-event #safety .safety-copy :is(h3,li){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.nr-new-event #safety .section-intro p,
+body.nr-new-event #safety .safety-copy li{
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+}
+body.nr-new-event #safety .event-kicker{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  background:#f2c94c!important;
+}
+body.nr-new-event #safety .safety-copy{
+  background:transparent!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:none!important;
+}
+body.nr-new-event #safety .support-card{
+  background:rgba(255,255,255,.08)!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:none!important;
+}
+
+/* FAQ is reference material: narrower and calmer. */
+body.nr-new-event #event-faq .faq-list{
+  max-width:920px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.nr-new-event #event-faq details{
+  border-color:rgba(23,74,54,.12)!important;
+  background:#fffdf8!important;
+  box-shadow:none!important;
+}
+
+/* End state should clearly send people to the actual report. */
+body.nr-new-event .join-section{
+  padding-top:72px!important;
+  padding-bottom:76px!important;
+}
+body.nr-new-event .join-section .container{
+  max-width:940px!important;
+}
+
+/* Responsive */
+@media(max-width:1000px){
+  body.nr-new-event .event-archive-nav__inner{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.nr-new-event .event-archive-nav a:nth-child(2){
+    border-right:0!important;
+  }
+  body.nr-new-event .event-archive-nav a:nth-child(n+3){
+    border-top:1px solid rgba(23,74,54,.10)!important;
+  }
+  body.nr-new-event #program .program-grid,
+  body.nr-new-event #bring .bring-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.nr-new-event #program .game-card{
+    min-height:0!important;
+  }
+  body.nr-new-event #flow .timeline{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.nr-new-event #flow .time-card:nth-child(3){
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.nr-new-event #flow .time-card:nth-child(4){
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.nr-new-event #bring .bring-item{
+    border-right:1px solid rgba(23,74,54,.11)!important;
+    border-bottom:1px solid rgba(23,74,54,.11)!important;
+  }
+  body.nr-new-event #bring .bring-item:nth-child(3n){
+    border-right:1px solid rgba(23,74,54,.11)!important;
+  }
+  body.nr-new-event #bring .bring-item:nth-child(2n){
+    border-right:0!important;
+  }
+  body.nr-new-event #bring .bring-item:nth-last-child(-n+3){
+    border-bottom:1px solid rgba(23,74,54,.11)!important;
+  }
+  body.nr-new-event #bring .bring-item:nth-last-child(-n+2){
+    border-bottom:0!important;
+  }
+}
+@media(max-width:700px){
+  body.nr-new-event .page-hero--event{
+    padding-top:34px!important;
+    padding-bottom:54px!important;
+  }
+  body.nr-new-event .quick-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.nr-new-event .quick-grid>div:nth-child(3n){
+    border-right:1px solid rgba(23,63,52,.13)!important;
+  }
+  body.nr-new-event .quick-grid>div:nth-child(2n){
+    border-right:0!important;
+  }
+  body.nr-new-event .quick-grid>div:nth-child(n+3){
+    border-top:1px solid rgba(23,63,52,.13)!important;
+  }
+  body.nr-new-event .event-archive-nav{
+    padding-inline:12px!important;
+  }
+  body.nr-new-event .event-archive-nav__inner{
+    grid-template-columns:1fr!important;
+  }
+  body.nr-new-event .event-archive-nav a,
+  body.nr-new-event .event-archive-nav a:nth-child(n){
+    min-height:62px!important;
+    border-right:0!important;
+    border-top:0!important;
+    border-bottom:1px solid rgba(23,74,54,.10)!important;
+  }
+  body.nr-new-event .event-archive-nav a:last-child{
+    border-bottom:0!important;
+  }
+  body.nr-new-event #program .program-grid,
+  body.nr-new-event #flow .timeline,
+  body.nr-new-event #bring .bring-grid{
+    grid-template-columns:1fr!important;
+  }
+  body.nr-new-event #flow .time-card+article{
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.nr-new-event #join-steps .join-step-grid{
+    grid-template-columns:1fr!important;
+  }
+  body.nr-new-event #join-steps .join-step-grid>article+article{
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.nr-new-event #bring .bring-item,
+  body.nr-new-event #bring .bring-item:nth-child(n){
+    border-right:0!important;
+    border-bottom:1px solid rgba(23,74,54,.11)!important;
+  }
+  body.nr-new-event #bring .bring-item:last-child{
+    border-bottom:0!important;
+  }
+  body.nr-new-event .event-renge .renge-layout{
+    grid-template-columns:1fr!important;
+  }
+}
