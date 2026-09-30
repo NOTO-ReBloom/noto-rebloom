@@ -513,3 +513,33 @@ body.rb-unified.nr-new-home #project-story .story-step--future:nth-child(n) .sto
     background:#9bb69b!important;
   }
 }
+
+
+/* Keep the full 8-step story on one deliberate line on wide screens. */
+@media(min-width:1200px){
+  body.rb-unified.nr-new-home #project-story .story-timeline{
+    grid-template-columns:repeat(8,minmax(0,1fr))!important;
+    gap:4px!important;
+  }
+  body.rb-unified.nr-new-home #project-story .story-step{
+    padding-inline:8px!important;
+  }
+  body.rb-unified.nr-new-home #project-story .story-step h3{
+    font-size:15px!important;
+    line-height:1.45!important;
+  }
+  body.rb-unified.nr-new-home #project-story .story-step p{
+    font-size:11.5px!important;
+    line-height:1.68!important;
+  }
+}
+@media(min-width:701px) and (max-width:1199px){
+  body.rb-unified.nr-new-home #project-story .story-timeline{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:30px 10px!important;
+  }
+  body.rb-unified.nr-new-home #project-story .story-timeline::before,
+  body.rb-unified.nr-new-home #project-story .rbpc-progress::before{
+    display:none!important;
+  }
+}
