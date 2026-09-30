@@ -17,7 +17,7 @@ body.nr-new-home .nr-home-hero{
   overflow:hidden!important;
   box-sizing:border-box!important;
   min-height:0!important;
-  padding:110px 0 58px!important;
+  padding:94px 0 58px!important;
   background:
     radial-gradient(circle at 3% 14%,rgba(242,201,76,.24),transparent 22%),
     radial-gradient(circle at 97% 88%,rgba(78,134,85,.17),transparent 25%),
@@ -56,8 +56,8 @@ body.nr-new-home .nr-home-hero .hero-grid{
   display:grid!important;
   grid-template-columns:1fr!important;
   grid-template-areas:
-    "copy"
-    "media"!important;
+    "media"
+    "copy"!important;
   gap:0!important;
   align-items:stretch!important;
   overflow:hidden!important;
@@ -332,7 +332,7 @@ body.nr-new-home .site-header{z-index:1000!important}
 /* Tablet: simplify heading band, still show full photo. */
 @media(max-width:980px){
   body.nr-new-home .nr-home-hero{
-    padding:98px 0 48px!important;
+    padding:88px 0 48px!important;
   }
   body.nr-new-home .nr-home-hero .hero-grid{
     width:min(900px,calc(100% - 30px))!important;
@@ -358,7 +358,7 @@ body.nr-new-home .site-header{z-index:1000!important}
 /* Phone: headline then entire photo, both immediately visible in page order. */
 @media(max-width:640px){
   body.nr-new-home .nr-home-hero{
-    padding:88px 0 38px!important;
+    padding:80px 0 38px!important;
   }
   body.nr-new-home .nr-home-hero .hero-grid{
     width:calc(100% - 18px)!important;
