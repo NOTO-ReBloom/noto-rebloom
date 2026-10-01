@@ -2698,8 +2698,14 @@ html body .rb-footer--universal .rb-footer-bottom{padding-top:12px!important}
   html body:not(.page-diagnosis) .rb-mobile-join{
     display:none!important;
   }
-  html body{
+  html body:not(.page-diagnosis){
     padding-bottom:0!important;
   }
+}
+
+/* Keyboard focus is intentionally visible on every interactive control. */
+html body :where(a,button,[role="button"],input,select,textarea,[tabindex]):focus-visible{
+  outline:3px solid #e0b92f!important;
+  outline-offset:3px!important;
 }
 
