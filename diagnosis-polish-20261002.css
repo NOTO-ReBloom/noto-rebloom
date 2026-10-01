@@ -393,3 +393,16 @@ body.page-diagnosis .diagnosis-mobile-start button span{
     width:100%!important;
   }
 }
+
+/* Start-step numbers stay legible regardless of older card styles. */
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-steps b{
+  display:grid!important;
+  place-items:center!important;
+  width:30px!important;
+  height:30px!important;
+  border-radius:50%!important;
+  background:#f2c94c!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
