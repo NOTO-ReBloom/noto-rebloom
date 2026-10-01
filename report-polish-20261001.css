@@ -604,3 +604,34 @@ body.report-page .report-thanks .report-volunteer-thanks{
     border-top:1px solid rgba(23,74,54,.12)!important;
   }
 }
+
+/* Contrast fixes after the lightened report sections. */
+body.report-page .report-flow .time-card h3{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.report-page .report-flow .time-card p{
+  color:#5b6d64!important;
+  -webkit-text-fill-color:#5b6d64!important;
+}
+body.report-page .report-thanks .section-heading :is(h2,p),
+body.report-page .report-thanks .report-volunteer-thanks :is(h3,p){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.report-page .report-thanks .section-heading>p:last-child,
+body.report-page .report-thanks .report-volunteer-thanks>p:last-child{
+  color:#5b6d64!important;
+  -webkit-text-fill-color:#5b6d64!important;
+}
+body.report-page .report-thanks .report-volunteer-kicker{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.report-page .report-thanks .button-row .btn--paper{
+  background:#f2eee4!important;
+  border-color:rgba(23,74,54,.14)!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
