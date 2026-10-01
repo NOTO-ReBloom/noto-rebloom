@@ -2691,3 +2691,15 @@ html body .rb-footer--universal .rb-footer-bottom{padding-top:12px!important}
   html body.page-thoughts #future .cause-grid>article{padding:17px 3px 16px!important}
 }
 
+/* FINAL CROSS-PAGE MOBILE CLEANUP / 2026-10-02
+   The persistent report dock duplicated page CTAs and covered content on small screens.
+   Keep the diagnosis-specific start dock, but remove the generic site-wide dock. */
+@media(max-width:760px){
+  html body:not(.page-diagnosis) .rb-mobile-join{
+    display:none!important;
+  }
+  html body{
+    padding-bottom:0!important;
+  }
+}
+
