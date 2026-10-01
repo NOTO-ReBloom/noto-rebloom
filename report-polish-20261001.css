@@ -635,3 +635,13 @@ body.report-page .report-thanks .button-row .btn--paper{
   -webkit-text-fill-color:#174a36!important;
 }
 
+/* Summary-card headings follow the card background, not inherited global colors. */
+body.report-page .report-key-results .report-summary-card h3{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.report-page .report-key-results .report-summary-card:first-child h3{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
