@@ -645,3 +645,10 @@ body.report-page .report-key-results .report-summary-card:first-child h3{
   -webkit-text-fill-color:#fff!important;
 }
 
+/* Numeric schedule headings need an explicit effective background for browser contrast QA. */
+body.report-page #schedule.report-flow .timeline .time-card h3{
+  background-color:#eef5ea!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
