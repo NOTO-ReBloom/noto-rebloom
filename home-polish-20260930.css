@@ -484,3 +484,21 @@ body.rb-unified.nr-new-home #project-story .story-step--future:nth-child(n) .sto
     background:#9bb69b!important;
   }
 }
+
+/* Preserve the full 1400×788 event photo with no box distortion. */
+body.nr-new-home .nr-home-hero .photo-frame--home-venue img{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  box-sizing:border-box!important;
+  border:0!important;
+  padding:0!important;
+  margin:0!important;
+  aspect-ratio:1400 / 788!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+}
+
