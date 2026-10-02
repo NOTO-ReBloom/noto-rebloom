@@ -4,7 +4,7 @@ const puppeteer=require('puppeteer-core');
 const mode=process.argv[2]||'before';
 const out='qa-page-css-'+mode;
 fs.mkdirSync(out,{recursive:true});
-const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
+const pages=['diagnosis.html'];
 const viewports=[[430,932],[1440,1000]];
 
 (async()=>{
