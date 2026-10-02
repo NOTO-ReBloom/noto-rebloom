@@ -1,0 +1,5687 @@
+/* diagnosis.html verified CSS run 3/3. Generated 2026-10-02 from: site-consistency.css, typography-responsive-20260928.css, plant-art-20260929.css, diagnosis-site-match-20260929.css, diagnosis-result-clean-20260929.css, diagnosis-social-20260929.css, diagnosis-polish-20261002.css */
+
+/* ===== SOURCE: site-consistency.css ===== */
+/* NOTO Re:Bloom — site-wide consistency layer / 2026-09-19 */
+:root{
+  --rb-c-green:#184b3d;--rb-c-green-deep:#123d32;--rb-c-green-soft:#2d6a54;
+  --rb-c-yellow:#f2c94c;--rb-c-paper:#fffaf0;--rb-c-paper-2:#f6f1e6;--rb-c-white:#fff;
+  --rb-c-ink:#17352e;--rb-c-muted:#52645d;--rb-c-line:rgba(24,75,61,.14);
+  --rb-c-line-strong:rgba(24,75,61,.22);--rb-c-shadow:0 12px 34px rgba(23,58,49,.08);
+  --rb-c-shadow-hover:0 18px 42px rgba(23,58,49,.13);--rb-c-radius:24px;--rb-c-radius-sm:18px
+}
+html{background:var(--rb-c-paper);scroll-padding-top:104px}
+body{background:var(--rb-c-paper);color:var(--rb-c-ink);text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+body p{color:var(--rb-c-muted)}::selection{background:#f4d96f;color:var(--rb-c-ink)}
+:focus-visible{outline:4px solid var(--rb-c-yellow)!important;outline-offset:4px!important}
+
+/* Header + navigation */
+body .site-header{
+  width:min(1240px,calc(100% - 28px))!important;min-height:72px!important;top:12px!important;
+  padding:10px 12px 10px 18px!important;gap:16px!important;border:1px solid var(--rb-c-line-strong)!important;
+  border-radius:22px!important;background:rgba(255,250,240,.96)!important;
+  box-shadow:0 10px 32px rgba(23,58,49,.12)!important;backdrop-filter:blur(18px)!important
+}
+body .site-header .brand{min-width:204px!important;gap:10px!important}
+body .site-header .brand b{color:var(--rb-c-ink)!important;font-size:15px!important;letter-spacing:-.01em}
+body .site-header .brand small{color:#697770!important}
+body .site-header .site-nav{gap:3px!important;flex-wrap:nowrap!important}
+body .site-header .site-nav a{
+  min-height:44px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  padding:9px 8px!important;border-radius:999px!important;color:#345248!important;font-size:12px!important;
+  font-weight:850!important;white-space:nowrap!important;transition:background .16s ease,color .16s ease,transform .16s ease!important
+}
+body .site-header .site-nav a:hover{background:#e9f3e9!important;color:var(--rb-c-green)!important}
+body .site-header .site-nav a[aria-current="page"]{background:var(--rb-c-green)!important;color:#fff!important;box-shadow:0 5px 14px rgba(24,75,61,.16)!important}
+body .site-header .header-actions{gap:8px!important;flex:0 0 auto!important}
+body .site-header .header-link{
+  display:inline-flex!important;align-items:center!important;min-height:40px!important;padding:0 13px!important;
+  border:1px solid var(--rb-c-line)!important;border-radius:999px!important;background:#fff!important;
+  color:var(--rb-c-green)!important;font-size:12px!important;font-weight:900!important
+}
+
+/* Typography + buttons */
+body :is(.hero,.page-hero,.contact-page-hero) h1{color:var(--rb-c-ink);text-wrap:balance;line-height:1.12;letter-spacing:-.045em}
+body h2{color:var(--rb-c-ink);text-wrap:balance}
+body :is(.hero,.page-hero,.contact-page-hero) p:not(.eyebrow){text-wrap:pretty}
+body .eyebrow{color:var(--rb-c-green)}body .eyebrow::before{background:var(--rb-c-yellow)}
+body .btn,body .contact-actions a{
+  min-height:48px!important;padding:11px 19px!important;border-radius:999px!important;font-weight:900!important;
+  letter-spacing:0!important;transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important
+}
+body .btn--green,body .contact-actions .primary{background:var(--rb-c-green)!important;color:#fff!important;border-color:var(--rb-c-green)!important}
+body .btn--paper,body .contact-actions .secondary{background:#fff!important;color:var(--rb-c-green)!important;border:1px solid var(--rb-c-line-strong)!important}
+body .btn--yellow{background:var(--rb-c-yellow)!important;color:var(--rb-c-ink)!important}
+@media(hover:hover){body .btn:hover,body .contact-actions a:hover{transform:translateY(-2px)!important;box-shadow:0 10px 22px rgba(23,58,49,.14)!important}}
+
+/* Shared hero family */
+body:not(.page-diagnosis) .page-hero,body.page-contact .contact-page-hero{
+  padding-top:clamp(142px,12vw,164px)!important;
+  background:radial-gradient(circle at 84% 18%,rgba(78,142,89,.12),transparent 28%),
+    radial-gradient(circle at 8% 9%,rgba(242,201,76,.17),transparent 24%),
+    linear-gradient(135deg,#fff4c9 0%,#fffaf0 48%,#e8f4e7 100%)!important
+}
+body:not(.page-diagnosis) .page-hero::after,body.page-contact .contact-page-hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:7px;
+  background:linear-gradient(90deg,var(--rb-c-green) 0 34%,var(--rb-c-yellow) 34% 66%,#a8d8e8 66% 100%)
+}
+body.page-contact .contact-page-hero{position:relative;padding-bottom:72px!important}
+
+/* Common surfaces */
+body :is(.photo-frame,.visual-tile,.contact-card,.info-card,.game-card,.time-card,.bring-item,.definition-card,.action-card,.way-card,.play-card,.industry-partner-card){border-color:var(--rb-c-line)!important}
+body :is(.contact-card,.info-card,.game-card,.time-card,.bring-item,.definition-card,.action-card,.way-card,.play-card,.industry-partner-card){
+  border-radius:var(--rb-c-radius)!important;box-shadow:var(--rb-c-shadow)!important
+}
+body .photo-frame{border-radius:var(--rb-c-radius)!important;border:1px solid var(--rb-c-line)!important;background:#fff!important;box-shadow:var(--rb-c-shadow)!important;transform:none!important}
+body .photo-frame img{border-radius:16px!important}
+body .faq-list details{border:1px solid var(--rb-c-line)!important;border-radius:var(--rb-c-radius-sm)!important;background:#fff!important;box-shadow:0 5px 18px rgba(23,58,49,.04)!important}
+body .faq-list summary{min-height:52px;display:flex;align-items:center;color:var(--rb-c-ink)}
+body .faq-list details[open]{border-color:rgba(24,75,61,.26)!important}
+
+/* CTA + footer */
+body :is(.conversion-band,.join-section,.final-cta){background:linear-gradient(135deg,var(--rb-c-green-deep),var(--rb-c-green))!important;color:#fff!important}
+body :is(.conversion-band,.join-section,.final-cta) :is(h2,h3,p){color:#fff!important}
+body .site-footer{background:linear-gradient(135deg,#0f352c,#184b3d)!important;color:#fff!important;border-top:1px solid rgba(255,255,255,.08)!important}
+body .site-footer :is(p,small){color:rgba(255,255,255,.72)!important}body .site-footer a{color:#fff}
+body .site-footer .footer-bottom{gap:10px 18px!important}
+
+/* Venue map */
+.nr-home-map-cta{padding:26px 0 52px!important;background:linear-gradient(180deg,#fffaf0 0%,#f7f2e7 100%)!important}
+.nr-home-map-cta__box{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:22px!important;
+  padding:20px 22px!important;border:1px solid var(--rb-c-line-strong)!important;border-radius:var(--rb-c-radius)!important;
+  background:#fff!important;box-shadow:var(--rb-c-shadow)!important
+}
+.nr-home-map-cta__copy{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important}
+.nr-home-map-cta__pin{display:grid!important;place-items:center!important;flex:0 0 48px!important;width:48px!important;height:48px!important;border-radius:50%!important;background:var(--rb-c-green)!important;color:#fff!important;font-size:23px!important}
+.nr-home-map-cta__copy small{display:block!important;color:#738079!important;font-size:10px!important;font-weight:900!important;letter-spacing:.12em!important}
+.nr-home-map-cta__copy strong{display:block!important;margin-top:2px!important;color:var(--rb-c-ink)!important;font-size:18px!important;font-weight:900!important}
+.nr-home-map-cta__copy p{margin-top:4px!important;color:var(--rb-c-muted)!important;font-size:13px!important;line-height:1.65!important}
+.nr-home-map-cta__button{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-height:50px!important;padding:11px 20px!important;border-radius:999px!important;background:var(--rb-c-yellow)!important;color:var(--rb-c-ink)!important;font-size:14px!important;font-weight:900!important;text-decoration:none!important}
+.venue-map-visual{display:block;position:relative;overflow:hidden;margin-top:18px;border:1px solid var(--rb-c-line-strong);border-radius:28px;background:#fff;box-shadow:var(--rb-c-shadow);text-decoration:none;transition:transform .16s ease,box-shadow .16s ease}
+.venue-map-visual img{display:block;width:100%;aspect-ratio:16/8.6;object-fit:cover}
+.venue-map-visual iframe{display:block;width:100%;height:clamp(330px,42vw,500px);border:0;background:#e7eee8}
+.venue-map-visual__caption a{color:var(--rb-c-green);font-weight:900;text-decoration:underline;text-underline-offset:3px}
+.venue-map-visual__caption{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:#fff}
+.venue-map-visual__caption b{color:var(--rb-c-green);font-size:15px}.venue-map-visual__caption span{color:var(--rb-c-muted);font-size:12px;font-weight:750;text-align:right}
+@media(hover:hover){.venue-map-visual:hover{box-shadow:var(--rb-c-shadow-hover);transform:translateY(-2px)}}
+.event-final .venue-map-visual{max-width:1120px;margin:22px auto 0}.event-final .map-row{gap:10px!important;flex-wrap:wrap!important}
+
+/* Contact */
+.page-contact .contact-main{background:var(--rb-c-paper)!important}
+.page-contact .contact-card--primary{background:linear-gradient(145deg,var(--rb-c-green-deep),var(--rb-c-green))!important}
+.page-contact .contact-topic{background:#f6f3ea!important;border:1px solid rgba(24,75,61,.07)!important}
+.page-contact .contact-note{border-left-color:var(--rb-c-yellow)!important;background:#fff7d5!important}
+
+/* Photo credits */
+.page-photo-credits main{width:min(1160px,calc(100% - 48px))!important;max-width:none!important;margin:0 auto!important;padding:150px 0 88px!important}
+.page-photo-credits .credits-head{max-width:820px;margin-bottom:26px}
+.page-photo-credits .credits-head h1{margin:10px 0 14px!important;color:var(--rb-c-ink)!important;font-size:clamp(38px,5.4vw,62px)!important;line-height:1.15!important;letter-spacing:-.04em!important}
+.page-photo-credits .note{background:#f6f1e6!important;border-color:var(--rb-c-line)!important;border-radius:var(--rb-c-radius-sm)!important}
+.page-photo-credits .table-wrap{border-color:var(--rb-c-line)!important;border-radius:var(--rb-c-radius)!important;box-shadow:var(--rb-c-shadow)!important}
+.page-photo-credits table{background:#fff!important}.page-photo-credits th{background:#eef4ed!important;color:var(--rb-c-green)!important}
+.page-photo-credits td,.page-photo-credits th{border-bottom-color:#eee9df!important}.page-photo-credits .back{display:none!important}
+
+/* Switch to menu earlier so 7 labels never become cramped */
+@media(max-width:1020px){
+  body .site-header{min-height:66px!important;top:9px!important}
+  body .site-header .site-nav{
+    position:fixed!important;top:82px!important;left:14px!important;right:14px!important;display:none!important;
+    flex-direction:column!important;align-items:stretch!important;gap:2px!important;padding:14px!important;
+    border:1px solid var(--rb-c-line-strong)!important;border-radius:22px!important;background:rgba(255,250,240,.99)!important;
+    box-shadow:0 18px 44px rgba(23,58,49,.17)!important
+  }
+  body.menu-open .site-header .site-nav{display:flex!important}
+  body .site-header .site-nav a{justify-content:flex-start!important;padding:12px 14px!important;font-size:14px!important}
+  body .site-header .menu-button{display:block!important}
+  body .site-header .header-actions{margin-left:auto!important}
+}
+@media(max-width:680px){
+  body .container{width:min(100% - 28px,1160px)}
+  body .site-header{width:calc(100% - 18px)!important;padding-left:13px!important;padding-right:8px!important;border-radius:19px!important}
+  body .site-header .brand{min-width:0!important}body .site-header .brand small{display:none!important}body .site-header .header-actions{display:none!important}
+  body:not(.page-diagnosis) .page-hero,body.page-contact .contact-page-hero{padding-top:118px!important}
+  body :is(.hero,.page-hero,.contact-page-hero) h1{line-height:1.16!important}
+  body .button-row{gap:9px!important}body .button-row .btn{width:100%!important}
+  .nr-home-map-cta{padding:18px 0 38px!important}.nr-home-map-cta__box{align-items:stretch!important;flex-direction:column!important;padding:17px!important}
+  .nr-home-map-cta__copy{align-items:flex-start!important}.nr-home-map-cta__pin{flex-basis:42px!important;width:42px!important;height:42px!important;font-size:20px!important}
+  .nr-home-map-cta__copy strong{font-size:16px!important}.nr-home-map-cta__button{width:100%!important;min-height:52px!important}
+  .venue-map-visual{border-radius:20px}.venue-map-visual img{aspect-ratio:1.2/1;object-fit:cover}.venue-map-visual iframe{height:330px}
+  .venue-map-visual__caption{align-items:flex-start;flex-direction:column;gap:3px;padding:13px 14px}.venue-map-visual__caption span{text-align:left}
+  .page-photo-credits main{width:min(100% - 28px,1160px)!important;padding-top:118px!important}
+}
+@media(prefers-reduced-motion:reduce){.venue-map-visual,body .btn,body .contact-actions a{transition:none!important}}
+/* Homepage venue hero photo */
+.nr-home-hero .photo-frame--home-venue{overflow:hidden!important}
+.nr-home-hero .photo-frame--home-venue img{
+  display:block!important;width:100%!important;height:clamp(360px,38vw,520px)!important;
+  object-fit:cover!important;object-position:center 58%!important;background:#e8e3d7!important
+}
+@media(max-width:680px){
+  .nr-home-hero .photo-frame--home-venue img{height:300px!important;object-position:center 55%!important}
+}
+
+/* First-time visitor conversion */
+.hero-reassurance{
+  margin-top:16px!important;max-width:720px!important;color:#486158!important;
+  font-size:12px!important;line-height:1.7!important;font-weight:800!important
+}
+.first-visit-section{
+  padding:clamp(66px,7vw,96px) 0;background:linear-gradient(180deg,#f8f4e9 0%,#fffaf0 100%);
+  border-top:1px solid rgba(24,75,61,.06);border-bottom:1px solid rgba(24,75,61,.08)
+}
+.first-visit-head{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:clamp(28px,5vw,64px);
+  align-items:end;margin-bottom:30px
+}
+.first-visit-head h2{font-family:var(--serif);font-size:clamp(36px,4.5vw,58px);line-height:1.2;letter-spacing:-.035em}
+.first-visit-head>p{font-size:15px;line-height:1.9}
+.first-visit-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.first-visit-grid article{
+  min-height:220px;padding:24px 22px;border:1px solid var(--rb-c-line);border-radius:24px;
+  background:#fff;box-shadow:var(--rb-c-shadow)
+}
+.first-visit-grid article>span{
+  display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#edf4ec;
+  color:var(--rb-c-green);font-size:11px;font-weight:900
+}
+.first-visit-grid h3{margin:16px 0 8px;font-family:var(--serif);font-size:22px;line-height:1.35;color:var(--rb-c-ink)}
+.first-visit-grid p{font-size:13px;line-height:1.75}
+.first-visit-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+
+.why-join-section{padding:clamp(70px,8vw,108px) 0;background:#fff}
+.why-join-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.why-join-grid article{
+  position:relative;overflow:hidden;padding:26px 23px;border:1px solid var(--rb-c-line);border-radius:26px;
+  background:linear-gradient(145deg,#fff,#fbf7ed);box-shadow:var(--rb-c-shadow)
+}
+.why-join-grid article::after{
+  content:"";position:absolute;width:110px;height:110px;right:-40px;bottom:-44px;border-radius:50%;
+  background:rgba(242,201,76,.13)
+}
+.why-join-grid span{font-size:10px;font-weight:900;letter-spacing:.12em;color:#6a7c73}
+.why-join-grid h3{margin:12px 0 9px;font-family:var(--serif);font-size:23px;line-height:1.35;color:var(--rb-c-green)}
+.why-join-grid p{font-size:13px;line-height:1.78}
+
+/* Event decision support */
+.join-steps-section{
+  padding:clamp(62px,7vw,92px) 0;background:linear-gradient(180deg,#fffaf0,#f1f7ef);
+  border-bottom:1px solid rgba(24,75,61,.08)
+}
+.join-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.join-step-grid article{
+  padding:26px;border:1px solid var(--rb-c-line);border-radius:26px;background:#fff;box-shadow:var(--rb-c-shadow)
+}
+.join-step-grid article>span{
+  display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--rb-c-green);
+  color:#fff;font-family:var(--serif);font-weight:900
+}
+.join-step-grid h3{margin:16px 0 8px;font-family:var(--serif);font-size:24px;line-height:1.35;color:var(--rb-c-ink)}
+.join-step-grid p{font-size:13px;line-height:1.8}
+.join-step-grid a{display:inline-block;margin-top:14px;color:var(--rb-c-green);font-size:13px;font-weight:900}
+.join-step-note{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:18px;padding:17px 20px;
+  border:1px solid rgba(24,75,61,.15);border-radius:18px;background:#fff7cf
+}
+.join-step-note strong{color:var(--rb-c-green);font-size:14px}
+.join-step-note span{color:#55685f;font-size:13px;line-height:1.65}
+
+@media(max-width:980px){
+  .first-visit-head{grid-template-columns:1fr}
+  .first-visit-grid,.why-join-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .join-step-grid{grid-template-columns:1fr}
+  .join-step-note{align-items:flex-start;flex-direction:column;gap:5px}
+}
+@media(max-width:620px){
+  .hero-reassurance{font-size:11px!important}
+  .first-visit-grid,.why-join-grid{grid-template-columns:1fr}
+  .first-visit-grid article{min-height:0}
+  .first-visit-actions .btn{width:100%}
+}
+
+
+/* Site-wide interaction accessibility polish — 2026-09-26 */
+body .site-header .menu-button,
+body .back-top{
+  min-width:44px!important;
+  min-height:44px!important;
+}
+body .site-footer a{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  body *,
+  body *::before,
+  body *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  body .reveal{
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+
+
+/* ===== SOURCE: typography-responsive-20260928.css ===== */
+/*
+  Cross-site typography + responsive line-breaking pass
+  2026-09-28
+  Loaded last on every top-level page so page-specific bundles cannot
+  accidentally make one page feel typographically different.
+*/
+:root{
+  --rb-final-body:var(--body,var(--sans,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif));
+  --rb-final-display:var(--display,var(--serif,"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif));
+}
+
+html{
+  line-break:strict;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+dialog{
+  font-family:var(--rb-final-body)!important;
+}
+
+/* Navigation/chrome must look identical on every page. */
+.site-header,
+.site-header .brand,
+.site-header .brand b,
+.site-header .brand small,
+.site-nav,
+.site-nav a,
+.header-actions,
+.header-actions .btn,
+.menu-button{
+  font-family:var(--rb-final-body)!important;
+}
+.site-nav a{font-weight:800!important}
+.site-header .brand b{font-weight:700!important}
+
+/*
+  Japanese body copy:
+  do not use auto-phrase/pretty wrapping globally. They can create
+  surprisingly early breaks depending on viewport and browser.
+*/
+:where(
+  p,li,dd,dt,figcaption,small,
+  .hero-lead,.source-note,.callout,
+  .status-list,.timeline,.faq-list,
+  .result-card,.result-copy,.result-group-profile,
+  .result-deep-dive,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.result-month-plan,.result-next-action
+){
+  text-wrap:wrap!important;
+  word-break:normal!important;
+  overflow-wrap:break-word;
+  line-break:strict;
+}
+
+/* Headings may balance on roomy screens, but keep Japanese break rules sane. */
+:where(
+  h1,h2,h3,h4,
+  .section-heading h2,
+  .page-hero h1,
+  .hero h1
+){
+  font-family:var(--rb-final-display)!important;
+  word-break:normal!important;
+  overflow-wrap:break-word;
+  line-break:strict;
+  text-wrap:balance;
+}
+
+/* Flower diagnosis: remove all remaining lighter page-only heading weights. */
+body.page-diagnosis{
+  font-family:var(--rb-final-body)!important;
+}
+body.page-diagnosis :where(
+  h1,h2,h3,h4,
+  .page-hero h1,
+  .section-heading h2,
+  .diagnosis-intro h2,
+  .diagnosis-start-card h3,
+  .diagnosis-method-card h3,
+  .diagnosis-question,
+  .flower-group-card h3,
+  .flower-atlas-heading h2,
+  .flower-atlas-card b,
+  .atlas-dialog-grid h2,
+  .result-copy h2,
+  .result-card h3,
+  .result-group-profile h3,
+  .result-deep-dive h3,
+  .result-life-scenes h3,
+  .result-reflection h3,
+  .result-tendency-section h3,
+  .result-month-plan h3,
+  .result-next-action h3,
+  .result-rich-insights h3,
+  .result-rich-insights h4,
+  .result-reason-card h4,
+  .result-share-copy h3,
+  .final-cta h2
+){
+  font-family:var(--rb-final-display)!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .site-nav a{
+  font-family:var(--rb-final-body)!important;
+  font-weight:800!important;
+}
+body.page-diagnosis .brand b{
+  font-family:var(--rb-final-body)!important;
+  font-weight:700!important;
+}
+
+/*
+  Tablet/mobile: desktop-authored <br> positions often produce 1–3 character
+  fragments. Let the viewport choose the break instead.
+*/
+@media(max-width:820px){
+  :where(h1,h2) br{
+    display:none!important;
+  }
+  :where(h1,h2){
+    text-wrap:wrap!important;
+    word-break:normal!important;
+    overflow-wrap:break-word;
+  }
+  :where(p,li,dd,dt,figcaption){
+    text-wrap:wrap!important;
+  }
+}
+
+@media(max-width:600px){
+  :where(h1,h2,h3,h4){
+    letter-spacing:0!important;
+  }
+  :where(p,li,dd,dt){
+    line-height:1.82;
+  }
+}
+
+
+/* ===== SOURCE: plant-art-20260929.css ===== */
+/* NOTO Re:Bloom — Botanical Theme 2026-09-28
+   Design-only override. No copy/content changes. */
+:root{
+  --plant-forest:#174a36;
+  --plant-forest-2:#0f3a2a;
+  --plant-leaf:#5f8f58;
+  --plant-leaf-2:#7da66f;
+  --plant-sage:#dfe9d8;
+  --plant-sage-2:#eef3e8;
+  --plant-cream:#fbf8ee;
+  --plant-paper:#fffdf8;
+  --plant-soil:#8a6a4a;
+  --plant-soil-soft:#eee3d5;
+  --plant-flower:#e8c84f;
+  --plant-ink:#1d342a;
+  --plant-muted:#586b61;
+  --plant-line:rgba(23,74,54,.14);
+  --plant-shadow:0 16px 42px rgba(23,74,54,.10);
+  --plant-shadow-soft:0 8px 24px rgba(23,74,54,.075);
+}
+
+/* foundation */
+html{background:var(--plant-cream)}
+body{
+  background:var(--plant-cream)!important;
+  color:var(--plant-ink)!important;
+}
+body,
+button,input,select,textarea{
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif!important;
+}
+:where(h1,h2,h3,h4,.brand b,.section-title,.section-heading h2){
+  color:var(--plant-ink)!important;
+  font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Noto Sans JP","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-weight:900!important;
+}
+:where(p,li,dd,dt,figcaption){color:var(--plant-muted)}
+
+/* photograph reliability: do not let legacy reveal/lazy styles leave blanks */
+main img,
+.photo-frame img,
+.visual-tile img,
+.report-photo img,
+.contact-hero-photo img,
+.people-trust-photo img,
+.nr-main-sponsor img{
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+}
+.photo-frame,
+.visual-tile,
+.report-photo,
+.contact-hero-photo,
+.people-trust-photo{
+  opacity:1!important;
+  visibility:visible!important;
+}
+:where(.reveal,.rb-reveal,.rb-detail-reveal,.is-reveal,.will-reveal) img{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+
+/* header: a clean vine, not a hard rule */
+.site-header{
+  background:rgba(255,253,248,.97)!important;
+  border-bottom:0!important;
+  box-shadow:0 8px 24px rgba(23,74,54,.07)!important;
+  backdrop-filter:blur(12px);
+}
+.site-header::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-7px;
+  height:14px;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 8px 2px,rgba(95,143,88,.22) 0 5px,transparent 5.5px) 0 0/34px 14px repeat-x;
+  opacity:.75;
+}
+.brand,
+.site-nav a,
+.header-actions .btn,
+.menu-button{
+  color:var(--plant-forest)!important;
+}
+.brand-mark{
+  position:relative;
+  border-radius:46% 54% 48% 52% / 58% 45% 55% 42%!important;
+  background:var(--plant-sage)!important;
+}
+.brand-sprout{
+  color:var(--plant-leaf)!important;
+}
+.site-nav a{
+  position:relative;
+  font-weight:800!important;
+}
+.site-nav a::after{
+  content:"";
+  position:absolute;
+  left:16%;right:16%;bottom:8px;
+  height:4px;
+  border-radius:80% 20% 65% 35%;
+  background:var(--plant-leaf)!important;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .2s ease;
+}
+.site-nav a:hover::after,
+.site-nav a[aria-current="page"]::after{
+  transform:scaleX(1);
+}
+.btn--green,
+.header-actions .btn--green,
+.primary{
+  background:var(--plant-forest)!important;
+  border-color:var(--plant-forest)!important;
+  color:#fff!important;
+}
+.btn--paper,.secondary,.btn--outline{
+  background:var(--plant-paper)!important;
+  color:var(--plant-forest)!important;
+  border-color:rgba(23,74,54,.22)!important;
+}
+
+/* botanical hero */
+.hero,
+.page-hero,
+.contact-page-hero,
+.nr-partner-top{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 7% 18%,rgba(125,166,111,.18) 0 11%,transparent 12%),
+    radial-gradient(ellipse at 96% 70%,rgba(95,143,88,.12) 0 14%,transparent 15%),
+    linear-gradient(180deg,var(--plant-paper),var(--plant-cream))!important;
+}
+.hero::before,
+.page-hero::before,
+.contact-page-hero::before,
+.nr-partner-top::before{
+  content:"";
+  position:absolute;
+  width:220px;height:420px;
+  left:-118px;bottom:-150px;
+  border-radius:55% 45% 58% 42% / 38% 62% 38% 62%;
+  background:rgba(95,143,88,.13);
+  transform:rotate(-25deg);
+  z-index:-1;
+}
+.hero::after,
+.page-hero::after,
+.contact-page-hero::after,
+.nr-partner-top::after{
+  content:"";
+  position:absolute;
+  width:150px;height:74px;
+  right:3%;top:16%;
+  border-radius:100% 0 100% 0;
+  background:rgba(125,166,111,.14);
+  transform:rotate(-28deg);
+  z-index:-1;
+}
+.eyebrow,
+.postevent-notice__badge,
+.event-kicker,
+.nr-kicker{
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--plant-sage)!important;
+  color:var(--plant-forest)!important;
+}
+.headline-marker{
+  background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important;
+  color:inherit!important;
+}
+
+/* photo frames: leaf-like asymmetry, no multicolor decoration */
+.photo-frame,
+.contact-hero-photo,
+.people-trust-photo,
+.report-photo,
+.visual-tile{
+  position:relative;
+  overflow:hidden!important;
+  border:6px solid var(--plant-paper)!important;
+  border-radius:38px 18px 36px 20px!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow)!important;
+}
+.photo-frame::after,
+.contact-hero-photo::after,
+.people-trust-photo::after{
+  content:"";
+  position:absolute;
+  width:72px;height:34px;
+  right:-13px;top:16px;
+  border-radius:100% 0 100% 0;
+  background:rgba(95,143,88,.22);
+  transform:rotate(18deg);
+  pointer-events:none;
+}
+.photo-frame img,
+.contact-hero-photo img,
+.people-trust-photo img,
+.report-photo img,
+.visual-tile img{
+  display:block!important;
+  width:100%!important;
+  object-fit:cover!important;
+}
+
+/* sections — cream / sage / soil only */
+.section,
+.visual-mosaic-section,
+.why-join-section,
+.home-current-status,
+.story-timeline-section,
+.people-trust,
+.join-steps-section,
+.info-section,
+.program-section,
+.flow-section,
+.bring-section,
+.safety-section,
+.renge-section,
+.faq-section,
+.report-summary,
+.report-photo-story,
+.report-impact,
+.report-cup-photos,
+.report-voices,
+.report-finance,
+.nr-sponsor-feature,
+.nr-value-prop,
+.contact-main{
+  position:relative;
+}
+.section--paper,
+.report-photo-story,
+.people-trust,
+.contact-main,
+.nr-sponsor-feature{
+  background:var(--plant-paper)!important;
+}
+.section--mint,
+.home-current-status,
+.join-steps-section,
+.bring-section,
+.report-summary,
+.report-impact,
+.nr-value-prop{
+  background:var(--plant-sage-2)!important;
+}
+.section--soil,
+.safety-section,
+.renge-section,
+.report-finance{
+  background:var(--plant-soil-soft)!important;
+}
+.section-heading,
+.nr-section-head,
+.section-intro{
+  position:relative;
+}
+.section-heading::before,
+.nr-section-head::before,
+.section-intro::before{
+  content:"";
+  display:block;
+  width:42px;height:18px;
+  margin:0 0 12px 4px;
+  border-radius:100% 0 100% 0;
+  background:var(--plant-leaf);
+  transform:rotate(-18deg);
+}
+
+/* cards: eliminate ruled-document look */
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .chart-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .support-card,
+  .faq-list>*,
+  .report-summary-card,
+  .report-impact-card,
+  .report-voice-card,
+  .report-money-card,
+  .industry-partner-card,
+  .contact-card
+){
+  border:0!important;
+  border-radius:28px 16px 30px 18px!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow-soft)!important;
+}
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .report-summary-card,
+  .report-impact-card
+):nth-child(2n){
+  background:var(--plant-sage-2)!important;
+}
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .report-summary-card,
+  .report-impact-card
+):nth-child(3n){
+  background:#f5efe3!important;
+}
+
+/* thin straight rules -> short vine details */
+.story-timeline,
+.timeline{
+  position:relative;
+}
+.story-timeline::before,
+.timeline::before{
+  background:var(--plant-leaf)!important;
+  opacity:.32!important;
+}
+.story-dot,
+.game-num,
+.report-impact-no{
+  background:var(--plant-forest)!important;
+  color:#fff!important;
+}
+.story-step,
+.time-card{
+  border-color:transparent!important;
+}
+
+/* visual mosaic: photos as botanical scrapbook */
+.visual-mosaic{
+  gap:18px!important;
+}
+.visual-tile:nth-child(2n){transform:translateY(8px) rotate(.45deg)}
+.visual-tile:nth-child(3n){transform:translateY(-4px) rotate(-.35deg)}
+.visual-label{
+  background:rgba(255,253,248,.92)!important;
+  color:var(--plant-forest)!important;
+  border-radius:999px!important;
+}
+
+/* dark bands use forest only */
+.conversion-band,
+.update-band,
+.join-section,
+.rb-footer-cta,
+.report-thanks,
+.feature-band{
+  background:linear-gradient(135deg,var(--plant-forest-2),var(--plant-forest))!important;
+  color:#fff!important;
+}
+.conversion-band :where(h2,h3,p),
+.update-band :where(h2,h3,p),
+.join-section :where(h2,h3,p),
+.report-thanks :where(h2,h3,p){
+  color:#fff!important;
+}
+
+/* sponsor area: botanical restraint */
+.nr-badge,
+.support-chip,
+.contact-topic{
+  background:var(--plant-sage)!important;
+  color:var(--plant-forest)!important;
+  border-color:transparent!important;
+}
+.nr-main-sponsor,
+.industry-partner-card{
+  border-color:transparent!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow-soft)!important;
+}
+.nr-sponsor-logo,
+.industry-partner-logo{
+  filter:none!important;
+}
+
+/* footer */
+.site-footer{
+  position:relative;
+  overflow:hidden;
+  background:var(--plant-forest-2)!important;
+  color:#fff!important;
+}
+.site-footer::before{
+  content:"";
+  position:absolute;
+  width:190px;height:95px;
+  right:-35px;top:-28px;
+  border-radius:100% 0 100% 0;
+  background:rgba(125,166,111,.16);
+  transform:rotate(28deg);
+}
+.site-footer :where(a,p,small,span){color:rgba(255,255,255,.86)!important}
+
+/* flower diagnosis: same restrained palette */
+body.page-diagnosis{
+  --sun-soft:#f1df8b!important;
+  --leaf-soft:var(--plant-sage)!important;
+  --sky-soft:var(--plant-sage-2)!important;
+  --coral-soft:#f0e8da!important;
+  --lilac-soft:var(--plant-sage-2)!important;
+  background:var(--plant-cream)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(n),
+body.page-diagnosis .flower-atlas-card:nth-child(n),
+body.page-diagnosis .diagnosis-answer:nth-child(n){
+  background:var(--plant-paper)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(2n),
+body.page-diagnosis .flower-atlas-card:nth-child(2n),
+body.page-diagnosis .diagnosis-answer:nth-child(2n){
+  background:var(--plant-sage-2)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(3n),
+body.page-diagnosis .flower-atlas-card:nth-child(3n){
+  background:#f5efe3!important;
+}
+body.page-diagnosis .diagnosis-progress-fill,
+body.page-diagnosis .btn--green,
+body.page-diagnosis .diagnosis-mobile-start button{
+  background:var(--plant-forest)!important;
+}
+body.page-diagnosis .headline-marker{background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important}
+
+/* responsive */
+@media(max-width:820px){
+  .site-nav{
+    background:var(--plant-paper)!important;
+    border-color:rgba(23,74,54,.12)!important;
+    box-shadow:var(--plant-shadow)!important;
+  }
+  .visual-tile:nth-child(n){transform:none}
+}
+@media(max-width:640px){
+  .hero,.page-hero,.contact-page-hero{border-radius:0 0 34px 34px}
+  :where(
+    .first-visit-grid>*,
+    .why-join-grid>*,
+    .home-current-status__grid>*,
+    .nr-choice,
+    .event-values>*,
+    .cause-grid>*,
+    .definition-card,
+    .chart-card,
+    .info-card,
+    .game-card,
+    .time-card,
+    .bring-item,
+    .support-card,
+    .report-summary-card,
+    .report-impact-card,
+    .report-voice-card,
+    .report-money-card,
+    .industry-partner-card,
+    .contact-card
+  ){
+    border-radius:24px 14px 26px 16px!important;
+  }
+}
+
+/* Event archive contrast on dark/leaf sections */
+body.event-final .join-section .event-kicker,
+body.event-final .support-card .event-kicker{
+  background:var(--plant-flower)!important;
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+
+/* Performance for the long event archive: defer layout only, never image fetching. */
+@supports (content-visibility:auto){
+  body.event-final main>section:nth-of-type(n+2){
+    content-visibility:auto;
+    contain:layout style paint;
+    contain-intrinsic-size:auto 720px;
+  }
+}
+
+/* BOTANICAL VISIBILITY GUARANTEE
+   Legacy reveal effects must never leave content invisible. */
+:where(.rb-reveal,.rb-detail-reveal,.reveal,.is-reveal,.will-reveal){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+body.page-learn :where(.definition-card,.cause-grid>article,.event-values>article,.chart-card,.data-grid>article),
+body.page-thoughts :where(.cause-grid>article,.event-values>article,.visual-tile){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+
+
+/* CONTRAST + JAPANESE HEADING SAFETY 2026-09-28 */
+/* Japanese headings: prefer phrase-aware breaks and avoid awkward 1–2 character wraps. */
+:where(
+  .hero h1,.page-hero h1,.contact-page-hero h1,
+  .section-heading h2,.section-intro h2,.first-visit-head h2,
+  .visual-mosaic-head h2,.nr-section-head h2,.report-hero h1
+){
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-break:strict!important;
+  hanging-punctuation:first last;
+}
+@supports (word-break:auto-phrase){
+  :where(
+    .hero h1,.page-hero h1,.contact-page-hero h1,
+    .section-heading h2,.section-intro h2,.first-visit-head h2,
+    .visual-mosaic-head h2,.nr-section-head h2,.report-hero h1
+  ){
+    word-break:auto-phrase!important;
+  }
+}
+
+/* Flower diagnosis hero must use the same rounded display face as the rest of the site. */
+body.page-diagnosis .page-hero--diagnosis h1,
+body.page-diagnosis .page-hero--diagnosis h1 .headline-marker{
+  font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.035em!important;
+}
+
+/* Dark botanical surfaces: never inherit dark legacy copy. */
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) :where(h1,h2,h3,h4,p,li,dd,dt,strong,small,span,a:not(.btn):not(.event-kicker):not(.eyebrow):not(.support-chip)){
+  color:rgba(255,255,255,.94)!important;
+}
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) :where(h1,h2,h3,h4,strong){
+  color:#fff!important;
+}
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) a:not(.btn){
+  text-decoration-color:rgba(255,255,255,.55)!important;
+}
+
+/* Light cards/surfaces: never inherit white text from older dark variants. */
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.diagnosis-start-card,
+  .diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card
+) :where(h1,h2,h3,h4,strong){
+  color:var(--plant-ink)!important;
+}
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.diagnosis-start-card,
+  .diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card
+) :where(p,li,dd,dt,small){
+  color:var(--plant-muted)!important;
+}
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor
+) a:not(.btn){
+  color:var(--plant-forest)!important;
+}
+
+/* Pills/badges keep dark copy on their light botanical fill even inside dark sections. */
+:where(.eyebrow,.event-kicker,.nr-kicker,.postevent-notice__badge,.support-chip,.contact-topic,.nr-badge){
+  color:var(--plant-forest-2)!important;
+}
+body.event-final .join-section .event-kicker,
+body.event-final .support-card .event-kicker{
+  color:var(--plant-forest-2)!important;
+}
+
+/* Paper buttons must never become white-on-white. */
+:where(.btn--paper,.btn--outline,.secondary){
+  color:var(--plant-forest-2)!important;
+}
+
+
+/* EYEBROW CHILD CONTRAST GUARANTEE */
+:where(.eyebrow,.eyebrow--light,.event-kicker,.nr-kicker,.postevent-notice__badge) > :where(span,small,strong){
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+:where(.eyebrow,.eyebrow--light) small{
+  color:#365f4e!important;
+}
+
+
+/* FINAL LEARN EYEBROW CONTRAST */
+html body.page-learn main .eyebrow.eyebrow--light > small,
+html body.page-learn main .eyebrow--light > small{
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+
+/* BOTANICAL LIGHT EYEBROW CONTRAST */
+.section--soil .eyebrow--light,
+.section--soil .eyebrow--light span,
+.section--soil .eyebrow--light small{
+  color:var(--plant-forest)!important;
+}
+
+/* ABSOLUTE LEARN EYEBROW OVERRIDE */
+html body.page-learn:not(.page-thoughts) main .section--soil .eyebrow.eyebrow--light > small,
+html body.page-learn:not(.page-thoughts) main .section--soil .eyebrow.eyebrow--light > span{
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+
+
+/* FINAL NAV VISIBILITY + HEADING RHYTHM / 2026-09-28 */
+/*
+  1) Keep the current-page navigation label visibly readable on the pale
+     botanical header.
+  2) Keep Japanese display headings large without creating 1–2 character
+     orphan lines at ordinary desktop/tablet widths.
+*/
+html body .site-header .site-nav a[aria-current="page"]{
+  background:linear-gradient(180deg,#edf4e8 0%,#e3edde 100%)!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  border:1px solid rgba(23,74,54,.36)!important;
+  box-shadow:0 4px 12px rgba(23,74,54,.08)!important;
+  opacity:1!important;
+}
+html body .site-header .site-nav a[aria-current="page"]::after{
+  background:var(--plant-leaf,#5f8f58)!important;
+  bottom:5px!important;
+}
+
+:where(
+  .hero h1,
+  .page-hero h1,
+  .contact-page-hero h1,
+  .report-hero h1,
+  .nr-partner-top h1
+){
+  font-size:clamp(46px,3.9vw,66px)!important;
+  line-height:1.16!important;
+  letter-spacing:-.04em!important;
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-break:strict!important;
+}
+body.page-learn:not(.page-thoughts) .page-hero h1{
+  font-size:clamp(44px,3.45vw,60px)!important;
+  line-height:1.18!important;
+}
+body.page-thoughts .page-hero h1{
+  font-size:clamp(42px,3.15vw,56px)!important;
+  line-height:1.2!important;
+}
+body.nr-new-partner .page-hero h1,
+body.report-page .page-hero h1{
+  font-size:clamp(44px,3.45vw,61px)!important;
+}
+
+:where(
+  .section-heading h2,
+  .section-intro h2,
+  .first-visit-head h2,
+  .visual-mosaic-head h2,
+  .nr-section-head h2,
+  .home-current-status__head h2,
+  .report-section-head h2
+){
+  font-size:clamp(31px,2.9vw,50px)!important;
+  line-height:1.3!important;
+  letter-spacing:-.028em!important;
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-break:strict!important;
+}
+
+@supports (word-break:auto-phrase){
+  :where(
+    main h1,main h2,
+    .hero h1,.page-hero h1,.contact-page-hero h1,.report-hero h1
+  ){
+    word-break:auto-phrase!important;
+  }
+}
+
+@media (max-width:1400px) and (min-width:821px){
+  :where(
+    .hero h1,
+    .page-hero h1,
+    .contact-page-hero h1,
+    .report-hero h1,
+    .nr-partner-top h1
+  ) br{
+    display:none!important;
+  }
+}
+
+@media (max-width:820px){
+  :where(
+    .hero h1,
+    .page-hero h1,
+    .contact-page-hero h1,
+    .report-hero h1,
+    .nr-partner-top h1
+  ){
+    font-size:clamp(36px,9.4vw,48px)!important;
+    line-height:1.18!important;
+    letter-spacing:-.025em!important;
+  }
+  :where(
+    .section-heading h2,
+    .section-intro h2,
+    .first-visit-head h2,
+    .visual-mosaic-head h2,
+    .nr-section-head h2,
+    .home-current-status__head h2,
+    .report-section-head h2
+  ){
+    font-size:clamp(28px,7.4vw,39px)!important;
+    line-height:1.34!important;
+  }
+}
+
+
+/* FINAL HOME ROUTE CARD LAYOUT / 2026-09-28 */
+/* Prevent the two homepage routing cards from visually overlapping after
+   legacy spacing/transform layers are combined. */
+body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  grid-auto-rows:auto!important;
+  align-items:stretch!important;
+  gap:14px!important;
+}
+body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two>.nr-choice{
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  margin:0!important;
+  transform:none!important;
+  translate:none!important;
+}
+@media(max-width:620px){
+  body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+}
+
+
+/* UNIVERSAL SOCIAL + PARTNER + FOOTER + CONTRAST / 2026-09-28 */
+html body .rb-auto-contrast-text,
+html body .rb-auto-contrast-text:link,
+html body .rb-auto-contrast-text:visited{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  text-shadow:none!important;
+}
+html body .rb-auto-contrast-text :is(span,small,strong,b){
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+  text-shadow:none!important;
+}
+
+/* Header social buttons: visible on every public page. */
+.site-header .header-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+.rb-universal-social{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.rb-universal-social a{
+  box-sizing:border-box;
+  display:grid!important;
+  place-items:center!important;
+  width:36px;
+  height:36px;
+  min-width:36px;
+  min-height:36px;
+  padding:0!important;
+  border:1px solid rgba(23,74,54,.22)!important;
+  border-radius:999px!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  box-shadow:0 3px 10px rgba(23,74,54,.07)!important;
+  text-decoration:none!important;
+  line-height:1!important;
+}
+.rb-universal-social a::before,
+.rb-universal-social a::after{display:none!important;content:none!important}
+.rb-universal-social svg{display:block;width:18px;height:18px}
+.rb-header-social{flex:0 0 auto}
+.rb-menu-social{display:none}
+
+/* Sponsor strip: one shared implementation for every page. */
+.site-partner-strip--universal{
+  position:relative;
+  z-index:1;
+  margin:0!important;
+  padding:30px 0 28px!important;
+  border-top:1px solid rgba(23,74,54,.10)!important;
+  border-bottom:1px solid rgba(23,74,54,.10)!important;
+  background:linear-gradient(180deg,#f7f4ea 0%,#eef5e9 100%)!important;
+  color:#173f34!important;
+}
+.site-partner-strip--universal .site-partner-strip__inner{
+  box-sizing:border-box;
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto;
+}
+.site-partner-strip--universal .site-partner-strip__label{
+  margin:0 0 16px!important;
+  color:#355c4e!important;
+  -webkit-text-fill-color:#355c4e!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  letter-spacing:.11em!important;
+}
+.site-partner-strip--universal .site-partner-strip__logos{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:10px!important;
+  align-items:stretch!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo{
+  box-sizing:border-box;
+  display:grid!important;
+  place-items:center!important;
+  min-width:0!important;
+  min-height:92px!important;
+  padding:13px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 5px 15px rgba(23,74,54,.05)!important;
+  overflow:hidden!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo img{
+  display:block!important;
+  width:auto!important;
+  max-width:100%!important;
+  height:auto!important;
+  max-height:58px!important;
+  object-fit:contain!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo--rebloom img{
+  max-height:64px!important;
+}
+.site-partner-strip--universal .site-partner-strip__more{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:42px!important;
+  margin-top:14px!important;
+  padding:7px 0!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  text-decoration:none!important;
+}
+
+/* Common bottom footer on all pages. */
+.site-footer.rb-footer--universal{
+  margin:0!important;
+  padding:0 0 22px!important;
+  background:#143e34!important;
+  color:#fff!important;
+  overflow:visible!important;
+}
+.rb-footer--universal .rb-footer-cta{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:24px!important;
+  align-items:center!important;
+  padding-top:34px!important;
+  padding-bottom:28px!important;
+}
+.rb-footer--universal .rb-footer-cta h2{
+  margin:0!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:clamp(25px,2.4vw,36px)!important;
+  line-height:1.35!important;
+}
+.rb-footer--universal .rb-footer-cta p{
+  margin:8px 0 0!important;
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+  font-size:13px!important;
+  line-height:1.75!important;
+}
+.rb-footer--universal .rb-footer-cta__button{
+  min-width:170px!important;
+  background:#f0cf58!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  border-color:transparent!important;
+}
+.rb-footer--universal .rb-footer-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.25fr) minmax(170px,.72fr) minmax(190px,.82fr)!important;
+  gap:34px!important;
+  padding-top:26px!important;
+  padding-bottom:24px!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+}
+.rb-footer--universal .rb-footer-grid b,
+.rb-footer--universal .rb-footer-grid strong,
+.rb-footer--universal .rb-footer-links a{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.rb-footer--universal .rb-footer-grid p{
+  margin:9px 0 0!important;
+  max-width:430px!important;
+  color:rgba(255,255,255,.76)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.76)!important;
+  font-size:12px!important;
+  line-height:1.8!important;
+}
+.rb-footer--universal .rb-footer-links{
+  display:grid!important;
+  align-content:start!important;
+  gap:7px!important;
+}
+.rb-footer--universal .rb-footer-links strong{
+  margin-bottom:2px!important;
+  color:#f4d766!important;
+  -webkit-text-fill-color:#f4d766!important;
+  font-size:10px!important;
+  letter-spacing:.12em!important;
+}
+.rb-footer--universal .rb-footer-links a{
+  display:flex!important;
+  align-items:center!important;
+  min-height:36px!important;
+  font-size:12px!important;
+  text-decoration:none!important;
+}
+.rb-footer--universal .rb-footer-social{
+  box-sizing:border-box;
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto!important;
+  padding:18px 0!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+}
+.rb-footer--universal .rb-footer-social::before{
+  content:"公式SNS";
+  margin-right:6px;
+  color:rgba(255,255,255,.68);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.10em;
+}
+.rb-footer--universal .rb-footer-social a{
+  border-color:rgba(255,255,255,.24)!important;
+  background:rgba(255,255,255,.08)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+}
+.rb-footer--universal .rb-contact-footer{
+  box-sizing:border-box;
+  width:min(1180px,calc(100% - 40px))!important;
+  margin:0 auto!important;
+  padding:15px 0 10px!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+  display:flex!important;
+  align-items:center!important;
+  flex-wrap:wrap!important;
+  gap:9px 16px!important;
+  color:rgba(255,255,255,.76)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.76)!important;
+  font-size:12px!important;
+}
+.rb-footer--universal .rb-contact-footer strong,
+.rb-footer--universal .rb-contact-footer a{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.rb-footer--universal .rb-contact-footer__page{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:36px!important;
+  padding:0 12px!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.07)!important;
+  text-decoration:none!important;
+}
+.rb-footer--universal .rb-footer-bottom{
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  padding-top:15px!important;
+  padding-bottom:0!important;
+  border-top:1px solid rgba(255,255,255,.10)!important;
+  color:rgba(255,255,255,.65)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.65)!important;
+  font-size:10px!important;
+}
+
+@media(hover:hover){
+  .rb-universal-social a:hover{
+    transform:translateY(-2px)!important;
+    border-color:rgba(23,74,54,.40)!important;
+    background:#edf5e9!important;
+  }
+  .rb-footer--universal .rb-footer-social a:hover{
+    border-color:rgba(255,255,255,.48)!important;
+    background:rgba(255,255,255,.15)!important;
+  }
+}
+
+@media(max-width:1180px) and (min-width:901px){
+  .site-header .header-actions>.btn{display:none!important}
+  .rb-header-social a{width:34px;height:34px;min-width:34px;min-height:34px}
+}
+@media(max-width:900px){
+  .site-header .header-actions{display:none!important}
+  .site-header .site-nav .rb-menu-social{
+    display:flex!important;
+    margin-top:8px!important;
+    padding-top:12px!important;
+    border-top:1px solid rgba(23,74,54,.12)!important;
+  }
+  .site-header .site-nav .rb-menu-social a{
+    flex:0 0 42px!important;
+    width:42px!important;
+    height:42px!important;
+    min-width:42px!important;
+    min-height:42px!important;
+    padding:0!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logos{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  .rb-footer--universal .rb-footer-cta,
+  .rb-footer--universal .rb-footer-grid{
+    grid-template-columns:1fr!important;
+  }
+  .rb-footer--universal .rb-footer-cta__button{
+    width:fit-content!important;
+  }
+}
+@media(max-width:620px){
+  .site-partner-strip--universal{
+    padding:24px 0 22px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__inner{
+    width:min(100% - 28px,1180px)!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logos{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logo{
+    min-height:78px!important;
+    padding:10px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logo img{
+    max-height:48px!important;
+  }
+  .rb-footer--universal .rb-footer-cta,
+  .rb-footer--universal .rb-footer-grid,
+  .rb-footer--universal .rb-footer-social,
+  .rb-footer--universal .rb-contact-footer,
+  .rb-footer--universal .rb-footer-bottom{
+    width:min(100% - 28px,1180px)!important;
+  }
+  .rb-footer--universal .rb-footer-cta{
+    padding-top:27px!important;
+    gap:18px!important;
+  }
+  .rb-footer--universal .rb-footer-cta__button{
+    width:100%!important;
+  }
+  .rb-footer--universal .rb-footer-grid{
+    gap:22px!important;
+  }
+  .rb-footer--universal .rb-contact-footer{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  .rb-footer--universal .rb-footer-bottom{
+    flex-direction:column!important;
+  }
+}
+
+
+/* FINAL LIGHT-SURFACE VISIBILITY GUARD / 2026-09-28 */
+body.page-learn .cause-grid>article,
+body.page-thoughts .cause-grid>article{
+  display:flex!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+:where(
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.nr-sponsor-wide,
+  .diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,
+  .diagnosis-question-card,.result-card,.quick-card,.action-card,.way-card,.play-card
+){
+  color:#173f34!important;
+}
+:where(
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.nr-sponsor-wide,
+  .diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,
+  .diagnosis-question-card,.result-card,.quick-card,.action-card,.way-card,.play-card
+) :is(h1,h2,h3,h4,strong,b){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+
+/* FINAL CONTRAST + UNIVERSAL CHROME HARDENING / 2026-09-28 */
+/* These sections retained white legacy copy, so they must remain genuinely dark. */
+html body .section--soil,
+html body.report-page .report-finance{
+  background:linear-gradient(135deg,#2d4035 0%,#173f34 58%,#4b3d31 100%)!important;
+  color:#fff!important;
+}
+html body .section--soil :is(h1,h2,h3,h4,p,li,strong,b,span:not(.eyebrow span),a:not(.btn)),
+html body.report-page .report-finance :is(h1,h2,h3,h4,p,li,strong,b,span,a:not(.btn)){
+  color:rgba(255,255,255,.94)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.94)!important;
+}
+html body .section--soil :is(.eyebrow,.eyebrow span,.eyebrow small),
+html body.report-page .report-finance :is(.eyebrow,.eyebrow span,.eyebrow small){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+/* Explicitly protect light statistical cards from legacy white-text rules. */
+html body.page-learn #numbers .data-grid>article{
+  background:#fffdf8!important;
+  color:#173f34!important;
+}
+html body.page-learn #numbers .data-grid>article :is(strong,h3,small){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+html body.page-learn #numbers .data-grid>article strong{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
+/* The event archive update banner is deliberately dark in the botanical skin. */
+html body.nr-new-event .update-band{
+  background:linear-gradient(135deg,#174a36,#0f3a2a)!important;
+  border-color:rgba(23,74,54,.18)!important;
+}
+html body.nr-new-event .update-band :is(p,strong,span){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Keep the header SNS visible even on page-specific responsive overrides. */
+@media (min-width:901px){
+  html body .site-header .header-actions{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+  html body.nr-new-partner .site-header .header-actions{
+    display:flex!important;
+  }
+  html body .site-header .rb-header-social{
+    display:flex!important;
+  }
+}
+
+
+/* FINAL CHIP AND ICON CONTRAST / 2026-09-28 */
+/* Circular card markers are intentionally dark, with white glyphs. */
+html body :is(.event-values>article,.cause-grid>article,.check-list>div)>span{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Volunteer names are light chips even though the surrounding THANK YOU section is dark. */
+html body.report-page .report-thanks .report-volunteer-names>span{
+  background:#f5f7f1!important;
+  border-color:rgba(24,75,61,.12)!important;
+  color:#315e50!important;
+  -webkit-text-fill-color:#315e50!important;
+}
+
+
+/* BOTANICAL ORNAMENT LAYER / 2026-09-29 */
+:root{
+  --rb-decor-leaf:#6f9d68;
+  --rb-decor-leaf-dark:#3f7455;
+  --rb-decor-bloom:#d58bb6;
+  --rb-decor-bloom-2:#e8c85a;
+  --rb-decor-seed:#bd8d4f;
+  --rb-decor-paper:#f6efe1;
+}
+body.page-diagnosis{
+  --rb-decor-leaf:#6f9f69;
+  --rb-decor-leaf-dark:#3e7453;
+  --rb-decor-bloom:#a66cc0;
+  --rb-decor-bloom-2:#e2ba58;
+}
+body.report-page,
+body.nr-new-event{
+  --rb-decor-leaf:#6a9460;
+  --rb-decor-leaf-dark:#355f48;
+  --rb-decor-bloom:#dc9d67;
+  --rb-decor-bloom-2:#f0cf58;
+}
+body.page-learn{
+  --rb-decor-leaf:#6a9a64;
+  --rb-decor-leaf-dark:#3e7253;
+  --rb-decor-bloom:#d7a374;
+  --rb-decor-bloom-2:#e9c85e;
+}
+body.page-thoughts{
+  --rb-decor-leaf:#759b70;
+  --rb-decor-leaf-dark:#466d58;
+  --rb-decor-bloom:#cf90a6;
+  --rb-decor-bloom-2:#e6c45d;
+}
+body.nr-new-partner{
+  --rb-decor-leaf:#6f9865;
+  --rb-decor-leaf-dark:#426f51;
+  --rb-decor-bloom:#d9a26d;
+  --rb-decor-bloom-2:#e7bd4d;
+}
+
+.rb-botanical-decor{
+  position:absolute;
+  inset:0 0 auto 0;
+  width:100%;
+  height:100%;
+  min-height:100vh;
+  z-index:35;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:0;
+  transition:opacity .45s ease;
+}
+html.rb-botanical-ready .rb-botanical-decor{opacity:1}
+.rb-botanical-decor svg{display:block;overflow:visible}
+
+.rb-botanical-vine{
+  position:absolute;
+  width:clamp(150px,15vw,260px);
+  height:auto;
+  color:var(--rb-decor-leaf);
+  filter:drop-shadow(0 14px 24px rgba(48,83,59,.08));
+  opacity:.42;
+}
+.rb-botanical-vine--left{
+  top:7.5%;
+  left:max(-92px,calc((100vw - 1180px)/2 - 176px));
+  transform:rotate(-7deg);
+}
+.rb-botanical-vine--right{
+  top:43%;
+  right:max(-96px,calc((100vw - 1180px)/2 - 180px));
+  transform:scaleX(-1) rotate(-4deg);
+  opacity:.38;
+}
+.rb-botanical-vine .rb-vine-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:4;
+  stroke-linecap:round;
+  opacity:.72;
+}
+.rb-botanical-vine .rb-vine-leaf{
+  fill:var(--rb-decor-leaf);
+}
+.rb-botanical-vine .rb-vine-leaf--soft{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 72%,#fff);
+}
+.rb-botanical-vine .rb-vine-bloom{
+  fill:var(--rb-decor-bloom);
+}
+.rb-botanical-vine .rb-vine-bloom-core{
+  fill:var(--rb-decor-bloom-2);
+}
+
+.rb-botanical-sprig{
+  position:absolute;
+  width:clamp(110px,10vw,180px);
+  height:auto;
+  opacity:.34;
+  filter:drop-shadow(0 10px 18px rgba(54,83,60,.06));
+}
+.rb-botanical-sprig--one{
+  top:27%;
+  right:max(8px,calc((100vw - 1180px)/2 - 48px));
+  transform:rotate(17deg);
+}
+.rb-botanical-sprig--two{
+  top:71%;
+  left:max(10px,calc((100vw - 1180px)/2 - 36px));
+  transform:rotate(-18deg) scale(.92);
+}
+.rb-botanical-sprig path{fill:var(--rb-decor-leaf)}
+.rb-botanical-sprig circle{fill:var(--rb-decor-bloom-2)}
+
+.rb-botanical-petal{
+  position:absolute;
+  display:block;
+  width:24px;
+  height:38px;
+  border-radius:88% 12% 74% 26% / 82% 18% 82% 18%;
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.72),transparent 28%),
+    linear-gradient(145deg,color-mix(in srgb,var(--rb-decor-bloom) 88%,#fff),var(--rb-decor-bloom));
+  box-shadow:0 10px 22px rgba(85,58,81,.10);
+  opacity:.48;
+  transform-origin:50% 80%;
+  animation:rbBotanicalDrift 13s ease-in-out infinite alternate;
+}
+.rb-botanical-petal::after{
+  content:"";
+  position:absolute;
+  left:48%;
+  top:9%;
+  width:1px;
+  height:76%;
+  background:rgba(89,60,79,.16);
+  transform:rotate(8deg);
+}
+.rb-botanical-petal--1{top:14%;left:3.8%;transform:rotate(28deg) scale(.90);animation-delay:-2s}
+.rb-botanical-petal--2{top:20%;right:4.4%;transform:rotate(-18deg) scale(.72);animation-delay:-7s}
+.rb-botanical-petal--3{top:36%;left:7.2%;transform:rotate(58deg) scale(.62);animation-delay:-4s}
+.rb-botanical-petal--4{top:51%;right:5.8%;transform:rotate(15deg) scale(1.05);animation-delay:-9s}
+.rb-botanical-petal--5{top:64%;left:4.7%;transform:rotate(-35deg) scale(.78);animation-delay:-1s}
+.rb-botanical-petal--6{top:78%;right:7.3%;transform:rotate(42deg) scale(.70);animation-delay:-6s}
+.rb-botanical-petal--7{
+  top:87%;left:10%;
+  width:18px;height:29px;
+  background:linear-gradient(145deg,#f4d872,var(--rb-decor-bloom-2));
+  transform:rotate(18deg) scale(.84);
+  animation-delay:-3s;
+}
+.rb-botanical-petal--8{
+  top:31%;right:11%;
+  width:18px;height:29px;
+  background:linear-gradient(145deg,#f6dc7e,var(--rb-decor-bloom-2));
+  transform:rotate(-34deg) scale(.78);
+  animation-delay:-8s;
+}
+
+.rb-seed-cluster{
+  position:absolute;
+  width:96px;
+  height:112px;
+  opacity:.36;
+}
+.rb-seed-cluster--one{
+  top:58%;
+  left:max(2px,calc((100vw - 1180px)/2 - 64px));
+  transform:rotate(-12deg);
+}
+.rb-seed-cluster--two{
+  top:84%;
+  right:max(4px,calc((100vw - 1180px)/2 - 62px));
+  transform:rotate(11deg) scale(.88);
+}
+.rb-seed-cluster i{
+  position:absolute;
+  width:10px;
+  height:22px;
+  border-radius:65% 35% 62% 38% / 58% 42% 58% 42%;
+  border:1px solid color-mix(in srgb,var(--rb-decor-seed) 74%,#8d6a37);
+  background:linear-gradient(155deg,#f4dfb3,var(--rb-decor-seed));
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.22);
+}
+.rb-seed-cluster i:nth-child(1){left:10px;top:8px;transform:rotate(-36deg)}
+.rb-seed-cluster i:nth-child(2){left:42px;top:0;transform:rotate(7deg)}
+.rb-seed-cluster i:nth-child(3){left:68px;top:24px;transform:rotate(41deg)}
+.rb-seed-cluster i:nth-child(4){left:20px;top:48px;transform:rotate(-16deg)}
+.rb-seed-cluster i:nth-child(5){left:54px;top:66px;transform:rotate(26deg)}
+.rb-seed-cluster i:nth-child(6){left:5px;top:82px;transform:rotate(-48deg)}
+
+.rb-botanical-haze{
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  filter:blur(24px);
+  opacity:.12;
+  background:radial-gradient(circle,var(--rb-decor-bloom-2),transparent 68%);
+}
+.rb-botanical-haze--one{top:3%;right:-100px}
+.rb-botanical-haze--two{top:67%;left:-120px;background:radial-gradient(circle,var(--rb-decor-bloom),transparent 68%)}
+
+@keyframes rbBotanicalDrift{
+  0%{translate:0 0;rotate:-2deg}
+  55%{translate:5px -9px;rotate:4deg}
+  100%{translate:-3px 7px;rotate:-5deg}
+}
+
+@media(max-width:1180px){
+  .rb-botanical-vine{width:170px;opacity:.30}
+  .rb-botanical-vine--left{left:-84px}
+  .rb-botanical-vine--right{right:-86px}
+  .rb-botanical-sprig{opacity:.24}
+  .rb-botanical-petal{opacity:.36}
+  .rb-seed-cluster{opacity:.26}
+}
+@media(max-width:760px){
+  .rb-botanical-decor{z-index:18}
+  .rb-botanical-vine{width:126px;opacity:.22}
+  .rb-botanical-vine--left{top:5%;left:-78px}
+  .rb-botanical-vine--right{top:60%;right:-80px}
+  .rb-botanical-sprig{display:none}
+  .rb-seed-cluster--two{display:none}
+  .rb-seed-cluster--one{left:-34px;opacity:.18;transform:scale(.72) rotate(-12deg)}
+  .rb-botanical-petal{width:18px;height:29px;opacity:.28}
+  .rb-botanical-petal--3,
+  .rb-botanical-petal--5,
+  .rb-botanical-petal--8{display:none}
+  .rb-botanical-haze{width:190px;height:190px;opacity:.08}
+}
+@media(max-width:480px){
+  .rb-botanical-vine{width:104px;opacity:.17}
+  .rb-botanical-vine--left{left:-70px}
+  .rb-botanical-vine--right{right:-72px}
+  .rb-botanical-petal--2,
+  .rb-botanical-petal--6,
+  .rb-botanical-petal--7{display:none}
+  .rb-seed-cluster{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .rb-botanical-petal{animation:none!important}
+  .rb-botanical-decor{transition:none!important}
+}
+
+
+/* BOTANICAL FINISHING LAYER / 2026-09-29 */
+/* Keep content above background shadows, but decorative separators can sit inside sections. */
+main{position:relative;z-index:1}
+.rb-botanical-decor{z-index:0}
+.site-header,.site-footer,.site-partner-strip--universal{position:relative;z-index:40}
+
+/* Very soft leaf shadows in empty background zones. */
+.rb-leaf-shadow{
+  position:absolute;
+  width:clamp(180px,20vw,340px);
+  height:clamp(260px,30vw,480px);
+  opacity:.055;
+  filter:blur(10px);
+  transform-origin:50% 100%;
+}
+.rb-leaf-shadow::before,
+.rb-leaf-shadow::after{
+  content:"";
+  position:absolute;
+  border-radius:70% 30% 68% 32% / 76% 24% 76% 24%;
+  background:var(--rb-decor-leaf-dark);
+}
+.rb-leaf-shadow::before{
+  width:42%;height:66%;left:8%;top:4%;transform:rotate(-24deg);
+}
+.rb-leaf-shadow::after{
+  width:38%;height:58%;right:8%;bottom:2%;transform:rotate(28deg);
+}
+.rb-leaf-shadow--one{top:18%;right:-90px;transform:rotate(-12deg)}
+.rb-leaf-shadow--two{top:73%;left:-110px;transform:scaleX(-1) rotate(-16deg);opacity:.045}
+
+/* Section-to-section connector: a restrained vine line, not a divider bar. */
+.rb-section-botanical-host{
+  position:relative;
+}
+.rb-section-botanical{
+  position:absolute;
+  left:50%;
+  top:-18px;
+  width:min(280px,34vw);
+  height:38px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  opacity:.34;
+  z-index:3;
+}
+.rb-section-botanical svg{
+  width:100%;height:100%;display:block;overflow:visible;
+}
+.rb-section-botanical .rb-divider-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.7;
+  stroke-linecap:round;
+}
+.rb-section-botanical .rb-divider-leaf{fill:var(--rb-decor-leaf)}
+.rb-section-botanical .rb-divider-seed{fill:var(--rb-decor-bloom-2)}
+.rb-section-botanical--alt{
+  opacity:.25;
+  transform:translateX(-50%) scaleX(-1);
+}
+
+/* Page-specific motif badges live only in outer margins. */
+.rb-page-motif{
+  position:absolute;
+  width:120px;
+  height:120px;
+  pointer-events:none;
+  opacity:.22;
+}
+.rb-page-motif--top{top:9%;right:max(14px,calc((100vw - 1180px)/2 - 56px))}
+.rb-page-motif--bottom{top:88%;left:max(12px,calc((100vw - 1180px)/2 - 56px))}
+.rb-page-motif svg{width:100%;height:100%;overflow:visible}
+.rb-page-motif .rb-motif-stroke{
+  fill:none;stroke:var(--rb-decor-leaf-dark);stroke-width:2.2;stroke-linecap:round;
+}
+.rb-page-motif .rb-motif-fill{fill:var(--rb-decor-leaf)}
+.rb-page-motif .rb-motif-accent{fill:var(--rb-decor-bloom)}
+.rb-page-motif .rb-motif-seed{fill:var(--rb-decor-seed)}
+
+/* Buttons get a tiny sprout only on hover/focus. Existing button copy/background stays untouched. */
+.btn.rb-botanical-btn{
+  position:relative!important;
+  isolation:isolate;
+}
+.rb-btn-leaf{
+  position:absolute;
+  right:13px;
+  top:-8px;
+  width:18px;
+  height:18px;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(5px) rotate(-14deg) scale(.72);
+  transition:opacity .22s ease,transform .28s cubic-bezier(.2,.8,.2,1);
+  z-index:3;
+}
+.rb-btn-leaf::before,
+.rb-btn-leaf::after{
+  content:"";
+  position:absolute;
+  width:8px;height:13px;
+  border-radius:80% 20% 78% 22% / 72% 28% 72% 28%;
+  background:var(--rb-decor-leaf);
+}
+.rb-btn-leaf::before{left:2px;top:4px;transform:rotate(-30deg)}
+.rb-btn-leaf::after{right:1px;top:0;transform:rotate(34deg)}
+@media(hover:hover){
+  .btn.rb-botanical-btn:hover .rb-btn-leaf,
+  .btn.rb-botanical-btn:focus-visible .rb-btn-leaf{
+    opacity:.72;
+    transform:translateY(0) rotate(-4deg) scale(1);
+  }
+}
+
+/* Only selected, important photo blocks get a tiny overhanging leaf. */
+ .rb-photo-botanical{
+  position:relative!important;
+}
+.rb-photo-corner-leaf{
+  position:absolute;
+  right:8px;
+  top:8px;
+  width:44px;
+  height:54px;
+  pointer-events:none;
+  z-index:5;
+  opacity:.42;
+  filter:drop-shadow(0 8px 12px rgba(45,80,54,.08));
+}
+.rb-photo-corner-leaf::before,
+.rb-photo-corner-leaf::after{
+  content:"";
+  position:absolute;
+  border-radius:78% 22% 76% 24% / 70% 30% 70% 30%;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--rb-decor-leaf) 78%,#fff),var(--rb-decor-leaf));
+}
+.rb-photo-corner-leaf::before{width:20px;height:36px;left:3px;bottom:2px;transform:rotate(-28deg)}
+.rb-photo-corner-leaf::after{width:18px;height:32px;right:2px;top:0;transform:rotate(31deg)}
+.rb-photo-corner-leaf i{
+  position:absolute;
+  left:21px;bottom:0;
+  width:2px;height:45px;
+  background:var(--rb-decor-leaf-dark);
+  transform:rotate(7deg);
+  opacity:.48;
+}
+
+/* Page personalities: same system, different motif emphasis. */
+body[data-rb-motif="home"] .rb-page-motif{opacity:.20}
+body[data-rb-motif="thoughts"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="learn"] .rb-page-motif{opacity:.20}
+body[data-rb-motif="event"] .rb-page-motif{opacity:.22}
+body[data-rb-motif="report"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="partner"] .rb-page-motif{opacity:.18}
+body[data-rb-motif="diagnosis"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="contact"] .rb-page-motif{opacity:.17}
+
+/* Dark sections should not inherit a muddy decorative overlay. */
+.section--soil .rb-section-botanical,
+.report-finance .rb-section-botanical,
+.update-band .rb-section-botanical{
+  display:none!important;
+}
+
+/* Desktop density only; mobile stays deliberately restrained. */
+@media(max-width:900px){
+  .rb-leaf-shadow{opacity:.035;width:180px;height:250px}
+  .rb-section-botanical{width:180px;top:-12px;opacity:.24}
+  .rb-page-motif{width:86px;height:86px;opacity:.15!important}
+  .rb-photo-corner-leaf{width:34px;height:42px;opacity:.30}
+}
+@media(max-width:620px){
+  .rb-leaf-shadow{display:none}
+  .rb-page-motif--bottom{display:none}
+  .rb-section-botanical{width:132px;height:28px;opacity:.19}
+  .rb-photo-corner-leaf{display:none}
+  .rb-btn-leaf{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .rb-btn-leaf{transition:none!important}
+}
+
+
+/* HUMAN ART-DIRECTION OVERRIDE / 2026-09-29 */
+/* Reduce repetitive "AI decoration": fewer objects, larger intentional compositions. */
+.rb-botanical-petal--2,
+.rb-botanical-petal--3,
+.rb-botanical-petal--5,
+.rb-botanical-petal--6,
+.rb-botanical-petal--7,
+.rb-botanical-petal--8,
+.rb-seed-cluster--two,
+.rb-botanical-sprig--two,
+.rb-page-motif--bottom,
+.rb-btn-leaf{
+  display:none!important;
+}
+.rb-section-botanical{display:none!important}
+.rb-section-botanical.rb-section-botanical--feature{display:block!important}
+
+/* One large off-canvas botanical composition per side. */
+.rb-editorial-plant{
+  position:absolute;
+  width:clamp(260px,26vw,470px);
+  height:auto;
+  pointer-events:none;
+  opacity:.22;
+  filter:drop-shadow(0 22px 38px rgba(31,71,48,.06));
+}
+.rb-editorial-plant--left{
+  top:10%;
+  left:max(-250px,calc((100vw - 1180px)/2 - 320px));
+  transform:rotate(-10deg);
+}
+.rb-editorial-plant--right{
+  top:57%;
+  right:max(-270px,calc((100vw - 1180px)/2 - 335px));
+  transform:rotate(9deg) scaleX(-1);
+  opacity:.17;
+}
+.rb-editorial-plant .rb-art-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:2.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-editorial-plant .rb-art-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 84%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.1;
+}
+.rb-editorial-plant .rb-art-flower{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 84%,#fff);
+  stroke:color-mix(in srgb,var(--rb-decor-bloom) 62%,#5d4960);
+  stroke-width:1;
+}
+.rb-editorial-plant .rb-art-core{fill:var(--rb-decor-bloom-2)}
+.rb-editorial-plant .rb-art-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 82%,#fff);
+  stroke:color-mix(in srgb,var(--rb-decor-seed) 70%,#6f5735);
+  stroke-width:1;
+}
+
+/* Organic section washes: only JS-selected sections receive them. */
+main>section.rb-art-wash{
+  position:relative;
+  isolation:isolate;
+}
+main>section.rb-art-wash::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  left:max(-8vw,-120px);
+  right:max(-6vw,-90px);
+  top:8%;
+  bottom:8%;
+  background:
+    radial-gradient(ellipse at 23% 38%,color-mix(in srgb,var(--rb-decor-bloom-2) 15%,transparent),transparent 43%),
+    radial-gradient(ellipse at 72% 62%,color-mix(in srgb,var(--rb-decor-leaf) 13%,transparent),transparent 48%),
+    linear-gradient(100deg,rgba(255,250,239,.68),rgba(245,249,239,.46));
+  border-radius:44% 56% 48% 52% / 20% 26% 74% 80%;
+  transform:rotate(-.55deg);
+}
+main>section.rb-art-wash--alt::before{
+  background:
+    radial-gradient(ellipse at 78% 32%,color-mix(in srgb,var(--rb-decor-bloom) 10%,transparent),transparent 45%),
+    radial-gradient(ellipse at 20% 72%,color-mix(in srgb,var(--rb-decor-leaf) 12%,transparent),transparent 48%),
+    linear-gradient(98deg,rgba(248,244,234,.48),rgba(255,252,244,.72));
+  border-radius:56% 44% 61% 39% / 72% 69% 31% 28%;
+  transform:rotate(.45deg);
+}
+
+/* Real-paper feel using subtle non-repeating line and fiber noise. */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  pointer-events:none;
+  opacity:.025;
+  mix-blend-mode:multiply;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(45,64,51,.18) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(90deg,rgba(126,102,68,.10) 0 1px,transparent 1px 7px);
+  background-size:100% 4px,7px 100%;
+}
+
+/* Hand-drawn accent line: slightly irregular and intentionally asymmetric. */
+.rb-handline{
+  position:absolute;
+  width:clamp(150px,16vw,260px);
+  height:44px;
+  pointer-events:none;
+  opacity:.38;
+  z-index:2;
+}
+.rb-handline--left{left:max(12px,calc((100vw - 1180px)/2 - 32px));top:36%}
+.rb-handline--right{right:max(10px,calc((100vw - 1180px)/2 - 26px));top:79%;transform:scaleX(-1)}
+.rb-handline svg{display:block;width:100%;height:100%;overflow:visible}
+.rb-handline path{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.7;
+  stroke-linecap:round;
+}
+.rb-handline circle{fill:var(--rb-decor-bloom-2)}
+
+/* One photo accent, not every photo. */
+.rb-photo-botanical{overflow:visible!important}
+.rb-photo-corner-leaf{
+  width:76px!important;
+  height:92px!important;
+  right:-22px!important;
+  top:auto!important;
+  bottom:-22px!important;
+  opacity:.52!important;
+}
+.rb-photo-corner-leaf::before{width:32px!important;height:57px!important}
+.rb-photo-corner-leaf::after{width:29px!important;height:52px!important}
+.rb-photo-corner-leaf i{left:36px!important;height:72px!important}
+
+/* The remaining petals are larger and feel like deliberate foreground accents. */
+.rb-botanical-petal--1{
+  width:34px!important;height:54px!important;
+  opacity:.32!important;
+  left:5.5%!important;
+}
+.rb-botanical-petal--4{
+  width:38px!important;height:58px!important;
+  opacity:.28!important;
+  right:5%!important;
+}
+.rb-botanical-sprig--one{opacity:.18!important;width:210px!important}
+.rb-seed-cluster--one{opacity:.22!important;transform:rotate(-17deg) scale(1.12)!important}
+
+/* page-specific emphasis */
+body[data-rb-motif="diagnosis"] .rb-editorial-plant{opacity:.24}
+body[data-rb-motif="report"] .rb-editorial-plant,
+body[data-rb-motif="event"] .rb-editorial-plant{opacity:.20}
+body[data-rb-motif="partner"] .rb-editorial-plant{opacity:.15}
+body[data-rb-motif="thoughts"] .rb-editorial-plant--left{top:15%}
+body[data-rb-motif="learn"] .rb-editorial-plant--right{top:50%}
+
+@media(max-width:980px){
+  .rb-editorial-plant{width:260px;opacity:.13}
+  .rb-editorial-plant--left{left:-185px}
+  .rb-editorial-plant--right{right:-190px}
+  .rb-handline{opacity:.24}
+  main>section.rb-art-wash::before{left:-36px;right:-36px}
+}
+@media(max-width:700px){
+  body::after{opacity:.016}
+  .rb-editorial-plant{width:190px;opacity:.09}
+  .rb-editorial-plant--left{left:-145px}
+  .rb-editorial-plant--right{right:-150px}
+  .rb-handline{display:none}
+  .rb-botanical-petal--4{display:none!important}
+  .rb-botanical-petal--1{opacity:.18!important}
+  .rb-photo-corner-leaf{display:none!important}
+  main>section.rb-art-wash::before{
+    left:-16px;right:-16px;
+    border-radius:26px;
+    transform:none;
+  }
+}
+
+
+/* RE:BLOOM SIGNATURE STAGES / 2026-09-29 */
+:root{
+  --rb-stage-a:#f0c84f;
+  --rb-stage-b:#dfead8;
+  --rb-stage-c:#e7a4a8;
+  --rb-stage-ink:#174a36;
+}
+body[data-rb-motif="home"]{--rb-stage-a:#f0cf5a;--rb-stage-b:#dcebd3;--rb-stage-c:#e9a7a4}
+body[data-rb-motif="thoughts"]{--rb-stage-a:#e7c96a;--rb-stage-b:#dce7d5;--rb-stage-c:#dca3b2}
+body[data-rb-motif="learn"]{--rb-stage-a:#e8bc59;--rb-stage-b:#d6e7d2;--rb-stage-c:#e2a479}
+body[data-rb-motif="event"]{--rb-stage-a:#efc04f;--rb-stage-b:#dce7d2;--rb-stage-c:#e5966d}
+body[data-rb-motif="report"]{--rb-stage-a:#ecc35a;--rb-stage-b:#d8e8d5;--rb-stage-c:#e7a36e}
+body[data-rb-motif="partner"]{--rb-stage-a:#dfc86d;--rb-stage-b:#dfe8d8;--rb-stage-c:#d8a57b}
+body[data-rb-motif="diagnosis"]{--rb-stage-a:#e3c45e;--rb-stage-b:#dce8d6;--rb-stage-c:#c9abd9}
+body[data-rb-motif="contact"]{--rb-stage-a:#e6c96e;--rb-stage-b:#d7e9df;--rb-stage-c:#e8b39d}
+
+/* Hero gets one oversized, cropped block-print flower and one organic color field. */
+main>section:first-child.rb-signature-hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.rb-hero-colorfield{
+  position:absolute;
+  z-index:-2;
+  width:min(760px,58vw);
+  height:min(520px,42vw);
+  right:-10vw;
+  top:-7vw;
+  border-radius:56% 44% 64% 36% / 38% 54% 46% 62%;
+  background:
+    radial-gradient(circle at 28% 32%,rgba(255,255,255,.58),transparent 22%),
+    linear-gradient(138deg,color-mix(in srgb,var(--rb-stage-a) 78%,#fff),var(--rb-stage-a));
+  transform:rotate(-7deg);
+  opacity:.92;
+  box-shadow:0 34px 90px rgba(49,68,46,.07);
+}
+.rb-hero-print{
+  position:absolute;
+  z-index:-1;
+  right:-68px;
+  bottom:-96px;
+  width:clamp(260px,30vw,520px);
+  height:auto;
+  color:var(--rb-stage-ink);
+  opacity:.17;
+  transform:rotate(8deg);
+  mix-blend-mode:multiply;
+}
+.rb-hero-print .rb-print-petal{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-hero-print .rb-print-core{fill:var(--rb-stage-c);stroke:currentColor;stroke-width:5}
+.rb-hero-print .rb-print-seed{fill:var(--rb-stage-a)}
+.rb-hero-print .rb-print-leaf{
+  fill:color-mix(in srgb,var(--rb-stage-b) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:5;
+}
+
+/* Strong section stages: only two per page. */
+main>section.rb-stage{
+  position:relative;
+  isolation:isolate;
+}
+main>section.rb-stage::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  pointer-events:none;
+  left:max(-9vw,-130px);
+  right:max(-7vw,-110px);
+  top:2%;
+  bottom:2%;
+  border-radius:42% 58% 47% 53% / 20% 27% 73% 80%;
+  transform:rotate(-.8deg);
+  box-shadow:inset 0 0 0 1px rgba(42,70,53,.025);
+}
+main>section.rb-stage--a::before{
+  background:
+    radial-gradient(circle at 15% 22%,rgba(255,255,255,.62),transparent 20%),
+    linear-gradient(110deg,color-mix(in srgb,var(--rb-stage-a) 54%,#fff),color-mix(in srgb,var(--rb-stage-a) 82%,#fff));
+}
+main>section.rb-stage--b::before{
+  background:
+    radial-gradient(circle at 82% 28%,rgba(255,255,255,.72),transparent 18%),
+    linear-gradient(105deg,color-mix(in srgb,var(--rb-stage-b) 72%,#fff),color-mix(in srgb,var(--rb-stage-b) 92%,#fff));
+  border-radius:58% 42% 61% 39% / 70% 74% 26% 30%;
+  transform:rotate(.65deg);
+}
+main>section.rb-stage--c::before{
+  background:
+    radial-gradient(circle at 75% 75%,rgba(255,255,255,.54),transparent 22%),
+    linear-gradient(112deg,color-mix(in srgb,var(--rb-stage-c) 42%,#fff),color-mix(in srgb,var(--rb-stage-c) 70%,#fff));
+  border-radius:50% 50% 38% 62% / 26% 34% 66% 74%;
+  transform:rotate(-.35deg);
+}
+
+/* large pressed-flower / leaf signatures for stage corners */
+.rb-stage-mark{
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  width:clamp(170px,18vw,310px);
+  height:auto;
+  opacity:.18;
+  color:var(--rb-stage-ink);
+  mix-blend-mode:multiply;
+}
+.rb-stage-mark--left{left:max(-110px,calc((100vw - 1180px)/2 - 190px));top:12%;transform:rotate(-12deg)}
+.rb-stage-mark--right{right:max(-120px,calc((100vw - 1180px)/2 - 200px));bottom:6%;transform:rotate(13deg) scaleX(-1)}
+.rb-stage-mark path,.rb-stage-mark ellipse{
+  fill:color-mix(in srgb,var(--rb-stage-b) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:4;
+}
+.rb-stage-mark circle{fill:var(--rb-stage-c);stroke:currentColor;stroke-width:3}
+
+/* Small confetti-like pollen is used only beside signature stages, not globally. */
+.rb-pollen{
+  position:absolute;
+  width:110px;
+  height:90px;
+  pointer-events:none;
+  opacity:.45;
+  z-index:1;
+}
+.rb-pollen--a{right:5%;top:9%}
+.rb-pollen--b{left:4%;bottom:8%;transform:rotate(18deg)}
+.rb-pollen i{
+  position:absolute;
+  border-radius:50%;
+  background:var(--rb-stage-a);
+  box-shadow:0 0 0 1px rgba(88,72,33,.08);
+}
+.rb-pollen i:nth-child(1){width:8px;height:8px;left:8px;top:18px}
+.rb-pollen i:nth-child(2){width:5px;height:5px;left:38px;top:4px}
+.rb-pollen i:nth-child(3){width:10px;height:10px;left:68px;top:31px}
+.rb-pollen i:nth-child(4){width:6px;height:6px;left:92px;top:10px}
+.rb-pollen i:nth-child(5){width:7px;height:7px;left:48px;top:61px}
+.rb-pollen i:nth-child(6){width:4px;height:4px;left:18px;top:70px}
+
+/* Give the whole page a more editorial background rhythm without touching cards. */
+body[data-rb-motif]{
+  background:
+    linear-gradient(180deg,#fffdf8 0 19%,#fbf8f0 19% 38%,#fff 38% 58%,#f8f7ef 58% 78%,#fffdf8 78% 100%)!important;
+}
+
+/* Make existing large off-canvas plants bolder instead of multiplying objects. */
+.rb-editorial-plant{
+  opacity:.30!important;
+  width:clamp(320px,30vw,540px)!important;
+}
+.rb-editorial-plant--right{opacity:.23!important}
+.rb-handline{opacity:.52!important}
+.rb-page-motif--top{opacity:.30!important;transform:scale(1.18) rotate(-5deg)}
+.rb-leaf-shadow{opacity:.08!important}
+
+/* Hide older faint washes once the strong stages are applied. */
+main>section.rb-stage.rb-art-wash::before{display:none!important}
+
+/* Decorative depth around images without changing the image itself. */
+.rb-photo-botanical::before{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  inset:10px -16px -16px 12px;
+  border-radius:inherit;
+  background:color-mix(in srgb,var(--rb-stage-a) 36%,#fff);
+  transform:rotate(1.3deg);
+}
+.rb-photo-botanical::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-2;
+  left:-18px;top:14%;
+  width:42%;
+  height:66%;
+  border-radius:58% 42% 50% 50%;
+  background:color-mix(in srgb,var(--rb-stage-b) 68%,#fff);
+  transform:rotate(-7deg);
+}
+
+@media(max-width:900px){
+  .rb-hero-colorfield{width:70vw;height:46vw;right:-24vw;top:-8vw;opacity:.72}
+  .rb-hero-print{width:320px;right:-110px;bottom:-90px;opacity:.11}
+  main>section.rb-stage::before{left:-30px;right:-30px;border-radius:28px;transform:none}
+  .rb-stage-mark{width:180px;opacity:.11}
+  .rb-pollen{opacity:.30}
+  .rb-editorial-plant{opacity:.16!important;width:280px!important}
+}
+@media(max-width:620px){
+  .rb-hero-colorfield{width:84vw;height:54vw;right:-38vw;top:-6vw;opacity:.55}
+  .rb-hero-print{width:220px;right:-100px;bottom:-70px;opacity:.08}
+  main>section.rb-stage::before{left:-14px;right:-14px;top:4%;bottom:4%;border-radius:22px}
+  .rb-stage-mark,.rb-pollen{display:none}
+  .rb-editorial-plant{opacity:.08!important}
+  .rb-photo-botanical::before,.rb-photo-botanical::after{display:none}
+}
+
+
+/* BOTANICAL STRUCTURE V3 / 2026-09-29 */
+/* Typography stays horizontal and readable. Atmosphere comes from plants, not tilted text. */
+html body :is(h1,h2,h3,h4,.eyebrow,.eyebrow span,.eyebrow small,.headline-marker,.section-heading){
+  transform:none!important;
+  rotate:0deg!important;
+  font-style:normal!important;
+}
+html body .eyebrow small{display:none!important}
+
+/* Retire the previous color-blob / scattered-decoration approach. */
+.rb-hero-colorfield,
+.rb-hero-print,
+.rb-stage-mark,
+.rb-pollen,
+.rb-editorial-plant,
+.rb-handline,
+.rb-page-motif,
+.rb-leaf-shadow,
+.rb-botanical-vine,
+.rb-botanical-sprig,
+.rb-botanical-petal,
+.rb-seed-cluster,
+.rb-botanical-haze,
+.rb-section-botanical{
+  display:none!important;
+}
+main>section.rb-stage::before,
+main>section.rb-art-wash::before{
+  display:none!important;
+}
+body[data-rb-motif]{
+  background:#faf8f1!important;
+}
+body::after{
+  opacity:.018!important;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(50,67,54,.12) 0 1px,transparent 1px 5px),
+    repeating-linear-gradient(90deg,rgba(130,105,71,.07) 0 1px,transparent 1px 11px)!important;
+}
+
+/* A single growth line gives the page a botanical backbone. */
+.rb-growth-spine{
+  position:absolute;
+  top:150px;
+  bottom:280px;
+  left:max(12px,calc((100vw - 1180px)/2 - 102px));
+  width:108px;
+  z-index:0;
+  pointer-events:none;
+  opacity:.42;
+}
+.rb-growth-spine svg{
+  width:100%;
+  height:100%;
+  display:block;
+  overflow:visible;
+}
+.rb-growth-spine .rb-spine-stem,
+.rb-growth-spine .rb-spine-stem-ghost{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-stem{stroke-width:2.1}
+.rb-growth-spine .rb-spine-stem-ghost{
+  stroke-width:.8;
+  opacity:.34;
+  transform:translateX(3px);
+}
+.rb-growth-spine .rb-spine-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 72%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.2;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-flower{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 74%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.1;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 72%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+
+/* Plant specimens occupy the margins and never cover copy/cards. */
+.rb-botanical-specimen-host{
+  position:relative!important;
+  isolation:isolate;
+}
+.rb-botanical-specimen-host > :not(.rb-botanical-specimen):not(.rb-root-line){
+  position:relative;
+  z-index:2;
+}
+.rb-botanical-specimen{
+  position:absolute;
+  z-index:1;
+  width:clamp(190px,20vw,330px);
+  height:auto;
+  pointer-events:none;
+  color:var(--rb-decor-leaf-dark);
+  opacity:.30;
+  filter:drop-shadow(0 18px 28px rgba(34,69,47,.055));
+}
+.rb-botanical-specimen--left{
+  left:max(-170px,calc((100vw - 1180px)/2 - 220px));
+  top:12%;
+}
+.rb-botanical-specimen--right{
+  right:max(-180px,calc((100vw - 1180px)/2 - 230px));
+  top:14%;
+}
+.rb-botanical-specimen path.rb-spec-stem,
+.rb-botanical-specimen path.rb-spec-root{
+  fill:none;
+  stroke:currentColor;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-botanical-specimen path.rb-spec-stem{stroke-width:2.2}
+.rb-botanical-specimen path.rb-spec-root{stroke-width:1.35;opacity:.8}
+.rb-botanical-specimen .rb-spec-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 78%,#fff);
+  stroke:currentColor;
+  stroke-width:1.1;
+}
+.rb-botanical-specimen .rb-spec-petal{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 72%,#fff);
+  stroke:currentColor;
+  stroke-width:1.1;
+}
+.rb-botanical-specimen .rb-spec-core{
+  fill:var(--rb-decor-bloom-2);
+  stroke:currentColor;
+  stroke-width:1;
+}
+.rb-botanical-specimen .rb-spec-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:1;
+}
+
+/* Roots mark a section ending; unlike a decorative divider, they express growth below ground. */
+.rb-root-line{
+  position:absolute;
+  left:50%;
+  bottom:-34px;
+  width:min(620px,58vw);
+  height:78px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index:1;
+  opacity:.18;
+}
+.rb-root-line svg{display:block;width:100%;height:100%;overflow:visible}
+.rb-root-line path{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.25;
+  stroke-linecap:round;
+}
+
+/* Headings get a real botanical underline: stem + one leaf, never rotated text. */
+.rb-plant-heading{
+  position:relative;
+  padding-bottom:18px!important;
+}
+.rb-plant-heading::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:3px;
+  width:88px;
+  height:13px;
+  background:
+    radial-gradient(ellipse at 76% 34%,var(--rb-decor-leaf) 0 34%,transparent 36%),
+    linear-gradient(var(--rb-decor-leaf-dark),var(--rb-decor-leaf-dark)) 0 9px/78px 1.5px no-repeat;
+  border-radius:100%;
+  opacity:.54;
+}
+.section-heading--center .rb-plant-heading::after,
+.section-heading--center.rb-plant-heading::after{
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Selected photographs feel embedded in a herbarium page. */
+.rb-photo-botanical::before{
+  background:#eee8d9!important;
+  box-shadow:0 12px 24px rgba(48,64,50,.06);
+}
+.rb-photo-botanical::after{
+  background:transparent!important;
+  border-left:1px solid rgba(58,90,64,.24);
+  border-bottom:1px solid rgba(58,90,64,.16);
+  border-radius:0!important;
+}
+.rb-photo-corner-leaf{
+  opacity:.62!important;
+}
+.rb-photo-corner-leaf::before,
+.rb-photo-corner-leaf::after{
+  background:color-mix(in srgb,var(--rb-decor-leaf) 82%,#fff)!important;
+  border:1px solid rgba(49,84,58,.24);
+}
+
+/* Give alternating sections a paper tone only; plants provide the identity. */
+main>section:nth-of-type(4n+2):not(.section--soil):not(.report-finance):not(.update-band){
+  background:rgba(244,241,231,.50);
+}
+main>section:nth-of-type(4n):not(.section--soil):not(.report-finance):not(.update-band){
+  background:rgba(239,245,235,.38);
+}
+
+/* Preserve all content contrast over botanical art. */
+main>section :is(h1,h2,h3,h4,p,li,a,button,label,strong,small){
+  position:relative;
+}
+main>section :is(.container,.page-hero-grid,.split-story,.section-heading,.diagnosis-shell,.diagnosis-layout){
+  position:relative;
+  z-index:3;
+}
+
+@media(max-width:1180px){
+  .rb-growth-spine{
+    left:-42px;
+    opacity:.26;
+    width:94px;
+  }
+  .rb-botanical-specimen{opacity:.19;width:230px}
+  .rb-botanical-specimen--left{left:-150px}
+  .rb-botanical-specimen--right{right:-160px}
+}
+@media(max-width:760px){
+  .rb-growth-spine{display:none}
+  .rb-botanical-specimen{
+    width:150px;
+    opacity:.10;
+  }
+  .rb-botanical-specimen--left{left:-112px;top:7%}
+  .rb-botanical-specimen--right{right:-118px;top:8%}
+  .rb-root-line{width:72vw;opacity:.10}
+  .rb-plant-heading{padding-bottom:14px!important}
+  .rb-plant-heading::after{width:66px;height:10px;bottom:2px}
+}
+@media(max-width:520px){
+  .rb-botanical-specimen{display:none}
+  .rb-root-line{opacity:.07}
+}
+
+
+/* ORGANIC LINE ART V4 / 2026-09-29 */
+/* Remove the synthetic line+oval heading decoration completely. */
+.rb-plant-heading{
+  padding-bottom:0!important;
+}
+.rb-plant-heading::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Remove assembled pseudo-leaf decorations from photographs. */
+.rb-photo-corner-leaf{
+  display:none!important;
+}
+.rb-photo-botanical::after{
+  display:none!important;
+}
+
+/* Botanical drawings are now line art only: no circles, ellipses or assembled filled shapes. */
+.rb-botanical-specimen{
+  opacity:.34!important;
+  filter:none!important;
+}
+.rb-botanical-specimen .rb-spec-line{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.75;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.rb-botanical-specimen .rb-spec-line--fine{
+  stroke-width:1.05;
+  opacity:.68;
+}
+.rb-botanical-specimen .rb-spec-line--accent{
+  stroke:color-mix(in srgb,var(--rb-decor-bloom) 58%,var(--rb-decor-leaf-dark));
+  stroke-width:1.45;
+}
+.rb-botanical-specimen :is(ellipse,circle,rect,polygon){
+  display:none!important;
+}
+
+/* The page spine also uses only continuous hand-drawn paths. */
+.rb-growth-spine .rb-spine-line{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-line--fine{
+  stroke-width:.9;
+  opacity:.55;
+}
+.rb-growth-spine .rb-spine-line--flower{
+  stroke:color-mix(in srgb,var(--rb-decor-bloom) 58%,var(--rb-decor-leaf-dark));
+  stroke-width:1.3;
+}
+.rb-growth-spine :is(ellipse,circle,rect,polygon){
+  display:none!important;
+}
+
+/* Remove any remaining geometric motif primitives inherited from older layers. */
+.rb-page-motif,
+.rb-stage-mark,
+.rb-hero-print,
+.rb-editorial-plant{
+  display:none!important;
+}
+
+
+/* ISHIKAWA ZUKAN LOGO OPTICAL SIZE / 2026-09-29 */
+body.nr-new-partner .industry-partner-logo--zukan{
+  overflow:hidden!important;
+}
+body.nr-new-partner .industry-partner-logo--zukan img{
+  width:178px!important;
+  max-width:none!important;
+  max-height:none!important;
+  height:auto!important;
+  transform:scale(2.08)!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+@media(max-width:600px){
+  body.nr-new-partner .industry-partner-logo--zukan img{
+    width:164px!important;
+    transform:scale(2.02)!important;
+  }
+}
+
+
+/* ISHIKAWA ZUKAN UNIVERSAL STRIP OPTICAL SIZE / 2026-09-29 */
+.site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+  max-width:none!important;
+  max-height:58px!important;
+  transform:scale(1.92)!important;
+  transform-origin:center center!important;
+}
+@media(max-width:600px){
+  .site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+    transform:scale(1.82)!important;
+  }
+}
+
+
+/* UPDATED ISHIKAWA ZUKAN LOGO RESET / 2026-09-29 */
+body.nr-new-partner .industry-partner-logo--zukan img{
+  width:min(100%,220px)!important;
+  max-width:220px!important;
+  max-height:88px!important;
+  height:auto!important;
+  transform:none!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+  width:auto!important;
+  max-width:100%!important;
+  max-height:64px!important;
+  height:auto!important;
+  transform:none!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+@media(max-width:600px){
+  body.nr-new-partner .industry-partner-logo--zukan img{
+    max-width:200px!important;
+    max-height:80px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+    max-height:58px!important;
+  }
+}
+
+
+/* FINAL READABILITY FIXES / 2026-09-29 */
+/* Buttons: never allow a light surface to inherit white button text. */
+body .btn.btn--green,
+body a.btn.btn--green,
+body button.btn--green{
+  background:#174a36!important;
+  border-color:#174a36!important;
+  color:#fff!important;
+}
+
+/* Report timeline heading sits on a light section. */
+body .flow-section .section-intro h2{
+  color:#173a31!important;
+}
+
+/* Sponsor guide numbers must stay readable on white/cream cards. */
+body.nr-new-partner .nr-navi-guide article>b,
+body.nr-new-partner .nr-main-sponsor article>b{
+  background:#edf5eb!important;
+  color:#173a31!important;
+  border:1px solid rgba(23,58,49,.14)!important;
+}
+
+/* Diagnosis start-step numbers: dark type on a pale botanical badge. */
+body.page-diagnosis .diagnosis-start-steps>div>b{
+  background:#fff0b8!important;
+  color:#173a31!important;
+  border:1px solid rgba(23,58,49,.16)!important;
+}
+
+/* Routing cards are content-first; botanical specimens must not cross them. */
+body .nr-choice-grid>.rb-root-line,
+body .nr-choice-grid>.rb-botanical-specimen{
+  display:none!important;
+}
+
+
+/* FINAL CONTRAST OVERRIDE V9 / 2026-09-29 */
+/* Report timeline heading: force real dark text on the light schedule section. */
+html body.report-page .flow-section .section-intro h2{
+  color:#173a31!important;
+  -webkit-text-fill-color:#173a31!important;
+  background:none!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* Sponsor numeric markers: HTML and JS-injected cards both use dark text on pale badges. */
+html body.nr-new-partner :is(
+  .nr-navi-guide article>b,
+  .nr-sponsor-wide__partnerline>b,
+  .nr-sponsor-wide__reasons b,
+  .nr-oteru-reasons b
+){
+  color:#173a31!important;
+  -webkit-text-fill-color:#173a31!important;
+  background:#edf5eb!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  border:1px solid rgba(23,58,49,.16)!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* Any numbered sponsor feature marker that is intentionally dark/light must not inherit white fill. */
+html body.nr-new-partner .nr-sponsor-story b,
+html body.nr-new-partner .nr-main-sponsor b{
+  -webkit-text-fill-color:currentColor!important;
+  text-shadow:none!important;
+}
+
+/* FINAL AUDIT TRIGGER 2026-09-29 */
+
+
+/* REPORT FLOW DARK-SURFACE FIX V10 / 2026-09-29 */
+html body.report-page .flow-section{
+  background:#174a36!important;
+  color:#fff!important;
+}
+html body.report-page .flow-section .section-intro h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:none!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+html body.report-page .flow-section .section-intro p,
+html body.report-page .flow-section .event-kicker{
+  color:rgba(255,255,255,.86)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.86)!important;
+}
+
+
+/* FINAL REPORT KICKER CONTRAST / 2026-09-30 */
+html body.report-page .flow-section .event-kicker{
+  display:inline-block!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  background:#f4eddc!important;
+  border:1px solid rgba(23,74,54,.18)!important;
+  padding:.34rem .7rem!important;
+  border-radius:999px!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* FINAL DESIGN ORGANIZATION / 2026-09-30 */
+/* Reduce visual noise while keeping the botanical identity and all existing copy. */
+
+/* Header: one clear social group, cleaner spacing. */
+html body .site-header .header-actions{gap:10px!important}
+html body .site-header .rb-header-social{margin-left:2px!important;margin-right:2px!important}
+@media (min-width:1181px){
+  html body .site-header{padding-left:18px!important;padding-right:18px!important}
+  html body .site-header .site-nav{gap:2px!important}
+}
+
+/* Long editorial pages: fewer floating cards, more breathing room and hierarchy. */
+html body.page-thoughts .section:not(.section--soil) .event-values>article,
+html body.page-thoughts #future .cause-grid>article{
+  border:0!important;
+  border-top:1px solid rgba(23,74,54,.16)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:20px 8px 18px!important
+}
+html body.page-thoughts .section:not(.section--soil) .event-values>article>span,
+html body.page-thoughts #future .cause-grid>article>span{
+  width:38px!important;height:38px!important;margin-bottom:10px!important;box-shadow:none!important
+}
+html body.page-thoughts .section-heading{max-width:900px}
+html body.page-thoughts .section-heading>p:not(.eyebrow){max-width:760px}
+
+/* Report: let photos and results lead; keep data cards quiet and precise. */
+html body.report-page .report-summary-card{
+  border-color:rgba(23,74,54,.12)!important;background:#fffdf8!important;box-shadow:none!important
+}
+html body.report-page .report-summary-card strong{letter-spacing:-.04em!important}
+html body.report-page .report-photo-story{
+  background:linear-gradient(180deg,#f7f4ea 0%,#f2f6ee 100%)!important
+}
+html body.report-page .report-impact-card{box-shadow:0 8px 22px rgba(23,74,54,.055)!important}
+
+/* Sponsors: primary facts first, secondary detail quieter but still fully readable. */
+html body.nr-new-partner #current-partners .nr-sponsor-wide{
+  box-shadow:0 10px 28px rgba(23,58,49,.07)!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__metrics>div{
+  box-shadow:0 7px 17px rgba(23,58,49,.08)!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__metrics small{
+  font-size:10px!important;line-height:1.55!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__reasons strong{font-size:12px!important}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__reasons span{
+  font-size:10px!important;line-height:1.65!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__source-note{
+  font-size:10.5px!important;line-height:1.65!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__company,
+html body.nr-new-partner #current-partners .nr-sponsor-wide__related{box-shadow:none!important}
+html body.nr-new-partner .partner-volunteer-credit>span{font-size:10px!important}
+html body.nr-new-partner .partner-volunteer-credit p{font-size:11.5px!important}
+
+/* Universal partner strip: visible but compact. */
+html body .site-partner-strip--universal{padding:22px 0 20px!important}
+html body .site-partner-strip--universal .site-partner-strip__label{margin-bottom:12px!important}
+html body .site-partner-strip--universal .site-partner-strip__logos{gap:8px!important}
+html body .site-partner-strip--universal .site-partner-strip__logo{
+  min-height:80px!important;padding:11px!important;border-radius:14px!important;
+  box-shadow:0 3px 10px rgba(23,74,54,.035)!important
+}
+html body .site-partner-strip--universal .site-partner-strip__logo img{max-height:52px!important}
+html body .site-partner-strip--universal .site-partner-strip__logo--rebloom img{max-height:56px!important}
+html body .site-partner-strip--universal .site-partner-strip__more{
+  margin-top:10px!important;min-height:36px!important
+}
+
+/* Footer: less repeated vertical weight. */
+html body .rb-footer--universal .rb-footer-cta{padding-top:26px!important;padding-bottom:22px!important}
+html body .rb-footer--universal .rb-footer-grid{
+  gap:28px!important;padding-top:21px!important;padding-bottom:18px!important
+}
+html body .rb-footer--universal .rb-footer-social{padding:12px 0!important}
+html body .rb-footer--universal .rb-footer-bottom{padding-top:12px!important}
+
+/* Mobile: one fixed action only. Contact remains in menu/footer. */
+@media(max-width:760px){
+  html body .rb-contact-fab{display:none!important}
+  html body:not(.page-diagnosis) .rb-mobile-join{
+    left:12px!important;right:12px!important;bottom:10px!important;width:auto!important;height:auto!important;
+    padding:0!important;background:transparent!important;box-shadow:none!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a{
+    box-sizing:border-box!important;width:100%!important;min-height:56px!important;height:auto!important;
+    padding:8px 16px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:18px!important;
+    background:#174a36!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+    box-shadow:0 10px 24px rgba(23,58,49,.18)!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a>span{
+    color:#fff!important;-webkit-text-fill-color:#fff!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a>small{
+    color:rgba(255,255,255,.82)!important;-webkit-text-fill-color:rgba(255,255,255,.82)!important;opacity:1!important
+  }
+  html body .site-partner-strip--universal{padding:18px 0 16px!important}
+  html body .site-partner-strip--universal .site-partner-strip__logo{min-height:68px!important;padding:9px!important}
+  html body .site-partner-strip--universal .site-partner-strip__logo img{max-height:42px!important}
+  html body .rb-footer--universal .rb-footer-cta{gap:14px!important;padding-top:22px!important;padding-bottom:18px!important}
+  html body .rb-footer--universal .rb-footer-cta__button{width:100%!important}
+  html body .rb-footer--universal .rb-footer-grid{gap:20px!important;padding-top:18px!important;padding-bottom:15px!important}
+  html body.page-thoughts .section:not(.section--soil) .event-values>article,
+  html body.page-thoughts #future .cause-grid>article{padding:17px 3px 16px!important}
+}
+
+/* FINAL CROSS-PAGE MOBILE CLEANUP / 2026-10-02
+   The persistent report dock duplicated page CTAs and covered content on small screens.
+   Keep the diagnosis-specific start dock, but remove the generic site-wide dock. */
+@media(max-width:760px){
+  html body:not(.page-diagnosis) .rb-mobile-join{
+    display:none!important;
+  }
+  html body:not(.page-diagnosis){
+    padding-bottom:0!important;
+  }
+}
+
+/* Keyboard focus is intentionally visible on every interactive control. */
+html body :where(a,button,[role="button"],input,select,textarea,[tabindex]):focus-visible{
+  outline:3px solid #e0b92f!important;
+  outline-offset:3px!important;
+}
+
+
+
+/* ===== SOURCE: diagnosis-site-match-20260929.css ===== */
+/* Flower Diagnosis — site-matched botanical layer / 2026-09-29
+   Visual-only override. Diagnosis copy, questions, result logic and flower data are unchanged. */
+
+body.page-diagnosis{
+  --display:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Noto Sans JP","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
+  --sans:var(--body);
+  --serif:var(--display);
+  --dx-green:var(--plant-forest,#174a36);
+  --dx-deep:var(--plant-forest-2,#0f3a2a);
+  --dx-leaf:var(--plant-leaf,#5f8f58);
+  --dx-sage:var(--plant-sage,#dfe9d8);
+  --dx-sage2:var(--plant-sage-2,#eef3e8);
+  --dx-paper:var(--plant-paper,#fffdf8);
+  --dx-cream:var(--plant-cream,#fbf8ee);
+  --dx-soil:var(--plant-soil,#8a6a4a);
+  --dx-soil-soft:var(--plant-soil-soft,#eee3d5);
+  --dx-flower:var(--plant-flower,#e8c84f);
+  --dx-ink:var(--plant-ink,#1d342a);
+  --dx-muted:var(--plant-muted,#586b61);
+  --dx-line:var(--plant-line,rgba(23,74,54,.14));
+  --dx-shadow:var(--plant-shadow,0 16px 42px rgba(23,74,54,.10));
+  --dx-shadow-soft:var(--plant-shadow-soft,0 8px 24px rgba(23,74,54,.075));
+  background:var(--dx-cream)!important;
+  color:var(--dx-ink)!important;
+  font-family:var(--body)!important;
+}
+body.page-diagnosis,
+body.page-diagnosis button,
+body.page-diagnosis input,
+body.page-diagnosis select,
+body.page-diagnosis textarea,
+body.page-diagnosis dialog{
+  font-family:var(--body)!important;
+}
+body.page-diagnosis :is(
+  h1,h2,h3,h4,
+  .brand b,.page-hero h1,.section-heading h2,.diagnosis-intro h2,
+  .diagnosis-start-card h3,.diagnosis-method-card h3,.diagnosis-question,
+  .flower-group-card h3,.flower-atlas-heading h2,.flower-atlas-card b,
+  .atlas-dialog-grid h2,.result-copy h2,.result-card h3,
+  .result-group-profile h3,.result-deep-dive h3,.result-life-scenes h3,
+  .result-reflection h3,.result-tendency-section h3,.result-month-plan h3,
+  .result-next-action h3,.result-rich-insights h3,.result-rich-insights h4,
+  .result-reason-card h4,.result-share-copy h3,.final-cta h2
+){
+  font-family:var(--display)!important;
+  font-style:normal!important;
+  font-weight:900!important;
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis :is(p,li,dd,dt,small){color:var(--dx-muted)}
+body.page-diagnosis main{background:var(--dx-cream)!important}
+
+/* HERO — same visual language as the rest of NOTO Re:Bloom */
+body.page-diagnosis .page-hero--diagnosis{
+  position:relative!important;
+  overflow:hidden!important;
+  min-height:0!important;
+  padding:68px 0 76px!important;
+  background:
+    radial-gradient(ellipse at 7% 18%,rgba(125,166,111,.18) 0 11%,transparent 12%),
+    radial-gradient(ellipse at 96% 70%,rgba(95,143,88,.12) 0 14%,transparent 15%),
+    linear-gradient(180deg,var(--dx-paper),var(--dx-cream))!important;
+}
+body.page-diagnosis .page-hero--diagnosis::before{
+  content:""!important;
+  position:absolute!important;
+  width:220px!important;height:420px!important;
+  left:-118px!important;bottom:-150px!important;top:auto!important;right:auto!important;
+  border-radius:55% 45% 58% 42% / 38% 62% 38% 62%!important;
+  background:rgba(95,143,88,.13)!important;
+  transform:rotate(-25deg)!important;
+  z-index:0!important;
+  letter-spacing:0!important;
+}
+body.page-diagnosis .page-hero--diagnosis::after{
+  content:""!important;
+  position:absolute!important;
+  width:150px!important;height:74px!important;
+  right:3%!important;top:16%!important;left:auto!important;bottom:auto!important;
+  border-radius:100% 0 100% 0!important;
+  background:rgba(125,166,111,.14)!important;
+  transform:rotate(-28deg)!important;
+  z-index:0!important;
+}
+body.page-diagnosis .page-hero--diagnosis .container{position:relative;z-index:1}
+body.page-diagnosis .page-hero-grid{
+  grid-template-columns:minmax(0,1fr) minmax(390px,.92fr)!important;
+  gap:clamp(38px,5vw,72px)!important;
+  align-items:center!important;
+}
+body.page-diagnosis .page-hero--diagnosis h1{
+  margin:0!important;
+  max-width:10em!important;
+  font-family:var(--display)!important;
+  font-size:clamp(46px,4.4vw,66px)!important;
+  line-height:1.16!important;
+  letter-spacing:-.04em!important;
+  color:var(--dx-ink)!important;
+  text-wrap:balance!important;
+}
+body.page-diagnosis .page-hero--diagnosis .headline-marker{
+  color:inherit!important;
+  -webkit-text-fill-color:currentColor!important;
+  background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important;
+}
+body.page-diagnosis .page-hero--diagnosis p:not(.eyebrow){
+  max-width:41em!important;
+  color:var(--dx-muted)!important;
+  font-size:14px!important;
+  line-height:1.9!important;
+}
+body.page-diagnosis .hero-sticker-note{
+  display:inline-flex!important;
+  align-items:center!important;
+  margin-top:17px!important;
+  padding:9px 13px!important;
+  border:0!important;
+  border-radius:14px 22px 14px 22px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+  transform:rotate(-.4deg);
+}
+body.page-diagnosis .page-hero--diagnosis .photo-frame{
+  border:6px solid var(--dx-paper)!important;
+  border-radius:38px 18px 36px 20px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow)!important;
+  transform:rotate(.65deg)!important;
+}
+body.page-diagnosis .page-hero--diagnosis .photo-frame img{
+  width:100%!important;
+  aspect-ratio:4/3!important;
+  object-fit:cover!important;
+}
+body.page-diagnosis .page-hero--diagnosis .photo-frame figcaption{
+  padding:12px 15px 13px!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-muted)!important;
+  font-size:10px!important;
+  line-height:1.65!important;
+}
+body.page-diagnosis .hero-photo-credit,
+body.page-diagnosis .hero-photo-credit a{color:#718079!important}
+
+/* Shared buttons — same weight and palette as other pages */
+body.page-diagnosis .btn{
+  min-height:48px!important;
+  padding:0 19px!important;
+  border:1px solid rgba(23,74,54,.20)!important;
+  border-radius:999px!important;
+  font-family:var(--body)!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  letter-spacing:0!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .btn--green,
+body.page-diagnosis .diagnosis-main-start{
+  background:var(--dx-green)!important;
+  border-color:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .btn--paper,
+body.page-diagnosis .btn--outline{
+  background:var(--dx-paper)!important;
+  color:var(--dx-green)!important;
+  -webkit-text-fill-color:var(--dx-green)!important;
+}
+body.page-diagnosis .btn--yellow{
+  background:var(--dx-flower)!important;
+  border-color:transparent!important;
+  color:var(--dx-deep)!important;
+  -webkit-text-fill-color:var(--dx-deep)!important;
+}
+
+/* START / EXPLANATION — less "web app", more editorial botanical section */
+body.page-diagnosis .diagnosis-section{
+  padding:78px 0 84px!important;
+  background:var(--dx-cream)!important;
+}
+body.page-diagnosis .diagnosis-shell{
+  display:grid!important;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;
+  gap:22px!important;
+  align-items:stretch!important;
+}
+body.page-diagnosis .diagnosis-intro{
+  padding:28px 30px 26px!important;
+  border:0!important;
+  border-radius:30px 18px 28px 16px!important;
+  background:var(--dx-sage2)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-intro h2{
+  margin:8px 0 13px!important;
+  font-size:clamp(31px,3.1vw,46px)!important;
+  line-height:1.28!important;
+  letter-spacing:-.035em!important;
+}
+body.page-diagnosis .diagnosis-intro p{
+  color:var(--dx-muted)!important;
+  line-height:1.85!important;
+}
+body.page-diagnosis .diagnosis-tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:7px!important;
+  margin:22px 0 0!important;
+  padding:0!important;
+}
+body.page-diagnosis .diagnosis-tags li{
+  padding:8px 11px!important;
+  border:0!important;
+  border-radius:14px 20px 14px 20px!important;
+  background:rgba(255,253,248,.86)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:10px!important;
+  font-weight:800!important;
+}
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card){
+  border:0!important;
+  border-radius:28px 16px 30px 18px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow-soft)!important;
+}
+body.page-diagnosis .diagnosis-start-card{
+  padding:29px 30px!important;
+}
+body.page-diagnosis .diagnosis-start-label{
+  margin:0 0 11px!important;
+  padding:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--dx-leaf)!important;
+  font-family:var(--body)!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  letter-spacing:.13em!important;
+}
+body.page-diagnosis .diagnosis-start-card h3{
+  margin:0!important;
+  font-size:clamp(25px,2.4vw,33px)!important;
+  line-height:1.36!important;
+}
+body.page-diagnosis .diagnosis-answer-guide{
+  margin:20px 0!important;
+  padding:16px 18px!important;
+  border:0!important;
+  border-left:5px solid var(--dx-flower)!important;
+  border-radius:8px 18px 18px 8px!important;
+  background:#fbf5df!important;
+  color:var(--dx-muted)!important;
+}
+body.page-diagnosis .diagnosis-start-steps{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:9px!important;
+  margin:18px 0 0!important;
+  border:0!important;
+}
+body.page-diagnosis .diagnosis-start-steps>div{
+  padding:13px 11px!important;
+  border:0!important;
+  border-radius:18px 11px 18px 11px!important;
+  background:var(--dx-sage2)!important;
+}
+body.page-diagnosis .diagnosis-start-steps>div+div{border-left:0!important}
+body.page-diagnosis .diagnosis-start-steps b{color:var(--dx-leaf)!important}
+body.page-diagnosis .diagnosis-start-steps span{color:var(--dx-green)!important}
+body.page-diagnosis .diagnosis-main-start{
+  width:100%!important;
+  min-height:54px!important;
+  margin-top:19px!important;
+  font-family:var(--body)!important;
+  font-size:15px!important;
+  box-shadow:0 10px 24px rgba(23,74,54,.12)!important;
+}
+body.page-diagnosis .diagnosis-method-card{
+  margin-top:18px!important;
+  padding:25px 27px!important;
+  background:var(--dx-sage2)!important;
+}
+body.page-diagnosis .diagnosis-group-map{
+  border:0!important;
+  border-radius:24px 14px 24px 14px!important;
+  background:rgba(255,253,248,.82)!important;
+  box-shadow:none!important;
+}
+
+/* Section headings */
+body.page-diagnosis .section-heading--center,
+body.page-diagnosis .flower-atlas-heading{
+  max-width:760px!important;
+  margin:0 0 30px!important;
+  text-align:left!important;
+}
+body.page-diagnosis .section-heading h2,
+body.page-diagnosis .flower-atlas-heading h2{
+  font-size:clamp(31px,3vw,48px)!important;
+  line-height:1.3!important;
+  letter-spacing:-.03em!important;
+  text-wrap:balance!important;
+}
+body.page-diagnosis .eyebrow{
+  display:inline-flex!important;
+  margin:0 0 14px!important;
+  padding:7px 11px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .eyebrow :is(span,small){
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.08em!important;
+}
+
+/* Four groups — retain meaning, mute the palette into the site's plant colors */
+body.page-diagnosis .flower-group-showcase{
+  padding:82px 0!important;
+  background:var(--dx-paper)!important;
+}
+body.page-diagnosis .flower-group-grid{
+  gap:14px!important;
+}
+body.page-diagnosis .flower-group-card{
+  border:0!important;
+  border-radius:30px 16px 28px 18px!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+}
+body.page-diagnosis .flower-group-card--sun{background:#f8f1d9!important}
+body.page-diagnosis .flower-group-card--wind{background:var(--dx-sage2)!important}
+body.page-diagnosis .flower-group-card--satoyama{background:var(--dx-soil-soft)!important}
+body.page-diagnosis .flower-group-card--water{background:#e9f0e8!important}
+body.page-diagnosis .flower-group-card h3{
+  font-size:clamp(24px,2.2vw,31px)!important;
+  line-height:1.35!important;
+}
+body.page-diagnosis .flower-group-card p{color:var(--dx-muted)!important}
+body.page-diagnosis .flower-group-visual{
+  border-radius:24px 14px 24px 14px!important;
+  overflow:hidden!important;
+}
+
+/* Flower atlas — editorial gallery instead of a separate app */
+body.page-diagnosis .flower-atlas{
+  padding:82px 0 88px!important;
+  background:var(--dx-cream)!important;
+}
+body.page-diagnosis .flower-atlas-filters{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  margin:0 0 24px!important;
+}
+body.page-diagnosis .flower-atlas-filters button{
+  min-height:40px!important;
+  padding:0 14px!important;
+  border:1px solid rgba(23,74,54,.16)!important;
+  border-radius:999px!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:11px!important;
+  font-weight:850!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-atlas-filters button.is-active{
+  border-color:var(--dx-green)!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .flower-atlas-grid{
+  gap:12px!important;
+}
+body.page-diagnosis .flower-atlas-card{
+  border:0!important;
+  border-radius:24px 13px 25px 15px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow-soft)!important;
+  overflow:hidden!important;
+}
+body.page-diagnosis .flower-atlas-card:nth-child(2n){background:var(--dx-sage2)!important}
+body.page-diagnosis .flower-atlas-card b{
+  font-family:var(--display)!important;
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis .flower-atlas-card :is(span,small,p){color:var(--dx-muted)!important}
+body.page-diagnosis .flower-atlas-dialog{
+  border:0!important;
+  border-radius:30px 18px 28px 18px!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-ink)!important;
+  box-shadow:0 28px 90px rgba(20,62,52,.18)!important;
+}
+body.page-diagnosis .atlas-dialog-close{
+  border:0!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+
+/* QUESTION FLOW — preserve usability, remove the unrelated corporate-card feeling */
+body.page-diagnosis .diagnosis-panel{
+  max-width:900px!important;
+  margin:28px auto 52px!important;
+}
+body.page-diagnosis .diagnosis-response-frame{
+  border:0!important;
+  border-radius:32px 18px 30px 18px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow)!important;
+}
+body.page-diagnosis .diagnosis-progress{
+  top:82px!important;
+  margin:0 0 14px!important;
+  padding:12px 14px 13px!important;
+  border:0!important;
+  border-radius:20px 13px 20px 13px!important;
+  background:rgba(251,248,238,.96)!important;
+  box-shadow:0 8px 22px rgba(23,74,54,.07)!important;
+  backdrop-filter:blur(12px)!important;
+}
+body.page-diagnosis .diagnosis-progress-top{
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+}
+body.page-diagnosis .diagnosis-progress-track{
+  overflow:hidden!important;
+  border-radius:999px!important;
+  background:var(--dx-sage)!important;
+}
+body.page-diagnosis .diagnosis-progress-fill{
+  border-radius:999px!important;
+  background:linear-gradient(90deg,var(--dx-leaf),var(--dx-green))!important;
+}
+body.page-diagnosis .diagnosis-question-card{
+  padding:clamp(24px,4vw,39px)!important;
+  border:0!important;
+  border-radius:30px 16px 30px 18px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-q-category{
+  margin-bottom:13px!important;
+  padding:7px 11px!important;
+  border-radius:13px 18px 13px 18px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:10px!important;
+  font-weight:850!important;
+}
+body.page-diagnosis .diagnosis-question{
+  max-width:760px!important;
+  margin:0 auto 26px!important;
+  color:var(--dx-ink)!important;
+  font-family:var(--display)!important;
+  font-size:clamp(24px,3vw,36px)!important;
+  line-height:1.5!important;
+  letter-spacing:-.025em!important;
+}
+body.page-diagnosis .diagnosis-answer-grid{
+  gap:9px!important;
+}
+body.page-diagnosis .diagnosis-answer{
+  min-height:54px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:20px 12px 21px 13px!important;
+  background:var(--dx-sage2)!important;
+  color:var(--dx-green)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-answer:hover,
+body.page-diagnosis .diagnosis-answer:focus-visible{
+  border-color:rgba(23,74,54,.35)!important;
+  background:var(--dx-sage)!important;
+}
+body.page-diagnosis .diagnosis-answer.is-selected,
+body.page-diagnosis .diagnosis-answer[aria-pressed="true"]{
+  border-color:var(--dx-green)!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+}
+body.page-diagnosis .diagnosis-answer span{
+  font-family:var(--body)!important;
+  font-weight:850!important;
+}
+body.page-diagnosis .diagnosis-controls{
+  gap:9px!important;
+  padding-top:16px!important;
+}
+
+/* RESULT — same card rhythm as report / learn */
+body.page-diagnosis .diagnosis-result{
+  background:var(--dx-cream)!important;
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis .result-hero{
+  border:0!important;
+  border-radius:34px 18px 32px 20px!important;
+  background:
+    radial-gradient(circle at 88% 12%,rgba(95,143,88,.13),transparent 28%),
+    var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow)!important;
+}
+body.page-diagnosis .result-portrait-wrap,
+body.page-diagnosis .result-image{
+  border-radius:30px 16px 28px 18px!important;
+  overflow:hidden!important;
+}
+body.page-diagnosis .result-copy h2{
+  font-size:clamp(34px,4.1vw,56px)!important;
+  line-height:1.24!important;
+  letter-spacing:-.035em!important;
+}
+body.page-diagnosis .result-kicker,
+body.page-diagnosis .group-badge-wrap,
+body.page-diagnosis .result-role-chips span{
+  border:0!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+  .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+  .result-practice-card,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.neighbor-card,.collaboration-card,
+  .result-month-plan,.result-share-section,.result-next-action
+){
+  border:0!important;
+  border-radius:28px 16px 29px 17px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:var(--dx-shadow-soft)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-group-profile,.result-rich-insights,
+  .result-life-scenes,.result-tendency-section,.result-month-plan
+):nth-of-type(even){
+  background:var(--dx-sage2)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+  .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+  .result-practice-card,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.neighbor-card,.collaboration-card,
+  .result-month-plan,.result-share-section,.result-next-action
+) :is(h2,h3,h4,strong,b){
+  color:var(--dx-ink)!important;
+  -webkit-text-fill-color:var(--dx-ink)!important;
+}
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+  .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+  .result-practice-card,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.neighbor-card,.collaboration-card,
+  .result-month-plan,.result-share-section,.result-next-action
+) :is(p,li,small,span){
+  color:var(--dx-muted);
+}
+body.page-diagnosis .result-jump-nav{
+  border:0!important;
+  border-radius:22px 13px 22px 13px!important;
+  background:var(--dx-sage2)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .result-jump-nav a{
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+}
+body.page-diagnosis .axis-bars>div,
+body.page-diagnosis .result-snapshot-grid>*,
+body.page-diagnosis .result-quick-grid>*{
+  border:0!important;
+  border-radius:18px 11px 18px 11px!important;
+  background:var(--dx-sage2)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-disclaimer{
+  border-left:4px solid var(--dx-leaf)!important;
+  border-radius:8px 17px 17px 8px!important;
+  background:var(--dx-sage2)!important;
+  color:var(--dx-muted)!important;
+}
+
+/* Final CTA belongs to the same garden */
+body.page-diagnosis .final-cta{
+  position:relative!important;
+  overflow:hidden!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+}
+body.page-diagnosis .final-cta :is(h2,p){color:#fff!important;-webkit-text-fill-color:#fff!important}
+body.page-diagnosis .final-cta .btn--green{
+  background:var(--dx-flower)!important;
+  border-color:var(--dx-flower)!important;
+  color:var(--dx-deep)!important;
+  -webkit-text-fill-color:var(--dx-deep)!important;
+}
+body.page-diagnosis .final-flower{opacity:.18!important}
+
+/* Mobile fixed start button: same floating treatment as the site's report dock */
+body.page-diagnosis .diagnosis-mobile-start{
+  border:1px solid rgba(23,74,54,.14)!important;
+  border-radius:999px!important;
+  background:rgba(255,253,248,.96)!important;
+  box-shadow:0 12px 30px rgba(23,74,54,.15)!important;
+  backdrop-filter:blur(12px)!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button,
+body.page-diagnosis .diagnosis-mobile-start a{
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+}
+
+/* Remove visual leftovers that make this page feel like a different product */
+body.page-diagnosis .hero-motif{opacity:.18!important}
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card,.result-card)::before,
+body.page-diagnosis :is(.diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card,.result-card)::after{
+  box-shadow:none!important;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  body.page-diagnosis .page-hero--diagnosis{padding:54px 0 62px!important}
+  body.page-diagnosis .page-hero-grid,
+  body.page-diagnosis .diagnosis-shell{
+    grid-template-columns:1fr!important;
+    gap:24px!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis h1{
+    max-width:none!important;
+    font-size:clamp(40px,8.8vw,54px)!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis .photo-frame{transform:none!important}
+  body.page-diagnosis .diagnosis-intro{padding:24px!important}
+  body.page-diagnosis .flower-group-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  body.page-diagnosis .page-hero--diagnosis{padding:84px 0 50px!important}
+  body.page-diagnosis .page-hero--diagnosis h1{
+    font-size:clamp(36px,10vw,46px)!important;
+    line-height:1.2!important;
+    letter-spacing:-.025em!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis h1 br{display:none!important}
+  body.page-diagnosis .page-hero--diagnosis .button-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .page-hero--diagnosis .button-row>*{width:100%!important}
+  body.page-diagnosis .diagnosis-section,
+  body.page-diagnosis .flower-group-showcase,
+  body.page-diagnosis .flower-atlas{
+    padding:58px 0!important;
+  }
+  body.page-diagnosis .diagnosis-intro,
+  body.page-diagnosis .diagnosis-start-card,
+  body.page-diagnosis .diagnosis-method-card{
+    padding:21px!important;
+    border-radius:24px 14px 25px 15px!important;
+  }
+  body.page-diagnosis .diagnosis-start-steps{grid-template-columns:1fr!important}
+  body.page-diagnosis .flower-group-grid{grid-template-columns:1fr!important}
+  body.page-diagnosis .diagnosis-question-card{padding:22px 17px!important}
+  body.page-diagnosis .diagnosis-question{
+    font-size:clamp(23px,7.2vw,31px)!important;
+    line-height:1.5!important;
+  }
+  body.page-diagnosis .diagnosis-answer{min-height:52px!important}
+  body.page-diagnosis .result-copy h2{font-size:clamp(31px,9vw,43px)!important}
+}
+
+
+/* FINAL GROUP-COLOR RESTRAINT / 2026-09-29 */
+/* Keep the flower taxonomy meaningful without reverting to a separate,
+   multicolour app-like visual system. */
+body.page-diagnosis .flower-group-card>span{
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  padding:6px 9px!important;
+  border:0!important;
+  border-radius:12px 18px 12px 18px!important;
+  background:rgba(255,253,248,.78)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.10em!important;
+}
+body.page-diagnosis .flower-group-card--sun h3,
+body.page-diagnosis .flower-group-card--wind h3,
+body.page-diagnosis .flower-group-card--satoyama h3,
+body.page-diagnosis .flower-group-card--water h3{
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis .flower-atlas-filters button[data-atlas-filter]{
+  border-color:rgba(23,74,54,.16)!important;
+  background:var(--dx-paper)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis .flower-atlas-filters button[data-atlas-filter].is-active{
+  border-color:var(--dx-green)!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .flower-atlas-card[data-flower-group]{
+  border-top:0!important;
+}
+body.page-diagnosis .flower-atlas-card[data-flower-group]>span{
+  display:inline-flex!important;
+  width:max-content!important;
+  margin:0 2px 5px!important;
+  padding:5px 8px!important;
+  border:0!important;
+  border-radius:11px 16px 11px 16px!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis .result-group[data-group]{
+  border:0!important;
+  background:var(--dx-sage)!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis .result-hero[data-group]{
+  box-shadow:var(--dx-shadow)!important;
+}
+
+
+/* FINAL MOBILE HEADER CLEARANCE / 2026-09-29 */
+@media(max-width:620px){
+  body.page-diagnosis main#main .page-hero--diagnosis .page-hero-grid{
+    padding-top:24px!important;
+  }
+}
+
+
+/* FINAL DIAGNOSIS COMPOSITION + BUTTON CLARITY / 2026-09-29 */
+/* Composition:
+   hero -> start -> 4 groups -> method -> atlas -> diagnosis/result -> final CTA.
+   Copy and diagnosis logic are intentionally untouched. */
+body.page-diagnosis .diagnosis-section{
+  padding-top:72px!important;
+  padding-bottom:0!important;
+}
+body.page-diagnosis .diagnosis-section.motif--flower::before,
+body.page-diagnosis .flower-group-showcase::before,
+body.page-diagnosis .flower-group-showcase::after,
+body.page-diagnosis .flower-atlas::before,
+body.page-diagnosis .flower-atlas::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Start area: two clear roles instead of two competing app cards. */
+body.page-diagnosis .diagnosis-shell{
+  margin-bottom:70px!important;
+  gap:18px!important;
+}
+body.page-diagnosis .diagnosis-intro{
+  position:relative!important;
+  background:
+    radial-gradient(circle at 92% 10%,rgba(95,143,88,.10),transparent 34%),
+    var(--dx-sage2)!important;
+  border:1px solid rgba(23,74,54,.09)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card){
+  border:1px solid rgba(23,74,54,.10)!important;
+  background:var(--dx-paper)!important;
+  box-shadow:0 14px 34px rgba(23,74,54,.07)!important;
+}
+
+/* Four groups: visual preview before methodology. */
+body.page-diagnosis .flower-group-showcase{
+  position:relative!important;
+  isolation:isolate!important;
+  margin-top:0!important;
+  padding:72px 0 78px!important;
+  border-top:1px solid rgba(23,74,54,.09)!important;
+  border-bottom:1px solid rgba(23,74,54,.08)!important;
+  background:transparent!important;
+}
+body.page-diagnosis .flower-group-showcase .section-heading{
+  margin-bottom:28px!important;
+}
+body.page-diagnosis .flower-group-grid{
+  gap:12px!important;
+}
+body.page-diagnosis .flower-group-card{
+  padding:10px 10px 20px!important;
+  border:1px solid rgba(23,74,54,.09)!important;
+  border-radius:26px 14px 26px 14px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:0 8px 22px rgba(23,74,54,.055)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(even){
+  background:var(--dx-sage2)!important;
+}
+body.page-diagnosis .flower-group-card::before,
+body.page-diagnosis .flower-group-card::after{
+  content:none!important;
+  display:none!important;
+}
+body.page-diagnosis .flower-group-visual{
+  height:180px!important;
+  margin-bottom:16px!important;
+  border-radius:20px 11px 20px 11px!important;
+}
+body.page-diagnosis .flower-group-card h3{
+  margin:7px 2px 7px!important;
+  color:var(--dx-ink)!important;
+}
+body.page-diagnosis .flower-group-card p,
+body.page-diagnosis .flower-group-card small{
+  margin-inline:2px!important;
+  color:var(--dx-muted)!important;
+}
+
+/* Method: treat the old table-like area as an explanatory field map. */
+body.page-diagnosis .diagnosis-method-card{
+  position:relative!important;
+  margin:76px auto!important;
+  padding:clamp(26px,4vw,44px)!important;
+  border:0!important;
+  border-radius:34px 18px 34px 18px!important;
+  background:
+    radial-gradient(circle at 100% 0,rgba(255,255,255,.68),transparent 30%),
+    linear-gradient(145deg,#edf4e8 0%,#e5eee0 100%)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-method-card::before,
+body.page-diagnosis .diagnosis-method-card::after{
+  content:none!important;
+  display:none!important;
+}
+body.page-diagnosis .diagnosis-method-card>h3{
+  max-width:13em!important;
+  margin:10px 0 13px!important;
+  font-size:clamp(30px,3.4vw,46px)!important;
+  line-height:1.3!important;
+}
+body.page-diagnosis .diagnosis-method-card>p{
+  max-width:860px!important;
+}
+body.page-diagnosis .diagnosis-group-map{
+  display:grid!important;
+  grid-template-columns:minmax(92px,.6fr) repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin:28px 0 20px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+body.page-diagnosis .diagnosis-group-map__corner{
+  min-height:42px!important;
+}
+body.page-diagnosis .diagnosis-group-map__col,
+body.page-diagnosis .diagnosis-group-map__row{
+  min-height:42px!important;
+  padding:8px 10px!important;
+  border:0!important;
+  border-radius:15px 22px 15px 22px!important;
+  background:rgba(255,253,248,.74)!important;
+  color:var(--dx-green)!important;
+  font-family:var(--body)!important;
+  font-size:11px!important;
+  font-weight:850!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-group-map__row{
+  justify-content:flex-start!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell{
+  min-height:102px!important;
+  padding:17px!important;
+  border:1px solid rgba(23,74,54,.09)!important;
+  border-radius:22px 12px 22px 12px!important;
+  background:rgba(255,253,248,.92)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell--sun{
+  background:#fbf4dc!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell b{
+  color:var(--dx-ink)!important;
+  font-family:var(--display)!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell span{
+  color:var(--dx-muted)!important;
+}
+
+/* Atlas: remove the old giant "card around a grid" and large 32 watermark. */
+body.page-diagnosis .flower-atlas{
+  position:relative!important;
+  margin-top:0!important;
+  padding:76px 0 84px!important;
+  border:0!important;
+  border-top:1px solid rgba(23,74,54,.09)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-atlas-heading{
+  align-items:end!important;
+  margin-bottom:28px!important;
+  padding:0 0 24px!important;
+  border-bottom:1px solid rgba(23,74,54,.09)!important;
+}
+body.page-diagnosis .flower-atlas-grid{
+  gap:12px!important;
+}
+body.page-diagnosis .flower-atlas-card{
+  padding:9px 9px 15px!important;
+  border:1px solid rgba(23,74,54,.085)!important;
+  border-radius:22px 12px 22px 12px!important;
+  background:var(--dx-paper)!important;
+  box-shadow:0 7px 18px rgba(23,74,54,.05)!important;
+}
+body.page-diagnosis .flower-atlas-card:nth-child(2n){
+  background:#f6f8f1!important;
+}
+body.page-diagnosis .flower-atlas-card img{
+  border:0!important;
+  border-radius:17px 9px 17px 9px!important;
+}
+body.page-diagnosis .flower-atlas-footnote{
+  margin-top:22px!important;
+  padding-top:18px!important;
+  border-top:1px solid rgba(23,74,54,.08)!important;
+}
+
+/* Buttons: guarantee readable foreground/background in every section. */
+body.page-diagnosis :is(.btn,.flower-atlas-filters button,.diagnosis-mobile-start button){
+  text-shadow:none!important;
+  opacity:1!important;
+}
+body.page-diagnosis .btn--green{
+  background:var(--dx-green)!important;
+  border-color:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .btn--green:hover,
+body.page-diagnosis .btn--green:focus-visible{
+  background:var(--dx-deep)!important;
+  border-color:var(--dx-deep)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .btn--paper,
+body.page-diagnosis .btn--outline{
+  background:#fff!important;
+  border-color:rgba(23,74,54,.30)!important;
+  color:var(--dx-green)!important;
+  -webkit-text-fill-color:var(--dx-green)!important;
+}
+body.page-diagnosis .btn--paper:hover,
+body.page-diagnosis .btn--paper:focus-visible,
+body.page-diagnosis .btn--outline:hover,
+body.page-diagnosis .btn--outline:focus-visible{
+  background:var(--dx-sage)!important;
+  border-color:rgba(23,74,54,.38)!important;
+  color:var(--dx-deep)!important;
+  -webkit-text-fill-color:var(--dx-deep)!important;
+}
+body.page-diagnosis .btn--yellow,
+body.page-diagnosis .diagnosis-main-start{
+  background:#f2d56a!important;
+  border-color:#d8b940!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .btn--yellow:hover,
+body.page-diagnosis .btn--yellow:focus-visible,
+body.page-diagnosis .diagnosis-main-start:hover,
+body.page-diagnosis .diagnosis-main-start:focus-visible{
+  background:#e8c54d!important;
+  color:#102f27!important;
+  -webkit-text-fill-color:#102f27!important;
+}
+body.page-diagnosis .flower-atlas-filters{
+  gap:8px!important;
+}
+body.page-diagnosis .flower-atlas-filters button{
+  min-height:42px!important;
+  padding:0 15px!important;
+  border:1px solid rgba(23,74,54,.24)!important;
+  background:#fff!important;
+  color:var(--dx-green)!important;
+  -webkit-text-fill-color:var(--dx-green)!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .flower-atlas-filters button.is-active{
+  background:var(--dx-green)!important;
+  border-color:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .final-cta .btn--paper{
+  background:#fff!important;
+  border-color:#fff!important;
+  color:var(--dx-deep)!important;
+  -webkit-text-fill-color:var(--dx-deep)!important;
+}
+body.page-diagnosis .final-cta .btn--paper:hover,
+body.page-diagnosis .final-cta .btn--paper:focus-visible{
+  background:var(--dx-sage)!important;
+  border-color:var(--dx-sage)!important;
+  color:var(--dx-deep)!important;
+  -webkit-text-fill-color:var(--dx-deep)!important;
+}
+body.page-diagnosis .diagnosis-mobile-start{
+  padding:5px!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button{
+  min-height:48px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:13px!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button span{
+  color:rgba(255,255,255,.78)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.78)!important;
+}
+
+/* Question buttons must stay obviously clickable. */
+body.page-diagnosis .diagnosis-answer{
+  border:1px solid rgba(23,74,54,.20)!important;
+  background:#fff!important;
+  color:var(--dx-green)!important;
+}
+body.page-diagnosis .diagnosis-answer :is(kbd,span,small){
+  color:inherit!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+body.page-diagnosis .diagnosis-answer:hover,
+body.page-diagnosis .diagnosis-answer:focus-visible{
+  border-color:var(--dx-leaf)!important;
+  background:var(--dx-sage2)!important;
+  color:var(--dx-deep)!important;
+}
+body.page-diagnosis .diagnosis-answer.is-selected,
+body.page-diagnosis .diagnosis-answer[aria-pressed="true"]{
+  border-color:var(--dx-green)!important;
+  background:var(--dx-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Smooth section rhythm; no giant unexplained empty blocks. */
+body.page-diagnosis .diagnosis-method-card + .flower-atlas{
+  margin-top:0!important;
+}
+body.page-diagnosis .final-cta{
+  margin-top:0!important;
+  padding:72px 0!important;
+}
+body.page-diagnosis .final-cta .button-row{
+  gap:10px!important;
+}
+
+@media(max-width:900px){
+  body.page-diagnosis .diagnosis-shell{
+    margin-bottom:58px!important;
+  }
+  body.page-diagnosis .flower-group-showcase{
+    padding:58px 0 64px!important;
+  }
+  body.page-diagnosis .flower-group-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.page-diagnosis .diagnosis-method-card{
+    margin:58px auto!important;
+  }
+  body.page-diagnosis .flower-atlas{
+    padding:60px 0 68px!important;
+  }
+  body.page-diagnosis .flower-atlas-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:620px){
+  body.page-diagnosis .diagnosis-section{
+    padding-top:52px!important;
+  }
+  body.page-diagnosis .diagnosis-shell{
+    margin-bottom:50px!important;
+  }
+  body.page-diagnosis .flower-group-showcase{
+    padding:50px 0 56px!important;
+  }
+  body.page-diagnosis .flower-group-grid{
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .flower-group-visual{
+    height:clamp(180px,52vw,230px)!important;
+  }
+  body.page-diagnosis .diagnosis-method-card{
+    margin:50px auto!important;
+    padding:23px 18px!important;
+    border-radius:26px 14px 26px 14px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map{
+    grid-template-columns:70px repeat(2,minmax(0,1fr))!important;
+    gap:6px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__col,
+  body.page-diagnosis .diagnosis-group-map__row{
+    padding:7px 5px!important;
+    font-size:9px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__cell{
+    min-height:88px!important;
+    padding:11px 9px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__cell b{
+    font-size:15px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__cell span{
+    font-size:10px!important;
+  }
+  body.page-diagnosis .flower-atlas{
+    padding:52px 0 60px!important;
+  }
+  body.page-diagnosis .flower-atlas-heading{
+    display:block!important;
+  }
+  body.page-diagnosis .flower-atlas-filters{
+    margin-top:18px!important;
+  }
+  body.page-diagnosis .flower-atlas-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+  body.page-diagnosis .flower-atlas-card{
+    padding:7px 7px 13px!important;
+  }
+  body.page-diagnosis .flower-atlas-card b{
+    font-size:20px!important;
+  }
+  body.page-diagnosis .flower-atlas-card small{
+    font-size:10px!important;
+  }
+  body.page-diagnosis .flower-atlas-filters button{
+    min-height:40px!important;
+    padding:0 13px!important;
+  }
+  body.page-diagnosis .final-cta .button-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .final-cta .btn{
+    width:100%!important;
+  }
+}
+
+
+/* FINAL NARROW MOBILE ATLAS SAFETY / 2026-09-29 */
+body.page-diagnosis .flower-atlas-card{
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%!important;
+}
+body.page-diagnosis .flower-atlas-card :is(b,small,span,p){
+  min-width:0!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+@media(max-width:400px){
+  body.page-diagnosis .flower-atlas-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* FINAL FLOWER DIAGNOSIS COMPOSITION / 2026-09-29 */
+/* The page now reads in five clear beats:
+   hero -> start -> four flower fields -> how it works -> atlas -> final CTA.
+   Copy and diagnosis logic remain untouched. */
+
+body.page-diagnosis .diagnosis-section{
+  padding:72px 0 88px!important;
+  background:
+    linear-gradient(180deg,#fbf8ee 0%,#fbf8ee 20%,#fffdf8 20%,#fffdf8 42%,#f2f6ed 42%,#f2f6ed 58%,#fbf8ee 58%,#fbf8ee 100%)!important;
+}
+
+/* 1. Start area: editorial explanation + one unmistakable action card. */
+body.page-diagnosis .diagnosis-shell{
+  position:relative!important;
+  gap:28px!important;
+  margin-bottom:74px!important;
+}
+body.page-diagnosis .diagnosis-intro{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  min-height:100%!important;
+  padding:36px 38px!important;
+  border:0!important;
+  border-radius:36px 18px 34px 20px!important;
+  background:#edf4e8!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-intro::after{
+  content:""!important;
+  align-self:flex-end!important;
+  width:86px!important;
+  height:42px!important;
+  margin-top:16px!important;
+  border-radius:100% 0 100% 0!important;
+  background:rgba(95,143,88,.16)!important;
+  transform:rotate(-15deg)!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card){
+  position:relative!important;
+  padding:34px 36px 32px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:24px 42px 24px 38px!important;
+  background:#fffdf8!important;
+  box-shadow:0 18px 42px rgba(23,74,54,.10)!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card)::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0 auto auto 34px!important;
+  width:72px!important;
+  height:5px!important;
+  border-radius:999px!important;
+  background:#5f8f58!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-start-card h3{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-answer-guide{
+  padding:17px 18px!important;
+  border:0!important;
+  border-left:4px solid #e8c84f!important;
+  border-radius:8px 18px 18px 8px!important;
+  background:#fbf4d9!important;
+}
+body.page-diagnosis .diagnosis-answer-guide b{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-start-steps{
+  gap:10px!important;
+}
+body.page-diagnosis .diagnosis-start-steps>div{
+  min-height:86px!important;
+  padding:14px 13px!important;
+  border:0!important;
+  background:#eff5ea!important;
+}
+body.page-diagnosis .diagnosis-start-steps b{
+  color:#5f8f58!important;
+  -webkit-text-fill-color:#5f8f58!important;
+}
+body.page-diagnosis .diagnosis-start-steps span,
+body.page-diagnosis .diagnosis-start-steps small{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+/* Buttons: readable in every section, including the dark closing CTA. */
+body.page-diagnosis :is(.btn,.diagnosis-main-start,.flower-atlas-filters button,.diagnosis-answer){
+  text-shadow:none!important;
+}
+body.page-diagnosis .btn{
+  min-height:50px!important;
+  padding:0 19px!important;
+  border-width:1px!important;
+  border-style:solid!important;
+  font-size:13px!important;
+  font-weight:850!important;
+}
+body.page-diagnosis .btn--green,
+body.page-diagnosis #startDiagnosis,
+body.page-diagnosis #atlasStartDiagnosis,
+body.page-diagnosis #retryDiagnosis{
+  border-color:#174a36!important;
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:0 8px 20px rgba(23,74,54,.14)!important;
+}
+body.page-diagnosis .btn--paper,
+body.page-diagnosis .btn--outline,
+body.page-diagnosis #resumeDiagnosis{
+  border-color:rgba(23,74,54,.30)!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .btn--yellow,
+body.page-diagnosis .diagnosis-main-start{
+  border-color:#d5b638!important;
+  background:#f3d86b!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  box-shadow:0 8px 20px rgba(84,67,13,.10)!important;
+}
+body.page-diagnosis .diagnosis-main-start{
+  min-height:56px!important;
+  font-size:14px!important;
+}
+@media(hover:hover){
+  body.page-diagnosis .btn--green:hover,
+  body.page-diagnosis #startDiagnosis:hover,
+  body.page-diagnosis #atlasStartDiagnosis:hover,
+  body.page-diagnosis #retryDiagnosis:hover{
+    background:#0f3a2a!important;
+    border-color:#0f3a2a!important;
+  }
+  body.page-diagnosis .btn--paper:hover,
+  body.page-diagnosis .btn--outline:hover{
+    border-color:#174a36!important;
+    background:#edf4e8!important;
+  }
+  body.page-diagnosis .btn--yellow:hover,
+  body.page-diagnosis .diagnosis-main-start:hover{
+    background:#e8c84f!important;
+  }
+}
+
+/* 2. The four flower fields come before the technical explanation. */
+body.page-diagnosis .flower-group-showcase{
+  width:min(1180px,calc(100% - 40px))!important;
+  max-width:none!important;
+  margin:0 auto 76px!important;
+  padding:66px 0 68px!important;
+  background:transparent!important;
+}
+body.page-diagnosis .flower-group-showcase::before{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:0!important;
+  width:100vw!important;
+  height:100%!important;
+  transform:translateX(-50%)!important;
+  background:#fffdf8!important;
+  z-index:-1!important;
+}
+body.page-diagnosis .flower-group-showcase .section-heading{
+  margin-bottom:30px!important;
+}
+body.page-diagnosis .flower-group-grid{
+  gap:16px!important;
+}
+body.page-diagnosis .flower-group-card{
+  padding:10px 10px 22px!important;
+  border:0!important;
+  border-radius:28px 14px 28px 16px!important;
+  background:#f2f6ed!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(2n){
+  background:#fbf4df!important;
+}
+body.page-diagnosis .flower-group-visual{
+  height:178px!important;
+  margin-bottom:17px!important;
+  border-radius:22px 11px 22px 11px!important;
+}
+body.page-diagnosis .flower-group-card h3{
+  margin:9px 4px 7px!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .flower-group-card p,
+body.page-diagnosis .flower-group-card small{
+  margin-inline:4px!important;
+}
+
+/* 3. Method section: one calm explainer, not another white dashboard card. */
+body.page-diagnosis .diagnosis-section>.container:has(.diagnosis-method-card){
+  width:min(1040px,calc(100% - 40px))!important;
+  margin:0 auto 82px!important;
+}
+body.page-diagnosis .diagnosis-method-card{
+  padding:38px 42px 40px!important;
+  border:0!important;
+  border-radius:38px 18px 36px 20px!important;
+  background:#eaf2e6!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-method-card h3{
+  margin-top:8px!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-group-map{
+  gap:9px!important;
+  margin:25px 0 18px!important;
+  padding:16px!important;
+  border:0!important;
+  border-radius:26px 14px 26px 14px!important;
+  background:rgba(255,253,248,.74)!important;
+}
+body.page-diagnosis .diagnosis-group-map__corner{
+  background:transparent!important;
+}
+body.page-diagnosis .diagnosis-group-map__col,
+body.page-diagnosis .diagnosis-group-map__row{
+  min-height:44px!important;
+  border:0!important;
+  border-radius:15px 10px 15px 10px!important;
+  background:#dce9d6!important;
+  color:#355c4e!important;
+  -webkit-text-fill-color:#355c4e!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell,
+body.page-diagnosis .diagnosis-group-map__cell--sun{
+  min-height:94px!important;
+  padding:16px!important;
+  border:1px solid rgba(23,74,54,.10)!important;
+  border-radius:19px 11px 19px 11px!important;
+  background:#fffdf8!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell b{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-group-map__cell span{
+  color:#5a6e63!important;
+  -webkit-text-fill-color:#5a6e63!important;
+}
+
+/* 4. Atlas: remove the giant leftover card shell; let the gallery itself be the section. */
+body.page-diagnosis .flower-atlas{
+  width:min(1180px,calc(100% - 40px))!important;
+  max-width:none!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-atlas-heading{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:24px!important;
+  align-items:end!important;
+  margin:0 0 28px!important;
+  padding:0 0 22px!important;
+  border-bottom:1px solid rgba(23,74,54,.12)!important;
+}
+body.page-diagnosis .flower-atlas-filters{
+  justify-content:flex-end!important;
+}
+body.page-diagnosis .flower-atlas-filters button{
+  min-width:48px!important;
+  min-height:40px!important;
+  padding:0 13px!important;
+  border:1px solid rgba(23,74,54,.22)!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .flower-atlas-filters button.is-active{
+  border-color:#174a36!important;
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .flower-atlas-grid{
+  gap:14px!important;
+}
+body.page-diagnosis .flower-atlas-card{
+  padding:9px 9px 15px!important;
+  border:1px solid rgba(23,74,54,.09)!important;
+  border-radius:24px 12px 24px 14px!important;
+  background:#fffdf8!important;
+  box-shadow:0 8px 20px rgba(23,74,54,.055)!important;
+}
+body.page-diagnosis .flower-atlas-card:nth-child(4n+2),
+body.page-diagnosis .flower-atlas-card:nth-child(4n+3){
+  background:#f0f5eb!important;
+}
+body.page-diagnosis .flower-atlas-card img{
+  margin-bottom:11px!important;
+  border:0!important;
+  border-radius:18px 9px 18px 9px!important;
+}
+body.page-diagnosis .flower-atlas-card b{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .flower-atlas-footnote{
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  align-items:center!important;
+  margin-top:20px!important;
+  padding:14px 0 0!important;
+  border-top:1px solid rgba(23,74,54,.10)!important;
+}
+body.page-diagnosis .flower-atlas-footnote a{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-weight:800!important;
+}
+
+/* 5. Closing CTA: strong contrast for both choices. */
+body.page-diagnosis .final-cta{
+  padding:74px 0!important;
+  background:#154638!important;
+}
+body.page-diagnosis .final-cta h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .final-cta p{
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+}
+body.page-diagnosis .final-cta .btn--yellow{
+  border-color:#f3d86b!important;
+  background:#f3d86b!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .final-cta .btn--paper{
+  border-color:#fff!important;
+  background:#fff!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
+/* Question / result controls keep the same palette once the interactive flow starts. */
+body.page-diagnosis .diagnosis-answer{
+  border:1px solid rgba(23,74,54,.18)!important;
+  background:#f0f5eb!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .diagnosis-answer :is(kbd,span,small){
+  color:inherit!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+body.page-diagnosis .diagnosis-answer:is(:hover,:focus-visible){
+  border-color:#5f8f58!important;
+  background:#e4eedf!important;
+}
+body.page-diagnosis .diagnosis-answer.is-selected,
+body.page-diagnosis .diagnosis-answer[aria-pressed="true"]{
+  border-color:#174a36!important;
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button span{
+  color:#355c4e!important;
+  -webkit-text-fill-color:#355c4e!important;
+  font-weight:800!important;
+}
+
+@media(max-width:900px){
+  body.page-diagnosis .diagnosis-section{
+    background:#fbf8ee!important;
+  }
+  body.page-diagnosis .diagnosis-shell{
+    margin-bottom:58px!important;
+  }
+  body.page-diagnosis .flower-group-showcase{
+    margin-bottom:58px!important;
+    padding:54px 0 56px!important;
+  }
+  body.page-diagnosis .diagnosis-section>.container:has(.diagnosis-method-card){
+    margin-bottom:62px!important;
+  }
+  body.page-diagnosis .diagnosis-method-card{
+    padding:30px!important;
+  }
+  body.page-diagnosis .flower-atlas-heading{
+    grid-template-columns:1fr!important;
+    align-items:start!important;
+  }
+  body.page-diagnosis .flower-atlas-filters{
+    justify-content:flex-start!important;
+  }
+}
+@media(max-width:620px){
+  body.page-diagnosis .diagnosis-section{
+    padding:52px 0 68px!important;
+  }
+  body.page-diagnosis .diagnosis-intro,
+  body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card){
+    padding:24px 22px!important;
+  }
+  body.page-diagnosis .diagnosis-start-steps{
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .diagnosis-start-steps>div{
+    min-height:0!important;
+  }
+  body.page-diagnosis .flower-group-showcase,
+  body.page-diagnosis .flower-atlas{
+    width:min(100% - 28px,1180px)!important;
+  }
+  body.page-diagnosis .diagnosis-section>.container:has(.diagnosis-method-card){
+    width:min(100% - 28px,1040px)!important;
+  }
+  body.page-diagnosis .diagnosis-method-card{
+    padding:23px 18px!important;
+    border-radius:28px 14px 28px 16px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map{
+    grid-template-columns:70px repeat(2,minmax(0,1fr))!important;
+    gap:6px!important;
+    padding:10px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__col,
+  body.page-diagnosis .diagnosis-group-map__row{
+    padding:6px!important;
+    font-size:9px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__cell,
+  body.page-diagnosis .diagnosis-group-map__cell--sun{
+    min-height:82px!important;
+    padding:11px 9px!important;
+  }
+  body.page-diagnosis .diagnosis-group-map__cell b{font-size:14px!important}
+  body.page-diagnosis .diagnosis-group-map__cell span{font-size:9px!important}
+  body.page-diagnosis .flower-atlas-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  body.page-diagnosis .flower-atlas-card{
+    padding:7px 7px 13px!important;
+  }
+  body.page-diagnosis .flower-atlas-footnote{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  body.page-diagnosis .final-cta{
+    padding:58px 0!important;
+  }
+  body.page-diagnosis .final-cta .button-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .final-cta .button-row>*{
+    width:100%!important;
+  }
+}
+
+
+/* FINAL MOBILE START BUTTON CONTRAST / 2026-09-29 */
+body.page-diagnosis .diagnosis-mobile-start #mobileStartDiagnosis{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .diagnosis-mobile-start #mobileStartDiagnosis>span{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  font-weight:800!important;
+}
+
+
+/* FINAL ATLAS CARD FLOW / 2026-09-29 */
+body.page-diagnosis .flower-atlas-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:auto auto auto 1fr!important;
+  gap:0!important;
+  align-items:start!important;
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  text-align:left!important;
+}
+body.page-diagnosis .flower-atlas-card img{
+  grid-column:1!important;
+  grid-row:auto!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  aspect-ratio:4/3!important;
+  object-fit:cover!important;
+  margin:0 0 11px!important;
+}
+body.page-diagnosis .flower-atlas-card>span,
+body.page-diagnosis .flower-atlas-card>b,
+body.page-diagnosis .flower-atlas-card>small{
+  grid-column:1!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+body.page-diagnosis .flower-atlas-card>b,
+body.page-diagnosis .flower-atlas-card>small{
+  padding-inline:2px!important;
+}
+
+
+/* ===== SOURCE: diagnosis-result-clean-20260929.css ===== */
+/* Flower diagnosis result cleanup / 2026-09-29
+   Result-only visual layer. Copy, scoring, flower data and diagnosis logic are unchanged. */
+
+body.page-diagnosis .diagnosis-result{
+  --result-ink:#1d342a;
+  --result-muted:#617068;
+  --result-line:rgba(29,52,42,.14);
+  --result-soft:#f6f7f3;
+  --result-paper:#fff;
+  --result-green:#174a36;
+}
+
+/* Keep result typography plain and readable. */
+body.page-diagnosis .diagnosis-result,
+body.page-diagnosis .diagnosis-result :is(p,li,span,small,b,strong,h2,h3,h4,a,button){
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif!important;
+}
+body.page-diagnosis .diagnosis-result :is(h2,h3,h4){
+  font-style:normal!important;
+  letter-spacing:-.02em!important;
+  text-wrap:pretty;
+}
+
+/* Result blocks: one calm visual system instead of many decorative card shapes. */
+body.page-diagnosis :is(
+  .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+  .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+  .result-practice-card,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.neighbor-card,.collaboration-card,
+  .result-month-plan,.result-share-section,.result-next-action
+){
+  border:1px solid var(--result-line)!important;
+  border-radius:18px!important;
+  background:var(--result-paper)!important;
+  box-shadow:none!important;
+}
+
+body.page-diagnosis :is(
+  .result-snapshot-grid>article,
+  .result-quick-grid>article,
+  .group-profile-grid>div,
+  .life-scene-grid>article,
+  .result-communication-grid>article,
+  .axis-narrative-grid>article,
+  .axis-bars>div
+){
+  min-width:0!important;
+  border:1px solid rgba(29,52,42,.10)!important;
+  border-radius:14px!important;
+  background:var(--result-soft)!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+
+body.page-diagnosis :is(
+  .result-snapshot-grid>article,
+  .result-quick-grid>article,
+  .group-profile-grid>div,
+  .life-scene-grid>article,
+  .result-communication-grid>article,
+  .axis-narrative-grid>article
+) :is(h4,p,span,small,strong,b){
+  position:static!important;
+  transform:none!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  line-height:1.75!important;
+}
+
+body.page-diagnosis :is(.result-snapshot-grid,.result-quick-grid,.group-profile-grid,.life-scene-grid,.result-communication-grid,.axis-narrative-grid){
+  align-items:stretch!important;
+}
+
+body.page-diagnosis .result-kicker{
+  width:max-content!important;
+  max-width:100%!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--result-green)!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  letter-spacing:.08em!important;
+  line-height:1.4!important;
+}
+
+body.page-diagnosis .diagnosis-result h3{
+  color:var(--result-ink)!important;
+  line-height:1.35!important;
+}
+body.page-diagnosis .diagnosis-result h4{
+  color:var(--result-ink)!important;
+  line-height:1.45!important;
+}
+body.page-diagnosis .diagnosis-result p{
+  color:var(--result-muted)!important;
+}
+
+/* Share area: simple editorial preview, no decorative container effects. */
+body.page-diagnosis .result-share-section{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(280px,410px)!important;
+  gap:32px!important;
+  align-items:center!important;
+  padding:32px!important;
+}
+body.page-diagnosis .result-share-copy{
+  min-width:0!important;
+}
+body.page-diagnosis .result-share-copy h3{
+  margin:.35rem 0 .75rem!important;
+  font-size:clamp(25px,3vw,36px)!important;
+  line-height:1.3!important;
+}
+body.page-diagnosis .result-share-copy>p:not(.result-kicker):not(.diagnosis-copy-status){
+  max-width:42rem!important;
+  line-height:1.85!important;
+}
+body.page-diagnosis .result-share-preview{
+  display:grid!important;
+  place-items:center!important;
+  min-width:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+body.page-diagnosis .result-share-preview img,
+body.page-diagnosis #resultShareImage{
+  display:block!important;
+  width:100%!important;
+  max-width:390px!important;
+  height:auto!important;
+  aspect-ratio:4/5!important;
+  object-fit:cover!important;
+  border:1px solid var(--result-line)!important;
+  border-radius:10px!important;
+  background:#f7f5ef!important;
+  box-shadow:none!important;
+}
+
+/* Keep buttons from colliding when labels wrap. */
+body.page-diagnosis .result-share-section .button-row{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+}
+body.page-diagnosis .result-share-section .btn{
+  min-height:46px!important;
+  white-space:normal!important;
+  line-height:1.35!important;
+}
+
+@media(max-width:760px){
+  body.page-diagnosis .result-share-section{
+    grid-template-columns:1fr!important;
+    gap:24px!important;
+    padding:22px!important;
+  }
+  body.page-diagnosis .result-share-preview{
+    order:-1;
+  }
+  body.page-diagnosis #resultShareImage{
+    max-width:340px!important;
+  }
+}
+
+@media(max-width:560px){
+  body.page-diagnosis :is(
+    .result-personal-snapshot,.result-quick-summary,.result-group-profile,
+    .result-card,.result-rich-insights,.result-deep-dive,.result-long-card,
+    .result-practice-card,.result-life-scenes,.result-reflection,
+    .result-tendency-section,.neighbor-card,.collaboration-card,
+    .result-month-plan,.result-share-section,.result-next-action
+  ){
+    border-radius:14px!important;
+  }
+  body.page-diagnosis .result-share-section{
+    padding:18px!important;
+  }
+  body.page-diagnosis .result-share-section .button-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .result-share-section .btn{
+    width:100%!important;
+    justify-content:center!important;
+  }
+}
+
+/* ===== SOURCE: diagnosis-social-20260929.css ===== */
+/* Premium editorial share section / 2026-09-29 */
+
+body.page-diagnosis .result-share-section{
+  display:block!important;
+  padding:clamp(26px,4vw,44px)!important;
+  border:1px solid rgba(24,55,45,.13)!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  overflow:hidden;
+}
+body.page-diagnosis .result-share-heading{
+  max-width:760px;
+}
+body.page-diagnosis .result-share-heading .result-kicker{
+  margin:0 0 10px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#174a36!important;
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  letter-spacing:.12em!important;
+}
+body.page-diagnosis .result-share-heading h3{
+  margin:0!important;
+  color:#18372d!important;
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-size:clamp(29px,3.8vw,44px)!important;
+  line-height:1.32!important;
+  letter-spacing:-.035em!important;
+}
+body.page-diagnosis .result-share-heading>p:not(.result-kicker){
+  margin:14px 0 0!important;
+  max-width:700px;
+  color:#65736c!important;
+  font-size:14px!important;
+  line-height:1.9!important;
+}
+
+body.page-diagnosis .result-share-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);
+  gap:clamp(28px,4vw,48px);
+  align-items:start;
+  margin-top:34px;
+}
+body.page-diagnosis .result-share-main-preview{
+  margin:0;
+  min-width:0;
+}
+body.page-diagnosis .result-share-main-preview img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:4/5!important;
+  object-fit:cover!important;
+  border:1px solid rgba(24,55,45,.14)!important;
+  border-radius:0!important;
+  background:#f7f4ec!important;
+  box-shadow:0 16px 40px rgba(24,55,45,.08)!important;
+}
+body.page-diagnosis .result-share-side{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+body.page-diagnosis .result-share-notes{
+  padding:0 0 22px;
+  border-bottom:1px solid rgba(24,55,45,.12);
+}
+body.page-diagnosis .result-share-notes>span{
+  display:block;
+  margin-bottom:10px;
+  color:#69766f!important;
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  letter-spacing:.08em;
+}
+body.page-diagnosis .result-share-notes ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+body.page-diagnosis .result-share-notes li{
+  position:relative;
+  padding:7px 0 7px 18px;
+  color:#2a4137!important;
+  font-size:14px!important;
+  line-height:1.65!important;
+}
+body.page-diagnosis .result-share-notes li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:1.05em;
+  width:6px;
+  height:1px;
+  background:#6d7a73;
+}
+
+body.page-diagnosis .result-social-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+body.page-diagnosis .result-social-actions #shareDiagnosisCard{
+  grid-column:1/-1;
+}
+body.page-diagnosis .result-social-actions .btn{
+  width:100%!important;
+  min-height:46px!important;
+  justify-content:center!important;
+  white-space:normal!important;
+  line-height:1.35!important;
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+}
+
+body.page-diagnosis .result-story-block{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 126px;
+  gap:18px;
+  align-items:center;
+  padding-top:24px;
+  border-top:1px solid rgba(24,55,45,.12);
+}
+body.page-diagnosis .result-story-copy .result-kicker{
+  margin:0 0 7px!important;
+  padding:0!important;
+  background:transparent!important;
+  color:#174a36!important;
+  font-size:10px!important;
+  letter-spacing:.1em!important;
+}
+body.page-diagnosis .result-story-copy h4{
+  margin:0 0 9px!important;
+  color:#18372d!important;
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-size:20px!important;
+  line-height:1.45!important;
+  letter-spacing:-.02em!important;
+}
+body.page-diagnosis .result-story-copy p{
+  margin:0 0 15px!important;
+  color:#68756f!important;
+  font-size:12px!important;
+  line-height:1.8!important;
+}
+body.page-diagnosis .result-story-copy .btn{
+  min-height:42px!important;
+  width:100%!important;
+  justify-content:center!important;
+}
+body.page-diagnosis .result-story-preview{
+  margin:0;
+}
+body.page-diagnosis .result-story-preview img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:9/16!important;
+  object-fit:cover!important;
+  border:1px solid rgba(24,55,45,.14)!important;
+  border-radius:0!important;
+  background:#f7f4ec!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-copy-status{
+  min-height:1.5em;
+  margin:16px 0 0!important;
+  color:#5e6b65!important;
+  font-size:12px!important;
+  line-height:1.6!important;
+}
+
+@media(max-width:880px){
+  body.page-diagnosis .result-share-layout{
+    grid-template-columns:1fr;
+  }
+  body.page-diagnosis .result-share-main-preview{
+    max-width:620px;
+    margin-inline:auto;
+  }
+  body.page-diagnosis .result-share-side{
+    max-width:620px;
+    width:100%;
+    margin-inline:auto;
+  }
+}
+@media(max-width:560px){
+  body.page-diagnosis .result-share-section{
+    padding:20px!important;
+    border-radius:12px!important;
+  }
+  body.page-diagnosis .result-share-heading h3{
+    font-size:29px!important;
+  }
+  body.page-diagnosis .result-social-actions{
+    grid-template-columns:1fr;
+  }
+  body.page-diagnosis .result-social-actions #shareDiagnosisCard{
+    grid-column:auto;
+  }
+  body.page-diagnosis .result-story-block{
+    grid-template-columns:1fr 110px;
+  }
+}
+@media(max-width:410px){
+  body.page-diagnosis .result-story-block{
+    grid-template-columns:1fr;
+  }
+  body.page-diagnosis .result-story-preview{
+    order:-1;
+    width:130px;
+  }
+}
+
+/* ===== SOURCE: diagnosis-polish-20261002.css ===== */
+/* Diagnosis page polish — 2026-10-02
+   Goal: make the diagnosis easy to start, keep the explanation optional,
+   and connect the experience back to NOTO Re:Bloom. */
+
+body.page-diagnosis{
+  --diag-green:#174a36;
+  --diag-deep:#123d32;
+  --diag-yellow:#f2c94c;
+  --diag-paper:#fffaf0;
+  --diag-mint:#eef5ea;
+  --diag-ink:#173f34;
+  --diag-muted:#5d6f66;
+}
+
+/* ===== HERO ===== */
+body.page-diagnosis .diagnosis-hero-final{
+  padding-top:126px!important;
+  padding-bottom:72px!important;
+  background:
+    radial-gradient(circle at 10% 18%,rgba(242,201,76,.16),transparent 22%),
+    radial-gradient(circle at 90% 78%,rgba(90,145,92,.16),transparent 22%),
+    linear-gradient(180deg,#f6efdc 0%,#fffaf0 100%)!important;
+}
+body.page-diagnosis .diagnosis-hero-final .page-hero-grid{
+  grid-template-columns:minmax(0,.95fr) minmax(420px,1.05fr)!important;
+  gap:clamp(40px,5.5vw,76px)!important;
+  align-items:center!important;
+}
+body.page-diagnosis .diagnosis-hero-final h1{
+  max-width:760px!important;
+  font-size:clamp(50px,5.5vw,80px)!important;
+  line-height:1.04!important;
+  letter-spacing:-.05em!important;
+}
+body.page-diagnosis .diagnosis-hero-final .hero-sticker-note{
+  width:max-content!important;
+  max-width:100%!important;
+  margin:20px 0 18px!important;
+  padding:8px 12px!important;
+  border-radius:999px!important;
+  background:#e8f0e5!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-size:10px!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .diagnosis-hero-final .photo-frame{
+  transform:none!important;
+  overflow:hidden!important;
+  border-radius:34px 16px 36px 18px!important;
+  border-color:rgba(23,74,54,.12)!important;
+  box-shadow:0 24px 56px rgba(23,58,49,.12)!important;
+}
+body.page-diagnosis .diagnosis-hero-final .photo-frame img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:4/3!important;
+  object-fit:cover!important;
+}
+body.page-diagnosis .diagnosis-hero-final .button-row{
+  gap:8px!important;
+}
+body.page-diagnosis .diagnosis-hero-final .btn--green{
+  background:#174a36!important;
+  border-color:#174a36!important;
+}
+body.page-diagnosis .diagnosis-hero-final .btn--paper{
+  background:#fffaf0!important;
+  border-color:rgba(23,74,54,.14)!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
+/* ===== START AREA ===== */
+body.page-diagnosis .diagnosis-section{
+  padding-top:74px!important;
+  background:#fffdf8!important;
+}
+body.page-diagnosis .diagnosis-shell{
+  display:grid!important;
+  grid-template-columns:minmax(0,.82fr) minmax(420px,1.18fr)!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+body.page-diagnosis .diagnosis-intro{
+  padding:30px 28px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:24px!important;
+  background:#f5f3e9!important;
+}
+body.page-diagnosis .diagnosis-intro h2{
+  margin-top:10px!important;
+  font-size:clamp(28px,3.4vw,42px)!important;
+  line-height:1.28!important;
+}
+body.page-diagnosis .diagnosis-intro .diagnosis-tags{
+  gap:6px!important;
+}
+body.page-diagnosis .diagnosis-intro .diagnosis-tags li{
+  background:#fffdf8!important;
+  border-color:rgba(23,74,54,.10)!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card){
+  padding:32px 30px!important;
+  border:0!important;
+  border-radius:24px!important;
+  background:
+    radial-gradient(circle at 88% 14%,rgba(242,201,76,.12),transparent 24%),
+    linear-gradient(145deg,#123d32,#174b3d)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) :is(h3,p,b,span,small){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-label{
+  color:#f2c94c!important;
+  -webkit-text-fill-color:#f2c94c!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-answer-guide{
+  border-color:rgba(255,255,255,.15)!important;
+  background:rgba(255,255,255,.07)!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-steps{
+  gap:0!important;
+  border-top:1px solid rgba(255,255,255,.17)!important;
+  border-bottom:1px solid rgba(255,255,255,.17)!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-steps>div{
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-steps>div+div{
+  border-left:1px solid rgba(255,255,255,.14)!important;
+}
+body.page-diagnosis .diagnosis-main-start{
+  margin-top:22px!important;
+  background:#f2c94c!important;
+  border-color:#f2c94c!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  font-weight:950!important;
+}
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-purpose-note,
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-note{
+  color:rgba(255,255,255,.68)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.68)!important;
+  font-size:10.5px!important;
+}
+
+/* ===== PROJECT CONNECTION ===== */
+body.page-diagnosis .diagnosis-project-note{
+  margin-top:28px!important;
+  padding:0 20px!important;
+  background:#fffdf8!important;
+}
+body.page-diagnosis .diagnosis-project-note__inner{
+  width:min(1120px,100%)!important;
+  margin:0 auto!important;
+  padding:24px 26px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:24px!important;
+  align-items:center!important;
+  border-top:1px solid rgba(23,74,54,.15)!important;
+  border-bottom:1px solid rgba(23,74,54,.15)!important;
+}
+body.page-diagnosis .diagnosis-project-note h2{
+  margin:8px 0 7px!important;
+  font-size:clamp(24px,3vw,36px)!important;
+  line-height:1.25!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-project-note p{
+  max-width:820px!important;
+  color:#5d6f66!important;
+  -webkit-text-fill-color:#5d6f66!important;
+  line-height:1.8!important;
+}
+body.page-diagnosis .diagnosis-project-note__link{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:44px!important;
+  padding:0 15px!important;
+  border-radius:999px!important;
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-decoration:none!important;
+  font-size:11px!important;
+  font-weight:950!important;
+  white-space:nowrap!important;
+}
+
+/* ===== EXPLANATION SECTIONS: secondary to actually taking the diagnosis ===== */
+body.page-diagnosis .flower-group-showcase{
+  margin-top:72px!important;
+}
+body.page-diagnosis .flower-group-grid{
+  gap:10px!important;
+}
+body.page-diagnosis .flower-group-card{
+  border-color:rgba(23,74,54,.11)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .diagnosis-method-card{
+  margin-top:54px!important;
+  border:1px solid rgba(23,74,54,.11)!important;
+  background:#f6f3e9!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .flower-atlas{
+  margin-top:76px!important;
+}
+body.page-diagnosis .flower-atlas-heading{
+  border-bottom:1px solid rgba(23,74,54,.12)!important;
+  padding-bottom:22px!important;
+}
+body.page-diagnosis .flower-atlas-filters button{
+  border-color:rgba(23,74,54,.13)!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .flower-atlas-filters button.is-active{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* ===== RESULT: make the short summary the obvious first stop ===== */
+body.page-diagnosis .result-quick-summary{
+  border:0!important;
+  background:linear-gradient(145deg,#eef5ea,#f8f9f3)!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .result-quick-head .result-kicker{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .result-quick-grid{
+  gap:0!important;
+  border-top:1px solid rgba(23,74,54,.14)!important;
+  border-bottom:1px solid rgba(23,74,54,.14)!important;
+}
+body.page-diagnosis .result-quick-grid>article{
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.page-diagnosis .result-quick-grid>article+article{
+  border-left:1px solid rgba(23,74,54,.12)!important;
+}
+body.page-diagnosis .result-detail-toggle-wrap .btn--paper{
+  background:#174a36!important;
+  border-color:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* ===== FINAL CTA: use the end of the diagnosis to introduce the project ===== */
+body.page-diagnosis .diagnosis-project-cta{
+  padding-top:88px!important;
+  padding-bottom:92px!important;
+  background:
+    radial-gradient(circle at 12% 18%,rgba(242,201,76,.12),transparent 24%),
+    linear-gradient(145deg,#123d32,#174b3d)!important;
+}
+body.page-diagnosis .diagnosis-project-cta .container{
+  max-width:920px!important;
+}
+body.page-diagnosis .diagnosis-project-cta :is(h2,p){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .diagnosis-project-cta>div>p:not(.eyebrow){
+  color:rgba(255,255,255,.80)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.80)!important;
+}
+body.page-diagnosis .diagnosis-project-cta .eyebrow{
+  background:#f2c94c!important;
+}
+body.page-diagnosis .diagnosis-project-cta .eyebrow span{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-project-cta .final-flower{
+  background:#fffaf0!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+body.page-diagnosis .diagnosis-project-cta .btn--yellow{
+  background:#f2c94c!important;
+  border-color:#f2c94c!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-diagnosis .diagnosis-project-cta .btn--paper{
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(255,255,255,.28)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Keep the mobile start dock readable. */
+body.page-diagnosis .diagnosis-mobile-start button{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-diagnosis .diagnosis-mobile-start button span{
+  color:rgba(255,255,255,.76)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.76)!important;
+}
+
+@media(max-width:900px){
+  body.page-diagnosis .diagnosis-hero-final{
+    padding-top:112px!important;
+  }
+  body.page-diagnosis .diagnosis-hero-final .page-hero-grid,
+  body.page-diagnosis .diagnosis-shell{
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .diagnosis-project-note__inner{
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .diagnosis-project-note__link{
+    width:max-content!important;
+  }
+  body.page-diagnosis .result-quick-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.page-diagnosis .result-quick-grid>article:nth-child(3){
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.12)!important;
+  }
+  body.page-diagnosis .result-quick-grid>article:nth-child(4){
+    border-top:1px solid rgba(23,74,54,.12)!important;
+  }
+}
+@media(max-width:640px){
+  body.page-diagnosis .diagnosis-hero-final{
+    padding-top:96px!important;
+    padding-bottom:52px!important;
+  }
+  body.page-diagnosis .diagnosis-hero-final h1{
+    font-size:clamp(38px,11vw,52px)!important;
+  }
+  body.page-diagnosis .diagnosis-shell{
+    gap:12px!important;
+  }
+  body.page-diagnosis .diagnosis-intro,
+  body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card){
+    padding:22px!important;
+    border-radius:20px!important;
+  }
+  body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-steps{
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-steps>div+div{
+    border-left:0!important;
+    border-top:1px solid rgba(255,255,255,.14)!important;
+  }
+  body.page-diagnosis .diagnosis-project-note{
+    padding-inline:12px!important;
+  }
+  body.page-diagnosis .diagnosis-project-note__inner{
+    padding:20px 6px!important;
+  }
+  body.page-diagnosis .diagnosis-project-note__link{
+    width:100%!important;
+  }
+  body.page-diagnosis .result-quick-grid{
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .result-quick-grid>article+article,
+  body.page-diagnosis .result-quick-grid>article:nth-child(3),
+  body.page-diagnosis .result-quick-grid>article:nth-child(4){
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.12)!important;
+  }
+  body.page-diagnosis .diagnosis-project-cta .button-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  body.page-diagnosis .diagnosis-project-cta .button-row .btn{
+    width:100%!important;
+  }
+}
+
+/* Start-step numbers stay legible regardless of older card styles. */
+body.page-diagnosis .diagnosis-start-card:not(.diagnosis-method-card) .diagnosis-start-steps b{
+  display:grid!important;
+  place-items:center!important;
+  width:30px!important;
+  height:30px!important;
+  border-radius:50%!important;
+  background:#f2c94c!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+
+

@@ -1,0 +1,3262 @@
+/* learn.html verified CSS run 2/2. Generated 2026-10-02 from: typography-responsive-20260928.css, plant-art-20260929.css, learn-polish-20261001.css */
+
+/* ===== SOURCE: typography-responsive-20260928.css ===== */
+/*
+  Cross-site typography + responsive line-breaking pass
+  2026-09-28
+  Loaded last on every top-level page so page-specific bundles cannot
+  accidentally make one page feel typographically different.
+*/
+:root{
+  --rb-final-body:var(--body,var(--sans,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif));
+  --rb-final-display:var(--display,var(--serif,"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif));
+}
+
+html{
+  line-break:strict;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+dialog{
+  font-family:var(--rb-final-body)!important;
+}
+
+/* Navigation/chrome must look identical on every page. */
+.site-header,
+.site-header .brand,
+.site-header .brand b,
+.site-header .brand small,
+.site-nav,
+.site-nav a,
+.header-actions,
+.header-actions .btn,
+.menu-button{
+  font-family:var(--rb-final-body)!important;
+}
+.site-nav a{font-weight:800!important}
+.site-header .brand b{font-weight:700!important}
+
+/*
+  Japanese body copy:
+  do not use auto-phrase/pretty wrapping globally. They can create
+  surprisingly early breaks depending on viewport and browser.
+*/
+:where(
+  p,li,dd,dt,figcaption,small,
+  .hero-lead,.source-note,.callout,
+  .status-list,.timeline,.faq-list,
+  .result-card,.result-copy,.result-group-profile,
+  .result-deep-dive,.result-life-scenes,.result-reflection,
+  .result-tendency-section,.result-month-plan,.result-next-action
+){
+  text-wrap:wrap!important;
+  word-break:normal!important;
+  overflow-wrap:break-word;
+  line-break:strict;
+}
+
+/* Headings may balance on roomy screens, but keep Japanese break rules sane. */
+:where(
+  h1,h2,h3,h4,
+  .section-heading h2,
+  .page-hero h1,
+  .hero h1
+){
+  font-family:var(--rb-final-display)!important;
+  word-break:normal!important;
+  overflow-wrap:break-word;
+  line-break:strict;
+  text-wrap:balance;
+}
+
+/* Flower diagnosis: remove all remaining lighter page-only heading weights. */
+body.page-diagnosis{
+  font-family:var(--rb-final-body)!important;
+}
+body.page-diagnosis :where(
+  h1,h2,h3,h4,
+  .page-hero h1,
+  .section-heading h2,
+  .diagnosis-intro h2,
+  .diagnosis-start-card h3,
+  .diagnosis-method-card h3,
+  .diagnosis-question,
+  .flower-group-card h3,
+  .flower-atlas-heading h2,
+  .flower-atlas-card b,
+  .atlas-dialog-grid h2,
+  .result-copy h2,
+  .result-card h3,
+  .result-group-profile h3,
+  .result-deep-dive h3,
+  .result-life-scenes h3,
+  .result-reflection h3,
+  .result-tendency-section h3,
+  .result-month-plan h3,
+  .result-next-action h3,
+  .result-rich-insights h3,
+  .result-rich-insights h4,
+  .result-reason-card h4,
+  .result-share-copy h3,
+  .final-cta h2
+){
+  font-family:var(--rb-final-display)!important;
+  font-weight:900!important;
+}
+body.page-diagnosis .site-nav a{
+  font-family:var(--rb-final-body)!important;
+  font-weight:800!important;
+}
+body.page-diagnosis .brand b{
+  font-family:var(--rb-final-body)!important;
+  font-weight:700!important;
+}
+
+/*
+  Tablet/mobile: desktop-authored <br> positions often produce 1–3 character
+  fragments. Let the viewport choose the break instead.
+*/
+@media(max-width:820px){
+  :where(h1,h2) br{
+    display:none!important;
+  }
+  :where(h1,h2){
+    text-wrap:wrap!important;
+    word-break:normal!important;
+    overflow-wrap:break-word;
+  }
+  :where(p,li,dd,dt,figcaption){
+    text-wrap:wrap!important;
+  }
+}
+
+@media(max-width:600px){
+  :where(h1,h2,h3,h4){
+    letter-spacing:0!important;
+  }
+  :where(p,li,dd,dt){
+    line-height:1.82;
+  }
+}
+
+
+/* ===== SOURCE: plant-art-20260929.css ===== */
+/* NOTO Re:Bloom — Botanical Theme 2026-09-28
+   Design-only override. No copy/content changes. */
+:root{
+  --plant-forest:#174a36;
+  --plant-forest-2:#0f3a2a;
+  --plant-leaf:#5f8f58;
+  --plant-leaf-2:#7da66f;
+  --plant-sage:#dfe9d8;
+  --plant-sage-2:#eef3e8;
+  --plant-cream:#fbf8ee;
+  --plant-paper:#fffdf8;
+  --plant-soil:#8a6a4a;
+  --plant-soil-soft:#eee3d5;
+  --plant-flower:#e8c84f;
+  --plant-ink:#1d342a;
+  --plant-muted:#586b61;
+  --plant-line:rgba(23,74,54,.14);
+  --plant-shadow:0 16px 42px rgba(23,74,54,.10);
+  --plant-shadow-soft:0 8px 24px rgba(23,74,54,.075);
+}
+
+/* foundation */
+html{background:var(--plant-cream)}
+body{
+  background:var(--plant-cream)!important;
+  color:var(--plant-ink)!important;
+}
+body,
+button,input,select,textarea{
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif!important;
+}
+:where(h1,h2,h3,h4,.brand b,.section-title,.section-heading h2){
+  color:var(--plant-ink)!important;
+  font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Noto Sans JP","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-weight:900!important;
+}
+:where(p,li,dd,dt,figcaption){color:var(--plant-muted)}
+
+/* photograph reliability: do not let legacy reveal/lazy styles leave blanks */
+main img,
+.photo-frame img,
+.visual-tile img,
+.report-photo img,
+.contact-hero-photo img,
+.people-trust-photo img,
+.nr-main-sponsor img{
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+}
+.photo-frame,
+.visual-tile,
+.report-photo,
+.contact-hero-photo,
+.people-trust-photo{
+  opacity:1!important;
+  visibility:visible!important;
+}
+:where(.reveal,.rb-reveal,.rb-detail-reveal,.is-reveal,.will-reveal) img{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+
+/* header: a clean vine, not a hard rule */
+.site-header{
+  background:rgba(255,253,248,.97)!important;
+  border-bottom:0!important;
+  box-shadow:0 8px 24px rgba(23,74,54,.07)!important;
+  backdrop-filter:blur(12px);
+}
+.site-header::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-7px;
+  height:14px;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 8px 2px,rgba(95,143,88,.22) 0 5px,transparent 5.5px) 0 0/34px 14px repeat-x;
+  opacity:.75;
+}
+.brand,
+.site-nav a,
+.header-actions .btn,
+.menu-button{
+  color:var(--plant-forest)!important;
+}
+.brand-mark{
+  position:relative;
+  border-radius:46% 54% 48% 52% / 58% 45% 55% 42%!important;
+  background:var(--plant-sage)!important;
+}
+.brand-sprout{
+  color:var(--plant-leaf)!important;
+}
+.site-nav a{
+  position:relative;
+  font-weight:800!important;
+}
+.site-nav a::after{
+  content:"";
+  position:absolute;
+  left:16%;right:16%;bottom:8px;
+  height:4px;
+  border-radius:80% 20% 65% 35%;
+  background:var(--plant-leaf)!important;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .2s ease;
+}
+.site-nav a:hover::after,
+.site-nav a[aria-current="page"]::after{
+  transform:scaleX(1);
+}
+.btn--green,
+.header-actions .btn--green,
+.primary{
+  background:var(--plant-forest)!important;
+  border-color:var(--plant-forest)!important;
+  color:#fff!important;
+}
+.btn--paper,.secondary,.btn--outline{
+  background:var(--plant-paper)!important;
+  color:var(--plant-forest)!important;
+  border-color:rgba(23,74,54,.22)!important;
+}
+
+/* botanical hero */
+.hero,
+.page-hero,
+.contact-page-hero,
+.nr-partner-top{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 7% 18%,rgba(125,166,111,.18) 0 11%,transparent 12%),
+    radial-gradient(ellipse at 96% 70%,rgba(95,143,88,.12) 0 14%,transparent 15%),
+    linear-gradient(180deg,var(--plant-paper),var(--plant-cream))!important;
+}
+.hero::before,
+.page-hero::before,
+.contact-page-hero::before,
+.nr-partner-top::before{
+  content:"";
+  position:absolute;
+  width:220px;height:420px;
+  left:-118px;bottom:-150px;
+  border-radius:55% 45% 58% 42% / 38% 62% 38% 62%;
+  background:rgba(95,143,88,.13);
+  transform:rotate(-25deg);
+  z-index:-1;
+}
+.hero::after,
+.page-hero::after,
+.contact-page-hero::after,
+.nr-partner-top::after{
+  content:"";
+  position:absolute;
+  width:150px;height:74px;
+  right:3%;top:16%;
+  border-radius:100% 0 100% 0;
+  background:rgba(125,166,111,.14);
+  transform:rotate(-28deg);
+  z-index:-1;
+}
+.eyebrow,
+.postevent-notice__badge,
+.event-kicker,
+.nr-kicker{
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--plant-sage)!important;
+  color:var(--plant-forest)!important;
+}
+.headline-marker{
+  background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important;
+  color:inherit!important;
+}
+
+/* photo frames: leaf-like asymmetry, no multicolor decoration */
+.photo-frame,
+.contact-hero-photo,
+.people-trust-photo,
+.report-photo,
+.visual-tile{
+  position:relative;
+  overflow:hidden!important;
+  border:6px solid var(--plant-paper)!important;
+  border-radius:38px 18px 36px 20px!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow)!important;
+}
+.photo-frame::after,
+.contact-hero-photo::after,
+.people-trust-photo::after{
+  content:"";
+  position:absolute;
+  width:72px;height:34px;
+  right:-13px;top:16px;
+  border-radius:100% 0 100% 0;
+  background:rgba(95,143,88,.22);
+  transform:rotate(18deg);
+  pointer-events:none;
+}
+.photo-frame img,
+.contact-hero-photo img,
+.people-trust-photo img,
+.report-photo img,
+.visual-tile img{
+  display:block!important;
+  width:100%!important;
+  object-fit:cover!important;
+}
+
+/* sections — cream / sage / soil only */
+.section,
+.visual-mosaic-section,
+.why-join-section,
+.home-current-status,
+.story-timeline-section,
+.people-trust,
+.join-steps-section,
+.info-section,
+.program-section,
+.flow-section,
+.bring-section,
+.safety-section,
+.renge-section,
+.faq-section,
+.report-summary,
+.report-photo-story,
+.report-impact,
+.report-cup-photos,
+.report-voices,
+.report-finance,
+.nr-sponsor-feature,
+.nr-value-prop,
+.contact-main{
+  position:relative;
+}
+.section--paper,
+.report-photo-story,
+.people-trust,
+.contact-main,
+.nr-sponsor-feature{
+  background:var(--plant-paper)!important;
+}
+.section--mint,
+.home-current-status,
+.join-steps-section,
+.bring-section,
+.report-summary,
+.report-impact,
+.nr-value-prop{
+  background:var(--plant-sage-2)!important;
+}
+.section--soil,
+.safety-section,
+.renge-section,
+.report-finance{
+  background:var(--plant-soil-soft)!important;
+}
+.section-heading,
+.nr-section-head,
+.section-intro{
+  position:relative;
+}
+.section-heading::before,
+.nr-section-head::before,
+.section-intro::before{
+  content:"";
+  display:block;
+  width:42px;height:18px;
+  margin:0 0 12px 4px;
+  border-radius:100% 0 100% 0;
+  background:var(--plant-leaf);
+  transform:rotate(-18deg);
+}
+
+/* cards: eliminate ruled-document look */
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .chart-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .support-card,
+  .faq-list>*,
+  .report-summary-card,
+  .report-impact-card,
+  .report-voice-card,
+  .report-money-card,
+  .industry-partner-card,
+  .contact-card
+){
+  border:0!important;
+  border-radius:28px 16px 30px 18px!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow-soft)!important;
+}
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .report-summary-card,
+  .report-impact-card
+):nth-child(2n){
+  background:var(--plant-sage-2)!important;
+}
+:where(
+  .first-visit-grid>*,
+  .why-join-grid>*,
+  .home-current-status__grid>*,
+  .nr-choice,
+  .event-values>*,
+  .cause-grid>*,
+  .definition-card,
+  .info-card,
+  .game-card,
+  .time-card,
+  .bring-item,
+  .report-summary-card,
+  .report-impact-card
+):nth-child(3n){
+  background:#f5efe3!important;
+}
+
+/* thin straight rules -> short vine details */
+.story-timeline,
+.timeline{
+  position:relative;
+}
+.story-timeline::before,
+.timeline::before{
+  background:var(--plant-leaf)!important;
+  opacity:.32!important;
+}
+.story-dot,
+.game-num,
+.report-impact-no{
+  background:var(--plant-forest)!important;
+  color:#fff!important;
+}
+.story-step,
+.time-card{
+  border-color:transparent!important;
+}
+
+/* visual mosaic: photos as botanical scrapbook */
+.visual-mosaic{
+  gap:18px!important;
+}
+.visual-tile:nth-child(2n){transform:translateY(8px) rotate(.45deg)}
+.visual-tile:nth-child(3n){transform:translateY(-4px) rotate(-.35deg)}
+.visual-label{
+  background:rgba(255,253,248,.92)!important;
+  color:var(--plant-forest)!important;
+  border-radius:999px!important;
+}
+
+/* dark bands use forest only */
+.conversion-band,
+.update-band,
+.join-section,
+.rb-footer-cta,
+.report-thanks,
+.feature-band{
+  background:linear-gradient(135deg,var(--plant-forest-2),var(--plant-forest))!important;
+  color:#fff!important;
+}
+.conversion-band :where(h2,h3,p),
+.update-band :where(h2,h3,p),
+.join-section :where(h2,h3,p),
+.report-thanks :where(h2,h3,p){
+  color:#fff!important;
+}
+
+/* sponsor area: botanical restraint */
+.nr-badge,
+.support-chip,
+.contact-topic{
+  background:var(--plant-sage)!important;
+  color:var(--plant-forest)!important;
+  border-color:transparent!important;
+}
+.nr-main-sponsor,
+.industry-partner-card{
+  border-color:transparent!important;
+  background:var(--plant-paper)!important;
+  box-shadow:var(--plant-shadow-soft)!important;
+}
+.nr-sponsor-logo,
+.industry-partner-logo{
+  filter:none!important;
+}
+
+/* footer */
+.site-footer{
+  position:relative;
+  overflow:hidden;
+  background:var(--plant-forest-2)!important;
+  color:#fff!important;
+}
+.site-footer::before{
+  content:"";
+  position:absolute;
+  width:190px;height:95px;
+  right:-35px;top:-28px;
+  border-radius:100% 0 100% 0;
+  background:rgba(125,166,111,.16);
+  transform:rotate(28deg);
+}
+.site-footer :where(a,p,small,span){color:rgba(255,255,255,.86)!important}
+
+/* flower diagnosis: same restrained palette */
+body.page-diagnosis{
+  --sun-soft:#f1df8b!important;
+  --leaf-soft:var(--plant-sage)!important;
+  --sky-soft:var(--plant-sage-2)!important;
+  --coral-soft:#f0e8da!important;
+  --lilac-soft:var(--plant-sage-2)!important;
+  background:var(--plant-cream)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(n),
+body.page-diagnosis .flower-atlas-card:nth-child(n),
+body.page-diagnosis .diagnosis-answer:nth-child(n){
+  background:var(--plant-paper)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(2n),
+body.page-diagnosis .flower-atlas-card:nth-child(2n),
+body.page-diagnosis .diagnosis-answer:nth-child(2n){
+  background:var(--plant-sage-2)!important;
+}
+body.page-diagnosis .flower-group-card:nth-child(3n),
+body.page-diagnosis .flower-atlas-card:nth-child(3n){
+  background:#f5efe3!important;
+}
+body.page-diagnosis .diagnosis-progress-fill,
+body.page-diagnosis .btn--green,
+body.page-diagnosis .diagnosis-mobile-start button{
+  background:var(--plant-forest)!important;
+}
+body.page-diagnosis .headline-marker{background:linear-gradient(transparent 70%,rgba(232,200,79,.82) 0)!important}
+
+/* responsive */
+@media(max-width:820px){
+  .site-nav{
+    background:var(--plant-paper)!important;
+    border-color:rgba(23,74,54,.12)!important;
+    box-shadow:var(--plant-shadow)!important;
+  }
+  .visual-tile:nth-child(n){transform:none}
+}
+@media(max-width:640px){
+  .hero,.page-hero,.contact-page-hero{border-radius:0 0 34px 34px}
+  :where(
+    .first-visit-grid>*,
+    .why-join-grid>*,
+    .home-current-status__grid>*,
+    .nr-choice,
+    .event-values>*,
+    .cause-grid>*,
+    .definition-card,
+    .chart-card,
+    .info-card,
+    .game-card,
+    .time-card,
+    .bring-item,
+    .support-card,
+    .report-summary-card,
+    .report-impact-card,
+    .report-voice-card,
+    .report-money-card,
+    .industry-partner-card,
+    .contact-card
+  ){
+    border-radius:24px 14px 26px 16px!important;
+  }
+}
+
+/* Event archive contrast on dark/leaf sections */
+body.event-final .join-section .event-kicker,
+body.event-final .support-card .event-kicker{
+  background:var(--plant-flower)!important;
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+
+/* Performance for the long event archive: defer layout only, never image fetching. */
+@supports (content-visibility:auto){
+  body.event-final main>section:nth-of-type(n+2){
+    content-visibility:auto;
+    contain:layout style paint;
+    contain-intrinsic-size:auto 720px;
+  }
+}
+
+/* BOTANICAL VISIBILITY GUARANTEE
+   Legacy reveal effects must never leave content invisible. */
+:where(.rb-reveal,.rb-detail-reveal,.reveal,.is-reveal,.will-reveal){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+body.page-learn :where(.definition-card,.cause-grid>article,.event-values>article,.chart-card,.data-grid>article),
+body.page-thoughts :where(.cause-grid>article,.event-values>article,.visual-tile){
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+
+
+/* CONTRAST + JAPANESE HEADING SAFETY 2026-09-28 */
+/* Japanese headings: prefer phrase-aware breaks and avoid awkward 1–2 character wraps. */
+:where(
+  .hero h1,.page-hero h1,.contact-page-hero h1,
+  .section-heading h2,.section-intro h2,.first-visit-head h2,
+  .visual-mosaic-head h2,.nr-section-head h2,.report-hero h1
+){
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-break:strict!important;
+  hanging-punctuation:first last;
+}
+@supports (word-break:auto-phrase){
+  :where(
+    .hero h1,.page-hero h1,.contact-page-hero h1,
+    .section-heading h2,.section-intro h2,.first-visit-head h2,
+    .visual-mosaic-head h2,.nr-section-head h2,.report-hero h1
+  ){
+    word-break:auto-phrase!important;
+  }
+}
+
+/* Flower diagnosis hero must use the same rounded display face as the rest of the site. */
+body.page-diagnosis .page-hero--diagnosis h1,
+body.page-diagnosis .page-hero--diagnosis h1 .headline-marker{
+  font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:-.035em!important;
+}
+
+/* Dark botanical surfaces: never inherit dark legacy copy. */
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) :where(h1,h2,h3,h4,p,li,dd,dt,strong,small,span,a:not(.btn):not(.event-kicker):not(.eyebrow):not(.support-chip)){
+  color:rgba(255,255,255,.94)!important;
+}
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) :where(h1,h2,h3,h4,strong){
+  color:#fff!important;
+}
+:where(
+  .conversion-band,.update-band,.join-section,.rb-footer-cta,
+  .report-thanks,.feature-band,.site-footer
+) a:not(.btn){
+  text-decoration-color:rgba(255,255,255,.55)!important;
+}
+
+/* Light cards/surfaces: never inherit white text from older dark variants. */
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.diagnosis-start-card,
+  .diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card
+) :where(h1,h2,h3,h4,strong){
+  color:var(--plant-ink)!important;
+}
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.diagnosis-start-card,
+  .diagnosis-method-card,.flower-group-card,.flower-atlas-card,.diagnosis-question-card
+) :where(p,li,dd,dt,small){
+  color:var(--plant-muted)!important;
+}
+:where(
+  .first-visit-grid>*,.why-join-grid>*,.home-current-status__grid>*,
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,.faq-list>*,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor
+) a:not(.btn){
+  color:var(--plant-forest)!important;
+}
+
+/* Pills/badges keep dark copy on their light botanical fill even inside dark sections. */
+:where(.eyebrow,.event-kicker,.nr-kicker,.postevent-notice__badge,.support-chip,.contact-topic,.nr-badge){
+  color:var(--plant-forest-2)!important;
+}
+body.event-final .join-section .event-kicker,
+body.event-final .support-card .event-kicker{
+  color:var(--plant-forest-2)!important;
+}
+
+/* Paper buttons must never become white-on-white. */
+:where(.btn--paper,.btn--outline,.secondary){
+  color:var(--plant-forest-2)!important;
+}
+
+
+/* EYEBROW CHILD CONTRAST GUARANTEE */
+:where(.eyebrow,.eyebrow--light,.event-kicker,.nr-kicker,.postevent-notice__badge) > :where(span,small,strong){
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+:where(.eyebrow,.eyebrow--light) small{
+  color:#365f4e!important;
+}
+
+
+/* FINAL LEARN EYEBROW CONTRAST */
+html body.page-learn main .eyebrow.eyebrow--light > small,
+html body.page-learn main .eyebrow--light > small{
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+
+/* BOTANICAL LIGHT EYEBROW CONTRAST */
+.section--soil .eyebrow--light,
+.section--soil .eyebrow--light span,
+.section--soil .eyebrow--light small{
+  color:var(--plant-forest)!important;
+}
+
+/* ABSOLUTE LEARN EYEBROW OVERRIDE */
+html body.page-learn:not(.page-thoughts) main .section--soil .eyebrow.eyebrow--light > small,
+html body.page-learn:not(.page-thoughts) main .section--soil .eyebrow.eyebrow--light > span{
+  color:var(--plant-forest-2)!important;
+  opacity:1!important;
+}
+
+
+/* FINAL NAV VISIBILITY + HEADING RHYTHM / 2026-09-28 */
+/*
+  1) Keep the current-page navigation label visibly readable on the pale
+     botanical header.
+  2) Keep Japanese display headings large without creating 1–2 character
+     orphan lines at ordinary desktop/tablet widths.
+*/
+html body .site-header .site-nav a[aria-current="page"]{
+  background:linear-gradient(180deg,#edf4e8 0%,#e3edde 100%)!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  border:1px solid rgba(23,74,54,.36)!important;
+  box-shadow:0 4px 12px rgba(23,74,54,.08)!important;
+  opacity:1!important;
+}
+html body .site-header .site-nav a[aria-current="page"]::after{
+  background:var(--plant-leaf,#5f8f58)!important;
+  bottom:5px!important;
+}
+
+:where(
+  .hero h1,
+  .page-hero h1,
+  .contact-page-hero h1,
+  .report-hero h1,
+  .nr-partner-top h1
+){
+  font-size:clamp(46px,3.9vw,66px)!important;
+  line-height:1.16!important;
+  letter-spacing:-.04em!important;
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-break:strict!important;
+}
+body.page-learn:not(.page-thoughts) .page-hero h1{
+  font-size:clamp(44px,3.45vw,60px)!important;
+  line-height:1.18!important;
+}
+body.page-thoughts .page-hero h1{
+  font-size:clamp(42px,3.15vw,56px)!important;
+  line-height:1.2!important;
+}
+body.nr-new-partner .page-hero h1,
+body.report-page .page-hero h1{
+  font-size:clamp(44px,3.45vw,61px)!important;
+}
+
+:where(
+  .section-heading h2,
+  .section-intro h2,
+  .first-visit-head h2,
+  .visual-mosaic-head h2,
+  .nr-section-head h2,
+  .home-current-status__head h2,
+  .report-section-head h2
+){
+  font-size:clamp(31px,2.9vw,50px)!important;
+  line-height:1.3!important;
+  letter-spacing:-.028em!important;
+  text-wrap:balance!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-break:strict!important;
+}
+
+@supports (word-break:auto-phrase){
+  :where(
+    main h1,main h2,
+    .hero h1,.page-hero h1,.contact-page-hero h1,.report-hero h1
+  ){
+    word-break:auto-phrase!important;
+  }
+}
+
+@media (max-width:1400px) and (min-width:821px){
+  :where(
+    .hero h1,
+    .page-hero h1,
+    .contact-page-hero h1,
+    .report-hero h1,
+    .nr-partner-top h1
+  ) br{
+    display:none!important;
+  }
+}
+
+@media (max-width:820px){
+  :where(
+    .hero h1,
+    .page-hero h1,
+    .contact-page-hero h1,
+    .report-hero h1,
+    .nr-partner-top h1
+  ){
+    font-size:clamp(36px,9.4vw,48px)!important;
+    line-height:1.18!important;
+    letter-spacing:-.025em!important;
+  }
+  :where(
+    .section-heading h2,
+    .section-intro h2,
+    .first-visit-head h2,
+    .visual-mosaic-head h2,
+    .nr-section-head h2,
+    .home-current-status__head h2,
+    .report-section-head h2
+  ){
+    font-size:clamp(28px,7.4vw,39px)!important;
+    line-height:1.34!important;
+  }
+}
+
+
+/* FINAL HOME ROUTE CARD LAYOUT / 2026-09-28 */
+/* Prevent the two homepage routing cards from visually overlapping after
+   legacy spacing/transform layers are combined. */
+body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  grid-auto-rows:auto!important;
+  align-items:stretch!important;
+  gap:14px!important;
+}
+body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two>.nr-choice{
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  margin:0!important;
+  transform:none!important;
+  translate:none!important;
+}
+@media(max-width:620px){
+  body.nr-new-home main>.nr-choice-grid.rb-choice-grid--two{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+}
+
+
+/* UNIVERSAL SOCIAL + PARTNER + FOOTER + CONTRAST / 2026-09-28 */
+html body .rb-auto-contrast-text,
+html body .rb-auto-contrast-text:link,
+html body .rb-auto-contrast-text:visited{
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  text-shadow:none!important;
+}
+html body .rb-auto-contrast-text :is(span,small,strong,b){
+  color:inherit!important;
+  -webkit-text-fill-color:inherit!important;
+  text-shadow:none!important;
+}
+
+/* Header social buttons: visible on every public page. */
+.site-header .header-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+.rb-universal-social{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.rb-universal-social a{
+  box-sizing:border-box;
+  display:grid!important;
+  place-items:center!important;
+  width:36px;
+  height:36px;
+  min-width:36px;
+  min-height:36px;
+  padding:0!important;
+  border:1px solid rgba(23,74,54,.22)!important;
+  border-radius:999px!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  box-shadow:0 3px 10px rgba(23,74,54,.07)!important;
+  text-decoration:none!important;
+  line-height:1!important;
+}
+.rb-universal-social a::before,
+.rb-universal-social a::after{display:none!important;content:none!important}
+.rb-universal-social svg{display:block;width:18px;height:18px}
+.rb-header-social{flex:0 0 auto}
+.rb-menu-social{display:none}
+
+/* Sponsor strip: one shared implementation for every page. */
+.site-partner-strip--universal{
+  position:relative;
+  z-index:1;
+  margin:0!important;
+  padding:30px 0 28px!important;
+  border-top:1px solid rgba(23,74,54,.10)!important;
+  border-bottom:1px solid rgba(23,74,54,.10)!important;
+  background:linear-gradient(180deg,#f7f4ea 0%,#eef5e9 100%)!important;
+  color:#173f34!important;
+}
+.site-partner-strip--universal .site-partner-strip__inner{
+  box-sizing:border-box;
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto;
+}
+.site-partner-strip--universal .site-partner-strip__label{
+  margin:0 0 16px!important;
+  color:#355c4e!important;
+  -webkit-text-fill-color:#355c4e!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  letter-spacing:.11em!important;
+}
+.site-partner-strip--universal .site-partner-strip__logos{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:10px!important;
+  align-items:stretch!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo{
+  box-sizing:border-box;
+  display:grid!important;
+  place-items:center!important;
+  min-width:0!important;
+  min-height:92px!important;
+  padding:13px!important;
+  border:1px solid rgba(23,74,54,.12)!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 5px 15px rgba(23,74,54,.05)!important;
+  overflow:hidden!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo img{
+  display:block!important;
+  width:auto!important;
+  max-width:100%!important;
+  height:auto!important;
+  max-height:58px!important;
+  object-fit:contain!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo--rebloom img{
+  max-height:64px!important;
+}
+.site-partner-strip--universal .site-partner-strip__more{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:42px!important;
+  margin-top:14px!important;
+  padding:7px 0!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  text-decoration:none!important;
+}
+
+/* Common bottom footer on all pages. */
+.site-footer.rb-footer--universal{
+  margin:0!important;
+  padding:0 0 22px!important;
+  background:#143e34!important;
+  color:#fff!important;
+  overflow:visible!important;
+}
+.rb-footer--universal .rb-footer-cta{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:24px!important;
+  align-items:center!important;
+  padding-top:34px!important;
+  padding-bottom:28px!important;
+}
+.rb-footer--universal .rb-footer-cta h2{
+  margin:0!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:clamp(25px,2.4vw,36px)!important;
+  line-height:1.35!important;
+}
+.rb-footer--universal .rb-footer-cta p{
+  margin:8px 0 0!important;
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+  font-size:13px!important;
+  line-height:1.75!important;
+}
+.rb-footer--universal .rb-footer-cta__button{
+  min-width:170px!important;
+  background:#f0cf58!important;
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+  border-color:transparent!important;
+}
+.rb-footer--universal .rb-footer-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.25fr) minmax(170px,.72fr) minmax(190px,.82fr)!important;
+  gap:34px!important;
+  padding-top:26px!important;
+  padding-bottom:24px!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+}
+.rb-footer--universal .rb-footer-grid b,
+.rb-footer--universal .rb-footer-grid strong,
+.rb-footer--universal .rb-footer-links a{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.rb-footer--universal .rb-footer-grid p{
+  margin:9px 0 0!important;
+  max-width:430px!important;
+  color:rgba(255,255,255,.76)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.76)!important;
+  font-size:12px!important;
+  line-height:1.8!important;
+}
+.rb-footer--universal .rb-footer-links{
+  display:grid!important;
+  align-content:start!important;
+  gap:7px!important;
+}
+.rb-footer--universal .rb-footer-links strong{
+  margin-bottom:2px!important;
+  color:#f4d766!important;
+  -webkit-text-fill-color:#f4d766!important;
+  font-size:10px!important;
+  letter-spacing:.12em!important;
+}
+.rb-footer--universal .rb-footer-links a{
+  display:flex!important;
+  align-items:center!important;
+  min-height:36px!important;
+  font-size:12px!important;
+  text-decoration:none!important;
+}
+.rb-footer--universal .rb-footer-social{
+  box-sizing:border-box;
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto!important;
+  padding:18px 0!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+}
+.rb-footer--universal .rb-footer-social::before{
+  content:"公式SNS";
+  margin-right:6px;
+  color:rgba(255,255,255,.68);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.10em;
+}
+.rb-footer--universal .rb-footer-social a{
+  border-color:rgba(255,255,255,.24)!important;
+  background:rgba(255,255,255,.08)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+}
+.rb-footer--universal .rb-contact-footer{
+  box-sizing:border-box;
+  width:min(1180px,calc(100% - 40px))!important;
+  margin:0 auto!important;
+  padding:15px 0 10px!important;
+  border-top:1px solid rgba(255,255,255,.12)!important;
+  display:flex!important;
+  align-items:center!important;
+  flex-wrap:wrap!important;
+  gap:9px 16px!important;
+  color:rgba(255,255,255,.76)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.76)!important;
+  font-size:12px!important;
+}
+.rb-footer--universal .rb-contact-footer strong,
+.rb-footer--universal .rb-contact-footer a{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.rb-footer--universal .rb-contact-footer__page{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:36px!important;
+  padding:0 12px!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.07)!important;
+  text-decoration:none!important;
+}
+.rb-footer--universal .rb-footer-bottom{
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  padding-top:15px!important;
+  padding-bottom:0!important;
+  border-top:1px solid rgba(255,255,255,.10)!important;
+  color:rgba(255,255,255,.65)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.65)!important;
+  font-size:10px!important;
+}
+
+@media(hover:hover){
+  .rb-universal-social a:hover{
+    transform:translateY(-2px)!important;
+    border-color:rgba(23,74,54,.40)!important;
+    background:#edf5e9!important;
+  }
+  .rb-footer--universal .rb-footer-social a:hover{
+    border-color:rgba(255,255,255,.48)!important;
+    background:rgba(255,255,255,.15)!important;
+  }
+}
+
+@media(max-width:1180px) and (min-width:901px){
+  .site-header .header-actions>.btn{display:none!important}
+  .rb-header-social a{width:34px;height:34px;min-width:34px;min-height:34px}
+}
+@media(max-width:900px){
+  .site-header .header-actions{display:none!important}
+  .site-header .site-nav .rb-menu-social{
+    display:flex!important;
+    margin-top:8px!important;
+    padding-top:12px!important;
+    border-top:1px solid rgba(23,74,54,.12)!important;
+  }
+  .site-header .site-nav .rb-menu-social a{
+    flex:0 0 42px!important;
+    width:42px!important;
+    height:42px!important;
+    min-width:42px!important;
+    min-height:42px!important;
+    padding:0!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logos{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  .rb-footer--universal .rb-footer-cta,
+  .rb-footer--universal .rb-footer-grid{
+    grid-template-columns:1fr!important;
+  }
+  .rb-footer--universal .rb-footer-cta__button{
+    width:fit-content!important;
+  }
+}
+@media(max-width:620px){
+  .site-partner-strip--universal{
+    padding:24px 0 22px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__inner{
+    width:min(100% - 28px,1180px)!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logos{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logo{
+    min-height:78px!important;
+    padding:10px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logo img{
+    max-height:48px!important;
+  }
+  .rb-footer--universal .rb-footer-cta,
+  .rb-footer--universal .rb-footer-grid,
+  .rb-footer--universal .rb-footer-social,
+  .rb-footer--universal .rb-contact-footer,
+  .rb-footer--universal .rb-footer-bottom{
+    width:min(100% - 28px,1180px)!important;
+  }
+  .rb-footer--universal .rb-footer-cta{
+    padding-top:27px!important;
+    gap:18px!important;
+  }
+  .rb-footer--universal .rb-footer-cta__button{
+    width:100%!important;
+  }
+  .rb-footer--universal .rb-footer-grid{
+    gap:22px!important;
+  }
+  .rb-footer--universal .rb-contact-footer{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  .rb-footer--universal .rb-footer-bottom{
+    flex-direction:column!important;
+  }
+}
+
+
+/* FINAL LIGHT-SURFACE VISIBILITY GUARD / 2026-09-28 */
+body.page-learn .cause-grid>article,
+body.page-thoughts .cause-grid>article{
+  display:flex!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+:where(
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.nr-sponsor-wide,
+  .diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,
+  .diagnosis-question-card,.result-card,.quick-card,.action-card,.way-card,.play-card
+){
+  color:#173f34!important;
+}
+:where(
+  .nr-choice,.event-values>*,.cause-grid>*,.definition-card,.chart-card,
+  .info-card,.game-card,.time-card,.bring-item,.support-card,
+  .report-summary-card,.report-impact-card,.report-voice-card,.report-money-card,
+  .industry-partner-card,.contact-card,.nr-main-sponsor,.nr-sponsor-wide,
+  .diagnosis-start-card,.diagnosis-method-card,.flower-group-card,.flower-atlas-card,
+  .diagnosis-question-card,.result-card,.quick-card,.action-card,.way-card,.play-card
+) :is(h1,h2,h3,h4,strong,b){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+
+/* FINAL CONTRAST + UNIVERSAL CHROME HARDENING / 2026-09-28 */
+/* These sections retained white legacy copy, so they must remain genuinely dark. */
+html body .section--soil,
+html body.report-page .report-finance{
+  background:linear-gradient(135deg,#2d4035 0%,#173f34 58%,#4b3d31 100%)!important;
+  color:#fff!important;
+}
+html body .section--soil :is(h1,h2,h3,h4,p,li,strong,b,span:not(.eyebrow span),a:not(.btn)),
+html body.report-page .report-finance :is(h1,h2,h3,h4,p,li,strong,b,span,a:not(.btn)){
+  color:rgba(255,255,255,.94)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.94)!important;
+}
+html body .section--soil :is(.eyebrow,.eyebrow span,.eyebrow small),
+html body.report-page .report-finance :is(.eyebrow,.eyebrow span,.eyebrow small){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+
+/* Explicitly protect light statistical cards from legacy white-text rules. */
+html body.page-learn #numbers .data-grid>article{
+  background:#fffdf8!important;
+  color:#173f34!important;
+}
+html body.page-learn #numbers .data-grid>article :is(strong,h3,small){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+html body.page-learn #numbers .data-grid>article strong{
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+}
+
+/* The event archive update banner is deliberately dark in the botanical skin. */
+html body.nr-new-event .update-band{
+  background:linear-gradient(135deg,#174a36,#0f3a2a)!important;
+  border-color:rgba(23,74,54,.18)!important;
+}
+html body.nr-new-event .update-band :is(p,strong,span){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Keep the header SNS visible even on page-specific responsive overrides. */
+@media (min-width:901px){
+  html body .site-header .header-actions{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+  html body.nr-new-partner .site-header .header-actions{
+    display:flex!important;
+  }
+  html body .site-header .rb-header-social{
+    display:flex!important;
+  }
+}
+
+
+/* FINAL CHIP AND ICON CONTRAST / 2026-09-28 */
+/* Circular card markers are intentionally dark, with white glyphs. */
+html body :is(.event-values>article,.cause-grid>article,.check-list>div)>span{
+  background:#174a36!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Volunteer names are light chips even though the surrounding THANK YOU section is dark. */
+html body.report-page .report-thanks .report-volunteer-names>span{
+  background:#f5f7f1!important;
+  border-color:rgba(24,75,61,.12)!important;
+  color:#315e50!important;
+  -webkit-text-fill-color:#315e50!important;
+}
+
+
+/* BOTANICAL ORNAMENT LAYER / 2026-09-29 */
+:root{
+  --rb-decor-leaf:#6f9d68;
+  --rb-decor-leaf-dark:#3f7455;
+  --rb-decor-bloom:#d58bb6;
+  --rb-decor-bloom-2:#e8c85a;
+  --rb-decor-seed:#bd8d4f;
+  --rb-decor-paper:#f6efe1;
+}
+body.page-diagnosis{
+  --rb-decor-leaf:#6f9f69;
+  --rb-decor-leaf-dark:#3e7453;
+  --rb-decor-bloom:#a66cc0;
+  --rb-decor-bloom-2:#e2ba58;
+}
+body.report-page,
+body.nr-new-event{
+  --rb-decor-leaf:#6a9460;
+  --rb-decor-leaf-dark:#355f48;
+  --rb-decor-bloom:#dc9d67;
+  --rb-decor-bloom-2:#f0cf58;
+}
+body.page-learn{
+  --rb-decor-leaf:#6a9a64;
+  --rb-decor-leaf-dark:#3e7253;
+  --rb-decor-bloom:#d7a374;
+  --rb-decor-bloom-2:#e9c85e;
+}
+body.page-thoughts{
+  --rb-decor-leaf:#759b70;
+  --rb-decor-leaf-dark:#466d58;
+  --rb-decor-bloom:#cf90a6;
+  --rb-decor-bloom-2:#e6c45d;
+}
+body.nr-new-partner{
+  --rb-decor-leaf:#6f9865;
+  --rb-decor-leaf-dark:#426f51;
+  --rb-decor-bloom:#d9a26d;
+  --rb-decor-bloom-2:#e7bd4d;
+}
+
+.rb-botanical-decor{
+  position:absolute;
+  inset:0 0 auto 0;
+  width:100%;
+  height:100%;
+  min-height:100vh;
+  z-index:35;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:0;
+  transition:opacity .45s ease;
+}
+html.rb-botanical-ready .rb-botanical-decor{opacity:1}
+.rb-botanical-decor svg{display:block;overflow:visible}
+
+.rb-botanical-vine{
+  position:absolute;
+  width:clamp(150px,15vw,260px);
+  height:auto;
+  color:var(--rb-decor-leaf);
+  filter:drop-shadow(0 14px 24px rgba(48,83,59,.08));
+  opacity:.42;
+}
+.rb-botanical-vine--left{
+  top:7.5%;
+  left:max(-92px,calc((100vw - 1180px)/2 - 176px));
+  transform:rotate(-7deg);
+}
+.rb-botanical-vine--right{
+  top:43%;
+  right:max(-96px,calc((100vw - 1180px)/2 - 180px));
+  transform:scaleX(-1) rotate(-4deg);
+  opacity:.38;
+}
+.rb-botanical-vine .rb-vine-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:4;
+  stroke-linecap:round;
+  opacity:.72;
+}
+.rb-botanical-vine .rb-vine-leaf{
+  fill:var(--rb-decor-leaf);
+}
+.rb-botanical-vine .rb-vine-leaf--soft{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 72%,#fff);
+}
+.rb-botanical-vine .rb-vine-bloom{
+  fill:var(--rb-decor-bloom);
+}
+.rb-botanical-vine .rb-vine-bloom-core{
+  fill:var(--rb-decor-bloom-2);
+}
+
+.rb-botanical-sprig{
+  position:absolute;
+  width:clamp(110px,10vw,180px);
+  height:auto;
+  opacity:.34;
+  filter:drop-shadow(0 10px 18px rgba(54,83,60,.06));
+}
+.rb-botanical-sprig--one{
+  top:27%;
+  right:max(8px,calc((100vw - 1180px)/2 - 48px));
+  transform:rotate(17deg);
+}
+.rb-botanical-sprig--two{
+  top:71%;
+  left:max(10px,calc((100vw - 1180px)/2 - 36px));
+  transform:rotate(-18deg) scale(.92);
+}
+.rb-botanical-sprig path{fill:var(--rb-decor-leaf)}
+.rb-botanical-sprig circle{fill:var(--rb-decor-bloom-2)}
+
+.rb-botanical-petal{
+  position:absolute;
+  display:block;
+  width:24px;
+  height:38px;
+  border-radius:88% 12% 74% 26% / 82% 18% 82% 18%;
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.72),transparent 28%),
+    linear-gradient(145deg,color-mix(in srgb,var(--rb-decor-bloom) 88%,#fff),var(--rb-decor-bloom));
+  box-shadow:0 10px 22px rgba(85,58,81,.10);
+  opacity:.48;
+  transform-origin:50% 80%;
+  animation:rbBotanicalDrift 13s ease-in-out infinite alternate;
+}
+.rb-botanical-petal::after{
+  content:"";
+  position:absolute;
+  left:48%;
+  top:9%;
+  width:1px;
+  height:76%;
+  background:rgba(89,60,79,.16);
+  transform:rotate(8deg);
+}
+.rb-botanical-petal--1{top:14%;left:3.8%;transform:rotate(28deg) scale(.90);animation-delay:-2s}
+.rb-botanical-petal--2{top:20%;right:4.4%;transform:rotate(-18deg) scale(.72);animation-delay:-7s}
+.rb-botanical-petal--3{top:36%;left:7.2%;transform:rotate(58deg) scale(.62);animation-delay:-4s}
+.rb-botanical-petal--4{top:51%;right:5.8%;transform:rotate(15deg) scale(1.05);animation-delay:-9s}
+.rb-botanical-petal--5{top:64%;left:4.7%;transform:rotate(-35deg) scale(.78);animation-delay:-1s}
+.rb-botanical-petal--6{top:78%;right:7.3%;transform:rotate(42deg) scale(.70);animation-delay:-6s}
+.rb-botanical-petal--7{
+  top:87%;left:10%;
+  width:18px;height:29px;
+  background:linear-gradient(145deg,#f4d872,var(--rb-decor-bloom-2));
+  transform:rotate(18deg) scale(.84);
+  animation-delay:-3s;
+}
+.rb-botanical-petal--8{
+  top:31%;right:11%;
+  width:18px;height:29px;
+  background:linear-gradient(145deg,#f6dc7e,var(--rb-decor-bloom-2));
+  transform:rotate(-34deg) scale(.78);
+  animation-delay:-8s;
+}
+
+.rb-seed-cluster{
+  position:absolute;
+  width:96px;
+  height:112px;
+  opacity:.36;
+}
+.rb-seed-cluster--one{
+  top:58%;
+  left:max(2px,calc((100vw - 1180px)/2 - 64px));
+  transform:rotate(-12deg);
+}
+.rb-seed-cluster--two{
+  top:84%;
+  right:max(4px,calc((100vw - 1180px)/2 - 62px));
+  transform:rotate(11deg) scale(.88);
+}
+.rb-seed-cluster i{
+  position:absolute;
+  width:10px;
+  height:22px;
+  border-radius:65% 35% 62% 38% / 58% 42% 58% 42%;
+  border:1px solid color-mix(in srgb,var(--rb-decor-seed) 74%,#8d6a37);
+  background:linear-gradient(155deg,#f4dfb3,var(--rb-decor-seed));
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.22);
+}
+.rb-seed-cluster i:nth-child(1){left:10px;top:8px;transform:rotate(-36deg)}
+.rb-seed-cluster i:nth-child(2){left:42px;top:0;transform:rotate(7deg)}
+.rb-seed-cluster i:nth-child(3){left:68px;top:24px;transform:rotate(41deg)}
+.rb-seed-cluster i:nth-child(4){left:20px;top:48px;transform:rotate(-16deg)}
+.rb-seed-cluster i:nth-child(5){left:54px;top:66px;transform:rotate(26deg)}
+.rb-seed-cluster i:nth-child(6){left:5px;top:82px;transform:rotate(-48deg)}
+
+.rb-botanical-haze{
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  filter:blur(24px);
+  opacity:.12;
+  background:radial-gradient(circle,var(--rb-decor-bloom-2),transparent 68%);
+}
+.rb-botanical-haze--one{top:3%;right:-100px}
+.rb-botanical-haze--two{top:67%;left:-120px;background:radial-gradient(circle,var(--rb-decor-bloom),transparent 68%)}
+
+@keyframes rbBotanicalDrift{
+  0%{translate:0 0;rotate:-2deg}
+  55%{translate:5px -9px;rotate:4deg}
+  100%{translate:-3px 7px;rotate:-5deg}
+}
+
+@media(max-width:1180px){
+  .rb-botanical-vine{width:170px;opacity:.30}
+  .rb-botanical-vine--left{left:-84px}
+  .rb-botanical-vine--right{right:-86px}
+  .rb-botanical-sprig{opacity:.24}
+  .rb-botanical-petal{opacity:.36}
+  .rb-seed-cluster{opacity:.26}
+}
+@media(max-width:760px){
+  .rb-botanical-decor{z-index:18}
+  .rb-botanical-vine{width:126px;opacity:.22}
+  .rb-botanical-vine--left{top:5%;left:-78px}
+  .rb-botanical-vine--right{top:60%;right:-80px}
+  .rb-botanical-sprig{display:none}
+  .rb-seed-cluster--two{display:none}
+  .rb-seed-cluster--one{left:-34px;opacity:.18;transform:scale(.72) rotate(-12deg)}
+  .rb-botanical-petal{width:18px;height:29px;opacity:.28}
+  .rb-botanical-petal--3,
+  .rb-botanical-petal--5,
+  .rb-botanical-petal--8{display:none}
+  .rb-botanical-haze{width:190px;height:190px;opacity:.08}
+}
+@media(max-width:480px){
+  .rb-botanical-vine{width:104px;opacity:.17}
+  .rb-botanical-vine--left{left:-70px}
+  .rb-botanical-vine--right{right:-72px}
+  .rb-botanical-petal--2,
+  .rb-botanical-petal--6,
+  .rb-botanical-petal--7{display:none}
+  .rb-seed-cluster{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .rb-botanical-petal{animation:none!important}
+  .rb-botanical-decor{transition:none!important}
+}
+
+
+/* BOTANICAL FINISHING LAYER / 2026-09-29 */
+/* Keep content above background shadows, but decorative separators can sit inside sections. */
+main{position:relative;z-index:1}
+.rb-botanical-decor{z-index:0}
+.site-header,.site-footer,.site-partner-strip--universal{position:relative;z-index:40}
+
+/* Very soft leaf shadows in empty background zones. */
+.rb-leaf-shadow{
+  position:absolute;
+  width:clamp(180px,20vw,340px);
+  height:clamp(260px,30vw,480px);
+  opacity:.055;
+  filter:blur(10px);
+  transform-origin:50% 100%;
+}
+.rb-leaf-shadow::before,
+.rb-leaf-shadow::after{
+  content:"";
+  position:absolute;
+  border-radius:70% 30% 68% 32% / 76% 24% 76% 24%;
+  background:var(--rb-decor-leaf-dark);
+}
+.rb-leaf-shadow::before{
+  width:42%;height:66%;left:8%;top:4%;transform:rotate(-24deg);
+}
+.rb-leaf-shadow::after{
+  width:38%;height:58%;right:8%;bottom:2%;transform:rotate(28deg);
+}
+.rb-leaf-shadow--one{top:18%;right:-90px;transform:rotate(-12deg)}
+.rb-leaf-shadow--two{top:73%;left:-110px;transform:scaleX(-1) rotate(-16deg);opacity:.045}
+
+/* Section-to-section connector: a restrained vine line, not a divider bar. */
+.rb-section-botanical-host{
+  position:relative;
+}
+.rb-section-botanical{
+  position:absolute;
+  left:50%;
+  top:-18px;
+  width:min(280px,34vw);
+  height:38px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  opacity:.34;
+  z-index:3;
+}
+.rb-section-botanical svg{
+  width:100%;height:100%;display:block;overflow:visible;
+}
+.rb-section-botanical .rb-divider-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.7;
+  stroke-linecap:round;
+}
+.rb-section-botanical .rb-divider-leaf{fill:var(--rb-decor-leaf)}
+.rb-section-botanical .rb-divider-seed{fill:var(--rb-decor-bloom-2)}
+.rb-section-botanical--alt{
+  opacity:.25;
+  transform:translateX(-50%) scaleX(-1);
+}
+
+/* Page-specific motif badges live only in outer margins. */
+.rb-page-motif{
+  position:absolute;
+  width:120px;
+  height:120px;
+  pointer-events:none;
+  opacity:.22;
+}
+.rb-page-motif--top{top:9%;right:max(14px,calc((100vw - 1180px)/2 - 56px))}
+.rb-page-motif--bottom{top:88%;left:max(12px,calc((100vw - 1180px)/2 - 56px))}
+.rb-page-motif svg{width:100%;height:100%;overflow:visible}
+.rb-page-motif .rb-motif-stroke{
+  fill:none;stroke:var(--rb-decor-leaf-dark);stroke-width:2.2;stroke-linecap:round;
+}
+.rb-page-motif .rb-motif-fill{fill:var(--rb-decor-leaf)}
+.rb-page-motif .rb-motif-accent{fill:var(--rb-decor-bloom)}
+.rb-page-motif .rb-motif-seed{fill:var(--rb-decor-seed)}
+
+/* Buttons get a tiny sprout only on hover/focus. Existing button copy/background stays untouched. */
+.btn.rb-botanical-btn{
+  position:relative!important;
+  isolation:isolate;
+}
+.rb-btn-leaf{
+  position:absolute;
+  right:13px;
+  top:-8px;
+  width:18px;
+  height:18px;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(5px) rotate(-14deg) scale(.72);
+  transition:opacity .22s ease,transform .28s cubic-bezier(.2,.8,.2,1);
+  z-index:3;
+}
+.rb-btn-leaf::before,
+.rb-btn-leaf::after{
+  content:"";
+  position:absolute;
+  width:8px;height:13px;
+  border-radius:80% 20% 78% 22% / 72% 28% 72% 28%;
+  background:var(--rb-decor-leaf);
+}
+.rb-btn-leaf::before{left:2px;top:4px;transform:rotate(-30deg)}
+.rb-btn-leaf::after{right:1px;top:0;transform:rotate(34deg)}
+@media(hover:hover){
+  .btn.rb-botanical-btn:hover .rb-btn-leaf,
+  .btn.rb-botanical-btn:focus-visible .rb-btn-leaf{
+    opacity:.72;
+    transform:translateY(0) rotate(-4deg) scale(1);
+  }
+}
+
+/* Only selected, important photo blocks get a tiny overhanging leaf. */
+ .rb-photo-botanical{
+  position:relative!important;
+}
+.rb-photo-corner-leaf{
+  position:absolute;
+  right:8px;
+  top:8px;
+  width:44px;
+  height:54px;
+  pointer-events:none;
+  z-index:5;
+  opacity:.42;
+  filter:drop-shadow(0 8px 12px rgba(45,80,54,.08));
+}
+.rb-photo-corner-leaf::before,
+.rb-photo-corner-leaf::after{
+  content:"";
+  position:absolute;
+  border-radius:78% 22% 76% 24% / 70% 30% 70% 30%;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--rb-decor-leaf) 78%,#fff),var(--rb-decor-leaf));
+}
+.rb-photo-corner-leaf::before{width:20px;height:36px;left:3px;bottom:2px;transform:rotate(-28deg)}
+.rb-photo-corner-leaf::after{width:18px;height:32px;right:2px;top:0;transform:rotate(31deg)}
+.rb-photo-corner-leaf i{
+  position:absolute;
+  left:21px;bottom:0;
+  width:2px;height:45px;
+  background:var(--rb-decor-leaf-dark);
+  transform:rotate(7deg);
+  opacity:.48;
+}
+
+/* Page personalities: same system, different motif emphasis. */
+body[data-rb-motif="home"] .rb-page-motif{opacity:.20}
+body[data-rb-motif="thoughts"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="learn"] .rb-page-motif{opacity:.20}
+body[data-rb-motif="event"] .rb-page-motif{opacity:.22}
+body[data-rb-motif="report"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="partner"] .rb-page-motif{opacity:.18}
+body[data-rb-motif="diagnosis"] .rb-page-motif{opacity:.24}
+body[data-rb-motif="contact"] .rb-page-motif{opacity:.17}
+
+/* Dark sections should not inherit a muddy decorative overlay. */
+.section--soil .rb-section-botanical,
+.report-finance .rb-section-botanical,
+.update-band .rb-section-botanical{
+  display:none!important;
+}
+
+/* Desktop density only; mobile stays deliberately restrained. */
+@media(max-width:900px){
+  .rb-leaf-shadow{opacity:.035;width:180px;height:250px}
+  .rb-section-botanical{width:180px;top:-12px;opacity:.24}
+  .rb-page-motif{width:86px;height:86px;opacity:.15!important}
+  .rb-photo-corner-leaf{width:34px;height:42px;opacity:.30}
+}
+@media(max-width:620px){
+  .rb-leaf-shadow{display:none}
+  .rb-page-motif--bottom{display:none}
+  .rb-section-botanical{width:132px;height:28px;opacity:.19}
+  .rb-photo-corner-leaf{display:none}
+  .rb-btn-leaf{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .rb-btn-leaf{transition:none!important}
+}
+
+
+/* HUMAN ART-DIRECTION OVERRIDE / 2026-09-29 */
+/* Reduce repetitive "AI decoration": fewer objects, larger intentional compositions. */
+.rb-botanical-petal--2,
+.rb-botanical-petal--3,
+.rb-botanical-petal--5,
+.rb-botanical-petal--6,
+.rb-botanical-petal--7,
+.rb-botanical-petal--8,
+.rb-seed-cluster--two,
+.rb-botanical-sprig--two,
+.rb-page-motif--bottom,
+.rb-btn-leaf{
+  display:none!important;
+}
+.rb-section-botanical{display:none!important}
+.rb-section-botanical.rb-section-botanical--feature{display:block!important}
+
+/* One large off-canvas botanical composition per side. */
+.rb-editorial-plant{
+  position:absolute;
+  width:clamp(260px,26vw,470px);
+  height:auto;
+  pointer-events:none;
+  opacity:.22;
+  filter:drop-shadow(0 22px 38px rgba(31,71,48,.06));
+}
+.rb-editorial-plant--left{
+  top:10%;
+  left:max(-250px,calc((100vw - 1180px)/2 - 320px));
+  transform:rotate(-10deg);
+}
+.rb-editorial-plant--right{
+  top:57%;
+  right:max(-270px,calc((100vw - 1180px)/2 - 335px));
+  transform:rotate(9deg) scaleX(-1);
+  opacity:.17;
+}
+.rb-editorial-plant .rb-art-stem{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:2.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-editorial-plant .rb-art-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 84%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.1;
+}
+.rb-editorial-plant .rb-art-flower{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 84%,#fff);
+  stroke:color-mix(in srgb,var(--rb-decor-bloom) 62%,#5d4960);
+  stroke-width:1;
+}
+.rb-editorial-plant .rb-art-core{fill:var(--rb-decor-bloom-2)}
+.rb-editorial-plant .rb-art-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 82%,#fff);
+  stroke:color-mix(in srgb,var(--rb-decor-seed) 70%,#6f5735);
+  stroke-width:1;
+}
+
+/* Organic section washes: only JS-selected sections receive them. */
+main>section.rb-art-wash{
+  position:relative;
+  isolation:isolate;
+}
+main>section.rb-art-wash::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  left:max(-8vw,-120px);
+  right:max(-6vw,-90px);
+  top:8%;
+  bottom:8%;
+  background:
+    radial-gradient(ellipse at 23% 38%,color-mix(in srgb,var(--rb-decor-bloom-2) 15%,transparent),transparent 43%),
+    radial-gradient(ellipse at 72% 62%,color-mix(in srgb,var(--rb-decor-leaf) 13%,transparent),transparent 48%),
+    linear-gradient(100deg,rgba(255,250,239,.68),rgba(245,249,239,.46));
+  border-radius:44% 56% 48% 52% / 20% 26% 74% 80%;
+  transform:rotate(-.55deg);
+}
+main>section.rb-art-wash--alt::before{
+  background:
+    radial-gradient(ellipse at 78% 32%,color-mix(in srgb,var(--rb-decor-bloom) 10%,transparent),transparent 45%),
+    radial-gradient(ellipse at 20% 72%,color-mix(in srgb,var(--rb-decor-leaf) 12%,transparent),transparent 48%),
+    linear-gradient(98deg,rgba(248,244,234,.48),rgba(255,252,244,.72));
+  border-radius:56% 44% 61% 39% / 72% 69% 31% 28%;
+  transform:rotate(.45deg);
+}
+
+/* Real-paper feel using subtle non-repeating line and fiber noise. */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  pointer-events:none;
+  opacity:.025;
+  mix-blend-mode:multiply;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(45,64,51,.18) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(90deg,rgba(126,102,68,.10) 0 1px,transparent 1px 7px);
+  background-size:100% 4px,7px 100%;
+}
+
+/* Hand-drawn accent line: slightly irregular and intentionally asymmetric. */
+.rb-handline{
+  position:absolute;
+  width:clamp(150px,16vw,260px);
+  height:44px;
+  pointer-events:none;
+  opacity:.38;
+  z-index:2;
+}
+.rb-handline--left{left:max(12px,calc((100vw - 1180px)/2 - 32px));top:36%}
+.rb-handline--right{right:max(10px,calc((100vw - 1180px)/2 - 26px));top:79%;transform:scaleX(-1)}
+.rb-handline svg{display:block;width:100%;height:100%;overflow:visible}
+.rb-handline path{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.7;
+  stroke-linecap:round;
+}
+.rb-handline circle{fill:var(--rb-decor-bloom-2)}
+
+/* One photo accent, not every photo. */
+.rb-photo-botanical{overflow:visible!important}
+.rb-photo-corner-leaf{
+  width:76px!important;
+  height:92px!important;
+  right:-22px!important;
+  top:auto!important;
+  bottom:-22px!important;
+  opacity:.52!important;
+}
+.rb-photo-corner-leaf::before{width:32px!important;height:57px!important}
+.rb-photo-corner-leaf::after{width:29px!important;height:52px!important}
+.rb-photo-corner-leaf i{left:36px!important;height:72px!important}
+
+/* The remaining petals are larger and feel like deliberate foreground accents. */
+.rb-botanical-petal--1{
+  width:34px!important;height:54px!important;
+  opacity:.32!important;
+  left:5.5%!important;
+}
+.rb-botanical-petal--4{
+  width:38px!important;height:58px!important;
+  opacity:.28!important;
+  right:5%!important;
+}
+.rb-botanical-sprig--one{opacity:.18!important;width:210px!important}
+.rb-seed-cluster--one{opacity:.22!important;transform:rotate(-17deg) scale(1.12)!important}
+
+/* page-specific emphasis */
+body[data-rb-motif="diagnosis"] .rb-editorial-plant{opacity:.24}
+body[data-rb-motif="report"] .rb-editorial-plant,
+body[data-rb-motif="event"] .rb-editorial-plant{opacity:.20}
+body[data-rb-motif="partner"] .rb-editorial-plant{opacity:.15}
+body[data-rb-motif="thoughts"] .rb-editorial-plant--left{top:15%}
+body[data-rb-motif="learn"] .rb-editorial-plant--right{top:50%}
+
+@media(max-width:980px){
+  .rb-editorial-plant{width:260px;opacity:.13}
+  .rb-editorial-plant--left{left:-185px}
+  .rb-editorial-plant--right{right:-190px}
+  .rb-handline{opacity:.24}
+  main>section.rb-art-wash::before{left:-36px;right:-36px}
+}
+@media(max-width:700px){
+  body::after{opacity:.016}
+  .rb-editorial-plant{width:190px;opacity:.09}
+  .rb-editorial-plant--left{left:-145px}
+  .rb-editorial-plant--right{right:-150px}
+  .rb-handline{display:none}
+  .rb-botanical-petal--4{display:none!important}
+  .rb-botanical-petal--1{opacity:.18!important}
+  .rb-photo-corner-leaf{display:none!important}
+  main>section.rb-art-wash::before{
+    left:-16px;right:-16px;
+    border-radius:26px;
+    transform:none;
+  }
+}
+
+
+/* RE:BLOOM SIGNATURE STAGES / 2026-09-29 */
+:root{
+  --rb-stage-a:#f0c84f;
+  --rb-stage-b:#dfead8;
+  --rb-stage-c:#e7a4a8;
+  --rb-stage-ink:#174a36;
+}
+body[data-rb-motif="home"]{--rb-stage-a:#f0cf5a;--rb-stage-b:#dcebd3;--rb-stage-c:#e9a7a4}
+body[data-rb-motif="thoughts"]{--rb-stage-a:#e7c96a;--rb-stage-b:#dce7d5;--rb-stage-c:#dca3b2}
+body[data-rb-motif="learn"]{--rb-stage-a:#e8bc59;--rb-stage-b:#d6e7d2;--rb-stage-c:#e2a479}
+body[data-rb-motif="event"]{--rb-stage-a:#efc04f;--rb-stage-b:#dce7d2;--rb-stage-c:#e5966d}
+body[data-rb-motif="report"]{--rb-stage-a:#ecc35a;--rb-stage-b:#d8e8d5;--rb-stage-c:#e7a36e}
+body[data-rb-motif="partner"]{--rb-stage-a:#dfc86d;--rb-stage-b:#dfe8d8;--rb-stage-c:#d8a57b}
+body[data-rb-motif="diagnosis"]{--rb-stage-a:#e3c45e;--rb-stage-b:#dce8d6;--rb-stage-c:#c9abd9}
+body[data-rb-motif="contact"]{--rb-stage-a:#e6c96e;--rb-stage-b:#d7e9df;--rb-stage-c:#e8b39d}
+
+/* Hero gets one oversized, cropped block-print flower and one organic color field. */
+main>section:first-child.rb-signature-hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.rb-hero-colorfield{
+  position:absolute;
+  z-index:-2;
+  width:min(760px,58vw);
+  height:min(520px,42vw);
+  right:-10vw;
+  top:-7vw;
+  border-radius:56% 44% 64% 36% / 38% 54% 46% 62%;
+  background:
+    radial-gradient(circle at 28% 32%,rgba(255,255,255,.58),transparent 22%),
+    linear-gradient(138deg,color-mix(in srgb,var(--rb-stage-a) 78%,#fff),var(--rb-stage-a));
+  transform:rotate(-7deg);
+  opacity:.92;
+  box-shadow:0 34px 90px rgba(49,68,46,.07);
+}
+.rb-hero-print{
+  position:absolute;
+  z-index:-1;
+  right:-68px;
+  bottom:-96px;
+  width:clamp(260px,30vw,520px);
+  height:auto;
+  color:var(--rb-stage-ink);
+  opacity:.17;
+  transform:rotate(8deg);
+  mix-blend-mode:multiply;
+}
+.rb-hero-print .rb-print-petal{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-hero-print .rb-print-core{fill:var(--rb-stage-c);stroke:currentColor;stroke-width:5}
+.rb-hero-print .rb-print-seed{fill:var(--rb-stage-a)}
+.rb-hero-print .rb-print-leaf{
+  fill:color-mix(in srgb,var(--rb-stage-b) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:5;
+}
+
+/* Strong section stages: only two per page. */
+main>section.rb-stage{
+  position:relative;
+  isolation:isolate;
+}
+main>section.rb-stage::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  pointer-events:none;
+  left:max(-9vw,-130px);
+  right:max(-7vw,-110px);
+  top:2%;
+  bottom:2%;
+  border-radius:42% 58% 47% 53% / 20% 27% 73% 80%;
+  transform:rotate(-.8deg);
+  box-shadow:inset 0 0 0 1px rgba(42,70,53,.025);
+}
+main>section.rb-stage--a::before{
+  background:
+    radial-gradient(circle at 15% 22%,rgba(255,255,255,.62),transparent 20%),
+    linear-gradient(110deg,color-mix(in srgb,var(--rb-stage-a) 54%,#fff),color-mix(in srgb,var(--rb-stage-a) 82%,#fff));
+}
+main>section.rb-stage--b::before{
+  background:
+    radial-gradient(circle at 82% 28%,rgba(255,255,255,.72),transparent 18%),
+    linear-gradient(105deg,color-mix(in srgb,var(--rb-stage-b) 72%,#fff),color-mix(in srgb,var(--rb-stage-b) 92%,#fff));
+  border-radius:58% 42% 61% 39% / 70% 74% 26% 30%;
+  transform:rotate(.65deg);
+}
+main>section.rb-stage--c::before{
+  background:
+    radial-gradient(circle at 75% 75%,rgba(255,255,255,.54),transparent 22%),
+    linear-gradient(112deg,color-mix(in srgb,var(--rb-stage-c) 42%,#fff),color-mix(in srgb,var(--rb-stage-c) 70%,#fff));
+  border-radius:50% 50% 38% 62% / 26% 34% 66% 74%;
+  transform:rotate(-.35deg);
+}
+
+/* large pressed-flower / leaf signatures for stage corners */
+.rb-stage-mark{
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  width:clamp(170px,18vw,310px);
+  height:auto;
+  opacity:.18;
+  color:var(--rb-stage-ink);
+  mix-blend-mode:multiply;
+}
+.rb-stage-mark--left{left:max(-110px,calc((100vw - 1180px)/2 - 190px));top:12%;transform:rotate(-12deg)}
+.rb-stage-mark--right{right:max(-120px,calc((100vw - 1180px)/2 - 200px));bottom:6%;transform:rotate(13deg) scaleX(-1)}
+.rb-stage-mark path,.rb-stage-mark ellipse{
+  fill:color-mix(in srgb,var(--rb-stage-b) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:4;
+}
+.rb-stage-mark circle{fill:var(--rb-stage-c);stroke:currentColor;stroke-width:3}
+
+/* Small confetti-like pollen is used only beside signature stages, not globally. */
+.rb-pollen{
+  position:absolute;
+  width:110px;
+  height:90px;
+  pointer-events:none;
+  opacity:.45;
+  z-index:1;
+}
+.rb-pollen--a{right:5%;top:9%}
+.rb-pollen--b{left:4%;bottom:8%;transform:rotate(18deg)}
+.rb-pollen i{
+  position:absolute;
+  border-radius:50%;
+  background:var(--rb-stage-a);
+  box-shadow:0 0 0 1px rgba(88,72,33,.08);
+}
+.rb-pollen i:nth-child(1){width:8px;height:8px;left:8px;top:18px}
+.rb-pollen i:nth-child(2){width:5px;height:5px;left:38px;top:4px}
+.rb-pollen i:nth-child(3){width:10px;height:10px;left:68px;top:31px}
+.rb-pollen i:nth-child(4){width:6px;height:6px;left:92px;top:10px}
+.rb-pollen i:nth-child(5){width:7px;height:7px;left:48px;top:61px}
+.rb-pollen i:nth-child(6){width:4px;height:4px;left:18px;top:70px}
+
+/* Give the whole page a more editorial background rhythm without touching cards. */
+body[data-rb-motif]{
+  background:
+    linear-gradient(180deg,#fffdf8 0 19%,#fbf8f0 19% 38%,#fff 38% 58%,#f8f7ef 58% 78%,#fffdf8 78% 100%)!important;
+}
+
+/* Make existing large off-canvas plants bolder instead of multiplying objects. */
+.rb-editorial-plant{
+  opacity:.30!important;
+  width:clamp(320px,30vw,540px)!important;
+}
+.rb-editorial-plant--right{opacity:.23!important}
+.rb-handline{opacity:.52!important}
+.rb-page-motif--top{opacity:.30!important;transform:scale(1.18) rotate(-5deg)}
+.rb-leaf-shadow{opacity:.08!important}
+
+/* Hide older faint washes once the strong stages are applied. */
+main>section.rb-stage.rb-art-wash::before{display:none!important}
+
+/* Decorative depth around images without changing the image itself. */
+.rb-photo-botanical::before{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  inset:10px -16px -16px 12px;
+  border-radius:inherit;
+  background:color-mix(in srgb,var(--rb-stage-a) 36%,#fff);
+  transform:rotate(1.3deg);
+}
+.rb-photo-botanical::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-2;
+  left:-18px;top:14%;
+  width:42%;
+  height:66%;
+  border-radius:58% 42% 50% 50%;
+  background:color-mix(in srgb,var(--rb-stage-b) 68%,#fff);
+  transform:rotate(-7deg);
+}
+
+@media(max-width:900px){
+  .rb-hero-colorfield{width:70vw;height:46vw;right:-24vw;top:-8vw;opacity:.72}
+  .rb-hero-print{width:320px;right:-110px;bottom:-90px;opacity:.11}
+  main>section.rb-stage::before{left:-30px;right:-30px;border-radius:28px;transform:none}
+  .rb-stage-mark{width:180px;opacity:.11}
+  .rb-pollen{opacity:.30}
+  .rb-editorial-plant{opacity:.16!important;width:280px!important}
+}
+@media(max-width:620px){
+  .rb-hero-colorfield{width:84vw;height:54vw;right:-38vw;top:-6vw;opacity:.55}
+  .rb-hero-print{width:220px;right:-100px;bottom:-70px;opacity:.08}
+  main>section.rb-stage::before{left:-14px;right:-14px;top:4%;bottom:4%;border-radius:22px}
+  .rb-stage-mark,.rb-pollen{display:none}
+  .rb-editorial-plant{opacity:.08!important}
+  .rb-photo-botanical::before,.rb-photo-botanical::after{display:none}
+}
+
+
+/* BOTANICAL STRUCTURE V3 / 2026-09-29 */
+/* Typography stays horizontal and readable. Atmosphere comes from plants, not tilted text. */
+html body :is(h1,h2,h3,h4,.eyebrow,.eyebrow span,.eyebrow small,.headline-marker,.section-heading){
+  transform:none!important;
+  rotate:0deg!important;
+  font-style:normal!important;
+}
+html body .eyebrow small{display:none!important}
+
+/* Retire the previous color-blob / scattered-decoration approach. */
+.rb-hero-colorfield,
+.rb-hero-print,
+.rb-stage-mark,
+.rb-pollen,
+.rb-editorial-plant,
+.rb-handline,
+.rb-page-motif,
+.rb-leaf-shadow,
+.rb-botanical-vine,
+.rb-botanical-sprig,
+.rb-botanical-petal,
+.rb-seed-cluster,
+.rb-botanical-haze,
+.rb-section-botanical{
+  display:none!important;
+}
+main>section.rb-stage::before,
+main>section.rb-art-wash::before{
+  display:none!important;
+}
+body[data-rb-motif]{
+  background:#faf8f1!important;
+}
+body::after{
+  opacity:.018!important;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(50,67,54,.12) 0 1px,transparent 1px 5px),
+    repeating-linear-gradient(90deg,rgba(130,105,71,.07) 0 1px,transparent 1px 11px)!important;
+}
+
+/* A single growth line gives the page a botanical backbone. */
+.rb-growth-spine{
+  position:absolute;
+  top:150px;
+  bottom:280px;
+  left:max(12px,calc((100vw - 1180px)/2 - 102px));
+  width:108px;
+  z-index:0;
+  pointer-events:none;
+  opacity:.42;
+}
+.rb-growth-spine svg{
+  width:100%;
+  height:100%;
+  display:block;
+  overflow:visible;
+}
+.rb-growth-spine .rb-spine-stem,
+.rb-growth-spine .rb-spine-stem-ghost{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-stem{stroke-width:2.1}
+.rb-growth-spine .rb-spine-stem-ghost{
+  stroke-width:.8;
+  opacity:.34;
+  transform:translateX(3px);
+}
+.rb-growth-spine .rb-spine-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 72%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.2;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-flower{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 74%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.1;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 72%,#fff);
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+
+/* Plant specimens occupy the margins and never cover copy/cards. */
+.rb-botanical-specimen-host{
+  position:relative!important;
+  isolation:isolate;
+}
+.rb-botanical-specimen-host > :not(.rb-botanical-specimen):not(.rb-root-line){
+  position:relative;
+  z-index:2;
+}
+.rb-botanical-specimen{
+  position:absolute;
+  z-index:1;
+  width:clamp(190px,20vw,330px);
+  height:auto;
+  pointer-events:none;
+  color:var(--rb-decor-leaf-dark);
+  opacity:.30;
+  filter:drop-shadow(0 18px 28px rgba(34,69,47,.055));
+}
+.rb-botanical-specimen--left{
+  left:max(-170px,calc((100vw - 1180px)/2 - 220px));
+  top:12%;
+}
+.rb-botanical-specimen--right{
+  right:max(-180px,calc((100vw - 1180px)/2 - 230px));
+  top:14%;
+}
+.rb-botanical-specimen path.rb-spec-stem,
+.rb-botanical-specimen path.rb-spec-root{
+  fill:none;
+  stroke:currentColor;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rb-botanical-specimen path.rb-spec-stem{stroke-width:2.2}
+.rb-botanical-specimen path.rb-spec-root{stroke-width:1.35;opacity:.8}
+.rb-botanical-specimen .rb-spec-leaf{
+  fill:color-mix(in srgb,var(--rb-decor-leaf) 78%,#fff);
+  stroke:currentColor;
+  stroke-width:1.1;
+}
+.rb-botanical-specimen .rb-spec-petal{
+  fill:color-mix(in srgb,var(--rb-decor-bloom) 72%,#fff);
+  stroke:currentColor;
+  stroke-width:1.1;
+}
+.rb-botanical-specimen .rb-spec-core{
+  fill:var(--rb-decor-bloom-2);
+  stroke:currentColor;
+  stroke-width:1;
+}
+.rb-botanical-specimen .rb-spec-seed{
+  fill:color-mix(in srgb,var(--rb-decor-seed) 76%,#fff);
+  stroke:currentColor;
+  stroke-width:1;
+}
+
+/* Roots mark a section ending; unlike a decorative divider, they express growth below ground. */
+.rb-root-line{
+  position:absolute;
+  left:50%;
+  bottom:-34px;
+  width:min(620px,58vw);
+  height:78px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index:1;
+  opacity:.18;
+}
+.rb-root-line svg{display:block;width:100%;height:100%;overflow:visible}
+.rb-root-line path{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.25;
+  stroke-linecap:round;
+}
+
+/* Headings get a real botanical underline: stem + one leaf, never rotated text. */
+.rb-plant-heading{
+  position:relative;
+  padding-bottom:18px!important;
+}
+.rb-plant-heading::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:3px;
+  width:88px;
+  height:13px;
+  background:
+    radial-gradient(ellipse at 76% 34%,var(--rb-decor-leaf) 0 34%,transparent 36%),
+    linear-gradient(var(--rb-decor-leaf-dark),var(--rb-decor-leaf-dark)) 0 9px/78px 1.5px no-repeat;
+  border-radius:100%;
+  opacity:.54;
+}
+.section-heading--center .rb-plant-heading::after,
+.section-heading--center.rb-plant-heading::after{
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Selected photographs feel embedded in a herbarium page. */
+.rb-photo-botanical::before{
+  background:#eee8d9!important;
+  box-shadow:0 12px 24px rgba(48,64,50,.06);
+}
+.rb-photo-botanical::after{
+  background:transparent!important;
+  border-left:1px solid rgba(58,90,64,.24);
+  border-bottom:1px solid rgba(58,90,64,.16);
+  border-radius:0!important;
+}
+.rb-photo-corner-leaf{
+  opacity:.62!important;
+}
+.rb-photo-corner-leaf::before,
+.rb-photo-corner-leaf::after{
+  background:color-mix(in srgb,var(--rb-decor-leaf) 82%,#fff)!important;
+  border:1px solid rgba(49,84,58,.24);
+}
+
+/* Give alternating sections a paper tone only; plants provide the identity. */
+main>section:nth-of-type(4n+2):not(.section--soil):not(.report-finance):not(.update-band){
+  background:rgba(244,241,231,.50);
+}
+main>section:nth-of-type(4n):not(.section--soil):not(.report-finance):not(.update-band){
+  background:rgba(239,245,235,.38);
+}
+
+/* Preserve all content contrast over botanical art. */
+main>section :is(h1,h2,h3,h4,p,li,a,button,label,strong,small){
+  position:relative;
+}
+main>section :is(.container,.page-hero-grid,.split-story,.section-heading,.diagnosis-shell,.diagnosis-layout){
+  position:relative;
+  z-index:3;
+}
+
+@media(max-width:1180px){
+  .rb-growth-spine{
+    left:-42px;
+    opacity:.26;
+    width:94px;
+  }
+  .rb-botanical-specimen{opacity:.19;width:230px}
+  .rb-botanical-specimen--left{left:-150px}
+  .rb-botanical-specimen--right{right:-160px}
+}
+@media(max-width:760px){
+  .rb-growth-spine{display:none}
+  .rb-botanical-specimen{
+    width:150px;
+    opacity:.10;
+  }
+  .rb-botanical-specimen--left{left:-112px;top:7%}
+  .rb-botanical-specimen--right{right:-118px;top:8%}
+  .rb-root-line{width:72vw;opacity:.10}
+  .rb-plant-heading{padding-bottom:14px!important}
+  .rb-plant-heading::after{width:66px;height:10px;bottom:2px}
+}
+@media(max-width:520px){
+  .rb-botanical-specimen{display:none}
+  .rb-root-line{opacity:.07}
+}
+
+
+/* ORGANIC LINE ART V4 / 2026-09-29 */
+/* Remove the synthetic line+oval heading decoration completely. */
+.rb-plant-heading{
+  padding-bottom:0!important;
+}
+.rb-plant-heading::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Remove assembled pseudo-leaf decorations from photographs. */
+.rb-photo-corner-leaf{
+  display:none!important;
+}
+.rb-photo-botanical::after{
+  display:none!important;
+}
+
+/* Botanical drawings are now line art only: no circles, ellipses or assembled filled shapes. */
+.rb-botanical-specimen{
+  opacity:.34!important;
+  filter:none!important;
+}
+.rb-botanical-specimen .rb-spec-line{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.75;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.rb-botanical-specimen .rb-spec-line--fine{
+  stroke-width:1.05;
+  opacity:.68;
+}
+.rb-botanical-specimen .rb-spec-line--accent{
+  stroke:color-mix(in srgb,var(--rb-decor-bloom) 58%,var(--rb-decor-leaf-dark));
+  stroke-width:1.45;
+}
+.rb-botanical-specimen :is(ellipse,circle,rect,polygon){
+  display:none!important;
+}
+
+/* The page spine also uses only continuous hand-drawn paths. */
+.rb-growth-spine .rb-spine-line{
+  fill:none;
+  stroke:var(--rb-decor-leaf-dark);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.rb-growth-spine .rb-spine-line--fine{
+  stroke-width:.9;
+  opacity:.55;
+}
+.rb-growth-spine .rb-spine-line--flower{
+  stroke:color-mix(in srgb,var(--rb-decor-bloom) 58%,var(--rb-decor-leaf-dark));
+  stroke-width:1.3;
+}
+.rb-growth-spine :is(ellipse,circle,rect,polygon){
+  display:none!important;
+}
+
+/* Remove any remaining geometric motif primitives inherited from older layers. */
+.rb-page-motif,
+.rb-stage-mark,
+.rb-hero-print,
+.rb-editorial-plant{
+  display:none!important;
+}
+
+
+/* ISHIKAWA ZUKAN LOGO OPTICAL SIZE / 2026-09-29 */
+body.nr-new-partner .industry-partner-logo--zukan{
+  overflow:hidden!important;
+}
+body.nr-new-partner .industry-partner-logo--zukan img{
+  width:178px!important;
+  max-width:none!important;
+  max-height:none!important;
+  height:auto!important;
+  transform:scale(2.08)!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+@media(max-width:600px){
+  body.nr-new-partner .industry-partner-logo--zukan img{
+    width:164px!important;
+    transform:scale(2.02)!important;
+  }
+}
+
+
+/* ISHIKAWA ZUKAN UNIVERSAL STRIP OPTICAL SIZE / 2026-09-29 */
+.site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+  max-width:none!important;
+  max-height:58px!important;
+  transform:scale(1.92)!important;
+  transform-origin:center center!important;
+}
+@media(max-width:600px){
+  .site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+    transform:scale(1.82)!important;
+  }
+}
+
+
+/* UPDATED ISHIKAWA ZUKAN LOGO RESET / 2026-09-29 */
+body.nr-new-partner .industry-partner-logo--zukan img{
+  width:min(100%,220px)!important;
+  max-width:220px!important;
+  max-height:88px!important;
+  height:auto!important;
+  transform:none!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+.site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+  width:auto!important;
+  max-width:100%!important;
+  max-height:64px!important;
+  height:auto!important;
+  transform:none!important;
+  transform-origin:center center!important;
+  object-fit:contain!important;
+}
+@media(max-width:600px){
+  body.nr-new-partner .industry-partner-logo--zukan img{
+    max-width:200px!important;
+    max-height:80px!important;
+  }
+  .site-partner-strip--universal .site-partner-strip__logo img[alt="イシカワズカン"]{
+    max-height:58px!important;
+  }
+}
+
+
+/* FINAL READABILITY FIXES / 2026-09-29 */
+/* Buttons: never allow a light surface to inherit white button text. */
+body .btn.btn--green,
+body a.btn.btn--green,
+body button.btn--green{
+  background:#174a36!important;
+  border-color:#174a36!important;
+  color:#fff!important;
+}
+
+/* Report timeline heading sits on a light section. */
+body .flow-section .section-intro h2{
+  color:#173a31!important;
+}
+
+/* Sponsor guide numbers must stay readable on white/cream cards. */
+body.nr-new-partner .nr-navi-guide article>b,
+body.nr-new-partner .nr-main-sponsor article>b{
+  background:#edf5eb!important;
+  color:#173a31!important;
+  border:1px solid rgba(23,58,49,.14)!important;
+}
+
+/* Diagnosis start-step numbers: dark type on a pale botanical badge. */
+body.page-diagnosis .diagnosis-start-steps>div>b{
+  background:#fff0b8!important;
+  color:#173a31!important;
+  border:1px solid rgba(23,58,49,.16)!important;
+}
+
+/* Routing cards are content-first; botanical specimens must not cross them. */
+body .nr-choice-grid>.rb-root-line,
+body .nr-choice-grid>.rb-botanical-specimen{
+  display:none!important;
+}
+
+
+/* FINAL CONTRAST OVERRIDE V9 / 2026-09-29 */
+/* Report timeline heading: force real dark text on the light schedule section. */
+html body.report-page .flow-section .section-intro h2{
+  color:#173a31!important;
+  -webkit-text-fill-color:#173a31!important;
+  background:none!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* Sponsor numeric markers: HTML and JS-injected cards both use dark text on pale badges. */
+html body.nr-new-partner :is(
+  .nr-navi-guide article>b,
+  .nr-sponsor-wide__partnerline>b,
+  .nr-sponsor-wide__reasons b,
+  .nr-oteru-reasons b
+){
+  color:#173a31!important;
+  -webkit-text-fill-color:#173a31!important;
+  background:#edf5eb!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  border:1px solid rgba(23,58,49,.16)!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* Any numbered sponsor feature marker that is intentionally dark/light must not inherit white fill. */
+html body.nr-new-partner .nr-sponsor-story b,
+html body.nr-new-partner .nr-main-sponsor b{
+  -webkit-text-fill-color:currentColor!important;
+  text-shadow:none!important;
+}
+
+/* FINAL AUDIT TRIGGER 2026-09-29 */
+
+
+/* REPORT FLOW DARK-SURFACE FIX V10 / 2026-09-29 */
+html body.report-page .flow-section{
+  background:#174a36!important;
+  color:#fff!important;
+}
+html body.report-page .flow-section .section-intro h2{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:none!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+html body.report-page .flow-section .section-intro p,
+html body.report-page .flow-section .event-kicker{
+  color:rgba(255,255,255,.86)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.86)!important;
+}
+
+
+/* FINAL REPORT KICKER CONTRAST / 2026-09-30 */
+html body.report-page .flow-section .event-kicker{
+  display:inline-block!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  background:#f4eddc!important;
+  border:1px solid rgba(23,74,54,.18)!important;
+  padding:.34rem .7rem!important;
+  border-radius:999px!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+
+/* FINAL DESIGN ORGANIZATION / 2026-09-30 */
+/* Reduce visual noise while keeping the botanical identity and all existing copy. */
+
+/* Header: one clear social group, cleaner spacing. */
+html body .site-header .header-actions{gap:10px!important}
+html body .site-header .rb-header-social{margin-left:2px!important;margin-right:2px!important}
+@media (min-width:1181px){
+  html body .site-header{padding-left:18px!important;padding-right:18px!important}
+  html body .site-header .site-nav{gap:2px!important}
+}
+
+/* Long editorial pages: fewer floating cards, more breathing room and hierarchy. */
+html body.page-thoughts .section:not(.section--soil) .event-values>article,
+html body.page-thoughts #future .cause-grid>article{
+  border:0!important;
+  border-top:1px solid rgba(23,74,54,.16)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:20px 8px 18px!important
+}
+html body.page-thoughts .section:not(.section--soil) .event-values>article>span,
+html body.page-thoughts #future .cause-grid>article>span{
+  width:38px!important;height:38px!important;margin-bottom:10px!important;box-shadow:none!important
+}
+html body.page-thoughts .section-heading{max-width:900px}
+html body.page-thoughts .section-heading>p:not(.eyebrow){max-width:760px}
+
+/* Report: let photos and results lead; keep data cards quiet and precise. */
+html body.report-page .report-summary-card{
+  border-color:rgba(23,74,54,.12)!important;background:#fffdf8!important;box-shadow:none!important
+}
+html body.report-page .report-summary-card strong{letter-spacing:-.04em!important}
+html body.report-page .report-photo-story{
+  background:linear-gradient(180deg,#f7f4ea 0%,#f2f6ee 100%)!important
+}
+html body.report-page .report-impact-card{box-shadow:0 8px 22px rgba(23,74,54,.055)!important}
+
+/* Sponsors: primary facts first, secondary detail quieter but still fully readable. */
+html body.nr-new-partner #current-partners .nr-sponsor-wide{
+  box-shadow:0 10px 28px rgba(23,58,49,.07)!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__metrics>div{
+  box-shadow:0 7px 17px rgba(23,58,49,.08)!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__metrics small{
+  font-size:10px!important;line-height:1.55!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__reasons strong{font-size:12px!important}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__reasons span{
+  font-size:10px!important;line-height:1.65!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__source-note{
+  font-size:10.5px!important;line-height:1.65!important
+}
+html body.nr-new-partner #current-partners .nr-sponsor-wide__company,
+html body.nr-new-partner #current-partners .nr-sponsor-wide__related{box-shadow:none!important}
+html body.nr-new-partner .partner-volunteer-credit>span{font-size:10px!important}
+html body.nr-new-partner .partner-volunteer-credit p{font-size:11.5px!important}
+
+/* Universal partner strip: visible but compact. */
+html body .site-partner-strip--universal{padding:22px 0 20px!important}
+html body .site-partner-strip--universal .site-partner-strip__label{margin-bottom:12px!important}
+html body .site-partner-strip--universal .site-partner-strip__logos{gap:8px!important}
+html body .site-partner-strip--universal .site-partner-strip__logo{
+  min-height:80px!important;padding:11px!important;border-radius:14px!important;
+  box-shadow:0 3px 10px rgba(23,74,54,.035)!important
+}
+html body .site-partner-strip--universal .site-partner-strip__logo img{max-height:52px!important}
+html body .site-partner-strip--universal .site-partner-strip__logo--rebloom img{max-height:56px!important}
+html body .site-partner-strip--universal .site-partner-strip__more{
+  margin-top:10px!important;min-height:36px!important
+}
+
+/* Footer: less repeated vertical weight. */
+html body .rb-footer--universal .rb-footer-cta{padding-top:26px!important;padding-bottom:22px!important}
+html body .rb-footer--universal .rb-footer-grid{
+  gap:28px!important;padding-top:21px!important;padding-bottom:18px!important
+}
+html body .rb-footer--universal .rb-footer-social{padding:12px 0!important}
+html body .rb-footer--universal .rb-footer-bottom{padding-top:12px!important}
+
+/* Mobile: one fixed action only. Contact remains in menu/footer. */
+@media(max-width:760px){
+  html body .rb-contact-fab{display:none!important}
+  html body:not(.page-diagnosis) .rb-mobile-join{
+    left:12px!important;right:12px!important;bottom:10px!important;width:auto!important;height:auto!important;
+    padding:0!important;background:transparent!important;box-shadow:none!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a{
+    box-sizing:border-box!important;width:100%!important;min-height:56px!important;height:auto!important;
+    padding:8px 16px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:18px!important;
+    background:#174a36!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+    box-shadow:0 10px 24px rgba(23,58,49,.18)!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a>span{
+    color:#fff!important;-webkit-text-fill-color:#fff!important
+  }
+  html body:not(.page-diagnosis) .rb-mobile-join>a>small{
+    color:rgba(255,255,255,.82)!important;-webkit-text-fill-color:rgba(255,255,255,.82)!important;opacity:1!important
+  }
+  html body .site-partner-strip--universal{padding:18px 0 16px!important}
+  html body .site-partner-strip--universal .site-partner-strip__logo{min-height:68px!important;padding:9px!important}
+  html body .site-partner-strip--universal .site-partner-strip__logo img{max-height:42px!important}
+  html body .rb-footer--universal .rb-footer-cta{gap:14px!important;padding-top:22px!important;padding-bottom:18px!important}
+  html body .rb-footer--universal .rb-footer-cta__button{width:100%!important}
+  html body .rb-footer--universal .rb-footer-grid{gap:20px!important;padding-top:18px!important;padding-bottom:15px!important}
+  html body.page-thoughts .section:not(.section--soil) .event-values>article,
+  html body.page-thoughts #future .cause-grid>article{padding:17px 3px 16px!important}
+}
+
+/* FINAL CROSS-PAGE MOBILE CLEANUP / 2026-10-02
+   The persistent report dock duplicated page CTAs and covered content on small screens.
+   Keep the diagnosis-specific start dock, but remove the generic site-wide dock. */
+@media(max-width:760px){
+  html body:not(.page-diagnosis) .rb-mobile-join{
+    display:none!important;
+  }
+  html body:not(.page-diagnosis){
+    padding-bottom:0!important;
+  }
+}
+
+/* Keyboard focus is intentionally visible on every interactive control. */
+html body :where(a,button,[role="button"],input,select,textarea,[tabindex]):focus-visible{
+  outline:3px solid #e0b92f!important;
+  outline-offset:3px!important;
+}
+
+
+
+/* ===== SOURCE: learn-polish-20261001.css ===== */
+/* Learn page polish — 2026-10-01
+   Goal: explain the land issue quickly, then connect it cleanly to the project. */
+
+body.page-learn:not(.page-thoughts){
+  --learn-green:#174a36;
+  --learn-deep:#123d32;
+  --learn-yellow:#f2c94c;
+  --learn-paper:#fffaf0;
+  --learn-mint:#eef5ea;
+  --learn-ink:#173f34;
+  --learn-muted:#607168;
+}
+
+/* Intro */
+body.page-learn:not(.page-thoughts) .page-hero--learn{
+  padding-top:128px!important;
+  padding-bottom:72px!important;
+  background:
+    radial-gradient(circle at 88% 14%,rgba(242,201,76,.15),transparent 22%),
+    linear-gradient(180deg,#f5efdd 0%,#fffaf0 100%)!important;
+}
+body.page-learn:not(.page-thoughts) .page-hero--learn .page-hero-grid{
+  grid-template-columns:minmax(0,1.03fr) minmax(360px,.97fr)!important;
+  gap:clamp(38px,5vw,68px)!important;
+  align-items:center!important;
+}
+body.page-learn:not(.page-thoughts) .page-hero--learn h1{
+  max-width:760px!important;
+  font-size:clamp(50px,5.5vw,80px)!important;
+  line-height:1.06!important;
+  letter-spacing:-.045em!important;
+}
+body.page-learn:not(.page-thoughts) .page-hero--learn .photo-frame{
+  transform:none!important;
+  border-radius:34px 16px 36px 18px!important;
+  box-shadow:0 24px 54px rgba(23,58,49,.12)!important;
+}
+
+/* Reading path */
+body.page-learn:not(.page-thoughts) .learn-path{
+  background:#fffaf0;
+  border-top:1px solid rgba(23,74,54,.10);
+  border-bottom:1px solid rgba(23,74,54,.12);
+  padding:0 20px;
+}
+body.page-learn:not(.page-thoughts) .learn-path__inner{
+  width:min(1120px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+body.page-learn:not(.page-thoughts) .learn-path a{
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:11px;
+  align-items:center;
+  min-height:78px;
+  padding:13px 18px;
+  border-right:1px solid rgba(23,74,54,.10);
+  color:var(--learn-ink)!important;
+  -webkit-text-fill-color:var(--learn-ink)!important;
+  text-decoration:none!important;
+}
+body.page-learn:not(.page-thoughts) .learn-path a:first-child{
+  border-left:1px solid rgba(23,74,54,.10);
+}
+body.page-learn:not(.page-thoughts) .learn-path a>span{
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#e9f0e5;
+  color:var(--learn-green)!important;
+  -webkit-text-fill-color:var(--learn-green)!important;
+  font-size:11px;
+  font-weight:950;
+}
+body.page-learn:not(.page-thoughts) .learn-path a>b{
+  font-size:13px;
+  font-weight:950;
+}
+body.page-learn:not(.page-thoughts) .learn-path a>small{
+  font-size:8.5px;
+  font-weight:900;
+  letter-spacing:.13em;
+  color:#52645d!important;
+  -webkit-text-fill-color:#52645d!important;
+}
+@media(hover:hover){
+  body.page-learn:not(.page-thoughts) .learn-path a:hover{
+    background:#f2f6ee;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path a:hover>span{
+    background:var(--learn-green);
+    color:#fff!important;
+    -webkit-text-fill-color:#fff!important;
+  }
+}
+
+/* Visual section becomes a quick concrete bridge from "land" to "project". */
+body.page-learn:not(.page-thoughts) #learn-visual{
+  padding-top:70px!important;
+  padding-bottom:78px!important;
+  background:linear-gradient(180deg,#fffaf0 0%,#f2f6ef 100%)!important;
+}
+
+/* Definitions: cleaner and less card-heavy. */
+body.page-learn:not(.page-thoughts) .learn-definitions{
+  padding-top:82px!important;
+  padding-bottom:88px!important;
+  background:#fffdf8!important;
+}
+body.page-learn:not(.page-thoughts) .learn-definitions .definition-grid{
+  gap:0!important;
+  border-top:1px solid rgba(23,74,54,.16)!important;
+  border-bottom:1px solid rgba(23,74,54,.16)!important;
+}
+body.page-learn:not(.page-thoughts) .learn-definitions .definition-card{
+  margin:0!important;
+  padding:28px 24px 30px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.page-learn:not(.page-thoughts) .learn-definitions .definition-card+article{
+  border-left:1px solid rgba(23,74,54,.13)!important;
+}
+body.page-learn:not(.page-thoughts) .learn-definitions .definition-card>span{
+  display:inline-flex!important;
+  width:auto!important;
+  height:auto!important;
+  padding:6px 9px!important;
+  border-radius:999px!important;
+  background:#e8f0e5!important;
+  color:var(--learn-green)!important;
+  -webkit-text-fill-color:var(--learn-green)!important;
+  font-size:9px!important;
+  font-weight:900!important;
+}
+
+/* Data section: make the headline number visually obvious. */
+body.page-learn:not(.page-thoughts) .learn-data{
+  padding-top:86px!important;
+  padding-bottom:94px!important;
+  background:linear-gradient(180deg,#edf5e9 0%,#f7f8f1 100%)!important;
+}
+body.page-learn:not(.page-thoughts) .learn-data .data-grid--large{
+  display:grid!important;
+  grid-template-columns:1.25fr .875fr .875fr!important;
+  gap:12px!important;
+  max-width:980px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.page-learn:not(.page-thoughts) .learn-data .data-grid--large>article{
+  min-height:170px!important;
+  padding:26px 24px!important;
+  border:1px solid rgba(23,74,54,.11)!important;
+  border-radius:22px!important;
+  background:#fffdf8!important;
+  box-shadow:none!important;
+}
+body.page-learn:not(.page-thoughts) .learn-data .data-grid--large>article:first-child{
+  background:linear-gradient(145deg,#123d32,#174b3d)!important;
+  border-color:#123d32!important;
+}
+body.page-learn:not(.page-thoughts) .learn-data .data-grid--large>article:first-child :is(strong,h3,small){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-learn:not(.page-thoughts) .learn-data .data-grid--large>article:first-child strong{
+  font-size:clamp(50px,5vw,70px)!important;
+}
+body.page-learn:not(.page-thoughts) #farmland-data-story{
+  margin-top:46px!important;
+}
+body.page-learn:not(.page-thoughts) #farmland-data-story .chart-card{
+  border-color:rgba(23,74,54,.12)!important;
+  background:#fffdf8!important;
+  box-shadow:none!important;
+}
+
+/* Causes: horizontal editorial blocks, not four separate floating cards. */
+body.page-learn:not(.page-thoughts) .learn-causes{
+  padding-top:82px!important;
+  padding-bottom:88px!important;
+  background:#fffaf0!important;
+}
+body.page-learn:not(.page-thoughts) .learn-causes .cause-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:0!important;
+  border-top:1px solid rgba(23,74,54,.16)!important;
+  border-bottom:1px solid rgba(23,74,54,.16)!important;
+}
+body.page-learn:not(.page-thoughts) .learn-causes .cause-grid>article{
+  min-height:0!important;
+  padding:27px 22px 29px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.page-learn:not(.page-thoughts) .learn-causes .cause-grid>article+article{
+  border-left:1px solid rgba(23,74,54,.13)!important;
+}
+body.page-learn:not(.page-thoughts) .learn-causes .cause-grid>article>span{
+  width:42px!important;
+  height:42px!important;
+  margin-bottom:14px!important;
+  background:var(--learn-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* Role clarity: a strong pause. */
+body.page-learn:not(.page-thoughts) .learn-role{
+  padding-top:88px!important;
+  padding-bottom:92px!important;
+  background:
+    radial-gradient(circle at 88% 20%,rgba(242,201,76,.12),transparent 23%),
+    linear-gradient(145deg,#123d32,#184b3d)!important;
+}
+body.page-learn:not(.page-thoughts) .learn-role :is(h2,p){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+body.page-learn:not(.page-thoughts) .learn-role p{
+  color:rgba(255,255,255,.82)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.82)!important;
+}
+body.page-learn:not(.page-thoughts) .learn-role .eyebrow{
+  background:#f2c94c!important;
+}
+body.page-learn:not(.page-thoughts) .learn-role .eyebrow :is(span,small,strong){
+  color:#173f34!important;
+  -webkit-text-fill-color:#173f34!important;
+}
+body.page-learn:not(.page-thoughts) .learn-role .photo-frame{
+  transform:none!important;
+  border:6px solid rgba(255,250,240,.92)!important;
+  border-radius:30px 14px 32px 16px!important;
+  box-shadow:0 22px 50px rgba(4,28,21,.24)!important;
+}
+
+/* Concrete case study comes before the project concept. */
+body.page-learn:not(.page-thoughts) .learn-case{
+  padding-top:88px!important;
+  padding-bottom:92px!important;
+  background:#eef5ea!important;
+}
+body.page-learn:not(.page-thoughts) .learn-case .split-story{
+  grid-template-columns:minmax(0,1fr) minmax(360px,.86fr)!important;
+  gap:clamp(40px,6vw,74px)!important;
+  align-items:center!important;
+}
+body.page-learn:not(.page-thoughts) .learn-case .photo-frame{
+  transform:none!important;
+  border-radius:30px 14px 32px 16px!important;
+  box-shadow:0 20px 46px rgba(23,58,49,.10)!important;
+}
+
+/* Project concept reads as a four-step process. */
+body.page-learn:not(.page-thoughts) .learn-project{
+  padding-top:90px!important;
+  padding-bottom:92px!important;
+  background:#fffdf8!important;
+}
+body.page-learn:not(.page-thoughts) .learn-project .event-values{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  counter-reset:project-step!important;
+}
+body.page-learn:not(.page-thoughts) .learn-project .event-values>article{
+  counter-increment:project-step!important;
+  min-height:250px!important;
+  padding:24px 20px 22px!important;
+  border:1px solid rgba(23,74,54,.13)!important;
+  border-radius:20px!important;
+  background:#f7f8f2!important;
+  box-shadow:none!important;
+}
+body.page-learn:not(.page-thoughts) .learn-project .event-values>article::before{
+  content:"0" counter(project-step)!important;
+  display:block!important;
+  margin-bottom:12px!important;
+  color:#90a097!important;
+  -webkit-text-fill-color:#90a097!important;
+  font-size:10px!important;
+  font-weight:950!important;
+  letter-spacing:.12em!important;
+}
+body.page-learn:not(.page-thoughts) .learn-project .event-values>article>span{
+  width:42px!important;
+  height:42px!important;
+  margin-bottom:15px!important;
+  background:var(--learn-green)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+}
+body.page-learn:not(.page-thoughts) .learn-project .event-values>article:last-child{
+  background:linear-gradient(145deg,#e7f0e3,#dceadb)!important;
+  border-color:rgba(23,74,54,.18)!important;
+}
+
+/* CTA stays final. */
+body.page-learn:not(.page-thoughts) #learn-join-cta{
+  margin-top:0!important;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  body.page-learn:not(.page-thoughts) .page-hero--learn{
+    padding-top:112px!important;
+  }
+  body.page-learn:not(.page-thoughts) .page-hero--learn .page-hero-grid{
+    grid-template-columns:1fr!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path__inner{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path a:nth-child(3){
+    border-left:1px solid rgba(23,74,54,.10)!important;
+    border-top:1px solid rgba(23,74,54,.10)!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path a:nth-child(4){
+    border-top:1px solid rgba(23,74,54,.10)!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-data .data-grid--large{
+    grid-template-columns:1fr 1fr!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-data .data-grid--large>article:first-child{
+    grid-column:1/-1!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-causes .cause-grid,
+  body.page-learn:not(.page-thoughts) .learn-project .event-values{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-causes .cause-grid>article:nth-child(3){
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-causes .cause-grid>article:nth-child(4){
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-case .split-story{
+    grid-template-columns:1fr!important;
+  }
+}
+@media(max-width:640px){
+  body.page-learn:not(.page-thoughts) .page-hero--learn{
+    padding-top:96px!important;
+    padding-bottom:52px!important;
+  }
+  body.page-learn:not(.page-thoughts) .page-hero--learn h1{
+    font-size:clamp(38px,11vw,52px)!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path{
+    padding-inline:12px!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path__inner{
+    grid-template-columns:1fr!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path a,
+  body.page-learn:not(.page-thoughts) .learn-path a:first-child,
+  body.page-learn:not(.page-thoughts) .learn-path a:nth-child(3),
+  body.page-learn:not(.page-thoughts) .learn-path a:nth-child(4){
+    min-height:64px!important;
+    border-left:0!important;
+    border-right:0!important;
+    border-top:0!important;
+    border-bottom:1px solid rgba(23,74,54,.10)!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-path a:last-child{
+    border-bottom:0!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-definitions .definition-grid,
+  body.page-learn:not(.page-thoughts) .learn-data .data-grid--large,
+  body.page-learn:not(.page-thoughts) .learn-causes .cause-grid,
+  body.page-learn:not(.page-thoughts) .learn-project .event-values{
+    grid-template-columns:1fr!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-definitions .definition-card+article,
+  body.page-learn:not(.page-thoughts) .learn-causes .cause-grid>article+article{
+    border-left:0!important;
+    border-top:1px solid rgba(23,74,54,.13)!important;
+  }
+  body.page-learn:not(.page-thoughts) .learn-project .event-values>article{
+    min-height:0!important;
+  }
+}
+
+
