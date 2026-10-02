@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - '*.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - 'site.webmanifest'
       - 'site-core.js'
       - 'site-postevent.js'
       - 'site.js'
