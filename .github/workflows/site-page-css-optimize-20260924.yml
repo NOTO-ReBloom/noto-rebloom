@@ -3,8 +3,26 @@ name: NOTO ReBloom page CSS optimization 2026-09-24
 on:
   push:
     paths:
-      - '*.css'
-      - '!*-optimized-20261002.css'
+      - 'site.css'
+      - 'rebloom-unified.css'
+      - 'rebloom-polish.css'
+      - 'rebloom-detail.css'
+      - 'rebloom-refine.css'
+      - 'rebloom-balance.css'
+      - 'rebloom-tight.css'
+      - 'rebloom-purpose.css'
+      - 'rebloom-purpose-complete.css'
+      - 'brand-refresh.css'
+      - 'diagnosis-v2.css'
+      - 'diagnosis-fixes.css'
+      - 'diagnosis-ux-v3.css'
+      - 'site-consistency.css'
+      - 'typography-responsive-20260928.css'
+      - 'plant-art-20260929.css'
+      - 'diagnosis-site-match-20260929.css'
+      - 'diagnosis-result-clean-20260929.css'
+      - 'diagnosis-social-20260929.css'
+      - 'diagnosis-polish-20261002.css'
       - '.github/scripts/page-css-bundle.cjs'
       - '.github/scripts/page-css-capture.cjs'
       - '.github/scripts/page-css-compare.py'
@@ -29,7 +47,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y imagemagick
-          npm install --no-save clean-css puppeteer-core lighthouse
+          npm install --no-save puppeteer-core lighthouse
           CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$CHROME"
           echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
@@ -57,7 +75,7 @@ jobs:
       - name: Lighthouse verification
         run: |
           mkdir -p qa-page-css/lighthouse
-          for p in index partner report contact; do
+          for p in diagnosis; do
             npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="qa-page-css/lighthouse/$p-mobile.json" || true
             npx lighthouse "http://127.0.0.1:8000/$p.html" --quiet --preset=desktop --chrome-path="$CHROME_PATH" --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="qa-page-css/lighthouse/$p-desktop.json" || true
           done
@@ -95,9 +113,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add *-optimized-20261002.css
-          git add index.html thoughts.html learn.html event.html report.html partner.html diagnosis.html contact.html photo-credits.html 404.html
-          git diff --cached --quiet || git commit -m "Use verified site-wide CSS bundles"
+          git add diagnosis-optimized-20261002.css diagnosis.html
+          git diff --cached --quiet || git commit -m "Use verified diagnosis CSS request bundle"
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git rebase origin/main
@@ -125,4 +142,4 @@ jobs:
 
 # run: 2026-09-26 postevent-current-css-v3
 
-# run: 2026-10-02 site-wide exact-order bundles-v4
+# run: 2026-10-02 diagnosis-only verified request bundle-v5
