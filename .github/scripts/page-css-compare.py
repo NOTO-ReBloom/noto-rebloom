@@ -29,6 +29,10 @@ for x in after:
         failures.append({'file':x['file'],'width':x['width'],'reason':'new console/page error'})
     if x.get('h1')!=old.get('h1'):
         failures.append({'file':x['file'],'width':x['width'],'reason':'h1 count changed'})
+    old_h=old.get('scrollHeight',0)
+    new_h=x.get('scrollHeight',0)
+    if old_h and new_h and abs(new_h-old_h)>3:
+        failures.append({'file':x['file'],'width':x['width'],'reason':'document height changed','before':old_h,'after':new_h})
 
 os.makedirs('qa-page-css',exist_ok=True)
 json.dump({'pixelDiffs':diffs,'failures':failures},open('qa-page-css/compare.json','w',encoding='utf-8'),indent=2)
