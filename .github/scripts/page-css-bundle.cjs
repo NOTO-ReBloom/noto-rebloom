@@ -1,33 +1,10 @@
 const fs=require('fs');
 const path=require('path');
+const CleanCSS=require('clean-css');
 
-const targets=['diagnosis.html'];
-const sourceManifest={
-  'diagnosis.html':[
-    'site.css',
-    'rebloom-unified.css',
-    'rebloom-polish.css',
-    'rebloom-detail.css',
-    'rebloom-refine.css',
-    'rebloom-balance.css',
-    'rebloom-tight.css',
-    'rebloom-purpose.css',
-    'rebloom-purpose-complete.css',
-    'brand-refresh.css',
-    'diagnosis-v2.css',
-    'diagnosis-fixes.css',
-    'diagnosis-ux-v3.css',
-    'site-consistency.css',
-    'typography-responsive-20260928.css',
-    'plant-art-20260929.css',
-    'diagnosis-site-match-20260929.css',
-    'diagnosis-result-clean-20260929.css',
-    'diagnosis-social-20260929.css',
-    'diagnosis-polish-20261002.css'
-  ]
-};
-
+const targets=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
 fs.mkdirSync('qa-page-css',{recursive:true});
+
 const stats=[];
 
 function expandLocalImports(css,sourcePath,stack=[]){
@@ -44,54 +21,110 @@ function expandLocalImports(css,sourcePath,stack=[]){
   });
 }
 
+function localStylesheetMatches(html){
+  const matches=[];
+  const re=/<link\b[^>]*>/gi;
+  let m;
+  while((m=re.exec(html))){
+    const tag=m[0];
+    const rel=(tag.match(/\brel=["']([^"']+)["']/i)||[])[1]||'';
+    const href=(tag.match(/\bhref=["']([^"']+)["']/i)||[])[1]||'';
+    const clean=href.split('?')[0].split('#')[0];
+    if(!/\bstylesheet\b/i.test(rel)||!href||/^https?:/i.test(clean)||!clean.endsWith('.css')||!fs.existsSync(clean)) continue;
+    matches.push({tag,href,clean,start:m.index,end:m.index+tag.length});
+  }
+  return matches;
+}
+
+function groupContiguousLinks(html,matches){
+  const groups=[];
+  let current=[];
+  for(const item of matches){
+    if(!current.length){
+      current=[item];
+      continue;
+    }
+    const prev=current[current.length-1];
+    const between=html.slice(prev.end,item.start);
+    // Only collapse links that were already adjacent in cascade order.
+    // Comments and inline <style> blocks deliberately break a group.
+    if(/^\s*$/.test(between)) current.push(item);
+    else {
+      groups.push(current);
+      current=[item];
+    }
+  }
+  if(current.length) groups.push(current);
+  return groups;
+}
+
 (async()=>{
   for(const page of targets){
     let html=fs.readFileSync(page,'utf8');
-    const sourceFiles=sourceManifest[page];
-    if(!sourceFiles?.length) throw new Error('No CSS source manifest for '+page);
-    for(const file of sourceFiles){
-      if(!fs.existsSync(file)) throw new Error(page+': missing CSS source '+file);
-    }
+    const matches=localStylesheetMatches(html);
+    if(!matches.length) throw new Error('No local CSS links found for '+page);
+    const groups=groupContiguousLinks(html,matches);
 
-    let combined='';
-    for(const clean of sourceFiles){
-      combined+=`\n/* ===== SOURCE: ${clean} ===== */\n${expandLocalImports(fs.readFileSync(clean,'utf8'),clean,[clean])}\n`;
-    }
+    const replacements=[];
+    const groupStats=[];
+    let totalSource=0,totalFinal=0;
 
-    const base=page.replace('.html','');
-    const out=`${base}-optimized-20261002.css`;
-    const banner=`/* ${page} verified CSS request bundle. Generated 2026-10-02 from: ${sourceFiles.join(', ')} */\n`;
-    const bundled=banner+combined+'\n';
-    fs.writeFileSync(out,bundled);
+    for(let gi=0;gi<groups.length;gi++){
+      const group=groups[gi];
+      let combined='';
+      for(const item of group){
+        combined+=`\n/* ===== SOURCE: ${item.clean} ===== */\n${expandLocalImports(fs.readFileSync(item.clean,'utf8'),item.clean,[item.clean])}\n`;
+      }
 
-    const optimizedTag=`<link rel="stylesheet" href="${out}?v=1" data-rb-optimized="true">`;
-    if(!html.includes('data-rb-optimized="true"')){
-      let inserted=false;
-      html=html.replace(/<link\b[^>]*>/gi,tag=>{
-        const rel=(tag.match(/\brel=["']([^"']+)["']/i)||[])[1]||'';
-        const href=(tag.match(/\bhref=["']([^"']+)["']/i)||[])[1]||'';
-        if(!/\bstylesheet\b/i.test(rel)||!href) return tag;
-        const clean=href.split('?')[0].split('#')[0];
-        if(!sourceFiles.includes(clean)) return tag;
-        if(!inserted){
-          inserted=true;
-          return optimizedTag;
-        }
-        return '';
+      const minified=new CleanCSS({
+        level:{1:{all:true},2:false},
+        rebase:false,
+        compatibility:'*'
+      }).minify(combined);
+      if(minified.errors.length) throw new Error(page+' group '+(gi+1)+' CleanCSS: '+minified.errors.join('; '));
+
+      const base=page.replace('.html','');
+      const suffix=groups.length===1?'':`-${gi+1}`;
+      const out=`${base}-optimized-20261002${suffix}.css`;
+      const banner=`/* ${page} verified CSS run ${gi+1}/${groups.length}. Generated 2026-10-02 from: ${group.map(x=>x.clean).join(', ')} */\n`;
+      const finalCss=banner+minified.styles+'\n';
+      fs.writeFileSync(out,finalCss);
+
+      const replacement=`<link rel="stylesheet" href="${out}?v=1" data-rb-optimized="true">`;
+      replacements.push({
+        start:group[0].start,
+        end:group[group.length-1].end,
+        replacement
       });
-      if(!inserted) throw new Error('Could not insert optimized CSS link for '+page);
-    }else{
-      html=html.replace(/<link\b[^>]*data-rb-optimized=["']true["'][^>]*>/i,optimizedTag);
+
+      const sourceBytes=Buffer.byteLength(combined);
+      const finalBytes=Buffer.byteLength(finalCss);
+      totalSource+=sourceBytes;
+      totalFinal+=finalBytes;
+      groupStats.push({
+        group:gi+1,
+        sourceFiles:group.map(x=>x.clean),
+        sourceBytes,
+        finalBytes,
+        reductionPct:Number((100*(1-finalBytes/sourceBytes)).toFixed(1))
+      });
+    }
+
+    // Replace from the end so original offsets stay valid.
+    for(const r of replacements.sort((a,b)=>b.start-a.start)){
+      html=html.slice(0,r.start)+r.replacement+html.slice(r.end);
     }
     fs.writeFileSync(page,html);
 
     stats.push({
       page,
-      sourceFiles,
-      sourceBytes:Buffer.byteLength(combined),
-      bundledBytes:Buffer.byteLength(bundled),
-      requestCountBefore:sourceFiles.length,
-      requestCountAfter:1
+      originalRequests:matches.length,
+      bundledRequests:groups.length,
+      requestReduction:matches.length-groups.length,
+      sourceBytes:totalSource,
+      finalBytes:totalFinal,
+      reductionPct:Number((100*(1-totalFinal/totalSource)).toFixed(1)),
+      groups:groupStats
     });
   }
   fs.writeFileSync('qa-page-css/stats.json',JSON.stringify(stats,null,2));
