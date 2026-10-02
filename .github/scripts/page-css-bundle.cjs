@@ -1,11 +1,33 @@
 const fs=require('fs');
 const path=require('path');
 
-const targets=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
-const outDir='assets/css';
-fs.mkdirSync(outDir,{recursive:true});
-fs.mkdirSync('qa-page-css',{recursive:true});
+const targets=['diagnosis.html'];
+const sourceManifest={
+  'diagnosis.html':[
+    'site.css',
+    'rebloom-unified.css',
+    'rebloom-polish.css',
+    'rebloom-detail.css',
+    'rebloom-refine.css',
+    'rebloom-balance.css',
+    'rebloom-tight.css',
+    'rebloom-purpose.css',
+    'rebloom-purpose-complete.css',
+    'brand-refresh.css',
+    'diagnosis-v2.css',
+    'diagnosis-fixes.css',
+    'diagnosis-ux-v3.css',
+    'site-consistency.css',
+    'typography-responsive-20260928.css',
+    'plant-art-20260929.css',
+    'diagnosis-site-match-20260929.css',
+    'diagnosis-result-clean-20260929.css',
+    'diagnosis-social-20260929.css',
+    'diagnosis-polish-20261002.css'
+  ]
+};
 
+fs.mkdirSync('qa-page-css',{recursive:true});
 const stats=[];
 
 function expandLocalImports(css,sourcePath,stack=[]){
@@ -25,59 +47,50 @@ function expandLocalImports(css,sourcePath,stack=[]){
 (async()=>{
   for(const page of targets){
     let html=fs.readFileSync(page,'utf8');
-    const tags=[...html.matchAll(/<link\b[^>]*>/gi)].map(m=>m[0]);
-    const cssHrefs=[];
-    for(const tag of tags){
-      const rel=(tag.match(/\brel=["']([^"']+)["']/i)||[])[1]||'';
-      const href=(tag.match(/\bhref=["']([^"']+)["']/i)||[])[1]||'';
-      if(!/\bstylesheet\b/i.test(rel)||!href) continue;
-      const clean=href.split('?')[0].split('#')[0];
-      if(/^https?:/i.test(clean)||!clean.endsWith('.css')||!fs.existsSync(clean)) continue;
-      cssHrefs.push({tag,href,clean});
+    const sourceFiles=sourceManifest[page];
+    if(!sourceFiles?.length) throw new Error('No CSS source manifest for '+page);
+    for(const file of sourceFiles){
+      if(!fs.existsSync(file)) throw new Error(page+': missing CSS source '+file);
     }
-    if(!cssHrefs.length) throw new Error('No local CSS links found for '+page);
 
     let combined='';
-    for(const item of cssHrefs){
-      combined+=`\n/* ===== SOURCE: ${item.clean} ===== */\n${expandLocalImports(fs.readFileSync(item.clean,'utf8'),item.clean,[item.clean])}\n`;
+    for(const clean of sourceFiles){
+      combined+=`\n/* ===== SOURCE: ${clean} ===== */\n${expandLocalImports(fs.readFileSync(clean,'utf8'),clean,[clean])}\n`;
     }
 
-    /*
-      Preserve the exact cascade. Earlier experiments showed that CSS
-      optimizer rewrites can change legacy shorthand/cascade behavior.
-      The safe performance win is therefore request consolidation only:
-      local imports are expanded in place and the source CSS is otherwise
-      kept byte-for-byte and in document order.
-    */
     const base=page.replace('.html','');
     const out=`${base}-optimized-20261002.css`;
-    const banner=`/* ${page} verified CSS request bundle. Generated 2026-10-02 from: ${cssHrefs.map(x=>x.clean).join(', ')} */\n`;
+    const banner=`/* ${page} verified CSS request bundle. Generated 2026-10-02 from: ${sourceFiles.join(', ')} */\n`;
     const bundled=banner+combined+'\n';
     fs.writeFileSync(out,bundled);
 
-    let inserted=false;
-    html=html.replace(/<link\b[^>]*>/gi,tag=>{
-      const rel=(tag.match(/\brel=["']([^"']+)["']/i)||[])[1]||'';
-      const href=(tag.match(/\bhref=["']([^"']+)["']/i)||[])[1]||'';
-      const clean=href.split('?')[0].split('#')[0];
-      if(!/\bstylesheet\b/i.test(rel)||!href||/^https?:/i.test(clean)||!clean.endsWith('.css')||!fs.existsSync(clean)) return tag;
-      if(!inserted){
-        inserted=true;
-        return `<link rel="stylesheet" href="${out}?v=1" data-rb-optimized="true">`;
-      }
-      return '';
-    });
-    if(!inserted) throw new Error('Could not insert optimized CSS link for '+page);
+    const optimizedTag=`<link rel="stylesheet" href="${out}?v=1" data-rb-optimized="true">`;
+    if(!html.includes('data-rb-optimized="true"')){
+      let inserted=false;
+      html=html.replace(/<link\b[^>]*>/gi,tag=>{
+        const rel=(tag.match(/\brel=["']([^"']+)["']/i)||[])[1]||'';
+        const href=(tag.match(/\bhref=["']([^"']+)["']/i)||[])[1]||'';
+        if(!/\bstylesheet\b/i.test(rel)||!href) return tag;
+        const clean=href.split('?')[0].split('#')[0];
+        if(!sourceFiles.includes(clean)) return tag;
+        if(!inserted){
+          inserted=true;
+          return optimizedTag;
+        }
+        return '';
+      });
+      if(!inserted) throw new Error('Could not insert optimized CSS link for '+page);
+    }else{
+      html=html.replace(/<link\b[^>]*data-rb-optimized=["']true["'][^>]*>/i,optimizedTag);
+    }
     fs.writeFileSync(page,html);
 
     stats.push({
       page,
-      sourceFiles:cssHrefs.map(x=>x.clean),
+      sourceFiles,
       sourceBytes:Buffer.byteLength(combined),
       bundledBytes:Buffer.byteLength(bundled),
-      finalBytes:Buffer.byteLength(bundled),
-      reductionPct:Number((100*(1-Buffer.byteLength(bundled)/Buffer.byteLength(combined))).toFixed(1)),
-      requestCountBefore:cssHrefs.length,
+      requestCountBefore:sourceFiles.length,
       requestCountAfter:1
     });
   }
