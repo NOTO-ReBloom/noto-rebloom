@@ -1,25 +1,11 @@
 const fs=require('fs');
 const path=require('path');
-const {PurgeCSS}=require('purgecss');
 const CleanCSS=require('clean-css');
 
-const targets=['index.html','partner.html','report.html','contact.html'];
+const targets=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
 const outDir='assets/css';
 fs.mkdirSync(outDir,{recursive:true});
 fs.mkdirSync('qa-page-css',{recursive:true});
-
-const rootJs=fs.readdirSync('.').filter(f=>f.endsWith('.js')&&fs.statSync(f).isFile());
-const jsContent=rootJs.map(f=>({raw:fs.readFileSync(f,'utf8'),extension:'js'}));
-
-const safeGreedy=[
-  /^rb-/,/^nr-/,/^page-/,/^site-/,/^report-/,/^partner-/,/^contact-/,
-  /^hero/,/^photo-/,/^story-/,/^faq-/,/^visual-/,/^join-/,/^conversion-/,
-  /^scroll-/,/^back-/,/^btn/,/^eyebrow/,/^section/,/^container/,/^brand/,
-  /^menu-/,/^is-/,/^js$/, /^no-js$/, /^reveal$/, /^active$/, /^open$/,
-  /^current/,/^mobile-/,/^footer-/,/^header-/,/^quick-/,/^data-/,/^field-/,
-  /^team-/,/^sponsor-/,/^support-/,/^event-/,/^renge-/,/^timeline/,
-  /^people-/,/^first-/,/^why-/,/^choice-/,/^crowd-/,/^ishimo-/
-];
 
 const stats=[];
 
@@ -57,27 +43,23 @@ function expandLocalImports(css,sourcePath,stack=[]){
       combined+=`\n/* ===== SOURCE: ${item.clean} ===== */\n${expandLocalImports(fs.readFileSync(item.clean,'utf8'),item.clean,[item.clean])}\n`;
     }
 
-    const purged=(await new PurgeCSS().purge({
-      content:[{raw:html,extension:'html'},...jsContent],
-      css:[{raw:combined}],
-      safelist:{standard:['html','body','main'],greedy:safeGreedy},
-      keyframes:true,
-      fontFace:true,
-      variables:false,
-      defaultExtractor:content=>content.match(/[A-Za-z0-9_:\/-]+/g)||[]
-    }))[0].css;
-
+    /*
+      Final-site optimization deliberately keeps every selector.
+      We concatenate in document order and minify only. This removes HTTP
+      request overhead and comments/whitespace without risking dynamic
+      diagnosis/result states that a purge pass could remove.
+    */
     const minified=new CleanCSS({
       level:{1:{all:true},2:false},
       rebase:false,
       compatibility:'*'
-    }).minify(purged);
+    }).minify(combined);
 
     if(minified.errors.length) throw new Error(page+' CleanCSS: '+minified.errors.join('; '));
 
     const base=page.replace('.html','');
-    const out=`${outDir}/${base}-optimized-20260924.css`;
-    const banner=`/* ${page} page-specific CSS bundle. Generated 2026-09-24 from: ${cssHrefs.map(x=>x.clean).join(', ')} */\n`;
+    const out=`${base}-optimized-20261002.css`;
+    const banner=`/* ${page} verified CSS bundle. Generated 2026-10-02 from: ${cssHrefs.map(x=>x.clean).join(', ')} */\n`;
     fs.writeFileSync(out,banner+minified.styles+'\n');
 
     let inserted=false;
@@ -93,14 +75,13 @@ function expandLocalImports(css,sourcePath,stack=[]){
       return '';
     });
     if(!inserted) throw new Error('Could not insert optimized CSS link for '+page);
-    html=html.replace(/site-postevent\.js\?v=[^"'\s<]+/g,'site-postevent.js?v=20260924perf4');
     fs.writeFileSync(page,html);
 
     stats.push({
       page,
       sourceFiles:cssHrefs.map(x=>x.clean),
       sourceBytes:Buffer.byteLength(combined),
-      purgedBytes:Buffer.byteLength(purged),
+      minifiedBytes:Buffer.byteLength(minified.styles),
       finalBytes:Buffer.byteLength(banner+minified.styles+'\n'),
       reductionPct:Number((100*(1-Buffer.byteLength(banner+minified.styles+'\n')/Buffer.byteLength(combined))).toFixed(1))
     });
