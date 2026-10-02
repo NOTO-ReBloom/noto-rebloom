@@ -19,6 +19,7 @@ on:
       - 'diagnosis-loader-2026.js'
       - 'plant-art-20260929.css'
       - 'plant-art-20260929.js'
+      - '*-polish-*.css'
       - 'home-hero-focus-20260928.css'
       - '.github/scripts/home-hero-check.cjs'
       - 'typography-responsive-20260928.css'
@@ -109,6 +110,89 @@ jobs:
           if failures:
               raise SystemExit('\n'.join(failures))
           print(f'OK: validated {len(pages)} public pages.')
+          PY
+
+      - name: Validate internal links and sitemap
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import unquote, urlparse
+          import re
+          import xml.etree.ElementTree as ET
+
+          pages = [
+              'index.html','thoughts.html','learn.html','event.html','report.html',
+              'partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'
+          ]
+          base = 'https://noto-rebloom.github.io/noto-rebloom/'
+
+          class LinkParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids=set()
+                  self.links=[]
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if a.get('id'):
+                      self.ids.add(a['id'])
+                  if tag == 'a' and a.get('href'):
+                      self.links.append(a['href'].strip())
+
+          parsed={}
+          htmls={}
+          failures=[]
+          for page in pages:
+              text=Path(page).read_text(encoding='utf-8')
+              htmls[page]=text
+              p=LinkParser()
+              p.feed(text)
+              parsed[page]=p
+
+          for page,p in parsed.items():
+              for href in p.links:
+                  if not href or re.match(r'^(?:https?:|mailto:|tel:|javascript:)',href,re.I):
+                      continue
+                  if href.startswith('#'):
+                      anchor=unquote(href[1:])
+                      if anchor and anchor not in p.ids:
+                          failures.append(f'{page}: missing local anchor #{anchor}')
+                      continue
+                  target,sep,fragment=href.partition('#')
+                  target=target.lstrip('./') or page
+                  if target.endswith('.html') and target not in parsed:
+                      failures.append(f'{page}: missing internal page {target}')
+                      continue
+                  if sep and target in parsed:
+                      anchor=unquote(fragment)
+                      if anchor and anchor not in parsed[target].ids:
+                          failures.append(f'{page}: {href} points to missing anchor')
+
+          sitemap=ET.parse('sitemap.xml').getroot()
+          ns={'sm':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          sitemap_urls={el.text.strip() for el in sitemap.findall('sm:url/sm:loc',ns) if el.text}
+
+          for page,text in htmls.items():
+              noindex=bool(re.search(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex',text,re.I) or
+                           re.search(r'<meta[^>]+content=["\'][^"\']*noindex[^"\']*["\'][^>]+name=["\']robots["\']',text,re.I))
+              canonical_match=(re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']',text,re.I) or
+                               re.search(r'<link[^>]+href=["\']([^"\']+)["\'][^>]+rel=["\']canonical["\']',text,re.I))
+              canonical=canonical_match.group(1) if canonical_match else None
+
+              if page != '404.html' and not noindex and not canonical:
+                  failures.append(f'{page}: indexable page missing canonical')
+
+              expected_url = base if page == 'index.html' else base + page
+              if noindex:
+                  if expected_url in sitemap_urls:
+                      failures.append(f'{page}: noindex page must not be in sitemap')
+              else:
+                  if page != '404.html' and expected_url not in sitemap_urls:
+                      failures.append(f'{page}: indexable page missing from sitemap')
+
+          if failures:
+              raise SystemExit('\n'.join(failures))
+          print('OK: internal links, anchors, canonicals and sitemap are consistent.')
           PY
 
       - uses: actions/setup-node@v4
