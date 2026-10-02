@@ -484,3 +484,72 @@ body.rb-unified.nr-new-home #project-story .story-step--future:nth-child(n) .sto
     background:#9bb69b!important;
   }
 }
+
+
+/* ===== HOME HERO PHOTO FULL-WIDTH FIX — 2026-10-02 =====
+   Keep the event group photo large, uncropped, and full-width above the copy. */
+body.rb-unified.nr-new-home .hero--home.nr-home-hero .hero-grid{
+  width:min(1680px,calc(100% - 48px))!important;
+  max-width:none!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-areas:
+    "media"
+    "copy"!important;
+  gap:0!important;
+  align-items:stretch!important;
+}
+body.rb-unified.nr-new-home .hero--home.nr-home-hero .hero-media{
+  grid-area:media!important;
+  position:relative!important;
+  width:100%!important;
+  max-width:none!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+body.rb-unified.nr-new-home .hero--home.nr-home-hero .photo-frame--home-venue{
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  border:0!important;
+  border-radius:0!important;
+}
+body.rb-unified.nr-new-home .hero--home.nr-home-hero .photo-frame--home-venue img{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+}
+body.rb-unified.nr-new-home .hero--home.nr-home-hero .hero-copy{
+  grid-area:copy!important;
+  width:100%!important;
+  max-width:none!important;
+}
+@media(max-width:980px){
+  body.rb-unified.nr-new-home .hero--home.nr-home-hero .hero-grid{
+    width:calc(100% - 30px)!important;
+  }
+}
+@media(max-width:640px){
+  body.rb-unified.nr-new-home .hero--home.nr-home-hero .hero-grid{
+    width:calc(100% - 18px)!important;
+  }
+}
