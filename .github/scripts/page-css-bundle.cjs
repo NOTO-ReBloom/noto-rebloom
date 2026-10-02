@@ -1,7 +1,5 @@
 const fs=require('fs');
 const path=require('path');
-const CleanCSS=require('clean-css');
-
 const targets=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
 fs.mkdirSync('qa-page-css',{recursive:true});
 
@@ -76,18 +74,13 @@ function groupContiguousLinks(html,matches){
         combined+=`\n/* ===== SOURCE: ${item.clean} ===== */\n${expandLocalImports(fs.readFileSync(item.clean,'utf8'),item.clean,[item.clean])}\n`;
       }
 
-      const minified=new CleanCSS({
-        level:{1:{all:true},2:false},
-        rebase:false,
-        compatibility:'*'
-      }).minify(combined);
-      if(minified.errors.length) throw new Error(page+' group '+(gi+1)+' CleanCSS: '+minified.errors.join('; '));
-
       const base=page.replace('.html','');
       const suffix=groups.length===1?'':`-${gi+1}`;
       const out=`${base}-optimized-20261002${suffix}.css`;
       const banner=`/* ${page} verified CSS run ${gi+1}/${groups.length}. Generated 2026-10-02 from: ${group.map(x=>x.clean).join(', ')} */\n`;
-      const finalCss=banner+minified.styles+'\n';
+      // Keep CSS bytes exactly as authored (apart from local @import expansion).
+      // The optimization is request consolidation, not selector/value rewriting.
+      const finalCss=banner+combined+'\n';
       fs.writeFileSync(out,finalCss);
 
       const replacement=`<link rel="stylesheet" href="${out}?v=1" data-rb-optimized="true">`;
