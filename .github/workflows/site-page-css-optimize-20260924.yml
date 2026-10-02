@@ -3,6 +3,11 @@ name: NOTO ReBloom page CSS optimization 2026-09-24
 on:
   push:
     paths:
+      - '*.css'
+      - '!*-optimized-20261002.css'
+      - '.github/scripts/page-css-bundle.cjs'
+      - '.github/scripts/page-css-capture.cjs'
+      - '.github/scripts/page-css-compare.py'
       - '.github/workflows/site-page-css-optimize-20260924.yml'
   workflow_dispatch:
 
@@ -16,7 +21,7 @@ concurrency:
 jobs:
   optimize:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
 
@@ -24,7 +29,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y imagemagick
-          npm install --no-save purgecss clean-css puppeteer-core lighthouse
+          npm install --no-save clean-css puppeteer-core lighthouse
           CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$CHROME"
           echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
@@ -90,9 +95,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/css/index-optimized-20260924.css assets/css/partner-optimized-20260924.css assets/css/report-optimized-20260924.css assets/css/contact-optimized-20260924.css
-          git add index.html partner.html report.html contact.html
-          git diff --cached --quiet || git commit -m "Use verified page-specific CSS bundles"
+          git add *-optimized-20261002.css
+          git add index.html thoughts.html learn.html event.html report.html partner.html diagnosis.html contact.html photo-credits.html 404.html
+          git diff --cached --quiet || git commit -m "Use verified site-wide CSS bundles"
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git rebase origin/main
@@ -107,7 +112,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: noto-rebloom-page-css-qa-20260924
+          name: noto-rebloom-page-css-qa-20261002
           path: |
             qa-page-css/
             qa-page-css-before/
@@ -119,3 +124,5 @@ jobs:
 # run: 2026-09-24 imports-inlined-core-restored-v2
 
 # run: 2026-09-26 postevent-current-css-v3
+
+# run: 2026-10-02 site-wide exact-order bundles-v4
