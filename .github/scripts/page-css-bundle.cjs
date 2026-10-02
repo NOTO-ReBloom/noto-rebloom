@@ -1,6 +1,5 @@
 const fs=require('fs');
 const path=require('path');
-const CleanCSS=require('clean-css');
 
 const targets=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
 const outDir='assets/css';
@@ -44,23 +43,17 @@ function expandLocalImports(css,sourcePath,stack=[]){
     }
 
     /*
-      Final-site optimization deliberately keeps every selector.
-      We concatenate in document order and minify only. This removes HTTP
-      request overhead and comments/whitespace without risking dynamic
-      diagnosis/result states that a purge pass could remove.
+      Preserve the exact cascade. Earlier experiments showed that CSS
+      optimizer rewrites can change legacy shorthand/cascade behavior.
+      The safe performance win is therefore request consolidation only:
+      local imports are expanded in place and the source CSS is otherwise
+      kept byte-for-byte and in document order.
     */
-    const minified=new CleanCSS({
-      level:{1:{all:true},2:false},
-      rebase:false,
-      compatibility:'*'
-    }).minify(combined);
-
-    if(minified.errors.length) throw new Error(page+' CleanCSS: '+minified.errors.join('; '));
-
     const base=page.replace('.html','');
     const out=`${base}-optimized-20261002.css`;
-    const banner=`/* ${page} verified CSS bundle. Generated 2026-10-02 from: ${cssHrefs.map(x=>x.clean).join(', ')} */\n`;
-    fs.writeFileSync(out,banner+minified.styles+'\n');
+    const banner=`/* ${page} verified CSS request bundle. Generated 2026-10-02 from: ${cssHrefs.map(x=>x.clean).join(', ')} */\n`;
+    const bundled=banner+combined+'\n';
+    fs.writeFileSync(out,bundled);
 
     let inserted=false;
     html=html.replace(/<link\b[^>]*>/gi,tag=>{
@@ -81,9 +74,11 @@ function expandLocalImports(css,sourcePath,stack=[]){
       page,
       sourceFiles:cssHrefs.map(x=>x.clean),
       sourceBytes:Buffer.byteLength(combined),
-      minifiedBytes:Buffer.byteLength(minified.styles),
-      finalBytes:Buffer.byteLength(banner+minified.styles+'\n'),
-      reductionPct:Number((100*(1-Buffer.byteLength(banner+minified.styles+'\n')/Buffer.byteLength(combined))).toFixed(1))
+      bundledBytes:Buffer.byteLength(bundled),
+      finalBytes:Buffer.byteLength(bundled),
+      reductionPct:Number((100*(1-Buffer.byteLength(bundled)/Buffer.byteLength(combined))).toFixed(1)),
+      requestCountBefore:cssHrefs.length,
+      requestCountAfter:1
     });
   }
   fs.writeFileSync('qa-page-css/stats.json',JSON.stringify(stats,null,2));
