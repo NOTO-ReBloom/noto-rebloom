@@ -82,7 +82,7 @@
   const richFooterPages=new Set(['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html']);
   if(richFooterPages.has(current)){
     const footer=document.querySelector('.site-footer');
-    if(footer){
+    if(footer && footer.dataset.rbFooterVersion!=='20261004'){
       const ctaHref=current==='report.html'?'partner.html':REPORT;
       const ctaLabel=current==='report.html'?'協賛・協力を見る':'開催レポートを見る';
       const ctaTitle=current==='report.html'?'この一日を支えてくださった皆さまへ。':'泥ん子運動会2026を開催しました。';
