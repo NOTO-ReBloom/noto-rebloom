@@ -1,24 +1,7 @@
 (()=>{
   'use strict';
 
-  const loadFonts=(displayMode='swap')=>{
-    if(document.getElementById('rebloom-google-fonts'))return;
-    const link=document.createElement('link');
-    link.id='rebloom-google-fonts';
-    link.rel='stylesheet';
-    link.href='https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800&display='+encodeURIComponent(displayMode);
-    document.head.appendChild(link);
-  };
-  const isEventArchive=!!document.body?.classList.contains('event-final')||!!document.body?.classList.contains('nr-new-event');
-  const isDiagnosis=!!document.body?.classList.contains('page-diagnosis');
-  if((document.body?.classList.contains('page-home')||document.body?.classList.contains('nr-new-home'))){
-    loadFonts('swap');
-  }else if(isDiagnosis){
-    /* The diagnosis uses the shared font stack from CSS without a late remote
-       font swap, preventing the stacked mobile hero from shifting after paint. */
-  }else if(!isEventArchive){
-    if('requestIdleCallback' in window)requestIdleCallback(loadFonts,{timeout:1600}); else setTimeout(loadFonts,900);
-  }
+  /* Fonts load in each page <head> before first paint; never inject them later. */
 
   const makeImageReliable=(img)=>{
     try{
