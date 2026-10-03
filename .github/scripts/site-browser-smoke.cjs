@@ -6,7 +6,7 @@ const axeSource=fs.readFileSync(require.resolve('axe-core/axe.min.js'),'utf8');
 const pages=fs.readdirSync('.').filter(name=>/^[^.].*\.html$/i.test(name)).sort();
 const viewports=[[375,812],[430,932],[768,1024],[1440,1000]];
 const expected={
-  'index.html':[['.visual-tile',3],['.story-step',4],['.event-values>article',2],['.handover-card',4],['.home-route-card',5]],
+  'index.html':[['.visual-tile',3],['.handover-card',4],['.home-route-card',5],['.home-archive-summary__card',4]],
   'thoughts.html':[['.visual-tile',3],['.cause-grid>article',4],['.event-values>article',3]],
   'learn.html':[['.definition-card',3],['.data-grid--large>article',3],['.chart-card',2],['.cause-grid>article',4],['#project .event-values>article',4]],
   'event.html':[['.join-step-grid>article',3],['.info-card',5],['.program-grid>.game-card',5],['.time-card',4],['.bring-item',6]],
