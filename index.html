@@ -57,11 +57,11 @@
 }
 .nr-new-home .home-route-section .section-heading{max-width:820px;margin-left:auto;margin-right:auto}
 .nr-new-home .home-route-grid{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;
   max-width:1100px;margin:32px auto 0;
 }
 .nr-new-home .home-route-card{
-  display:flex;flex-direction:column;min-height:300px;padding:26px 24px 24px;
+  grid-column:span 2;display:flex;flex-direction:column;min-height:300px;padding:26px 24px 24px;
   border:1px solid rgba(23,74,54,.13);border-radius:22px;background:#f7f8f2;
   box-shadow:0 8px 22px rgba(23,58,49,.045);
   color:#173f34!important;-webkit-text-fill-color:#173f34!important;text-decoration:none!important;
@@ -84,7 +84,7 @@
   margin-top:auto;padding-top:18px;color:#174a36!important;-webkit-text-fill-color:#174a36!important;
   font-size:12px;font-weight:950;
 }
-@media(hover:hover){.nr-new-home .home-route-card:hover{transform:translateY(-3px);border-color:rgba(23,74,54,.25);box-shadow:0 14px 30px rgba(23,58,49,.075)}}
+.nr-new-home .home-route-card:nth-child(n+4){grid-column:span 3;min-height:260px}\n@media(hover:hover){.nr-new-home .home-route-card:hover{transform:translateY(-3px);border-color:rgba(23,74,54,.25);box-shadow:0 14px 30px rgba(23,58,49,.075)}}
 
 /* The project system is the trust checkpoint before the "what happens next" section. */
 
@@ -102,7 +102,7 @@
 }
 @media(max-width:800px){
   .nr-new-home .home-route-grid{grid-template-columns:1fr}
-  .nr-new-home .home-route-card{min-height:0}
+  .nr-new-home .home-route-card,.nr-new-home .home-route-card:nth-child(n+4){grid-column:auto;min-height:0}
 }
 @media(max-width:560px){
   .nr-new-home .nr-home-hero .hero-copy .button-row{display:grid!important;grid-template-columns:1fr!important}
@@ -139,7 +139,7 @@
 }
 </style>
 <link rel="stylesheet" href="site-finish-20261004.css?v=1">
-<link rel="stylesheet" href="project-hub-20261004.css?v=1">
+<link rel="stylesheet" href="project-hub-20261004.css?v=2">
 </head>
 <body class="nr-new-home rb-unified rb-detail-ready">
 <a class="skip-link" href="#main">本文へ移動</a>
@@ -166,6 +166,8 @@
       <a class="home-route-card" href="thoughts.html"><span>01</span><small>WHY</small><h3>私たちの思い</h3><p>なぜ洲巻で活動するのか。実際にやってみて分かったことと、これから大切にしたいこと。</p><b>思いを読む →</b></a>
       <a class="home-route-card" href="learn.html"><span>02</span><small>PROJECT</small><h3>土地と企画</h3><p>耕作放棄地のこと、洲巻の田んぼのこと、泥ん子運動会を企画した理由。</p><b>土地と企画を知る →</b></a>
       <a class="home-route-card" href="partner.html"><span>03</span><small>PARTNERS</small><h3>協賛・協力・後援</h3><p>この活動を支えてくださった企業・団体、後援の皆さまをご紹介しています。</p><b>支えてくださった皆さまを見る →</b></a>
+      <a class="home-route-card" href="journal.html"><span>04</span><small>JOURNAL</small><h3>活動ジャーナル</h3><p>イベントだけでなく、その後の動画公開や外部掲載など、プロジェクトの動きを時系列で残しています。</p><b>最近の動きを見る →</b></a>
+      <a class="home-route-card" href="media.html"><span>05</span><small>MEDIA KIT</small><h3>取材・掲載向け資料</h3><p>プロジェクト概要、主要実績、ロゴ、活動動画、開催レポート、問い合わせ先をまとめています。</p><b>資料を見る →</b></a>
     </div>
   </div>
 </section>
@@ -202,10 +204,6 @@
       <article><small>土地</small><strong>2027年春へ</strong><span>今回使用した土地はレンコン栽培への活用を予定</span><a href="learn.html">土地と企画 →</a></article>
       <article><small>次へ</small><strong>次の活動を検討中</strong><span>今回の経験を次の活動へ生かします</span><a href="thoughts.html">私たちの思い →</a></article>
       <article><small>連携</small><strong>連携相談を受付中</strong><span>企業・団体・地域との今後の連携相談はこちら</span><a href="partner.html">協賛・協力 →</a></article>
-    </div>
-    <div class="home-current-status__actions">
-      <a class="btn btn--paper" href="journal.html">活動ジャーナルを見る</a>
-      <a class="btn btn--paper" href="media.html">取材・掲載向け資料</a>
     </div>
   </div>
 </section>
