@@ -170,3 +170,56 @@ body:not(.page-diagnosis).rb-unified .site-header.rbpc-section{
 
 /* === HOME HEADER CONTRAST / 2026-09-24 === */
 .nr-new-home .site-header .brand small{color:#36524a!important;opacity:1!important}
+
+
+/* ===== 2026-10-04 site-wide finishing pass ===== */
+:root{
+  --rb-card-radius-sm:18px;
+  --rb-card-radius-md:22px;
+  --rb-card-radius-lg:28px;
+  --rb-card-shadow:0 10px 28px rgba(23,58,49,.065);
+  --rb-feature-shadow:0 16px 38px rgba(23,58,49,.09);
+}
+
+/* Reading rhythm: slightly tighter without changing copy or hierarchy. */
+body p{line-height:1.82!important}
+body :is(.quick-card,.status-list>div,.honest-list>div,.partner-needs>div,.cup-steps li,.process-list li,.check-list>div,.after-report-grid article){
+  border-radius:var(--rb-card-radius-sm)!important;
+  box-shadow:var(--rb-card-shadow)!important;
+}
+body :is(.definition-card,.data-grid>article,.cause-grid>article,.impact-grid>article,.event-values>article,.game-grid>article,.info-grid>article,.plan-card,.action-card,.way-card,.industry-partner-card,.report-summary-card,.report-impact-card,.contact-card,.license-card,.flower-group-card,.result-card,.result-long-card,.result-practice-card,.result-next-action){
+  border-radius:var(--rb-card-radius-md)!important;
+  box-shadow:var(--rb-card-shadow)!important;
+}
+body :is(.play-card,.after-report-board,.diagnosis-result.is-active,.member-flower-panel,.ishimo-collaboration-card){
+  border-radius:var(--rb-card-radius-lg)!important;
+  box-shadow:var(--rb-feature-shadow)!important;
+}
+
+/* Report photography: preserve the original frame; never crop event photos. */
+body.report-page .report-photo img,
+body.report-page .report-main-photo img,
+body.report-page .report-photo-story .photo-frame img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+
+/* Keep desktop navigation spacing consistent across every page. */
+@media (min-width:821px) and (max-width:1180px){
+  body .site-header .site-nav{gap:2px!important;flex-wrap:nowrap!important}
+  body .site-header .site-nav a{padding-inline:6px!important;font-size:11px!important;white-space:nowrap!important}
+}
+
+/* Faster, quieter motion. */
+.js .reveal{transition-duration:.56s!important}
+@media(max-width:600px){
+  body p{line-height:1.78!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js .reveal{opacity:1!important;transform:none!important}
+}
