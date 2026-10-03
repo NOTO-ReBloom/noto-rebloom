@@ -38,6 +38,10 @@
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://noto-rebloom.github.io/noto-rebloom/#organization","name":"NOTO Re:Bloom","url":"https://noto-rebloom.github.io/noto-rebloom/","logo":{"@type":"ImageObject","url":"https://noto-rebloom.github.io/noto-rebloom/noto-rebloom-logo.png"},"email":"infonotorebloom@gmail.com","sameAs":["https://www.instagram.com/doronkounndoukai2026/"]},{"@type":"WebSite","@id":"https://noto-rebloom.github.io/noto-rebloom/#website","url":"https://noto-rebloom.github.io/noto-rebloom/","name":"NOTO Re:Bloom","inLanguage":"ja-JP","publisher":{"@id":"https://noto-rebloom.github.io/noto-rebloom/#organization"}}]}</script>
 
+<!-- Stable heading font: loaded in <head> so headings never switch after paint -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="rebloom-google-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=block">
 <link rel="stylesheet" href="index-optimized-20261002-1.css?v=1" data-rb-optimized="true">
 <style id="home-purpose-refine-20260930">
 /* Homepage = orientation first, detail second. */
@@ -109,6 +113,16 @@
 }
 </style>
 <link rel="stylesheet" href="index-optimized-20261002-2.css?v=1" data-rb-optimized="true">
+<style id="rebloom-heading-font-final">
+:root{
+  --display:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --serif:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+}
+:where(h1,h2,h3,h4,.section-heading h2,.page-hero h1,.hero h1){
+  font-family:var(--display)!important;
+  font-weight:900!important;
+}
+</style>
 </head>
 <body class="nr-new-home rb-unified rb-detail-ready">
 <a class="skip-link" href="#main">本文へ移動</a>
