@@ -54,7 +54,7 @@ jobs:
 
       - name: Check public JavaScript syntax
         run: |
-          for f in plant-art-20260929.js rebloom-2026.js diagnosis-loader-2026.js diagnosis.js diagnosis-visual-v2.js diagnosis-shell.js site-core.js site-postevent.js site.js rebloom-unified.js rebloom-detail.js; do
+          for f in plant-art-20260929.js rebloom-2026.js diagnosis-loader-2026.js diagnosis.js diagnosis-visual-v2.js diagnosis-shell.js site-core.js site-postevent.js site-content-20261004.js site-content-renderer-20261004.js site.js rebloom-unified.js rebloom-detail.js; do
             node --check "$f"
           done
 
