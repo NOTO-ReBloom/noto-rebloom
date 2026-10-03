@@ -16,11 +16,12 @@ const expected={
   'photo-credits.html':[['tbody tr',32]],
   'diagnosis.html':[['.diagnosis-start-card',1],['.flower-group-card',4],['.flower-atlas-card',32]],
   'journal.html':[['.journal-entry',5]],
-  'media.html':[['.media-fact',4],['.media-asset',6]]
+  'media.html':[['.media-fact',4],['.media-asset',6]],
+  'playbook.html':[['.playbook-step',5],['.playbook-lesson',3]]
 };
 const minPhotos={
   'index.html':5,'thoughts.html':5,'learn.html':4,'event.html':2,'report.html':5,
-  'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'journal.html':1,'media.html':1,'404.html':1
+  'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'journal.html':1,'media.html':1,'playbook.html':1,'404.html':1
 };
 
 const PUBLIC_COPY_BANNED=[
