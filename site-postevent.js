@@ -5,7 +5,7 @@
     if(document.querySelector('link[href*="site-runtime-20260924.css"],link[href*="-optimized-20260924.css"],link[href*="home-final-20260924.css"],link[href*="home-final-20260926.css"],link[href*="learn-final-bundle-20260927.css"],link[href*="partner-post-20260924.css"],link[href*="report-final-bundle-20260924.css"],link[href*="event-final-bundle-20260926.css"]')) return;
     const link=document.createElement('link');
     link.rel='stylesheet';
-    link.href='site-runtime-20260924.css?v=20261003font1';
+    link.href='site-runtime-20260924.css?v=20261004finish1';
     const consistency=document.querySelector('link[href*="site-consistency.css"]');
     if(consistency) consistency.before(link); else document.head.appendChild(link);
   };
@@ -79,7 +79,7 @@
     }
   }
 
-  const richFooterPages=new Set(['index.html','thoughts.html','learn.html','event.html','report.html','partner.html']);
+  const richFooterPages=new Set(['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html']);
   if(richFooterPages.has(current)){
     const footer=document.querySelector('.site-footer');
     if(footer){
@@ -91,7 +91,7 @@
       footer.innerHTML=`
         <div class="container rb-footer-cta"><div><h2>${ctaTitle}</h2><p>${ctaText}</p></div><a class="btn" href="${ctaHref}">${ctaLabel}</a></div>
         <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>楽しさを入口に能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="report.html">開催レポート</a><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会アーカイブ</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
-        <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><span>infonotorebloom@gmail.com</span></div>`;
+        <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><a href="mailto:infonotorebloom@gmail.com">infonotorebloom@gmail.com</a></div>`;
     }
 
     document.querySelectorAll('.mobile-dock,.join-dock').forEach(el=>el.remove());
@@ -157,6 +157,19 @@
     const rel=new Set((link.getAttribute('rel')||'').split(/\s+/).filter(Boolean));
     rel.add('noopener');
     link.setAttribute('rel',[...rel].join(' '));
+  });
+
+  /* Link symbols: internal text links use →, external text links use ↗. */
+  document.querySelectorAll('.text-link,.rb-footer-links a').forEach(link=>{
+    if(link.querySelector('img,svg')) return;
+    const label=(link.textContent||'').trim();
+    if(!label) return;
+    let url;
+    try{ url=new URL(link.getAttribute('href')||'',location.href); }catch(e){ return; }
+    if(url.protocol==='mailto:'||url.protocol==='tel:') return;
+    const clean=label.replace(/\s*[→↗]\s*$/,'').trim();
+    const external=url.origin!==location.origin;
+    link.textContent=clean+(external?' ↗':' →');
   });
 
   document.querySelectorAll('img').forEach((img,index)=>{
