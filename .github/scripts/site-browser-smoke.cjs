@@ -3,10 +3,10 @@ const puppeteer=require('puppeteer-core');
 const fs=require('fs');
 const axeSource=fs.readFileSync(require.resolve('axe-core/axe.min.js'),'utf8');
 
-const pages=['index.html','thoughts.html','learn.html','event.html','report.html','partner.html','diagnosis.html','contact.html','photo-credits.html','404.html'];
+const pages=fs.readdirSync('.').filter(name=>/^[^.].*\.html$/i.test(name)).sort();
 const viewports=[[375,812],[430,932],[768,1024],[1440,1000]];
 const expected={
-  'index.html':[['.visual-tile',3],['.story-step',4],['.event-values>article',2]],
+  'index.html':[['.visual-tile',3],['.story-step',4],['.event-values>article',2],['.handover-card',4],['.home-route-card',5]],
   'thoughts.html':[['.visual-tile',3],['.cause-grid>article',4],['.event-values>article',3]],
   'learn.html':[['.definition-card',3],['.data-grid--large>article',3],['.chart-card',2],['.cause-grid>article',4],['#project .event-values>article',4]],
   'event.html':[['.join-step-grid>article',3],['.info-card',5],['.program-grid>.game-card',5],['.time-card',4],['.bring-item',6]],
@@ -14,11 +14,13 @@ const expected={
   'partner.html':[['.nr-sponsor-wide',3],['.industry-partner-card',3]],
   'contact.html':[['.contact-card',1]],
   'photo-credits.html':[['tbody tr',32]],
-  'diagnosis.html':[['.diagnosis-start-card',1],['.flower-group-card',4],['.flower-atlas-card',32]]
+  'diagnosis.html':[['.diagnosis-start-card',1],['.flower-group-card',4],['.flower-atlas-card',32]],
+  'journal.html':[['.journal-entry',5]],
+  'media.html':[['.media-fact',4],['.media-asset',6]]
 };
 const minPhotos={
   'index.html':5,'thoughts.html':5,'learn.html':4,'event.html':2,'report.html':5,
-  'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'404.html':1
+  'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'journal.html':1,'media.html':1,'404.html':1
 };
 
 const PUBLIC_COPY_BANNED=[
