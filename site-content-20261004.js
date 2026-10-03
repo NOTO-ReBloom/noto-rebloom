@@ -5,7 +5,7 @@
 */
 window.RB_CONTENT = Object.freeze({
   currentStatus: Object.freeze({
-    heading: "9月20日の一日を、次の活動につなげています。",
+    headingLines: Object.freeze(["9月20日の一日を、", "次の活動につなげています。"]),
     lead: "泥ん子運動会2026は終了しました。開催後の記録を残しながら、今回できたつながりを次の活動へ引き継いでいます。",
     items: Object.freeze([
       Object.freeze({
