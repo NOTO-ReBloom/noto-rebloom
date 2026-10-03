@@ -179,3 +179,46 @@
   .home-archive-summary__footer{display:grid}
   .home-archive-summary__footer .btn{width:100%}
 }
+
+
+/* Public playbook */
+.playbook-flow{display:grid;gap:14px}
+.playbook-step{
+  display:grid;grid-template-columns:76px minmax(0,1fr);gap:22px;
+  padding:26px;border:1px solid rgba(24,58,49,.12);border-radius:24px;
+  background:#fff;box-shadow:0 10px 28px rgba(23,58,49,.05)
+}
+.playbook-step__no{
+  display:grid;place-items:center;align-self:start;width:58px;height:58px;
+  border-radius:18px;background:#174b3e;color:#fff;
+  font-size:13px;font-weight:900;letter-spacing:.06em
+}
+.playbook-step small{font-size:10px;font-weight:900;letter-spacing:.1em;color:#7652a8}
+.playbook-step h3{
+  margin:6px 0 0;font-family:var(--display,"M PLUS Rounded 1c",sans-serif);
+  font-size:clamp(22px,2.4vw,30px);line-height:1.42;color:var(--ink)
+}
+.playbook-step p{margin-top:8px}
+.playbook-checks{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;
+  margin:16px 0 0;padding:0;list-style:none
+}
+.playbook-checks li{
+  padding:10px 12px;border-radius:14px;background:#f2f6ee;
+  font-size:12px;line-height:1.6;color:#40554d
+}
+.playbook-lessons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.playbook-lesson{
+  padding:22px;border-radius:22px;background:#173f34;color:#fff
+}
+.playbook-lesson span{font-size:10px;font-weight:900;letter-spacing:.1em;color:#f4cf58}
+.playbook-lesson h3{
+  margin:8px 0 0;color:#fff;font-family:var(--display,"M PLUS Rounded 1c",sans-serif);
+  font-size:20px;line-height:1.45
+}
+.playbook-lesson p{margin-top:8px;color:rgba(255,255,255,.78)!important;font-size:13px!important;line-height:1.72!important}
+@media(max-width:760px){
+  .playbook-step{grid-template-columns:1fr;padding:21px}
+  .playbook-checks{grid-template-columns:1fr}
+  .playbook-lessons{grid-template-columns:1fr}
+}
