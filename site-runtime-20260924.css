@@ -156,6 +156,10 @@ body:not(.page-diagnosis){
   --display:"M PLUS Rounded 1c",Meiryo,"Yu Gothic UI","Yu Gothic",system-ui,sans-serif;
   --body:"Noto Sans JP","Hiragino Sans",Meiryo,"Yu Gothic UI","Yu Gothic",system-ui,-apple-system,sans-serif;
 }
+body:not(.page-diagnosis) :where(h1,h2,h3,h4,.section-heading h2,.hero h1,.page-hero h1){
+  font-family:"M PLUS Rounded 1c",Meiryo,"Yu Gothic UI","Yu Gothic",system-ui,sans-serif!important;
+  font-weight:900!important;
+}
 
 
 /* === LAYOUT STABILITY / 2026-09-24 FINAL === */
