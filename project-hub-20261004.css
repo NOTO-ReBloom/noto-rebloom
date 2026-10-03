@@ -222,3 +222,10 @@
   .playbook-checks{grid-template-columns:1fr}
   .playbook-lessons{grid-template-columns:1fr}
 }
+
+
+/* Accessibility parity for pages using the shared project-hub shell. */
+body:is(.page-journal,.page-media,.page-playbook) .brand small{
+  color:#596962!important;
+  -webkit-text-fill-color:#596962!important;
+}
