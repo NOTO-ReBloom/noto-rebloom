@@ -20,6 +20,10 @@
 <link rel="icon" href="favicon.svg">
 <link rel="preload" as="image" href="assets/perf/team-presentation-800.webp" imagesrcset="assets/perf/team-presentation-800.webp 800w, team-presentation.webp 1800w" imagesizes="(max-width:700px) calc(100vw - 32px), 50vw" fetchpriority="high">
 <link rel="manifest" href="site.webmanifest">
+<!-- Stable heading font: loaded in <head> so headings never switch after paint -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="rebloom-google-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=block">
 <link rel="stylesheet" href="partner-optimized-20261002-1.css?v=1" data-rb-optimized="true">
 <style>
 .nr-new-partner .site-header .site-nav{flex-wrap:nowrap!important}
@@ -129,6 +133,16 @@ html body.nr-new-partner #current-partners .nr-sponsor-wide__metrics>div>strong{
   .nr-new-partner .partner-supporters-list{grid-template-columns:1fr;margin-top:26px}
   .nr-new-partner .partner-supporters-list article{padding:19px 12px 20px}
   .nr-new-partner .partner-supporters-list article+article{border-left:0;border-top:1px solid rgba(23,74,54,.14)}
+}
+</style>
+<style id="rebloom-heading-font-final">
+:root{
+  --display:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --serif:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+}
+:where(h1,h2,h3,h4,.section-heading h2,.page-hero h1,.hero h1){
+  font-family:var(--display)!important;
+  font-weight:900!important;
 }
 </style>
 </head>
