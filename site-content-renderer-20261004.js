@@ -66,6 +66,42 @@
     fallback.slice(data.currentStatus.items.length).forEach(el=>el.remove());
   };
 
+
+
+  const renderArchive=()=>{
+    const grid=document.querySelector('.home-archive-summary__grid[data-rb-content="archive"]');
+    if(!grid||!Array.isArray(data.journal)) return;
+
+    const featured=data.journal
+      .filter(item=>item.featured)
+      .sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+
+    if(!featured.length) return;
+
+    const frag=document.createDocumentFragment();
+    for(const item of featured){
+      const article=document.createElement('article');
+      article.className='home-archive-summary__card';
+
+      const time=document.createElement('time');
+      time.dateTime=item.date;
+      time.textContent=formatDate(item.date);
+
+      const h3=document.createElement('h3');
+      h3.textContent=item.title;
+
+      const p=document.createElement('p');
+      p.textContent=item.description;
+
+      const link=document.createElement('a');
+      decorateLink(link,item.linkLabel,item.href);
+
+      article.append(time,h3,p,link);
+      frag.appendChild(article);
+    }
+    grid.replaceChildren(frag);
+  };
+
   const renderJournal=()=>{
     const list=document.querySelector('.journal-list[data-rb-content="journal"]');
     if(!list||!Array.isArray(data.journal)) return;
@@ -102,6 +138,7 @@
 
   try{
     renderCurrentStatus();
+    renderArchive();
     renderJournal();
   }catch(error){
     console.error('[NOTO Re:Bloom] content rendering failed; static fallback kept where possible.',error);
