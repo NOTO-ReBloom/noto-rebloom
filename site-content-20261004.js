@@ -41,6 +41,7 @@ window.RB_CONTENT = Object.freeze({
   journal: Object.freeze([
     Object.freeze({
       date: "2026-10-04",
+      featured: true,
       category: "動画",
       title: "活動動画が完成しました",
       description: "泥ん子運動会2026の当日の様子をまとめた動画を公開しました。写真だけでは伝わりにくい、田んぼの空気や参加者の表情も見ることができます。",
@@ -49,6 +50,7 @@ window.RB_CONTENT = Object.freeze({
     }),
     Object.freeze({
       date: "2026-10-01",
+      featured: false,
       category: "掲載",
       title: "Mebaellでの掲載が始まりました",
       description: "団体・活動を紹介するMebaellにNOTO Re:Bloomの掲載が始まりました。活動を知ってもらう入口を少しずつ増やしています。",
@@ -57,6 +59,7 @@ window.RB_CONTENT = Object.freeze({
     }),
     Object.freeze({
       date: "2026-09-20",
+      featured: true,
       category: "開催",
       title: "泥ん子運動会2026を開催しました",
       description: "珠洲市若山町洲巻の田んぼで、5つの泥競技とRe:Bloomレンゲカップを実施しました。競技参加者15名、見学を含め約30名が会場に集まりました。",
@@ -65,6 +68,7 @@ window.RB_CONTENT = Object.freeze({
     }),
     Object.freeze({
       date: "2026-09-19",
+      featured: true,
       category: "発表",
       title: "RE-BOOST STUDIOで活動を発表",
       description: "金沢香林坊で、これまでの活動と翌日に控えた泥ん子運動会について発表しました。",
@@ -73,6 +77,7 @@ window.RB_CONTENT = Object.freeze({
     }),
     Object.freeze({
       date: "2026-08-15",
+      featured: true,
       category: "支援",
       title: "クラウドファンディングを終了",
       description: "10名の方から合計186,000円のご支援をいただきました。いただいた支援を9月20日の開催へつなげました。",
