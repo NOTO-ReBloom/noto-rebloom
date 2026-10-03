@@ -5,7 +5,7 @@
     if(document.querySelector('link[href*="site-runtime-20260924.css"],link[href*="-optimized-20260924.css"],link[href*="home-final-20260924.css"],link[href*="home-final-20260926.css"],link[href*="learn-final-bundle-20260927.css"],link[href*="partner-post-20260924.css"],link[href*="report-final-bundle-20260924.css"],link[href*="event-final-bundle-20260926.css"]')) return;
     const link=document.createElement('link');
     link.rel='stylesheet';
-    link.href='site-runtime-20260924.css?v=1';
+    link.href='site-runtime-20260924.css?v=20261003font1';
     const consistency=document.querySelector('link[href*="site-consistency.css"]');
     if(consistency) consistency.before(link); else document.head.appendChild(link);
   };
