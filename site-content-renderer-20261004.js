@@ -34,7 +34,14 @@
 
     const title=section.querySelector('#current-status-title');
     const lead=section.querySelector('.home-current-status__head > p:last-child');
-    if(title) title.textContent=data.currentStatus.heading;
+    if(title){
+      const lines=Array.isArray(data.currentStatus.headingLines)?data.currentStatus.headingLines:[data.currentStatus.heading||''];
+      title.replaceChildren();
+      lines.forEach((line,index)=>{
+        if(index) title.appendChild(document.createElement('br'));
+        title.appendChild(document.createTextNode(line));
+      });
+    }
     if(lead) lead.textContent=data.currentStatus.lead;
 
     const grid=section.querySelector('.home-current-status__grid');
