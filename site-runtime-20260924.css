@@ -152,8 +152,9 @@
 
 /* === STABLE SYSTEM TYPOGRAPHY / 2026-09-24 === */
 body:not(.page-diagnosis){
-  --display:"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
-  --body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,-apple-system,sans-serif;
+  /* Keep the same rounded display face before/after runtime CSS is injected. */
+  --display:"M PLUS Rounded 1c",Meiryo,"Yu Gothic UI","Yu Gothic",system-ui,sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans",Meiryo,"Yu Gothic UI","Yu Gothic",system-ui,-apple-system,sans-serif;
 }
 
 
