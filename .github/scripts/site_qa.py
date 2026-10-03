@@ -7,20 +7,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
-PAGES = [
-    "404.html",
-    "contact.html",
-    "diagnosis.html",
-    "event.html",
-    "index.html",
-    "journal.html",
-    "learn.html",
-    "media.html",
-    "partner.html",
-    "photo-credits.html",
-    "report.html",
-    "thoughts.html",
-]
+PAGES = sorted(p.name for p in ROOT.glob('*.html'))
 SKIP_SCHEMES = ("http:", "https:", "mailto:", "tel:", "data:", "javascript:")
 
 
