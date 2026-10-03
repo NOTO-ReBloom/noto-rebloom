@@ -22,7 +22,11 @@
   <meta name="twitter:description" content="NOTO Re:Bloomへの取材・協賛・地域連携・活動に関するお問い合わせはこちら。">
   <meta name="twitter:image" content="https://noto-rebloom.github.io/noto-rebloom/assets/event-2026/group.webp">
   
-  <link rel="stylesheet" href="contact-optimized-20261002-1.css?v=1" data-rb-optimized="true">
+  <!-- Stable heading font: loaded in <head> so headings never switch after paint -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="rebloom-google-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=block">
+<link rel="stylesheet" href="contact-optimized-20261002-1.css?v=1" data-rb-optimized="true">
   <style>
     .contact-page-hero{padding:clamp(72px,10vw,130px) 0 56px;background:linear-gradient(135deg,#f7f2e6 0%,#edf5ec 58%,#fff7d7 100%)}
     .contact-page-hero .container{max-width:1120px}.contact-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.82fr);gap:42px;align-items:center}.contact-hero-copy{min-width:0}.contact-hero-photo{margin:0;overflow:hidden;border:1px solid rgba(24,75,61,.12);border-radius:26px;background:#fff;box-shadow:0 20px 48px rgba(24,55,47,.10)}.contact-hero-photo img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}.contact-hero-photo figcaption{padding:10px 14px;background:#fffdf8;color:#41594f;font-size:11px;font-weight:700;line-height:1.5}.contact-page-hero h1{max-width:780px;margin:12px 0 18px;font-size:clamp(42px,7vw,76px);line-height:1.06;letter-spacing:-.05em;color:#173e34}.contact-page-hero p{max-width:760px;font-size:clamp(16px,2vw,19px);line-height:1.9;color:#506159}
@@ -35,6 +39,16 @@
 <link rel="stylesheet" href="contact-optimized-20261002-2.css?v=1" data-rb-optimized="true">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://noto-rebloom.github.io/noto-rebloom/"},{"@type":"ListItem","position":2,"name":"お問い合わせ"}]}</script>
 <link rel="stylesheet" href="contact-optimized-20261002-3.css?v=1" data-rb-optimized="true">
+<style id="rebloom-heading-font-final">
+:root{
+  --display:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --serif:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+}
+:where(h1,h2,h3,h4,.section-heading h2,.page-hero h1,.hero h1){
+  font-family:var(--display)!important;
+  font-weight:900!important;
+}
+</style>
 </head>
 <body class="page-contact">
 <a class="skip-link" href="#main">本文へ移動</a>
