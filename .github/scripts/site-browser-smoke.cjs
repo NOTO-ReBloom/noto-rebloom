@@ -277,9 +277,9 @@ if(copyFailures.length){
       const realConsoleErrors=consoleErrors.filter(x=>!/favicon\.ico/i.test(x));
       if(realConsoleErrors.length) failures.push({file,width,kind:'console-errors',errors:realConsoleErrors});
 
+      if(data.universalChrome.headerSocialCount<2) failures.push({file,width,kind:'header-social-missing',chrome:data.universalChrome});
       if(width>820){
         if(!data.navVisible) failures.push({file,width,kind:'desktop-nav-hidden'});
-        if(data.universalChrome.headerSocialCount<2) failures.push({file,width,kind:'desktop-social-missing',chrome:data.universalChrome});
       }else{
         if(!data.toggleVisible) failures.push({file,width,kind:'mobile-toggle-hidden',selector:data.toggleSelector});
         const selector=data.toggleSelector;
