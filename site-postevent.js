@@ -96,7 +96,7 @@
 
     document.querySelectorAll('.mobile-dock,.join-dock').forEach(el=>el.remove());
     const existingDock=document.querySelector('.rb-mobile-join');
-    if(current!=='404.html'&&current!=='report.html'){
+    if(current!=='404.html'&&current!=='report.html'&&current!=='photo-credits.html'){
       if(!existingDock){
         const dock=document.createElement('div');
         dock.className='rb-mobile-join';
