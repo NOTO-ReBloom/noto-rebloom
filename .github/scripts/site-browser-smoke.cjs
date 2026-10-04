@@ -128,6 +128,7 @@ if(copyFailures.length){
           footerVisible:visible(document.querySelector('.rb-footer--universal')),
           footerSocialCount:[...document.querySelectorAll('.rb-footer--universal .rb-footer-social a')].filter(visible).length,
           headerSocialCount:[...document.querySelectorAll('.rb-header-social a')].filter(visible).length,
+          headerSocialIconCount:[...document.querySelectorAll('.rb-header-social a svg')].filter(visible).length,
           menuSocialCount:[...document.querySelectorAll('.rb-menu-social a')].filter(visible).length
         };
         const rgb=v=>{const m=String(v||'').match(/rgba?\((\d+(?:\.\d+)?)[,\s]+(\d+(?:\.\d+)?)[,\s]+(\d+(?:\.\d+)?)(?:[,/\s]+([\d.]+))?\)/i);return m?{r:+m[1],g:+m[2],b:+m[3],a:m[4]==null?1:+m[4]}:null};
@@ -277,7 +278,7 @@ if(copyFailures.length){
       const realConsoleErrors=consoleErrors.filter(x=>!/favicon\.ico/i.test(x));
       if(realConsoleErrors.length) failures.push({file,width,kind:'console-errors',errors:realConsoleErrors});
 
-      if(data.universalChrome.headerSocialCount<2) failures.push({file,width,kind:'header-social-missing',chrome:data.universalChrome});
+      if(data.universalChrome.headerSocialCount<2||data.universalChrome.headerSocialIconCount<2) failures.push({file,width,kind:'header-social-missing',chrome:data.universalChrome});
       if(width>820){
         if(!data.navVisible) failures.push({file,width,kind:'desktop-nav-hidden'});
       }else{
