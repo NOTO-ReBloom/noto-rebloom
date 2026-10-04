@@ -349,3 +349,11 @@ body:is(.page-journal,.page-media) main>section.rb-art-wash::before{
     grid-column:1;
   }
 }
+
+
+/* Dark lesson cards must keep high-contrast headings after global heading normalization. */
+body.page-playbook .playbook-lesson h3{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-shadow:none!important;
+}
