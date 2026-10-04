@@ -229,3 +229,123 @@ body:is(.page-journal,.page-media,.page-playbook) .brand small{
   color:#596962!important;
   -webkit-text-fill-color:#596962!important;
 }
+
+
+/* Quiet reference-page layout: journal + media.
+   These pages organize information; decorative storytelling is intentionally reduced. */
+body:is(.page-journal,.page-media){
+  background:#fffaf1;
+}
+body:is(.page-journal,.page-media) .project-hub-hero{
+  padding:132px 0 64px;
+  background:#fffaf1;
+  border-bottom:1px solid rgba(23,74,54,.10);
+}
+body:is(.page-journal,.page-media) .project-hub-hero::after{
+  display:none!important;
+  content:none!important;
+}
+body:is(.page-journal,.page-media) .project-hub-hero__grid{
+  display:block;
+  max-width:1180px;
+}
+body:is(.page-journal,.page-media) .project-hub-hero__grid>div{
+  max-width:850px;
+}
+body:is(.page-journal,.page-media) .project-hub-hero h1{
+  font-size:clamp(38px,4.7vw,60px);
+  line-height:1.35;
+}
+body:is(.page-journal,.page-media) .project-hub-hero__lead{
+  max-width:760px;
+  margin-top:18px;
+  color:#4e625a;
+}
+body:is(.page-journal,.page-media) .project-hub-photo{
+  display:none!important;
+}
+body:is(.page-journal,.page-media) .project-hub-section{
+  padding:clamp(56px,6vw,78px) 0;
+}
+body:is(.page-journal,.page-media) .project-hub-section--paper{
+  background:#f7f3e9;
+  border-top:1px solid rgba(23,74,54,.08);
+  border-bottom:1px solid rgba(23,74,54,.08);
+}
+body:is(.page-journal,.page-media) .project-hub-head{
+  margin-bottom:24px;
+}
+body:is(.page-journal,.page-media) .project-hub-head h2{
+  font-size:clamp(28px,3.4vw,42px);
+}
+body:is(.page-journal,.page-media) .journal-entry,
+body:is(.page-journal,.page-media) .media-fact,
+body:is(.page-journal,.page-media) .media-copy-card,
+body:is(.page-journal,.page-media) .media-asset{
+  box-shadow:0 6px 18px rgba(23,58,49,.045);
+  border-color:rgba(24,58,49,.11);
+}
+body.page-journal .journal-entry{
+  grid-template-columns:118px minmax(0,1fr) auto;
+  padding:20px 22px;
+}
+body.page-journal .journal-entry small,
+body.page-media .media-fact small,
+body.page-media .media-asset span{
+  color:#486a5d;
+  letter-spacing:.06em;
+}
+body.page-media .media-facts{
+  gap:10px;
+}
+body.page-media .media-fact{
+  padding:19px;
+}
+body.page-media .media-fact strong{
+  font-size:19px;
+}
+body.page-media .media-assets{
+  gap:12px;
+}
+body.page-media .media-asset{
+  min-height:170px;
+  padding:21px;
+}
+body:is(.page-journal,.page-media) .project-hub-actions{
+  margin-top:22px;
+}
+body:is(.page-journal,.page-media) .rb-botanical-decor,
+body:is(.page-journal,.page-media) .rb-section-botanical,
+body:is(.page-journal,.page-media) .rb-botanical-specimen,
+body:is(.page-journal,.page-media) .rb-root-line,
+body:is(.page-journal,.page-media) .rb-growth-spine,
+body:is(.page-journal,.page-media) .rb-editorial-plant,
+body:is(.page-journal,.page-media) .rb-page-motif,
+body:is(.page-journal,.page-media) .rb-handline{
+  display:none!important;
+}
+body:is(.page-journal,.page-media) main>section.rb-art-wash::before{
+  display:none!important;
+  content:none!important;
+}
+@media(max-width:900px){
+  body.page-journal .journal-entry{
+    grid-template-columns:102px minmax(0,1fr);
+  }
+  body.page-journal .journal-entry>a{
+    grid-column:2;
+  }
+}
+@media(max-width:600px){
+  body:is(.page-journal,.page-media) .project-hub-hero{
+    padding:108px 0 48px;
+  }
+  body.page-journal .journal-entry{
+    grid-template-columns:1fr;
+    gap:7px;
+    padding:18px;
+  }
+  body.page-journal .journal-entry>a{
+    grid-column:1;
+  }
+}
