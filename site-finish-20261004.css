@@ -46,3 +46,61 @@ body.report-page .report-photo-story .photo-frame img{
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .js .reveal{opacity:1!important;transform:none!important}
 }
+
+
+/* Universal mobile header SNS visibility.
+   This file loads last, so optimized page bundles cannot hide the official SNS links. */
+@media(max-width:900px){
+  html body .site-header .header-actions{
+    display:flex!important;
+    align-items:center!important;
+    margin-left:auto!important;
+    gap:5px!important;
+  }
+  html body .site-header .header-actions>.btn{
+    display:none!important;
+  }
+  html body .site-header .header-actions .rb-header-social{
+    display:flex!important;
+    align-items:center!important;
+    gap:5px!important;
+  }
+  html body .site-header .header-actions .rb-header-social a{
+    box-sizing:border-box!important;
+    display:grid!important;
+    place-items:center!important;
+    width:32px!important;
+    height:32px!important;
+    min-width:32px!important;
+    min-height:32px!important;
+    padding:0!important;
+    border:1px solid rgba(23,74,54,.22)!important;
+    border-radius:999px!important;
+    background:#fffdf8!important;
+    color:#174a36!important;
+    -webkit-text-fill-color:#174a36!important;
+    box-shadow:none!important;
+    text-decoration:none!important;
+    line-height:1!important;
+  }
+  html body .site-header .header-actions .rb-header-social svg{
+    display:block!important;
+    width:16px!important;
+    height:16px!important;
+  }
+  html body .site-header .menu-button{
+    margin-left:3px!important;
+  }
+}
+@media(max-width:420px){
+  html body .site-header .header-actions .rb-header-social a{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    min-height:30px!important;
+  }
+  html body .site-header .header-actions .rb-header-social svg{
+    width:15px!important;
+    height:15px!important;
+  }
+}
