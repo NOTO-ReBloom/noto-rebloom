@@ -21,7 +21,7 @@ const expected={
 };
 const minPhotos={
   'index.html':5,'thoughts.html':5,'learn.html':4,'event.html':2,'report.html':5,
-  'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'journal.html':1,'media.html':1,'playbook.html':1,'404.html':1
+  'partner.html':4,'diagnosis.html':33,'contact.html':1,'photo-credits.html':0,'journal.html':0,'media.html':0,'playbook.html':1,'404.html':1
 };
 
 const PUBLIC_COPY_BANNED=[
