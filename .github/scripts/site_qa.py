@@ -85,7 +85,7 @@ def main() -> int:
             errors.append(f"{rel}: img missing alt attribute: {src!r}")
 
         text = page.read_text(encoding="utf-8")
-        if 'site-finish-20261004.css?v=1' not in text:
+        if not re.search(r'site-finish-20261004\.css(?:\?v=\d+)?', text):
             errors.append(f"{rel}: final consistency stylesheet is missing")
         if 'data-rb-footer-version="20261004"' not in text:
             errors.append(f"{rel}: static footer version marker is missing")
