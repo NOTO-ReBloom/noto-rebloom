@@ -1,7 +1,7 @@
 /* NOTO Re:Bloom site content data
    日々の更新は原則このファイルだけを編集します。
    - currentStatus: トップ「現在の状況」
-   - journal: 活動ジャーナル
+   - journal: 活動記録
 */
 window.RB_CONTENT = Object.freeze({
   currentStatus: Object.freeze({
