@@ -8,9 +8,9 @@ on:
       - 'diagnosis-visual-v2.js'
       - 'diagnosis-shell.js'
       - 'diagnosis-loader-2026.js'
-      - 'diagnosis-ux-v3.css'
-      - 'diagnosis-v2.css'
-      - 'diagnosis-fixes.css'
+      - 'diagnosis-optimized-20261002-1.css'
+      - 'diagnosis-optimized-20261002-2.css'
+      - 'diagnosis-optimized-20261002-3.css'
       - 'flower-photo-*.webp'
       - 'flower-photo-credits.json'
       - 'photo-credits.html'
@@ -135,7 +135,7 @@ jobs:
           credits_html = Path('photo-credits.html').read_text(encoding='utf-8')
           js = Path('diagnosis.js').read_text(encoding='utf-8')
           visual = Path('diagnosis-visual-v2.js').read_text(encoding='utf-8')
-          css_files = [Path(x).read_text(encoding='utf-8') for x in ['diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css']]
+          css_files = [Path(x).read_text(encoding='utf-8') for x in ['diagnosis-optimized-20261002-1.css','diagnosis-optimized-20261002-2.css','diagnosis-optimized-20261002-3.css']]
 
           class IdParser(HTMLParser):
               def __init__(self):
@@ -180,7 +180,7 @@ jobs:
           loader = Path('diagnosis-loader-2026.js').read_text(encoding='utf-8')
           if 'fonts.googleapis.com' in html or 'fonts.gstatic.com' in html:
               raise SystemExit('Diagnosis HTML must not block first paint on external font requests')
-          for css_name in ('diagnosis-v2.css','diagnosis-fixes.css','diagnosis-ux-v3.css','plant-art-20260929.css'):
+          for css_name in ('diagnosis-optimized-20261002-1.css','diagnosis-optimized-20261002-2.css','diagnosis-optimized-20261002-3.css','plant-art-20260929.css'):
               if f'href="{css_name}' not in html:
                   raise SystemExit(f'Missing diagnosis stylesheet: {css_name}')
           for js_name in ('diagnosis-shell.js','diagnosis-loader-2026.js','plant-art-20260929.js'):
