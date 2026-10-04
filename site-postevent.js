@@ -19,7 +19,7 @@
 
   const labels={
     'index.html':'ホーム',
-    'thoughts.html':'私たちの思い',
+    'thoughts.html':'活動の考え方',
     'learn.html':'土地と企画',
     'event.html':'泥ん子運動会',
     'partner.html':'協賛・協力',
@@ -32,7 +32,7 @@
     if(!nav.querySelector('a[href="thoughts.html"]')){
       const link=document.createElement('a');
       link.href='thoughts.html';
-      link.textContent='私たちの思い';
+      link.textContent='活動の考え方';
       const before=nav.querySelector('a[href="learn.html"]');
       if(before) nav.insertBefore(link,before); else nav.appendChild(link);
     }
@@ -90,7 +90,7 @@
       footer.classList.add('rb-footer');
       footer.innerHTML=`
         <div class="container rb-footer-cta"><div><h2>${ctaTitle}</h2><p>${ctaText}</p></div><a class="btn" href="${ctaHref}">${ctaLabel}</a></div>
-        <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>楽しさを入口に能登を訪れ、土地を知り、地域の方と関わる時間をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="report.html">開催レポート</a><a href="journal.html">活動ジャーナル</a><a href="playbook.html">運営の型</a><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会アーカイブ</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="media.html">取材・掲載向け資料</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
+        <div class="container rb-footer-grid"><div><b>NOTO Re:Bloom</b><p>能登の土地を舞台に、地域の方と一緒に、人が集まる場をつくる学生プロジェクトです。</p></div><div class="rb-footer-links"><strong>PROJECT</strong><a href="report.html">開催レポート</a><a href="journal.html">活動ジャーナル</a><a href="playbook.html">運営の型</a><a href="learn.html">土地と企画</a><a href="event.html">泥ん子運動会アーカイブ</a><a href="diagnosis.html">花タイプ診断</a></div><div class="rb-footer-links"><strong>CONTACT</strong><a href="partner.html">協賛・協力</a><a href="media.html">取材・掲載向け資料</a><a href="${ISHIMO}" target="_blank" rel="noopener">ishimo公式サイト ↗</a><a href="mailto:infonotorebloom@gmail.com">メールで問い合わせ</a><a href="${CROWD}" target="_blank" rel="noopener">2026年クラファン結果</a></div></div>
         <div class="container rb-footer-bottom"><span>NOTO Re:Bloom</span><a href="mailto:infonotorebloom@gmail.com">infonotorebloom@gmail.com</a></div>`;
     }
 
