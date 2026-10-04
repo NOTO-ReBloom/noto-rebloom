@@ -104,3 +104,39 @@ body.report-page .report-photo-story .photo-frame img{
     height:15px!important;
   }
 }
+
+
+/* Header SNS icon rendering guard: links and SVG marks must stay visible at every width. */
+html body .site-header .header-actions .rb-header-social{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+html body .site-header .header-actions .rb-header-social a{
+  box-sizing:border-box!important;
+  display:grid!important;
+  place-items:center!important;
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  min-height:36px!important;
+  padding:0!important;
+  border:1px solid rgba(23,74,54,.22)!important;
+  border-radius:999px!important;
+  background:#fffdf8!important;
+  color:#174a36!important;
+  -webkit-text-fill-color:#174a36!important;
+  text-decoration:none!important;
+  line-height:1!important;
+}
+html body .site-header .header-actions .rb-header-social a svg{
+  display:block!important;
+  width:18px!important;
+  height:18px!important;
+  min-width:18px!important;
+  min-height:18px!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow:visible!important;
+  color:#174a36!important;
+}
