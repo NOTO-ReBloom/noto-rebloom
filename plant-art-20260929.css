@@ -1075,7 +1075,35 @@ html body .rb-auto-contrast-text :is(span,small,strong,b){
   .rb-header-social a{width:34px;height:34px;min-width:34px;min-height:34px}
 }
 @media(max-width:900px){
-  .site-header .header-actions{display:none!important}
+  /* Keep official SNS visible in the header on mobile.
+     Only the report CTA is hidden; Instagram/Facebook stay beside the menu button. */
+  .site-header .header-actions{
+    display:flex!important;
+    align-items:center!important;
+    margin-left:auto!important;
+    gap:5px!important;
+  }
+  .site-header .header-actions>.btn{display:none!important}
+  .site-header .rb-header-social{
+    display:flex!important;
+    align-items:center!important;
+    gap:5px!important;
+  }
+  .site-header .rb-header-social a{
+    width:32px!important;
+    height:32px!important;
+    min-width:32px!important;
+    min-height:32px!important;
+    border-width:1px!important;
+    box-shadow:none!important;
+  }
+  .site-header .rb-header-social svg{
+    width:16px!important;
+    height:16px!important;
+  }
+  .site-header .menu-button{
+    margin-left:3px!important;
+  }
   .site-header .site-nav .rb-menu-social{
     display:flex!important;
     margin-top:8px!important;
@@ -2709,3 +2737,16 @@ html body :where(a,button,[role="button"],input,select,textarea,[tabindex]):focu
   outline-offset:3px!important;
 }
 
+
+@media(max-width:420px){
+  .site-header .rb-header-social a{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    min-height:30px!important;
+  }
+  .site-header .rb-header-social svg{
+    width:15px!important;
+    height:15px!important;
+  }
+}
