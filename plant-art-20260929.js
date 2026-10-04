@@ -162,6 +162,34 @@
     targets.forEach(el=>el.classList.add('rb-auto-contrast-text'));
   };
 
+  const fixWhiteTextOnLightSolidSurfaces=()=>{
+    const solidBackground=(el)=>{
+      let node=el;
+      for(let depth=0;node&&depth<8;depth++,node=node.parentElement){
+        const style=getComputedStyle(node);
+        if(style.backgroundImage&&style.backgroundImage!=='none') return null;
+        const bg=rgb(style.backgroundColor);
+        if(bg&&bg.a>=.55) return bg;
+        if(node.matches?.('.visual-tile,.photo-frame,.hero-media,.hero-photo')) return null;
+      }
+      return null;
+    };
+
+    document.querySelectorAll('h1,h2,h3,h4,p,li,span,strong,b,small,a,td,th,label').forEach(el=>{
+      if(el.closest('.rb-footer,.section--soil,.visual-tile,.photo-frame,.btn,button,[class*="badge"],[class*="chip"]')) return;
+      const text=(el.textContent||'').trim();
+      if(!text) return;
+      const fg=rgb(getComputedStyle(el).color);
+      const bg=solidBackground(el);
+      if(!fg||!bg) return;
+      if(luminance(fg)>.76&&luminance(bg)>.78){
+        el.style.setProperty('color','#173f34','important');
+        el.style.setProperty('-webkit-text-fill-color','#173f34','important');
+        el.style.setProperty('text-shadow','none','important');
+      }
+    });
+  };
+
   const applyKnownContrastFixes=()=>{
     const important=(el,prop,value)=>el?.style?.setProperty(prop,value,'important');
 
@@ -564,6 +592,7 @@
 
     forceReadableLightSurfaces();
     applyKnownContrastFixes();
+    fixWhiteTextOnLightSolidSurfaces();
   };
 
   const runUniversal=()=>{
@@ -572,6 +601,7 @@
     refresh();
     ensureUniversalChrome();
     forceReadableLightSurfaces();
+    fixWhiteTextOnLightSolidSurfaces();
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',runUniversal,{once:true});
   else runUniversal();
