@@ -5,8 +5,8 @@
 */
 window.RB_CONTENT = Object.freeze({
   currentStatus: Object.freeze({
-    headingLines: Object.freeze(["9月20日の一日を、", "次の活動につなげています。"]),
-    lead: "泥ん子運動会2026は終了しました。開催後の記録を残しながら、今回できたつながりを次の活動へ引き継いでいます。",
+    headingLines: Object.freeze(["9月20日の経験を、", "次の活動に生かします。"]),
+    lead: "泥ん子運動会2026は終了しました。開催後の記録を整理し、次年度の運営に使えるようまとめています。",
     items: Object.freeze([
       Object.freeze({
         label: "イベント",
@@ -25,7 +25,7 @@ window.RB_CONTENT = Object.freeze({
       Object.freeze({
         label: "次へ",
         title: "次の活動を検討中",
-        description: "今回の手順や失敗も残し、次の運営者へ引き継ぎます",
+        description: "今回の手順や失敗も記録し、次の運営者が見返せるようにします",
         href: "thoughts.html",
         linkLabel: "活動の考え方"
       }),
@@ -53,7 +53,7 @@ window.RB_CONTENT = Object.freeze({
       featured: false,
       category: "掲載",
       title: "Mebaellでの掲載が始まりました",
-      description: "団体・活動を紹介するMebaellにNOTO Re:Bloomの掲載が始まりました。活動を知ってもらう入口を少しずつ増やしています。",
+      description: "MebaellにNOTO Re:Bloomの団体ページが公開されました。活動を知ってもらう新しい窓口になりました。",
       href: "https://mebaell.com/org-noto-re-bloom",
       linkLabel: "掲載ページを見る"
     }),
@@ -80,7 +80,7 @@ window.RB_CONTENT = Object.freeze({
       featured: true,
       category: "支援",
       title: "クラウドファンディングを終了",
-      description: "10名の方から合計186,000円のご支援をいただきました。いただいた支援を9月20日の開催へつなげました。",
+      description: "10名の方から合計186,000円のご支援をいただき、イベントの開催費用に活用しました。",
       href: "https://readyfor.jp/projects/kousakuhoukiti-saisei",
       linkLabel: "READYFORを見る"
     })
