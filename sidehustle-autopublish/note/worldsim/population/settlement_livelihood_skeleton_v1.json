@@ -1,0 +1,387 @@
+{
+  "version": 1,
+  "purpose": "Physical settlement and livelihood skeleton used before full citizen generation.",
+  "countries": {
+    "ARCUS": {
+      "totalPopulation": 1846,
+      "settlements": [
+        {
+          "id": "ARCA-PORT-01",
+          "name": "セラ港",
+          "population": 812,
+          "terrain": "natural harbor / low coastal shelf",
+          "roles": [
+            "fishing",
+            "shipbuilding",
+            "fish_trade",
+            "healing",
+            "harbor_admin",
+            "storage"
+          ],
+          "foodSources": [
+            "coastal fishing",
+            "imported grain from inland hamlets"
+          ],
+          "risks": [
+            "storm surge",
+            "dock injury",
+            "timber shortage",
+            "sanitation crowding"
+          ],
+          "infrastructure": {
+            "piers": 3,
+            "repairYards": 2,
+            "grainStores": 2,
+            "wells": 5,
+            "clinicBeds": 8,
+            "boats": 74
+          },
+          "socialNotes": "Most occupational mobility and status competition occur here."
+        },
+        {
+          "id": "ARCA-PORT-02",
+          "name": "レイ岬",
+          "population": 356,
+          "terrain": "rocky outer coast",
+          "roles": [
+            "deepwater_fishing",
+            "salt_work",
+            "signal_watch",
+            "boat_repair"
+          ],
+          "foodSources": [
+            "fish",
+            "small gardens"
+          ],
+          "risks": [
+            "rough sea",
+            "isolation during storms"
+          ],
+          "infrastructure": {
+            "piers": 1,
+            "repairYards": 1,
+            "saltPans": 9,
+            "wells": 2,
+            "boats": 39
+          },
+          "socialNotes": "Households rely heavily on crew loyalty and kin networks."
+        },
+        {
+          "id": "ARCA-INLAND-01",
+          "name": "ヴァレン平地",
+          "population": 462,
+          "terrain": "thin agricultural plain behind coastal ridge",
+          "roles": [
+            "grain_farming",
+            "orchards",
+            "timber_cutting",
+            "cart_transport"
+          ],
+          "foodSources": [
+            "grain",
+            "orchards",
+            "goats"
+          ],
+          "risks": [
+            "soil exhaustion",
+            "timber conflict"
+          ],
+          "infrastructure": {
+            "mills": 2,
+            "storehouses": 3,
+            "bridges": 4
+          },
+          "socialNotes": "Often feels port spending receives too much attention."
+        },
+        {
+          "id": "ARCA-RIDGE-01",
+          "name": "オル高地",
+          "population": 216,
+          "terrain": "wooded ridge",
+          "roles": [
+            "timber",
+            "charcoal",
+            "hunting",
+            "road_maintenance"
+          ],
+          "foodSources": [
+            "goats",
+            "small grain plots",
+            "trade"
+          ],
+          "risks": [
+            "landslide",
+            "winter isolation"
+          ],
+          "infrastructure": {
+            "sawmills": 1,
+            "roadStations": 2
+          },
+          "socialNotes": "Small, insular settlements with strong local reputations."
+        }
+      ]
+    },
+    "MIREA": {
+      "totalPopulation": 2214,
+      "settlements": [
+        {
+          "id": "MIREA-RIVER-01",
+          "name": "アレ川中流",
+          "population": 602,
+          "terrain": "fertile floodplain",
+          "roles": [
+            "grain_farming",
+            "irrigation",
+            "milling",
+            "river_transport"
+          ],
+          "foodSources": [
+            "grain",
+            "vegetables",
+            "river fish"
+          ],
+          "risks": [
+            "seasonal flood",
+            "crop disease"
+          ],
+          "infrastructure": {
+            "mills": 3,
+            "irrigationGates": 8,
+            "ferries": 2,
+            "schools": 1
+          },
+          "socialNotes": "Agricultural households dominate local councils but technical builders are gaining influence."
+        },
+        {
+          "id": "MIREA-RIVER-02",
+          "name": "ネリ河畔",
+          "population": 448,
+          "terrain": "mixed farms and wetlands",
+          "roles": [
+            "farming",
+            "education",
+            "wetland_gathering",
+            "boatwork"
+          ],
+          "foodSources": [
+            "grain",
+            "wetland plants",
+            "fish"
+          ],
+          "risks": [
+            "wetland drainage conflict",
+            "flood"
+          ],
+          "infrastructure": {
+            "schoolrooms": 2,
+            "landingStages": 3,
+            "smallClinic": 1
+          },
+          "socialNotes": "More literate than average; younger residents are more mobile."
+        },
+        {
+          "id": "MIREA-RIVER-03",
+          "name": "ソマ湿地縁",
+          "population": 319,
+          "terrain": "marsh edge",
+          "roles": [
+            "herbalism",
+            "reed_work",
+            "fishing",
+            "small_farms"
+          ],
+          "foodSources": [
+            "fish",
+            "roots",
+            "small grain plots"
+          ],
+          "risks": [
+            "waterborne illness",
+            "habitat loss"
+          ],
+          "infrastructure": {
+            "boardwalks": 5,
+            "herbStores": 2
+          },
+          "socialNotes": "Strong ecological knowledge, weaker formal political influence."
+        },
+        {
+          "id": "MIREA-MARKET-01",
+          "name": "リナ市場町",
+          "population": 533,
+          "terrain": "river crossing / trade node",
+          "roles": [
+            "market_trade",
+            "crafts",
+            "storage",
+            "transport",
+            "administration"
+          ],
+          "foodSources": [
+            "regional trade"
+          ],
+          "risks": [
+            "price swings",
+            "fire",
+            "disease transmission"
+          ],
+          "infrastructure": {
+            "marketHalls": 2,
+            "warehouses": 5,
+            "ferry": 1,
+            "meetingHall": 1
+          },
+          "socialNotes": "Status competition and inter-settlement bargaining are strongest here."
+        },
+        {
+          "id": "MIREA-UPPER-01",
+          "name": "トレ上流村",
+          "population": 312,
+          "terrain": "upper valley terraces",
+          "roles": [
+            "orchards",
+            "goat_keeping",
+            "forestry",
+            "stonework"
+          ],
+          "foodSources": [
+            "fruit",
+            "goats",
+            "grain trade"
+          ],
+          "risks": [
+            "road washout",
+            "late frost"
+          ],
+          "infrastructure": {
+            "bridges": 2,
+            "storehouses": 2
+          },
+          "socialNotes": "More self-reliant and less enthusiastic about central coordination."
+        }
+      ]
+    },
+    "VALD": {
+      "totalPopulation": 1391,
+      "settlements": [
+        {
+          "id": "VALD-BASIN-01",
+          "name": "ケル盆地",
+          "population": 611,
+          "terrain": "main basin floor",
+          "roles": [
+            "storage",
+            "administration",
+            "metalwork",
+            "mining_support",
+            "food_preservation",
+            "healing"
+          ],
+          "foodSources": [
+            "stored grain",
+            "goats",
+            "trade within basin"
+          ],
+          "risks": [
+            "winter smoke",
+            "fuel shortage",
+            "central store failure"
+          ],
+          "infrastructure": {
+            "centralStores": 4,
+            "forges": 5,
+            "clinicBeds": 6,
+            "wells": 4
+          },
+          "socialNotes": "Institutional center; reserve policy strongly shapes daily life."
+        },
+        {
+          "id": "VALD-BASIN-02",
+          "name": "オスク鉱谷",
+          "population": 402,
+          "terrain": "ore-bearing side valley",
+          "roles": [
+            "mining",
+            "timber",
+            "smelting",
+            "toolmaking"
+          ],
+          "foodSources": [
+            "ration inflow",
+            "goats",
+            "small gardens"
+          ],
+          "risks": [
+            "collapse",
+            "dust",
+            "fuel demand"
+          ],
+          "infrastructure": {
+            "mines": 4,
+            "forges": 3,
+            "timberYards": 2
+          },
+          "socialNotes": "Workers value competence and safety but resent distant quota decisions."
+        },
+        {
+          "id": "VALD-UPPER-01",
+          "name": "セン高地",
+          "population": 226,
+          "terrain": "upland pasture",
+          "roles": [
+            "goat_keeping",
+            "wool",
+            "timber_watch",
+            "seasonal_hunting"
+          ],
+          "foodSources": [
+            "dairy",
+            "meat",
+            "stored grain"
+          ],
+          "risks": [
+            "snow isolation",
+            "pasture loss"
+          ],
+          "infrastructure": {
+            "winterShelters": 5,
+            "storehouses": 2
+          },
+          "socialNotes": "Local autonomy is prized; central authority has limited day-to-day reach."
+        },
+        {
+          "id": "VALD-PASS-01",
+          "name": "マルン峠口",
+          "population": 152,
+          "terrain": "mountain pass",
+          "roles": [
+            "road_maintenance",
+            "pack_transport",
+            "watch",
+            "stonework"
+          ],
+          "foodSources": [
+            "ration inflow",
+            "small livestock"
+          ],
+          "risks": [
+            "avalanche",
+            "road closure"
+          ],
+          "infrastructure": {
+            "roadStations": 3,
+            "signalPosts": 2
+          },
+          "socialNotes": "Receives the most outside travelers within Vald and therefore accumulates unusual rumors."
+        }
+      ]
+    }
+  },
+  "allocationRules": [
+    "Citizens are born into or migrate among these settlements; no citizen exists in a locationless national pool.",
+    "Occupation counts must respect actual settlement capacity and food/repair/service needs.",
+    "Social networks are dense within settlement and sparse but nonzero across settlements.",
+    "Migration before turn 0 is recorded in life history and creates cross-settlement ties.",
+    "Every settlement must contain caregivers, food producers, repair capacity and at least basic health support appropriate to size."
+  ]
+}
