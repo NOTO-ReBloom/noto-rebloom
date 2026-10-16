@@ -35,7 +35,7 @@ jobs:
           npx playwright install --with-deps chromium >/dev/null
       - name: Verify reader-visible worldsim state
         run: |
-          cat > /tmp/verify-worldsim.mjs <<'NODE'
+          cat > verify-worldsim.mjs <<'NODE'
           import { chromium } from 'playwright';
           import fs from 'node:fs';
 
@@ -132,7 +132,7 @@ jobs:
           }
           console.log('WORLDSIM_PUBLIC_CHECK_DONE candidates='+candidates.size+' launchVerified='+allLaunchVerified);
           NODE
-          node /tmp/verify-worldsim.mjs
+          node verify-worldsim.mjs
       - name: Commit verified state
         run: |
           git config user.name 'worldsim-public-verifier'
