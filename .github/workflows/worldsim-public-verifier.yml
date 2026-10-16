@@ -8,7 +8,7 @@ on:
       - 'sidehustle-autopublish/note/worldsim/rebuild_request.json'
       - '.github/workflows/worldsim-public-verifier.yml'
   schedule:
-    - cron: '17 * * * *'
+    - cron: '17 */6 * * *'
 
 permissions:
   contents: write
@@ -28,72 +28,111 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install public-browser verifier
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
       - name: Verify reader-visible worldsim state
         run: |
-          node <<'NODE'
-          const fs=require('fs');
+          cat > /tmp/verify-worldsim.mjs <<'NODE'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
           const qPath='sidehustle-autopublish/note/worldsim/publication_queue.json';
           const rPath='sidehustle-autopublish/note/worldsim/rebuild_request.json';
           const q=JSON.parse(fs.readFileSync(qPath,'utf8'));
           const req=JSON.parse(fs.readFileSync(rPath,'utf8'));
           const account='royal_lion645';
           const norm=s=>String(s||'').replace(/\s+/g,' ').trim();
-          async function publicItems(){
-            const out=[];
-            for(let p=1;p<=100;p++){
-              const u='https://note.com/api/v2/creators/'+account+'/contents?kind=note&disabled_pinned=true&page='+p+'&audit='+Date.now();
-              const res=await fetch(u,{headers:{'user-agent':'worldsim-public-verifier/1.0','cache-control':'no-cache'}});
-              if(!res.ok) break;
-              const obj=await res.json(),d=obj.data||{},xs=Array.isArray(d.contents)?d.contents:[];
-              for(const x of xs) if(x?.status==='published') out.push({key:x.key,title:norm(x.name),url:'https://note.com/'+account+'/n/'+x.key});
-              if(d.isLastPage||xs.length===0) break;
-            }
-            return out;
+
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1280,height:900}});
+          const candidates=new Map();
+          let stableEmpty=0;
+          for(let pn=1;pn<=40;pn++){
+            const url=pn===1?'https://note.com/'+account:'https://note.com/'+account+'?page='+pn;
+            try{
+              const res=await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+              if(!res||res.status()!==200){stableEmpty++;if(stableEmpty>=3)break;continue;}
+              await page.waitForTimeout(900);
+              const links=await page.locator('a[href*="/n/"]').evaluateAll(as=>as.map(a=>({
+                href:a.href.split('?')[0],
+                text:(a.textContent||'').replace(/\s+/g,' ').trim(),
+                context:(a.closest('article,li,section,div')?.textContent||'').replace(/\s+/g,' ').trim()
+              })));
+              const before=candidates.size;
+              for(const x of links){
+                if(new RegExp('^https://note\\.com/'+account+'/n/n[a-zA-Z0-9]+').test(x.href)) candidates.set(x.href,x);
+              }
+              stableEmpty=candidates.size===before?stableEmpty+1:0;
+              if(stableEmpty>=3) break;
+            }catch{stableEmpty++;}
           }
-          const items=await publicItems();
+
           let changed=false;
           for(const e of q.entries||[]){
             if(e.publicUrlVerified===true) continue;
-            const found=items.filter(x=>x.title===norm(e.title));
+            const title=norm(e.title);
+            const found=[...candidates.entries()].filter(([,x])=>norm(x.text).includes(title)||norm(x.context).includes(title));
             if(found.length!==1) continue;
-            const res=await fetch(found[0].url+'?verify='+Date.now(),{headers:{'user-agent':'worldsim-public-verifier/1.0','cache-control':'no-cache'}});
-            if(!res.ok) continue;
-            const html=await res.text();
-            if(!html.includes(e.title)) continue;
-            if(/購入して続きをみる|この記事を購入|購入手続き/.test(html)) continue;
-            e.publicUrlVerified=true;
-            e.publicUrl=found[0].url;
-            e.enabled=false;
-            e.verifiedAt=new Date().toISOString();
-            changed=true;
-            console.log('WORLDSIM_VERIFIED',e.id,found[0].url);
+            const url=found[0][0];
+            try{
+              const res=await page.goto(url+'?verify='+Date.now(),{waitUntil:'domcontentloaded',timeout:30000});
+              await page.waitForTimeout(700);
+              const body=norm(await page.locator('body').innerText());
+              const titleOk=body.includes(title);
+              const paid=/購入して続きをみる|この記事を購入|購入手続き/.test(body);
+              const largeImages=await page.locator('img').evaluateAll(xs=>xs.filter(x=>x.naturalWidth>=500&&x.naturalHeight>=200).length).catch(()=>0);
+              if(!res||res.status()!==200||!titleOk||paid||largeImages<1) continue;
+              e.publicUrlVerified=true;
+              e.publicUrl=url;
+              e.enabled=false;
+              e.verifiedAt=new Date().toISOString();
+              changed=true;
+              console.log('WORLDSIM_VERIFIED',e.id,url);
+            }catch{}
           }
+
           const launchIds=new Set(req.launchIds||[]);
           const launch=(q.entries||[]).filter(e=>launchIds.has(e.id));
           const allLaunchVerified=launch.length===launchIds.size && launch.every(e=>e.publicUrlVerified===true);
           if(allLaunchVerified && req.launchVerified!==true){
-            req.launchVerified=true; req.launchVerifiedAt=new Date().toISOString(); changed=true;
+            req.launchVerified=true;
+            req.launchVerifiedAt=new Date().toISOString();
+            changed=true;
           }
+
           if(allLaunchVerified){
-            const profile=await fetch('https://note.com/'+account+'?verify='+Date.now(),{headers:{'user-agent':'worldsim-public-verifier/1.0','cache-control':'no-cache'}}).then(r=>r.text()).catch(()=> '');
-            const finalTitles=new Set(launch.map(e=>norm(e.title)));
-            const onlyLaunch=items.length===launch.length && items.every(x=>finalTitles.has(x.title));
-            const profileOk=profile.includes('AI世界観測所');
-            if(onlyLaunch && profileOk && req.status!=='completed'){
-              req.status='completed';
-              req.completedAt=new Date().toISOString();
-              req.finalPublicUrls=launch.map(e=>e.publicUrl);
-              req.profileVerified=true;
-              changed=true;
-              console.log('WORLDSIM_REBUILD_PUBLICLY_COMPLETE');
-            }
+            try{
+              await page.goto('https://note.com/'+account+'?profileVerify='+Date.now(),{waitUntil:'domcontentloaded',timeout:30000});
+              await page.waitForTimeout(700);
+              const profileBody=norm(await page.locator('body').innerText());
+              const profileOk=profileBody.includes('AI世界観測所');
+              const finalTitles=new Set(launch.map(e=>norm(e.title)));
+              const visibleTitles=[...candidates.values()].map(x=>norm(x.context||x.text));
+              const hasLegacy=[...candidates.values()].some(x=>![...finalTitles].some(t=>norm(x.context).includes(t)||norm(x.text).includes(t)));
+              const onlyLaunch=candidates.size===launch.length && !hasLegacy;
+              if(profileOk && onlyLaunch && req.status!=='completed'){
+                req.status='completed';
+                req.completedAt=new Date().toISOString();
+                req.finalPublicUrls=launch.map(e=>e.publicUrl);
+                req.profileVerified=true;
+                changed=true;
+                console.log('WORLDSIM_REBUILD_PUBLICLY_COMPLETE');
+              }
+            }catch{}
           }
+
+          await browser.close();
           if(changed){
             q.updatedAt=new Date().toISOString();
             fs.writeFileSync(qPath,JSON.stringify(q,null,2)+'\n');
             fs.writeFileSync(rPath,JSON.stringify(req,null,2)+'\n');
           }
+          console.log('WORLDSIM_PUBLIC_CHECK_DONE candidates='+candidates.size+' launchVerified='+allLaunchVerified);
           NODE
+          node /tmp/verify-worldsim.mjs
       - name: Commit verified state
         run: |
           git config user.name 'worldsim-public-verifier'
