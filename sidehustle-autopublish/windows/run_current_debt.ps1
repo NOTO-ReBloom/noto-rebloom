@@ -13,6 +13,47 @@ function KillStale(){try{Get-CimInstance Win32_Process|%{$c=[string]$_.CommandLi
 function Run([string]$f,[string[]]$a,[string]$wd,[int]$sec){$o=Join-Path $env:TEMP ([guid]::NewGuid().ToString('N')+'.out');$e=$o+'.err';try{$p=Start-Process $f -ArgumentList $a -WorkingDirectory $wd -NoNewWindow -PassThru -RedirectStandardOutput $o -RedirectStandardError $e;if(-not$p.WaitForExit($sec*1000)){taskkill /PID $p.Id /T /F *> $null;$rc=124}else{$rc=$p.ExitCode};$txt='';if(Test-Path $o){$txt+=[IO.File]::ReadAllText($o)};if(Test-Path $e){$txt+=[IO.File]::ReadAllText($e)};if($txt){Write-Host $txt.TrimEnd();Add-Content $Log $txt -Encoding UTF8};Say "exit=$rc $f $($a-join' ')";[pscustomobject]@{ExitCode=$rc;Text=$txt}}finally{Remove-Item $o,$e -Force -ErrorAction SilentlyContinue}}
 Set-Content $Log ('=== CURRENT DEBT '+(Get-Date -Format o)+' ===') -Encoding UTF8
 $tasksTouched=$false
+$worldsimMode=$false
+# Full note-account rebuild to AI World Observatory. The user explicitly approved wiping legacy note content.
+# Safety: the wipe script refuses destructive deletion until all four replacement launch posts are reader-visible.
+try{
+ $worldReq=J 'sidehustle-autopublish/note/worldsim/rebuild_request.json'
+ if($worldReq.status -eq 'requested'){
+  $worldsimMode=$true
+  $stateDir=Join-Path $Root 'state';New-Item -ItemType Directory -Force -Path $stateDir|Out-Null
+  $worldStatePath=Join-Path $stateDir 'worldsim_rebuild_state.json'
+  $doneId=''
+  if(Test-Path $worldStatePath){try{$doneId=([IO.File]::ReadAllText($worldStatePath)|ConvertFrom-Json).requestId}catch{}}
+  if($doneId -ne [string]$worldReq.requestId){
+   $ndWorld=Join-Path $Root 'app\note'
+   if(-not(Test-Path $ndWorld)){throw "NOTE app root missing: $ndWorld"}
+   if(-not(Test-Path $Node)){throw 'node missing for worldsim rebuild'}
+   $freeBot=Join-Path $ndWorld 'note-free-bot.mjs'
+   if(-not(Test-Path $freeBot)){throw 'canonical NOTE free publisher missing'}
+   KillStale;Task $NoteTask $false;$tasksTouched=$true
+
+   # First publish the four replacement posts. All legacy free queue entries are disabled remotely.
+   $env:NOTE_FREE_BATCH=[string]$worldReq.expectedLaunchPublications
+   try{
+    for($i=1;$i-le6;$i++){
+     Say "worldsim launch publish attempt $i/6"
+     [void](Run $Node @('note-free-bot.mjs','publish-batch') $ndWorld 420)
+     Start-Sleep 4
+    }
+   }finally{Remove-Item Env:NOTE_FREE_BATCH -ErrorAction SilentlyContinue}
+
+   # Then run the gated profile update + backup + full wipe.
+   $scriptName=Split-Path ([string]$worldReq.scriptPath) -Leaf
+   $scriptLocal=Join-Path $ndWorld $scriptName
+   Invoke-WebRequest -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='WORLDSIM-REBUILD/1.0'} -Uri ($Raw+[string]$worldReq.scriptPath+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) -OutFile $scriptLocal
+   Say "worldsim rebuild requested id=$($worldReq.requestId)"
+   $worldRun=Run $Node @($scriptName) $ndWorld 3600
+   if($worldRun.ExitCode-ne0){throw "worldsim rebuild retryable exit=$($worldRun.ExitCode)"}
+   @{requestId=[string]$worldReq.requestId;completedAt=(Get-Date -Format o);launchCount=$worldReq.expectedLaunchPublications}|ConvertTo-Json|Set-Content $worldStatePath -Encoding UTF8
+   Say "worldsim rebuild completed id=$($worldReq.requestId)"
+  }else{Say "worldsim rebuild already completed id=$doneId"}
+ }
+}catch{Say ('WORLDSIM REBUILD RETRYABLE '+$_.Exception.Message)}
 # Portfolio cleanup requests are safe, explicit, idempotent note maintenance.
 # They run before publication debt and never publish new note content.
 try{
@@ -41,7 +82,7 @@ try{
  }
 }catch{Say ('NOTE CLEANUP RETRYABLE '+$_.Exception.Message)}
 try{
- $req=J 'sidehustle-autopublish/windows_publication_request.json';$paid=@($req.paidNote.ids);$free=@($req.freeNote.ids);$booth=@($req.BOOTH.ids);Say "request date=$($req.date) paid=$($paid.Count) free=$($free.Count) booth=$($booth.Count) nonce=$($req.requestNonce)"
+ $req=J 'sidehustle-autopublish/windows_publication_request.json';$paid=@($req.paidNote.ids);$free=@($req.freeNote.ids);$booth=@($req.BOOTH.ids);if($worldsimMode){$paid=@();$free=@()};Say "request date=$($req.date) paid=$($paid.Count) free=$($free.Count) booth=$($booth.Count) nonce=$($req.requestNonce) worldsim=$worldsimMode"
  if(($paid.Count+$free.Count+$booth.Count)-eq 0){Say 'nothing outstanding';exit 0}
  $pq=J 'sidehustle-autopublish/note/queue/index.json';$fq=J 'sidehustle-autopublish/note/free_queue/index.json';$bq=J 'booth-autopublish/queue/index.json'
  foreach($z in @(@($paid,$pq,'paid'),@($free,$fq,'free'),@($booth,$bq,'booth'))){foreach($id in @($z[0])){$x=@($z[1].entries|?{$_.id-eq$id-or$_.queueId-eq$id})|select -First 1;if(-not$x){throw "$($z[2]) queue missing $id"};if(-not$x.publicUrlVerified-and-not$x.enabled){throw "$($z[2]) disabled $id"}}}
