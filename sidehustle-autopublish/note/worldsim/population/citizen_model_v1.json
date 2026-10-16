@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "purpose": "Persistent individual-level agent model for every citizen in LYRA. No citizen is represented only as a demographic average.",
+  "identityFields": [
+    "citizenId",
+    "countryId",
+    "givenName",
+    "familyName",
+    "ageDays",
+    "ageYears",
+    "sex",
+    "householdId",
+    "homeSettlementId",
+    "occupationId",
+    "socialClassTag"
+  ],
+  "personality": {
+    "bigFive": [
+      "openness",
+      "conscientiousness",
+      "extraversion",
+      "agreeableness",
+      "emotionalVolatility"
+    ],
+    "actionTendencies": [
+      "riskTolerance",
+      "patience",
+      "trustBaseline",
+      "reciprocity",
+      "conflictAversion",
+      "authorityAcceptance",
+      "statusDrive",
+      "curiosity",
+      "persistence",
+      "generosity",
+      "resentmentRetention",
+      "shameSensitivity",
+      "impulsivity"
+    ],
+    "values": [
+      "family",
+      "autonomy",
+      "security",
+      "achievement",
+      "status",
+      "tradition",
+      "fairness",
+      "community",
+      "novelty",
+      "faith",
+      "materialComfort",
+      "environment"
+    ],
+    "stressResponses": [
+      "freeze",
+      "withdraw",
+      "seekAllies",
+      "argue",
+      "overwork",
+      "hoard",
+      "takeRisk",
+      "appease"
+    ],
+    "rule": "Values and personality are persistent but not perfectly consistent. Situational pressure can override traits."
+  },
+  "materialState": [
+    "health",
+    "chronicConditions",
+    "injuries",
+    "nutrition",
+    "sleepDebt",
+    "stress",
+    "householdFoodDays",
+    "housingQuality",
+    "personalResources",
+    "householdDebt",
+    "toolsOwned",
+    "landUseRights"
+  ],
+  "knowledgeAndBelief": {
+    "knownFacts": "Facts personally observed or reliably transmitted.",
+    "beliefs": "Claims believed with confidence 0-1, including false beliefs.",
+    "rumors": "Unverified claims with source and transmission history.",
+    "informationSources": [
+      "family",
+      "workplace",
+      "localCouncil",
+      "travellers",
+      "ritualLeaders",
+      "market",
+      "officialNotice",
+      "personalObservation"
+    ],
+    "epistemicTraits": [
+      "skepticism",
+      "rumorSusceptibility",
+      "deferenceToExpertise",
+      "memoryReliability"
+    ]
+  },
+  "lifeHistory": [
+    "birthHousehold",
+    "caregivers",
+    "majorLosses",
+    "majorSuccesses",
+    "migrations",
+    "injuries",
+    "debtsOwed",
+    "debtsReceived",
+    "brokenPromises",
+    "actsOfHelp",
+    "publicEmbarrassments",
+    "statusChanges"
+  ],
+  "goals": {
+    "horizons": [
+      "today",
+      "season",
+      "multiYear"
+    ],
+    "fields": [
+      "primaryGoal",
+      "secondaryGoal",
+      "protectedThing",
+      "desiredStatus",
+      "avoidAtAllCosts"
+    ],
+    "rule": "Goals are derived from age, household, occupation, values and current constraints; they can change after major events."
+  },
+  "relationships": {
+    "requiredTypes": [
+      "parent",
+      "child",
+      "partner",
+      "sibling",
+      "friend",
+      "coworker",
+      "neighbor",
+      "mentor",
+      "rival",
+      "creditor",
+      "debtor"
+    ],
+    "edgeState": [
+      "trust",
+      "affection",
+      "fear",
+      "obligation",
+      "respect",
+      "envy",
+      "grievance",
+      "contactFrequency",
+      "sharedHistory"
+    ],
+    "rule": "Relationships are directional. A may trust B more than B trusts A."
+  },
+  "civicBehavior": {
+    "fields": [
+      "meetingAttendance",
+      "petitionLikelihood",
+      "taxCompliance",
+      "ruleCompliance",
+      "collectiveActionThreshold",
+      "leadershipLikelihood",
+      "migrationThreshold",
+      "violenceThreshold"
+    ],
+    "rule": "These are not fixed political ideology labels. Policy reaction is recomputed from lived effects and relationships."
+  },
+  "memory": {
+    "longTerm": "Sparse durable memories with emotional weight.",
+    "recent": "Last important events affecting current decisions.",
+    "decayRule": "Low-salience facts decay or distort; emotionally intense memories persist.",
+    "falseMemoryAllowed": true
+  },
+  "decisionModel": {
+    "steps": [
+      "perceive only personally available information",
+      "update beliefs with source-dependent trust",
+      "evaluate effects on household and protected goals",
+      "apply personality, stress and social pressure",
+      "consider obligations and reputation",
+      "choose action from feasible actions, not ideal actions",
+      "store consequence and update relationships/memory"
+    ],
+    "noOmniscience": true,
+    "noPerfectRationality": true,
+    "noUniformCountryPreference": true
+  },
+  "uniquenessConstraints": [
+    "No two citizens may share the same complete personality/value vector.",
+    "No citizen is generated as a stereotype of their country's objective function.",
+    "Country-level culture changes priors only; individual variance must dominate.",
+    "At least 15% of adults in every country should strongly disagree with the current governing tendency on one major value dimension.",
+    "At least 10% of citizens should have internally conflicting high values that create recurring tradeoffs.",
+    "Traits must correlate plausibly with age, occupation, household role and life history rather than being independently random."
+  ]
+}
