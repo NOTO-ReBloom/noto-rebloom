@@ -1,7 +1,7 @@
 {
   "version": 52,
-  "updatedAt": "2026-10-16T10:28:00+09:00",
-  "purpose": "Reader-visible free note publication queue. Free publications never decrement paid note debt.",
+  "updatedAt": "2026-10-16T14:39:00+09:00",
+  "purpose": "AI World Observatory launch queue. Legacy free publications remain disabled.",
   "sourceBatchPath": "sidehustle-autopublish/note/free_drafts/2026-09-24_batch01.md",
   "requiredFreeChecks": [
     "readerVisibleUrl",
@@ -11,6 +11,54 @@
   ],
   "retryPolicy": "An item remains retryable while absent from the local strict publication state. forceRetry is reserved for a future explicit new nonce after a previously verified publication and is false for first publication to prevent duplicate republishing.",
   "entries": [
+    {
+      "id": "worldsim_launch_manifesto",
+      "kind": "free",
+      "price": 0,
+      "title": "3つの国を、AIだけで運営させます。彼らはまだ互いの存在を知りません",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/worldsim_launch_manifesto.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "worldsim-launch-20261016-1",
+      "worldsimLaunch": true,
+      "rebuildPriority": 1
+    },
+    {
+      "id": "worldsim_launch_arca",
+      "kind": "free",
+      "price": 0,
+      "title": "アルカ建国0日｜海と100万円を渡された118人",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/worldsim_launch_arca.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "worldsim-launch-20261016-2",
+      "worldsimLaunch": true,
+      "rebuildPriority": 2
+    },
+    {
+      "id": "worldsim_launch_mirea",
+      "kind": "free",
+      "price": 0,
+      "title": "ミレア建国0日｜豊かな土地で、何を豊かさと呼ぶのか",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/worldsim_launch_mirea.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "worldsim-launch-20261016-3",
+      "worldsimLaunch": true,
+      "rebuildPriority": 3
+    },
+    {
+      "id": "worldsim_launch_vald",
+      "kind": "free",
+      "price": 0,
+      "title": "ヴァルド建国0日｜冬を越すことから始まる96人の国",
+      "path": "sidehustle-autopublish/note/free_queue/payloads/worldsim_launch_vald.json",
+      "enabled": true,
+      "forceRetry": false,
+      "forceRetryNonce": "worldsim-launch-20261016-4",
+      "worldsimLaunch": true,
+      "rebuildPriority": 4
+    },
     {
       "id": "free_note_20260925_01_event_brief",
       "kind": "free",
@@ -2765,9 +2813,14 @@
     "2026-09-13"
   ],
   "qualityAudit": {
-    "status": "hold_new_publication",
-    "startedAt": "2026-10-16T10:28:00+09:00",
-    "heldPendingCount": 39,
-    "rule": "Do not publish new free note until portfolio audit approves an item with quality score >=80/100 and clear role in a measured funnel."
+    "status": "worldsim_rebuild",
+    "newPublicationHold": false,
+    "allowedIds": [
+      "worldsim_launch_manifesto",
+      "worldsim_launch_arca",
+      "worldsim_launch_mirea",
+      "worldsim_launch_vald"
+    ],
+    "rule": "Only worldsim launch IDs may publish until account wipe/rebuild is verified."
   }
 }
