@@ -1,155 +1,157 @@
 {
-  "version": 9,
-  "updatedAt": "2026-10-16T11:10:00+09:00",
-  "status": "full_rebuild",
-  "brand": {
-    "workingName": "AI収益検証室",
-    "concept": "AIに仕事と副業をどこまで任せると、本当にお金が生まれるのかを数字で検証する。",
-    "promise": "成功談だけでなく、売上0円・失敗・コスト・人間作業時間まで公開する。",
-    "differentiation": [
-      "generic AI tips are prohibited",
-      "every core article must contain first-party experiment data or a genuinely original test",
-      "publish failures when they teach something; do not manufacture success stories",
-      "separate observed facts from hypotheses"
-    ]
+  "version": 10,
+  "updatedAt": "2026-10-16T11:45:00+09:00",
+  "status": "audience_growth_first",
+  "objective": "maximize real readership, likes, follows and repeat readership before monetization",
+  "monetization": {
+    "enabled": false,
+    "rule": "Do not optimize for paid conversion. All new editorial experiments are free until the account has a repeatable audience-growth pattern supported by first-party dashboard metrics."
   },
-  "whyThisDirection": {
-    "market": "AI/technology, SNS/content operations and side-hustle categories are growing on note, but generic AI content is already crowded.",
-    "platformFit": "note explicitly prioritizes first-party experience, continuous records and original works in its recommendation philosophy.",
-    "accountAsset": "The account already has a real failed automation experiment: 100+ paid note publications and dozens of free posts with weak purchase evidence. This is more distinctive than another generic how-to article.",
-    "objective": "turn the existing failure and future automated experiments into an ongoing story, dataset and paid research product"
+  "corePositioning": {
+    "workingConcept": "AIと現実のあいだを、実際に試して記録する実験メディア",
+    "readerPromise": "AI・学生生活・プロジェクト運営・勉強・副業などを実際に試し、成功も失敗も数字と体験で見せる。",
+    "followReason": "次の実験結果を見たいからフォローする",
+    "prohibitedPersona": "generic know-how uncle / anonymous authority voice"
+  },
+  "evidenceFromAccount": {
+    "source": "connected Gmail note notifications, last 120 days; notification counts are incomplete proxies, not full dashboard totals",
+    "likeNotificationEvents": 49,
+    "uniqueLikedArticles": 37,
+    "followNotificationEvents": 11,
+    "strongestObservedArticles": [
+      {
+        "title": "事故が起きる前に聞きたい5つの質問｜イベント運営のヒヤリハット簡易チェック",
+        "events": 4
+      },
+      {
+        "title": "ESと面接で話がズレていない？｜提出前に見る5項目の一貫性チェック",
+        "events": 4
+      },
+      {
+        "title": "学生団体の仕事が属人化する前に｜AIを使って日常業務を標準化する6つのワークフロー",
+        "events": 3
+      },
+      {
+        "title": "ESと面接回答の矛盾をなくす｜AIで就活回答を監査するチェック手順",
+        "events": 2
+      },
+      {
+        "title": "AIで作業を自動化したのに逆に管理が増えた人へ｜小規模チームのAI業務を棚卸しする実践監査",
+        "events": 2
+      }
+    ],
+    "observedSignal": "AI + student/career + event/project topics have repeatedly attracted reactions. Later mass-template posts generated breadth but weak identity."
   },
   "editorialPillars": [
     {
-      "share": 60,
-      "name": "AI副業の公開実験",
-      "examples": [
-        "AIにnote運用を任せる",
-        "無料Webツールを作って売上を追う",
-        "BOOTH/アプリ/デジタル商品を自動運用して実測"
+      "share": 35,
+      "name": "AIを実際に使ってみた",
+      "formats": [
+        "実験",
+        "比較",
+        "失敗",
+        "数字",
+        "Before/After"
       ]
     },
     {
       "share": 25,
-      "name": "AIツールの同条件比較",
-      "examples": [
-        "ChatGPT/Claude/Geminiに同じ販売課題を任せる",
-        "同じ予算・同じ時間で成果比較"
+      "name": "学生のリアルな挑戦",
+      "formats": [
+        "勉強",
+        "就活",
+        "卒論",
+        "大学生活",
+        "やってみた"
+      ]
+    },
+    {
+      "share": 25,
+      "name": "プロジェクト・地域活動の裏側",
+      "formats": [
+        "失敗",
+        "チーム",
+        "現場",
+        "企画の舞台裏",
+        "写真"
       ]
     },
     {
       "share": 15,
-      "name": "ネットの稼げる話を実際に検証",
-      "examples": [
-        "『AIだけで月1万円』を条件固定で検証",
-        "価格変更・無料導線・投稿頻度など1変数ずつ検証"
+      "name": "好きなもの・レビュー・考えたこと",
+      "formats": [
+        "本",
+        "映画",
+        "サービス",
+        "道具",
+        "体験"
       ]
     }
   ],
-  "prohibitedContent": [
-    "generic business process tips",
-    "generic listicles",
-    "fictional examples presented as experience",
-    "AI-generated advice that has not been tested when the article is framed as a result",
-    "mass-produced industry prompt variants",
-    "investment recommendations or health claims used merely because those markets have high willingness to pay",
-    "daily posting quotas"
+  "growthContentRules": [
+    "All new posts are free.",
+    "Every article must contain a first-person observation, real experiment, real project episode, or original viewpoint.",
+    "Headline result is not hidden.",
+    "No fixed daily quota; quality and timing beat volume.",
+    "No more than 3 posts per week by default during the experiment.",
+    "One recurring series should account for at least half of posts so readers know what following means.",
+    "Use current note contests/topics when they genuinely match real experience; never force irrelevant hashtags.",
+    "Each post gets a purpose-built cover whose visual language is consistent with the series.",
+    "End with a natural next-episode promise or one-line follow invitation only when a real continuation exists."
   ],
-  "freeContent": {
-    "purpose": "audience growth, curiosity, trust and experiment continuity",
-    "formats": [
-      "experiment start",
-      "intermediate numbers",
-      "failure postmortem",
-      "one surprising finding",
-      "comparison snapshot"
-    ],
-    "rule": "Give the headline result for free. Do not hide the result behind the paywall."
-  },
-  "paidContent": {
-    "purpose": "sell depth, evidence and reproducibility—not the headline result",
-    "required": [
-      "full experiment design",
-      "complete numeric results and timeline",
-      "cost and human-time accounting",
-      "what failed and why",
-      "exact prompts/rules/scripts when safe and useful",
-      "raw or summarized dataset",
-      "next-test decision and falsifiable hypothesis"
-    ],
-    "defaultPriceTestJPY": 500,
-    "highDepthPriceTestJPY": 980,
-    "rule": "No paid article until it contains information that could not be reconstructed from a generic web search."
-  },
-  "launchSeries": [
+  "currentOpportunityWindows": [
     {
-      "order": 1,
-      "type": "free",
-      "title": "AIで有料noteを100本以上自動投稿した。ほとんど売れなかったので全部やり直す",
-      "hook": "大量生産した本人が、何が間違っていたかを公開する。",
-      "evidenceNeeded": [
-        "actual published count",
-        "available likes/follows/purchase evidence",
-        "timeline",
-        "old automation rules"
-      ]
+      "tag": "#AIとできたこと",
+      "deadline": "2026-10-18T23:59:00+09:00",
+      "fit": "high",
+      "angle": "AIを使って実際に前へ進んだ具体的体験"
     },
     {
-      "order": 2,
-      "type": "paid",
-      "title": "100本以上作って分かった「AI量産noteが売れない理由」｜失敗データと自動化設計を全部公開",
-      "priceJPY": 500,
-      "value": "full postmortem, topic map, duplication examples, pricing inconsistencies, automation architecture and reset rules"
+      "tag": "#自動化したいこと",
+      "deadline": "2026-11-01T23:59:00+09:00",
+      "fit": "very_high",
+      "angle": "100本以上の自動投稿を作って分かった『自動化してはいけない部分』"
     },
     {
-      "order": 3,
-      "type": "free",
-      "title": "次は『量産しないAI』で30日だけやる。売上0円からの再実験ルール",
-      "hook": "one experiment, fixed rules, all numbers published"
-    },
-    {
-      "order": 4,
-      "type": "free",
-      "title": "AIに3つの副業を同時に任せたら、最初に1円を作ったのはどれだったか",
-      "hook": "cross-channel real-money comparison; publish only after measured"
-    },
-    {
-      "order": 5,
-      "type": "paid",
-      "title": "AI副業30日決算｜売上・経費・人間作業時間・失敗を全部公開",
-      "priceJPY": 980,
-      "value": "full P&L, automation map, decision log, prompts/scripts and next-month plan; publish only after 30 real days of data"
+      "tag": "#チームだからできたこと",
+      "deadline": "2026-11-08T23:59:00+09:00",
+      "fit": "very_high",
+      "angle": "学生チームで現地イベントを作った過程・失敗・役割分担"
     }
   ],
-  "monetizationRoadmap": {
-    "phase1": "free experiment series -> one paid postmortem",
-    "phase2": "monthly paid experiment report if the series earns repeat interest",
-    "phase3": "membership only after multiple repeat purchasers/followers show demand; offer monthly raw data + full decision log, not generic community chatter",
-    "secondary": "reuse original datasets and scripts in BOOTH/app products only when they provide standalone value"
-  },
-  "oldPortfolio": {
-    "decision": "retire almost all legacy generic know-how content",
-    "deletionTiming": "stage deletion only after the first replacement launch package exists, to avoid leaving an empty profile and losing the ability to reference the old experiment.",
-    "keepRule": "keep only pages that are needed as evidence for the postmortem or have meaningful engagement; otherwise retire after launch"
-  },
-  "successMetrics": {
+  "metrics": {
+    "sourceOfTruth": "note dashboard when accessible",
     "primary": [
-      "paid purchases",
-      "revenue",
-      "revenue per 100 PV",
-      "repeat purchase signal"
-    ],
-    "secondary": [
-      "PV",
+      "impressions",
+      "pageViews",
+      "openRate = pageViews/impressions",
       "likes",
-      "follows",
-      "comments"
+      "likeRate = likes/pageViews",
+      "follows gained in 28d",
+      "repeat readership / old article resurgence when visible"
     ],
-    "operational": [
-      "human minutes",
-      "AI/tool cost",
-      "automation rate"
+    "diagnosis": [
+      "low impressions -> topic/category/distribution mismatch",
+      "high impressions + low open rate -> title/cover problem",
+      "good PV + low like rate -> article experience/value/emotion problem",
+      "likes but no follows -> account positioning/series promise/profile problem",
+      "old post resurges -> create sequel and link cluster"
+    ]
+  },
+  "deletionPolicy": {
+    "immediateMassDelete": false,
+    "reason": "Legacy posts still provide baseline evidence and may contain search traffic. Delete only after 28-day dashboard data is captured and replacement profile/series is live.",
+    "firstRetire": "near-identical boilerplate clones and misleading paid/template pages",
+    "keepTemporarily": "articles with likes, follows, magazine additions, search visibility or strong evidence value"
+  },
+  "profilePlan": {
+    "oldNameProblem": "ノウハウ共有おぢさん＠無料分だけでも見てネ is weak for trust, identity and follow intent.",
+    "workingNameOptions": [
+      "AIと現実を試す人",
+      "AI実験中｜やってみたを記録",
+      "人間1人、AI多数｜実験ログ"
     ],
-    "rule": "likes are not revenue and article count is not success"
+    "bioRule": "who / what is actually being tried / what readers get by following, in plain Japanese",
+    "pinnedPost": "one self-introduction + what will be tested next"
   }
 }
