@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-16T14:39:00+09:00",
+  "updatedAt": "2026-10-16T15:10:00+09:00",
   "purpose": "Canonical publication queue for AI World Observatory. Independent from legacy paid/free note factories.",
   "account": "royal_lion645",
   "entries": [
@@ -13,7 +13,7 @@
       "coverLabel": "AI世界観測所",
       "coverCopy": "3つの国は、まだ互いを知らない。",
       "accent": "#121820",
-      "enabled": true,
+      "enabled": false,
       "publicUrlVerified": false,
       "order": 1
     },
@@ -26,7 +26,7 @@
       "coverLabel": "ARCA / 建国0日",
       "coverCopy": "海と100万円を渡された118人",
       "accent": "#15334A",
-      "enabled": true,
+      "enabled": false,
       "publicUrlVerified": false,
       "order": 2
     },
@@ -39,7 +39,7 @@
       "coverLabel": "MIREA / 建国0日",
       "coverCopy": "豊かな土地で、何を豊かさと呼ぶのか",
       "accent": "#284738",
-      "enabled": true,
+      "enabled": false,
       "publicUrlVerified": false,
       "order": 3
     },
@@ -52,7 +52,7 @@
       "coverLabel": "VALD / 建国0日",
       "coverCopy": "冬を越すことから始まる96人の国",
       "accent": "#333A46",
-      "enabled": true,
+      "enabled": false,
       "publicUrlVerified": false,
       "order": 4
     }
@@ -64,5 +64,7 @@
     "exactTitleReconcileBeforeCreate": true,
     "readerVisibleVerifyRequired": true,
     "legacyQueueIsolation": true
-  }
+  },
+  "status": "population_build_hold",
+  "holdReason": "Do not publish until citizen-level persistent population, household, relationship and personality model is generated and audited."
 }
