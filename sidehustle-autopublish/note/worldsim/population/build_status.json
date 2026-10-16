@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-16T15:18:00+09:00",
+  "status": "calibration_phase",
+  "targetPopulation": {
+    "ARCUS": 1846,
+    "MIREA": 2214,
+    "VALD": 1391,
+    "total": 5451
+  },
+  "completed": {
+    "persistentCitizenSchema": true,
+    "generationProtocol": true,
+    "culturalPriors": true,
+    "handAuthoredCalibrationCitizens": 18,
+    "fullHouseholds": false,
+    "fullPopulation": false,
+    "socialGraph": false,
+    "beliefGraph": false,
+    "preTurnAudit": false
+  },
+  "next": [
+    "Finalize physical settlements and livelihood capacity before bulk citizen generation.",
+    "Generate household skeletons and kinship for all 5,451 residents.",
+    "Assign correlated personality/value profiles using calibration cohort as quality floor.",
+    "Create occupations, skills, debts, possessions and life histories.",
+    "Build directional social graph and imperfect belief graph.",
+    "Audit demographic, economic and network plausibility.",
+    "Only then rerun turn 0 and rewrite launch articles."
+  ],
+  "publicationBlocked": true
+}
