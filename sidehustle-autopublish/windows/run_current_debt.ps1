@@ -13,6 +13,33 @@ function KillStale(){try{Get-CimInstance Win32_Process|%{$c=[string]$_.CommandLi
 function Run([string]$f,[string[]]$a,[string]$wd,[int]$sec){$o=Join-Path $env:TEMP ([guid]::NewGuid().ToString('N')+'.out');$e=$o+'.err';try{$p=Start-Process $f -ArgumentList $a -WorkingDirectory $wd -NoNewWindow -PassThru -RedirectStandardOutput $o -RedirectStandardError $e;if(-not$p.WaitForExit($sec*1000)){taskkill /PID $p.Id /T /F *> $null;$rc=124}else{$rc=$p.ExitCode};$txt='';if(Test-Path $o){$txt+=[IO.File]::ReadAllText($o)};if(Test-Path $e){$txt+=[IO.File]::ReadAllText($e)};if($txt){Write-Host $txt.TrimEnd();Add-Content $Log $txt -Encoding UTF8};Say "exit=$rc $f $($a-join' ')";[pscustomobject]@{ExitCode=$rc;Text=$txt}}finally{Remove-Item $o,$e -Force -ErrorAction SilentlyContinue}}
 Set-Content $Log ('=== CURRENT DEBT '+(Get-Date -Format o)+' ===') -Encoding UTF8
 $tasksTouched=$false
+# Portfolio cleanup requests are safe, explicit, idempotent note maintenance.
+# They run before publication debt and never publish new note content.
+try{
+ $cleanupReq=J 'sidehustle-autopublish/note/windows/note_semantic_cleanup_request.json'
+ if($cleanupReq.status -eq 'requested'){
+  $stateDir=Join-Path $Root 'state';New-Item -ItemType Directory -Force -Path $stateDir|Out-Null
+  $cleanupStatePath=Join-Path $stateDir 'note_semantic_cleanup_state.json'
+  $doneId=''
+  if(Test-Path $cleanupStatePath){try{$doneId=([IO.File]::ReadAllText($cleanupStatePath)|ConvertFrom-Json).requestId}catch{}}
+  if($doneId -ne [string]$cleanupReq.requestId){
+   $ndCleanup=Join-Path $Root 'app\note'
+   if(-not(Test-Path $ndCleanup)){throw "NOTE cleanup app root missing: $ndCleanup"}
+   if(-not(Test-Path $Node)){throw 'node missing for NOTE cleanup'}
+   $scriptName=Split-Path ([string]$cleanupReq.scriptPath) -Leaf
+   $planName=Split-Path ([string]$cleanupReq.planPath) -Leaf
+   $scriptLocal=Join-Path $ndCleanup $scriptName
+   $planLocal=Join-Path $ndCleanup $planName
+   Invoke-WebRequest -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='SIDEHUSTLE-CLEANUP/1.0'} -Uri ($Raw+[string]$cleanupReq.scriptPath+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) -OutFile $scriptLocal
+   Invoke-WebRequest -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='SIDEHUSTLE-CLEANUP/1.0'} -Uri ($Raw+[string]$cleanupReq.planPath+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) -OutFile $planLocal
+   Say "NOTE semantic cleanup requested id=$($cleanupReq.requestId) expectedDelete=$($cleanupReq.expectedDeleteCount)"
+   $clean=Run $Node @($scriptName) $ndCleanup 1200
+   if($clean.ExitCode-ne0){throw "NOTE semantic cleanup failed exit=$($clean.ExitCode)"}
+   @{requestId=[string]$cleanupReq.requestId;completedAt=(Get-Date -Format o);expectedDeleteCount=$cleanupReq.expectedDeleteCount}|ConvertTo-Json|Set-Content $cleanupStatePath -Encoding UTF8
+   Say "NOTE semantic cleanup completed id=$($cleanupReq.requestId)"
+  }else{Say "NOTE semantic cleanup already completed id=$doneId"}
+ }
+}catch{Say ('NOTE CLEANUP RETRYABLE '+$_.Exception.Message)}
 try{
  $req=J 'sidehustle-autopublish/windows_publication_request.json';$paid=@($req.paidNote.ids);$free=@($req.freeNote.ids);$booth=@($req.BOOTH.ids);Say "request date=$($req.date) paid=$($paid.Count) free=$($free.Count) booth=$($booth.Count) nonce=$($req.requestNonce)"
  if(($paid.Count+$free.Count+$booth.Count)-eq 0){Say 'nothing outstanding';exit 0}
