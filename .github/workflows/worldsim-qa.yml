@@ -1,0 +1,55 @@
+name: AI World Observatory QA
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/**'
+      - '.github/workflows/worldsim-qa.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          node --check sidehustle-autopublish/note/worldsim/windows/worldsim-note-publisher.mjs
+          node --check sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs
+      - name: World state and queue integrity
+        shell: python
+        run: |
+          import json, pathlib
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim')
+          def load(p): return json.loads((root/p).read_text(encoding='utf-8-sig'))
+          world=load('world_state.json')
+          rules=load('simulation_rules.json')
+          queue=load('publication_queue.json')
+          assert world['worldId']=='WORLD-001'
+          assert set(world['countries'])=={'ARCUS','MIREA','VALD'}
+          for c in world['countries']:
+              j=load(f'countries/{c}.json')
+              assert j['id']==c
+              assert j['knowledge']['otherCountriesKnown'] is False
+          assert rules['countryDecision']['informationIsolation'] is True
+          assert rules['contact']['noContactBeforeCondition'] is True
+          entries=queue['entries']
+          assert len(entries)==4
+          assert len({e['id'] for e in entries})==len(entries)
+          assert len({e['title'] for e in entries})==len(entries)
+          for e in entries:
+              assert e['enabled'] is True
+              p=pathlib.Path(e['bodyPath'])
+              assert p.exists(), p
+              body=p.read_text(encoding='utf-8-sig')
+              assert 250 <= len(body) <= 12000, (e['id'],len(body))
+          legacy=json.loads(pathlib.Path('sidehustle-autopublish/note/free_queue/index.json').read_text(encoding='utf-8-sig'))
+          assert not any(str(e.get('id','')).startswith('worldsim_') for e in legacy.get('entries',[]))
+          assert not any(e.get('enabled') is True for e in legacy.get('entries',[]))
+          print('WORLDSIM_QA_OK')
