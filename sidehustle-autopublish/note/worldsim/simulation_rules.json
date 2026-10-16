@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "turnLengthDays": 7,
+  "pipeline": [
+    "world_update",
+    "country_observation_filter",
+    "country_policy_decision",
+    "policy_resolution",
+    "cross_border_contact_check",
+    "consistency_audit",
+    "editorial_selection",
+    "state_commit"
+  ],
+  "randomness": {
+    "rule": "Use bounded seeded randomness for weather, accidents, discovery and demographic noise. Never use randomness to force a dramatic story.",
+    "seedBase": "WORLD-001"
+  },
+  "countryDecision": {
+    "informationIsolation": true,
+    "maxMajorPoliciesPerTurn": 2,
+    "requiredFields": [
+      "problem",
+      "decision",
+      "reason",
+      "cost",
+      "expectedEffect",
+      "uncertainty"
+    ],
+    "prohibited": [
+      "knowledge of undiscovered countries",
+      "author instructions to create drama",
+      "retroactive state edits"
+    ]
+  },
+  "resolution": {
+    "rule": "Policy agent chooses actions; resolution engine calculates consequences. The same agent must not freely choose both action and successful outcome.",
+    "delayedEffects": true,
+    "negativeExternalities": true,
+    "resourceConservation": true
+  },
+  "contact": {
+    "firstContactRequires": [
+      "geographic reach overlap OR signal detection",
+      "plausible travel/communication capability",
+      "successful observation event"
+    ],
+    "noContactBeforeCondition": true,
+    "afterContact": [
+      "trade",
+      "misunderstanding",
+      "diplomacy",
+      "migration",
+      "conflict",
+      "technology transfer"
+    ]
+  },
+  "publication": {
+    "newPostsFree": true,
+    "defaultCadencePerWeek": 2,
+    "hardMaxPerWeek": 3,
+    "publishOnlyIf": "turn contains a meaningful state change, decision, discovery or human-scale story",
+    "noFiller": true,
+    "perspectives": [
+      "country dispatch",
+      "observer bulletin"
+    ],
+    "spoilers": "Country-perspective articles never reveal information unavailable to that country."
+  },
+  "safety": {
+    "fictionDisclosure": "Clearly state that countries, citizens and statistics are fictional simulations.",
+    "realPolitics": "Do not map countries onto current real-world parties, ethnicities or nations.",
+    "casualtyHandling": "Avoid gratuitous suffering; summarize crises without exploitative detail."
+  }
+}
