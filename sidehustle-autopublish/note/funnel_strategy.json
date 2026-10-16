@@ -1,116 +1,158 @@
 {
-  "version": 6,
-  "updatedAt": "2026-08-24T22:30:00+09:00",
-  "objective": "maximize note revenue and LTV through a measurable useful-free -> qualified-paid -> repeat/subscription funnel without speculative optimization",
-  "brandPositioning": {
-    "accountName": "ノウハウ共有おじさん",
-    "promise": "複雑な実務ノウハウを、初めての人が今日ひとつ動かせる形まで分解する",
-    "contentMoat": "Prefer specific last-mile operations: acceptance criteria, exceptions, stop conditions, evidence, handoff, change history and recovery.",
-    "personaTruthRule": "Do not infer or invent age, career, qualifications, experience years, sales, adoption results or personal case studies from the account name.",
-    "researchQueue": "sidehustle-autopublish/research/knowhow_ojisan/next_topic_queue.json",
-    "blueOceanRule": "A relative gap found in public search is a hypothesis, not proof of search demand or purchase intent.",
-    "articleFactory": "sidehustle-autopublish/research/knowhow_ojisan/mass_production_workflow.json",
-    "duplicateGate": "sidehustle-autopublish/research/knowhow_ojisan/intent_registry.json"
+  "version": 7,
+  "updatedAt": "2026-10-16T10:28:00+09:00",
+  "objective": "maximize real note revenue and trust; stop volume-first publishing and consolidate the portfolio around distinctive, reusable outcomes",
+  "auditState": {
+    "status": "portfolio_rebuild",
+    "newPublicationHold": true,
+    "reason": "More than 100 paid publications and dozens of free posts were produced without authoritative article-level purchase/revenue metrics, while semantic overlap and repeated article structures increased.",
+    "releaseGate": "Only audit-approved items scoring >=80/100, passing semantic-duplicate review, and delivering a distinct reusable artifact may be published."
   },
-  "internalEvidence": {
-    "observedSales": null,
-    "observedPV": null,
-    "observedLikes": null,
-    "observedFollows": null,
-    "observedRelatedPaidClicks": null,
-    "observedRelatedPaidPurchases": null,
-    "observedFreeToPaidConversion": null,
-    "interpretation": "First-party article-level funnel metrics are still absent from authoritative repository state. Do not claim a winning theme, CTA uplift, weak conversion, optimal price, or LTV uplift until matched-age platform-native observations are captured."
-  },
-  "externalEvidence": {
-    "checkedAt": "2026-08-24T12:33:00+09:00",
-    "sourceType": "note official current product/monetization guidance",
-    "findings": [
-      "note's January 2026 analysis of roughly 300,000 paid articles reported paid-article sales up 26.8% year over year and earning creators up 42.0% for November 2025; this is platform context, not evidence for this account.",
-      "In that analysis, fast-growing paid categories included technology/AI use (+268.6%), SNS/content operations (+258.7%) and side jobs/remote work (+179.0%).",
-      "Among the analyzed top-selling classifications, practical know-how averaged JPY 1,842 versus JPY 983 for reading-oriented content, while paid-area word count had near-zero sales correlation. Use this to prioritize explicit buyer value over length, not to force a price.",
-      "note refreshed its recommendation system in February 2026 to use an LLM for article understanding and classification. Prefer one reader, one situation and one concrete outcome over vague hooks or unrelated tag stacks; no placement is guaranteed.",
-      "note added llms.txt support to creator pages in July 2026. Keep the creator description and article clusters factually consistent, but do not claim that AI discovery or work inquiries will result.",
-      "note currently supports single paid articles, memberships, paid magazines and subscription magazines as monetization surfaces.",
-      "Membership can coexist with single paid-article purchase and can include previously sold paid articles as benefits, creating a future repeat-revenue option once repeat demand is evidenced.",
-      "For memberships opened under the current August 2026 model, new members can generally be billed on their join-date monthly cycle; this reduces the old month-end timing friction, but is not evidence that this account should launch a membership now.",
-      "Membership has no fixed opening/monthly platform fee and charges fees when revenue occurs; current official guidance recommends pricing from 500 yen for many membership uses and gives 1,000 yen+ as a business/investment information reference point.",
-      "Do not buy paid external acquisition or add subscription complexity before first-party conversion/repeat-demand evidence exists."
-    ],
-    "researchSources": [
-      "sidehustle-autopublish/research/knowhow_ojisan/source_registry.json",
-      "sidehustle-autopublish/research/knowhow_ojisan/opportunity_map.json"
-    ]
-  },
-  "operatingModel": {
-    "paid": {
-      "existingDailyStrictPublicationFloor": 5,
-      "rule": "Do not reduce or replace the existing paid floor with free articles. Reader-visible URL, exact title, expected price, paid boundary and dedicated cover remain required before a paid publication counts."
-    },
-    "free": {
-      "role": ["search/discovery acquisition","trust building","demand validation","paid-article prequalification","topic testing"],
-      "initialExperiment": {"durationDays":14,"publicationTargetPerDay":2,"note":"2/day remains an experimental cadence, not a proven optimum; do not raise it before comparable funnel evidence exists."},
-      "contentRules": [
-        "Every free article must provide standalone practical value.",
-        "Do not publish thin teaser-only posts.",
-        "Use at most one context-matched paid CTA per free article.",
-        "Only insert a paid URL after that URL has been independently reader-visible verified; never guess URLs.",
-        "Prefer problem diagnosis, checklists, mistakes, quick wins, frameworks and small worked examples for free articles; reserve deeper implementation systems, templates, full workflows and reusable assets for paid articles."
+  "accountPromise": "無料部分だけでも役に立ち、有料なら『買った直後に仕事が1つ終わる』状態まで持っていく",
+  "primaryPillars": [
+    {
+      "id": "ai_last_mile",
+      "name": "AIで面倒な実務を1つ終わらせる",
+      "examples": [
+        "業種別実務プロンプト",
+        "AI導入後の品質確認",
+        "小規模チームの自動化"
       ],
-      "factoryRule": "Maintain source-ready and drafted inventory using the 80 researched routes, but do not publish above the 2/day experiment until equal-age first-party evidence supports a cadence change."
+      "rule": "抽象的なAI論ではなく、入力例・完成出力例・確認項目まで見せる。"
     },
-    "ltv": {
-      "currentAction":"measure before adding subscription complexity",
-      "futureSurfaces":["paid article series","paid magazine/bundle","membership"],
-      "membershipGate":[
-        "multiple paid purchases or repeat demand are observed in a coherent theme cluster",
-        "a recurring member benefit can be delivered without lowering single-article quality",
-        "expected recurring gross contribution exceeds added support/maintenance cost",
-        "membership does not cannibalize a stronger single-sale path without compensating LTV"
+    {
+      "id": "small_org_npo_event",
+      "name": "学生団体・NPO・小規模イベントの実務",
+      "examples": [
+        "協賛",
+        "イベント運営",
+        "ボランティア",
+        "助成金",
+        "引継ぎ"
       ],
-      "rule":"Do not launch or price a membership from platform-wide guidance alone. Treat it as an evidence-gated LTV experiment."
+      "rule": "実際の現場で起こる詰まりに絞り、一般企業の細かい内部統制テーマへ無理に広げない。"
+    },
+    {
+      "id": "student_research",
+      "name": "卒論・研究・就活の実務",
+      "examples": [
+        "文献整理",
+        "週次レビュー",
+        "企業研究",
+        "面接整合性"
+      ],
+      "rule": "学生がその日の作業を進められる具体物を必ず付ける。"
     }
-  },
-  "funnelArchitecture": {
-    "freeToPaidPairing": true,
-    "ctaRule": "Place one related paid CTA after the useful free core. No unrelated multi-product CTA stack.",
-    "paidFreeAreaRule": [
-      "Open with empathy, a practical question or a recognizable problem.",
-      "Show a concrete change, worked example or before/after so the buyer can evaluate relevance.",
-      "State the specific value the paid section adds beyond the free area.",
-      "Keep enough standalone value in the free area for a reader to judge quality before purchase."
+  ],
+  "deprioritizedThemes": [
+    "一般企業の経理・購買・契約・SaaS管理などを細分化した内部統制記事の連続投稿",
+    "対象読者が曖昧な『○つのサイン』『○つの確認ポイント』量産",
+    "同じ一枚メモや同じ表構造をテーマだけ変えて再利用する記事",
+    "有料部分が無料部分の単純な延長になっている長文化商品"
+  ],
+  "paidArticleContract": {
+    "minimumScore": 80,
+    "mandatoryValue": [
+      "購入者がコピーまたはダウンロードして使える実物資産を最低1つ",
+      "入力例と完成例、またはBefore/Afterを最低1組",
+      "失敗例・例外・使わない条件のいずれか",
+      "無料部分では完了しない明確な実装価値"
+    ],
+    "acceptedAssets": [
+      "コピペ可能プロンプト",
+      "表計算テンプレート",
+      "チェックシート",
+      "意思決定表",
+      "メール/文章テンプレート",
+      "計算ツール",
+      "ワークシート",
+      "具体的な完成サンプル"
+    ],
+    "prohibitedPatterns": [
+      "列名だけを並べて『テンプレ』と呼ぶ",
+      "無料記事と同じ結論を文字数だけ増やす",
+      "架空の体験談・実績・購入者の声",
+      "同一課題を別タイトルで再販売"
     ]
+  },
+  "freeArticleContract": {
+    "role": "検索・信頼・需要検証",
+    "rule": "1記事1課題。読み終えた時点で1つ改善できる。定型の『サイン→チェック→今日やること』を連続使用しない。",
+    "cta": "有料記事へのリンクは、無料記事と同じ課題の実装版が存在し、reader-visible確認済みの場合だけ1本。"
+  },
+  "editorialVariety": {
+    "allowedArchetypes": [
+      "失敗事例の分解",
+      "Before/After",
+      "実物テンプレ解説",
+      "コピペ実務プロンプト",
+      "比較・選び方",
+      "ケーススタディ",
+      "ツール/計算機連動",
+      "実際にやって分かったこと"
+    ],
+    "sameArchetypeConsecutiveLimit": 2,
+    "bannedBoilerplate": [
+      "表を増やす前に、いまのやり方で誰が何を知っていて",
+      "最初に対象を広げすぎない",
+      "一件分の記録から始める",
+      "知らないことを『未確認』と書けるようにし",
+      "案件名：＿＿／更新日：＿＿／目的：＿＿"
+    ]
+  },
+  "semanticDuplicatePolicy": {
+    "hardDuplicate": "same reader + same moment + same failure + same artifact => one canonical article only",
+    "nearDuplicate": "same problem and largely same implementation => merge into canonical article; retire the weaker page",
+    "evidenceRule": "Do not delete only because titles look similar; verify the intended outcome and retained canonical page first."
+  },
+  "scoring": {
+    "maximum": 100,
+    "components": [
+      {
+        "name": "buyer_urgency",
+        "points": 20
+      },
+      {
+        "name": "target_specificity",
+        "points": 15
+      },
+      {
+        "name": "originality_and_moat",
+        "points": 20
+      },
+      {
+        "name": "usable_asset_and_execution_value",
+        "points": 20
+      },
+      {
+        "name": "paid_increment_and_purchase_reason",
+        "points": 15
+      },
+      {
+        "name": "title_packaging_and_click_potential",
+        "points": 10
+      }
+    ],
+    "publishThreshold": 80,
+    "strongThreshold": 90
+  },
+  "cadence": {
+    "fixedDailyQuota": false,
+    "paidDefault": "0 until portfolio consolidation; after release, maximum 1 new paid article per week unless first-party evidence supports more",
+    "freeDefault": "0 until portfolio consolidation; after release, publish only when it tests a clear intent or supports a canonical paid asset",
+    "rule": "No publication for the sake of calendar consistency."
   },
   "measurement": {
-    "captureWhenAvailable": ["articleId","articleType free/paid","themeCluster","pairedArticleId","publishedAt","PV","likes","follows","relatedPaidClicks","relatedPaidPurchases","revenue","repeatBuyerSignal","timeSincePublication"],
-    "decisionWindows": ["24h","72h","7d"],
-    "comparisonRules": [
-      "Compare matched post-publication ages; never raw lifetime PV across different ages.",
-      "Keep article-level observations separate from theme-level conclusions until multiple articles support the pattern.",
-      "Do not infer clicks, purchases, repeat demand or LTV from public availability, likes or PV.",
-      "Use medians within the same age window when enough articles exist; avoid declaring winners from one noisy observation."
+    "required": [
+      "PV",
+      "likes",
+      "follows",
+      "purchases",
+      "revenue",
+      "paid-clicks when measurable"
     ],
-    "derivedMetricsWhenInputsExist": ["likeRate = likes/PV","followRate = follows/PV","paidClickRate = relatedPaidClicks/PV","paidPurchaseRatePerPV = relatedPaidPurchases/PV","paidPurchaseRatePerClick = relatedPaidPurchases/relatedPaidClicks","revenuePerFreePV = attributedRevenue/freePV","repeatPurchaseRate when buyer-level aggregate is available"]
-  },
-  "diagnosisMatrix": [
-    {"condition":"PV strong, paid conversion weak","testOrder":["CTA placement and visibility","free-to-paid theme/intention match","specific incremental paid value","paid price"],"rule":"Change one major variable at a time where possible and preserve a rollback baseline."},
-    {"condition":"PV weak","testOrder":["title clarity and search intent","topic selection","opening usefulness","distribution/discovery surface"],"rule":"Do not blame CTA or price before acquisition is sufficient to evaluate them."},
-    {"condition":"paid article records sales","action":"Create adjacent-intent free satellite articles that independently solve nearby problems and point to the verified paid article with one relevant CTA."},
-    {"condition":"free article strong and paid click-through strong but purchase weak","testOrder":["paid free-area qualification","incremental value specificity","proof/examples","price"]},
-    {"condition":"repeat paid demand appears within one coherent cluster","action":"Evaluate a paid magazine/bundle first and membership second using expected LTV net of support cost; do not auto-launch."},
-    {"condition":"free and paid response both weak after sufficient exposure","action":"Deprioritize the theme rather than cloning title variants."}
-  ],
-  "experimentGuardrails": {
-    "singlePrimaryVariablePreferred": true,
-    "requiredBeforeCustomerFacingChange":["baseline window","primary metric","one primary change","minimum observation window","rollback condition"],
-    "priceChangeRule":"Do not make a large price change without observed demand/conversion evidence or a strong market-based reason.",
-    "ctaChangeRule":"Only use a reader-visible verified destination and never add more than one paid CTA to a free article by default.",
-    "ltvChangeRule":"Do not add membership, paid acquisition, or complex bundles solely because the platform supports them; require first-party repeat-demand evidence."
-  },
-  "currentState": {
-    "asOf":"2026-08-24T12:33:00+09:00",
-    "firstPartyFunnelMetricsAvailable":false,
-    "gateStatus":"24h_passed_metrics_unavailable",
-    "actionNow":"Preserve current one-CTA architecture, current paid prices, 2/day free experiment cadence and paid free-area qualification gate. No customer-facing CV or price change is justified yet. Highest-value next optimization is capture of platform-native PV/likes/follows/related-paid-clicks/related-paid-purchases/revenue at matched 24h/72h/7d windows; then diagnose acquisition before CTA before offer before price."
+    "missingMetricRule": "Unavailable is unknown, never zero.",
+    "currentEvidence": "Gmail shows multiple likes/follows but no purchase-notification subject was found in the connected side-business Gmail; this is not proof of zero sales.",
+    "decision": "Do not declare winners by article count or likes alone."
   }
 }
