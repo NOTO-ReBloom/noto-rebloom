@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "updatedAt": "2026-10-16T10:28:00+09:00",
   "objective": "maximize real note revenue and trust; stop volume-first publishing and consolidate the portfolio around distinctive, reusable outcomes",
   "auditState": {
@@ -154,5 +154,35 @@
     "missingMetricRule": "Unavailable is unknown, never zero.",
     "currentEvidence": "Gmail shows multiple likes/follows but no purchase-notification subject was found in the connected side-business Gmail; this is not proof of zero sales.",
     "decision": "Do not declare winners by article count or likes alone."
+  },
+  "pricingPolicy": {
+    "status": "freeze_and_standardize_during_rebuild",
+    "problem": "Similar prompt-product formats were published at materially inconsistent prices (e.g. JPY 200 vs JPY 1,280) without first-party purchase evidence explaining the difference.",
+    "rules": [
+      "Do not price by word count.",
+      "Define product tiers by buyer outcome and included assets before setting a price.",
+      "Within the same product family, use one test price band unless included assets materially differ.",
+      "Do not use JPY 200 as a default for a full paid article merely to increase volume.",
+      "Do not use JPY 1,280 for a prompt-only article unless it contains materially deeper assets/examples than lower-tier products.",
+      "Hold major repricing of existing canonical pages until page-level PV/purchase/revenue evidence is captured or the article is materially rebuilt."
+    ],
+    "proposedTiersForFutureTesting": [
+      {
+        "tier": "quick_asset",
+        "contents": "one strong prompt/template + filled example + check",
+        "testBandJPY": "480-680"
+      },
+      {
+        "tier": "implementation_pack",
+        "contents": "multiple reusable assets + worked case + exceptions + operating steps",
+        "testBandJPY": "780-1180"
+      },
+      {
+        "tier": "flagship_system",
+        "contents": "complete workflow + multiple assets/tool + detailed examples",
+        "testBandJPY": "1280+"
+      }
+    ],
+    "caveat": "These are controlled test bands, not proven optimal prices for this account."
   }
 }
