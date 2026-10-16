@@ -1,11 +1,11 @@
 {
   "version": 116,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-09-14T00:31:00+09:00",
+  "updatedAt": "2026-10-16T10:28:00+09:00",
   "policy": "strict_daily_targets_with_rollover_debt_and_free_acquisition",
   "channels": {
     "note": {
-      "dailyPublicTarget": 5,
+      "dailyPublicTarget": 0,
       "completionDefinition": "reader-visible official paid note page verified with exact title, expected price, paid boundary and dedicated cover",
       "missedPublicationPolicy": "carry_forward_until_verified_publication",
       "operationalState": {
@@ -32,8 +32,8 @@
         "materializationManifest": "sidehustle-autopublish/note/staging/materialization_20260913_batch01.json"
       },
       "freeAcquisitionExperiment": {
-        "enabled": true,
-        "initialPublicationTargetPerDay": 2,
+        "enabled": false,
+        "initialPublicationTargetPerDay": 0,
         "hardQuota": false,
         "currentRequiredIds": [
           "free_note_20260909_01_overdue_receivable_warning_signals",
@@ -270,5 +270,13 @@
       "sidehustle-autopublish/completion_gate.json",
       "sidehustle-autopublish/planning/2026-09-12_batch01.json"
     ]
+  },
+  "noteQualityAuditHold": {
+    "enabled": true,
+    "startedAt": "2026-10-16T10:28:00+09:00",
+    "reason": "101+ paid publications and broad semantic overlap require portfolio consolidation before further volume growth",
+    "newPaidTarget": 0,
+    "newFreeTarget": 0,
+    "releaseGate": "audit-approved score >=80, non-duplicate intent, measurable buyer value"
   }
 }
