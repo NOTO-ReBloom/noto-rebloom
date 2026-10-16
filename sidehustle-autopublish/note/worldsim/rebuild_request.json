@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "requestId": "worldsim-rebuild-20261016-v1",
+  "createdAt": "2026-10-16T14:39:00+09:00",
+  "status": "requested",
+  "account": "royal_lion645",
+  "userApprovedFullWipe": true,
+  "launchIds": [
+    "worldsim_launch_manifesto",
+    "worldsim_launch_arca",
+    "worldsim_launch_mirea",
+    "worldsim_launch_vald"
+  ],
+  "expectedLaunchPublications": 4,
+  "scriptPath": "sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs",
+  "sequence": [
+    "publish and verify four worldsim free launch posts",
+    "update profile to AI世界観測所",
+    "backup live public inventory locally",
+    "delete every legacy note/draft except the four verified launch posts",
+    "verify public profile contains exactly the four launch posts"
+  ],
+  "safety": "Destructive wipe is gated on exactly one reader-visible publication for each of the four launch titles. Profile edit failure or missing launch posts aborts before deletion.",
+  "humanActionRequired": false
+}
