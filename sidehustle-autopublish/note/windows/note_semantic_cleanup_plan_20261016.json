@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-16T10:28:00+09:00",
+  "account": "royal_lion645",
+  "purpose": "Retire high-confidence semantic duplicate paid notes while preserving one canonical article for each job.",
+  "duplicateTitleGroups": 4,
+  "duplicatePagesToDelete": 5,
+  "safety": "Each target is prechecked by exact key+title; each canonical keeper is independently verified before and after deletion. Missing targets count as already removed.",
+  "groups": [
+    {
+      "cluster": "meeting_decision_followthrough",
+      "title": "meeting decision / follow-through consolidation",
+      "keep": {
+        "key": "n82fef8621581",
+        "title": "学生団体の会議が長いのに何も決まらない理由｜決定・保留・宿題を分ける議事録テンプレ",
+        "url": "https://note.com/royal_lion645/n/n82fef8621581"
+      },
+      "delete": [
+        {
+          "key": "n41e84bf1a265",
+          "title": "会議で決めたことが実行されないを防ぐ｜決定・担当・期限・次回確認まで残す運用設計",
+          "url": "https://note.com/royal_lion645/n/n41e84bf1a265"
+        },
+        {
+          "key": "nc76d4a8ab403",
+          "title": "会議で決めたことを消さない｜決定事項・担当・期限・未完理由を残すフォロー管理",
+          "url": "https://note.com/royal_lion645/n/nc76d4a8ab403"
+        }
+      ]
+    },
+    {
+      "cluster": "event_cancel_decision",
+      "title": "event cancellation decision consolidation",
+      "keep": {
+        "key": "nc56fc2b91dae",
+        "title": "イベント中止判断を「勘」にしない｜雨・警報・交通・会場条件を1枚で決める判断表",
+        "url": "https://note.com/royal_lion645/n/nc56fc2b91dae"
+      },
+      "delete": [
+        {
+          "key": "n5d21ac06a505",
+          "title": "中止判断を『なんとなく』で残さない｜イベントの延期・中止を説明できる意思決定ログ",
+          "url": "https://note.com/royal_lion645/n/n5d21ac06a505"
+        }
+      ]
+    },
+    {
+      "cluster": "contract_renewal",
+      "title": "contract renewal consolidation",
+      "keep": {
+        "key": "n4cc3d1d90b84",
+        "title": "契約更新を直前に思い出さない｜解約期限・値上げ・利用状況を90日前から確認する台帳設計",
+        "url": "https://note.com/royal_lion645/n/n4cc3d1d90b84"
+      },
+      "delete": [
+        {
+          "key": "n27d4fd09612c",
+          "title": "契約の自動更新を見落とさない｜解約期限・値上げ通知・承認判断を前倒しする更新管理",
+          "url": "https://note.com/royal_lion645/n/n27d4fd09612c"
+        }
+      ]
+    },
+    {
+      "cluster": "receivables_collection",
+      "title": "receivables collection consolidation",
+      "keep": {
+        "key": "n74d989bfc644",
+        "title": "入金遅れを月末まで放置しない｜請求日・支払期日・督促履歴を分ける売掛金回収管理",
+        "url": "https://note.com/royal_lion645/n/n74d989bfc644"
+      },
+      "delete": [
+        {
+          "key": "n779f1cbdfb8b",
+          "title": "売掛金の督促を担当者任せにしない｜期日超過・約束日・次アクションを追う回収管理",
+          "url": "https://note.com/royal_lion645/n/n779f1cbdfb8b"
+        }
+      ]
+    }
+  ]
+}
