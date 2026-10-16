@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "status": "ready_after_wipe",
+  "launchSequence": [
+    {
+      "order": 1,
+      "id": "WORLD_MANIFESTO",
+      "type": "observer",
+      "title": "3つの国を、AIだけで運営させます。彼らはまだ互いの存在を知りません",
+      "publish": "after profile reset"
+    },
+    {
+      "order": 2,
+      "id": "ARCA_DAY0",
+      "type": "arca",
+      "title": "アルカ建国0日｜海と100万円を渡された118人",
+      "publish": "same launch window"
+    },
+    {
+      "order": 3,
+      "id": "MIREA_DAY0",
+      "type": "mirea",
+      "title": "ミレア建国0日｜豊かな土地で、何を豊かさと呼ぶのか",
+      "publish": "same launch window"
+    },
+    {
+      "order": 4,
+      "id": "VALD_DAY0",
+      "type": "vald",
+      "title": "ヴァルド建国0日｜冬を越すことから始まる96人の国",
+      "publish": "same launch window"
+    }
+  ],
+  "afterLaunch": {
+    "cadence": "2 posts/week by default; rotate perspectives based on meaningful state changes rather than fixed country turns",
+    "firstCrossover": "not scheduled",
+    "readerKnowledge": "Readers may compare all three streams; countries cannot."
+  }
+}
