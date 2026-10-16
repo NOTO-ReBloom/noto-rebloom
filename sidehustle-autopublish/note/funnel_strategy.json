@@ -1,188 +1,155 @@
 {
-  "version": 8,
-  "updatedAt": "2026-10-16T10:28:00+09:00",
-  "objective": "maximize real note revenue and trust; stop volume-first publishing and consolidate the portfolio around distinctive, reusable outcomes",
-  "auditState": {
-    "status": "portfolio_rebuild",
-    "newPublicationHold": true,
-    "reason": "More than 100 paid publications and dozens of free posts were produced without authoritative article-level purchase/revenue metrics, while semantic overlap and repeated article structures increased.",
-    "releaseGate": "Only audit-approved items scoring >=80/100, passing semantic-duplicate review, and delivering a distinct reusable artifact may be published."
+  "version": 9,
+  "updatedAt": "2026-10-16T11:10:00+09:00",
+  "status": "full_rebuild",
+  "brand": {
+    "workingName": "AI収益検証室",
+    "concept": "AIに仕事と副業をどこまで任せると、本当にお金が生まれるのかを数字で検証する。",
+    "promise": "成功談だけでなく、売上0円・失敗・コスト・人間作業時間まで公開する。",
+    "differentiation": [
+      "generic AI tips are prohibited",
+      "every core article must contain first-party experiment data or a genuinely original test",
+      "publish failures when they teach something; do not manufacture success stories",
+      "separate observed facts from hypotheses"
+    ]
   },
-  "accountPromise": "無料部分だけでも役に立ち、有料なら『買った直後に仕事が1つ終わる』状態まで持っていく",
-  "primaryPillars": [
+  "whyThisDirection": {
+    "market": "AI/technology, SNS/content operations and side-hustle categories are growing on note, but generic AI content is already crowded.",
+    "platformFit": "note explicitly prioritizes first-party experience, continuous records and original works in its recommendation philosophy.",
+    "accountAsset": "The account already has a real failed automation experiment: 100+ paid note publications and dozens of free posts with weak purchase evidence. This is more distinctive than another generic how-to article.",
+    "objective": "turn the existing failure and future automated experiments into an ongoing story, dataset and paid research product"
+  },
+  "editorialPillars": [
     {
-      "id": "ai_last_mile",
-      "name": "AIで面倒な実務を1つ終わらせる",
+      "share": 60,
+      "name": "AI副業の公開実験",
       "examples": [
-        "業種別実務プロンプト",
-        "AI導入後の品質確認",
-        "小規模チームの自動化"
-      ],
-      "rule": "抽象的なAI論ではなく、入力例・完成出力例・確認項目まで見せる。"
+        "AIにnote運用を任せる",
+        "無料Webツールを作って売上を追う",
+        "BOOTH/アプリ/デジタル商品を自動運用して実測"
+      ]
     },
     {
-      "id": "small_org_npo_event",
-      "name": "学生団体・NPO・小規模イベントの実務",
+      "share": 25,
+      "name": "AIツールの同条件比較",
       "examples": [
-        "協賛",
-        "イベント運営",
-        "ボランティア",
-        "助成金",
-        "引継ぎ"
-      ],
-      "rule": "実際の現場で起こる詰まりに絞り、一般企業の細かい内部統制テーマへ無理に広げない。"
+        "ChatGPT/Claude/Geminiに同じ販売課題を任せる",
+        "同じ予算・同じ時間で成果比較"
+      ]
     },
     {
-      "id": "student_research",
-      "name": "卒論・研究・就活の実務",
+      "share": 15,
+      "name": "ネットの稼げる話を実際に検証",
       "examples": [
-        "文献整理",
-        "週次レビュー",
-        "企業研究",
-        "面接整合性"
-      ],
-      "rule": "学生がその日の作業を進められる具体物を必ず付ける。"
+        "『AIだけで月1万円』を条件固定で検証",
+        "価格変更・無料導線・投稿頻度など1変数ずつ検証"
+      ]
     }
   ],
-  "deprioritizedThemes": [
-    "一般企業の経理・購買・契約・SaaS管理などを細分化した内部統制記事の連続投稿",
-    "対象読者が曖昧な『○つのサイン』『○つの確認ポイント』量産",
-    "同じ一枚メモや同じ表構造をテーマだけ変えて再利用する記事",
-    "有料部分が無料部分の単純な延長になっている長文化商品"
+  "prohibitedContent": [
+    "generic business process tips",
+    "generic listicles",
+    "fictional examples presented as experience",
+    "AI-generated advice that has not been tested when the article is framed as a result",
+    "mass-produced industry prompt variants",
+    "investment recommendations or health claims used merely because those markets have high willingness to pay",
+    "daily posting quotas"
   ],
-  "paidArticleContract": {
-    "minimumScore": 80,
-    "mandatoryValue": [
-      "購入者がコピーまたはダウンロードして使える実物資産を最低1つ",
-      "入力例と完成例、またはBefore/Afterを最低1組",
-      "失敗例・例外・使わない条件のいずれか",
-      "無料部分では完了しない明確な実装価値"
+  "freeContent": {
+    "purpose": "audience growth, curiosity, trust and experiment continuity",
+    "formats": [
+      "experiment start",
+      "intermediate numbers",
+      "failure postmortem",
+      "one surprising finding",
+      "comparison snapshot"
     ],
-    "acceptedAssets": [
-      "コピペ可能プロンプト",
-      "表計算テンプレート",
-      "チェックシート",
-      "意思決定表",
-      "メール/文章テンプレート",
-      "計算ツール",
-      "ワークシート",
-      "具体的な完成サンプル"
-    ],
-    "prohibitedPatterns": [
-      "列名だけを並べて『テンプレ』と呼ぶ",
-      "無料記事と同じ結論を文字数だけ増やす",
-      "架空の体験談・実績・購入者の声",
-      "同一課題を別タイトルで再販売"
-    ]
+    "rule": "Give the headline result for free. Do not hide the result behind the paywall."
   },
-  "freeArticleContract": {
-    "role": "検索・信頼・需要検証",
-    "rule": "1記事1課題。読み終えた時点で1つ改善できる。定型の『サイン→チェック→今日やること』を連続使用しない。",
-    "cta": "有料記事へのリンクは、無料記事と同じ課題の実装版が存在し、reader-visible確認済みの場合だけ1本。"
-  },
-  "editorialVariety": {
-    "allowedArchetypes": [
-      "失敗事例の分解",
-      "Before/After",
-      "実物テンプレ解説",
-      "コピペ実務プロンプト",
-      "比較・選び方",
-      "ケーススタディ",
-      "ツール/計算機連動",
-      "実際にやって分かったこと"
-    ],
-    "sameArchetypeConsecutiveLimit": 2,
-    "bannedBoilerplate": [
-      "表を増やす前に、いまのやり方で誰が何を知っていて",
-      "最初に対象を広げすぎない",
-      "一件分の記録から始める",
-      "知らないことを『未確認』と書けるようにし",
-      "案件名：＿＿／更新日：＿＿／目的：＿＿"
-    ]
-  },
-  "semanticDuplicatePolicy": {
-    "hardDuplicate": "same reader + same moment + same failure + same artifact => one canonical article only",
-    "nearDuplicate": "same problem and largely same implementation => merge into canonical article; retire the weaker page",
-    "evidenceRule": "Do not delete only because titles look similar; verify the intended outcome and retained canonical page first."
-  },
-  "scoring": {
-    "maximum": 100,
-    "components": [
-      {
-        "name": "buyer_urgency",
-        "points": 20
-      },
-      {
-        "name": "target_specificity",
-        "points": 15
-      },
-      {
-        "name": "originality_and_moat",
-        "points": 20
-      },
-      {
-        "name": "usable_asset_and_execution_value",
-        "points": 20
-      },
-      {
-        "name": "paid_increment_and_purchase_reason",
-        "points": 15
-      },
-      {
-        "name": "title_packaging_and_click_potential",
-        "points": 10
-      }
-    ],
-    "publishThreshold": 80,
-    "strongThreshold": 90
-  },
-  "cadence": {
-    "fixedDailyQuota": false,
-    "paidDefault": "0 until portfolio consolidation; after release, maximum 1 new paid article per week unless first-party evidence supports more",
-    "freeDefault": "0 until portfolio consolidation; after release, publish only when it tests a clear intent or supports a canonical paid asset",
-    "rule": "No publication for the sake of calendar consistency."
-  },
-  "measurement": {
+  "paidContent": {
+    "purpose": "sell depth, evidence and reproducibility—not the headline result",
     "required": [
+      "full experiment design",
+      "complete numeric results and timeline",
+      "cost and human-time accounting",
+      "what failed and why",
+      "exact prompts/rules/scripts when safe and useful",
+      "raw or summarized dataset",
+      "next-test decision and falsifiable hypothesis"
+    ],
+    "defaultPriceTestJPY": 500,
+    "highDepthPriceTestJPY": 980,
+    "rule": "No paid article until it contains information that could not be reconstructed from a generic web search."
+  },
+  "launchSeries": [
+    {
+      "order": 1,
+      "type": "free",
+      "title": "AIで有料noteを100本以上自動投稿した。ほとんど売れなかったので全部やり直す",
+      "hook": "大量生産した本人が、何が間違っていたかを公開する。",
+      "evidenceNeeded": [
+        "actual published count",
+        "available likes/follows/purchase evidence",
+        "timeline",
+        "old automation rules"
+      ]
+    },
+    {
+      "order": 2,
+      "type": "paid",
+      "title": "100本以上作って分かった「AI量産noteが売れない理由」｜失敗データと自動化設計を全部公開",
+      "priceJPY": 500,
+      "value": "full postmortem, topic map, duplication examples, pricing inconsistencies, automation architecture and reset rules"
+    },
+    {
+      "order": 3,
+      "type": "free",
+      "title": "次は『量産しないAI』で30日だけやる。売上0円からの再実験ルール",
+      "hook": "one experiment, fixed rules, all numbers published"
+    },
+    {
+      "order": 4,
+      "type": "free",
+      "title": "AIに3つの副業を同時に任せたら、最初に1円を作ったのはどれだったか",
+      "hook": "cross-channel real-money comparison; publish only after measured"
+    },
+    {
+      "order": 5,
+      "type": "paid",
+      "title": "AI副業30日決算｜売上・経費・人間作業時間・失敗を全部公開",
+      "priceJPY": 980,
+      "value": "full P&L, automation map, decision log, prompts/scripts and next-month plan; publish only after 30 real days of data"
+    }
+  ],
+  "monetizationRoadmap": {
+    "phase1": "free experiment series -> one paid postmortem",
+    "phase2": "monthly paid experiment report if the series earns repeat interest",
+    "phase3": "membership only after multiple repeat purchasers/followers show demand; offer monthly raw data + full decision log, not generic community chatter",
+    "secondary": "reuse original datasets and scripts in BOOTH/app products only when they provide standalone value"
+  },
+  "oldPortfolio": {
+    "decision": "retire almost all legacy generic know-how content",
+    "deletionTiming": "stage deletion only after the first replacement launch package exists, to avoid leaving an empty profile and losing the ability to reference the old experiment.",
+    "keepRule": "keep only pages that are needed as evidence for the postmortem or have meaningful engagement; otherwise retire after launch"
+  },
+  "successMetrics": {
+    "primary": [
+      "paid purchases",
+      "revenue",
+      "revenue per 100 PV",
+      "repeat purchase signal"
+    ],
+    "secondary": [
       "PV",
       "likes",
       "follows",
-      "purchases",
-      "revenue",
-      "paid-clicks when measurable"
+      "comments"
     ],
-    "missingMetricRule": "Unavailable is unknown, never zero.",
-    "currentEvidence": "Gmail shows multiple likes/follows but no purchase-notification subject was found in the connected side-business Gmail; this is not proof of zero sales.",
-    "decision": "Do not declare winners by article count or likes alone."
-  },
-  "pricingPolicy": {
-    "status": "freeze_and_standardize_during_rebuild",
-    "problem": "Similar prompt-product formats were published at materially inconsistent prices (e.g. JPY 200 vs JPY 1,280) without first-party purchase evidence explaining the difference.",
-    "rules": [
-      "Do not price by word count.",
-      "Define product tiers by buyer outcome and included assets before setting a price.",
-      "Within the same product family, use one test price band unless included assets materially differ.",
-      "Do not use JPY 200 as a default for a full paid article merely to increase volume.",
-      "Do not use JPY 1,280 for a prompt-only article unless it contains materially deeper assets/examples than lower-tier products.",
-      "Hold major repricing of existing canonical pages until page-level PV/purchase/revenue evidence is captured or the article is materially rebuilt."
+    "operational": [
+      "human minutes",
+      "AI/tool cost",
+      "automation rate"
     ],
-    "proposedTiersForFutureTesting": [
-      {
-        "tier": "quick_asset",
-        "contents": "one strong prompt/template + filled example + check",
-        "testBandJPY": "480-680"
-      },
-      {
-        "tier": "implementation_pack",
-        "contents": "multiple reusable assets + worked case + exceptions + operating steps",
-        "testBandJPY": "780-1180"
-      },
-      {
-        "tier": "flagship_system",
-        "contents": "complete workflow + multiple assets/tool + detailed examples",
-        "testBandJPY": "1280+"
-      }
-    ],
-    "caveat": "These are controlled test bands, not proven optimal prices for this account."
+    "rule": "likes are not revenue and article count is not success"
   }
 }
