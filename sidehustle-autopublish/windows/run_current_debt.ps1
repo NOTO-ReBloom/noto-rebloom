@@ -49,8 +49,21 @@ try{
    Say "worldsim rebuild requested id=$($worldReq.requestId)"
    $worldRun=Run $Node @($scriptName) $ndWorld 3600
    if($worldRun.ExitCode-ne0){throw "worldsim rebuild retryable exit=$($worldRun.ExitCode)"}
-   @{requestId=[string]$worldReq.requestId;completedAt=(Get-Date -Format o);launchCount=$worldReq.expectedLaunchPublications}|ConvertTo-Json|Set-Content $worldStatePath -Encoding UTF8
-   Say "worldsim rebuild completed id=$($worldReq.requestId)"
+
+   # Replace legacy free-note cadence with one lightweight worldsim queue consumer.
+   $worldWrapper=Join-Path $ndWorld 'publish_worldsim_once.cmd'
+   @"
+@echo off
+setlocal
+cd /d "$ndWorld"
+"$Node" "$publisherLocal" >> "logs\worldsim_scheduled.log" 2>&1
+exit /b %ERRORLEVEL%
+"@ | Set-Content -Encoding ASCII $worldWrapper
+   try{Disable-ScheduledTask -TaskName 'NOTE_FreePublish_0805' -ErrorAction SilentlyContinue|Out-Null}catch{}
+   try{Disable-ScheduledTask -TaskName 'NOTE_FreePublish_1705' -ErrorAction SilentlyContinue|Out-Null}catch{}
+   schtasks /Create /F /SC DAILY /ST 19:05 /TN 'NOTE_WorldSimPublish_1905' /TR "cmd.exe /c `"$worldWrapper`"" | Out-Null
+   @{requestId=[string]$worldReq.requestId;completedAt=(Get-Date -Format o);launchCount=$worldReq.expectedLaunchPublications;publisherTask='NOTE_WorldSimPublish_1905'}|ConvertTo-Json|Set-Content $worldStatePath -Encoding UTF8
+   Say "worldsim rebuild completed id=$($worldReq.requestId); scheduled NOTE_WorldSimPublish_1905"
   }else{Say "worldsim rebuild already completed id=$doneId"}
  }
 }catch{Say ('WORLDSIM REBUILD RETRYABLE '+$_.Exception.Message)}
