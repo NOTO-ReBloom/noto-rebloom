@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "auditedAt": "2026-10-16T10:28:00+09:00",
+  "status": "active_cleanup",
+  "observedInventory": {
+    "paidPublicationReceipts": 101,
+    "freePublicationLedger": 57,
+    "paidPendingHeld": 18,
+    "freePendingHeld": 39,
+    "caveat": "Public profile contains additional later posts visible through note/web/Gmail signals, so receipt count is a lower-bound historical inventory rather than a complete current-profile count."
+  },
+  "evidence": {
+    "firstPartyRepositoryMetrics": {
+      "PV": null,
+      "likes": null,
+      "follows": null,
+      "purchases": null,
+      "revenue": null
+    },
+    "gmail": "Connected side-business Gmail contains multiple note like/follow/magazine-add notifications but searches for note purchase-notification subjects returned no clear purchase notification. Do not equate this with confirmed zero sales.",
+    "publicContentFinding": "Representative Sep 25-26 posts repeat long boilerplate paragraphs and the same one-sheet memo structure across unrelated topics; this materially lowers perceived originality."
+  },
+  "scoreRubric": [
+    [
+      "buyer urgency",
+      20
+    ],
+    [
+      "target specificity",
+      15
+    ],
+    [
+      "originality / account-specific moat",
+      20
+    ],
+    [
+      "usable artifact / execution value",
+      20
+    ],
+    [
+      "paid increment / purchase reason",
+      15
+    ],
+    [
+      "title & packaging",
+      10
+    ]
+  ],
+  "portfolioScore": {
+    "total": 46,
+    "breakdown": {
+      "buyerUrgency": 11,
+      "targetSpecificity": 12,
+      "originality": 6,
+      "usableArtifact": 8,
+      "paidIncrement": 4,
+      "packaging": 5
+    },
+    "interpretation": "Readable and often practically safe, but the portfolio feels template-generated, over-fragmented and weakly differentiated. The problem is not article count."
+  },
+  "representativeScores": [
+    {
+      "article": "協賛が決まった後に何を渡す？",
+      "score": 72,
+      "decision": "revise_keep",
+      "reason": "Clear real-world job and useful workflow; upgrade with downloadable fulfillment sheet, filled example and sponsor evidence pack."
+    },
+    {
+      "article": "先行研究を読んでも論文が書けないを防ぐ",
+      "score": 74,
+      "decision": "revise_keep",
+      "reason": "Strong student intent and concrete matrix; add actual downloadable/duplicable matrix and one filled literature example."
+    },
+    {
+      "article": "会議で決めたことが実行されないを防ぐ",
+      "score": 61,
+      "decision": "merge",
+      "reason": "Useful but overlaps other meeting decision/follow-through articles and offers mostly column definitions."
+    },
+    {
+      "article": "学生団体の定例会議を30分で終える",
+      "score": 67,
+      "decision": "keep_as_free_feeder",
+      "reason": "Clear audience and quick win; its CTA should point to one canonical meeting product only."
+    },
+    {
+      "article": "月次締めが遅れる4つのサイン",
+      "score": 43,
+      "decision": "retire_or_merge",
+      "reason": "Generic back-office checklist with weak account-specific moat."
+    },
+    {
+      "article": "スタッフ朝礼を10分で整える",
+      "score": 31,
+      "decision": "retire",
+      "reason": "Large blocks of boilerplate are reused almost verbatim across later posts."
+    },
+    {
+      "article": "業種別『コピペOK』AI実務プロンプト",
+      "score": 62,
+      "decision": "selective_rebuild",
+      "reason": "More concrete purchase object and some external engagement signals, but variants risk becoming another template factory; keep only roles with clearly different inputs/risks/examples."
+    }
+  ],
+  "strongestDirections": [
+    "AIで特定の仕事を終わらせる実務プロンプト＋入力例＋完成例＋確認チェック",
+    "学生団体/NPO/イベント運営で実際に使えるテンプレ・シート・意思決定表",
+    "卒論/研究でそのまま複製できる文献マトリクス・週次レビュー・分析シート"
+  ],
+  "retireDirections": [
+    "一般企業の内部統制テーマを極細分化した連続記事",
+    "同じ『○つのサイン』構造の連投",
+    "同じ一枚メモ・同じ注意書きを名詞だけ変えて使う記事"
+  ],
+  "highConfidenceSemanticCleanup": [
+    {
+      "keep": "note_20260822_13_meeting_decision_log",
+      "retire": [
+        "note_20260823_20_meeting_decision_log",
+        "note_20260830_55_meeting_decision_followthrough"
+      ],
+      "reason": "Same meeting decision→owner→deadline→follow-up job; keep the student-organization canonical page already fed by the free meeting article."
+    },
+    {
+      "keep": "note_20260822_12_event_cancel_decision",
+      "retire": [
+        "note_20260826_32_event_cancellation_decision_log"
+      ],
+      "reason": "Both sell a structured event cancellation decision; the earlier decision table is the clearer canonical artifact."
+    },
+    {
+      "keep": "note_20260829_47_contract_renewal_control",
+      "retire": [
+        "note_20260907_95_contract_renewal_notice_control"
+      ],
+      "reason": "Both manage renewal deadlines/price/decision timing; consolidate into one 90-day renewal ledger."
+    },
+    {
+      "keep": "note_20260830_52_receivables_collection_control",
+      "retire": [
+        "note_20260909_102_receivables_collection_escalation_control"
+      ],
+      "reason": "Both track invoice due date, reminders, promised date and next action; retain the earlier page, which also has an observed like notification."
+    }
+  ],
+  "nextActions": [
+    "Retire high-confidence semantic duplicates through authenticated note cleanup.",
+    "Run a full-profile boilerplate similarity audit via note creator API on authenticated Windows and flag Sep 24-26 template clones.",
+    "Rebuild only canonical keepers with real reusable assets and worked examples.",
+    "Reopen publishing only after one rebuilt canonical paid product scores >=80/100."
+  ]
+}
