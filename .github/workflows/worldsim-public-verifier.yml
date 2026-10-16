@@ -1,0 +1,105 @@
+name: Verify AI World Observatory publications
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/publication_queue.json'
+      - 'sidehustle-autopublish/note/worldsim/rebuild_request.json'
+      - '.github/workflows/worldsim-public-verifier.yml'
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-public-verifier
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify reader-visible worldsim state
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const qPath='sidehustle-autopublish/note/worldsim/publication_queue.json';
+          const rPath='sidehustle-autopublish/note/worldsim/rebuild_request.json';
+          const q=JSON.parse(fs.readFileSync(qPath,'utf8'));
+          const req=JSON.parse(fs.readFileSync(rPath,'utf8'));
+          const account='royal_lion645';
+          const norm=s=>String(s||'').replace(/\s+/g,' ').trim();
+          async function publicItems(){
+            const out=[];
+            for(let p=1;p<=100;p++){
+              const u='https://note.com/api/v2/creators/'+account+'/contents?kind=note&disabled_pinned=true&page='+p+'&audit='+Date.now();
+              const res=await fetch(u,{headers:{'user-agent':'worldsim-public-verifier/1.0','cache-control':'no-cache'}});
+              if(!res.ok) break;
+              const obj=await res.json(),d=obj.data||{},xs=Array.isArray(d.contents)?d.contents:[];
+              for(const x of xs) if(x?.status==='published') out.push({key:x.key,title:norm(x.name),url:'https://note.com/'+account+'/n/'+x.key});
+              if(d.isLastPage||xs.length===0) break;
+            }
+            return out;
+          }
+          const items=await publicItems();
+          let changed=false;
+          for(const e of q.entries||[]){
+            if(e.publicUrlVerified===true) continue;
+            const found=items.filter(x=>x.title===norm(e.title));
+            if(found.length!==1) continue;
+            const res=await fetch(found[0].url+'?verify='+Date.now(),{headers:{'user-agent':'worldsim-public-verifier/1.0','cache-control':'no-cache'}});
+            if(!res.ok) continue;
+            const html=await res.text();
+            if(!html.includes(e.title)) continue;
+            if(/購入して続きをみる|この記事を購入|購入手続き/.test(html)) continue;
+            e.publicUrlVerified=true;
+            e.publicUrl=found[0].url;
+            e.enabled=false;
+            e.verifiedAt=new Date().toISOString();
+            changed=true;
+            console.log('WORLDSIM_VERIFIED',e.id,found[0].url);
+          }
+          const launchIds=new Set(req.launchIds||[]);
+          const launch=(q.entries||[]).filter(e=>launchIds.has(e.id));
+          const allLaunchVerified=launch.length===launchIds.size && launch.every(e=>e.publicUrlVerified===true);
+          if(allLaunchVerified && req.launchVerified!==true){
+            req.launchVerified=true; req.launchVerifiedAt=new Date().toISOString(); changed=true;
+          }
+          if(allLaunchVerified){
+            const profile=await fetch('https://note.com/'+account+'?verify='+Date.now(),{headers:{'user-agent':'worldsim-public-verifier/1.0','cache-control':'no-cache'}}).then(r=>r.text()).catch(()=> '');
+            const finalTitles=new Set(launch.map(e=>norm(e.title)));
+            const onlyLaunch=items.length===launch.length && items.every(x=>finalTitles.has(x.title));
+            const profileOk=profile.includes('AI世界観測所');
+            if(onlyLaunch && profileOk && req.status!=='completed'){
+              req.status='completed';
+              req.completedAt=new Date().toISOString();
+              req.finalPublicUrls=launch.map(e=>e.publicUrl);
+              req.profileVerified=true;
+              changed=true;
+              console.log('WORLDSIM_REBUILD_PUBLICLY_COMPLETE');
+            }
+          }
+          if(changed){
+            q.updatedAt=new Date().toISOString();
+            fs.writeFileSync(qPath,JSON.stringify(q,null,2)+'\n');
+            fs.writeFileSync(rPath,JSON.stringify(req,null,2)+'\n');
+          }
+          NODE
+      - name: Commit verified state
+        run: |
+          git config user.name 'worldsim-public-verifier'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/publication_queue.json sidehustle-autopublish/note/worldsim/rebuild_request.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Verify AI World Observatory public state'
+          git pull --rebase origin main
+          git push origin HEAD:main
