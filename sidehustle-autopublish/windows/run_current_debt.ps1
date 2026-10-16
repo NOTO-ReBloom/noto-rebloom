@@ -28,19 +28,19 @@ try{
    $ndWorld=Join-Path $Root 'app\note'
    if(-not(Test-Path $ndWorld)){throw "NOTE app root missing: $ndWorld"}
    if(-not(Test-Path $Node)){throw 'node missing for worldsim rebuild'}
-   $freeBot=Join-Path $ndWorld 'note-free-bot.mjs'
-   if(-not(Test-Path $freeBot)){throw 'canonical NOTE free publisher missing'}
+   $publisherName=Split-Path ([string]$worldReq.publisherPath) -Leaf
+   $publisherLocal=Join-Path $ndWorld $publisherName
+   Invoke-WebRequest -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='WORLDSIM-PUBLISHER/1.0'} -Uri ($Raw+[string]$worldReq.publisherPath+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) -OutFile $publisherLocal
    KillStale;Task $NoteTask $false;$tasksTouched=$true
 
-   # First publish the four replacement posts. All legacy free queue entries are disabled remotely.
-   $env:NOTE_FREE_BATCH=[string]$worldReq.expectedLaunchPublications
-   try{
-    for($i=1;$i-le6;$i++){
-     Say "worldsim launch publish attempt $i/6"
-     [void](Run $Node @('note-free-bot.mjs','publish-batch') $ndWorld 420)
-     Start-Sleep 4
-    }
-   }finally{Remove-Item Env:NOTE_FREE_BATCH -ErrorAction SilentlyContinue}
+   # First publish the four replacement posts using the concise worldsim publisher.
+   # It has no legacy 5,001-character requirement and reconciles exact titles before create.
+   $attempts=[Math]::Max(6,[int]$worldReq.expectedLaunchPublications+2)
+   for($i=1;$i-le$attempts;$i++){
+    Say "worldsim launch publish attempt $i/$attempts"
+    [void](Run $Node @($publisherName) $ndWorld 420)
+    Start-Sleep 3
+   }
 
    # Then run the gated profile update + backup + full wipe.
    $scriptName=Split-Path ([string]$worldReq.scriptPath) -Leaf
