@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "updatedAt": "2026-09-24T08:59:03.491Z",
+  "updatedAt": "2026-10-16T10:28:00+09:00",
   "retryGeneration": 92,
   "requireReaderVisibleVerification": true,
   "legacyCoverRecovery": "If an encrypted payload lacks coverImageBase64/coverImageMime, Windows V8+ must generate a dedicated 1280x670 local cover from the public title using a deterministic safe template, upload it, then verify reader-visible cover/title/price/paid-boundary before success. Do not skip solely because the payload lacks embedded cover bytes.",
@@ -3475,7 +3475,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_127_npo_recruitment_funnel.enc.json",
       "sha256": "79735d99c44dac4295f960efc6c5a44300e2f3a7a8f4846d2000825f9fa12f57",
       "createdAt": "2026-09-24T04:59:45.531Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-127-20260924",
       "expectedPriceJPY": 200,
@@ -3487,7 +3487,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_128_volunteer_retention_checkin",
@@ -3495,7 +3497,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_128_volunteer_retention_checkin.enc.json",
       "sha256": "7d6fdc6d61149c6c9ca1735cae46fb6c4c10e49cdb2e68762859b38852d0b548",
       "createdAt": "2026-09-24T05:04:42.872Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-128-20260924",
       "expectedPriceJPY": 200,
@@ -3507,7 +3509,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_129_shared_backoffice_request",
@@ -3515,7 +3519,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_129_shared_backoffice_request.enc.json",
       "sha256": "7c7ef21d58b3c9719427ac0d458fe81b66c2b3ca5a82e441130a260753b5836d",
       "createdAt": "2026-09-24T08:36:46.182Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-129-20260924",
       "expectedPriceJPY": 200,
@@ -3527,7 +3531,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_130_grant_report_evidence",
@@ -3535,7 +3541,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_130_grant_report_evidence.enc.json",
       "sha256": "f34602f1a76a5ef72e24a307cdae862319f7a9d71c76e3d1717244fcd94ff11d",
       "createdAt": "2026-09-24T08:41:55.059Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-130-20260924",
       "expectedPriceJPY": 200,
@@ -3547,7 +3553,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_131_event_safety_handoff",
@@ -3555,7 +3563,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_131_event_safety_handoff.enc.json",
       "sha256": "1f549384a3c6237d5f440e34658658b19124386f956af785e4dab1517d947bf6",
       "createdAt": "2026-09-24T08:47:55.188Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-131-20260924",
       "expectedPriceJPY": 200,
@@ -3567,7 +3575,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_132_community_partner_followup",
@@ -3575,7 +3585,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_132_community_partner_followup.enc.json",
       "sha256": "9d1b94610da9dd2094ec32476b30b432d0942724db357e71ed540c92a8ad2c94",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-132-20260924",
       "expectedPriceJPY": 200,
@@ -3587,7 +3597,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_133_small_team_shift_gap",
@@ -3595,7 +3607,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_133_small_team_shift_gap.enc.json",
       "sha256": "ca564c633f7be77e99846476acab1a06482829dcd736e8221e9cb900b06ffd4e",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-133-20260924",
       "expectedPriceJPY": 200,
@@ -3607,7 +3619,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_134_donation_use_explanation",
@@ -3615,7 +3629,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_134_donation_use_explanation.enc.json",
       "sha256": "be5db0d84f2eda2e93fb28299676d931202c8f287438dd5bdfffd61ebdb51128",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-134-20260924",
       "expectedPriceJPY": 200,
@@ -3627,7 +3641,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_135_npo_board_decision_record",
@@ -3635,7 +3651,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_135_npo_board_decision_record.enc.json",
       "sha256": "d210fcb2b5b6db12913071b69d85e33314c236f0e8f089bd7db99ac16bf4b584",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-135-20260924",
       "expectedPriceJPY": 200,
@@ -3647,7 +3663,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_136_service_inquiry_triage",
@@ -3655,7 +3673,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_136_service_inquiry_triage.enc.json",
       "sha256": "2181074663360fd85a69578c45e186384c6d1010c044f07e2e52390ed3342d77",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-136-20260924",
       "expectedPriceJPY": 200,
@@ -3667,7 +3685,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_137_project_scope_change_log",
@@ -3675,7 +3695,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_137_project_scope_change_log.enc.json",
       "sha256": "b4b38b5582484f5f4e8511b1efdc9d11859d31181df7f6d4b17e4d6db98a3bf3",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-137-20260924",
       "expectedPriceJPY": 200,
@@ -3687,7 +3707,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_138_new_staff_first_month",
@@ -3695,7 +3717,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_138_new_staff_first_month.enc.json",
       "sha256": "d0a4637e416b9876a9e38f4f412bf4ca02172235bea5f5cc3dd33909c308a6e5",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-138-20260924",
       "expectedPriceJPY": 200,
@@ -3707,7 +3729,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_139_customer_feedback_to_action",
@@ -3715,7 +3739,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_139_customer_feedback_to_action.enc.json",
       "sha256": "3d568647cb78798d62c8d84b2461585c8c8351bb6d98cab44e84a202104e63be",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-139-20260924",
       "expectedPriceJPY": 200,
@@ -3727,7 +3751,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_140_vendor_meeting_followthrough",
@@ -3735,7 +3761,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_140_vendor_meeting_followthrough.enc.json",
       "sha256": "e87a9a9324b61d5c844890c0e837a5ff560ad31ea143491540291ea445025c1c",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-140-20260924",
       "expectedPriceJPY": 200,
@@ -3747,7 +3773,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_141_remote_team_handoff",
@@ -3755,7 +3783,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_141_remote_team_handoff.enc.json",
       "sha256": "5d7a6a074718399ebc0d861243cf856c02214f44b40bbb6dcfd1e48824fd3726",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-141-20260924",
       "expectedPriceJPY": 200,
@@ -3767,7 +3795,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_142_cash_commitment_calendar",
@@ -3775,7 +3805,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_142_cash_commitment_calendar.enc.json",
       "sha256": "7dfec70ff4e748af71a58de0898c30ae414523e0360af26420d6544146cf5988",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-142-20260924",
       "expectedPriceJPY": 200,
@@ -3787,7 +3817,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_143_website_change_review",
@@ -3795,7 +3827,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_143_website_change_review.enc.json",
       "sha256": "43eef562ae2d182ce6f62b5771d69df2224695351eecced6a35672bb70d8f852",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-143-20260924",
       "expectedPriceJPY": 200,
@@ -3807,7 +3839,9 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     },
     {
       "id": "note_20260924_144_monthly_operations_review",
@@ -3815,7 +3849,7 @@
       "path": "sidehustle-autopublish/note/queue/note_20260924_144_monthly_operations_review.enc.json",
       "sha256": "97066cbab03172969c6fb27255f00a897bce82a324df5fb80c52e33a841e7f15",
       "createdAt": "2026-09-24T08:59:03.491Z",
-      "enabled": true,
+      "enabled": false,
       "forceRetry": false,
       "forceRetryNonce": "note24-original-144-20260924",
       "expectedPriceJPY": 200,
@@ -3827,12 +3861,20 @@
         "paidBoundary",
         "dedicatedCover"
       ],
-      "invalidateLocalSuccessWithoutReaderVerification": true
+      "invalidateLocalSuccessWithoutReaderVerification": true,
+      "qualityAuditHold": true,
+      "qualityAuditReason": "2026-10-16 content/market-fit audit"
     }
   ],
   "activePublicationDate": "2026-09-13",
   "forceAllCurrentDayNow": false,
   "forceRetryNonce": "remaining-35-20260914T003100+0900",
   "outstandingDates": [],
-  "reconcileExistingBeforePublish": true
+  "reconcileExistingBeforePublish": true,
+  "qualityAudit": {
+    "status": "hold_new_publication",
+    "startedAt": "2026-10-16T10:28:00+09:00",
+    "heldPendingCount": 18,
+    "rule": "Do not publish new paid note until portfolio audit approves an item with quality score >=80/100 and semantic-duplicate check passes."
+  }
 }
