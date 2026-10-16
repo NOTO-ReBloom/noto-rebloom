@@ -2,11 +2,13 @@
   "version": 1,
   "requestId": "note-portfolio-cleanup-20261016-v1",
   "createdAt": "2026-10-16T10:28:00+09:00",
-  "status": "requested",
+  "status": "superseded_by_worldsim_full_wipe",
   "account": "royal_lion645",
   "planPath": "sidehustle-autopublish/note/windows/note_semantic_cleanup_plan_20261016.json",
   "scriptPath": "sidehustle-autopublish/note/windows/delete_semantic_note_cleanup_20261016.mjs",
   "expectedDeleteCount": 5,
   "humanActionRequired": false,
-  "runRule": "Execute only with the existing authenticated local note Chrome profile. Verify canonical keepers before deleting targets."
+  "runRule": "Execute only with the existing authenticated local note Chrome profile. Verify canonical keepers before deleting targets.",
+  "supersededAt": "2026-10-16T14:39:00+09:00",
+  "supersededBy": "worldsim-rebuild-20261016-v1"
 }
