@@ -1,0 +1,46 @@
+{
+  "id": "ARCUS",
+  "nameJa": "アルカ",
+  "nameEn": "Arca",
+  "motto": "前へ進めるものを増やす",
+  "objectiveWeights": {
+    "growth": 0.4,
+    "innovation": 0.25,
+    "stability": 0.15,
+    "wellbeing": 0.1,
+    "equality": 0.05,
+    "environment": 0.05
+  },
+  "geography": {
+    "type": "coastal peninsula",
+    "arableLand": 38,
+    "mineralResources": 24,
+    "forest": 32,
+    "coastAccess": 92,
+    "naturalHarbor": 85,
+    "climate": "mild maritime"
+  },
+  "initialState": {
+    "population": 118,
+    "treasury": 1000000,
+    "foodStock": 72,
+    "energy": 46,
+    "housing": 58,
+    "health": 64,
+    "education": 55,
+    "technology": 31,
+    "happiness": 55,
+    "inequality": 22,
+    "environment": 69,
+    "security": 52,
+    "governanceCapacity": 56
+  },
+  "knowledge": {
+    "otherCountriesKnown": false,
+    "worldMapCompletion": 0.06,
+    "explorationRange": 8,
+    "communicationRange": 5
+  },
+  "stateStyle": "数字と変化を重視する簡潔な経済紙・官報調。成功も悪化も同じ温度で書く。",
+  "governingConstraint": "The agent may pursue growth aggressively but cannot invent resources, population or discoveries."
+}
