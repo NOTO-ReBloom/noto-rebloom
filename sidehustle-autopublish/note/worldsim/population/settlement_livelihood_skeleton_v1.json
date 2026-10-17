@@ -270,6 +270,7 @@
           "population": 611,
           "terrain": "main basin floor",
           "roles": [
+            "cold_grain_farming",
             "storage",
             "administration",
             "metalwork",
@@ -278,9 +279,10 @@
             "healing"
           ],
           "foodSources": [
+            "cold-barley terraces",
             "stored grain",
             "goats",
-            "trade within basin"
+            "basin exchange"
           ],
           "risks": [
             "winter smoke",
@@ -291,7 +293,8 @@
             "centralStores": 4,
             "forges": 5,
             "clinicBeds": 6,
-            "wells": 4
+            "wells": 4,
+            "terracedFieldBlocks": 18
           },
           "socialNotes": "Institutional center; reserve policy strongly shapes daily life."
         },
@@ -304,12 +307,14 @@
             "mining",
             "timber",
             "smelting",
-            "toolmaking"
+            "toolmaking",
+            "small_cold_grain_farming"
           ],
           "foodSources": [
+            "small barley plots",
             "ration inflow",
             "goats",
-            "small gardens"
+            "basin exchange"
           ],
           "risks": [
             "collapse",
@@ -319,7 +324,8 @@
           "infrastructure": {
             "mines": 4,
             "forges": 3,
-            "timberYards": 2
+            "timberYards": 2,
+            "terracedFieldBlocks": 6
           },
           "socialNotes": "Workers value competence and safety but resent distant quota decisions."
         },
@@ -332,9 +338,11 @@
             "goat_keeping",
             "wool",
             "timber_watch",
-            "seasonal_hunting"
+            "seasonal_hunting",
+            "hardy_rye_farming"
           ],
           "foodSources": [
+            "hardy rye terraces",
             "dairy",
             "meat",
             "stored grain"
@@ -345,7 +353,8 @@
           ],
           "infrastructure": {
             "winterShelters": 5,
-            "storehouses": 2
+            "storehouses": 2,
+            "terracedFieldBlocks": 7
           },
           "socialNotes": "Local autonomy is prized; central authority has limited day-to-day reach."
         },
