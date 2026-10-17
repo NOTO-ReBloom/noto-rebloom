@@ -96,9 +96,9 @@ function goalSet(c,h,r){
  if(h.economy.debtUnits>35)primary='reduce household debt without losing essential work or tools';
  if(h.economy.foodDays<40)primary='secure enough food to get the household through the next vulnerable period';
  if(h.economy.dependents>=3&&c.ageYears>=18)secondary='keep dependents safe without exhausting the household';
- const protected=h.economy.landUseUnits>0?'household land-use access':h.economy.boatsShare>0?'access to boats and fishing income':h.economy.workshopShare>0?'workshop access and tools':h.economy.foodDays<50?'household food reserve':'household stability and reputation';
+ const protectedThing=h.economy.landUseUnits>0?'household land-use access':h.economy.boatsShare>0?'access to boats and fishing income':h.economy.workshopShare>0?'workshop access and tools':h.economy.foodDays<50?'household food reserve':'household stability and reputation';
  const avoid=h.economy.debtUnits>40?'a debt spiral that forces the household to surrender productive assets':(lModel.occupations[c.occupationId]?.hazard||0)>=4?'a preventable work injury that removes household income':h.economy.foodDays<45?'running short of food before the next supply period':'a sudden loss of livelihood with no reciprocal support';
- return {today:'finish immediate household and work obligations',season:primary,multiYear:secondary,primaryGoal:primary,secondaryGoal:secondary,protectedThing:protected,desiredStatus:c.occupation.skill>70?'be recognized as reliably skilled':'be regarded as dependable enough to trust',avoidAtAllCosts:avoid};
+ return {today:'finish immediate household and work obligations',season:primary,multiYear:secondary,primaryGoal:primary,secondaryGoal:secondary,protectedThing,desiredStatus:c.occupation.skill>70?'be recognized as reliably skilled':'be regarded as dependable enough to trust',avoidAtAllCosts:avoid};
 }
 function material(c,h,r){
  const hazard=lModel.occupations[c.occupationId]?.hazard||0;
