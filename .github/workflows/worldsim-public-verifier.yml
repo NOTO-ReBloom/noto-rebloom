@@ -142,5 +142,11 @@ jobs:
           git add sidehustle-autopublish/note/worldsim/publication_queue.json sidehustle-autopublish/note/worldsim/rebuild_request.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Verify AI World Observatory public state'
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for TRY in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            echo "public verification push race on attempt $TRY; retrying"
+            sleep $((TRY*2))
+          done
+          echo 'Failed to persist public verification after retries' >&2
+          exit 1
