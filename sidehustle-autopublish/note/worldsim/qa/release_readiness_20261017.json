@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "releaseId": "worldsim-lyra-launch-20261017-v2",
+  "createdAt": "2026-10-17T13:15:00+09:00",
+  "canonicalWorld": "LYRA-001",
+  "population": {
+    "total": 5451,
+    "ARCUS": 1846,
+    "MIREA": 2214,
+    "VALD": 1391
+  },
+  "canonicalState": {
+    "latestTurn": 1,
+    "firstContact": false
+  },
+  "validations": {
+    "fullCanonicalBuild": {
+      "status": "passed"
+    },
+    "turn1Reproducibility": {
+      "status": "passed"
+    },
+    "longHorizon60Turns": {
+      "status": "passed",
+      "workflowRunId": 39001137464,
+      "births": 36,
+      "deaths": 20,
+      "institutionRotations": 118
+    },
+    "overallQA": {
+      "status": "passed",
+      "workflowRunId": 39001590675
+    },
+    "weeklyGateDryCheck": {
+      "status": "passed",
+      "workflowRunId": 39001637406,
+      "observed": "active=false, turn=2 before public launch"
+    }
+  },
+  "launch": [
+    {
+      "id": "worldsim_launch_manifesto",
+      "title": "3つの国を同じ世界に置きました。まだ、互いの存在を知りません"
+    },
+    {
+      "id": "worldsim_launch_arca",
+      "title": "港は木を欲しがった。山は4票で反対した｜アルカ、最初の7日"
+    },
+    {
+      "id": "worldsim_launch_mirea",
+      "title": "賛成は6、反対2。それでも灌漑整備は否決された｜ミレア、最初の7日"
+    },
+    {
+      "id": "worldsim_launch_vald",
+      "title": "鉱山を2日止める。6対3で安全点検が通った｜ヴァルド、最初の7日"
+    }
+  ],
+  "postLaunchAutomation": {
+    "simulation": "Sunday 18:00 JST, gated until public rebuild is verified complete",
+    "editorial": "0-2 meaningful stories per weekly turn; no filler",
+    "publication": "local authenticated NOTE publisher consumes enabled queue entries",
+    "verification": "GitHub public verifier confirms reader-visible free article URLs and exact four-post launch state"
+  },
+  "destructiveActionAuthorization": "User explicitly approved deleting the legacy NOTE portfolio as part of the rebuild. Wipe remains gated on all four replacement posts being publicly verified first.",
+  "readyToRequestRelease": true
+}
