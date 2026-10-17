@@ -49,7 +49,7 @@ function urgency(policy,country,people,belief){
  switch(policy.id){
   case'A_TIMBER_REPAIR':u=58+(65-state.worldDynamic.resources['R-ARCA-TIMBER-01'].stockIndex)*.8+(wx.ARCUS.coastalWindIndex-50)*.18;break;
   case'A_HARBOR_SANITATION':u=48+(70-cs.settlementStates['ARCA-PORT-01'].meanHealth)*.55+rumorPrevalence(belief,'health')*15;break;
-  case'A_COASTAL_SURVEY':u=28+Object.values(people).filter(x=>x.occupation.sector==='knowledge').length*1.2;break;
+  case'A_COASTAL_SURVEY':u=28+Object.values(people).filter(x=>x.occupation.sector==='knowledge').length*1.2+turn*1.1;break;
   case'A_INLAND_ROAD_REPAIR':u=42+(cs.settlementStates['ARCA-RIDGE-01'].risks.includes('landslide')?7:0);break;
   case'M_GATE_CLEARING':u=55+(wx.MIREA.riverPressureIndex-50)*.45+(truth.hydrology.mireaRiver.turn0SedimentIndex-50)*.35;break;
   case'M_SPILLWAY_SURVEY':u=48+(wx.MIREA.riverPressureIndex-50)*.30+rumorPrevalence(belief,'river')*10;break;
@@ -58,7 +58,7 @@ function urgency(policy,country,people,belief){
   case'V_MINE_INSPECTION':u=55+Object.values(people).filter(x=>x.occupationId==='miner').length*.045+rumorPrevalence(belief,'mining')*18;break;
   case'V_FUEL_BUFFER':u=46+(90-cs.meanFuelReserveDays)*.25+(93-state.calendar.daysUntilMeteorologicalWinter)*.08;break;
   case'V_SMOKE_VENT':u=43+rumorPrevalence(belief,'health')*18+(72-cs.settlementStates['VALD-BASIN-01'].meanHealth)*.35;break;
-  case'V_PASS_SURVEY':u=25+rumorPrevalence(belief,'information')*8;break;
+  case'V_PASS_SURVEY':u=25+rumorPrevalence(belief,'information')*8+turn*1.0;break;
  }
  return Number(clamp(u).toFixed(2));
 }
@@ -74,11 +74,28 @@ function sponsor(policy,country,people,belief){
  }).sort((a,b)=>b.score-a.score)[0]?.c?.citizenId||members[0]?.citizenId||null;
 }
 
+function recentPolicyRecord(policyId){
+ const xs=(state.eventLog||[]).filter(e=>e.type==='policy_vote'&&e.policyId===policyId).sort((a,b)=>b.turn-a.turn);
+ return xs[0]||null;
+}
+function policyAvailable(policy){
+ const last=recentPolicyRecord(policy.id);
+ if(!last)return true;
+ const cooldown=policy.cooldownTurns||0;
+ if(last.passed&&turn-last.turn<=cooldown)return false;
+ if(!last.passed&&turn-last.turn<=1)return false;
+ return true;
+}
 const proposals={};
 for(const country of ['ARCUS','MIREA','VALD']){
  const people=loadPeople(country),belief=loadBelief(country);
- const ranked=catalog.policies.filter(p=>p.country===country).map(p=>({...p,urgency:urgency(p,country,people,belief)})).sort((a,b)=>b.urgency-a.urgency);
- proposals[country]=ranked.slice(0,2).map(p=>({policyId:p.id,title:p.title,topic:p.topic,urgency:p.urgency,sponsorId:sponsor(p,country,people,belief),reason:'selected from current material conditions, local risk and citizen information'}));
+ const ranked=catalog.policies.filter(p=>p.country===country&&policyAvailable(p)).map(p=>{
+   let u=urgency(p,country,people,belief);
+   const last=recentPolicyRecord(p.id);
+   if(last&&!last.passed)u=Math.max(0,u-6);
+   return {...p,urgency:Number(u.toFixed(2))};
+ }).sort((a,b)=>b.urgency-a.urgency);
+ proposals[country]=ranked.slice(0,2).map(p=>({policyId:p.id,title:p.title,topic:p.topic,urgency:p.urgency,sponsorId:sponsor(p,country,people,belief),reason:'selected from current material conditions, local risk, policy cooldown and citizen information'}));
 }
 const input={version:1,worldId:state.worldId,turn,previousTurn:prev,preparedFromStateHash:crypto.createHash('sha256').update(JSON.stringify(state)).digest('hex'),weather:wx,proposals};
 write('sidehustle-autopublish/note/worldsim/turns/turn_'+turnPad(turn)+'/turn_input.json',input);
