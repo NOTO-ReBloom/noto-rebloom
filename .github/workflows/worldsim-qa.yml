@@ -5,10 +5,15 @@ on:
   push:
     paths:
       - 'sidehustle-autopublish/note/worldsim/**'
+      - 'sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs'
       - '.github/workflows/worldsim-qa.yml'
 
 permissions:
   contents: read
+
+concurrency:
+  group: worldsim-qa
+  cancel-in-progress: true
 
 jobs:
   qa:
@@ -18,38 +23,102 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
       - name: JavaScript syntax
         run: |
+          node --check sidehustle-autopublish/note/worldsim/population/generate_households_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/population/assign_livelihoods_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/population/generate_personality_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/population/generate_social_graph_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/population/generate_beliefs_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/institutions/generate_institutions_v2.mjs
+          node --check sidehustle-autopublish/note/worldsim/world/create_truth_commitment.mjs
+          node --check sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/editorial/generate_turn_posts_v1.mjs
           node --check sidehustle-autopublish/note/worldsim/windows/worldsim-note-publisher.mjs
           node --check sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs
-      - name: World state and queue integrity
+
+      - name: Dry-run future editorial renderer on canonical turn 1
+        env:
+          WORLDSIM_TURN: '1'
+          WORLDSIM_EDITORIAL_DRY_RUN: '1'
+        run: |
+          node sidehustle-autopublish/note/worldsim/editorial/generate_turn_posts_v1.mjs
+          test -f sidehustle-autopublish/note/worldsim/editorial/generated/turn_0001/manifest.json
+
+      - name: Canonical architecture and launch integrity
         shell: python
         run: |
           import json, pathlib
           root=pathlib.Path('sidehustle-autopublish/note/worldsim')
-          def load(p): return json.loads((root/p).read_text(encoding='utf-8-sig'))
-          world=load('world_state.json')
-          rules=load('simulation_rules.json')
+          def load(rel):
+              return json.loads((root/rel).read_text(encoding='utf-8-sig'))
+
+          assert not (root/'world_state.json').exists(), 'obsolete root WORLD-001 state must not exist'
+
+          s0=load('state/turn_0000/world_state.json')
+          s1=load('state/turn_0001/world_state.json')
+          assert s0['worldId']=='LYRA-001'
+          assert s0['turn']==0 and s1['turn']==1
+          assert s0['contact']['firstContactOccurred'] is False
+          assert s1['contact']['firstContactOccurred'] is False
+          expected={'ARCUS':1846,'MIREA':2214,'VALD':1391}
+          for country,pop in expected.items():
+              assert s0['countries'][country]['population']==pop
+              cfg=load(f'countries/{country}.json')
+              assert cfg['id']==country
+              assert cfg['knownOtherCountries'] is False
+              assert cfg['legacyObjectiveWeightsDeprecated'] is True
+              assert 'objectiveWeights' not in cfg
+
+          evidence=load('qa/long_horizon_verified_20261017.json')
+          assert evidence['workflowConclusion']=='success'
+          assert evidence['turns']>=60
+          assert evidence['births']>0 and evidence['deaths']>0
+          assert evidence['institutionRotations']>0
+          for country in expected:
+              assert len(evidence['policyDiversity'][country])>=3
+              assert evidence['finalPopulation'][country]>100
+              assert evidence['finalFoodReserveDays'][country]>0
+
           queue=load('publication_queue.json')
-          assert world['worldId']=='WORLD-001'
-          assert set(world['countries'])=={'ARCUS','MIREA','VALD'}
-          for c in world['countries']:
-              j=load(f'countries/{c}.json')
-              assert j['id']==c
-              assert j['knowledge']['otherCountriesKnown'] is False
-          assert rules['countryDecision']['informationIsolation'] is True
-          assert rules['contact']['noContactBeforeCondition'] is True
+          launch_ids={'worldsim_launch_manifesto','worldsim_launch_arca','worldsim_launch_mirea','worldsim_launch_vald'}
           entries=queue['entries']
-          assert len(entries)==4
+          assert launch_ids <= {e['id'] for e in entries}
           assert len({e['id'] for e in entries})==len(entries)
           assert len({e['title'] for e in entries})==len(entries)
+          launch=[e for e in entries if e['id'] in launch_ids]
+          assert len(launch)==4
           for e in entries:
-              assert e['enabled'] is True
               p=pathlib.Path(e['bodyPath'])
-              assert p.exists(), p
+              assert p.exists(),p
               body=p.read_text(encoding='utf-8-sig')
-              assert 250 <= len(body) <= 12000, (e['id'],len(body))
+              assert 250 <= len(body) <= 12000,(e['id'],len(body))
+              assert '118人' not in body and '104人' not in body and '96人の国' not in body
+          assert all('/launch_v2/' in e['bodyPath'] for e in launch)
+          assert any('5,451' in pathlib.Path(e['bodyPath']).read_text(encoding='utf-8-sig') for e in launch)
+
+          request=load('rebuild_request.json')
+          assert request['expectedLaunchPublications']==4
+          assert request['userApprovedFullWipe'] is True
+          assert set(request['launchIds'])==launch_ids
+
           legacy=json.loads(pathlib.Path('sidehustle-autopublish/note/free_queue/index.json').read_text(encoding='utf-8-sig'))
-          assert not any(str(e.get('id','')).startswith('worldsim_') for e in legacy.get('entries',[]))
           assert not any(e.get('enabled') is True for e in legacy.get('entries',[]))
-          print('WORLDSIM_QA_OK')
+
+          rules=load('simulation_rules.json')
+          assert rules['randomness']['seedBase']=='LYRA-001'
+          assert rules['countryDecision']['informationIsolation'] is True
+          assert rules['contact']['noContactBeforeCondition'] is True
+          assert rules['publication']['noFiller'] is True
+
+          manifest=json.loads((root/'editorial/generated/turn_0001/manifest.json').read_text())
+          assert manifest['turn']==1
+          assert len(manifest['stories'])<=2
+          for st in manifest['stories']:
+              assert st['score']>=8
+              assert pathlib.Path(st['bodyPath']).exists()
+
+          print('WORLDSIM_QA_OK',len(entries),'queue_entries',len(manifest['stories']),'turn1_editorial_previews')
