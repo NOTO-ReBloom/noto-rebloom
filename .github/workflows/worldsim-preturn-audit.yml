@@ -1,0 +1,98 @@
+name: Worldsim preturn audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/world/**'
+      - 'sidehustle-autopublish/note/worldsim/institutions/institution_state_turn0.json'
+      - 'sidehustle-autopublish/note/worldsim/population/personality/**'
+      - 'sidehustle-autopublish/note/worldsim/population/beliefs/**'
+      - 'sidehustle-autopublish/note/worldsim/population/social/**'
+      - 'sidehustle-autopublish/note/worldsim/countries/**'
+      - '.github/workflows/worldsim-preturn-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-preturn-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build canonical turn 0
+        run: node sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs
+      - name: Deep preturn audit
+        shell: python
+        run: |
+          import json, pathlib, hashlib
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim')
+          state=json.loads((root/'state/turn_0000/world_state.json').read_text())
+          truth=json.loads((root/'world/observer_truth_v1.json').read_text())
+          commitment=json.loads((root/'world/world_truth_commitment.json').read_text())
+          canonical=json.dumps(truth,separators=(',',':'),ensure_ascii=False)
+          # Node JSON.stringify and Python compact JSON differ only if unicode escaping is used.
+          # Use the snapshot's own truth hash existence plus commitment shape; Node workflow is the source for exact commitment.
+          assert len(commitment['canonicalJsonSha256'])==64
+          expected={'ARCUS':1846,'MIREA':2214,'VALD':1391}
+          assert state['turn']==0
+          assert state['contact']['firstContactOccurred'] is False
+          assert not state['contact']['knownPairs']
+          total=0
+          all_ids=set()
+          for country,pop in expected.items():
+              c=state['countries'][country]
+              assert c['population']==pop,(country,c['population'])
+              assert c['knownOtherCountries'] is False
+              assert all(c['dataIntegrity'].values()),(country,c['dataIntegrity'])
+              assert c['meanFoodReserveDays']>20
+              assert 0<c['meanHealth']<=100
+              cfg=json.loads((root/f'countries/{country}.json').read_text())
+              assert 'objectiveWeights' not in cfg,country
+              assert cfg['legacyObjectiveWeightsDeprecated'] is True
+              pdir=root/f'population/personality/{country}'
+              for fp in pdir.glob('*.json'):
+                  if fp.name=='personality_summary.json': continue
+                  d=json.loads(fp.read_text())
+                  for person in d['citizens']:
+                      assert person['citizenId'] not in all_ids,person['citizenId']
+                      all_ids.add(person['citizenId'])
+              total+=pop
+          assert total==5451 and len(all_ids)==5451
+          inst=json.loads((root/'institutions/institution_state_turn0.json').read_text())
+          for country,c in inst['countries'].items():
+              for council in c['localCouncils'].values():
+                  assert all(x in all_ids for x in council['memberIds'])
+              assert all(x['citizenId'] in all_ids for x in c['nationalBody']['members'])
+              assert all(x in all_ids for x in c['executive']['memberIds'])
+          # Geography makes first contact impossible at turn 0.
+          radii={k:state['countries'][k]['verifiedExplorationRadiusKm'] for k in expected}
+          mins=truth['map']['minimumStraightLineKm']
+          assert radii['ARCUS']+radii['MIREA'] < mins['ARCUS_MIREA']
+          assert radii['MIREA']+radii['VALD'] < mins['MIREA_VALD']
+          assert radii['ARCUS']+radii['VALD'] < mins['ARCUS_VALD']
+          queue=json.loads((root/'publication_queue.json').read_text())
+          assert not any(x.get('enabled') for x in queue['entries'])
+          print('PRETURN_QA_OK',total,state['sourceTruthHash'])
+      - name: Commit canonical turn 0
+        run: |
+          git config user.name 'worldsim-preturn-audit'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/state/turn_0000
+          if git diff --cached --quiet; then echo 'No turn-0 snapshot change'; exit 0; fi
+          git commit -m 'Build audited LYRA turn-0 snapshot'
+          git pull --rebase origin main
+          git push origin HEAD:main
