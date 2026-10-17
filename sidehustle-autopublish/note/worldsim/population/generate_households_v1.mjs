@@ -61,7 +61,7 @@ function addEdge(edges,a,b,typeAB,typeBA=typeAB){
  if(typeBA) edges.push({from:b,to:a,type:typeBA});
 }
 function uniquePairs(children,edges){
- for(let i=0;i<children.length;i++) for(let j=i+1;j<children.length;j++) addEdge(edges,children[i],children[j],'sibling','sibling');
+ for(let i=0;i<children.length;i++) for(let j=i+1;j<children.length;j++) addEdge(edges,children[i].citizenId,children[j].citizenId,'sibling','sibling');
 }
 
 function makePerson(country,settlement,householdId,rng,age,sex,role,familyHint=null,extra={}){
