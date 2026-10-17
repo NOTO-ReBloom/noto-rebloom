@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "turnLengthDays": 7,
   "pipeline": [
     "world_update",
@@ -73,15 +73,49 @@
     "casualtyHandling": "Avoid gratuitous suffering; summarize crises without exploitative detail."
   },
   "longHorizon": {
-    "requiredStressTurns": 60,
-    "lastVerified": "2026-10-17",
+    "requiredStressTurns": 156,
+    "equivalentYears": 3,
     "checks": [
-      "policy cooldown",
-      "birth/death uniqueness",
-      "institution rotation",
-      "resource bounds",
-      "population continuity",
-      "food reserve bounds"
+      "exact seven-day calendar continuity and year rollover",
+      "all four seasons and seasonal food/fuel movement",
+      "pregnancy, birth, death, birthday and life-stage transitions",
+      "new partnerships and household moves",
+      "policy cooldown and institutional rotation",
+      "settlement population conservation",
+      "renewable/nonrenewable resource bounds",
+      "crossover knowledge consistency if contact occurs",
+      "bounded live-history windows with immutable per-turn archives"
     ]
+  },
+  "time": {
+    "calendar": "365-day fictional calendar, no leap years",
+    "epoch": "Y0001-D239",
+    "epochAbsoluteDay": 239,
+    "turnDays": 7,
+    "realTimeRule": "After public rebuild completion, each full seven elapsed real-world days makes exactly one additional seven-day world turn due.",
+    "catchUp": "Scheduled poll every 6 hours; resolve at most four missing contiguous turns per run. Never skip or overwrite a turn.",
+    "seasons": {
+      "winter": "D336-D365 and D001-D059",
+      "spring": "D060-D151",
+      "summer": "D152-D243",
+      "autumn": "D244-D335"
+    }
+  },
+  "demography": {
+    "gestationDays": 266,
+    "rule": "Conception creates persistent pregnancy state; birth can occur only in its due interval. Birthdays derive from bornAbsoluteDay.",
+    "lifecycle": [
+      "child -> student",
+      "student -> apprenticeship",
+      "apprenticeship -> adult occupation",
+      "occupation age limit -> retired"
+    ],
+    "partnerships": "Eligible unpartnered adults can form persistent partnerships; household moves are recorded and close-family matches are prohibited."
+  },
+  "materialDynamics": {
+    "food": "Seasonal production + weather + renewable-resource stock effects + reserve-dependent spoilage.",
+    "fuel": "Seasonal production/consumption + weather + forest/resource stock effects + reserve-dependent storage loss; low winter fuel affects health/stress.",
+    "resources": "Renewables regenerate as a function of remaining capacity; occupation output falls when relevant resource stocks decline.",
+    "politicalLearning": "Citizen policy experience and evolving trust/respect/grievance affect future votes and institutional selection."
   }
 }
