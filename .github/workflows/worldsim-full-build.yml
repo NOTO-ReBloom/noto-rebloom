@@ -158,5 +158,11 @@ jobs:
             sidehustle-autopublish/note/worldsim/state/turn_0000
           if git diff --cached --quiet; then echo 'Canonical generated layers already current'; exit 0; fi
           git commit -m 'Rebuild full LYRA canonical world'
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for TRY in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            echo "push race on attempt $TRY; retrying"
+            sleep $((TRY*2))
+          done
+          echo 'Failed to publish canonical build after retries' >&2
+          exit 1
