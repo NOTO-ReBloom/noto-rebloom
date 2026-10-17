@@ -280,8 +280,19 @@ function fuelBalance(country,data){
   MIREA:{winter:4.2,spring:1.8,summer:.8,autumn:2.5},
   VALD:{winter:7.0,spring:3.0,summer:1.2,autumn:4.2}
  }[country][season];
- const output={timber_worker:30,charcoal_burner:60,wetland_gatherer:12,farmer:3,orchard_keeper:2,goat_keeper:3,hunter:2};
- let production=state.countries[country].population*1.4;
+ const prepMultiplier={
+  ARCUS:{winter:.90,spring:1.00,summer:1.08,autumn:1.16},
+  MIREA:{winter:.92,spring:1.00,summer:1.06,autumn:1.12},
+  VALD:{winter:.82,spring:1.05,summer:1.18,autumn:1.32}
+ }[country][season];
+ const targetReserve={
+  ARCUS:{winter:42,spring:52,summer:62,autumn:74},
+  MIREA:{winter:38,spring:48,summer:58,autumn:68},
+  VALD:{winter:62,spring:72,summer:88,autumn:104}
+ }[country][season];
+
+ const output={timber_worker:30,charcoal_burner:60,wetland_gatherer:12,farmer:3,orchard_keeper:2,goat_keeper:4,hunter:3};
+ let specialistProduction=0;
  for(const raw of Object.values(data.people)){
   if((state.roster.inactiveCitizenIds||[]).includes(raw.citizenId))continue;
   const c=effective(raw,country);
@@ -291,22 +302,66 @@ function fuelBalance(country,data){
    const ref=country==='ARCUS'?58:country==='MIREA'?76:72;
    out*=relativeResourceFactor(rid,ref,.12,1.12);
   }
-  production+=out;
+  specialistProduction+=out;
  }
+
+ const pop=state.countries[country].population;
+ const current=state.countries[country].meanFuelReserveDays;
+ const ordinaryHouseholdProduction=pop*1.4;
+ let production=(ordinaryHouseholdProduction+specialistProduction)*prepMultiplier;
+
+ // Households and local work crews reallocate labor when reserves fall below a
+ // seasonal target. This is endogenous behavior, not a policy-created fuel grant.
+ const gap=Math.max(0,targetReserve-current);
+ const responseCoeff=country==='VALD'?.072:.052;
+ const responseCap=country==='VALD'?4.2:2.6;
+ const collectionDaysPerPerson=clamp(gap*responseCoeff,0,responseCap);
+ const fuelRid=country==='ARCUS'?'R-ARCA-TIMBER-01':country==='MIREA'?'R-MIR-WETLAND-01':'R-VALD-TIMBER-01';
+ const fuelRef=country==='ARCUS'?58:country==='MIREA'?76:72;
+ const stockFactor=.35+.65*relativeResourceFactor(fuelRid,fuelRef,.10,1.08);
+ const emergencyCollection=pop*collectionDaysPerPerson*stockFactor;
+ production+=emergencyCollection;
+
  let weatherMultiplier=1;
  if(country==='VALD')weatherMultiplier=input.weather.VALD.coldPressureIndex>=75?1.18:input.weather.VALD.coldPressureIndex>=60?1.08:.98;
  if(country==='ARCUS')weatherMultiplier=input.weather.ARCUS.coastalWindIndex>=70?1.08:1;
  if(country==='MIREA')weatherMultiplier=input.weather.MIREA.upperCatchmentRainIndex>=72?1.05:1;
- const pop=state.countries[country].population;
- const consumption=pop*need*weatherMultiplier;
- const current=state.countries[country].meanFuelReserveDays;
+
+ // Scarcity changes behavior before stock reaches zero. People conserve heat,
+ // accepting comfort/health costs rather than consuming fuel they do not have.
+ let conservationMultiplier=1;
+ if(current<14)conservationMultiplier=.82;
+ else if(current<28)conservationMultiplier=.90;
+ else if(current<42)conservationMultiplier=.96;
+
+ const consumption=pop*need*weatherMultiplier*conservationMultiplier;
  const storageLoss=current>140?(current-140)*.012:0;
  const gross=(production-consumption)/Math.max(1,pop);
  const delta=gross-storageLoss;
+
+ // Extra collection has real opportunity and ecological costs.
+ const resourceDrawdownIndex=round(Math.min(.24,emergencyCollection/Math.max(1,pop)*.045),3);
+ const opportunityFoodDays=round(collectionDaysPerPerson*.055,3);
+
  return{
-  productionPersonDays:round(production,1),consumptionPersonDays:round(consumption,1),
-  grossReserveDaysDelta:round(gross,3),storageLossDays:round(storageLoss,3),
-  reserveDaysDelta:round(delta,3),season,weatherMultiplier:round(weatherMultiplier,3)
+  productionPersonDays:round(production,1),
+  ordinaryHouseholdProduction:round(ordinaryHouseholdProduction,1),
+  specialistProduction:round(specialistProduction,1),
+  emergencyCollectionPersonDays:round(emergencyCollection,1),
+  collectionDaysPerPerson:round(collectionDaysPerPerson,3),
+  targetReserveDays:targetReserve,
+  prepMultiplier:round(prepMultiplier,3),
+  stockFactor:round(stockFactor,3),
+  resourceId:fuelRid,
+  resourceDrawdownIndex,
+  opportunityFoodDays,
+  consumptionPersonDays:round(consumption,1),
+  grossReserveDaysDelta:round(gross,3),
+  storageLossDays:round(storageLoss,3),
+  reserveDaysDelta:round(delta,3),
+  season,
+  weatherMultiplier:round(weatherMultiplier,3),
+  conservationMultiplier:round(conservationMultiplier,3)
  };
 }
 const NEWBORN_NAMES={
@@ -861,14 +916,24 @@ for(const country of ['ARCUS','MIREA','VALD']){
  turnEvents.push({turn,country,type:'food_balance',...fb});
 
  const fuel=fuelBalance(country,data);
+ if(fuel.opportunityFoodDays>0){
+  state.countries[country].meanFoodReserveDays=round(Math.max(0,state.countries[country].meanFoodReserveDays-fuel.opportunityFoodDays),2);
+  for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFoodReserveDays=round(Math.max(0,ss.meanFoodReserveDays-fuel.opportunityFoodDays),2);
+ }
+ if(fuel.resourceDrawdownIndex>0&&state.worldDynamic.resources[fuel.resourceId]){
+  state.worldDynamic.resources[fuel.resourceId].stockIndex=round(clamp(state.worldDynamic.resources[fuel.resourceId].stockIndex-fuel.resourceDrawdownIndex),2);
+ }
  state.countries[country].meanFuelReserveDays=round(Math.max(0,state.countries[country].meanFuelReserveDays+fuel.reserveDaysDelta),2);
  for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFuelReserveDays=round(Math.max(0,ss.meanFuelReserveDays+fuel.reserveDaysDelta),2);
- if(state.countries[country].meanFuelReserveDays<14&&fuel.season==='winter'){
-  state.countries[country].meanStress=round(clamp(state.countries[country].meanStress+.28),2);
-  state.countries[country].meanHealth=round(clamp(state.countries[country].meanHealth-.10),2);
+ if(fuel.season==='winter'&&fuel.conservationMultiplier<1){
+  const severity=1-fuel.conservationMultiplier;
+  const stressDelta=.12+severity*.95;
+  const healthDelta=severity>=.18?-.16:severity>=.10?-.08:-.03;
+  state.countries[country].meanStress=round(clamp(state.countries[country].meanStress+stressDelta),2);
+  state.countries[country].meanHealth=round(clamp(state.countries[country].meanHealth+healthDelta),2);
   for(const ss of Object.values(state.countries[country].settlementStates)){
-   ss.meanStress=round(clamp(ss.meanStress+.28),2);
-   ss.meanHealth=round(clamp(ss.meanHealth-.10),2);
+   ss.meanStress=round(clamp(ss.meanStress+stressDelta),2);
+   ss.meanHealth=round(clamp(ss.meanHealth+healthDelta),2);
   }
  }
  turnEvents.push({turn,country,type:'fuel_balance',...fuel});
