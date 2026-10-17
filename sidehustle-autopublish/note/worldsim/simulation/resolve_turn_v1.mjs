@@ -10,6 +10,7 @@ const prevState=read('sidehustle-autopublish/note/worldsim/state/turn_'+pad(prev
 const input=read('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/turn_input.json');
 const catalog=read('sidehustle-autopublish/note/worldsim/simulation/policy_catalog_v1.json');
 const institutions=read('sidehustle-autopublish/note/worldsim/institutions/institution_state_turn0.json');
+const institutionModel=read('sidehustle-autopublish/note/worldsim/institutions/institution_model_v2.json');
 const livelihoodModel=read('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json');
 const state=structuredClone(prevState);
 
