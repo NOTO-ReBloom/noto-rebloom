@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {birthAbsoluteDayFromAge} from '../simulation/time_model_v1.mjs';
 
 const ROOT=process.cwd();
 const P=(...x)=>path.join(ROOT,...x);
@@ -11,6 +12,7 @@ const outRoot='sidehustle-autopublish/note/worldsim/population/personality';
 const pModel=read('sidehustle-autopublish/note/worldsim/population/personality_model_v1.json');
 const cPriors=read('sidehustle-autopublish/note/worldsim/population/cultural_priors_v1.json');
 const lModel=read('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json');
+const truth=read('sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json');
 
 function seedInt(s){return crypto.createHash('sha256').update(String(s)).digest().readUInt32LE(0);}
 function rngFor(s){let a=seedInt(s);return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
@@ -157,7 +159,8 @@ for(const country of ['ARCUS','MIREA','VALD']){
      for(const [k,v] of Object.entries(psychology.bigFive)){(countryValues[country][k]??=[]).push(v);}
      for(const [k,v] of Object.entries(values)){(countryValues[country]['value_'+k]??=[]).push(v);}
      const birthDayOfYear=(seedInt('BIRTHDAY|'+c.citizenId)%365)+1;
-     return {...c,birthDayOfYear,psychology,values,goals,materialState:current,lifeHistory:history,psychologyFingerprint:fingerprint};
+     const bornAbsoluteDay=birthAbsoluteDayFromAge(c.ageYears,birthDayOfYear,truth.calendar);
+     return {...c,birthDayOfYear,bornAbsoluteDay,psychology,values,goals,materialState:current,lifeHistory:history,psychologyFingerprint:fingerprint};
    });
    const out={...d,stage:'personality_v1',citizens};
    write(outRoot+'/'+country+'/'+file,out);
