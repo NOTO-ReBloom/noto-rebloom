@@ -43,15 +43,19 @@ jobs:
 
           async function fetchPublicInventory(){
             const out=[];
-            for(let page=1;page<=100;page++){
+            const seenKeys=new Set();
+            for(let page=1;page<=30;page++){
               const u='https://note.com/api/v2/creators/'+account+'/contents?kind=note&disabled_pinned=true&page='+page+'&audit='+Date.now();
-              const res=await fetch(u,{headers:{'cache-control':'no-cache','user-agent':'worldsim-public-verifier/2.0'}});
+              const res=await fetch(u,{headers:{'cache-control':'no-cache','user-agent':'worldsim-public-verifier/2.0'},signal:AbortSignal.timeout(12000)});
               if(!res.ok) throw new Error('NOTE_PUBLIC_API_HTTP_'+res.status+'_PAGE_'+page);
               const obj=await res.json();
               const d=obj.data||{};
               const xs=Array.isArray(d.contents)?d.contents:[];
+              let newOnPage=0;
               for(const x of xs){
-                if(!x||x.status!=='published') continue;
+                if(!x||x.status!=='published'||!x.key) continue;
+                if(seenKeys.has(x.key)) continue;
+                seenKeys.add(x.key); newOnPage++;
                 out.push({
                   key:x.key,
                   title:norm(x.name),
@@ -60,13 +64,13 @@ jobs:
                   url:'https://note.com/'+account+'/n/'+x.key
                 });
               }
-              if(d.isLastPage||xs.length===0)break;
+              if(d.isLastPage||xs.length===0||newOnPage===0)break;
             }
             return out;
           }
 
           async function verifyArticle(item,entry){
-            const res=await fetch(item.url+'?verify='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-public-verifier/2.0'}});
+            const res=await fetch(item.url+'?verify='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-public-verifier/2.0'},signal:AbortSignal.timeout(12000)});
             if(!res.ok)return false;
             const html=await res.text();
             const titleOk=html.includes(entry.title)||html.includes(item.title);
@@ -105,7 +109,7 @@ jobs:
           }
 
           if(allLaunchVerified){
-            const profileRes=await fetch('https://note.com/'+account+'?profileVerify='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-public-verifier/2.0'}});
+            const profileRes=await fetch('https://note.com/'+account+'?profileVerify='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-public-verifier/2.0'},signal:AbortSignal.timeout(12000)});
             const profileHtml=profileRes.ok?await profileRes.text():'';
             const profileOk=profileHtml.includes('AI世界観測所')||profileHtml.includes('5,451人が暮らす3つの架空社会');
             const launchTitles=new Set(launch.map(e=>norm(e.title)));
