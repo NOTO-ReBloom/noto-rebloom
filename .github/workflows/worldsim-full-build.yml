@@ -1,0 +1,146 @@
+name: Worldsim full canonical build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/population/generate_households_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/demographic_targets_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/anchor_households_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/settlement_livelihood_skeleton_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/calibration_citizens_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/assign_livelihoods_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/personality_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/generate_personality_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/social_graph_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/generate_social_graph_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/belief_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/generate_beliefs_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/institutions/**'
+      - 'sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/world/create_truth_commitment.mjs'
+      - 'sidehustle-autopublish/note/worldsim/countries/**'
+      - 'sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs'
+      - '.github/workflows/worldsim-full-build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-full-canonical-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate all persistent layers
+        run: |
+          node sidehustle-autopublish/note/worldsim/population/generate_households_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/assign_livelihoods_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/generate_personality_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/generate_social_graph_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/generate_beliefs_v1.mjs
+          node sidehustle-autopublish/note/worldsim/institutions/generate_institutions_v2.mjs
+          node sidehustle-autopublish/note/worldsim/world/create_truth_commitment.mjs
+          node sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs
+
+      - name: Cross-layer canonical QA
+        shell: python
+        run: |
+          import json, pathlib, re, statistics
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim')
+          countries={'ARCUS':1846,'MIREA':2214,'VALD':1391}
+          settlement_count=0
+          all_ids=set()
+          all_households=set()
+
+          for country,expected in countries.items():
+              pdir=root/'population/personality'/country
+              docs=[json.loads(p.read_text()) for p in pdir.glob('*.json')]
+              people=[c for d in docs for c in d['citizens']]
+              houses=[h for d in docs for h in d['households']]
+              assert len(people)==expected,(country,len(people),expected)
+              assert len({c['citizenId'] for c in people})==expected
+              assert not (all_ids & {c['citizenId'] for c in people})
+              all_ids.update(c['citizenId'] for c in people)
+              assert not (all_households & {h['householdId'] for h in houses})
+              all_households.update(h['householdId'] for h in houses)
+              settlement_count += len({c['settlementId'] for c in people})
+              for c in people:
+                  assert 2 <= len(c['givenName']) <= 12,(c['citizenId'],c['givenName'])
+                  assert 2 <= len(c['familyName']) <= 12,(c['citizenId'],c['familyName'])
+                  assert re.fullmatch(r"[A-Za-z]+",c['givenName']),c['givenName']
+                  assert re.fullmatch(r"[A-Za-z]+",c['familyName']),c['familyName']
+                  assert c['occupationId']
+                  assert c['psychologyFingerprint']
+                  assert c['goals']['primaryGoal']
+              vals=[c['psychology']['bigFive']['openness'] for c in people]
+              assert statistics.pstdev(vals)>=9,(country,'openness variance')
+
+              social=json.loads((root/'population/social'/f'{country}.json').read_text())
+              assert social['citizenCount']==expected
+              assert social['summary']['isolatedAdults']==0
+              assert social['summary']['crossCountryEdges']==0
+
+              belief=json.loads((root/'population/beliefs'/f'{country}.json').read_text())
+              assert belief['summary']['citizenCount']==expected
+              prefix={'ARCUS':'ARCA-','MIREA':'MIREA-','VALD':'VALD-'}[country]
+              for rec in belief['records'].values():
+                  assert all(x.startswith(prefix) for x in rec['knownLocations']), (country,rec['citizenId'],rec['knownLocations'])
+
+          assert len(all_ids)==5451
+          assert settlement_count==13
+
+          state=json.loads((root/'state/turn_0000/world_state.json').read_text())
+          assert state['turn']==0
+          assert state['contact']['firstContactOccurred'] is False
+          assert state['publicationReady'] is False
+          for country,expected in countries.items():
+              assert state['countries'][country]['population']==expected
+              assert state['countries'][country]['knownOtherCountries'] is False
+              assert state['countries'][country]['meanFoodReserveDays']>30
+
+          inst=json.loads((root/'institutions/institution_state_turn0.json').read_text())
+          for country,c in inst['countries'].items():
+              assert c['legacyObjectiveWeightsUsed'] is False
+              assert all(m['citizenId'] in all_ids for m in c['nationalBody']['members'])
+
+          truth=json.loads((root/'world/observer_truth_v1.json').read_text())
+          commit=json.loads((root/'world/world_truth_commitment.json').read_text())
+          assert len(commit['canonicalJsonSha256'])==64
+          rads={k:state['countries'][k]['verifiedExplorationRadiusKm'] for k in countries}
+          mins=truth['map']['minimumStraightLineKm']
+          assert rads['ARCUS']+rads['MIREA'] < mins['ARCUS_MIREA']
+          assert rads['MIREA']+rads['VALD'] < mins['MIREA_VALD']
+          assert rads['ARCUS']+rads['VALD'] < mins['ARCUS_VALD']
+
+          print('FULL_CANONICAL_BUILD_QA_OK',len(all_ids),len(all_households),settlement_count)
+
+      - name: Commit canonical generated layers
+        run: |
+          git config user.name 'worldsim-canonical-builder'
+          git config user.email 'actions@users.noreply.github.com'
+          git add \
+            sidehustle-autopublish/note/worldsim/population/generated \
+            sidehustle-autopublish/note/worldsim/population/livelihood \
+            sidehustle-autopublish/note/worldsim/population/personality \
+            sidehustle-autopublish/note/worldsim/population/social \
+            sidehustle-autopublish/note/worldsim/population/beliefs \
+            sidehustle-autopublish/note/worldsim/institutions/institution_state_turn0.json \
+            sidehustle-autopublish/note/worldsim/world/world_truth_commitment.json \
+            sidehustle-autopublish/note/worldsim/state/turn_0000
+          if git diff --cached --quiet; then echo 'Canonical generated layers already current'; exit 0; fi
+          git commit -m 'Rebuild full LYRA canonical world'
+          git pull --rebase origin main
+          git push origin HEAD:main
