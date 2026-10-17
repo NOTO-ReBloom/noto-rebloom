@@ -1,8 +1,9 @@
 {
-  "version": 1,
-  "releaseId": "worldsim-lyra-launch-20261017-v2",
-  "createdAt": "2026-10-17T13:15:00+09:00",
+  "version": 2,
+  "releaseId": "worldsim-lyra-launch-20261017-v3",
+  "createdAt": "2026-10-17T14:58:30+09:00",
   "canonicalWorld": "LYRA-001",
+  "worldTruthCommitment": "e64199b2f212d5bea574bb0260e5ac21fae98e5b02c17ceff5f3f68ed1aa9c39",
   "population": {
     "total": 5451,
     "ARCUS": 1846,
@@ -11,31 +12,67 @@
   },
   "canonicalState": {
     "latestTurn": 1,
+    "turn0Date": "Y0001-D239",
+    "turn1Date": "Y0001-D246",
+    "turn1Season": "early_autumn",
     "firstContact": false
   },
   "validations": {
     "fullCanonicalBuild": {
       "status": "passed"
     },
-    "turn1Reproducibility": {
-      "status": "passed"
-    },
-    "longHorizon60Turns": {
+    "longHorizon156Turns": {
       "status": "passed",
-      "workflowRunId": 39001137464,
-      "births": 36,
-      "deaths": 20,
-      "institutionRotations": 118
+      "workflowRunId": 39006839212,
+      "engineCommit": "3d231896fcd2215c6bceaf3b728d9f47d8934c1f"
+    },
+    "finalTurn1Rebuild": {
+      "status": "passed",
+      "workflowRunId": 39007987708
     },
     "overallQA": {
       "status": "passed",
-      "workflowRunId": 39001590675
+      "workflowRunId": 39008043095
     },
-    "weeklyGateDryCheck": {
+    "temporalBoundaries": {
       "status": "passed",
-      "workflowRunId": 39001637406,
-      "observed": "active=false, turn=2 before public launch"
+      "covered": [
+        "season boundaries",
+        "year rollover",
+        "birthday boundary"
+      ]
+    },
+    "publicWipeSafety": {
+      "status": "armed_not_executed",
+      "readerVisibleReplacementRequiredBeforeDeletion": true
     }
+  },
+  "longHorizon": {
+    "turns": 156,
+    "endDate": "Y0004-D236",
+    "births": 92,
+    "conceptions": 106,
+    "deaths": 71,
+    "birthdays": 16298,
+    "lifeStageTransitions": 978,
+    "partnerships": 275,
+    "institutionRotations": 317,
+    "finalPopulation": {
+      "ARCUS": 1857,
+      "MIREA": 2219,
+      "VALD": 1396
+    },
+    "finalFoodReserveDays": {
+      "ARCUS": 20.74,
+      "MIREA": 184.68,
+      "VALD": 54.13
+    },
+    "finalFuelReserveDays": {
+      "ARCUS": 53.29,
+      "MIREA": 134.49,
+      "VALD": 98.26
+    },
+    "firstContact": false
   },
   "launch": [
     {
@@ -56,14 +93,15 @@
     }
   ],
   "postLaunchAutomation": {
-    "simulation": "Sunday 18:00 JST, gated until public rebuild is verified complete",
-    "editorial": "0-2 meaningful stories per weekly turn; no filler",
-    "publication": "local authenticated NOTE publisher consumes enabled queue entries",
-    "verification": "GitHub public verifier confirms reader-visible free article URLs and exact four-post launch state"
+    "clock": "real elapsed seven days equals one LYRA seven-day turn",
+    "catchup": "missed scheduler windows process contiguous unprocessed turns only; no skips or overwrites",
+    "simulationCheckCadence": "every 6 hours, but a new turn is created only when a full seven-day interval is due",
+    "editorial": "0-2 meaningful stories per turn, with historical contact milestones prioritized; no filler",
+    "publication": "authenticated local NOTE publisher consumes only enabled worldsim queue entries",
+    "legacyAutomation": "legacy NOTE publishers remain disabled after migration",
+    "verification": "NOTE public API must verify the four free launch posts, profile, and final four-post inventory before rebuild is marked completed"
   },
-  "destructiveActionAuthorization": "User explicitly approved deleting the legacy NOTE portfolio as part of the rebuild. Wipe remains gated on all four replacement posts being publicly verified first.",
-  "readyToRequestRelease": false,
-  "superseded": true,
-  "supersededAt": "2026-10-17T14:02:00+09:00",
-  "supersededReason": "Temporal model was substantially upgraded after this readiness record: canonical seasons, gestation, birthdays, lifecycle, household change, fuel/resource dynamics, relationship learning and catch-up-safe real-time scheduling. Do not use this record to release."
+  "destructiveActionAuthorization": "User explicitly approved deleting the entire legacy NOTE portfolio. Deletion is gated until all four audited replacement posts are reader-visible and free.",
+  "readyToRequestRelease": true,
+  "superseded": false
 }
