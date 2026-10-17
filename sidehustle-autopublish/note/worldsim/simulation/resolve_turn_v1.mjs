@@ -39,8 +39,10 @@ function loadCountry(country){
    for(const id of ho.newMemberIds)if(!households[hid].memberIds.includes(id))households[hid].memberIds.push(id);
   }
  }
- const rel={};for(const e of [...social.edges,...dynamicRelations])rel[e.from+'|'+e.to]=e;
- return{people,households,familyEdges:[...familyEdges,...dynamicRelations.filter(x=>['parent','child','sibling','partner'].includes(x.type))],beliefs,social:{...social,edges:[...social.edges,...dynamicRelations]},rel};
+ const allEdges=[...social.edges,...dynamicRelations];
+ const rel={},incoming={};
+ for(const e of allEdges){rel[e.from+'|'+e.to]=e;(incoming[e.to]??=[]).push(e);}
+ return{people,households,familyEdges:[...familyEdges,...dynamicRelations.filter(x=>['parent','child','sibling','partner'].includes(x.type))],beliefs,social:{...social,edges:allEdges},rel,incoming};
 }
 function absoluteDay(calendar){return (calendar.year-1)*365+calendar.dayOfYear;}
 function currentAge(c){
@@ -299,7 +301,7 @@ function advanceCalendar(){
 }
 
 function institutionCandidateScore(country,c,data){
- const incoming=(data.social.edges||[]).filter(e=>e.to===c.citizenId);
+ const incoming=data.incoming?.[c.citizenId]||[];
  const respect=incoming.length?incoming.reduce((a,e)=>a+(e.respect||50),0)/incoming.length:45;
  const trust=incoming.length?incoming.reduce((a,e)=>a+(e.trust||50),0)/incoming.length:45;
  const ec=effective(c,country);
