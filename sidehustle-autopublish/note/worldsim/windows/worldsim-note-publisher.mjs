@@ -51,13 +51,14 @@ async function publicItems() {
   }
   return out;
 }
-async function verifyPublic(key, title) {
+async function verifyPublic(key, title, tags=[]) {
   const url='https://note.com/'+ACCOUNT+'/n/'+key;
   for(let i=0;i<12;i++){
     const r=await fetch(url+'?verify='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-verify/1.0'}});
     if(r.ok){
       const html=await r.text();
-      if(html.includes(title) && !/購入して続きをみる|この記事を購入|購入手続き/.test(html)) return url;
+      const tagsOk=(tags||[]).every(t=>html.includes(String(t).replace(/^#/,'')));
+      if(html.includes(title) && tagsOk && !/購入して続きをみる|この記事を購入|購入手続き/.test(html)) return url;
     }
     await sleep(1500);
   }
@@ -159,6 +160,44 @@ async function setCover(page, imagePath) {
   if(await save.count()) await save.click({force:true});
   await sleep(1300);
 }
+async function setHashtags(page,tags){
+  const clean=[...new Set((tags||[]).map(x=>String(x).replace(/^#/,'').trim()).filter(Boolean))].slice(0,10);
+  if(!clean.length) throw new Error('HASHTAGS_REQUIRED');
+  const selectors=[
+    'input[placeholder*="ハッシュタグ"]',
+    'input[aria-label*="ハッシュタグ"]',
+    'input[placeholder*="タグ"]',
+    'input[aria-label*="タグ"]'
+  ];
+  let input=null;
+  for(const sel of selectors){
+    const candidates=page.locator(sel);
+    const n=await candidates.count();
+    for(let i=0;i<n;i++){
+      if(await candidates.nth(i).isVisible().catch(()=>false)){input=candidates.nth(i);break;}
+    }
+    if(input)break;
+  }
+  if(!input){
+    const label=page.getByText(/ハッシュタグ/,{exact:false}).first();
+    if(await label.count()){
+      const scope=label.locator('xpath=..');
+      const c=scope.locator('input').first();
+      if(await c.count()&&await c.isVisible().catch(()=>false))input=c;
+    }
+  }
+  if(!input)throw new Error('HASHTAG_INPUT_NOT_FOUND');
+  for(const tag of clean){
+    await input.click();
+    await input.fill(tag).catch(async()=>{await page.keyboard.press('Control+A');await page.keyboard.insertText(tag);});
+    await page.keyboard.press('Enter');
+    await sleep(180);
+  }
+  const body=norm(await page.locator('body').innerText().catch(()=>''));
+  const missing=clean.filter(t=>!body.includes(t));
+  if(missing.length)throw new Error('HASHTAG_UI_VERIFY_FAILED '+missing.join(','));
+  return clean;
+}
 async function createAndPublish(context, item, md) {
   const page=context.pages()[0]||await context.newPage();
   await ensureAuth(page);
@@ -190,6 +229,8 @@ async function createAndPublish(context, item, md) {
     if(await c.count()){await c.click().catch(()=>{});break;}
   }
 
+  const appliedTags=await setHashtags(page,item.tags);
+
   const pubs=[
     page.getByRole('button',{name:'公開する',exact:true}).first(),
     page.getByRole('button',{name:'投稿する',exact:true}).first(),
@@ -202,7 +243,7 @@ async function createAndPublish(context, item, md) {
   }
   if(!clicked) throw new Error('PUBLISH_BUTTON_NOT_FOUND');
   await sleep(1800);
-  const url=await verifyPublic(key,item.title);
+  const url=await verifyPublic(key,item.title,appliedTags);
   if(!url) throw new Error('PUBLIC_VERIFY_FAILED '+item.id);
   return {key,url};
 }
