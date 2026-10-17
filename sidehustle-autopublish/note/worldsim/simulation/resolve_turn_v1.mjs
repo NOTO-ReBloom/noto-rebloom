@@ -34,6 +34,11 @@ function loadCountry(country){
   if(!people[n.citizenId])people[n.citizenId]=structuredClone(n.profile||n);
  }
  const dynamicRelations=(state.roster.dynamicRelationships||[]).filter(x=>x.countryId===country);
+ for(const [hid,ho] of Object.entries(state.householdOverlays?.[country]||{})){
+  if(households[hid]&&Array.isArray(ho.newMemberIds)){
+   for(const id of ho.newMemberIds)if(!households[hid].memberIds.includes(id))households[hid].memberIds.push(id);
+  }
+ }
  const rel={};for(const e of [...social.edges,...dynamicRelations])rel[e.from+'|'+e.to]=e;
  return{people,households,familyEdges:[...familyEdges,...dynamicRelations.filter(x=>['parent','child','sibling','partner'].includes(x.type))],beliefs,social:{...social,edges:[...social.edges,...dynamicRelations]},rel};
 }
@@ -133,7 +138,7 @@ function applyOverlay(country,id,delta,memory){
 }
 function applyHouseholdOverlay(country,householdId,delta,memory){
  const m=(state.householdOverlays[country]??={});
- const o=(m[householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,memories:[]});
+ const o=(m[householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],memories:[]});
  o.foodDaysOffset=round(o.foodDaysOffset+(delta.foodDays||0),3);
  o.debtOffset=round(o.debtOffset+(delta.debt||0),3);
  o.stressOffset=round(o.stressOffset+(delta.stress||0),3);
@@ -185,6 +190,11 @@ function foodBalance(country,data){
  const pop=state.countries[country].population,consumption=pop*7,delta=(production-consumption)/Math.max(1,pop);
  return{productionPersonDays:round(production,1),consumptionPersonDays:round(consumption,1),reserveDaysDelta:round(delta,3),seasonModifier:season,weatherModifier:round(wx,3)};
 }
+const NEWBORN_NAMES={
+ ARCUS:['Eren','Sela','Tovin','Mael','Nara','Oren','Lio','Cassa','Venn','Sorin','Talin','Mara','Corin','Dara','Ira','Kelan','Ronel','Ari','Vesna','Joren','Marek','Elia','Rovan','Saren','Neris'],
+ MIREA:['Nalia','Emon','Suri','Lema','Aven','Risa','Talen','Meri','Ilan','Sena','Aral','Nora','Vela','Eli','Mira','Ona','Tesa','Nemi','Sava','Malen','Rina','Ereni'],
+ VALD:['Bren','Kora','Darek','Sivra','Torv','Neris','Varek','Ossa','Kelan','Runa','Maror','Drovin','Fena','Karel','Velka','Saren','Orm','Hela','Tarn','Ves','Brana','Korin']
+};
 function makeNewborn(country,mother,partnerId,household,r){
  const father=partnerId?dataScope?.people?.[partnerId]:null;
  const prefix=country==='ARCUS'?'ARC':country==='MIREA'?'MIR':'VAL';
@@ -215,7 +225,7 @@ function makeNewborn(country,mother,partnerId,household,r){
  const bornAbsoluteDay=absoluteDay(state.calendar)+ri(r,1,7);
  return{
   citizenId:id,countryId:country,householdId:household.householdId,settlementId:mother.settlementId,
-  givenName:'Unnamed',familyName:mother.familyName,sex:r()<.5?'female':'male',ageYears:0,ageDays:0,bornTurn:turn,bornAbsoluteDay,
+  givenName:NEWBORN_NAMES[country][Math.floor(r()*NEWBORN_NAMES[country].length)],familyName:mother.familyName,sex:r()<.5?'female':'male',ageYears:0,ageDays:0,bornTurn:turn,bornAbsoluteDay,
   parentIds:[mother.citizenId,partnerId].filter(Boolean),
   birthDayOfYear:((bornAbsoluteDay-1)%365)+1,
   occupationId:'child',occupation:{id:'child',sector:'dependent',yearsExperience:0,skill:0,status:'dependent'},
@@ -260,6 +270,8 @@ function simulateDemography(country,data){
    const fatherOrPartner=partner[mother.citizenId];
    const newborn=makeNewborn(country,mother,fatherOrPartner,h,r);
    births.push(newborn);
+   const ho=(state.householdOverlays[country][h.householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],memories:[]});
+   ho.newMemberIds=ho.newMemberIds||[]; if(!ho.newMemberIds.includes(newborn.citizenId))ho.newMemberIds.push(newborn.citizenId);
    const relationshipBase={countryId:country,turnCreated:turn,trust:90,affection:92,fear:5,obligation:80,respect:35,envy:0,grievance:0,contactFrequency:98};
    state.roster.dynamicRelationships=state.roster.dynamicRelationships||[];
    state.roster.dynamicRelationships.push({...relationshipBase,from:mother.citizenId,to:newborn.citizenId,type:'parent'},{...relationshipBase,from:newborn.citizenId,to:mother.citizenId,type:'child'});
