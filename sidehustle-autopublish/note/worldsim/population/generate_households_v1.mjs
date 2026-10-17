@@ -39,10 +39,29 @@ const NAME = {
  }
 };
 
+const CURATED_NAMES={
+ ARCUS:{
+  given:['Eren','Sela','Tovin','Mael','Nara','Oren','Lio','Cassa','Venn','Sorin','Talin','Mara','Corin','Dara','Ira','Kelan','Ronel','Ari','Vesna','Joren','Marek','Elia','Rovan','Saren','Neris','Tessa','Orin','Vela','Calen','Risa','Dorin','Miren','Sola','Kera','Toren','Lena','Varin','Elda','Caro','Nela'],
+  family:['Vale','Rinn','Teren','Sol','Varek','Dain','Coren','Marel','Belan','Ren','Falor','Serin','Noren','Calen','Eld','Vin','Ordan','Sel','Toren','Varo','Laren','Cerin','Darel','Miren','Soval','Ralen','Vennor','Taris','Orel','Cassen']
+ },
+ MIREA:{
+  given:['Nalia','Emon','Suri','Lema','Aven','Risa','Talen','Meri','Ilan','Sena','Aral','Nora','Vela','Eli','Mira','Ona','Tesa','Lio','Nemi','Sava','Malen','Rina','Ereni','Lavi','Sela','Oreni','Tari','Nela','Ami','Veni','Lora','Iria','Soren','Meli','Aren','Tila','Reni','Suma','Elen','Niva'],
+  family:['Arel','Nima','Soren','Lavi','Elar','Moran','Tesa','Veli','Roa','Sena','Ive','Nora','Ami','Lera','Oren','Meli','Taren','Sali','Riva','Neral','Aveni','Mora','Varen','Eles','Tavin','Sora','Neli','Rama','Vela','Iren']
+ },
+ VALD:{
+  given:['Bren','Kora','Darek','Sivra','Torv','Neris','Varek','Ossa','Kelan','Runa','Maror','Drovin','Fena','Karel','Velka','Saren','Orm','Hela','Tarn','Ves','Brana','Korin','Derva','Sora','Narek','Tova','Reni','Oskar','Vara','Kelm','Dorin','Raska','Siven','Mara','Toren','Kesa','Varo','Nora','Dren','Olen'],
+  family:['Kelm','Varn','Osk','Draun','Senn','Volk','Reth','Marn','Breker','Tor','Harn','Vesk','Orn','Krav','Del','Rauk','Koren','Dren','Valk','Sorn','Treva','Nesk','Varik','Olen','Kars','Renn','Dorn','Skel','Voren','Tarn']
+ }
+};
 function generatedName(country,rng,familyHint=null){
- const n=NAME[country];
- const given=pick(rng,n.givenA)+pick(rng,n.givenB);
- const family=familyHint || pick(rng,n.famA)+pick(rng,n.famB);
+ const n=CURATED_NAMES[country];
+ const givenRoll=rng(); rng(); // preserve the original two RNG draws used by given-name generation
+ const given=n.given[Math.floor(givenRoll*n.given.length)];
+ let family=familyHint;
+ if(!familyHint){
+   const familyRoll=rng(); rng(); // preserve the original two RNG draws used by family-name generation
+   family=n.family[Math.floor(familyRoll*n.family.length)];
+ }
  return {givenName:given,familyName:family};
 }
 function ageBand(a){ if(a<=4)return'0-4'; if(a<=14)return'5-14'; if(a<=24)return'15-24'; if(a<=44)return'25-44'; if(a<=64)return'45-64'; return'65+'; }
