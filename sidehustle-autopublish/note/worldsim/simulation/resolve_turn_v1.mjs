@@ -432,6 +432,102 @@ function applyLifeStageTransitions(country,data,turnEvents){
  }
 }
 
+function ensureHouseholdOverlay(country,householdId){
+ const m=(state.householdOverlays[country]??={});
+ return (m[householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],departedMemberIds:[],memories:[]});
+}
+function moveCitizenHousehold(country,citizenId,fromHouseholdId,toHouseholdId){
+ if(!fromHouseholdId||!toHouseholdId||fromHouseholdId===toHouseholdId)return;
+ const cm=(state.citizenOverlays[country]??={});
+ const co=(cm[citizenId]??={stressOffset:0,healthOffset:0,memories:[]});
+ co.householdId=toHouseholdId;
+ co.memories=co.memories||[];
+ co.memories.push({turn,kind:'household_move',fromHouseholdId,toHouseholdId});
+ if(co.memories.length>30)co.memories=co.memories.slice(-30);
+
+ const old=ensureHouseholdOverlay(country,fromHouseholdId);
+ old.departedMemberIds=old.departedMemberIds||[];
+ if(!old.departedMemberIds.includes(citizenId))old.departedMemberIds.push(citizenId);
+ old.newMemberIds=(old.newMemberIds||[]).filter(id=>id!==citizenId);
+
+ const next=ensureHouseholdOverlay(country,toHouseholdId);
+ next.newMemberIds=next.newMemberIds||[];
+ if(!next.newMemberIds.includes(citizenId))next.newMemberIds.push(citizenId);
+ next.departedMemberIds=(next.departedMemberIds||[]).filter(id=>id!==citizenId);
+}
+function householdScore(h){
+ if(!h)return 0;
+ const e=h.economy||{};
+ return (e.dwellingQuality||50)*.45+(e.foodDays||60)*.20+(e.fuelDays||60)*.12+(e.cashLikeReserve||0)*.08-Math.max(0,e.debtUnits||0)*.12;
+}
+function formPartnerships(country,data,turnEvents){
+ state.roster.dynamicRelationships=state.roster.dynamicRelationships||[];
+ const inactive=new Set(state.roster.inactiveCitizenIds||[]);
+ const activePartner=new Map();
+ for(const e of data.familyEdges){
+  if(e.type!=='partner'||inactive.has(e.from)||inactive.has(e.to))continue;
+  activePartner.set(e.from,e.to);
+ }
+ const closeFamily=new Set();
+ for(const e of data.familyEdges){
+  if(['parent','child','sibling','grandparent','grandchild'].includes(e.type)){
+   closeFamily.add(e.from+'|'+e.to);closeFamily.add(e.to+'|'+e.from);
+  }
+ }
+ const candidates=Object.values(data.people).map(x=>effective(x,country)).filter(c=>{
+  if(inactive.has(c.citizenId)||activePartner.has(c.citizenId))return false;
+  if(c.ageYears<19||c.ageYears>45)return false;
+  if(['dependent','student'].includes(c.occupation?.status))return false;
+  return true;
+ }).sort((a,b)=>a.citizenId.localeCompare(b.citizenId));
+ const available=new Map(candidates.map(c=>[c.citizenId,c]));
+ const paired=new Set();
+
+ for(const c of candidates){
+  if(paired.has(c.citizenId)||!available.has(c.citizenId))continue;
+  const attempt=rngFor(state.worldId+'|PARTNER_ATTEMPT|'+turn+'|'+c.citizenId);
+  if(attempt()>=.0022)continue;
+
+  let best=null;
+  for(const other of candidates){
+   if(other.citizenId===c.citizenId||paired.has(other.citizenId)||!available.has(other.citizenId))continue;
+   if(other.settlementId!==c.settlementId||other.householdId===c.householdId)continue;
+   if(Math.abs(other.ageYears-c.ageYears)>10)continue;
+   if(closeFamily.has(c.citizenId+'|'+other.citizenId))continue;
+
+   const familySimilarity=100-Math.abs((c.values?.family??50)-(other.values?.family??50));
+   const communitySimilarity=100-Math.abs((c.values?.community??50)-(other.values?.community??50));
+   const ageFit=100-Math.abs(other.ageYears-c.ageYears)*8;
+   const agree=((c.psychology?.bigFive?.agreeableness??50)+(other.psychology?.bigFive?.agreeableness??50))/2;
+   const trust=((c.psychology?.actionTendencies?.trustBaseline??50)+(other.psychology?.actionTendencies?.trustBaseline??50))/2;
+   const rr=rngFor(state.worldId+'|PARTNER_MATCH|'+c.citizenId+'|'+other.citizenId);
+   const score=familySimilarity*.24+communitySimilarity*.16+ageFit*.22+agree*.18+trust*.16+(rr()-.5)*8;
+   if(!best||score>best.score)best={other,score};
+  }
+  if(!best||best.score<48)continue;
+
+  const other=best.other;
+  paired.add(c.citizenId);paired.add(other.citizenId);
+  activePartner.set(c.citizenId,other.citizenId);activePartner.set(other.citizenId,c.citizenId);
+
+  const ch=data.households[c.householdId],oh=data.households[other.householdId];
+  const cScore=householdScore(ch),oScore=householdScore(oh);
+  let target=cScore>=oScore?c.householdId:other.householdId;
+  let mover=target===c.householdId?other:c;
+  if(!data.households[target]){target=c.householdId;mover=other;}
+  moveCitizenHousehold(country,mover.citizenId,mover.householdId,target);
+
+  const trust=Math.round(clamp(56+best.score*.22));
+  const affection=Math.round(clamp(60+best.score*.25));
+  const base={countryId:country,turnCreated:turn,trust,affection,fear:4,obligation:62,respect:Math.round(clamp(45+best.score*.18)),envy:4,grievance:0,contactFrequency:82};
+  state.roster.dynamicRelationships.push(
+   {...base,from:c.citizenId,to:other.citizenId,type:'partner'},
+   {...base,from:other.citizenId,to:c.citizenId,type:'partner'}
+  );
+  turnEvents.push({turn,country,type:'partnership_formed',citizenIds:[c.citizenId,other.citizenId],settlementId:c.settlementId,movedCitizenId:mover.citizenId,targetHouseholdId:target,compatibilityScore:round(best.score,2)});
+ }
+}
+
 function institutionCandidateScore(country,c,data){
  const incoming=data.incoming?.[c.citizenId]||[];
  const respect=incoming.length?incoming.reduce((a,e)=>a+(e.respect||50),0)/incoming.length:45;
@@ -558,7 +654,11 @@ for(const [rid,d] of Object.entries(catalog.resourceWeeklyBaseline||{}))if(state
 state.worldDynamic.weatherHistory.push({turn,calendar:{year:calendarBefore.year,dayOfYear:calendarBefore.dayOfYear,season:calendarBefore.season,seasonStage:calendarBefore.seasonStage},...input.weather});
 advanceCalendar();
 turnEvents.push({turn,type:'calendar_advance',from:{year:calendarBefore.year,dayOfYear:calendarBefore.dayOfYear,absoluteDay:calendarBefore.absoluteDay,season:calendarBefore.season},to:{year:state.calendar.year,dayOfYear:state.calendar.dayOfYear,absoluteDay:state.calendar.absoluteDay,season:state.calendar.season},days:7});
-for(const country of ['ARCUS','MIREA','VALD'])applyLifeStageTransitions(country,loadCountry(country),turnEvents);
+for(const country of ['ARCUS','MIREA','VALD']){
+ const dynamicData=loadCountry(country);
+ applyLifeStageTransitions(country,dynamicData,turnEvents);
+ formPartnerships(country,loadCountry(country),turnEvents);
+}
 contactCheck();
 state.eventLog.push(...turnEvents);
 state.publicationReady=turnEvents.some(e=>e.type==='policy_vote'&&e.passed)||state.contact.firstContactOccurred;
