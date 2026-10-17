@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "turn": 1,
+  "weather": {
+    "ARCUS": {
+      "coastalWindIndex": 53,
+      "rainIndex": 68,
+      "summary": "mostly workable coast"
+    },
+    "MIREA": {
+      "upperCatchmentRainIndex": 72,
+      "riverPressureIndex": 67,
+      "summary": "several wet periods"
+    },
+    "VALD": {
+      "coldPressureIndex": 38,
+      "snowRiskIndex": 24,
+      "summary": "cool highland week without hard freeze"
+    }
+  },
+  "events": [
+    {
+      "turn": 1,
+      "country": "ARCUS",
+      "type": "policy_vote",
+      "policyId": "A_TIMBER_REPAIR",
+      "title": "船舶修理向け木材を一時優先配分する",
+      "passed": true,
+      "yes": 10,
+      "no": 0,
+      "abstain": 2,
+      "yesShare": 1
+    },
+    {
+      "turn": 1,
+      "country": "ARCUS",
+      "type": "policy_vote",
+      "policyId": "A_INLAND_ROAD_REPAIR",
+      "title": "港とヴァレン平地を結ぶ道の補修を前倒しする",
+      "passed": true,
+      "yes": 11,
+      "no": 0,
+      "abstain": 1,
+      "yesShare": 1
+    },
+    {
+      "turn": 1,
+      "country": "ARCUS",
+      "type": "food_balance",
+      "productionPersonDays": 11852.2,
+      "consumptionPersonDays": 12922,
+      "reserveDaysDelta": -0.58,
+      "seasonModifier": 0.95,
+      "weatherModifier": 1
+    },
+    {
+      "turn": 1,
+      "country": "MIREA",
+      "type": "policy_vote",
+      "policyId": "M_GATE_CLEARING",
+      "title": "中流域の灌漑門と排水路を共同整備する",
+      "passed": true,
+      "yes": 7,
+      "no": 0,
+      "abstain": 3,
+      "yesShare": 1
+    },
+    {
+      "turn": 1,
+      "country": "MIREA",
+      "type": "policy_vote",
+      "policyId": "M_SPILLWAY_SURVEY",
+      "title": "放水路を造る前に流量・湿地影響を測る",
+      "passed": true,
+      "yes": 9,
+      "no": 0,
+      "abstain": 1,
+      "yesShare": 1
+    },
+    {
+      "turn": 1,
+      "country": "MIREA",
+      "type": "food_balance",
+      "productionPersonDays": 18060,
+      "consumptionPersonDays": 15498,
+      "reserveDaysDelta": 1.157,
+      "seasonModifier": 1,
+      "weatherModifier": 1.03
+    },
+    {
+      "turn": 1,
+      "country": "VALD",
+      "type": "policy_vote",
+      "policyId": "V_MINE_INSPECTION",
+      "title": "オスク鉱谷の坑道支保を2日間点検する",
+      "passed": true,
+      "yes": 11,
+      "no": 0,
+      "abstain": 1,
+      "yesShare": 1
+    },
+    {
+      "turn": 1,
+      "country": "VALD",
+      "type": "policy_vote",
+      "policyId": "V_FUEL_BUFFER",
+      "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
+      "passed": true,
+      "yes": 12,
+      "no": 0,
+      "abstain": 0,
+      "yesShare": 1
+    },
+    {
+      "turn": 1,
+      "country": "VALD",
+      "type": "food_balance",
+      "productionPersonDays": 9188.2,
+      "consumptionPersonDays": 9737,
+      "reserveDaysDelta": -0.395,
+      "seasonModifier": 0.68,
+      "weatherModifier": 1
+    },
+    {
+      "turn": 1,
+      "country": "VALD",
+      "type": "demography",
+      "births": 0,
+      "deaths": 1
+    }
+  ]
+}

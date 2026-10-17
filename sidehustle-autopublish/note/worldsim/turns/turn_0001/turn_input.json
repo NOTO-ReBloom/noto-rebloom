@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "worldId": "LYRA-001",
+  "turn": 1,
+  "previousTurn": 0,
+  "preparedFromStateHash": "38032ec9b73c54c1594e2ebb00eeb0b038303c3b3a96b0063b07c75a0722f84c",
+  "weather": {
+    "ARCUS": {
+      "coastalWindIndex": 53,
+      "rainIndex": 68,
+      "summary": "mostly workable coast"
+    },
+    "MIREA": {
+      "upperCatchmentRainIndex": 72,
+      "riverPressureIndex": 67,
+      "summary": "several wet periods"
+    },
+    "VALD": {
+      "coldPressureIndex": 38,
+      "snowRiskIndex": 24,
+      "summary": "cool highland week without hard freeze"
+    }
+  },
+  "proposals": {
+    "ARCUS": [
+      {
+        "policyId": "A_TIMBER_REPAIR",
+        "title": "船舶修理向け木材を一時優先配分する",
+        "topic": "repair",
+        "urgency": 64.14,
+        "sponsorId": "ARC-0010",
+        "reason": "selected from current material conditions, local risk and citizen information"
+      },
+      {
+        "policyId": "A_INLAND_ROAD_REPAIR",
+        "title": "港とヴァレン平地を結ぶ道の補修を前倒しする",
+        "topic": "infrastructure",
+        "urgency": 49,
+        "sponsorId": "ARC-0667",
+        "reason": "selected from current material conditions, local risk and citizen information"
+      }
+    ],
+    "MIREA": [
+      {
+        "policyId": "M_GATE_CLEARING",
+        "title": "中流域の灌漑門と排水路を共同整備する",
+        "topic": "river",
+        "urgency": 67.2,
+        "sponsorId": "MIR-1162",
+        "reason": "selected from current material conditions, local risk and citizen information"
+      },
+      {
+        "policyId": "M_SPILLWAY_SURVEY",
+        "title": "放水路を造る前に流量・湿地影響を測る",
+        "topic": "river",
+        "urgency": 56.29,
+        "sponsorId": "MIR-0011",
+        "reason": "selected from current material conditions, local risk and citizen information"
+      }
+    ],
+    "VALD": [
+      {
+        "policyId": "V_MINE_INSPECTION",
+        "title": "オスク鉱谷の坑道支保を2日間点検する",
+        "topic": "mining",
+        "urgency": 65.73,
+        "sponsorId": "VAL-1119",
+        "reason": "selected from current material conditions, local risk and citizen information"
+      },
+      {
+        "policyId": "V_FUEL_BUFFER",
+        "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
+        "topic": "reserve",
+        "urgency": 43.4,
+        "sponsorId": "VAL-1119",
+        "reason": "selected from current material conditions, local risk and citizen information"
+      }
+    ]
+  }
+}
