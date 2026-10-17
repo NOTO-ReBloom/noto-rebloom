@@ -124,13 +124,18 @@ jobs:
             }
           }
 
-          q.publicInventoryCount=inventory.length;
-          q.lastPublicAuditAt=new Date().toISOString();
-          q.lastPublicAuditLaunchVerified=allLaunchVerified;
-          if(changed)q.updatedAt=new Date().toISOString();
-
-          fs.writeFileSync(qPath,JSON.stringify(q,null,2)+'\n');
-          fs.writeFileSync(rPath,JSON.stringify(req,null,2)+'\n');
+          const auditChanged=q.publicInventoryCount!==inventory.length || q.lastPublicAuditLaunchVerified!==allLaunchVerified;
+          if(auditChanged){
+            q.publicInventoryCount=inventory.length;
+            q.lastPublicAuditAt=new Date().toISOString();
+            q.lastPublicAuditLaunchVerified=allLaunchVerified;
+            changed=true;
+          }
+          if(changed){
+            q.updatedAt=new Date().toISOString();
+            fs.writeFileSync(qPath,JSON.stringify(q,null,2)+'\n');
+            fs.writeFileSync(rPath,JSON.stringify(req,null,2)+'\n');
+          }
           console.log('WORLDSIM_PUBLIC_CHECK_DONE inventory='+inventory.length+' launchVerified='+allLaunchVerified+' rebuildStatus='+req.status);
           NODE
           node verify-worldsim.mjs
