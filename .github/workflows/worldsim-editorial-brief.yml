@@ -56,7 +56,7 @@ jobs:
         run: |
           git config user.name 'worldsim-editorial-brief'
           git config user.email 'actions@users.noreply.github.com'
-          git add sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json
+          git add sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json sidehustle-autopublish/note/worldsim/editorial/launch_brief_compact.json
           if git diff --cached --quiet; then echo 'No brief change'; exit 0; fi
           git commit -m 'Generate LYRA launch editorial brief'
           git pull --rebase origin main
