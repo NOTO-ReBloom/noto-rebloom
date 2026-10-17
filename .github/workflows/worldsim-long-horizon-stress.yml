@@ -157,6 +157,9 @@ jobs:
                   for hid,ho in hos.items():
                       new=set(ho.get('newMemberIds',[])); departed=set(ho.get('departedMemberIds',[]))
                       assert not (new & departed),(t,country,hid,'same member added and departed')
+              if t>104:
+                  assert all(e.get('turn') is None or e.get('turn')>=t-104 for e in state.get('eventLog',[])),(t,'event log retention')
+                  assert all(e.get('turn',t)>=t-104 for e in state['worldDynamic'].get('weatherHistory',[])),(t,'weather retention')
               ids=[x['citizenId'] for x in state['roster']['newCitizens']]
               assert len(ids)==len(set(ids)),(t,'duplicate newborn roster')
               inactive=state['roster']['inactiveCitizenIds']
