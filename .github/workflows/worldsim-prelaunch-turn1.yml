@@ -1,0 +1,151 @@
+name: Worldsim prelaunch Turn 1 rebuild
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/simulation/prelaunch_turn1_request.json'
+      - '.github/workflows/worldsim-prelaunch-turn1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-prelaunch-turn1
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Read prelaunch gate
+        shell: python
+        run: |
+          import json, os
+          req=json.load(open('sidehustle-autopublish/note/worldsim/simulation/prelaunch_turn1_request.json'))
+          rebuild=json.load(open('sidehustle-autopublish/note/worldsim/rebuild_request.json'))
+          active=req.get('status')=='requested'
+          assert rebuild.get('status')!='completed','Turn 1 rebuild is forbidden after public rebuild completion'
+          assert rebuild.get('launchVerified') is not True,'Turn 1 rebuild is forbidden after launch verification'
+          print('active=',active,'nonce=',req.get('requestNonce'))
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              f.write('PRELAUNCH_ACTIVE='+('true' if active else 'false')+'\n')
+
+      - name: Rebuild Turn 1 only from canonical Turn 0
+        shell: bash
+        run: |
+          if [ "$PRELAUNCH_ACTIVE" != "true" ]; then echo 'Prelaunch gate is closed'; exit 0; fi
+          rm -rf             sidehustle-autopublish/note/worldsim/state/turn_0001             sidehustle-autopublish/note/worldsim/turns/turn_0001             sidehustle-autopublish/note/worldsim/editorial/generated/turn_0001
+          export WORLDSIM_TURN=1
+          node sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs
+          node sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs
+          WORLDSIM_EDITORIAL_DRY_RUN=1 node sidehustle-autopublish/note/worldsim/editorial/generate_turn_posts_v1.mjs
+          node sidehustle-autopublish/note/worldsim/editorial/generate_launch_briefs_v1.mjs
+
+      - name: Final Turn 1 QA
+        shell: python
+        run: |
+          import json, pathlib
+          if __import__('os').environ.get('PRELAUNCH_ACTIVE')!='true':
+              print('gate closed'); raise SystemExit(0)
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim')
+          s0=json.loads((root/'state/turn_0000/world_state.json').read_text())
+          s1=json.loads((root/'state/turn_0001/world_state.json').read_text())
+          inp=json.loads((root/'turns/turn_0001/turn_input.json').read_text())
+          votes=json.loads((root/'turns/turn_0001/votes.json').read_text())
+          demo=json.loads((root/'turns/turn_0001/demography.json').read_text())
+          ev=json.loads((root/'turns/turn_0001/events.json').read_text())
+          brief=json.loads((root/'editorial/launch_brief_compact.json').read_text())
+          manifest=json.loads((root/'editorial/generated/turn_0001/manifest.json').read_text())
+
+          assert s0['worldId']=='LYRA-001' and s1['worldId']=='LYRA-001'
+          assert s0['calendar']['absoluteDay']==239
+          assert s1['calendar']['absoluteDay']==246
+          assert s1['calendar']['year']==1 and s1['calendar']['dayOfYear']==246
+          assert s1['calendar']['season']=='autumn'
+          assert s1['calendar']['seasonStage']=='early_autumn'
+          assert s1['calendar']['turn']==1 and s1['turn']==1
+          assert inp['turn']==1 and inp['previousTurn']==0
+          assert inp['weather']['calendar']['season']=='summer'
+          assert set(votes)=={'ARCUS','MIREA','VALD'}
+
+          births=[]; deaths=[]; conceptions=[]
+          for country,d in demo['countries'].items():
+              births += d['births']; deaths += d['deaths']; conceptions += d.get('conceptions',[])
+              assert d.get('activePregnanciesAfterTurn',0)>=0
+          assert len({x['citizenId'] for x in births})==len(births)
+          assert len({x['citizenId'] for x in deaths})==len(deaths)
+          for b in births:
+              assert 239 < b['bornAbsoluteDay'] <= 246,(b['citizenId'],b['bornAbsoluteDay'])
+          for p in s1['demographyState']['pregnancies'].values():
+              assert p['dueAbsoluteDay']>246
+              assert p['dueAbsoluteDay']>p['conceptionAbsoluteDay']
+
+          for country,rows in votes.items():
+              assert len(rows)<=2
+              for v in rows:
+                  assert 0<=v['yesShare']<=1
+                  assert v['yes']+v['no']+v['abstain']==len(v['votes'])
+                  if v['passed']:
+                      assert v['yesShare']>=v['threshold']
+                      if v['dualMajority']: assert v['settlementMajority']
+
+          for country,c in s1['countries'].items():
+              assert c['population']>100
+              assert 0<c['meanFoodReserveDays']<250
+              assert c['institution']['nationalBody']['members']
+              assert c['institution']['executive']['memberIds']
+          for rid,res in s1['worldDynamic']['resources'].items():
+              assert 0<=res['stockIndex']<=100
+
+          assert brief['turn']==1
+          assert brief['world']['calendarBefore']['absoluteDay']==239
+          assert brief['world']['calendarAfter']['absoluteDay']==246
+          assert manifest['turn']==1
+          assert len(manifest['stories'])<=2
+
+          calendar_events=[x for x in ev['events'] if x.get('type')=='calendar_advance']
+          assert len(calendar_events)==1
+          assert calendar_events[0]['from']['absoluteDay']==239
+          assert calendar_events[0]['to']['absoluteDay']==246
+          print('FINAL_TURN1_QA_OK',{
+            'calendar':s1['calendar'],
+            'births':len(births),'deaths':len(deaths),'conceptions':len(conceptions),
+            'votes':{k:[(v['policyId'],v['yes'],v['no'],v['abstain'],v['passed']) for v in rows] for k,rows in votes.items()}
+          })
+
+      - name: Mark request complete and commit canonical Turn 1
+        shell: bash
+        run: |
+          if [ "$PRELAUNCH_ACTIVE" != "true" ]; then exit 0; fi
+          python - <<'PY'
+          import json, pathlib, datetime
+          p=pathlib.Path('sidehustle-autopublish/note/worldsim/simulation/prelaunch_turn1_request.json')
+          d=json.loads(p.read_text())
+          d['status']='completed'
+          d['lastCompletedAt']=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')
+          d['reason']='Canonical Turn 1 rebuilt from final Turn 0 and passed final prelaunch QA.'
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+          git config user.name 'worldsim-prelaunch-builder'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A             sidehustle-autopublish/note/worldsim/state/turn_0001             sidehustle-autopublish/note/worldsim/turns/turn_0001             sidehustle-autopublish/note/worldsim/editorial/generated/turn_0001             sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json             sidehustle-autopublish/note/worldsim/editorial/launch_brief_compact.json             sidehustle-autopublish/note/worldsim/simulation/prelaunch_turn1_request.json
+          if git diff --cached --quiet; then echo 'Turn 1 already canonical'; exit 0; fi
+          git commit -m 'Rebuild final prelaunch LYRA Turn 1'
+          for TRY in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            echo "prelaunch Turn 1 push race on attempt $TRY; retrying"
+            sleep $((TRY*2))
+          done
+          exit 1
