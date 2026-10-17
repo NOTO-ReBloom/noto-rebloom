@@ -7,7 +7,7 @@ $PublisherRel='sidehustle-autopublish/note/worldsim/windows/worldsim-note-publis
 $WipeRel='sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs'
 $RetryTask='NOTE_WorldSimMigration_15min'
 $PublishTask='NOTE_WorldSimPublish_1905'
-$LegacyTasks=@('NOTE_RemoteQueue_30min','NOTE_FreePublish_0805','NOTE_FreePublish_1705','note自動投稿_朝10時','note自動投稿_夜19時')
+$LegacyTasks=@('NOTE_RemoteQueue_30min','NOTE_FreePublish_0805','NOTE_FreePublish_1705')
 
 $NodeCandidates=@(
   'C:\Program Files\nodejs\node.exe',
@@ -41,10 +41,21 @@ function RemoteRequest(){
   Invoke-RestMethod -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='WORLDSIM-BOOTSTRAP/3.0'} -Uri ($ReqUrl+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds())
 }
 function StopLegacy(){
-  foreach($legacy in $LegacyTasks){
-    try{Stop-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue}catch{}
-    try{Disable-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue|Out-Null}catch{}
-  }
+  try{
+    $legacyTaskObjects=Get-ScheduledTask -ErrorAction SilentlyContinue|Where-Object{
+      $name=[string]$_.TaskName
+      $actionText=(($_.Actions|ForEach-Object{([string]$_.Execute)+' '+([string]$_.Arguments)}) -join ' ')
+      ($LegacyTasks -contains $name) -or (
+        $name -match '(?i)^note' -and
+        $name -notmatch '(?i)^NOTE_WorldSim' -and
+        $actionText -match '(?i)note-business|note_auto_publisher|publish_guarded|publish_once|run_note|note-remote|note-free'
+      )
+    }
+    foreach($task in $legacyTaskObjects){
+      try{Stop-ScheduledTask -TaskName $task.TaskName -ErrorAction SilentlyContinue}catch{}
+      try{Disable-ScheduledTask -TaskName $task.TaskName -ErrorAction SilentlyContinue|Out-Null}catch{}
+    }
+  }catch{}
   try{
     Get-CimInstance Win32_Process|ForEach-Object{
       $cmd=[string]$_.CommandLine
