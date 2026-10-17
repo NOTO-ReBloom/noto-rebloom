@@ -1,9 +1,11 @@
 {
   "version": 1,
-  "status": "requested",
-  "requestedTurn": 1,
-  "reason": "Run first audited live simulation turn after all preturn layers passed",
-  "requestNonce": "turn1-live-20261017-a",
+  "status": "hold",
+  "requestedTurn": 2,
+  "reason": "Turn 1 canonical. Hold until launch publication is verified.",
+  "requestNonce": "hold-after-turn1-canonical",
   "createdAt": "2026-10-17T12:35:00+09:00",
-  "requestedAt": "2026-10-17T12:40:00+09:00"
+  "requestedAt": "2026-10-17T12:40:00+09:00",
+  "lastResolvedTurn": 1,
+  "updatedAt": "2026-10-17T12:42:00+09:00"
 }
