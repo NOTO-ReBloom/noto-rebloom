@@ -25,7 +25,7 @@ const state={version:2,worldId:truth.worldId,turn:0,calendar:normalizeCalendar(t
   weatherHistory:[],
   deepHistoryEvidenceDiscovered:[]
  },
- contact:{knownPairs:[],firstContactOccurred:false},
+ contact:{knownPairs:[],pairStates:{},firstContactOccurred:false},
  roster:{newCitizens:[],inactiveCitizenIds:[]},
  citizenOverlays:{ARCUS:{},MIREA:{},VALD:{}},
  householdOverlays:{ARCUS:{},MIREA:{},VALD:{}},
