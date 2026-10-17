@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "seed": "LYRA-POPULATION-V1",
+  "totalPopulation": 5451,
+  "countries": {
+    "ARCUS": {
+      "total": 1846,
+      "ageBands": {
+        "0-4": 0.075,
+        "5-14": 0.155,
+        "15-24": 0.165,
+        "25-44": 0.305,
+        "45-64": 0.215,
+        "65+": 0.085
+      },
+      "sexRatioMale": 0.503,
+      "householdSizeTarget": 3.55,
+      "householdMix": {
+        "couple_children": 0.36,
+        "multigenerational": 0.18,
+        "couple_no_children": 0.11,
+        "single_adult": 0.12,
+        "single_parent": 0.07,
+        "elderly": 0.07,
+        "shared_workers": 0.09
+      }
+    },
+    "MIREA": {
+      "total": 2214,
+      "ageBands": {
+        "0-4": 0.082,
+        "5-14": 0.163,
+        "15-24": 0.158,
+        "25-44": 0.298,
+        "45-64": 0.212,
+        "65+": 0.087
+      },
+      "sexRatioMale": 0.497,
+      "householdSizeTarget": 3.72,
+      "householdMix": {
+        "couple_children": 0.34,
+        "multigenerational": 0.23,
+        "couple_no_children": 0.09,
+        "single_adult": 0.09,
+        "single_parent": 0.08,
+        "elderly": 0.08,
+        "shared_workers": 0.09
+      }
+    },
+    "VALD": {
+      "total": 1391,
+      "ageBands": {
+        "0-4": 0.069,
+        "5-14": 0.148,
+        "15-24": 0.151,
+        "25-44": 0.291,
+        "45-64": 0.232,
+        "65+": 0.109
+      },
+      "sexRatioMale": 0.506,
+      "householdSizeTarget": 3.86,
+      "householdMix": {
+        "couple_children": 0.31,
+        "multigenerational": 0.29,
+        "couple_no_children": 0.08,
+        "single_adult": 0.07,
+        "single_parent": 0.06,
+        "elderly": 0.09,
+        "shared_workers": 0.1
+      }
+    }
+  },
+  "realismConstraints": {
+    "parentMinimumAgeAtBirth": 18,
+    "parentMaximumAgeGapToYoungestChild": 48,
+    "spousePreferredAgeGap": [
+      -7,
+      7
+    ],
+    "isolatedMinorHouseholdsForbidden": true,
+    "minorNeedsAdultCaregiver": true,
+    "maximumOrdinaryHouseholdSize": 8,
+    "singleParentMustHaveMinorOrDependentChild": true,
+    "multigenerationalRequiresAtLeastTwoAdultGenerations": true,
+    "note": "Targets are priors. Exact realized age bands may differ slightly because valid kinship and fixed calibration citizens take precedence."
+  }
+}
