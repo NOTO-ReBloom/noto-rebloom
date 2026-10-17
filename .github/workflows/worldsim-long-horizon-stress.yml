@@ -64,6 +64,7 @@ jobs:
           rotations=births=deaths=conceptions=cancelled=life_transitions=partnerships=birthdays=contact_stage_changes=exchanges=misunderstandings=0
           seasons=set()
           food_modifiers={c:[] for c in countries}
+          fuel_series={c:[] for c in countries}
           calendar_abs=[]
           newborn_ids=set()
           dead_ids=set()
@@ -97,6 +98,8 @@ jobs:
                   assert c['population']>100,(t,country,c['population'])
                   assert sum(x['population'] for x in c['settlementStates'].values())==c['population'],(t,country,'settlement population drift')
                   assert 0<c['meanFoodReserveDays']<250,(t,country,c['meanFoodReserveDays'])
+                  assert 0<c['meanFuelReserveDays']<250,(t,country,c['meanFuelReserveDays'])
+                  fuel_series[country].append(c['meanFuelReserveDays'])
                   assert 0<c['meanHealth']<=100
                   assert 0<=c['meanStress']<=100
                   assert c['institution']['nationalBody']['members'],(t,country)
@@ -165,6 +168,8 @@ jobs:
               assert len(seen)>=3,(country,seen)
           for country,mods in food_modifiers.items():
               assert max(mods)-min(mods)>=.15,(country,min(mods),max(mods))
+          for country,vals in fuel_series.items():
+              assert max(vals)-min(vals)>=3,(country,'fuel did not respond to time',min(vals),max(vals))
           final=json.loads((root/'state/turn_0156/world_state.json').read_text())
           assert final['calendar']['year']>=4
           assert births>0 and deaths>0 and conceptions>0 and life_transitions>0
@@ -189,4 +194,5 @@ jobs:
           print('FINAL_DATE',final['calendar'])
           print('FINAL_POP',{k:v['population'] for k,v in final['countries'].items()})
           print('FINAL_FOOD',{k:v['meanFoodReserveDays'] for k,v in final['countries'].items()})
+          print('FINAL_FUEL',{k:v['meanFuelReserveDays'] for k,v in final['countries'].items()})
           print('FINAL_EXPLORE',{k:v['verifiedExplorationRadiusKm'] for k,v in final['countries'].items()})
