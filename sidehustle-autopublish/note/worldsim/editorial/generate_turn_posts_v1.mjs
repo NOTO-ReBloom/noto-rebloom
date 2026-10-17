@@ -176,10 +176,39 @@ function observerContactArticle(newPairs){
  return{perspective:'observer',country:null,title:title,body:lines.join('\n'),score:100,coverLabel:'世界観測記録',coverCopy:'初めて、別の文明が観測範囲に入った。',accent:'#121820'};
 }
 
+function observerStageArticle(changes){
+ const names={ARCUS:'アルカ',MIREA:'ミレア',VALD:'ヴァルド'};
+ const ch=changes[0];
+ const pair=ch.pair.map(x=>names[x]||x).join('と');
+ const direct=ch.toStage==='direct_contact';
+ const title=direct
+  ? pair+'が、初めて直接接触できる距離まで来た｜世界観測記録・第'+turn+'週'
+  : pair+'の間に、継続往来できるルートが成立した｜世界観測記録・第'+turn+'週';
+ const body=[
+  '# '+title,'',
+  '第'+turn+'週、LYRA-001の国家間接触が次の段階へ進みました。','',
+  '**'+pair+'：'+ch.fromStage+' → '+ch.toStage+'**','',
+  'これは話数に合わせて起こしたイベントではありません。両国が実際に積み上げた探索範囲と地理上の距離から、接触可能性が一段階上がったためです。','',
+  direct
+   ? 'これまで相手の存在を確認できても、継続して人が会える状態ではありませんでした。今回からは、実際の住民同士が直接接触する状態として記録されます。'
+   : '単発の出会いではなく、同じ経路を繰り返し使える段階です。ここからは小規模な物資交換や、誤解・信頼の蓄積も双方の状態へ残ります。','',
+  '最初の接触代表者も、国を象徴する架空の人格ではなく、その時点で探索・交易・観測に向いていた実在住民から選ばれています。','',
+  '今後、接触が友好へ向かうか、警戒や摩擦が増えるかは固定していません。相互信頼、接触回数、物資状況とその週の出来事で変わります。','',
+  '※架空世界LYRA-001のシミュレーション記録です。国家・人物・統計・出来事はすべて架空です。'
+ ].join('\n');
+ return{perspective:'observer',country:null,title,body,score:99,coverLabel:'世界観測記録',coverCopy:direct?'初めて、住民同士が直接出会う。':'単発の接触が、往来できる道になった。',accent:'#121820'};
+}
+
 const previousPairs=new Set((prev.contact?.knownPairs||[]).map(x=>[...x].sort().join('|')));
 const newPairs=(state.contact?.knownPairs||[]).filter(x=>!previousPairs.has([...x].sort().join('|')));
+const stageChanges=[];
+for(const [key,ps] of Object.entries(state.contact?.pairStates||{})){
+ const old=prev.contact?.pairStates?.[key];
+ if(old&&old.stage!==ps.stage)stageChanges.push({key,pair:ps.pair,fromStage:old.stage,toStage:ps.stage,representativeIds:ps.representativeIds,trustIndex:ps.trustIndex});
+}
 const stories=[];
 if(newPairs.length)stories.push(observerContactArticle(newPairs));
+else if(stageChanges.length)stories.push(observerStageArticle(stageChanges));
 
 const candidates=['ARCUS','MIREA','VALD'].map(country=>countryCandidate(country)).filter(Boolean).filter(x=>x.score>=8).sort((a,b)=>b.score-a.score);
 for(const cand of candidates){
@@ -194,7 +223,7 @@ for(const cand of candidates){
 }
 
 const outDir=base+'editorial/generated/turn_'+pad(turn);
-const manifest={version:1,turn:turn,dryRun:dry,generatedAt:'deterministic',newContactPairs:newPairs,stories:[]};
+const manifest={version:2,turn:turn,dryRun:dry,generatedAt:'deterministic',newContactPairs:newPairs,contactStageChanges:stageChanges,stories:[]};
 for(let i=0;i<stories.length;i++){
  const st=stories[i],slug=st.perspective==='observer'?'observer':st.country.toLowerCase();
  const id='worldsim_t'+pad(turn)+'_'+slug+(st.policyId?'_'+st.policyId.toLowerCase():'_contact');
