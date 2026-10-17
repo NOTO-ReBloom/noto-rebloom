@@ -276,9 +276,8 @@ async function createAndPublish(context, item, md) {
   const coverApplied=await setCover(page,coverPath);
   if(!coverApplied) log('CONTINUE_WITHOUT_COVER',{id:item.id,title:item.title});
 
-  const next=page.getByRole('button',{name:/公開に進む/}).first();
-  if(!(await next.count())) throw new Error('PUBLISH_NEXT_NOT_FOUND');
-  await next.click();
+  const publishUrl='https://editor.note.com/notes/'+key+'/publish/';
+  await page.goto(publishUrl,{waitUntil:'domcontentloaded',timeout:30000});
   const publishSettingsReady=await waitForPublishSettings(page,20000);
   if(!publishSettingsReady){
     const diagDir=path.join(LOG_DIR,'diagnostics');
@@ -286,8 +285,9 @@ async function createAndPublish(context, item, md) {
     const stamp=Date.now();
     await page.screenshot({path:path.join(diagDir,'publish-settings-'+stamp+'.png'),fullPage:true}).catch(()=>{});
     fs.writeFileSync(path.join(diagDir,'publish-settings-'+stamp+'.html'),await page.content().catch(()=>''),'utf8');
-    throw new Error('PUBLISH_SETTINGS_NOT_FOUND url='+page.url());
+    throw new Error('DIRECT_PUBLISH_SETTINGS_NOT_FOUND url='+page.url());
   }
+  log('PUBLISH_SETTINGS_READY',{id:item.id,key,url:page.url()});
   await sleep(650);
 
   const freeControls=[
