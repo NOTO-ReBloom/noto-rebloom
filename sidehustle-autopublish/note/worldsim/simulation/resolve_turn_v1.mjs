@@ -198,10 +198,9 @@ const NEWBORN_NAMES={
  MIREA:['Nalia','Emon','Suri','Lema','Aven','Risa','Talen','Meri','Ilan','Sena','Aral','Nora','Vela','Eli','Mira','Ona','Tesa','Nemi','Sava','Malen','Rina','Ereni'],
  VALD:['Bren','Kora','Darek','Sivra','Torv','Neris','Varek','Ossa','Kelan','Runa','Maror','Drovin','Fena','Karel','Velka','Saren','Orm','Hela','Tarn','Ves','Brana','Korin']
 };
-function makeNewborn(country,mother,partnerId,household,r){
+function makeNewborn(country,mother,partnerId,household,r,serial){
  const father=partnerId?dataScope?.people?.[partnerId]:null;
  const prefix=country==='ARCUS'?'ARC':country==='MIREA'?'MIR':'VAL';
- const serial=((state.roster.newCitizens||[]).filter(x=>x.bornTurn===turn&&x.countryId===country).length+1);
  const id=prefix+'-N'+pad(turn)+'-'+String(serial).padStart(3,'0');
  const parentProfiles=[mother,father].filter(Boolean);
  const avg=(path,def=50)=>{
@@ -271,7 +270,7 @@ function simulateDemography(country,data){
   if(r()<.0013){
    dataScope=data;
    const fatherOrPartner=partner[mother.citizenId];
-   const newborn=makeNewborn(country,mother,fatherOrPartner,h,r);
+   const newborn=makeNewborn(country,mother,fatherOrPartner,h,r,births.length+1);
    births.push(newborn);
    const ho=(state.householdOverlays[country][h.householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],memories:[]});
    ho.newMemberIds=ho.newMemberIds||[]; if(!ho.newMemberIds.includes(newborn.citizenId))ho.newMemberIds.push(newborn.citizenId);
