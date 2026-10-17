@@ -96,5 +96,11 @@
   "publicInventoryCount": 180,
   "lastPublicAuditAt": "2026-10-17T04:41:34.585Z",
   "lastPublicAuditLaunchVerified": false,
-  "releaseReadinessWorkflowRunId": 39008070653
+  "releaseReadinessWorkflowRunId": 39008070653,
+  "liveMigration": {
+    "cloudReady": true,
+    "publicLaunchVerified": false,
+    "authenticatedWindowsBootstrap": "sidehustle-autopublish/note/worldsim/windows/START_AI_WORLD_OBSERVATORY.cmd",
+    "retryTask": "NOTE_WorldSimMigration_15min"
+  }
 }
