@@ -27,10 +27,32 @@ function readJson(file, fallback) {
 function writeJson(file, obj) { fs.writeFileSync(file, JSON.stringify(obj, null, 2) + '\n', 'utf8'); }
 function norm(s) { return String(s || '').replace(/\s+/g, ' ').trim(); }
 
+async function fetchJsonResponse(url, label, headers = {}, attempts = 6) {
+  let last = 'unknown';
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      const r = await fetch(url, { headers: { 'accept':'application/json,text/plain,*/*', 'cache-control':'no-cache', ...headers } });
+      const text = await r.text();
+      if (!r.ok) last = 'HTTP_' + r.status + ' ' + text.slice(0,160);
+      else if (!text.trim()) last = 'EMPTY_RESPONSE';
+      else {
+        try { return JSON.parse(text); }
+        catch (e) { last = 'INVALID_JSON ' + String(e && e.message || e) + ' body=' + text.slice(0,160); }
+      }
+    } catch (e) {
+      last = 'FETCH_ERROR ' + String(e && e.message || e);
+    }
+    if (i < attempts) await sleep(Math.min(5000, 700 * i));
+  }
+  throw new Error(label + '_FAILED ' + last);
+}
 async function fetchJson(rel) {
-  const r = await fetch(RAW + rel + '?t=' + Date.now(), { headers: { 'cache-control':'no-cache','user-agent':'worldsim-note-publisher/1.0' } });
-  if (!r.ok) throw new Error('FETCH_JSON_FAILED ' + rel + ' HTTP_' + r.status);
-  return await r.json();
+  return await fetchJsonResponse(
+    RAW + rel + '?t=' + Date.now(),
+    'FETCH_JSON ' + rel,
+    { 'user-agent':'worldsim-note-publisher/1.1' },
+    6
+  );
 }
 async function fetchText(rel) {
   const r = await fetch(RAW + rel + '?t=' + Date.now(), { headers: { 'cache-control':'no-cache','user-agent':'worldsim-note-publisher/1.0' } });
@@ -41,9 +63,12 @@ async function publicItems() {
   const out = [];
   for (let p=1; p<=50; p++) {
     const u='https://note.com/api/v2/creators/' + ACCOUNT + '/contents?kind=note&disabled_pinned=true&page=' + p + '&audit=' + Date.now();
-    const r=await fetch(u,{headers:{'cache-control':'no-cache','user-agent':'worldsim-reconcile/1.0'}});
-    if(!r.ok) break;
-    const o=await r.json();
+    const o=await fetchJsonResponse(
+      u,
+      'NOTE_PUBLIC_PAGE_' + p,
+      { 'user-agent':'worldsim-reconcile/1.1', 'referer':'https://note.com/' + ACCOUNT },
+      8
+    );
     const d=o.data||{};
     const xs=Array.isArray(d.contents)?d.contents:[];
     for(const x of xs) if(x && x.status==='published') out.push({key:x.key,title:norm(x.name),url:'https://note.com/'+ACCOUNT+'/n/'+x.key});
@@ -127,14 +152,25 @@ async function setCover(page, imagePath) {
     const b=await btns.nth(i).boundingBox().catch(()=>null);
     if(b&&b.y<220){cover=btns.nth(i);break;}
   }
-  if(!cover) throw new Error('COVER_BUTTON_NOT_FOUND');
+  if(!cover){
+    const generic=page.getByRole('button',{name:/見出し画像|画像を追加|画像を設定|カバー画像|カバー/}).first();
+    if(await generic.count() && await generic.isVisible().catch(()=>false)) cover=generic;
+  }
+  if(!cover){
+    log('COVER_SKIPPED',{reason:'COVER_BUTTON_NOT_FOUND',url:page.url()});
+    return false;
+  }
   let chooser;
   try{
     [chooser]=await Promise.all([page.waitForEvent('filechooser',{timeout:3500}),cover.click()]);
   }catch{
     await sleep(600);
     const up=page.getByRole('button',{name:/画像をアップロード|アップロード/}).first();
-    if(!(await up.count())) throw new Error('COVER_UPLOAD_OPTION_NOT_FOUND');
+    if(!(await up.count())){
+      log('COVER_SKIPPED',{reason:'COVER_UPLOAD_OPTION_NOT_FOUND',url:page.url()});
+      await page.keyboard.press('Escape').catch(()=>{});
+      return false;
+    }
     [chooser]=await Promise.all([page.waitForEvent('filechooser',{timeout:5000}),up.click()]);
   }
   await chooser.setFiles(imagePath);
@@ -153,12 +189,17 @@ async function setCover(page, imagePath) {
         if(!/キャンセル|Cancel/i.test(t)){await bs.nth(i).click();clicked=true;break;}
       }
     }
-    if(!clicked) throw new Error('COVER_CONFIRM_NOT_FOUND');
+    if(!clicked){
+      log('COVER_SKIPPED',{reason:'COVER_CONFIRM_NOT_FOUND',url:page.url()});
+      await page.keyboard.press('Escape').catch(()=>{});
+      return false;
+    }
     await crop.waitFor({state:'hidden',timeout:15000}).catch(()=>{});
   }
   const save=page.getByRole('button',{name:/下書き保存/}).first();
   if(await save.count()) await save.click({force:true});
   await sleep(1300);
+  return true;
 }
 async function setHashtags(page,tags){
   const clean=[...new Set((tags||[]).map(x=>String(x).replace(/^#/,'').trim()).filter(Boolean))].slice(0,10);
@@ -212,7 +253,8 @@ async function createAndPublish(context, item, md) {
   if(!m) throw new Error('NOTE_KEY_NOT_FOUND');
   const key=m[1];
   const coverPath=await renderCover(context,item);
-  await setCover(page,coverPath);
+  const coverApplied=await setCover(page,coverPath);
+  if(!coverApplied) log('CONTINUE_WITHOUT_COVER',{id:item.id,title:item.title});
 
   const next=page.getByRole('button',{name:/公開に進む/}).first();
   if(!(await next.count())) throw new Error('PUBLISH_NEXT_NOT_FOUND');
