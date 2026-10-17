@@ -156,7 +156,8 @@ for(const country of ['ARCUS','MIREA','VALD']){
      const fingerprint=hash({id:c.citizenId,p:psychology.bigFive,a:psychology.actionTendencies,v:values});
      for(const [k,v] of Object.entries(psychology.bigFive)){(countryValues[country][k]??=[]).push(v);}
      for(const [k,v] of Object.entries(values)){(countryValues[country]['value_'+k]??=[]).push(v);}
-     return {...c,psychology,values,goals,materialState:current,lifeHistory:history,psychologyFingerprint:fingerprint};
+     const birthDayOfYear=(seedInt('BIRTHDAY|'+c.citizenId)%365)+1;
+     return {...c,birthDayOfYear,psychology,values,goals,materialState:current,lifeHistory:history,psychologyFingerprint:fingerprint};
    });
    const out={...d,stage:'personality_v1',citizens};
    write(outRoot+'/'+country+'/'+file,out);
