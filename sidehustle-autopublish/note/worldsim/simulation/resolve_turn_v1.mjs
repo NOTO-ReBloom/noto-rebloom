@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {absoluteDay as modelAbsoluteDay,advanceCalendar as advanceWorldCalendar,ageYears as modelAgeYears,ageDays as modelAgeDays,seasonalFoodModifier,normalizeCalendar} from './time_model_v1.mjs';
 
 const ROOT=process.cwd(),P=(...x)=>path.join(ROOT,...x);
 const read=p=>JSON.parse(fs.readFileSync(P(p),'utf8'));
@@ -45,15 +46,9 @@ function loadCountry(country){
  for(const e of allEdges){rel[e.from+'|'+e.to]=e;(incoming[e.to]??=[]).push(e);}
  return{people,households,familyEdges:[...familyEdges,...dynamicRelations.filter(x=>['parent','child','sibling','partner'].includes(x.type))],beliefs,social:{...social,edges:allEdges},rel,incoming};
 }
-function absoluteDay(calendar){return (calendar.year-1)*365+calendar.dayOfYear;}
-function currentAge(c){
- if(c.bornAbsoluteDay!=null)return Math.max(0,(absoluteDay(state.calendar)-c.bornAbsoluteDay)/365);
- const birthDay=c.birthDayOfYear||1;
- const startAbs=239;
- const nowAbs=absoluteDay(state.calendar);
- const crossed=Math.floor((nowAbs-birthDay)/365)-Math.floor((startAbs-birthDay)/365);
- return (c.ageYears||0)+Math.max(0,crossed);
-}
+const absoluteDay=modelAbsoluteDay;
+function currentAge(c){return modelAgeYears(c,state.calendar);}
+function currentAgeDays(c){return modelAgeDays(c,state.calendar);}
 function effective(c,country){
  const o=state.citizenOverlays?.[country]?.[c.citizenId]||{};
  const ho=state.householdOverlays?.[country]?.[c.householdId]||{};
@@ -180,7 +175,7 @@ function applyPolicy(country,result,data,citizenDeltaLog){
  citizenDeltaLog.push({country,policyId:p.id,affectedCount:affected.length,sample:affected.slice(0,20)});
 }
 function foodBalance(country,data){
- const productivity=catalog.foodProductivityPersonDaysPerWorkerWeek,season=catalog.seasonalFoodModifier[country]||1;
+ const productivity=catalog.foodProductivityPersonDaysPerWorkerWeek,season=seasonalFoodModifier(country,state.calendar.dayOfYear);
  let wx=1;
  if(country==='ARCUS')wx=clamp(1-Math.max(0,input.weather.ARCUS.coastalWindIndex-60)*.005,.78,1.02);
  if(country==='MIREA'){const p=input.weather.MIREA.riverPressureIndex;wx=p>80?.86:p<35?.91:p>=55&&p<=70?1.03:1;}
@@ -295,9 +290,8 @@ function simulateDemography(country,data){
  return{births,deaths};
 }
 function advanceCalendar(){
- state.turn=turn;state.calendar.turn=turn;state.calendar.dayOfYear+=7;
- state.calendar.daysUntilMeteorologicalWinter=Math.max(0,(state.calendar.daysUntilMeteorologicalWinter??93)-7);
- if(state.calendar.dayOfYear>365){state.calendar.year+=1;state.calendar.dayOfYear-=365;}
+ state.turn=turn;
+ state.calendar=advanceWorldCalendar(state.calendar,7,turn);
 }
 
 function institutionCandidateScore(country,c,data){
