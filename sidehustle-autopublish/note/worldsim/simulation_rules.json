@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "turnLengthDays": 7,
   "pipeline": [
     "world_update",
@@ -47,11 +47,14 @@
     ],
     "noContactBeforeCondition": true,
     "afterContact": [
-      "trade",
+      "persistent familiarity and trust",
       "misunderstanding",
-      "diplomacy",
-      "migration",
-      "conflict",
+      "small conserved material exchange once a sustained route exists"
+    ],
+    "futureExpandable": [
+      "formal diplomacy",
+      "cross-border migration",
+      "organized conflict",
       "technology transfer"
     ]
   },
@@ -84,7 +87,8 @@
       "settlement population conservation",
       "renewable/nonrenewable resource bounds",
       "crossover knowledge consistency if contact occurs",
-      "bounded live-history windows with immutable per-turn archives"
+      "bounded live-history windows with immutable per-turn archives",
+      "zero food/fuel reserves remain valid crisis states and must produce modeled consequences rather than engine failure"
     ]
   },
   "time": {
@@ -113,8 +117,8 @@
     "partnerships": "Eligible unpartnered adults can form persistent partnerships; household moves are recorded and close-family matches are prohibited."
   },
   "materialDynamics": {
-    "food": "Seasonal production + weather + renewable-resource stock effects + reserve-dependent spoilage.",
-    "fuel": "Seasonal production/consumption + weather + forest/resource stock effects + reserve-dependent storage loss; low winter fuel affects health/stress.",
+    "food": "Seasonal production + weather + renewable-resource stock effects + reserve-dependent spoilage. Low reserves trigger rationing; sustained scarcity raises stress, lowers health and fertility, and raises mortality without halting the engine at zero reserves.",
+    "fuel": "Seasonal production/consumption + weather + resource stock effects + pre-winter preparation + adaptive scarcity collection + conservation. Extra collection costs food-production opportunity and ecological stock; low winter fuel affects health/stress.",
     "resources": "Renewables regenerate as a function of remaining capacity; occupation output falls when relevant resource stocks decline.",
     "politicalLearning": "Citizen policy experience and evolving trust/respect/grievance affect future votes and institutional selection."
   }
