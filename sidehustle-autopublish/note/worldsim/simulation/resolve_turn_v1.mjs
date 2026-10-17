@@ -45,23 +45,37 @@ function rumorSignal(record,topic){
  return xs.reduce((s,x)=>s+(x.stance==='believed'?1:x.stance==='uncertain'?.35:-.25)*(x.confidence/100),0)/xs.length;
 }
 function voteUtility(c,policy,proposal,data){
- let u=0;
- for(const [k,w] of Object.entries(policy.valueImpact||{}))u+=w*((c.values[k]??50)-50)/50*18;
- if(policy.sectorBenefits?.[c.occupation.sector])u+=10*policy.sectorBenefits[c.occupation.sector];
- if(policy.sectorCosts?.[c.occupation.sector])u-=12*policy.sectorCosts[c.occupation.sector];
- if((policy.affectedSettlements||[]).includes(c.settlementId))u+=3.5;
+ const factors={
+  values:0,
+  sectorBenefit:0,
+  sectorCost:0,
+  affectedLocality:0,
+  localCost:0,
+  opportunityCost:0,
+  sponsorOwnership:0,
+  rumorSignal:0,
+  sponsorRelationship:0,
+  stressSecurity:0,
+  boundedNoise:0
+ };
+ for(const [k,w] of Object.entries(policy.valueImpact||{}))factors.values+=w*((c.values[k]??50)-50)/50*18;
+ if(policy.sectorBenefits?.[c.occupation.sector])factors.sectorBenefit=10*policy.sectorBenefits[c.occupation.sector];
+ if(policy.sectorCosts?.[c.occupation.sector])factors.sectorCost=-12*policy.sectorCosts[c.occupation.sector];
+ if((policy.affectedSettlements||[]).includes(c.settlementId))factors.affectedLocality=3.5;
  const localCost=policy.settlementCosts?.[c.settlementId]||0;
- u-=12*localCost;
+ factors.localCost=-12*localCost;
  const reservePressure=(c.materialState.householdFoodDays<50?1.25:1)+(c.materialState.householdDebt>30?.30:0);
- u-=10*(policy.opportunityCost||0)*reservePressure;
- if(c.citizenId===proposal.sponsorId)u+=7.5;
- u+=rumorSignal(data.beliefs.records[c.citizenId],policy.topic)*6;
+ factors.opportunityCost=-10*(policy.opportunityCost||0)*reservePressure;
+ if(c.citizenId===proposal.sponsorId)factors.sponsorOwnership=7.5;
+ factors.rumorSignal=rumorSignal(data.beliefs.records[c.citizenId],policy.topic)*6;
  const relation=data.rel[c.citizenId+'|'+proposal.sponsorId];
- if(relation)u+=(relation.trust-50)*.055+(relation.respect-50)*.035;
- if((policy.valueImpact?.security||0)>0&&c.materialState.stress>65)u+=2.5;
+ if(relation)factors.sponsorRelationship=(relation.trust-50)*.055+(relation.respect-50)*.035;
+ if((policy.valueImpact?.security||0)>0&&c.materialState.stress>65)factors.stressSecurity=2.5;
  const r=rngFor(state.worldId+'|VOTE|'+turn+'|'+policy.id+'|'+c.citizenId);
- u+=(r()-.5)*7;
- return round(u,3);
+ factors.boundedNoise=(r()-.5)*7;
+ for(const k of Object.keys(factors))factors[k]=round(factors[k],3);
+ const utility=round(Object.values(factors).reduce((a,b)=>a+b,0),3);
+ return{utility,factors};
 }
 function conductVote(country,proposal,data){
  const policy=policyById[proposal.policyId],body=institutions.countries[country].nationalBody.members;
@@ -70,8 +84,8 @@ function conductVote(country,proposal,data){
  for(const m of body){
   if(inactive.has(m.citizenId))continue;
   const raw=data.people[m.citizenId];if(!raw)continue;
-  const c=effective(raw,country),utility=voteUtility(c,policy,proposal,data);
-  votes.push({citizenId:c.citizenId,settlementId:m.settlementId,utility,vote:utility>2.25?'yes':utility<-2.25?'no':'abstain'});
+  const c=effective(raw,country),calc=voteUtility(c,policy,proposal,data),utility=calc.utility;
+  votes.push({citizenId:c.citizenId,settlementId:m.settlementId,utility,factors:calc.factors,vote:utility>2.25?'yes':utility<-2.25?'no':'abstain'});
  }
  const yes=votes.filter(x=>x.vote==='yes').length,no=votes.filter(x=>x.vote==='no').length,abstain=votes.length-yes-no;
  const yesShare=yes+no?yes/(yes+no):0;
