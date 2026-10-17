@@ -1,0 +1,1240 @@
+{
+  "version": 2,
+  "turn": 1,
+  "world": {
+    "id": "LYRA-001",
+    "calendarBefore": {
+      "year": 1,
+      "dayOfYear": 239,
+      "turn": 0,
+      "turnDays": 7,
+      "season": "late_summer",
+      "daysUntilMeteorologicalWinter": 93
+    },
+    "calendarAfter": {
+      "year": 1,
+      "dayOfYear": 246,
+      "turn": 1,
+      "turnDays": 7,
+      "season": "late_summer",
+      "daysUntilMeteorologicalWinter": 86
+    },
+    "firstContact": false
+  },
+  "countries": {
+    "ARCUS": {
+      "countryName": "アルカ",
+      "populationBefore": 1846,
+      "populationAfter": 1846,
+      "foodReserveDaysBefore": 76.4,
+      "foodReserveDaysAfter": 76.29,
+      "weather": {
+        "coastalWindIndex": 53,
+        "rainIndex": 68,
+        "summary": "mostly workable coast"
+      },
+      "selectedEvent": {
+        "policyId": "A_TIMBER_REPAIR",
+        "title": "船舶修理向け木材を一時優先配分する",
+        "passed": true,
+        "yes": 7,
+        "no": 4,
+        "abstain": 1,
+        "yesShare": 0.6364,
+        "dualMajority": false,
+        "settlementMajority": true,
+        "settlementResults": {}
+      },
+      "people": {
+        "sponsor": {
+          "citizenId": "ARC-0010",
+          "name": "Saren Rinn",
+          "age": 55,
+          "sex": "female",
+          "settlementId": "ARCA-PORT-01",
+          "occupation": "fisher",
+          "sector": "food",
+          "skill": 93,
+          "householdId": "ARC-H002",
+          "household": {
+            "members": 2,
+            "foodDays": 74,
+            "debtUnits": 0,
+            "cashLikeReserve": 39,
+            "landUseUnits": 0
+          },
+          "selectedValues": {
+            "family": 62,
+            "autonomy": 51,
+            "security": 63,
+            "achievement": 74,
+            "fairness": 48,
+            "community": 73,
+            "environment": 55,
+            "status": 32
+          },
+          "selectedTraits": {
+            "conscientiousness": 79,
+            "agreeableness": 53,
+            "riskTolerance": 37,
+            "authorityAcceptance": 33,
+            "statusDrive": 40
+          },
+          "goals": {
+            "primary": "improve yield without risking the household reserve",
+            "secondary": "keep the household fed through the next seasonal risk",
+            "protectedThing": "access to boats and fishing income",
+            "avoidAtAllCosts": "a preventable work injury that removes household income"
+          },
+          "material": {
+            "health": 75,
+            "stress": 38
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "yes",
+            "utility": 19.581,
+            "strongestPositive": [
+              [
+                "sponsorOwnership",
+                7.5
+              ],
+              [
+                "values",
+                6.138
+              ],
+              [
+                "sectorBenefit",
+                4.5
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "opportunityCost",
+                -2.8
+              ]
+            ],
+            "factors": {
+              "values": 6.138,
+              "sectorBenefit": 4.5,
+              "sectorCost": 0,
+              "affectedLocality": 3.5,
+              "localCost": 0,
+              "opportunityCost": -2.8,
+              "sponsorOwnership": 7.5,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": 0.743
+            }
+          }
+        },
+        "strongestYes": {
+          "citizenId": "ARC-0010",
+          "name": "Saren Rinn",
+          "age": 55,
+          "sex": "female",
+          "settlementId": "ARCA-PORT-01",
+          "occupation": "fisher",
+          "sector": "food",
+          "skill": 93,
+          "householdId": "ARC-H002",
+          "household": {
+            "members": 2,
+            "foodDays": 74,
+            "debtUnits": 0,
+            "cashLikeReserve": 39,
+            "landUseUnits": 0
+          },
+          "selectedValues": {
+            "family": 62,
+            "autonomy": 51,
+            "security": 63,
+            "achievement": 74,
+            "fairness": 48,
+            "community": 73,
+            "environment": 55,
+            "status": 32
+          },
+          "selectedTraits": {
+            "conscientiousness": 79,
+            "agreeableness": 53,
+            "riskTolerance": 37,
+            "authorityAcceptance": 33,
+            "statusDrive": 40
+          },
+          "goals": {
+            "primary": "improve yield without risking the household reserve",
+            "secondary": "keep the household fed through the next seasonal risk",
+            "protectedThing": "access to boats and fishing income",
+            "avoidAtAllCosts": "a preventable work injury that removes household income"
+          },
+          "material": {
+            "health": 75,
+            "stress": 38
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "yes",
+            "utility": 19.581,
+            "strongestPositive": [
+              [
+                "sponsorOwnership",
+                7.5
+              ],
+              [
+                "values",
+                6.138
+              ],
+              [
+                "sectorBenefit",
+                4.5
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "opportunityCost",
+                -2.8
+              ]
+            ],
+            "factors": {
+              "values": 6.138,
+              "sectorBenefit": 4.5,
+              "sectorCost": 0,
+              "affectedLocality": 3.5,
+              "localCost": 0,
+              "opportunityCost": -2.8,
+              "sponsorOwnership": 7.5,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": 0.743
+            }
+          }
+        },
+        "strongestNo": {
+          "citizenId": "ARC-1783",
+          "name": "Dara Coren",
+          "age": 65,
+          "sex": "female",
+          "settlementId": "ARCA-RIDGE-01",
+          "occupation": "timber_worker",
+          "sector": "resource",
+          "skill": 96,
+          "householdId": "ARC-H0595",
+          "household": {
+            "members": 8,
+            "foodDays": 52,
+            "debtUnits": 0,
+            "cashLikeReserve": 56,
+            "landUseUnits": 2
+          },
+          "selectedValues": {
+            "family": 66,
+            "autonomy": 45,
+            "security": 50,
+            "achievement": 76,
+            "fairness": 55,
+            "community": 69,
+            "environment": 61,
+            "status": 35
+          },
+          "selectedTraits": {
+            "conscientiousness": 64,
+            "agreeableness": 38,
+            "riskTolerance": 27,
+            "authorityAcceptance": 47,
+            "statusDrive": 30
+          },
+          "goals": {
+            "primary": "avoid a preventable injury or supply interruption",
+            "secondary": "keep dependents safe without exhausting the household",
+            "protectedThing": "household land-use access",
+            "avoidAtAllCosts": "a preventable work injury that removes household income"
+          },
+          "material": {
+            "health": 71,
+            "stress": 26
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "no",
+            "utility": -8.793,
+            "strongestPositive": [
+              [
+                "affectedLocality",
+                3.5
+              ],
+              [
+                "values",
+                3.024
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "localCost",
+                -6.24
+              ],
+              [
+                "sectorCost",
+                -5.4
+              ],
+              [
+                "opportunityCost",
+                -2.8
+              ]
+            ],
+            "factors": {
+              "values": 3.024,
+              "sectorBenefit": 0,
+              "sectorCost": -5.4,
+              "affectedLocality": 3.5,
+              "localCost": -6.24,
+              "opportunityCost": -2.8,
+              "sponsorOwnership": 0,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": -0.877
+            }
+          }
+        },
+        "abstainer": {
+          "citizenId": "ARC-1618",
+          "name": "Rovan Varek",
+          "age": 64,
+          "sex": "male",
+          "settlementId": "ARCA-INLAND-01",
+          "occupation": "timber_worker",
+          "sector": "resource",
+          "skill": 96,
+          "householdId": "ARC-H0552",
+          "household": {
+            "members": 5,
+            "foodDays": 85,
+            "debtUnits": 41,
+            "cashLikeReserve": 30,
+            "landUseUnits": 0
+          },
+          "selectedValues": {
+            "family": 70,
+            "autonomy": 59,
+            "security": 68,
+            "achievement": 77,
+            "fairness": 69,
+            "community": 57,
+            "environment": 36,
+            "status": 24
+          },
+          "selectedTraits": {
+            "conscientiousness": 76,
+            "agreeableness": 53,
+            "riskTolerance": 32,
+            "authorityAcceptance": 42,
+            "statusDrive": 27
+          },
+          "goals": {
+            "primary": "reduce household debt without losing essential work or tools",
+            "secondary": "earn safely from difficult work",
+            "protectedThing": "household stability and reputation",
+            "avoidAtAllCosts": "a debt spiral that forces the household to surrender productive assets"
+          },
+          "material": {
+            "health": 70,
+            "stress": 39
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "abstain",
+            "utility": 0.21,
+            "strongestPositive": [
+              [
+                "values",
+                8.838
+              ],
+              [
+                "boundedNoise",
+                2.332
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "sectorCost",
+                -5.4
+              ],
+              [
+                "opportunityCost",
+                -3.64
+              ],
+              [
+                "localCost",
+                -1.92
+              ]
+            ],
+            "factors": {
+              "values": 8.838,
+              "sectorBenefit": 0,
+              "sectorCost": -5.4,
+              "affectedLocality": 0,
+              "localCost": -1.92,
+              "opportunityCost": -3.64,
+              "sponsorOwnership": 0,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": 2.332
+            }
+          }
+        }
+      },
+      "demography": {
+        "births": [],
+        "deaths": []
+      },
+      "allTurnPolicies": [
+        {
+          "policyId": "A_TIMBER_REPAIR",
+          "title": "船舶修理向け木材を一時優先配分する",
+          "passed": true,
+          "yes": 7,
+          "no": 4,
+          "abstain": 1,
+          "yesShare": 0.6364,
+          "settlementMajority": true
+        },
+        {
+          "policyId": "A_INLAND_ROAD_REPAIR",
+          "title": "港とヴァレン平地を結ぶ道の補修を前倒しする",
+          "passed": true,
+          "yes": 8,
+          "no": 1,
+          "abstain": 3,
+          "yesShare": 0.8889,
+          "settlementMajority": true
+        }
+      ]
+    },
+    "MIREA": {
+      "countryName": "ミレア",
+      "populationBefore": 2214,
+      "populationAfter": 2214,
+      "foodReserveDaysBefore": 79.5,
+      "foodReserveDaysAfter": 80.66,
+      "weather": {
+        "upperCatchmentRainIndex": 72,
+        "riverPressureIndex": 67,
+        "summary": "several wet periods"
+      },
+      "selectedEvent": {
+        "policyId": "M_GATE_CLEARING",
+        "title": "中流域の灌漑門と排水路を共同整備する",
+        "passed": false,
+        "yes": 6,
+        "no": 2,
+        "abstain": 2,
+        "yesShare": 0.75,
+        "dualMajority": true,
+        "settlementMajority": false,
+        "settlementResults": {
+          "MIREA-MARKET-01": {
+            "yes": 0,
+            "no": 0,
+            "abstain": 2,
+            "pass": false
+          },
+          "MIREA-RIVER-01": {
+            "yes": 2,
+            "no": 0,
+            "abstain": 0,
+            "pass": true
+          },
+          "MIREA-RIVER-02": {
+            "yes": 2,
+            "no": 0,
+            "abstain": 0,
+            "pass": true
+          },
+          "MIREA-RIVER-03": {
+            "yes": 1,
+            "no": 1,
+            "abstain": 0,
+            "pass": false
+          },
+          "MIREA-UPPER-01": {
+            "yes": 1,
+            "no": 1,
+            "abstain": 0,
+            "pass": false
+          }
+        }
+      },
+      "people": {
+        "sponsor": {
+          "citizenId": "MIR-1162",
+          "name": "Eli Oren",
+          "age": 51,
+          "sex": "female",
+          "settlementId": "MIREA-RIVER-03",
+          "occupation": "fisher",
+          "sector": "food",
+          "skill": 90,
+          "householdId": "MIR-H0406",
+          "household": {
+            "members": 5,
+            "foodDays": 147,
+            "debtUnits": 0,
+            "cashLikeReserve": 85,
+            "landUseUnits": 10
+          },
+          "selectedValues": {
+            "family": 64,
+            "autonomy": 72,
+            "security": 68,
+            "achievement": 41,
+            "fairness": 62,
+            "community": 76,
+            "environment": 74,
+            "status": 49
+          },
+          "selectedTraits": {
+            "conscientiousness": 67,
+            "agreeableness": 56,
+            "riskTolerance": 51,
+            "authorityAcceptance": 61,
+            "statusDrive": 52
+          },
+          "goals": {
+            "primary": "keep the household fed through the next seasonal risk",
+            "secondary": "protect access to productive land or water",
+            "protectedThing": "household land-use access",
+            "avoidAtAllCosts": "a preventable work injury that removes household income"
+          },
+          "material": {
+            "health": 75,
+            "stress": 31
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "yes",
+            "utility": 15.274,
+            "strongestPositive": [
+              [
+                "sectorBenefit",
+                10
+              ],
+              [
+                "values",
+                7.949
+              ],
+              [
+                "sponsorOwnership",
+                7.5
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "localCost",
+                -7.44
+              ],
+              [
+                "opportunityCost",
+                -3.1
+              ]
+            ],
+            "factors": {
+              "values": 7.949,
+              "sectorBenefit": 10,
+              "sectorCost": 0,
+              "affectedLocality": 0,
+              "localCost": -7.44,
+              "opportunityCost": -3.1,
+              "sponsorOwnership": 7.5,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": 0.365
+            }
+          }
+        },
+        "strongestYes": {
+          "citizenId": "MIR-1162",
+          "name": "Eli Oren",
+          "age": 51,
+          "sex": "female",
+          "settlementId": "MIREA-RIVER-03",
+          "occupation": "fisher",
+          "sector": "food",
+          "skill": 90,
+          "householdId": "MIR-H0406",
+          "household": {
+            "members": 5,
+            "foodDays": 147,
+            "debtUnits": 0,
+            "cashLikeReserve": 85,
+            "landUseUnits": 10
+          },
+          "selectedValues": {
+            "family": 64,
+            "autonomy": 72,
+            "security": 68,
+            "achievement": 41,
+            "fairness": 62,
+            "community": 76,
+            "environment": 74,
+            "status": 49
+          },
+          "selectedTraits": {
+            "conscientiousness": 67,
+            "agreeableness": 56,
+            "riskTolerance": 51,
+            "authorityAcceptance": 61,
+            "statusDrive": 52
+          },
+          "goals": {
+            "primary": "keep the household fed through the next seasonal risk",
+            "secondary": "protect access to productive land or water",
+            "protectedThing": "household land-use access",
+            "avoidAtAllCosts": "a preventable work injury that removes household income"
+          },
+          "material": {
+            "health": 75,
+            "stress": 31
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "yes",
+            "utility": 15.274,
+            "strongestPositive": [
+              [
+                "sectorBenefit",
+                10
+              ],
+              [
+                "values",
+                7.949
+              ],
+              [
+                "sponsorOwnership",
+                7.5
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "localCost",
+                -7.44
+              ],
+              [
+                "opportunityCost",
+                -3.1
+              ]
+            ],
+            "factors": {
+              "values": 7.949,
+              "sectorBenefit": 10,
+              "sectorCost": 0,
+              "affectedLocality": 0,
+              "localCost": -7.44,
+              "opportunityCost": -3.1,
+              "sponsorOwnership": 7.5,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": 0.365
+            }
+          }
+        },
+        "strongestNo": {
+          "citizenId": "MIR-1114",
+          "name": "Lora Eles",
+          "age": 76,
+          "sex": "female",
+          "settlementId": "MIREA-RIVER-03",
+          "occupation": "retired",
+          "sector": "retired",
+          "skill": 96,
+          "householdId": "MIR-H0395",
+          "household": {
+            "members": 2,
+            "foodDays": 65,
+            "debtUnits": 0,
+            "cashLikeReserve": 50,
+            "landUseUnits": 0
+          },
+          "selectedValues": {
+            "family": 51,
+            "autonomy": 42,
+            "security": 46,
+            "achievement": 51,
+            "fairness": 60,
+            "community": 71,
+            "environment": 45,
+            "status": 47
+          },
+          "selectedTraits": {
+            "conscientiousness": 66,
+            "agreeableness": 53,
+            "riskTolerance": 59,
+            "authorityAcceptance": 51,
+            "statusDrive": 66
+          },
+          "goals": {
+            "primary": "pass on knowledge before it is lost",
+            "secondary": "remain useful without becoming dependent",
+            "protectedThing": "household stability and reputation",
+            "avoidAtAllCosts": "a sudden loss of livelihood with no reciprocal support"
+          },
+          "material": {
+            "health": 81,
+            "stress": 32
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "no",
+            "utility": -8.788,
+            "strongestPositive": [
+              [
+                "values",
+                3.474
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "localCost",
+                -7.44
+              ],
+              [
+                "opportunityCost",
+                -3.1
+              ],
+              [
+                "boundedNoise",
+                -1.722
+              ]
+            ],
+            "factors": {
+              "values": 3.474,
+              "sectorBenefit": 0,
+              "sectorCost": 0,
+              "affectedLocality": 0,
+              "localCost": -7.44,
+              "opportunityCost": -3.1,
+              "sponsorOwnership": 0,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": -1.722
+            }
+          }
+        },
+        "abstainer": {
+          "citizenId": "MIR-1777",
+          "name": "Ereni Ami",
+          "age": 53,
+          "sex": "male",
+          "settlementId": "MIREA-MARKET-01",
+          "occupation": "caregiver",
+          "sector": "care",
+          "skill": 96,
+          "householdId": "MIR-H0577",
+          "household": {
+            "members": 5,
+            "foodDays": 46,
+            "debtUnits": 0,
+            "cashLikeReserve": 29,
+            "landUseUnits": 0
+          },
+          "selectedValues": {
+            "family": 68,
+            "autonomy": 57,
+            "security": 42,
+            "achievement": 44,
+            "fairness": 80,
+            "community": 72,
+            "environment": 41,
+            "status": 38
+          },
+          "selectedTraits": {
+            "conscientiousness": 68,
+            "agreeableness": 61,
+            "riskTolerance": 63,
+            "authorityAcceptance": 50,
+            "statusDrive": 62
+          },
+          "goals": {
+            "primary": "keep dependents safe and daily life functioning",
+            "secondary": "keep dependents safe without exhausting the household",
+            "protectedThing": "household food reserve",
+            "avoidAtAllCosts": "a sudden loss of livelihood with no reciprocal support"
+          },
+          "material": {
+            "health": 95,
+            "stress": 25
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "abstain",
+            "utility": -1.779,
+            "strongestPositive": [
+              [
+                "values",
+                4.399
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "opportunityCost",
+                -3.875
+              ],
+              [
+                "boundedNoise",
+                -2.303
+              ]
+            ],
+            "factors": {
+              "values": 4.399,
+              "sectorBenefit": 0,
+              "sectorCost": 0,
+              "affectedLocality": 0,
+              "localCost": 0,
+              "opportunityCost": -3.875,
+              "sponsorOwnership": 0,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": -2.303
+            }
+          }
+        }
+      },
+      "demography": {
+        "births": [],
+        "deaths": []
+      },
+      "allTurnPolicies": [
+        {
+          "policyId": "M_GATE_CLEARING",
+          "title": "中流域の灌漑門と排水路を共同整備する",
+          "passed": false,
+          "yes": 6,
+          "no": 2,
+          "abstain": 2,
+          "yesShare": 0.75,
+          "settlementMajority": false
+        },
+        {
+          "policyId": "M_SPILLWAY_SURVEY",
+          "title": "放水路を造る前に流量・湿地影響を測る",
+          "passed": true,
+          "yes": 7,
+          "no": 1,
+          "abstain": 2,
+          "yesShare": 0.875,
+          "settlementMajority": true
+        }
+      ]
+    },
+    "VALD": {
+      "countryName": "ヴァルド",
+      "populationBefore": 1391,
+      "populationAfter": 1390,
+      "foodReserveDaysBefore": 85,
+      "foodReserveDaysAfter": 84.61,
+      "weather": {
+        "coldPressureIndex": 38,
+        "snowRiskIndex": 24,
+        "summary": "cool highland week without hard freeze"
+      },
+      "selectedEvent": {
+        "policyId": "V_MINE_INSPECTION",
+        "title": "オスク鉱谷の坑道支保を2日間点検する",
+        "passed": true,
+        "yes": 6,
+        "no": 3,
+        "abstain": 3,
+        "yesShare": 0.6667,
+        "dualMajority": false,
+        "settlementMajority": true,
+        "settlementResults": {}
+      },
+      "people": {
+        "sponsor": {
+          "citizenId": "VAL-1119",
+          "name": "Hela Kelm",
+          "age": 56,
+          "sex": "female",
+          "settlementId": "VALD-UPPER-01",
+          "occupation": "timber_worker",
+          "sector": "resource",
+          "skill": 96,
+          "householdId": "VAL-H0387",
+          "household": {
+            "members": 8,
+            "foodDays": 52,
+            "debtUnits": 0,
+            "cashLikeReserve": 80,
+            "landUseUnits": 5
+          },
+          "selectedValues": {
+            "family": 57,
+            "autonomy": 40,
+            "security": 63,
+            "achievement": 61,
+            "fairness": 65,
+            "community": 58,
+            "environment": 44,
+            "status": 26
+          },
+          "selectedTraits": {
+            "conscientiousness": 74,
+            "agreeableness": 80,
+            "riskTolerance": 48,
+            "authorityAcceptance": 28,
+            "statusDrive": 45
+          },
+          "goals": {
+            "primary": "earn safely from difficult work",
+            "secondary": "avoid a preventable injury or supply interruption",
+            "protectedThing": "household land-use access",
+            "avoidAtAllCosts": "a preventable work injury that removes household income"
+          },
+          "material": {
+            "health": 87,
+            "stress": 46
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "yes",
+            "utility": 8.661,
+            "strongestPositive": [
+              [
+                "sponsorOwnership",
+                7.5
+              ],
+              [
+                "values",
+                5.047
+              ],
+              [
+                "sectorBenefit",
+                1.5
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "opportunityCost",
+                -3.8
+              ],
+              [
+                "sectorCost",
+                -3
+              ]
+            ],
+            "factors": {
+              "values": 5.047,
+              "sectorBenefit": 1.5,
+              "sectorCost": -3,
+              "affectedLocality": 0,
+              "localCost": 0,
+              "opportunityCost": -3.8,
+              "sponsorOwnership": 7.5,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": 1.414
+            }
+          }
+        },
+        "strongestYes": {
+          "citizenId": "VAL-0675",
+          "name": "Olen Osk",
+          "age": 73,
+          "sex": "female",
+          "settlementId": "VALD-BASIN-02",
+          "occupation": "food_preserver",
+          "sector": "food_processing",
+          "skill": 96,
+          "householdId": "VAL-H0269",
+          "household": {
+            "members": 2,
+            "foodDays": 51,
+            "debtUnits": 0,
+            "cashLikeReserve": 53,
+            "landUseUnits": 0
+          },
+          "selectedValues": {
+            "family": 65,
+            "autonomy": 55,
+            "security": 82,
+            "achievement": 72,
+            "fairness": 53,
+            "community": 69,
+            "environment": 67,
+            "status": 37
+          },
+          "selectedTraits": {
+            "conscientiousness": 57,
+            "agreeableness": 48,
+            "riskTolerance": 39,
+            "authorityAcceptance": 42,
+            "statusDrive": 39
+          },
+          "goals": {
+            "primary": "keep the household stable",
+            "secondary": "reduce vulnerability to a sudden shortage",
+            "protectedThing": "household stability and reputation",
+            "avoidAtAllCosts": "a sudden loss of livelihood with no reciprocal support"
+          },
+          "material": {
+            "health": 72,
+            "stress": 31
+          },
+          "relevantRumors": [
+            {
+              "rumorId": "V-B2-R1",
+              "claim": "production pressure is causing some mine supports to be replaced too late",
+              "topic": "mining",
+              "confidence": 52,
+              "stance": "uncertain",
+              "sourceId": "VAL-0725",
+              "sourceRelation": "friend"
+            }
+          ],
+          "vote": {
+            "choice": "yes",
+            "utility": 9.412,
+            "strongestPositive": [
+              [
+                "values",
+                9.662
+              ],
+              [
+                "affectedLocality",
+                3.5
+              ],
+              [
+                "boundedNoise",
+                3.038
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "localCost",
+                -4.08
+              ],
+              [
+                "opportunityCost",
+                -3.8
+              ]
+            ],
+            "factors": {
+              "values": 9.662,
+              "sectorBenefit": 0,
+              "sectorCost": 0,
+              "affectedLocality": 3.5,
+              "localCost": -4.08,
+              "opportunityCost": -3.8,
+              "sponsorOwnership": 0,
+              "rumorSignal": 1.092,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": 3.038
+            }
+          }
+        },
+        "strongestNo": {
+          "citizenId": "VAL-0421",
+          "name": "Derva Tarn",
+          "age": 70,
+          "sex": "male",
+          "settlementId": "VALD-BASIN-01",
+          "occupation": "retired",
+          "sector": "retired",
+          "skill": 96,
+          "householdId": "VAL-H0201",
+          "household": {
+            "members": 2,
+            "foodDays": 92,
+            "debtUnits": 0,
+            "cashLikeReserve": 47,
+            "landUseUnits": 0
+          },
+          "selectedValues": {
+            "family": 49,
+            "autonomy": 59,
+            "security": 50,
+            "achievement": 56,
+            "fairness": 57,
+            "community": 52,
+            "environment": 53,
+            "status": 26
+          },
+          "selectedTraits": {
+            "conscientiousness": 61,
+            "agreeableness": 49,
+            "riskTolerance": 46,
+            "authorityAcceptance": 25,
+            "statusDrive": 42
+          },
+          "goals": {
+            "primary": "remain useful without becoming dependent",
+            "secondary": "protect household continuity",
+            "protectedThing": "household stability and reputation",
+            "avoidAtAllCosts": "a sudden loss of livelihood with no reciprocal support"
+          },
+          "material": {
+            "health": 83,
+            "stress": 23
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "no",
+            "utility": -6.876,
+            "strongestPositive": [
+              [
+                "values",
+                0.349
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "opportunityCost",
+                -3.8
+              ],
+              [
+                "boundedNoise",
+                -3.425
+              ]
+            ],
+            "factors": {
+              "values": 0.349,
+              "sectorBenefit": 0,
+              "sectorCost": 0,
+              "affectedLocality": 0,
+              "localCost": 0,
+              "opportunityCost": -3.8,
+              "sponsorOwnership": 0,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": -3.425
+            }
+          }
+        },
+        "abstainer": {
+          "citizenId": "VAL-0325",
+          "name": "Ossa Dren",
+          "age": 56,
+          "sex": "male",
+          "settlementId": "VALD-BASIN-01",
+          "occupation": "caregiver",
+          "sector": "care",
+          "skill": 96,
+          "householdId": "VAL-H0176",
+          "household": {
+            "members": 6,
+            "foodDays": 82,
+            "debtUnits": 63,
+            "cashLikeReserve": 26,
+            "landUseUnits": 2
+          },
+          "selectedValues": {
+            "family": 56,
+            "autonomy": 60,
+            "security": 62,
+            "achievement": 54,
+            "fairness": 72,
+            "community": 72,
+            "environment": 48,
+            "status": 23
+          },
+          "selectedTraits": {
+            "conscientiousness": 72,
+            "agreeableness": 67,
+            "riskTolerance": 61,
+            "authorityAcceptance": 34,
+            "statusDrive": 62
+          },
+          "goals": {
+            "primary": "reduce household debt without losing essential work or tools",
+            "secondary": "keep dependents safe and daily life functioning",
+            "protectedThing": "household land-use access",
+            "avoidAtAllCosts": "a debt spiral that forces the household to surrender productive assets"
+          },
+          "material": {
+            "health": 87,
+            "stress": 42
+          },
+          "relevantRumors": [],
+          "vote": {
+            "choice": "abstain",
+            "utility": -1.724,
+            "strongestPositive": [
+              [
+                "values",
+                6.581
+              ]
+            ],
+            "strongestNegative": [
+              [
+                "opportunityCost",
+                -4.94
+              ],
+              [
+                "boundedNoise",
+                -3.365
+              ]
+            ],
+            "factors": {
+              "values": 6.581,
+              "sectorBenefit": 0,
+              "sectorCost": 0,
+              "affectedLocality": 0,
+              "localCost": 0,
+              "opportunityCost": -4.94,
+              "sponsorOwnership": 0,
+              "rumorSignal": 0,
+              "sponsorRelationship": 0,
+              "stressSecurity": 0,
+              "boundedNoise": -3.365
+            }
+          }
+        }
+      },
+      "demography": {
+        "births": [],
+        "deaths": [
+          {
+            "citizenId": "VAL-0887",
+            "countryId": "VALD",
+            "settlementId": "VALD-BASIN-02",
+            "householdId": "VAL-H0326",
+            "turn": 1,
+            "cause": "health_or_age"
+          }
+        ]
+      },
+      "allTurnPolicies": [
+        {
+          "policyId": "V_MINE_INSPECTION",
+          "title": "オスク鉱谷の坑道支保を2日間点検する",
+          "passed": true,
+          "yes": 6,
+          "no": 3,
+          "abstain": 3,
+          "yesShare": 0.6667,
+          "settlementMajority": true
+        },
+        {
+          "policyId": "V_FUEL_BUFFER",
+          "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
+          "passed": true,
+          "yes": 9,
+          "no": 0,
+          "abstain": 3,
+          "yesShare": 1,
+          "settlementMajority": true
+        }
+      ]
+    }
+  }
+}
