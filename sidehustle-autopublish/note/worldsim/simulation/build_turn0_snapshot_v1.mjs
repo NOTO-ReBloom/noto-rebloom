@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {normalizeCalendar,absoluteDay} from './time_model_v1.mjs';
 const ROOT=process.cwd(),P=(...x)=>path.join(ROOT,...x);
 const read=p=>JSON.parse(fs.readFileSync(P(p),'utf8'));
 const write=(p,o)=>{const f=P(p);fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,JSON.stringify(o,null,2)+'\n');};
@@ -14,6 +15,8 @@ const countryCfgRoot='sidehustle-autopublish/note/worldsim/countries';
 const sha=o=>crypto.createHash('sha256').update(JSON.stringify(o)).digest('hex');
 const avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:0;
 const round=(n,d=2)=>Number(n.toFixed(d));
+const seedU32=s=>crypto.createHash('sha256').update(String(s)).digest().readUInt32LE(0);
+const seedUnit=s=>seedU32(s)/4294967296;
 
 const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sourceTruthHash:sha(truth),countries:{},
  worldDynamic:{
@@ -28,6 +31,7 @@ const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sour
  householdOverlays:{ARCUS:{},MIREA:{},VALD:{}},
  relationshipOverlays:{ARCUS:{},MIREA:{},VALD:{}},
  institutionalHistory:[],
+ demographyState:{pregnancies:{},seededPregnanciesAtTurn0:0,gestationDays:266},
  eventLog:[],publicationReady:false};
 const manifest={version:1,turn:0,sourceHashes:{observerTruth:state.sourceTruthHash},countrySources:{}};
 
@@ -36,8 +40,8 @@ for(const country of ['ARCUS','MIREA','VALD']){
  const dir=P(personRoot,country);
  const docs=fs.readdirSync(dir).filter(x=>x.endsWith('.json')).map(f=>read(personRoot+'/'+country+'/'+f));
  const belief=read(beliefRoot+'/'+country+'.json'),social=read(socialRoot+'/'+country+'.json');
- const people=[],households=[],workplaces=[];
- for(const d of docs){people.push(...d.citizens);households.push(...d.households);workplaces.push(...d.workplaces);}
+ const people=[],households=[],workplaces=[],familyEdges=[];
+ for(const d of docs){people.push(...d.citizens);households.push(...d.households);workplaces.push(...d.workplaces);familyEdges.push(...(d.familyEdges||[]));}
  const byId=Object.fromEntries(people.map(c=>[c.citizenId,c]));
  const settlementStates={};
  const meta=settlements.countries[country].settlements;
@@ -77,6 +81,33 @@ for(const country of ['ARCUS','MIREA','VALD']){
   dataIntegrity:{citizens:people.length===cfg.population,beliefRecords:Object.keys(belief.records).length===people.length,socialCitizenCount:social.citizenCount===people.length}
  };
  state.countries[country]=countryState;
+
+ const partner={};
+ for(const e of familyEdges)if(e.type==='partner')partner[e.from]=e.to;
+ const epochAbs=absoluteDay(state.calendar);
+ for(const c of people){
+  if(c.sex!=='female'||c.ageYears<19||c.ageYears>40||!partner[c.citizenId])continue;
+  if(seedUnit('PREGNANCY_AT_T0|'+c.citizenId)>=0.055)continue;
+  const gestationAgeDays=7+(seedU32('GESTATION_AGE|'+c.citizenId)%245);
+  const conceptionAbsoluteDay=epochAbs-gestationAgeDays;
+  const dueAbsoluteDay=conceptionAbsoluteDay+state.demographyState.gestationDays;
+  const dueTurn=Math.max(1,Math.ceil((dueAbsoluteDay-epochAbs)/7));
+  state.demographyState.pregnancies[c.citizenId]={
+   pregnancyId:'PREG-T0-'+c.citizenId,
+   countryId:country,
+   motherId:c.citizenId,
+   partnerId:partner[c.citizenId],
+   householdId:c.householdId,
+   settlementId:c.settlementId,
+   conceivedTurn:null,
+   conceptionAbsoluteDay,
+   dueAbsoluteDay,
+   dueTurn,
+   seededAtTurn0:true
+  };
+  state.demographyState.seededPregnanciesAtTurn0++;
+ }
+
  manifest.countrySources[country]={population:people.length,personalityHash:sha(docs.map(d=>d.citizens)),beliefHash:sha(belief.summary),socialSummaryHash:sha(social.summary),institutionHash:sha(institutions.countries[country])};
 }
 write('sidehustle-autopublish/note/worldsim/state/turn_0000/world_state.json',state);
