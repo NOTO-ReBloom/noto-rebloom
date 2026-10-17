@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "verifiedAt": "2026-10-17T04:06:21Z",
+  "workflowRunId": 39001137464,
+  "workflowConclusion": "success",
+  "engineCommit": "a58647c9e3f18350a47f5b71eadd747fe5ba5f0c",
+  "turns": 60,
+  "policyDiversity": {
+    "ARCUS": [
+      "A_COASTAL_SURVEY",
+      "A_HARBOR_SANITATION",
+      "A_INLAND_ROAD_REPAIR",
+      "A_TIMBER_REPAIR"
+    ],
+    "MIREA": [
+      "M_GATE_CLEARING",
+      "M_SCHOOL_HARVEST",
+      "M_SPILLWAY_SURVEY",
+      "M_WETLAND_BUFFER"
+    ],
+    "VALD": [
+      "V_FUEL_BUFFER",
+      "V_MINE_INSPECTION",
+      "V_PASS_SURVEY",
+      "V_SMOKE_VENT"
+    ]
+  },
+  "births": 36,
+  "deaths": 20,
+  "institutionRotations": 118,
+  "firstContact": false,
+  "contacts": [],
+  "finalPopulation": {
+    "ARCUS": 1850,
+    "MIREA": 2220,
+    "VALD": 1397
+  },
+  "finalFoodReserveDays": {
+    "ARCUS": 43.19,
+    "MIREA": 149.91,
+    "VALD": 60.02
+  },
+  "finalExplorationKm": {
+    "ARCUS": 34,
+    "MIREA": 38,
+    "VALD": 26
+  },
+  "checksPassed": [
+    "60 sequential weekly resolves",
+    "policy cooldown",
+    "birth ID uniqueness",
+    "death ID uniqueness",
+    "institution bodies remain populated",
+    "resource bounds",
+    "food reserve bounds",
+    "population continuity",
+    "calendar crossed into year 2"
+  ],
+  "note": "Stress run executes in an isolated GitHub Actions workspace and does not advance canonical public state beyond turn 1."
+}
