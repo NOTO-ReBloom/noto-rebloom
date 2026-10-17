@@ -97,7 +97,7 @@ function goalSet(c,h,r){
  if(h.economy.foodDays<40)primary='secure enough food to get the household through the next vulnerable period';
  if(h.economy.dependents>=3&&c.ageYears>=18)secondary='keep dependents safe without exhausting the household';
  const protected=h.economy.landUseUnits>0?'household land-use access':h.economy.boatsShare>0?'access to boats and fishing income':h.economy.workshopShare>0?'workshop access and tools':h.economy.foodDays<50?'household food reserve':'household stability and reputation';
- const avoid=h.economy.debtUnits>40?'a debt spiral that forces the household to surrender productive assets':c.occupation.hazard>=4?'a preventable work injury that removes household income':h.economy.foodDays<45?'running short of food before the next supply period':'a sudden loss of livelihood with no reciprocal support';
+ const avoid=h.economy.debtUnits>40?'a debt spiral that forces the household to surrender productive assets':(lModel.occupations[c.occupationId]?.hazard||0)>=4?'a preventable work injury that removes household income':h.economy.foodDays<45?'running short of food before the next supply period':'a sudden loss of livelihood with no reciprocal support';
  return {today:'finish immediate household and work obligations',season:primary,multiYear:secondary,primaryGoal:primary,secondaryGoal:secondary,protectedThing:protected,desiredStatus:c.occupation.skill>70?'be recognized as reliably skilled':'be regarded as dependable enough to trust',avoidAtAllCosts:avoid};
 }
 function material(c,h,r){
@@ -116,7 +116,7 @@ function lifeHistory(c,h,r){
  if(c.ageYears>=6)out.push({age:6+Math.min(3,Math.floor(r()*4)),type:'learning',detail:'began regular household or settlement learning duties'});
  if(c.occupation.status==='apprentice')out.push({age:Math.max(14,c.ageYears-c.occupation.yearsExperience),type:'work',detail:'entered apprenticeship in '+(c.occupation.trainingTrack||'a practical trade')});
  else if(c.occupation.status==='worker')out.push({age:Math.max(16,c.ageYears-c.occupation.yearsExperience),type:'work',detail:'began sustained work in '+c.occupationId});
- if(c.occupation.hazard>=4&&c.ageYears>26&&r()<.35)out.push({age:Math.max(18,c.ageYears-ri(r,2,10)),type:'near_miss',detail:'experienced a serious near-miss at work that changed how risk is judged'});
+ if((lModel.occupations[c.occupationId]?.hazard||0)>=4&&c.ageYears>26&&r()<.35)out.push({age:Math.max(18,c.ageYears-ri(r,2,10)),type:'near_miss',detail:'experienced a serious near-miss at work that changed how risk is judged'});
  if(h.economy.debtUnits>30&&c.ageYears>=22)out.push({age:Math.max(18,c.ageYears-ri(r,1,8)),type:'obligation',detail:'the household took on a debt or obligation that remains materially important'});
  if(c.occupation.skill>=75&&c.ageYears>=25)out.push({age:Math.max(18,c.ageYears-ri(r,1,7)),type:'pride',detail:'completed a difficult piece of work that strengthened professional confidence'});
  return out.slice(0,4);
