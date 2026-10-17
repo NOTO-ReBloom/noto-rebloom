@@ -1,14 +1,16 @@
 name: Worldsim long horizon stress
-# stress revision: unique newborn ids
 
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/worldsim-long-horizon-stress.yml'
+      - 'sidehustle-autopublish/note/worldsim/simulation/time_model_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs'
       - 'sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs'
       - 'sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs'
       - 'sidehustle-autopublish/note/worldsim/simulation/policy_catalog_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/generate_personality_v1.mjs'
   workflow_dispatch:
 
 permissions:
@@ -28,7 +30,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Rebuild latest world inputs
+
+      - name: Rebuild canonical Turn 0 inputs
         run: |
           node sidehustle-autopublish/note/worldsim/population/generate_households_v1.mjs
           node sidehustle-autopublish/note/worldsim/population/assign_livelihoods_v1.mjs
@@ -37,33 +40,59 @@ jobs:
           node sidehustle-autopublish/note/worldsim/population/generate_beliefs_v1.mjs
           node sidehustle-autopublish/note/worldsim/institutions/generate_institutions_v2.mjs
           node sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs
-      - name: Simulate 60 weekly turns without publishing
+
+      - name: Simulate 156 exact weekly turns without publishing
         shell: bash
         run: |
           set -euo pipefail
-          for TURN in $(seq 1 60); do
+          for TURN in $(seq 1 156); do
             export WORLDSIM_TURN=$TURN
             node sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs >/tmp/prepare.log
             node sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs >/tmp/resolve.log
-            echo "TURN $TURN OK"
+            if (( TURN % 13 == 0 )); then echo "TURN $TURN OK"; fi
           done
-      - name: Long-horizon QA
+
+      - name: Three-year temporal and social QA
         shell: python
         run: |
           import json, pathlib, statistics
           root=pathlib.Path('sidehustle-autopublish/note/worldsim')
-          policies={c:set() for c in ('ARCUS','MIREA','VALD')}
+          countries=('ARCUS','MIREA','VALD')
+          policies={c:set() for c in countries}
           last_pass={}
           catalog={x['id']:x for x in json.loads((root/'simulation/policy_catalog_v1.json').read_text())['policies']}
-          rotations=0
-          births=deaths=0
-          previous_pop=None
-          for t in range(1,61):
+          rotations=births=deaths=conceptions=cancelled=life_transitions=0
+          seasons=set()
+          food_modifiers={c:[] for c in countries}
+          calendar_abs=[]
+          newborn_ids=set()
+          dead_ids=set()
+
+          s0=json.loads((root/'state/turn_0000/world_state.json').read_text())
+          assert s0['calendar']['absoluteDay']==239
+          assert s0['calendar']['season']=='summer'
+          assert len(s0['demographyState']['pregnancies'])>0
+          initial_pregnancies=len(s0['demographyState']['pregnancies'])
+
+          for t in range(1,157):
               td=root/f'turns/turn_{t:04d}'
               state=json.loads((root/f'state/turn_{t:04d}/world_state.json').read_text())
+              prev=json.loads((root/f'state/turn_{t-1:04d}/world_state.json').read_text())
+              inp=json.loads((td/'turn_input.json').read_text())
               votes=json.loads((td/'votes.json').read_text())
               demo=json.loads((td/'demography.json').read_text())
+              ev=json.loads((td/'events.json').read_text())
+
               assert state['turn']==t
+              assert state['calendar']['turn']==t
+              assert state['calendar']['absoluteDay']==239+t*7,(t,state['calendar'])
+              assert state['calendar']['absoluteDay']-prev['calendar']['absoluteDay']==7
+              assert 1<=state['calendar']['dayOfYear']<=365
+              assert state['calendar']['season'] in {'winter','spring','summer','autumn'}
+              seasons.add(state['calendar']['season'])
+              calendar_abs.append(state['calendar']['absoluteDay'])
+              assert inp['weather']['calendar']['season']==prev['calendar']['season']
+
               for country,c in state['countries'].items():
                   assert c['population']>100,(t,country,c['population'])
                   assert 0<c['meanFoodReserveDays']<250,(t,country,c['meanFoodReserveDays'])
@@ -71,32 +100,71 @@ jobs:
                   assert 0<=c['meanStress']<=100
                   assert c['institution']['nationalBody']['members'],(t,country)
                   assert c['institution']['executive']['memberIds'],(t,country)
+
               for country,rows in votes.items():
                   for v in rows:
                       policies[country].add(v['policyId'])
                       if v['passed']:
-                          prev=last_pass.get(v['policyId'])
+                          prev_pass=last_pass.get(v['policyId'])
                           cd=catalog[v['policyId']].get('cooldownTurns',0)
-                          if prev is not None:
-                              assert t-prev>cd,(v['policyId'],prev,t,cd)
+                          if prev_pass is not None:
+                              assert t-prev_pass>cd,(v['policyId'],prev_pass,t,cd)
                           last_pass[v['policyId']]=t
-              for d in demo['countries'].values():
-                  births += len(d['births']); deaths += len(d['deaths'])
-              for r in state.get('institutionalHistory',[]):
-                  if r.get('turn')==t: rotations+=1
-              for rid,r in state['worldDynamic']['resources'].items():
-                  assert 0<=r['stockIndex']<=100,(t,rid,r)
+
+              for country,d in demo['countries'].items():
+                  births += len(d['births'])
+                  deaths += len(d['deaths'])
+                  conceptions += len(d.get('conceptions',[]))
+                  cancelled += len(d.get('cancelledPregnancies',[]))
+                  for b in d['births']:
+                      assert prev['calendar']['absoluteDay'] < b['bornAbsoluteDay'] <= state['calendar']['absoluteDay']
+                      assert b['citizenId'] not in newborn_ids
+                      newborn_ids.add(b['citizenId'])
+                  for x in d['deaths']:
+                      assert x['citizenId'] not in dead_ids
+                      dead_ids.add(x['citizenId'])
+                  for p in d.get('conceptions',[]):
+                      assert p['dueAbsoluteDay']-p['conceptionAbsoluteDay'] in range(262,271)
+
+              for p in state.get('demographyState',{}).get('pregnancies',{}).values():
+                  assert p['dueAbsoluteDay']>state['calendar']['absoluteDay'],(t,p)
+                  assert p['dueAbsoluteDay']>p['conceptionAbsoluteDay']
+
+              for e in ev['events']:
+                  if e.get('type')=='life_stage_transition': life_transitions+=1
+              for h in state.get('institutionalHistory',[]):
+                  if h.get('turn')==t: rotations+=1
+              for rid,res in state['worldDynamic']['resources'].items():
+                  assert 0<=res['stockIndex']<=100,(t,rid,res)
+
+              # Food-balance events expose the season modifier used in the exact week.
+              for e in ev['events']:
+                  if e.get('type')=='food_balance' and e.get('country') in food_modifiers:
+                      food_modifiers[e['country']].append(e['seasonModifier'])
+
               ids=[x['citizenId'] for x in state['roster']['newCitizens']]
-              assert len(ids)==len(set(ids)),(t,'duplicate newborn')
+              assert len(ids)==len(set(ids)),(t,'duplicate newborn roster')
               inactive=state['roster']['inactiveCitizenIds']
-              assert len(inactive)==len(set(inactive)),(t,'duplicate death')
+              assert len(inactive)==len(set(inactive)),(t,'duplicate inactive citizen')
+
+          assert calendar_abs==sorted(calendar_abs)
+          assert seasons=={'winter','spring','summer','autumn'},seasons
           for country,seen in policies.items():
               assert len(seen)>=3,(country,seen)
-          final=json.loads((root/'state/turn_0060/world_state.json').read_text())
-          assert final['calendar']['year']>=2
-          print('LONG_HORIZON_QA_OK')
-          print('POLICY_DIVERSITY', {k:sorted(v) for k,v in policies.items()})
-          print('BIRTHS',births,'DEATHS',deaths,'ROTATIONS',rotations,'FIRST_CONTACT',final['contact']['firstContactOccurred'],'CONTACTS',final['contact']['knownPairs'])
+          for country,mods in food_modifiers.items():
+              assert max(mods)-min(mods)>=.15,(country,min(mods),max(mods))
+          final=json.loads((root/'state/turn_0156/world_state.json').read_text())
+          assert final['calendar']['year']>=4
+          assert births>0 and deaths>0 and conceptions>0 and life_transitions>0
+          assert rotations>0
+          assert len(newborn_ids)==births
+
+          print('THREE_YEAR_TEMPORAL_QA_OK')
+          print('SEASONS',sorted(seasons),'INITIAL_PREGNANCIES',initial_pregnancies)
+          print('BIRTHS',births,'CONCEPTIONS',conceptions,'DEATHS',deaths,'CANCELLED_PREGNANCIES',cancelled)
+          print('LIFE_TRANSITIONS',life_transitions,'INSTITUTION_ROTATIONS',rotations)
+          print('POLICY_DIVERSITY',{k:sorted(v) for k,v in policies.items()})
+          print('FINAL_DATE',final['calendar'])
           print('FINAL_POP',{k:v['population'] for k,v in final['countries'].items()})
           print('FINAL_FOOD',{k:v['meanFoodReserveDays'] for k,v in final['countries'].items()})
           print('FINAL_EXPLORE',{k:v['verifiedExplorationRadiusKm'] for k,v in final['countries'].items()})
