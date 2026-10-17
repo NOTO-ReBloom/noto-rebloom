@@ -17,6 +17,7 @@ const state=structuredClone(prevState);
 function seedInt(s){return crypto.createHash('sha256').update(String(s)).digest().readUInt32LE(0);}
 function rngFor(s){let a=seedInt(s);return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 const clamp=(n,a=0,b=100)=>Math.max(a,Math.min(b,n));
+const ri=(r,a,b)=>Math.floor(r()*(b-a+1))+a;
 const round=(n,d=3)=>Number(n.toFixed(d));
 const policyById=Object.fromEntries(catalog.policies.map(x=>[x.id,x]));
 
