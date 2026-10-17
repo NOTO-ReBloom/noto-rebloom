@@ -15,7 +15,8 @@ const lModel=read('sidehustle-autopublish/note/worldsim/population/livelihood_mo
 function seedInt(s){return crypto.createHash('sha256').update(String(s)).digest().readUInt32LE(0);}
 function rngFor(s){let a=seedInt(s);return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function normal(r){let u=0,v=0;while(!u)u=r();while(!v)v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
-const clamp=(n,a=0,b=100)=>Math.max(a,Math.min(b,n));\nconst ri=(r,a,b)=>Math.floor(r()*(b-a+1))+a;
+const clamp=(n,a=0,b=100)=>Math.max(a,Math.min(b,n));
+const ri=(r,a,b)=>Math.floor(r()*(b-a+1))+a;
 const round=n=>Math.round(clamp(n));
 const choose=(r,a)=>a[Math.floor(r()*a.length)];
 const hash=o=>crypto.createHash('sha256').update(JSON.stringify(o)).digest('hex').slice(0,16);
