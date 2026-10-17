@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 
-$PayloadRaw='https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/78bef98bafd6a3aa5ac6a604d30b2bfffd02a980/'
+$PayloadRaw='https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/9673ab74457914ff42be7b41ed2c02f97f52309e/'
 $ControlRaw='https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/main/'
 $ReqUrl=$ControlRaw+'sidehustle-autopublish/note/worldsim/rebuild_request.json'
 $PublisherRel='sidehustle-autopublish/note/worldsim/windows/worldsim-note-publisher.mjs'
