@@ -194,6 +194,16 @@ function applyPolicy(country,result,data,citizenDeltaLog){
  }
  citizenDeltaLog.push({country,policyId:p.id,affectedCount:affected.length,sample:affected.slice(0,20)});
 }
+function resourceStock(id){return state.worldDynamic.resources[id]?.stockIndex??100;}
+function relativeResourceFactor(id,reference,min=.15,max=1.15){
+ return clamp(resourceStock(id)/Math.max(1,reference),min,max);
+}
+function resourceFactorForOccupation(country,occupationId){
+ if(country==='ARCUS'&&['fisher','deepwater_fisher'].includes(occupationId))return relativeResourceFactor('R-ARCA-FISH-01',67,.18,1.12);
+ if(country==='MIREA'&&['farmer','orchard_keeper'].includes(occupationId))return relativeResourceFactor('R-MIR-GRAIN-01',84,.25,1.12);
+ if(country==='MIREA'&&occupationId==='wetland_gatherer')return relativeResourceFactor('R-MIR-WETLAND-01',76,.20,1.15);
+ return 1;
+}
 function foodBalance(country,data){
  const productivity=catalog.foodProductivityPersonDaysPerWorkerWeek,season=seasonalFoodModifier(country,state.calendar.dayOfYear);
  let wx=1;
@@ -204,7 +214,7 @@ function foodBalance(country,data){
  for(const raw of Object.values(data.people)){
   if((state.roster.inactiveCitizenIds||[]).includes(raw.citizenId))continue;
   const c=effective(raw,country);
-  const base=productivity[c.occupationId]||0;if(base)production+=base*season*wx;
+  const base=productivity[c.occupationId]||0;if(base)production+=base*season*wx*resourceFactorForOccupation(country,c.occupationId);
  }
  const pop=state.countries[country].population,consumption=pop*7;
  const rawDelta=(production-consumption)/Math.max(1,pop);
@@ -233,7 +243,13 @@ function fuelBalance(country,data){
  for(const raw of Object.values(data.people)){
   if((state.roster.inactiveCitizenIds||[]).includes(raw.citizenId))continue;
   const c=effective(raw,country);
-  production+=output[c.occupationId]||0;
+  let out=output[c.occupationId]||0;
+  if(['timber_worker','charcoal_burner'].includes(c.occupationId)){
+   const rid=country==='ARCUS'?'R-ARCA-TIMBER-01':country==='MIREA'?'R-MIR-WETLAND-01':'R-VALD-TIMBER-01';
+   const ref=country==='ARCUS'?58:country==='MIREA'?76:72;
+   out*=relativeResourceFactor(rid,ref,.12,1.12);
+  }
+  production+=out;
  }
  let weatherMultiplier=1;
  if(country==='VALD')weatherMultiplier=input.weather.VALD.coldPressureIndex>=75?1.18:input.weather.VALD.coldPressureIndex>=60?1.08:.98;
@@ -832,7 +848,13 @@ for(const country of ['ARCUS','MIREA','VALD']){
  if(dem.births.length||dem.deaths.length||dem.conceptions.length||dem.cancelledPregnancies.length)turnEvents.push({turn,country,type:'demography',births:dem.births.length,deaths:dem.deaths.length,conceptions:dem.conceptions.length,cancelledPregnancies:dem.cancelledPregnancies.length,activePregnanciesAfterTurn:dem.activePregnanciesAfterTurn});
  rotateInstitutions(country,data,turnEvents);
 }
-for(const [rid,d] of Object.entries(catalog.resourceWeeklyBaseline||{}))if(state.worldDynamic.resources[rid])state.worldDynamic.resources[rid].stockIndex=round(clamp(state.worldDynamic.resources[rid].stockIndex+d),2);
+for(const [rid,res] of Object.entries(state.worldDynamic.resources)){
+ const baseline=catalog.resourceWeeklyBaseline?.[rid]||0;
+ const regeneration=res.renewable?Math.max(0,(100-res.stockIndex)*.0025):0;
+ const before=res.stockIndex;
+ res.stockIndex=round(clamp(res.stockIndex+baseline+regeneration),2);
+ turnEvents.push({turn,type:'resource_balance',resourceId:rid,before:round(before,2),baseline:round(baseline,3),regeneration:round(regeneration,3),after:res.stockIndex});
+}
 state.worldDynamic.weatherHistory.push({turn,calendar:{year:calendarBefore.year,dayOfYear:calendarBefore.dayOfYear,season:calendarBefore.season,seasonStage:calendarBefore.seasonStage},...input.weather});
 advanceCalendar();
 turnEvents.push({turn,type:'calendar_advance',from:{year:calendarBefore.year,dayOfYear:calendarBefore.dayOfYear,absoluteDay:calendarBefore.absoluteDay,season:calendarBefore.season},to:{year:state.calendar.year,dayOfYear:state.calendar.dayOfYear,absoluteDay:state.calendar.absoluteDay,season:state.calendar.season},days:7});
