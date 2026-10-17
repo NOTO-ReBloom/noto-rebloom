@@ -35,10 +35,32 @@ function normalize(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
 }
 
+async function fetchJsonResponse(url,label,headers={},attempts=8){
+  let last='unknown';
+  for(let i=1;i<=attempts;i++){
+    try{
+      const res=await fetch(url,{headers:{'accept':'application/json,text/plain,*/*','cache-control':'no-cache',...headers}});
+      const text=await res.text();
+      if(!res.ok) last='HTTP_'+res.status+' '+text.slice(0,160);
+      else if(!text.trim()) last='EMPTY_RESPONSE';
+      else{
+        try{return JSON.parse(text);}
+        catch(e){last='INVALID_JSON '+String(e&&e.message||e)+' body='+text.slice(0,160);}
+      }
+    }catch(e){
+      last='FETCH_ERROR '+String(e&&e.message||e);
+    }
+    if(i<attempts) await sleep(Math.min(6000,800*i));
+  }
+  throw new Error(label+'_FAILED '+last);
+}
 async function fetchRemoteJson(rel){
-  const res=await fetch(RAW+rel+'?t='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-wipe/2.0'}});
-  if(!res.ok)throw new Error('REMOTE_CONFIG_HTTP_'+res.status+' '+rel);
-  return await res.json();
+  return await fetchJsonResponse(
+    RAW+rel+'?t='+Date.now(),
+    'REMOTE_CONFIG '+rel,
+    {'user-agent':'worldsim-wipe/2.1'},
+    6
+  );
 }
 async function loadCanonicalLaunchConfig(){
   const [queue,request]=await Promise.all([fetchRemoteJson(QUEUE_REL),fetchRemoteJson(REQUEST_REL)]);
@@ -61,9 +83,12 @@ async function fetchPublic() {
   const all = [];
   for (let p = 1; p <= 100; p++) {
     const u = 'https://note.com/api/v2/creators/' + ACCOUNT + '/contents?kind=note&disabled_pinned=true&page=' + p + '&audit=' + Date.now();
-    const r = await fetch(u, { headers: { 'user-agent': 'worldsim-rebuild/1.0', 'cache-control': 'no-cache' } });
-    if (!r.ok) throw new Error('PUBLIC_HTTP_' + r.status + '_PAGE_' + p);
-    const o = await r.json();
+    const o = await fetchJsonResponse(
+      u,
+      'NOTE_PUBLIC_PAGE_' + p,
+      { 'user-agent':'worldsim-rebuild/1.1', 'referer':'https://note.com/' + ACCOUNT },
+      10
+    );
     const d = o.data || {};
     const items = Array.isArray(d.contents) ? d.contents : [];
     for (const x of items) {
