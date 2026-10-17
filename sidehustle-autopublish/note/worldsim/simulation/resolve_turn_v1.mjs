@@ -521,6 +521,7 @@ function contactCheck(){
 }
 
 const voteOut={},citizenDeltaLog=[],demographyOut={},turnEvents=[];
+const calendarBefore=normalizeCalendar(state.calendar);
 for(const country of ['ARCUS','MIREA','VALD']){
  const data=loadCountry(country);voteOut[country]=[];
  processProjectLifecycle(country,turnEvents);
@@ -541,12 +542,15 @@ for(const country of ['ARCUS','MIREA','VALD']){
  }
  state.countries[country].population+=dem.births.length-dem.deaths.length;
  state.countries[country].dynamic.birthsThisTurn=dem.births.length;state.countries[country].dynamic.deathsThisTurn=dem.deaths.length;
- if(dem.births.length||dem.deaths.length)turnEvents.push({turn,country,type:'demography',births:dem.births.length,deaths:dem.deaths.length});
+ if(dem.births.length||dem.deaths.length||dem.conceptions.length||dem.cancelledPregnancies.length)turnEvents.push({turn,country,type:'demography',births:dem.births.length,deaths:dem.deaths.length,conceptions:dem.conceptions.length,cancelledPregnancies:dem.cancelledPregnancies.length,activePregnanciesAfterTurn:dem.activePregnanciesAfterTurn});
  rotateInstitutions(country,data,turnEvents);
 }
 for(const [rid,d] of Object.entries(catalog.resourceWeeklyBaseline||{}))if(state.worldDynamic.resources[rid])state.worldDynamic.resources[rid].stockIndex=round(clamp(state.worldDynamic.resources[rid].stockIndex+d),2);
-state.worldDynamic.weatherHistory.push({turn,...input.weather});
-advanceCalendar();contactCheck();
+state.worldDynamic.weatherHistory.push({turn,calendar:{year:calendarBefore.year,dayOfYear:calendarBefore.dayOfYear,season:calendarBefore.season,seasonStage:calendarBefore.seasonStage},...input.weather});
+advanceCalendar();
+turnEvents.push({turn,type:'calendar_advance',from:{year:calendarBefore.year,dayOfYear:calendarBefore.dayOfYear,absoluteDay:calendarBefore.absoluteDay,season:calendarBefore.season},to:{year:state.calendar.year,dayOfYear:state.calendar.dayOfYear,absoluteDay:state.calendar.absoluteDay,season:state.calendar.season},days:7});
+for(const country of ['ARCUS','MIREA','VALD'])applyLifeStageTransitions(country,loadCountry(country),turnEvents);
+contactCheck();
 state.eventLog.push(...turnEvents);
 state.publicationReady=turnEvents.some(e=>e.type==='policy_vote'&&e.passed)||state.contact.firstContactOccurred;
 state.lastResolvedFrom={turnInputHash:crypto.createHash('sha256').update(JSON.stringify(input)).digest('hex'),engine:'resolve_turn_v1'};
