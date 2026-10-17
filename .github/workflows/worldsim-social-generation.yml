@@ -1,0 +1,66 @@
+name: Worldsim social graph generation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/population/generate_social_graph_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/social_graph_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/personality/**'
+      - '.github/workflows/worldsim-social-generation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-social-generation
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate social graph
+        run: node sidehustle-autopublish/note/worldsim/population/generate_social_graph_v1.mjs
+      - name: Validate social graph
+        shell: python
+        run: |
+          import json, pathlib
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim/population/social')
+          files=list(root.glob('*.json'))
+          assert len(files)==3,len(files)
+          total=0
+          for p in files:
+              g=json.loads(p.read_text())
+              total+=g['citizenCount']
+              s=g['summary']
+              assert s['isolatedAdults']==0,(p,s)
+              assert s['crossCountryEdges']==0,(p,s)
+              assert s['edgeCount']>g['citizenCount']*2,(p,s)
+              assert s['crossSettlementEdges']>0,(p,s)
+              assert s['adultMeanDegree']>=2,(p,s)
+              for e in g['edges']:
+                  assert 0<=e['trust']<=100
+                  assert 0<=e['affection']<=100
+                  assert 0<=e['grievance']<=100
+                  assert e['from']!=e['to']
+          assert total==5451,total
+          print('SOCIAL_QA_OK',total)
+      - name: Commit social graph
+        run: |
+          git config user.name 'worldsim-social-generator'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/population/social
+          if git diff --cached --quiet; then echo 'No social graph change'; exit 0; fi
+          git commit -m 'Generate LYRA social graph'
+          git pull --rebase origin main
+          git push origin HEAD:main
