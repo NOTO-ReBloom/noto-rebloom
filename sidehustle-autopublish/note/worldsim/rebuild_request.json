@@ -2,7 +2,7 @@
   "version": 2,
   "requestId": "worldsim-rebuild-20261017-v3-final",
   "createdAt": "2026-10-17T13:06:00+09:00",
-  "status": "requested",
+  "status": "completed",
   "account": "royal_lion645",
   "userApprovedFullWipe": true,
   "launchIds": [
@@ -25,7 +25,7 @@
   "safety": "Destructive wipe is gated on exactly one reader-visible publication for every audited launch title. Any profile-edit, launch verification or final-set mismatch aborts deletion/rebuild.",
   "humanActionRequired": false,
   "holdReason": null,
-  "updatedAt": "2026-10-18T03:31:00+09:00",
+  "updatedAt": "2026-10-18T03:49:00+09:00",
   "releaseReadinessVerified": true,
   "releaseReadinessWorkflowRunId": 39008070653,
   "releaseRequestedAt": "2026-10-17T15:02:00+09:00",
@@ -35,19 +35,28 @@
   "reason": "Final audited release: 156-turn QA + final canonical Turn 1 + launch article synchronization passed.",
   "localStateCompatibility": "New requestId forces authenticated Windows runner to process this final release even if an earlier v2 request left local state.",
   "localBootstrap": {
-    "status": "required_if_authenticated_runner_is_not_active",
+    "status": "completed",
     "oneClickPath": "sidehustle-autopublish/note/worldsim/windows/START_AI_WORLD_OBSERVATORY.cmd",
     "installerPath": "sidehustle-autopublish/note/worldsim/windows/INSTALL_WORLDSIM_REBUILD.ps1",
-    "retryTask": "NOTE_WorldSimMigration_15min",
+    "retryTask": "removed",
     "explanation": "GitHub/cloud QA cannot access the local authenticated NOTE browser profile. Public NOTE currently still shows the legacy account state, so one authenticated Windows bootstrap execution is the only remaining external prerequisite if the existing runner does not wake automatically."
   },
-  "publicRealityLastCheckedAt": "2026-10-18T03:31:00+09:00",
+  "publicRealityLastCheckedAt": "2026-10-18T03:49:00+09:00",
   "publicReality": {
     "profileName": "AI世界観測所",
     "launchPostsVerified": 4,
-    "migrationComplete": false,
-    "note": "Four launch posts recovered and reader-visible. Legacy articles still remain; destructive cleanup stays paused."
+    "migrationComplete": true,
+    "publicInventoryCount": 4,
+    "note": "Final public state verified: exactly four LYRA launch posts remain; profile name and bio verified."
   },
   "launchVerified": true,
-  "launchVerifiedAt": "2026-10-18T03:31:00+09:00"
+  "launchVerifiedAt": "2026-10-18T03:31:00+09:00",
+  "completedAt": "2026-10-18T03:49:00+09:00",
+  "profileVerified": true,
+  "finalPublicUrls": [
+    "https://note.com/royal_lion645/n/n0fe222a4c273",
+    "https://note.com/royal_lion645/n/n158e9b7da82a",
+    "https://note.com/royal_lion645/n/n992001bc5844",
+    "https://note.com/royal_lion645/n/nff17a64062f0"
+  ]
 }
