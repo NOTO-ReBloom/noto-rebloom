@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "requestId": "worldsim-rebuild-20261017-v2",
+  "requestId": "worldsim-rebuild-20261017-v3-final",
   "createdAt": "2026-10-17T13:06:00+09:00",
   "status": "requested",
   "account": "royal_lion645",
@@ -25,11 +25,13 @@
   "safety": "Destructive wipe is gated on exactly one reader-visible publication for every audited launch title. Any profile-edit, launch verification or final-set mismatch aborts deletion/rebuild.",
   "humanActionRequired": false,
   "holdReason": null,
-  "updatedAt": "2026-10-17T14:59:00+09:00",
+  "updatedAt": "2026-10-17T15:02:00+09:00",
   "releaseReadinessVerified": true,
   "releaseReadinessWorkflowRunId": 39008070653,
-  "releaseRequestedAt": "2026-10-17T14:59:00+09:00",
+  "releaseRequestedAt": "2026-10-17T15:02:00+09:00",
   "finalTemporalModelVerified": true,
   "finalTurn1Verified": true,
-  "longHorizonTurnsVerified": 156
+  "longHorizonTurnsVerified": 156,
+  "reason": "Final audited release: 156-turn QA + final canonical Turn 1 + launch article synchronization passed.",
+  "localStateCompatibility": "New requestId forces authenticated Windows runner to process this final release even if an earlier v2 request left local state."
 }
