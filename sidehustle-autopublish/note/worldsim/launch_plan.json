@@ -1,39 +1,48 @@
 {
-  "version": 1,
-  "status": "ready_after_wipe",
+  "version": 2,
+  "status": "long_horizon_qa_hold",
   "launchSequence": [
     {
       "order": 1,
-      "id": "WORLD_MANIFESTO",
+      "id": "worldsim_launch_manifesto",
       "type": "observer",
-      "title": "3つの国を、AIだけで運営させます。彼らはまだ互いの存在を知りません",
-      "publish": "after profile reset"
+      "title": "3つの国を同じ世界に置きました。まだ、互いの存在を知りません",
+      "publish": "first"
     },
     {
       "order": 2,
-      "id": "ARCA_DAY0",
+      "id": "worldsim_launch_arca",
       "type": "arca",
-      "title": "アルカ建国0日｜海と100万円を渡された118人",
+      "title": "港は木を欲しがった。山は4票で反対した｜アルカ、最初の7日",
       "publish": "same launch window"
     },
     {
       "order": 3,
-      "id": "MIREA_DAY0",
+      "id": "worldsim_launch_mirea",
       "type": "mirea",
-      "title": "ミレア建国0日｜豊かな土地で、何を豊かさと呼ぶのか",
+      "title": "賛成は6、反対2。それでも灌漑整備は否決された｜ミレア、最初の7日",
       "publish": "same launch window"
     },
     {
       "order": 4,
-      "id": "VALD_DAY0",
+      "id": "worldsim_launch_vald",
       "type": "vald",
-      "title": "ヴァルド建国0日｜冬を越すことから始まる96人の国",
+      "title": "鉱山を2日止める。6対3で安全点検が通った｜ヴァルド、最初の7日",
       "publish": "same launch window"
     }
   ],
+  "launchFacts": {
+    "totalPopulation": 5451,
+    "ARCUS": 1846,
+    "MIREA": 2214,
+    "VALD": 1391,
+    "turn1Days": 7,
+    "firstContact": false
+  },
   "afterLaunch": {
-    "cadence": "2 posts/week by default; rotate perspectives based on meaningful state changes rather than fixed country turns",
+    "simulationCadence": "one 7-day turn per week",
+    "publicationCadence": "0-2 posts per turn, only for meaningful events",
     "firstCrossover": "not scheduled",
-    "readerKnowledge": "Readers may compare all three streams; countries cannot."
+    "readerKnowledge": "Readers can compare streams; citizens only know information plausibly available to them."
   }
 }
