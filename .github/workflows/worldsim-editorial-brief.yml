@@ -1,0 +1,63 @@
+name: Worldsim editorial brief
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/editorial/generate_launch_briefs_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/turns/turn_0001/**'
+      - 'sidehustle-autopublish/note/worldsim/state/turn_0000/**'
+      - 'sidehustle-autopublish/note/worldsim/state/turn_0001/**'
+      - '.github/workflows/worldsim-editorial-brief.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-editorial-brief
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate factual editorial brief
+        run: node sidehustle-autopublish/note/worldsim/editorial/generate_launch_briefs_v1.mjs
+      - name: Validate editorial facts
+        shell: python
+        run: |
+          import json, pathlib
+          p=pathlib.Path('sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json')
+          d=json.loads(p.read_text())
+          assert d['turn']==1
+          assert d['world']['firstContact'] is False
+          for country,c in d['countries'].items():
+              e=c['selectedEvent']
+              assert e['yes']+e['no']+e['abstain']>0
+              assert c['people']['sponsor']
+              assert c['people']['strongestYes']
+              assert c['people']['strongestNo']
+              for role,person in c['people'].items():
+                  if person:
+                      assert person['name']
+                      assert person['occupation']
+                      if person['vote']:
+                          assert person['vote']['choice'] in ('yes','no','abstain')
+          print('EDITORIAL_BRIEF_QA_OK')
+      - name: Commit editorial brief
+        run: |
+          git config user.name 'worldsim-editorial-brief'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json
+          if git diff --cached --quiet; then echo 'No brief change'; exit 0; fi
+          git commit -m 'Generate LYRA launch editorial brief'
+          git pull --rebase origin main
+          git push origin HEAD:main
