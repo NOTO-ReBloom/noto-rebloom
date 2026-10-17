@@ -1,0 +1,85 @@
+name: Worldsim personality generation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/population/generate_personality_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/personality_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/livelihood/**'
+      - 'sidehustle-autopublish/note/worldsim/population/cultural_priors_v1.json'
+      - '.github/workflows/worldsim-personality-generation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-personality-generation
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate personality registry
+        run: node sidehustle-autopublish/note/worldsim/population/generate_personality_v1.mjs
+      - name: Validate personality depth and variance
+        shell: python
+        run: |
+          import json, pathlib, statistics
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim/population/personality')
+          summary=json.loads((root/'personality_summary.json').read_text())
+          assert summary['totalPopulation']==5451, summary['totalPopulation']
+          assert summary['calibrationPreserved']==18, summary['calibrationPreserved']
+          files=[p for p in root.rglob('*.json') if p.name!='personality_summary.json']
+          assert len(files)==13, len(files)
+          fps=set(); total=0
+          country_rows={}
+          required_big={'openness','conscientiousness','extraversion','agreeableness','emotionalVolatility'}
+          required_values={'family','autonomy','security','achievement','status','tradition','fairness','community','novelty','faith','materialComfort','environment'}
+          for p in files:
+              d=json.loads(p.read_text())
+              assert d['stage']=='personality_v1',p
+              for c in d['citizens']:
+                  total+=1
+                  assert required_big<=set(c['psychology']['bigFive']),c['citizenId']
+                  assert required_values<=set(c['values']),c['citizenId']
+                  assert c['goals']['primaryGoal'],c['citizenId']
+                  assert c['goals']['avoidAtAllCosts'],c['citizenId']
+                  assert 'stress' in c['materialState'],c['citizenId']
+                  fp=c['psychologyFingerprint']; assert fp not in fps,fp;fps.add(fp)
+                  country_rows.setdefault(c['countryId'],[]).append(c)
+          assert total==5451,total
+          # Individual variance must dominate national stereotype differences.
+          traits=['openness','conscientiousness','extraversion','agreeableness','emotionalVolatility']
+          for trait in traits:
+              means=[]; sds=[]
+              for country,rows in country_rows.items():
+                  vals=[c['psychology']['bigFive'][trait] for c in rows]
+                  means.append(statistics.mean(vals));sds.append(statistics.pstdev(vals))
+                  assert statistics.pstdev(vals)>=9,(country,trait,statistics.pstdev(vals))
+              assert max(means)-min(means) < statistics.mean(sds),(trait,means,sds)
+          # No country may be psychologically uniform on values.
+          for country,rows in country_rows.items():
+              for trait in ['security','autonomy','community','achievement']:
+                  vals=[c['values'][trait] for c in rows]
+                  assert statistics.pstdev(vals)>=8,(country,trait)
+          print('PERSONALITY_QA_OK',total,len(fps))
+      - name: Commit personality registry
+        run: |
+          git config user.name 'worldsim-personality-generator'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/population/personality
+          if git diff --cached --quiet; then echo 'No personality change'; exit 0; fi
+          git commit -m 'Generate LYRA personality registry'
+          git pull --rebase origin main
+          git push origin HEAD:main
