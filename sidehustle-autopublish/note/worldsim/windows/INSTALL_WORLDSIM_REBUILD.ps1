@@ -1,8 +1,9 @@
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 
-$Raw='https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/78bef98bafd6a3aa5ac6a604d30b2bfffd02a980/'
-$ReqUrl=$Raw+'sidehustle-autopublish/note/worldsim/rebuild_request.json'
+$PayloadRaw='https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/78bef98bafd6a3aa5ac6a604d30b2bfffd02a980/'
+$ControlRaw='https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/main/'
+$ReqUrl=$ControlRaw+'sidehustle-autopublish/note/worldsim/rebuild_request.json'
 $PublisherRel='sidehustle-autopublish/note/worldsim/windows/worldsim-note-publisher.mjs'
 $WipeRel='sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs'
 $RetryTask='NOTE_WorldSimMigration_15min'
@@ -35,7 +36,7 @@ function Log([string]$s){
   Add-Content -Path $Log -Value $line -Encoding UTF8
 }
 function Download([string]$rel,[string]$out){
-  Invoke-WebRequest -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='WORLDSIM-BOOTSTRAP/3.0'} -Uri ($Raw+$rel+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) -OutFile $out
+  Invoke-WebRequest -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='WORLDSIM-BOOTSTRAP/3.1'} -Uri ($PayloadRaw+$rel+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) -OutFile $out
 }
 function RemoteRequest(){
   Invoke-RestMethod -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='WORLDSIM-BOOTSTRAP/3.0'} -Uri ($ReqUrl+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds())
