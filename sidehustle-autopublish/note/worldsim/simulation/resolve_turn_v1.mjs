@@ -780,8 +780,8 @@ turnEvents.push({turn,type:'calendar_advance',from:{year:calendarBefore.year,day
 for(const country of ['ARCUS','MIREA','VALD']){
  const dynamicData=loadCountry(country);
  processBirthdays(country,dynamicData,calendarBefore,turnEvents);
- applyLifeStageTransitions(country,loadCountry(country),turnEvents);
- formPartnerships(country,loadCountry(country),turnEvents);
+ applyLifeStageTransitions(country,dynamicData,turnEvents);
+ formPartnerships(country,dynamicData,turnEvents);
 }
 contactCheck();
 state.eventLog.push(...turnEvents);
