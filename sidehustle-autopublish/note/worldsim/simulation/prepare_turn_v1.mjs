@@ -1,0 +1,85 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+
+const ROOT=process.cwd(),P=(...x)=>path.join(ROOT,...x);
+const read=p=>JSON.parse(fs.readFileSync(P(p),'utf8'));
+const write=(p,o)=>{const f=P(p);fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,JSON.stringify(o,null,2)+'\n');};
+const turn=Number(process.env.WORLDSIM_TURN||1),prev=turn-1;
+const turnPad=n=>String(n).padStart(4,'0');
+const state=read('sidehustle-autopublish/note/worldsim/state/turn_'+turnPad(prev)+'/world_state.json');
+const truth=read('sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json');
+const catalog=read('sidehustle-autopublish/note/worldsim/simulation/policy_catalog_v1.json');
+const institutions=read('sidehustle-autopublish/note/worldsim/institutions/institution_state_turn0.json');
+
+function seedInt(s){return crypto.createHash('sha256').update(String(s)).digest().readUInt32LE(0);}
+function rngFor(s){let a=seedInt(s);return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const ri=(r,a,b)=>Math.floor(r()*(b-a+1))+a;
+const clamp=(n,a=0,b=100)=>Math.max(a,Math.min(b,n));
+
+function loadPeople(country){
+ const dir=P('sidehustle-autopublish/note/worldsim/population/personality',country),out={};
+ for(const f of fs.readdirSync(dir).filter(x=>x.endsWith('.json'))){
+  const d=read('sidehustle-autopublish/note/worldsim/population/personality/'+country+'/'+f);
+  for(const c of d.citizens)out[c.citizenId]=c;
+ }
+ return out;
+}
+function loadBelief(country){return read('sidehustle-autopublish/note/worldsim/population/beliefs/'+country+'.json');}
+function rumorPrevalence(belief,topic){
+ const vals=Object.values(belief.records).flatMap(r=>r.rumors.filter(x=>x.topic===topic));
+ if(!vals.length)return 0;
+ return vals.reduce((s,x)=>s+(x.stance==='believed'?1:x.stance==='uncertain'?.45:0),0)/vals.length;
+}
+function weather(){
+ const r=rngFor(state.worldId+'|WEATHER|'+turn);
+ const arcaWind=clamp(48+truth.climate.currentAnomalies.arcaSeaSurfaceTempVs20yMeanC*7+ri(r,-13,18));
+ const mireaRain=clamp(52+truth.climate.currentAnomalies.mireaUpperCatchmentRainVsMeanPct*.8+ri(r,-16,17));
+ const valdCold=clamp(24+ri(r,-10,16)+(turn>3?7:0));
+ return {
+  ARCUS:{coastalWindIndex:Math.round(arcaWind),rainIndex:ri(r,35,68),summary:arcaWind>=72?'rough coastal week':arcaWind>=58?'breezy but workable coast':'mostly workable coast'},
+  MIREA:{upperCatchmentRainIndex:Math.round(mireaRain),riverPressureIndex:Math.round(clamp((mireaRain+truth.hydrology.mireaRiver.turn0SedimentIndex)/2)),summary:mireaRain>=76?'wet upper catchment':mireaRain>=58?'several wet periods':'ordinary river weather'},
+  VALD:{coldPressureIndex:Math.round(valdCold),snowRiskIndex:ri(r,4,25),summary:valdCold>=55?'unseasonably cold nights':'cool highland week without hard freeze'}
+ };
+}
+const wx=weather();
+
+function urgency(policy,country,people,belief){
+ const cs=state.countries[country];let u=35;
+ switch(policy.id){
+  case'A_TIMBER_REPAIR':u=58+(65-state.worldDynamic.resources['R-ARCA-TIMBER-01'].stockIndex)*.8+(wx.ARCUS.coastalWindIndex-50)*.18;break;
+  case'A_HARBOR_SANITATION':u=48+(70-cs.settlementStates['ARCA-PORT-01'].meanHealth)*.55+rumorPrevalence(belief,'health')*15;break;
+  case'A_COASTAL_SURVEY':u=28+Object.values(people).filter(x=>x.occupation.sector==='knowledge').length*1.2;break;
+  case'A_INLAND_ROAD_REPAIR':u=42+(cs.settlementStates['ARCA-RIDGE-01'].risks.includes('landslide')?7:0);break;
+  case'M_GATE_CLEARING':u=55+(wx.MIREA.riverPressureIndex-50)*.45+(truth.hydrology.mireaRiver.turn0SedimentIndex-50)*.35;break;
+  case'M_SPILLWAY_SURVEY':u=48+(wx.MIREA.riverPressureIndex-50)*.30+rumorPrevalence(belief,'river')*10;break;
+  case'M_WETLAND_BUFFER':u=38+(80-state.worldDynamic.resources['R-MIR-WETLAND-01'].stockIndex)*.25+rumorPrevalence(belief,'wetland')*16;break;
+  case'M_SCHOOL_HARVEST':u=30+rumorPrevalence(belief,'education')*18;break;
+  case'V_MINE_INSPECTION':u=55+Object.values(people).filter(x=>x.occupationId==='miner').length*.045+rumorPrevalence(belief,'mining')*18;break;
+  case'V_FUEL_BUFFER':u=46+(90-cs.meanFuelReserveDays)*.25+(93-state.calendar.daysUntilMeteorologicalWinter)*.08;break;
+  case'V_SMOKE_VENT':u=43+rumorPrevalence(belief,'health')*18+(72-cs.settlementStates['VALD-BASIN-01'].meanHealth)*.35;break;
+  case'V_PASS_SURVEY':u=25+rumorPrevalence(belief,'information')*8;break;
+ }
+ return Number(clamp(u).toFixed(2));
+}
+function sponsor(policy,country,people,belief){
+ const members=institutions.countries[country].nationalBody.members.map(x=>people[x.citizenId]).filter(Boolean);
+ const preferred=new Set(policy.sponsorSectors||[]);
+ return members.map(c=>{
+  const topicRumors=belief.records[c.citizenId]?.rumors?.filter(x=>x.topic===policy.topic)||[];
+  const awareness=topicRumors.reduce((m,x)=>Math.max(m,x.confidence),0);
+  const sector=preferred.has(c.occupation.sector)?18:0;
+  const valueScore=Object.entries(policy.valueImpact||{}).reduce((s,[k,w])=>s+w*((c.values[k]||50)-50)/5,0);
+  return{c,score:sector+c.occupation.skill*.16+c.psychology.bigFive.conscientiousness*.09+awareness*.07+valueScore};
+ }).sort((a,b)=>b.score-a.score)[0]?.c?.citizenId||members[0]?.citizenId||null;
+}
+
+const proposals={};
+for(const country of ['ARCUS','MIREA','VALD']){
+ const people=loadPeople(country),belief=loadBelief(country);
+ const ranked=catalog.policies.filter(p=>p.country===country).map(p=>({...p,urgency:urgency(p,country,people,belief)})).sort((a,b)=>b.urgency-a.urgency);
+ proposals[country]=ranked.slice(0,2).map(p=>({policyId:p.id,title:p.title,topic:p.topic,urgency:p.urgency,sponsorId:sponsor(p,country,people,belief),reason:'selected from current material conditions, local risk and citizen information'}));
+}
+const input={version:1,worldId:state.worldId,turn,previousTurn:prev,preparedFromStateHash:crypto.createHash('sha256').update(JSON.stringify(state)).digest('hex'),weather:wx,proposals};
+write('sidehustle-autopublish/note/worldsim/turns/turn_'+turnPad(turn)+'/turn_input.json',input);
+console.log(JSON.stringify(input,null,2));
