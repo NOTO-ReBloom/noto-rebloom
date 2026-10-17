@@ -61,7 +61,7 @@ jobs:
           policies={c:set() for c in countries}
           last_pass={}
           catalog={x['id']:x for x in json.loads((root/'simulation/policy_catalog_v1.json').read_text())['policies']}
-          rotations=births=deaths=conceptions=cancelled=life_transitions=0
+          rotations=births=deaths=conceptions=cancelled=life_transitions=partnerships=contact_stage_changes=exchanges=misunderstandings=0
           seasons=set()
           food_modifiers={c:[] for c in countries}
           calendar_abs=[]
@@ -132,6 +132,12 @@ jobs:
 
               for e in ev['events']:
                   if e.get('type')=='life_stage_transition': life_transitions+=1
+                  if e.get('type')=='partnership_formed': partnerships+=1
+              for e in state.get('eventLog',[]):
+                  if e.get('turn')!=t: continue
+                  if e.get('type')=='contact_stage_changed': contact_stage_changes+=1
+                  if e.get('type')=='cross_border_exchange': exchanges+=1
+                  if e.get('type')=='cross_border_misunderstanding': misunderstandings+=1
               for h in state.get('institutionalHistory',[]):
                   if h.get('turn')==t: rotations+=1
               for rid,res in state['worldDynamic']['resources'].items():
@@ -142,6 +148,10 @@ jobs:
                   if e.get('type')=='food_balance' and e.get('country') in food_modifiers:
                       food_modifiers[e['country']].append(e['seasonModifier'])
 
+              for country,hos in state.get('householdOverlays',{}).items():
+                  for hid,ho in hos.items():
+                      new=set(ho.get('newMemberIds',[])); departed=set(ho.get('departedMemberIds',[]))
+                      assert not (new & departed),(t,country,hid,'same member added and departed')
               ids=[x['citizenId'] for x in state['roster']['newCitizens']]
               assert len(ids)==len(set(ids)),(t,'duplicate newborn roster')
               inactive=state['roster']['inactiveCitizenIds']
@@ -156,13 +166,23 @@ jobs:
           final=json.loads((root/'state/turn_0156/world_state.json').read_text())
           assert final['calendar']['year']>=4
           assert births>0 and deaths>0 and conceptions>0 and life_transitions>0
-          assert rotations>0
+          assert rotations>0 and partnerships>0
+          if final['contact']['firstContactOccurred']:
+              assert final['contact']['pairStates']
+              for ps in final['contact']['pairStates'].values():
+                  a,b=ps['pair']
+                  assert ps['stage'] in {'verified_presence','direct_contact','sustained_route'}
+                  assert final['countries'][a]['knownOtherCountries'] is True
+                  assert final['countries'][b]['knownOtherCountries'] is True
+                  assert b in final['countries'][a]['knownCountryIds']
+                  assert a in final['countries'][b]['knownCountryIds']
           assert len(newborn_ids)==births
 
           print('THREE_YEAR_TEMPORAL_QA_OK')
           print('SEASONS',sorted(seasons),'INITIAL_PREGNANCIES',initial_pregnancies)
           print('BIRTHS',births,'CONCEPTIONS',conceptions,'DEATHS',deaths,'CANCELLED_PREGNANCIES',cancelled)
-          print('LIFE_TRANSITIONS',life_transitions,'INSTITUTION_ROTATIONS',rotations)
+          print('LIFE_TRANSITIONS',life_transitions,'PARTNERSHIPS',partnerships,'INSTITUTION_ROTATIONS',rotations)
+          print('CONTACT_STAGE_CHANGES',contact_stage_changes,'EXCHANGES',exchanges,'MISUNDERSTANDINGS',misunderstandings,'FIRST_CONTACT',final['contact']['firstContactOccurred'])
           print('POLICY_DIVERSITY',{k:sorted(v) for k,v in policies.items()})
           print('FINAL_DATE',final['calendar'])
           print('FINAL_POP',{k:v['population'] for k,v in final['countries'].items()})
