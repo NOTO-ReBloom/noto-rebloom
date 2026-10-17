@@ -285,6 +285,93 @@ function advanceCalendar(){
  state.calendar.daysUntilMeteorologicalWinter=Math.max(0,(state.calendar.daysUntilMeteorologicalWinter??93)-7);
  if(state.calendar.dayOfYear>365){state.calendar.year+=1;state.calendar.dayOfYear-=365;}
 }
+
+function institutionCandidateScore(country,c,data){
+ const incoming=(data.social.edges||[]).filter(e=>e.to===c.citizenId);
+ const respect=incoming.length?incoming.reduce((a,e)=>a+(e.respect||50),0)/incoming.length:45;
+ const trust=incoming.length?incoming.reduce((a,e)=>a+(e.trust||50),0)/incoming.length:45;
+ const ec=effective(c,country);
+ return respect*.28+trust*.18+(ec.occupation?.skill||40)*.18+ec.psychology.bigFive.conscientiousness*.14+ec.values.community*.10+ec.values.fairness*.07+(100-ec.materialState.stress)*.05;
+}
+function selectCouncilMembers(country,settlementId,seats,data){
+ const inactive=new Set(state.roster.inactiveCitizenIds||[]);
+ const eligible=Object.values(data.people).filter(base=>{
+  if(inactive.has(base.citizenId))return false;
+  const c=effective(base,country);
+  return c.settlementId===settlementId&&c.ageYears>=25&&c.ageYears<=76&& !['dependent','student'].includes(c.occupation?.status);
+ }).map(c=>({c,score:institutionCandidateScore(country,c,data)}))
+   .sort((a,b)=>b.score-a.score||a.c.citizenId.localeCompare(b.c.citizenId));
+ const picked=[],occ={};
+ const maxSame=Math.max(2,Math.ceil(seats*.4));
+ for(const x of eligible){
+  if(picked.length>=seats)break;
+  const o=x.c.occupationId||'other';
+  if((occ[o]||0)>=maxSame)continue;
+  picked.push(x);occ[o]=(occ[o]||0)+1;
+ }
+ for(const x of eligible){if(picked.length>=seats)break;if(!picked.some(y=>y.c.citizenId===x.c.citizenId))picked.push(x);}
+ return picked;
+}
+function rotateInstitutions(country,data,turnEvents){
+ const cfg=institutionModel.countries[country];
+ const inst=state.countries[country].institution||structuredClone(institutions.countries[country]);
+ let localsChanged=false;
+ for(const [sid,council] of Object.entries(inst.localCouncils||{})){
+  const inactive=(council.memberIds||[]).filter(id=>(state.roster.inactiveCitizenIds||[]).includes(id)).length;
+  if(turn>=(council.termEndsTurn||Infinity)||inactive>0){
+   const picked=selectCouncilMembers(country,sid,council.seats,data);
+   const old=[...(council.memberIds||[])];
+   council.memberIds=picked.map(x=>x.c.citizenId);
+   council.memberScores=Object.fromEntries(picked.map(x=>[x.c.citizenId,round(x.score,3)]));
+   council.termEndsTurn=turn+cfg.localCouncilRule.termTurns;
+   localsChanged=true;
+   state.institutionalHistory.push({turn,country,type:'local_council_renewal',settlementId:sid,oldMemberIds:old,newMemberIds:council.memberIds});
+  }
+ }
+ if(turn>=(inst.nationalBody.termEndsTurn||Infinity)||localsChanged){
+  const national=[];
+  for(const [sid,council] of Object.entries(inst.localCouncils)){
+   const ranked=(council.memberIds||[]).map(id=>({id,score:institutionCandidateScore(country,data.people[id],data)})).filter(x=>data.people[x.id]).sort((a,b)=>b.score-a.score);
+   for(const x of ranked.slice(0,cfg.nationalBody.delegatesPerSettlement))national.push({citizenId:x.id,settlementId:sid,selectionScore:round(x.score,3)});
+  }
+  const old=inst.nationalBody.members?.map(x=>x.citizenId)||[];
+  inst.nationalBody.members=national;
+  inst.nationalBody.termEndsTurn=turn+cfg.nationalBody.termTurns;
+  state.institutionalHistory.push({turn,country,type:'national_body_renewal',oldMemberIds:old,newMemberIds:national.map(x=>x.citizenId)});
+ }
+ const currentExec=inst.executive.memberIds||[];
+ const execInactive=currentExec.some(id=>(state.roster.inactiveCitizenIds||[]).includes(id));
+ if(turn>=(inst.executive.termEndsTurn||Infinity)||execInactive){
+  const count=cfg.executive.count;
+  const previous=new Set(currentExec);
+  const ranked=(inst.nationalBody.members||[]).map(m=>({m,score:institutionCandidateScore(country,data.people[m.citizenId],data)})).filter(x=>data.people[x.m.citizenId]).sort((a,b)=>{
+   const ap=previous.has(a.m.citizenId)?1:0,bp=previous.has(b.m.citizenId)?1:0;
+   return ap-bp||b.score-a.score;
+  });
+  const next=[],settlements=new Set();
+  for(const x of ranked){
+   if(next.length>=count)break;
+   if(settlements.has(x.m.settlementId)&&ranked.some(y=>!settlements.has(y.m.settlementId)&&!next.includes(y.m.citizenId)))continue;
+   next.push(x.m.citizenId);settlements.add(x.m.settlementId);
+  }
+  const old=[...currentExec];
+  inst.executive.memberIds=next;
+  inst.executive.termEndsTurn=turn+cfg.executive.termTurns;
+  state.institutionalHistory.push({turn,country,type:'executive_rotation',oldMemberIds:old,newMemberIds:next});
+  turnEvents.push({turn,country,type:'institution_rotation',body:inst.executive.name,oldMemberIds:old,newMemberIds:next});
+ }
+ state.countries[country].institution=inst;
+}
+function processProjectLifecycle(country,turnEvents){
+ const works=state.countries[country].dynamic.publicWorks||[];
+ for(const w of works){
+  if(w.status==='active'&&turn>=w.completeTurn){
+   w.status='completed';w.completedTurn=turn;
+   turnEvents.push({turn,country,type:'project_completed',policyId:w.policyId,title:w.title});
+  }
+ }
+}
+
 function contactCheck(){
  const d={ARCUS_MIREA:['ARCUS','MIREA'],MIREA_VALD:['MIREA','VALD'],ARCUS_VALD:['ARCUS','VALD']};
  const truth=read('sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json');
@@ -299,6 +386,7 @@ function contactCheck(){
 const voteOut={},citizenDeltaLog=[],demographyOut={},turnEvents=[];
 for(const country of ['ARCUS','MIREA','VALD']){
  const data=loadCountry(country);voteOut[country]=[];
+ processProjectLifecycle(country,turnEvents);
  for(const proposal of input.proposals[country]||[]){
   const v=conductVote(country,proposal,data);voteOut[country].push(v);
   turnEvents.push({turn,country,type:'policy_vote',policyId:v.policyId,title:v.title,passed:v.passed,yes:v.yes,no:v.no,abstain:v.abstain,yesShare:v.yesShare});
@@ -317,6 +405,7 @@ for(const country of ['ARCUS','MIREA','VALD']){
  state.countries[country].population+=dem.births.length-dem.deaths.length;
  state.countries[country].dynamic.birthsThisTurn=dem.births.length;state.countries[country].dynamic.deathsThisTurn=dem.deaths.length;
  if(dem.births.length||dem.deaths.length)turnEvents.push({turn,country,type:'demography',births:dem.births.length,deaths:dem.deaths.length});
+ rotateInstitutions(country,data,turnEvents);
 }
 for(const [rid,d] of Object.entries(catalog.resourceWeeklyBaseline||{}))if(state.worldDynamic.resources[rid])state.worldDynamic.resources[rid].stockIndex=round(clamp(state.worldDynamic.resources[rid].stockIndex+d),2);
 state.worldDynamic.weatherHistory.push({turn,...input.weather});
