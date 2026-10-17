@@ -352,7 +352,7 @@ function simulateDemography(country,data){
   if(inactive.has(base.citizenId))continue;
   const c=effective(base,country);
   const r=rngFor(state.worldId+'|DEATH|'+turn+'|'+c.citizenId);
-  let p=c.ageYears<45?.00002:c.ageYears<65?.00008:c.ageYears<75?.00025:.00070;
+  let p=c.ageYears<45?.00002:c.ageYears<65?.00008:c.ageYears<75?.00025:c.ageYears<85?.00070:c.ageYears<95?.00250:.00600;
   if(c.materialState.health<40)p+=.00035;
   const hazard=livelihoodModel.occupations[c.occupationId]?.hazard||0;
   p+=hazard*.000008;
@@ -371,6 +371,22 @@ function simulateDemography(country,data){
 function advanceCalendar(){
  state.turn=turn;
  state.calendar=advanceWorldCalendar(state.calendar,7,turn);
+}
+
+function processBirthdays(country,data,calendarBefore,turnEvents){
+ const inactive=new Set(state.roster.inactiveCitizenIds||[]);
+ for(const base of Object.values(data.people)){
+  if(inactive.has(base.citizenId))continue;
+  const beforeAge=modelAgeYears(base,calendarBefore);
+  const afterAge=modelAgeYears(base,state.calendar);
+  if(afterAge<=beforeAge)continue;
+  let healthDelta=0;
+  if(afterAge>=85)healthDelta=-0.70;
+  else if(afterAge>=70)healthDelta=-0.35;
+  else if(afterAge>=55)healthDelta=-0.15;
+  if(healthDelta)applyOverlay(country,base.citizenId,{health:healthDelta},{turn,kind:'birthday_aging',age:afterAge});
+  turnEvents.push({turn,country,type:'birthday',citizenId:base.citizenId,ageBefore:beforeAge,ageAfter:afterAge,healthDelta});
+ }
 }
 
 function occupationStatus(id){
@@ -763,7 +779,8 @@ advanceCalendar();
 turnEvents.push({turn,type:'calendar_advance',from:{year:calendarBefore.year,dayOfYear:calendarBefore.dayOfYear,absoluteDay:calendarBefore.absoluteDay,season:calendarBefore.season},to:{year:state.calendar.year,dayOfYear:state.calendar.dayOfYear,absoluteDay:state.calendar.absoluteDay,season:state.calendar.season},days:7});
 for(const country of ['ARCUS','MIREA','VALD']){
  const dynamicData=loadCountry(country);
- applyLifeStageTransitions(country,dynamicData,turnEvents);
+ processBirthdays(country,dynamicData,calendarBefore,turnEvents);
+ applyLifeStageTransitions(country,loadCountry(country),turnEvents);
  formPartnerships(country,loadCountry(country),turnEvents);
 }
 contactCheck();
