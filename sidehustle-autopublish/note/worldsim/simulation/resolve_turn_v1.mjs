@@ -48,8 +48,13 @@ function voteUtility(c,policy,proposal,data){
  let u=0;
  for(const [k,w] of Object.entries(policy.valueImpact||{}))u+=w*((c.values[k]??50)-50)/50*18;
  if(policy.sectorBenefits?.[c.occupation.sector])u+=10*policy.sectorBenefits[c.occupation.sector];
- if(policy.sectorCosts?.[c.occupation.sector])u-=10*policy.sectorCosts[c.occupation.sector];
+ if(policy.sectorCosts?.[c.occupation.sector])u-=12*policy.sectorCosts[c.occupation.sector];
  if((policy.affectedSettlements||[]).includes(c.settlementId))u+=3.5;
+ const localCost=policy.settlementCosts?.[c.settlementId]||0;
+ u-=12*localCost;
+ const reservePressure=(c.materialState.householdFoodDays<50?1.25:1)+(c.materialState.householdDebt>30?.30:0);
+ u-=10*(policy.opportunityCost||0)*reservePressure;
+ if(c.citizenId===proposal.sponsorId)u+=7.5;
  u+=rumorSignal(data.beliefs.records[c.citizenId],policy.topic)*6;
  const relation=data.rel[c.citizenId+'|'+proposal.sponsorId];
  if(relation)u+=(relation.trust-50)*.055+(relation.respect-50)*.035;
