@@ -47,6 +47,25 @@ function generatedName(country,rng,familyHint=null){
 }
 function ageBand(a){ if(a<=4)return'0-4'; if(a<=14)return'5-14'; if(a<=24)return'15-24'; if(a<=44)return'25-44'; if(a<=64)return'45-64'; return'65+'; }
 function roleSex(rng){ return rng()<0.5?'female':'male'; }
+function parentAge(rng){
+ return rng()<0.62 ? ri(rng,25,44) : ri(rng,45,60);
+}
+function flexibleAdultAge(rng){
+ const x=rng();
+ if(x<0.23) return ri(rng,18,24);
+ if(x<0.66) return ri(rng,25,44);
+ if(x<0.92) return ri(rng,45,64);
+ return ri(rng,65,78);
+}
+function childAge(rng,maxAge){
+ maxAge=Math.max(0,Math.min(24,maxAge));
+ if(maxAge<=4) return ri(rng,0,maxAge);
+ if(maxAge<=14) return rng()<0.32 ? ri(rng,0,4) : ri(rng,5,maxAge);
+ const x=rng();
+ if(x<0.18) return ri(rng,0,4);
+ if(x<0.52) return ri(rng,5,14);
+ return ri(rng,15,maxAge);
+}
 
 const calibrationMap=new Map(calibration.citizens.map(c=>[c.citizenId,c]));
 const anchorByHouse=new Map(anchorsCfg.households.map(h=>[h.householdId,h]));
@@ -132,37 +151,37 @@ function makeGeneric(country,settlement,type,size,rng){
  const add=(age,sex,role,fam=family)=>{const p=makePerson(country,settlement,householdId,rng,age,sex,role,fam);people.push(p);return p;};
 
  if(type==='single_adult'){
-  const a=add(ri(rng,18,74),roleSex(rng),'single_adult');
+  const a=add(flexibleAdultAge(rng),roleSex(rng),'single_adult');
  } else if(type==='elderly'){
   const a=add(ri(rng,62,84),roleSex(rng),'elder');
   if(size>1){const b=add(clamp(a.ageYears+ri(rng,-6,6),60,87),a.sex==='male'?'female':'male','elder_partner',null);addEdge(edges,a.citizenId,b.citizenId,'partner','partner');}
  } else if(type==='couple_no_children'){
-  const a=add(ri(rng,21,66),roleSex(rng),'adult');
+  const a=add(flexibleAdultAge(rng),roleSex(rng),'adult');
   const b=add(clamp(a.ageYears+ri(rng,-6,6),20,69),a.sex==='male'?'female':'male','partner',null);addEdge(edges,a.citizenId,b.citizenId,'partner','partner');
  } else if(type==='shared_workers'){
-  for(let i=0;i<size;i++) add(ri(rng,18,42),roleSex(rng),'shared_worker',null);
+  for(let i=0;i<size;i++) add(rng()<0.58?ri(rng,18,24):ri(rng,25,49),roleSex(rng),'shared_worker',null);
  } else if(type==='single_parent'){
-  const p=add(ri(rng,25,51),roleSex(rng),'parent');
+  const p=add(parentAge(rng),roleSex(rng),'parent');
   const maxChild=Math.max(1,Math.min(20,p.ageYears-18));
   const kids=[];
-  for(let i=1;i<size;i++){const c=add(ri(rng,0,maxChild),roleSex(rng),'child');kids.push(c);addEdge(edges,p.citizenId,c.citizenId,'parent','child');}
+  for(let i=1;i<size;i++){const c=add(childAge(rng,maxChild),roleSex(rng),'child');kids.push(c);addEdge(edges,p.citizenId,c.citizenId,'parent','child');}
   uniquePairs(kids,edges);
  } else if(type==='couple_children'){
-  const a=add(ri(rng,25,50),roleSex(rng),'parent');
+  const a=add(parentAge(rng),roleSex(rng),'parent');
   const b=add(clamp(a.ageYears+ri(rng,-6,6),23,53),a.sex==='male'?'female':'male','parent_partner',null);addEdge(edges,a.citizenId,b.citizenId,'partner','partner');
   const maxChild=Math.max(1,Math.min(20,Math.min(a.ageYears,b.ageYears)-18));
   const kids=[];
-  for(let i=2;i<size;i++){const c=add(ri(rng,0,maxChild),roleSex(rng),'child');kids.push(c);addEdge(edges,a.citizenId,c.citizenId,'parent','child');addEdge(edges,b.citizenId,c.citizenId,'parent','child');}
+  for(let i=2;i<size;i++){const c=add(childAge(rng,maxChild),roleSex(rng),'child');kids.push(c);addEdge(edges,a.citizenId,c.citizenId,'parent','child');addEdge(edges,b.citizenId,c.citizenId,'parent','child');}
   uniquePairs(kids,edges);
  } else {
   const gp=add(ri(rng,59,83),roleSex(rng),'grandparent');
-  const adultAge=clamp(gp.ageYears-ri(rng,21,35),25,55);
+  const adultAge=clamp(gp.ageYears-ri(rng,20,32),28,60);
   const adult=add(adultAge,gp.sex==='male'?'female':'male','adult_child');addEdge(edges,gp.citizenId,adult.citizenId,'parent','child');
   let partner=null;
   if(size>=4){partner=add(clamp(adultAge+ri(rng,-6,6),23,57),adult.sex==='male'?'female':'male','adult_partner',null);addEdge(edges,adult.citizenId,partner.citizenId,'partner','partner');}
   const used=partner?3:2, kids=[];
   const maxChild=Math.max(1,Math.min(20,adult.ageYears-18));
-  for(let i=used;i<size;i++){const c=add(ri(rng,0,maxChild),roleSex(rng),'child');kids.push(c);addEdge(edges,adult.citizenId,c.citizenId,'parent','child');if(partner)addEdge(edges,partner.citizenId,c.citizenId,'parent','child');addEdge(edges,gp.citizenId,c.citizenId,'grandparent','grandchild');}
+  for(let i=used;i<size;i++){const c=add(childAge(rng,maxChild),roleSex(rng),'child');kids.push(c);addEdge(edges,adult.citizenId,c.citizenId,'parent','child');if(partner)addEdge(edges,partner.citizenId,c.citizenId,'parent','child');addEdge(edges,gp.citizenId,c.citizenId,'grandparent','grandchild');}
   uniquePairs(kids,edges);
  }
  return {household:{householdId,countryId:country,settlementId:settlement,archetype:type,anchorHousehold:false,memberIds:people.map(p=>p.citizenId)},people,edges};
