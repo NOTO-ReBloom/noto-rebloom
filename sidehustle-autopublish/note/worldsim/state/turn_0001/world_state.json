@@ -980,23 +980,23 @@
             "memberIds": [
               "VAL-0325",
               "VAL-0542",
-              "VAL-0526",
               "VAL-0421",
+              "VAL-0526",
               "VAL-0422",
-              "VAL-0283",
-              "VAL-0508",
-              "VAL-0006"
+              "VAL-0568",
+              "VAL-0002",
+              "VAL-0495"
             ],
             "termEndsTurn": 12,
             "memberScores": {
-              "VAL-0325": 70.535,
-              "VAL-0542": 69.73,
-              "VAL-0526": 69.353,
-              "VAL-0421": 68.788,
+              "VAL-0325": 70.524,
+              "VAL-0542": 69.418,
+              "VAL-0421": 68.397,
+              "VAL-0526": 68.338,
               "VAL-0422": 68.064,
-              "VAL-0283": 67.896,
-              "VAL-0508": 67.57,
-              "VAL-0006": 62.867
+              "VAL-0568": 67.629,
+              "VAL-0002": 67.517,
+              "VAL-0495": 61.742
             }
           },
           "VALD-BASIN-02": {
@@ -1004,21 +1004,21 @@
             "seats": 7,
             "memberIds": [
               "VAL-0924",
-              "VAL-0619",
-              "VAL-0918",
-              "VAL-0968",
               "VAL-0675",
-              "VAL-0626",
+              "VAL-0619",
+              "VAL-0642",
+              "VAL-0918",
+              "VAL-0794",
               "VAL-0003"
             ],
             "termEndsTurn": 12,
             "memberScores": {
               "VAL-0924": 68.336,
-              "VAL-0619": 67.179,
-              "VAL-0918": 66.856,
-              "VAL-0968": 66.292,
-              "VAL-0675": 66.151,
-              "VAL-0626": 65.7,
+              "VAL-0675": 67.975,
+              "VAL-0619": 67.294,
+              "VAL-0642": 66.188,
+              "VAL-0918": 65.9,
+              "VAL-0794": 65.83,
               "VAL-0003": 64.73
             }
           },
@@ -1047,19 +1047,19 @@
             "memberIds": [
               "VAL-1078",
               "VAL-1119",
-              "VAL-1055",
-              "VAL-1223",
               "VAL-1052",
-              "VAL-1091"
+              "VAL-1223",
+              "VAL-1022",
+              "VAL-1238"
             ],
             "termEndsTurn": 12,
             "memberScores": {
-              "VAL-1078": 68.087,
-              "VAL-1119": 67.548,
-              "VAL-1055": 66.27,
-              "VAL-1223": 65.91,
-              "VAL-1052": 65.59,
-              "VAL-1091": 60.838
+              "VAL-1078": 68.827,
+              "VAL-1119": 68.005,
+              "VAL-1052": 67.094,
+              "VAL-1223": 65.54,
+              "VAL-1022": 65.518,
+              "VAL-1238": 61.178
             }
           }
         },
@@ -1069,17 +1069,17 @@
             {
               "citizenId": "VAL-0325",
               "settlementId": "VALD-BASIN-01",
-              "selectionScore": 70.535
+              "selectionScore": 70.524
             },
             {
               "citizenId": "VAL-0542",
               "settlementId": "VALD-BASIN-01",
-              "selectionScore": 69.73
+              "selectionScore": 69.418
             },
             {
-              "citizenId": "VAL-0526",
+              "citizenId": "VAL-0421",
               "settlementId": "VALD-BASIN-01",
-              "selectionScore": 69.353
+              "selectionScore": 68.397
             },
             {
               "citizenId": "VAL-0924",
@@ -1087,14 +1087,14 @@
               "selectionScore": 68.336
             },
             {
-              "citizenId": "VAL-0619",
+              "citizenId": "VAL-0675",
               "settlementId": "VALD-BASIN-02",
-              "selectionScore": 67.179
+              "selectionScore": 67.975
             },
             {
-              "citizenId": "VAL-0918",
+              "citizenId": "VAL-0619",
               "settlementId": "VALD-BASIN-02",
-              "selectionScore": 66.856
+              "selectionScore": 67.294
             },
             {
               "citizenId": "VAL-1338",
@@ -1114,17 +1114,17 @@
             {
               "citizenId": "VAL-1078",
               "settlementId": "VALD-UPPER-01",
-              "selectionScore": 68.087
+              "selectionScore": 68.827
             },
             {
               "citizenId": "VAL-1119",
               "settlementId": "VALD-UPPER-01",
-              "selectionScore": 67.548
+              "selectionScore": 68.005
             },
             {
-              "citizenId": "VAL-1055",
+              "citizenId": "VAL-1052",
               "settlementId": "VALD-UPPER-01",
-              "selectionScore": 66.27
+              "selectionScore": 67.094
             }
           ],
           "termEndsTurn": 12
@@ -1133,14 +1133,14 @@
           "name": "季節調整官",
           "memberIds": [
             "VAL-0325",
-            "VAL-0924"
+            "VAL-1078"
           ],
           "termEndsTurn": 6
         },
         "advisors": [
           {
             "occupationId": "quartermaster",
-            "citizenId": "VAL-0508",
+            "citizenId": "VAL-0002",
             "voice": "advisory_nonvoting"
           },
           {
@@ -1150,7 +1150,7 @@
           },
           {
             "occupationId": "miner",
-            "citizenId": "VAL-0843",
+            "citizenId": "VAL-0794",
             "voice": "advisory_nonvoting"
           },
           {
@@ -67699,10 +67699,10 @@
       "policyId": "V_MINE_INSPECTION",
       "title": "オスク鉱谷の坑道支保を2日間点検する",
       "passed": true,
-      "yes": 7,
-      "no": 2,
+      "yes": 6,
+      "no": 3,
       "abstain": 3,
-      "yesShare": 0.7778
+      "yesShare": 0.6667
     },
     {
       "turn": 1,
@@ -67711,10 +67711,10 @@
       "policyId": "V_FUEL_BUFFER",
       "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
       "passed": true,
-      "yes": 8,
-      "no": 1,
+      "yes": 9,
+      "no": 0,
       "abstain": 3,
-      "yesShare": 0.8889
+      "yesShare": 1
     },
     {
       "turn": 1,
@@ -67736,7 +67736,7 @@
   ],
   "publicationReady": true,
   "lastResolvedFrom": {
-    "turnInputHash": "c1b382612e305c957dc5712d96d1d3af1b57f8723ec6b5c16c9ec4f3c75df722",
+    "turnInputHash": "9394a7024c499db8b5fcd3d6d97fe0ebea94dd3e1c931dbbaa56b965daf7ce51",
     "engine": "resolve_turn_v1"
   }
 }
