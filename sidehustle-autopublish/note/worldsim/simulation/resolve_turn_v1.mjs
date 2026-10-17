@@ -124,6 +124,8 @@ function voteUtility(c,policy,proposal,data){
   factors.experiencedOutcome=clamp(past.reduce((sum,m)=>sum+(-(m.stressDelta||0)*1.8)+(m.healthDelta||0)*2.2,0),-8,8);
  }
  if((policy.valueImpact?.security||0)>0&&c.materialState.stress>65)factors.stressSecurity=2.5;
+ const nationalFood=state.countries[country].meanFoodReserveDays;
+ if((policy.valueImpact?.security||0)>0&&nationalFood<28)factors.stressSecurity+=clamp((28-nationalFood)/28*4,0,4);
  const r=rngFor(state.worldId+'|VOTE|'+turn+'|'+policy.id+'|'+c.citizenId);
  factors.boundedNoise=(r()-.5)*7;
  for(const k of Object.keys(factors))factors[k]=round(factors[k],3);
@@ -295,11 +297,7 @@ function applyFoodScarcity(country,data,turnEvents){
   ss.meanHealth=round(clamp(ss.meanHealth+healthDelta),2);
  }
  let affected=0;
- for(const raw of Object.values(data.people)){
-  if(inactive.has(raw.citizenId))continue;
-  applyOverlay(country,raw.citizenId,{stress:stressDelta*.72,health:healthDelta*.72},null);
-  affected++;
- }
+ for(const raw of Object.values(data.people))if(!inactive.has(raw.citizenId))affected++;
  turnEvents.push({
   turn,country,type:'food_scarcity',
   reserveDays:round(reserve,2),
@@ -957,6 +955,7 @@ for(const country of ['ARCUS','MIREA','VALD']){
  const fb=foodBalance(country,data);
  state.countries[country].meanFoodReserveDays=round(Math.max(0,state.countries[country].meanFoodReserveDays+fb.reserveDaysDelta),2);
  for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFoodReserveDays=round(Math.max(0,ss.meanFoodReserveDays+fb.reserveDaysDelta),2);
+ for(const hid of Object.keys(data.households))applyHouseholdOverlay(country,hid,{foodDays:fb.reserveDaysDelta},null);
  turnEvents.push({turn,country,type:'food_balance',...fb});
  applyFoodScarcity(country,data,turnEvents);
 
