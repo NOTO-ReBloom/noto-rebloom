@@ -37,32 +37,35 @@ jobs:
           import json, pathlib
           root=pathlib.Path('sidehustle-autopublish/note/worldsim/population/livelihood')
           summary=json.loads((root/'livelihood_summary.json').read_text())
+          model=json.loads(pathlib.Path('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json').read_text())
           assert summary['totalPopulation']==5451, summary['totalPopulation']
           files=[p for p in root.rglob('*.json') if p.name!='livelihood_summary.json']
           assert len(files)==13, len(files)
+          aliases={
+              'ARC-0001':'shipwright','ARC-0002':'fish_trader','ARC-0003':'healer','ARC-0004':'map_apprentice','ARC-0005':'storekeeper','ARC-0006':'dock_laborer',
+              'MIR-0001':'farmer','MIR-0002':'irrigation_builder','MIR-0003':'teacher','MIR-0004':'herbalist','MIR-0005':'trader','MIR-0006':'student',
+              'VAL-0001':'miner','VAL-0002':'quartermaster','VAL-0003':'healer','VAL-0004':'apprentice','VAL-0005':'goat_keeper','VAL-0006':'food_preserver'
+          }
           total=0
-          essential_errors=[]
-          model=json.loads(pathlib.Path('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json').read_text())\n          aliases={'ARC-0001':'shipwright','ARC-0002':'fish_trader','ARC-0003':'healer','ARC-0004':'map_apprentice','ARC-0005':'storekeeper','ARC-0006':'dock_laborer',
-                   'MIR-0001':'farmer','MIR-0002':'irrigation_builder','MIR-0003':'teacher','MIR-0004':'herbalist','MIR-0005':'trader','MIR-0006':'student',
-                   'VAL-0001':'miner','VAL-0002':'quartermaster','VAL-0003':'healer','VAL-0004':'apprentice','VAL-0005':'goat_keeper','VAL-0006':'food_preserver'}
-          seen={}
+          global_ids=set()
           for p in files:
               d=json.loads(p.read_text())
               assert d['stage']=='livelihood_v1', p
               assert len(d['citizens'])==d['targetPopulation'], p
-              occ={}
+              local_ids={c['citizenId'] for c in d['citizens']}
+              assert len(local_ids)==len(d['citizens']), p
+              assert not (global_ids & local_ids), p
+              global_ids |= local_ids
+              total += len(d['citizens'])
               for c in d['citizens']:
-                  total+=1
                   assert c.get('occupationId'), c['citizenId']
                   assert c.get('occupation',{}).get('status'), c['citizenId']
                   if c['ageYears']<14:
                       assert c['occupationId'] in ('child','student'), (c['citizenId'],c['ageYears'],c['occupationId'])
                   if c['ageYears']<18:
-                      assert c['occupationId'] not in ('miner','deepwater_fisher','timber_worker','road_worker','dock_laborer','smelter'), c
+                      assert c['occupationId'] not in ('miner','deepwater_fisher','timber_worker','road_worker','dock_laborer','smelter'), c['citizenId']
                   if c['citizenId'] in aliases:
                       assert c['occupationId']==aliases[c['citizenId']], (c['citizenId'],c['occupationId'],aliases[c['citizenId']])
-                  occ[c['occupationId']]=occ.get(c['occupationId'],0)+1
-                  seen[c['citizenId']]=c
               for h in d['households']:
                   e=h['economy']
                   for k,v in e.items():
@@ -70,7 +73,12 @@ jobs:
                           assert v>=0, (h['householdId'],k,v)
                   assert e['foodDays']>=12
               assert d['workplaces'] or d['targetPopulation']<30
-              assert all(x['from'] in seen or True for x in d['economicEdges'])
+              minima=model['settlementProfiles'][d['settlementId']].get('minimum',{})
+              for occ_name,min_count in minima.items():
+                  actual=sum(1 for c in d['citizens'] if c['occupationId']==occ_name)
+                  assert actual>=min_count,(d['settlementId'],occ_name,actual,min_count)
+              for e in d['economicEdges']:
+                  assert e['from'] in local_ids and e['to'] in local_ids,(p,e)
           assert total==5451,total
           print('LIVELIHOOD_QA_OK', total, summary['totalHouseholds'], summary['totalWorkplaces'])
       - name: Commit livelihood registry
