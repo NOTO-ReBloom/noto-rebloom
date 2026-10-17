@@ -50,6 +50,7 @@ jobs:
           node sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs
           WORLDSIM_EDITORIAL_DRY_RUN=1 node sidehustle-autopublish/note/worldsim/editorial/generate_turn_posts_v1.mjs
           node sidehustle-autopublish/note/worldsim/editorial/generate_launch_briefs_v1.mjs
+          node sidehustle-autopublish/note/worldsim/editorial/generate_launch_articles_v3.mjs
 
       - name: Final Turn 1 QA
         shell: python
@@ -66,6 +67,8 @@ jobs:
           ev=json.loads((root/'turns/turn_0001/events.json').read_text())
           brief=json.loads((root/'editorial/launch_brief_compact.json').read_text())
           manifest=json.loads((root/'editorial/generated/turn_0001/manifest.json').read_text())
+          launch_manifest=json.loads((root/'editorial/launch_articles_manifest_v3.json').read_text())
+          queue=json.loads((root/'publication_queue.json').read_text())
 
           assert s0['worldId']=='LYRA-001' and s1['worldId']=='LYRA-001'
           assert s0['calendar']['absoluteDay']==239
@@ -112,6 +115,18 @@ jobs:
           assert brief['world']['calendarAfter']['absoluteDay']==246
           assert manifest['turn']==1
           assert len(manifest['stories'])<=2
+          assert launch_manifest['turn']==1
+          launch_ids={'worldsim_launch_arca','worldsim_launch_mirea','worldsim_launch_vald'}
+          qlaunch={x['id']:x for x in queue['entries'] if x['id'] in launch_ids}
+          assert set(qlaunch)==launch_ids
+          for country,a in launch_manifest['articles'].items():
+              q=qlaunch[a['id']]
+              assert q['title']==a['title']
+              assert q['bodyPath']==a['bodyPath']
+              assert q['enabled'] is False
+              body=pathlib.Path(a['bodyPath']).read_text()
+              assert body.startswith('# '+a['title'])
+              assert brief['world']['calendarAfter']['worldDateLabel'] in body
 
           calendar_events=[x for x in ev['events'] if x.get('type')=='calendar_advance']
           assert len(calendar_events)==1
@@ -139,7 +154,7 @@ jobs:
 
           git config user.name 'worldsim-prelaunch-builder'
           git config user.email 'actions@users.noreply.github.com'
-          git add -A             sidehustle-autopublish/note/worldsim/state/turn_0001             sidehustle-autopublish/note/worldsim/turns/turn_0001             sidehustle-autopublish/note/worldsim/editorial/generated/turn_0001             sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json             sidehustle-autopublish/note/worldsim/editorial/launch_brief_compact.json             sidehustle-autopublish/note/worldsim/simulation/prelaunch_turn1_request.json
+          git add -A             sidehustle-autopublish/note/worldsim/state/turn_0001             sidehustle-autopublish/note/worldsim/turns/turn_0001             sidehustle-autopublish/note/worldsim/editorial/generated/turn_0001             sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json             sidehustle-autopublish/note/worldsim/editorial/launch_brief_compact.json             sidehustle-autopublish/note/worldsim/editorial/launch_articles_manifest_v3.json             sidehustle-autopublish/note/worldsim/launch_v2             sidehustle-autopublish/note/worldsim/publication_queue.json             sidehustle-autopublish/note/worldsim/simulation/prelaunch_turn1_request.json
           if git diff --cached --quiet; then echo 'Turn 1 already canonical'; exit 0; fi
           git commit -m 'Rebuild final prelaunch LYRA Turn 1'
           for TRY in 1 2 3 4 5; do
