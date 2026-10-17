@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'sidehustle-autopublish/note/worldsim/simulation/run_request.json'
+      - 'sidehustle-autopublish/note/worldsim/simulation/time_model_v1.mjs'
       - 'sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs'
       - 'sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs'
       - 'sidehustle-autopublish/note/worldsim/simulation/policy_catalog_v1.json'
@@ -12,7 +13,7 @@ on:
       - '.github/workflows/worldsim-turn-engine.yml'
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * 0'
+    - cron: '17 */6 * * *'
 
 permissions:
   contents: write
@@ -33,129 +34,155 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Resolve gate and next turn
+      - name: Resolve temporal gate and due turn range
         shell: python
         run: |
-          import json, os, pathlib, re
+          import json, os, pathlib, re, datetime
           root=pathlib.Path('sidehustle-autopublish/note/worldsim')
           req=json.loads((root/'simulation/run_request.json').read_text())
           event=os.environ.get('GITHUB_EVENT_NAME','push')
+          turns=[]
+          for p in (root/'state').glob('turn_*/world_state.json'):
+              m=re.search(r'turn_(\d+)',str(p))
+              if m: turns.append(int(m.group(1)))
+          latest=max(turns) if turns else 0
+
           active=False
-          turn=int(req.get('requestedTurn',0))
-          mode='manual'
+          start=latest+1
+          end=latest
+          mode='explicit_request'
+          due_latest=latest
 
           if event=='schedule':
+              mode='realtime_catchup'
               rebuild=json.loads((root/'rebuild_request.json').read_text())
-              active=(rebuild.get('status')=='completed' and rebuild.get('launchVerified') is True)
-              mode='weekly_schedule'
-              turns=[]
-              for p in (root/'state').glob('turn_*/world_state.json'):
-                  m=re.search(r'turn_(\d+)',str(p))
-                  if m: turns.append(int(m.group(1)))
-              turn=(max(turns)+1) if turns else 1
+              complete=(rebuild.get('status')=='completed' and rebuild.get('launchVerified') is True and rebuild.get('profileVerified') is True)
+              completed_at=rebuild.get('completedAt')
+              if complete and completed_at:
+                  anchor=datetime.datetime.fromisoformat(completed_at.replace('Z','+00:00'))
+                  now=datetime.datetime.now(datetime.timezone.utc)
+                  elapsed=max(0,(now-anchor).total_seconds())
+                  due_latest=1+int(elapsed//(7*24*3600))
+                  start=latest+1
+                  end=min(due_latest,latest+4)
+                  active=end>=start
           else:
+              requested=int(req.get('requestedTurn',latest+1))
               active=req.get('status')=='requested'
-              mode='explicit_request'
+              start=end=requested
+              if active:
+                  assert requested==latest+1,(requested,latest,'explicit requests may not skip or overwrite turns')
 
-          print('active=',active,'turn=',turn,'mode=',mode,'event=',event)
+          print('active=',active,'latest=',latest,'start=',start,'end=',end,'due_latest=',due_latest,'mode=',mode,'event=',event)
           with open(os.environ['GITHUB_ENV'],'a') as f:
               f.write('WORLDSIM_ACTIVE='+('true' if active else 'false')+'\n')
-              f.write('WORLDSIM_TURN='+str(turn)+'\n')
+              f.write('WORLDSIM_START_TURN='+str(start)+'\n')
+              f.write('WORLDSIM_END_TURN='+str(end)+'\n')
               f.write('WORLDSIM_MODE='+mode+'\n')
+              f.write('WORLDSIM_DUE_LATEST='+str(due_latest)+'\n')
 
-      - name: Verify previous canonical state
+      - name: Verify contiguous canonical history
         shell: bash
         run: |
-          if [ "$WORLDSIM_ACTIVE" != "true" ]; then echo "Worldsim gate is closed"; exit 0; fi
+          if [ "$WORLDSIM_ACTIVE" != "true" ]; then echo "Worldsim temporal gate is closed"; exit 0; fi
           python - <<'PY'
           import json, pathlib, os
-          turn=int(os.environ['WORLDSIM_TURN'])
-          assert turn>=1
-          prev=pathlib.Path(f'sidehustle-autopublish/note/worldsim/state/turn_{turn-1:04d}/world_state.json')
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim')
+          start=int(os.environ['WORLDSIM_START_TURN']); end=int(os.environ['WORLDSIM_END_TURN'])
+          assert 1<=start<=end
+          prev=root/f'state/turn_{start-1:04d}/world_state.json'
           assert prev.exists(),prev
           d=json.loads(prev.read_text())
-          assert d['turn']==turn-1,(d['turn'],turn)
-          current=pathlib.Path(f'sidehustle-autopublish/note/worldsim/state/turn_{turn:04d}/world_state.json')
-          if current.exists() and os.environ.get('WORLDSIM_MODE')=='weekly_schedule':
-              raise AssertionError(f'scheduled turn already exists: {current}')
-          print('PREVIOUS_STATE_OK',prev)
+          assert d['turn']==start-1,(d['turn'],start)
+          for t in range(start,end+1):
+              current=root/f'state/turn_{t:04d}/world_state.json'
+              assert not current.exists(),('refusing to overwrite canonical turn',t)
+          print('CONTIGUOUS_HISTORY_OK',start,end)
           PY
 
-      - name: Prepare turn
+      - name: Resolve every due seven-day turn
         shell: bash
         run: |
           if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
-          node sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs
+          set -euo pipefail
+          for TURN in $(seq "$WORLDSIM_START_TURN" "$WORLDSIM_END_TURN"); do
+            export WORLDSIM_TURN="$TURN"
+            node sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs
+            node sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs
+            node sidehustle-autopublish/note/worldsim/editorial/generate_turn_posts_v1.mjs
+          done
 
-      - name: Resolve turn
-        shell: bash
+      - name: Deep temporal and turn QA
+        shell: python
         run: |
-          if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
-          node sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs
-
-      - name: Select and render meaningful stories
-        shell: bash
-        run: |
-          if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
-          node sidehustle-autopublish/note/worldsim/editorial/generate_turn_posts_v1.mjs
-
-      - name: Deep turn QA
-        shell: bash
-        run: |
-          if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
-          python - <<'PY'
+          if __import__('os').environ.get('WORLDSIM_ACTIVE')!='true':
+              print('gate closed'); raise SystemExit(0)
           import json, pathlib, os
-          turn=int(os.environ['WORLDSIM_TURN'])
           root=pathlib.Path('sidehustle-autopublish/note/worldsim')
-          td=root/f'turns/turn_{turn:04d}'
-          state=json.loads((root/f'state/turn_{turn:04d}/world_state.json').read_text())
-          inp=json.loads((td/'turn_input.json').read_text())
-          votes=json.loads((td/'votes.json').read_text())
-          demo=json.loads((td/'demography.json').read_text())
-          summary=json.loads((td/'turn_summary.json').read_text())
-          manifest=json.loads((root/f'editorial/generated/turn_{turn:04d}/manifest.json').read_text())
-          assert state['turn']==turn
-          assert inp['turn']==turn
-          assert state['calendar']['turn']==turn
-          assert set(votes)=={'ARCUS','MIREA','VALD'}
-          proposed={c:{x['policyId'] for x in inp['proposals'][c]} for c in inp['proposals']}
-          for country,rows in votes.items():
-              for v in rows:
-                  assert v['policyId'] in proposed[country],(country,v['policyId'])
-                  assert 0<=v['yesShare']<=1
-                  if v['passed']:
-                      assert v['yesShare']>=v['threshold']
-                      if v['dualMajority']: assert v['settlementMajority']
-          for rid,res in state['worldDynamic']['resources'].items():
-              assert 0<=res['stockIndex']<=100,(rid,res)
-          for country,c in state['countries'].items():
-              assert c['population']>100
-              assert 0<c['meanFoodReserveDays']<250,(country,c['meanFoodReserveDays'])
-              assert 0<c['meanHealth']<=100
-              assert 0<=c['meanStress']<=100
-              assert c['institution']['nationalBody']['members']
-              assert c['institution']['executive']['memberIds']
-          births=[]; deaths=[]
-          for country,d in demo['countries'].items():
-              births += d['births']; deaths += d['deaths']
-          assert len({x['citizenId'] for x in births})==len(births)
-          assert len({x['citizenId'] for x in deaths})==len(deaths)
-          assert not ({x['citizenId'] for x in births}&{x['citizenId'] for x in deaths})
-          assert len({x['citizenId'] for x in state['roster']['newCitizens']})==len(state['roster']['newCitizens'])
-          assert len(state['roster']['inactiveCitizenIds'])==len(set(state['roster']['inactiveCitizenIds']))
-          assert summary['turn']==turn
-          assert manifest['turn']==turn
-          assert len(manifest['stories'])<=2
-          for st in manifest['stories']:
-              assert st['score']>=8
-              body=pathlib.Path(st['bodyPath'])
-              assert body.exists()
-              n=len(body.read_text())
-              assert 250<=n<=12000,(st['id'],n)
-          print('TURN_QA_OK',turn,'stories=',len(manifest['stories']),summary)
-          PY
+          start=int(os.environ['WORLDSIM_START_TURN']); end=int(os.environ['WORLDSIM_END_TURN'])
+          previous_abs=None
+          for turn in range(start,end+1):
+              td=root/f'turns/turn_{turn:04d}'
+              state=json.loads((root/f'state/turn_{turn:04d}/world_state.json').read_text())
+              prev=json.loads((root/f'state/turn_{turn-1:04d}/world_state.json').read_text())
+              inp=json.loads((td/'turn_input.json').read_text())
+              votes=json.loads((td/'votes.json').read_text())
+              demo=json.loads((td/'demography.json').read_text())
+              summary=json.loads((td/'turn_summary.json').read_text())
+              manifest=json.loads((root/f'editorial/generated/turn_{turn:04d}/manifest.json').read_text())
 
-      - name: Close explicit request and commit resolved turn
+              assert state['turn']==turn and state['calendar']['turn']==turn
+              assert state['calendar']['absoluteDay']==239+turn*7,(turn,state['calendar'])
+              assert state['calendar']['absoluteDay']-prev['calendar']['absoluteDay']==7
+              assert 1<=state['calendar']['dayOfYear']<=365
+              assert state['calendar']['season'] in {'winter','spring','summer','autumn'}
+              assert state['calendar']['worldDateLabel'].startswith('Y')
+              if previous_abs is not None: assert state['calendar']['absoluteDay']>previous_abs
+              previous_abs=state['calendar']['absoluteDay']
+
+              assert inp['turn']==turn
+              assert set(votes)=={'ARCUS','MIREA','VALD'}
+              proposed={c:{x['policyId'] for x in inp['proposals'][c]} for c in inp['proposals']}
+              for country,rows in votes.items():
+                  for v in rows:
+                      assert v['policyId'] in proposed[country]
+                      assert 0<=v['yesShare']<=1
+                      if v['passed']:
+                          assert v['yesShare']>=v['threshold']
+                          if v['dualMajority']: assert v['settlementMajority']
+
+              for country,c in state['countries'].items():
+                  assert c['population']>100
+                  assert 0<c['meanFoodReserveDays']<250,(turn,country,c['meanFoodReserveDays'])
+                  assert 0<c['meanHealth']<=100 and 0<=c['meanStress']<=100
+                  assert c['institution']['nationalBody']['members']
+                  assert c['institution']['executive']['memberIds']
+              for rid,res in state['worldDynamic']['resources'].items():
+                  assert 0<=res['stockIndex']<=100,(turn,rid,res)
+
+              births=[]; deaths=[]; conceptions=[]
+              for d in demo['countries'].values():
+                  births += d['births']; deaths += d['deaths']; conceptions += d.get('conceptions',[])
+              assert len({x['citizenId'] for x in births})==len(births)
+              assert len({x['citizenId'] for x in deaths})==len(deaths)
+              assert not ({x['citizenId'] for x in births}&{x['citizenId'] for x in deaths})
+              for b in births:
+                  assert prev['calendar']['absoluteDay'] < b['bornAbsoluteDay'] <= state['calendar']['absoluteDay']
+              for p in state.get('demographyState',{}).get('pregnancies',{}).values():
+                  assert p['dueAbsoluteDay']>p['conceptionAbsoluteDay']
+                  assert p['dueAbsoluteDay']>state['calendar']['absoluteDay']
+              assert len({x['citizenId'] for x in state['roster']['newCitizens']})==len(state['roster']['newCitizens'])
+              assert len(state['roster']['inactiveCitizenIds'])==len(set(state['roster']['inactiveCitizenIds']))
+
+              assert summary['turn']==turn and manifest['turn']==turn
+              assert len(manifest['stories'])<=2
+              for st in manifest['stories']:
+                  assert st['score']>=8
+                  body=pathlib.Path(st['bodyPath'])
+                  assert body.exists() and 250<=len(body.read_text())<=12000
+          print('TEMPORAL_TURN_QA_OK',start,end)
+
+      - name: Close request and commit contiguous turns
         shell: bash
         run: |
           if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
@@ -164,25 +191,26 @@ jobs:
           root=pathlib.Path('sidehustle-autopublish/note/worldsim')
           p=root/'simulation/run_request.json'
           d=json.loads(p.read_text())
-          turn=int(os.environ['WORLDSIM_TURN'])
+          end=int(os.environ['WORLDSIM_END_TURN'])
           d['status']='hold'
-          d['lastResolvedTurn']=turn
-          d['requestedTurn']=turn+1
-          d['reason']='Previous turn resolved and audited. Scheduled operation waits for next weekly cadence.'
-          d['requestNonce']='hold-after-turn-'+str(turn)
+          d['lastResolvedTurn']=end
+          d['requestedTurn']=end+1
+          d['reason']='Canonical history resolved through turn '+str(end)+'. Real-time scheduler advances only when another full seven-day interval is due.'
+          d['requestNonce']='hold-after-turn-'+str(end)
           p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
           PY
 
-          PAD=$(printf "%04d" "$WORLDSIM_TURN")
           git config user.name 'worldsim-turn-engine'
           git config user.email 'actions@users.noreply.github.com'
-          git add \
-            "sidehustle-autopublish/note/worldsim/state/turn_$PAD" \
-            "sidehustle-autopublish/note/worldsim/turns/turn_$PAD" \
-            "sidehustle-autopublish/note/worldsim/editorial/generated/turn_$PAD" \
-            sidehustle-autopublish/note/worldsim/publication_queue.json \
-            sidehustle-autopublish/note/worldsim/simulation/run_request.json
+          for TURN in $(seq "$WORLDSIM_START_TURN" "$WORLDSIM_END_TURN"); do
+            PAD=$(printf "%04d" "$TURN")
+            git add "sidehustle-autopublish/note/worldsim/state/turn_$PAD"
+            git add "sidehustle-autopublish/note/worldsim/turns/turn_$PAD"
+            git add "sidehustle-autopublish/note/worldsim/editorial/generated/turn_$PAD"
+          done
+          git add sidehustle-autopublish/note/worldsim/publication_queue.json
+          git add sidehustle-autopublish/note/worldsim/simulation/run_request.json
           if git diff --cached --quiet; then echo 'No turn change'; exit 0; fi
-          git commit -m "Resolve and editorialize LYRA turn $WORLDSIM_TURN"
+          git commit -m "Resolve LYRA turns $WORLDSIM_START_TURN-$WORLDSIM_END_TURN on canonical clock"
           git pull --rebase origin main
           git push origin HEAD:main
