@@ -202,8 +202,20 @@ function foodBalance(country,data){
   const c=effective(raw,country);
   const base=productivity[c.occupationId]||0;if(base)production+=base*season*wx;
  }
- const pop=state.countries[country].population,consumption=pop*7,delta=(production-consumption)/Math.max(1,pop);
- return{productionPersonDays:round(production,1),consumptionPersonDays:round(consumption,1),reserveDaysDelta:round(delta,3),seasonModifier:season,weatherModifier:round(wx,3)};
+ const pop=state.countries[country].population,consumption=pop*7;
+ const rawDelta=(production-consumption)/Math.max(1,pop);
+ const currentReserve=state.countries[country].meanFoodReserveDays;
+ const storageSpoilageDays=currentReserve>120?(currentReserve-120)*.025:0;
+ const delta=rawDelta-storageSpoilageDays;
+ return{
+  productionPersonDays:round(production,1),
+  consumptionPersonDays:round(consumption,1),
+  grossReserveDaysDelta:round(rawDelta,3),
+  storageSpoilageDays:round(storageSpoilageDays,3),
+  reserveDaysDelta:round(delta,3),
+  seasonModifier:season,
+  weatherModifier:round(wx,3)
+ };
 }
 const NEWBORN_NAMES={
  ARCUS:['Eren','Sela','Tovin','Mael','Nara','Oren','Lio','Cassa','Venn','Sorin','Talin','Mara','Corin','Dara','Ira','Kelan','Ronel','Ari','Vesna','Joren','Marek','Elia','Rovan','Saren','Neris'],
