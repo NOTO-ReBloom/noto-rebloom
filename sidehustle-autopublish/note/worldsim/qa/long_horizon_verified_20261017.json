@@ -1,10 +1,45 @@
 {
-  "version": 1,
-  "verifiedAt": "2026-10-17T04:06:21Z",
-  "workflowRunId": 39001137464,
+  "version": 2,
+  "verifiedAt": "2026-10-17T05:45:04Z",
+  "workflowRunId": 39006839212,
   "workflowConclusion": "success",
-  "engineCommit": "a58647c9e3f18350a47f5b71eadd747fe5ba5f0c",
-  "turns": 60,
+  "engineCommit": "3d231896fcd2215c6bceaf3b728d9f47d8934c1f",
+  "turns": 156,
+  "calendar": {
+    "start": {
+      "year": 1,
+      "dayOfYear": 239,
+      "absoluteDay": 239,
+      "season": "summer",
+      "seasonStage": "late_summer"
+    },
+    "end": {
+      "year": 4,
+      "dayOfYear": 236,
+      "absoluteDay": 1331,
+      "season": "summer",
+      "seasonStage": "late_summer"
+    },
+    "seasonsObserved": [
+      "autumn",
+      "spring",
+      "summer",
+      "winter"
+    ]
+  },
+  "demographic": {
+    "initialPregnancies": 12,
+    "births": 92,
+    "conceptions": 106,
+    "deaths": 71,
+    "cancelledPregnancies": 0,
+    "birthdays": 16298,
+    "lifeStageTransitions": 978,
+    "partnerships": 275
+  },
+  "institutions": {
+    "rotations": 317
+  },
   "policyDiversity": {
     "ARCUS": [
       "A_COASTAL_SURVEY",
@@ -25,36 +60,49 @@
       "V_SMOKE_VENT"
     ]
   },
-  "births": 36,
-  "deaths": 20,
-  "institutionRotations": 118,
-  "firstContact": false,
-  "contacts": [],
+  "contact": {
+    "firstContact": false,
+    "stageChanges": 0,
+    "exchanges": 0,
+    "misunderstandings": 0
+  },
   "finalPopulation": {
-    "ARCUS": 1850,
-    "MIREA": 2220,
-    "VALD": 1397
+    "ARCUS": 1857,
+    "MIREA": 2219,
+    "VALD": 1396
   },
   "finalFoodReserveDays": {
-    "ARCUS": 43.19,
-    "MIREA": 149.91,
-    "VALD": 60.02
+    "ARCUS": 20.74,
+    "MIREA": 184.68,
+    "VALD": 54.13
+  },
+  "finalFuelReserveDays": {
+    "ARCUS": 53.29,
+    "MIREA": 134.49,
+    "VALD": 98.26
   },
   "finalExplorationKm": {
     "ARCUS": 34,
-    "MIREA": 38,
+    "MIREA": 49,
     "VALD": 26
   },
   "checksPassed": [
-    "60 sequential weekly resolves",
-    "policy cooldown",
+    "156 sequential seven-day resolves",
+    "exact absolute-day continuity and year rollovers",
+    "all four seasons observed repeatedly",
+    "persistent gestation before birth",
     "birth ID uniqueness",
     "death ID uniqueness",
-    "institution bodies remain populated",
+    "birthdays and age transitions",
+    "education/apprenticeship/adult occupation/retirement transitions",
+    "new adult partnerships and household movement",
+    "policy cooldown",
+    "institution rotation",
+    "settlement population conservation",
+    "food and fuel scarcity are simulated states rather than engine failures",
     "resource bounds",
-    "food reserve bounds",
     "population continuity",
-    "calendar crossed into year 2"
+    "contact state remains physically gated by exploration distance"
   ],
   "note": "Stress run executes in an isolated GitHub Actions workspace and does not advance canonical public state beyond turn 1."
 }
