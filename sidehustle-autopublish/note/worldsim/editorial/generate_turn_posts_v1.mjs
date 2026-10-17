@@ -199,6 +199,77 @@ function observerStageArticle(changes){
  return{perspective:'observer',country:null,title,body,score:99,coverLabel:'世界観測記録',coverCopy:direct?'初めて、住民同士が直接出会う。':'単発の接触が、往来できる道になった。',accent:'#121820'};
 }
 
+function foodBand(v){
+ if(v<=0)return 4;
+ if(v<7)return 3;
+ if(v<14)return 2;
+ if(v<28)return 1;
+ return 0;
+}
+function fuelBand(v){
+ if(v<=0)return 4;
+ if(v<14)return 3;
+ if(v<28)return 2;
+ if(v<45)return 1;
+ return 0;
+}
+function materialCandidate(country){
+ const beforeFood=prev.countries[country].meanFoodReserveDays;
+ const afterFood=state.countries[country].meanFoodReserveDays;
+ const beforeFuel=prev.countries[country].meanFuelReserveDays;
+ const afterFuel=state.countries[country].meanFuelReserveDays;
+ const fb0=foodBand(beforeFood),fb1=foodBand(afterFood),fu0=fuelBand(beforeFuel),fu1=fuelBand(afterFuel);
+ const options=[];
+ if(fb1>fb0)options.push({country,kind:'food_scarcity',direction:'worse',before:beforeFood,after:afterFood,band:fb1,score:82+fb1*3});
+ if(fb0>=2&&fb1<fb0)options.push({country,kind:'food_scarcity',direction:'recovery',before:beforeFood,after:afterFood,band:fb0,score:72+fb0*2});
+ if(fu1>fu0)options.push({country,kind:'fuel_scarcity',direction:'worse',before:beforeFuel,after:afterFuel,band:fu1,score:80+fu1*3});
+ if(fu0>=2&&fu1<fu0)options.push({country,kind:'fuel_scarcity',direction:'recovery',before:beforeFuel,after:afterFuel,band:fu0,score:70+fu0*2});
+ return options.sort((a,b)=>b.score-a.score)[0]||null;
+}
+function materialArticle(cand){
+ const m=META[cand.country];
+ const food=cand.kind==='food_scarcity';
+ const balance=(events.events||[]).find(e=>e.country===cand.country&&e.type===(food?'food_balance':'fuel_balance'))||{};
+ const scarcity=(events.events||[]).find(e=>e.country===cand.country&&e.type==='food_scarcity')||null;
+ const n=x=>Number(x).toFixed(2).replace(/\.00$/,'');
+ let title;
+ if(cand.direction==='recovery'){
+  title=(food?'食料':'燃料')+'備蓄が危機ラインを戻した｜'+m.ja+'・第'+turn+'週';
+ }else if(cand.after<=0){
+  title=m.ja+'の'+(food?'食料':'燃料')+'備蓄が0日になった｜第'+turn+'週';
+ }else{
+  title=m.ja+'の'+(food?'食料':'燃料')+'備蓄が'+n(cand.after)+'日分まで落ちた｜第'+turn+'週';
+ }
+ const lines=['# '+title,'',
+  m.ja+'の第'+turn+'週、'+(food?'食料':'燃料')+'備蓄が **'+n(cand.before)+'日分 → '+n(cand.after)+'日分** に変化しました。',''];
+ if(food){
+  if((balance.rationMultiplier??1)<1){
+   lines.push('備蓄が減ったため、この週は通常量をそのまま消費せず、配給・節約に相当する消費抑制が入りました。消費係数は'+balance.rationMultiplier+'です。','');
+  }
+  if(scarcity){
+   lines.push('この不足は数字だけではありません。国全体のストレスと健康へ影響し、備蓄が深刻になるほど受胎率と死亡率にも影響する状態です。','');
+  }
+  lines.push('このシミュレーションでは、食料0日を「計算エラー」にして世界を止めません。もし0日まで落ちれば、配給だけでなく健康悪化や食料不足に伴う死亡が住民・世帯の状態へ残ります。');
+ }else{
+  if((balance.collectionDaysPerPerson??0)>0){
+   lines.push('不足に対して、住民は燃料集めへ追加の労働を回しています。1人あたりの追加採取相当は'+balance.collectionDaysPerPerson+'日分で、そのぶん食料生産の機会費用と資源消費も発生します。','');
+  }
+  if((balance.conservationMultiplier??1)<1){
+   lines.push('同時に暖房・燃料使用も抑えています。消費係数は'+balance.conservationMultiplier+'で、節約が強いほど健康・ストレスへの負担も大きくなります。','');
+  }
+  lines.push('燃料も0日をシステム停止条件にはしていません。欠乏そのものを社会状態として扱い、その後の判断と健康へつなげます。');
+ }
+ lines.push('','危機が次週すぐ解消するかは決まっていません。季節、資源量、住民の仕事、議会の判断によって続くことも回復することもあります。','',
+  '※架空世界LYRA-001のシミュレーション記録です。国家・人物・統計・出来事はすべて架空です。');
+ return{
+  perspective:cand.country,country:cand.country,title,body:lines.join('\n'),score:cand.score,
+  storyKind:cand.kind,
+  coverLabel:m.series+' / 第'+turn+'週',
+  coverCopy:food?'食料備蓄 '+n(cand.before)+'日 → '+n(cand.after)+'日':'燃料備蓄 '+n(cand.before)+'日 → '+n(cand.after)+'日',
+  accent:m.accent
+ };
+}
+
 const previousPairs=new Set((prev.contact?.knownPairs||[]).map(x=>[...x].sort().join('|')));
 const newPairs=(state.contact?.knownPairs||[]).filter(x=>!previousPairs.has([...x].sort().join('|')));
 const stageChanges=[];
@@ -207,18 +278,25 @@ for(const [key,ps] of Object.entries(state.contact?.pairStates||{})){
  if(old&&old.stage!==ps.stage)stageChanges.push({key,pair:ps.pair,fromStage:old.stage,toStage:ps.stage,representativeIds:ps.representativeIds,trustIndex:ps.trustIndex});
 }
 const stories=[];
-if(newPairs.length)stories.push(observerContactArticle(newPairs));
-else if(stageChanges.length)stories.push(observerStageArticle(stageChanges));
+if(newPairs.length)stories.push({...observerContactArticle(newPairs),storyKind:'first_contact'});
+else if(stageChanges.length)stories.push({...observerStageArticle(stageChanges),storyKind:'contact_stage'});
+
+const materialCandidates=['ARCUS','MIREA','VALD'].map(materialCandidate).filter(Boolean).sort((a,b)=>b.score-a.score);
+for(const mc of materialCandidates){
+ if(stories.length>=2)break;
+ stories.push(materialArticle(mc));
+}
 
 const candidates=['ARCUS','MIREA','VALD'].map(country=>countryCandidate(country)).filter(Boolean).filter(x=>x.score>=8).sort((a,b)=>b.score-a.score);
 for(const cand of candidates){
  if(stories.length>=2)break;
+ if(stories.some(x=>x.country===cand.country&&x.storyKind&&x.storyKind.includes('scarcity')))continue;
  const art=countryArticle(cand),m=META[cand.country];
  stories.push({
   perspective:cand.country,country:cand.country,title:art.title,body:art.body,score:cand.score,
   coverLabel:m.series+' / 第'+turn+'週',
   coverCopy:cand.vote.passed?'決まったことと、反対した人。':'多数でも、通らないことがある。',
-  accent:m.accent,policyId:cand.vote.policyId
+  accent:m.accent,policyId:cand.vote.policyId,storyKind:'policy'
  });
 }
 
@@ -226,10 +304,10 @@ const outDir=base+'editorial/generated/turn_'+pad(turn);
 const manifest={version:2,turn:turn,dryRun:dry,generatedAt:'deterministic',newContactPairs:newPairs,contactStageChanges:stageChanges,stories:[]};
 for(let i=0;i<stories.length;i++){
  const st=stories[i],slug=st.perspective==='observer'?'observer':st.country.toLowerCase();
- const id='worldsim_t'+pad(turn)+'_'+slug+(st.policyId?'_'+st.policyId.toLowerCase():'_contact');
+ const id='worldsim_t'+pad(turn)+'_'+slug+(st.policyId?'_'+st.policyId.toLowerCase():'_'+(st.storyKind||'event'));
  const bodyPath=outDir+'/'+String(i+1).padStart(2,'0')+'_'+id+'.md';
  writeText(bodyPath,st.body);
- manifest.stories.push({id:id,title:st.title,perspective:st.perspective,country:st.country,score:st.score,bodyPath:bodyPath,policyId:st.policyId||null});
+ manifest.stories.push({id:id,title:st.title,perspective:st.perspective,country:st.country,score:st.score,bodyPath:bodyPath,policyId:st.policyId||null,storyKind:st.storyKind||null});
 }
 write(outDir+'/manifest.json',manifest);
 
@@ -239,14 +317,14 @@ if(!dry&&turn>=2&&stories.length){
  for(let i=0;i<stories.length;i++){
   const st=stories[i],m=st.country?META[st.country]:null;
   const slug=st.perspective==='observer'?'observer':st.country.toLowerCase();
-  const id='worldsim_t'+pad(turn)+'_'+slug+(st.policyId?'_'+st.policyId.toLowerCase():'_contact');
+  const id='worldsim_t'+pad(turn)+'_'+slug+(st.policyId?'_'+st.policyId.toLowerCase():'_'+(st.storyKind||'event'));
   const bodyPath=manifest.stories[i].bodyPath;
   const entry={
    id:id,turn:turn,perspective:st.perspective,title:st.title,bodyPath:bodyPath,
    tags:['AI世界観測所','シミュレーション'].concat(m?[m.tag]:['世界観測記録']),
    coverLabel:st.coverLabel,coverCopy:st.coverCopy,accent:st.accent,
    enabled:launchCompleted,publicUrlVerified:false,order:1000+turn*10+i,
-   generatedBy:'generate_turn_posts_v1',editorialScore:st.score
+   generatedBy:'generate_turn_posts_v1',editorialScore:st.score,storyKind:st.storyKind||null
   };
   const old=existing.get(id);
   if(old?.publicUrlVerified){
