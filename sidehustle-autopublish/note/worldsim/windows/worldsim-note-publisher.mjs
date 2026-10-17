@@ -256,8 +256,14 @@ async function main(){
 
   for(const e of queue.entries||[]){
     const found=current.filter(x=>x.title===norm(e.title));
-    if(found.length===1) state.published[e.id]={key:found[0].key,url:found[0].url,reconciledAt:new Date().toISOString()};
-    else if(found.length>1) throw new Error('AMBIGUOUS_PUBLIC_DUPLICATE '+e.id);
+    if(found.length===1){
+      state.published[e.id]={key:found[0].key,url:found[0].url,reconciledAt:new Date().toISOString(),title:e.title};
+    }else if(found.length>1){
+      throw new Error('AMBIGUOUS_PUBLIC_DUPLICATE '+e.id);
+    }else if(state.published[e.id]){
+      log('DROP_STALE_LOCAL_PUBLICATION_STATE',{id:e.id,old:state.published[e.id],expectedTitle:e.title});
+      delete state.published[e.id];
+    }
   }
   writeJson(STATE_PATH,state);
 
