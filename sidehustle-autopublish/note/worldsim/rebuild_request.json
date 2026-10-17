@@ -33,5 +33,19 @@
   "finalTurn1Verified": true,
   "longHorizonTurnsVerified": 156,
   "reason": "Final audited release: 156-turn QA + final canonical Turn 1 + launch article synchronization passed.",
-  "localStateCompatibility": "New requestId forces authenticated Windows runner to process this final release even if an earlier v2 request left local state."
+  "localStateCompatibility": "New requestId forces authenticated Windows runner to process this final release even if an earlier v2 request left local state.",
+  "localBootstrap": {
+    "status": "required_if_authenticated_runner_is_not_active",
+    "oneClickPath": "sidehustle-autopublish/note/worldsim/windows/START_AI_WORLD_OBSERVATORY.cmd",
+    "installerPath": "sidehustle-autopublish/note/worldsim/windows/INSTALL_WORLDSIM_REBUILD.ps1",
+    "retryTask": "NOTE_WorldSimMigration_15min",
+    "explanation": "GitHub/cloud QA cannot access the local authenticated NOTE browser profile. Public NOTE currently still shows the legacy account state, so one authenticated Windows bootstrap execution is the only remaining external prerequisite if the existing runner does not wake automatically."
+  },
+  "publicRealityLastCheckedAt": "2026-10-17T17:43:00+09:00",
+  "publicReality": {
+    "profileName": "ノウハウ共有おぢさん＠無料分だけでも見てネ( ^^；",
+    "launchPostsVerified": 0,
+    "legacyPublicPostsApprox": 600,
+    "migrationComplete": false
+  }
 }
