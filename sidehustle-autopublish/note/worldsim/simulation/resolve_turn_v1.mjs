@@ -29,14 +29,34 @@ function loadCountry(country){
  }
  const beliefs=read('sidehustle-autopublish/note/worldsim/population/beliefs/'+country+'.json');
  const social=read('sidehustle-autopublish/note/worldsim/population/social/'+country+'.json');
- const rel={};for(const e of social.edges)rel[e.from+'|'+e.to]=e;
- return{people,households,familyEdges,beliefs,social,rel};
+ for(const n of (state.roster.newCitizens||[]).filter(x=>x.countryId===country)){
+  if(!people[n.citizenId])people[n.citizenId]=structuredClone(n.profile||n);
+ }
+ const dynamicRelations=(state.roster.dynamicRelationships||[]).filter(x=>x.countryId===country);
+ const rel={};for(const e of [...social.edges,...dynamicRelations])rel[e.from+'|'+e.to]=e;
+ return{people,households,familyEdges:[...familyEdges,...dynamicRelations.filter(x=>['parent','child','sibling','partner'].includes(x.type))],beliefs,social:{...social,edges:[...social.edges,...dynamicRelations]},rel};
+}
+function absoluteDay(calendar){return (calendar.year-1)*365+calendar.dayOfYear;}
+function currentAge(c){
+ if(c.bornAbsoluteDay!=null)return Math.max(0,(absoluteDay(state.calendar)-c.bornAbsoluteDay)/365);
+ const birthDay=c.birthDayOfYear||1;
+ const startAbs=239;
+ const nowAbs=absoluteDay(state.calendar);
+ const crossed=Math.floor((nowAbs-birthDay)/365)-Math.floor((startAbs-birthDay)/365);
+ return (c.ageYears||0)+Math.max(0,crossed);
 }
 function effective(c,country){
  const o=state.citizenOverlays?.[country]?.[c.citizenId]||{};
+ const ho=state.householdOverlays?.[country]?.[c.householdId]||{};
  const x=structuredClone(c);
- x.materialState.stress=clamp(x.materialState.stress+(o.stressOffset||0));
- x.materialState.health=clamp(x.materialState.health+(o.healthOffset||0));
+ x.ageYears=Math.floor(currentAge(c));
+ if(o.settlementId)x.settlementId=o.settlementId;
+ if(o.occupationId){x.occupationId=o.occupationId;x.occupation={...(x.occupation||{}),id:o.occupationId,sector:livelihoodModel.occupations[o.occupationId]?.sector||x.occupation?.sector};}
+ x.materialState=x.materialState||{stress:20,health:95,householdFoodDays:60,householdDebt:0};
+ x.materialState.stress=clamp((x.materialState.stress||0)+(o.stressOffset||0)+(ho.stressOffset||0));
+ x.materialState.health=clamp((x.materialState.health||100)+(o.healthOffset||0));
+ x.materialState.householdFoodDays=Math.max(0,(x.materialState.householdFoodDays||0)+(ho.foodDaysOffset||0));
+ x.materialState.householdDebt=Math.max(0,(x.materialState.householdDebt||0)+(ho.debtOffset||0));
  return x;
 }
 function rumorSignal(record,topic){
@@ -78,7 +98,7 @@ function voteUtility(c,policy,proposal,data){
  return{utility,factors};
 }
 function conductVote(country,proposal,data){
- const policy=policyById[proposal.policyId],body=institutions.countries[country].nationalBody.members;
+ const policy=policyById[proposal.policyId],body=(state.countries[country].institution||institutions.countries[country]).nationalBody.members;
  const inactive=new Set(state.roster.inactiveCitizenIds||[]);
  const votes=[];
  for(const m of body){
@@ -110,9 +130,21 @@ function applyOverlay(country,id,delta,memory){
  if(memory)o.memories.push(memory);
  if(o.memories.length>30)o.memories=o.memories.slice(-30);
 }
+function applyHouseholdOverlay(country,householdId,delta,memory){
+ const m=(state.householdOverlays[country]??={});
+ const o=(m[householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,memories:[]});
+ o.foodDaysOffset=round(o.foodDaysOffset+(delta.foodDays||0),3);
+ o.debtOffset=round(o.debtOffset+(delta.debt||0),3);
+ o.stressOffset=round(o.stressOffset+(delta.stress||0),3);
+ o.incomeCapacityOffset=round(o.incomeCapacityOffset+(delta.incomeCapacity||0),3);
+ if(memory)o.memories.push(memory);
+ if(o.memories.length>20)o.memories=o.memories.slice(-20);
+}
 function applyPolicy(country,result,data,citizenDeltaLog){
  if(!result.passed)return;
  const p=policyById[result.policyId],eff=p.effects||{},cs=state.countries[country];
+ cs.dynamic.publicWorks=cs.dynamic.publicWorks||[];
+ cs.dynamic.publicWorks.push({policyId:p.id,title:p.title,startedTurn:turn,completeTurn:turn+(p.durationTurns||1),status:'active'});
  if(eff.country?.foodDays)cs.meanFoodReserveDays=round(cs.meanFoodReserveDays+eff.country.foodDays,2);
  if(eff.country?.health)cs.meanHealth=round(clamp(cs.meanHealth+eff.country.health),2);
  if(eff.country?.stress)cs.meanStress=round(clamp(cs.meanStress+eff.country.stress),2);
