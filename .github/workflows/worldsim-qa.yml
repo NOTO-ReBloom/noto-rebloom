@@ -40,6 +40,41 @@ jobs:
           node --check sidehustle-autopublish/note/worldsim/windows/worldsim-note-publisher.mjs
           node --check sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs
 
+      - name: Temporal boundary unit checks
+        run: |
+          node --input-type=module <<'NODE'
+          import {
+            calendarFromAbsolute,advanceCalendar,seasonFromDay,
+            daysUntilMeteorologicalWinter,birthAbsoluteDayFromAge,ageYears
+          } from './sidehustle-autopublish/note/worldsim/simulation/time_model_v1.mjs';
+
+          const assert=(x,m)=>{if(!x)throw new Error(m);};
+          assert(seasonFromDay(59)==='winter','D59 winter');
+          assert(seasonFromDay(60)==='spring','D60 spring');
+          assert(seasonFromDay(151)==='spring','D151 spring');
+          assert(seasonFromDay(152)==='summer','D152 summer');
+          assert(seasonFromDay(243)==='summer','D243 summer');
+          assert(seasonFromDay(244)==='autumn','D244 autumn');
+          assert(seasonFromDay(335)==='autumn','D335 autumn');
+          assert(seasonFromDay(336)==='winter','D336 winter');
+          assert(daysUntilMeteorologicalWinter(239)===97,'winter countdown at epoch');
+          assert(daysUntilMeteorologicalWinter(336)===0,'winter countdown in winter');
+
+          const y1d365=calendarFromAbsolute(365,18);
+          const next=advanceCalendar(y1d365,7,19);
+          assert(next.year===2&&next.dayOfYear===7&&next.absoluteDay===372,'year rollover');
+          assert(next.turn===19,'turn rollover');
+
+          const epoch={year:1,dayOfYear:239,turn:0};
+          const born=birthAbsoluteDayFromAge(20,300,epoch);
+          const before=calendarFromAbsolute(born+20*365-1,0);
+          const birthday=calendarFromAbsolute(born+20*365,0);
+          const c={bornAbsoluteDay:born};
+          assert(ageYears(c,before)===19,'age before birthday');
+          assert(ageYears(c,birthday)===20,'age on birthday');
+          console.log('TEMPORAL_BOUNDARY_QA_OK');
+          NODE
+
       - name: Dry-run future editorial renderer on canonical turn 1
         env:
           WORLDSIM_TURN: '1'
