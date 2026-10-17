@@ -37,7 +37,12 @@ function loadCountry(country){
  }
  const dynamicRelations=(state.roster.dynamicRelationships||[]).filter(x=>x.countryId===country);
  for(const [hid,ho] of Object.entries(state.householdOverlays?.[country]||{})){
-  if(households[hid]&&Array.isArray(ho.newMemberIds)){
+  if(!households[hid])continue;
+  if(Array.isArray(ho.departedMemberIds)&&ho.departedMemberIds.length){
+   const gone=new Set(ho.departedMemberIds);
+   households[hid].memberIds=households[hid].memberIds.filter(id=>!gone.has(id));
+  }
+  if(Array.isArray(ho.newMemberIds)){
    for(const id of ho.newMemberIds)if(!households[hid].memberIds.includes(id))households[hid].memberIds.push(id);
   }
  }
@@ -51,9 +56,12 @@ function currentAge(c){return modelAgeYears(c,state.calendar);}
 function currentAgeDays(c){return modelAgeDays(c,state.calendar);}
 function effective(c,country){
  const o=state.citizenOverlays?.[country]?.[c.citizenId]||{};
- const ho=state.householdOverlays?.[country]?.[c.householdId]||{};
+ const effectiveHouseholdId=o.householdId||c.householdId;
+ const ho=state.householdOverlays?.[country]?.[effectiveHouseholdId]||{};
  const x=structuredClone(c);
  x.ageYears=Math.floor(currentAge(c));
+ x.ageDays=currentAgeDays(c);
+ x.householdId=effectiveHouseholdId;
  if(o.settlementId)x.settlementId=o.settlementId;
  if(o.occupationId){
   x.occupationId=o.occupationId;
@@ -144,7 +152,7 @@ function applyOverlay(country,id,delta,memory){
 }
 function applyHouseholdOverlay(country,householdId,delta,memory){
  const m=(state.householdOverlays[country]??={});
- const o=(m[householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],memories:[]});
+ const o=(m[householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],departedMemberIds:[],memories:[]});
  o.foodDaysOffset=round(o.foodDaysOffset+(delta.foodDays||0),3);
  o.debtOffset=round(o.debtOffset+(delta.debt||0),3);
  o.stressOffset=round(o.stressOffset+(delta.stress||0),3);
