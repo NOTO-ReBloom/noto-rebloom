@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-16T15:18:00+09:00",
-  "status": "calibration_phase",
+  "updatedAt": "2026-10-17T12:16:10+09:00",
+  "status": "household_core_complete",
   "targetPopulation": {
     "ARCUS": 1846,
     "MIREA": 2214,
@@ -13,20 +13,47 @@
     "generationProtocol": true,
     "culturalPriors": true,
     "handAuthoredCalibrationCitizens": 18,
-    "fullHouseholds": false,
-    "fullPopulation": false,
+    "settlementLivelihoodSkeleton": true,
+    "demographicTargets": true,
+    "fullHouseholds": true,
+    "coreCitizenIdentities": 5451,
+    "familyKinshipGraph": true,
+    "householdQaPassed": true,
+    "fullPersonalityProfiles": false,
+    "occupationsAndSkills": false,
+    "economicDependencyGraph": false,
     "socialGraph": false,
     "beliefGraph": false,
     "preTurnAudit": false
   },
   "next": [
-    "Finalize physical settlements and livelihood capacity before bulk citizen generation.",
-    "Generate household skeletons and kinship for all 5,451 residents.",
-    "Assign correlated personality/value profiles using calibration cohort as quality floor.",
-    "Create occupations, skills, debts, possessions and life histories.",
-    "Build directional social graph and imperfect belief graph.",
-    "Audit demographic, economic and network plausibility.",
-    "Only then rerun turn 0 and rewrite launch articles."
+    "Assign occupations and skill levels from settlement economic capacity and household constraints.",
+    "Assign household assets, food reserves, tools, land-use rights, obligations and debt.",
+    "Create workplace and economic-dependency edges.",
+    "Then generate full personality, values and life-history profiles for all 5,451 citizens using household and livelihood context.",
+    "Build friendship, mentorship, rivalry, trust and rumor networks.",
+    "Only after all audits pass, rerun turn 0 and rewrite launch articles."
   ],
-  "publicationBlocked": true
+  "publicationBlocked": true,
+  "metrics": {
+    "population": 5451,
+    "households": 1474,
+    "settlements": 13,
+    "countries": {
+      "ARCUS": 1846,
+      "MIREA": 2214,
+      "VALD": 1391
+    },
+    "qa": [
+      "exact settlement population",
+      "unique citizen IDs",
+      "unique household IDs",
+      "no minor-only households",
+      "parent-child age gap >=18",
+      "grandparent-grandchild age gap >=36",
+      "partner age gap <=15",
+      "calibration citizens preserved",
+      "directional family edges valid"
+    ]
+  }
 }
