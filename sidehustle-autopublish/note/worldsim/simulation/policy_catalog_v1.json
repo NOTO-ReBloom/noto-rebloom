@@ -50,7 +50,13 @@
           "R-ARCA-TIMBER-01": -1.1
         },
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.28,
+      "settlementCosts": {
+        "ARCA-RIDGE-01": 0.52,
+        "ARCA-INLAND-01": 0.16
+      },
+      "materialCostSensitivity": "timber_and_fuel"
     },
     {
       "id": "A_HARBOR_SANITATION",
@@ -91,7 +97,12 @@
         },
         "resources": {},
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.18,
+      "settlementCosts": {
+        "ARCA-PORT-01": 0.08
+      },
+      "materialCostSensitivity": "labor"
     },
     {
       "id": "A_COASTAL_SURVEY",
@@ -130,7 +141,13 @@
         },
         "resources": {},
         "explorationKm": 9
-      }
+      },
+      "opportunityCost": 0.48,
+      "settlementCosts": {
+        "ARCA-PORT-01": 0.24,
+        "ARCA-PORT-02": 0.12
+      },
+      "materialCostSensitivity": "crew_food_and_risk"
     },
     {
       "id": "A_INLAND_ROAD_REPAIR",
@@ -174,7 +191,13 @@
           "R-ARCA-TIMBER-01": -0.25
         },
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.3,
+      "settlementCosts": {
+        "ARCA-RIDGE-01": 0.12,
+        "ARCA-PORT-02": 0.15
+      },
+      "materialCostSensitivity": "labor_and_timber"
     },
     {
       "id": "M_GATE_CLEARING",
@@ -219,7 +242,13 @@
         },
         "resources": {},
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.31,
+      "settlementCosts": {
+        "MIREA-RIVER-03": 0.62,
+        "MIREA-UPPER-01": 0.12
+      },
+      "materialCostSensitivity": "labor_and_downstream_risk"
     },
     {
       "id": "M_SPILLWAY_SURVEY",
@@ -262,7 +291,12 @@
           "R-MIR-WETLAND-01": 0.15
         },
         "explorationKm": 1
-      }
+      },
+      "opportunityCost": 0.19,
+      "settlementCosts": {
+        "MIREA-MARKET-01": 0.1
+      },
+      "materialCostSensitivity": "survey_labor"
     },
     {
       "id": "M_WETLAND_BUFFER",
@@ -304,7 +338,13 @@
           "R-MIR-WETLAND-01": 0.45
         },
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.24,
+      "settlementCosts": {
+        "MIREA-RIVER-01": 0.28,
+        "MIREA-RIVER-02": 0.18
+      },
+      "materialCostSensitivity": "lost_drainage_option"
     },
     {
       "id": "M_SCHOOL_HARVEST",
@@ -339,7 +379,12 @@
         "settlement": {},
         "resources": {},
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.14,
+      "settlementCosts": {
+        "MIREA-RIVER-01": 0.1
+      },
+      "materialCostSensitivity": "schedule_disruption"
     },
     {
       "id": "V_MINE_INSPECTION",
@@ -382,7 +427,12 @@
           "R-VALD-IRON-01": 0.05
         },
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.38,
+      "settlementCosts": {
+        "VALD-BASIN-02": 0.34
+      },
+      "materialCostSensitivity": "lost_mining_shifts"
     },
     {
       "id": "V_FUEL_BUFFER",
@@ -423,7 +473,13 @@
           "R-VALD-TIMBER-01": -0.65
         },
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.43,
+      "settlementCosts": {
+        "VALD-UPPER-01": 0.31,
+        "VALD-BASIN-02": 0.16
+      },
+      "materialCostSensitivity": "current_fuel_and_timber_use"
     },
     {
       "id": "V_SMOKE_VENT",
@@ -465,7 +521,12 @@
           "R-VALD-TIMBER-01": -0.15
         },
         "explorationKm": 0
-      }
+      },
+      "opportunityCost": 0.25,
+      "settlementCosts": {
+        "VALD-BASIN-01": 0.1
+      },
+      "materialCostSensitivity": "timber_and_work_hours"
     },
     {
       "id": "V_PASS_SURVEY",
@@ -504,7 +565,12 @@
         },
         "resources": {},
         "explorationKm": 6
-      }
+      },
+      "opportunityCost": 0.52,
+      "settlementCosts": {
+        "VALD-PASS-01": 0.28
+      },
+      "materialCostSensitivity": "crew_food_and_exposure"
     }
   ],
   "foodProductivityPersonDaysPerWorkerWeek": {
