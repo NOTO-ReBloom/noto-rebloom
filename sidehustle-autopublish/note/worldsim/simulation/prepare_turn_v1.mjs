@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {seasonalWeatherBaseline,anomalyMemory,normalizeCalendar} from './time_model_v1.mjs';
 
 const ROOT=process.cwd(),P=(...x)=>path.join(ROOT,...x);
 const read=p=>JSON.parse(fs.readFileSync(P(p),'utf8'));
@@ -33,13 +34,22 @@ function rumorPrevalence(belief,topic){
 }
 function weather(){
  const r=rngFor(state.worldId+'|WEATHER|'+turn);
- const arcaWind=clamp(48+truth.climate.currentAnomalies.arcaSeaSurfaceTempVs20yMeanC*7+ri(r,-13,18));
- const mireaRain=clamp(52+truth.climate.currentAnomalies.mireaUpperCatchmentRainVsMeanPct*.8+ri(r,-16,17));
- const valdCold=clamp(24+ri(r,-10,16)+(turn>3?7:0));
+ const cal=normalizeCalendar(state.calendar);
+ const a=seasonalWeatherBaseline('ARCUS',cal.dayOfYear);
+ const m=seasonalWeatherBaseline('MIREA',cal.dayOfYear);
+ const v=seasonalWeatherBaseline('VALD',cal.dayOfYear);
+ const memory=anomalyMemory(turn,10);
+ const arcaWind=clamp(a.coastalWind+truth.climate.currentAnomalies.arcaSeaSurfaceTempVs20yMeanC*6*memory+ri(r,-11,13));
+ const arcaRain=clamp(a.rain+ri(r,-12,13));
+ const mireaRain=clamp(m.catchmentRain+truth.climate.currentAnomalies.mireaUpperCatchmentRainVsMeanPct*.55*memory+ri(r,-13,14));
+ const riverPressure=clamp((mireaRain+truth.hydrology.mireaRiver.turn0SedimentIndex*.72)/1.72+ri(r,-4,4));
+ const valdCold=clamp(v.cold+ri(r,-10,11));
+ const valdSnow=clamp(v.snow+ri(r,-10,12));
  return {
-  ARCUS:{coastalWindIndex:Math.round(arcaWind),rainIndex:ri(r,35,68),summary:arcaWind>=72?'rough coastal week':arcaWind>=58?'breezy but workable coast':'mostly workable coast'},
-  MIREA:{upperCatchmentRainIndex:Math.round(mireaRain),riverPressureIndex:Math.round(clamp((mireaRain+truth.hydrology.mireaRiver.turn0SedimentIndex)/2)),summary:mireaRain>=76?'wet upper catchment':mireaRain>=58?'several wet periods':'ordinary river weather'},
-  VALD:{coldPressureIndex:Math.round(valdCold),snowRiskIndex:ri(r,4,25),summary:valdCold>=55?'unseasonably cold nights':'cool highland week without hard freeze'}
+  calendar:{year:cal.year,dayOfYear:cal.dayOfYear,season:cal.season,seasonStage:cal.seasonStage},
+  ARCUS:{coastalWindIndex:Math.round(arcaWind),rainIndex:Math.round(arcaRain),summary:arcaWind>=72?'rough coastal week':arcaWind>=58?'breezy coast':'mostly workable coast'},
+  MIREA:{upperCatchmentRainIndex:Math.round(mireaRain),riverPressureIndex:Math.round(riverPressure),summary:riverPressure>=78?'high river pressure':riverPressure>=60?'elevated river':'ordinary river conditions'},
+  VALD:{coldPressureIndex:Math.round(valdCold),snowRiskIndex:Math.round(valdSnow),summary:valdCold>=70?'hard-freeze conditions':valdSnow>=45?'cold with meaningful snow risk':valdCold>=52?'cold highland week':'mild-to-cool highland week'}
  };
 }
 const wx=weather();
