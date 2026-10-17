@@ -42,7 +42,7 @@ jobs:
           assert len(files)==13, len(files)
           total=0
           essential_errors=[]
-          aliases={'ARC-0001':'shipwright','ARC-0002':'fish_trader','ARC-0003':'healer','ARC-0004':'map_apprentice','ARC-0005':'storekeeper','ARC-0006':'dock_laborer',
+          model=json.loads(pathlib.Path('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json').read_text())\n          aliases={'ARC-0001':'shipwright','ARC-0002':'fish_trader','ARC-0003':'healer','ARC-0004':'map_apprentice','ARC-0005':'storekeeper','ARC-0006':'dock_laborer',
                    'MIR-0001':'farmer','MIR-0002':'irrigation_builder','MIR-0003':'teacher','MIR-0004':'herbalist','MIR-0005':'trader','MIR-0006':'student',
                    'VAL-0001':'miner','VAL-0002':'quartermaster','VAL-0003':'healer','VAL-0004':'apprentice','VAL-0005':'goat_keeper','VAL-0006':'food_preserver'}
           seen={}
