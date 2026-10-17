@@ -74,4 +74,22 @@ for(const country of ['ARCUS','MIREA','VALD']){
  };
 }
 write('sidehustle-autopublish/note/worldsim/editorial/launch_brief_turn1.json',out);
-console.log(JSON.stringify(out,null,2));
+const compact={
+ version:2,
+ turn:out.turn,
+ world:out.world,
+ countries:Object.fromEntries(Object.entries(out.countries).map(([country,c])=>[country,{
+   countryName:c.countryName,
+   populationBefore:c.populationBefore,
+   populationAfter:c.populationAfter,
+   foodReserveDaysBefore:c.foodReserveDaysBefore,
+   foodReserveDaysAfter:c.foodReserveDaysAfter,
+   weather:c.weather,
+   selectedEvent:c.selectedEvent,
+   people:c.people,
+   demography:c.demography,
+   allTurnPolicies:c.allTurnPolicies
+ }]))
+};
+write('sidehustle-autopublish/note/worldsim/editorial/launch_brief_compact.json',compact);
+console.log(JSON.stringify(compact,null,2));
