@@ -111,7 +111,7 @@ jobs:
           if(allLaunchVerified){
             const profileRes=await fetch('https://note.com/'+account+'?profileVerify='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-public-verifier/2.0'},signal:AbortSignal.timeout(12000)});
             const profileHtml=profileRes.ok?await profileRes.text():'';
-            const profileOk=profileHtml.includes('AI世界観測所')||profileHtml.includes('5,451人が暮らす3つの架空社会');
+            const profileOk=profileHtml.includes('AI世界観測所')&&profileHtml.includes('5,451人から始まった');
             const launchTitles=new Set(launch.map(e=>norm(e.title)));
             const onlyLaunch=inventory.length===launch.length && inventory.every(x=>launchTitles.has(x.title));
             if(profileOk && onlyLaunch && req.status!=='completed'){
