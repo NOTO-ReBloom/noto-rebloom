@@ -61,7 +61,7 @@ jobs:
           policies={c:set() for c in countries}
           last_pass={}
           catalog={x['id']:x for x in json.loads((root/'simulation/policy_catalog_v1.json').read_text())['policies']}
-          rotations=births=deaths=conceptions=cancelled=life_transitions=partnerships=contact_stage_changes=exchanges=misunderstandings=0
+          rotations=births=deaths=conceptions=cancelled=life_transitions=partnerships=birthdays=contact_stage_changes=exchanges=misunderstandings=0
           seasons=set()
           food_modifiers={c:[] for c in countries}
           calendar_abs=[]
@@ -134,6 +134,7 @@ jobs:
               for e in ev['events']:
                   if e.get('type')=='life_stage_transition': life_transitions+=1
                   if e.get('type')=='partnership_formed': partnerships+=1
+                  if e.get('type')=='birthday': birthdays+=1
               for e in state.get('eventLog',[]):
                   if e.get('turn')!=t: continue
                   if e.get('type')=='contact_stage_changed': contact_stage_changes+=1
@@ -167,7 +168,7 @@ jobs:
           final=json.loads((root/'state/turn_0156/world_state.json').read_text())
           assert final['calendar']['year']>=4
           assert births>0 and deaths>0 and conceptions>0 and life_transitions>0
-          assert rotations>0 and partnerships>0
+          assert rotations>0 and partnerships>0 and birthdays>0
           if final['contact']['firstContactOccurred']:
               assert final['contact']['pairStates']
               for ps in final['contact']['pairStates'].values():
@@ -182,7 +183,7 @@ jobs:
           print('THREE_YEAR_TEMPORAL_QA_OK')
           print('SEASONS',sorted(seasons),'INITIAL_PREGNANCIES',initial_pregnancies)
           print('BIRTHS',births,'CONCEPTIONS',conceptions,'DEATHS',deaths,'CANCELLED_PREGNANCIES',cancelled)
-          print('LIFE_TRANSITIONS',life_transitions,'PARTNERSHIPS',partnerships,'INSTITUTION_ROTATIONS',rotations)
+          print('LIFE_TRANSITIONS',life_transitions,'PARTNERSHIPS',partnerships,'BIRTHDAYS',birthdays,'INSTITUTION_ROTATIONS',rotations)
           print('CONTACT_STAGE_CHANGES',contact_stage_changes,'EXCHANGES',exchanges,'MISUNDERSTANDINGS',misunderstandings,'FIRST_CONTACT',final['contact']['firstContactOccurred'])
           print('POLICY_DIVERSITY',{k:sorted(v) for k,v in policies.items()})
           print('FINAL_DATE',final['calendar'])
