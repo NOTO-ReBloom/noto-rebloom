@@ -909,6 +909,11 @@ for(const country of ['ARCUS','MIREA','VALD']){
 }
 contactCheck();
 state.eventLog.push(...turnEvents);
+// Full history is preserved in immutable per-turn artifacts. The live state keeps only
+// a bounded working window so decades of simulation do not make every next turn slower.
+state.eventLog=state.eventLog.filter(e=>e.turn==null||e.turn>=turn-104);
+state.worldDynamic.weatherHistory=(state.worldDynamic.weatherHistory||[]).filter(e=>e.turn>=turn-104);
+state.institutionalHistory=(state.institutionalHistory||[]).filter(e=>e.turn>=turn-260);
 state.publicationReady=turnEvents.some(e=>e.type==='policy_vote'&&e.passed)||state.contact.firstContactOccurred;
 state.lastResolvedFrom={turnInputHash:crypto.createHash('sha256').update(JSON.stringify(input)).digest('hex'),engine:'resolve_turn_v1'};
 write('sidehustle-autopublish/note/worldsim/state/turn_'+pad(turn)+'/world_state.json',state);
