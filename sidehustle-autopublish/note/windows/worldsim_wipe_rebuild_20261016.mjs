@@ -10,12 +10,10 @@ const LOG_PATH = path.join(LOG_DIR, 'worldsim_wipe_rebuild_20261016.log');
 const BACKUP_PATH = path.join(LOG_DIR, 'worldsim_pre_wipe_backup_20261016.json');
 const RECEIPT_PATH = path.join(LOG_DIR, 'worldsim_wipe_rebuild_20261016_receipt.json');
 const ACCOUNT = 'royal_lion645';
-const KEEP_TITLES = [
-  '3つの国を同じ世界に置きました。まだ、互いの存在を知りません',
-  '港は木を欲しがった。山は4票で反対した｜アルカ、最初の7日',
-  '賛成は6、反対2。それでも灌漑整備は否決された｜ミレア、最初の7日',
-  '鉱山を2日止める。6対3で安全点検が通った｜ヴァルド、最初の7日'
-];
+const RAW = 'https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/main/';
+const QUEUE_REL = 'sidehustle-autopublish/note/worldsim/publication_queue.json';
+const REQUEST_REL = 'sidehustle-autopublish/note/worldsim/rebuild_request.json';
+let KEEP_TITLES = [];
 const BRAND_NAME = 'AI世界観測所';
 const BRAND_BIO = '5,451人が暮らす3つの架空社会を7日ずつ観測。家族・仕事・価値観・人間関係から歴史が進みます。3国はまだ互いを知りません。筋書きなし。起きたことだけ記録します。';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -35,6 +33,22 @@ function readJson(file, fallback) {
 
 function normalize(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+async function fetchRemoteJson(rel){
+  const res=await fetch(RAW+rel+'?t='+Date.now(),{headers:{'cache-control':'no-cache','user-agent':'worldsim-wipe/2.0'}});
+  if(!res.ok)throw new Error('REMOTE_CONFIG_HTTP_'+res.status+' '+rel);
+  return await res.json();
+}
+async function loadCanonicalLaunchConfig(){
+  const [queue,request]=await Promise.all([fetchRemoteJson(QUEUE_REL),fetchRemoteJson(REQUEST_REL)]);
+  const ids=Array.isArray(request.launchIds)?request.launchIds:[];
+  if(ids.length!==4)throw new Error('CANONICAL_LAUNCH_ID_COUNT_'+ids.length);
+  const entries=ids.map(id=>(queue.entries||[]).find(e=>e.id===id));
+  if(entries.some(x=>!x))throw new Error('CANONICAL_LAUNCH_ENTRY_MISSING');
+  const titles=entries.map(x=>normalize(x.title));
+  if(new Set(titles).size!==4||titles.some(x=>!x))throw new Error('CANONICAL_LAUNCH_TITLES_INVALID');
+  return{ids,titles,entries,requestId:request.requestId};
 }
 
 async function ensureAuth(page) {
@@ -302,10 +316,14 @@ async function main() {
     viewport: { width: 1440, height: 1000 }
   });
   const page = context.pages()[0] || await context.newPage();
-  const receipt = { requestId: 'worldsim-rebuild-20261016-v1', status: 'started', startedAt: new Date().toISOString() };
+  const receipt = { requestId: null, status: 'started', startedAt: new Date().toISOString() };
 
   try {
     await ensureAuth(page);
+    const launchCfg=await loadCanonicalLaunchConfig();
+    receipt.requestId=launchCfg.requestId;
+    KEEP_TITLES=launchCfg.titles;
+    log('CANONICAL_LAUNCH_CONFIG',{requestId:launchCfg.requestId,titles:KEEP_TITLES});
 
     const initial = await fetchPublic();
     const keepKeys = verifyLaunchSet(initial);
