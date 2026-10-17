@@ -180,7 +180,7 @@ function auditSettlement(data,target){
   const members=h.memberIds.map(id=>data.citizens.find(c=>c.citizenId===id));
   if(members.every(c=>c.ageYears<18)) throw new Error('minor-only household '+h.householdId);
  }
- for(const e of data.familyEdges) if(!ids.has(e.from)||!ids.has(e.to)) throw new Error('bad edge');
+ for(const e of data.familyEdges) if(!ids.has(e.from)||!ids.has(e.to)) throw new Error('bad edge '+data.settlementId+' '+JSON.stringify(e));
 }
 
 const countrySummary={};
