@@ -615,12 +615,41 @@ function processProjectLifecycle(country,turnEvents){
 }
 
 function contactCheck(){
- const d={ARCUS_MIREA:['ARCUS','MIREA'],MIREA_VALD:['MIREA','VALD'],ARCUS_VALD:['ARCUS','VALD']};
+ const pairs={ARCUS_MIREA:['ARCUS','MIREA'],MIREA_VALD:['MIREA','VALD'],ARCUS_VALD:['ARCUS','VALD']};
  const truth=read('sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json');
- for(const [key,[a,b]] of Object.entries(d)){
-  const min=truth.map.minimumStraightLineKm[key],reach=state.countries[a].verifiedExplorationRadiusKm+state.countries[b].verifiedExplorationRadiusKm;
-  if(reach>=min&&!state.contact.knownPairs.some(x=>x.includes(a)&&x.includes(b))){
-   state.contact.knownPairs.push([a,b]);state.contact.firstContactOccurred=true;state.eventLog.push({turn,type:'first_contact_condition_met',countries:[a,b],reach,min});
+ state.contact.pairStates=state.contact.pairStates||{};
+ for(const [key,[a,b]] of Object.entries(pairs)){
+  const min=truth.map.minimumStraightLineKm[key];
+  const reach=state.countries[a].verifiedExplorationRadiusKm+state.countries[b].verifiedExplorationRadiusKm;
+  const margin=round(reach-min,2);
+  let ps=state.contact.pairStates[key]||null;
+
+  if(!ps&&reach>=min){
+   ps={pair:[a,b],stage:'verified_presence',firstDetectedTurn:turn,lastStageTurn:turn,minDistanceKm:min,reachKm:round(reach,2),reachMarginKm:margin};
+   state.contact.pairStates[key]=ps;
+   if(!state.contact.knownPairs.some(x=>x.includes(a)&&x.includes(b)))state.contact.knownPairs.push([a,b]);
+   state.contact.firstContactOccurred=true;
+   for(const [self,other] of [[a,b],[b,a]]){
+    state.countries[self].knownOtherCountries=true;
+    state.countries[self].knownCountryIds=state.countries[self].knownCountryIds||[];
+    if(!state.countries[self].knownCountryIds.includes(other))state.countries[self].knownCountryIds.push(other);
+   }
+   state.eventLog.push({turn,type:'first_contact_condition_met',countries:[a,b],stage:'verified_presence',reach:round(reach,2),min,margin});
+   continue;
+  }
+  if(!ps)continue;
+
+  ps.reachKm=round(reach,2);ps.reachMarginKm=margin;
+  let next=ps.stage;
+  if(margin>=20)next='sustained_route';
+  else if(margin>=8)next='direct_contact';
+  else next='verified_presence';
+
+  const rank={verified_presence:1,direct_contact:2,sustained_route:3};
+  if(rank[next]>rank[ps.stage]){
+   const from=ps.stage;
+   ps.stage=next;ps.lastStageTurn=turn;
+   state.eventLog.push({turn,type:'contact_stage_changed',countries:[a,b],fromStage:from,toStage:next,reach:round(reach,2),min,margin});
   }
  }
 }
