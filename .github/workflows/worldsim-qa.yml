@@ -37,6 +37,8 @@ jobs:
           node --check sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs
           node --check sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs
           node --check sidehustle-autopublish/note/worldsim/editorial/generate_turn_posts_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/editorial/generate_launch_briefs_v1.mjs
+          node --check sidehustle-autopublish/note/worldsim/editorial/generate_launch_articles_v3.mjs
           node --check sidehustle-autopublish/note/worldsim/windows/worldsim-note-publisher.mjs
           node --check sidehustle-autopublish/note/windows/worldsim_wipe_rebuild_20261016.mjs
 
