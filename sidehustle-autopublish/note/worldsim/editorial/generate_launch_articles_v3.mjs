@@ -48,6 +48,15 @@ const settlementName=(country,id)=>s1.countries[country].settlementStates[id]?.n
 
 function titleFor(country,c){
  const m=META[country],v=c.selectedEvent,short=shortTitle(v.title);
+ if(v.policyId==='A_TIMBER_REPAIR'){
+  return '港は木を欲しがった。山は'+v.no+'票で反対した｜'+m.ja+'、最初の7日';
+ }
+ if(v.policyId==='M_GATE_CLEARING'&&!v.passed){
+  return '賛成は'+v.yes+'、反対'+v.no+'。それでも灌漑整備は否決された｜'+m.ja+'、最初の7日';
+ }
+ if(v.policyId==='V_MINE_INSPECTION'&&v.passed){
+  return '鉱山を2日止める。'+v.yes+'対'+v.no+'で安全点検が通った｜'+m.ja+'、最初の7日';
+ }
  if(v.dualMajority&&!v.passed&&v.yes>v.no)return '賛成'+v.yes+'、反対'+v.no+'。それでも「'+short+'」は通らなかった｜'+m.ja+'、最初の7日';
  if(v.passed&&v.no>0)return '「'+short+'」が'+v.yes+'対'+v.no+'で可決｜'+m.ja+'、最初の7日';
  if(v.passed)return '「'+short+'」が可決。賛成'+v.yes+'、棄権'+v.abstain+'｜'+m.ja+'、最初の7日';
@@ -56,8 +65,10 @@ function titleFor(country,c){
 function voteJa(x){return x==='yes'?'賛成':x==='no'?'反対':'棄権';}
 function personParagraph(country,p,label){
  if(!p)return[];
- const pos=p.vote?.strongestPositive?.[0]?.[0]||null;
- const neg=p.vote?.strongestNegative?.[0]?.[0]||null;
+ const positives=(p.vote?.strongestPositive||[]).map(x=>x[0]).filter(k=>k!=='sponsorOwnership'&&k!=='boundedNoise');
+ const negatives=(p.vote?.strongestNegative||[]).map(x=>x[0]).filter(k=>k!=='boundedNoise');
+ const pos=positives[0]||null;
+ const neg=negatives[0]||null;
  const key=p.vote?.choice==='no'?(neg||pos):(pos||neg);
  const debt=p.household?.debtUnits||0,food=Math.round(p.household?.foodDays||0);
  return[
@@ -68,7 +79,7 @@ function personParagraph(country,p,label){
   '',
   (p.household?.members||'?')+'人世帯で、食料備蓄はおよそ'+food+'日分。'+(debt>0?'世帯には約'+Math.round(debt)+'単位の負債があります。':'大きな世帯負債はありません。'),
   '',
-  'この議案では**'+voteJa(p.vote?.choice)+'**。判断を分解すると、特に大きかったのは「'+factorPhrase(key)+'」でした。'
+  'この議案では**'+voteJa(p.vote?.choice)+'**。本人の生活条件まで見ると、特に効いていたのは「'+factorPhrase(key)+'」です。単に国の方針に従ったのではなく、この人自身の仕事と暮らしから出た票でした。'
  ];
 }
 function resultParagraph(v){
@@ -145,9 +156,11 @@ for(const country of ['ARCUS','MIREA','VALD']){
  q.title=a.title;
  q.bodyPath=bodyPath;
  q.coverLabel=m.series+' / 第1週';
- q.coverCopy=brief.countries[country].selectedEvent.passed
-   ? brief.countries[country].selectedEvent.yes+'対'+brief.countries[country].selectedEvent.no+'／'+shortTitle(brief.countries[country].selectedEvent.title)
-   : '否決／'+shortTitle(brief.countries[country].selectedEvent.title);
+ const ev=brief.countries[country].selectedEvent;
+ if(ev.policyId==='A_TIMBER_REPAIR')q.coverCopy='港の木材優先／山から'+ev.no+'票の反対';
+ else if(ev.policyId==='M_GATE_CLEARING')q.coverCopy='賛成'+ev.yes+'・反対'+ev.no+'／それでも否決';
+ else if(ev.policyId==='V_MINE_INSPECTION')q.coverCopy='鉱山を2日止める／'+ev.yes+'対'+ev.no+'で可決';
+ else q.coverCopy=ev.passed?ev.yes+'対'+ev.no+'／'+shortTitle(ev.title):'否決／'+shortTitle(ev.title);
  q.accent=m.accent;
  q.tags=['AI世界観測所','シミュレーション',m.tag];
  q.enabled=false;
