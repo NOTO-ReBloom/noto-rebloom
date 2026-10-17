@@ -1,0 +1,665 @@
+{
+  "version": 1,
+  "principles": [
+    "Occupations are settlement functions, not decorative character labels.",
+    "Every settlement must maintain food, repair, transport, health, care and governance capacity appropriate to its geography.",
+    "Citizens under 14 are dependents/students; ages 14-17 may be students or apprentices but not full hazardous workers.",
+    "Older citizens may remain economically active with lower physical intensity.",
+    "Sex does not hard-code occupations.",
+    "Calibration citizens keep their authored occupations."
+  ],
+  "occupations": {
+    "child": {
+      "sector": "dependent",
+      "minAge": 0,
+      "maxAge": 13,
+      "hazard": 0,
+      "skillTrack": "none"
+    },
+    "student": {
+      "sector": "education",
+      "minAge": 6,
+      "maxAge": 18,
+      "hazard": 0,
+      "skillTrack": "general"
+    },
+    "apprentice": {
+      "sector": "training",
+      "minAge": 14,
+      "maxAge": 24,
+      "hazard": 1,
+      "skillTrack": "assigned"
+    },
+    "caregiver": {
+      "sector": "care",
+      "minAge": 16,
+      "maxAge": 85,
+      "hazard": 1,
+      "skillTrack": "care"
+    },
+    "farmer": {
+      "sector": "food",
+      "minAge": 16,
+      "maxAge": 78,
+      "hazard": 2,
+      "skillTrack": "agriculture"
+    },
+    "orchard_keeper": {
+      "sector": "food",
+      "minAge": 16,
+      "maxAge": 78,
+      "hazard": 2,
+      "skillTrack": "agriculture"
+    },
+    "goat_keeper": {
+      "sector": "food",
+      "minAge": 14,
+      "maxAge": 82,
+      "hazard": 2,
+      "skillTrack": "livestock"
+    },
+    "fisher": {
+      "sector": "food",
+      "minAge": 18,
+      "maxAge": 70,
+      "hazard": 4,
+      "skillTrack": "maritime"
+    },
+    "deepwater_fisher": {
+      "sector": "food",
+      "minAge": 20,
+      "maxAge": 62,
+      "hazard": 5,
+      "skillTrack": "maritime"
+    },
+    "wetland_gatherer": {
+      "sector": "food",
+      "minAge": 16,
+      "maxAge": 75,
+      "hazard": 2,
+      "skillTrack": "ecology"
+    },
+    "miller": {
+      "sector": "food_processing",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 2,
+      "skillTrack": "mechanical"
+    },
+    "food_preserver": {
+      "sector": "food_processing",
+      "minAge": 16,
+      "maxAge": 78,
+      "hazard": 1,
+      "skillTrack": "preservation"
+    },
+    "salt_worker": {
+      "sector": "food_processing",
+      "minAge": 17,
+      "maxAge": 70,
+      "hazard": 3,
+      "skillTrack": "salt"
+    },
+    "shipwright": {
+      "sector": "repair",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "craft"
+    },
+    "boat_repairer": {
+      "sector": "repair",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "craft"
+    },
+    "metalworker": {
+      "sector": "repair",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "metal"
+    },
+    "toolmaker": {
+      "sector": "repair",
+      "minAge": 18,
+      "maxAge": 75,
+      "hazard": 2,
+      "skillTrack": "metal"
+    },
+    "carpenter": {
+      "sector": "repair",
+      "minAge": 18,
+      "maxAge": 75,
+      "hazard": 3,
+      "skillTrack": "wood"
+    },
+    "stoneworker": {
+      "sector": "repair",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "stone"
+    },
+    "net_maker": {
+      "sector": "repair",
+      "minAge": 16,
+      "maxAge": 82,
+      "hazard": 1,
+      "skillTrack": "textile"
+    },
+    "timber_worker": {
+      "sector": "resource",
+      "minAge": 18,
+      "maxAge": 68,
+      "hazard": 4,
+      "skillTrack": "forestry"
+    },
+    "charcoal_burner": {
+      "sector": "resource",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "forestry"
+    },
+    "miner": {
+      "sector": "resource",
+      "minAge": 18,
+      "maxAge": 60,
+      "hazard": 5,
+      "skillTrack": "mining"
+    },
+    "smelter": {
+      "sector": "resource",
+      "minAge": 18,
+      "maxAge": 65,
+      "hazard": 4,
+      "skillTrack": "metal"
+    },
+    "hunter": {
+      "sector": "resource",
+      "minAge": 18,
+      "maxAge": 70,
+      "hazard": 4,
+      "skillTrack": "field"
+    },
+    "irrigation_builder": {
+      "sector": "infrastructure",
+      "minAge": 18,
+      "maxAge": 68,
+      "hazard": 3,
+      "skillTrack": "water"
+    },
+    "road_worker": {
+      "sector": "infrastructure",
+      "minAge": 18,
+      "maxAge": 68,
+      "hazard": 4,
+      "skillTrack": "construction"
+    },
+    "dock_laborer": {
+      "sector": "transport",
+      "minAge": 18,
+      "maxAge": 62,
+      "hazard": 4,
+      "skillTrack": "loading"
+    },
+    "hauler": {
+      "sector": "transport",
+      "minAge": 18,
+      "maxAge": 68,
+      "hazard": 3,
+      "skillTrack": "transport"
+    },
+    "boat_operator": {
+      "sector": "transport",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "maritime"
+    },
+    "pack_transporter": {
+      "sector": "transport",
+      "minAge": 17,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "mountain"
+    },
+    "trader": {
+      "sector": "trade",
+      "minAge": 18,
+      "maxAge": 80,
+      "hazard": 1,
+      "skillTrack": "commerce"
+    },
+    "fish_trader": {
+      "sector": "trade",
+      "minAge": 18,
+      "maxAge": 80,
+      "hazard": 1,
+      "skillTrack": "commerce"
+    },
+    "storekeeper": {
+      "sector": "storage",
+      "minAge": 18,
+      "maxAge": 82,
+      "hazard": 1,
+      "skillTrack": "accounting"
+    },
+    "quartermaster": {
+      "sector": "storage",
+      "minAge": 21,
+      "maxAge": 78,
+      "hazard": 1,
+      "skillTrack": "logistics"
+    },
+    "healer": {
+      "sector": "health",
+      "minAge": 22,
+      "maxAge": 82,
+      "hazard": 1,
+      "skillTrack": "medicine"
+    },
+    "healer_assistant": {
+      "sector": "health",
+      "minAge": 16,
+      "maxAge": 75,
+      "hazard": 1,
+      "skillTrack": "medicine"
+    },
+    "herbalist": {
+      "sector": "health",
+      "minAge": 20,
+      "maxAge": 85,
+      "hazard": 1,
+      "skillTrack": "ecology"
+    },
+    "teacher": {
+      "sector": "education",
+      "minAge": 20,
+      "maxAge": 78,
+      "hazard": 0,
+      "skillTrack": "teaching"
+    },
+    "clerk": {
+      "sector": "governance",
+      "minAge": 18,
+      "maxAge": 80,
+      "hazard": 0,
+      "skillTrack": "records"
+    },
+    "council_worker": {
+      "sector": "governance",
+      "minAge": 25,
+      "maxAge": 82,
+      "hazard": 0,
+      "skillTrack": "governance"
+    },
+    "signal_watch": {
+      "sector": "security",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 2,
+      "skillTrack": "observation"
+    },
+    "pass_watch": {
+      "sector": "security",
+      "minAge": 18,
+      "maxAge": 72,
+      "hazard": 3,
+      "skillTrack": "mountain"
+    },
+    "map_worker": {
+      "sector": "knowledge",
+      "minAge": 18,
+      "maxAge": 78,
+      "hazard": 1,
+      "skillTrack": "mapping"
+    },
+    "map_apprentice": {
+      "sector": "training",
+      "minAge": 15,
+      "maxAge": 24,
+      "hazard": 1,
+      "skillTrack": "mapping"
+    },
+    "craft_worker": {
+      "sector": "craft",
+      "minAge": 17,
+      "maxAge": 80,
+      "hazard": 2,
+      "skillTrack": "craft"
+    },
+    "reed_worker": {
+      "sector": "craft",
+      "minAge": 16,
+      "maxAge": 80,
+      "hazard": 1,
+      "skillTrack": "craft"
+    },
+    "wool_worker": {
+      "sector": "craft",
+      "minAge": 16,
+      "maxAge": 82,
+      "hazard": 1,
+      "skillTrack": "textile"
+    },
+    "domestic_producer": {
+      "sector": "household",
+      "minAge": 16,
+      "maxAge": 85,
+      "hazard": 1,
+      "skillTrack": "household"
+    }
+  },
+  "settlementProfiles": {
+    "ARCA-PORT-01": {
+      "weights": {
+        "fisher": 16,
+        "shipwright": 6,
+        "fish_trader": 5,
+        "dock_laborer": 7,
+        "net_maker": 3,
+        "storekeeper": 3,
+        "healer": 1,
+        "healer_assistant": 2,
+        "clerk": 2,
+        "teacher": 2,
+        "map_worker": 1,
+        "craft_worker": 5,
+        "food_preserver": 3,
+        "hauler": 4,
+        "caregiver": 4,
+        "domestic_producer": 5
+      },
+      "minimum": {
+        "healer": 3,
+        "teacher": 4,
+        "shipwright": 12,
+        "storekeeper": 8
+      }
+    },
+    "ARCA-PORT-02": {
+      "weights": {
+        "deepwater_fisher": 22,
+        "salt_worker": 8,
+        "boat_repairer": 6,
+        "net_maker": 4,
+        "signal_watch": 3,
+        "food_preserver": 4,
+        "storekeeper": 2,
+        "healer_assistant": 2,
+        "hauler": 3,
+        "craft_worker": 3,
+        "caregiver": 4,
+        "domestic_producer": 4
+      },
+      "minimum": {
+        "healer_assistant": 3,
+        "boat_repairer": 8,
+        "signal_watch": 4
+      }
+    },
+    "ARCA-INLAND-01": {
+      "weights": {
+        "farmer": 28,
+        "orchard_keeper": 8,
+        "miller": 4,
+        "timber_worker": 6,
+        "hauler": 5,
+        "carpenter": 4,
+        "storekeeper": 3,
+        "teacher": 2,
+        "healer_assistant": 2,
+        "craft_worker": 4,
+        "caregiver": 5,
+        "domestic_producer": 5
+      },
+      "minimum": {
+        "miller": 5,
+        "teacher": 3,
+        "healer_assistant": 3
+      }
+    },
+    "ARCA-RIDGE-01": {
+      "weights": {
+        "timber_worker": 24,
+        "charcoal_burner": 10,
+        "hunter": 6,
+        "road_worker": 6,
+        "goat_keeper": 8,
+        "carpenter": 5,
+        "hauler": 4,
+        "healer_assistant": 2,
+        "storekeeper": 2,
+        "caregiver": 5,
+        "domestic_producer": 5
+      },
+      "minimum": {
+        "healer_assistant": 2,
+        "road_worker": 5
+      }
+    },
+    "MIREA-RIVER-01": {
+      "weights": {
+        "farmer": 30,
+        "irrigation_builder": 7,
+        "miller": 5,
+        "boat_operator": 4,
+        "storekeeper": 3,
+        "teacher": 3,
+        "healer_assistant": 2,
+        "craft_worker": 4,
+        "trader": 3,
+        "caregiver": 5,
+        "domestic_producer": 5
+      },
+      "minimum": {
+        "miller": 6,
+        "teacher": 4,
+        "irrigation_builder": 10
+      }
+    },
+    "MIREA-RIVER-02": {
+      "weights": {
+        "farmer": 20,
+        "teacher": 5,
+        "wetland_gatherer": 8,
+        "boat_operator": 5,
+        "herbalist": 2,
+        "healer_assistant": 2,
+        "reed_worker": 5,
+        "storekeeper": 2,
+        "craft_worker": 3,
+        "caregiver": 6,
+        "domestic_producer": 5
+      },
+      "minimum": {
+        "teacher": 5,
+        "healer_assistant": 3
+      }
+    },
+    "MIREA-RIVER-03": {
+      "weights": {
+        "wetland_gatherer": 18,
+        "fisher": 9,
+        "herbalist": 5,
+        "reed_worker": 10,
+        "farmer": 10,
+        "healer_assistant": 2,
+        "boat_operator": 3,
+        "caregiver": 6,
+        "domestic_producer": 6,
+        "storekeeper": 2
+      },
+      "minimum": {
+        "herbalist": 5,
+        "healer_assistant": 2
+      }
+    },
+    "MIREA-MARKET-01": {
+      "weights": {
+        "trader": 18,
+        "craft_worker": 12,
+        "storekeeper": 7,
+        "hauler": 7,
+        "boat_operator": 4,
+        "clerk": 4,
+        "teacher": 3,
+        "healer": 2,
+        "healer_assistant": 2,
+        "food_preserver": 4,
+        "caregiver": 5,
+        "domestic_producer": 5
+      },
+      "minimum": {
+        "healer": 3,
+        "teacher": 4,
+        "storekeeper": 10
+      }
+    },
+    "MIREA-UPPER-01": {
+      "weights": {
+        "orchard_keeper": 18,
+        "goat_keeper": 14,
+        "timber_worker": 8,
+        "stoneworker": 7,
+        "hauler": 4,
+        "storekeeper": 2,
+        "healer_assistant": 2,
+        "craft_worker": 4,
+        "caregiver": 6,
+        "domestic_producer": 6
+      },
+      "minimum": {
+        "healer_assistant": 2,
+        "stoneworker": 5
+      }
+    },
+    "VALD-BASIN-01": {
+      "weights": {
+        "quartermaster": 5,
+        "storekeeper": 6,
+        "metalworker": 8,
+        "toolmaker": 5,
+        "food_preserver": 9,
+        "healer": 3,
+        "healer_assistant": 3,
+        "clerk": 4,
+        "council_worker": 3,
+        "craft_worker": 6,
+        "caregiver": 7,
+        "domestic_producer": 7,
+        "hauler": 4
+      },
+      "minimum": {
+        "healer": 4,
+        "quartermaster": 8,
+        "food_preserver": 12
+      }
+    },
+    "VALD-BASIN-02": {
+      "weights": {
+        "miner": 23,
+        "timber_worker": 8,
+        "smelter": 7,
+        "metalworker": 7,
+        "toolmaker": 4,
+        "hauler": 5,
+        "healer_assistant": 3,
+        "storekeeper": 2,
+        "food_preserver": 3,
+        "caregiver": 5,
+        "domestic_producer": 5
+      },
+      "minimum": {
+        "miner": 55,
+        "healer_assistant": 4,
+        "smelter": 10
+      }
+    },
+    "VALD-UPPER-01": {
+      "weights": {
+        "goat_keeper": 24,
+        "wool_worker": 10,
+        "timber_worker": 6,
+        "hunter": 5,
+        "storekeeper": 2,
+        "healer_assistant": 2,
+        "food_preserver": 6,
+        "caregiver": 7,
+        "domestic_producer": 7
+      },
+      "minimum": {
+        "goat_keeper": 30,
+        "healer_assistant": 2
+      }
+    },
+    "VALD-PASS-01": {
+      "weights": {
+        "road_worker": 15,
+        "pack_transporter": 15,
+        "pass_watch": 9,
+        "stoneworker": 8,
+        "storekeeper": 4,
+        "food_preserver": 5,
+        "healer_assistant": 2,
+        "caregiver": 6,
+        "domestic_producer": 6
+      },
+      "minimum": {
+        "road_worker": 14,
+        "pass_watch": 8,
+        "healer_assistant": 2
+      }
+    }
+  },
+  "skillModel": {
+    "novice": [
+      0,
+      34
+    ],
+    "competent": [
+      35,
+      64
+    ],
+    "skilled": [
+      65,
+      84
+    ],
+    "master": [
+      85,
+      100
+    ],
+    "rule": "Skill rises with years in occupation, conscientiousness later, apprenticeship and household mentorship. At this stage years/role context set the baseline; personality can modify learning rate later."
+  },
+  "householdEconomy": {
+    "foodDaysRange": [
+      18,
+      180
+    ],
+    "debtProbabilityByArchetype": {
+      "single_adult": 0.22,
+      "elderly": 0.12,
+      "couple_no_children": 0.2,
+      "single_parent": 0.43,
+      "shared_workers": 0.28,
+      "couple_children": 0.31,
+      "multigenerational": 0.24
+    },
+    "assets": [
+      "dwellingQuality",
+      "foodDays",
+      "fuelDays",
+      "cashLikeReserve",
+      "livestockUnits",
+      "landUseUnits",
+      "boatsShare",
+      "workshopShare",
+      "toolsValue",
+      "debtUnits"
+    ],
+    "principle": "Household wealth emerges from livelihood, dependents, settlement and shocks; it is not a social-class label."
+  }
+}
