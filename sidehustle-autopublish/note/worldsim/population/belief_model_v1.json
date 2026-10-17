@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "rules": [
+    "Citizens never read the simulation state directly.",
+    "Knowledge must have a source: observation, household, workplace, local notice or social transmission.",
+    "Rumor confidence depends on source trust, repetition and epistemic traits.",
+    "False or uncertain beliefs are allowed and persistent until corrected.",
+    "No citizen may know another country's existence, name, population, institutions or location at turn 0.",
+    "Mobile workers may know one or more settlements within their own country.",
+    "Official statements are not automatically believed."
+  ],
+  "informationSources": [
+    "personalObservation",
+    "household",
+    "workplace",
+    "neighbor",
+    "friend",
+    "market",
+    "localCouncil",
+    "officialNotice",
+    "traveller"
+  ],
+  "rumorSeeds": {
+    "ARCA-PORT-01": [
+      {
+        "id": "A-P1-R1",
+        "claim": "good ship timber will become harder to obtain before the next major repair cycle",
+        "topic": "timber",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "A-P1-R2",
+        "claim": "the near-shore catch has shifted farther from the harbor than older crews remember",
+        "topic": "fishing",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "A-P1-R3",
+        "claim": "crowded dock water is contributing to recurring stomach illness",
+        "topic": "health",
+        "observerStatus": "plausible"
+      }
+    ],
+    "ARCA-PORT-02": [
+      {
+        "id": "A-P2-R1",
+        "claim": "the outer current has become less predictable over the last few seasons",
+        "topic": "sea",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "A-P2-R2",
+        "claim": "salt yields are lower when autumn storms arrive early",
+        "topic": "salt",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "A-P2-R3",
+        "claim": "repair crews are quietly reusing more damaged timber than they admit",
+        "topic": "repair",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "ARCA-INLAND-01": [
+      {
+        "id": "A-I1-R1",
+        "claim": "the port will demand more timber than the ridge can replace",
+        "topic": "forestry",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "A-I1-R2",
+        "claim": "one grain variety is becoming less reliable on the driest plots",
+        "topic": "agriculture",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "A-I1-R3",
+        "claim": "cart fees will rise if the coastal road receives another repair levy",
+        "topic": "transport",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "ARCA-RIDGE-01": [
+      {
+        "id": "A-R1-R1",
+        "claim": "some upper slopes are becoming unstable after heavy cutting",
+        "topic": "landslide",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "A-R1-R2",
+        "claim": "charcoal demand will increase faster than households can supply wood",
+        "topic": "fuel",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "A-R1-R3",
+        "claim": "goat grazing is moving higher each year",
+        "topic": "pasture",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "MIREA-RIVER-01": [
+      {
+        "id": "M-R1-R1",
+        "claim": "the river is depositing more sediment near the lower irrigation gates",
+        "topic": "river",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "M-R1-R2",
+        "claim": "a controlled spillway would protect the fields but worsen flooding downstream",
+        "topic": "infrastructure",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "M-R1-R3",
+        "claim": "some households understate stored grain during communal planning",
+        "topic": "food",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "MIREA-RIVER-02": [
+      {
+        "id": "M-R2-R1",
+        "claim": "wetland water levels are falling earlier in the warm season",
+        "topic": "wetland",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "M-R2-R2",
+        "claim": "younger households are more willing to leave for the market town",
+        "topic": "migration",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "M-R2-R3",
+        "claim": "school attendance drops most when harvest labor peaks",
+        "topic": "education",
+        "observerStatus": "plausible"
+      }
+    ],
+    "MIREA-RIVER-03": [
+      {
+        "id": "M-R3-R1",
+        "claim": "clearing upstream channels is reducing water in parts of the marsh",
+        "topic": "wetland",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "M-R3-R2",
+        "claim": "one medicinal plant is being gathered faster than it regrows",
+        "topic": "health",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "M-R3-R3",
+        "claim": "formal councils listen less to marsh households than to farmers",
+        "topic": "governance",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "MIREA-MARKET-01": [
+      {
+        "id": "M-M1-R1",
+        "claim": "traders with storage space are benefiting most from seasonal price swings",
+        "topic": "trade",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "M-M1-R2",
+        "claim": "market rules differ enough between settlements to create hidden costs",
+        "topic": "governance",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "M-M1-R3",
+        "claim": "a recent illness spread along the busiest ferry route",
+        "topic": "health",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "MIREA-UPPER-01": [
+      {
+        "id": "M-U1-R1",
+        "claim": "late frost is becoming the largest threat to the upper orchards",
+        "topic": "climate",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "M-U1-R2",
+        "claim": "the main road receives less maintenance than lowland routes",
+        "topic": "infrastructure",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "M-U1-R3",
+        "claim": "young adults who leave rarely return permanently",
+        "topic": "migration",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "VALD-BASIN-01": [
+      {
+        "id": "V-B1-R1",
+        "claim": "official reserve targets are based on winters milder than the worst remembered seasons",
+        "topic": "reserve",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "V-B1-R2",
+        "claim": "indoor smoke is causing more winter illness than cold itself",
+        "topic": "health",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "V-B1-R3",
+        "claim": "some store withdrawals are being recorded late rather than stolen",
+        "topic": "storage",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "VALD-BASIN-02": [
+      {
+        "id": "V-B2-R1",
+        "claim": "production pressure is causing some mine supports to be replaced too late",
+        "topic": "mining",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "V-B2-R2",
+        "claim": "the richest visible seam is also the least stable",
+        "topic": "mining",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "V-B2-R3",
+        "claim": "smelter fuel demand will compete with household winter fuel",
+        "topic": "fuel",
+        "observerStatus": "plausible"
+      }
+    ],
+    "VALD-UPPER-01": [
+      {
+        "id": "V-U1-R1",
+        "claim": "central planners underestimate how much winter grazing the upland herds need",
+        "topic": "pasture",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "V-U1-R2",
+        "claim": "timber cutting is slowly narrowing traditional grazing routes",
+        "topic": "land",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "V-U1-R3",
+        "claim": "upland households could survive a long road closure better than officials assume",
+        "topic": "resilience",
+        "observerStatus": "uncertain"
+      }
+    ],
+    "VALD-PASS-01": [
+      {
+        "id": "V-P1-R1",
+        "claim": "snow is lingering later on the north face of the pass",
+        "topic": "climate",
+        "observerStatus": "plausible"
+      },
+      {
+        "id": "V-P1-R2",
+        "claim": "pack animals are refusing one section of trail more often than before",
+        "topic": "trail",
+        "observerStatus": "uncertain"
+      },
+      {
+        "id": "V-P1-R3",
+        "claim": "travellers exaggerate conditions beyond the pass because few people can check them",
+        "topic": "information",
+        "observerStatus": "plausible"
+      }
+    ]
+  }
+}
