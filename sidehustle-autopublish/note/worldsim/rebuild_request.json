@@ -25,7 +25,7 @@
   "safety": "Destructive wipe is gated on exactly one reader-visible publication for every audited launch title. Any profile-edit, launch verification or final-set mismatch aborts deletion/rebuild.",
   "humanActionRequired": false,
   "holdReason": null,
-  "updatedAt": "2026-10-18T03:12:00+09:00",
+  "updatedAt": "2026-10-18T03:31:00+09:00",
   "releaseReadinessVerified": true,
   "releaseReadinessWorkflowRunId": 39008070653,
   "releaseRequestedAt": "2026-10-17T15:02:00+09:00",
@@ -41,12 +41,13 @@
     "retryTask": "NOTE_WorldSimMigration_15min",
     "explanation": "GitHub/cloud QA cannot access the local authenticated NOTE browser profile. Public NOTE currently still shows the legacy account state, so one authenticated Windows bootstrap execution is the only remaining external prerequisite if the existing runner does not wake automatically."
   },
-  "publicRealityLastCheckedAt": "2026-10-18T03:12:00+09:00",
+  "publicRealityLastCheckedAt": "2026-10-18T03:31:00+09:00",
   "publicReality": {
     "profileName": "AI世界観測所",
-    "launchPostsVerified": 0,
+    "launchPostsVerified": 4,
     "migrationComplete": false,
-    "note": "Launch posts no longer visible after cleanup regression; destructive cleanup paused pending recovery."
+    "note": "Four launch posts recovered and reader-visible. Legacy articles still remain; destructive cleanup stays paused."
   },
-  "launchVerified": false
+  "launchVerified": true,
+  "launchVerifiedAt": "2026-10-18T03:31:00+09:00"
 }
