@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {ageYears as modelAgeYears} from '../simulation/time_model_v1.mjs';
 
 const ROOT=process.cwd(),P=(...x)=>path.join(ROOT,...x);
 const read=p=>JSON.parse(fs.readFileSync(P(p),'utf8'));
@@ -21,16 +22,20 @@ function loadCountry(country){
  const beliefs=read('sidehustle-autopublish/note/worldsim/population/beliefs/'+country+'.json');
  return{people,households,beliefs};
 }
-function personCard(id,data,topic,vote){
+function personCard(id,data,topic,vote,country){
  const c=data.people[id];if(!c)return null;
- const h=data.households[c.householdId];
+ const co=after.citizenOverlays?.[country]?.[id]||{};
+ const householdId=co.householdId||c.householdId;
+ const h=data.households[householdId];
+ const ho=after.householdOverlays?.[country]?.[householdId]||{};
+ const age=modelAgeYears(c,after.calendar);
  const record=data.beliefs.records[id]||{};
  const strongestPositive=vote?Object.entries(vote.factors||{}).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,3):[];
  const strongestNegative=vote?Object.entries(vote.factors||{}).filter(([,v])=>v<0).sort((a,b)=>a[1]-b[1]).slice(0,3):[];
  return{
-  citizenId:id,name:c.givenName+' '+c.familyName,age:c.ageYears,sex:c.sex,settlementId:c.settlementId,
-  occupation:c.occupationId,sector:c.occupation.sector,skill:c.occupation.skill,householdId:c.householdId,
-  household:{members:h?.memberIds?.length??null,foodDays:h?.economy?.foodDays??c.materialState.householdFoodDays,debtUnits:h?.economy?.debtUnits??c.materialState.householdDebt,cashLikeReserve:h?.economy?.cashLikeReserve??null,landUseUnits:h?.economy?.landUseUnits??null},
+  citizenId:id,name:c.givenName+' '+c.familyName,age,sex:c.sex,settlementId:co.settlementId||c.settlementId,
+  occupation:co.occupationId||c.occupationId,sector:c.occupation.sector,skill:c.occupation.skill,householdId,
+  household:{members:h?.memberIds?.length??null,foodDays:Math.max(0,(h?.economy?.foodDays??c.materialState.householdFoodDays)+(ho.foodDaysOffset||0)),debtUnits:Math.max(0,(h?.economy?.debtUnits??c.materialState.householdDebt)+(ho.debtOffset||0)),cashLikeReserve:h?.economy?.cashLikeReserve??null,landUseUnits:h?.economy?.landUseUnits??null},
   selectedValues:Object.fromEntries(['family','autonomy','security','achievement','fairness','community','environment','status'].map(k=>[k,c.values[k]])),
   selectedTraits:{conscientiousness:c.psychology.bigFive.conscientiousness,agreeableness:c.psychology.bigFive.agreeableness,riskTolerance:c.psychology.actionTendencies.riskTolerance,authorityAcceptance:c.psychology.actionTendencies.authorityAcceptance,statusDrive:c.psychology.actionTendencies.statusDrive},
   goals:{primary:c.goals.primaryGoal,secondary:c.goals.secondaryGoal,protectedThing:c.goals.protectedThing,avoidAtAllCosts:c.goals.avoidAtAllCosts},
@@ -63,10 +68,10 @@ for(const country of ['ARCUS','MIREA','VALD']){
   weather:events.weather[country],
   selectedEvent:{policyId:v.policyId,title:v.title,passed:v.passed,yes:v.yes,no:v.no,abstain:v.abstain,yesShare:v.yesShare,dualMajority:v.dualMajority,settlementMajority:v.settlementMajority,settlementResults:v.settlementResults},
   people:{
-   sponsor:personCard(v.sponsorId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',sponsorVote),
-   strongestYes:personCard(strongestYes.citizenId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',strongestYes),
-   strongestNo:personCard(strongestNo.citizenId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',strongestNo),
-   abstainer:abstain?personCard(abstain.citizenId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',abstain):null
+   sponsor:personCard(v.sponsorId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',sponsorVote,country),
+   strongestYes:personCard(strongestYes.citizenId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',strongestYes,country),
+   strongestNo:personCard(strongestNo.citizenId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',strongestNo,country),
+   abstainer:abstain?personCard(abstain.citizenId,data,v.policyId.startsWith('M_GATE')?'river':v.policyId.startsWith('V_MINE')?'mining':v.policyId.startsWith('A_TIMBER')?'repair':'',abstain,country):null
   },
   settlementBefore:ssBefore,settlementAfter:ssAfter,
   demography:demo.countries[country],
