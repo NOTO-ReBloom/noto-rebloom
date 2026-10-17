@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "worldId": "LYRA-001",
+  "observerOnly": true,
+  "frozenAtTurn0": true,
+  "calendar": {
+    "year": 1,
+    "dayOfYear": 239,
+    "turn": 0,
+    "turnDays": 7,
+    "season": "late_summer",
+    "daysUntilMeteorologicalWinter": 93
+  },
+  "map": {
+    "units": "km",
+    "coordinateSystem": "observer_only_cartesian",
+    "settlements": {
+      "ARCA-PORT-01": {
+        "x": 0,
+        "y": 0,
+        "elevationM": 8
+      },
+      "ARCA-PORT-02": {
+        "x": 27,
+        "y": -9,
+        "elevationM": 34
+      },
+      "ARCA-INLAND-01": {
+        "x": 13,
+        "y": 21,
+        "elevationM": 86
+      },
+      "ARCA-RIDGE-01": {
+        "x": 31,
+        "y": 30,
+        "elevationM": 410
+      },
+      "MIREA-RIVER-01": {
+        "x": 302,
+        "y": 101,
+        "elevationM": 74
+      },
+      "MIREA-RIVER-02": {
+        "x": 326,
+        "y": 116,
+        "elevationM": 61
+      },
+      "MIREA-RIVER-03": {
+        "x": 344,
+        "y": 132,
+        "elevationM": 43
+      },
+      "MIREA-MARKET-01": {
+        "x": 313,
+        "y": 139,
+        "elevationM": 68
+      },
+      "MIREA-UPPER-01": {
+        "x": 287,
+        "y": 166,
+        "elevationM": 315
+      },
+      "VALD-BASIN-01": {
+        "x": 226,
+        "y": 361,
+        "elevationM": 1080
+      },
+      "VALD-BASIN-02": {
+        "x": 247,
+        "y": 375,
+        "elevationM": 1290
+      },
+      "VALD-UPPER-01": {
+        "x": 205,
+        "y": 397,
+        "elevationM": 1660
+      },
+      "VALD-PASS-01": {
+        "x": 260,
+        "y": 409,
+        "elevationM": 1930
+      }
+    },
+    "regions": [
+      {
+        "id": "ARCA_COAST",
+        "kind": "maritime_peninsula",
+        "bounds": [
+          -25,
+          -25,
+          65,
+          65
+        ]
+      },
+      {
+        "id": "MIREA_BASIN",
+        "kind": "river_plain_wetland",
+        "bounds": [
+          260,
+          70,
+          375,
+          190
+        ]
+      },
+      {
+        "id": "VALD_MASSIF",
+        "kind": "high_mountain_basin",
+        "bounds": [
+          175,
+          325,
+          285,
+          440
+        ]
+      },
+      {
+        "id": "KELEN_ARCHIPELAGO",
+        "kind": "uninhabited_islands",
+        "center": {
+          "x": 145,
+          "y": 42
+        },
+        "note": "Known to no country at turn 0; no permanent human settlement."
+      }
+    ],
+    "minimumStraightLineKm": {
+      "ARCUS_MIREA": 279,
+      "MIREA_VALD": 205,
+      "ARCUS_VALD": 376
+    }
+  },
+  "hydrology": {
+    "mireaRiver": {
+      "source": {
+        "x": 276,
+        "y": 203
+      },
+      "mouth": {
+        "x": 365,
+        "y": 95
+      },
+      "passes": [
+        "MIREA-UPPER-01",
+        "MIREA-RIVER-01",
+        "MIREA-RIVER-02",
+        "MIREA-RIVER-03"
+      ],
+      "turn0SedimentIndex": 63
+    },
+    "valdWater": {
+      "closedBasin": true,
+      "snowmeltDominated": true,
+      "turn0SnowpackVsLocalMeanPct": 8
+    },
+    "arcaGroundwater": {
+      "coastalAquifer": true,
+      "saltIntrusionRisk": "low_at_turn0"
+    }
+  },
+  "climate": {
+    "worldPattern": "temperate northern hemisphere",
+    "currentAnomalies": {
+      "arcaSeaSurfaceTempVs20yMeanC": 0.6,
+      "arcaAutumnStormRiskVsMean": "moderately_elevated",
+      "mireaUpperCatchmentRainVsMeanPct": 11,
+      "mireaFloodRiskNext42Days": "moderate",
+      "valdFirstHardFreezeWindowDays": [
+        34,
+        58
+      ],
+      "valdSnowfallRiskNext42Days": "low_to_moderate"
+    },
+    "stochasticWeatherRule": "Future weather is generated turn-by-turn from seeded bounded variability; dramatic weather is never inserted for narrative convenience."
+  },
+  "resources": {
+    "nodes": [
+      {
+        "id": "R-ARCA-FISH-01",
+        "type": "coastal_fishery",
+        "x": 18,
+        "y": -22,
+        "renewable": true,
+        "stockIndex": 67
+      },
+      {
+        "id": "R-ARCA-TIMBER-01",
+        "type": "mixed_forest",
+        "x": 34,
+        "y": 32,
+        "renewable": true,
+        "stockIndex": 58
+      },
+      {
+        "id": "R-ARCA-CLAY-01",
+        "type": "clay",
+        "x": 18,
+        "y": 17,
+        "renewable": false,
+        "stockIndex": 74
+      },
+      {
+        "id": "R-MIR-GRAIN-01",
+        "type": "alluvial_soil",
+        "x": 306,
+        "y": 108,
+        "renewable": true,
+        "stockIndex": 84
+      },
+      {
+        "id": "R-MIR-WETLAND-01",
+        "type": "wetland_biomass",
+        "x": 346,
+        "y": 135,
+        "renewable": true,
+        "stockIndex": 76
+      },
+      {
+        "id": "R-MIR-STONE-01",
+        "type": "building_stone",
+        "x": 281,
+        "y": 169,
+        "renewable": false,
+        "stockIndex": 63
+      },
+      {
+        "id": "R-VALD-IRON-01",
+        "type": "iron_ore",
+        "x": 249,
+        "y": 379,
+        "renewable": false,
+        "stockIndex": 89
+      },
+      {
+        "id": "R-VALD-COPPER-01",
+        "type": "copper_ore",
+        "x": 238,
+        "y": 387,
+        "renewable": false,
+        "stockIndex": 61
+      },
+      {
+        "id": "R-VALD-TIMBER-01",
+        "type": "cold_forest",
+        "x": 214,
+        "y": 382,
+        "renewable": true,
+        "stockIndex": 72
+      }
+    ]
+  },
+  "deepHistory": {
+    "observerTruth": "The three populations descend in part from communities connected by the Eshra trade corridor 176 years before turn 0. A three-year cold interval after a distant volcanic eruption broke the corridor and accelerated separate migrations. No current citizen possesses reliable proof of this common network.",
+    "evidenceFixedAtTurn0": [
+      {
+        "id": "H-E1",
+        "kind": "ceramic_motif",
+        "location": {
+          "x": 171,
+          "y": 88
+        },
+        "description": "buried fragments with a spiral-river motif cognate to later regional designs"
+      },
+      {
+        "id": "H-E2",
+        "kind": "copper_isotope",
+        "location": {
+          "x": 71,
+          "y": 48
+        },
+        "description": "old worked copper chemically closer to Vald ore than to any known Arca deposit"
+      },
+      {
+        "id": "H-E3",
+        "kind": "seed_lineage",
+        "location": {
+          "x": 302,
+          "y": 101
+        },
+        "description": "a grain lineage with a rare trait also present in old Arca storage pits"
+      },
+      {
+        "id": "H-E4",
+        "kind": "lexical_cognates",
+        "description": "a small set of everyday roots diverged beyond mutual intelligibility but share reconstructable ancestry"
+      }
+    ],
+    "noRetroactiveCivilizations": true,
+    "permanentHumanCivilizationsAtTurn0": [
+      "ARCUS",
+      "MIREA",
+      "VALD"
+    ]
+  },
+  "exploration": {
+    "initialVerifiedRadiusKm": {
+      "ARCUS": 34,
+      "MIREA": 31,
+      "VALD": 26
+    },
+    "initialCommunicationRadiusKm": {
+      "ARCUS": 22,
+      "MIREA": 20,
+      "VALD": 18
+    },
+    "contactRule": "No country can detect another until travel, artifact provenance, visual/signal range, or verified social contact traverses the actual geography. Reader/observer knowledge never leaks into country knowledge."
+  }
+}
