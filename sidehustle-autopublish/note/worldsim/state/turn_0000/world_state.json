@@ -1171,6 +1171,86 @@
       }
     }
   },
+  "worldDynamic": {
+    "resources": {
+      "R-ARCA-FISH-01": {
+        "type": "coastal_fishery",
+        "stockIndex": 67,
+        "renewable": true,
+        "x": 18,
+        "y": -22
+      },
+      "R-ARCA-TIMBER-01": {
+        "type": "mixed_forest",
+        "stockIndex": 58,
+        "renewable": true,
+        "x": 34,
+        "y": 32
+      },
+      "R-ARCA-CLAY-01": {
+        "type": "clay",
+        "stockIndex": 74,
+        "renewable": false,
+        "x": 18,
+        "y": 17
+      },
+      "R-MIR-GRAIN-01": {
+        "type": "alluvial_soil",
+        "stockIndex": 84,
+        "renewable": true,
+        "x": 306,
+        "y": 108
+      },
+      "R-MIR-WETLAND-01": {
+        "type": "wetland_biomass",
+        "stockIndex": 76,
+        "renewable": true,
+        "x": 346,
+        "y": 135
+      },
+      "R-MIR-STONE-01": {
+        "type": "building_stone",
+        "stockIndex": 63,
+        "renewable": false,
+        "x": 281,
+        "y": 169
+      },
+      "R-VALD-IRON-01": {
+        "type": "iron_ore",
+        "stockIndex": 89,
+        "renewable": false,
+        "x": 249,
+        "y": 379
+      },
+      "R-VALD-COPPER-01": {
+        "type": "copper_ore",
+        "stockIndex": 61,
+        "renewable": false,
+        "x": 238,
+        "y": 387
+      },
+      "R-VALD-TIMBER-01": {
+        "type": "cold_forest",
+        "stockIndex": 72,
+        "renewable": true,
+        "x": 214,
+        "y": 382
+      }
+    },
+    "climate": {
+      "arcaSeaSurfaceTempVs20yMeanC": 0.6,
+      "arcaAutumnStormRiskVsMean": "moderately_elevated",
+      "mireaUpperCatchmentRainVsMeanPct": 11,
+      "mireaFloodRiskNext42Days": "moderate",
+      "valdFirstHardFreezeWindowDays": [
+        34,
+        58
+      ],
+      "valdSnowfallRiskNext42Days": "low_to_moderate"
+    },
+    "weatherHistory": [],
+    "deepHistoryEvidenceDiscovered": []
+  },
   "contact": {
     "knownPairs": [],
     "firstContactOccurred": false
