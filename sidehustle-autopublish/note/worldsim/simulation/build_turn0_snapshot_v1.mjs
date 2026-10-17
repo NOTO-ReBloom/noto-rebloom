@@ -18,7 +18,7 @@ const round=(n,d=2)=>Number(n.toFixed(d));
 const seedU32=s=>crypto.createHash('sha256').update(String(s)).digest().readUInt32LE(0);
 const seedUnit=s=>seedU32(s)/4294967296;
 
-const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sourceTruthHash:sha(truth),countries:{},
+const state={version:2,worldId:truth.worldId,turn:0,calendar:normalizeCalendar(truth.calendar),sourceTruthHash:sha(truth),countries:{},
  worldDynamic:{
   resources:Object.fromEntries(truth.resources.nodes.map(x=>[x.id,{type:x.type,stockIndex:x.stockIndex,renewable:x.renewable,x:x.x,y:x.y}])),
   climate:structuredClone(truth.climate.currentAnomalies),
@@ -33,7 +33,7 @@ const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sour
  institutionalHistory:[],
  demographyState:{pregnancies:{},seededPregnanciesAtTurn0:0,gestationDays:266},
  eventLog:[],publicationReady:false};
-const manifest={version:1,turn:0,sourceHashes:{observerTruth:state.sourceTruthHash},countrySources:{}};
+const manifest={version:2,turn:0,calendarModel:'time_model_v1',sourceHashes:{observerTruth:state.sourceTruthHash},countrySources:{}};
 
 for(const country of ['ARCUS','MIREA','VALD']){
  const cfg=read(countryCfgRoot+'/'+country+'.json');
