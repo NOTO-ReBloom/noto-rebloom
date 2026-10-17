@@ -49,12 +49,21 @@ jobs:
               for c in d['citizens']:
                   assert c['citizenId'] not in ids, c['citizenId']
                   ids.add(c['citizenId']); total+=1
+              by_id={x['citizenId']:x for x in d['citizens']}
               for h in d['households']:
                   assert h['householdId'] not in households, h['householdId']
                   households.add(h['householdId'])
-                  members=[x for x in d['citizens'] if x['citizenId'] in h['memberIds']]
+                  members=[by_id[x] for x in h['memberIds']]
                   assert members
                   assert any(x['ageYears']>=18 for x in members), h['householdId']
+              for e in d['familyEdges']:
+                  a,b=by_id[e['from']],by_id[e['to']]
+                  if e['type']=='parent':
+                      assert a['ageYears']-b['ageYears']>=18, (p,e,a['ageYears'],b['ageYears'])
+                  if e['type']=='grandparent':
+                      assert a['ageYears']-b['ageYears']>=36, (p,e,a['ageYears'],b['ageYears'])
+                  if e['type']=='partner':
+                      assert abs(a['ageYears']-b['ageYears'])<=15, (p,e,a['ageYears'],b['ageYears'])
           assert total==5451, total
           print('HOUSEHOLD_QA_OK', total, len(households), len(files))
       - name: Commit generated household registry
