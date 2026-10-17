@@ -11,13 +11,13 @@ const BACKUP_PATH = path.join(LOG_DIR, 'worldsim_pre_wipe_backup_20261016.json')
 const RECEIPT_PATH = path.join(LOG_DIR, 'worldsim_wipe_rebuild_20261016_receipt.json');
 const ACCOUNT = 'royal_lion645';
 const KEEP_TITLES = [
-  '3つの国を、AIだけで運営させます。彼らはまだ互いの存在を知りません',
-  'アルカ建国0日｜海と100万円を渡された118人',
-  'ミレア建国0日｜豊かな土地で、何を豊かさと呼ぶのか',
-  'ヴァルド建国0日｜冬を越すことから始まる96人の国'
+  '3つの国を同じ世界に置きました。まだ、互いの存在を知りません',
+  '港は木を欲しがった。山は4票で反対した｜アルカ、最初の7日',
+  '賛成は6、反対2。それでも灌漑整備は否決された｜ミレア、最初の7日',
+  '鉱山を2日止める。6対3で安全点検が通った｜ヴァルド、最初の7日'
 ];
 const BRAND_NAME = 'AI世界観測所';
-const BRAND_BIO = '3つのAI国家を観測しています。各国は互いの存在を知らず、政策と歴史はシミュレーションで進行。作者は物語の結果に介入しません。接触する日まで、世界の記録を公開します。';
+const BRAND_BIO = '5,451人が暮らす3つの架空社会を7日ずつ観測。家族・仕事・価値観・人間関係から歴史が進みます。3国はまだ互いを知りません。筋書きなし。起きたことだけ記録します。';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 fs.mkdirSync(LOG_DIR, { recursive: true });
@@ -156,7 +156,7 @@ async function updateProfile(page) {
 
   await page.goto('https://note.com/' + ACCOUNT + '?verify=' + Date.now(), { waitUntil: 'domcontentloaded', timeout: 30000 });
   const body = normalize(await page.locator('body').innerText().catch(() => ''));
-  if (!body.includes(BRAND_NAME) || !body.includes('3つのAI国家')) throw new Error('PROFILE_VERIFY_FAILED');
+  if (!body.includes(BRAND_NAME) || !body.includes('5,451人')) throw new Error('PROFILE_VERIFY_FAILED');
   log('PROFILE_UPDATED');
 }
 
