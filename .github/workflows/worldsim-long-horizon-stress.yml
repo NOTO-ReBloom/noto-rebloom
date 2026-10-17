@@ -1,0 +1,101 @@
+name: Worldsim long horizon stress
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/worldsim-long-horizon-stress.yml'
+      - 'sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/simulation/policy_catalog_v1.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: worldsim-long-horizon-stress
+  cancel-in-progress: true
+
+jobs:
+  stress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild latest world inputs
+        run: |
+          node sidehustle-autopublish/note/worldsim/population/generate_households_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/assign_livelihoods_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/generate_personality_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/generate_social_graph_v1.mjs
+          node sidehustle-autopublish/note/worldsim/population/generate_beliefs_v1.mjs
+          node sidehustle-autopublish/note/worldsim/institutions/generate_institutions_v2.mjs
+          node sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs
+      - name: Simulate 60 weekly turns without publishing
+        shell: bash
+        run: |
+          set -euo pipefail
+          for TURN in $(seq 1 60); do
+            export WORLDSIM_TURN=$TURN
+            node sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs >/tmp/prepare.log
+            node sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs >/tmp/resolve.log
+            echo "TURN $TURN OK"
+          done
+      - name: Long-horizon QA
+        shell: python
+        run: |
+          import json, pathlib, statistics
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim')
+          policies={c:set() for c in ('ARCUS','MIREA','VALD')}
+          last_pass={}
+          catalog={x['id']:x for x in json.loads((root/'simulation/policy_catalog_v1.json').read_text())['policies']}
+          rotations=0
+          births=deaths=0
+          previous_pop=None
+          for t in range(1,61):
+              td=root/f'turns/turn_{t:04d}'
+              state=json.loads((root/f'state/turn_{t:04d}/world_state.json').read_text())
+              votes=json.loads((td/'votes.json').read_text())
+              demo=json.loads((td/'demography.json').read_text())
+              assert state['turn']==t
+              for country,c in state['countries'].items():
+                  assert c['population']>100,(t,country,c['population'])
+                  assert 0<c['meanFoodReserveDays']<250,(t,country,c['meanFoodReserveDays'])
+                  assert 0<c['meanHealth']<=100
+                  assert 0<=c['meanStress']<=100
+                  assert c['institution']['nationalBody']['members'],(t,country)
+                  assert c['institution']['executive']['memberIds'],(t,country)
+              for country,rows in votes.items():
+                  for v in rows:
+                      policies[country].add(v['policyId'])
+                      if v['passed']:
+                          prev=last_pass.get(v['policyId'])
+                          cd=catalog[v['policyId']].get('cooldownTurns',0)
+                          if prev is not None:
+                              assert t-prev>cd,(v['policyId'],prev,t,cd)
+                          last_pass[v['policyId']]=t
+              for d in demo['countries'].values():
+                  births += len(d['births']); deaths += len(d['deaths'])
+              for r in state.get('institutionalHistory',[]):
+                  if r.get('turn')==t: rotations+=1
+              for rid,r in state['worldDynamic']['resources'].items():
+                  assert 0<=r['stockIndex']<=100,(t,rid,r)
+              ids=[x['citizenId'] for x in state['roster']['newCitizens']]
+              assert len(ids)==len(set(ids)),(t,'duplicate newborn')
+              inactive=state['roster']['inactiveCitizenIds']
+              assert len(inactive)==len(set(inactive)),(t,'duplicate death')
+          for country,seen in policies.items():
+              assert len(seen)>=3,(country,seen)
+          final=json.loads((root/'state/turn_0060/world_state.json').read_text())
+          assert final['calendar']['year']>=2
+          print('LONG_HORIZON_QA_OK')
+          print('POLICY_DIVERSITY', {k:sorted(v) for k,v in policies.items()})
+          print('BIRTHS',births,'DEATHS',deaths,'ROTATIONS',rotations,'FIRST_CONTACT',final['contact']['firstContactOccurred'],'CONTACTS',final['contact']['knownPairs'])
+          print('FINAL_POP',{k:v['population'] for k,v in final['countries'].items()})
+          print('FINAL_FOOD',{k:v['meanFoodReserveDays'] for k,v in final['countries'].items()})
+          print('FINAL_EXPLORE',{k:v['verifiedExplorationRadiusKm'] for k,v in final['countries'].items()})
