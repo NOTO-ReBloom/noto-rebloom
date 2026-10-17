@@ -208,5 +208,16 @@ write('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/votes.json'
 write('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/events.json',{version:1,turn,weather:input.weather,events:turnEvents});
 write('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/citizen_deltas.json',{version:1,turn,policyEffects:citizenDeltaLog});
 write('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/demography.json',{version:1,turn,countries:demographyOut});
-write('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/turn_summary.json',{version:1,turn,populations:Object.fromEntries(Object.entries(state.countries).map(([k,v])=>[k,v.population])),foodReserveDays:Object.fromEntries(Object.entries(state.countries).map(([k,v])=>[k,v.meanFoodReserveDays])),explorationKm:Object.fromEntries(Object.entries(state.countries).map(([k,v])=>[k,v.verifiedExplorationRadiusKm])),firstContact:state.contact.firstContactOccurred,passedPolicies:Object.fromEntries(Object.entries(voteOut).map(([k,v])=>[k,v.filter(x=>x.passed).map(x=>x.policyId]))});
+const turnSummary={
+ version:1,
+ turn,
+ populations:Object.fromEntries(Object.entries(state.countries).map(([k,v])=>[k,v.population])),
+ foodReserveDays:Object.fromEntries(Object.entries(state.countries).map(([k,v])=>[k,v.meanFoodReserveDays])),
+ explorationKm:Object.fromEntries(Object.entries(state.countries).map(([k,v])=>[k,v.verifiedExplorationRadiusKm])),
+ firstContact:state.contact.firstContactOccurred,
+ passedPolicies:Object.fromEntries(
+   Object.entries(voteOut).map(([k,v])=>[k,v.filter(x=>x.passed).map(x=>x.policyId)])
+ )
+};
+write('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/turn_summary.json',turnSummary);
 console.log(JSON.stringify(read('sidehustle-autopublish/note/worldsim/turns/turn_'+pad(turn)+'/turn_summary.json'),null,2));
