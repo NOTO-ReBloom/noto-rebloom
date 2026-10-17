@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "seed": "LYRA-POPULATION-V1",
+  "generatedAt": "2026-10-17T03:11:39.404Z",
+  "totalPopulation": 5451,
+  "totalHouseholds": 1485,
+  "countries": {
+    "ARCUS": {
+      "population": 1846,
+      "households": 521,
+      "settlements": {
+        "ARCA-PORT-01": {
+          "population": 812,
+          "households": 224,
+          "meanHouseholdSize": 3.63
+        },
+        "ARCA-PORT-02": {
+          "population": 356,
+          "households": 94,
+          "meanHouseholdSize": 3.79
+        },
+        "ARCA-INLAND-01": {
+          "population": 462,
+          "households": 144,
+          "meanHouseholdSize": 3.21
+        },
+        "ARCA-RIDGE-01": {
+          "population": 216,
+          "households": 59,
+          "meanHouseholdSize": 3.66
+        }
+      },
+      "ageBands": {
+        "0-4": 256,
+        "5-14": 376,
+        "15-24": 197,
+        "25-44": 588,
+        "45-64": 279,
+        "65+": 150
+      },
+      "householdTypes": {
+        "couple_children": 186,
+        "multigenerational": 102,
+        "single_adult": 70,
+        "couple_no_children": 53,
+        "shared_workers": 41,
+        "elderly": 34,
+        "single_parent": 35
+      }
+    },
+    "MIREA": {
+      "population": 2214,
+      "households": 598,
+      "settlements": {
+        "MIREA-RIVER-01": {
+          "population": 602,
+          "households": 163,
+          "meanHouseholdSize": 3.69
+        },
+        "MIREA-RIVER-02": {
+          "population": 448,
+          "households": 125,
+          "meanHouseholdSize": 3.58
+        },
+        "MIREA-RIVER-03": {
+          "population": 319,
+          "households": 90,
+          "meanHouseholdSize": 3.54
+        },
+        "MIREA-MARKET-01": {
+          "population": 533,
+          "households": 140,
+          "meanHouseholdSize": 3.81
+        },
+        "MIREA-UPPER-01": {
+          "population": 312,
+          "households": 80,
+          "meanHouseholdSize": 3.9
+        }
+      },
+      "ageBands": {
+        "0-4": 304,
+        "5-14": 462,
+        "15-24": 241,
+        "25-44": 680,
+        "45-64": 343,
+        "65+": 184
+      },
+      "householdTypes": {
+        "multigenerational": 146,
+        "couple_no_children": 61,
+        "couple_children": 198,
+        "elderly": 38,
+        "shared_workers": 60,
+        "single_parent": 48,
+        "single_adult": 47
+      }
+    },
+    "VALD": {
+      "population": 1391,
+      "households": 366,
+      "settlements": {
+        "VALD-BASIN-01": {
+          "population": 611,
+          "households": 162,
+          "meanHouseholdSize": 3.77
+        },
+        "VALD-BASIN-02": {
+          "population": 402,
+          "households": 104,
+          "meanHouseholdSize": 3.87
+        },
+        "VALD-UPPER-01": {
+          "population": 226,
+          "households": 62,
+          "meanHouseholdSize": 3.65
+        },
+        "VALD-PASS-01": {
+          "population": 152,
+          "households": 38,
+          "meanHouseholdSize": 4
+        }
+      },
+      "ageBands": {
+        "0-4": 152,
+        "5-14": 292,
+        "15-24": 187,
+        "25-44": 407,
+        "45-64": 226,
+        "65+": 127
+      },
+      "householdTypes": {
+        "couple_children": 106,
+        "couple_no_children": 32,
+        "multigenerational": 105,
+        "shared_workers": 42,
+        "elderly": 31,
+        "single_parent": 20,
+        "single_adult": 30
+      }
+    }
+  },
+  "invariants": {
+    "exactSettlementPopulation": true,
+    "noMinorOnlyHouseholds": true,
+    "calibrationCitizensPreserved": true,
+    "directionalFamilyEdges": true
+  }
+}
