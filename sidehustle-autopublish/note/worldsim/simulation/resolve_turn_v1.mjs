@@ -745,6 +745,14 @@ for(const country of ['ARCUS','MIREA','VALD']){
   applyDeathConsequences(country,d,data,turnEvents);
  }
  state.countries[country].population+=dem.births.length-dem.deaths.length;
+ for(const b of dem.births){
+  const ss=state.countries[country].settlementStates[b.settlementId];
+  if(ss)ss.population+=1;
+ }
+ for(const d of dem.deaths){
+  const ss=state.countries[country].settlementStates[d.settlementId];
+  if(ss)ss.population=Math.max(0,ss.population-1);
+ }
  state.countries[country].dynamic.birthsThisTurn=dem.births.length;state.countries[country].dynamic.deathsThisTurn=dem.deaths.length;
  if(dem.births.length||dem.deaths.length||dem.conceptions.length||dem.cancelledPregnancies.length)turnEvents.push({turn,country,type:'demography',births:dem.births.length,deaths:dem.deaths.length,conceptions:dem.conceptions.length,cancelledPregnancies:dem.cancelledPregnancies.length,activePregnanciesAfterTurn:dem.activePregnanciesAfterTurn});
  rotateInstitutions(country,data,turnEvents);
