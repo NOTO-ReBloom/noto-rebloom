@@ -1,0 +1,533 @@
+{
+  "version": 1,
+  "policies": [
+    {
+      "id": "A_TIMBER_REPAIR",
+      "country": "ARCUS",
+      "title": "船舶修理向け木材を一時優先配分する",
+      "topic": "repair",
+      "approvalThreshold": 0.5,
+      "affectedSettlements": [
+        "ARCA-PORT-01",
+        "ARCA-PORT-02",
+        "ARCA-RIDGE-01"
+      ],
+      "sponsorSectors": [
+        "repair",
+        "food"
+      ],
+      "valueImpact": {
+        "security": 0.5,
+        "achievement": 0.5,
+        "environment": -0.35,
+        "fairness": -0.15
+      },
+      "sectorBenefits": {
+        "repair": 1,
+        "food": 0.45,
+        "transport": 0.3
+      },
+      "sectorCosts": {
+        "resource": 0.45
+      },
+      "effects": {
+        "country": {
+          "foodDays": 0.35,
+          "stress": -0.1
+        },
+        "settlement": {
+          "ARCA-PORT-01": {
+            "stress": -0.25
+          },
+          "ARCA-PORT-02": {
+            "stress": -0.25
+          },
+          "ARCA-RIDGE-01": {
+            "stress": 0.35
+          }
+        },
+        "resources": {
+          "R-ARCA-TIMBER-01": -1.1
+        },
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "A_HARBOR_SANITATION",
+      "country": "ARCUS",
+      "title": "セラ港の排水・飲み水点検を優先する",
+      "topic": "health",
+      "approvalThreshold": 0.5,
+      "affectedSettlements": [
+        "ARCA-PORT-01"
+      ],
+      "sponsorSectors": [
+        "health",
+        "governance"
+      ],
+      "valueImpact": {
+        "security": 0.45,
+        "fairness": 0.3,
+        "community": 0.35,
+        "achievement": 0.1
+      },
+      "sectorBenefits": {
+        "health": 1,
+        "food_processing": 0.2
+      },
+      "sectorCosts": {
+        "transport": 0.12
+      },
+      "effects": {
+        "country": {
+          "health": 0.12,
+          "stress": -0.08
+        },
+        "settlement": {
+          "ARCA-PORT-01": {
+            "health": 0.45,
+            "stress": -0.2
+          }
+        },
+        "resources": {},
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "A_COASTAL_SURVEY",
+      "country": "ARCUS",
+      "title": "既知海岸の外側へ7日間の測量航海を出す",
+      "topic": "exploration",
+      "approvalThreshold": 0.55,
+      "affectedSettlements": [
+        "ARCA-PORT-01"
+      ],
+      "sponsorSectors": [
+        "knowledge",
+        "transport"
+      ],
+      "valueImpact": {
+        "novelty": 0.8,
+        "achievement": 0.55,
+        "security": -0.28,
+        "autonomy": 0.25
+      },
+      "sectorBenefits": {
+        "knowledge": 1,
+        "trade": 0.25
+      },
+      "sectorCosts": {
+        "food": 0.12
+      },
+      "effects": {
+        "country": {
+          "stress": 0.05
+        },
+        "settlement": {
+          "ARCA-PORT-01": {
+            "stress": 0.08
+          }
+        },
+        "resources": {},
+        "explorationKm": 9
+      }
+    },
+    {
+      "id": "A_INLAND_ROAD_REPAIR",
+      "country": "ARCUS",
+      "title": "港とヴァレン平地を結ぶ道の補修を前倒しする",
+      "topic": "infrastructure",
+      "approvalThreshold": 0.5,
+      "affectedSettlements": [
+        "ARCA-INLAND-01",
+        "ARCA-PORT-01"
+      ],
+      "sponsorSectors": [
+        "transport",
+        "infrastructure"
+      ],
+      "valueImpact": {
+        "security": 0.3,
+        "achievement": 0.35,
+        "fairness": 0.2,
+        "community": 0.2
+      },
+      "sectorBenefits": {
+        "transport": 1,
+        "food": 0.3,
+        "trade": 0.4
+      },
+      "sectorCosts": {
+        "resource": 0.15
+      },
+      "effects": {
+        "country": {
+          "foodDays": 0.12,
+          "stress": -0.05
+        },
+        "settlement": {
+          "ARCA-INLAND-01": {
+            "stress": -0.15
+          }
+        },
+        "resources": {
+          "R-ARCA-TIMBER-01": -0.25
+        },
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "M_GATE_CLEARING",
+      "country": "MIREA",
+      "title": "中流域の灌漑門と排水路を共同整備する",
+      "topic": "river",
+      "approvalThreshold": 0.5,
+      "dualMajority": true,
+      "affectedSettlements": [
+        "MIREA-RIVER-01",
+        "MIREA-RIVER-02"
+      ],
+      "sponsorSectors": [
+        "infrastructure",
+        "food"
+      ],
+      "valueImpact": {
+        "security": 0.55,
+        "community": 0.45,
+        "environment": -0.08,
+        "fairness": 0.2
+      },
+      "sectorBenefits": {
+        "food": 1,
+        "infrastructure": 0.7
+      },
+      "sectorCosts": {
+        "transport": 0.08
+      },
+      "effects": {
+        "country": {
+          "foodDays": 0.25,
+          "stress": -0.1
+        },
+        "settlement": {
+          "MIREA-RIVER-01": {
+            "stress": -0.22
+          },
+          "MIREA-RIVER-02": {
+            "stress": -0.18
+          }
+        },
+        "resources": {},
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "M_SPILLWAY_SURVEY",
+      "country": "MIREA",
+      "title": "放水路を造る前に流量・湿地影響を測る",
+      "topic": "river",
+      "approvalThreshold": 0.5,
+      "dualMajority": true,
+      "affectedSettlements": [
+        "MIREA-RIVER-01",
+        "MIREA-RIVER-02",
+        "MIREA-RIVER-03"
+      ],
+      "sponsorSectors": [
+        "infrastructure",
+        "health"
+      ],
+      "valueImpact": {
+        "security": 0.3,
+        "environment": 0.55,
+        "fairness": 0.35,
+        "achievement": 0.2
+      },
+      "sectorBenefits": {
+        "infrastructure": 0.5,
+        "food": 0.2,
+        "health": 0.1
+      },
+      "sectorCosts": {},
+      "effects": {
+        "country": {
+          "stress": -0.04
+        },
+        "settlement": {
+          "MIREA-RIVER-03": {
+            "stress": -0.12
+          }
+        },
+        "resources": {
+          "R-MIR-WETLAND-01": 0.15
+        },
+        "explorationKm": 1
+      }
+    },
+    {
+      "id": "M_WETLAND_BUFFER",
+      "country": "MIREA",
+      "title": "ソマ湿地周縁の新規排水を今季だけ止める",
+      "topic": "wetland",
+      "approvalThreshold": 0.55,
+      "dualMajority": true,
+      "affectedSettlements": [
+        "MIREA-RIVER-03"
+      ],
+      "sponsorSectors": [
+        "health",
+        "food"
+      ],
+      "valueImpact": {
+        "environment": 0.9,
+        "security": 0.15,
+        "autonomy": -0.2,
+        "fairness": 0.15
+      },
+      "sectorBenefits": {
+        "health": 0.25,
+        "craft": 0.2
+      },
+      "sectorCosts": {
+        "food": 0.18
+      },
+      "effects": {
+        "country": {
+          "foodDays": -0.08
+        },
+        "settlement": {
+          "MIREA-RIVER-03": {
+            "stress": -0.18
+          }
+        },
+        "resources": {
+          "R-MIR-WETLAND-01": 0.45
+        },
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "M_SCHOOL_HARVEST",
+      "country": "MIREA",
+      "title": "収穫期の学習日程を集落ごとにずらす",
+      "topic": "education",
+      "approvalThreshold": 0.5,
+      "dualMajority": false,
+      "affectedSettlements": [
+        "MIREA-RIVER-01",
+        "MIREA-RIVER-02"
+      ],
+      "sponsorSectors": [
+        "education",
+        "food"
+      ],
+      "valueImpact": {
+        "autonomy": 0.45,
+        "community": 0.3,
+        "achievement": 0.25,
+        "tradition": 0.08
+      },
+      "sectorBenefits": {
+        "education": 0.8,
+        "food": 0.2
+      },
+      "sectorCosts": {},
+      "effects": {
+        "country": {
+          "stress": -0.06
+        },
+        "settlement": {},
+        "resources": {},
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "V_MINE_INSPECTION",
+      "country": "VALD",
+      "title": "オスク鉱谷の坑道支保を2日間点検する",
+      "topic": "mining",
+      "approvalThreshold": 0.5,
+      "affectedSettlements": [
+        "VALD-BASIN-02"
+      ],
+      "sponsorSectors": [
+        "resource",
+        "health"
+      ],
+      "valueImpact": {
+        "security": 0.85,
+        "achievement": -0.18,
+        "fairness": 0.25,
+        "community": 0.15
+      },
+      "sectorBenefits": {
+        "health": 0.6,
+        "resource": 0.15
+      },
+      "sectorCosts": {
+        "resource": 0.25
+      },
+      "effects": {
+        "country": {
+          "health": 0.1,
+          "stress": -0.05
+        },
+        "settlement": {
+          "VALD-BASIN-02": {
+            "health": 0.35,
+            "stress": -0.25
+          }
+        },
+        "resources": {
+          "R-VALD-IRON-01": 0.05
+        },
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "V_FUEL_BUFFER",
+      "country": "VALD",
+      "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
+      "topic": "reserve",
+      "approvalThreshold": 0.55,
+      "affectedSettlements": [
+        "VALD-BASIN-01",
+        "VALD-BASIN-02",
+        "VALD-UPPER-01",
+        "VALD-PASS-01"
+      ],
+      "sponsorSectors": [
+        "storage",
+        "resource"
+      ],
+      "valueImpact": {
+        "security": 0.9,
+        "materialComfort": -0.2,
+        "community": 0.25,
+        "autonomy": -0.15
+      },
+      "sectorBenefits": {
+        "storage": 0.8,
+        "care": 0.3
+      },
+      "sectorCosts": {
+        "resource": 0.35,
+        "household": 0.2
+      },
+      "effects": {
+        "country": {
+          "stress": -0.08
+        },
+        "settlement": {},
+        "resources": {
+          "R-VALD-TIMBER-01": -0.65
+        },
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "V_SMOKE_VENT",
+      "country": "VALD",
+      "title": "煙の多い住居から換気改修を始める",
+      "topic": "health",
+      "approvalThreshold": 0.5,
+      "affectedSettlements": [
+        "VALD-BASIN-01"
+      ],
+      "sponsorSectors": [
+        "health",
+        "repair"
+      ],
+      "valueImpact": {
+        "security": 0.45,
+        "fairness": 0.4,
+        "community": 0.3,
+        "materialComfort": 0.15
+      },
+      "sectorBenefits": {
+        "health": 1,
+        "repair": 0.35
+      },
+      "sectorCosts": {
+        "resource": 0.1
+      },
+      "effects": {
+        "country": {
+          "health": 0.14,
+          "stress": -0.06
+        },
+        "settlement": {
+          "VALD-BASIN-01": {
+            "health": 0.4
+          }
+        },
+        "resources": {
+          "R-VALD-TIMBER-01": -0.15
+        },
+        "explorationKm": 0
+      }
+    },
+    {
+      "id": "V_PASS_SURVEY",
+      "country": "VALD",
+      "title": "マルン峠の先を測る小規模調査隊を出す",
+      "topic": "exploration",
+      "approvalThreshold": 0.6,
+      "affectedSettlements": [
+        "VALD-PASS-01"
+      ],
+      "sponsorSectors": [
+        "security",
+        "transport"
+      ],
+      "valueImpact": {
+        "novelty": 0.65,
+        "security": -0.28,
+        "achievement": 0.4,
+        "autonomy": 0.2
+      },
+      "sectorBenefits": {
+        "security": 0.2,
+        "transport": 0.5
+      },
+      "sectorCosts": {
+        "storage": 0.08
+      },
+      "effects": {
+        "country": {
+          "stress": 0.04
+        },
+        "settlement": {
+          "VALD-PASS-01": {
+            "stress": 0.08
+          }
+        },
+        "resources": {},
+        "explorationKm": 6
+      }
+    }
+  ],
+  "foodProductivityPersonDaysPerWorkerWeek": {
+    "farmer": 45,
+    "orchard_keeper": 34,
+    "goat_keeper": 26,
+    "fisher": 39,
+    "deepwater_fisher": 45,
+    "wetland_gatherer": 20,
+    "hunter": 15
+  },
+  "seasonalFoodModifier": {
+    "ARCUS": 0.95,
+    "MIREA": 1,
+    "VALD": 0.68
+  },
+  "resourceWeeklyBaseline": {
+    "R-ARCA-TIMBER-01": -0.18,
+    "R-ARCA-FISH-01": -0.12,
+    "R-MIR-GRAIN-01": -0.08,
+    "R-MIR-WETLAND-01": 0.04,
+    "R-VALD-IRON-01": -0.16,
+    "R-VALD-COPPER-01": -0.05,
+    "R-VALD-TIMBER-01": -0.1
+  }
+}
