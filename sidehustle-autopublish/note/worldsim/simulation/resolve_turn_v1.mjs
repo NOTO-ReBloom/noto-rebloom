@@ -193,14 +193,14 @@ const NEWBORN_NAMES={
  MIREA:['Nalia','Emon','Suri','Lema','Aven','Risa','Talen','Meri','Ilan','Sena','Aral','Nora','Vela','Eli','Mira','Ona','Tesa','Nemi','Sava','Malen','Rina','Ereni'],
  VALD:['Bren','Kora','Darek','Sivra','Torv','Neris','Varek','Ossa','Kelan','Runa','Maror','Drovin','Fena','Karel','Velka','Saren','Orm','Hela','Tarn','Ves','Brana','Korin']
 };
-function makeNewborn(country,mother,partnerId,household,r,serial){
+function makeNewborn(country,mother,partnerId,household,r,serial,bornAbsoluteDay){
  const father=partnerId?dataScope?.people?.[partnerId]:null;
  const prefix=country==='ARCUS'?'ARC':country==='MIREA'?'MIR':'VAL';
  const id=prefix+'-N'+pad(turn)+'-'+String(serial).padStart(3,'0');
  const parentProfiles=[mother,father].filter(Boolean);
- const avg=(path,def=50)=>{
-  const vals=parentProfiles.map(p=>path(p)).filter(v=>Number.isFinite(v));
-  return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:def;
+ const avg=(fn,def=50)=>{
+  const vals=parentProfiles.map(p=>fn(p)).filter(v=>Number.isFinite(v));
+  return vals.length?vals.reduce((x,y)=>x+y,0)/vals.length:def;
  };
  const jitter=(base,spread=8)=>Math.round(clamp(base+(r()-.5)*spread*2));
  const bigFive={
@@ -219,12 +219,13 @@ function makeNewborn(country,mother,partnerId,household,r,serial){
   authorityAcceptance:50,statusDrive:30,curiosity:55,persistence:45,generosity:50,resentmentRetention:20,shameSensitivity:30,impulsivity:60
  };
  const values={family:70,autonomy:30,security:65,achievement:30,status:20,tradition:50,fairness:50,community:60,novelty:55,faith:40,materialComfort:40,environment:50};
- const bornAbsoluteDay=absoluteDay(state.calendar)+ri(r,1,7);
+ const bornAbs=Math.floor(bornAbsoluteDay);
  return{
   citizenId:id,countryId:country,householdId:household.householdId,settlementId:mother.settlementId,
-  givenName:NEWBORN_NAMES[country][Math.floor(r()*NEWBORN_NAMES[country].length)],familyName:mother.familyName,sex:r()<.5?'female':'male',ageYears:0,ageDays:0,bornTurn:turn,bornAbsoluteDay,
+  givenName:NEWBORN_NAMES[country][Math.floor(r()*NEWBORN_NAMES[country].length)],familyName:mother.familyName,sex:r()<.5?'female':'male',
+  ageYears:0,ageDays:0,bornTurn:turn,bornAbsoluteDay:bornAbs,
   parentIds:[mother.citizenId,partnerId].filter(Boolean),
-  birthDayOfYear:((bornAbsoluteDay-1)%365)+1,
+  birthDayOfYear:((bornAbs-1)%365+365)%365+1,
   occupationId:'child',occupation:{id:'child',sector:'dependent',yearsExperience:0,skill:0,status:'dependent'},
   psychology:{bigFive,actionTendencies,epistemicTraits:{skepticism:20,rumorSusceptibility:20,deferenceToExpertise:70,memoryReliability:20},stressResponses:['seekAllies'],developmentalStability:.15},
   values,
@@ -253,41 +254,102 @@ function applyDeathConsequences(country,death,data,turnEvents){
  turnEvents.push({turn,country,type:'death_consequences',citizenId:death.citizenId,householdId:dead.householdId,affectedRelations:impacted.size,workerIncomeLoss:worker});
 }
 function simulateDemography(country,data){
- const rInactive=new Set(state.roster.inactiveCitizenIds||[]),partner={};
+ state.demographyState=state.demographyState||{pregnancies:{},seededPregnanciesAtTurn0:0,gestationDays:266};
+ state.demographyState.pregnancies=state.demographyState.pregnancies||{};
+ const pregnancies=state.demographyState.pregnancies;
+ const inactive=new Set(state.roster.inactiveCitizenIds||[]);
+ const partner={};
  for(const e of data.familyEdges)if(e.type==='partner')partner[e.from]=e.to;
- const births=[],deaths=[];let bc=1;
- const households=Object.values(data.households);
- for(const h of households){
-  const members=h.memberIds.map(id=>data.people[id]).filter(Boolean).map(c=>effective(c,country));
-  const mothers=members.filter(c=>c.sex==='female'&&c.ageYears>=19&&c.ageYears<=40&&partner[c.citizenId]&&!rInactive.has(c.citizenId));
-  if(!mothers.length)continue;
-  const mother=mothers[0],r=rngFor(state.worldId+'|BIRTH|'+turn+'|'+h.householdId);
-  if(r()<.0013){
-   dataScope=data;
-   const fatherOrPartner=partner[mother.citizenId];
-   const newborn=makeNewborn(country,mother,fatherOrPartner,h,r,births.length+1);
-   births.push(newborn);
-   const ho=(state.householdOverlays[country][h.householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],memories:[]});
-   ho.newMemberIds=ho.newMemberIds||[]; if(!ho.newMemberIds.includes(newborn.citizenId))ho.newMemberIds.push(newborn.citizenId);
-   const relationshipBase={countryId:country,turnCreated:turn,trust:90,affection:92,fear:5,obligation:80,respect:35,envy:0,grievance:0,contactFrequency:98};
-   state.roster.dynamicRelationships=state.roster.dynamicRelationships||[];
-   state.roster.dynamicRelationships.push({...relationshipBase,from:mother.citizenId,to:newborn.citizenId,type:'parent'},{...relationshipBase,from:newborn.citizenId,to:mother.citizenId,type:'child'});
-   if(fatherOrPartner)state.roster.dynamicRelationships.push({...relationshipBase,from:fatherOrPartner,to:newborn.citizenId,type:'parent'},{...relationshipBase,from:newborn.citizenId,to:fatherOrPartner,type:'child'});
+ const births=[],deaths=[],conceptions=[],cancelledPregnancies=[];
+ const currentAbs=absoluteDay(state.calendar),weekEndAbs=currentAbs+7;
+
+ dataScope=data;
+
+ // Pregnancies persist across turns. Birth occurs only when the fixed due date falls in this seven-day interval.
+ for(const [motherId,preg] of Object.entries({...pregnancies})){
+  if(preg.countryId!==country)continue;
+  const mother=data.people[motherId];
+  if(!mother||inactive.has(motherId)){
+   cancelledPregnancies.push({...preg,cancelledTurn:turn,reason:'mother_inactive_before_birth'});
+   delete pregnancies[motherId];
+   continue;
+  }
+  if(preg.dueAbsoluteDay>weekEndAbs)continue;
+  const h=data.households[preg.householdId];
+  if(!h){
+   cancelledPregnancies.push({...preg,cancelledTurn:turn,reason:'household_missing'});
+   delete pregnancies[motherId];
+   continue;
+  }
+  const r=rngFor(state.worldId+'|DELIVERY|'+turn+'|'+motherId);
+  const bornAbs=Math.max(currentAbs+1,Math.min(weekEndAbs,preg.dueAbsoluteDay));
+  const newborn=makeNewborn(country,effective(mother,country),preg.partnerId,h,r,births.length+1,bornAbs);
+  births.push(newborn);
+  delete pregnancies[motherId];
+
+  const ho=(state.householdOverlays[country][h.householdId]??={foodDaysOffset:0,debtOffset:0,stressOffset:0,incomeCapacityOffset:0,newMemberIds:[],memories:[]});
+  ho.newMemberIds=ho.newMemberIds||[];
+  if(!ho.newMemberIds.includes(newborn.citizenId))ho.newMemberIds.push(newborn.citizenId);
+  const relationshipBase={countryId:country,turnCreated:turn,trust:90,affection:92,fear:5,obligation:80,respect:35,envy:0,grievance:0,contactFrequency:98};
+  state.roster.dynamicRelationships=state.roster.dynamicRelationships||[];
+  state.roster.dynamicRelationships.push(
+   {...relationshipBase,from:motherId,to:newborn.citizenId,type:'parent'},
+   {...relationshipBase,from:newborn.citizenId,to:motherId,type:'child'}
+  );
+  if(preg.partnerId){
+   state.roster.dynamicRelationships.push(
+    {...relationshipBase,from:preg.partnerId,to:newborn.citizenId,type:'parent'},
+    {...relationshipBase,from:newborn.citizenId,to:preg.partnerId,type:'child'}
+   );
   }
  }
+
+ // New conceptions create a durable pregnancy record; they never create an immediate newborn.
+ const birthedMothers=new Set(births.flatMap(b=>b.parentIds.slice(0,1)));
+ for(const h of Object.values(data.households)){
+  const members=h.memberIds.map(id=>data.people[id]).filter(Boolean).map(c=>effective(c,country));
+  for(const mother of members){
+   if(mother.sex!=='female'||mother.ageYears<19||mother.ageYears>40)continue;
+   if(inactive.has(mother.citizenId)||pregnancies[mother.citizenId]||birthedMothers.has(mother.citizenId))continue;
+   const partnerId=partner[mother.citizenId];
+   if(!partnerId||inactive.has(partnerId))continue;
+   const r=rngFor(state.worldId+'|CONCEPTION|'+turn+'|'+mother.citizenId);
+   if(r()>=.00165)continue;
+   const conceptionAbsoluteDay=currentAbs+ri(r,1,7);
+   const gestationDays=state.demographyState.gestationDays||266;
+   const dueAbsoluteDay=conceptionAbsoluteDay+gestationDays+ri(r,-4,4);
+   const pregnancy={
+    pregnancyId:'PREG-'+country+'-'+mother.citizenId+'-T'+pad(turn),
+    countryId:country,motherId:mother.citizenId,partnerId,
+    householdId:mother.householdId,settlementId:mother.settlementId,
+    conceivedTurn:turn,conceptionAbsoluteDay,dueAbsoluteDay,
+    dueTurn:turn+Math.ceil((dueAbsoluteDay-weekEndAbs)/7)
+   };
+   pregnancies[mother.citizenId]=pregnancy;
+   conceptions.push(pregnancy);
+  }
+ }
+
+ // Mortality is evaluated for the week after births/conceptions; a conception is cancelled if the mother dies in the same week.
  for(const base of Object.values(data.people)){
-  if(rInactive.has(base.citizenId))continue;
+  if(inactive.has(base.citizenId))continue;
   const c=effective(base,country);
   const r=rngFor(state.worldId+'|DEATH|'+turn+'|'+c.citizenId);
   let p=c.ageYears<45?.00002:c.ageYears<65?.00008:c.ageYears<75?.00025:.00070;
   if(c.materialState.health<40)p+=.00035;
-  const hazard=livelihoodModel.occupations[c.occupationId]?.hazard||0;p+=hazard*.000008;
+  const hazard=livelihoodModel.occupations[c.occupationId]?.hazard||0;
+  p+=hazard*.000008;
   if(r()<p){
    const work=r()<hazard*.055;
-   deaths.push({citizenId:c.citizenId,countryId:country,settlementId:c.settlementId,householdId:c.householdId,turn,cause:work?'work_incident':'health_or_age'});
+   const death={citizenId:c.citizenId,countryId:country,settlementId:c.settlementId,householdId:c.householdId,turn,cause:work?'work_incident':'health_or_age'};
+   deaths.push(death);
+   if(pregnancies[c.citizenId]){
+    cancelledPregnancies.push({...pregnancies[c.citizenId],cancelledTurn:turn,reason:'mother_died_during_pregnancy'});
+    delete pregnancies[c.citizenId];
+   }
   }
  }
- return{births,deaths};
+ return{births,deaths,conceptions,cancelledPregnancies,activePregnanciesAfterTurn:Object.values(pregnancies).filter(x=>x.countryId===country).length};
 }
 function advanceCalendar(){
  state.turn=turn;
