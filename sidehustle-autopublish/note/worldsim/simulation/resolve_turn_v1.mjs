@@ -963,10 +963,11 @@ for(const country of ['ARCUS','MIREA','VALD']){
  const fb=foodBalance(country,data);
  applySharedFoodDays(country,fb.reserveDaysDelta,data);
  turnEvents.push({turn,country,type:'food_balance',...fb});
- applyFoodScarcity(country,data,turnEvents);
 
  const fuel=fuelBalance(country,data);
  if(fuel.opportunityFoodDays>0)applySharedFoodDays(country,-fuel.opportunityFoodDays,data);
+ // Evaluate scarcity only after every food-changing operation in the weekly material cycle.
+ applyFoodScarcity(country,data,turnEvents);
  if(fuel.resourceDrawdownIndex>0&&state.worldDynamic.resources[fuel.resourceId]){
   state.worldDynamic.resources[fuel.resourceId].stockIndex=round(clamp(state.worldDynamic.resources[fuel.resourceId].stockIndex-fuel.resourceDrawdownIndex),2);
  }
