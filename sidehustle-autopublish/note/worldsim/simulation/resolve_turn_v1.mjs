@@ -614,6 +614,69 @@ function processProjectLifecycle(country,turnEvents){
  }
 }
 
+function selectContactRepresentative(country){
+ const data=loadCountry(country);
+ const inactive=new Set(state.roster.inactiveCitizenIds||[]);
+ const preferred=new Set(['map_worker','map_apprentice','signal_watch','pass_watch','boat_operator','trader','fish_trader','pack_transporter']);
+ const rows=Object.values(data.people).filter(x=>!inactive.has(x.citizenId)).map(raw=>{
+  const c=effective(raw,country);
+  const curiosity=c.psychology?.actionTendencies?.curiosity??50;
+  const trust=c.psychology?.actionTendencies?.trustBaseline??50;
+  const risk=c.psychology?.actionTendencies?.riskTolerance??50;
+  const skill=c.occupation?.skill??30;
+  const role=preferred.has(c.occupationId)?22:0;
+  return{c,score:role+curiosity*.26+trust*.20+risk*.16+skill*.18};
+ }).sort((a,b)=>b.score-a.score||a.c.citizenId.localeCompare(b.c.citizenId));
+ return rows[0]?.c||null;
+}
+function initialContactTrust(a,b){
+ if(!a||!b)return 50;
+ const ta=a.psychology?.actionTendencies?.trustBaseline??50;
+ const tb=b.psychology?.actionTendencies?.trustBaseline??50;
+ const aa=a.psychology?.bigFive?.agreeableness??50;
+ const ab=b.psychology?.bigFive?.agreeableness??50;
+ const ca=a.psychology?.actionTendencies?.curiosity??50;
+ const cb=b.psychology?.actionTendencies?.curiosity??50;
+ return round(clamp((ta+tb)*.28+(aa+ab)*.14+(ca+cb)*.08),2);
+}
+function processContactInteraction(key,ps,a,b,min,reach,margin){
+ if(!['direct_contact','sustained_route'].includes(ps.stage))return;
+ const r=rngFor(state.worldId+'|CROSS_BORDER|'+turn+'|'+key);
+ const stageGain=ps.stage==='sustained_route'?1.3:.65;
+ const noise=(r()-.5)*1.6;
+ const trustEffect=(ps.trustIndex-50)*.012;
+ ps.familiarity=round(clamp((ps.familiarity||0)+stageGain+trustEffect+noise),2);
+ ps.lastInteractionTurn=turn;
+
+ const misunderstandingChance=Math.max(.015,(58-ps.trustIndex)/900);
+ if(r()<misunderstandingChance){
+  ps.trustIndex=round(clamp(ps.trustIndex-1.8),2);
+  ps.misunderstandings=(ps.misunderstandings||0)+1;
+  state.countries[a].meanStress=round(clamp(state.countries[a].meanStress+.08),2);
+  state.countries[b].meanStress=round(clamp(state.countries[b].meanStress+.08),2);
+  state.eventLog.push({turn,type:'cross_border_misunderstanding',countries:[a,b],stage:ps.stage,trustIndex:ps.trustIndex,familiarity:ps.familiarity});
+  return;
+ }
+
+ ps.trustIndex=round(clamp(ps.trustIndex+.10+Math.max(0,ps.familiarity-20)*.003),2);
+ if(ps.stage==='sustained_route'&&r()<Math.min(.30,.07+(ps.familiarity||0)/500)){
+  const ca=state.countries[a],cb=state.countries[b];
+  const donor=ca.meanFoodReserveDays>=cb.meanFoodReserveDays?ca:cb;
+  const recipient=donor===ca?cb:ca;
+  const donorId=donor===ca?a:b,recipientId=donor===ca?b:a;
+  const gap=donor.meanFoodReserveDays-recipient.meanFoodReserveDays;
+  let transferPersonDays=0;
+  if(gap>8){
+   transferPersonDays=Math.min(120,Math.max(20,gap*4));
+   donor.meanFoodReserveDays=round(Math.max(0,donor.meanFoodReserveDays-transferPersonDays/donor.population),2);
+   recipient.meanFoodReserveDays=round(recipient.meanFoodReserveDays+transferPersonDays/recipient.population,2);
+  }
+  ca.verifiedExplorationRadiusKm=round(ca.verifiedExplorationRadiusKm+.08,2);
+  cb.verifiedExplorationRadiusKm=round(cb.verifiedExplorationRadiusKm+.08,2);
+  ps.exchanges=(ps.exchanges||0)+1;
+  state.eventLog.push({turn,type:'cross_border_exchange',countries:[a,b],stage:ps.stage,donorCountry:transferPersonDays?donorId:null,recipientCountry:transferPersonDays?recipientId:null,foodPersonDaysTransferred:round(transferPersonDays,1),trustIndex:ps.trustIndex,familiarity:ps.familiarity});
+ }
+}
 function contactCheck(){
  const pairs={ARCUS_MIREA:['ARCUS','MIREA'],MIREA_VALD:['MIREA','VALD'],ARCUS_VALD:['ARCUS','VALD']};
  const truth=read('sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json');
@@ -625,7 +688,13 @@ function contactCheck(){
   let ps=state.contact.pairStates[key]||null;
 
   if(!ps&&reach>=min){
-   ps={pair:[a,b],stage:'verified_presence',firstDetectedTurn:turn,lastStageTurn:turn,minDistanceKm:min,reachKm:round(reach,2),reachMarginKm:margin};
+   const ra=selectContactRepresentative(a),rb=selectContactRepresentative(b);
+   ps={
+    pair:[a,b],stage:'verified_presence',firstDetectedTurn:turn,lastStageTurn:turn,
+    minDistanceKm:min,reachKm:round(reach,2),reachMarginKm:margin,
+    representativeIds:[ra?.citizenId||null,rb?.citizenId||null],
+    trustIndex:initialContactTrust(ra,rb),familiarity:0,misunderstandings:0,exchanges:0
+   };
    state.contact.pairStates[key]=ps;
    if(!state.contact.knownPairs.some(x=>x.includes(a)&&x.includes(b)))state.contact.knownPairs.push([a,b]);
    state.contact.firstContactOccurred=true;
@@ -634,7 +703,7 @@ function contactCheck(){
     state.countries[self].knownCountryIds=state.countries[self].knownCountryIds||[];
     if(!state.countries[self].knownCountryIds.includes(other))state.countries[self].knownCountryIds.push(other);
    }
-   state.eventLog.push({turn,type:'first_contact_condition_met',countries:[a,b],stage:'verified_presence',reach:round(reach,2),min,margin});
+   state.eventLog.push({turn,type:'first_contact_condition_met',countries:[a,b],stage:'verified_presence',representativeIds:ps.representativeIds,trustIndex:ps.trustIndex,reach:round(reach,2),min,margin});
    continue;
   }
   if(!ps)continue;
@@ -649,8 +718,9 @@ function contactCheck(){
   if(rank[next]>rank[ps.stage]){
    const from=ps.stage;
    ps.stage=next;ps.lastStageTurn=turn;
-   state.eventLog.push({turn,type:'contact_stage_changed',countries:[a,b],fromStage:from,toStage:next,reach:round(reach,2),min,margin});
+   state.eventLog.push({turn,type:'contact_stage_changed',countries:[a,b],fromStage:from,toStage:next,representativeIds:ps.representativeIds,trustIndex:ps.trustIndex,reach:round(reach,2),min,margin});
   }
+  processContactInteraction(key,ps,a,b,min,reach,margin);
  }
 }
 
