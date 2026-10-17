@@ -55,7 +55,15 @@ function effective(c,country){
  const x=structuredClone(c);
  x.ageYears=Math.floor(currentAge(c));
  if(o.settlementId)x.settlementId=o.settlementId;
- if(o.occupationId){x.occupationId=o.occupationId;x.occupation={...(x.occupation||{}),id:o.occupationId,sector:livelihoodModel.occupations[o.occupationId]?.sector||x.occupation?.sector};}
+ if(o.occupationId){
+  x.occupationId=o.occupationId;
+  const om=livelihoodModel.occupations[o.occupationId]||{};
+  const status=o.occupationId==='child'?'dependent':o.occupationId==='student'?'student':o.occupationId==='apprentice'||o.occupationId==='map_apprentice'?'apprentice':o.occupationId==='retired'?'retired':'worker';
+  const started=o.occupationStartedAbsoluteDay??absoluteDay(state.calendar);
+  const yrs=Math.max(0,(absoluteDay(state.calendar)-started)/365);
+  const baseSkill=o.occupationSkillBase??(status==='worker'?22:status==='apprentice'?12:0);
+  x.occupation={id:o.occupationId,sector:om.sector||'other',yearsExperience:round(yrs,2),skill:round(clamp(baseSkill+yrs*(status==='worker'?2.1:1.5)),1),status,trainingTrack:o.trainingTrack||x.occupation?.trainingTrack||null};
+ }
  x.materialState=x.materialState||{stress:20,health:95,householdFoodDays:60,householdDebt:0};
  x.materialState.stress=clamp((x.materialState.stress||0)+(o.stressOffset||0)+(ho.stressOffset||0));
  x.materialState.health=clamp((x.materialState.health||100)+(o.healthOffset||0));
@@ -354,6 +362,65 @@ function simulateDemography(country,data){
 function advanceCalendar(){
  state.turn=turn;
  state.calendar=advanceWorldCalendar(state.calendar,7,turn);
+}
+
+function occupationStatus(id){
+ if(id==='child')return'dependent';
+ if(id==='student')return'student';
+ if(id==='apprentice'||id==='map_apprentice')return'apprentice';
+ if(id==='retired')return'retired';
+ return'worker';
+}
+function chooseAdultOccupation(country,c){
+ const profile=livelihoodModel.settlementProfiles[c.settlementId]?.weights||{};
+ const age=currentAge(c);
+ const choices=Object.entries(profile).filter(([id,w])=>{
+  const m=livelihoodModel.occupations[id];
+  return w>0&&m&&!['child','student','apprentice','map_apprentice','retired'].includes(id)&&age>=m.minAge&&age<=m.maxAge;
+ });
+ if(!choices.length)return'domestic_producer';
+ const total=choices.reduce((a,[,w])=>a+w,0);
+ const r=rngFor(state.worldId+'|CAREER|'+c.citizenId+'|'+Math.floor(age));
+ let x=r()*total;
+ for(const [id,w] of choices){x-=w;if(x<=0)return id;}
+ return choices[choices.length-1][0];
+}
+function setOccupation(country,c,id,reason,targetOccupationId=null){
+ const m=(state.citizenOverlays[country]??={});
+ const o=(m[c.citizenId]??={stressOffset:0,healthOffset:0,memories:[]});
+ o.occupationId=id;
+ o.occupationStartedAbsoluteDay=absoluteDay(state.calendar);
+ o.occupationSkillBase=id==='student'?0:id==='apprentice'||id==='map_apprentice'?12:id==='retired'?Math.min(70,c.occupation?.skill||45):22+(seedInt('CAREER_SKILL|'+c.citizenId+'|'+id)%22);
+ if(targetOccupationId)o.targetOccupationId=targetOccupationId;
+ else if(id!=='apprentice'&&id!=='map_apprentice')delete o.targetOccupationId;
+ o.memories=o.memories||[];
+ o.memories.push({turn,kind:'life_stage',occupationId:id,reason});
+ if(o.memories.length>30)o.memories=o.memories.slice(-30);
+}
+function applyLifeStageTransitions(country,data,turnEvents){
+ const inactive=new Set(state.roster.inactiveCitizenIds||[]);
+ for(const base of Object.values(data.people)){
+  if(inactive.has(base.citizenId))continue;
+  const c=effective(base,country);
+  const age=c.ageYears,occ=c.occupationId,status=occupationStatus(occ);
+  let next=null,reason=null,target=null;
+  if(occ==='child'&&age>=6){next='student';reason='school_age_reached';}
+  else if(occ==='student'&&age>=16){
+   target=chooseAdultOccupation(country,c);
+   next=target==='map_worker'?'map_apprentice':'apprentice';
+   reason='entered_apprenticeship';
+  }else if((occ==='apprentice'||occ==='map_apprentice')&&age>=18){
+   const overlay=state.citizenOverlays?.[country]?.[c.citizenId]||{};
+   next=overlay.targetOccupationId||chooseAdultOccupation(country,c);
+   reason='entered_adult_occupation';
+  }else if(status==='worker'){
+   const om=livelihoodModel.occupations[occ];
+   if(om&&age>om.maxAge){next='retired';reason='occupation_age_limit_reached';}
+  }
+  if(!next||next===occ)continue;
+  setOccupation(country,c,next,reason,target);
+  turnEvents.push({turn,country,type:'life_stage_transition',citizenId:c.citizenId,age,fromOccupationId:occ,toOccupationId:next,targetOccupationId:target,reason});
+ }
 }
 
 function institutionCandidateScore(country,c,data){
