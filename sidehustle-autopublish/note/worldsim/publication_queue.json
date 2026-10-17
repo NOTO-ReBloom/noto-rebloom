@@ -1,17 +1,22 @@
 {
-  "version": 1,
-  "updatedAt": "2026-10-16T15:10:00+09:00",
-  "purpose": "Canonical publication queue for AI World Observatory. Independent from legacy paid/free note factories.",
+  "version": 2,
+  "updatedAt": "2026-10-17T13:05:00+09:00",
+  "purpose": "Canonical publication queue for AI World Observatory. Legacy note factories remain isolated and frozen.",
   "account": "royal_lion645",
   "entries": [
     {
       "id": "worldsim_launch_manifesto",
       "turn": 0,
       "perspective": "observer",
-      "title": "3つの国を、AIだけで運営させます。彼らはまだ互いの存在を知りません",
-      "bodyPath": "sidehustle-autopublish/note/worldsim/launch/WORLD_MANIFESTO.md",
+      "title": "3つの国を同じ世界に置きました。まだ、互いの存在を知りません",
+      "bodyPath": "sidehustle-autopublish/note/worldsim/launch_v2/00_manifesto.md",
+      "tags": [
+        "AI世界観測所",
+        "AI",
+        "シミュレーション"
+      ],
       "coverLabel": "AI世界観測所",
-      "coverCopy": "3つの国は、まだ互いを知らない。",
+      "coverCopy": "5,451人。3つの国は、まだ互いを知らない。",
       "accent": "#121820",
       "enabled": false,
       "publicUrlVerified": false,
@@ -19,12 +24,17 @@
     },
     {
       "id": "worldsim_launch_arca",
-      "turn": 0,
-      "perspective": "ARCA",
-      "title": "アルカ建国0日｜海と100万円を渡された118人",
-      "bodyPath": "sidehustle-autopublish/note/worldsim/launch/ARCA_DAY0.md",
-      "coverLabel": "ARCA / 建国0日",
-      "coverCopy": "海と100万円を渡された118人",
+      "turn": 1,
+      "perspective": "ARCUS",
+      "title": "港は木を欲しがった。山は4票で反対した｜アルカ、最初の7日",
+      "bodyPath": "sidehustle-autopublish/note/worldsim/launch_v2/01_arca_turn1.md",
+      "tags": [
+        "AI世界観測所",
+        "シミュレーション",
+        "アルカ"
+      ],
+      "coverLabel": "アルカ通信 / 第1週",
+      "coverCopy": "港の木材優先／山から4票の反対",
       "accent": "#15334A",
       "enabled": false,
       "publicUrlVerified": false,
@@ -32,12 +42,17 @@
     },
     {
       "id": "worldsim_launch_mirea",
-      "turn": 0,
+      "turn": 1,
       "perspective": "MIREA",
-      "title": "ミレア建国0日｜豊かな土地で、何を豊かさと呼ぶのか",
-      "bodyPath": "sidehustle-autopublish/note/worldsim/launch/MIREA_DAY0.md",
-      "coverLabel": "MIREA / 建国0日",
-      "coverCopy": "豊かな土地で、何を豊かさと呼ぶのか",
+      "title": "賛成は6、反対2。それでも灌漑整備は否決された｜ミレア、最初の7日",
+      "bodyPath": "sidehustle-autopublish/note/worldsim/launch_v2/02_mirea_turn1.md",
+      "tags": [
+        "AI世界観測所",
+        "シミュレーション",
+        "ミレア"
+      ],
+      "coverLabel": "ミレア通信 / 第1週",
+      "coverCopy": "賛成75%／それでも灌漑整備は否決",
       "accent": "#284738",
       "enabled": false,
       "publicUrlVerified": false,
@@ -45,12 +60,17 @@
     },
     {
       "id": "worldsim_launch_vald",
-      "turn": 0,
+      "turn": 1,
       "perspective": "VALD",
-      "title": "ヴァルド建国0日｜冬を越すことから始まる96人の国",
-      "bodyPath": "sidehustle-autopublish/note/worldsim/launch/VALD_DAY0.md",
-      "coverLabel": "VALD / 建国0日",
-      "coverCopy": "冬を越すことから始まる96人の国",
+      "title": "鉱山を2日止める。6対3で安全点検が通った｜ヴァルド、最初の7日",
+      "bodyPath": "sidehustle-autopublish/note/worldsim/launch_v2/03_vald_turn1.md",
+      "tags": [
+        "AI世界観測所",
+        "シミュレーション",
+        "ヴァルド"
+      ],
+      "coverLabel": "ヴァルド通信 / 第1週",
+      "coverCopy": "鉱山を2日止める／6対3の判断",
       "accent": "#333A46",
       "enabled": false,
       "publicUrlVerified": false,
@@ -63,8 +83,11 @@
     "onePublicationPerRun": true,
     "exactTitleReconcileBeforeCreate": true,
     "readerVisibleVerifyRequired": true,
-    "legacyQueueIsolation": true
+    "legacyQueueIsolation": true,
+    "maxAutoPostsPerTurn": 2,
+    "hardMaxPostsPerWeek": 3,
+    "noFiller": true
   },
-  "status": "population_build_hold",
-  "holdReason": "Do not publish until citizen-level persistent population, household, relationship and personality model is generated and audited."
+  "status": "long_horizon_qa_hold",
+  "holdReason": "Enable launch only after the 60-turn stress test passes on the same canonical engine build."
 }
