@@ -22,7 +22,20 @@ function loadPeople(country){
  const dir=P('sidehustle-autopublish/note/worldsim/population/personality',country),out={};
  for(const f of fs.readdirSync(dir).filter(x=>x.endsWith('.json'))){
   const d=read('sidehustle-autopublish/note/worldsim/population/personality/'+country+'/'+f);
-  for(const c of d.citizens)out[c.citizenId]=c;
+  for(const c of d.citizens)out[c.citizenId]=structuredClone(c);
+ }
+ for(const n of (state.roster?.newCitizens||[]).filter(x=>x.countryId===country)){
+  if(!out[n.citizenId])out[n.citizenId]=structuredClone(n.profile||n);
+ }
+ for(const c of Object.values(out)){
+  const o=state.citizenOverlays?.[country]?.[c.citizenId]||{};
+  if(o.settlementId)c.settlementId=o.settlementId;
+  if(o.householdId)c.householdId=o.householdId;
+  if(o.occupationId){
+   c.occupationId=o.occupationId;
+   const om=read('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json').occupations[o.occupationId]||{};
+   c.occupation={...(c.occupation||{}),id:o.occupationId,sector:om.sector||c.occupation?.sector,status:o.occupationId==='retired'?'retired':o.occupationId==='student'?'student':o.occupationId==='apprentice'||o.occupationId==='map_apprentice'?'apprentice':o.occupationId==='child'?'dependent':'worker'};
+  }
  }
  return out;
 }
