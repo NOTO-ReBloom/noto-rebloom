@@ -12,6 +12,7 @@ const state=read('sidehustle-autopublish/note/worldsim/state/turn_'+turnPad(prev
 const truth=read('sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json');
 const catalog=read('sidehustle-autopublish/note/worldsim/simulation/policy_catalog_v1.json');
 const institutions=read('sidehustle-autopublish/note/worldsim/institutions/institution_state_turn0.json');
+const livelihoodModel=read('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json');
 
 function seedInt(s){return crypto.createHash('sha256').update(String(s)).digest().readUInt32LE(0);}
 function rngFor(s){let a=seedInt(s);return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
@@ -33,7 +34,7 @@ function loadPeople(country){
   if(o.householdId)c.householdId=o.householdId;
   if(o.occupationId){
    c.occupationId=o.occupationId;
-   const om=read('sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json').occupations[o.occupationId]||{};
+   const om=livelihoodModel.occupations[o.occupationId]||{};
    c.occupation={...(c.occupation||{}),id:o.occupationId,sector:om.sector||c.occupation?.sector,status:o.occupationId==='retired'?'retired':o.occupationId==='student'?'student':o.occupationId==='apprentice'||o.occupationId==='map_apprentice'?'apprentice':o.occupationId==='child'?'dependent':'worker'};
   }
  }
