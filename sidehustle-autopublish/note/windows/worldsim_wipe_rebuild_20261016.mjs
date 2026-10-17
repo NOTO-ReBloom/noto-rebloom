@@ -353,6 +353,23 @@ async function main() {
       throw new Error('FINAL_SET_MISMATCH extras=' + JSON.stringify(extras.slice(0, 10)) + ' missing=' + JSON.stringify(missing));
     }
 
+    // Reader-visible verification is not enough: drafts/private remnants must also be gone.
+    const finalManage = await loadManage(page);
+    const manageExtras = [];
+    for (const x of finalManage) {
+      const key = x.key || null;
+      const title = normalize((x.noteDraft && x.noteDraft.name) || x.name || '');
+      if (!title) continue;
+      if (key && keepKeys.has(key)) continue;
+      if (!key && KEEP_TITLES.includes(title)) continue;
+      manageExtras.push({ key, title, status: x.status || null });
+    }
+    if (manageExtras.length) {
+      throw new Error('FINAL_MANAGE_SET_MISMATCH extras=' + JSON.stringify(manageExtras.slice(0, 20)));
+    }
+    receipt.finalManageVerified = true;
+    receipt.finalManageVisibleCount = finalManage.length;
+
     receipt.status = 'completed';
     receipt.completedAt = new Date().toISOString();
     receipt.finalPublic = finalPublic;
