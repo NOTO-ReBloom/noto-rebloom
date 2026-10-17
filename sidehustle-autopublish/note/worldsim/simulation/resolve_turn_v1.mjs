@@ -258,9 +258,15 @@ function foodBalance(country,data){
   const c=effective(raw,country);
   const base=productivity[c.occupationId]||0;if(base)production+=base*season*wx*resourceFactorForOccupation(country,c.occupationId);
  }
- const pop=state.countries[country].population,consumption=pop*7;
- const rawDelta=(production-consumption)/Math.max(1,pop);
+ const pop=state.countries[country].population;
  const currentReserve=state.countries[country].meanFoodReserveDays;
+ let rationMultiplier=1;
+ if(currentReserve<3)rationMultiplier=.78;
+ else if(currentReserve<7)rationMultiplier=.84;
+ else if(currentReserve<14)rationMultiplier=.90;
+ else if(currentReserve<28)rationMultiplier=.96;
+ const consumption=pop*7*rationMultiplier;
+ const rawDelta=(production-consumption)/Math.max(1,pop);
  const storageSpoilageDays=currentReserve>120?(currentReserve-120)*.025:0;
  const delta=rawDelta-storageSpoilageDays;
  return{
@@ -269,10 +275,41 @@ function foodBalance(country,data){
   grossReserveDaysDelta:round(rawDelta,3),
   storageSpoilageDays:round(storageSpoilageDays,3),
   reserveDaysDelta:round(delta,3),
+  rationMultiplier:round(rationMultiplier,3),
   seasonModifier:season,
   weatherModifier:round(wx,3)
  };
 }
+function applyFoodScarcity(country,data,turnEvents){
+ const reserve=state.countries[country].meanFoodReserveDays;
+ if(reserve>=28)return;
+ const severity=clamp((28-reserve)/28,0,1);
+ const stressDelta=.06+severity*.42;
+ const healthDelta=reserve<3?-.28:reserve<7?-.16:reserve<14?-.08:-.03;
+ const inactive=new Set(state.roster.inactiveCitizenIds||[]);
+
+ state.countries[country].meanStress=round(clamp(state.countries[country].meanStress+stressDelta),2);
+ state.countries[country].meanHealth=round(clamp(state.countries[country].meanHealth+healthDelta),2);
+ for(const ss of Object.values(state.countries[country].settlementStates)){
+  ss.meanStress=round(clamp(ss.meanStress+stressDelta),2);
+  ss.meanHealth=round(clamp(ss.meanHealth+healthDelta),2);
+ }
+ let affected=0;
+ for(const raw of Object.values(data.people)){
+  if(inactive.has(raw.citizenId))continue;
+  applyOverlay(country,raw.citizenId,{stress:stressDelta*.72,health:healthDelta*.72},null);
+  affected++;
+ }
+ turnEvents.push({
+  turn,country,type:'food_scarcity',
+  reserveDays:round(reserve,2),
+  severity:round(severity,3),
+  stressDelta:round(stressDelta,3),
+  healthDelta:round(healthDelta,3),
+  affectedCitizens:affected
+ });
+}
+
 function fuelBalance(country,data){
  const season=normalizeCalendar(state.calendar).season;
  const need={
@@ -490,7 +527,9 @@ function simulateDemography(country,data){
    const partnerId=partner[mother.citizenId];
    if(!partnerId||inactive.has(partnerId))continue;
    const r=rngFor(state.worldId+'|CONCEPTION|'+turn+'|'+mother.citizenId);
-   if(r()>=.00165)continue;
+   const foodReserve=state.countries[country].meanFoodReserveDays;
+   const fertilityMultiplier=foodReserve<7?.15:foodReserve<14?.35:foodReserve<28?.65:1;
+   if(r()>=.00165*fertilityMultiplier)continue;
    const conceptionAbsoluteDay=currentAbs+ri(r,1,7);
    const gestationDays=state.demographyState.gestationDays||266;
    const dueAbsoluteDay=conceptionAbsoluteDay+gestationDays+ri(r,-4,4);
@@ -513,11 +552,16 @@ function simulateDemography(country,data){
   const r=rngFor(state.worldId+'|DEATH|'+turn+'|'+c.citizenId);
   let p=c.ageYears<45?.00002:c.ageYears<65?.00008:c.ageYears<75?.00025:c.ageYears<85?.00070:c.ageYears<95?.00250:.00600;
   if(c.materialState.health<40)p+=.00035;
+  const foodReserve=state.countries[country].meanFoodReserveDays;
+  if(foodReserve<21)p+=(21-foodReserve)/21*.00008;
+  if(foodReserve<7)p+=.00020;
+  if(foodReserve<3)p+=.00050;
   const hazard=livelihoodModel.occupations[c.occupationId]?.hazard||0;
   p+=hazard*.000008;
   if(r()<p){
    const work=r()<hazard*.055;
-   const death={citizenId:c.citizenId,countryId:country,settlementId:c.settlementId,householdId:c.householdId,turn,cause:work?'work_incident':'health_or_age'};
+   const famine=foodReserve<7&&!work;
+   const death={citizenId:c.citizenId,countryId:country,settlementId:c.settlementId,householdId:c.householdId,turn,cause:work?'work_incident':famine?'food_scarcity_complication':'health_or_age'};
    deaths.push(death);
    if(pregnancies[c.citizenId]){
     cancelledPregnancies.push({...pregnancies[c.citizenId],cancelledTurn:turn,reason:'mother_died_during_pregnancy'});
@@ -914,6 +958,7 @@ for(const country of ['ARCUS','MIREA','VALD']){
  state.countries[country].meanFoodReserveDays=round(Math.max(0,state.countries[country].meanFoodReserveDays+fb.reserveDaysDelta),2);
  for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFoodReserveDays=round(Math.max(0,ss.meanFoodReserveDays+fb.reserveDaysDelta),2);
  turnEvents.push({turn,country,type:'food_balance',...fb});
+ applyFoodScarcity(country,data,turnEvents);
 
  const fuel=fuelBalance(country,data);
  if(fuel.opportunityFoodDays>0){
