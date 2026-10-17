@@ -15,7 +15,14 @@ const sha=o=>crypto.createHash('sha256').update(JSON.stringify(o)).digest('hex')
 const avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:0;
 const round=(n,d=2)=>Number(n.toFixed(d));
 
-const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sourceTruthHash:sha(truth),countries:{},contact:{knownPairs:[],firstContactOccurred:false},eventLog:[],publicationReady:false};
+const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sourceTruthHash:sha(truth),countries:{},
+ worldDynamic:{
+  resources:Object.fromEntries(truth.resources.nodes.map(x=>[x.id,{type:x.type,stockIndex:x.stockIndex,renewable:x.renewable,x:x.x,y:x.y}])),
+  climate:structuredClone(truth.climate.currentAnomalies),
+  weatherHistory:[],
+  deepHistoryEvidenceDiscovered:[]
+ },
+ contact:{knownPairs:[],firstContactOccurred:false},eventLog:[],publicationReady:false};
 const manifest={version:1,turn:0,sourceHashes:{observerTruth:state.sourceTruthHash},countrySources:{}};
 
 for(const country of ['ARCUS','MIREA','VALD']){
