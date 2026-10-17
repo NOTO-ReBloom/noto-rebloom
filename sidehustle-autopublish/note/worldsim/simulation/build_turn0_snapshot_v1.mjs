@@ -22,7 +22,10 @@ const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sour
   weatherHistory:[],
   deepHistoryEvidenceDiscovered:[]
  },
- contact:{knownPairs:[],firstContactOccurred:false},eventLog:[],publicationReady:false};
+ contact:{knownPairs:[],firstContactOccurred:false},
+ roster:{newCitizens:[],inactiveCitizenIds:[]},
+ citizenOverlays:{ARCUS:{},MIREA:{},VALD:{}},
+ eventLog:[],publicationReady:false};
 const manifest={version:1,turn:0,sourceHashes:{observerTruth:state.sourceTruthHash},countrySources:{}};
 
 for(const country of ['ARCUS','MIREA','VALD']){
