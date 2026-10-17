@@ -1,0 +1,131 @@
+{
+  "version": 2,
+  "principle": "Country policy is an emergent institutional decision by persistent citizens. Legacy country objective weights are deprecated and must not determine policy.",
+  "countries": {
+    "ARCUS": {
+      "constitutionalName": "港湾協約",
+      "localCouncilRule": {
+        "baseSeats": 5,
+        "extraSeatPerPopulation": 220,
+        "maxSeats": 9,
+        "termTurns": 12
+      },
+      "nationalBody": {
+        "name": "共同事業評議会",
+        "delegatesPerSettlement": 3,
+        "termTurns": 12
+      },
+      "executive": {
+        "name": "三人調整役",
+        "count": 3,
+        "selectedFrom": "nationalBody",
+        "termTurns": 8
+      },
+      "authority": [
+        "shared harbor works",
+        "inter-settlement roads",
+        "common storage standards",
+        "survey funding",
+        "limited levies"
+      ],
+      "checks": [
+        "major levy requires 60% of national body",
+        "settlement land-use changes require affected local council approval",
+        "emergency order expires after 2 turns"
+      ],
+      "decisionStyle": "proposal -> recorded local impact -> member votes -> implementation assignment"
+    },
+    "MIREA": {
+      "constitutionalName": "河川協定",
+      "localCouncilRule": {
+        "baseSeats": 6,
+        "extraSeatPerPopulation": 240,
+        "maxSeats": 9,
+        "termTurns": 10
+      },
+      "nationalBody": {
+        "name": "流域会議",
+        "delegatesPerSettlement": 2,
+        "termTurns": 10
+      },
+      "executive": {
+        "name": "輪番書記",
+        "count": 2,
+        "selectedFrom": "nationalBody",
+        "termTurns": 4
+      },
+      "authority": [
+        "river works",
+        "inter-settlement ferry rules",
+        "shared health response",
+        "record standards"
+      ],
+      "checks": [
+        "water or land change requires majority of delegates and majority of settlement delegations",
+        "emergency order expires after 1 turn",
+        "local councils retain ordinary production decisions"
+      ],
+      "decisionStyle": "local proposal -> affected settlements respond -> dual-majority vote -> local implementation"
+    },
+    "VALD": {
+      "constitutionalName": "冬季備え協約",
+      "localCouncilRule": {
+        "baseSeats": 5,
+        "extraSeatPerPopulation": 200,
+        "maxSeats": 8,
+        "termTurns": 12
+      },
+      "nationalBody": {
+        "name": "備蓄・安全評議会",
+        "delegatesPerSettlement": 3,
+        "termTurns": 12
+      },
+      "executive": {
+        "name": "季節調整官",
+        "count": 2,
+        "selectedFrom": "nationalBody",
+        "termTurns": 6
+      },
+      "exOfficioOccupations": [
+        "quartermaster",
+        "healer",
+        "miner",
+        "road_worker"
+      ],
+      "authority": [
+        "central reserves",
+        "winter roads",
+        "mine safety minimums",
+        "fuel allocation",
+        "emergency shelter"
+      ],
+      "checks": [
+        "emergency ration power expires after 2 turns",
+        "mine production override requires safety record",
+        "post-emergency review records who gained and lost resources"
+      ],
+      "decisionStyle": "risk report -> reserve/safety impact -> member votes -> time-limited order"
+    }
+  },
+  "selection": {
+    "eligibility": {
+      "minAge": 25,
+      "maxAge": 76
+    },
+    "scoreWeights": {
+      "incomingRespect": 0.28,
+      "incomingTrust": 0.18,
+      "skill": 0.18,
+      "conscientiousness": 0.14,
+      "communityValue": 0.1,
+      "fairnessValue": 0.07,
+      "stressPenalty": 0.05
+    },
+    "diversity": [
+      "no local council may be a single occupation",
+      "prefer at least three economic sectors when seats allow",
+      "include both younger and older adults when eligible",
+      "selection never uses country ideology score"
+    ]
+  }
+}
