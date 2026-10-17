@@ -1,0 +1,72 @@
+name: Worldsim belief generation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/population/generate_beliefs_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/belief_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/social/**'
+      - 'sidehustle-autopublish/note/worldsim/population/personality/**'
+      - '.github/workflows/worldsim-belief-generation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-belief-generation
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate beliefs
+        run: node sidehustle-autopublish/note/worldsim/population/generate_beliefs_v1.mjs
+      - name: Validate bounded knowledge
+        shell: python
+        run: |
+          import json, pathlib
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim/population/beliefs')
+          files=list(root.glob('*.json'))
+          assert len(files)==3,len(files)
+          expected={'ARCUS':('ARCA-',1846),'MIREA':('MIREA-',2214),'VALD':('VALD-',1391)}
+          total=0
+          for p in files:
+              d=json.loads(p.read_text())
+              prefix,count=expected[d['countryId']]
+              assert d['stage']=='beliefs_v1'
+              assert d['summary']['citizenCount']==count,(p,d['summary'])
+              total+=count
+              for cid,r in d['records'].items():
+                  assert cid==r['citizenId']
+                  assert 1<=len(r['knownLocations'])<=4,(cid,r['knownLocations'])
+                  assert all(x.startswith(prefix) for x in r['knownLocations']),(cid,r['knownLocations'])
+                  assert len(r['knownFacts'])<=5,cid
+                  for b in r['beliefs']:
+                      assert 0<=b['confidence']<=100,(cid,b)
+                  for x in r['rumors']:
+                      assert 0<=x['confidence']<=100,(cid,x)
+                      assert x['stance'] in ('believed','uncertain','doubted')
+              assert d['summary']['rumorHolders']>count*.15,(p,d['summary'])
+              assert d['summary']['rumorHolders']<count*.95,(p,d['summary'])
+          assert total==5451,total
+          print('BELIEF_QA_OK',total)
+      - name: Commit belief registry
+        run: |
+          git config user.name 'worldsim-belief-generator'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/population/beliefs
+          if git diff --cached --quiet; then echo 'No belief change'; exit 0; fi
+          git commit -m 'Generate LYRA belief registry'
+          git pull --rebase origin main
+          git push origin HEAD:main
