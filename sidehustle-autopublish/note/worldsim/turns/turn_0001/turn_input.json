@@ -3,22 +3,28 @@
   "worldId": "LYRA-001",
   "turn": 1,
   "previousTurn": 0,
-  "preparedFromStateHash": "490d2a689adb237e71e23c02b7a62f7b69fe5b6040fcd48f78d9ae954808c6d8",
+  "preparedFromStateHash": "660dca2f76fbea03f2f78b1c0b001ad17f0f8dbe4a74a82bc4223a59c794891f",
   "weather": {
+    "calendar": {
+      "year": 1,
+      "dayOfYear": 239,
+      "season": "summer",
+      "seasonStage": "late_summer"
+    },
     "ARCUS": {
       "coastalWindIndex": 53,
-      "rainIndex": 68,
+      "rainIndex": 63,
       "summary": "mostly workable coast"
     },
     "MIREA": {
-      "upperCatchmentRainIndex": 72,
-      "riverPressureIndex": 67,
-      "summary": "several wet periods"
+      "upperCatchmentRainIndex": 81,
+      "riverPressureIndex": 78,
+      "summary": "elevated river"
     },
     "VALD": {
-      "coldPressureIndex": 38,
-      "snowRiskIndex": 24,
-      "summary": "cool highland week without hard freeze"
+      "coldPressureIndex": 47,
+      "snowRiskIndex": 27,
+      "summary": "mild-to-cool highland week"
     }
   },
   "proposals": {
@@ -29,7 +35,7 @@
         "topic": "repair",
         "urgency": 64.14,
         "sponsorId": "ARC-0010",
-        "reason": "selected from current material conditions, local risk and citizen information"
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
       },
       {
         "policyId": "A_INLAND_ROAD_REPAIR",
@@ -37,7 +43,7 @@
         "topic": "infrastructure",
         "urgency": 49,
         "sponsorId": "ARC-0667",
-        "reason": "selected from current material conditions, local risk and citizen information"
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
       }
     ],
     "MIREA": [
@@ -45,17 +51,17 @@
         "policyId": "M_GATE_CLEARING",
         "title": "中流域の灌漑門と排水路を共同整備する",
         "topic": "river",
-        "urgency": 67.2,
+        "urgency": 72.15,
         "sponsorId": "MIR-1162",
-        "reason": "selected from current material conditions, local risk and citizen information"
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
       },
       {
         "policyId": "M_SPILLWAY_SURVEY",
         "title": "放水路を造る前に流量・湿地影響を測る",
         "topic": "river",
-        "urgency": 56.29,
+        "urgency": 59.59,
         "sponsorId": "MIR-0011",
-        "reason": "selected from current material conditions, local risk and citizen information"
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
       }
     ],
     "VALD": [
@@ -65,15 +71,15 @@
         "topic": "mining",
         "urgency": 65.86,
         "sponsorId": "VAL-1119",
-        "reason": "selected from current material conditions, local risk and citizen information"
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
       },
       {
-        "policyId": "V_FUEL_BUFFER",
-        "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
-        "topic": "reserve",
-        "urgency": 43.4,
-        "sponsorId": "VAL-1119",
-        "reason": "selected from current material conditions, local risk and citizen information"
+        "policyId": "V_SMOKE_VENT",
+        "title": "煙の多い住居から換気改修を始める",
+        "topic": "health",
+        "urgency": 43.23,
+        "sponsorId": "VAL-1338",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
       }
     ]
   }

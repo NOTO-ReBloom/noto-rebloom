@@ -19,10 +19,14 @@
     "calendarAfter": {
       "year": 1,
       "dayOfYear": 246,
+      "absoluteDay": 246,
       "turn": 1,
       "turnDays": 7,
-      "season": "late_summer",
-      "daysUntilMeteorologicalWinter": 86
+      "season": "autumn",
+      "seasonStage": "early_autumn",
+      "weekOfYear": 36,
+      "daysUntilMeteorologicalWinter": 90,
+      "worldDateLabel": "Y0001-D246"
     },
     "firstContact": false
   },
@@ -32,10 +36,10 @@
       "populationBefore": 1846,
       "populationAfter": 1846,
       "foodReserveDaysBefore": 76.4,
-      "foodReserveDaysAfter": 76.29,
+      "foodReserveDaysAfter": 76.75,
       "weather": {
         "coastalWindIndex": 53,
-        "rainIndex": 68,
+        "rainIndex": 63,
         "summary": "mostly workable coast"
       },
       "selectedEvent": {
@@ -63,7 +67,7 @@
           "householdId": "ARC-H002",
           "household": {
             "members": 2,
-            "foodDays": 74,
+            "foodDays": 74.35,
             "debtUnits": 0,
             "cashLikeReserve": 39,
             "landUseUnits": 0
@@ -129,6 +133,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.743
             }
@@ -146,7 +151,7 @@
           "householdId": "ARC-H002",
           "household": {
             "members": 2,
-            "foodDays": 74,
+            "foodDays": 74.35,
             "debtUnits": 0,
             "cashLikeReserve": 39,
             "landUseUnits": 0
@@ -212,6 +217,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.743
             }
@@ -229,7 +235,7 @@
           "householdId": "ARC-H0595",
           "household": {
             "members": 8,
-            "foodDays": 52,
+            "foodDays": 52.35,
             "debtUnits": 0,
             "cashLikeReserve": 56,
             "landUseUnits": 2
@@ -299,6 +305,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -0.877
             }
@@ -316,7 +323,7 @@
           "householdId": "ARC-H0552",
           "household": {
             "members": 5,
-            "foodDays": 85,
+            "foodDays": 85.35,
             "debtUnits": 41,
             "cashLikeReserve": 30,
             "landUseUnits": 0
@@ -386,6 +393,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 2.332
             }
@@ -555,8 +563,8 @@
           "name": "セラ港",
           "population": 812,
           "households": 228,
-          "meanFoodReserveDays": 73.02,
-          "meanFuelReserveDays": 66.7,
+          "meanFoodReserveDays": 73.95,
+          "meanFuelReserveDays": 69.17,
           "meanHealth": 87.7,
           "meanStress": 37.05,
           "totalDebtUnits": 2407,
@@ -599,8 +607,8 @@
           "name": "レイ岬",
           "population": 356,
           "households": 102,
-          "meanFoodReserveDays": 78.52,
-          "meanFuelReserveDays": 68.6,
+          "meanFoodReserveDays": 79.45,
+          "meanFuelReserveDays": 71.07,
           "meanHealth": 87.4,
           "meanStress": 36.65,
           "totalDebtUnits": 963,
@@ -638,8 +646,8 @@
           "name": "ヴァレン平地",
           "population": 462,
           "households": 131,
-          "meanFoodReserveDays": 85.02,
-          "meanFuelReserveDays": 73.3,
+          "meanFoodReserveDays": 85.95,
+          "meanFuelReserveDays": 75.77,
           "meanHealth": 87.4,
           "meanStress": 36.95,
           "totalDebtUnits": 1438,
@@ -675,8 +683,8 @@
           "name": "オル高地",
           "population": 216,
           "households": 56,
-          "meanFoodReserveDays": 62.22,
-          "meanFuelReserveDays": 87.8,
+          "meanFoodReserveDays": 63.15,
+          "meanFuelReserveDays": 90.27,
           "meanHealth": 87.6,
           "meanStress": 39.65,
           "totalDebtUnits": 612,
@@ -708,7 +716,10 @@
       },
       "demography": {
         "births": [],
-        "deaths": []
+        "deaths": [],
+        "conceptions": [],
+        "cancelledPregnancies": [],
+        "activePregnanciesAfterTurn": 7
       },
       "allTurnPolicies": [
         {
@@ -738,11 +749,11 @@
       "populationBefore": 2214,
       "populationAfter": 2214,
       "foodReserveDaysBefore": 79.5,
-      "foodReserveDaysAfter": 80.66,
+      "foodReserveDaysAfter": 81.27,
       "weather": {
-        "upperCatchmentRainIndex": 72,
-        "riverPressureIndex": 67,
-        "summary": "several wet periods"
+        "upperCatchmentRainIndex": 81,
+        "riverPressureIndex": 78,
+        "summary": "elevated river"
       },
       "selectedEvent": {
         "policyId": "M_GATE_CLEARING",
@@ -800,7 +811,7 @@
           "householdId": "MIR-H0406",
           "household": {
             "members": 5,
-            "foodDays": 147,
+            "foodDays": 148.769,
             "debtUnits": 0,
             "cashLikeReserve": 85,
             "landUseUnits": 10
@@ -870,6 +881,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.365
             }
@@ -887,7 +899,7 @@
           "householdId": "MIR-H0406",
           "household": {
             "members": 5,
-            "foodDays": 147,
+            "foodDays": 148.769,
             "debtUnits": 0,
             "cashLikeReserve": 85,
             "landUseUnits": 10
@@ -957,6 +969,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.365
             }
@@ -974,7 +987,7 @@
           "householdId": "MIR-H0395",
           "household": {
             "members": 2,
-            "foodDays": 65,
+            "foodDays": 66.769,
             "debtUnits": 0,
             "cashLikeReserve": 50,
             "landUseUnits": 0
@@ -1040,6 +1053,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -1.722
             }
@@ -1057,7 +1071,7 @@
           "householdId": "MIR-H0577",
           "household": {
             "members": 5,
-            "foodDays": 46,
+            "foodDays": 47.769,
             "debtUnits": 0,
             "cashLikeReserve": 29,
             "landUseUnits": 0
@@ -1119,6 +1133,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -2.303
             }
@@ -1311,8 +1326,8 @@
           "name": "アレ川中流",
           "population": 602,
           "households": 166,
-          "meanFoodReserveDays": 83.06,
-          "meanFuelReserveDays": 68.9,
+          "meanFoodReserveDays": 83.67,
+          "meanFuelReserveDays": 70.82,
           "meanHealth": 87.5,
           "meanStress": 35.5,
           "totalDebtUnits": 1202,
@@ -1349,8 +1364,8 @@
           "name": "ネリ河畔",
           "population": 448,
           "households": 119,
-          "meanFoodReserveDays": 83.36,
-          "meanFuelReserveDays": 69,
+          "meanFoodReserveDays": 83.97,
+          "meanFuelReserveDays": 70.92,
           "meanHealth": 88.6,
           "meanStress": 35.7,
           "totalDebtUnits": 1035,
@@ -1383,8 +1398,8 @@
           "name": "ソマ湿地縁",
           "population": 319,
           "households": 85,
-          "meanFoodReserveDays": 84.86,
-          "meanFuelReserveDays": 71.7,
+          "meanFoodReserveDays": 85.47,
+          "meanFuelReserveDays": 73.62,
           "meanHealth": 88.2,
           "meanStress": 35.58,
           "totalDebtUnits": 700,
@@ -1416,8 +1431,8 @@
           "name": "リナ市場町",
           "population": 533,
           "households": 146,
-          "meanFoodReserveDays": 66.76,
-          "meanFuelReserveDays": 69.5,
+          "meanFoodReserveDays": 67.37,
+          "meanFuelReserveDays": 71.42,
           "meanHealth": 88.3,
           "meanStress": 36.5,
           "totalDebtUnits": 1046,
@@ -1454,8 +1469,8 @@
           "name": "トレ上流村",
           "population": 312,
           "households": 77,
-          "meanFoodReserveDays": 91.56,
-          "meanFuelReserveDays": 67.9,
+          "meanFoodReserveDays": 92.17,
+          "meanFuelReserveDays": 69.82,
           "meanHealth": 88.3,
           "meanStress": 34.1,
           "totalDebtUnits": 443,
@@ -1487,7 +1502,23 @@
       },
       "demography": {
         "births": [],
-        "deaths": []
+        "deaths": [],
+        "conceptions": [
+          {
+            "pregnancyId": "PREG-MIREA-MIR-0284-T0001",
+            "countryId": "MIREA",
+            "motherId": "MIR-0284",
+            "partnerId": "MIR-0283",
+            "householdId": "MIR-H0173",
+            "settlementId": "MIREA-RIVER-01",
+            "conceivedTurn": 1,
+            "conceptionAbsoluteDay": 245,
+            "dueAbsoluteDay": 510,
+            "dueTurn": 39
+          }
+        ],
+        "cancelledPregnancies": [],
+        "activePregnanciesAfterTurn": 4
       },
       "allTurnPolicies": [
         {
@@ -1517,11 +1548,11 @@
       "populationBefore": 1391,
       "populationAfter": 1390,
       "foodReserveDaysBefore": 85,
-      "foodReserveDaysAfter": 84.61,
+      "foodReserveDaysAfter": 85.9,
       "weather": {
-        "coldPressureIndex": 38,
-        "snowRiskIndex": 24,
-        "summary": "cool highland week without hard freeze"
+        "coldPressureIndex": 47,
+        "snowRiskIndex": 27,
+        "summary": "mild-to-cool highland week"
       },
       "selectedEvent": {
         "policyId": "V_MINE_INSPECTION",
@@ -1548,7 +1579,7 @@
           "householdId": "VAL-H0387",
           "household": {
             "members": 8,
-            "foodDays": 52,
+            "foodDays": 52.897,
             "debtUnits": 0,
             "cashLikeReserve": 80,
             "landUseUnits": 5
@@ -1618,6 +1649,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 1.414
             }
@@ -1635,7 +1667,7 @@
           "householdId": "VAL-H0269",
           "household": {
             "members": 2,
-            "foodDays": 51,
+            "foodDays": 51.897,
             "debtUnits": 0,
             "cashLikeReserve": 53,
             "landUseUnits": 0
@@ -1715,6 +1747,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 1.092,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 3.038
             }
@@ -1732,7 +1765,7 @@
           "householdId": "VAL-H0201",
           "household": {
             "members": 2,
-            "foodDays": 92,
+            "foodDays": 92.897,
             "debtUnits": 0,
             "cashLikeReserve": 47,
             "landUseUnits": 0
@@ -1794,6 +1827,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -3.425
             }
@@ -1811,7 +1845,7 @@
           "householdId": "VAL-H0176",
           "household": {
             "members": 6,
-            "foodDays": 82,
+            "foodDays": 82.897,
             "debtUnits": 63,
             "cashLikeReserve": 26,
             "landUseUnits": 2
@@ -1873,6 +1907,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -3.365
             }
@@ -2036,9 +2071,9 @@
           "name": "ケル盆地",
           "population": 611,
           "households": 158,
-          "meanFoodReserveDays": 92.11,
-          "meanFuelReserveDays": 99.2,
-          "meanHealth": 87.7,
+          "meanFoodReserveDays": 93.4,
+          "meanFuelReserveDays": 101.19,
+          "meanHealth": 88.1,
           "meanStress": 35.4,
           "totalDebtUnits": 1466,
           "totalCashLikeReserve": 6527,
@@ -2075,10 +2110,10 @@
         "VALD-BASIN-02": {
           "settlementId": "VALD-BASIN-02",
           "name": "オスク鉱谷",
-          "population": 402,
+          "population": 401,
           "households": 108,
-          "meanFoodReserveDays": 70.81,
-          "meanFuelReserveDays": 101.2,
+          "meanFoodReserveDays": 72.1,
+          "meanFuelReserveDays": 103.19,
           "meanHealth": 86.35,
           "meanStress": 38.85,
           "totalDebtUnits": 1218,
@@ -2115,8 +2150,8 @@
           "name": "セン高地",
           "population": 226,
           "households": 59,
-          "meanFoodReserveDays": 98.51,
-          "meanFuelReserveDays": 101.1,
+          "meanFoodReserveDays": 99.8,
+          "meanFuelReserveDays": 103.09,
           "meanHealth": 87.9,
           "meanStress": 35.7,
           "totalDebtUnits": 573,
@@ -2150,8 +2185,8 @@
           "name": "マルン峠口",
           "population": 152,
           "households": 39,
-          "meanFoodReserveDays": 70.7,
-          "meanFuelReserveDays": 101.9,
+          "meanFoodReserveDays": 72,
+          "meanFuelReserveDays": 103.89,
           "meanHealth": 86.6,
           "meanStress": 38.6,
           "totalDebtUnits": 431,
@@ -2192,7 +2227,10 @@
             "turn": 1,
             "cause": "health_or_age"
           }
-        ]
+        ],
+        "conceptions": [],
+        "cancelledPregnancies": [],
+        "activePregnanciesAfterTurn": 2
       },
       "allTurnPolicies": [
         {
@@ -2206,12 +2244,12 @@
           "settlementMajority": true
         },
         {
-          "policyId": "V_FUEL_BUFFER",
-          "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
+          "policyId": "V_SMOKE_VENT",
+          "title": "煙の多い住居から換気改修を始める",
           "passed": true,
-          "yes": 9,
+          "yes": 8,
           "no": 0,
-          "abstain": 3,
+          "abstain": 4,
           "yesShare": 1,
           "settlementMajority": true
         }

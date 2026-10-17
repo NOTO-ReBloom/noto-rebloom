@@ -18,10 +18,14 @@
     "calendarAfter": {
       "year": 1,
       "dayOfYear": 246,
+      "absoluteDay": 246,
       "turn": 1,
       "turnDays": 7,
-      "season": "late_summer",
-      "daysUntilMeteorologicalWinter": 86
+      "season": "autumn",
+      "seasonStage": "early_autumn",
+      "weekOfYear": 36,
+      "daysUntilMeteorologicalWinter": 90,
+      "worldDateLabel": "Y0001-D246"
     },
     "firstContact": false
   },
@@ -31,10 +35,10 @@
       "populationBefore": 1846,
       "populationAfter": 1846,
       "foodReserveDaysBefore": 76.4,
-      "foodReserveDaysAfter": 76.29,
+      "foodReserveDaysAfter": 76.75,
       "weather": {
         "coastalWindIndex": 53,
-        "rainIndex": 68,
+        "rainIndex": 63,
         "summary": "mostly workable coast"
       },
       "selectedEvent": {
@@ -62,7 +66,7 @@
           "householdId": "ARC-H002",
           "household": {
             "members": 2,
-            "foodDays": 74,
+            "foodDays": 74.35,
             "debtUnits": 0,
             "cashLikeReserve": 39,
             "landUseUnits": 0
@@ -128,6 +132,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.743
             }
@@ -145,7 +150,7 @@
           "householdId": "ARC-H002",
           "household": {
             "members": 2,
-            "foodDays": 74,
+            "foodDays": 74.35,
             "debtUnits": 0,
             "cashLikeReserve": 39,
             "landUseUnits": 0
@@ -211,6 +216,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.743
             }
@@ -228,7 +234,7 @@
           "householdId": "ARC-H0595",
           "household": {
             "members": 8,
-            "foodDays": 52,
+            "foodDays": 52.35,
             "debtUnits": 0,
             "cashLikeReserve": 56,
             "landUseUnits": 2
@@ -298,6 +304,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -0.877
             }
@@ -315,7 +322,7 @@
           "householdId": "ARC-H0552",
           "household": {
             "members": 5,
-            "foodDays": 85,
+            "foodDays": 85.35,
             "debtUnits": 41,
             "cashLikeReserve": 30,
             "landUseUnits": 0
@@ -385,6 +392,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 2.332
             }
@@ -393,7 +401,10 @@
       },
       "demography": {
         "births": [],
-        "deaths": []
+        "deaths": [],
+        "conceptions": [],
+        "cancelledPregnancies": [],
+        "activePregnanciesAfterTurn": 7
       },
       "allTurnPolicies": [
         {
@@ -423,11 +434,11 @@
       "populationBefore": 2214,
       "populationAfter": 2214,
       "foodReserveDaysBefore": 79.5,
-      "foodReserveDaysAfter": 80.66,
+      "foodReserveDaysAfter": 81.27,
       "weather": {
-        "upperCatchmentRainIndex": 72,
-        "riverPressureIndex": 67,
-        "summary": "several wet periods"
+        "upperCatchmentRainIndex": 81,
+        "riverPressureIndex": 78,
+        "summary": "elevated river"
       },
       "selectedEvent": {
         "policyId": "M_GATE_CLEARING",
@@ -485,7 +496,7 @@
           "householdId": "MIR-H0406",
           "household": {
             "members": 5,
-            "foodDays": 147,
+            "foodDays": 148.769,
             "debtUnits": 0,
             "cashLikeReserve": 85,
             "landUseUnits": 10
@@ -555,6 +566,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.365
             }
@@ -572,7 +584,7 @@
           "householdId": "MIR-H0406",
           "household": {
             "members": 5,
-            "foodDays": 147,
+            "foodDays": 148.769,
             "debtUnits": 0,
             "cashLikeReserve": 85,
             "landUseUnits": 10
@@ -642,6 +654,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 0.365
             }
@@ -659,7 +672,7 @@
           "householdId": "MIR-H0395",
           "household": {
             "members": 2,
-            "foodDays": 65,
+            "foodDays": 66.769,
             "debtUnits": 0,
             "cashLikeReserve": 50,
             "landUseUnits": 0
@@ -725,6 +738,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -1.722
             }
@@ -742,7 +756,7 @@
           "householdId": "MIR-H0577",
           "household": {
             "members": 5,
-            "foodDays": 46,
+            "foodDays": 47.769,
             "debtUnits": 0,
             "cashLikeReserve": 29,
             "landUseUnits": 0
@@ -804,6 +818,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -2.303
             }
@@ -812,7 +827,23 @@
       },
       "demography": {
         "births": [],
-        "deaths": []
+        "deaths": [],
+        "conceptions": [
+          {
+            "pregnancyId": "PREG-MIREA-MIR-0284-T0001",
+            "countryId": "MIREA",
+            "motherId": "MIR-0284",
+            "partnerId": "MIR-0283",
+            "householdId": "MIR-H0173",
+            "settlementId": "MIREA-RIVER-01",
+            "conceivedTurn": 1,
+            "conceptionAbsoluteDay": 245,
+            "dueAbsoluteDay": 510,
+            "dueTurn": 39
+          }
+        ],
+        "cancelledPregnancies": [],
+        "activePregnanciesAfterTurn": 4
       },
       "allTurnPolicies": [
         {
@@ -842,11 +873,11 @@
       "populationBefore": 1391,
       "populationAfter": 1390,
       "foodReserveDaysBefore": 85,
-      "foodReserveDaysAfter": 84.61,
+      "foodReserveDaysAfter": 85.9,
       "weather": {
-        "coldPressureIndex": 38,
-        "snowRiskIndex": 24,
-        "summary": "cool highland week without hard freeze"
+        "coldPressureIndex": 47,
+        "snowRiskIndex": 27,
+        "summary": "mild-to-cool highland week"
       },
       "selectedEvent": {
         "policyId": "V_MINE_INSPECTION",
@@ -873,7 +904,7 @@
           "householdId": "VAL-H0387",
           "household": {
             "members": 8,
-            "foodDays": 52,
+            "foodDays": 52.897,
             "debtUnits": 0,
             "cashLikeReserve": 80,
             "landUseUnits": 5
@@ -943,6 +974,7 @@
               "sponsorOwnership": 7.5,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 1.414
             }
@@ -960,7 +992,7 @@
           "householdId": "VAL-H0269",
           "household": {
             "members": 2,
-            "foodDays": 51,
+            "foodDays": 51.897,
             "debtUnits": 0,
             "cashLikeReserve": 53,
             "landUseUnits": 0
@@ -1040,6 +1072,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 1.092,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": 3.038
             }
@@ -1057,7 +1090,7 @@
           "householdId": "VAL-H0201",
           "household": {
             "members": 2,
-            "foodDays": 92,
+            "foodDays": 92.897,
             "debtUnits": 0,
             "cashLikeReserve": 47,
             "landUseUnits": 0
@@ -1119,6 +1152,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -3.425
             }
@@ -1136,7 +1170,7 @@
           "householdId": "VAL-H0176",
           "household": {
             "members": 6,
-            "foodDays": 82,
+            "foodDays": 82.897,
             "debtUnits": 63,
             "cashLikeReserve": 26,
             "landUseUnits": 2
@@ -1198,6 +1232,7 @@
               "sponsorOwnership": 0,
               "rumorSignal": 0,
               "sponsorRelationship": 0,
+              "experiencedOutcome": 0,
               "stressSecurity": 0,
               "boundedNoise": -3.365
             }
@@ -1215,7 +1250,10 @@
             "turn": 1,
             "cause": "health_or_age"
           }
-        ]
+        ],
+        "conceptions": [],
+        "cancelledPregnancies": [],
+        "activePregnanciesAfterTurn": 2
       },
       "allTurnPolicies": [
         {
@@ -1229,12 +1267,12 @@
           "settlementMajority": true
         },
         {
-          "policyId": "V_FUEL_BUFFER",
-          "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
+          "policyId": "V_SMOKE_VENT",
+          "title": "煙の多い住居から換気改修を始める",
           "passed": true,
-          "yes": 9,
+          "yes": 8,
           "no": 0,
-          "abstain": 3,
+          "abstain": 4,
           "yesShare": 1,
           "settlementMajority": true
         }

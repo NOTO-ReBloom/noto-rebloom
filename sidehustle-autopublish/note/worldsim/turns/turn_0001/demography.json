@@ -4,11 +4,30 @@
   "countries": {
     "ARCUS": {
       "births": [],
-      "deaths": []
+      "deaths": [],
+      "conceptions": [],
+      "cancelledPregnancies": [],
+      "activePregnanciesAfterTurn": 7
     },
     "MIREA": {
       "births": [],
-      "deaths": []
+      "deaths": [],
+      "conceptions": [
+        {
+          "pregnancyId": "PREG-MIREA-MIR-0284-T0001",
+          "countryId": "MIREA",
+          "motherId": "MIR-0284",
+          "partnerId": "MIR-0283",
+          "householdId": "MIR-H0173",
+          "settlementId": "MIREA-RIVER-01",
+          "conceivedTurn": 1,
+          "conceptionAbsoluteDay": 245,
+          "dueAbsoluteDay": 510,
+          "dueTurn": 39
+        }
+      ],
+      "cancelledPregnancies": [],
+      "activePregnanciesAfterTurn": 4
     },
     "VALD": {
       "births": [],
@@ -21,7 +40,10 @@
           "turn": 1,
           "cause": "health_or_age"
         }
-      ]
+      ],
+      "conceptions": [],
+      "cancelledPregnancies": [],
+      "activePregnanciesAfterTurn": 2
     }
   }
 }
