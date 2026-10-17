@@ -25,7 +25,7 @@ echo Legacy NOTE automation will be stopped first.
 echo Do not close this window until it finishes.
 echo.
 
-set "URL=https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/main/sidehustle-autopublish/note/worldsim/windows/INSTALL_WORLDSIM_REBUILD.ps1"
+set "URL=https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/ae990e82ef9ab1bb4d9a72064c39bc9647a33170/sidehustle-autopublish/note/worldsim/windows/INSTALL_WORLDSIM_REBUILD.ps1"
 set "PSFILE=%TEMP%\INSTALL_WORLDSIM_REBUILD.ps1"
 
 echo [1/2] Downloading the latest installer...
