@@ -15,7 +15,7 @@ const QUEUE_REL = 'sidehustle-autopublish/note/worldsim/publication_queue.json';
 const REQUEST_REL = 'sidehustle-autopublish/note/worldsim/rebuild_request.json';
 let KEEP_TITLES = [];
 const BRAND_NAME = 'AI世界観測所';
-const BRAND_BIO = '5,451人が暮らす3つの架空社会を7日ずつ観測。家族・仕事・価値観・人間関係から歴史が進みます。3国はまだ互いを知りません。筋書きなし。起きたことだけ記録します。';
+const BRAND_BIO = '5,451人から始まった3つの架空社会を7日ずつ観測。家族・仕事・価値観・人間関係から歴史が進みます。筋書きなし。起きたことだけ記録します。';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 fs.mkdirSync(LOG_DIR, { recursive: true });
@@ -170,7 +170,7 @@ async function updateProfile(page) {
 
   await page.goto('https://note.com/' + ACCOUNT + '?verify=' + Date.now(), { waitUntil: 'domcontentloaded', timeout: 30000 });
   const body = normalize(await page.locator('body').innerText().catch(() => ''));
-  if (!body.includes(BRAND_NAME) || !body.includes('5,451人')) throw new Error('PROFILE_VERIFY_FAILED');
+  if (!body.includes(BRAND_NAME) || !body.includes('5,451人から始まった')) throw new Error('PROFILE_VERIFY_FAILED');
   log('PROFILE_UPDATED');
 }
 
