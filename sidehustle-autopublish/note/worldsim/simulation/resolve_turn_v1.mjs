@@ -184,24 +184,90 @@ function foodBalance(country,data){
  const pop=state.countries[country].population,consumption=pop*7,delta=(production-consumption)/Math.max(1,pop);
  return{productionPersonDays:round(production,1),consumptionPersonDays:round(consumption,1),reserveDaysDelta:round(delta,3),seasonModifier:season,weatherModifier:round(wx,3)};
 }
+function makeNewborn(country,mother,partnerId,household,r){
+ const father=partnerId?dataScope?.people?.[partnerId]:null;
+ const prefix=country==='ARCUS'?'ARC':country==='MIREA'?'MIR':'VAL';
+ const serial=((state.roster.newCitizens||[]).filter(x=>x.bornTurn===turn&&x.countryId===country).length+1);
+ const id=prefix+'-N'+pad(turn)+'-'+String(serial).padStart(3,'0');
+ const parentProfiles=[mother,father].filter(Boolean);
+ const avg=(path,def=50)=>{
+  const vals=parentProfiles.map(p=>path(p)).filter(v=>Number.isFinite(v));
+  return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:def;
+ };
+ const jitter=(base,spread=8)=>Math.round(clamp(base+(r()-.5)*spread*2));
+ const bigFive={
+  openness:jitter(avg(p=>p.psychology?.bigFive?.openness),9),
+  conscientiousness:jitter(avg(p=>p.psychology?.bigFive?.conscientiousness),9),
+  extraversion:jitter(avg(p=>p.psychology?.bigFive?.extraversion),10),
+  agreeableness:jitter(avg(p=>p.psychology?.bigFive?.agreeableness),9),
+  emotionalVolatility:jitter(avg(p=>p.psychology?.bigFive?.emotionalVolatility),10)
+ };
+ const actionTendencies={
+  riskTolerance:jitter(avg(p=>p.psychology?.actionTendencies?.riskTolerance),10),
+  patience:jitter(avg(p=>p.psychology?.actionTendencies?.patience),10),
+  trustBaseline:jitter(avg(p=>p.psychology?.actionTendencies?.trustBaseline),9),
+  reciprocity:jitter(avg(p=>p.psychology?.actionTendencies?.reciprocity),9),
+  conflictAversion:jitter(avg(p=>p.psychology?.actionTendencies?.conflictAversion),10),
+  authorityAcceptance:50,statusDrive:30,curiosity:55,persistence:45,generosity:50,resentmentRetention:20,shameSensitivity:30,impulsivity:60
+ };
+ const values={family:70,autonomy:30,security:65,achievement:30,status:20,tradition:50,fairness:50,community:60,novelty:55,faith:40,materialComfort:40,environment:50};
+ const bornAbsoluteDay=absoluteDay(state.calendar)+ri(r,1,7);
+ return{
+  citizenId:id,countryId:country,householdId:household.householdId,settlementId:mother.settlementId,
+  givenName:'Unnamed',familyName:mother.familyName,sex:r()<.5?'female':'male',ageYears:0,ageDays:0,bornTurn:turn,bornAbsoluteDay,
+  parentIds:[mother.citizenId,partnerId].filter(Boolean),
+  birthDayOfYear:((bornAbsoluteDay-1)%365)+1,
+  occupationId:'child',occupation:{id:'child',sector:'dependent',yearsExperience:0,skill:0,status:'dependent'},
+  psychology:{bigFive,actionTendencies,epistemicTraits:{skepticism:20,rumorSusceptibility:20,deferenceToExpertise:70,memoryReliability:20},stressResponses:['seekAllies'],developmentalStability:.15},
+  values,
+  goals:{primaryGoal:'remain safe with caregivers',secondaryGoal:'develop through household care',protectedThing:'caregiver access',desiredStatus:'none',avoidAtAllCosts:'loss of essential care'},
+  materialState:{health:96,stress:12,householdFoodDays:mother.materialState?.householdFoodDays||60,householdDebt:mother.materialState?.householdDebt||0},
+  lifeHistory:[{age:0,type:'birth',detail:'born into household '+household.householdId}],
+  psychologyFingerprint:crypto.createHash('sha256').update(id+'|'+JSON.stringify(bigFive)).digest('hex').slice(0,16)
+ };
+}
+let dataScope=null;
+function applyDeathConsequences(country,death,data,turnEvents){
+ const dead=data.people[death.citizenId];if(!dead)return;
+ const closeTypes=new Set(['partner','parent','child','sibling','grandparent','grandchild','friend','relative']);
+ const connected=(data.social.edges||[]).filter(e=>(e.from===death.citizenId||e.to===death.citizenId)&&closeTypes.has(e.type));
+ const impacted=new Map();
+ for(const e of connected){
+  const other=e.from===death.citizenId?e.to:e.from;
+  if(other===death.citizenId||!data.people[other])continue;
+  const intensity=Math.max(e.affection||0,e.trust||0);
+  const delta=e.type==='partner'||e.type==='parent'||e.type==='child'?7+intensity/18:e.type==='sibling'?5+intensity/24:2+intensity/35;
+  impacted.set(other,Math.max(impacted.get(other)||0,delta));
+ }
+ for(const [id,stress] of impacted)applyOverlay(country,id,{stress},{turn,kind:'bereavement',citizenId:death.citizenId,relation:'social_graph'});
+ const worker=dead.occupation?.status==='worker';
+ applyHouseholdOverlay(country,dead.householdId,{stress:worker?3:2,foodDays:worker?-1.5:-.4,incomeCapacity:worker?-.18:0},{turn,kind:'household_death',citizenId:death.citizenId});
+ turnEvents.push({turn,country,type:'death_consequences',citizenId:death.citizenId,householdId:dead.householdId,affectedRelations:impacted.size,workerIncomeLoss:worker});
+}
 function simulateDemography(country,data){
  const rInactive=new Set(state.roster.inactiveCitizenIds||[]),partner={};
  for(const e of data.familyEdges)if(e.type==='partner')partner[e.from]=e.to;
  const births=[],deaths=[];let bc=1;
  const households=Object.values(data.households);
  for(const h of households){
-  const members=h.memberIds.map(id=>data.people[id]).filter(Boolean);
+  const members=h.memberIds.map(id=>data.people[id]).filter(Boolean).map(c=>effective(c,country));
   const mothers=members.filter(c=>c.sex==='female'&&c.ageYears>=19&&c.ageYears<=40&&partner[c.citizenId]&&!rInactive.has(c.citizenId));
   if(!mothers.length)continue;
   const mother=mothers[0],r=rngFor(state.worldId+'|BIRTH|'+turn+'|'+h.householdId);
   if(r()<.0013){
-   const fatherOrPartner=partner[mother.citizenId],prefix=country==='ARCUS'?'ARC':country==='MIREA'?'MIR':'VAL';
-   const id=prefix+'-N'+pad(turn)+'-'+String(bc++).padStart(3,'0');
-   births.push({citizenId:id,countryId:country,householdId:h.householdId,settlementId:mother.settlementId,givenName:'(unnamed newborn)',familyName:mother.familyName,sex:r()<.5?'female':'male',ageDays:0,bornTurn:turn,parentIds:[mother.citizenId,fatherOrPartner].filter(Boolean),developmentalSeed:crypto.createHash('sha256').update(id+'|development').digest('hex').slice(0,16)});
+   dataScope=data;
+   const fatherOrPartner=partner[mother.citizenId];
+   const newborn=makeNewborn(country,mother,fatherOrPartner,h,r);
+   births.push(newborn);
+   const relationshipBase={countryId:country,turnCreated:turn,trust:90,affection:92,fear:5,obligation:80,respect:35,envy:0,grievance:0,contactFrequency:98};
+   state.roster.dynamicRelationships=state.roster.dynamicRelationships||[];
+   state.roster.dynamicRelationships.push({...relationshipBase,from:mother.citizenId,to:newborn.citizenId,type:'parent'},{...relationshipBase,from:newborn.citizenId,to:mother.citizenId,type:'child'});
+   if(fatherOrPartner)state.roster.dynamicRelationships.push({...relationshipBase,from:fatherOrPartner,to:newborn.citizenId,type:'parent'},{...relationshipBase,from:newborn.citizenId,to:fatherOrPartner,type:'child'});
   }
  }
- for(const c of Object.values(data.people)){
-  if(rInactive.has(c.citizenId))continue;
+ for(const base of Object.values(data.people)){
+  if(rInactive.has(base.citizenId))continue;
+  const c=effective(base,country);
   const r=rngFor(state.worldId+'|DEATH|'+turn+'|'+c.citizenId);
   let p=c.ageYears<45?.00002:c.ageYears<65?.00008:c.ageYears<75?.00025:.00070;
   if(c.materialState.health<40)p+=.00035;
@@ -243,7 +309,10 @@ for(const country of ['ARCUS','MIREA','VALD']){
  turnEvents.push({turn,country,type:'food_balance',...fb});
  const dem=simulateDemography(country,data);demographyOut[country]=dem;
  state.roster.newCitizens.push(...dem.births);
- for(const d of dem.deaths)if(!state.roster.inactiveCitizenIds.includes(d.citizenId))state.roster.inactiveCitizenIds.push(d.citizenId);
+ for(const d of dem.deaths){
+  if(!state.roster.inactiveCitizenIds.includes(d.citizenId))state.roster.inactiveCitizenIds.push(d.citizenId);
+  applyDeathConsequences(country,d,data,turnEvents);
+ }
  state.countries[country].population+=dem.births.length-dem.deaths.length;
  state.countries[country].dynamic.birthsThisTurn=dem.births.length;state.countries[country].dynamic.deathsThisTurn=dem.deaths.length;
  if(dem.births.length||dem.deaths.length)turnEvents.push({turn,country,type:'demography',births:dem.births.length,deaths:dem.deaths.length});
