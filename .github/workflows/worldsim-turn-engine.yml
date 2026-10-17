@@ -1,0 +1,120 @@
+name: Worldsim turn engine
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/simulation/run_request.json'
+      - 'sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/simulation/policy_catalog_v1.json'
+      - '.github/workflows/worldsim-turn-engine.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-turn-engine
+  cancel-in-progress: false
+
+jobs:
+  turn:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read gated request
+        shell: python
+        run: |
+          import json, os
+          d=json.load(open('sidehustle-autopublish/note/worldsim/simulation/run_request.json'))
+          active=d.get('status')=='requested'
+          turn=int(d.get('requestedTurn',0))
+          print('active=',active,'turn=',turn)
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              f.write("WORLDSIM_ACTIVE="+("true" if active else "false")+"\n")
+              f.write("WORLDSIM_TURN="+str(turn)+"\n")
+      - name: Verify previous canonical state
+        shell: bash
+        run: |
+          if [ "$WORLDSIM_ACTIVE" != "true" ]; then echo "Turn request is on hold"; exit 0; fi
+          python - <<'PY'
+          import json, pathlib, os
+          turn=int(os.environ['WORLDSIM_TURN'])
+          assert turn>=1
+          prev=pathlib.Path(f'sidehustle-autopublish/note/worldsim/state/turn_{turn-1:04d}/world_state.json')
+          assert prev.exists(),prev
+          d=json.loads(prev.read_text())
+          assert d['turn']==turn-1,(d['turn'],turn)
+          print('PREVIOUS_STATE_OK',prev)
+          PY
+      - name: Prepare turn
+        shell: bash
+        run: |
+          if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
+          node sidehustle-autopublish/note/worldsim/simulation/prepare_turn_v1.mjs
+      - name: Resolve turn
+        shell: bash
+        run: |
+          if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
+          node sidehustle-autopublish/note/worldsim/simulation/resolve_turn_v1.mjs
+      - name: Deep turn QA
+        shell: bash
+        run: |
+          if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
+          python - <<'PY'
+          import json, pathlib, os
+          turn=int(os.environ['WORLDSIM_TURN'])
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim')
+          td=root/f'turns/turn_{turn:04d}'
+          state=json.loads((root/f'state/turn_{turn:04d}/world_state.json').read_text())
+          inp=json.loads((td/'turn_input.json').read_text())
+          votes=json.loads((td/'votes.json').read_text())
+          demo=json.loads((td/'demography.json').read_text())
+          summary=json.loads((td/'turn_summary.json').read_text())
+          assert state['turn']==turn
+          assert inp['turn']==turn
+          assert state['calendar']['turn']==turn
+          assert set(votes)=={'ARCUS','MIREA','VALD'}
+          proposed={c:{x['policyId'] for x in inp['proposals'][c]} for c in inp['proposals']}
+          for country,rows in votes.items():
+              for v in rows:
+                  assert v['policyId'] in proposed[country],(country,v['policyId'])
+                  assert 0<=v['yesShare']<=1
+                  if v['passed']:
+                      assert v['yesShare']>=v['threshold']
+                      if v['dualMajority']: assert v['settlementMajority']
+          for rid,r in state['worldDynamic']['resources'].items():
+              assert 0<=r['stockIndex']<=100,(rid,r)
+          for country,c in state['countries'].items():
+              assert c['population']>100
+              assert 0<c['meanFoodReserveDays']<250,(country,c['meanFoodReserveDays'])
+              assert 0<c['meanHealth']<=100
+              assert 0<=c['meanStress']<=100
+          births=[]; deaths=[]
+          for country,d in demo['countries'].items():
+              births += d['births']; deaths += d['deaths']
+          assert len({x['citizenId'] for x in births})==len(births)
+          assert len({x['citizenId'] for x in deaths})==len(deaths)
+          assert not ({x['citizenId'] for x in births}&{x['citizenId'] for x in deaths})
+          assert summary['turn']==turn
+          print('TURN_QA_OK',turn,summary)
+          PY
+      - name: Commit resolved turn
+        shell: bash
+        run: |
+          if [ "$WORLDSIM_ACTIVE" != "true" ]; then exit 0; fi
+          PAD=$(printf "%04d" "$WORLDSIM_TURN")
+          git config user.name 'worldsim-turn-engine'
+          git config user.email 'actions@users.noreply.github.com'
+          git add "sidehustle-autopublish/note/worldsim/state/turn_$PAD" "sidehustle-autopublish/note/worldsim/turns/turn_$PAD"
+          if git diff --cached --quiet; then echo 'No turn change'; exit 0; fi
+          git commit -m "Resolve LYRA turn $WORLDSIM_TURN"
+          git pull --rebase origin main
+          git push origin HEAD:main
