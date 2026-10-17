@@ -1,0 +1,84 @@
+name: Worldsim livelihood generation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/population/assign_livelihoods_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/livelihood_model_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/generated/**'
+      - '.github/workflows/worldsim-livelihood-generation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-livelihood-generation
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assign livelihoods
+        run: node sidehustle-autopublish/note/worldsim/population/assign_livelihoods_v1.mjs
+      - name: Validate livelihood population
+        shell: python
+        run: |
+          import json, pathlib
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim/population/livelihood')
+          summary=json.loads((root/'livelihood_summary.json').read_text())
+          assert summary['totalPopulation']==5451, summary['totalPopulation']
+          files=[p for p in root.rglob('*.json') if p.name!='livelihood_summary.json']
+          assert len(files)==13, len(files)
+          total=0
+          essential_errors=[]
+          aliases={'ARC-0001':'shipwright','ARC-0002':'fish_trader','ARC-0003':'healer','ARC-0004':'map_apprentice','ARC-0005':'storekeeper','ARC-0006':'dock_laborer',
+                   'MIR-0001':'farmer','MIR-0002':'irrigation_builder','MIR-0003':'teacher','MIR-0004':'herbalist','MIR-0005':'trader','MIR-0006':'student',
+                   'VAL-0001':'miner','VAL-0002':'quartermaster','VAL-0003':'healer','VAL-0004':'apprentice','VAL-0005':'goat_keeper','VAL-0006':'food_preserver'}
+          seen={}
+          for p in files:
+              d=json.loads(p.read_text())
+              assert d['stage']=='livelihood_v1', p
+              assert len(d['citizens'])==d['targetPopulation'], p
+              occ={}
+              for c in d['citizens']:
+                  total+=1
+                  assert c.get('occupationId'), c['citizenId']
+                  assert c.get('occupation',{}).get('status'), c['citizenId']
+                  if c['ageYears']<14:
+                      assert c['occupationId'] in ('child','student'), (c['citizenId'],c['ageYears'],c['occupationId'])
+                  if c['ageYears']<18:
+                      assert c['occupationId'] not in ('miner','deepwater_fisher','timber_worker','road_worker','dock_laborer','smelter'), c
+                  if c['citizenId'] in aliases:
+                      assert c['occupationId']==aliases[c['citizenId']], (c['citizenId'],c['occupationId'],aliases[c['citizenId']])
+                  occ[c['occupationId']]=occ.get(c['occupationId'],0)+1
+                  seen[c['citizenId']]=c
+              for h in d['households']:
+                  e=h['economy']
+                  for k,v in e.items():
+                      if isinstance(v,(int,float)):
+                          assert v>=0, (h['householdId'],k,v)
+                  assert e['foodDays']>=12
+              assert d['workplaces'] or d['targetPopulation']<30
+              assert all(x['from'] in seen or True for x in d['economicEdges'])
+          assert total==5451,total
+          print('LIVELIHOOD_QA_OK', total, summary['totalHouseholds'], summary['totalWorkplaces'])
+      - name: Commit livelihood registry
+        run: |
+          git config user.name 'worldsim-livelihood-generator'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/population/livelihood
+          if git diff --cached --quiet; then echo 'No livelihood change'; exit 0; fi
+          git commit -m 'Generate LYRA livelihood registry'
+          git pull --rebase origin main
+          git push origin HEAD:main
