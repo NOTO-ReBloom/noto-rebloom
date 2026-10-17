@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "scale": [
+    0,
+    100
+  ],
+  "bigFive": [
+    "openness",
+    "conscientiousness",
+    "extraversion",
+    "agreeableness",
+    "emotionalVolatility"
+  ],
+  "actionTendencies": [
+    "riskTolerance",
+    "patience",
+    "trustBaseline",
+    "reciprocity",
+    "conflictAversion",
+    "authorityAcceptance",
+    "statusDrive",
+    "curiosity",
+    "persistence",
+    "generosity",
+    "resentmentRetention",
+    "shameSensitivity",
+    "impulsivity"
+  ],
+  "values": [
+    "family",
+    "autonomy",
+    "security",
+    "achievement",
+    "status",
+    "tradition",
+    "fairness",
+    "community",
+    "novelty",
+    "faith",
+    "materialComfort",
+    "environment"
+  ],
+  "epistemicTraits": [
+    "skepticism",
+    "rumorSusceptibility",
+    "deferenceToExpertise",
+    "memoryReliability"
+  ],
+  "rules": [
+    "Correlated latent traits are used; dimensions are not independent dice rolls.",
+    "Country culture changes means only weakly. Within-country standard deviation must exceed between-country mean differences on most traits.",
+    "Household stress, debt, dependents, dangerous work and age modify goals and current state, not immutable personality wholesale.",
+    "Calibration citizens retain authored personality and value vectors.",
+    "Every non-calibration citizen receives a unique psychology fingerprint.",
+    "Children have developing values and higher volatility; thresholds evolve with age in later turns."
+  ],
+  "contextEffects": {
+    "hazardousWork": {
+      "security": 4,
+      "riskTolerance": 2,
+      "emotionalVolatility": 1
+    },
+    "householdDebt": {
+      "security": 7,
+      "materialComfort": 3,
+      "stress": 12
+    },
+    "dependents": {
+      "family": 8,
+      "security": 6,
+      "patience": 2
+    },
+    "highSkill": {
+      "achievement": 5,
+      "statusDrive": 2
+    },
+    "foodInsecurity": {
+      "security": 9,
+      "stress": 14
+    },
+    "elder": {
+      "tradition": 4,
+      "patience": 5,
+      "riskTolerance": -5
+    },
+    "youth": {
+      "novelty": 6,
+      "curiosity": 5,
+      "impulsivity": 5
+    }
+  },
+  "goalFamilies": {
+    "food": [
+      "keep the household fed through the next seasonal risk",
+      "improve yield without risking the household reserve",
+      "protect access to productive land or water"
+    ],
+    "repair": [
+      "keep tools and infrastructure reliable",
+      "build a reputation for dependable work",
+      "gain enough materials to finish pending repairs"
+    ],
+    "resource": [
+      "earn safely from difficult work",
+      "avoid a preventable injury or supply interruption",
+      "secure tools and access needed for the next work cycle"
+    ],
+    "transport": [
+      "keep routes open and income regular",
+      "reduce delays that threaten household earnings",
+      "earn trust from people who depend on deliveries"
+    ],
+    "trade": [
+      "stabilize trade relationships",
+      "protect reputation and working capital",
+      "expand access to goods without taking ruinous debt"
+    ],
+    "health": [
+      "keep preventable illness from becoming fatal",
+      "maintain trust while treating limited resources fairly",
+      "improve practical knowledge from repeated cases"
+    ],
+    "education": [
+      "keep learning available despite work demands",
+      "help younger people gain useful skills",
+      "protect time and materials for teaching"
+    ],
+    "governance": [
+      "keep records and decisions credible",
+      "avoid favoritism that damages legitimacy",
+      "make rules understandable enough to follow"
+    ],
+    "care": [
+      "keep dependents safe and daily life functioning",
+      "avoid exhaustion while meeting family obligations",
+      "build reciprocal help that can survive a crisis"
+    ],
+    "household": [
+      "keep the household stable",
+      "reduce vulnerability to a sudden shortage",
+      "maintain dignity and reciprocal support"
+    ],
+    "craft": [
+      "improve craft quality and secure materials",
+      "build durable work people will rely on",
+      "pass on a useful skill"
+    ],
+    "security": [
+      "notice danger early without creating panic",
+      "protect the settlement while avoiding unnecessary conflict",
+      "keep watch systems credible"
+    ],
+    "training": [
+      "become competent enough to work independently",
+      "earn a mentor's trust",
+      "avoid being trapped in work with no future"
+    ],
+    "retired": [
+      "remain useful without becoming dependent",
+      "protect household continuity",
+      "pass on knowledge before it is lost"
+    ],
+    "dependent": [
+      "stay safe and connected to caregivers",
+      "learn the rules of the household and settlement",
+      "gain small areas of independence"
+    ]
+  }
+}
