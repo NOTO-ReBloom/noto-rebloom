@@ -112,9 +112,15 @@ jobs:
 
           evidence=load('qa/long_horizon_verified_20261017.json')
           assert evidence['workflowConclusion']=='success'
-          assert evidence['turns']>=60
-          assert evidence['births']>0 and evidence['deaths']>0
-          assert evidence['institutionRotations']>0
+          assert evidence['turns']>=156
+          assert evidence['demographic']['births']>0 and evidence['demographic']['deaths']>0
+          assert evidence['demographic']['conceptions']>0
+          assert evidence['demographic']['birthdays']>0
+          assert evidence['demographic']['lifeStageTransitions']>0
+          assert evidence['demographic']['partnerships']>0
+          assert evidence['institutions']['rotations']>0
+          assert evidence['calendar']['end']['absoluteDay']==1331
+          assert set(evidence['calendar']['seasonsObserved'])=={'winter','spring','summer','autumn'}
           for country in expected:
               assert len(evidence['policyDiversity'][country])>=3
               assert evidence['finalPopulation'][country]>100
