@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "turnLengthDays": 7,
   "pipeline": [
     "world_update",
@@ -13,7 +13,7 @@
   ],
   "randomness": {
     "rule": "Use bounded seeded randomness for weather, accidents, discovery and demographic noise. Never use randomness to force a dramatic story.",
-    "seedBase": "WORLD-001"
+    "seedBase": "LYRA-001"
   },
   "countryDecision": {
     "informationIsolation": true,
@@ -30,7 +30,8 @@
       "knowledge of undiscovered countries",
       "author instructions to create drama",
       "retroactive state edits"
-    ]
+    ],
+    "description": "Policy candidates are resolved by persistent citizen institutions; no fixed country objective function is used."
   },
   "resolution": {
     "rule": "Policy agent chooses actions; resolution engine calculates consequences. The same agent must not freely choose both action and successful outcome.",
@@ -56,9 +57,9 @@
   },
   "publication": {
     "newPostsFree": true,
-    "defaultCadencePerWeek": 2,
+    "defaultCadencePerWeek": "0-2",
     "hardMaxPerWeek": 3,
-    "publishOnlyIf": "turn contains a meaningful state change, decision, discovery or human-scale story",
+    "publishOnlyIf": "turn contains a contested or institutionally important decision, demographic consequence, major material-state change, exploration discovery or first contact",
     "noFiller": true,
     "perspectives": [
       "country dispatch",
@@ -70,5 +71,17 @@
     "fictionDisclosure": "Clearly state that countries, citizens and statistics are fictional simulations.",
     "realPolitics": "Do not map countries onto current real-world parties, ethnicities or nations.",
     "casualtyHandling": "Avoid gratuitous suffering; summarize crises without exploitative detail."
+  },
+  "longHorizon": {
+    "requiredStressTurns": 60,
+    "lastVerified": "2026-10-17",
+    "checks": [
+      "policy cooldown",
+      "birth/death uniqueness",
+      "institution rotation",
+      "resource bounds",
+      "population continuity",
+      "food reserve bounds"
+    ]
   }
 }
