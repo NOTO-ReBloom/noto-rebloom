@@ -86,7 +86,9 @@
     "legacyQueueIsolation": true,
     "maxAutoPostsPerTurn": 2,
     "hardMaxPostsPerWeek": 3,
-    "noFiller": true
+    "noFiller": true,
+    "launchBatchExceptionPosts": 4,
+    "hardMaxPostsPerWeekAppliesAfterLaunch": true
   },
   "status": "final_time_model_hold",
   "holdReason": "Final temporal model upgrade in progress: seasonal calendar, gestation, lifecycle, and real-time catch-up must pass QA before release.",
