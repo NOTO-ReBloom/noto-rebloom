@@ -1,46 +1,19 @@
 {
   "id": "VALD",
+  "version": 2,
   "nameJa": "ヴァルド",
   "nameEn": "Vald",
-  "motto": "明日を失わないために今日を備える",
-  "objectiveWeights": {
-    "stability": 0.35,
-    "resilience": 0.3,
-    "security": 0.15,
-    "foodEnergySecurity": 0.1,
-    "growth": 0.05,
-    "wellbeing": 0.05
-  },
-  "geography": {
-    "type": "mountain basin",
-    "arableLand": 29,
-    "mineralResources": 87,
-    "forest": 71,
-    "coastAccess": 0,
-    "freshWater": 76,
-    "climate": "cold highland"
-  },
-  "initialState": {
-    "population": 96,
-    "treasury": 1000000,
-    "foodStock": 65,
-    "energy": 71,
-    "housing": 55,
-    "health": 58,
-    "education": 47,
-    "technology": 27,
-    "happiness": 51,
-    "inequality": 16,
-    "environment": 75,
-    "security": 67,
-    "governanceCapacity": 68
-  },
-  "knowledge": {
-    "otherCountriesKnown": false,
-    "worldMapCompletion": 0.04,
-    "explorationRange": 5,
-    "communicationRange": 4
-  },
-  "stateStyle": "国営放送・公報のように抑制的。備蓄、危機、計画達成率を重視しつつ、事実と政府評価を分ける。",
-  "governingConstraint": "The agent may favor reserves and centralized coordination but cannot suppress inconvenient state variables in observer records."
+  "population": 1391,
+  "settlements": [
+    "VALD-BASIN-01",
+    "VALD-BASIN-02",
+    "VALD-UPPER-01",
+    "VALD-PASS-01"
+  ],
+  "institution": "冬季備え協約",
+  "policySource": "citizen_institutions_only",
+  "legacyObjectiveWeightsDeprecated": true,
+  "knownOtherCountries": false,
+  "verifiedExplorationRadiusKm": 26,
+  "stateStyle": "備蓄・鉱山・冬支度などの具体的制約を、政府発表と生活者の見方を分けて伝える。"
 }
