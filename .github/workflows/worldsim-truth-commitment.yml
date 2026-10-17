@@ -1,0 +1,45 @@
+name: Worldsim truth commitment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/world/observer_truth_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/world/create_truth_commitment.mjs'
+      - '.github/workflows/worldsim-truth-commitment.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  commit_truth:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sidehustle-autopublish/note/worldsim/world/create_truth_commitment.mjs
+      - name: Verify commitment shape
+        shell: python
+        run: |
+          import json, pathlib
+          p=pathlib.Path('sidehustle-autopublish/note/worldsim/world/world_truth_commitment.json')
+          d=json.loads(p.read_text())
+          assert d['committedTurn']==0
+          assert len(d['canonicalJsonSha256'])==64
+          print('TRUTH_COMMITMENT_OK',d['canonicalJsonSha256'])
+      - name: Commit fingerprint
+        run: |
+          git config user.name 'worldsim-truth-commitment'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/world/world_truth_commitment.json
+          if git diff --cached --quiet; then echo 'No commitment change'; exit 0; fi
+          git commit -m 'Commit LYRA turn-0 world truth fingerprint'
+          git pull --rebase origin main
+          git push origin HEAD:main
