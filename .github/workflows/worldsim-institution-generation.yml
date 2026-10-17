@@ -1,0 +1,60 @@
+name: Worldsim institution generation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/institutions/generate_institutions_v2.mjs'
+      - 'sidehustle-autopublish/note/worldsim/institutions/institution_model_v2.json'
+      - 'sidehustle-autopublish/note/worldsim/population/personality/**'
+      - 'sidehustle-autopublish/note/worldsim/population/social/**'
+      - '.github/workflows/worldsim-institution-generation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate institutions
+        run: node sidehustle-autopublish/note/worldsim/institutions/generate_institutions_v2.mjs
+      - name: Validate institutions
+        shell: python
+        run: |
+          import json, pathlib
+          p=pathlib.Path('sidehustle-autopublish/note/worldsim/institutions/institution_state_turn0.json')
+          d=json.loads(p.read_text())
+          assert d['turn']==0
+          expected={'ARCUS':4,'MIREA':5,'VALD':4}
+          for country,c in d['countries'].items():
+              assert len(c['localCouncils'])==expected[country],(country,len(c['localCouncils']))
+              assert c['nationalBody']['members']
+              assert c['executive']['memberIds']
+              assert c['legacyObjectiveWeightsUsed'] is False
+              local_people=set()
+              for council in c['localCouncils'].values():
+                  assert len(council['memberIds'])==council['seats']
+                  assert len(set(council['memberIds']))==len(council['memberIds'])
+                  local_people.update(council['memberIds'])
+              assert all(x['citizenId'] in local_people for x in c['nationalBody']['members'])
+              assert all(x in {m['citizenId'] for m in c['nationalBody']['members']} for x in c['executive']['memberIds'])
+          print('INSTITUTION_QA_OK')
+      - name: Commit institutions
+        run: |
+          git config user.name 'worldsim-institution-generator'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/institutions/institution_state_turn0.json
+          if git diff --cached --quiet; then echo 'No institution change'; exit 0; fi
+          git commit -m 'Generate LYRA turn-0 institutions'
+          git pull --rebase origin main
+          git push origin HEAD:main
