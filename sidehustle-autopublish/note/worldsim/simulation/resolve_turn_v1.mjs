@@ -166,6 +166,10 @@ function applyPolicy(country,result,data,citizenDeltaLog){
  cs.dynamic.publicWorks=cs.dynamic.publicWorks||[];
  cs.dynamic.publicWorks.push({policyId:p.id,title:p.title,startedTurn:turn,completeTurn:turn+(p.durationTurns||1),status:'active'});
  if(eff.country?.foodDays)cs.meanFoodReserveDays=round(cs.meanFoodReserveDays+eff.country.foodDays,2);
+ if(eff.country?.fuelDays){
+  cs.meanFuelReserveDays=round(Math.max(0,cs.meanFuelReserveDays+eff.country.fuelDays),2);
+  for(const ss of Object.values(cs.settlementStates))ss.meanFuelReserveDays=round(Math.max(0,ss.meanFuelReserveDays+eff.country.fuelDays),2);
+ }
  if(eff.country?.health)cs.meanHealth=round(clamp(cs.meanHealth+eff.country.health),2);
  if(eff.country?.stress)cs.meanStress=round(clamp(cs.meanStress+eff.country.stress),2);
  for(const [sid,d] of Object.entries(eff.settlement||{})){
@@ -215,6 +219,36 @@ function foodBalance(country,data){
   reserveDaysDelta:round(delta,3),
   seasonModifier:season,
   weatherModifier:round(wx,3)
+ };
+}
+function fuelBalance(country,data){
+ const season=normalizeCalendar(state.calendar).season;
+ const need={
+  ARCUS:{winter:5.0,spring:2.2,summer:1.0,autumn:3.2},
+  MIREA:{winter:4.2,spring:1.8,summer:.8,autumn:2.5},
+  VALD:{winter:7.0,spring:3.0,summer:1.2,autumn:4.2}
+ }[country][season];
+ const output={timber_worker:30,charcoal_burner:60,wetland_gatherer:12,farmer:3,orchard_keeper:2,goat_keeper:3,hunter:2};
+ let production=state.countries[country].population*1.4;
+ for(const raw of Object.values(data.people)){
+  if((state.roster.inactiveCitizenIds||[]).includes(raw.citizenId))continue;
+  const c=effective(raw,country);
+  production+=output[c.occupationId]||0;
+ }
+ let weatherMultiplier=1;
+ if(country==='VALD')weatherMultiplier=input.weather.VALD.coldPressureIndex>=75?1.18:input.weather.VALD.coldPressureIndex>=60?1.08:.98;
+ if(country==='ARCUS')weatherMultiplier=input.weather.ARCUS.coastalWindIndex>=70?1.08:1;
+ if(country==='MIREA')weatherMultiplier=input.weather.MIREA.upperCatchmentRainIndex>=72?1.05:1;
+ const pop=state.countries[country].population;
+ const consumption=pop*need*weatherMultiplier;
+ const current=state.countries[country].meanFuelReserveDays;
+ const storageLoss=current>140?(current-140)*.012:0;
+ const gross=(production-consumption)/Math.max(1,pop);
+ const delta=gross-storageLoss;
+ return{
+  productionPersonDays:round(production,1),consumptionPersonDays:round(consumption,1),
+  grossReserveDaysDelta:round(gross,3),storageLossDays:round(storageLoss,3),
+  reserveDaysDelta:round(delta,3),season,weatherMultiplier:round(weatherMultiplier,3)
  };
 }
 const NEWBORN_NAMES={
@@ -766,6 +800,19 @@ for(const country of ['ARCUS','MIREA','VALD']){
  state.countries[country].meanFoodReserveDays=round(Math.max(0,state.countries[country].meanFoodReserveDays+fb.reserveDaysDelta),2);
  for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFoodReserveDays=round(Math.max(0,ss.meanFoodReserveDays+fb.reserveDaysDelta),2);
  turnEvents.push({turn,country,type:'food_balance',...fb});
+
+ const fuel=fuelBalance(country,data);
+ state.countries[country].meanFuelReserveDays=round(Math.max(0,state.countries[country].meanFuelReserveDays+fuel.reserveDaysDelta),2);
+ for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFuelReserveDays=round(Math.max(0,ss.meanFuelReserveDays+fuel.reserveDaysDelta),2);
+ if(state.countries[country].meanFuelReserveDays<14&&fuel.season==='winter'){
+  state.countries[country].meanStress=round(clamp(state.countries[country].meanStress+.28),2);
+  state.countries[country].meanHealth=round(clamp(state.countries[country].meanHealth-.10),2);
+  for(const ss of Object.values(state.countries[country].settlementStates)){
+   ss.meanStress=round(clamp(ss.meanStress+.28),2);
+   ss.meanHealth=round(clamp(ss.meanHealth-.10),2);
+  }
+ }
+ turnEvents.push({turn,country,type:'fuel_balance',...fuel});
  const dem=simulateDemography(country,data);demographyOut[country]=dem;
  state.roster.newCitizens.push(...dem.births);
  for(const d of dem.deaths){
