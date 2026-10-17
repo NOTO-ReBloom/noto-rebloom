@@ -63,7 +63,7 @@ function urgency(policy,country,people,belief){
  return Number(clamp(u).toFixed(2));
 }
 function sponsor(policy,country,people,belief){
- const members=institutions.countries[country].nationalBody.members.map(x=>people[x.citizenId]).filter(Boolean);
+ const members=(state.countries[country].institution||institutions.countries[country]).nationalBody.members.map(x=>people[x.citizenId]).filter(Boolean);
  const preferred=new Set(policy.sponsorSectors||[]);
  return members.map(c=>{
   const topicRumors=belief.records[c.citizenId]?.rumors?.filter(x=>x.topic===policy.topic)||[];
