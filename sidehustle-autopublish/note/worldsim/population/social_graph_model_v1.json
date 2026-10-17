@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "relationshipTypes": [
+    "parent",
+    "child",
+    "partner",
+    "sibling",
+    "grandparent",
+    "grandchild",
+    "relative",
+    "coworker",
+    "neighbor",
+    "friend",
+    "mentor",
+    "apprentice",
+    "rival",
+    "trade_contact",
+    "creditor",
+    "debtor"
+  ],
+  "directionalMetrics": [
+    "trust",
+    "affection",
+    "fear",
+    "obligation",
+    "respect",
+    "envy",
+    "grievance",
+    "contactFrequency"
+  ],
+  "rules": [
+    "Every relationship is directional; A's trust in B is not copied to B.",
+    "Family creates opportunity for contact and obligation, not automatic affection.",
+    "Friendship likelihood depends on proximity, repeated contact, age, value similarity and extraversion.",
+    "Rivalry requires repeated contact or shared status competition; it is never random between strangers.",
+    "Cross-settlement ties arise through transport, trade, migration-like household history or specialized work.",
+    "No cross-country social edge exists before first contact.",
+    "Every adult must have at least two meaningful nonzero social ties; every minor must have a caregiver/family tie.",
+    "No citizen is retroactively invented to create a network role."
+  ],
+  "typePriors": {
+    "partner": {
+      "trust": 72,
+      "affection": 75,
+      "obligation": 72,
+      "respect": 62,
+      "contactFrequency": 95
+    },
+    "parent": {
+      "trust": 68,
+      "affection": 73,
+      "obligation": 75,
+      "respect": 60,
+      "contactFrequency": 85
+    },
+    "child": {
+      "trust": 71,
+      "affection": 78,
+      "obligation": 46,
+      "respect": 58,
+      "contactFrequency": 86
+    },
+    "sibling": {
+      "trust": 62,
+      "affection": 65,
+      "obligation": 48,
+      "respect": 52,
+      "contactFrequency": 65
+    },
+    "grandparent": {
+      "trust": 67,
+      "affection": 69,
+      "obligation": 54,
+      "respect": 68,
+      "contactFrequency": 55
+    },
+    "grandchild": {
+      "trust": 70,
+      "affection": 77,
+      "obligation": 38,
+      "respect": 54,
+      "contactFrequency": 55
+    },
+    "coworker": {
+      "trust": 52,
+      "affection": 42,
+      "obligation": 44,
+      "respect": 52,
+      "contactFrequency": 76
+    },
+    "neighbor": {
+      "trust": 50,
+      "affection": 45,
+      "obligation": 39,
+      "respect": 48,
+      "contactFrequency": 48
+    },
+    "friend": {
+      "trust": 67,
+      "affection": 72,
+      "obligation": 44,
+      "respect": 58,
+      "contactFrequency": 61
+    },
+    "mentor": {
+      "trust": 65,
+      "affection": 49,
+      "obligation": 56,
+      "respect": 78,
+      "contactFrequency": 67
+    },
+    "apprentice": {
+      "trust": 54,
+      "affection": 45,
+      "obligation": 52,
+      "respect": 51,
+      "contactFrequency": 67
+    },
+    "rival": {
+      "trust": 31,
+      "affection": 25,
+      "obligation": 18,
+      "respect": 55,
+      "contactFrequency": 55
+    },
+    "trade_contact": {
+      "trust": 51,
+      "affection": 31,
+      "obligation": 47,
+      "respect": 50,
+      "contactFrequency": 34
+    }
+  },
+  "networkTargets": {
+    "adultMeanMeaningfulDegree": [
+      6,
+      14
+    ],
+    "minorMeanMeaningfulDegree": [
+      3,
+      9
+    ],
+    "crossSettlementAdultShare": [
+      0.06,
+      0.18
+    ],
+    "isolatedAdults": 0,
+    "crossCountryEdges": 0
+  }
+}
