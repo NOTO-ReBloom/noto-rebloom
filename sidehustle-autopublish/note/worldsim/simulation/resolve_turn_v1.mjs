@@ -124,7 +124,7 @@ function voteUtility(c,policy,proposal,data){
   factors.experiencedOutcome=clamp(past.reduce((sum,m)=>sum+(-(m.stressDelta||0)*1.8)+(m.healthDelta||0)*2.2,0),-8,8);
  }
  if((policy.valueImpact?.security||0)>0&&c.materialState.stress>65)factors.stressSecurity=2.5;
- const nationalFood=state.countries[country].meanFoodReserveDays;
+ const nationalFood=state.countries[c.countryId].meanFoodReserveDays;
  if((policy.valueImpact?.security||0)>0&&nationalFood<28)factors.stressSecurity+=clamp((28-nationalFood)/28*4,0,4);
  const r=rngFor(state.worldId+'|VOTE|'+turn+'|'+policy.id+'|'+c.citizenId);
  factors.boundedNoise=(r()-.5)*7;
