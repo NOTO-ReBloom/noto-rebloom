@@ -62,8 +62,9 @@ cd /d "$Target"
 exit /b %ERRORLEVEL%
 "@ | Set-Content -Encoding ASCII $Wrapper
 
-  try{Disable-ScheduledTask -TaskName 'NOTE_FreePublish_0805' -ErrorAction SilentlyContinue|Out-Null}catch{}
-  try{Disable-ScheduledTask -TaskName 'NOTE_FreePublish_1705' -ErrorAction SilentlyContinue|Out-Null}catch{}
+  foreach($legacy in @('NOTE_RemoteQueue_30min','NOTE_FreePublish_0805','NOTE_FreePublish_1705','note自動投稿_朝10時','note自動投稿_夜19時')){
+    try{Disable-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue|Out-Null}catch{}
+  }
   schtasks /Create /F /SC DAILY /ST 19:05 /TN 'NOTE_WorldSimPublish_1905' /TR "cmd.exe /c `"$Wrapper`"" | Out-Null
   Write-Host 'WORLDSIM_REBUILD_OK'
 }finally{
