@@ -1,0 +1,68 @@
+name: Worldsim household generation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sidehustle-autopublish/note/worldsim/population/generate_households_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/population/demographic_targets_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/anchor_households_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/settlement_livelihood_skeleton_v1.json'
+      - 'sidehustle-autopublish/note/worldsim/population/calibration_citizens_v1.json'
+      - '.github/workflows/worldsim-household-generation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldsim-household-generation
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate household registry
+        run: node sidehustle-autopublish/note/worldsim/population/generate_households_v1.mjs
+      - name: Validate generated population
+        shell: python
+        run: |
+          import json, pathlib, sys
+          root=pathlib.Path('sidehustle-autopublish/note/worldsim/population/generated')
+          summary=json.loads((root/'household_generation_summary.json').read_text())
+          assert summary['totalPopulation']==5451, summary
+          files=[p for p in root.rglob('*.json') if p.name!='household_generation_summary.json']
+          assert len(files)==13, len(files)
+          ids=set(); households=set(); total=0
+          for p in files:
+              d=json.loads(p.read_text())
+              assert len(d['citizens'])==d['targetPopulation'], p
+              for c in d['citizens']:
+                  assert c['citizenId'] not in ids, c['citizenId']
+                  ids.add(c['citizenId']); total+=1
+              for h in d['households']:
+                  assert h['householdId'] not in households, h['householdId']
+                  households.add(h['householdId'])
+                  members=[x for x in d['citizens'] if x['citizenId'] in h['memberIds']]
+                  assert members
+                  assert any(x['ageYears']>=18 for x in members), h['householdId']
+          assert total==5451, total
+          print('HOUSEHOLD_QA_OK', total, len(households), len(files))
+      - name: Commit generated household registry
+        run: |
+          git config user.name 'worldsim-household-generator'
+          git config user.email 'actions@users.noreply.github.com'
+          git add sidehustle-autopublish/note/worldsim/population/generated
+          if git diff --cached --quiet; then echo 'No generated change'; exit 0; fi
+          git commit -m 'Generate LYRA household registry'
+          git pull --rebase origin main
+          git push origin HEAD:main
