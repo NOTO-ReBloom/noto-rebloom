@@ -49,7 +49,7 @@
       "people": {
         "sponsor": {
           "citizenId": "ARC-0010",
-          "name": "Merel Rinn",
+          "name": "Saren Rinn",
           "age": 55,
           "sex": "female",
           "settlementId": "ARCA-PORT-01",
@@ -132,7 +132,7 @@
         },
         "strongestYes": {
           "citizenId": "ARC-0010",
-          "name": "Merel Rinn",
+          "name": "Saren Rinn",
           "age": 55,
           "sex": "female",
           "settlementId": "ARCA-PORT-01",
@@ -215,7 +215,7 @@
         },
         "strongestNo": {
           "citizenId": "ARC-1783",
-          "name": "Liio Solel",
+          "name": "Dara Coren",
           "age": 65,
           "sex": "female",
           "settlementId": "ARCA-RIDGE-01",
@@ -302,7 +302,7 @@
         },
         "abstainer": {
           "citizenId": "ARC-1618",
-          "name": "Meris Terar",
+          "name": "Rovan Varek",
           "age": 64,
           "sex": "male",
           "settlementId": "ARCA-INLAND-01",
@@ -786,7 +786,7 @@
       "people": {
         "sponsor": {
           "citizenId": "MIR-1162",
-          "name": "Talsa Velen",
+          "name": "Eli Oren",
           "age": 51,
           "sex": "female",
           "settlementId": "MIREA-RIVER-03",
@@ -873,7 +873,7 @@
         },
         "strongestYes": {
           "citizenId": "MIR-1162",
-          "name": "Talsa Velen",
+          "name": "Eli Oren",
           "age": 51,
           "sex": "female",
           "settlementId": "MIREA-RIVER-03",
@@ -960,7 +960,7 @@
         },
         "strongestNo": {
           "citizenId": "MIR-1114",
-          "name": "Onana Amii",
+          "name": "Lora Eles",
           "age": 76,
           "sex": "female",
           "settlementId": "MIREA-RIVER-03",
@@ -1043,7 +1043,7 @@
         },
         "abstainer": {
           "citizenId": "MIR-1777",
-          "name": "Noon Tesr",
+          "name": "Ereni Ami",
           "age": 53,
           "sex": "male",
           "settlementId": "MIREA-MARKET-01",
@@ -1523,10 +1523,10 @@
         "policyId": "V_MINE_INSPECTION",
         "title": "オスク鉱谷の坑道支保を2日間点検する",
         "passed": true,
-        "yes": 7,
-        "no": 2,
+        "yes": 6,
+        "no": 3,
         "abstain": 3,
-        "yesShare": 0.7778,
+        "yesShare": 0.6667,
         "dualMajority": false,
         "settlementMajority": true,
         "settlementResults": {}
@@ -1534,7 +1534,7 @@
       "people": {
         "sponsor": {
           "citizenId": "VAL-1119",
-          "name": "Kelek Keler",
+          "name": "Hela Kelm",
           "age": 56,
           "sex": "female",
           "settlementId": "VALD-UPPER-01",
@@ -1620,140 +1620,154 @@
           }
         },
         "strongestYes": {
-          "citizenId": "VAL-1055",
-          "name": "Dara Volh",
-          "age": 65,
+          "citizenId": "VAL-0675",
+          "name": "Olen Osk",
+          "age": 73,
           "sex": "female",
-          "settlementId": "VALD-UPPER-01",
-          "occupation": "healer_assistant",
-          "sector": "health",
+          "settlementId": "VALD-BASIN-02",
+          "occupation": "food_preserver",
+          "sector": "food_processing",
           "skill": 96,
-          "householdId": "VAL-H0370",
+          "householdId": "VAL-H0269",
           "household": {
             "members": 2,
-            "foodDays": 87,
+            "foodDays": 51,
             "debtUnits": 0,
-            "cashLikeReserve": 21,
+            "cashLikeReserve": 53,
             "landUseUnits": 0
           },
           "selectedValues": {
-            "family": 54,
-            "autonomy": 45,
-            "security": 70,
-            "achievement": 56,
+            "family": 65,
+            "autonomy": 55,
+            "security": 82,
+            "achievement": 72,
             "fairness": 53,
-            "community": 66,
-            "environment": 61,
-            "status": 61
+            "community": 69,
+            "environment": 67,
+            "status": 37
           },
           "selectedTraits": {
-            "conscientiousness": 45,
-            "agreeableness": 71,
-            "riskTolerance": 47,
-            "authorityAcceptance": 60,
-            "statusDrive": 53
+            "conscientiousness": 57,
+            "agreeableness": 48,
+            "riskTolerance": 39,
+            "authorityAcceptance": 42,
+            "statusDrive": 39
           },
           "goals": {
-            "primary": "keep preventable illness from becoming fatal",
-            "secondary": "improve practical knowledge from repeated cases",
+            "primary": "keep the household stable",
+            "secondary": "reduce vulnerability to a sudden shortage",
             "protectedThing": "household stability and reputation",
             "avoidAtAllCosts": "a sudden loss of livelihood with no reciprocal support"
           },
           "material": {
-            "health": 97,
-            "stress": 27
+            "health": 72,
+            "stress": 31
           },
-          "relevantRumors": [],
+          "relevantRumors": [
+            {
+              "rumorId": "V-B2-R1",
+              "claim": "production pressure is causing some mine supports to be replaced too late",
+              "topic": "mining",
+              "confidence": 52,
+              "stance": "uncertain",
+              "sourceId": "VAL-0725",
+              "sourceRelation": "friend"
+            }
+          ],
           "vote": {
             "choice": "yes",
-            "utility": 10.739,
+            "utility": 9.412,
             "strongestPositive": [
               [
                 "values",
-                6.865
+                9.662
               ],
               [
-                "sectorBenefit",
-                6
+                "affectedLocality",
+                3.5
               ],
               [
                 "boundedNoise",
-                1.674
+                3.038
               ]
             ],
             "strongestNegative": [
+              [
+                "localCost",
+                -4.08
+              ],
               [
                 "opportunityCost",
                 -3.8
               ]
             ],
             "factors": {
-              "values": 6.865,
-              "sectorBenefit": 6,
+              "values": 9.662,
+              "sectorBenefit": 0,
               "sectorCost": 0,
-              "affectedLocality": 0,
-              "localCost": 0,
+              "affectedLocality": 3.5,
+              "localCost": -4.08,
               "opportunityCost": -3.8,
               "sponsorOwnership": 0,
-              "rumorSignal": 0,
+              "rumorSignal": 1.092,
               "sponsorRelationship": 0,
               "stressSecurity": 0,
-              "boundedNoise": 1.674
+              "boundedNoise": 3.038
             }
           }
         },
         "strongestNo": {
-          "citizenId": "VAL-0542",
-          "name": "Fenan Oskn",
+          "citizenId": "VAL-0421",
+          "name": "Derva Tarn",
           "age": 70,
-          "sex": "female",
+          "sex": "male",
           "settlementId": "VALD-BASIN-01",
           "occupation": "retired",
           "sector": "retired",
           "skill": 96,
-          "householdId": "VAL-H0237",
+          "householdId": "VAL-H0201",
           "household": {
             "members": 2,
-            "foodDays": 56,
+            "foodDays": 92,
             "debtUnits": 0,
-            "cashLikeReserve": 40,
+            "cashLikeReserve": 47,
             "landUseUnits": 0
           },
           "selectedValues": {
             "family": 49,
-            "autonomy": 47,
-            "security": 53,
-            "achievement": 57,
-            "fairness": 62,
-            "community": 63,
-            "environment": 47,
-            "status": 58
+            "autonomy": 59,
+            "security": 50,
+            "achievement": 56,
+            "fairness": 57,
+            "community": 52,
+            "environment": 53,
+            "status": 26
           },
           "selectedTraits": {
-            "conscientiousness": 54,
-            "agreeableness": 69,
-            "riskTolerance": 39,
-            "authorityAcceptance": 58,
-            "statusDrive": 41
+            "conscientiousness": 61,
+            "agreeableness": 49,
+            "riskTolerance": 46,
+            "authorityAcceptance": 25,
+            "statusDrive": 42
           },
           "goals": {
-            "primary": "protect household continuity",
-            "secondary": "pass on knowledge before it is lost",
+            "primary": "remain useful without becoming dependent",
+            "secondary": "protect household continuity",
             "protectedThing": "household stability and reputation",
             "avoidAtAllCosts": "a sudden loss of livelihood with no reciprocal support"
           },
           "material": {
-            "health": 76,
-            "stress": 35
+            "health": 83,
+            "stress": 23
           },
           "relevantRumors": [],
           "vote": {
             "choice": "no",
-            "utility": -4.669,
+            "utility": -6.876,
             "strongestPositive": [
               [
                 "values",
-                2.246
+                0.349
               ]
             ],
             "strongestNegative": [
@@ -1763,11 +1777,11 @@
               ],
               [
                 "boundedNoise",
-                -3.115
+                -3.425
               ]
             ],
             "factors": {
-              "values": 2.246,
+              "values": 0.349,
               "sectorBenefit": 0,
               "sectorCost": 0,
               "affectedLocality": 0,
@@ -1777,13 +1791,13 @@
               "rumorSignal": 0,
               "sponsorRelationship": 0,
               "stressSecurity": 0,
-              "boundedNoise": -3.115
+              "boundedNoise": -3.425
             }
           }
         },
         "abstainer": {
           "citizenId": "VAL-0325",
-          "name": "Sivra Toris",
+          "name": "Ossa Dren",
           "age": 56,
           "sex": "male",
           "settlementId": "VALD-BASIN-01",
@@ -2181,20 +2195,20 @@
           "policyId": "V_MINE_INSPECTION",
           "title": "オスク鉱谷の坑道支保を2日間点検する",
           "passed": true,
-          "yes": 7,
-          "no": 2,
+          "yes": 6,
+          "no": 3,
           "abstain": 3,
-          "yesShare": 0.7778,
+          "yesShare": 0.6667,
           "settlementMajority": true
         },
         {
           "policyId": "V_FUEL_BUFFER",
           "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
           "passed": true,
-          "yes": 8,
-          "no": 1,
+          "yes": 9,
+          "no": 0,
           "abstain": 3,
-          "yesShare": 0.8889,
+          "yesShare": 1,
           "settlementMajority": true
         }
       ]
