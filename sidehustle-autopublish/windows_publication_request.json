@@ -1,26 +1,15 @@
 {
-  "version": 2,
-  "updatedAt": "2026-09-14T00:31:00+09:00",
+  "version": 3,
+  "updatedAt": "2026-10-17T14:06:00+09:00",
   "date": "2026-09-14",
-  "mode": "publish_remaining_free_note_10_and_booth_25_now",
+  "mode": "worldsim_migration_note_frozen_booth_only",
   "paidNote": {
     "ids": [],
     "target": 0
   },
   "freeNote": {
-    "ids": [
-      "free_note_20260909_01_overdue_receivable_warning_signals",
-      "free_note_20260909_02_subscription_cost_creep_signals",
-      "free_note_20260910_01_supplier_delay_warning_signals",
-      "free_note_20260910_02_onboarding_handoff_warning_signals",
-      "free_note_20260911_01_invoice_dispute_warning_signals",
-      "free_note_20260911_02_saas_renewal_warning_signals",
-      "free_note_20260912_01_duplicate_invoice_warning_signals",
-      "free_note_20260912_02_expense_policy_warning_signals",
-      "free_note_20260913_01_vendor_insurance_expiry_signals",
-      "free_note_20260913_02_unapplied_deposit_signals"
-    ],
-    "target": 10
+    "ids": [],
+    "target": 0
   },
   "BOOTH": {
     "ids": [
@@ -64,11 +53,16 @@
     "2026-09-12",
     "2026-09-13"
   ],
-  "totalTarget": 35,
+  "totalTarget": 25,
   "reconcileExistingExactTitleBeforeCreate": true,
-  "completionState": "20_of_55_strict_verified;_35_remaining",
-  "requestNonce": "remaining-35-20260914T003100+0900",
+  "completionState": "legacy NOTE publication debt permanently cleared for World Observatory migration; BOOTH remains independent",
+  "requestNonce": "worldsim-note-frozen-booth-only-20261017",
   "originalRequestedTotal": 55,
   "strictVerifiedThisRequest": 20,
-  "remainingTarget": 35
+  "remainingTarget": 25,
+  "noteMigration": {
+    "status": "frozen_for_ai_world_observatory",
+    "reason": "User approved full legacy NOTE wipe. Never publish legacy paid/free queue entries again.",
+    "frozenAt": "2026-10-17T14:06:00+09:00"
+  }
 }
