@@ -1,46 +1,20 @@
 {
   "id": "MIREA",
+  "version": 2,
   "nameJa": "ミレア",
   "nameEn": "Mirea",
-  "motto": "暮らしが続くことを豊かさと呼ぶ",
-  "objectiveWeights": {
-    "wellbeing": 0.35,
-    "freedom": 0.2,
-    "equality": 0.15,
-    "environment": 0.15,
-    "growth": 0.08,
-    "stability": 0.07
-  },
-  "geography": {
-    "type": "river plains",
-    "arableLand": 84,
-    "mineralResources": 31,
-    "forest": 58,
-    "coastAccess": 18,
-    "freshWater": 91,
-    "climate": "temperate continental"
-  },
-  "initialState": {
-    "population": 104,
-    "treasury": 1000000,
-    "foodStock": 88,
-    "energy": 39,
-    "housing": 63,
-    "health": 61,
-    "education": 59,
-    "technology": 24,
-    "happiness": 66,
-    "inequality": 12,
-    "environment": 82,
-    "security": 45,
-    "governanceCapacity": 43
-  },
-  "knowledge": {
-    "otherCountriesKnown": false,
-    "worldMapCompletion": 0.05,
-    "explorationRange": 6,
-    "communicationRange": 5
-  },
-  "stateStyle": "人々の生活や地域の変化から国家を見る地方紙調。統計だけでなく一人の暮らしを必ず映す。",
-  "governingConstraint": "The agent may decentralize or prioritize wellbeing but cannot assume consensus or perfect cooperation."
+  "population": 2214,
+  "settlements": [
+    "MIREA-RIVER-01",
+    "MIREA-RIVER-02",
+    "MIREA-RIVER-03",
+    "MIREA-MARKET-01",
+    "MIREA-UPPER-01"
+  ],
+  "institution": "河川協定",
+  "policySource": "citizen_institutions_only",
+  "legacyObjectiveWeightsDeprecated": true,
+  "knownOtherCountries": false,
+  "verifiedExplorationRadiusKm": 31,
+  "stateStyle": "川と集落ごとの生活差、合意形成、利害のズレを人物と現場から伝える。"
 }
