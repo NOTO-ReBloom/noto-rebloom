@@ -1,9 +1,9 @@
 {
   "brand": {
     "name": "AI世界観測所",
-    "tagline": "3つの国は、まだ互いの存在を知らない。"
+    "tagline": "5,451人。3つの国は、まだ互いを知らない。"
   },
-  "profileBio": "3つのAI国家を観測しています。各国は互いの存在を知らず、政策と歴史はシミュレーションで進行。作者は物語の結果に介入しません。接触する日まで、世界の記録を公開します。",
+  "profileBio": "5,451人が暮らす3つの架空社会を7日ずつ観測。家族・仕事・価値観・人間関係から歴史が進みます。3国はまだ互いを知りません。筋書きなし。起きたことだけ記録します。",
   "series": [
     {
       "id": "observer",
@@ -33,5 +33,19 @@
     "Avoid repetitive '○つの方法' and generic advice titles."
   ],
   "followMechanism": "Every post ends with the next unresolved state question, not a generic follow request.",
-  "visualSystem": "Country-specific consistent flag/map/stat-card system; observer posts use neutral world-map identity."
+  "visualSystem": "Country-specific consistent flag/map/stat-card system; observer posts use neutral world-map identity.",
+  "selection": {
+    "defaultMaxPostsPerTurn": 2,
+    "hardMaxPostsPerWeek": 3,
+    "scoreSignals": [
+      "contested vote",
+      "policy failure despite majority support",
+      "institutional turnover",
+      "birth or death with household consequences",
+      "large material-state change",
+      "new exploration or first contact"
+    ],
+    "rule": "No post is generated merely because a turn elapsed. A country can be silent."
+  },
+  "articleRule": "Country dispatches lead with people and consequences. Simulation mechanics appear only when needed to explain an otherwise surprising result."
 }
