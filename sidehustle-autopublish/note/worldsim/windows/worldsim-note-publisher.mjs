@@ -239,6 +239,26 @@ async function setHashtags(page,tags){
   if(missing.length)throw new Error('HASHTAG_UI_VERIFY_FAILED '+missing.join(','));
   return clean;
 }
+async function waitForPublishSettings(page, timeoutMs=20000){
+  const started=Date.now();
+  while(Date.now()-started<timeoutMs){
+    if(/\/publish/i.test(page.url())) return true;
+    const selectors=[
+      'input[placeholder*="ハッシュタグ"]',
+      'input[aria-label*="ハッシュタグ"]',
+      'input[placeholder*="タグ"]',
+      'input[aria-label*="タグ"]'
+    ];
+    for(const sel of selectors){
+      const loc=page.locator(sel).first();
+      if(await loc.count() && await loc.isVisible().catch(()=>false)) return true;
+    }
+    const body=norm(await page.locator('body').innerText().catch(()=>''));
+    if(/公開設定|ハッシュタグ/.test(body) && /無料|有料/.test(body) && /公開する|投稿する|投稿/.test(body)) return true;
+    await sleep(400);
+  }
+  return false;
+}
 async function createAndPublish(context, item, md) {
   const page=context.pages()[0]||await context.newPage();
   await ensureAuth(page);
@@ -259,7 +279,15 @@ async function createAndPublish(context, item, md) {
   const next=page.getByRole('button',{name:/公開に進む/}).first();
   if(!(await next.count())) throw new Error('PUBLISH_NEXT_NOT_FOUND');
   await next.click();
-  await page.waitForURL(/\/publish/i,{timeout:15000});
+  const publishSettingsReady=await waitForPublishSettings(page,20000);
+  if(!publishSettingsReady){
+    const diagDir=path.join(LOG_DIR,'diagnostics');
+    fs.mkdirSync(diagDir,{recursive:true});
+    const stamp=Date.now();
+    await page.screenshot({path:path.join(diagDir,'publish-settings-'+stamp+'.png'),fullPage:true}).catch(()=>{});
+    fs.writeFileSync(path.join(diagDir,'publish-settings-'+stamp+'.html'),await page.content().catch(()=>''),'utf8');
+    throw new Error('PUBLISH_SETTINGS_NOT_FOUND url='+page.url());
+  }
   await sleep(650);
 
   const freeControls=[
