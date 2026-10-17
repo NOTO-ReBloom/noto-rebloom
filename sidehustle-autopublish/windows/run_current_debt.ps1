@@ -15,10 +15,15 @@ function Run([string]$f,[string[]]$a,[string]$wd,[int]$sec){$o=Join-Path $env:TE
 Set-Content $Log ('=== CURRENT DEBT '+(Get-Date -Format o)+' ===') -Encoding UTF8
 $tasksTouched=$false
 $worldsimMode=$false
+$worldsimNoteFrozen=$false
 # Full note-account rebuild to AI World Observatory. The user explicitly approved wiping legacy note content.
 # Safety: the wipe script refuses destructive deletion until all four replacement launch posts are reader-visible.
 try{
  $worldReq=J 'sidehustle-autopublish/note/worldsim/rebuild_request.json'
+ if($worldReq.userApprovedFullWipe -eq $true -and $worldReq.status -ne 'cancelled'){
+  $worldsimNoteFrozen=$true
+  foreach($legacy in $LegacyNoteTasks){try{Disable-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue|Out-Null}catch{}}
+ }
  if($worldReq.status -eq 'requested'){
   $worldsimMode=$true
   $stateDir=Join-Path $Root 'state';New-Item -ItemType Directory -Force -Path $stateDir|Out-Null
@@ -95,7 +100,7 @@ try{
  }
 }catch{Say ('NOTE CLEANUP RETRYABLE '+$_.Exception.Message)}
 try{
- $req=J 'sidehustle-autopublish/windows_publication_request.json';$paid=@($req.paidNote.ids);$free=@($req.freeNote.ids);$booth=@($req.BOOTH.ids);if($worldsimMode){$paid=@();$free=@()};Say "request date=$($req.date) paid=$($paid.Count) free=$($free.Count) booth=$($booth.Count) nonce=$($req.requestNonce) worldsim=$worldsimMode"
+ $req=J 'sidehustle-autopublish/windows_publication_request.json';$paid=@($req.paidNote.ids);$free=@($req.freeNote.ids);$booth=@($req.BOOTH.ids);if($worldsimNoteFrozen){$paid=@();$free=@()};Say "request date=$($req.date) paid=$($paid.Count) free=$($free.Count) booth=$($booth.Count) nonce=$($req.requestNonce) worldsim=$worldsimMode"
  if(($paid.Count+$free.Count+$booth.Count)-eq 0){Say 'nothing outstanding';exit 0}
  $pq=J 'sidehustle-autopublish/note/queue/index.json';$fq=J 'sidehustle-autopublish/note/free_queue/index.json';$bq=J 'booth-autopublish/queue/index.json'
  foreach($z in @(@($paid,$pq,'paid'),@($free,$fq,'free'),@($booth,$bq,'booth'))){foreach($id in @($z[0])){$x=@($z[1].entries|?{$_.id-eq$id-or$_.queueId-eq$id})|select -First 1;if(-not$x){throw "$($z[2]) queue missing $id"};if(-not$x.publicUrlVerified-and-not$x.enabled){throw "$($z[2]) disabled $id"}}}
@@ -111,4 +116,4 @@ try{
  }
  Say 'direct debt cycle completed'
 }catch{Say ('FATAL '+$_.Exception.Message);exit 1}
-finally{if($tasksTouched){if($worldsimMode){foreach($legacy in $LegacyNoteTasks){try{Disable-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue|Out-Null}catch{}};Say 'legacy NOTE publishers remain disabled for AI World Observatory'}else{Task $NoteTask $true};Task $BoothTask $true;Say 'scheduled task state finalized'}}
+finally{if($tasksTouched){if($worldsimNoteFrozen){foreach($legacy in $LegacyNoteTasks){try{Disable-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue|Out-Null}catch{}};Say 'legacy NOTE publishers permanently frozen for AI World Observatory'}else{Task $NoteTask $true};Task $BoothTask $true;Say 'scheduled task state finalized'}}
