@@ -6,6 +6,7 @@ $Log=Join-Path $LogDir 'run_current_debt.log'
 $Raw='https://raw.githubusercontent.com/NOTO-ReBloom/noto-rebloom/main/'
 $Node='C:\Program Files\nodejs\node.exe'; $Npm='C:\Program Files\nodejs\npm.cmd'
 $NoteTask='NOTE_RemoteQueue_30min'; $BoothTask='BOOTH_RemoteQueue_30min'
+$LegacyNoteTasks=@('NOTE_RemoteQueue_30min','NOTE_FreePublish_0805','NOTE_FreePublish_1705','note自動投稿_朝10時','note自動投稿_夜19時')
 function Say([string]$s){$x='['+(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')+'] '+$s;Write-Host $x;Add-Content $Log $x -Encoding UTF8}
 function J([string]$p){Invoke-RestMethod -UseBasicParsing -Headers @{'Cache-Control'='no-cache';'User-Agent'='SIDEHUSTLE-DEBT/3.0'} -Uri ($Raw+$p+'?t='+[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds())}
 function Task([string]$n,[bool]$on){try{$t=Get-ScheduledTask -TaskName $n -ErrorAction Stop;try{Stop-ScheduledTask -TaskName $n -ErrorAction SilentlyContinue}catch{};$s=$t.Settings;$s.DisallowStartIfOnBatteries=$false;$s.StopIfGoingOnBatteries=$false;$s.StartWhenAvailable=$true;Set-ScheduledTask -TaskName $n -Settings $s|Out-Null;if($on){Enable-ScheduledTask -TaskName $n|Out-Null}else{Disable-ScheduledTask -TaskName $n|Out-Null};Say "task $n enabled=$on"}catch{Say "task warning $n $($_.Exception.Message)"}}
@@ -59,8 +60,7 @@ cd /d "$ndWorld"
 "$Node" "$publisherLocal" >> "logs\worldsim_scheduled.log" 2>&1
 exit /b %ERRORLEVEL%
 "@ | Set-Content -Encoding ASCII $worldWrapper
-   try{Disable-ScheduledTask -TaskName 'NOTE_FreePublish_0805' -ErrorAction SilentlyContinue|Out-Null}catch{}
-   try{Disable-ScheduledTask -TaskName 'NOTE_FreePublish_1705' -ErrorAction SilentlyContinue|Out-Null}catch{}
+   foreach($legacy in $LegacyNoteTasks){try{Disable-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue|Out-Null}catch{}}
    schtasks /Create /F /SC DAILY /ST 19:05 /TN 'NOTE_WorldSimPublish_1905' /TR "cmd.exe /c `"$worldWrapper`"" | Out-Null
    @{requestId=[string]$worldReq.requestId;completedAt=(Get-Date -Format o);launchCount=$worldReq.expectedLaunchPublications;publisherTask='NOTE_WorldSimPublish_1905'}|ConvertTo-Json|Set-Content $worldStatePath -Encoding UTF8
    Say "worldsim rebuild completed id=$($worldReq.requestId); scheduled NOTE_WorldSimPublish_1905"
@@ -111,4 +111,4 @@ try{
  }
  Say 'direct debt cycle completed'
 }catch{Say ('FATAL '+$_.Exception.Message);exit 1}
-finally{if($tasksTouched){Task $NoteTask $true;Task $BoothTask $true;Say 'scheduled publishers restored'}}
+finally{if($tasksTouched){if($worldsimMode){foreach($legacy in $LegacyNoteTasks){try{Disable-ScheduledTask -TaskName $legacy -ErrorAction SilentlyContinue|Out-Null}catch{}};Say 'legacy NOTE publishers remain disabled for AI World Observatory'}else{Task $NoteTask $true};Task $BoothTask $true;Say 'scheduled task state finalized'}}
