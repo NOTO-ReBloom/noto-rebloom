@@ -175,6 +175,14 @@ function applyHouseholdOverlay(country,householdId,delta,memory){
  if(memory)o.memories.push(memory);
  if(o.memories.length>20)o.memories=o.memories.slice(-20);
 }
+function applySharedFoodDays(country,delta,data=null){
+ if(!Number.isFinite(delta)||delta===0)return;
+ const cs=state.countries[country];
+ cs.meanFoodReserveDays=round(Math.max(0,cs.meanFoodReserveDays+delta),2);
+ for(const ss of Object.values(cs.settlementStates))ss.meanFoodReserveDays=round(Math.max(0,ss.meanFoodReserveDays+delta),2);
+ const d=data||loadCountry(country);
+ for(const hid of Object.keys(d.households||{}))applyHouseholdOverlay(country,hid,{foodDays:delta},null);
+}
 function applyRelationshipDelta(country,from,to,delta){
  if(!from||!to||from===to)return;
  const m=(state.relationshipOverlays[country]??={});
@@ -209,7 +217,7 @@ function applyPolicy(country,result,data,citizenDeltaLog){
  const p=policyById[result.policyId],eff=p.effects||{},cs=state.countries[country];
  cs.dynamic.publicWorks=cs.dynamic.publicWorks||[];
  cs.dynamic.publicWorks.push({policyId:p.id,title:p.title,startedTurn:turn,completeTurn:turn+(p.durationTurns||1),status:'active'});
- if(eff.country?.foodDays)cs.meanFoodReserveDays=round(cs.meanFoodReserveDays+eff.country.foodDays,2);
+ if(eff.country?.foodDays)applySharedFoodDays(country,eff.country.foodDays,data);
  if(eff.country?.fuelDays){
   cs.meanFuelReserveDays=round(Math.max(0,cs.meanFuelReserveDays+eff.country.fuelDays),2);
   for(const ss of Object.values(cs.settlementStates))ss.meanFuelReserveDays=round(Math.max(0,ss.meanFuelReserveDays+eff.country.fuelDays),2);
@@ -885,8 +893,8 @@ function processContactInteraction(key,ps,a,b,min,reach,margin){
   let transferPersonDays=0;
   if(gap>8){
    transferPersonDays=Math.min(120,Math.max(20,gap*4));
-   donor.meanFoodReserveDays=round(Math.max(0,donor.meanFoodReserveDays-transferPersonDays/donor.population),2);
-   recipient.meanFoodReserveDays=round(recipient.meanFoodReserveDays+transferPersonDays/recipient.population,2);
+   applySharedFoodDays(donorId,-transferPersonDays/donor.population);
+   applySharedFoodDays(recipientId,transferPersonDays/recipient.population);
   }
   ca.verifiedExplorationRadiusKm=round(ca.verifiedExplorationRadiusKm+.08,2);
   cb.verifiedExplorationRadiusKm=round(cb.verifiedExplorationRadiusKm+.08,2);
@@ -953,17 +961,12 @@ for(const country of ['ARCUS','MIREA','VALD']){
   applyPolicy(country,v,data,citizenDeltaLog);
  }
  const fb=foodBalance(country,data);
- state.countries[country].meanFoodReserveDays=round(Math.max(0,state.countries[country].meanFoodReserveDays+fb.reserveDaysDelta),2);
- for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFoodReserveDays=round(Math.max(0,ss.meanFoodReserveDays+fb.reserveDaysDelta),2);
- for(const hid of Object.keys(data.households))applyHouseholdOverlay(country,hid,{foodDays:fb.reserveDaysDelta},null);
+ applySharedFoodDays(country,fb.reserveDaysDelta,data);
  turnEvents.push({turn,country,type:'food_balance',...fb});
  applyFoodScarcity(country,data,turnEvents);
 
  const fuel=fuelBalance(country,data);
- if(fuel.opportunityFoodDays>0){
-  state.countries[country].meanFoodReserveDays=round(Math.max(0,state.countries[country].meanFoodReserveDays-fuel.opportunityFoodDays),2);
-  for(const ss of Object.values(state.countries[country].settlementStates))ss.meanFoodReserveDays=round(Math.max(0,ss.meanFoodReserveDays-fuel.opportunityFoodDays),2);
- }
+ if(fuel.opportunityFoodDays>0)applySharedFoodDays(country,-fuel.opportunityFoodDays,data);
  if(fuel.resourceDrawdownIndex>0&&state.worldDynamic.resources[fuel.resourceId]){
   state.worldDynamic.resources[fuel.resourceId].stockIndex=round(clamp(state.worldDynamic.resources[fuel.resourceId].stockIndex-fuel.resourceDrawdownIndex),2);
  }
