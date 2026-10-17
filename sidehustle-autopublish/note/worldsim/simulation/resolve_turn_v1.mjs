@@ -46,7 +46,14 @@ function loadCountry(country){
    for(const id of ho.newMemberIds)if(!households[hid].memberIds.includes(id))households[hid].memberIds.push(id);
   }
  }
- const allEdges=[...social.edges,...dynamicRelations];
+ const overlays=state.relationshipOverlays?.[country]||{};
+ const allEdges=[...social.edges,...dynamicRelations].map(base=>{
+  const e=structuredClone(base),o=overlays[e.from+'|'+e.to]||{};
+  for(const k of ['trust','affection','fear','obligation','respect','envy','grievance','contactFrequency']){
+   if(Number.isFinite(e[k]))e[k]=round(clamp(e[k]+(o[k+'Delta']||0)),2);
+  }
+  return e;
+ });
  const rel={},incoming={};
  for(const e of allEdges){rel[e.from+'|'+e.to]=e;(incoming[e.to]??=[]).push(e);}
  return{people,households,familyEdges:[...familyEdges,...dynamicRelations.filter(x=>['parent','child','sibling','partner'].includes(x.type))],beliefs,social:{...social,edges:allEdges},rel,incoming};
@@ -95,6 +102,7 @@ function voteUtility(c,policy,proposal,data){
   sponsorOwnership:0,
   rumorSignal:0,
   sponsorRelationship:0,
+  experiencedOutcome:0,
   stressSecurity:0,
   boundedNoise:0
  };
@@ -109,7 +117,12 @@ function voteUtility(c,policy,proposal,data){
  if(c.citizenId===proposal.sponsorId)factors.sponsorOwnership=7.5;
  factors.rumorSignal=rumorSignal(data.beliefs.records[c.citizenId],policy.topic)*6;
  const relation=data.rel[c.citizenId+'|'+proposal.sponsorId];
- if(relation)factors.sponsorRelationship=(relation.trust-50)*.055+(relation.respect-50)*.035;
+ if(relation)factors.sponsorRelationship=(relation.trust-50)*.055+(relation.respect-50)*.035-(relation.grievance||0)*.018;
+ const memories=state.citizenOverlays?.[c.countryId]?.[c.citizenId]?.memories||[];
+ const past=memories.filter(x=>x.kind==='policy'&&x.policyId===policy.id).slice(-4);
+ if(past.length){
+  factors.experiencedOutcome=clamp(past.reduce((sum,m)=>sum+(-(m.stressDelta||0)*1.8)+(m.healthDelta||0)*2.2,0),-8,8);
+ }
  if((policy.valueImpact?.security||0)>0&&c.materialState.stress>65)factors.stressSecurity=2.5;
  const r=rngFor(state.worldId+'|VOTE|'+turn+'|'+policy.id+'|'+c.citizenId);
  factors.boundedNoise=(r()-.5)*7;
@@ -160,6 +173,35 @@ function applyHouseholdOverlay(country,householdId,delta,memory){
  if(memory)o.memories.push(memory);
  if(o.memories.length>20)o.memories=o.memories.slice(-20);
 }
+function applyRelationshipDelta(country,from,to,delta){
+ if(!from||!to||from===to)return;
+ const m=(state.relationshipOverlays[country]??={});
+ const key=from+'|'+to;
+ const o=(m[key]??={});
+ for(const [k,v] of Object.entries(delta||{})){
+  if(!Number.isFinite(v))continue;
+  const field=k+'Delta';
+  o[field]=round((o[field]||0)+v,3);
+ }
+ o.lastChangedTurn=turn;
+}
+function updatePoliticalRelationships(country,result,data){
+ const sponsor=result.sponsorId;
+ const sponsorVote=result.votes.find(x=>x.citizenId===sponsor)?.vote||'yes';
+ for(const v of result.votes){
+  if(v.citizenId===sponsor||v.vote==='abstain')continue;
+  const same=v.vote===sponsorVote;
+  if(same){
+   applyRelationshipDelta(country,v.citizenId,sponsor,{trust:.08,respect:.06,grievance:-.03});
+  }else{
+   applyRelationshipDelta(country,v.citizenId,sponsor,{trust:-.05,respect:-.02,grievance:.08});
+  }
+  if(result.passed&&v.vote==='yes')applyRelationshipDelta(country,v.citizenId,sponsor,{respect:.04});
+  if(result.passed&&v.vote==='no')applyRelationshipDelta(country,v.citizenId,sponsor,{trust:-.03,grievance:.03});
+  if(!result.passed&&v.vote==='yes')applyRelationshipDelta(country,v.citizenId,sponsor,{respect:-.03});
+ }
+}
+
 function applyPolicy(country,result,data,citizenDeltaLog){
  if(!result.passed)return;
  const p=policyById[result.policyId],eff=p.effects||{},cs=state.countries[country];
@@ -189,7 +231,7 @@ function applyPolicy(country,result,data,citizenDeltaLog){
   if(!local&&!benefit&&!cost)continue;
   const sd=(local?-0.08:0)-(benefit*.10)+(cost*.14)+(eff.settlement?.[c0.settlementId]?.stress||0)*.35;
   const hd=(eff.settlement?.[c0.settlementId]?.health||0)*.45+(eff.country?.health||0)*.25;
-  applyOverlay(country,c0.citizenId,{stress:sd,health:hd},{turn,kind:'policy',policyId:p.id,outcome:'passed'});
+  applyOverlay(country,c0.citizenId,{stress:sd,health:hd},{turn,kind:'policy',policyId:p.id,outcome:'passed',stressDelta:round(sd),healthDelta:round(hd)});
   affected.push({citizenId:c0.citizenId,stressDelta:round(sd),healthDelta:round(hd)});
  }
  citizenDeltaLog.push({country,policyId:p.id,affectedCount:affected.length,sample:affected.slice(0,20)});
@@ -810,6 +852,7 @@ for(const country of ['ARCUS','MIREA','VALD']){
  for(const proposal of input.proposals[country]||[]){
   const v=conductVote(country,proposal,data);voteOut[country].push(v);
   turnEvents.push({turn,country,type:'policy_vote',policyId:v.policyId,title:v.title,passed:v.passed,yes:v.yes,no:v.no,abstain:v.abstain,yesShare:v.yesShare});
+  updatePoliticalRelationships(country,v,data);
   applyPolicy(country,v,data,citizenDeltaLog);
  }
  const fb=foodBalance(country,data);
