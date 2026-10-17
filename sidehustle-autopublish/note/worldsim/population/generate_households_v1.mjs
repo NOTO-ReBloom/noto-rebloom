@@ -180,7 +180,8 @@ function makeGeneric(country,settlement,type,size,rng){
   let partner=null;
   if(size>=4){partner=add(clamp(adultAge+ri(rng,-6,6),23,57),adult.sex==='male'?'female':'male','adult_partner',null);addEdge(edges,adult.citizenId,partner.citizenId,'partner','partner');}
   const used=partner?3:2, kids=[];
-  const youngestParentAge=partner?Math.min(adult.ageYears,partner.ageYears):adult.ageYears;\n  const maxChild=Math.max(1,Math.min(30,youngestParentAge-18));
+  const youngestParentAge=partner?Math.min(adult.ageYears,partner.ageYears):adult.ageYears;
+  const maxChild=Math.max(1,Math.min(30,youngestParentAge-18));
   for(let i=used;i<size;i++){const c=add(childAge(rng,maxChild),roleSex(rng),'child');kids.push(c);addEdge(edges,adult.citizenId,c.citizenId,'parent','child');if(partner)addEdge(edges,partner.citizenId,c.citizenId,'parent','child');addEdge(edges,gp.citizenId,c.citizenId,'grandparent','grandchild');}
   uniquePairs(kids,edges);
  }
