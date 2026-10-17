@@ -189,8 +189,9 @@ function foodBalance(country,data){
  if(country==='MIREA'){const p=input.weather.MIREA.riverPressureIndex;wx=p>80?.86:p<35?.91:p>=55&&p<=70?1.03:1;}
  if(country==='VALD')wx=input.weather.VALD.coldPressureIndex>55?.92:1;
  let production=0;
- for(const c of Object.values(data.people)){
-  if((state.roster.inactiveCitizenIds||[]).includes(c.citizenId))continue;
+ for(const raw of Object.values(data.people)){
+  if((state.roster.inactiveCitizenIds||[]).includes(raw.citizenId))continue;
+  const c=effective(raw,country);
   const base=productivity[c.occupationId]||0;if(base)production+=base*season*wx;
  }
  const pop=state.countries[country].population,consumption=pop*7,delta=(production-consumption)/Math.max(1,pop);
@@ -257,7 +258,7 @@ function applyDeathConsequences(country,death,data,turnEvents){
   impacted.set(other,Math.max(impacted.get(other)||0,delta));
  }
  for(const [id,stress] of impacted)applyOverlay(country,id,{stress},{turn,kind:'bereavement',citizenId:death.citizenId,relation:'social_graph'});
- const worker=dead.occupation?.status==='worker';
+ const worker=effective(dead,country).occupation?.status==='worker';
  applyHouseholdOverlay(country,dead.householdId,{stress:worker?3:2,foodDays:worker?-1.5:-.4,incomeCapacity:worker?-.18:0},{turn,kind:'household_death',citizenId:death.citizenId});
  turnEvents.push({turn,country,type:'death_consequences',citizenId:death.citizenId,householdId:dead.householdId,affectedRelations:impacted.size,workerIncomeLoss:worker});
 }
