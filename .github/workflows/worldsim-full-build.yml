@@ -22,6 +22,7 @@ on:
       - 'sidehustle-autopublish/note/worldsim/world/create_truth_commitment.mjs'
       - 'sidehustle-autopublish/note/worldsim/countries/**'
       - 'sidehustle-autopublish/note/worldsim/simulation/build_turn0_snapshot_v1.mjs'
+      - 'sidehustle-autopublish/note/worldsim/simulation/time_model_v1.mjs'
       - '.github/workflows/worldsim-full-build.yml'
   workflow_dispatch:
 
@@ -85,6 +86,8 @@ jobs:
                   assert c['occupationId']
                   assert c['psychologyFingerprint']
                   assert c['goals']['primaryGoal']
+                  assert isinstance(c.get('bornAbsoluteDay'), int),(c['citizenId'],'missing bornAbsoluteDay')
+                  assert (239-c['bornAbsoluteDay'])//365 == c['ageYears'],(c['citizenId'],c['ageYears'],c['bornAbsoluteDay'])
               vals=[c['psychology']['bigFive']['openness'] for c in people]
               assert statistics.pstdev(vals)>=9,(country,'openness variance')
 
@@ -104,8 +107,21 @@ jobs:
 
           state=json.loads((root/'state/turn_0000/world_state.json').read_text())
           assert state['turn']==0
+          assert state['version']>=2
+          assert state['calendar']['absoluteDay']==239
+          assert state['calendar']['dayOfYear']==239
+          assert state['calendar']['year']==1
+          assert state['calendar']['season']=='summer'
+          assert state['calendar']['seasonStage']=='late_summer'
+          assert state['calendar']['worldDateLabel']=='Y0001-D239'
           assert state['contact']['firstContactOccurred'] is False
           assert state['publicationReady'] is False
+          pregnancies=state['demographyState']['pregnancies']
+          assert state['demographyState']['seededPregnanciesAtTurn0']==len(pregnancies)
+          assert len(pregnancies)>0
+          for p in pregnancies.values():
+              assert p['conceptionAbsoluteDay']<239<p['dueAbsoluteDay']
+              assert p['dueTurn']>=1
           for country,expected in countries.items():
               assert state['countries'][country]['population']==expected
               assert state['countries'][country]['knownOtherCountries'] is False
