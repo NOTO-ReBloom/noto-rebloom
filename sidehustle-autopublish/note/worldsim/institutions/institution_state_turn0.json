@@ -1,0 +1,594 @@
+{
+  "version": 2,
+  "turn": 0,
+  "countries": {
+    "ARCUS": {
+      "constitutionalName": "港湾協約",
+      "authority": [
+        "shared harbor works",
+        "inter-settlement roads",
+        "common storage standards",
+        "survey funding",
+        "limited levies"
+      ],
+      "checks": [
+        "major levy requires 60% of national body",
+        "settlement land-use changes require affected local council approval",
+        "emergency order expires after 2 turns"
+      ],
+      "decisionStyle": "proposal -> recorded local impact -> member votes -> implementation assignment",
+      "localCouncils": {
+        "ARCA-INLAND-01": {
+          "settlementId": "ARCA-INLAND-01",
+          "seats": 7,
+          "memberIds": [
+            "ARC-1297",
+            "ARC-1618",
+            "ARC-1322",
+            "ARC-1360",
+            "ARC-1435",
+            "ARC-1590",
+            "ARC-1402"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "ARC-1297": 70.588,
+            "ARC-1618": 68.47,
+            "ARC-1322": 68.164,
+            "ARC-1360": 67.78,
+            "ARC-1435": 67.504,
+            "ARC-1590": 66.78,
+            "ARC-1402": 59.81
+          }
+        },
+        "ARCA-PORT-01": {
+          "settlementId": "ARCA-PORT-01",
+          "seats": 8,
+          "memberIds": [
+            "ARC-0667",
+            "ARC-0010",
+            "ARC-0785",
+            "ARC-0717",
+            "ARC-0687",
+            "ARC-0210",
+            "ARC-0486",
+            "ARC-0586"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "ARC-0667": 67.92,
+            "ARC-0010": 67.873,
+            "ARC-0785": 67.716,
+            "ARC-0717": 67.642,
+            "ARC-0687": 67.627,
+            "ARC-0210": 67.527,
+            "ARC-0486": 67.377,
+            "ARC-0586": 61.89
+          }
+        },
+        "ARCA-PORT-02": {
+          "settlementId": "ARCA-PORT-02",
+          "seats": 6,
+          "memberIds": [
+            "ARC-0909",
+            "ARC-1113",
+            "ARC-1166",
+            "ARC-1026",
+            "ARC-1157",
+            "ARC-0925"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "ARC-0909": 69.515,
+            "ARC-1113": 68.991,
+            "ARC-1166": 67.942,
+            "ARC-1026": 67.016,
+            "ARC-1157": 66.952,
+            "ARC-0925": 61.581
+          }
+        },
+        "ARCA-RIDGE-01": {
+          "settlementId": "ARCA-RIDGE-01",
+          "seats": 5,
+          "memberIds": [
+            "ARC-1755",
+            "ARC-1783",
+            "ARC-1739",
+            "ARC-1807",
+            "ARC-1740"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "ARC-1755": 69.295,
+            "ARC-1783": 67.637,
+            "ARC-1739": 66.834,
+            "ARC-1807": 66.503,
+            "ARC-1740": 62.485
+          }
+        }
+      },
+      "nationalBody": {
+        "name": "共同事業評議会",
+        "members": [
+          {
+            "citizenId": "ARC-1297",
+            "settlementId": "ARCA-INLAND-01",
+            "selectionScore": 70.588
+          },
+          {
+            "citizenId": "ARC-1618",
+            "settlementId": "ARCA-INLAND-01",
+            "selectionScore": 68.47
+          },
+          {
+            "citizenId": "ARC-1322",
+            "settlementId": "ARCA-INLAND-01",
+            "selectionScore": 68.164
+          },
+          {
+            "citizenId": "ARC-0667",
+            "settlementId": "ARCA-PORT-01",
+            "selectionScore": 67.92
+          },
+          {
+            "citizenId": "ARC-0010",
+            "settlementId": "ARCA-PORT-01",
+            "selectionScore": 67.873
+          },
+          {
+            "citizenId": "ARC-0785",
+            "settlementId": "ARCA-PORT-01",
+            "selectionScore": 67.716
+          },
+          {
+            "citizenId": "ARC-0909",
+            "settlementId": "ARCA-PORT-02",
+            "selectionScore": 69.515
+          },
+          {
+            "citizenId": "ARC-1113",
+            "settlementId": "ARCA-PORT-02",
+            "selectionScore": 68.991
+          },
+          {
+            "citizenId": "ARC-1166",
+            "settlementId": "ARCA-PORT-02",
+            "selectionScore": 67.942
+          },
+          {
+            "citizenId": "ARC-1755",
+            "settlementId": "ARCA-RIDGE-01",
+            "selectionScore": 69.295
+          },
+          {
+            "citizenId": "ARC-1783",
+            "settlementId": "ARCA-RIDGE-01",
+            "selectionScore": 67.637
+          },
+          {
+            "citizenId": "ARC-1739",
+            "settlementId": "ARCA-RIDGE-01",
+            "selectionScore": 66.834
+          }
+        ],
+        "termEndsTurn": 12
+      },
+      "executive": {
+        "name": "三人調整役",
+        "memberIds": [
+          "ARC-1297",
+          "ARC-0909",
+          "ARC-1755"
+        ],
+        "termEndsTurn": 8
+      },
+      "advisors": [],
+      "legacyObjectiveWeightsUsed": false
+    },
+    "MIREA": {
+      "constitutionalName": "河川協定",
+      "authority": [
+        "river works",
+        "inter-settlement ferry rules",
+        "shared health response",
+        "record standards"
+      ],
+      "checks": [
+        "water or land change requires majority of delegates and majority of settlement delegations",
+        "emergency order expires after 1 turn",
+        "local councils retain ordinary production decisions"
+      ],
+      "decisionStyle": "local proposal -> affected settlements respond -> dual-majority vote -> local implementation",
+      "localCouncils": {
+        "MIREA-MARKET-01": {
+          "settlementId": "MIREA-MARKET-01",
+          "seats": 8,
+          "memberIds": [
+            "MIR-1777",
+            "MIR-1757",
+            "MIR-1853",
+            "MIR-1564",
+            "MIR-1512",
+            "MIR-1481",
+            "MIR-1469",
+            "MIR-1614"
+          ],
+          "termEndsTurn": 10,
+          "memberScores": {
+            "MIR-1777": 71.18,
+            "MIR-1757": 69.75,
+            "MIR-1853": 69.315,
+            "MIR-1564": 68.912,
+            "MIR-1512": 68.86,
+            "MIR-1481": 67.816,
+            "MIR-1469": 67.813,
+            "MIR-1614": 63.442
+          }
+        },
+        "MIREA-RIVER-01": {
+          "settlementId": "MIREA-RIVER-01",
+          "seats": 8,
+          "memberIds": [
+            "MIR-0011",
+            "MIR-0280",
+            "MIR-0539",
+            "MIR-0253",
+            "MIR-0111",
+            "MIR-0163",
+            "MIR-0380",
+            "MIR-0241"
+          ],
+          "termEndsTurn": 10,
+          "memberScores": {
+            "MIR-0011": 69.343,
+            "MIR-0280": 69.23,
+            "MIR-0539": 68.714,
+            "MIR-0253": 68.374,
+            "MIR-0111": 68.304,
+            "MIR-0163": 68.039,
+            "MIR-0380": 67.97,
+            "MIR-0241": 61.199
+          }
+        },
+        "MIREA-RIVER-02": {
+          "settlementId": "MIREA-RIVER-02",
+          "seats": 7,
+          "memberIds": [
+            "MIR-0938",
+            "MIR-0895",
+            "MIR-0647",
+            "MIR-0711",
+            "MIR-0738",
+            "MIR-0656",
+            "MIR-0891"
+          ],
+          "termEndsTurn": 10,
+          "memberScores": {
+            "MIR-0938": 69,
+            "MIR-0895": 68.298,
+            "MIR-0647": 67.759,
+            "MIR-0711": 67.729,
+            "MIR-0738": 67.723,
+            "MIR-0656": 67.527,
+            "MIR-0891": 63.887
+          }
+        },
+        "MIREA-RIVER-03": {
+          "settlementId": "MIREA-RIVER-03",
+          "seats": 7,
+          "memberIds": [
+            "MIR-1114",
+            "MIR-1162",
+            "MIR-1278",
+            "MIR-1176",
+            "MIR-1293",
+            "MIR-1365",
+            "MIR-1172"
+          ],
+          "termEndsTurn": 10,
+          "memberScores": {
+            "MIR-1114": 70.124,
+            "MIR-1162": 69.194,
+            "MIR-1278": 68.847,
+            "MIR-1176": 68.58,
+            "MIR-1293": 68.145,
+            "MIR-1365": 68.06,
+            "MIR-1172": 60.033
+          }
+        },
+        "MIREA-UPPER-01": {
+          "settlementId": "MIREA-UPPER-01",
+          "seats": 7,
+          "memberIds": [
+            "MIR-2099",
+            "MIR-2190",
+            "MIR-1954",
+            "MIR-2206",
+            "MIR-2125",
+            "MIR-1958",
+            "MIR-2154"
+          ],
+          "termEndsTurn": 10,
+          "memberScores": {
+            "MIR-2099": 69.468,
+            "MIR-2190": 69.116,
+            "MIR-1954": 68.677,
+            "MIR-2206": 68.538,
+            "MIR-2125": 68.116,
+            "MIR-1958": 67.52,
+            "MIR-2154": 61.81
+          }
+        }
+      },
+      "nationalBody": {
+        "name": "流域会議",
+        "members": [
+          {
+            "citizenId": "MIR-1777",
+            "settlementId": "MIREA-MARKET-01",
+            "selectionScore": 71.18
+          },
+          {
+            "citizenId": "MIR-1757",
+            "settlementId": "MIREA-MARKET-01",
+            "selectionScore": 69.75
+          },
+          {
+            "citizenId": "MIR-0011",
+            "settlementId": "MIREA-RIVER-01",
+            "selectionScore": 69.343
+          },
+          {
+            "citizenId": "MIR-0280",
+            "settlementId": "MIREA-RIVER-01",
+            "selectionScore": 69.23
+          },
+          {
+            "citizenId": "MIR-0938",
+            "settlementId": "MIREA-RIVER-02",
+            "selectionScore": 69
+          },
+          {
+            "citizenId": "MIR-0895",
+            "settlementId": "MIREA-RIVER-02",
+            "selectionScore": 68.298
+          },
+          {
+            "citizenId": "MIR-1114",
+            "settlementId": "MIREA-RIVER-03",
+            "selectionScore": 70.124
+          },
+          {
+            "citizenId": "MIR-1162",
+            "settlementId": "MIREA-RIVER-03",
+            "selectionScore": 69.194
+          },
+          {
+            "citizenId": "MIR-2099",
+            "settlementId": "MIREA-UPPER-01",
+            "selectionScore": 69.468
+          },
+          {
+            "citizenId": "MIR-2190",
+            "settlementId": "MIREA-UPPER-01",
+            "selectionScore": 69.116
+          }
+        ],
+        "termEndsTurn": 10
+      },
+      "executive": {
+        "name": "輪番書記",
+        "memberIds": [
+          "MIR-1777",
+          "MIR-1114"
+        ],
+        "termEndsTurn": 4
+      },
+      "advisors": [],
+      "legacyObjectiveWeightsUsed": false
+    },
+    "VALD": {
+      "constitutionalName": "冬季備え協約",
+      "authority": [
+        "central reserves",
+        "winter roads",
+        "mine safety minimums",
+        "fuel allocation",
+        "emergency shelter"
+      ],
+      "checks": [
+        "emergency ration power expires after 2 turns",
+        "mine production override requires safety record",
+        "post-emergency review records who gained and lost resources"
+      ],
+      "decisionStyle": "risk report -> reserve/safety impact -> member votes -> time-limited order",
+      "localCouncils": {
+        "VALD-BASIN-01": {
+          "settlementId": "VALD-BASIN-01",
+          "seats": 8,
+          "memberIds": [
+            "VAL-0325",
+            "VAL-0542",
+            "VAL-0526",
+            "VAL-0421",
+            "VAL-0422",
+            "VAL-0283",
+            "VAL-0508",
+            "VAL-0006"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "VAL-0325": 71.685,
+            "VAL-0542": 69.73,
+            "VAL-0526": 69.453,
+            "VAL-0421": 68.788,
+            "VAL-0422": 68.064,
+            "VAL-0283": 67.896,
+            "VAL-0508": 67.57,
+            "VAL-0006": 62.867
+          }
+        },
+        "VALD-BASIN-02": {
+          "settlementId": "VALD-BASIN-02",
+          "seats": 7,
+          "memberIds": [
+            "VAL-0924",
+            "VAL-0619",
+            "VAL-0811",
+            "VAL-0968",
+            "VAL-0918",
+            "VAL-0770",
+            "VAL-0003"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "VAL-0924": 68.336,
+            "VAL-0619": 67.229,
+            "VAL-0811": 66.38,
+            "VAL-0968": 65.892,
+            "VAL-0918": 65.856,
+            "VAL-0770": 65.787,
+            "VAL-0003": 64.73
+          }
+        },
+        "VALD-PASS-01": {
+          "settlementId": "VALD-PASS-01",
+          "seats": 5,
+          "memberIds": [
+            "VAL-1338",
+            "VAL-1384",
+            "VAL-1340",
+            "VAL-1274",
+            "VAL-1312"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "VAL-1338": 68.289,
+            "VAL-1384": 67.732,
+            "VAL-1340": 65.603,
+            "VAL-1274": 65.158,
+            "VAL-1312": 61.195
+          }
+        },
+        "VALD-UPPER-01": {
+          "settlementId": "VALD-UPPER-01",
+          "seats": 6,
+          "memberIds": [
+            "VAL-1078",
+            "VAL-1119",
+            "VAL-1055",
+            "VAL-1223",
+            "VAL-1184",
+            "VAL-1091"
+          ],
+          "termEndsTurn": 12,
+          "memberScores": {
+            "VAL-1078": 68.087,
+            "VAL-1119": 67.998,
+            "VAL-1055": 66.22,
+            "VAL-1223": 65.91,
+            "VAL-1184": 65.632,
+            "VAL-1091": 60.838
+          }
+        }
+      },
+      "nationalBody": {
+        "name": "備蓄・安全評議会",
+        "members": [
+          {
+            "citizenId": "VAL-0325",
+            "settlementId": "VALD-BASIN-01",
+            "selectionScore": 71.685
+          },
+          {
+            "citizenId": "VAL-0542",
+            "settlementId": "VALD-BASIN-01",
+            "selectionScore": 69.73
+          },
+          {
+            "citizenId": "VAL-0526",
+            "settlementId": "VALD-BASIN-01",
+            "selectionScore": 69.453
+          },
+          {
+            "citizenId": "VAL-0924",
+            "settlementId": "VALD-BASIN-02",
+            "selectionScore": 68.336
+          },
+          {
+            "citizenId": "VAL-0619",
+            "settlementId": "VALD-BASIN-02",
+            "selectionScore": 67.229
+          },
+          {
+            "citizenId": "VAL-0811",
+            "settlementId": "VALD-BASIN-02",
+            "selectionScore": 66.38
+          },
+          {
+            "citizenId": "VAL-1338",
+            "settlementId": "VALD-PASS-01",
+            "selectionScore": 68.289
+          },
+          {
+            "citizenId": "VAL-1384",
+            "settlementId": "VALD-PASS-01",
+            "selectionScore": 67.732
+          },
+          {
+            "citizenId": "VAL-1340",
+            "settlementId": "VALD-PASS-01",
+            "selectionScore": 65.603
+          },
+          {
+            "citizenId": "VAL-1078",
+            "settlementId": "VALD-UPPER-01",
+            "selectionScore": 68.087
+          },
+          {
+            "citizenId": "VAL-1119",
+            "settlementId": "VALD-UPPER-01",
+            "selectionScore": 67.998
+          },
+          {
+            "citizenId": "VAL-1055",
+            "settlementId": "VALD-UPPER-01",
+            "selectionScore": 66.22
+          }
+        ],
+        "termEndsTurn": 12
+      },
+      "executive": {
+        "name": "季節調整官",
+        "memberIds": [
+          "VAL-0325",
+          "VAL-0924"
+        ],
+        "termEndsTurn": 6
+      },
+      "advisors": [
+        {
+          "occupationId": "quartermaster",
+          "citizenId": "VAL-0325",
+          "voice": "advisory_nonvoting"
+        },
+        {
+          "occupationId": "healer",
+          "citizenId": "VAL-0610",
+          "voice": "advisory_nonvoting"
+        },
+        {
+          "occupationId": "miner",
+          "citizenId": "VAL-0811",
+          "voice": "advisory_nonvoting"
+        },
+        {
+          "occupationId": "road_worker",
+          "citizenId": "VAL-1354",
+          "voice": "advisory_nonvoting"
+        }
+      ],
+      "legacyObjectiveWeightsUsed": false
+    }
+  }
+}
