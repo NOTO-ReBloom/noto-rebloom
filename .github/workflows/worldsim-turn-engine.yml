@@ -212,5 +212,11 @@ jobs:
           git add sidehustle-autopublish/note/worldsim/simulation/run_request.json
           if git diff --cached --quiet; then echo 'No turn change'; exit 0; fi
           git commit -m "Resolve LYRA turns $WORLDSIM_START_TURN-$WORLDSIM_END_TURN on canonical clock"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for TRY in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            echo "turn commit push race on attempt $TRY; retrying"
+            sleep $((TRY*2))
+          done
+          echo 'Failed to persist resolved turns after retries' >&2
+          exit 1
