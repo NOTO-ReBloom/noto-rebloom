@@ -25,6 +25,9 @@ const state={version:1,worldId:truth.worldId,turn:0,calendar:truth.calendar,sour
  contact:{knownPairs:[],firstContactOccurred:false},
  roster:{newCitizens:[],inactiveCitizenIds:[]},
  citizenOverlays:{ARCUS:{},MIREA:{},VALD:{}},
+ householdOverlays:{ARCUS:{},MIREA:{},VALD:{}},
+ relationshipOverlays:{ARCUS:{},MIREA:{},VALD:{}},
+ institutionalHistory:[],
  eventLog:[],publicationReady:false};
 const manifest={version:1,turn:0,sourceHashes:{observerTruth:state.sourceTruthHash},countrySources:{}};
 
