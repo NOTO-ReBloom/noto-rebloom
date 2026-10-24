@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "worldId": "LYRA-001",
+  "turn": 2,
+  "previousTurn": 1,
+  "preparedFromStateHash": "314af960c35ccd97fafbbcaec09e5e7f34b7339e7bf3cdc1c3c4a2b96d7b2c8c",
+  "weather": {
+    "calendar": {
+      "year": 1,
+      "dayOfYear": 246,
+      "season": "autumn",
+      "seasonStage": "early_autumn"
+    },
+    "ARCUS": {
+      "coastalWindIndex": 66,
+      "rainIndex": 59,
+      "summary": "breezy coast"
+    },
+    "MIREA": {
+      "upperCatchmentRainIndex": 64,
+      "riverPressureIndex": 60,
+      "summary": "ordinary river conditions"
+    },
+    "VALD": {
+      "coldPressureIndex": 40,
+      "snowRiskIndex": 7,
+      "summary": "mild-to-cool highland week"
+    }
+  },
+  "proposals": {
+    "ARCUS": [
+      {
+        "policyId": "A_HARBOR_SANITATION",
+        "title": "セラ港の排水・飲み水点検を優先する",
+        "topic": "health",
+        "urgency": 42.92,
+        "sponsorId": "ARC-1297",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      },
+      {
+        "policyId": "A_COASTAL_SURVEY",
+        "title": "既知海岸の外側へ7日間の測量航海を出す",
+        "topic": "exploration",
+        "urgency": 39.8,
+        "sponsorId": "ARC-0667",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ],
+    "MIREA": [
+      {
+        "policyId": "M_WETLAND_BUFFER",
+        "title": "ソマ湿地周縁の新規排水を今季だけ止める",
+        "topic": "wetland",
+        "urgency": 43.84,
+        "sponsorId": "MIR-1162",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      },
+      {
+        "policyId": "M_SCHOOL_HARVEST",
+        "title": "収穫期の学習日程を集落ごとにずらす",
+        "topic": "education",
+        "urgency": 35.16,
+        "sponsorId": "MIR-1162",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ],
+    "VALD": [
+      {
+        "policyId": "V_FUEL_BUFFER",
+        "title": "冬前の共同燃料備蓄を通常より8日分厚くする",
+        "topic": "reserve",
+        "urgency": 43.14,
+        "sponsorId": "VAL-1119",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      },
+      {
+        "policyId": "V_PASS_SURVEY",
+        "title": "マルン峠の先を測る小規模調査隊を出す",
+        "topic": "exploration",
+        "urgency": 29.88,
+        "sponsorId": "VAL-1340",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ]
+  }
+}

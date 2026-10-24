@@ -1,11 +1,11 @@
 {
   "version": 1,
   "status": "hold",
-  "requestedTurn": 2,
-  "reason": "Operational hold: canonical Turn 1 is public. Turn 2 becomes eligible after the first full seven-day interval from migration completion.",
-  "requestNonce": "operational-wait-turn-2",
+  "requestedTurn": 3,
+  "reason": "Canonical history resolved through turn 2. Real-time scheduler advances only when another full seven-day interval is due.",
+  "requestNonce": "hold-after-turn-2",
   "createdAt": "2026-10-17T12:35:00+09:00",
   "requestedAt": "2026-10-17T12:45:00+09:00",
-  "lastResolvedTurn": 1,
+  "lastResolvedTurn": 2,
   "updatedAt": "2026-10-18T03:55:00+09:00"
 }
