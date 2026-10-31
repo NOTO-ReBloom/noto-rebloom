@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "worldId": "LYRA-001",
+  "turn": 3,
+  "previousTurn": 2,
+  "preparedFromStateHash": "5b4ba81dd4f54562b70a6d3d7104ba346c923eb86c72da38d0eab176dbe1b63a",
+  "weather": {
+    "calendar": {
+      "year": 1,
+      "dayOfYear": 253,
+      "season": "autumn",
+      "seasonStage": "early_autumn"
+    },
+    "ARCUS": {
+      "coastalWindIndex": 48,
+      "rainIndex": 45,
+      "summary": "mostly workable coast"
+    },
+    "MIREA": {
+      "upperCatchmentRainIndex": 72,
+      "riverPressureIndex": 68,
+      "summary": "elevated river"
+    },
+    "VALD": {
+      "coldPressureIndex": 34,
+      "snowRiskIndex": 17,
+      "summary": "mild-to-cool highland week"
+    }
+  },
+  "proposals": {
+    "ARCUS": [],
+    "MIREA": [
+      {
+        "policyId": "M_GATE_CLEARING",
+        "title": "中流域の灌漑門と排水路を共同整備する",
+        "topic": "river",
+        "urgency": 61.65,
+        "sponsorId": "MIR-1162",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ],
+    "VALD": []
+  }
+}

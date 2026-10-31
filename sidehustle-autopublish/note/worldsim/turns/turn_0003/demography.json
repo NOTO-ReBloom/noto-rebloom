@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "turn": 3,
+  "countries": {
+    "ARCUS": {
+      "births": [],
+      "deaths": [
+        {
+          "citizenId": "ARC-1519",
+          "countryId": "ARCUS",
+          "settlementId": "ARCA-INLAND-01",
+          "householdId": "ARC-H0524",
+          "turn": 3,
+          "cause": "health_or_age"
+        },
+        {
+          "citizenId": "ARC-0220",
+          "countryId": "ARCUS",
+          "settlementId": "ARCA-PORT-01",
+          "householdId": "ARC-H0157",
+          "turn": 3,
+          "cause": "health_or_age"
+        }
+      ],
+      "conceptions": [],
+      "cancelledPregnancies": [],
+      "activePregnanciesAfterTurn": 7
+    },
+    "MIREA": {
+      "births": [],
+      "deaths": [],
+      "conceptions": [
+        {
+          "pregnancyId": "PREG-MIREA-MIR-0379-T0003",
+          "countryId": "MIREA",
+          "motherId": "MIR-0379",
+          "partnerId": "MIR-0378",
+          "householdId": "MIR-H0200",
+          "settlementId": "MIREA-RIVER-01",
+          "conceivedTurn": 3,
+          "conceptionAbsoluteDay": 257,
+          "dueAbsoluteDay": 519,
+          "dueTurn": 40
+        }
+      ],
+      "cancelledPregnancies": [],
+      "activePregnanciesAfterTurn": 5
+    },
+    "VALD": {
+      "births": [],
+      "deaths": [],
+      "conceptions": [],
+      "cancelledPregnancies": [],
+      "activePregnanciesAfterTurn": 3
+    }
+  }
+}
