@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "worldId": "LYRA-001",
+  "turn": 4,
+  "previousTurn": 3,
+  "preparedFromStateHash": "72036578a2c337d9f2f109ce2011d3bb74316ce1b47e9d2add0028e521c292d6",
+  "weather": {
+    "calendar": {
+      "year": 1,
+      "dayOfYear": 260,
+      "season": "autumn",
+      "seasonStage": "early_autumn"
+    },
+    "ARCUS": {
+      "coastalWindIndex": 47,
+      "rainIndex": 62,
+      "summary": "mostly workable coast"
+    },
+    "MIREA": {
+      "upperCatchmentRainIndex": 59,
+      "riverPressureIndex": 59,
+      "summary": "ordinary river conditions"
+    },
+    "VALD": {
+      "coldPressureIndex": 42,
+      "snowRiskIndex": 25,
+      "summary": "mild-to-cool highland week"
+    }
+  },
+  "proposals": {
+    "ARCUS": [
+      {
+        "policyId": "A_COASTAL_SURVEY",
+        "title": "既知海岸の外側へ7日間の測量航海を出す",
+        "topic": "exploration",
+        "urgency": 36,
+        "sponsorId": "ARC-0667",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ],
+    "MIREA": [
+      {
+        "policyId": "M_WETLAND_BUFFER",
+        "title": "ソマ湿地周縁の新規排水を今季だけ止める",
+        "topic": "wetland",
+        "urgency": 37.79,
+        "sponsorId": "MIR-1162",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ],
+    "VALD": [
+      {
+        "policyId": "V_PASS_SURVEY",
+        "title": "マルン峠の先を測る小規模調査隊を出す",
+        "topic": "exploration",
+        "urgency": 25.88,
+        "sponsorId": "VAL-1340",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ]
+  }
+}

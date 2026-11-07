@@ -1,0 +1,1348 @@
+{
+  "version": 1,
+  "turn": 4,
+  "weather": {
+    "calendar": {
+      "year": 1,
+      "dayOfYear": 260,
+      "season": "autumn",
+      "seasonStage": "early_autumn"
+    },
+    "ARCUS": {
+      "coastalWindIndex": 47,
+      "rainIndex": 62,
+      "summary": "mostly workable coast"
+    },
+    "MIREA": {
+      "upperCatchmentRainIndex": 59,
+      "riverPressureIndex": 59,
+      "summary": "ordinary river conditions"
+    },
+    "VALD": {
+      "coldPressureIndex": 42,
+      "snowRiskIndex": 25,
+      "summary": "mild-to-cool highland week"
+    }
+  },
+  "events": [
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "policy_vote",
+      "policyId": "A_COASTAL_SURVEY",
+      "title": "既知海岸の外側へ7日間の測量航海を出す",
+      "passed": false,
+      "yes": 3,
+      "no": 7,
+      "abstain": 2,
+      "yesShare": 0.3
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "food_balance",
+      "productionPersonDays": 12334.2,
+      "consumptionPersonDays": 12908,
+      "grossReserveDaysDelta": -0.311,
+      "storageSpoilageDays": 0,
+      "reserveDaysDelta": -0.311,
+      "rationMultiplier": 1,
+      "seasonModifier": 0.986,
+      "weatherModifier": 1
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "fuel_balance",
+      "productionPersonDays": 6876.4,
+      "ordinaryHouseholdProduction": 2581.6,
+      "specialistProduction": 3346.3,
+      "emergencyCollectionPersonDays": 0,
+      "collectionDaysPerPerson": 0,
+      "targetReserveDays": 74,
+      "prepMultiplier": 1.16,
+      "stockFactor": 0.983,
+      "resourceId": "R-ARCA-TIMBER-01",
+      "resourceDrawdownIndex": 0,
+      "opportunityFoodDays": 0,
+      "consumptionPersonDays": 5900.8,
+      "grossReserveDaysDelta": 0.529,
+      "storageLossDays": 0,
+      "reserveDaysDelta": 0.529,
+      "season": "autumn",
+      "weatherMultiplier": 1,
+      "conservationMultiplier": 1
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "policy_vote",
+      "policyId": "M_WETLAND_BUFFER",
+      "title": "ソマ湿地周縁の新規排水を今季だけ止める",
+      "passed": true,
+      "yes": 5,
+      "no": 2,
+      "abstain": 3,
+      "yesShare": 0.7143
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "food_balance",
+      "productionPersonDays": 19541.3,
+      "consumptionPersonDays": 15498,
+      "grossReserveDaysDelta": 1.826,
+      "storageSpoilageDays": 0,
+      "reserveDaysDelta": 1.826,
+      "rationMultiplier": 1,
+      "seasonModifier": 1.079,
+      "weatherModifier": 1.03
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "fuel_balance",
+      "productionPersonDays": 6461.9,
+      "ordinaryHouseholdProduction": 3099.6,
+      "specialistProduction": 2670,
+      "emergencyCollectionPersonDays": 0,
+      "collectionDaysPerPerson": 0,
+      "targetReserveDays": 68,
+      "prepMultiplier": 1.12,
+      "stockFactor": 1.008,
+      "resourceId": "R-MIR-WETLAND-01",
+      "resourceDrawdownIndex": 0,
+      "opportunityFoodDays": 0,
+      "consumptionPersonDays": 5535,
+      "grossReserveDaysDelta": 0.419,
+      "storageLossDays": 0,
+      "reserveDaysDelta": 0.419,
+      "season": "autumn",
+      "weatherMultiplier": 1,
+      "conservationMultiplier": 1
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "institution_rotation",
+      "body": "輪番書記",
+      "oldMemberIds": [
+        "MIR-1777",
+        "MIR-1114"
+      ],
+      "newMemberIds": [
+        "MIR-1757",
+        "MIR-2099"
+      ]
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "policy_vote",
+      "policyId": "V_PASS_SURVEY",
+      "title": "マルン峠の先を測る小規模調査隊を出す",
+      "passed": false,
+      "yes": 0,
+      "no": 11,
+      "abstain": 1,
+      "yesShare": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "food_balance",
+      "productionPersonDays": 10242.1,
+      "consumptionPersonDays": 9730,
+      "grossReserveDaysDelta": 0.368,
+      "storageSpoilageDays": 0,
+      "reserveDaysDelta": 0.368,
+      "rationMultiplier": 1,
+      "seasonModifier": 0.758,
+      "weatherModifier": 1
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "fuel_balance",
+      "productionPersonDays": 4955.8,
+      "ordinaryHouseholdProduction": 1946,
+      "specialistProduction": 1808.4,
+      "emergencyCollectionPersonDays": 0,
+      "collectionDaysPerPerson": 0,
+      "targetReserveDays": 104,
+      "prepMultiplier": 1.32,
+      "stockFactor": 0.992,
+      "resourceId": "R-VALD-TIMBER-01",
+      "resourceDrawdownIndex": 0,
+      "opportunityFoodDays": 0,
+      "consumptionPersonDays": 5721.2,
+      "grossReserveDaysDelta": -0.551,
+      "storageLossDays": 0,
+      "reserveDaysDelta": -0.551,
+      "season": "autumn",
+      "weatherMultiplier": 0.98,
+      "conservationMultiplier": 1
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-ARCA-FISH-01",
+      "before": 66.88,
+      "baseline": -0.12,
+      "regeneration": 0.083,
+      "after": 66.84
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-ARCA-TIMBER-01",
+      "before": 56.44,
+      "baseline": -0.18,
+      "regeneration": 0.109,
+      "after": 56.37
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-ARCA-CLAY-01",
+      "before": 74,
+      "baseline": 0,
+      "regeneration": 0,
+      "after": 74
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-MIR-GRAIN-01",
+      "before": 83.88,
+      "baseline": -0.08,
+      "regeneration": 0.04,
+      "after": 83.84
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-MIR-WETLAND-01",
+      "before": 76.9,
+      "baseline": 0.04,
+      "regeneration": 0.058,
+      "after": 77
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-MIR-STONE-01",
+      "before": 63,
+      "baseline": 0,
+      "regeneration": 0,
+      "after": 63
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-VALD-IRON-01",
+      "before": 88.57,
+      "baseline": -0.16,
+      "regeneration": 0,
+      "after": 88.41
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-VALD-COPPER-01",
+      "before": 60.85,
+      "baseline": -0.05,
+      "regeneration": 0,
+      "after": 60.8
+    },
+    {
+      "turn": 4,
+      "type": "resource_balance",
+      "resourceId": "R-VALD-TIMBER-01",
+      "before": 71.11,
+      "baseline": -0.1,
+      "regeneration": 0.072,
+      "after": 71.08
+    },
+    {
+      "turn": 4,
+      "type": "calendar_advance",
+      "from": {
+        "year": 1,
+        "dayOfYear": 260,
+        "absoluteDay": 260,
+        "season": "autumn"
+      },
+      "to": {
+        "year": 1,
+        "dayOfYear": 267,
+        "absoluteDay": 267,
+        "season": "autumn"
+      },
+      "days": 7
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1178",
+      "ageBefore": 2,
+      "ageAfter": 3,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1204",
+      "ageBefore": 17,
+      "ageAfter": 18,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1222",
+      "ageBefore": 56,
+      "ageAfter": 57,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1269",
+      "ageBefore": 44,
+      "ageAfter": 45,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1579",
+      "ageBefore": 6,
+      "ageAfter": 7,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1599",
+      "ageBefore": 53,
+      "ageAfter": 54,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0019",
+      "ageBefore": 41,
+      "ageAfter": 42,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0148",
+      "ageBefore": 5,
+      "ageAfter": 6,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0437",
+      "ageBefore": 0,
+      "ageAfter": 1,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0568",
+      "ageBefore": 6,
+      "ageAfter": 7,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0679",
+      "ageBefore": 5,
+      "ageAfter": 6,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0681",
+      "ageBefore": 48,
+      "ageAfter": 49,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0706",
+      "ageBefore": 7,
+      "ageAfter": 8,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0822",
+      "ageBefore": 20,
+      "ageAfter": 21,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0830",
+      "ageBefore": 53,
+      "ageAfter": 54,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0847",
+      "ageBefore": 3,
+      "ageAfter": 4,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0871",
+      "ageBefore": 31,
+      "ageAfter": 32,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0873",
+      "ageBefore": 4,
+      "ageAfter": 5,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0875",
+      "ageBefore": 0,
+      "ageAfter": 1,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0886",
+      "ageBefore": 7,
+      "ageAfter": 8,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-0922",
+      "ageBefore": 16,
+      "ageAfter": 17,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1010",
+      "ageBefore": 33,
+      "ageAfter": 34,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1013",
+      "ageBefore": 10,
+      "ageAfter": 11,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "birthday",
+      "citizenId": "ARC-1747",
+      "ageBefore": 19,
+      "ageAfter": 20,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "life_stage_transition",
+      "citizenId": "ARC-1204",
+      "age": 18,
+      "fromOccupationId": "apprentice",
+      "toOccupationId": "miller",
+      "targetOccupationId": null,
+      "reason": "entered_adult_occupation"
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "life_stage_transition",
+      "citizenId": "ARC-0148",
+      "age": 6,
+      "fromOccupationId": "child",
+      "toOccupationId": "student",
+      "targetOccupationId": null,
+      "reason": "school_age_reached"
+    },
+    {
+      "turn": 4,
+      "country": "ARCUS",
+      "type": "life_stage_transition",
+      "citizenId": "ARC-0679",
+      "age": 6,
+      "fromOccupationId": "child",
+      "toOccupationId": "student",
+      "targetOccupationId": null,
+      "reason": "school_age_reached"
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1386",
+      "ageBefore": 68,
+      "ageAfter": 69,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1471",
+      "ageBefore": 44,
+      "ageAfter": 45,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1475",
+      "ageBefore": 0,
+      "ageAfter": 1,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1524",
+      "ageBefore": 25,
+      "ageAfter": 26,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1627",
+      "ageBefore": 72,
+      "ageAfter": 73,
+      "healthDelta": -0.35
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1643",
+      "ageBefore": 68,
+      "ageAfter": 69,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1647",
+      "ageBefore": 6,
+      "ageAfter": 7,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1698",
+      "ageBefore": 22,
+      "ageAfter": 23,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1720",
+      "ageBefore": 47,
+      "ageAfter": 48,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1757",
+      "ageBefore": 68,
+      "ageAfter": 69,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1775",
+      "ageBefore": 15,
+      "ageAfter": 16,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1814",
+      "ageBefore": 21,
+      "ageAfter": 22,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1824",
+      "ageBefore": 25,
+      "ageAfter": 26,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0039",
+      "ageBefore": 25,
+      "ageAfter": 26,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0143",
+      "ageBefore": 21,
+      "ageAfter": 22,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0214",
+      "ageBefore": 4,
+      "ageAfter": 5,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0237",
+      "ageBefore": 51,
+      "ageAfter": 52,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0325",
+      "ageBefore": 48,
+      "ageAfter": 49,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0335",
+      "ageBefore": 13,
+      "ageAfter": 14,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0434",
+      "ageBefore": 53,
+      "ageAfter": 54,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0463",
+      "ageBefore": 6,
+      "ageAfter": 7,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0474",
+      "ageBefore": 2,
+      "ageAfter": 3,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0490",
+      "ageBefore": 45,
+      "ageAfter": 46,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0572",
+      "ageBefore": 40,
+      "ageAfter": 41,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0587",
+      "ageBefore": 39,
+      "ageAfter": 40,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0597",
+      "ageBefore": 5,
+      "ageAfter": 6,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0605",
+      "ageBefore": 53,
+      "ageAfter": 54,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0609",
+      "ageBefore": 43,
+      "ageAfter": 44,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0786",
+      "ageBefore": 54,
+      "ageAfter": 55,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0799",
+      "ageBefore": 17,
+      "ageAfter": 18,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0843",
+      "ageBefore": 72,
+      "ageAfter": 73,
+      "healthDelta": -0.35
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0894",
+      "ageBefore": 2,
+      "ageAfter": 3,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0921",
+      "ageBefore": 53,
+      "ageAfter": 54,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-0925",
+      "ageBefore": 83,
+      "ageAfter": 84,
+      "healthDelta": -0.35
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1013",
+      "ageBefore": 12,
+      "ageAfter": 13,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1028",
+      "ageBefore": 1,
+      "ageAfter": 2,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1039",
+      "ageBefore": 24,
+      "ageAfter": 25,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1057",
+      "ageBefore": 3,
+      "ageAfter": 4,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1062",
+      "ageBefore": 44,
+      "ageAfter": 45,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1088",
+      "ageBefore": 44,
+      "ageAfter": 45,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1118",
+      "ageBefore": 24,
+      "ageAfter": 25,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1121",
+      "ageBefore": 62,
+      "ageAfter": 63,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1193",
+      "ageBefore": 5,
+      "ageAfter": 6,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1194",
+      "ageBefore": 38,
+      "ageAfter": 39,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1209",
+      "ageBefore": 29,
+      "ageAfter": 30,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1257",
+      "ageBefore": 57,
+      "ageAfter": 58,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1343",
+      "ageBefore": 23,
+      "ageAfter": 24,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1963",
+      "ageBefore": 57,
+      "ageAfter": 58,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-1977",
+      "ageBefore": 20,
+      "ageAfter": 21,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-2078",
+      "ageBefore": 10,
+      "ageAfter": 11,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "birthday",
+      "citizenId": "MIR-2125",
+      "ageBefore": 63,
+      "ageAfter": 64,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "life_stage_transition",
+      "citizenId": "MIR-1775",
+      "age": 16,
+      "fromOccupationId": "student",
+      "toOccupationId": "apprentice",
+      "targetOccupationId": "domestic_producer",
+      "reason": "entered_apprenticeship"
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "life_stage_transition",
+      "citizenId": "MIR-0597",
+      "age": 6,
+      "fromOccupationId": "child",
+      "toOccupationId": "student",
+      "targetOccupationId": null,
+      "reason": "school_age_reached"
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "life_stage_transition",
+      "citizenId": "MIR-0799",
+      "age": 18,
+      "fromOccupationId": "apprentice",
+      "toOccupationId": "reed_worker",
+      "targetOccupationId": null,
+      "reason": "entered_adult_occupation"
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "life_stage_transition",
+      "citizenId": "MIR-1193",
+      "age": 6,
+      "fromOccupationId": "child",
+      "toOccupationId": "student",
+      "targetOccupationId": null,
+      "reason": "school_age_reached"
+    },
+    {
+      "turn": 4,
+      "country": "MIREA",
+      "type": "partnership_formed",
+      "citizenIds": [
+        "MIR-0801",
+        "MIR-0685"
+      ],
+      "settlementId": "MIREA-RIVER-02",
+      "movedCitizenId": "MIR-0801",
+      "targetHouseholdId": "MIR-H0286",
+      "compatibilityScore": 80.93
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0021",
+      "ageBefore": 0,
+      "ageAfter": 1,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0025",
+      "ageBefore": 10,
+      "ageAfter": 11,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0026",
+      "ageBefore": 24,
+      "ageAfter": 25,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0063",
+      "ageBefore": 53,
+      "ageAfter": 54,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0074",
+      "ageBefore": 33,
+      "ageAfter": 34,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0109",
+      "ageBefore": 0,
+      "ageAfter": 1,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0129",
+      "ageBefore": 14,
+      "ageAfter": 15,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0221",
+      "ageBefore": 5,
+      "ageAfter": 6,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0232",
+      "ageBefore": 43,
+      "ageAfter": 44,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0241",
+      "ageBefore": 7,
+      "ageAfter": 8,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0265",
+      "ageBefore": 5,
+      "ageAfter": 6,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0325",
+      "ageBefore": 56,
+      "ageAfter": 57,
+      "healthDelta": -0.15
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0515",
+      "ageBefore": 24,
+      "ageAfter": 25,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0518",
+      "ageBefore": 80,
+      "ageAfter": 81,
+      "healthDelta": -0.35
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0589",
+      "ageBefore": 78,
+      "ageAfter": 79,
+      "healthDelta": -0.35
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0645",
+      "ageBefore": 26,
+      "ageAfter": 27,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0699",
+      "ageBefore": 20,
+      "ageAfter": 21,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0867",
+      "ageBefore": 52,
+      "ageAfter": 53,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0889",
+      "ageBefore": 38,
+      "ageAfter": 39,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-0919",
+      "ageBefore": 0,
+      "ageAfter": 1,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1386",
+      "ageBefore": 42,
+      "ageAfter": 43,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1068",
+      "ageBefore": 35,
+      "ageAfter": 36,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1072",
+      "ageBefore": 83,
+      "ageAfter": 84,
+      "healthDelta": -0.35
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1098",
+      "ageBefore": 33,
+      "ageAfter": 34,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1102",
+      "ageBefore": 29,
+      "ageAfter": 30,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1122",
+      "ageBefore": 16,
+      "ageAfter": 17,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1138",
+      "ageBefore": 82,
+      "ageAfter": 83,
+      "healthDelta": -0.35
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "birthday",
+      "citizenId": "VAL-1163",
+      "ageBefore": 25,
+      "ageAfter": 26,
+      "healthDelta": 0
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "life_stage_transition",
+      "citizenId": "VAL-0221",
+      "age": 6,
+      "fromOccupationId": "child",
+      "toOccupationId": "student",
+      "targetOccupationId": null,
+      "reason": "school_age_reached"
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "life_stage_transition",
+      "citizenId": "VAL-0265",
+      "age": 6,
+      "fromOccupationId": "child",
+      "toOccupationId": "student",
+      "targetOccupationId": null,
+      "reason": "school_age_reached"
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "life_stage_transition",
+      "citizenId": "VAL-1138",
+      "age": 83,
+      "fromOccupationId": "wool_worker",
+      "toOccupationId": "retired",
+      "targetOccupationId": null,
+      "reason": "occupation_age_limit_reached"
+    },
+    {
+      "turn": 4,
+      "country": "VALD",
+      "type": "partnership_formed",
+      "citizenIds": [
+        "VAL-0587",
+        "VAL-0451"
+      ],
+      "settlementId": "VALD-BASIN-01",
+      "movedCitizenId": "VAL-0451",
+      "targetHouseholdId": "VAL-H0248",
+      "compatibilityScore": 77.15
+    }
+  ]
+}
