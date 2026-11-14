@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "worldId": "LYRA-001",
+  "turn": 5,
+  "previousTurn": 4,
+  "preparedFromStateHash": "feb848a7ad2c0833481c9b49ee8c9ffcfc3aaddcaacf37984aa83a243367b55e",
+  "weather": {
+    "calendar": {
+      "year": 1,
+      "dayOfYear": 267,
+      "season": "autumn",
+      "seasonStage": "early_autumn"
+    },
+    "ARCUS": {
+      "coastalWindIndex": 60,
+      "rainIndex": 48,
+      "summary": "breezy coast"
+    },
+    "MIREA": {
+      "upperCatchmentRainIndex": 55,
+      "riverPressureIndex": 54,
+      "summary": "ordinary river conditions"
+    },
+    "VALD": {
+      "coldPressureIndex": 53,
+      "snowRiskIndex": 16,
+      "summary": "cold highland week"
+    }
+  },
+  "proposals": {
+    "ARCUS": [
+      {
+        "policyId": "A_TIMBER_REPAIR",
+        "title": "船舶修理向け木材を一時優先配分する",
+        "topic": "repair",
+        "urgency": 66.7,
+        "sponsorId": "ARC-0010",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ],
+    "MIREA": [
+      {
+        "policyId": "M_GATE_CLEARING",
+        "title": "中流域の灌漑門と排水路を共同整備する",
+        "topic": "river",
+        "urgency": 55.35,
+        "sponsorId": "MIR-1162",
+        "reason": "selected from current material conditions, local risk, policy cooldown and citizen information"
+      }
+    ],
+    "VALD": []
+  }
+}
